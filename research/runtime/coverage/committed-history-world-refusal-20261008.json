@@ -1,0 +1,2054 @@
+{
+  "schema": 1,
+  "reviewed_range": "c0fb4bf21064962a491ca8d04ccf679e3bb34a78..dd3205a15bfa7d63388d89aeb0f79bd3bc2b0027",
+  "scope": "Committed exact parent/current SHA-256 receipts and affected implementation/test/evidence links, separately from uncommitted recovery tests/accounting; no retrospective gate or new execution claim. The three source chunks distinguish portable word admission, native frame/composition/history, and opt-in observed/live World integration. Third-commit refusal policy remains partial with dedicated producer/Qt refusal validation pending at that snapshot. Complete original startup/canvas ownership, all-queue history, unknown draw paths, HUD/input and full replacement remain unresolved. The current increment executes dedicated recovery checks and retains old source fingerprints without upgrading historical runs.",
+  "commits": [
+    {
+      "commit": "2ba74d4257513635e811d46591aadb5c9c57375c",
+      "files": [
+        {
+          "path": "renderer/sprites/word-raster/CMakeLists.txt",
+          "parent_sha256": null,
+          "current_sha256": "949132dedb0210f6c0781777d0d3ab34165743f7f3061728295ac8fd5f66bbb1",
+          "receipts": [
+            "commit-split-portable-word-raster-20261007",
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/sprites/word_raster.c",
+          "parent_sha256": null,
+          "current_sha256": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+          "receipts": [
+            "commit-split-portable-word-raster-20261007",
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/sprites/word_raster.h",
+          "parent_sha256": null,
+          "current_sha256": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+          "receipts": [
+            "commit-split-portable-word-raster-20261007",
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "parent_sha256": "62dec415b70e483f3537a9038f8f2f73c68bffa92a990f9e37eb55967edb3f32",
+          "current_sha256": "b4f0a5cb4f1d4d975b4c684ae45f4780b2b5ac9e9cde53de4118083aa77b902a",
+          "receipts": [
+            "commit-split-portable-word-raster-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "parent_sha256": "399188060ccb2286877499d452997756fd2a18ee46edb1e97df6acf42c47b515",
+          "current_sha256": "8980fca5c08ce92b26f8416d67ec95a41689b3429b8ac7c25b51c91dbe7041eb",
+          "receipts": [],
+          "journal_excluded_from_own_fingerprints": true
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "parent_sha256": "f7d8e04e390a13151e8adbbe8865a2318f8f86b61c42226a8158aacbb281879d",
+          "current_sha256": "9d8aedf12dd3f6da62e54e599b23a9534acbe9ef0fcbb271a47a322e286aedb5",
+          "receipts": [
+            "commit-split-portable-word-raster-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/source-index-commit-chunk-1-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "6edb6f9170c3d52d5bd846b2ecbfdd7fbfddc6880e5f020790e654131b1c68e0",
+          "receipts": [
+            "commit-split-portable-word-raster-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/summary-commit-chunk-1-reviewed-20261007.md",
+          "parent_sha256": null,
+          "current_sha256": "6bb294b90b84edf09a27743b4875a8a9e9198c9a7b096c6247b1abf96dcdf73d",
+          "receipts": [
+            "commit-split-portable-word-raster-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-renderer-commit-boundaries-20261007.md",
+          "parent_sha256": null,
+          "current_sha256": "62b4d7c43210419b3c42ba0b1a85af2b12f5caf2ef7252261a8da203dfc6b276",
+          "receipts": [
+            "commit-split-portable-word-raster-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tests/word-raster-test.c",
+          "parent_sha256": null,
+          "current_sha256": "c6e28331724bc90d710c20738495524336bde401b61809deb304581faeeabcbe",
+          "receipts": [
+            "commit-split-portable-word-raster-20261007",
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        }
+      ],
+      "reviewed_behavior_links": [
+        {
+          "id": "RS.word-raster",
+          "kind": "recovered",
+          "scope": "Fully in-bounds positive direct-word frames with contiguous skip/opaque and WORD streams; signed origins, opaque zero, complete destination padding and guards. Clipping, empty/indexed/auxiliary execution and malformed original semantics remain outside scope. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+          "status": {
+            "understanding": "partial",
+            "implementation": "partial",
+            "comparison": "none",
+            "integration": "none",
+            "replacement": "none"
+          },
+          "implementation": [
+            "renderer/sprites/word_raster.h",
+            "renderer/sprites/word_raster.c",
+            "renderer/sprites/word-raster/CMakeLists.txt"
+          ],
+          "tests": [
+            "tests/word-raster-test.c"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "NR.word-admission",
+          "kind": "native_policy",
+          "scope": "Preflight entire stable borrowed frame and canvas before any writes; bounded dimensions/extents, contiguous rows, exact right/bottom-edge and malformed refusals, explicit shadow/takeover modes and separate fallback/bypass counters. Does not reproduce unsafe original malformed acceptance. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+          "status": {
+            "understanding": "partial",
+            "implementation": "partial",
+            "comparison": "none",
+            "integration": "none",
+            "replacement": "none"
+          },
+          "implementation": [
+            "renderer/sprites/word_raster.h",
+            "renderer/sprites/word_raster.c"
+          ],
+          "tests": [
+            "tests/word-raster-test.c"
+          ],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "commit": "eadb9738fb2296e64d3fb9988650f80e3dd58d99",
+      "files": [
+        {
+          "path": "compat/legacy/CMakeLists.txt",
+          "parent_sha256": "739a983dab21872557ca47d45f67c70310b007334d63f7e236710fc992221ebd",
+          "current_sha256": "3db50c73a2dc3b61eb321db73eb3e41416ba7dff67aa62ef77a7b6267707678d",
+          "receipts": [
+            "commit-split-native-world-core-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "compat/legacy/scene_snapshot.cpp",
+          "parent_sha256": "6786082314af247cf97e5c5f9b4fe02361413bfa68969be39c62ab314f3f7bce",
+          "current_sha256": "47ca8408ff14329cac05c7319b519ff16f00b952c5bdccc8ff41d018dea6384c",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "compat/legacy/scene_snapshot.hpp",
+          "parent_sha256": "d22476a8c00d88860b7978aba3eef88b7979640ca5cb3a0ebd217970f40c9ca8",
+          "current_sha256": "6150b35a0ed3fb376b96ab619abec9d07baf9cf80dc7e7331942b06c0d526fbd",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "compat/legacy/world_frame.cpp",
+          "parent_sha256": null,
+          "current_sha256": "8614df24f8bdd6c0e3c775bd5014a61b5cbc697ce3864f41980f7fbe4bbd0816",
+          "receipts": [
+            "commit-split-native-world-core-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "compat/legacy/world_frame.hpp",
+          "parent_sha256": null,
+          "current_sha256": "20711c4f1c301763ce234bf5242a9accf3c7f861c128e7bb7a05a950ec91d5ea",
+          "receipts": [
+            "commit-split-native-world-core-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "compat/legacy/world_frame_main.cpp",
+          "parent_sha256": null,
+          "current_sha256": "31ea225961a21634b6535bf4881a0b326473c401ad2e79abfa4a7bef9f1fb21d",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "compat/legacy/world_history_main.cpp",
+          "parent_sha256": null,
+          "current_sha256": "018f767a3687ac64dac285a7fd73d2806a6566803342418e865548b8759e2e99",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "protocols/include/mnm/world_frame_v1.h",
+          "parent_sha256": null,
+          "current_sha256": "f96ec37f282f145480f57f36cc0d5414200e52182c739e6b642bd6b75c4d0c79",
+          "receipts": [
+            "commit-split-native-world-core-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/blit.cpp",
+          "parent_sha256": "d3b088460d585f339dec0531176dc9bba270ae522d4f5a15d70e8412a26870be",
+          "current_sha256": "03e1c45005afcc5d469686ecb4991677688d6bf149c16798cc3421cdb54e730d",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/blit.hpp",
+          "parent_sha256": "3d252d973c51092f83bdcb21c0d7003b7ba8d761bef28ccbf7b0d782a759b861",
+          "current_sha256": "170c2c00d9c9fa067c2d7044938ef1e5801888797ca7ca04001b5ab591c1f0ff",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/resources/resource_cache.cpp",
+          "parent_sha256": "a4a3ef28ce73e24ae01044574dc42bf7365209bf7f3cbcb7f96b919a2dcf4fc0",
+          "current_sha256": "907e107d203e0ba982799044d8da2fd5555d5c818f7ddf95d52a71a1f8702a1c",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/resources/resource_cache.hpp",
+          "parent_sha256": "3727f7706f400ea7696485f5070bc8b7f706555e6407ab141b4951a274e9fcd5",
+          "current_sha256": "a464c6963306fcb0deb3f91a916eb719274b7948db55d538bc1b877749f5850e",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/scenes/CMakeLists.txt",
+          "parent_sha256": "d7d8121e9c05a41e233845b4e05b832276b3ba9550f5164236bd47b7f99280c6",
+          "current_sha256": "d82e28cc6a99755ef0feffd8342951d43adca5269f04247b6f06ba5562393053",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/scenes/scene_history.cpp",
+          "parent_sha256": null,
+          "current_sha256": "af80ec75cf1c6f004590cb23ed9500bec7a8af2292b8b411e502b5a0925ec974",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/scenes/scene_history.hpp",
+          "parent_sha256": null,
+          "current_sha256": "c8017e05747bfd2c830cfd7f4a7b08eb483329d5f8f55220f3d3a4133decf3c0",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/scenes/scene_renderer.cpp",
+          "parent_sha256": "855076370549513d18e77d3f7589ac1deec8776d9b684b3549a64059ef7255e5",
+          "current_sha256": "57ada10ed4a740984917f6ce31e186bbd85d4374faaf2078fcfac6c4ba93f441",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/scenes/scene_renderer.hpp",
+          "parent_sha256": "e1d61c75bf4d5d1cdedd32ac80f1475f904e46fbc9d965205216ab31b2155d07",
+          "current_sha256": "169095cb86e831f36d2cc8cd2673d0a20a933274e39d4757cd0fa2b871a7bab7",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/sprites/sprite.cpp",
+          "parent_sha256": "15c9c4b2ced791fba045795ff02525d76b4c6a1ee12caab7a11655b4de0b66bf",
+          "current_sha256": "e29659e2987db58b246947d052ea571967f5b81cca7558c3d8e5947988cb15d3",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/sprites/sprite.hpp",
+          "parent_sha256": "8026c4bff5313c1adbf870f5ae53ca0525c1cfe6eab7d511b8d52078b5f660a0",
+          "current_sha256": "b8f5a615c0939a627592626c101440de2dd446a33a4762e786d70a14e18809dd",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/formats/world-frame-v1.md",
+          "parent_sha256": null,
+          "current_sha256": "d88678d0bd121a8695b7885d5f7c763e1ad95914c6935f7fdf9974f20803e668",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/formats/world-history-v1.md",
+          "parent_sha256": null,
+          "current_sha256": "e6750bd5637dbac43f66abf76c2963f2a12876b411e9f214e899ec12ccc5a9d5",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "parent_sha256": "b4f0a5cb4f1d4d975b4c684ae45f4780b2b5ac9e9cde53de4118083aa77b902a",
+          "current_sha256": "0b10f8fc777a906c6f66fb7b94bc5b3fee7ba8c1c01a14671787a77bd7ebde11",
+          "receipts": [
+            "commit-split-native-world-core-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "parent_sha256": "8980fca5c08ce92b26f8416d67ec95a41689b3429b8ac7c25b51c91dbe7041eb",
+          "current_sha256": "5f6cb3ca4bed67a5fb3f94556e1ff863ef17d9f38d39ada40f5940eac4b0bfb7",
+          "receipts": [],
+          "journal_excluded_from_own_fingerprints": true
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "parent_sha256": "9d8aedf12dd3f6da62e54e599b23a9534acbe9ef0fcbb271a47a322e286aedb5",
+          "current_sha256": "1c76351bb4d4c66c6ef0c94f59d4d2fa2a7a97153997ab37340ad4ff0f665b94",
+          "receipts": [
+            "commit-split-native-world-core-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/source-index-commit-chunk-2-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "db53fd1a642adf2c11714ad1a29be498b9328b873063276a35b1079ac4d2976b",
+          "receipts": [
+            "commit-split-native-world-core-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/summary-commit-chunk-2-20261007.md",
+          "parent_sha256": null,
+          "current_sha256": "f2da769516b6406167f9f8e5fff611966e114b0b8f5542433c3a45be71a8553b",
+          "receipts": [
+            "commit-split-native-world-core-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tests/scene-history-test.cpp",
+          "parent_sha256": null,
+          "current_sha256": "b42459f6862952eb5f24453c8fcbb14a8e80d71c9d9fddfd74b6403d0b6b2b63",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tests/scene-renderer-test.cpp",
+          "parent_sha256": "1929f917ac94b80608a6d826079a69e20acf6c1e35739519906a303dadb6a20a",
+          "current_sha256": "0fef8e4d6ed77fa68b84a2342de62a8c4627347d85aac8166a052c154df1cf8a",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tests/world-frame-test.cpp",
+          "parent_sha256": null,
+          "current_sha256": "6c5d1da0f4cb8e1740bbd65edcfb383bf0d5388bfc2be76f1211d6d0b25a928f",
+          "receipts": [
+            "commit-split-native-world-core-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        }
+      ],
+      "reviewed_behavior_links": [
+        {
+          "id": "NR.scene-service",
+          "kind": "native_policy",
+          "scope": "Persistent RGB565 background/canvas and ResourceCache ownership; caller-ordered visible resource/frame/projected anchor/colour entries with optional clipping. Whole-list admission preserves previous completed pixels; execution failures refuse partial presentation until a complete retry. Sprite/world preview adapters preserve recovered clocks/order/visibility. Explicit owned checkpoint ANI recipe bytes have separate encoded capacity budgets. Live snapshots, full scene admission/lighting/effects and original replacement remain pending. Native beginFrame/drawNext and retainedCanvas source are now present; intermediate commit preserves historical validation only, with current runtime integration accounted separately.",
+          "status": {
+            "understanding": "scoped",
+            "implementation": "scoped",
+            "comparison": "none",
+            "integration": "preview",
+            "replacement": "none"
+          },
+          "implementation": [
+            "renderer/scenes/scene_renderer.hpp",
+            "renderer/scenes/scene_renderer.cpp",
+            "renderer/scenes/CMakeLists.txt"
+          ],
+          "tests": [
+            "tests/scene-renderer-test.cpp",
+            "tests/scene-resource-fixtures.hpp",
+            "tests/resource-fixtures.hpp",
+            "tools/test-native-scene-service.py"
+          ],
+          "evidence": [
+            "NR.scene-service.synthetic-20261006",
+            "NR.scene-service.installed-20261006",
+            "NR.scene-service.native-commit-20261006",
+            "NR.scene-service.native-commit-head-20261006",
+            "NR.scene-service.native-commit-final-20261006"
+          ]
+        },
+        {
+          "id": "RS.world-frame",
+          "kind": "recovered",
+          "scope": "Finite selected Quick Battle World consumer canvases from ordered owned raster requests, actual selected colours/clips and every pinned native SPR binding. Comparison with separately captured whole original output; original pixels cannot drive native rendering. Later HUD/window composition, alternate dispatch, continuous delivery, consumer side effects and whole-scene bypass remain pending. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: initial canvas or untraced writes remain unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+          "status": {
+            "understanding": "partial",
+            "implementation": "partial",
+            "comparison": "none",
+            "integration": "none",
+            "replacement": "none"
+          },
+          "implementation": [
+            "protocols/include/mnm/world_frame_v1.h",
+            "compat/legacy/world_frame.cpp",
+            "compat/legacy/world_frame.hpp",
+            "compat/legacy/world_frame_main.cpp",
+            "compat/legacy/scene_snapshot.cpp",
+            "compat/legacy/scene_snapshot.hpp",
+            "compat/legacy/CMakeLists.txt"
+          ],
+          "tests": [
+            "tests/world-frame-test.cpp",
+            "tests/scene-renderer-test.cpp",
+            "tests/scene-history-test.cpp"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "RS.world-composition",
+          "kind": "recovered",
+          "scope": "Actual RGB565 colour tables and separate coverage; selected indexed copy, half/quarter-source/quarter-destination, nonnegative rightward displacement and alternating-row projected shadow. Six-mode clipped fixtures and captured indexed World requests; full original raster family, RGB555, negative displacement, palette generation and direct-word live World routes remain outside scope. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: selected retained pre-consumer pixels are confirmed; upstream initialization/ownership remains unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+          "status": {
+            "understanding": "partial",
+            "implementation": "partial",
+            "comparison": "none",
+            "integration": "none",
+            "replacement": "none"
+          },
+          "implementation": [
+            "renderer/blit.cpp",
+            "renderer/blit.hpp",
+            "renderer/sprites/sprite.cpp",
+            "renderer/sprites/sprite.hpp",
+            "renderer/resources/resource_cache.cpp",
+            "renderer/resources/resource_cache.hpp",
+            "renderer/scenes/scene_renderer.cpp",
+            "renderer/scenes/scene_renderer.hpp"
+          ],
+          "tests": [
+            "tests/world-frame-test.cpp",
+            "tests/scene-renderer-test.cpp",
+            "tests/scene-history-test.cpp"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "NR.world-admission",
+          "kind": "native_policy",
+          "scope": "Pointer-free bounded closed files, exact extents/build/format/operation checks, actual-colour palette aliases, all-resource binding and atomic scene preflight. Native refusal of malformed/unknown/unsafe sampling input, separate independent background and oracle outputs; no malformed original semantics, continuous IPC or silent supported-only preview. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: initial canvas or untraced writes remain unresolved; broad equivalence/replacement not promoted. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+          "status": {
+            "understanding": "partial",
+            "implementation": "partial",
+            "comparison": "none",
+            "integration": "none",
+            "replacement": "none"
+          },
+          "implementation": [
+            "compat/legacy/world_frame.cpp",
+            "compat/legacy/world_frame.hpp",
+            "compat/legacy/world_frame_main.cpp",
+            "compat/legacy/scene_snapshot.cpp",
+            "compat/legacy/scene_snapshot.hpp",
+            "compat/legacy/CMakeLists.txt",
+            "renderer/blit.cpp",
+            "renderer/blit.hpp",
+            "renderer/sprites/sprite.cpp",
+            "renderer/sprites/sprite.hpp",
+            "renderer/resources/resource_cache.cpp",
+            "renderer/resources/resource_cache.hpp",
+            "renderer/scenes/scene_renderer.cpp",
+            "renderer/scenes/scene_renderer.hpp",
+            "protocols/include/mnm/world_frame_v1.h"
+          ],
+          "tests": [
+            "tests/world-frame-test.cpp",
+            "tests/scene-renderer-test.cpp"
+          ],
+          "evidence": []
+        },
+        {
+          "id": "NR.scene-history",
+          "kind": "native_policy",
+          "scope": "Native GPU canvas retention from an explicit caller-owned initial background; nonzero logical canvas identity and contiguous source sequence, refusal of gaps/reuse without reset, incomplete/failed-frame refusal. This does not recover original startup initialization or producer history. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
+          "status": {
+            "understanding": "partial",
+            "implementation": "partial",
+            "comparison": "none",
+            "integration": "none",
+            "replacement": "none"
+          },
+          "implementation": [
+            "renderer/scenes/scene_history.hpp",
+            "renderer/scenes/scene_history.cpp",
+            "renderer/scenes/scene_renderer.cpp",
+            "renderer/scenes/scene_renderer.hpp",
+            "renderer/scenes/CMakeLists.txt",
+            "compat/legacy/world_history_main.cpp",
+            "compat/legacy/CMakeLists.txt"
+          ],
+          "tests": [
+            "tests/scene-history-test.cpp"
+          ],
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "commit": "dd3205a15bfa7d63388d89aeb0f79bd3bc2b0027",
+      "files": [
+        {
+          "path": "apps/qt-shell/README.md",
+          "parent_sha256": "6fa82c0d45ba8a74c6290c38822c71468fa97992053271876ca44cb283add1ab",
+          "current_sha256": "cb8cb96e1543e2fef288052d4ebaae61f17a34db329b9f501cd869dbf8488350",
+          "receipts": [
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "apps/qt-shell/live_world_session.cpp",
+          "parent_sha256": null,
+          "current_sha256": "dcd233dbae283baeea718c4433fc575161bd2cbdd91275666b9a4886c48970b4",
+          "receipts": [
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "apps/qt-shell/live_world_session.hpp",
+          "parent_sha256": null,
+          "current_sha256": "70271a472b3d7455b8f315778d97948e35847a96bc4baa51628e33648afc09ab",
+          "receipts": [
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "apps/qt-shell/world_live_main.cpp",
+          "parent_sha256": null,
+          "current_sha256": "ea6f2de78e7215b74b61b60efaa19754dcbf9c0f5dc34e58c222e6c2c5dc454d",
+          "receipts": [
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "compat/legacy/CMakeLists.txt",
+          "parent_sha256": "3db50c73a2dc3b61eb321db73eb3e41416ba7dff67aa62ef77a7b6267707678d",
+          "current_sha256": "ab297f1497732309fcf8172c9e0c6ac36135bc4f77dba3173b0f0eb036ea2fe1",
+          "receipts": [
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "compat/legacy/world_channel.cpp",
+          "parent_sha256": null,
+          "current_sha256": "03e507024360d29ccdd9368a55914ea0f416ef19942504ca7a136e8d1fa18514",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "compat/legacy/world_channel.hpp",
+          "parent_sha256": null,
+          "current_sha256": "1f75a88fd72006f8c9a36bf8ac8683791d85e995693e803ae493b0a8002fc137",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "compat/legacy/world_resources.cpp",
+          "parent_sha256": null,
+          "current_sha256": "5c7343b8dc19c17f50469534bcd0df30bcbf433e1c2b20f5045e23934159409f",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "compat/legacy/world_resources.hpp",
+          "parent_sha256": null,
+          "current_sha256": "54c364bf61fc74cfa64d5ade84c9129c225e7a6156eb902315116b14f679dea4",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "docs/live-drawing-replacement.md",
+          "parent_sha256": "ff31cd3b2f76d2b801bf3ffef8c9d29104b54d29d754195f227c254225a8681b",
+          "current_sha256": "6b08fb3f54c5b5b5167d46b889d680a4d09f9bb63e6458cdbf41ea3056f02f3c",
+          "receipts": [
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "protocols/include/mnm/world_channel_v1.h",
+          "parent_sha256": null,
+          "current_sha256": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "renderer/README.md",
+          "parent_sha256": "300688c21ba8da055a6cccde2929dd0d2067a419d153b80dbe0057c5987a3573",
+          "current_sha256": "960b7b05d3e77dfce41334aa00e98d88273756a8e9711c72e0fc307627edd76a",
+          "receipts": [
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/formats/word-sprite-samples-v1.md",
+          "parent_sha256": null,
+          "current_sha256": "2b75ad82c38c60c7805841a051b817470b7dc06479b28db67e897a53dceb584d",
+          "receipts": [
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/formats/world-channel-v1.md",
+          "parent_sha256": null,
+          "current_sha256": "f3f54ce01ad9c83c3a7a2d697cbb43217e839e652d05942497ea996b497cfc10",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "parent_sha256": "0b10f8fc777a906c6f66fb7b94bc5b3fee7ba8c1c01a14671787a77bd7ebde11",
+          "current_sha256": "9dddef2b16f99b38ac4a5390b255ee64cf656aacbc28a82f8f386cfe62e43837",
+          "receipts": [
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "parent_sha256": "5f6cb3ca4bed67a5fb3f94556e1ff863ef17d9f38d39ada40f5940eac4b0bfb7",
+          "current_sha256": "5a378fe4564430d3c5fae6dc7d7cd91b476889d50480577725af06c8fd5339da",
+          "receipts": [],
+          "journal_excluded_from_own_fingerprints": true
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "parent_sha256": "1c76351bb4d4c66c6ef0c94f59d4d2fa2a7a97153997ab37340ad4ff0f665b94",
+          "current_sha256": "9bdb6024b6da17e9977350bd5b2840a20d6963f61b59c3b80bd10a330c4d409e",
+          "receipts": [
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/source-index-commit-chunk-3-frozen-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "b3c81e27a310b8704d3e0c150de955ca21facb3eabcce2c203d30a1d08ec1f36",
+          "receipts": [
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/source-index-word-sprite-mvp-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "9b174164967fcda8e98395631446bbddc44889a33a06da0714612c3881f1bb25",
+          "receipts": [
+            "word-sprite-mvp-support-accounting-20261007",
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/source-index-world-frame-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "a5083c36add518c6cb61cd063cb697fd42f3ccb5f375888d9f2e8cb4fdf11789",
+          "receipts": [
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/source-index-world-frame-final-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "a5083c36add518c6cb61cd063cb697fd42f3ccb5f375888d9f2e8cb4fdf11789",
+          "receipts": [
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/source-index-world-history-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "8b16648a22056208024ed261811b01d4f45e913d2550bf686d5eeee29d138b27",
+          "receipts": [
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/source-index-world-live-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "31e3dc7c71f64c3454b232e5874ec37f6ea6ce132b95e877e78efef2c1b63e76",
+          "receipts": [
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/summary-commit-chunk-3-frozen-20261007.md",
+          "parent_sha256": null,
+          "current_sha256": "361fa4f924a7836f58aeaef04f26754ea28a2d4f790175e2f29af8332bb8e116",
+          "receipts": [
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/summary-word-sprite-mvp-20261007.md",
+          "parent_sha256": null,
+          "current_sha256": "4bbca90bddeb5df8d5360af30c13a2f3b73838c9e2006d48a1bde892d56c1c96",
+          "receipts": [
+            "word-sprite-mvp-support-accounting-20261007",
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-frame-20261007.md",
+          "parent_sha256": null,
+          "current_sha256": "0be22cf9d52e9e7b5effbb42137bd24aa5956d992757091e851a6c72f9538a07",
+          "receipts": [
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-history-20261007.md",
+          "parent_sha256": null,
+          "current_sha256": "a03477723d2e46baa2ee6999bcd9ffa815684c6aba95866a2997bd1591fe7d4e",
+          "receipts": [
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-live-20261007.md",
+          "parent_sha256": null,
+          "current_sha256": "0e3879dc1a0082ccf0816f7a1dd52e9bedf10d45e8474b0d36e07fb25863b238",
+          "receipts": [
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-word-sprite-launch-staging-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "32324381bf96bbb70d0667f4d00498cd8614ddbc55245923f4c57a3cfc5bf65e",
+          "receipts": [
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-word-sprite-mvp.md",
+          "parent_sha256": null,
+          "current_sha256": "231f361f73e683f9e4015ecfb91a62aa8831af7fafefa3b0b2ddf83510506662",
+          "receipts": [
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-word-sprite-shadow-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "8f568295dd429bd250302a12aa64bc31891aff59ddb19440b2c6986d5a0129e3",
+          "receipts": [
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-word-sprite-takeover-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "ff3e3444cb48d31dd83cc578ebb9c4bb90dd8849e9b8c161a2b8c7015da578fd",
+          "receipts": [
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-background-comparison-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "13b5540a6dc1621c2936cd4fc8fb5de25aa07a3604d006b5dcaa16283aa28ab3",
+          "receipts": [
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-canvas-history.md",
+          "parent_sha256": null,
+          "current_sha256": "02b3c6906a915ba4dbbb333d1b74a5eff16eef95df40ad395a38cf27a72c7b85",
+          "receipts": [
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-commit-history-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "38edcba571b536ad2a4d40d1b8649547ebd5936af14a00f1b52d34ee1f2d6eb5",
+          "receipts": [
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-commit-input-relocations-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "8bc5828133d86a8fc233e8554b514735c565ba31a60aa4d389c7285f7bbaf0c1",
+          "receipts": [
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-commit-regressions-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "d89fb193f5e8ca8acf75c81e927da0a227b46f19584a5d9117157a7188c0fb60",
+          "receipts": [
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-frame-capture-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "8463d256d7d0961e9f2fe77e95b58ca744d18e91fb032758232cd1059c1f8caa",
+          "receipts": [
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-frame-comparison-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "be5ead93edb6d514008ffe834fc69ae163e732cccafd96463a87949769d99ffb",
+          "receipts": [
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-frame-comparison-anchored-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "74a1a345bbdf5db32f81b99c78f8c90f93b76c7af51dbcd3ab1a774d314957bf",
+          "receipts": [
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-frame-renderer-regressions-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "d24cf9dbf0551b0c9dcb2cfc04de8d4711035bb7d98f1c58b733d7801865cd5c",
+          "receipts": [
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-frame-rendering.md",
+          "parent_sha256": null,
+          "current_sha256": "a2eb8bf6d58cb5ce694800ed6ebb2c078cdeb3bbc6cd1f00be3d7e6473bd07d4",
+          "receipts": [
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-history-comparison-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "040f61870070d08ed1f87a718ebc643dcadb87ed2e318cd950e30e993b1a16d2",
+          "receipts": [
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-history-current-capture-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "111721303c1e3ac360f98ebf316a70bd9605f1c9aebb59f12248f8c39869bb38",
+          "receipts": [
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-history-live-normal-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "89575087f0144fe849cfb31b916f22a3af8eb1409cab0a74c4423cb57809dba8",
+          "receipts": [
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-history-regressions-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "406b15797534d9a744eda86fdfcba03d2a2e3a847bbe14aeebfb952dccc42867",
+          "receipts": [
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-live-background-gap.md",
+          "parent_sha256": null,
+          "current_sha256": "af8d5199b6c972aeef9c947dda0ae7b66589e9281850e9cae79202f13f3939da",
+          "receipts": [
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-live-equivalence-historical-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "3e6336e8d9c7013d8136738dd9f55e9e52c4c9a99e970d11bdd8ab5577986c17",
+          "receipts": [
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-live-normal-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "d4809d233685305c4e596137218f44c946f904255cee507b1e83e3b31e9165eb",
+          "receipts": [
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-live-regressions-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "1e77eeaa7bb87a8581bebed094284b961648e446285659566cf0bfd9a6f06fb7",
+          "receipts": [
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-live-rendering.md",
+          "parent_sha256": null,
+          "current_sha256": "d54ea4c4e66b967497619fc0ba33ef186a406be82c718c83a4a0d6f46039ceaa",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-primitives-current-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "f3cbe76fb20a7598ecd28d554cf0798fbab8d02b508aa20c06591af6932c6682",
+          "receipts": [
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/native-world-startup-capture-20261007.json",
+          "parent_sha256": null,
+          "current_sha256": "5235b902b20ca882092558484c04e907de08f8431f85a2f037bc1141a1f98513",
+          "receipts": [
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "research/runtime/render-drawing-inventory.md",
+          "parent_sha256": "74e496c534396f95f3ca99fce208be930689e8ff950964e27604386c23ac5e75",
+          "current_sha256": "244fd84b5b60d9f13ca2a2a12fd66dc5e6c81d7659921e2ffb7dbcae3d9443e0",
+          "receipts": [
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "runtime/scene/observer.c",
+          "parent_sha256": "bd673f01724092f38cd5b246aa5bb2f00eb01a90b0a776483f63d78c8817a250",
+          "current_sha256": "a2012556c0d6d2fbb9bbd41cc93d497bd9780d7f318a5b508da62090f29c734b",
+          "receipts": [
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "runtime/scene/word_entry.S",
+          "parent_sha256": null,
+          "current_sha256": "f4ad46c7c503212db820bbdcea7570f33d8d6735b8837db034e3bf52ad18d1f7",
+          "receipts": [
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "runtime/scene/word_route.c",
+          "parent_sha256": null,
+          "current_sha256": "f8a39a190ef1350d54a0119a0d72f981accc634add1c4534cb85d5c4aea58a6d",
+          "receipts": [
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "runtime/scene/world_entry.S",
+          "parent_sha256": null,
+          "current_sha256": "9794f755731a8a8d3df973a71d99a91ddf24855be25e8c1d39a9716054e95b3d",
+          "receipts": [
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "runtime/scene/world_lifetime.c",
+          "parent_sha256": null,
+          "current_sha256": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+          "receipts": [
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "runtime/scene/world_stream.c",
+          "parent_sha256": null,
+          "current_sha256": "431ae0f793b733f238db9d2c7bec11a8236ffb7ee832975d27011a030fb5603a",
+          "receipts": [
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "runtime/scene/world_trace.c",
+          "parent_sha256": null,
+          "current_sha256": "323f01ca3a062f2a389d4a90cb0e376ac60803178c086af042b8546c300e2982",
+          "receipts": [
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tests/word-sprite-reference.cpp",
+          "parent_sha256": null,
+          "current_sha256": "cfecefe2101e2de029e4bd1f56f70444f4308428ab3a9e80273c44c7dda1fc21",
+          "receipts": [
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tests/world-channel-test.cpp",
+          "parent_sha256": null,
+          "current_sha256": "e92600298acebf1b15c31c8271d1b1d6dbbf50e538a34eac089fd410dd3324d4",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tests/world-frame-reference.cpp",
+          "parent_sha256": null,
+          "current_sha256": "cbfc818cdcf536b01593f4d039546f7687a3a44a63ef5a1590681775fadeb1a7",
+          "receipts": [
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tests/world-live-session-test.cpp",
+          "parent_sha256": null,
+          "current_sha256": "638cfb13e02045dec024039fdf65f72e475b18c0b32a5064f7bb9e9ae0dda554",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/build-scene-observer.py",
+          "parent_sha256": "37882db464a89b5c0a8efdf85485508c59dda3a2b0e3dcb6434cf11ba55d034d",
+          "current_sha256": "954fa0de3b7744a6831cf1829828627935a064e50071ceb7bd99101e3b8c469f",
+          "receipts": [
+            "world-native-canvas-history-current-execution-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/build-word-sprites.py",
+          "parent_sha256": null,
+          "current_sha256": "7508933e5ad1f42b2e20864a2d9667342fa4eee72fd254a2aa89e173b9c27e61",
+          "receipts": [
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/capture-scene-game.py",
+          "parent_sha256": "c6175171b31bbd27b77bcd4242b9cd9f64ec4d6a8628b0bf7301947072017893",
+          "current_sha256": "608aa8d92376da47ef7ef4ca0cd5939685f03287f650c84e84af7c0160941d76",
+          "receipts": [
+            "world-native-canvas-history-current-execution-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/prepare-scene-observer.py",
+          "parent_sha256": "e4bcd0597c1204649041ec7ea62615596f514b22f4346ecd5b35737e0dd98a48",
+          "current_sha256": "f650c14d7b212e551e545eb8a067cccf4068c31961cf75b5c5b2fe466dc67975",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/render-game-runner.py",
+          "parent_sha256": "1bb829dc851b058d444a9db01b2b2772a78d91d342cd24c38e1e407700806c3d",
+          "current_sha256": "3ebd48598261a7dbd2afba7ef94403f02d55f2c838a5e3f61ee9f23bea8ab553",
+          "receipts": [
+            "word-sprite-mvp-support-accounting-20261007",
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/run-native-world.py",
+          "parent_sha256": null,
+          "current_sha256": "942ae2944c307e5f5c327416003311e9e3a5812c68d6bb46692a5fa255b1fe00",
+          "receipts": [
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/run-opengl-game.py",
+          "parent_sha256": "f26681ad6e9f19c3f3e32a2e42bde97ce955d58d91509c689672d0fc088aa429",
+          "current_sha256": "7e7c002c27946560ee8403da632a764cc89cc6946bada47a0457759457e7fdf9",
+          "receipts": [
+            "word-sprite-mvp-support-accounting-20261007",
+            "world-frame-shared-source-and-accounting-20261007",
+            "world-live-shared-history-and-explicit-boundaries-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/scene-game-runner.py",
+          "parent_sha256": "9422fccfb4d62f25ddd55f2817b63a1c5a7a6596c068a7f7cbb23a253a3834fd",
+          "current_sha256": "600a3a3bb79c40507b56d250413fffd667ef904e7beea292a6e3fb7558fa00f2",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/test-native-world.py",
+          "parent_sha256": null,
+          "current_sha256": "e9fc80b23c7f816da28427a8aebd96a7b556340e80bd402b5afd224289768473",
+          "receipts": [
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/test-word-sprites.py",
+          "parent_sha256": null,
+          "current_sha256": "b72007824fa68eb82be928b1032ebd29a985844974907ae6c054a4be89affc00",
+          "receipts": [
+            "word-sprite-mvp-execution-20261007",
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/test-world-background.py",
+          "parent_sha256": null,
+          "current_sha256": "0b70a166f2f33b4ca7cb0170bfa8288faccca9826fec090ea151ce923fe13168",
+          "receipts": [
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-20261007",
+            "world-shadow-refusal-accounting-and-pending-boundaries-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-pending-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/test-world-frames.py",
+          "parent_sha256": null,
+          "current_sha256": "a023070c8a8656b1a787d1cb3473e3364f16e39b9c5c562336701ab4945e9706",
+          "receipts": [
+            "world-frame-and-retained-word-execution-20261007",
+            "world-live-owned-delivery-and-current-execution-20261007",
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        },
+        {
+          "path": "tools/test-world-history.py",
+          "parent_sha256": null,
+          "current_sha256": "292f33b93257f3d8d4a3b12575ea8177857251a490d81fbc6ba5ec0e7fe8252a",
+          "receipts": [
+            "world-native-canvas-history-current-execution-20261007",
+            "world-shadow-refusal-current-execution-20261007",
+            "world-shadow-refusal-current-execution-reviewed-20261007",
+            "commit-split-frozen-runtime-and-world-execution-20261007"
+          ],
+          "journal_excluded_from_own_fingerprints": false
+        }
+      ],
+      "reviewed_behavior_links": [
+        {
+          "id": "NR.scene-service",
+          "kind": "native_policy",
+          "scope": "Persistent RGB565 background/canvas and ResourceCache ownership; caller-ordered visible resource/frame/projected anchor/colour entries with optional clipping. Whole-list admission preserves previous completed pixels; execution failures refuse partial presentation until a complete retry. Sprite/world preview adapters preserve recovered clocks/order/visibility. Explicit owned checkpoint ANI recipe bytes have separate encoded capacity budgets. Live snapshots, full scene admission/lighting/effects and original replacement remain pending. Current beginFrame/drawNext policy validates and owns a finite ordered list before drawing, exposes no partial read/presentation, rejects reentry/zero budgets, and allows bounded timer batches. Current synthetic execution is registered independently of historical scene comparisons and live lifecycle claims. Explicit retainedCanvas starts require a complete native canvas; sequence/identity admission is owned by the separate SceneHistory service. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+          "status": {
+            "understanding": "scoped",
+            "implementation": "scoped",
+            "comparison": "none",
+            "integration": "preview",
+            "replacement": "none"
+          },
+          "implementation": [
+            "renderer/scenes/scene_renderer.hpp",
+            "renderer/scenes/scene_renderer.cpp",
+            "renderer/scenes/CMakeLists.txt"
+          ],
+          "tests": [
+            "tests/scene-renderer-test.cpp",
+            "tests/scene-resource-fixtures.hpp",
+            "tests/resource-fixtures.hpp",
+            "tools/test-native-scene-service.py"
+          ],
+          "evidence": [
+            "NR.scene-service.synthetic-20261006",
+            "NR.scene-service.installed-20261006",
+            "NR.scene-service.native-commit-20261006",
+            "NR.scene-service.native-commit-head-20261006",
+            "NR.scene-service.native-commit-final-20261006",
+            "NR.world-live.regressions-20261007",
+            "NR.scene-history.native-20261007",
+            "NR.world-history.regressions-20261007",
+            "NR.world-commit.regressions-20261007",
+            "NR.world-commit.history-native-20261007"
+          ]
+        },
+        {
+          "id": "RS.word-raster",
+          "kind": "recovered",
+          "scope": "Fully in-bounds positive direct-word frames with contiguous skip/opaque and WORD streams; signed origins, opaque zero, complete destination padding and guards. Clipping, empty/indexed/auxiliary execution and malformed original semantics remain outside scope. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+          "status": {
+            "understanding": "scoped",
+            "implementation": "scoped",
+            "comparison": "recorded",
+            "integration": "headless",
+            "replacement": "none"
+          },
+          "implementation": [
+            "renderer/sprites/word_raster.h",
+            "renderer/sprites/word_raster.c",
+            "renderer/sprites/word-raster/CMakeLists.txt"
+          ],
+          "tests": [
+            "tests/word-sprite-reference.cpp",
+            "tools/test-word-sprites.py",
+            "tests/word-raster-test.c"
+          ],
+          "evidence": [
+            "RS.word-raster.original-20261007",
+            "NR.word-admission.host-20261007"
+          ]
+        },
+        {
+          "id": "RS.word-route",
+          "kind": "recovered",
+          "scope": "Pinned backend entries 0x597086 and 0x596cb8 only; runtime access admission, selected workspace writes, argument-slot mutation, zero return, original forwarding or native raster bypass while caller-managed auxiliary passes remain active. Single drawing thread, selected registers/x87 values and LastError; exact x87 instruction pointer history and other draw paths excluded. Live comparison covers destination/workspace and continued caller operation through World startup; isolated instruction-register/flags/floating exception-state stress and complete Qt-session shutdown remain pending. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+          "status": {
+            "understanding": "scoped",
+            "implementation": "scoped",
+            "comparison": "recorded",
+            "integration": "live_equivalence",
+            "replacement": "scoped_live"
+          },
+          "implementation": [
+            "runtime/scene/word_route.c",
+            "runtime/scene/word_entry.S",
+            "tools/build-word-sprites.py",
+            "tools/run-opengl-game.py",
+            "tools/render-game-runner.py",
+            "tools/prepare-scene-observer.py",
+            "tools/scene-game-runner.py"
+          ],
+          "tests": [
+            "tools/capture-scene-game.py",
+            "tools/test-word-sprites.py",
+            "tests/word-sprite-reference.cpp"
+          ],
+          "evidence": [
+            "RS.word-route.shadow-20261007",
+            "RS.word-route.takeover-20261007",
+            "RS.word-route.launch-staging-20261007"
+          ]
+        },
+        {
+          "id": "NR.word-admission",
+          "kind": "native_policy",
+          "scope": "Preflight entire stable borrowed frame and canvas before any writes; bounded dimensions/extents, contiguous rows, exact right/bottom-edge and malformed refusals, explicit shadow/takeover modes and separate fallback/bypass counters. Does not reproduce unsafe original malformed acceptance. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+          "status": {
+            "understanding": "scoped",
+            "implementation": "scoped",
+            "comparison": "none",
+            "integration": "headless",
+            "replacement": "none"
+          },
+          "implementation": [
+            "renderer/sprites/word_raster.h",
+            "renderer/sprites/word_raster.c",
+            "runtime/scene/word_route.c"
+          ],
+          "tests": [
+            "tools/test-word-sprites.py",
+            "tests/word-raster-test.c"
+          ],
+          "evidence": [
+            "NR.word-admission.host-20261007"
+          ]
+        },
+        {
+          "id": "RS.world-frame",
+          "kind": "recovered",
+          "scope": "Finite selected Quick Battle World consumer canvases from ordered owned raster requests, actual selected colours/clips and every pinned native SPR binding. Comparison with separately captured whole original output; original pixels cannot drive native rendering. Later HUD/window composition, alternate dispatch, continuous delivery, consumer side effects and whole-scene bypass remain pending. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: initial canvas or untraced writes remain unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+          "status": {
+            "understanding": "partial",
+            "implementation": "scoped",
+            "comparison": "recorded",
+            "integration": "headless",
+            "replacement": "none"
+          },
+          "implementation": [
+            "runtime/scene/world_trace.c",
+            "runtime/scene/world_entry.S",
+            "runtime/scene/observer.c",
+            "protocols/include/mnm/world_frame_v1.h",
+            "tools/build-scene-observer.py",
+            "tools/prepare-scene-observer.py",
+            "tools/scene-game-runner.py",
+            "compat/legacy/world_frame.cpp",
+            "compat/legacy/world_frame.hpp",
+            "compat/legacy/world_frame_main.cpp",
+            "compat/legacy/scene_snapshot.cpp",
+            "compat/legacy/scene_snapshot.hpp",
+            "compat/legacy/CMakeLists.txt",
+            "runtime/scene/world_stream.c",
+            "protocols/include/mnm/world_channel_v1.h"
+          ],
+          "tests": [
+            "tools/test-world-frames.py",
+            "tests/world-frame-test.cpp",
+            "tests/world-frame-reference.cpp",
+            "tests/sprite-binary-reference.cpp",
+            "tools/capture-scene-game.py",
+            "tools/test-world-background.py",
+            "tests/scene-renderer-test.cpp",
+            "tools/test-native-world.py",
+            "tools/test-world-history.py",
+            "tests/scene-history-test.cpp"
+          ],
+          "evidence": [
+            "NR.world-frame.native-20261007",
+            "RS.world-frame.original-20261007",
+            "RS.world-frame.observation-20261007",
+            "NR.world-frame.native-anchored-20261007",
+            "RS.world-frame.original-anchored-20261007",
+            "RS.world-primitives.original-current-20261007",
+            "NR.world-primitives.native-current-20261007",
+            "RS.world-background.gap-20261007",
+            "NR.world-live.regressions-20261007",
+            "RS.world-live.historical-equivalence-20261007",
+            "RS.world-history.original-20261007",
+            "RS.world-initial-state.before-after-20261007",
+            "NR.world-history.regressions-20261007",
+            "RS.world-initial-state.startup-20261007",
+            "RS.world-frame.history-current-capture-20261007",
+            "NR.world-frame.history-current-native-20261007",
+            "NR.world-commit.regressions-20261007",
+            "RS.world-commit.history-original-20261007",
+            "NR.world-commit.history-native-20261007"
+          ]
+        },
+        {
+          "id": "RS.world-composition",
+          "kind": "recovered",
+          "scope": "Actual RGB565 colour tables and separate coverage; selected indexed copy, half/quarter-source/quarter-destination, nonnegative rightward displacement and alternating-row projected shadow. Six-mode clipped fixtures and captured indexed World requests; full original raster family, RGB555, negative displacement, palette generation and direct-word live World routes remain outside scope. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: selected retained pre-consumer pixels are confirmed; upstream initialization/ownership remains unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+          "status": {
+            "understanding": "scoped",
+            "implementation": "scoped",
+            "comparison": "recorded",
+            "integration": "headless",
+            "replacement": "none"
+          },
+          "implementation": [
+            "renderer/blit.cpp",
+            "renderer/blit.hpp",
+            "renderer/sprites/sprite.cpp",
+            "renderer/sprites/sprite.hpp",
+            "renderer/resources/resource_cache.cpp",
+            "renderer/resources/resource_cache.hpp",
+            "renderer/scenes/scene_renderer.cpp",
+            "renderer/scenes/scene_renderer.hpp"
+          ],
+          "tests": [
+            "tools/test-world-frames.py",
+            "tests/world-frame-test.cpp",
+            "tests/world-frame-reference.cpp",
+            "tests/sprite-binary-reference.cpp",
+            "tools/test-world-background.py",
+            "tests/scene-renderer-test.cpp",
+            "tools/test-native-world.py",
+            "tools/test-world-history.py",
+            "tests/scene-history-test.cpp"
+          ],
+          "evidence": [
+            "NR.world-frame.native-20261007",
+            "RS.world-frame.original-20261007",
+            "NR.world-frame.regressions-20261007",
+            "NR.world-frame.native-anchored-20261007",
+            "RS.world-frame.original-anchored-20261007",
+            "RS.world-primitives.original-current-20261007",
+            "NR.world-primitives.native-current-20261007",
+            "RS.world-background.gap-20261007",
+            "NR.world-live.regressions-20261007",
+            "RS.world-history.original-20261007",
+            "RS.world-initial-state.before-after-20261007",
+            "NR.world-history.regressions-20261007",
+            "RS.world-frame.history-current-capture-20261007",
+            "NR.world-frame.history-current-native-20261007",
+            "NR.world-commit.regressions-20261007",
+            "RS.world-commit.history-original-20261007",
+            "NR.world-commit.history-native-20261007"
+          ]
+        },
+        {
+          "id": "NR.world-admission",
+          "kind": "native_policy",
+          "scope": "Pointer-free bounded closed files, exact extents/build/format/operation checks, actual-colour palette aliases, all-resource binding and atomic scene preflight. Native refusal of malformed/unknown/unsafe sampling input, separate independent background and oracle outputs; no malformed original semantics, continuous IPC or silent supported-only preview. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: initial canvas or untraced writes remain unresolved; broad equivalence/replacement not promoted. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+          "status": {
+            "understanding": "scoped",
+            "implementation": "scoped",
+            "comparison": "none",
+            "integration": "headless",
+            "replacement": "none"
+          },
+          "implementation": [
+            "compat/legacy/world_frame.cpp",
+            "compat/legacy/world_frame.hpp",
+            "compat/legacy/world_frame_main.cpp",
+            "compat/legacy/scene_snapshot.cpp",
+            "compat/legacy/scene_snapshot.hpp",
+            "compat/legacy/CMakeLists.txt",
+            "renderer/blit.cpp",
+            "renderer/blit.hpp",
+            "renderer/sprites/sprite.cpp",
+            "renderer/sprites/sprite.hpp",
+            "renderer/resources/resource_cache.cpp",
+            "renderer/resources/resource_cache.hpp",
+            "renderer/scenes/scene_renderer.cpp",
+            "renderer/scenes/scene_renderer.hpp",
+            "protocols/include/mnm/world_frame_v1.h"
+          ],
+          "tests": [
+            "tools/test-world-frames.py",
+            "tests/world-frame-test.cpp",
+            "tests/world-frame-reference.cpp",
+            "tests/sprite-binary-reference.cpp",
+            "tools/test-world-background.py",
+            "tests/scene-renderer-test.cpp",
+            "tools/test-native-world.py"
+          ],
+          "evidence": [
+            "NR.world-frame.native-20261007",
+            "NR.world-frame.regressions-20261007",
+            "NR.world-frame.native-anchored-20261007",
+            "RS.world-primitives.original-current-20261007",
+            "NR.world-primitives.native-current-20261007",
+            "RS.world-background.gap-20261007",
+            "NR.world-live.regressions-20261007",
+            "NR.scene-history.native-20261007",
+            "NR.world-history.regressions-20261007",
+            "NR.world-initial-state.diagnostics-native-20261007",
+            "NR.world-frame.history-current-native-20261007",
+            "NR.world-commit.regressions-20261007",
+            "NR.world-commit.history-native-20261007"
+          ]
+        },
+        {
+          "id": "NR.world-channel",
+          "kind": "native_policy",
+          "scope": "Native policy: two-slot immutable identity/ownership, newest complete admission, finite extents, nonblocking publication drops, superseding, cancellation and refusal; separate optional original oracle. Current synthetic execution and24 ordinary live native World presentations validated. Natural initial-canvas equivalence, synchronous cold admission, native input/HUD ownership, transitions, sustained resource retirement, public manual launcher lifecycle and full raster bypass remain pending; original drawing retained. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+          "status": {
+            "understanding": "scoped",
+            "implementation": "scoped",
+            "comparison": "none",
+            "integration": "preview",
+            "replacement": "none"
+          },
+          "implementation": [
+            "protocols/include/mnm/world_channel_v1.h",
+            "runtime/scene/world_stream.c",
+            "runtime/scene/world_trace.c",
+            "runtime/scene/observer.c",
+            "compat/legacy/world_channel.cpp",
+            "compat/legacy/world_channel.hpp",
+            "tools/build-scene-observer.py",
+            "tools/prepare-scene-observer.py",
+            "tools/scene-game-runner.py"
+          ],
+          "tests": [
+            "tests/world-channel-test.cpp",
+            "tests/world-live-session-test.cpp",
+            "tools/test-native-world.py",
+            "tests/scene-renderer-test.cpp",
+            "tools/capture-scene-game.py"
+          ],
+          "evidence": [
+            "NR.world-live.regressions-20261007",
+            "NR.world-live.normal-20261007",
+            "NR.world-history.regressions-20261007",
+            "NR.world-history.live-normal-20261007",
+            "NR.world-commit.regressions-20261007"
+          ]
+        },
+        {
+          "id": "NR.world-live-view",
+          "kind": "native_policy",
+          "scope": "Native policy: bounded v4 native identity catalogue, lazy pinned resources, shared-context Qt GPU leases,32-draw timer batches and explicit zero initial background; resize/refusal/cleanup. Current synthetic execution and24 ordinary live native World presentations validated. Natural initial-canvas equivalence, synchronous cold admission, native input/HUD ownership, transitions, sustained resource retirement, public manual launcher lifecycle and full raster bypass remain pending; original drawing retained. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+          "status": {
+            "understanding": "scoped",
+            "implementation": "scoped",
+            "comparison": "none",
+            "integration": "preview",
+            "replacement": "none"
+          },
+          "implementation": [
+            "compat/legacy/world_resources.cpp",
+            "compat/legacy/world_resources.hpp",
+            "apps/qt-shell/live_world_session.cpp",
+            "apps/qt-shell/live_world_session.hpp",
+            "apps/qt-shell/world_live_main.cpp",
+            "compat/legacy/CMakeLists.txt",
+            "tools/run-native-world.py",
+            "renderer/scenes/scene_renderer.cpp",
+            "renderer/scenes/scene_renderer.hpp",
+            "apps/qt-shell/gl_viewport.cpp",
+            "apps/qt-shell/gl_viewport.hpp"
+          ],
+          "tests": [
+            "tests/world-channel-test.cpp",
+            "tests/world-live-session-test.cpp",
+            "tools/test-native-world.py",
+            "tests/scene-renderer-test.cpp",
+            "tools/capture-scene-game.py"
+          ],
+          "evidence": [
+            "NR.world-live.regressions-20261007",
+            "NR.world-live.normal-20261007",
+            "NR.world-history.regressions-20261007",
+            "NR.world-history.live-normal-20261007",
+            "NR.world-commit.regressions-20261007"
+          ]
+        },
+        {
+          "id": "RS.world-initial-state",
+          "kind": "recovered",
+          "scope": "Separate four-frame live before/after observation confirms selected nonzero pixels survive the consumer unchanged; native/private original zero-initial replay agrees, private original replay from diagnostic before state reproduces live after. First World entry already has nonzero contents; pointer-value identity is observed, allocation generation/ownership/clear and upstream producers remain unresolved. Startup reason7 lazy displacement initialization and reason8 unadmitted kinds remain explicit refusal diagnostics, with original work forwarded. Native history starts only from owned native policy; no original initial pixels are native input. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+          "status": {
+            "understanding": "partial",
+            "implementation": "partial",
+            "comparison": "recorded",
+            "integration": "headless",
+            "replacement": "none"
+          },
+          "implementation": [
+            "runtime/scene/world_trace.c",
+            "compat/legacy/world_frame.cpp",
+            "runtime/scene/world_lifetime.c",
+            "runtime/scene/observer.c",
+            "tools/build-scene-observer.py"
+          ],
+          "tests": [
+            "tools/test-world-background.py",
+            "tests/world-frame-reference.cpp",
+            "tools/capture-scene-game.py",
+            "tools/test-world-history.py"
+          ],
+          "evidence": [
+            "RS.world-background.gap-20261007",
+            "NR.world-background.native-20261007",
+            "RS.world-initial-state.before-after-20261007",
+            "RS.world-initial-state.startup-20261007",
+            "RS.world-frame.history-current-capture-20261007",
+            "NR.world-initial-state.diagnostics-native-20261007",
+            "NR.world-frame.history-current-native-20261007",
+            "RS.world-commit.before-after-20261007",
+            "NR.world-commit.history-native-20261007"
+          ]
+        },
+        {
+          "id": "NR.scene-history",
+          "kind": "native_policy",
+          "scope": "Native GPU canvas retention from an explicit caller-owned initial background; nonzero logical canvas identity and contiguous source sequence, refusal of gaps/reuse without reset, incomplete/failed-frame refusal. This does not recover original startup initialization or producer history. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+          "status": {
+            "understanding": "scoped",
+            "implementation": "scoped",
+            "comparison": "none",
+            "integration": "headless",
+            "replacement": "none"
+          },
+          "implementation": [
+            "renderer/scenes/scene_history.hpp",
+            "renderer/scenes/scene_history.cpp",
+            "renderer/scenes/scene_renderer.cpp",
+            "renderer/scenes/scene_renderer.hpp",
+            "renderer/scenes/CMakeLists.txt",
+            "compat/legacy/world_history_main.cpp",
+            "compat/legacy/CMakeLists.txt"
+          ],
+          "tests": [
+            "tests/scene-history-test.cpp",
+            "tools/test-world-history.py",
+            "tools/test-native-world.py"
+          ],
+          "evidence": [
+            "NR.scene-history.native-20261007",
+            "NR.world-history.regressions-20261007",
+            "NR.world-commit.regressions-20261007",
+            "NR.world-commit.history-native-20261007"
+          ]
+        },
+        {
+          "id": "NR.world-shadow-refusal",
+          "kind": "native_policy",
+          "scope": "Explicit normal shadow policy: recoverable capture failures7/8 publish bounded diagnostic-only refusal packets, never partial drawing; the host clears native presentation, reports unsupported/waiting state and resumes on a later complete owned packet. Verify mode and structural/transport failures remain fatal. Original work remains active; rendering the unsupported route and full-session equivalence remain pending. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence. Dedicated producer refusal/recovery tests are being developed in a separate active session and are excluded from this source snapshot; current producer-specific and original/live refusal validation remain pending.",
+          "status": {
+            "understanding": "partial",
+            "implementation": "partial",
+            "comparison": "none",
+            "integration": "none",
+            "replacement": "none"
+          },
+          "implementation": [
+            "runtime/scene/world_stream.c",
+            "compat/legacy/world_frame.cpp",
+            "compat/legacy/world_frame.hpp",
+            "apps/qt-shell/live_world_session.cpp",
+            "apps/qt-shell/live_world_session.hpp"
+          ],
+          "tests": [
+            "tests/world-channel-test.cpp",
+            "tests/world-live-session-test.cpp"
+          ],
+          "evidence": []
+        }
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

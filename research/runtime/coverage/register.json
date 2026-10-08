@@ -15969,7 +15969,8 @@
         "renderer/scenes/README.md",
         "docs/live-drawing-replacement.md",
         "research/runtime/native-world-live-rendering.md",
-        "research/runtime/native-world-canvas-history.md"
+        "research/runtime/native-world-canvas-history.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "renderer/scenes/scene_renderer.hpp",
@@ -15991,8 +15992,11 @@
         "NR.world-live.regressions-20261007",
         "NR.scene-history.native-20261007",
         "NR.world-history.regressions-20261007",
+        "NR.world-shadow.regressions-20261007",
+        "NR.world-shadow.history-native-20261007",
         "NR.world-commit.regressions-20261007",
-        "NR.world-commit.history-native-20261007"
+        "NR.world-commit.history-native-20261007",
+        "NR.world-shadow.recovery-regressions-20261008"
       ],
       "status": {
         "understanding": "scoped",
@@ -17441,7 +17445,8 @@
       "documents": [
         "research/runtime/native-word-sprite-mvp.md",
         "research/formats/word-sprite-samples-v1.md",
-        "docs/live-drawing-replacement.md"
+        "docs/live-drawing-replacement.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "renderer/sprites/word_raster.h",
@@ -17487,7 +17492,8 @@
       "documents": [
         "research/runtime/native-word-sprite-mvp.md",
         "research/formats/word-sprite-samples-v1.md",
-        "docs/live-drawing-replacement.md"
+        "docs/live-drawing-replacement.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "runtime/scene/word_route.c",
@@ -17527,7 +17533,8 @@
       "documents": [
         "research/runtime/native-word-sprite-mvp.md",
         "research/formats/word-sprite-samples-v1.md",
-        "docs/live-drawing-replacement.md"
+        "docs/live-drawing-replacement.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "renderer/sprites/word_raster.h",
@@ -17635,7 +17642,8 @@
         "research/runtime/native-world-live-rendering.md",
         "research/formats/world-channel-v1.md",
         "research/runtime/native-world-live-background-gap.md",
-        "research/runtime/native-world-canvas-history.md"
+        "research/runtime/native-world-canvas-history.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "runtime/scene/world_trace.c",
@@ -17683,9 +17691,14 @@
         "RS.world-initial-state.startup-20261007",
         "RS.world-frame.history-current-capture-20261007",
         "NR.world-frame.history-current-native-20261007",
+        "NR.world-shadow.regressions-20261007",
+        "RS.world-shadow.history-original-20261007",
+        "RS.world-shadow.retained-state-20261007",
+        "NR.world-shadow.retained-native-20261007",
         "NR.world-commit.regressions-20261007",
         "RS.world-commit.history-original-20261007",
-        "NR.world-commit.history-native-20261007"
+        "NR.world-commit.history-native-20261007",
+        "NR.world-shadow.recovery-regressions-20261008"
       ],
       "status": {
         "understanding": "partial",
@@ -17777,7 +17790,8 @@
         "research/runtime/native-world-live-rendering.md",
         "research/formats/world-channel-v1.md",
         "research/runtime/native-world-live-background-gap.md",
-        "research/runtime/native-world-canvas-history.md"
+        "research/runtime/native-world-canvas-history.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -17815,9 +17829,14 @@
         "NR.world-history.regressions-20261007",
         "RS.world-frame.history-current-capture-20261007",
         "NR.world-frame.history-current-native-20261007",
+        "NR.world-shadow.regressions-20261007",
+        "RS.world-shadow.history-original-20261007",
+        "RS.world-shadow.retained-state-20261007",
+        "NR.world-shadow.retained-native-20261007",
         "NR.world-commit.regressions-20261007",
         "RS.world-commit.history-original-20261007",
-        "NR.world-commit.history-native-20261007"
+        "NR.world-commit.history-native-20261007",
+        "NR.world-shadow.recovery-regressions-20261008"
       ],
       "status": {
         "understanding": "scoped",
@@ -17842,7 +17861,8 @@
         "research/runtime/native-world-live-rendering.md",
         "research/formats/world-channel-v1.md",
         "research/runtime/native-world-live-background-gap.md",
-        "research/runtime/native-world-canvas-history.md"
+        "research/runtime/native-world-canvas-history.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "compat/legacy/world_frame.cpp",
@@ -17882,8 +17902,13 @@
         "NR.world-history.regressions-20261007",
         "NR.world-initial-state.diagnostics-native-20261007",
         "NR.world-frame.history-current-native-20261007",
+        "NR.world-shadow.refusal-20261007",
+        "NR.world-shadow.regressions-20261007",
+        "NR.world-shadow.history-native-20261007",
         "NR.world-commit.regressions-20261007",
-        "NR.world-commit.history-native-20261007"
+        "NR.world-commit.history-native-20261007",
+        "NR.world-shadow.recovery-20261008",
+        "NR.world-shadow.recovery-regressions-20261008"
       ],
       "status": {
         "understanding": "scoped",
@@ -17898,7 +17923,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded continuous owned World delivery",
-      "scope": "Native policy: two-slot immutable identity/ownership, newest complete admission, finite extents, nonblocking publication drops, superseding, cancellation and refusal; separate optional original oracle. Current synthetic execution and24 ordinary live native World presentations validated. Natural initial-canvas equivalence, synchronous cold admission, native input/HUD ownership, transitions, sustained resource retirement, public manual launcher lifecycle and full raster bypass remain pending; original drawing retained. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "scope": "Native policy: two-slot immutable identity/ownership, newest complete admission, finite extents, nonblocking publication drops, superseding, cancellation and refusal; separate optional original oracle. Current synthetic execution and24 ordinary live native World presentations validated. Natural initial-canvas equivalence, synchronous cold admission, native input/HUD ownership, transitions, sustained resource retirement, public manual launcher lifecycle and full raster bypass remain pending; original drawing retained. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence. Normal capability refusals7/8 now retain the session and clear unsupported presentation; verified strict mode remains fatal. Current skip0 startup consumes both reasons before24supported presentations; refusal counts cover consumed packets only.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -17907,7 +17932,9 @@
         "research/runtime/native-world-live-background-gap.md",
         "apps/qt-shell/README.md",
         "docs/live-drawing-replacement.md",
-        "research/runtime/native-world-canvas-history.md"
+        "research/runtime/native-world-canvas-history.md",
+        "research/runtime/native-world-shadow-refusal.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "protocols/include/mnm/world_channel_v1.h",
@@ -17925,14 +17952,21 @@
         "tests/world-live-session-test.cpp",
         "tools/test-native-world.py",
         "tests/scene-renderer-test.cpp",
-        "tools/capture-scene-game.py"
+        "tools/capture-scene-game.py",
+        "tools/test-world-shadow-refusals.py",
+        "runtime/scene/world_stream_selftest.c"
       ],
       "evidence": [
         "NR.world-live.regressions-20261007",
         "NR.world-live.normal-20261007",
         "NR.world-history.regressions-20261007",
         "NR.world-history.live-normal-20261007",
-        "NR.world-commit.regressions-20261007"
+        "NR.world-shadow.refusal-20261007",
+        "NR.world-shadow.startup-20261007",
+        "NR.world-shadow.regressions-20261007",
+        "NR.world-commit.regressions-20261007",
+        "NR.world-shadow.recovery-20261008",
+        "NR.world-shadow.recovery-regressions-20261008"
       ],
       "status": {
         "understanding": "scoped",
@@ -17947,7 +17981,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Continuous native World Qt presentation",
-      "scope": "Native policy: bounded v4 native identity catalogue, lazy pinned resources, shared-context Qt GPU leases,32-draw timer batches and explicit zero initial background; resize/refusal/cleanup. Current synthetic execution and24 ordinary live native World presentations validated. Natural initial-canvas equivalence, synchronous cold admission, native input/HUD ownership, transitions, sustained resource retirement, public manual launcher lifecycle and full raster bypass remain pending; original drawing retained. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "scope": "Native policy: bounded v4 native identity catalogue, lazy pinned resources, shared-context Qt GPU leases,32-draw timer batches and explicit zero initial background; resize/refusal/cleanup. Current synthetic execution and24 ordinary live native World presentations validated. Natural initial-canvas equivalence, synchronous cold admission, native input/HUD ownership, transitions, sustained resource retirement, public manual launcher lifecycle and full raster bypass remain pending; original drawing retained. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence. Normal capability refusals7/8 now retain the session and clear unsupported presentation; verified strict mode remains fatal. Current skip0 startup consumes both reasons before24supported presentations; refusal counts cover consumed packets only.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -17956,7 +17990,9 @@
         "research/runtime/native-world-live-background-gap.md",
         "apps/qt-shell/README.md",
         "docs/live-drawing-replacement.md",
-        "research/runtime/native-world-canvas-history.md"
+        "research/runtime/native-world-canvas-history.md",
+        "research/runtime/native-world-shadow-refusal.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "compat/legacy/world_resources.cpp",
@@ -17976,14 +18012,21 @@
         "tests/world-live-session-test.cpp",
         "tools/test-native-world.py",
         "tests/scene-renderer-test.cpp",
-        "tools/capture-scene-game.py"
+        "tools/capture-scene-game.py",
+        "tools/test-world-shadow-refusals.py",
+        "runtime/scene/world_stream_selftest.c"
       ],
       "evidence": [
         "NR.world-live.regressions-20261007",
         "NR.world-live.normal-20261007",
         "NR.world-history.regressions-20261007",
         "NR.world-history.live-normal-20261007",
-        "NR.world-commit.regressions-20261007"
+        "NR.world-shadow.refusal-20261007",
+        "NR.world-shadow.startup-20261007",
+        "NR.world-shadow.regressions-20261007",
+        "NR.world-commit.regressions-20261007",
+        "NR.world-shadow.recovery-20261008",
+        "NR.world-shadow.recovery-regressions-20261008"
       ],
       "status": {
         "understanding": "scoped",
@@ -18011,7 +18054,8 @@
         "research/runtime/native-world-live-background-gap.md",
         "research/runtime/native-world-live-rendering.md",
         "research/runtime/native-world-canvas-history.md",
-        "research/formats/world-history-v1.md"
+        "research/formats/world-history-v1.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "runtime/scene/world_trace.c",
@@ -18034,6 +18078,8 @@
         "RS.world-frame.history-current-capture-20261007",
         "NR.world-initial-state.diagnostics-native-20261007",
         "NR.world-frame.history-current-native-20261007",
+        "RS.world-shadow.retained-state-20261007",
+        "NR.world-shadow.retained-native-20261007",
         "RS.world-commit.before-after-20261007",
         "NR.world-commit.history-native-20261007"
       ],
@@ -18056,7 +18102,8 @@
       "documents": [
         "research/runtime/native-world-canvas-history.md",
         "research/formats/world-history-v1.md",
-        "renderer/README.md"
+        "renderer/README.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "renderer/scenes/scene_history.hpp",
@@ -18075,8 +18122,11 @@
       "evidence": [
         "NR.scene-history.native-20261007",
         "NR.world-history.regressions-20261007",
+        "NR.world-shadow.regressions-20261007",
+        "NR.world-shadow.history-native-20261007",
         "NR.world-commit.regressions-20261007",
-        "NR.world-commit.history-native-20261007"
+        "NR.world-commit.history-native-20261007",
+        "NR.world-shadow.recovery-regressions-20261008"
       ],
       "status": {
         "understanding": "scoped",
@@ -18091,30 +18141,50 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Normal World shadow capability refusal without ending the game",
-      "scope": "Explicit normal shadow policy: recoverable capture failures7/8 publish bounded diagnostic-only refusal packets, never partial drawing; the host clears native presentation, reports unsupported/waiting state and resumes on a later complete owned packet. Verify mode and structural/transport failures remain fatal. Original work remains active; rendering the unsupported route and full-session equivalence remain pending. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence. Dedicated producer refusal/recovery tests are being developed in a separate active session and are excluded from this source snapshot; current producer-specific and original/live refusal validation remain pending.",
-      "confidence": "provisional",
+      "scope": "Normal World shadow policy: producer capture failures7/8 publish strict diagnostic-only headers with no partial draws or oracle; host clears presentation, shows waiting/unsupported status and resumes on a later supported complete frame. Verify mode and structural/transport/native admission failures remain fatal. Synthetic actual PE32 producer/Qt recovery and original Quick Battle skip0 startup validate this boundary. User manual scenario/exact kind, unsupported drawing implementation, full original initialization/history/input/HUD and session equivalence remain pending.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
+        "research/runtime/native-world-shadow-refusal.md",
+        "research/formats/world-channel-v1.md",
+        "research/formats/world-frame-v1.md",
         "research/runtime/native-world-live-rendering.md",
-        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+        "apps/qt-shell/README.md",
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
       ],
       "implementation": [
         "runtime/scene/world_stream.c",
         "compat/legacy/world_frame.cpp",
         "compat/legacy/world_frame.hpp",
+        "protocols/include/mnm/world_frame_v1.h",
         "apps/qt-shell/live_world_session.cpp",
-        "apps/qt-shell/live_world_session.hpp"
+        "apps/qt-shell/live_world_session.hpp",
+        "apps/qt-shell/world_live_main.cpp",
+        "tools/run-native-world.py",
+        "tools/build-scene-observer.py"
       ],
       "tests": [
+        "runtime/scene/world_stream_selftest.c",
+        "tests/world-live-session-test.cpp",
         "tests/world-channel-test.cpp",
-        "tests/world-live-session-test.cpp"
+        "tests/world-frame-test.cpp",
+        "tools/test-world-shadow-refusals.py",
+        "tools/test-native-world.py",
+        "tools/capture-scene-game.py"
       ],
-      "evidence": [],
+      "evidence": [
+        "NR.world-shadow.refusal-20261007",
+        "NR.world-shadow.startup-20261007",
+        "NR.world-shadow.regressions-20261007",
+        "NR.world-shadow.user-diagnostic-20261007",
+        "NR.world-shadow.recovery-20261008",
+        "NR.world-shadow.recovery-regressions-20261008"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "preview",
         "replacement": "none"
       }
     }
@@ -34275,6 +34345,326 @@
       ]
     },
     {
+      "id": "NR.world-shadow.refusal-20261007",
+      "kind": "native_integration",
+      "scope": "Actual PE32 producer normal reasons7/8 strip partial payload and recover; verify8/structural2 fatal. Qt recovery, bounded diagnostics/lease clearing and malformed refusal checks. Transport success fixture is not native draw admission. Retrospective limitation: this source snapshot contained the older Qt test after concurrent restoration; dedicated Qt refusal/recovery,64record/102count and malformed refusal checks were not executed by that earlier CTest run. The actual PE32 producer checks remain valid. Dedicated restored Qt checks are registered as a new20261008execution.",
+      "record": "research/runtime/native-world-shadow-refusal-tests-20261007.json",
+      "sha256": "6cffb7c3a7663081bdd73083743b7109ccf76850930946c9719bf688a6df4298",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 3
+        },
+        {
+          "pointer": "/normal_refusals_remain_active",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_recovery_publishes",
+          "equals": true
+        },
+        {
+          "pointer": "/verify_refusal_is_fatal",
+          "equals": true
+        },
+        {
+          "pointer": "/structural_refusal_is_fatal",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_partial_payload_excluded",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.world-shadow.startup-20261007",
+      "kind": "native_integration",
+      "scope": "Actual original Quick Battle startup with skip0/interval1 consumes reasons7/8 then presents24 native shadow frames. No oracle/readbacks/bypass;243 drops/23 superseded, unknown original initialization and full-session rendering remain pending.",
+      "record": "research/runtime/native-world-shadow-refusal-live-20261007.json",
+      "sha256": "a3254fd6bc65b3c9177f24db1197f7a4c4e49d412545877330b20a60e3fefa1a",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_native_presentation",
+          "equals": true
+        },
+        {
+          "pointer": "/live_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_native_admission",
+          "equals": false
+        },
+        {
+          "pointer": "/skip_queues",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_world/presentations",
+          "equals": 24
+        },
+        {
+          "pointer": "/native_world/capture_refusals",
+          "equals": 2
+        },
+        {
+          "pointer": "/native_world/refusal_counts/7",
+          "equals": 1
+        },
+        {
+          "pointer": "/native_world/refusal_counts/8",
+          "equals": 1
+        },
+        {
+          "pointer": "/native_world/native_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_world/viewport_image_uploads",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_world/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.world-shadow.regressions-20261007",
+      "kind": "native_integration",
+      "scope": "66 current Debug Xvfb/Mesa native renderer/World/channel/Qt/history checks; no original equivalence or full manual-launcher validation.",
+      "record": "research/runtime/native-world-shadow-refusal-regressions-20261007.json",
+      "sha256": "62a222adef6ac0c0a1ffe41fc2cbd0180275a244d618a7a991ec375af8820cea",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 66
+        }
+      ]
+    },
+    {
+      "id": "RS.world-shadow.history-original-20261007",
+      "kind": "isolated_original",
+      "scope": "Renewed current-source six-mode8-frame contiguous original/native comparison, explicit zero initial state,3072pixels. Bounded8-byte copy entry only; live startup and all-queue history remain unresolved.",
+      "record": "research/runtime/native-world-shadow-refusal-history-20261007.json",
+      "sha256": "2bda7fb0ed4c49521e7d3723107c012ab94a1a0abca2c68af352cb61f70dac92",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_history_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_history_pixels",
+          "equals": 3072
+        },
+        {
+          "pointer": "/entry_anchors/0x57e1b0",
+          "equals": "83ec1453558bc156"
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-shadow.history-native-20261007",
+      "kind": "native_integration",
+      "scope": "Current native retained-history fixture and gap refusal; native initialization remains explicit policy and interactive World view remains stateless.",
+      "record": "research/runtime/native-world-shadow-refusal-history-20261007.json",
+      "sha256": "2bda7fb0ed4c49521e7d3723107c012ab94a1a0abca2c68af352cb61f70dac92",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/history_required",
+          "equals": true
+        },
+        {
+          "pointer": "/gap_refused",
+          "equals": true
+        },
+        {
+          "pointer": "/native_history_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.world-shadow.retained-state-20261007",
+      "kind": "isolated_original",
+      "scope": "Renewed diagnostic private-original before replay of four retained earlier captures;15unchanged prior pixels per frame,1920000live after pixels matched. Original before pixels drive only private-original diagnostic, never native initialization. Historical startup report is retained input, not new observation.",
+      "record": "research/runtime/native-world-shadow-refusal-history-20261007.json",
+      "sha256": "2bda7fb0ed4c49521e7d3723107c012ab94a1a0abca2c68af352cb61f70dac92",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/retained_initial_pixels_confirmed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostic_pixels",
+          "equals": 1920000
+        },
+        {
+          "pointer": "/original_before_used_only_by_private_original_reference",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostics/0/zero_live_mismatches",
+          "equals": 15
+        },
+        {
+          "pointer": "/live_diagnostics/0/unchanged_prior_mismatches",
+          "equals": 15
+        },
+        {
+          "pointer": "/original_initialization_recovered",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-shadow.user-diagnostic-20261007",
+      "kind": "static",
+      "scope": "Review of retained failed manual run: reason8/zero presentations, exact kind and user scenario unresolved. Static artifact provenance, not current rendering validation.",
+      "record": "research/runtime/native-world-shadow-refusal-user-diagnostic-20261007.json",
+      "sha256": "45aea003978cb86359c4094df3aa6de8b747062413746314a65371da71019652",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/native_world/producer_reason",
+          "equals": 8
+        },
+        {
+          "pointer": "/native_world/presentations",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_world/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.world-shadow.retained-native-20261007",
+      "kind": "native_integration",
+      "scope": "Current native independent-zero replay of four retained earlier inputs matches private original zero output; original before-state is used only by separate original diagnostic. Does not reconstruct startup initialization.",
+      "record": "research/runtime/native-world-shadow-refusal-history-20261007.json",
+      "sha256": "2bda7fb0ed4c49521e7d3723107c012ab94a1a0abca2c68af352cb61f70dac92",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_diagnostic_pixels",
+          "equals": 1920000
+        },
+        {
+          "pointer": "/live_diagnostics/0/native_zero_equals_original_zero",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostics/1/native_zero_equals_original_zero",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostics/2/native_zero_equals_original_zero",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostics/3/native_zero_equals_original_zero",
+          "equals": true
+        }
+      ]
+    },
+    {
       "id": "NR.world-commit.regressions-20261007",
       "kind": "native_integration",
       "scope": "Six affected native channel/session/frame/scene/history/snapshot CTests in the frozen integration tree; dedicated producer refusal, original/live equivalence and whole-scene replacement remain pending.",
@@ -34421,6 +34811,74 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-shadow.recovery-20261008",
+      "kind": "native_integration",
+      "scope": "Actual PE32 producer normal/verify checks and restored native Qt assertions: initial/repeated7/8refusal, two valid native recoveries, lease clearing,102consumed refusals/64records, per-reason counts,0readbacks/uploads, malformed partial refusal fatal, strict verify and cleanup. No original drawing equivalence.",
+      "record": "research/runtime/native-world-shadow-recovery-tests-20261008.json",
+      "sha256": "3246f9a9ca811c1ab51e676e0ce2582de0c101d618d4dc95248070e6805d9b5c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 3
+        },
+        {
+          "pointer": "/normal_refusals_remain_active",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_recovery_publishes",
+          "equals": true
+        },
+        {
+          "pointer": "/verify_refusal_is_fatal",
+          "equals": true
+        },
+        {
+          "pointer": "/structural_refusal_is_fatal",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_partial_payload_excluded",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.world-shadow.recovery-regressions-20261008",
+      "kind": "native_integration",
+      "scope": "66current Debug Xvfb/Mesa native checks with restored Qt refusal/recovery assertions, native frame/composition/history and channel cleanup; no original/live-equivalence claim.",
+      "record": "research/runtime/native-world-shadow-recovery-regressions-20261008.json",
+      "sha256": "4282f6e4f37ea225e9d85af97a675adbc9c062f95f50c92c0be9554ff40d00fe",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 66
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -40045,6 +40503,70 @@
       ]
     },
     {
+      "id": "world-shadow-refusal-contract-20261007",
+      "scope": "Actual PE32 normal/verify producer and native Qt refusal/complete-frame recovery, bounded diagnostics and retained fatal structural admission",
+      "level": "headless",
+      "behaviors": [
+        "NR.world-shadow-refusal",
+        "NR.world-channel",
+        "NR.world-live-view",
+        "NR.world-admission"
+      ],
+      "evidence": [
+        "NR.world-shadow.refusal-20261007",
+        "NR.world-shadow.regressions-20261007",
+        "NR.world-shadow.recovery-20261008",
+        "NR.world-shadow.recovery-regressions-20261008"
+      ],
+      "tests": [
+        "tools/test-world-shadow-refusals.py",
+        "runtime/scene/world_stream_selftest.c",
+        "tests/world-live-session-test.cpp"
+      ]
+    },
+    {
+      "id": "world-shadow-startup-recovery-20261007",
+      "scope": "Original Quick Battle skip0/interval1 reasons7/8 followed by24complete native shadow presentations; original input/drawing retained, no pixel equivalence",
+      "level": "preview",
+      "behaviors": [
+        "NR.world-shadow-refusal",
+        "NR.world-channel",
+        "NR.world-live-view"
+      ],
+      "evidence": [
+        "NR.world-shadow.startup-20261007"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py"
+      ]
+    },
+    {
+      "id": "world-shadow-current-history-20261007",
+      "scope": "Current8-frame3072pixel isolated original/native history and explicit native initialization, gap refusal, retained before-after diagnostic gap",
+      "level": "headless",
+      "behaviors": [
+        "NR.scene-history",
+        "NR.scene-service",
+        "NR.world-admission",
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-initial-state"
+      ],
+      "evidence": [
+        "NR.world-shadow.regressions-20261007",
+        "RS.world-shadow.history-original-20261007",
+        "NR.world-shadow.history-native-20261007",
+        "RS.world-shadow.retained-state-20261007",
+        "NR.world-shadow.retained-native-20261007",
+        "NR.world-shadow.recovery-regressions-20261008"
+      ],
+      "tests": [
+        "tools/test-world-history.py",
+        "tests/scene-history-test.cpp",
+        "tests/world-frame-reference.cpp"
+      ]
+    },
+    {
       "id": "world-commit-snapshot-headless-20261007",
       "scope": "Frozen-source synthetic native headless checks; original inputs, live game delivery, producer refusal ABI and full scene replacement are not validated by this scenario.",
       "behaviors": [
@@ -40252,7 +40774,7 @@
       "start": 5759408,
       "end": 5759416,
       "document": "research/runtime/native-world-frame-rendering.md",
-      "evidence": "RS.world-history.original-20261007",
+      "evidence": "RS.world-shadow.history-original-20261007",
       "anchors_pointer": "/entry_anchors"
     }
   ],
@@ -40364,7 +40886,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-commit-chunk-3-frozen-20261007.json",
-    "sha256": "b3c81e27a310b8704d3e0c150de955ca21facb3eabcce2c203d30a1d08ec1f36"
+    "path": "research/runtime/coverage/source-index-world-recovery-20261008.json",
+    "sha256": "90eb53fe220826d9cebee5d40ef7c75b031c3201c4935f015f626406b79bc6c8"
   }
 }

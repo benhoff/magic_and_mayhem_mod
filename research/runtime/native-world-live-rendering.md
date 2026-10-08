@@ -18,7 +18,8 @@ The existing native resource budgets still apply across the session.
 
 `LiveWorldSession` owns decoding, native resource resolution, the renderer and
 session cancellation. `GlViewport` receives an existing shared-context GPU lease.
-The Qt application performs one complete frame per timer poll. Each World begins
+The Qt application preflights the complete frame, then draws at most 32 requests
+per timer poll and presents only after completion. Each World begins
 with an independently owned zero background; original pixels cannot seed it.
 Verification mode separately compares every native RGB565 pixel with the owned
 original post-consumer oracle before presenting. Ordinary mode omits both that
@@ -37,3 +38,12 @@ Synthetic checks cover concurrent slot ownership and closure, superseding,
 malformed packet extents, identity changes, terminal failure, GPU presentation,
 ordinary readback absence, resize, unknown operations, mismatch refusal and
 surface release. Live pixel evidence is recorded separately after execution.
+
+Normal shadow mode now distinguishes capability refusals from structural errors.
+Capture reasons 7/8 deliver a closed diagnostic header instead of failing the
+producer. The session clears its native viewport, displays a waiting/unsupported
+message and resumes on the next complete admitted packet. The original window
+continues drawing and accepting input. Verification, malformed inputs and other
+capture errors remain fatal. Counters are bounded diagnostics of consumed
+packets, not a census of every original queue. See the
+[failure evidence and recovery scope](native-world-shadow-refusal.md).

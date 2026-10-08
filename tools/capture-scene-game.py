@@ -163,7 +163,8 @@ def main():
             if args.world_live=='normal' and (native['native_readbacks'] or native['pixels_compared']):raise RuntimeError('Ordinary live rendering performed diagnostic readback')
             report.update(native_world=native,live_native_presentation=True,live_equivalence=args.world_live=='verify',original_pixels_compared=args.world_live=='verify',
                 original_pixels_used_as_native_inputs=False,original_work_bypassed=False,skip_queues=args.skip_queues,queue_interval=args.interval)
-            report['scope']='Continuous complete native World Qt shadow presentation of selected original Quick Battle requests; original drawing retained, HUD and whole-scene bypass pending'
+            report['complete_native_admission']=native.get('capture_refusals',0)==0
+            report['scope']='Continuous native World Qt shadow presentation of selected original Quick Battle requests; normal capability refusals are whole-frame diagnostics, original drawing retained, HUD and whole-scene bypass pending'
         elif args.world_frames:
             refusals=[]
             for path in worlds:

@@ -16,7 +16,10 @@ It renders owned World requests from native sprite assets into the Qt GPU
 viewport. Use the original window for menus and input. Ordinary mode uses an
 independent zero background and performs no CPU pixel readback; verification
 compares a separate original oracle and refuses differences. Some live canvases
-contain pixels outside that reconstructed initial state, so full baseline
+contain unsupported drawing: ordinary shadow mode clears the native preview,
+shows a waiting message and resumes when a supported complete frame arrives.
+The original game remains available for those draws; `--verify` stops on refusal.
+Other live canvases contain pixels outside that reconstructed initial state, so full baseline
 equivalence and whole-scene bypass remain pending. See the
 [implementation](../../research/runtime/native-world-live-rendering.md) and
 [initial-background boundary](../../research/runtime/native-world-live-background-gap.md).

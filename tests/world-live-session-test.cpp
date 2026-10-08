@@ -31,5 +31,35 @@ int main(int argc,char** argv)try{
             require(*reinterpret_cast<quint32*>(mapping+24)==1,"Session failure did not cancel producer");}
         file.unmap(mapping);
     }
-    std::cout<<"Continuous Qt GPU lease, normal no-readback, resize, oracle mismatch, unsupported operation and cleanup pass\n";return 0;
+    for(bool verify:{false,true}){
+        const auto path=directory.filePath(verify?"verify-refusal":"normal-refusal");mnm::legacy::WorldChannel::create(path,2,verify);
+        QFile file(path);require(file.open(QIODevice::ReadWrite),"Refusal test map");auto* mapping=file.map(0,MNM_WCH_SIZE);
+        auto* slot=reinterpret_cast<quint32*>(mapping+MNM_WCH_HEADER);mnm_wch_store(reinterpret_cast<quint32*>(mapping+20),MNM_WCH_ACTIVE);
+        auto publish=[&](quint32 sequence,quint32 failure){
+            auto b=wire(indexed,sequence);
+            if(failure){b.resize(MNM_WORLD_HEADER);put(b,16,MNM_WORLD_HEADER);put(b,36,0);put(b,40,failure);}
+            require(mnm_wch_cas(slot,0,1),"Refusal publication ownership");slot[1]=sequence;slot[2]=quint32(b.size());slot[3]=0;
+            std::memcpy(reinterpret_cast<char*>(slot)+16,b.constData(),std::size_t(b.size()));mnm_wch_store(slot,2);
+        };
+        {LiveWorldSession session(viewport,path,directory.path());const auto initialStatus=session.status();publish(1,MNM_WORLD_UNSUPPORTED_KIND);
+            if(verify){require(!session.poll()&&!session.error().isEmpty()&&session.presentations()==0&&viewport.frameSize().isEmpty(),"Verification accepted a capability refusal");}
+            else{
+                require(session.poll()&&session.presentations()==0&&viewport.frameSize().isEmpty(),"Normal initial refusal ended the session or was presented");
+                require(*reinterpret_cast<quint32*>(mapping+24)==0&&session.report()["capture_refusals"].toInteger()==1,"Normal refusal cancelled the producer or was not counted");
+                require(!session.status().isEmpty()&&session.status()!=initialStatus,"Refusal has no waiting status");
+                publish(2,0);require(session.poll()&&session.poll()&&session.presentations()==1&&viewport.frameSize()==QSize(5,3),"Native presentation did not recover after initial refusal");app.processEvents();
+                publish(3,MNM_WORLD_UNSUPPORTED_WAVE);require(session.poll()&&viewport.frameSize().isEmpty(),"Wave refusal retained a stale viewport lease");app.processEvents();
+                for(quint32 i=4;i<=103;++i){publish(i,MNM_WORLD_UNSUPPORTED_KIND);require(session.poll(),"Repeated capability refusal ended the session");}
+                auto report=session.report();require(report["capture_refusals"].toInteger()==102&&report["refusals"].toArray().size()==64,"Refusal diagnostics are unbounded or lost counts");
+                const auto counts=report["refusal_counts"].toObject();require(counts["7"].toInteger()==1&&counts["8"].toInteger()==101,"Refusal reason counts differ");
+                require(report["native_readbacks"].toInteger()==0&&viewport.imageUploads()==0,"Normal refusal/recovery read back or uploaded original pixels");
+                publish(104,0);require(session.poll()&&session.poll()&&session.presentations()==2,"Native presentation did not recover after repeated refusals");
+                publish(105,MNM_WORLD_UNSUPPORTED_KIND);reinterpret_cast<quint32*>(reinterpret_cast<char*>(slot)+16)[9]=1;
+                require(!session.poll()&&!session.error().isEmpty()&&viewport.frameSize().isEmpty(),"Partial refusal packet was accepted or left a stale lease");
+            }
+            session.close();const auto report=session.report();require(report["remaining_surfaces"].toInteger()==0&&report["native_readbacks"].toInteger()==0,"Refusal session leaked surfaces or read pixels");
+        }
+        file.unmap(mapping);
+    }
+    std::cout<<"Continuous Qt GPU lease, no-readback, resize, mismatch, normal capability refusal/recovery, strict verification, bounded diagnostics, malformed refusal and cleanup pass\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
