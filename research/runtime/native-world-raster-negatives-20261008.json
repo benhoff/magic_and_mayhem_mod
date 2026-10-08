@@ -1,0 +1,41 @@
+{
+  "success": true,
+  "scope": "Preserved unsuccessful setup/fixture/preflight outcomes; no original equivalence or replacement asserted.",
+  "sources": {
+    "tools/test-world-producer-handoff.py": "c8c84ecc55683e860fa1d0c9c156d142fa5c968f2fc1811721b301fa60c62b94",
+    "tools/test-canvas-producers.py": "e776c24c1922c386356857cc30abc520212d3056e4f163d783ee71efc1299319",
+    "tools/inspect-world-raster-callers.py": "f87890569410b20bc34f2840dd6c0dedc8ce343d4951edef1635a5b8d3f8ddd9"
+  },
+  "diagnostics": [
+    {
+      "path": "working/tests/world-producer-handoff/run-15bza910/report.json",
+      "sha256": "defabebd8ed9311ace5ff6a9fda360301a3cbc308e198c3719e89d97fa7b49d0",
+      "scope": "Freeze detected source changes during source-copy; no original pixel comparison."
+    },
+    {
+      "path": "working/tests/world-producer-handoff/run-x4xlge1r/report.json",
+      "sha256": "26b45b07fbb96b47baf5ad99fd430752e970bd43833136a0b4f7f1e2e6d38ba2",
+      "scope": "Canonical entry preflight lacked backend9; rejected before build/execution."
+    },
+    {
+      "path": "working/tests/world-producer-handoff/run-ca2jdqrt/report.json",
+      "sha256": "37752540afc2768cdb4d7336e206121f0c6e24b419c5455011acadaee1a07db5",
+      "scope": "Sandbox Xvfb socket restrictions prevented GPU tests; incremental CPU test passed, no positive GPU claim."
+    },
+    {
+      "path": "working/tests/canvas-producers/run-a_d5i132/forwarding.log",
+      "sha256": "48b0426b910a38b51c9cf0a2501e7120ac5e8279199adee5bcd1bb8f2dbfabd3",
+      "scope": "Sandbox Wine socket bind refused; rerun outside sandbox passed13admitted entries."
+    },
+    {
+      "path": "working/tests/canvas-producers/run-jzrghtfu/forwarding.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "Synthetic fixture reused raster ordinal1; CREATE_NEW refused repeated request. Fixed cumulative ordinal and rerun."
+    },
+    {
+      "path": "working/tests/canvas-producers/run-hazewj8g/compile-world_raster_callers.h.log",
+      "sha256": "a1ba1d898e1ccbfe3600e1f13f7e8757696c44c74eb45e8560e14b6b9c837aa3",
+      "scope": "Probe compiler input mistakenly included generated header; corrected compilation units."
+    }
+  ]
+}

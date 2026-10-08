@@ -1,0 +1,1731 @@
+{
+  "success": true,
+  "live_observation": true,
+  "live_replacement": false,
+  "original_pixels_compared": false,
+  "scope": "Selected creation/lock/binding/clear/reuse from startup through first World queue; complete upstream pixel producers, alternate padded canvas, failures and native replacement remain pending",
+  "sources": {
+    "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+    "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/observer.c": "1c68bfbd225d61c258e8012b36792b7620fb03bc1a9ef31ae90a376533a7ef24",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "runtime/scene/word_entry.S": "f4ad46c7c503212db820bbdcea7570f33d8d6735b8837db034e3bf52ad18d1f7",
+    "runtime/scene/word_route.c": "f8a39a190ef1350d54a0119a0d72f981accc634add1c4534cb85d5c4aea58a6d",
+    "runtime/scene/world_entry.S": "9794f755731a8a8d3df973a71d99a91ddf24855be25e8c1d39a9716054e95b3d",
+    "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+    "runtime/scene/world_stream.c": "431ae0f793b733f238db9d2c7bec11a8236ffb7ee832975d27011a030fb5603a",
+    "runtime/scene/world_stream_selftest.c": "b6ad2e3836ddbd5cae5b8135a77bfb93b9728b93b39b12d144e0a9ca71cb529a",
+    "runtime/scene/world_trace.c": "323f01ca3a062f2a389d4a90cb0e376ac60803178c086af042b8546c300e2982",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "tools/build-scene-observer.py": "f91a71dbee24eaf975d70602ab723410ac5f72dca953f9af27fab1d693aa8cf2",
+    "tools/prepare-scene-observer.py": "f650c14d7b212e551e545eb8a067cccf4068c31961cf75b5c5b2fe466dc67975",
+    "tools/capture-scene-game.py": "c2b58b7e70fbbb38b2f08603d764675d07ee717c5e8d3473b22f729dfd8e94f7",
+    "tools/scene-game-runner.py": "600a3a3bb79c40507b56d250413fffd667ef904e7beea292a6e3fb7558fa00f2",
+    "protocols/include/mnm/world_frame_v1.h": "f96ec37f282f145480f57f36cc0d5414200e52182c739e6b642bd6b75c4d0c79",
+    "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+    "tools/inspect-canvas-startup.py": "dedc8bec15c4ba7c4f4c9ea80d6216d9927d0cda91f0fd2b6fc8aeccbd7078c8"
+  },
+  "sources_stable": true,
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "samples": 4,
+  "map_selection": 2,
+  "menu_trace": [
+    {
+      "screen": 3,
+      "action": 1,
+      "argument": 0,
+      "ack": 1,
+      "status": 1
+    },
+    {
+      "screen": 22,
+      "action": 4,
+      "argument": 0,
+      "ack": 2,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 6,
+      "argument": 0,
+      "ack": 3,
+      "status": 1
+    },
+    {
+      "screen": 25,
+      "action": 9,
+      "argument": 2,
+      "ack": 4,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 7,
+      "argument": 0,
+      "ack": 5,
+      "status": 1
+    }
+  ],
+  "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-oqi9o7sa",
+  "skip_queues": 0,
+  "queue_interval": 1,
+  "world_refusals": [
+    {
+      "snapshot": "capture/world-0001.bin",
+      "reason": 7,
+      "captured_draws": 459
+    },
+    {
+      "snapshot": "capture/world-0003.bin",
+      "reason": 8,
+      "captured_draws": 0
+    },
+    {
+      "snapshot": "capture/world-0004.bin",
+      "reason": 8,
+      "captured_draws": 0
+    }
+  ],
+  "complete_native_admission": false,
+  "canvas_lifetime": {
+    "path": "capture/canvas-lifetime.bin",
+    "sha256": "fd633ba4f078eba3ddaa78c7e088df91e3807c9947074b836c7d70d7e2246a2a",
+    "records": 8,
+    "pointer_tokens": [
+      1
+    ],
+    "first_nonzero_pixels": 365306,
+    "allocation_generations_observed": false,
+    "original_pixels_used_as_native_inputs": false
+  },
+  "canvas_startup": {
+    "path": "capture/canvas-startup.bin",
+    "sha256": "3adb21d0672c509cb3cce7b9f41e2fa34eabae2e9da01ff93f9007082505303e",
+    "records": 8407,
+    "first_world_nonzero_pixels": 365306,
+    "first_world_content_fnv1a": 1881806767,
+    "original_pixels_used_as_native_inputs": false,
+    "complete_writer_census": false
+  },
+  "original_manifest_verified_before_after": true,
+  "capture_report_path": "working/experiments/scene-observer/run-oqi9o7sa/report.json",
+  "capture_report_sha256": "a41e7d89fbdc13e03b5708fdd10a8b15f80e761e5332d7cfa356f297804a1dc6",
+  "startup_records": 8407,
+  "startup_calls": {
+    "create": 58,
+    "fill_full": 21,
+    "jpeg": 8,
+    "lock": 714,
+    "copy": 205,
+    "bind": 636,
+    "clip": 636,
+    "sprite_dispatch": 1911,
+    "release": 13,
+    "fill_rect": 1,
+    "first_world": 1
+  },
+  "first_world": {
+    "sequence": 8407,
+    "operation": "first_world",
+    "phase": "entry",
+    "caller_return_va": "0x4fd559",
+    "result_eax": "0x0",
+    "ecx": "0x689b59",
+    "edx": "0x0",
+    "args": [
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0"
+    ],
+    "bound_pointer_token": 2,
+    "bound_stride_words": 800,
+    "bound_height": 600,
+    "clip": [
+      0,
+      0,
+      800,
+      600
+    ],
+    "alternate_canvas": "0x0",
+    "surface_fields_04_through_18": [
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0"
+    ],
+    "sample": {
+      "pointer_token": 2,
+      "width": 800,
+      "height": 600,
+      "stride_words": 800,
+      "nonzero_pixels": 365306,
+      "fnv1a": "0x702a17af"
+    }
+  },
+  "same_pointer_lock_returns_before_world": 686,
+  "world_surface_objects": [
+    "0x6a49e0"
+  ],
+  "selected_timeline": [
+    {
+      "sequence": 1,
+      "operation": "create",
+      "phase": "entry",
+      "caller_return_va": "0x4e415a",
+      "result_eax": "0x0",
+      "ecx": "0x6a4fe0",
+      "edx": "0x22f984",
+      "args": [
+        "0x22f984",
+        "0x5e3328",
+        "0x171",
+        "0x1b60645",
+        "0x6e0075",
+        "0x6c"
+      ],
+      "bound_pointer_token": 0,
+      "bound_stride_words": 0,
+      "bound_height": 0,
+      "clip": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 2,
+      "operation": "create",
+      "phase": "return",
+      "caller_return_va": "0x4e415a",
+      "result_eax": "0x1000c200",
+      "ecx": "0x6a4fe0",
+      "edx": "0x22f984",
+      "args": [
+        "0x22f984",
+        "0x5e3328",
+        "0x171",
+        "0x1b60645",
+        "0x6e0075",
+        "0x6c"
+      ],
+      "bound_pointer_token": 0,
+      "bound_stride_words": 0,
+      "bound_height": 0,
+      "clip": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717ce8",
+        "0x1717ce4",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 3,
+      "operation": "create",
+      "phase": "entry",
+      "caller_return_va": "0x4e41f1",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x22f984",
+      "args": [
+        "0x22f984",
+        "0x5e3328",
+        "0x184",
+        "0x1b60645",
+        "0x6e0075",
+        "0x6c"
+      ],
+      "bound_pointer_token": 0,
+      "bound_stride_words": 0,
+      "bound_height": 0,
+      "clip": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 4,
+      "operation": "create",
+      "phase": "return",
+      "caller_return_va": "0x4e41f1",
+      "result_eax": "0x840",
+      "ecx": "0x6a49e0",
+      "edx": "0x22f984",
+      "args": [
+        "0x22f984",
+        "0x5e3328",
+        "0x184",
+        "0x1b60645",
+        "0x6e0075",
+        "0x6c"
+      ],
+      "bound_pointer_token": 0,
+      "bound_stride_words": 0,
+      "bound_height": 0,
+      "clip": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 5,
+      "operation": "fill_full",
+      "phase": "entry",
+      "caller_return_va": "0x4e41fd",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0xea600",
+      "args": [
+        "0x0",
+        "0x1b60645",
+        "0x6e0075",
+        "0x6c",
+        "0x100f",
+        "0x258"
+      ],
+      "bound_pointer_token": 0,
+      "bound_stride_words": 0,
+      "bound_height": 0,
+      "clip": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 6,
+      "operation": "fill_full",
+      "phase": "return",
+      "caller_return_va": "0x4e41fd",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0xea600",
+      "args": [
+        "0x0",
+        "0x1b60645",
+        "0x6e0075",
+        "0x6c",
+        "0x100f",
+        "0x258"
+      ],
+      "bound_pointer_token": 0,
+      "bound_stride_words": 0,
+      "bound_height": 0,
+      "clip": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 32,
+      "operation": "lock",
+      "phase": "return",
+      "caller_return_va": "0x58de5a",
+      "result_eax": "0x3240030",
+      "ecx": "0x6a49e0",
+      "edx": "0x1b61971",
+      "args": [
+        "0x1b61971",
+        "0x1b61960",
+        "0x7a5c3720",
+        "0x1",
+        "0x0",
+        "0x320"
+      ],
+      "bound_pointer_token": 0,
+      "bound_stride_words": 0,
+      "bound_height": 0,
+      "clip": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 469248,
+        "fnv1a": "0x794e9e46"
+      }
+    },
+    {
+      "sequence": 37,
+      "operation": "bind",
+      "phase": "entry",
+      "caller_return_va": "0x4cc88d",
+      "result_eax": "0x0",
+      "ecx": "0x3240030",
+      "edx": "0x320",
+      "args": [
+        "0x258",
+        "0x657ce0",
+        "0x0",
+        "0x657ce0",
+        "0x96",
+        "0x136"
+      ],
+      "bound_pointer_token": 0,
+      "bound_stride_words": 0,
+      "bound_height": 0,
+      "clip": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 469248,
+        "fnv1a": "0x920b3323"
+      }
+    },
+    {
+      "sequence": 38,
+      "operation": "bind",
+      "phase": "return",
+      "caller_return_va": "0x4cc88d",
+      "result_eax": "0x258",
+      "ecx": "0x3240030",
+      "edx": "0x320",
+      "args": [
+        "0x258",
+        "0x657ce0",
+        "0x0",
+        "0x657ce0",
+        "0x96",
+        "0x136"
+      ],
+      "bound_pointer_token": 2,
+      "bound_stride_words": 800,
+      "bound_height": 600,
+      "clip": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 469248,
+        "fnv1a": "0x920b3323"
+      }
+    },
+    {
+      "sequence": 7659,
+      "operation": "copy",
+      "phase": "entry",
+      "caller_return_va": "0x539bd2",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x781424a0",
+      "args": [
+        "0x6a4fe0",
+        "0x0",
+        "0x0",
+        "0x7a5d8de0",
+        "0x557424",
+        "0x1b60645"
+      ],
+      "bound_pointer_token": 2,
+      "bound_stride_words": 800,
+      "bound_height": 600,
+      "clip": [
+        0,
+        0,
+        801,
+        26
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365304,
+        "fnv1a": "0xdab359c2"
+      }
+    },
+    {
+      "sequence": 7660,
+      "operation": "copy",
+      "phase": "return",
+      "caller_return_va": "0x539bd2",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x781424a0",
+      "args": [
+        "0x6a4fe0",
+        "0x0",
+        "0x0",
+        "0x7a5d8de0",
+        "0x557424",
+        "0x1b60645"
+      ],
+      "bound_pointer_token": 2,
+      "bound_stride_words": 800,
+      "bound_height": 600,
+      "clip": [
+        0,
+        0,
+        801,
+        26
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365304,
+        "fnv1a": "0xdab359c2"
+      }
+    },
+    {
+      "sequence": 7695,
+      "operation": "copy",
+      "phase": "entry",
+      "caller_return_va": "0x539c79",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x0",
+      "args": [
+        "0x6a4fe0",
+        "0x0",
+        "0x0",
+        "0x7a5d8de0",
+        "0x557424",
+        "0x1b60645"
+      ],
+      "bound_pointer_token": 2,
+      "bound_stride_words": 800,
+      "bound_height": 600,
+      "clip": [
+        0,
+        0,
+        801,
+        26
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365304,
+        "fnv1a": "0xdab359c2"
+      }
+    },
+    {
+      "sequence": 7696,
+      "operation": "copy",
+      "phase": "return",
+      "caller_return_va": "0x539c79",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x0",
+      "args": [
+        "0x6a4fe0",
+        "0x0",
+        "0x0",
+        "0x7a5d8de0",
+        "0x557424",
+        "0x1b60645"
+      ],
+      "bound_pointer_token": 2,
+      "bound_stride_words": 800,
+      "bound_height": 600,
+      "clip": [
+        0,
+        0,
+        801,
+        26
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365304,
+        "fnv1a": "0xdab359c2"
+      }
+    },
+    {
+      "sequence": 7875,
+      "operation": "copy",
+      "phase": "entry",
+      "caller_return_va": "0x539cec",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x0",
+      "args": [
+        "0x6a4fe0",
+        "0x0",
+        "0x0",
+        "0x7a5d8de0",
+        "0x557424",
+        "0x1b60645"
+      ],
+      "bound_pointer_token": 2,
+      "bound_stride_words": 800,
+      "bound_height": 600,
+      "clip": [
+        0,
+        0,
+        801,
+        26
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365304,
+        "fnv1a": "0xdab359c2"
+      }
+    },
+    {
+      "sequence": 7876,
+      "operation": "copy",
+      "phase": "return",
+      "caller_return_va": "0x539cec",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x0",
+      "args": [
+        "0x6a4fe0",
+        "0x0",
+        "0x0",
+        "0x7a5d8de0",
+        "0x557424",
+        "0x1b60645"
+      ],
+      "bound_pointer_token": 2,
+      "bound_stride_words": 800,
+      "bound_height": 600,
+      "clip": [
+        0,
+        0,
+        801,
+        26
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365304,
+        "fnv1a": "0xdab359c2"
+      }
+    },
+    {
+      "sequence": 8387,
+      "operation": "copy",
+      "phase": "entry",
+      "caller_return_va": "0x4dc6a1",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x0",
+      "args": [
+        "0x6a4fe0",
+        "0x0",
+        "0x0",
+        "0x6cbb78",
+        "0x0",
+        "0x1"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365306,
+        "fnv1a": "0x702a17af"
+      }
+    },
+    {
+      "sequence": 8388,
+      "operation": "copy",
+      "phase": "return",
+      "caller_return_va": "0x4dc6a1",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x0",
+      "args": [
+        "0x6a4fe0",
+        "0x0",
+        "0x0",
+        "0x6cbb78",
+        "0x0",
+        "0x1"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365306,
+        "fnv1a": "0x702a17af"
+      }
+    },
+    {
+      "sequence": 8389,
+      "operation": "release",
+      "phase": "entry",
+      "caller_return_va": "0x4dc6eb",
+      "result_eax": "0x0",
+      "ecx": "0x6db8fa",
+      "edx": "0x4",
+      "args": [
+        "0x1",
+        "0x46a80e",
+        "0x7a5d8de0",
+        "0x7a5c3720",
+        "0x7a5e14f0",
+        "0x7a5af190"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1735ae0",
+        "0x1735adc",
+        "0x0",
+        "0x256",
+        "0x24",
+        "0x4b0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 8390,
+      "operation": "release",
+      "phase": "return",
+      "caller_return_va": "0x4dc6eb",
+      "result_eax": "0x34",
+      "ecx": "0x6db8fa",
+      "edx": "0x4",
+      "args": [
+        "0x1",
+        "0x46a80e",
+        "0x7a5d8de0",
+        "0x7a5c3720",
+        "0x7a5e14f0",
+        "0x7a5af190"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 8391,
+      "operation": "release",
+      "phase": "entry",
+      "caller_return_va": "0x4dc6f3",
+      "result_eax": "0x0",
+      "ecx": "0x6db92c",
+      "edx": "0x34",
+      "args": [
+        "0x1",
+        "0x46a80e",
+        "0x7a5d8de0",
+        "0x7a5c3720",
+        "0x7a5e14f0",
+        "0x7a5af190"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1684a50",
+        "0x1684a4c",
+        "0x0",
+        "0x256",
+        "0x24",
+        "0x4b0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 8392,
+      "operation": "release",
+      "phase": "return",
+      "caller_return_va": "0x4dc6f3",
+      "result_eax": "0x33",
+      "ecx": "0x6db92c",
+      "edx": "0x34",
+      "args": [
+        "0x1",
+        "0x46a80e",
+        "0x7a5d8de0",
+        "0x7a5c3720",
+        "0x7a5e14f0",
+        "0x7a5af190"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 8393,
+      "operation": "jpeg",
+      "phase": "entry",
+      "caller_return_va": "0x4ddeb4",
+      "result_eax": "0x0",
+      "ecx": "0x6905b0",
+      "edx": "0x1b63328",
+      "args": [
+        "0x5e3244",
+        "0x6cbb78",
+        "0x1",
+        "0x46a83f",
+        "0xa8c",
+        "0x7a5d8de0"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x342bd18",
+        "0x342bd14",
+        "0x0",
+        "0x28",
+        "0x28",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 8394,
+      "operation": "lock",
+      "phase": "entry",
+      "caller_return_va": "0x58d329",
+      "result_eax": "0x0",
+      "ecx": "0x6905b0",
+      "edx": "0x1b63328",
+      "args": [
+        "0x6905a8",
+        "0x6905b0",
+        "0x777d5018",
+        "0x5e3244",
+        "0x6cbb78",
+        "0x1"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x342bd18",
+        "0x342bd14",
+        "0x0",
+        "0x28",
+        "0x28",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 8395,
+      "operation": "lock",
+      "phase": "return",
+      "caller_return_va": "0x58d329",
+      "result_eax": "0x37b12b8",
+      "ecx": "0x6905b0",
+      "edx": "0x1b63328",
+      "args": [
+        "0x6905a8",
+        "0x6905b0",
+        "0x777d5018",
+        "0x5e3244",
+        "0x6cbb78",
+        "0x1"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x342bd18",
+        "0x342bd14",
+        "0x0",
+        "0x28",
+        "0x28",
+        "0x50"
+      ],
+      "sample": {
+        "pointer_token": 10,
+        "width": 40,
+        "height": 40,
+        "stride_words": 40,
+        "nonzero_pixels": 1600,
+        "fnv1a": "0x61def8c5"
+      }
+    },
+    {
+      "sequence": 8396,
+      "operation": "jpeg",
+      "phase": "return",
+      "caller_return_va": "0x4ddeb4",
+      "result_eax": "0x1",
+      "ecx": "0x6905b0",
+      "edx": "0x1b63328",
+      "args": [
+        "0x5e3244",
+        "0x6cbb78",
+        "0x1",
+        "0x46a83f",
+        "0xa8c",
+        "0x7a5d8de0"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x342bd18",
+        "0x342bd14",
+        "0x0",
+        "0x28",
+        "0x28",
+        "0x50"
+      ],
+      "sample": {
+        "pointer_token": 10,
+        "width": 40,
+        "height": 40,
+        "stride_words": 40,
+        "nonzero_pixels": 1592,
+        "fnv1a": "0x4c2e2050"
+      }
+    },
+    {
+      "sequence": 8397,
+      "operation": "lock",
+      "phase": "entry",
+      "caller_return_va": "0x58dc75",
+      "result_eax": "0x0",
+      "ecx": "0x6905b0",
+      "edx": "0x0",
+      "args": [
+        "0x6905a8",
+        "0x6905b0",
+        "0x6db8de",
+        "0x0",
+        "0x6905b0",
+        "0x1f"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x342bd18",
+        "0x342bd14",
+        "0x0",
+        "0x28",
+        "0x28",
+        "0x50"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 8398,
+      "operation": "lock",
+      "phase": "return",
+      "caller_return_va": "0x58dc75",
+      "result_eax": "0x37b12b8",
+      "ecx": "0x6905b0",
+      "edx": "0x0",
+      "args": [
+        "0x6905a8",
+        "0x6905b0",
+        "0x6db8de",
+        "0x0",
+        "0x6905b0",
+        "0x1f"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x342bd18",
+        "0x342bd14",
+        "0x0",
+        "0x28",
+        "0x28",
+        "0x50"
+      ],
+      "sample": {
+        "pointer_token": 10,
+        "width": 40,
+        "height": 40,
+        "stride_words": 40,
+        "nonzero_pixels": 1592,
+        "fnv1a": "0x4c2e2050"
+      }
+    },
+    {
+      "sequence": 8399,
+      "operation": "copy",
+      "phase": "entry",
+      "caller_return_va": "0x46ba01",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x0",
+      "args": [
+        "0x6a4fe0",
+        "0x0",
+        "0x0",
+        "0x7a5e14f0",
+        "0x7a5d8de0",
+        "0x7a5c3720"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365306,
+        "fnv1a": "0x702a17af"
+      }
+    },
+    {
+      "sequence": 8400,
+      "operation": "copy",
+      "phase": "return",
+      "caller_return_va": "0x46ba01",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x0",
+      "args": [
+        "0x6a4fe0",
+        "0x0",
+        "0x0",
+        "0x7a5e14f0",
+        "0x7a5d8de0",
+        "0x7a5c3720"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365306,
+        "fnv1a": "0x702a17af"
+      }
+    },
+    {
+      "sequence": 8401,
+      "operation": "clip",
+      "phase": "entry",
+      "caller_return_va": "0x4fcfcc",
+      "result_eax": "0x0",
+      "ecx": "0x0",
+      "edx": "0x0",
+      "args": [
+        "0x320",
+        "0x258",
+        "0x81",
+        "0x19f194e",
+        "0x689930",
+        "0x0"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        436,
+        108
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 8402,
+      "operation": "clip",
+      "phase": "return",
+      "caller_return_va": "0x4fcfcc",
+      "result_eax": "0x320",
+      "ecx": "0x0",
+      "edx": "0x0",
+      "args": [
+        "0x320",
+        "0x258",
+        "0x81",
+        "0x19f194e",
+        "0x689930",
+        "0x0"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        800,
+        600
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 8403,
+      "operation": "lock",
+      "phase": "entry",
+      "caller_return_va": "0x4fd536",
+      "result_eax": "0x0",
+      "ecx": "0x6a49e0",
+      "edx": "0x6c5490",
+      "args": [
+        "0x19f194e",
+        "0x6cbb78",
+        "0x81",
+        "0x0",
+        "0x46bbd8",
+        "0x7a5e14f0"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        800,
+        600
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 0,
+        "width": 0,
+        "height": 0,
+        "stride_words": 0,
+        "nonzero_pixels": null,
+        "fnv1a": null
+      }
+    },
+    {
+      "sequence": 8404,
+      "operation": "lock",
+      "phase": "return",
+      "caller_return_va": "0x4fd536",
+      "result_eax": "0x3240030",
+      "ecx": "0x6a49e0",
+      "edx": "0x6c5490",
+      "args": [
+        "0x19f194e",
+        "0x6cbb78",
+        "0x81",
+        "0x0",
+        "0x46bbd8",
+        "0x7a5e14f0"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        800,
+        600
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x1717e20",
+        "0x1717e1c",
+        "0x0",
+        "0x320",
+        "0x258",
+        "0x640"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365306,
+        "fnv1a": "0x702a17af"
+      }
+    },
+    {
+      "sequence": 8405,
+      "operation": "bind",
+      "phase": "entry",
+      "caller_return_va": "0x4fd552",
+      "result_eax": "0x0",
+      "ecx": "0x3240030",
+      "edx": "0x320",
+      "args": [
+        "0x258",
+        "0x19f194e",
+        "0x6cbb78",
+        "0x81",
+        "0x0",
+        "0x46bbd8"
+      ],
+      "bound_pointer_token": 7,
+      "bound_stride_words": 436,
+      "bound_height": 108,
+      "clip": [
+        0,
+        0,
+        800,
+        600
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365306,
+        "fnv1a": "0x702a17af"
+      }
+    },
+    {
+      "sequence": 8406,
+      "operation": "bind",
+      "phase": "return",
+      "caller_return_va": "0x4fd552",
+      "result_eax": "0x258",
+      "ecx": "0x3240030",
+      "edx": "0x320",
+      "args": [
+        "0x258",
+        "0x19f194e",
+        "0x6cbb78",
+        "0x81",
+        "0x0",
+        "0x46bbd8"
+      ],
+      "bound_pointer_token": 2,
+      "bound_stride_words": 800,
+      "bound_height": 600,
+      "clip": [
+        0,
+        0,
+        800,
+        600
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365306,
+        "fnv1a": "0x702a17af"
+      }
+    },
+    {
+      "sequence": 8407,
+      "operation": "first_world",
+      "phase": "entry",
+      "caller_return_va": "0x4fd559",
+      "result_eax": "0x0",
+      "ecx": "0x689b59",
+      "edx": "0x0",
+      "args": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "bound_pointer_token": 2,
+      "bound_stride_words": 800,
+      "bound_height": 600,
+      "clip": [
+        0,
+        0,
+        800,
+        600
+      ],
+      "alternate_canvas": "0x0",
+      "surface_fields_04_through_18": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "sample": {
+        "pointer_token": 2,
+        "width": 800,
+        "height": 600,
+        "stride_words": 800,
+        "nonzero_pixels": 365306,
+        "fnv1a": "0x702a17af"
+      }
+    }
+  ],
+  "world_surface_creations": 1,
+  "world_surface_releases": 0,
+  "world_surface_full_fill_requests": 1,
+  "original_pixels_used_as_native_inputs": false,
+  "complete_writer_census": false,
+  "initial_clear_pixel_completion_measured": false
+}

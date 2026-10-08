@@ -41,3 +41,14 @@ ownership, complete-pixel, ordering, clipping, failure/retry and migrated previe
 tests. Installed preview/window comparisons are separate commands documented in
 [the evidence record](../../research/runtime/native-shared-scene-renderer.md).
 Live original scene snapshots remain the next integration milestone.
+
+Prepared hosts set both `cache.residentOnly` and `cache.preparedOnly`. They use
+`beginFrame`/`drawNext(SceneBatchBudget)` instead of synchronous `draw`. On an
+uncached draw, `uploadNeed()` returns owned identity/geometry metadata. Prepare
+its planes on a CPU worker and call `supplyUpload` on the GUI thread. Drawing
+then transfers full-width rows within the byte budget, checking elapsed time
+between operations. No draw or presentation can sample an incomplete upload.
+Equal palette values and projected-shadow row shapes share cached textures.
+Worker inputs must own their decoded sources; never borrow manager references
+across threads. See [World upload preparation](../../research/runtime/native-world-upload-preparation.md)
+for ownership, cancellation, budget limits and source-bound synthetic evidence.

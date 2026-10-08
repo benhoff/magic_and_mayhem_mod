@@ -1,0 +1,68 @@
+{
+  "success": true,
+  "scope": "Exact reviewed behavior/scenario binding of the retained original startup execution. This does not rerun execution, refresh prior fingerprints or establish whole-function equivalence.",
+  "execution_record": "research/runtime/native-world-canvas-startup-20261008.json",
+  "execution_record_sha256": "8e9ef4e8762803b8257be056bf3e588ebea997cb28fc4b155ce5220e33efbd5d",
+  "bridge_build_path": "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-oqi9o7sa/bridge-build.json",
+  "bridge_build_sha256": "fb7a457333e08f3d0532a798c36bdc9f37019827f1aa844439918c18b1e0a34d",
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+    "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/observer.c": "1c68bfbd225d61c258e8012b36792b7620fb03bc1a9ef31ae90a376533a7ef24",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "runtime/scene/word_entry.S": "f4ad46c7c503212db820bbdcea7570f33d8d6735b8837db034e3bf52ad18d1f7",
+    "runtime/scene/word_route.c": "f8a39a190ef1350d54a0119a0d72f981accc634add1c4534cb85d5c4aea58a6d",
+    "runtime/scene/world_entry.S": "9794f755731a8a8d3df973a71d99a91ddf24855be25e8c1d39a9716054e95b3d",
+    "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+    "runtime/scene/world_stream.c": "431ae0f793b733f238db9d2c7bec11a8236ffb7ee832975d27011a030fb5603a",
+    "runtime/scene/world_stream_selftest.c": "b6ad2e3836ddbd5cae5b8135a77bfb93b9728b93b39b12d144e0a9ca71cb529a",
+    "runtime/scene/world_trace.c": "323f01ca3a062f2a389d4a90cb0e376ac60803178c086af042b8546c300e2982",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "tools/build-scene-observer.py": "f91a71dbee24eaf975d70602ab723410ac5f72dca953f9af27fab1d693aa8cf2",
+    "tools/prepare-scene-observer.py": "f650c14d7b212e551e545eb8a067cccf4068c31961cf75b5c5b2fe466dc67975",
+    "tools/capture-scene-game.py": "c2b58b7e70fbbb38b2f08603d764675d07ee717c5e8d3473b22f729dfd8e94f7",
+    "tools/scene-game-runner.py": "600a3a3bb79c40507b56d250413fffd667ef904e7beea292a6e3fb7558fa00f2",
+    "protocols/include/mnm/world_frame_v1.h": "f96ec37f282f145480f57f36cc0d5414200e52182c739e6b642bd6b75c4d0c79",
+    "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+    "tools/inspect-canvas-startup.py": "dedc8bec15c4ba7c4f4c9ea80d6216d9927d0cda91f0fd2b6fc8aeccbd7078c8",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9"
+  },
+  "sources_stable": true,
+  "claims": [
+    {
+      "behavior": "RS.canvas-create-lock",
+      "contract_sha256": "3b726fb781e6ce2dc195a414446686f896528877c9623947ac738571c66c82f9",
+      "scenarios": {
+        "canvas-startup-preworld-20261008": "b19ad88a698a5a01f6a46609379bc785f8e1baa6362d9dd35724d342f8811d93"
+      }
+    },
+    {
+      "behavior": "RS.canvas-bind-clip",
+      "contract_sha256": "f6a0c9ae464005e04cb9b685526aae2bca668e9123e24c63452cfd2cbf28c062",
+      "scenarios": {
+        "canvas-startup-preworld-20261008": "b19ad88a698a5a01f6a46609379bc785f8e1baa6362d9dd35724d342f8811d93"
+      }
+    },
+    {
+      "behavior": "RS.canvas-startup-clear",
+      "contract_sha256": "714ba562496d3b27b7ef234dab5a0a8d3b5b87b7e2aa63231c4f9142e49208e6",
+      "scenarios": {
+        "canvas-startup-preworld-20261008": "b19ad88a698a5a01f6a46609379bc785f8e1baa6362d9dd35724d342f8811d93"
+      }
+    },
+    {
+      "behavior": "RS.canvas-preworld-reuse",
+      "contract_sha256": "f51f53e8e600cc55e6dce84e173318cba93a10181dbc2b7ded362a649f64f7a4",
+      "scenarios": {
+        "canvas-startup-preworld-20261008": "b19ad88a698a5a01f6a46609379bc785f8e1baa6362d9dd35724d342f8811d93"
+      }
+    }
+  ],
+  "live_observation": true,
+  "live_replacement": false,
+  "original_pixels_used_as_native_inputs": false,
+  "startup_records": 8407,
+  "first_world_nonzero_pixels": 365306
+}

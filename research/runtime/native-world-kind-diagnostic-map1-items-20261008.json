@@ -1,0 +1,571 @@
+{
+  "success": true,
+  "live_observation": true,
+  "live_replacement": false,
+  "original_pixels_compared": false,
+  "scope": "Original Single Player battle setup and ordered queue consumer entry. Original simulation/drawing remain active; bounded immutable snapshots, no whole-scene visual equivalence.",
+  "sources": {
+    "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+    "protocols/include/mnm/menu_v2.h": "5f9db9ded1e1653411cdd542ff045070a79f8b9b3c93d05227d94edaf3da3881",
+    "protocols/include/mnm/menu_v3.h": "f0baf53e4b11455c7bef129aafad06a80984ba13ce37e877d088dd7c7ed74dd6",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+    "protocols/include/mnm/world_channel_v2.h": "7950078b61ef26403a9661981c5dd4ae9553bc582c232c8782f0f1b7ce1504f4",
+    "protocols/include/mnm/world_frame_v1.h": "f96ec37f282f145480f57f36cc0d5414200e52182c739e6b642bd6b75c4d0c79",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+    "runtime/menu/campaign_observe.h": "a220db2c27e263f7fc29fc41fd98876051de0f02839b2bde48fddb04d55950b4",
+    "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+    "runtime/menu/campaign_world_observe.h": "6f2eb6187cb077c5d1bab2e85c3c7301ef0a2e887fc6a89e4bccf57ea1c316f0",
+    "runtime/menu/channel.h": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+    "runtime/menu/channel_selftest.h": "1104046daa23c138c71ce2acc6367546e27e8bcadf17981660b7ae250890ef3e",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c",
+    "runtime/menu/contract_selftest.c": "a41c0188b16e4275333e4f5c7e963614ad0c43d3759150fd297410a649b273e7",
+    "runtime/menu/mini.h": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+    "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+    "runtime/menu/observer.c": "04137d835048e078c65fffd46cf532bc273b323c05d8dcabd566ae78cebd39e1",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/preferences_display.h": "60a7f61c7bd734b017c831c6ee3159cd751bf9b2df4a2c1e17b103628872a2cc",
+    "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+    "runtime/menu/region_entry.h": "df429ae4125d71982471f814a946c43a5d0e46762e607e09478212546c236b7e",
+    "runtime/menu/region_entry_observe.h": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+    "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "runtime/scene/canvas_producers.S": "3ba0c79a0524031564559d8d536af763d7fdfaefeb24b48800698f30b574b0bc",
+    "runtime/scene/canvas_producers.c": "5c01ff2e84810c9bc4d59bd9da66dfa1fe0de6208e654aeec1dc9afb3578363e",
+    "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+    "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/observer.c": "8a3ef8cd5b88c7cc31282e21abbefe950472b846cec92a2868b30b182fef4eee",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "runtime/scene/startup_queue.c": "466d66d8343dbaac7e196129cca7ff0d6a2e8cb60a2c9faed1bb75ee7c96d6a5",
+    "runtime/scene/word_entry.S": "f4ad46c7c503212db820bbdcea7570f33d8d6735b8837db034e3bf52ad18d1f7",
+    "runtime/scene/word_route.c": "f8a39a190ef1350d54a0119a0d72f981accc634add1c4534cb85d5c4aea58a6d",
+    "runtime/scene/world_entry.S": "25ff4e5bcb6fba4b43daeb836e895f219ee8a0fde9532f294881ab42251cc265",
+    "runtime/scene/world_kinds.h": "dad1ab93f175db036c7b53fb3ee8f4f65259d016ae2ba3627a133e2685f87e4b",
+    "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+    "runtime/scene/world_producer_bypass.c": "103b279a6c8ba8942c368629acd1d3349824ed432dbe10535187ed5fdfea5e3a",
+    "runtime/scene/world_stream.c": "0f55cc0856779977a4b4c9a7795e4b5622fa6c16f00db06cc631fd0e12a48a60",
+    "runtime/scene/world_stream_selftest.c": "2828bc32ae8e1ff3a3675fd11d863d8d73729d07e12f48dc1b173c8b57d6ef29",
+    "runtime/scene/world_trace.c": "7ae03421648046fffd8b75d87d6e110ca6a0612d863ef3c01fad0c905c470bb1",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/build-scene-observer.py": "dcb7cb2f03857a33be9f2f721d8b779e8efe9b22e3f568bfc728bae67626a048",
+    "tools/capture-scene-game.py": "947f2df890e4bfb7d09dedf53b022339b44d6c063d3d2d9d01a29fd35adef783",
+    "tools/inspect-startup-queues.py": "042956e9a0facca102d0f8c2d71c8adeaf07e80b948e493d01e4cd843968d0b3",
+    "tools/prepare-scene-observer.py": "afc0e24f64acaf7aa535887cbd602b3471a3ed992d16d0d7e2dc3f19b8c75009",
+    "tools/scene-game-runner.py": "74176c9d773c647bc0f5a410bb44f917a6073dd968d4cdb659b1e3949627f932",
+    "tools/world_channel.py": "7a29c9710c7552a399b9ae6424505402f605785adb5dc53aae2d595a1d064db0"
+  },
+  "sources_stable": true,
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "samples": 16,
+  "map_selection": 1,
+  "magic_items": 15,
+  "menu_trace": [
+    {
+      "screen": 3,
+      "action": 1,
+      "argument": 0,
+      "ack": 1,
+      "status": 1
+    },
+    {
+      "screen": 22,
+      "action": 4,
+      "argument": 0,
+      "ack": 2,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 6,
+      "argument": 0,
+      "ack": 3,
+      "status": 1
+    },
+    {
+      "screen": 25,
+      "action": 9,
+      "argument": 1,
+      "ack": 4,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 7,
+      "argument": 0,
+      "ack": 5,
+      "status": 1
+    },
+    {
+      "screen": 7,
+      "action": 12,
+      "argument": 0,
+      "ack": 6,
+      "status": 1
+    }
+  ],
+  "snapshots": {
+    "capture/scene-0001.bin": "1cf0e51c881d2d2e3aa67fce134c5742ab4b2c6f9f2556eaad76fae4a5ef8973",
+    "capture/scene-0002.bin": "3b8c3f6dce0c7dd9d5990a7f79636ae9f8369c1e3552f2b2676206bd8f5c313a",
+    "capture/scene-0003.bin": "603a15f95e0b8b065c1702e45985d05d24c7e0543be3cfb16b6f90d57fc8a05d",
+    "capture/scene-0004.bin": "d8ce9eb53236e635a5d8910dedf0961b06f107e731ee3c0eed95341110252144",
+    "capture/scene-0005.bin": "668c6cff955c3076a12e5f37fc54dde2e55b3b2e5468a18afbab229ee30af412",
+    "capture/scene-0006.bin": "7d468425c21a5a96c010b3a5d8f279116b9e999e10d84c99cf7303e5c7e786c9",
+    "capture/scene-0007.bin": "054f18b51a24183dd8f91f9682d84f3354f838e6899da3071322ccb87576b04f",
+    "capture/scene-0008.bin": "ea6b36e24a4aac5630cde96cd826ff68f27a4f3f076cdf073cfb621d9ae8fae2",
+    "capture/scene-0009.bin": "6c28b7b077def4b0fd56110883f6fa4659b10774ae6263c4ae1aa3674e3797f9",
+    "capture/scene-0010.bin": "e1a0bfe22cbb83d75e258c829cc75f0f773d13249545dfa51fd9674239470fcd",
+    "capture/scene-0011.bin": "d759420ea610ce2aacdae807e0d76602cdf5dffdaf53a5a00d2c42e571ececb8",
+    "capture/scene-0012.bin": "4d4bb47c644c9bc4c03dba5a3a43696e1971a6f93412fb0c82d1dada2f2d0a50",
+    "capture/scene-0013.bin": "52f8e78ce420e08651bb8b35f2da7fb1c9d0a60d9ef78eeff84da7ff47d5f1a2",
+    "capture/scene-0014.bin": "d7c102583ae525798d520cc859c9c985ba1faf9e8eed6064fecece3b809c99af",
+    "capture/scene-0015.bin": "10c188713f0f9ecc0871cd195f9e78c2e7ee6751f649d56e404eff9695912d07",
+    "capture/scene-0016.bin": "65b3e8b63bcae8655cc180dc1d096c96e691a7faa1bc31bc3fa766d982c42976"
+  },
+  "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-19ynq2s1",
+  "startup_replay": true,
+  "startup_queues": {
+    "requested_queues": 16,
+    "captured_queues": 16,
+    "contiguous_from_first_queue": true,
+    "all_raw_rows_captured": true,
+    "queues": [
+      {
+        "queue": 1,
+        "sample": 1,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1820,
+        "capacity": 12000,
+        "rows_captured": 1820,
+        "kind_counts": {
+          "-2": 86,
+          "2": 1,
+          "3": 1,
+          "22": 1,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [],
+        "path": "startup-queue-0001.bin",
+        "sha256": "1f07e16cc9c83ba942d682f579e60bbd372a2310107b83f21e78b2f42aad81b4"
+      },
+      {
+        "queue": 2,
+        "sample": 2,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "2": 1,
+          "3": 1,
+          "6": 72,
+          "22": 1,
+          "31": 2,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [],
+        "path": "startup-queue-0002.bin",
+        "sha256": "a53de2c18fa7ecc2ec53b8d294bf094426522fc82bd933a1116f67d1eb38eb1f"
+      },
+      {
+        "queue": 3,
+        "sample": 3,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "2": 1,
+          "4": 1,
+          "6": 72,
+          "20": 1,
+          "31": 2,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [
+          {
+            "ordinal": 804,
+            "kind": 20
+          }
+        ],
+        "path": "startup-queue-0003.bin",
+        "sha256": "8cf39060ee185eaad4405afbe7f935cbda137e368e280dbb35abea5baa4d22fa"
+      },
+      {
+        "queue": 4,
+        "sample": 4,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "2": 1,
+          "4": 1,
+          "6": 72,
+          "20": 1,
+          "31": 2,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [
+          {
+            "ordinal": 804,
+            "kind": 20
+          }
+        ],
+        "path": "startup-queue-0004.bin",
+        "sha256": "9a4e8f85a49c64e37fea3ff0387bbd0b5837fb25e42a6f23fd682b064530ce4a"
+      },
+      {
+        "queue": 5,
+        "sample": 5,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "2": 1,
+          "5": 1,
+          "6": 72,
+          "17": 1,
+          "31": 2,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [
+          {
+            "ordinal": 804,
+            "kind": 17
+          }
+        ],
+        "path": "startup-queue-0005.bin",
+        "sha256": "2a1f8dcce2455c1703bd6a60a92f45ffbfc78dbe9c4d03210c0179fe05000ef7"
+      },
+      {
+        "queue": 6,
+        "sample": 6,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "2": 1,
+          "5": 1,
+          "6": 72,
+          "17": 1,
+          "31": 2,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [
+          {
+            "ordinal": 804,
+            "kind": 17
+          }
+        ],
+        "path": "startup-queue-0006.bin",
+        "sha256": "f406df1834f01a9efae4bb0aa0b5e0373d9cd81f60ee5807bbe43d96bea23f93"
+      },
+      {
+        "queue": 7,
+        "sample": 7,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "2": 1,
+          "6": 72,
+          "16": 1,
+          "31": 3,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [
+          {
+            "ordinal": 804,
+            "kind": 16
+          }
+        ],
+        "path": "startup-queue-0007.bin",
+        "sha256": "0432f8ee7b98d1f006df4b782ee34cf33f534d8057c726759269563609ebb4be"
+      },
+      {
+        "queue": 8,
+        "sample": 8,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "2": 1,
+          "6": 72,
+          "16": 1,
+          "31": 3,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [
+          {
+            "ordinal": 804,
+            "kind": 16
+          }
+        ],
+        "path": "startup-queue-0008.bin",
+        "sha256": "43f04fc69e2e88b2f07d4b80ddd0370ba0358f6e6be4cadfd1f35822263c12c4"
+      },
+      {
+        "queue": 9,
+        "sample": 9,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "1": 1,
+          "2": 1,
+          "6": 72,
+          "31": 3,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [],
+        "path": "startup-queue-0009.bin",
+        "sha256": "5e82c4115461916d217ee303213a7559ddcdb85d4b7b1970543609f66f8d6a2a"
+      },
+      {
+        "queue": 10,
+        "sample": 10,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "1": 1,
+          "2": 1,
+          "6": 72,
+          "31": 3,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [],
+        "path": "startup-queue-0010.bin",
+        "sha256": "ef9a1cb6dd47c8e514b09fb4a6ed9f0d8d45ffa6accfff7cb41f3f90041fd910"
+      },
+      {
+        "queue": 11,
+        "sample": 11,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "1": 1,
+          "2": 1,
+          "6": 72,
+          "31": 3,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [],
+        "path": "startup-queue-0011.bin",
+        "sha256": "9485b58be7f9e3355215745c66924e57225e7469d64d792381cc7850faed9c7a"
+      },
+      {
+        "queue": 12,
+        "sample": 12,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "1": 1,
+          "2": 1,
+          "6": 72,
+          "31": 3,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [],
+        "path": "startup-queue-0012.bin",
+        "sha256": "7cab090693aa6f5a88fe871c73fcb248de40ddd66cd03fecd643a2a052df5017"
+      },
+      {
+        "queue": 13,
+        "sample": 13,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "1": 1,
+          "2": 1,
+          "6": 72,
+          "31": 3,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [],
+        "path": "startup-queue-0013.bin",
+        "sha256": "18cfb7090742287e29bfe0423a0b384dd27512aeaf61ee4faab0ceda18e81688"
+      },
+      {
+        "queue": 14,
+        "sample": 14,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "1": 1,
+          "2": 1,
+          "6": 72,
+          "31": 3,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [],
+        "path": "startup-queue-0014.bin",
+        "sha256": "dc5d62934ec93dfe811039e0da722e9332074b3257660bf478f5a5a12cb01e1f"
+      },
+      {
+        "queue": 15,
+        "sample": 15,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "1": 1,
+          "2": 1,
+          "6": 72,
+          "31": 3,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [],
+        "path": "startup-queue-0015.bin",
+        "sha256": "7d95617dba14b6f9c1bda54a40da5582336bb1c64122280301ce6a148516f41c"
+      },
+      {
+        "queue": 16,
+        "sample": 16,
+        "status": 0,
+        "view": 0,
+        "draw_count": 1808,
+        "capacity": 12000,
+        "rows_captured": 1808,
+        "kind_counts": {
+          "1": 1,
+          "2": 1,
+          "6": 72,
+          "31": 3,
+          "33": 1731
+        },
+        "unsupported_draws": [],
+        "default_policy_unsupported_draws": [],
+        "path": "startup-queue-0016.bin",
+        "sha256": "244ba711d17a0b735936a065f1cf93ff0c73bfbbfb69e467fdfcea0daf98156d"
+      }
+    ],
+    "unsupported_kind_counts": {},
+    "default_policy_unsupported_kind_counts": {
+      "16": 2,
+      "17": 2,
+      "20": 2
+    },
+    "startup_replay": true,
+    "original_pixels_used_as_native_inputs": false,
+    "scope": "Every consumer entry in the bounded startup prefix, before scene sampling. Unsupported means refused by the effective World observer, not absent from the original dispatcher."
+  },
+  "world_frames": {
+    "capture/world-0001.after.565": "4e4fe9ae3ed8c20b96051f4bf03353bfda5ab0b2687e2db5c36763e71198a327",
+    "capture/world-0001.before.565": "d80dc455672bdef8125c9849ecb27c21b91fa3db7479b76f636e836661ab25b2",
+    "capture/world-0001.bin": "ab8d7114697c621de43d10c9dd65402178e227559610a47b34515aa5d904f496",
+    "capture/world-0002.after.565": "158818a6be815dc4dd8e2d2809eb6da82ed91c935113a2f5e8ca3fe6704c41e7",
+    "capture/world-0002.before.565": "5c358e40de2386cd5e9e23e8fcdb9a0907a8725daf9fb858073b8e104b7d3cfb",
+    "capture/world-0002.bin": "559a1d9b61d2460eda1ebe01e674620fc32555ba21c8c87a02b3d3d1fae3b4ef",
+    "capture/world-0003.after.565": "5155a448f27cacc0eb67b35f79618395342bfc7624d61788791c7a3d8f216ffb",
+    "capture/world-0003.before.565": "72c71a158c82834ab800e0493735fb8c4bb24d0ef73101148a43d2ab51459163",
+    "capture/world-0003.bin": "a569b607aa23bb6e2bf04d18da36fdb11b535d219d191a5b211dec3ef099fda2",
+    "capture/world-0004.after.565": "5f959f0790fa244aba2b04849b95a8adbf3205122acd982c045346809e31be53",
+    "capture/world-0004.before.565": "cfafb988a0f91a49d573ff94633bc6d215d1b16d7e5b75c426f641d616f96439",
+    "capture/world-0004.bin": "7d43c8af22a282d045c5ece43a8e4ee483d0c2caaacd17836344695615e3b10b",
+    "capture/world-0005.after.565": "5876792fe756d53b80d67874fb5719f2834849d1e3d21b1a1b3b9d993fbc8554",
+    "capture/world-0005.before.565": "e3cd85b2c9a3a324a207922feba7d09f61fef4afc21f71dcc421b4b29d9c6f57",
+    "capture/world-0005.bin": "840aa5e74ddd2fc5c05c985cf6ebebf52d73a8086d9b8ebf02d2efab9a056935",
+    "capture/world-0006.after.565": "75bd761a7c9eca6b4787facec9607c85ff7e0a1bee705d56443c9d2682862d28",
+    "capture/world-0006.before.565": "db6fc020e638a19b2f9467dd34253544d27feb9979325d4a5792d836bc1c9107",
+    "capture/world-0006.bin": "8eac1239ec4ce207f686a65da292b029dbd1b9b9a27e4335e71100fdf6007701",
+    "capture/world-0007.after.565": "97daecadf523787133ad158d4ffd64cc96ac414fb7f7eadcf0085ef4f2548566",
+    "capture/world-0007.before.565": "86077bf084624067ab9bf18244840be76ee5dbccf4fd1106b007bef7af778ab6",
+    "capture/world-0007.bin": "330fb76289ab519fb2973a881fff62615347c06e43c8c14148064bcf7958cf08",
+    "capture/world-0008.after.565": "4dc82bec1652b8d97faa66e5f2aff68619f0c6014bc4168c0c8a155a2e9dbdd9",
+    "capture/world-0008.before.565": "272415128dcd101d7ab688cdea033f77e1d7f14627830eadb052dc324fc50031",
+    "capture/world-0008.bin": "b2917321a3563f0d97260cce8bfcf3623ee4c61845cda7b9fba5c81624086c88",
+    "capture/world-0009.after.565": "3a2703e411041b0ba43b5e1d657417b794c52cc83a4c1d199ca0b73ddf96328a",
+    "capture/world-0009.before.565": "c8dcbe973cc02b2c8399e1ce127e2774f9bbad62ea9fc2b668969863d7ecf958",
+    "capture/world-0009.bin": "e1443f6c071c9866c1cb566ceffad757068c3d154d9649b4f29057d137e3895b",
+    "capture/world-0010.after.565": "db2d1af3fce12da7e0c2ed8636539fc4713810a591fc94eeda787de683e463d7",
+    "capture/world-0010.before.565": "0c32d3ef279a2ce73f53806b2103032991dc151bbef024b76c5f1a7d34b2095b",
+    "capture/world-0010.bin": "44881dc1a9c02e80e55e74972490dfca3df46fd8bc166de4b7af87fa03bd6489",
+    "capture/world-0011.after.565": "b32f79f65a4389ba9d2b6630ab8d05835835597e0120242d86626e8e4e8e31e7",
+    "capture/world-0011.before.565": "298343da1e9e503f78e56ac9243bbf0a7937f024e11a45bbd747ff155a35d7af",
+    "capture/world-0011.bin": "469f4868b31073f17fdd5e6f021cc99e4b7007d28e60075a82eb38cafee11c62",
+    "capture/world-0012.after.565": "df07896f71b217fe8cdb9901b3685ca7088735226e0149045d414084200c48aa",
+    "capture/world-0012.before.565": "b0da90e06fc394e0308b598eed1687307a0c7ba81cd65157e5786fad07a5e6a4",
+    "capture/world-0012.bin": "a48ac5e1054334c69cc6abc3f7a7373c0c6908a8b1d07277a485e751ab5b2c2d",
+    "capture/world-0013.after.565": "58689a19f0f9b5c9675a8cbb4ec7c03abe969052e7ede5289be88b848b951482",
+    "capture/world-0013.before.565": "d0d971ac1fb32e0e80da7397f6d7e709d4c93d066f9874db26f2bb3a2f03bf64",
+    "capture/world-0013.bin": "aac7f1e02bee44805ce8670f20a5653f6e937569d839072f86aea2b60ee67cb3",
+    "capture/world-0014.after.565": "fdf901713f47115f1930168e14d701a09fe44d6fd1b1a43e5824ff8f9a249cdf",
+    "capture/world-0014.before.565": "954dfdd0e4abcabbae5dd1ab23aa7537fe3ac64b2d8f1dbd9b02613284e78234",
+    "capture/world-0014.bin": "73bfef4c43e0ab5434391ae06c16bdf672a99c368c59b45ca3d2f0adabd29e57",
+    "capture/world-0015.after.565": "77bdb4160e08aa094a66196889181a0b0545ead9ffcaa948ecbc7eeb4d1a2e4a",
+    "capture/world-0015.before.565": "b948b990919635b75e68632bb1d424d0ac15d2e8fea87cc841598a99a27ed5fd",
+    "capture/world-0015.bin": "d9c85c989b724b2ce1038ae8eda6dd7134eda20f4e982cd20d175e1eab88caee",
+    "capture/world-0016.after.565": "d442bde595afd9c762369412a0ed34b0ba8b1d8326c60dff890b7ba2782de04a",
+    "capture/world-0016.before.565": "b98619bf98e631c7be66ae383d51f32a2b303d1723108a64879dad31706cc8e2",
+    "capture/world-0016.bin": "e04b3a085d5d751585312c6d38aac02fe85a677a62a40f98479c0cad9ca6b985"
+  },
+  "skip_queues": 0,
+  "queue_interval": 1,
+  "world_refusals": [],
+  "complete_native_admission": true,
+  "canvas_lifetime": {
+    "path": "capture/canvas-lifetime.bin",
+    "sha256": "aa5d4d994cf45fd85875c28ad0cc46ecc449b1cf63ab410b045cea056c2961f0",
+    "records": 20,
+    "pointer_tokens": [
+      1
+    ],
+    "first_nonzero_pixels": 365338,
+    "allocation_generations_observed": false,
+    "original_pixels_used_as_native_inputs": false
+  },
+  "original_manifest_verified_before_after": true
+}

@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "sources": {
+    "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+    "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+    "tests/canvas-startup-test.c": "4564dfbf2072f6606de2bdfe1c65b7e9a8f47445eeb39105e2b78fa38be2a054",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tools/inspect-canvas-startup.py": "dedc8bec15c4ba7c4f4c9ea80d6216d9927d0cda91f0fd2b6fc8aeccbd7078c8",
+    "tools/test-canvas-startup.py": "4ffcf90c22d16b7f02242879f385febdb1e9b05fdc9baa605d9314c2df24b2dc",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33"
+  },
+  "sources_stable": true,
+  "scope": "Synthetic actual PE32 wrapper entry/return forwarding, not original renderer equivalence",
+  "hook_entries_checked": 12,
+  "paired_events": 26,
+  "nested_lock_calls_checked": 1,
+  "register_eflags_fxstate_last_error_match": true,
+  "all_entry_mismatch_refusal_checked": true,
+  "post_boundary_forwarding_checked": true,
+  "malformed_trace_refusals": 11,
+  "first_world_nonzero_pixels": 1,
+  "trace_sha256": "c0312bdcd4efdc53b67d7301c7c926843f35e87bd126bb88dfc01f9a24f3ec0f",
+  "binary_sha256": "c945e047ffdf31bf5df4bb6bd91d7e40a2ea51e6f76e052b4469b3dc9a7c7fee",
+  "original_pixels_used_as_native_inputs": false,
+  "live_replacement": false
+}

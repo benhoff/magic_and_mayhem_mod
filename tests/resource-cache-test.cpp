@@ -72,6 +72,12 @@ int main(int argc,char** argv)try{
     require(renderer.stats().surfaces==1 && renderer.stats().pixels==15,"Cache destructor leaked GPU storage");
     {ResourceCache small(renderer,resources,{1,5});rejected([&]{small.draw(body,0,canvas,2,0);});require(!small.stats().frames,"Oversize upload partially published");}
     {ResourceCache exact(renderer,resources,{1,6});exact.draw(body,0,canvas,2,0);require(exact.stats().pixels==6,"Exact texel budget refused");}
+    {ResourceCache resident(renderer,resources,{1,6,true});resources.unload(body);
+        const auto loads=resources.stats().loads;const auto previous=renderer.read(canvas).pixels;
+        rejected([&]{resident.draw(body,0,canvas,2,0);});
+        require(resources.stats().loads==loads&&renderer.read(canvas).pixels==previous,"Resident-only cache performed a synchronous reload or changed pixels");
+        resources.adopt(prepareResource(resources.request(body)));resident.draw(body,0,canvas,2,0);
+        require(resident.stats().frames==1,"Resident-only cache refused an adopted resource");}
     rejected([&]{ResourceCache bad(renderer,resources,{0,6});});
     renderer.destroy(canvas);resources.unloadAll();
     require(!renderer.stats().surfaces && !renderer.stats().pixels && !resources.stats().decodedBytes,"Terminal resources nonzero");

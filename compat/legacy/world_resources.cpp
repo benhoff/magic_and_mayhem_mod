@@ -8,9 +8,10 @@ namespace mnm::legacy {
 namespace {
 quint32 get(const QByteArray& b,qsizetype at){if(at<0||at>b.size()-4)throw std::runtime_error("Native SPR catalogue extent");const auto* p=reinterpret_cast<const unsigned char*>(b.constData()+at);return p[0]|quint32(p[1])<<8|quint32(p[2])<<16|quint32(p[3])<<24;}
 }
-WorldResources::WorldResources(const assets::AssetStore& store,assets::ResourceManager& resources):bindings_(store,resources){
+WorldCatalogue::WorldCatalogue(const assets::AssetStore& store,const std::function<void()>& checkpoint){
     std::vector<std::filesystem::path> paths;
     for(const auto& entry:std::filesystem::recursive_directory_iterator(store.root())){
+        if(checkpoint)checkpoint();
         if(!entry.is_regular_file())continue;
         auto extension=entry.path().extension().string();
         std::transform(extension.begin(),extension.end(),extension.begin(),[](unsigned char c){return char(std::tolower(c));});
@@ -18,6 +19,7 @@ WorldResources::WorldResources(const assets::AssetStore& store,assets::ResourceM
     std::sort(paths.begin(),paths.end());if(paths.size()>256)throw std::runtime_error("Native SPR catalogue file limit");
     std::size_t frames=0,bytes=0;
     for(const auto& path:paths){const auto relative=path.lexically_relative(store.root()).generic_string();auto opened=store.open(relative);
+        if(checkpoint)checkpoint();
         if(auto* e=std::get_if<assets::Error>(&opened))throw std::runtime_error(e->detail);
         auto fileHandle=std::get<std::unique_ptr<assets::AssetFile>>(std::move(opened));
         auto loaded=assets::readWhole(*fileHandle,32*1024*1024);
@@ -30,19 +32,24 @@ WorldResources::WorldResources(const assets::AssetStore& store,assets::ResourceM
         const auto n=get(raw,12),palettes=get(raw,16);frames+=n;
         const quint64 table=24+quint64(palettes)*768,base=table+quint64(n)*4;
         if(frames>524288||base>quint64(raw.size()))throw std::runtime_error("Native SPR catalogue table limit");
-        const auto file=files_.size();files_.push_back({relative,QCryptographicHash::hash(raw,QCryptographicHash::Sha256).toHex()});
+        const auto file=files_.size();files_.push_back({{assets::ResourceKind::ui,"world/"+std::to_string(file)},relative,QCryptographicHash::hash(raw,QCryptographicHash::Sha256).toHex()});
         for(quint32 i=0;i<n;++i){const quint64 at=base+get(raw,qsizetype(table+i*4));
+            if(checkpoint)checkpoint();
             if(at>quint64(raw.size()-40))throw std::runtime_error("Native SPR catalogue frame header");
             const auto size=get(raw,qsizetype(at));if(size<40||size>MNM_WORLD_MAX_FRAME||at+size>quint64(raw.size()))throw std::runtime_error("Native SPR catalogue frame extent");
             index_.emplace(frameIdentity(raw.mid(qsizetype(at),size),palettes!=0),file);}
     }
 }
-std::vector<render::SceneDraw> WorldResources::display(const WorldFrame& frame){
+std::vector<WorldAssetFile> WorldCatalogue::needed(const WorldFrame& frame) const{
     std::set<std::size_t> needed;
-    for(const auto& draw:frame.draws){const auto it=index_.find(frameIdentity(draw.frame.encoded,draw.frame.indexed));
+    for(const auto& draw:frame.draws){if((draw.additive||draw.colourRectangle))continue;const auto it=index_.find(frameIdentity(draw.frame.encoded,draw.frame.indexed));
         if(it==index_.end())throw std::runtime_error("Unmapped complete native World frame");
         needed.insert(it->second);}
-    for(auto i:needed)if(!bound_.count(i)){const auto& f=files_[i];bindings_.add({assets::ResourceKind::ui,"world/"+std::to_string(i)},f.path,f.sha);bound_.insert(i);}
+    std::vector<WorldAssetFile> result;for(auto i:needed)result.push_back(files_[i]);return result;
+}
+WorldResources::WorldResources(const assets::AssetStore& store,assets::ResourceManager& resources):catalogue_(store),bindings_(store,resources){}
+std::vector<render::SceneDraw> WorldResources::display(const WorldFrame& frame){
+    for(const auto& f:catalogue_.needed(frame))if(!bound_.count(f.id)){bindings_.add(f.id,f.path,f.sha);bound_.insert(f.id);}
     return worldDisplay(frame,bindings_);
 }
 }

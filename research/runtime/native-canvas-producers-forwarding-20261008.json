@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "sources": {
+    "runtime/scene/canvas_producers.c": "3684aafd4ca9aff82986a8f0af58589bdbc4ef8039dc25682eaed233eb2cc7a6",
+    "runtime/scene/canvas_producers.S": "f9630a650c5099ae0cf4373b004b7496f94f8a5bb4c6a6d3a68e4a6aa533e9d5",
+    "tests/canvas-producers-test.c": "0286de876aafd908d851aedb6638c0e2918b660b0e3c5cc52054b8a068f8fa08",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tools/test-canvas-producers.py": "57288bcc60f20297bae2aedf67575fb006a42ebbabc885bff44da0a5cdcf907f",
+    "tools/inspect-canvas-producers.py": "1672cb8754b72f34fa93ae45919af9b884c83b2b77cdd77bfe4af88b29ed4282",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "protocols/include/mnm/canvas_producers_v1.h": "5a644332be8e73853cda426477835aed3e330d68acdb88f1ad3004e8a00da52c",
+    "tools/build-scene-observer.py": "6340878cd59cb4920c0816838a91541d38144092b37b3dc25b6dab89a8c6bcc8",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "protocols/include/mnm/world_channel_v2.h": "7950078b61ef26403a9661981c5dd4ae9553bc582c232c8782f0f1b7ce1504f4",
+    "runtime/scene/observer.c": "8a3ef8cd5b88c7cc31282e21abbefe950472b846cec92a2868b30b182fef4eee",
+    "tools/capture-scene-game.py": "4dd024c0eb8b4f1436ff0c87dfcaa5e45675ef096f79afc0d779ff0fb8ab5f58",
+    "tools/prepare-scene-observer.py": "afc0e24f64acaf7aa535887cbd602b3471a3ed992d16d0d7e2dc3f19b8c75009",
+    "tools/scene-game-runner.py": "74176c9d773c647bc0f5a410bb44f917a6073dd968d4cdb659b1e3949627f932"
+  },
+  "sources_stable": true,
+  "forwarded_entries": 49,
+  "nested_jpeg_lock_forwarded": true,
+  "register_flags_float_error_preserved": true,
+  "signature_refusal_before_mutation": true,
+  "malformed_refusals": 12,
+  "original_renderer_executed": false,
+  "scope": "Actual PE32 entry/return/relocated JPEG-call forwarding against synthetic compatible prologues, all49hook sites, post-close calls, full register/flags/x87/SSE/LastError and atomic signature refusal. No original pixel equivalence.",
+  "claims": [
+    {
+      "behavior": "RS.canvas-producer-sequence",
+      "contract_sha256": "811b259ded5f9114404a251ff3900059354f41b71ed5788ea4841e145194e9f8",
+      "scenarios": {
+        "canvas-producers-forwarding-20261008": "06ac1ac46fa93fc2db7cc727a4e84c40c5db25926ec5cb5e7447e2f9e8a62f6d"
+      }
+    }
+  ]
+}

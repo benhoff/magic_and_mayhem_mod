@@ -1,0 +1,3545 @@
+{
+  "success": true,
+  "scope": "Selected static windows/direct callers only; not exhaustive ownership or indirect writer recovery",
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "tools/inspect-canvas-startup.py": "dedc8bec15c4ba7c4f4c9ea80d6216d9927d0cda91f0fd2b6fc8aeccbd7078c8"
+  },
+  "ranges": {
+    "surface_setup": [
+      5128400,
+      5128803
+    ],
+    "frame_copy_window": [
+      4634992,
+      4635172
+    ],
+    "loading_copy": [
+      5096928,
+      5097140
+    ],
+    "loading_entry": [
+      5479296,
+      5479810
+    ],
+    "world_bind_draw": [
+      5231662,
+      5232047
+    ],
+    "battle_clear": [
+      4632121,
+      4632176
+    ],
+    "bind_clip": [
+      5757984,
+      5758192
+    ],
+    "create": [
+      5811600,
+      5812835
+    ],
+    "release": [
+      5813216,
+      5813432
+    ],
+    "lock": [
+      5813856,
+      5814293
+    ],
+    "fill_full": [
+      5815312,
+      5815560
+    ],
+    "fill_rect": [
+      5814976,
+      5815175
+    ],
+    "jpeg": [
+      5821216,
+      5821293
+    ],
+    "queue": [
+      5243552,
+      5243584
+    ]
+  },
+  "disassembly": {
+    "surface_setup": [
+      "  4e40d0:\t83 ec 6c             \tsub    esp,0x6c",
+      "  4e40d3:\t56                   \tpush   esi",
+      "  4e40d4:\t8b f1                \tmov    esi,ecx",
+      "  4e40d6:\t57                   \tpush   edi",
+      "  4e40d7:\tb9 1b 00 00 00       \tmov    ecx,0x1b",
+      "  4e40dc:\t33 c0                \txor    eax,eax",
+      "  4e40de:\t8d 7c 24 08          \tlea    edi,[esp+0x8]",
+      "  4e40e2:\tf3 ab                \trep stos DWORD PTR es:[edi],eax",
+      "  4e40e4:\ta1 20 29 6a 00       \tmov    eax,ds:0x6a2920",
+      "  4e40e9:\tc7 44 24 08 6c 00 00 \tmov    DWORD PTR [esp+0x8],0x6c",
+      "  4e40f0:\t00 ",
+      "  4e40f1:\t85 c0                \ttest   eax,eax",
+      "  4e40f3:\t74 09                \tje     0x4e40fe",
+      "  4e40f5:\t8b ce                \tmov    ecx,esi",
+      "  4e40f7:\te8 94 69 0a 00       \tcall   0x58aa90",
+      "  4e40fc:\teb 33                \tjmp    0x4e4131",
+      "  4e40fe:\t8b 15 d5 e6 6d 00    \tmov    edx,DWORD PTR ds:0x6de6d5",
+      "  4e4104:\ta1 fc 13 5e 00       \tmov    eax,ds:0x5e13fc",
+      "  4e4109:\t8b ca                \tmov    ecx,edx",
+      "  4e410b:\t50                   \tpush   eax",
+      "  4e410c:\tf7 d9                \tneg    ecx",
+      "  4e410e:\t1b c9                \tsbb    ecx,ecx",
+      "  4e4110:\t83 e1 78             \tand    ecx,0x78",
+      "  4e4113:\t81 c1 e0 01 00 00    \tadd    ecx,0x1e0",
+      "  4e4119:\tf7 da                \tneg    edx",
+      "  4e411b:\t1b d2                \tsbb    edx,edx",
+      "  4e411d:\t51                   \tpush   ecx",
+      "  4e411e:\t81 e2 a0 00 00 00    \tand    edx,0xa0",
+      "  4e4124:\t8b ce                \tmov    ecx,esi",
+      "  4e4126:\t81 c2 80 02 00 00    \tadd    edx,0x280",
+      "  4e412c:\te8 7f 68 0a 00       \tcall   0x58a9b0",
+      "  4e4131:\t68 71 01 00 00       \tpush   0x171",
+      "  4e4136:\t8d 54 24 0c          \tlea    edx,[esp+0xc]",
+      "  4e413a:\t68 28 33 5e 00       \tpush   0x5e3328",
+      "  4e413f:\t52                   \tpush   edx",
+      "  4e4140:\tb9 e0 4f 6a 00       \tmov    ecx,0x6a4fe0",
+      "  4e4145:\tc7 44 24 18 01 00 00 \tmov    DWORD PTR [esp+0x18],0x1",
+      "  4e414c:\t00 ",
+      "  4e414d:\tc7 44 24 7c 00 02 00 \tmov    DWORD PTR [esp+0x7c],0x200",
+      "  4e4154:\t00 ",
+      "  4e4155:\te8 36 6c 0a 00       \tcall   0x58ad90",
+      "  4e415a:\ta1 78 1f 6e 00       \tmov    eax,ds:0x6e1f78",
+      "  4e415f:\t85 c0                \ttest   eax,eax",
+      "  4e4161:\t74 14                \tje     0x4e4177",
+      "  4e4163:\tc7 05 70 1f 6e 00 60 \tmov    DWORD PTR ds:0x6e1f70,0x60",
+      "  4e416a:\t00 00 00 ",
+      "  4e416d:\tc7 05 74 1f 6e 00 00 \tmov    DWORD PTR ds:0x6e1f74,0x0",
+      "  4e4174:\t00 00 00 ",
+      "  4e4177:\tb9 1b 00 00 00       \tmov    ecx,0x1b",
+      "  4e417c:\t33 c0                \txor    eax,eax",
+      "  4e417e:\t8d 7c 24 08          \tlea    edi,[esp+0x8]",
+      "  4e4182:\t8b 15 70 1f 6e 00    \tmov    edx,DWORD PTR ds:0x6e1f70",
+      "  4e4188:\tf3 ab                \trep stos DWORD PTR es:[edi],eax",
+      "  4e418a:\ta1 d5 e6 6d 00       \tmov    eax,ds:0x6de6d5",
+      "  4e418f:\t8b 3d 74 1f 6e 00    \tmov    edi,DWORD PTR ds:0x6e1f74",
+      "  4e4195:\t8b c8                \tmov    ecx,eax",
+      "  4e4197:\t68 84 01 00 00       \tpush   0x184",
+      "  4e419c:\tf7 d9                \tneg    ecx",
+      "  4e419e:\t1b c9                \tsbb    ecx,ecx",
+      "  4e41a0:\tbe 07 00 00 00       \tmov    esi,0x7",
+      "  4e41a5:\t81 e1 a0 00 00 00    \tand    ecx,0xa0",
+      "  4e41ab:\t68 28 33 5e 00       \tpush   0x5e3328",
+      "  4e41b0:\t81 c1 80 02 00 00    \tadd    ecx,0x280",
+      "  4e41b6:\tc7 44 24 10 6c 00 00 \tmov    DWORD PTR [esp+0x10],0x6c",
+      "  4e41bd:\t00 ",
+      "  4e41be:\t03 ca                \tadd    ecx,edx",
+      "  4e41c0:\t8d 54 24 10          \tlea    edx,[esp+0x10]",
+      "  4e41c4:\tf7 d8                \tneg    eax",
+      "  4e41c6:\t1b c0                \tsbb    eax,eax",
+      "  4e41c8:\t89 4c 24 1c          \tmov    DWORD PTR [esp+0x1c],ecx",
+      "  4e41cc:\t83 e0 78             \tand    eax,0x78",
+      "  4e41cf:\t52                   \tpush   edx",
+      "  4e41d0:\t05 e0 01 00 00       \tadd    eax,0x1e0",
+      "  4e41d5:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  4e41da:\t03 c7                \tadd    eax,edi",
+      "  4e41dc:\t89 74 24 18          \tmov    DWORD PTR [esp+0x18],esi",
+      "  4e41e0:\tc7 44 24 7c 40 08 00 \tmov    DWORD PTR [esp+0x7c],0x840",
+      "  4e41e7:\t00 ",
+      "  4e41e8:\t89 44 24 1c          \tmov    DWORD PTR [esp+0x1c],eax",
+      "  4e41ec:\te8 9f 6b 0a 00       \tcall   0x58ad90",
+      "  4e41f1:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  4e41f6:\t6a 00                \tpush   0x0",
+      "  4e41f8:\te8 13 7a 0a 00       \tcall   0x58bc10",
+      "  4e41fd:\tb9 1b 00 00 00       \tmov    ecx,0x1b",
+      "  4e4202:\t33 c0                \txor    eax,eax",
+      "  4e4204:\t8d 7c 24 08          \tlea    edi,[esp+0x8]",
+      "  4e4208:\tf3 ab                \trep stos DWORD PTR es:[edi],eax",
+      "  4e420a:\ta1 d5 e6 6d 00       \tmov    eax,ds:0x6de6d5",
+      "  4e420f:\tc7 44 24 08 6c 00 00 \tmov    DWORD PTR [esp+0x8],0x6c",
+      "  4e4216:\t00 ",
+      "  4e4217:\t8b c8                \tmov    ecx,eax",
+      "  4e4219:\t89 74 24 0c          \tmov    DWORD PTR [esp+0xc],esi",
+      "  4e421d:\tf7 d9                \tneg    ecx",
+      "  4e421f:\t1b c9                \tsbb    ecx,ecx",
+      "  4e4221:\tc7 44 24 70 40 00 00 \tmov    DWORD PTR [esp+0x70],0x40",
+      "  4e4228:\t00 ",
+      "  4e4229:\t81 e1 a0 00 00 00    \tand    ecx,0xa0",
+      "  4e422f:\t81 c1 80 02 00 00    \tadd    ecx,0x280",
+      "  4e4235:\tf7 d8                \tneg    eax",
+      "  4e4237:\t1b c0                \tsbb    eax,eax",
+      "  4e4239:\t89 4c 24 14          \tmov    DWORD PTR [esp+0x14],ecx",
+      "  4e423d:\t83 e0 78             \tand    eax,0x78",
+      "  4e4240:\tb9 e0 4f 6a 00       \tmov    ecx,0x6a4fe0",
+      "  4e4245:\t05 e0 01 00 00       \tadd    eax,0x1e0",
+      "  4e424a:\t89 44 24 10          \tmov    DWORD PTR [esp+0x10],eax",
+      "  4e424e:\te8 ed 92 0a 00       \tcall   0x58d540",
+      "  4e4253:\ta3 88 1f 6e 00       \tmov    ds:0x6e1f88,eax",
+      "  4e4258:\tb8 01 00 00 00       \tmov    eax,0x1",
+      "  4e425d:\t5f                   \tpop    edi",
+      "  4e425e:\t5e                   \tpop    esi",
+      "  4e425f:\t83 c4 6c             \tadd    esp,0x6c",
+      "  4e4262:\tc3                   \tret"
+    ],
+    "frame_copy_window": [
+      "  46b970:\t39 1d fc 16 5e 00    \tcmp    DWORD PTR ds:0x5e16fc,ebx",
+      "  46b976:\t75 78                \tjne    0x46b9f0",
+      "  46b978:\ta1 2c 48 6c 00       \tmov    eax,ds:0x6c482c",
+      "  46b97d:\t8b 15 b4 1a 64 00    \tmov    edx,DWORD PTR ds:0x641ab4",
+      "  46b983:\t3b 50 0c             \tcmp    edx,DWORD PTR [eax+0xc]",
+      "  46b986:\t7d 68                \tjge    0x46b9f0",
+      "  46b988:\t53                   \tpush   ebx",
+      "  46b989:\t53                   \tpush   ebx",
+      "  46b98a:\t50                   \tpush   eax",
+      "  46b98b:\t68 e0 4f 6a 00       \tpush   0x6a4fe0",
+      "  46b990:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  46b995:\te8 06 0b 12 00       \tcall   0x58c4a0",
+      "  46b99a:\t8d 44 24 20          \tlea    eax,[esp+0x20]",
+      "  46b99e:\t8d 4c 24 10          \tlea    ecx,[esp+0x10]",
+      "  46b9a2:\t50                   \tpush   eax",
+      "  46b9a3:\t51                   \tpush   ecx",
+      "  46b9a4:\tb9 d0 2d 6a 00       \tmov    ecx,0x6a2dd0",
+      "  46b9a9:\te8 62 c4 06 00       \tcall   0x4d7e10",
+      "  46b9ae:\t85 c0                \ttest   eax,eax",
+      "  46b9b0:\t74 5e                \tje     0x46ba10",
+      "  46b9b2:\t8b 54 24 14          \tmov    edx,DWORD PTR [esp+0x14]",
+      "  46b9b6:\t8b 44 24 10          \tmov    eax,DWORD PTR [esp+0x10]",
+      "  46b9ba:\t52                   \tpush   edx",
+      "  46b9bb:\t8d 4c 24 14          \tlea    ecx,[esp+0x14]",
+      "  46b9bf:\t50                   \tpush   eax",
+      "  46b9c0:\t51                   \tpush   ecx",
+      "  46b9c1:\t68 e0 4f 6a 00       \tpush   0x6a4fe0",
+      "  46b9c6:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  46b9cb:\te8 d0 0a 12 00       \tcall   0x58c4a0",
+      "  46b9d0:\t8b 54 24 24          \tmov    edx,DWORD PTR [esp+0x24]",
+      "  46b9d4:\t8b 44 24 20          \tmov    eax,DWORD PTR [esp+0x20]",
+      "  46b9d8:\t52                   \tpush   edx",
+      "  46b9d9:\t8d 4c 24 24          \tlea    ecx,[esp+0x24]",
+      "  46b9dd:\t50                   \tpush   eax",
+      "  46b9de:\t51                   \tpush   ecx",
+      "  46b9df:\t68 e0 4f 6a 00       \tpush   0x6a4fe0",
+      "  46b9e4:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  46b9e9:\te8 b2 0a 12 00       \tcall   0x58c4a0",
+      "  46b9ee:\teb 20                \tjmp    0x46ba10",
+      "  46b9f0:\t53                   \tpush   ebx",
+      "  46b9f1:\t53                   \tpush   ebx",
+      "  46b9f2:\t68 e0 4f 6a 00       \tpush   0x6a4fe0",
+      "  46b9f7:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  46b9fc:\te8 3f 05 12 00       \tcall   0x58bf40",
+      "  46ba01:\ta1 fc 16 5e 00       \tmov    eax,ds:0x5e16fc",
+      "  46ba06:\t3b c3                \tcmp    eax,ebx",
+      "  46ba08:\t7e 06                \tjle    0x46ba10",
+      "  46ba0a:\t48                   \tdec    eax",
+      "  46ba0b:\ta3 fc 16 5e 00       \tmov    ds:0x5e16fc,eax",
+      "  46ba10:\tc7 05 60 2c 64 00 01 \tmov    DWORD PTR ds:0x642c60,0x1",
+      "  46ba17:\t00 00 00 ",
+      "  46ba1a:\tb9 38 48 6c 00       \tmov    ecx,0x6c4838",
+      "  46ba1f:\te8 ec 89 10 00       \tcall   0x574410"
+    ],
+    "loading_copy": [
+      "  4dc5e0:\t8b c1                \tmov    eax,ecx",
+      "  4dc5e2:\t56                   \tpush   esi",
+      "  4dc5e3:\t8b 48 52             \tmov    ecx,DWORD PTR [eax+0x52]",
+      "  4dc5e6:\t85 c9                \ttest   ecx,ecx",
+      "  4dc5e8:\t0f 84 c4 00 00 00    \tje     0x4dc6b2",
+      "  4dc5ee:\t8b 48 20             \tmov    ecx,DWORD PTR [eax+0x20]",
+      "  4dc5f1:\t85 c9                \ttest   ecx,ecx",
+      "  4dc5f3:\t0f 84 b9 00 00 00    \tje     0x4dc6b2",
+      "  4dc5f9:\t8b 48 18             \tmov    ecx,DWORD PTR [eax+0x18]",
+      "  4dc5fc:\t8b 50 14             \tmov    edx,DWORD PTR [eax+0x14]",
+      "  4dc5ff:\t3b ca                \tcmp    ecx,edx",
+      "  4dc601:\t8d 71 01             \tlea    esi,[ecx+0x1]",
+      "  4dc604:\t89 70 18             \tmov    DWORD PTR [eax+0x18],esi",
+      "  4dc607:\t0f 8f a5 00 00 00    \tjg     0x4dc6b2",
+      "  4dc60d:\t3b f2                \tcmp    esi,edx",
+      "  4dc60f:\t75 09                \tjne    0x4dc61a",
+      "  4dc611:\tc7 40 08 56 02 00 00 \tmov    DWORD PTR [eax+0x8],0x256",
+      "  4dc618:\teb 18                \tjmp    0x4dc632",
+      "  4dc61a:\t8b 48 10             \tmov    ecx,DWORD PTR [eax+0x10]",
+      "  4dc61d:\t8b 50 08             \tmov    edx,DWORD PTR [eax+0x8]",
+      "  4dc620:\t03 ca                \tadd    ecx,edx",
+      "  4dc622:\t81 f9 56 02 00 00    \tcmp    ecx,0x256",
+      "  4dc628:\t7c 05                \tjl     0x4dc62f",
+      "  4dc62a:\tb9 56 02 00 00       \tmov    ecx,0x256",
+      "  4dc62f:\t89 48 08             \tmov    DWORD PTR [eax+0x8],ecx",
+      "  4dc632:\t8b 50 72             \tmov    edx,DWORD PTR [eax+0x72]",
+      "  4dc635:\t53                   \tpush   ebx",
+      "  4dc636:\t8b 1d e4 1e 6e 00    \tmov    ebx,DWORD PTR ds:0x6e1ee4",
+      "  4dc63c:\t8d 48 4e             \tlea    ecx,[eax+0x4e]",
+      "  4dc63f:\t57                   \tpush   edi",
+      "  4dc640:\t8d 70 1c             \tlea    esi,[eax+0x1c]",
+      "  4dc643:\t8b 79 20             \tmov    edi,DWORD PTR [ecx+0x20]",
+      "  4dc646:\t85 db                \ttest   ebx,ebx",
+      "  4dc648:\t74 0f                \tje     0x4dc659",
+      "  4dc64a:\t6a 01                \tpush   0x1",
+      "  4dc64c:\t52                   \tpush   edx",
+      "  4dc64d:\t57                   \tpush   edi",
+      "  4dc64e:\t50                   \tpush   eax",
+      "  4dc64f:\t56                   \tpush   esi",
+      "  4dc650:\t6a 02                \tpush   0x2",
+      "  4dc652:\te8 59 0f 0b 00       \tcall   0x58d5b0",
+      "  4dc657:\teb 09                \tjmp    0x4dc662",
+      "  4dc659:\t52                   \tpush   edx",
+      "  4dc65a:\t57                   \tpush   edi",
+      "  4dc65b:\t50                   \tpush   eax",
+      "  4dc65c:\t56                   \tpush   esi",
+      "  4dc65d:\te8 3e fe 0a 00       \tcall   0x58c4a0",
+      "  4dc662:\t8b 46 24             \tmov    eax,DWORD PTR [esi+0x24]",
+      "  4dc665:\t8b 4e 20             \tmov    ecx,DWORD PTR [esi+0x20]",
+      "  4dc668:\t50                   \tpush   eax",
+      "  4dc669:\t51                   \tpush   ecx",
+      "  4dc66a:\t68 e0 49 6a 00       \tpush   0x6a49e0",
+      "  4dc66f:\t8b ce                \tmov    ecx,esi",
+      "  4dc671:\te8 ca f8 0a 00       \tcall   0x58bf40",
+      "  4dc676:\tc7 05 60 2c 64 00 00 \tmov    DWORD PTR ds:0x642c60,0x0",
+      "  4dc67d:\t00 00 00 ",
+      "  4dc680:\te8 2b 7f fc ff       \tcall   0x4a45b0",
+      "  4dc685:\t8b 15 04 4a 6a 00    \tmov    edx,DWORD PTR ds:0x6a4a04",
+      "  4dc68b:\ta1 00 4a 6a 00       \tmov    eax,ds:0x6a4a00",
+      "  4dc690:\t52                   \tpush   edx",
+      "  4dc691:\t50                   \tpush   eax",
+      "  4dc692:\t68 e0 4f 6a 00       \tpush   0x6a4fe0",
+      "  4dc697:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  4dc69c:\te8 9f f8 0a 00       \tcall   0x58bf40",
+      "  4dc6a1:\te8 da 7c fc ff       \tcall   0x4a4380",
+      "  4dc6a6:\t5f                   \tpop    edi",
+      "  4dc6a7:\tc7 05 60 2c 64 00 01 \tmov    DWORD PTR ds:0x642c60,0x1",
+      "  4dc6ae:\t00 00 00 ",
+      "  4dc6b1:\t5b                   \tpop    ebx",
+      "  4dc6b2:\t5e                   \tpop    esi",
+      "  4dc6b3:\tc3                   \tret"
+    ],
+    "loading_entry": [
+      "  539b80:\t56                   \tpush   esi",
+      "  539b81:\t8b f1                \tmov    esi,ecx",
+      "  539b83:\t8a 46 1a             \tmov    al,BYTE PTR [esi+0x1a]",
+      "  539b86:\t84 c0                \ttest   al,al",
+      "  539b88:\t74 05                \tje     0x539b8f",
+      "  539b8a:\te8 a1 d5 01 00       \tcall   0x557130",
+      "  539b8f:\t8b 4e 12             \tmov    ecx,DWORD PTR [esi+0x12]",
+      "  539b92:\t85 c9                \ttest   ecx,ecx",
+      "  539b94:\t74 0e                \tje     0x539ba4",
+      "  539b96:\t6a 00                \tpush   0x0",
+      "  539b98:\t6a 00                \tpush   0x0",
+      "  539b9a:\t68 e0 49 6a 00       \tpush   0x6a49e0",
+      "  539b9f:\te8 9c 23 05 00       \tcall   0x58bf40",
+      "  539ba4:\t8b 4e 20             \tmov    ecx,DWORD PTR [esi+0x20]",
+      "  539ba7:\t85 c9                \ttest   ecx,ecx",
+      "  539ba9:\t74 05                \tje     0x539bb0",
+      "  539bab:\te8 50 8c f9 ff       \tcall   0x4d2800",
+      "  539bb0:\tc7 05 60 2c 64 00 00 \tmov    DWORD PTR ds:0x642c60,0x0",
+      "  539bb7:\t00 00 00 ",
+      "  539bba:\te8 f1 a9 f6 ff       \tcall   0x4a45b0",
+      "  539bbf:\t6a 00                \tpush   0x0",
+      "  539bc1:\t6a 00                \tpush   0x0",
+      "  539bc3:\t68 e0 4f 6a 00       \tpush   0x6a4fe0",
+      "  539bc8:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  539bcd:\te8 6e 23 05 00       \tcall   0x58bf40",
+      "  539bd2:\tc7 05 60 2c 64 00 01 \tmov    DWORD PTR ds:0x642c60,0x1",
+      "  539bd9:\t00 00 00 ",
+      "  539bdc:\t8b 46 1c             \tmov    eax,DWORD PTR [esi+0x1c]",
+      "  539bdf:\t85 c0                \ttest   eax,eax",
+      "  539be1:\t74 16                \tje     0x539bf9",
+      "  539be3:\tb9 28 29 6a 00       \tmov    ecx,0x6a2928",
+      "  539be8:\te8 13 d5 ff ff       \tcall   0x537100",
+      "  539bed:\tb9 98 28 6a 00       \tmov    ecx,0x6a2898",
+      "  539bf2:\te8 89 eb ff ff       \tcall   0x538780",
+      "  539bf7:\t5e                   \tpop    esi",
+      "  539bf8:\tc3                   \tret",
+      "  539bf9:\t8a 46 0c             \tmov    al,BYTE PTR [esi+0xc]",
+      "  539bfc:\t84 c0                \ttest   al,al",
+      "  539bfe:\t75 13                \tjne    0x539c13",
+      "  539c00:\t83 3d c8 04 5e 00 16 \tcmp    DWORD PTR ds:0x5e04c8,0x16",
+      "  539c07:\t75 0a                \tjne    0x539c13",
+      "  539c09:\tb9 10 00 00 00       \tmov    ecx,0x10",
+      "  539c0e:\te8 8d 9d f6 ff       \tcall   0x4a39a0",
+      "  539c13:\t8a 46 1b             \tmov    al,BYTE PTR [esi+0x1b]",
+      "  539c16:\t84 c0                \ttest   al,al",
+      "  539c18:\t0f 85 e2 00 00 00    \tjne    0x539d00",
+      "  539c1e:\tba c4 a8 5d 00       \tmov    edx,0x5da8c4",
+      "  539c23:\tb9 13 00 00 00       \tmov    ecx,0x13",
+      "  539c28:\te8 83 0a 05 00       \tcall   0x58a6b0",
+      "  539c2d:\t8b 4e 20             \tmov    ecx,DWORD PTR [esi+0x20]",
+      "  539c30:\t50                   \tpush   eax",
+      "  539c31:\te8 8a 8c f9 ff       \tcall   0x4d28c0",
+      "  539c36:\t8b 4e 12             \tmov    ecx,DWORD PTR [esi+0x12]",
+      "  539c39:\t85 c9                \ttest   ecx,ecx",
+      "  539c3b:\t74 0e                \tje     0x539c4b",
+      "  539c3d:\t6a 00                \tpush   0x0",
+      "  539c3f:\t6a 00                \tpush   0x0",
+      "  539c41:\t68 e0 49 6a 00       \tpush   0x6a49e0",
+      "  539c46:\te8 f5 22 05 00       \tcall   0x58bf40",
+      "  539c4b:\t8b 4e 20             \tmov    ecx,DWORD PTR [esi+0x20]",
+      "  539c4e:\t85 c9                \ttest   ecx,ecx",
+      "  539c50:\t74 05                \tje     0x539c57",
+      "  539c52:\te8 a9 8b f9 ff       \tcall   0x4d2800",
+      "  539c57:\tc7 05 60 2c 64 00 00 \tmov    DWORD PTR ds:0x642c60,0x0",
+      "  539c5e:\t00 00 00 ",
+      "  539c61:\te8 4a a9 f6 ff       \tcall   0x4a45b0",
+      "  539c66:\t6a 00                \tpush   0x0",
+      "  539c68:\t6a 00                \tpush   0x0",
+      "  539c6a:\t68 e0 4f 6a 00       \tpush   0x6a4fe0",
+      "  539c6f:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  539c74:\te8 c7 22 05 00       \tcall   0x58bf40",
+      "  539c79:\tb9 78 bb 6c 00       \tmov    ecx,0x6cbb78",
+      "  539c7e:\tc7 05 60 2c 64 00 01 \tmov    DWORD PTR ds:0x642c60,0x1",
+      "  539c85:\t00 00 00 ",
+      "  539c88:\te8 c3 6c f3 ff       \tcall   0x470950",
+      "  539c8d:\tba c4 a8 5d 00       \tmov    edx,0x5da8c4",
+      "  539c92:\tb9 18 00 00 00       \tmov    ecx,0x18",
+      "  539c97:\tc6 46 1b 01          \tmov    BYTE PTR [esi+0x1b],0x1",
+      "  539c9b:\te8 10 0a 05 00       \tcall   0x58a6b0",
+      "  539ca0:\t8b 4e 20             \tmov    ecx,DWORD PTR [esi+0x20]",
+      "  539ca3:\t50                   \tpush   eax",
+      "  539ca4:\te8 17 8c f9 ff       \tcall   0x4d28c0",
+      "  539ca9:\t8b 4e 12             \tmov    ecx,DWORD PTR [esi+0x12]",
+      "  539cac:\t85 c9                \ttest   ecx,ecx",
+      "  539cae:\t74 0e                \tje     0x539cbe",
+      "  539cb0:\t6a 00                \tpush   0x0",
+      "  539cb2:\t6a 00                \tpush   0x0",
+      "  539cb4:\t68 e0 49 6a 00       \tpush   0x6a49e0",
+      "  539cb9:\te8 82 22 05 00       \tcall   0x58bf40",
+      "  539cbe:\t8b 4e 20             \tmov    ecx,DWORD PTR [esi+0x20]",
+      "  539cc1:\t85 c9                \ttest   ecx,ecx",
+      "  539cc3:\t74 05                \tje     0x539cca",
+      "  539cc5:\te8 36 8b f9 ff       \tcall   0x4d2800",
+      "  539cca:\tc7 05 60 2c 64 00 00 \tmov    DWORD PTR ds:0x642c60,0x0",
+      "  539cd1:\t00 00 00 ",
+      "  539cd4:\te8 d7 a8 f6 ff       \tcall   0x4a45b0",
+      "  539cd9:\t6a 00                \tpush   0x0",
+      "  539cdb:\t6a 00                \tpush   0x0",
+      "  539cdd:\t68 e0 4f 6a 00       \tpush   0x6a4fe0",
+      "  539ce2:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  539ce7:\te8 54 22 05 00       \tcall   0x58bf40",
+      "  539cec:\tb9 78 bb 6c 00       \tmov    ecx,0x6cbb78",
+      "  539cf1:\tc7 05 60 2c 64 00 01 \tmov    DWORD PTR ds:0x642c60,0x1",
+      "  539cf8:\t00 00 00 ",
+      "  539cfb:\te8 40 d3 01 00       \tcall   0x557040",
+      "  539d00:\t5e                   \tpop    esi",
+      "  539d01:\tc3                   \tret",
+      "  539d02:\t90                   \tnop",
+      "  539d03:\t90                   \tnop",
+      "  539d04:\t90                   \tnop",
+      "  539d05:\t90                   \tnop",
+      "  539d06:\t90                   \tnop",
+      "  539d07:\t90                   \tnop",
+      "  539d08:\t90                   \tnop",
+      "  539d09:\t90                   \tnop",
+      "  539d0a:\t90                   \tnop",
+      "  539d0b:\t90                   \tnop",
+      "  539d0c:\t90                   \tnop",
+      "  539d0d:\t90                   \tnop",
+      "  539d0e:\t90                   \tnop",
+      "  539d0f:\t90                   \tnop",
+      "  539d10:\t33 c0                \txor    eax,eax",
+      "  539d12:\tc2 10 00             \tret    0x10",
+      "  539d15:\t90                   \tnop",
+      "  539d16:\t90                   \tnop",
+      "  539d17:\t90                   \tnop",
+      "  539d18:\t90                   \tnop",
+      "  539d19:\t90                   \tnop",
+      "  539d1a:\t90                   \tnop",
+      "  539d1b:\t90                   \tnop",
+      "  539d1c:\t90                   \tnop",
+      "  539d1d:\t90                   \tnop",
+      "  539d1e:\t90                   \tnop",
+      "  539d1f:\t90                   \tnop",
+      "  539d20:\t56                   \tpush   esi",
+      "  539d21:\t8b f1                \tmov    esi,ecx",
+      "  539d23:\t8b 4e 12             \tmov    ecx,DWORD PTR [esi+0x12]",
+      "  539d26:\t85 c9                \ttest   ecx,ecx",
+      "  539d28:\t74 0e                \tje     0x539d38",
+      "  539d2a:\t6a 00                \tpush   0x0",
+      "  539d2c:\t6a 00                \tpush   0x0",
+      "  539d2e:\t68 e0 49 6a 00       \tpush   0x6a49e0",
+      "  539d33:\te8 08 22 05 00       \tcall   0x58bf40",
+      "  539d38:\t8b 4e 20             \tmov    ecx,DWORD PTR [esi+0x20]",
+      "  539d3b:\t5e                   \tpop    esi",
+      "  539d3c:\t85 c9                \ttest   ecx,ecx",
+      "  539d3e:\t74 05                \tje     0x539d45",
+      "  539d40:\te8 bb 8a f9 ff       \tcall   0x4d2800",
+      "  539d45:\tc7 05 60 2c 64 00 00 \tmov    DWORD PTR ds:0x642c60,0x0",
+      "  539d4c:\t00 00 00 ",
+      "  539d4f:\te8 5c a8 f6 ff       \tcall   0x4a45b0",
+      "  539d54:\t6a 00                \tpush   0x0",
+      "  539d56:\t6a 00                \tpush   0x0",
+      "  539d58:\t68 e0 4f 6a 00       \tpush   0x6a4fe0",
+      "  539d5d:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  539d62:\te8 d9 21 05 00       \tcall   0x58bf40",
+      "  539d67:\tc7 05 60 2c 64 00 01 \tmov    DWORD PTR ds:0x642c60,0x1",
+      "  539d6e:\t00 00 00 ",
+      "  539d71:\tc3                   \tret",
+      "  539d72:\t90                   \tnop",
+      "  539d73:\t90                   \tnop",
+      "  539d74:\t90                   \tnop",
+      "  539d75:\t90                   \tnop",
+      "  539d76:\t90                   \tnop",
+      "  539d77:\t90                   \tnop",
+      "  539d78:\t90                   \tnop",
+      "  539d79:\t90                   \tnop",
+      "  539d7a:\t90                   \tnop",
+      "  539d7b:\t90                   \tnop",
+      "  539d7c:\t90                   \tnop",
+      "  539d7d:\t90                   \tnop",
+      "  539d7e:\t90                   \tnop",
+      "  539d7f:\t90                   \tnop",
+      "  539d80:\ta1 d5 e6 6d 00       \tmov    eax,ds:0x6de6d5"
+    ],
+    "world_bind_draw": [
+      "  4fd42e:\tb9 e0 4f 6a 00       \tmov    ecx,0x6a4fe0",
+      "  4fd433:\te8 28 02 09 00       \tcall   0x58d660",
+      "  4fd438:\t8b 0d 68 1f 6e 00    \tmov    ecx,DWORD PTR ds:0x6e1f68",
+      "  4fd43e:\t3b cb                \tcmp    ecx,ebx",
+      "  4fd440:\t0f 84 e6 00 00 00    \tje     0x4fd52c",
+      "  4fd446:\ta1 d5 e6 6d 00       \tmov    eax,ds:0x6de6d5",
+      "  4fd44b:\t8b 3d 74 1f 6e 00    \tmov    edi,DWORD PTR ds:0x6e1f74",
+      "  4fd451:\t8b d0                \tmov    edx,eax",
+      "  4fd453:\tf7 da                \tneg    edx",
+      "  4fd455:\t1b d2                \tsbb    edx,edx",
+      "  4fd457:\t83 e2 78             \tand    edx,0x78",
+      "  4fd45a:\t81 c2 e0 01 00 00    \tadd    edx,0x1e0",
+      "  4fd460:\tf7 d8                \tneg    eax",
+      "  4fd462:\t1b c0                \tsbb    eax,eax",
+      "  4fd464:\t8d 14 7a             \tlea    edx,[edx+edi*2]",
+      "  4fd467:\t25 a0 00 00 00       \tand    eax,0xa0",
+      "  4fd46c:\t52                   \tpush   edx",
+      "  4fd46d:\t8b 15 70 1f 6e 00    \tmov    edx,DWORD PTR ds:0x6e1f70",
+      "  4fd473:\t05 80 02 00 00       \tadd    eax,0x280",
+      "  4fd478:\t8d 14 50             \tlea    edx,[eax+edx*2]",
+      "  4fd47b:\te8 a0 07 08 00       \tcall   0x57dc20",
+      "  4fd480:\ta1 2c 48 6c 00       \tmov    eax,ds:0x6c482c",
+      "  4fd485:\t8b 15 74 1f 6e 00    \tmov    edx,DWORD PTR ds:0x6e1f74",
+      "  4fd48b:\t8b 48 0c             \tmov    ecx,DWORD PTR [eax+0xc]",
+      "  4fd48e:\t8d 0c 51             \tlea    ecx,[ecx+edx*2]",
+      "  4fd491:\t8b 50 08             \tmov    edx,DWORD PTR [eax+0x8]",
+      "  4fd494:\t51                   \tpush   ecx",
+      "  4fd495:\t8b 0d 70 1f 6e 00    \tmov    ecx,DWORD PTR ds:0x6e1f70",
+      "  4fd49b:\t8d 14 4a             \tlea    edx,[edx+ecx*2]",
+      "  4fd49e:\t8b 48 04             \tmov    ecx,DWORD PTR [eax+0x4]",
+      "  4fd4a1:\t52                   \tpush   edx",
+      "  4fd4a2:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  4fd4a4:\te8 b7 07 08 00       \tcall   0x57dc60",
+      "  4fd4a9:\t8b cd                \tmov    ecx,ebp",
+      "  4fd4ab:\te8 f0 2d 00 00       \tcall   0x5002a0",
+      "  4fd4b0:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  4fd4b5:\te8 a6 e1 08 00       \tcall   0x58b660",
+      "  4fd4ba:\t8b f8                \tmov    edi,eax",
+      "  4fd4bc:\t3b fb                \tcmp    edi,ebx",
+      "  4fd4be:\t0f 84 eb 00 00 00    \tje     0x4fd5af",
+      "  4fd4c4:\ta1 f4 49 6a 00       \tmov    eax,ds:0x6a49f4",
+      "  4fd4c9:\t8b 15 f8 49 6a 00    \tmov    edx,DWORD PTR ds:0x6a49f8",
+      "  4fd4cf:\t50                   \tpush   eax",
+      "  4fd4d0:\t8b cf                \tmov    ecx,edi",
+      "  4fd4d2:\td1 ea                \tshr    edx,1",
+      "  4fd4d4:\te8 47 07 08 00       \tcall   0x57dc20",
+      "  4fd4d9:\ta1 2c 48 6c 00       \tmov    eax,ds:0x6c482c",
+      "  4fd4de:\t8b 48 0c             \tmov    ecx,DWORD PTR [eax+0xc]",
+      "  4fd4e1:\t8b 50 08             \tmov    edx,DWORD PTR [eax+0x8]",
+      "  4fd4e4:\t51                   \tpush   ecx",
+      "  4fd4e5:\t8b 48 04             \tmov    ecx,DWORD PTR [eax+0x4]",
+      "  4fd4e8:\t52                   \tpush   edx",
+      "  4fd4e9:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  4fd4eb:\te8 70 07 08 00       \tcall   0x57dc60",
+      "  4fd4f0:\te8 13 70 09 00       \tcall   0x594508",
+      "  4fd4f5:\t8b 86 e5 01 00 00    \tmov    eax,DWORD PTR [esi+0x1e5]",
+      "  4fd4fb:\t33 ed                \txor    ebp,ebp",
+      "  4fd4fd:\t85 c0                \ttest   eax,eax",
+      "  4fd4ff:\t76 21                \tjbe    0x4fd522",
+      "  4fd501:\t8d 9e f5 00 00 00    \tlea    ebx,[esi+0xf5]",
+      "  4fd507:\t8b 0b                \tmov    ecx,DWORD PTR [ebx]",
+      "  4fd509:\t68 e0 49 6a 00       \tpush   0x6a49e0",
+      "  4fd50e:\t57                   \tpush   edi",
+      "  4fd50f:\te8 ac 24 09 00       \tcall   0x58f9c0",
+      "  4fd514:\t8b 86 e5 01 00 00    \tmov    eax,DWORD PTR [esi+0x1e5]",
+      "  4fd51a:\t45                   \tinc    ebp",
+      "  4fd51b:\t83 c3 04             \tadd    ebx,0x4",
+      "  4fd51e:\t3b e8                \tcmp    ebp,eax",
+      "  4fd520:\t72 e5                \tjb     0x4fd507",
+      "  4fd522:\ta1 e4 49 6a 00       \tmov    eax,ds:0x6a49e4",
+      "  4fd527:\t57                   \tpush   edi",
+      "  4fd528:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  4fd52a:\teb 7a                \tjmp    0x4fd5a6",
+      "  4fd52c:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  4fd531:\te8 2a e1 08 00       \tcall   0x58b660",
+      "  4fd536:\t8b d8                \tmov    ebx,eax",
+      "  4fd538:\t85 db                \ttest   ebx,ebx",
+      "  4fd53a:\t74 71                \tje     0x4fd5ad",
+      "  4fd53c:\t8b 15 f4 49 6a 00    \tmov    edx,DWORD PTR ds:0x6a49f4",
+      "  4fd542:\t8b cb                \tmov    ecx,ebx",
+      "  4fd544:\t52                   \tpush   edx",
+      "  4fd545:\t8b 15 f8 49 6a 00    \tmov    edx,DWORD PTR ds:0x6a49f8",
+      "  4fd54b:\td1 ea                \tshr    edx,1",
+      "  4fd54d:\te8 ce 06 08 00       \tcall   0x57dc20",
+      "  4fd552:\t8b cd                \tmov    ecx,ebp",
+      "  4fd554:\te8 47 2d 00 00       \tcall   0x5002a0",
+      "  4fd559:\ta1 2c 48 6c 00       \tmov    eax,ds:0x6c482c",
+      "  4fd55e:\t8b 48 0c             \tmov    ecx,DWORD PTR [eax+0xc]",
+      "  4fd561:\t8b 50 08             \tmov    edx,DWORD PTR [eax+0x8]",
+      "  4fd564:\t51                   \tpush   ecx",
+      "  4fd565:\t8b 48 04             \tmov    ecx,DWORD PTR [eax+0x4]",
+      "  4fd568:\t52                   \tpush   edx",
+      "  4fd569:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  4fd56b:\te8 f0 06 08 00       \tcall   0x57dc60",
+      "  4fd570:\t8b 86 e5 01 00 00    \tmov    eax,DWORD PTR [esi+0x1e5]",
+      "  4fd576:\t33 ff                \txor    edi,edi",
+      "  4fd578:\t85 c0                \ttest   eax,eax",
+      "  4fd57a:\t76 22                \tjbe    0x4fd59e",
+      "  4fd57c:\t8d ae f5 00 00 00    \tlea    ebp,[esi+0xf5]",
+      "  4fd582:\t8b 4d 00             \tmov    ecx,DWORD PTR [ebp+0x0]",
+      "  4fd585:\t68 e0 49 6a 00       \tpush   0x6a49e0",
+      "  4fd58a:\t53                   \tpush   ebx",
+      "  4fd58b:\te8 30 24 09 00       \tcall   0x58f9c0",
+      "  4fd590:\t8b 86 e5 01 00 00    \tmov    eax,DWORD PTR [esi+0x1e5]",
+      "  4fd596:\t47                   \tinc    edi",
+      "  4fd597:\t83 c5 04             \tadd    ebp,0x4",
+      "  4fd59a:\t3b f8                \tcmp    edi,eax",
+      "  4fd59c:\t72 e4                \tjb     0x4fd582",
+      "  4fd59e:\ta1 e4 49 6a 00       \tmov    eax,ds:0x6a49e4",
+      "  4fd5a3:\t53                   \tpush   ebx",
+      "  4fd5a4:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  4fd5a6:\t50                   \tpush   eax",
+      "  4fd5a7:\tff 91 80 00 00 00    \tcall   DWORD PTR [ecx+0x80]",
+      "  4fd5ad:\t33 db                \txor    ebx,ebx"
+    ],
+    "battle_clear": [
+      "  46ae39:\tb9 90 54 6c 00       \tmov    ecx,0x6c5490",
+      "  46ae3e:\te8 9d 1d 08 00       \tcall   0x4ecbe0",
+      "  46ae43:\tb9 38 48 6c 00       \tmov    ecx,0x6c4838",
+      "  46ae48:\te8 13 8b 10 00       \tcall   0x573960",
+      "  46ae4d:\t53                   \tpush   ebx",
+      "  46ae4e:\tb9 e0 49 6a 00       \tmov    ecx,0x6a49e0",
+      "  46ae53:\te8 b8 0d 12 00       \tcall   0x58bc10",
+      "  46ae58:\t53                   \tpush   ebx",
+      "  46ae59:\tb9 e0 4f 6a 00       \tmov    ecx,0x6a4fe0",
+      "  46ae5e:\te8 ad 0d 12 00       \tcall   0x58bc10",
+      "  46ae63:\t8b ce                \tmov    ecx,esi",
+      "  46ae65:\t89 1d e8 03 69 00    \tmov    DWORD PTR ds:0x6903e8,ebx",
+      "  46ae6b:\te8 c0 fa ff ff       \tcall   0x46a930"
+    ],
+    "bind_clip": [
+      "  57dc20:\t8b 44 24 04          \tmov    eax,DWORD PTR [esp+0x4]",
+      "  57dc24:\t89 0d 74 81 65 00    \tmov    DWORD PTR ds:0x658174,ecx",
+      "  57dc2a:\t89 15 c8 2d 6a 00    \tmov    DWORD PTR ds:0x6a2dc8,edx",
+      "  57dc30:\ta3 50 ef 6d 00       \tmov    ds:0x6def50,eax",
+      "  57dc35:\tc2 04 00             \tret    0x4",
+      "  57dc38:\t90                   \tnop",
+      "  57dc39:\t90                   \tnop",
+      "  57dc3a:\t90                   \tnop",
+      "  57dc3b:\t90                   \tnop",
+      "  57dc3c:\t90                   \tnop",
+      "  57dc3d:\t90                   \tnop",
+      "  57dc3e:\t90                   \tnop",
+      "  57dc3f:\t90                   \tnop",
+      "  57dc40:\ta1 74 81 65 00       \tmov    eax,ds:0x658174",
+      "  57dc45:\tc3                   \tret",
+      "  57dc46:\t90                   \tnop",
+      "  57dc47:\t90                   \tnop",
+      "  57dc48:\t90                   \tnop",
+      "  57dc49:\t90                   \tnop",
+      "  57dc4a:\t90                   \tnop",
+      "  57dc4b:\t90                   \tnop",
+      "  57dc4c:\t90                   \tnop",
+      "  57dc4d:\t90                   \tnop",
+      "  57dc4e:\t90                   \tnop",
+      "  57dc4f:\t90                   \tnop",
+      "  57dc50:\ta1 c8 2d 6a 00       \tmov    eax,ds:0x6a2dc8",
+      "  57dc55:\t89 01                \tmov    DWORD PTR [ecx],eax",
+      "  57dc57:\t8b 0d 50 ef 6d 00    \tmov    ecx,DWORD PTR ds:0x6def50",
+      "  57dc5d:\t89 0a                \tmov    DWORD PTR [edx],ecx",
+      "  57dc5f:\tc3                   \tret",
+      "  57dc60:\t8b 44 24 04          \tmov    eax,DWORD PTR [esp+0x4]",
+      "  57dc64:\t89 0d 6c bb 6c 00    \tmov    DWORD PTR ds:0x6cbb6c,ecx",
+      "  57dc6a:\t8b 4c 24 08          \tmov    ecx,DWORD PTR [esp+0x8]",
+      "  57dc6e:\t89 15 08 00 6e 00    \tmov    DWORD PTR ds:0x6e0008,edx",
+      "  57dc74:\ta3 b8 49 6a 00       \tmov    ds:0x6a49b8,eax",
+      "  57dc79:\t89 0d 18 66 65 00    \tmov    DWORD PTR ds:0x656618,ecx",
+      "  57dc7f:\tc2 08 00             \tret    0x8",
+      "  57dc82:\t90                   \tnop",
+      "  57dc83:\t90                   \tnop",
+      "  57dc84:\t90                   \tnop",
+      "  57dc85:\t90                   \tnop",
+      "  57dc86:\t90                   \tnop",
+      "  57dc87:\t90                   \tnop",
+      "  57dc88:\t90                   \tnop",
+      "  57dc89:\t90                   \tnop",
+      "  57dc8a:\t90                   \tnop",
+      "  57dc8b:\t90                   \tnop",
+      "  57dc8c:\t90                   \tnop",
+      "  57dc8d:\t90                   \tnop",
+      "  57dc8e:\t90                   \tnop",
+      "  57dc8f:\t90                   \tnop",
+      "  57dc90:\ta1 6c bb 6c 00       \tmov    eax,ds:0x6cbb6c",
+      "  57dc95:\t89 41 04             \tmov    DWORD PTR [ecx+0x4],eax",
+      "  57dc98:\t8b 15 08 00 6e 00    \tmov    edx,DWORD PTR ds:0x6e0008",
+      "  57dc9e:\t89 11                \tmov    DWORD PTR [ecx],edx",
+      "  57dca0:\ta1 b8 49 6a 00       \tmov    eax,ds:0x6a49b8",
+      "  57dca5:\t89 41 08             \tmov    DWORD PTR [ecx+0x8],eax",
+      "  57dca8:\t8b 15 18 66 65 00    \tmov    edx,DWORD PTR ds:0x656618",
+      "  57dcae:\t89 51 0c             \tmov    DWORD PTR [ecx+0xc],edx",
+      "  57dcb1:\tc3                   \tret",
+      "  57dcb2:\t90                   \tnop",
+      "  57dcb3:\t90                   \tnop",
+      "  57dcb4:\t90                   \tnop",
+      "  57dcb5:\t90                   \tnop",
+      "  57dcb6:\t90                   \tnop",
+      "  57dcb7:\t90                   \tnop",
+      "  57dcb8:\t90                   \tnop",
+      "  57dcb9:\t90                   \tnop",
+      "  57dcba:\t90                   \tnop",
+      "  57dcbb:\t90                   \tnop",
+      "  57dcbc:\t90                   \tnop",
+      "  57dcbd:\t90                   \tnop",
+      "  57dcbe:\t90                   \tnop",
+      "  57dcbf:\t90                   \tnop",
+      "  57dcc0:\ta1 6c bb 6c 00       \tmov    eax,ds:0x6cbb6c",
+      "  57dcc5:\t89 01                \tmov    DWORD PTR [ecx],eax",
+      "  57dcc7:\t8b 0d 08 00 6e 00    \tmov    ecx,DWORD PTR ds:0x6e0008",
+      "  57dccd:\t89 0a                \tmov    DWORD PTR [edx],ecx",
+      "  57dccf:\t8b 54 24 04          \tmov    edx,DWORD PTR [esp+0x4]",
+      "  57dcd3:\ta1 b8 49 6a 00       \tmov    eax,ds:0x6a49b8",
+      "  57dcd8:\t8b 4c 24 08          \tmov    ecx,DWORD PTR [esp+0x8]",
+      "  57dcdc:\t89 02                \tmov    DWORD PTR [edx],eax",
+      "  57dcde:\t8b 15 18 66 65 00    \tmov    edx,DWORD PTR ds:0x656618",
+      "  57dce4:\t89 11                \tmov    DWORD PTR [ecx],edx",
+      "  57dce6:\tc2 08 00             \tret    0x8",
+      "  57dce9:\t90                   \tnop",
+      "  57dcea:\t90                   \tnop",
+      "  57dceb:\t90                   \tnop",
+      "  57dcec:\t90                   \tnop",
+      "  57dced:\t90                   \tnop",
+      "  57dcee:\t90                   \tnop",
+      "  57dcef:\t90                   \tnop"
+    ],
+    "create": [
+      "  58ad90:\ta1 54 81 6f 00       \tmov    eax,ds:0x6f8154",
+      "  58ad95:\t81 ec 08 04 00 00    \tsub    esp,0x408",
+      "  58ad9b:\t3d 80 00 00 00       \tcmp    eax,0x80",
+      "  58ada0:\t53                   \tpush   ebx",
+      "  58ada1:\t8b d9                \tmov    ebx,ecx",
+      "  58ada3:\t0f 83 b0 04 00 00    \tjae    0x58b259",
+      "  58ada9:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58adae:\t8b 94 24 10 04 00 00 \tmov    edx,DWORD PTR [esp+0x410]",
+      "  58adb5:\t56                   \tpush   esi",
+      "  58adb6:\t57                   \tpush   edi",
+      "  58adb7:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58adb9:\t33 f6                \txor    esi,esi",
+      "  58adbb:\t8d 7b 04             \tlea    edi,[ebx+0x4]",
+      "  58adbe:\t56                   \tpush   esi",
+      "  58adbf:\t57                   \tpush   edi",
+      "  58adc0:\t52                   \tpush   edx",
+      "  58adc1:\t50                   \tpush   eax",
+      "  58adc2:\tff 51 18             \tcall   DWORD PTR [ecx+0x18]",
+      "  58adc5:\t3b c6                \tcmp    eax,esi",
+      "  58adc7:\t74 0b                \tje     0x58add4",
+      "  58adc9:\t50                   \tpush   eax",
+      "  58adca:\tb9 58 81 6f 00       \tmov    ecx,0x6f8158",
+      "  58adcf:\te8 2c 9e ef ff       \tcall   0x484c00",
+      "  58add4:\t8b 07                \tmov    eax,DWORD PTR [edi]",
+      "  58add6:\t55                   \tpush   ebp",
+      "  58add7:\t8d 6b 08             \tlea    ebp,[ebx+0x8]",
+      "  58adda:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58addc:\t55                   \tpush   ebp",
+      "  58addd:\t68 90 79 5c 00       \tpush   0x5c7990",
+      "  58ade2:\t50                   \tpush   eax",
+      "  58ade3:\tff 11                \tcall   DWORD PTR [ecx]",
+      "  58ade5:\t8b f8                \tmov    edi,eax",
+      "  58ade7:\t3b fe                \tcmp    edi,esi",
+      "  58ade9:\t0f 84 ac 00 00 00    \tje     0x58ae9b",
+      "  58adef:\t57                   \tpush   edi",
+      "  58adf0:\tb9 58 81 6f 00       \tmov    ecx,0x6f8158",
+      "  58adf5:\te8 06 9e ef ff       \tcall   0x484c00",
+      "  58adfa:\t39 35 c8 98 6f 00    \tcmp    DWORD PTR ds:0x6f98c8,esi",
+      "  58ae00:\t0f 84 89 00 00 00    \tje     0x58ae8f",
+      "  58ae06:\t8b 0d 50 69 6f 00    \tmov    ecx,DWORD PTR ds:0x6f6950",
+      "  58ae0c:\t3b ce                \tcmp    ecx,esi",
+      "  58ae0e:\t74 0f                \tje     0x58ae1f",
+      "  58ae10:\te8 cb 05 00 00       \tcall   0x58b3e0",
+      "  58ae15:\t8b 0d 50 69 6f 00    \tmov    ecx,DWORD PTR ds:0x6f6950",
+      "  58ae1b:\t3b ce                \tcmp    ecx,esi",
+      "  58ae1d:\t75 f1                \tjne    0x58ae10",
+      "  58ae1f:\t39 35 d8 68 6f 00    \tcmp    DWORD PTR ds:0x6f68d8,esi",
+      "  58ae25:\t75 1e                \tjne    0x58ae45",
+      "  58ae27:\ta1 d0 98 6f 00       \tmov    eax,ds:0x6f98d0",
+      "  58ae2c:\t3b c6                \tcmp    eax,esi",
+      "  58ae2e:\t74 26                \tje     0x58ae56",
+      "  58ae30:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58ae32:\t50                   \tpush   eax",
+      "  58ae33:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58ae36:\ta1 d8 68 6f 00       \tmov    eax,ds:0x6f68d8",
+      "  58ae3b:\t89 35 d0 98 6f 00    \tmov    DWORD PTR ds:0x6f98d0,esi",
+      "  58ae41:\t3b c6                \tcmp    eax,esi",
+      "  58ae43:\t74 11                \tje     0x58ae56",
+      "  58ae45:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58ae4a:\t50                   \tpush   eax",
+      "  58ae4b:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58ae4d:\tff 51 4c             \tcall   DWORD PTR [ecx+0x4c]",
+      "  58ae50:\t89 35 d8 68 6f 00    \tmov    DWORD PTR ds:0x6f68d8,esi",
+      "  58ae56:\ta1 c4 98 6f 00       \tmov    eax,ds:0x6f98c4",
+      "  58ae5b:\t50                   \tpush   eax",
+      "  58ae5c:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58ae5e:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58ae61:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58ae66:\t50                   \tpush   eax",
+      "  58ae67:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58ae69:\tff 51 08             \tcall   DWORD PTR [ecx+0x8]",
+      "  58ae6c:\ta1 cc 98 6f 00       \tmov    eax,ds:0x6f98cc",
+      "  58ae71:\t50                   \tpush   eax",
+      "  58ae72:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58ae74:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58ae77:\t89 35 c4 98 6f 00    \tmov    DWORD PTR ds:0x6f98c4,esi",
+      "  58ae7d:\t89 35 c8 98 6f 00    \tmov    DWORD PTR ds:0x6f98c8,esi",
+      "  58ae83:\t89 35 cc 98 6f 00    \tmov    DWORD PTR ds:0x6f98cc,esi",
+      "  58ae89:\t89 35 c0 98 6f 00    \tmov    DWORD PTR ds:0x6f98c0,esi",
+      "  58ae8f:\ta1 14 66 65 00       \tmov    eax,ds:0x656614",
+      "  58ae94:\t50                   \tpush   eax",
+      "  58ae95:\tff 15 08 52 5c 00    \tcall   DWORD PTR ds:0x5c5208",
+      "  58ae9b:\t39 35 1c 1f 6e 00    \tcmp    DWORD PTR ds:0x6e1f1c,esi",
+      "  58aea1:\t74 0f                \tje     0x58aeb2",
+      "  58aea3:\t8b 45 00             \tmov    eax,DWORD PTR [ebp+0x0]",
+      "  58aea6:\t56                   \tpush   esi",
+      "  58aea7:\t50                   \tpush   eax",
+      "  58aea8:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58aeaa:\tff 91 94 00 00 00    \tcall   DWORD PTR [ecx+0x94]",
+      "  58aeb0:\t8b f8                \tmov    edi,eax",
+      "  58aeb2:\t81 ff c2 01 76 88    \tcmp    edi,0x887601c2",
+      "  58aeb8:\t75 53                \tjne    0x58af0d",
+      "  58aeba:\t8b 45 00             \tmov    eax,DWORD PTR [ebp+0x0]",
+      "  58aebd:\t3b c6                \tcmp    eax,esi",
+      "  58aebf:\t74 54                \tje     0x58af15",
+      "  58aec1:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58aec3:\t50                   \tpush   eax",
+      "  58aec4:\tff 52 6c             \tcall   DWORD PTR [edx+0x6c]",
+      "  58aec7:\t85 c0                \ttest   eax,eax",
+      "  58aec9:\t75 4a                \tjne    0x58af15",
+      "  58aecb:\t39 35 dd e6 6d 00    \tcmp    DWORD PTR ds:0x6de6dd,esi",
+      "  58aed1:\t74 1e                \tje     0x58aef1",
+      "  58aed3:\t33 c0                \txor    eax,eax",
+      "  58aed5:\t8d 54 24 10          \tlea    edx,[esp+0x10]",
+      "  58aed9:\t66 8b 43 2c          \tmov    ax,WORD PTR [ebx+0x2c]",
+      "  58aedd:\t52                   \tpush   edx",
+      "  58aede:\t89 44 24 14          \tmov    DWORD PTR [esp+0x14],eax",
+      "  58aee2:\t89 44 24 18          \tmov    DWORD PTR [esp+0x18],eax",
+      "  58aee6:\t8b 45 00             \tmov    eax,DWORD PTR [ebp+0x0]",
+      "  58aee9:\t6a 08                \tpush   0x8",
+      "  58aeeb:\t50                   \tpush   eax",
+      "  58aeec:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58aeee:\tff 51 74             \tcall   DWORD PTR [ecx+0x74]",
+      "  58aef1:\t8b 4b 28             \tmov    ecx,DWORD PTR [ebx+0x28]",
+      "  58aef4:\t83 f9 ff             \tcmp    ecx,0xffffffff",
+      "  58aef7:\t75 09                \tjne    0x58af02",
+      "  58aef9:\t33 c9                \txor    ecx,ecx",
+      "  58aefb:\te8 90 80 f1 ff       \tcall   0x4a2f90",
+      "  58af00:\teb 13                \tjmp    0x58af15",
+      "  58af02:\t3b ce                \tcmp    ecx,esi",
+      "  58af04:\t74 0f                \tje     0x58af15",
+      "  58af06:\t8b 01                \tmov    eax,DWORD PTR [ecx]",
+      "  58af08:\t56                   \tpush   esi",
+      "  58af09:\tff 10                \tcall   DWORD PTR [eax]",
+      "  58af0b:\teb 08                \tjmp    0x58af15",
+      "  58af0d:\t3b fe                \tcmp    edi,esi",
+      "  58af0f:\t0f 84 a2 00 00 00    \tje     0x58afb7",
+      "  58af15:\t39 35 c8 98 6f 00    \tcmp    DWORD PTR ds:0x6f98c8,esi",
+      "  58af1b:\t0f 84 89 00 00 00    \tje     0x58afaa",
+      "  58af21:\t8b 0d 50 69 6f 00    \tmov    ecx,DWORD PTR ds:0x6f6950",
+      "  58af27:\t3b ce                \tcmp    ecx,esi",
+      "  58af29:\t74 0f                \tje     0x58af3a",
+      "  58af2b:\te8 b0 04 00 00       \tcall   0x58b3e0",
+      "  58af30:\t8b 0d 50 69 6f 00    \tmov    ecx,DWORD PTR ds:0x6f6950",
+      "  58af36:\t3b ce                \tcmp    ecx,esi",
+      "  58af38:\t75 f1                \tjne    0x58af2b",
+      "  58af3a:\t39 35 d8 68 6f 00    \tcmp    DWORD PTR ds:0x6f68d8,esi",
+      "  58af40:\t75 1e                \tjne    0x58af60",
+      "  58af42:\ta1 d0 98 6f 00       \tmov    eax,ds:0x6f98d0",
+      "  58af47:\t3b c6                \tcmp    eax,esi",
+      "  58af49:\t74 26                \tje     0x58af71",
+      "  58af4b:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58af4d:\t50                   \tpush   eax",
+      "  58af4e:\tff 51 08             \tcall   DWORD PTR [ecx+0x8]",
+      "  58af51:\ta1 d8 68 6f 00       \tmov    eax,ds:0x6f68d8",
+      "  58af56:\t89 35 d0 98 6f 00    \tmov    DWORD PTR ds:0x6f98d0,esi",
+      "  58af5c:\t3b c6                \tcmp    eax,esi",
+      "  58af5e:\t74 11                \tje     0x58af71",
+      "  58af60:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58af65:\t50                   \tpush   eax",
+      "  58af66:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58af68:\tff 52 4c             \tcall   DWORD PTR [edx+0x4c]",
+      "  58af6b:\t89 35 d8 68 6f 00    \tmov    DWORD PTR ds:0x6f68d8,esi",
+      "  58af71:\ta1 c4 98 6f 00       \tmov    eax,ds:0x6f98c4",
+      "  58af76:\t50                   \tpush   eax",
+      "  58af77:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58af79:\tff 51 08             \tcall   DWORD PTR [ecx+0x8]",
+      "  58af7c:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58af81:\t50                   \tpush   eax",
+      "  58af82:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58af84:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58af87:\ta1 cc 98 6f 00       \tmov    eax,ds:0x6f98cc",
+      "  58af8c:\t50                   \tpush   eax",
+      "  58af8d:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58af8f:\tff 51 08             \tcall   DWORD PTR [ecx+0x8]",
+      "  58af92:\t89 35 c4 98 6f 00    \tmov    DWORD PTR ds:0x6f98c4,esi",
+      "  58af98:\t89 35 c8 98 6f 00    \tmov    DWORD PTR ds:0x6f98c8,esi",
+      "  58af9e:\t89 35 cc 98 6f 00    \tmov    DWORD PTR ds:0x6f98cc,esi",
+      "  58afa4:\t89 35 c0 98 6f 00    \tmov    DWORD PTR ds:0x6f98c0,esi",
+      "  58afaa:\t8b 15 14 66 65 00    \tmov    edx,DWORD PTR ds:0x656614",
+      "  58afb0:\t52                   \tpush   edx",
+      "  58afb1:\tff 15 08 52 5c 00    \tcall   DWORD PTR ds:0x5c5208",
+      "  58afb7:\ta1 54 81 6f 00       \tmov    eax,ds:0x6f8154",
+      "  58afbc:\t8b bc 24 1c 04 00 00 \tmov    edi,DWORD PTR [esp+0x41c]",
+      "  58afc3:\t89 43 1c             \tmov    DWORD PTR [ebx+0x1c],eax",
+      "  58afc6:\ta1 54 81 6f 00       \tmov    eax,ds:0x6f8154",
+      "  58afcb:\t89 1c 85 50 69 6f 00 \tmov    DWORD PTR [eax*4+0x6f6950],ebx",
+      "  58afd2:\t40                   \tinc    eax",
+      "  58afd3:\ta3 54 81 6f 00       \tmov    ds:0x6f8154,eax",
+      "  58afd8:\t8b 47 04             \tmov    eax,DWORD PTR [edi+0x4]",
+      "  58afdb:\t83 f8 01             \tcmp    eax,0x1",
+      "  58afde:\t0f 85 34 01 00 00    \tjne    0x58b118",
+      "  58afe4:\t81 7f 68 00 02 00 00 \tcmp    DWORD PTR [edi+0x68],0x200",
+      "  58afeb:\t0f 85 27 01 00 00    \tjne    0x58b118",
+      "  58aff1:\ta1 74 81 6f 00       \tmov    eax,ds:0x6f8174",
+      "  58aff6:\t89 1d c0 98 6f 00    \tmov    DWORD PTR ds:0x6f98c0,ebx",
+      "  58affc:\t3b c6                \tcmp    eax,esi",
+      "  58affe:\t0f 84 ed 00 00 00    \tje     0x58b0f1",
+      "  58b004:\t33 c0                \txor    eax,eax",
+      "  58b006:\t8d 4c 24 19          \tlea    ecx,[esp+0x19]",
+      "  58b00a:\t88 41 ff             \tmov    BYTE PTR [ecx-0x1],al",
+      "  58b00d:\t88 01                \tmov    BYTE PTR [ecx],al",
+      "  58b00f:\t88 41 01             \tmov    BYTE PTR [ecx+0x1],al",
+      "  58b012:\t40                   \tinc    eax",
+      "  58b013:\t83 c1 04             \tadd    ecx,0x4",
+      "  58b016:\t3d 00 01 00 00       \tcmp    eax,0x100",
+      "  58b01b:\t7c ed                \tjl     0x58b00a",
+      "  58b01d:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58b022:\t8d 7b 0c             \tlea    edi,[ebx+0xc]",
+      "  58b025:\t56                   \tpush   esi",
+      "  58b026:\t8d 54 24 1c          \tlea    edx,[esp+0x1c]",
+      "  58b02a:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b02c:\t57                   \tpush   edi",
+      "  58b02d:\t52                   \tpush   edx",
+      "  58b02e:\t6a 04                \tpush   0x4",
+      "  58b030:\t50                   \tpush   eax",
+      "  58b031:\tff 51 14             \tcall   DWORD PTR [ecx+0x14]",
+      "  58b034:\t85 c0                \ttest   eax,eax",
+      "  58b036:\t0f 84 a2 00 00 00    \tje     0x58b0de",
+      "  58b03c:\t39 35 c8 98 6f 00    \tcmp    DWORD PTR ds:0x6f98c8,esi",
+      "  58b042:\t0f 84 89 00 00 00    \tje     0x58b0d1",
+      "  58b048:\t8b 0d 50 69 6f 00    \tmov    ecx,DWORD PTR ds:0x6f6950",
+      "  58b04e:\t3b ce                \tcmp    ecx,esi",
+      "  58b050:\t74 0f                \tje     0x58b061",
+      "  58b052:\te8 89 03 00 00       \tcall   0x58b3e0",
+      "  58b057:\t8b 0d 50 69 6f 00    \tmov    ecx,DWORD PTR ds:0x6f6950",
+      "  58b05d:\t3b ce                \tcmp    ecx,esi",
+      "  58b05f:\t75 f1                \tjne    0x58b052",
+      "  58b061:\t39 35 d8 68 6f 00    \tcmp    DWORD PTR ds:0x6f68d8,esi",
+      "  58b067:\t75 1e                \tjne    0x58b087",
+      "  58b069:\ta1 d0 98 6f 00       \tmov    eax,ds:0x6f98d0",
+      "  58b06e:\t3b c6                \tcmp    eax,esi",
+      "  58b070:\t74 26                \tje     0x58b098",
+      "  58b072:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b074:\t50                   \tpush   eax",
+      "  58b075:\tff 51 08             \tcall   DWORD PTR [ecx+0x8]",
+      "  58b078:\ta1 d8 68 6f 00       \tmov    eax,ds:0x6f68d8",
+      "  58b07d:\t89 35 d0 98 6f 00    \tmov    DWORD PTR ds:0x6f98d0,esi",
+      "  58b083:\t3b c6                \tcmp    eax,esi",
+      "  58b085:\t74 11                \tje     0x58b098",
+      "  58b087:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58b08c:\t50                   \tpush   eax",
+      "  58b08d:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58b08f:\tff 52 4c             \tcall   DWORD PTR [edx+0x4c]",
+      "  58b092:\t89 35 d8 68 6f 00    \tmov    DWORD PTR ds:0x6f68d8,esi",
+      "  58b098:\ta1 c4 98 6f 00       \tmov    eax,ds:0x6f98c4",
+      "  58b09d:\t50                   \tpush   eax",
+      "  58b09e:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b0a0:\tff 51 08             \tcall   DWORD PTR [ecx+0x8]",
+      "  58b0a3:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58b0a8:\t50                   \tpush   eax",
+      "  58b0a9:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58b0ab:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58b0ae:\ta1 cc 98 6f 00       \tmov    eax,ds:0x6f98cc",
+      "  58b0b3:\t50                   \tpush   eax",
+      "  58b0b4:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b0b6:\tff 51 08             \tcall   DWORD PTR [ecx+0x8]",
+      "  58b0b9:\t89 35 c4 98 6f 00    \tmov    DWORD PTR ds:0x6f98c4,esi",
+      "  58b0bf:\t89 35 c8 98 6f 00    \tmov    DWORD PTR ds:0x6f98c8,esi",
+      "  58b0c5:\t89 35 cc 98 6f 00    \tmov    DWORD PTR ds:0x6f98cc,esi",
+      "  58b0cb:\t89 35 c0 98 6f 00    \tmov    DWORD PTR ds:0x6f98c0,esi",
+      "  58b0d1:\t8b 15 14 66 65 00    \tmov    edx,DWORD PTR ds:0x656614",
+      "  58b0d7:\t52                   \tpush   edx",
+      "  58b0d8:\tff 15 08 52 5c 00    \tcall   DWORD PTR ds:0x5c5208",
+      "  58b0de:\t8b 45 00             \tmov    eax,DWORD PTR [ebp+0x0]",
+      "  58b0e1:\t8b 17                \tmov    edx,DWORD PTR [edi]",
+      "  58b0e3:\t52                   \tpush   edx",
+      "  58b0e4:\t50                   \tpush   eax",
+      "  58b0e5:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b0e7:\tff 51 7c             \tcall   DWORD PTR [ecx+0x7c]",
+      "  58b0ea:\t8b bc 24 1c 04 00 00 \tmov    edi,DWORD PTR [esp+0x41c]",
+      "  58b0f1:\t39 35 d8 68 6f 00    \tcmp    DWORD PTR ds:0x6f68d8,esi",
+      "  58b0f7:\t75 1f                \tjne    0x58b118",
+      "  58b0f9:\t8b 45 00             \tmov    eax,DWORD PTR [ebp+0x0]",
+      "  58b0fc:\t8b 15 d0 98 6f 00    \tmov    edx,DWORD PTR ds:0x6f98d0",
+      "  58b102:\t52                   \tpush   edx",
+      "  58b103:\t50                   \tpush   eax",
+      "  58b104:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b106:\tff 51 70             \tcall   DWORD PTR [ecx+0x70]",
+      "  58b109:\t3b c6                \tcmp    eax,esi",
+      "  58b10b:\t74 0b                \tje     0x58b118",
+      "  58b10d:\t50                   \tpush   eax",
+      "  58b10e:\tb9 58 81 6f 00       \tmov    ecx,0x6f8158",
+      "  58b113:\te8 e8 9a ef ff       \tcall   0x484c00",
+      "  58b118:\t8b 43 04             \tmov    eax,DWORD PTR [ebx+0x4]",
+      "  58b11b:\t57                   \tpush   edi",
+      "  58b11c:\t50                   \tpush   eax",
+      "  58b11d:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b11f:\tff 51 58             \tcall   DWORD PTR [ecx+0x58]",
+      "  58b122:\t3b c6                \tcmp    eax,esi",
+      "  58b124:\t5d                   \tpop    ebp",
+      "  58b125:\t0f 84 ac 00 00 00    \tje     0x58b1d7",
+      "  58b12b:\t50                   \tpush   eax",
+      "  58b12c:\tb9 58 81 6f 00       \tmov    ecx,0x6f8158",
+      "  58b131:\te8 ca 9a ef ff       \tcall   0x484c00",
+      "  58b136:\t39 35 c8 98 6f 00    \tcmp    DWORD PTR ds:0x6f98c8,esi",
+      "  58b13c:\t0f 84 89 00 00 00    \tje     0x58b1cb",
+      "  58b142:\t8b 0d 50 69 6f 00    \tmov    ecx,DWORD PTR ds:0x6f6950",
+      "  58b148:\t3b ce                \tcmp    ecx,esi",
+      "  58b14a:\t74 0f                \tje     0x58b15b",
+      "  58b14c:\te8 8f 02 00 00       \tcall   0x58b3e0",
+      "  58b151:\t8b 0d 50 69 6f 00    \tmov    ecx,DWORD PTR ds:0x6f6950",
+      "  58b157:\t3b ce                \tcmp    ecx,esi",
+      "  58b159:\t75 f1                \tjne    0x58b14c",
+      "  58b15b:\t39 35 d8 68 6f 00    \tcmp    DWORD PTR ds:0x6f68d8,esi",
+      "  58b161:\t75 1e                \tjne    0x58b181",
+      "  58b163:\ta1 d0 98 6f 00       \tmov    eax,ds:0x6f98d0",
+      "  58b168:\t3b c6                \tcmp    eax,esi",
+      "  58b16a:\t74 26                \tje     0x58b192",
+      "  58b16c:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58b16e:\t50                   \tpush   eax",
+      "  58b16f:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58b172:\ta1 d8 68 6f 00       \tmov    eax,ds:0x6f68d8",
+      "  58b177:\t89 35 d0 98 6f 00    \tmov    DWORD PTR ds:0x6f98d0,esi",
+      "  58b17d:\t3b c6                \tcmp    eax,esi",
+      "  58b17f:\t74 11                \tje     0x58b192",
+      "  58b181:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58b186:\t50                   \tpush   eax",
+      "  58b187:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b189:\tff 51 4c             \tcall   DWORD PTR [ecx+0x4c]",
+      "  58b18c:\t89 35 d8 68 6f 00    \tmov    DWORD PTR ds:0x6f68d8,esi",
+      "  58b192:\ta1 c4 98 6f 00       \tmov    eax,ds:0x6f98c4",
+      "  58b197:\t50                   \tpush   eax",
+      "  58b198:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58b19a:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58b19d:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58b1a2:\t50                   \tpush   eax",
+      "  58b1a3:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b1a5:\tff 51 08             \tcall   DWORD PTR [ecx+0x8]",
+      "  58b1a8:\ta1 cc 98 6f 00       \tmov    eax,ds:0x6f98cc",
+      "  58b1ad:\t50                   \tpush   eax",
+      "  58b1ae:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58b1b0:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58b1b3:\t89 35 c4 98 6f 00    \tmov    DWORD PTR ds:0x6f98c4,esi",
+      "  58b1b9:\t89 35 c8 98 6f 00    \tmov    DWORD PTR ds:0x6f98c8,esi",
+      "  58b1bf:\t89 35 cc 98 6f 00    \tmov    DWORD PTR ds:0x6f98cc,esi",
+      "  58b1c5:\t89 35 c0 98 6f 00    \tmov    DWORD PTR ds:0x6f98c0,esi",
+      "  58b1cb:\ta1 14 66 65 00       \tmov    eax,ds:0x656614",
+      "  58b1d0:\t50                   \tpush   eax",
+      "  58b1d1:\tff 15 08 52 5c 00    \tcall   DWORD PTR ds:0x5c5208",
+      "  58b1d7:\t8b 47 0c             \tmov    eax,DWORD PTR [edi+0xc]",
+      "  58b1da:\t3b c6                \tcmp    eax,esi",
+      "  58b1dc:\t75 48                \tjne    0x58b226",
+      "  58b1de:\te8 8d 00 00 00       \tcall   0x58b270",
+      "  58b1e3:\t8b 3d 80 52 5c 00    \tmov    edi,DWORD PTR ds:0x5c5280",
+      "  58b1e9:\t56                   \tpush   esi",
+      "  58b1ea:\t85 c0                \ttest   eax,eax",
+      "  58b1ec:\t74 08                \tje     0x58b1f6",
+      "  58b1ee:\tff 15 a0 98 6f 00    \tcall   DWORD PTR ds:0x6f98a0",
+      "  58b1f4:\teb 02                \tjmp    0x58b1f8",
+      "  58b1f6:\tff d7                \tcall   edi",
+      "  58b1f8:\t89 43 10             \tmov    DWORD PTR [ebx+0x10],eax",
+      "  58b1fb:\te8 70 00 00 00       \tcall   0x58b270",
+      "  58b200:\t85 c0                \ttest   eax,eax",
+      "  58b202:\t6a 01                \tpush   0x1",
+      "  58b204:\t74 12                \tje     0x58b218",
+      "  58b206:\tff 15 a0 98 6f 00    \tcall   DWORD PTR ds:0x6f98a0",
+      "  58b20c:\t8b bc 24 18 04 00 00 \tmov    edi,DWORD PTR [esp+0x418]",
+      "  58b213:\t89 43 14             \tmov    DWORD PTR [ebx+0x14],eax",
+      "  58b216:\teb 17                \tjmp    0x58b22f",
+      "  58b218:\tff d7                \tcall   edi",
+      "  58b21a:\t8b bc 24 18 04 00 00 \tmov    edi,DWORD PTR [esp+0x418]",
+      "  58b221:\t89 43 14             \tmov    DWORD PTR [ebx+0x14],eax",
+      "  58b224:\teb 09                \tjmp    0x58b22f",
+      "  58b226:\t89 43 10             \tmov    DWORD PTR [ebx+0x10],eax",
+      "  58b229:\t8b 4f 08             \tmov    ecx,DWORD PTR [edi+0x8]",
+      "  58b22c:\t89 4b 14             \tmov    DWORD PTR [ebx+0x14],ecx",
+      "  58b22f:\t8b 47 68             \tmov    eax,DWORD PTR [edi+0x68]",
+      "  58b232:\tf6 c4 40             \ttest   ah,0x40",
+      "  58b235:\t74 08                \tje     0x58b23f",
+      "  58b237:\tc7 03 01 00 00 00    \tmov    DWORD PTR [ebx],0x1",
+      "  58b23d:\teb 02                \tjmp    0x58b241",
+      "  58b23f:\t89 33                \tmov    DWORD PTR [ebx],esi",
+      "  58b241:\t8b 53 14             \tmov    edx,DWORD PTR [ebx+0x14]",
+      "  58b244:\t89 73 2e             \tmov    DWORD PTR [ebx+0x2e],esi",
+      "  58b247:\t0f af 53 10          \timul   edx,DWORD PTR [ebx+0x10]",
+      "  58b24b:\td1 e2                \tshl    edx,1",
+      "  58b24d:\t66 89 73 2c          \tmov    WORD PTR [ebx+0x2c],si",
+      "  58b251:\t89 73 28             \tmov    DWORD PTR [ebx+0x28],esi",
+      "  58b254:\t5f                   \tpop    edi",
+      "  58b255:\t89 53 2e             \tmov    DWORD PTR [ebx+0x2e],edx",
+      "  58b258:\t5e                   \tpop    esi",
+      "  58b259:\t5b                   \tpop    ebx",
+      "  58b25a:\t81 c4 08 04 00 00    \tadd    esp,0x408",
+      "  58b260:\tc2 0c 00             \tret    0xc"
+    ],
+    "release": [
+      "  58b3e1:\t56                   \tpush   esi",
+      "  58b3e2:\t8b f1                \tmov    esi,ecx",
+      "  58b3e4:\t57                   \tpush   edi",
+      "  58b3e5:\t33 db                \txor    ebx,ebx",
+      "  58b3e7:\t33 ff                \txor    edi,edi",
+      "  58b3e9:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58b3ec:\t3b c3                \tcmp    eax,ebx",
+      "  58b3ee:\t0f 84 c0 00 00 00    \tje     0x58b4b4",
+      "  58b3f4:\t39 1d 1c 1f 6e 00    \tcmp    DWORD PTR ds:0x6e1f1c,ebx",
+      "  58b3fa:\t74 0a                \tje     0x58b406",
+      "  58b3fc:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b3fe:\t53                   \tpush   ebx",
+      "  58b3ff:\t50                   \tpush   eax",
+      "  58b400:\tff 91 98 00 00 00    \tcall   DWORD PTR [ecx+0x98]",
+      "  58b406:\t8b 46 04             \tmov    eax,DWORD PTR [esi+0x4]",
+      "  58b409:\t47                   \tinc    edi",
+      "  58b40a:\t50                   \tpush   eax",
+      "  58b40b:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58b40d:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58b410:\t85 c0                \ttest   eax,eax",
+      "  58b412:\t74 08                \tje     0x58b41c",
+      "  58b414:\t81 ff e8 03 00 00    \tcmp    edi,0x3e8",
+      "  58b41a:\t7c ea                \tjl     0x58b406",
+      "  58b41c:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58b41f:\t47                   \tinc    edi",
+      "  58b420:\t50                   \tpush   eax",
+      "  58b421:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b423:\tff 51 08             \tcall   DWORD PTR [ecx+0x8]",
+      "  58b426:\t85 c0                \ttest   eax,eax",
+      "  58b428:\t74 08                \tje     0x58b432",
+      "  58b42a:\t81 ff e8 03 00 00    \tcmp    edi,0x3e8",
+      "  58b430:\t7c ea                \tjl     0x58b41c",
+      "  58b432:\t8b 46 0c             \tmov    eax,DWORD PTR [esi+0xc]",
+      "  58b435:\t3b c3                \tcmp    eax,ebx",
+      "  58b437:\t74 09                \tje     0x58b442",
+      "  58b439:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58b43b:\t50                   \tpush   eax",
+      "  58b43c:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58b43f:\t89 5e 0c             \tmov    DWORD PTR [esi+0xc],ebx",
+      "  58b442:\t3b 35 c0 98 6f 00    \tcmp    esi,DWORD PTR ds:0x6f98c0",
+      "  58b448:\t75 06                \tjne    0x58b450",
+      "  58b44a:\t89 1d c0 98 6f 00    \tmov    DWORD PTR ds:0x6f98c0,ebx",
+      "  58b450:\t83 7e 1c 7f          \tcmp    DWORD PTR [esi+0x1c],0x7f",
+      "  58b454:\t73 31                \tjae    0x58b487",
+      "  58b456:\t8b 46 1c             \tmov    eax,DWORD PTR [esi+0x1c]",
+      "  58b459:\tc1 e0 02             \tshl    eax,0x2",
+      "  58b45c:\t8b 88 54 69 6f 00    \tmov    ecx,DWORD PTR [eax+0x6f6954]",
+      "  58b462:\t89 88 50 69 6f 00    \tmov    DWORD PTR [eax+0x6f6950],ecx",
+      "  58b468:\t8b 46 1c             \tmov    eax,DWORD PTR [esi+0x1c]",
+      "  58b46b:\t8b 0c 85 50 69 6f 00 \tmov    ecx,DWORD PTR [eax*4+0x6f6950]",
+      "  58b472:\t3b cb                \tcmp    ecx,ebx",
+      "  58b474:\t74 11                \tje     0x58b487",
+      "  58b476:\t89 41 1c             \tmov    DWORD PTR [ecx+0x1c],eax",
+      "  58b479:\t8b 4e 1c             \tmov    ecx,DWORD PTR [esi+0x1c]",
+      "  58b47c:\t41                   \tinc    ecx",
+      "  58b47d:\t8b c1                \tmov    eax,ecx",
+      "  58b47f:\t89 4e 1c             \tmov    DWORD PTR [esi+0x1c],ecx",
+      "  58b482:\t83 f8 7f             \tcmp    eax,0x7f",
+      "  58b485:\t72 cf                \tjb     0x58b456",
+      "  58b487:\ta1 54 81 6f 00       \tmov    eax,ds:0x6f8154",
+      "  58b48c:\t89 1d 4c 6b 6f 00    \tmov    DWORD PTR ds:0x6f6b4c,ebx",
+      "  58b492:\t48                   \tdec    eax",
+      "  58b493:\ta3 54 81 6f 00       \tmov    ds:0x6f8154,eax",
+      "  58b498:\t8b 56 1c             \tmov    edx,DWORD PTR [esi+0x1c]",
+      "  58b49b:\t89 1c 95 50 69 6f 00 \tmov    DWORD PTR [edx*4+0x6f6950],ebx",
+      "  58b4a2:\t89 5e 04             \tmov    DWORD PTR [esi+0x4],ebx",
+      "  58b4a5:\t89 5e 08             \tmov    DWORD PTR [esi+0x8],ebx",
+      "  58b4a8:\t89 5e 18             \tmov    DWORD PTR [esi+0x18],ebx",
+      "  58b4ab:\t89 5e 14             \tmov    DWORD PTR [esi+0x14],ebx",
+      "  58b4ae:\t89 5e 10             \tmov    DWORD PTR [esi+0x10],ebx",
+      "  58b4b1:\t89 5e 28             \tmov    DWORD PTR [esi+0x28],ebx",
+      "  58b4b4:\t5f                   \tpop    edi",
+      "  58b4b5:\t5e                   \tpop    esi",
+      "  58b4b6:\t5b                   \tpop    ebx",
+      "  58b4b7:\tc3                   \tret"
+    ],
+    "lock": [
+      "  58b660:\t83 ec 08             \tsub    esp,0x8",
+      "  58b663:\t33 c0                \txor    eax,eax",
+      "  58b665:\t56                   \tpush   esi",
+      "  58b666:\t8b f1                \tmov    esi,ecx",
+      "  58b668:\t57                   \tpush   edi",
+      "  58b669:\tb9 1b 00 00 00       \tmov    ecx,0x1b",
+      "  58b66e:\tbf e0 68 6f 00       \tmov    edi,0x6f68e0",
+      "  58b673:\tf3 ab                \trep stos DWORD PTR es:[edi],eax",
+      "  58b675:\tc7 05 e0 68 6f 00 6c \tmov    DWORD PTR ds:0x6f68e0,0x6c",
+      "  58b67c:\t00 00 00 ",
+      "  58b67f:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58b682:\t33 ff                \txor    edi,edi",
+      "  58b684:\t3b c7                \tcmp    eax,edi",
+      "  58b686:\t75 08                \tjne    0x58b690",
+      "  58b688:\t5f                   \tpop    edi",
+      "  58b689:\t33 c0                \txor    eax,eax",
+      "  58b68b:\t5e                   \tpop    esi",
+      "  58b68c:\t83 c4 08             \tadd    esp,0x8",
+      "  58b68f:\tc3                   \tret",
+      "  58b690:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b692:\t53                   \tpush   ebx",
+      "  58b693:\t57                   \tpush   edi",
+      "  58b694:\t6a 01                \tpush   0x1",
+      "  58b696:\t68 e0 68 6f 00       \tpush   0x6f68e0",
+      "  58b69b:\t57                   \tpush   edi",
+      "  58b69c:\t50                   \tpush   eax",
+      "  58b69d:\tff 51 64             \tcall   DWORD PTR [ecx+0x64]",
+      "  58b6a0:\t50                   \tpush   eax",
+      "  58b6a1:\tb9 58 81 6f 00       \tmov    ecx,0x6f8158",
+      "  58b6a6:\ta3 50 81 6f 00       \tmov    ds:0x6f8150,eax",
+      "  58b6ab:\te8 50 95 ef ff       \tcall   0x484c00",
+      "  58b6b0:\t8b 15 f0 68 6f 00    \tmov    edx,DWORD PTR ds:0x6f68f0",
+      "  58b6b6:\t89 56 18             \tmov    DWORD PTR [esi+0x18],edx",
+      "  58b6b9:\ta1 50 81 6f 00       \tmov    eax,ds:0x6f8150",
+      "  58b6be:\t3d c2 01 76 88       \tcmp    eax,0x887601c2",
+      "  58b6c3:\t75 73                \tjne    0x58b738",
+      "  58b6c5:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58b6c8:\t3b c7                \tcmp    eax,edi",
+      "  58b6ca:\t75 07                \tjne    0x58b6d3",
+      "  58b6cc:\tb8 05 40 00 80       \tmov    eax,0x80004005",
+      "  58b6d1:\teb 4e                \tjmp    0x58b721",
+      "  58b6d3:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b6d5:\t50                   \tpush   eax",
+      "  58b6d6:\tff 51 6c             \tcall   DWORD PTR [ecx+0x6c]",
+      "  58b6d9:\t8b d8                \tmov    ebx,eax",
+      "  58b6db:\t3b df                \tcmp    ebx,edi",
+      "  58b6dd:\t75 40                \tjne    0x58b71f",
+      "  58b6df:\t39 3d dd e6 6d 00    \tcmp    DWORD PTR ds:0x6de6dd,edi",
+      "  58b6e5:\t74 1e                \tje     0x58b705",
+      "  58b6e7:\t33 c0                \txor    eax,eax",
+      "  58b6e9:\t8d 4c 24 0c          \tlea    ecx,[esp+0xc]",
+      "  58b6ed:\t66 8b 46 2c          \tmov    ax,WORD PTR [esi+0x2c]",
+      "  58b6f1:\t51                   \tpush   ecx",
+      "  58b6f2:\t89 44 24 10          \tmov    DWORD PTR [esp+0x10],eax",
+      "  58b6f6:\t89 44 24 14          \tmov    DWORD PTR [esp+0x14],eax",
+      "  58b6fa:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58b6fd:\t6a 08                \tpush   0x8",
+      "  58b6ff:\t50                   \tpush   eax",
+      "  58b700:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58b702:\tff 52 74             \tcall   DWORD PTR [edx+0x74]",
+      "  58b705:\t8b 4e 28             \tmov    ecx,DWORD PTR [esi+0x28]",
+      "  58b708:\t83 f9 ff             \tcmp    ecx,0xffffffff",
+      "  58b70b:\t75 09                \tjne    0x58b716",
+      "  58b70d:\t33 c9                \txor    ecx,ecx",
+      "  58b70f:\te8 7c 78 f1 ff       \tcall   0x4a2f90",
+      "  58b714:\teb 09                \tjmp    0x58b71f",
+      "  58b716:\t3b cf                \tcmp    ecx,edi",
+      "  58b718:\t74 05                \tje     0x58b71f",
+      "  58b71a:\t8b 11                \tmov    edx,DWORD PTR [ecx]",
+      "  58b71c:\t57                   \tpush   edi",
+      "  58b71d:\tff 12                \tcall   DWORD PTR [edx]",
+      "  58b71f:\t8b c3                \tmov    eax,ebx",
+      "  58b721:\ta3 50 81 6f 00       \tmov    ds:0x6f8150,eax",
+      "  58b726:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58b729:\t57                   \tpush   edi",
+      "  58b72a:\t6a 01                \tpush   0x1",
+      "  58b72c:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b72e:\t68 e0 68 6f 00       \tpush   0x6f68e0",
+      "  58b733:\t57                   \tpush   edi",
+      "  58b734:\t50                   \tpush   eax",
+      "  58b735:\tff 51 64             \tcall   DWORD PTR [ecx+0x64]",
+      "  58b738:\t39 3d 50 81 6f 00    \tcmp    DWORD PTR ds:0x6f8150,edi",
+      "  58b73e:\t0f 84 a1 00 00 00    \tje     0x58b7e5",
+      "  58b744:\t39 3d c8 98 6f 00    \tcmp    DWORD PTR ds:0x6f98c8,edi",
+      "  58b74a:\t0f 84 89 00 00 00    \tje     0x58b7d9",
+      "  58b750:\t8b 0d 50 69 6f 00    \tmov    ecx,DWORD PTR ds:0x6f6950",
+      "  58b756:\t3b cf                \tcmp    ecx,edi",
+      "  58b758:\t74 0f                \tje     0x58b769",
+      "  58b75a:\te8 81 fc ff ff       \tcall   0x58b3e0",
+      "  58b75f:\t8b 0d 50 69 6f 00    \tmov    ecx,DWORD PTR ds:0x6f6950",
+      "  58b765:\t3b cf                \tcmp    ecx,edi",
+      "  58b767:\t75 f1                \tjne    0x58b75a",
+      "  58b769:\t39 3d d8 68 6f 00    \tcmp    DWORD PTR ds:0x6f68d8,edi",
+      "  58b76f:\t75 1e                \tjne    0x58b78f",
+      "  58b771:\ta1 d0 98 6f 00       \tmov    eax,ds:0x6f98d0",
+      "  58b776:\t3b c7                \tcmp    eax,edi",
+      "  58b778:\t74 26                \tje     0x58b7a0",
+      "  58b77a:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58b77c:\t50                   \tpush   eax",
+      "  58b77d:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58b780:\ta1 d8 68 6f 00       \tmov    eax,ds:0x6f68d8",
+      "  58b785:\t89 3d d0 98 6f 00    \tmov    DWORD PTR ds:0x6f98d0,edi",
+      "  58b78b:\t3b c7                \tcmp    eax,edi",
+      "  58b78d:\t74 11                \tje     0x58b7a0",
+      "  58b78f:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58b794:\t50                   \tpush   eax",
+      "  58b795:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b797:\tff 51 4c             \tcall   DWORD PTR [ecx+0x4c]",
+      "  58b79a:\t89 3d d8 68 6f 00    \tmov    DWORD PTR ds:0x6f68d8,edi",
+      "  58b7a0:\ta1 c4 98 6f 00       \tmov    eax,ds:0x6f98c4",
+      "  58b7a5:\t50                   \tpush   eax",
+      "  58b7a6:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58b7a8:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58b7ab:\ta1 c8 98 6f 00       \tmov    eax,ds:0x6f98c8",
+      "  58b7b0:\t50                   \tpush   eax",
+      "  58b7b1:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58b7b3:\tff 51 08             \tcall   DWORD PTR [ecx+0x8]",
+      "  58b7b6:\ta1 cc 98 6f 00       \tmov    eax,ds:0x6f98cc",
+      "  58b7bb:\t50                   \tpush   eax",
+      "  58b7bc:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58b7be:\tff 52 08             \tcall   DWORD PTR [edx+0x8]",
+      "  58b7c1:\t89 3d c4 98 6f 00    \tmov    DWORD PTR ds:0x6f98c4,edi",
+      "  58b7c7:\t89 3d c8 98 6f 00    \tmov    DWORD PTR ds:0x6f98c8,edi",
+      "  58b7cd:\t89 3d cc 98 6f 00    \tmov    DWORD PTR ds:0x6f98cc,edi",
+      "  58b7d3:\t89 3d c0 98 6f 00    \tmov    DWORD PTR ds:0x6f98c0,edi",
+      "  58b7d9:\ta1 14 66 65 00       \tmov    eax,ds:0x656614",
+      "  58b7de:\t50                   \tpush   eax",
+      "  58b7df:\tff 15 08 52 5c 00    \tcall   DWORD PTR ds:0x5c5208",
+      "  58b7e5:\t8b 0d f0 68 6f 00    \tmov    ecx,DWORD PTR ds:0x6f68f0",
+      "  58b7eb:\t89 4e 18             \tmov    DWORD PTR [esi+0x18],ecx",
+      "  58b7ee:\t8b 0d 1c 1f 6e 00    \tmov    ecx,DWORD PTR ds:0x6e1f1c",
+      "  58b7f4:\ta1 04 69 6f 00       \tmov    eax,ds:0x6f6904",
+      "  58b7f9:\t3b cf                \tcmp    ecx,edi",
+      "  58b7fb:\t8b d8                \tmov    ebx,eax",
+      "  58b7fd:\t74 0d                \tje     0x58b80c",
+      "  58b7ff:\t8b 76 04             \tmov    esi,DWORD PTR [esi+0x4]",
+      "  58b802:\t50                   \tpush   eax",
+      "  58b803:\t56                   \tpush   esi",
+      "  58b804:\t8b 16                \tmov    edx,DWORD PTR [esi]",
+      "  58b806:\tff 92 80 00 00 00    \tcall   DWORD PTR [edx+0x80]",
+      "  58b80c:\t8b c3                \tmov    eax,ebx",
+      "  58b80e:\t5b                   \tpop    ebx",
+      "  58b80f:\t5f                   \tpop    edi",
+      "  58b810:\t5e                   \tpop    esi",
+      "  58b811:\t83 c4 08             \tadd    esp,0x8",
+      "  58b814:\tc3                   \tret"
+    ],
+    "fill_full": [
+      "  58bc10:\t83 ec 6c             \tsub    esp,0x6c",
+      "  58bc13:\t56                   \tpush   esi",
+      "  58bc14:\t8b f1                \tmov    esi,ecx",
+      "  58bc16:\t57                   \tpush   edi",
+      "  58bc17:\tb9 19 00 00 00       \tmov    ecx,0x19",
+      "  58bc1c:\t33 c0                \txor    eax,eax",
+      "  58bc1e:\t8d 7c 24 10          \tlea    edi,[esp+0x10]",
+      "  58bc22:\tf3 ab                \trep stos DWORD PTR es:[edi],eax",
+      "  58bc24:\t8b 44 24 78          \tmov    eax,DWORD PTR [esp+0x78]",
+      "  58bc28:\tc7 44 24 10 64 00 00 \tmov    DWORD PTR [esp+0x10],0x64",
+      "  58bc2f:\t00 ",
+      "  58bc30:\t25 ff ff 00 00       \tand    eax,0xffff",
+      "  58bc35:\t89 44 24 60          \tmov    DWORD PTR [esp+0x60],eax",
+      "  58bc39:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58bc3c:\t85 c0                \ttest   eax,eax",
+      "  58bc3e:\t0f 84 bc 00 00 00    \tje     0x58bd00",
+      "  58bc44:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58bc46:\t8d 54 24 10          \tlea    edx,[esp+0x10]",
+      "  58bc4a:\t52                   \tpush   edx",
+      "  58bc4b:\t68 00 04 00 01       \tpush   0x1000400",
+      "  58bc50:\t6a 00                \tpush   0x0",
+      "  58bc52:\t6a 00                \tpush   0x0",
+      "  58bc54:\t6a 00                \tpush   0x0",
+      "  58bc56:\t50                   \tpush   eax",
+      "  58bc57:\tff 51 14             \tcall   DWORD PTR [ecx+0x14]",
+      "  58bc5a:\t8b f8                \tmov    edi,eax",
+      "  58bc5c:\tb9 58 81 6f 00       \tmov    ecx,0x6f8158",
+      "  58bc61:\t57                   \tpush   edi",
+      "  58bc62:\te8 99 8f ef ff       \tcall   0x484c00",
+      "  58bc67:\t81 ff c2 01 76 88    \tcmp    edi,0x887601c2",
+      "  58bc6d:\t0f 85 8d 00 00 00    \tjne    0x58bd00",
+      "  58bc73:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58bc76:\t85 c0                \ttest   eax,eax",
+      "  58bc78:\t75 07                \tjne    0x58bc81",
+      "  58bc7a:\tb8 05 40 00 80       \tmov    eax,0x80004005",
+      "  58bc7f:\teb 50                \tjmp    0x58bcd1",
+      "  58bc81:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58bc83:\t50                   \tpush   eax",
+      "  58bc84:\tff 51 6c             \tcall   DWORD PTR [ecx+0x6c]",
+      "  58bc87:\t8b f8                \tmov    edi,eax",
+      "  58bc89:\t85 ff                \ttest   edi,edi",
+      "  58bc8b:\t75 42                \tjne    0x58bccf",
+      "  58bc8d:\ta1 dd e6 6d 00       \tmov    eax,ds:0x6de6dd",
+      "  58bc92:\t85 c0                \ttest   eax,eax",
+      "  58bc94:\t74 1e                \tje     0x58bcb4",
+      "  58bc96:\t33 c0                \txor    eax,eax",
+      "  58bc98:\t8d 4c 24 08          \tlea    ecx,[esp+0x8]",
+      "  58bc9c:\t66 8b 46 2c          \tmov    ax,WORD PTR [esi+0x2c]",
+      "  58bca0:\t51                   \tpush   ecx",
+      "  58bca1:\t89 44 24 0c          \tmov    DWORD PTR [esp+0xc],eax",
+      "  58bca5:\t89 44 24 10          \tmov    DWORD PTR [esp+0x10],eax",
+      "  58bca9:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58bcac:\t6a 08                \tpush   0x8",
+      "  58bcae:\t50                   \tpush   eax",
+      "  58bcaf:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58bcb1:\tff 52 74             \tcall   DWORD PTR [edx+0x74]",
+      "  58bcb4:\t8b 4e 28             \tmov    ecx,DWORD PTR [esi+0x28]",
+      "  58bcb7:\t83 f9 ff             \tcmp    ecx,0xffffffff",
+      "  58bcba:\t75 09                \tjne    0x58bcc5",
+      "  58bcbc:\t33 c9                \txor    ecx,ecx",
+      "  58bcbe:\te8 cd 72 f1 ff       \tcall   0x4a2f90",
+      "  58bcc3:\teb 0a                \tjmp    0x58bccf",
+      "  58bcc5:\t85 c9                \ttest   ecx,ecx",
+      "  58bcc7:\t74 06                \tje     0x58bccf",
+      "  58bcc9:\t8b 11                \tmov    edx,DWORD PTR [ecx]",
+      "  58bccb:\t6a 00                \tpush   0x0",
+      "  58bccd:\tff 12                \tcall   DWORD PTR [edx]",
+      "  58bccf:\t8b c7                \tmov    eax,edi",
+      "  58bcd1:\t50                   \tpush   eax",
+      "  58bcd2:\tb9 58 81 6f 00       \tmov    ecx,0x6f8158",
+      "  58bcd7:\te8 24 8f ef ff       \tcall   0x484c00",
+      "  58bcdc:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58bcdf:\t8d 54 24 10          \tlea    edx,[esp+0x10]",
+      "  58bce3:\t52                   \tpush   edx",
+      "  58bce4:\t68 00 04 00 01       \tpush   0x1000400",
+      "  58bce9:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58bceb:\t6a 00                \tpush   0x0",
+      "  58bced:\t6a 00                \tpush   0x0",
+      "  58bcef:\t6a 00                \tpush   0x0",
+      "  58bcf1:\t50                   \tpush   eax",
+      "  58bcf2:\tff 51 14             \tcall   DWORD PTR [ecx+0x14]",
+      "  58bcf5:\t50                   \tpush   eax",
+      "  58bcf6:\tb9 58 81 6f 00       \tmov    ecx,0x6f8158",
+      "  58bcfb:\te8 00 8f ef ff       \tcall   0x484c00",
+      "  58bd00:\t5f                   \tpop    edi",
+      "  58bd01:\t5e                   \tpop    esi",
+      "  58bd02:\t83 c4 6c             \tadd    esp,0x6c",
+      "  58bd05:\tc2 04 00             \tret    0x4"
+    ],
+    "fill_rect": [
+      "  58bac0:\t83 ec 6c             \tsub    esp,0x6c",
+      "  58bac3:\t56                   \tpush   esi",
+      "  58bac4:\t8b f1                \tmov    esi,ecx",
+      "  58bac6:\t57                   \tpush   edi",
+      "  58bac7:\tb9 19 00 00 00       \tmov    ecx,0x19",
+      "  58bacc:\t33 c0                \txor    eax,eax",
+      "  58bace:\t8d 7c 24 10          \tlea    edi,[esp+0x10]",
+      "  58bad2:\tf3 ab                \trep stos DWORD PTR es:[edi],eax",
+      "  58bad4:\t8b 44 24 7c          \tmov    eax,DWORD PTR [esp+0x7c]",
+      "  58bad8:\tc7 44 24 10 64 00 00 \tmov    DWORD PTR [esp+0x10],0x64",
+      "  58badf:\t00 ",
+      "  58bae0:\t25 ff ff 00 00       \tand    eax,0xffff",
+      "  58bae5:\t89 44 24 60          \tmov    DWORD PTR [esp+0x60],eax",
+      "  58bae9:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58baec:\t85 c0                \ttest   eax,eax",
+      "  58baee:\t0f 84 8b 00 00 00    \tje     0x58bb7f",
+      "  58baf4:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58baf6:\t8d 54 24 10          \tlea    edx,[esp+0x10]",
+      "  58bafa:\t52                   \tpush   edx",
+      "  58bafb:\t8b 54 24 7c          \tmov    edx,DWORD PTR [esp+0x7c]",
+      "  58baff:\t68 00 04 00 01       \tpush   0x1000400",
+      "  58bb04:\t6a 00                \tpush   0x0",
+      "  58bb06:\t6a 00                \tpush   0x0",
+      "  58bb08:\t52                   \tpush   edx",
+      "  58bb09:\t50                   \tpush   eax",
+      "  58bb0a:\tff 51 14             \tcall   DWORD PTR [ecx+0x14]",
+      "  58bb0d:\t8b f8                \tmov    edi,eax",
+      "  58bb0f:\t85 ff                \ttest   edi,edi",
+      "  58bb11:\t74 0b                \tje     0x58bb1e",
+      "  58bb13:\t57                   \tpush   edi",
+      "  58bb14:\tb9 58 81 6f 00       \tmov    ecx,0x6f8158",
+      "  58bb19:\te8 e2 90 ef ff       \tcall   0x484c00",
+      "  58bb1e:\t81 ff c2 01 76 88    \tcmp    edi,0x887601c2",
+      "  58bb24:\t75 59                \tjne    0x58bb7f",
+      "  58bb26:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58bb29:\t85 c0                \ttest   eax,eax",
+      "  58bb2b:\t74 52                \tje     0x58bb7f",
+      "  58bb2d:\t8b 08                \tmov    ecx,DWORD PTR [eax]",
+      "  58bb2f:\t50                   \tpush   eax",
+      "  58bb30:\tff 51 6c             \tcall   DWORD PTR [ecx+0x6c]",
+      "  58bb33:\t85 c0                \ttest   eax,eax",
+      "  58bb35:\t75 48                \tjne    0x58bb7f",
+      "  58bb37:\ta1 dd e6 6d 00       \tmov    eax,ds:0x6de6dd",
+      "  58bb3c:\t85 c0                \ttest   eax,eax",
+      "  58bb3e:\t74 1e                \tje     0x58bb5e",
+      "  58bb40:\t33 c0                \txor    eax,eax",
+      "  58bb42:\t8d 4c 24 08          \tlea    ecx,[esp+0x8]",
+      "  58bb46:\t66 8b 46 2c          \tmov    ax,WORD PTR [esi+0x2c]",
+      "  58bb4a:\t51                   \tpush   ecx",
+      "  58bb4b:\t89 44 24 0c          \tmov    DWORD PTR [esp+0xc],eax",
+      "  58bb4f:\t89 44 24 10          \tmov    DWORD PTR [esp+0x10],eax",
+      "  58bb53:\t8b 46 08             \tmov    eax,DWORD PTR [esi+0x8]",
+      "  58bb56:\t6a 08                \tpush   0x8",
+      "  58bb58:\t50                   \tpush   eax",
+      "  58bb59:\t8b 10                \tmov    edx,DWORD PTR [eax]",
+      "  58bb5b:\tff 52 74             \tcall   DWORD PTR [edx+0x74]",
+      "  58bb5e:\t8b 4e 28             \tmov    ecx,DWORD PTR [esi+0x28]",
+      "  58bb61:\t83 f9 ff             \tcmp    ecx,0xffffffff",
+      "  58bb64:\t75 0f                \tjne    0x58bb75",
+      "  58bb66:\t33 c9                \txor    ecx,ecx",
+      "  58bb68:\te8 23 74 f1 ff       \tcall   0x4a2f90",
+      "  58bb6d:\t5f                   \tpop    edi",
+      "  58bb6e:\t5e                   \tpop    esi",
+      "  58bb6f:\t83 c4 6c             \tadd    esp,0x6c",
+      "  58bb72:\tc2 08 00             \tret    0x8",
+      "  58bb75:\t85 c9                \ttest   ecx,ecx",
+      "  58bb77:\t74 06                \tje     0x58bb7f",
+      "  58bb79:\t8b 11                \tmov    edx,DWORD PTR [ecx]",
+      "  58bb7b:\t6a 00                \tpush   0x0",
+      "  58bb7d:\tff 12                \tcall   DWORD PTR [edx]",
+      "  58bb7f:\t5f                   \tpop    edi",
+      "  58bb80:\t5e                   \tpop    esi",
+      "  58bb81:\t83 c4 6c             \tadd    esp,0x6c",
+      "  58bb84:\tc2 08 00             \tret    0x8"
+    ],
+    "jpeg": [
+      "  58d320:\t56                   \tpush   esi",
+      "  58d321:\t57                   \tpush   edi",
+      "  58d322:\t8b f1                \tmov    esi,ecx",
+      "  58d324:\te8 37 e3 ff ff       \tcall   0x58b660",
+      "  58d329:\t8b f8                \tmov    edi,eax",
+      "  58d32b:\t33 c0                \txor    eax,eax",
+      "  58d32d:\t85 ff                \ttest   edi,edi",
+      "  58d32f:\t74 37                \tje     0x58d368",
+      "  58d331:\t8b 0d 88 1f 6e 00    \tmov    ecx,DWORD PTR ds:0x6e1f88",
+      "  58d337:\t8b 56 14             \tmov    edx,DWORD PTR [esi+0x14]",
+      "  58d33a:\t8b 46 18             \tmov    eax,DWORD PTR [esi+0x18]",
+      "  58d33d:\t53                   \tpush   ebx",
+      "  58d33e:\t51                   \tpush   ecx",
+      "  58d33f:\t8b 4c 24 14          \tmov    ecx,DWORD PTR [esp+0x14]",
+      "  58d343:\t52                   \tpush   edx",
+      "  58d344:\t50                   \tpush   eax",
+      "  58d345:\t8b 46 10             \tmov    eax,DWORD PTR [esi+0x10]",
+      "  58d348:\t8b d7                \tmov    edx,edi",
+      "  58d34a:\t50                   \tpush   eax",
+      "  58d34b:\tff 15 08 53 5c 00    \tcall   DWORD PTR ds:0x5c5308",
+      "  58d351:\t8b 76 04             \tmov    esi,DWORD PTR [esi+0x4]",
+      "  58d354:\t25 ff 00 00 00       \tand    eax,0xff",
+      "  58d359:\t57                   \tpush   edi",
+      "  58d35a:\t56                   \tpush   esi",
+      "  58d35b:\t8b 0e                \tmov    ecx,DWORD PTR [esi]",
+      "  58d35d:\t8b d8                \tmov    ebx,eax",
+      "  58d35f:\tff 91 80 00 00 00    \tcall   DWORD PTR [ecx+0x80]",
+      "  58d365:\t8b c3                \tmov    eax,ebx",
+      "  58d367:\t5b                   \tpop    ebx",
+      "  58d368:\t5f                   \tpop    edi",
+      "  58d369:\t5e                   \tpop    esi",
+      "  58d36a:\tc2 04 00             \tret    0x4"
+    ],
+    "queue": [
+      "  5002a0:\t83 ec 18             \tsub    esp,0x18",
+      "  5002a3:\t53                   \tpush   ebx",
+      "  5002a4:\tb8 00 6c ca 88       \tmov    eax,0x88ca6c00",
+      "  5002a9:\t55                   \tpush   ebp",
+      "  5002aa:\t56                   \tpush   esi",
+      "  5002ab:\t8b 31                \tmov    esi,DWORD PTR [ecx]",
+      "  5002ad:\t89 44 24 14          \tmov    DWORD PTR [esp+0x14],eax",
+      "  5002b1:\t89 44 24 18          \tmov    DWORD PTR [esp+0x18],eax",
+      "  5002b5:\t8b 41 08             \tmov    eax,DWORD PTR [ecx+0x8]",
+      "  5002b8:\t89 4c 24 20          \tmov    DWORD PTR [esp+0x20],ecx",
+      "  5002bc:\t33 c9                \txor    ecx,ecx",
+      "  5002be:\t3b c1                \tcmp    eax,ecx"
+    ]
+  },
+  "direct_callers": {
+    "surface_setup": [
+      {
+        "site": "0x4a8a07",
+        "instruction": "  4a8a07:\te8 c4 b6 03 00       \tcall   0x4e40d0"
+      },
+      {
+        "site": "0x4e986a",
+        "instruction": "  4e986a:\te8 61 a8 ff ff       \tcall   0x4e40d0"
+      }
+    ],
+    "frame_copy_window": [],
+    "loading_copy": [
+      {
+        "site": "0x46a51d",
+        "instruction": "  46a51d:\te8 be 20 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a5c7",
+        "instruction": "  46a5c7:\te8 14 20 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a5ce",
+        "instruction": "  46a5ce:\te8 0d 20 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a682",
+        "instruction": "  46a682:\te8 59 1f 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a689",
+        "instruction": "  46a689:\te8 52 1f 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a69f",
+        "instruction": "  46a69f:\te8 3c 1f 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a6a6",
+        "instruction": "  46a6a6:\te8 35 1f 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a6b7",
+        "instruction": "  46a6b7:\te8 24 1f 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a6be",
+        "instruction": "  46a6be:\te8 1d 1f 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a761",
+        "instruction": "  46a761:\te8 7a 1e 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a78d",
+        "instruction": "  46a78d:\te8 4e 1e 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a7b6",
+        "instruction": "  46a7b6:\te8 25 1e 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46a7bd",
+        "instruction": "  46a7bd:\te8 1e 1e 07 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46e6e1",
+        "instruction": "  46e6e1:\te8 fa de 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46e709",
+        "instruction": "  46e709:\te8 d2 de 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46e731",
+        "instruction": "  46e731:\te8 aa de 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46e820",
+        "instruction": "  46e820:\te8 bb dd 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46e855",
+        "instruction": "  46e855:\te8 86 dd 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46e904",
+        "instruction": "  46e904:\te8 d7 dc 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x46ea07",
+        "instruction": "  46ea07:\te8 d4 db 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x470470",
+        "instruction": "  470470:\te8 6b c1 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x470a8e",
+        "instruction": "  470a8e:\te8 4d bb 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x470b4e",
+        "instruction": "  470b4e:\te8 8d ba 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x470bb7",
+        "instruction": "  470bb7:\te8 24 ba 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x470f79",
+        "instruction": "  470f79:\te8 62 b6 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x47162b",
+        "instruction": "  47162b:\te8 b0 af 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x471adc",
+        "instruction": "  471adc:\te8 ff aa 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x471b38",
+        "instruction": "  471b38:\te8 a3 aa 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4774b3",
+        "instruction": "  4774b3:\te8 28 51 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x477e23",
+        "instruction": "  477e23:\te8 b8 47 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x47845d",
+        "instruction": "  47845d:\te8 7e 41 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4786e6",
+        "instruction": "  4786e6:\te8 f5 3e 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4789d6",
+        "instruction": "  4789d6:\te8 05 3c 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x478e1c",
+        "instruction": "  478e1c:\te8 bf 37 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4791c8",
+        "instruction": "  4791c8:\te8 13 34 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x47939a",
+        "instruction": "  47939a:\te8 41 32 06 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4a1a55",
+        "instruction": "  4a1a55:\te8 86 ab 03 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4a1a6f",
+        "instruction": "  4a1a6f:\te8 6c ab 03 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4a1b9a",
+        "instruction": "  4a1b9a:\te8 41 aa 03 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4a1ba4",
+        "instruction": "  4a1ba4:\te8 37 aa 03 00       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4ea87a",
+        "instruction": "  4ea87a:\te8 61 1d ff ff       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4edc08",
+        "instruction": "  4edc08:\te8 d3 e9 fe ff       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4ede20",
+        "instruction": "  4ede20:\te8 bb e7 fe ff       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4ee5d9",
+        "instruction": "  4ee5d9:\te8 02 e0 fe ff       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x4ee9ae",
+        "instruction": "  4ee9ae:\te8 2d dc fe ff       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x53ac29",
+        "instruction": "  53ac29:\te8 b2 19 fa ff       \tcall   0x4dc5e0"
+      },
+      {
+        "site": "0x53bbe9",
+        "instruction": "  53bbe9:\te8 f2 09 fa ff       \tcall   0x4dc5e0"
+      }
+    ],
+    "loading_entry": [],
+    "world_bind_draw": [],
+    "battle_clear": [],
+    "bind_clip": [
+      {
+        "site": "0x4749bb",
+        "instruction": "  4749bb:\te8 60 92 10 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x48497f",
+        "instruction": "  48497f:\te8 9c 92 0f 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4c7b21",
+        "instruction": "  4c7b21:\te8 fa 60 0b 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4c82dd",
+        "instruction": "  4c82dd:\te8 3e 59 0b 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4c869c",
+        "instruction": "  4c869c:\te8 7f 55 0b 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4ca1a0",
+        "instruction": "  4ca1a0:\te8 7b 3a 0b 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4cb5fe",
+        "instruction": "  4cb5fe:\te8 1d 26 0b 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4cbe7b",
+        "instruction": "  4cbe7b:\te8 a0 1d 0b 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4cc1f6",
+        "instruction": "  4cc1f6:\te8 25 1a 0b 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4cc888",
+        "instruction": "  4cc888:\te8 93 13 0b 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4cce34",
+        "instruction": "  4cce34:\te8 e7 0d 0b 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4cde17",
+        "instruction": "  4cde17:\te8 04 fe 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4cebe9",
+        "instruction": "  4cebe9:\te8 32 f0 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4cfab5",
+        "instruction": "  4cfab5:\te8 66 e1 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d08b3",
+        "instruction": "  4d08b3:\te8 68 d3 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d1520",
+        "instruction": "  4d1520:\te8 fb c6 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d2154",
+        "instruction": "  4d2154:\te8 c7 ba 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d285c",
+        "instruction": "  4d285c:\te8 bf b3 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d2a9b",
+        "instruction": "  4d2a9b:\te8 80 b1 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d2f43",
+        "instruction": "  4d2f43:\te8 d8 ac 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d3cff",
+        "instruction": "  4d3cff:\te8 1c 9f 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d436d",
+        "instruction": "  4d436d:\te8 ae 98 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d7f53",
+        "instruction": "  4d7f53:\te8 c8 5c 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d8788",
+        "instruction": "  4d8788:\te8 93 54 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d8913",
+        "instruction": "  4d8913:\te8 08 53 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d8b9d",
+        "instruction": "  4d8b9d:\te8 7e 50 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d8d4c",
+        "instruction": "  4d8d4c:\te8 cf 4e 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4d9fa6",
+        "instruction": "  4d9fa6:\te8 75 3c 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4dbbba",
+        "instruction": "  4dbbba:\te8 61 20 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4dcb42",
+        "instruction": "  4dcb42:\te8 d9 10 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4dd4d1",
+        "instruction": "  4dd4d1:\te8 4a 07 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4dd6eb",
+        "instruction": "  4dd6eb:\te8 30 05 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4ddb12",
+        "instruction": "  4ddb12:\te8 09 01 0a 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4dddb8",
+        "instruction": "  4dddb8:\te8 63 fe 09 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4de71e",
+        "instruction": "  4de71e:\te8 fd f4 09 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4fd47b",
+        "instruction": "  4fd47b:\te8 a0 07 08 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4fd4d4",
+        "instruction": "  4fd4d4:\te8 47 07 08 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x4fd54d",
+        "instruction": "  4fd54d:\te8 ce 06 08 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x54af36",
+        "instruction": "  54af36:\te8 e5 2c 03 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x54af99",
+        "instruction": "  54af99:\te8 82 2c 03 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x54ed22",
+        "instruction": "  54ed22:\te8 f9 ee 02 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x5506cf",
+        "instruction": "  5506cf:\te8 4c d5 02 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x5509a0",
+        "instruction": "  5509a0:\te8 7b d2 02 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x555d43",
+        "instruction": "  555d43:\te8 d8 7e 02 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x5735ba",
+        "instruction": "  5735ba:\te8 61 a6 00 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x576a84",
+        "instruction": "  576a84:\te8 97 71 00 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x576cfc",
+        "instruction": "  576cfc:\te8 1f 6f 00 00       \tcall   0x57dc20"
+      },
+      {
+        "site": "0x57913d",
+        "instruction": "  57913d:\te8 de 4a 00 00       \tcall   0x57dc20"
+      }
+    ],
+    "create": [
+      {
+        "site": "0x4633f9",
+        "instruction": "  4633f9:\te8 92 79 12 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x463466",
+        "instruction": "  463466:\te8 25 79 12 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x473e18",
+        "instruction": "  473e18:\te8 73 6f 11 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4751f9",
+        "instruction": "  4751f9:\te8 92 5b 11 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4863f5",
+        "instruction": "  4863f5:\te8 96 49 10 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4a363e",
+        "instruction": "  4a363e:\te8 4d 77 0e 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4a368f",
+        "instruction": "  4a368f:\te8 fc 76 0e 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4a71e4",
+        "instruction": "  4a71e4:\te8 a7 3b 0e 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4a7f11",
+        "instruction": "  4a7f11:\te8 7a 2e 0e 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4a8f51",
+        "instruction": "  4a8f51:\te8 3a 1e 0e 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4aa045",
+        "instruction": "  4aa045:\te8 46 0d 0e 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4ab095",
+        "instruction": "  4ab095:\te8 f6 fc 0d 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4ac775",
+        "instruction": "  4ac775:\te8 16 e6 0d 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4af295",
+        "instruction": "  4af295:\te8 f6 ba 0d 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4b0245",
+        "instruction": "  4b0245:\te8 46 ab 0d 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4b1185",
+        "instruction": "  4b1185:\te8 06 9c 0d 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4b21c7",
+        "instruction": "  4b21c7:\te8 c4 8b 0d 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4b2cdb",
+        "instruction": "  4b2cdb:\te8 b0 80 0d 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4b44bd",
+        "instruction": "  4b44bd:\te8 ce 68 0d 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4b4c09",
+        "instruction": "  4b4c09:\te8 82 61 0d 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4b5b89",
+        "instruction": "  4b5b89:\te8 02 52 0d 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4b7315",
+        "instruction": "  4b7315:\te8 76 3a 0d 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4bb765",
+        "instruction": "  4bb765:\te8 26 f6 0c 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4bc367",
+        "instruction": "  4bc367:\te8 24 ea 0c 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4c51e1",
+        "instruction": "  4c51e1:\te8 aa 5b 0c 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4c52e2",
+        "instruction": "  4c52e2:\te8 a9 5a 0c 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4c5b65",
+        "instruction": "  4c5b65:\te8 26 52 0c 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4c7dfe",
+        "instruction": "  4c7dfe:\te8 8d 2f 0c 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4c7f29",
+        "instruction": "  4c7f29:\te8 62 2e 0c 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4d389f",
+        "instruction": "  4d389f:\te8 ec 74 0b 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4d485d",
+        "instruction": "  4d485d:\te8 2e 65 0b 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4d6455",
+        "instruction": "  4d6455:\te8 36 49 0b 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4d650c",
+        "instruction": "  4d650c:\te8 7f 48 0b 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4d808c",
+        "instruction": "  4d808c:\te8 ff 2c 0b 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4d8343",
+        "instruction": "  4d8343:\te8 48 2a 0b 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4d8415",
+        "instruction": "  4d8415:\te8 76 29 0b 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4d95e1",
+        "instruction": "  4d95e1:\te8 aa 17 0b 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4da341",
+        "instruction": "  4da341:\te8 4a 0a 0b 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4dae0b",
+        "instruction": "  4dae0b:\te8 80 ff 0a 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4db6a8",
+        "instruction": "  4db6a8:\te8 e3 f6 0a 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4db772",
+        "instruction": "  4db772:\te8 19 f6 0a 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4dc4f7",
+        "instruction": "  4dc4f7:\te8 94 e8 0a 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4dc558",
+        "instruction": "  4dc558:\te8 33 e8 0a 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4dc944",
+        "instruction": "  4dc944:\te8 47 e4 0a 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4de3c3",
+        "instruction": "  4de3c3:\te8 c8 c9 0a 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4de95f",
+        "instruction": "  4de95f:\te8 2c c4 0a 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4e4155",
+        "instruction": "  4e4155:\te8 36 6c 0a 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x4e41ec",
+        "instruction": "  4e41ec:\te8 9f 6b 0a 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x539f12",
+        "instruction": "  539f12:\te8 79 0e 05 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x54f165",
+        "instruction": "  54f165:\te8 26 bc 03 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x54f72e",
+        "instruction": "  54f72e:\te8 5d b6 03 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x5502e1",
+        "instruction": "  5502e1:\te8 aa aa 03 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x554f06",
+        "instruction": "  554f06:\te8 85 5e 03 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x554f61",
+        "instruction": "  554f61:\te8 2a 5e 03 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x573323",
+        "instruction": "  573323:\te8 68 7a 01 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x573465",
+        "instruction": "  573465:\te8 26 79 01 00       \tcall   0x58ad90"
+      },
+      {
+        "site": "0x577921",
+        "instruction": "  577921:\te8 6a 34 01 00       \tcall   0x58ad90"
+      }
+    ],
+    "release": [
+      {
+        "site": "0x4632a2",
+        "instruction": "  4632a2:\te8 39 81 12 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4632ac",
+        "instruction": "  4632ac:\te8 2f 81 12 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4632ec",
+        "instruction": "  4632ec:\te8 ef 80 12 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4632f8",
+        "instruction": "  4632f8:\te8 e3 80 12 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4635b6",
+        "instruction": "  4635b6:\te8 25 7e 12 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4635be",
+        "instruction": "  4635be:\te8 1d 7e 12 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4635f1",
+        "instruction": "  4635f1:\te8 ea 7d 12 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4635f9",
+        "instruction": "  4635f9:\te8 e2 7d 12 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x463e3d",
+        "instruction": "  463e3d:\te8 9e 75 12 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x463e45",
+        "instruction": "  463e45:\te8 96 75 12 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x473bb7",
+        "instruction": "  473bb7:\te8 24 78 11 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x473bea",
+        "instruction": "  473bea:\te8 f1 77 11 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x47491f",
+        "instruction": "  47491f:\te8 bc 6a 11 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x474ffa",
+        "instruction": "  474ffa:\te8 e1 63 11 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x475008",
+        "instruction": "  475008:\te8 d3 63 11 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x48627a",
+        "instruction": "  48627a:\te8 61 51 10 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x486288",
+        "instruction": "  486288:\te8 53 51 10 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4a37ef",
+        "instruction": "  4a37ef:\te8 ec 7b 0e 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4a704a",
+        "instruction": "  4a704a:\te8 91 43 0e 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4a7058",
+        "instruction": "  4a7058:\te8 83 43 0e 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4a7d7a",
+        "instruction": "  4a7d7a:\te8 61 36 0e 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4a7d88",
+        "instruction": "  4a7d88:\te8 53 36 0e 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4a8ef7",
+        "instruction": "  4a8ef7:\te8 e4 24 0e 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4a9e3a",
+        "instruction": "  4a9e3a:\te8 a1 15 0e 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4a9e48",
+        "instruction": "  4a9e48:\te8 93 15 0e 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4aae8a",
+        "instruction": "  4aae8a:\te8 51 05 0e 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4aae98",
+        "instruction": "  4aae98:\te8 43 05 0e 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4ac52a",
+        "instruction": "  4ac52a:\te8 b1 ee 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4ac538",
+        "instruction": "  4ac538:\te8 a3 ee 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4af08a",
+        "instruction": "  4af08a:\te8 51 c3 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4af098",
+        "instruction": "  4af098:\te8 43 c3 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b007a",
+        "instruction": "  4b007a:\te8 61 b3 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b0088",
+        "instruction": "  4b0088:\te8 53 b3 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b0f6a",
+        "instruction": "  4b0f6a:\te8 71 a4 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b0f78",
+        "instruction": "  4b0f78:\te8 63 a4 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b202a",
+        "instruction": "  4b202a:\te8 b1 93 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b2038",
+        "instruction": "  4b2038:\te8 a3 93 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b2afa",
+        "instruction": "  4b2afa:\te8 e1 88 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b2b08",
+        "instruction": "  4b2b08:\te8 d3 88 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b40e0",
+        "instruction": "  4b40e0:\te8 fb 72 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b40ee",
+        "instruction": "  4b40ee:\te8 ed 72 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b42fa",
+        "instruction": "  4b42fa:\te8 e1 70 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b5c6b",
+        "instruction": "  4b5c6b:\te8 70 57 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b5c7f",
+        "instruction": "  4b5c7f:\te8 5c 57 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b70ea",
+        "instruction": "  4b70ea:\te8 f1 42 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4b70f8",
+        "instruction": "  4b70f8:\te8 e3 42 0d 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4bb59a",
+        "instruction": "  4bb59a:\te8 41 fe 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4bb5a8",
+        "instruction": "  4bb5a8:\te8 33 fe 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4bc1da",
+        "instruction": "  4bc1da:\te8 01 f2 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4bc1e8",
+        "instruction": "  4bc1e8:\te8 f3 f1 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4be198",
+        "instruction": "  4be198:\te8 43 d2 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4c131c",
+        "instruction": "  4c131c:\te8 bf a0 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4c1343",
+        "instruction": "  4c1343:\te8 98 a0 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4c1954",
+        "instruction": "  4c1954:\te8 87 9a 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4c5392",
+        "instruction": "  4c5392:\te8 49 60 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4c5cb9",
+        "instruction": "  4c5cb9:\te8 22 57 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4c5d2e",
+        "instruction": "  4c5d2e:\te8 ad 56 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4c5f61",
+        "instruction": "  4c5f61:\te8 7a 54 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4c5fb3",
+        "instruction": "  4c5fb3:\te8 28 54 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4c8079",
+        "instruction": "  4c8079:\te8 62 33 0c 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d364d",
+        "instruction": "  4d364d:\te8 8e 7d 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d3828",
+        "instruction": "  4d3828:\te8 b3 7b 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d4298",
+        "instruction": "  4d4298:\te8 43 71 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d42c0",
+        "instruction": "  4d42c0:\te8 1b 71 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d5bf8",
+        "instruction": "  4d5bf8:\te8 e3 57 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d5c20",
+        "instruction": "  4d5c20:\te8 bb 57 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d5da1",
+        "instruction": "  4d5da1:\te8 3a 56 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d5db1",
+        "instruction": "  4d5db1:\te8 2a 56 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d6352",
+        "instruction": "  4d6352:\te8 89 50 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d635d",
+        "instruction": "  4d635d:\te8 7e 50 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d637c",
+        "instruction": "  4d637c:\te8 5f 50 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d6391",
+        "instruction": "  4d6391:\te8 4a 50 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d63a6",
+        "instruction": "  4d63a6:\te8 35 50 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d63c0",
+        "instruction": "  4d63c0:\te8 1b 50 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d82c2",
+        "instruction": "  4d82c2:\te8 19 31 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d92b5",
+        "instruction": "  4d92b5:\te8 26 21 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d9327",
+        "instruction": "  4d9327:\te8 b4 20 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4d951e",
+        "instruction": "  4d951e:\te8 bd 1e 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4da191",
+        "instruction": "  4da191:\te8 4a 12 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4da1ba",
+        "instruction": "  4da1ba:\te8 21 12 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4da23e",
+        "instruction": "  4da23e:\te8 9d 11 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4dac1b",
+        "instruction": "  4dac1b:\te8 c0 07 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4dac43",
+        "instruction": "  4dac43:\te8 98 07 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4dad6d",
+        "instruction": "  4dad6d:\te8 6e 06 0b 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4db612",
+        "instruction": "  4db612:\te8 c9 fd 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4db6d9",
+        "instruction": "  4db6d9:\te8 02 fd 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4dc43c",
+        "instruction": "  4dc43c:\te8 9f ef 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4dc446",
+        "instruction": "  4dc446:\te8 95 ef 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4dc46d",
+        "instruction": "  4dc46d:\te8 6e ef 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4dc47c",
+        "instruction": "  4dc47c:\te8 5f ef 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4dc6e6",
+        "instruction": "  4dc6e6:\te8 f5 ec 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4dc6ee",
+        "instruction": "  4dc6ee:\te8 ed ec 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4dc879",
+        "instruction": "  4dc879:\te8 62 eb 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4ddfe6",
+        "instruction": "  4ddfe6:\te8 f5 d3 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4de074",
+        "instruction": "  4de074:\te8 67 d3 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4de253",
+        "instruction": "  4de253:\te8 88 d1 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4de83a",
+        "instruction": "  4de83a:\te8 a1 cb 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4de84a",
+        "instruction": "  4de84a:\te8 91 cb 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x4de8f2",
+        "instruction": "  4de8f2:\te8 e9 ca 0a 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x5397ef",
+        "instruction": "  5397ef:\te8 ec 1b 05 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x5397fd",
+        "instruction": "  5397fd:\te8 de 1b 05 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x539ad9",
+        "instruction": "  539ad9:\te8 02 19 05 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x539ae7",
+        "instruction": "  539ae7:\te8 f4 18 05 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x539b2b",
+        "instruction": "  539b2b:\te8 b0 18 05 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x539b39",
+        "instruction": "  539b39:\te8 a2 18 05 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x53a02b",
+        "instruction": "  53a02b:\te8 b0 13 05 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x53a039",
+        "instruction": "  53a039:\te8 a2 13 05 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x5503fe",
+        "instruction": "  5503fe:\te8 dd af 03 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x550406",
+        "instruction": "  550406:\te8 d5 af 03 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x55484f",
+        "instruction": "  55484f:\te8 8c 6b 03 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x554e26",
+        "instruction": "  554e26:\te8 b5 65 03 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x572445",
+        "instruction": "  572445:\te8 96 8f 01 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x5736b3",
+        "instruction": "  5736b3:\te8 28 7d 01 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x5742f2",
+        "instruction": "  5742f2:\te8 e9 70 01 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x5755b9",
+        "instruction": "  5755b9:\te8 22 5e 01 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x578515",
+        "instruction": "  578515:\te8 c6 2e 01 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x58a86a",
+        "instruction": "  58a86a:\te8 71 0b 00 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x58a91a",
+        "instruction": "  58a91a:\te8 c1 0a 00 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x58ab7a",
+        "instruction": "  58ab7a:\te8 61 08 00 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x58ac2e",
+        "instruction": "  58ac2e:\te8 ad 07 00 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x58ad0a",
+        "instruction": "  58ad0a:\te8 d1 06 00 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x58ae10",
+        "instruction": "  58ae10:\te8 cb 05 00 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x58af2b",
+        "instruction": "  58af2b:\te8 b0 04 00 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x58b052",
+        "instruction": "  58b052:\te8 89 03 00 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x58b14c",
+        "instruction": "  58b14c:\te8 8f 02 00 00       \tcall   0x58b3e0"
+      },
+      {
+        "site": "0x58b75a",
+        "instruction": "  58b75a:\te8 81 fc ff ff       \tcall   0x58b3e0"
+      }
+    ],
+    "lock": [
+      {
+        "site": "0x47499d",
+        "instruction": "  47499d:\te8 be 6c 11 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4849f0",
+        "instruction": "  4849f0:\te8 6b 6c 10 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4c1eed",
+        "instruction": "  4c1eed:\te8 6e 97 0c 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4c7b03",
+        "instruction": "  4c7b03:\te8 58 3b 0c 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4c8281",
+        "instruction": "  4c8281:\te8 da 33 0c 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4c867a",
+        "instruction": "  4c867a:\te8 e1 2f 0c 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4ca180",
+        "instruction": "  4ca180:\te8 db 14 0c 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4cb133",
+        "instruction": "  4cb133:\te8 28 05 0c 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4cb5df",
+        "instruction": "  4cb5df:\te8 7c 00 0c 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4cbe62",
+        "instruction": "  4cbe62:\te8 f9 f7 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4cc1d7",
+        "instruction": "  4cc1d7:\te8 84 f4 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4cc86b",
+        "instruction": "  4cc86b:\te8 f0 ed 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4cce17",
+        "instruction": "  4cce17:\te8 44 e8 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4cddf8",
+        "instruction": "  4cddf8:\te8 63 d8 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4cebb8",
+        "instruction": "  4cebb8:\te8 a3 ca 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4cfa97",
+        "instruction": "  4cfa97:\te8 c4 bb 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d0894",
+        "instruction": "  4d0894:\te8 c7 ad 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d14e0",
+        "instruction": "  4d14e0:\te8 7b a1 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d15b9",
+        "instruction": "  4d15b9:\te8 a2 a0 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d211f",
+        "instruction": "  4d211f:\te8 3c 95 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d283d",
+        "instruction": "  4d283d:\te8 1e 8e 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d2a7d",
+        "instruction": "  4d2a7d:\te8 de 8b 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d2f21",
+        "instruction": "  4d2f21:\te8 3a 87 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d3ca9",
+        "instruction": "  4d3ca9:\te8 b2 79 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d434e",
+        "instruction": "  4d434e:\te8 0d 73 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d7f37",
+        "instruction": "  4d7f37:\te8 24 37 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d8767",
+        "instruction": "  4d8767:\te8 f4 2e 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d88f0",
+        "instruction": "  4d88f0:\te8 6b 2d 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d8b7a",
+        "instruction": "  4d8b7a:\te8 e1 2a 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d8d2b",
+        "instruction": "  4d8d2b:\te8 30 29 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4d9f86",
+        "instruction": "  4d9f86:\te8 d5 16 0b 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4dbb96",
+        "instruction": "  4dbb96:\te8 c5 fa 0a 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4dcafd",
+        "instruction": "  4dcafd:\te8 5e eb 0a 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4dd18f",
+        "instruction": "  4dd18f:\te8 cc e4 0a 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4dd488",
+        "instruction": "  4dd488:\te8 d3 e1 0a 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4dd6cd",
+        "instruction": "  4dd6cd:\te8 8e df 0a 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4ddacc",
+        "instruction": "  4ddacc:\te8 8f db 0a 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4ddd9e",
+        "instruction": "  4ddd9e:\te8 bd d8 0a 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4de704",
+        "instruction": "  4de704:\te8 57 cf 0a 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4fd4b5",
+        "instruction": "  4fd4b5:\te8 a6 e1 08 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x4fd531",
+        "instruction": "  4fd531:\te8 2a e1 08 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x533b2b",
+        "instruction": "  533b2b:\te8 30 7b 05 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x533b6b",
+        "instruction": "  533b6b:\te8 f0 7a 05 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x54b1bc",
+        "instruction": "  54b1bc:\te8 9f 04 04 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x54b304",
+        "instruction": "  54b304:\te8 57 03 04 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x54ed02",
+        "instruction": "  54ed02:\te8 59 c9 03 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x5506af",
+        "instruction": "  5506af:\te8 ac af 03 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x550982",
+        "instruction": "  550982:\te8 d9 ac 03 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x553a5a",
+        "instruction": "  553a5a:\te8 01 7c 03 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x554ad4",
+        "instruction": "  554ad4:\te8 87 6b 03 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x554f74",
+        "instruction": "  554f74:\te8 e7 66 03 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x555b78",
+        "instruction": "  555b78:\te8 e3 5a 03 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x5735a0",
+        "instruction": "  5735a0:\te8 bb 80 01 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x576a64",
+        "instruction": "  576a64:\te8 f7 4b 01 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x576cd9",
+        "instruction": "  576cd9:\te8 82 49 01 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x57911e",
+        "instruction": "  57911e:\te8 3d 25 01 00       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58d324",
+        "instruction": "  58d324:\te8 37 e3 ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58d419",
+        "instruction": "  58d419:\te8 42 e2 ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58d429",
+        "instruction": "  58d429:\te8 32 e2 ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58d7d7",
+        "instruction": "  58d7d7:\te8 84 de ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58d927",
+        "instruction": "  58d927:\te8 34 dd ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58dc70",
+        "instruction": "  58dc70:\te8 eb d9 ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58de55",
+        "instruction": "  58de55:\te8 06 d8 ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58e327",
+        "instruction": "  58e327:\te8 34 d3 ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58e43c",
+        "instruction": "  58e43c:\te8 1f d2 ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58e7ae",
+        "instruction": "  58e7ae:\te8 ad ce ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58e9aa",
+        "instruction": "  58e9aa:\te8 b1 cc ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58eb8b",
+        "instruction": "  58eb8b:\te8 d0 ca ff ff       \tcall   0x58b660"
+      },
+      {
+        "site": "0x58ed9c",
+        "instruction": "  58ed9c:\te8 bf c8 ff ff       \tcall   0x58b660"
+      }
+    ],
+    "fill_full": [
+      {
+        "site": "0x463008",
+        "instruction": "  463008:\te8 03 8c 12 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x463402",
+        "instruction": "  463402:\te8 09 88 12 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x46346f",
+        "instruction": "  46346f:\te8 9c 87 12 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x463578",
+        "instruction": "  463578:\te8 93 86 12 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x46ae53",
+        "instruction": "  46ae53:\te8 b8 0d 12 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x46ae5e",
+        "instruction": "  46ae5e:\te8 ad 0d 12 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4a364a",
+        "instruction": "  4a364a:\te8 c1 85 0e 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4a369b",
+        "instruction": "  4a369b:\te8 70 85 0e 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4b0828",
+        "instruction": "  4b0828:\te8 e3 b3 0d 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4b0834",
+        "instruction": "  4b0834:\te8 d7 b3 0d 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4b1b48",
+        "instruction": "  4b1b48:\te8 c3 a0 0d 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4b1b54",
+        "instruction": "  4b1b54:\te8 b7 a0 0d 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4b1cde",
+        "instruction": "  4b1cde:\te8 2d 9f 0d 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4c5b80",
+        "instruction": "  4c5b80:\te8 8b 60 0c 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d32a7",
+        "instruction": "  4d32a7:\te8 64 89 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d38a8",
+        "instruction": "  4d38a8:\te8 63 83 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d6467",
+        "instruction": "  4d6467:\te8 a4 57 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d6482",
+        "instruction": "  4d6482:\te8 89 57 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d6524",
+        "instruction": "  4d6524:\te8 e7 56 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d653f",
+        "instruction": "  4d653f:\te8 cc 56 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7abb",
+        "instruction": "  4d7abb:\te8 50 41 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7ac8",
+        "instruction": "  4d7ac8:\te8 43 41 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7b05",
+        "instruction": "  4d7b05:\te8 06 41 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7b14",
+        "instruction": "  4d7b14:\te8 f7 40 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7b84",
+        "instruction": "  4d7b84:\te8 87 40 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7bd2",
+        "instruction": "  4d7bd2:\te8 39 40 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7cc8",
+        "instruction": "  4d7cc8:\te8 43 3f 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7cd5",
+        "instruction": "  4d7cd5:\te8 36 3f 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7d1b",
+        "instruction": "  4d7d1b:\te8 f0 3e 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7d2a",
+        "instruction": "  4d7d2a:\te8 e1 3e 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7d9a",
+        "instruction": "  4d7d9a:\te8 71 3e 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d7de8",
+        "instruction": "  4d7de8:\te8 23 3e 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d80b0",
+        "instruction": "  4d80b0:\te8 5b 3b 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d80ce",
+        "instruction": "  4d80ce:\te8 3d 3b 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d8355",
+        "instruction": "  4d8355:\te8 b6 38 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d8382",
+        "instruction": "  4d8382:\te8 89 38 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d8427",
+        "instruction": "  4d8427:\te8 e4 37 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d8442",
+        "instruction": "  4d8442:\te8 c9 37 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d954a",
+        "instruction": "  4d954a:\te8 c1 26 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d95f3",
+        "instruction": "  4d95f3:\te8 18 26 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d960e",
+        "instruction": "  4d960e:\te8 fd 25 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d96f6",
+        "instruction": "  4d96f6:\te8 15 25 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4d9711",
+        "instruction": "  4d9711:\te8 fa 24 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4da352",
+        "instruction": "  4da352:\te8 b9 18 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4da36a",
+        "instruction": "  4da36a:\te8 a1 18 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4dae1d",
+        "instruction": "  4dae1d:\te8 ee 0d 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4dae3b",
+        "instruction": "  4dae3b:\te8 d0 0d 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4db6b1",
+        "instruction": "  4db6b1:\te8 5a 05 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4db77b",
+        "instruction": "  4db77b:\te8 90 04 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4dbb6e",
+        "instruction": "  4dbb6e:\te8 9d 00 0b 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4dcaf2",
+        "instruction": "  4dcaf2:\te8 19 f1 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4ddcdb",
+        "instruction": "  4ddcdb:\te8 30 df 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4ddcf6",
+        "instruction": "  4ddcf6:\te8 15 df 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4de3d5",
+        "instruction": "  4de3d5:\te8 36 d8 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4de3f0",
+        "instruction": "  4de3f0:\te8 1b d8 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4de65b",
+        "instruction": "  4de65b:\te8 b0 d5 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4de676",
+        "instruction": "  4de676:\te8 95 d5 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4de971",
+        "instruction": "  4de971:\te8 9a d2 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4de98c",
+        "instruction": "  4de98c:\te8 7f d2 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4e3d09",
+        "instruction": "  4e3d09:\te8 02 7f 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4e41f8",
+        "instruction": "  4e41f8:\te8 13 7a 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x4e9977",
+        "instruction": "  4e9977:\te8 94 22 0a 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x551ce4",
+        "instruction": "  551ce4:\te8 27 9f 03 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x551d34",
+        "instruction": "  551d34:\te8 d7 9e 03 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x57334e",
+        "instruction": "  57334e:\te8 bd 88 01 00       \tcall   0x58bc10"
+      },
+      {
+        "site": "0x57348f",
+        "instruction": "  57348f:\te8 7c 87 01 00       \tcall   0x58bc10"
+      }
+    ],
+    "fill_rect": [
+      {
+        "site": "0x4a2e4d",
+        "instruction": "  4a2e4d:\te8 6e 8c 0e 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4cb7b3",
+        "instruction": "  4cb7b3:\te8 08 03 0c 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4cb7c4",
+        "instruction": "  4cb7c4:\te8 f7 02 0c 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4cbf41",
+        "instruction": "  4cbf41:\te8 7a fb 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4cbf53",
+        "instruction": "  4cbf53:\te8 68 fb 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4cc421",
+        "instruction": "  4cc421:\te8 9a f6 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4cc433",
+        "instruction": "  4cc433:\te8 88 f6 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4cc968",
+        "instruction": "  4cc968:\te8 53 f1 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4cc990",
+        "instruction": "  4cc990:\te8 2b f1 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4d472c",
+        "instruction": "  4d472c:\te8 8f 73 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4d4740",
+        "instruction": "  4d4740:\te8 7b 73 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4d875c",
+        "instruction": "  4d875c:\te8 5f 33 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4d88e5",
+        "instruction": "  4d88e5:\te8 d6 31 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4d8b6f",
+        "instruction": "  4d8b6f:\te8 4c 2f 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4d8d20",
+        "instruction": "  4d8d20:\te8 9b 2d 0b 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4dbb8b",
+        "instruction": "  4dbb8b:\te8 30 ff 0a 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4dd384",
+        "instruction": "  4dd384:\te8 37 e7 0a 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4dd481",
+        "instruction": "  4dd481:\te8 3a e6 0a 00       \tcall   0x58bac0"
+      },
+      {
+        "site": "0x4fcf81",
+        "instruction": "  4fcf81:\te8 3a eb 08 00       \tcall   0x58bac0"
+      }
+    ],
+    "jpeg": [
+      {
+        "site": "0x46a9ec",
+        "instruction": "  46a9ec:\te8 2f 29 12 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x473f26",
+        "instruction": "  473f26:\te8 f5 93 11 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x475325",
+        "instruction": "  475325:\te8 f6 7f 11 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x47599a",
+        "instruction": "  47599a:\te8 81 79 11 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x486503",
+        "instruction": "  486503:\te8 18 6e 10 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x48675c",
+        "instruction": "  48675c:\te8 bf 6b 10 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4a72f3",
+        "instruction": "  4a72f3:\te8 28 60 0e 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4a792c",
+        "instruction": "  4a792c:\te8 ef 59 0e 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4a8020",
+        "instruction": "  4a8020:\te8 fb 52 0e 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4a837c",
+        "instruction": "  4a837c:\te8 9f 4f 0e 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4a8fce",
+        "instruction": "  4a8fce:\te8 4d 43 0e 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4a981b",
+        "instruction": "  4a981b:\te8 00 3b 0e 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4aa153",
+        "instruction": "  4aa153:\te8 c8 31 0e 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4aa9ec",
+        "instruction": "  4aa9ec:\te8 2f 29 0e 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4ab1a3",
+        "instruction": "  4ab1a3:\te8 78 21 0e 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4abc5c",
+        "instruction": "  4abc5c:\te8 bf 16 0e 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4ac883",
+        "instruction": "  4ac883:\te8 98 0a 0e 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4ad67c",
+        "instruction": "  4ad67c:\te8 9f fc 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4af3a3",
+        "instruction": "  4af3a3:\te8 78 df 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4af8ec",
+        "instruction": "  4af8ec:\te8 2f da 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b0353",
+        "instruction": "  4b0353:\te8 c8 cf 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b073c",
+        "instruction": "  4b073c:\te8 df cb 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b1293",
+        "instruction": "  4b1293:\te8 88 c0 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b181c",
+        "instruction": "  4b181c:\te8 ff ba 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b2d5c",
+        "instruction": "  4b2d5c:\te8 bf a5 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b2dae",
+        "instruction": "  4b2dae:\te8 6d a5 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b381f",
+        "instruction": "  4b381f:\te8 fc 9a 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b386b",
+        "instruction": "  4b386b:\te8 b0 9a 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b4536",
+        "instruction": "  4b4536:\te8 e5 8d 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b5a97",
+        "instruction": "  4b5a97:\te8 84 78 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b5bf3",
+        "instruction": "  4b5bf3:\te8 28 77 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b742c",
+        "instruction": "  4b742c:\te8 ef 5e 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4b7ecc",
+        "instruction": "  4b7ecc:\te8 4f 54 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4bb873",
+        "instruction": "  4bb873:\te8 a8 1a 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4bbe5c",
+        "instruction": "  4bbe5c:\te8 bf 14 0d 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4c3d7e",
+        "instruction": "  4c3d7e:\te8 9d 95 0c 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4c532f",
+        "instruction": "  4c532f:\te8 ec 7f 0c 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4c574c",
+        "instruction": "  4c574c:\te8 cf 7b 0c 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4dc298",
+        "instruction": "  4dc298:\te8 83 10 0b 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4dc32b",
+        "instruction": "  4dc32b:\te8 f0 0f 0b 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4dc6cb",
+        "instruction": "  4dc6cb:\te8 50 0c 0b 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4ddd18",
+        "instruction": "  4ddd18:\te8 03 f6 0a 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4ddeaf",
+        "instruction": "  4ddeaf:\te8 6c f4 0a 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x4de5d5",
+        "instruction": "  4de5d5:\te8 46 ed 0a 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x539e47",
+        "instruction": "  539e47:\te8 d4 34 05 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x53a003",
+        "instruction": "  53a003:\te8 18 33 05 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x53a137",
+        "instruction": "  53a137:\te8 e4 31 05 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x55126e",
+        "instruction": "  55126e:\te8 ad c0 03 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x5733ba",
+        "instruction": "  5733ba:\te8 61 9f 01 00       \tcall   0x58d320"
+      },
+      {
+        "site": "0x5734f3",
+        "instruction": "  5734f3:\te8 28 9e 01 00       \tcall   0x58d320"
+      }
+    ],
+    "queue": [
+      {
+        "site": "0x4fd4ab",
+        "instruction": "  4fd4ab:\te8 f0 2d 00 00       \tcall   0x5002a0"
+      },
+      {
+        "site": "0x4fd554",
+        "instruction": "  4fd554:\te8 47 2d 00 00       \tcall   0x5002a0"
+      }
+    ]
+  },
+  "canvas_pointer_mentions": [
+    "  484973:\t8b 0d 74 81 65 00    \tmov    ecx,DWORD PTR ds:0x658174",
+    "  545cd8:\t8b 3d 74 81 65 00    \tmov    edi,DWORD PTR ds:0x658174",
+    "  547e4a:\t8b 15 74 81 65 00    \tmov    edx,DWORD PTR ds:0x658174",
+    "  57dc24:\t89 0d 74 81 65 00    \tmov    DWORD PTR ds:0x658174,ecx",
+    "  57dc40:\ta1 74 81 65 00       \tmov    eax,ds:0x658174",
+    "  57def0:\t8b 1d 74 81 65 00    \tmov    ebx,DWORD PTR ds:0x658174",
+    "  57e2aa:\t8b 0d 74 81 65 00    \tmov    ecx,DWORD PTR ds:0x658174",
+    "  57e61c:\t8b 0d 74 81 65 00    \tmov    ecx,DWORD PTR ds:0x658174",
+    "  57edae:\t8b 2d 74 81 65 00    \tmov    ebp,DWORD PTR ds:0x658174",
+    "  57f207:\t8b 2d 74 81 65 00    \tmov    ebp,DWORD PTR ds:0x658174",
+    "  57f712:\t8b 2d 74 81 65 00    \tmov    ebp,DWORD PTR ds:0x658174",
+    "  57fbe7:\t8b 0d 74 81 65 00    \tmov    ecx,DWORD PTR ds:0x658174",
+    "  57ff32:\t8b 2d 74 81 65 00    \tmov    ebp,DWORD PTR ds:0x658174",
+    "  5803c8:\t8b 0d 74 81 65 00    \tmov    ecx,DWORD PTR ds:0x658174",
+    "  580817:\t8b 2d 74 81 65 00    \tmov    ebp,DWORD PTR ds:0x658174",
+    "  580b8d:\t8b 1d 74 81 65 00    \tmov    ebx,DWORD PTR ds:0x658174",
+    "  5813fb:\t8b 15 74 81 65 00    \tmov    edx,DWORD PTR ds:0x658174",
+    "  58184e:\ta1 74 81 65 00       \tmov    eax,ds:0x658174",
+    "  581bdd:\t8b 0d 74 81 65 00    \tmov    ecx,DWORD PTR ds:0x658174",
+    "  58200d:\t8b 3d 74 81 65 00    \tmov    edi,DWORD PTR ds:0x658174",
+    "  589a6e:\t8b 2d 74 81 65 00    \tmov    ebp,DWORD PTR ds:0x658174",
+    "  589d3d:\t8b 1d 74 81 65 00    \tmov    ebx,DWORD PTR ds:0x658174",
+    "  59450e:\t8b 3d 74 81 65 00    \tmov    edi,DWORD PTR ds:0x658174",
+    "  594562:\t8b 3d 74 81 65 00    \tmov    edi,DWORD PTR ds:0x658174",
+    "  5946f5:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  5948b4:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  594ae5:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  594dc8:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  594f8e:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  59515b:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  59531c:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  5954eb:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  59574e:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  595a8a:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  595c4a:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  595e70:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  596141:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  59630c:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  59655b:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  596720:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  59696f:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  596b34:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  596d83:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  596f08:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  597151:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174",
+    "  59731b:\t03 3d 74 81 65 00    \tadd    edi,DWORD PTR ds:0x658174"
+  ]
+}

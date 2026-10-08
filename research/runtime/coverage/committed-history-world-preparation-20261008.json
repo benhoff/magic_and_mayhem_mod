@@ -1,0 +1,92 @@
+{
+  "scope": "Read-only committed parent/current SHA-256 and exact receipt audit; no retrospective gate pass, behavior promotion or new execution. Current uncommitted work is excluded.",
+  "base": "e3d3c69425552bf57b47fc85f3ceb5a454778974",
+  "head": "8e43ed5cac9d497274927d70ae50aab39072ddf4",
+  "commits": [
+    "8e43ed5cac9d497274927d70ae50aab39072ddf4"
+  ],
+  "files": [
+    {
+      "commit": "8e43ed5cac9d497274927d70ae50aab39072ddf4",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f5fdd34d2e80374ef5a44d9103aa3f2efad1f401d9d23df09f17af760d3dfd08",
+      "after_sha256": "bba3dfcfcc41631359c2c943504bdb712cfa8e6a9ac437f54c473083dc2f0dda",
+      "receipts": [
+        "coverage-audit-performance-20261008"
+      ]
+    },
+    {
+      "commit": "8e43ed5cac9d497274927d70ae50aab39072ddf4",
+      "path": "research/runtime/coverage/README.md",
+      "before_sha256": "e4c2af60fc7f536624eeb3579a71125f1c85a6249159df82666f73bb300604e6",
+      "after_sha256": "8968edc04fce79fb859be39d792aba0fabef18c7cba3f195738d32ac600ada8c",
+      "receipts": [
+        "coverage-audit-performance-20261008"
+      ]
+    },
+    {
+      "commit": "8e43ed5cac9d497274927d70ae50aab39072ddf4",
+      "path": "research/runtime/coverage/audit-performance-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "f78fe27c035d098c7edce4cffae72cc47ace8462ba2c8c89a54cbc7182a934b0",
+      "receipts": [
+        "coverage-audit-performance-20261008"
+      ]
+    },
+    {
+      "commit": "8e43ed5cac9d497274927d70ae50aab39072ddf4",
+      "path": "research/runtime/coverage/committed-history-audit-performance-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "9ecfcb21add4f34ed8f0567acc922d5451c73ba1c2de99e03325f43ed3165921",
+      "receipts": [
+        "coverage-audit-performance-20261008"
+      ]
+    },
+    {
+      "commit": "8e43ed5cac9d497274927d70ae50aab39072ddf4",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "b8ee2c5b0add06d8a4810f45d2c24eb39f947c50975c313074b4ad1dfc85fb40",
+      "after_sha256": "6706af7c3c5ceb9997b1659afdd7cc20a356cba4896abb9a47eacc5c42368d09",
+      "receipts": [
+        "coverage-audit-performance-20261008"
+      ]
+    },
+    {
+      "commit": "8e43ed5cac9d497274927d70ae50aab39072ddf4",
+      "path": "research/runtime/coverage/source-index-audit-performance-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "ecd1ea5aa2aee504254c0c2b04caf65f3629fc99050a500d2c7b0d03e075cfa9",
+      "receipts": [
+        "coverage-audit-performance-20261008"
+      ]
+    },
+    {
+      "commit": "8e43ed5cac9d497274927d70ae50aab39072ddf4",
+      "path": "research/runtime/coverage/summary-audit-performance-20261008.md",
+      "before_sha256": null,
+      "after_sha256": "e7049de71c2c81e427b959cc3f8e44ce786c02b1995e97503a39e477353b190c",
+      "receipts": [
+        "coverage-audit-performance-20261008"
+      ]
+    },
+    {
+      "commit": "8e43ed5cac9d497274927d70ae50aab39072ddf4",
+      "path": "tests/test-re-coverage.py",
+      "before_sha256": "2b6042c5deeea9ad948dd246bb2e53fd90e68b46cd26e019e43f2d4e65a9c7e8",
+      "after_sha256": "399655c221f691fb1894cc2fc6da472a5c076ec1cab716ca6be18f366908efdf",
+      "receipts": [
+        "coverage-audit-performance-20261008"
+      ]
+    },
+    {
+      "commit": "8e43ed5cac9d497274927d70ae50aab39072ddf4",
+      "path": "tools/coverage_audit.py",
+      "before_sha256": "6ae69d07be7125353368fe9d65b91b3a0c8fd4f8eb67ba304bb6d7e298a1e1a2",
+      "after_sha256": "d1026d89046383f146a0a78eb3413e15448173fb4168b9f6a9a260b16a6f4b6a",
+      "receipts": [
+        "coverage-audit-performance-20261008"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

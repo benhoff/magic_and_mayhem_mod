@@ -13,7 +13,8 @@ std::uint32_t word(const QByteArray& b,qsizetype at){
 }
 std::int32_t signedWord(std::uint32_t n){std::int32_t v;std::memcpy(&v,&n,4);return v;}
 QByteArray hash(const QByteArray& b){return QCryptographicHash::hash(b,QCryptographicHash::Sha256);}
-QByteArray visual(const assets::Sprite& sprite,const assets::SpriteFrame& f){
+}
+QByteArray spriteVisualIdentity(const assets::Sprite& sprite,const assets::SpriteFrame& f){
     QByteArray out;out.reserve(qsizetype(f.opaqueMask.size()*3));
     for(auto word:{f.width,f.height,std::uint32_t(f.originX),std::uint32_t(f.originY)})
         for(unsigned i=0;i<4;++i)out.append(char(word>>(i*8)));
@@ -24,7 +25,6 @@ QByteArray visual(const assets::Sprite& sprite,const assets::SpriteFrame& f){
         out.append(char(f.opaqueMask[i]));out.append(char(pixel));out.append(char(pixel>>8));
     }
     return hash(out);
-}
 }
 QByteArray frameIdentity(const QByteArray& raw,bool indexed){
     if(raw.size()<40||raw.size()>MNM_SCENE_V1_MAX_FRAME||word(raw,0)!=std::uint32_t(raw.size()))
@@ -73,7 +73,7 @@ void SnapshotResources::add(const assets::ResourceId& id,const std::string& path
     if(sprite.version!=4||frames_+sprite.frames.size()>65536)throw std::invalid_argument("Snapshot SPR version/frame budget exceeded");
     std::vector<std::pair<QByteArray,Candidate>> additions;
     for(std::size_t i=0;i<sprite.frames.size();++i){const auto& f=sprite.frames[i];
-        additions.push_back({frameIdentity(bytes.mid(f.sourceOffset,f.encodedSize),sprite.storage==assets::SpriteStorage::indexed8),{{id,i},visual(sprite,f)}});
+        additions.push_back({frameIdentity(bytes.mid(f.sourceOffset,f.encodedSize),sprite.storage==assets::SpriteStorage::indexed8),{{id,i},spriteVisualIdentity(sprite,f)}});
     }
     resources_.bind(id,{assets::ResourceImageFormat::sprite,path,{},{},{}});
     for(auto& addition:additions)index_[addition.first].push_back(std::move(addition.second));
@@ -86,7 +86,7 @@ BoundFrame SnapshotResources::resolve(const SnapshotFrame& frame,bool ownedColou
         throw std::out_of_range("Ambiguous observed frame with different native palette pixels");
     const auto& choice=candidates.front();const auto& owned=resources_.load(choice.binding.resource);
     const auto& sprite=std::get<assets::Sprite>(owned.image);
-    if(choice.binding.frame>=sprite.frames.size()||visual(sprite,sprite.frames[choice.binding.frame])!=choice.visual)
+    if(choice.binding.frame>=sprite.frames.size()||spriteVisualIdentity(sprite,sprite.frames[choice.binding.frame])!=choice.visual)
         throw std::out_of_range("Native resource changed since pinned identity indexing");
     return choice.binding; // Exact visual aliases use manifest order/lowest frame.
 }

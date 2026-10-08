@@ -34,13 +34,14 @@ int main(int argc,char** argv)try{
         rejected([&]{history.beginFrame({1,12},{{body,99,0,0}},false);});
         history.beginFrame({1,12},{},false);require(history.drawNext(1)&&history.read().pixels==expected.pixels,"Empty contiguous frame lost canvas");
         history.beginFrame({2,1},{},true);require(history.drawNext(1)&&history.read().pixels==background.pixels,"New native canvas reset retained pixels");
-        // Force a real upload failure after admission; retained continuation must
-        // remain poisoned until a successful explicit native background reset.
-        std::vector<render::SurfaceId> external;for(unsigned i=0;i<60;++i)external.push_back(renderer.create({1,1,{0}},render::spriteFormat));
+        // Force a real resource failure after admission. Cache eviction can free
+        // surface budget, so an occupied-surface count is not a reliable fault.
         render::SceneDraw shadow{body,0,2,0};shadow.composite.mode=render::CompositeMode::projectedShadow;
-        history.beginFrame({2,2},{shadow},false);rejected([&]{history.drawNext(1);});
+        history.beginFrame({2,2},{shadow},false);
+        resources.unload(body);std::filesystem::rename(root/"body.spr",root/"body.spr.unavailable");
+        rejected([&]{history.drawNext(1);});
         rejected([&]{history.read();});rejected([&]{history.beginFrame({2,3},{},false);});
-        for(const auto id:external)renderer.destroy(id);
+        std::filesystem::rename(root/"body.spr.unavailable",root/"body.spr");
         history.beginFrame({2,3},{},true);require(history.drawNext(1)&&history.read().pixels==background.pixels,"Explicit reset did not recover poisoned history");
         history.beginFrame({3,std::numeric_limits<std::uint64_t>::max()},{},true);require(history.drawNext(1),"Terminal sequence frame incomplete");
         rejected([&]{history.beginFrame({3,1},{},false);});

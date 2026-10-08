@@ -1,0 +1,240 @@
+{
+  "scope": "Reviewed committed range only, exact parent/current file hashes and matching receipts. No retrospective gate pass or new execution. Concurrent uncommitted work excluded.",
+  "base": "8e43ed5",
+  "head": "63f32b1969a576f90a929167bd3b30c1f610dd28",
+  "files": [
+    {
+      "path": "apps/coverage-ui/README.md",
+      "before_sha256": "379b578c9a12400bd1ae249a5fccb2f8d0cb5968b45593c2b86ee4ffb130bd64",
+      "after_sha256": "babde8a95999fc1c5623542a78c56bdaf617acb18457f399c53976c5db142cf2",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "apps/coverage-ui/app.js",
+      "before_sha256": "84bf8e3ad9ba4f1f872e13bdecfa476cc538e5a89baade1717004dd3f8c4fcec",
+      "after_sha256": "4f5503d08e48ac36cd44e270db68191f043c8a84b6c35f3442fec01f21c0b660",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "apps/coverage-ui/index.html",
+      "before_sha256": "95d0e704266497d78719fa35be34a8888826483914e98c8f5c860fdafa4deaa5",
+      "after_sha256": "cbd0b3e5dc331009ef9fb4e569071e2ed28a51e93c9baae62abf2d016642f8ef",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "apps/coverage-ui/style.css",
+      "before_sha256": "5e61e0146bfe811c09e6947cd0abc41bc08c3f870810c2c1db3cb103e638ad07",
+      "after_sha256": "8768c3880e58024a4cd71b03c2b8be5d0a26fd5137d9f6b7c61edfc43fe25889",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "apps/coverage-ui/tracks.json",
+      "before_sha256": "1362933ce1061b31699bbc3e77ee690fe4f233992e6420de254dd3fe05c32283",
+      "after_sha256": "b3d9110880960e413854cb530940d263f2485bcfc2893f55e897ff183839fdd6",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "bba3dfcfcc41631359c2c943504bdb712cfa8e6a9ac437f54c473083dc2f0dda",
+      "after_sha256": "b109c2770bc1317de73772505469eb78f4215565747504f552b02bd008210878",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "research/runtime/coverage-ui-lan-validation-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "5bab49be7b0f51754f6005cc90ad513f5c3e92c0e30b21fdb3ae20442b2be3a0",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "research/runtime/coverage-ui-native-rendering-validation-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "0d3a9e8812f0796bf8d8841182924039e61de2893b8b4aca3a91f74cdb7055dc",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "research/runtime/coverage/README.md",
+      "before_sha256": "8968edc04fce79fb859be39d792aba0fabef18c7cba3f195738d32ac600ada8c",
+      "after_sha256": "242ab9be2ef885fde2a460967492e15e424fb3f162ec732c213a122444b36051",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "766c18e598da1eedb0c7029f239dd8654a1ed533135c5755043afa9683e64452",
+      "after_sha256": "c7656bfeb6a337d8be10a3500f8ee981387fabc075525d2c5fd8e7d15861c7dc",
+      "receipts": [],
+      "self_accounting_database": true
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-execution-claims-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "c5de9f66622a60c04dd09f3da93f846b96a09b428e5064348aa75c4f496a1294",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "research/runtime/coverage/execution-claims-validation-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "1e57255173e0e3c496cd6d367bfcf36fd470845f27e19df35efc259db19ef681",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "6706af7c3c5ceb9997b1659afdd7cc20a356cba4896abb9a47eacc5c42368d09",
+      "after_sha256": "c0a0d60abe6e6a03abbbefbb92daa6e6f5f32afd1def71d408698a2e5c6fd282",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "research/runtime/coverage/source-index-execution-claims-commit-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "9fba380f2af72db67860b16827421318d1f8220ee1dd4187b141222d4c042985",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "research/runtime/coverage/summary-execution-claims-commit-20261008.md",
+      "before_sha256": null,
+      "after_sha256": "978129517c3322626412e36c9f89ea5cb8e1dc8582132adfe11110282d141865",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "tests/test-coverage-gate.py",
+      "before_sha256": "cca0ffd65cccd2013cba1b34172c087202c05153c4ce36468df8305cb892c65f",
+      "after_sha256": "e8eb63208aba77ec05d328a06403821d28a12b4c0b126ee234e80b2bbde93bbe",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "tests/test-coverage-ui-browser.py",
+      "before_sha256": "04d7b70e2c370afaeff3e9f62d55c7e9194b1909f300678ca02e0cd008989d2e",
+      "after_sha256": "98f6eb379ddf4e4c8ab40815eb8ccab02ec2506806c5808b6f0133a85472df2e",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "tests/test-coverage-ui.py",
+      "before_sha256": "1b8406a7b0cce8239ed3de6b3c5367e6d7e613ccb0652937c1f421557968a164",
+      "after_sha256": "8ce5cb8ed282cf88d1bf856308de2364ca5c701f54ee2ead1646f1141e2d37f1",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "tests/test-re-coverage.py",
+      "before_sha256": "399655c221f691fb1894cc2fc6da472a5c076ec1cab716ca6be18f366908efdf",
+      "after_sha256": "284872049be59ab00e15540994b8be816916f384a959b0d4de73948b3b8a176b",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "tools/coverage_audit.py",
+      "before_sha256": "d1026d89046383f146a0a78eb3413e15448173fb4168b9f6a9a260b16a6f4b6a",
+      "after_sha256": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "tools/coverage_claims.py",
+      "before_sha256": null,
+      "after_sha256": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "tools/coverage_gate.py",
+      "before_sha256": "1c474eecb267f4368df128fa2abc23d0f02bff6f1a617aeaf5a795fd92d1acd2",
+      "after_sha256": "6ac2c23bccffd41cfb5c9b86bce45f8eeb003231a9b34430766e1193ab008d29",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "tools/coverage_ui.py",
+      "before_sha256": "3c0bc511363eb2fde0a8e075f1b1e9f377a36508fb57b8eb2eefbb49c836f0f2",
+      "after_sha256": "3262e9cf6917c63dbba52712e88986dcc776aeb46963ffa2e6717e9801b54f18",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "tools/draft-coverage-claims.py",
+      "before_sha256": null,
+      "after_sha256": "9be1bfbc2101ce9c33515a61ec9e19738db9705ab93193a38af25fbf3331d942",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "tools/index-coverage-sources.py",
+      "before_sha256": "23cbf38c44eac4fc9971b62e813632450793b13609ab8395c428d3f696d2a815",
+      "after_sha256": "0a86bf63d4c6be04a8f4c7128ab40c0c7406540fcb06ab4766f3ecbe99665aaa",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    },
+    {
+      "path": "tools/serve-coverage-ui.py",
+      "before_sha256": "35d61abdd323ab944c82c7ff92009344af6a18307f0609224862ea19ab330f7d",
+      "after_sha256": "b02fadf94fa6bc8ca5a21953c0dc770d06ea23564a0941043051fa927e3280d5",
+      "receipts": [
+        "coverage-execution-claims-commit-review-20261008"
+      ],
+      "self_accounting_database": false
+    }
+  ],
+  "unresolved_gaps": []
+}

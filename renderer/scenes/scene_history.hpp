@@ -11,6 +11,10 @@ public:
     SceneHistory(GlBlitter&,assets::ResourceManager&,const Image& nativeBackground,SceneLimits limits={});
     void beginFrame(CanvasStamp,const std::vector<SceneDraw>&,bool reset);
     bool drawNext(std::size_t budget);
+    bool drawNext(const SceneBatchBudget&);
+    std::optional<SceneUploadNeed> uploadNeed() const {return scene_.uploadNeed();}
+    void supplyUpload(const SceneUploadNeed&,PreparedSpriteFrame);
+    SceneUploadStats uploadStats() const {return scene_.uploadStats();}
     Image read();
     GpuFrame presentGpu();
     CanvasStamp completed() const { return completed_; }

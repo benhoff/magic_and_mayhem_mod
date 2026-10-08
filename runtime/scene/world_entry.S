@@ -30,6 +30,8 @@ primitive 7
 primitive 8
 primitive 9
 primitive 10
+primitive 11
+primitive 12
 .globl _world_leave
 _world_leave:
     pushfl
@@ -47,3 +49,18 @@ _world_leave:
     popal
     popfl
     jmp *_world_return
+.globl _world_wave_leave
+_world_wave_leave:
+    pushfl
+    pushal
+    movl %esp, %ebx
+    subl $527, %esp
+    andl $-16, %esp
+    fxsave (%esp)
+    cld
+    call _world_wave_complete
+    fxrstor (%esp)
+    movl %ebx, %esp
+    popal
+    popfl
+    jmp *_world_wave_return

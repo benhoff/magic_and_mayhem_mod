@@ -17,3 +17,7 @@
 #define MNM_WORLD_WAVE 3u
 #define MNM_WORLD_QUARTER_DESTINATION 4u
 #define MNM_WORLD_PROJECTED_SHADOW 5u
+
+/* Tagged extension: backend11, no frame/index, five DWORD geometry/channels. */
+#define MNM_WORLD_ADDITIVE_RECT 6u
+#define MNM_WORLD_COLOUR_RECT 7u

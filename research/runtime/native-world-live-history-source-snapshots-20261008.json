@@ -1,0 +1,57 @@
+{
+  "live": {
+    "execution": {
+      "success": true,
+      "source_root": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/world-history-snapshot/run-z2yt1hoy/source",
+      "snapshot_manifest": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/world-history-snapshot/run-z2yt1hoy/source-snapshot.json",
+      "delegated_original_verifier": {
+        "path": "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "sha256": "374c68532b6dc09b797396cb19ae2e753eecc1375ab393d323d0edf8d8c0f564"
+      },
+      "scope": "Frozen source execution with current-workspace freshness reported separately; no silent evidence hash refresh.",
+      "live_reports": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/world-history-snapshot/run-z2yt1hoy/source/working/experiments/scene-observer/run-pm6qsczj/report.json",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/world-history-snapshot/run-z2yt1hoy/source/working/experiments/scene-observer/run-9aj_bylt/report.json"
+      ],
+      "workspace_changed_since_snapshot": [
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_producers_main.cpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "tests/canvas-producers-test.c",
+        "tests/canvas-sequence-test.cpp",
+        "tools/inspect-canvas-producers.py",
+        "tools/test-canvas-producers.py",
+        "tools/test-native-canvas-producers.py"
+      ]
+    },
+    "snapshot_manifest_sha256": "31a5c654926dd663b4e60b0fe11b43dd0d581d5f302a4ade4e4123a94552c8cc"
+  },
+  "synthetic": {
+    "execution": {
+      "success": true,
+      "source_root": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/world-history-snapshot/run-v3kkqxk3/source",
+      "snapshot_manifest": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/world-history-snapshot/run-v3kkqxk3/source-snapshot.json",
+      "delegated_original_verifier": {
+        "path": "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "sha256": "374c68532b6dc09b797396cb19ae2e753eecc1375ab393d323d0edf8d8c0f564"
+      },
+      "scope": "Frozen source execution with current-workspace freshness reported separately; no silent evidence hash refresh.",
+      "synthetic_report": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/world-history-snapshot/run-v3kkqxk3/source/working/tests/world-live-history/run-942gw63w/report.json",
+      "workspace_changed_since_snapshot": [
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_producers_main.cpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "tests/canvas-sequence-test.cpp",
+        "tools/test-native-canvas-producers.py"
+      ]
+    },
+    "snapshot_manifest_sha256": "31a5c654926dd663b4e60b0fe11b43dd0d581d5f302a4ade4e4123a94552c8cc"
+  }
+}

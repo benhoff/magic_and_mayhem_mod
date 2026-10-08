@@ -1,0 +1,52 @@
+{
+  "success": true,
+  "scope": "Static forensic preservation of historical handoff/bypass failures and early source-drift limitation. No current execution claim; output identities and any recorded original source hashes remain unchanged.",
+  "sources": {
+    "tools/test-world-producer-handoff.py": "75082f8663697ec24704198df4ab3cd04a62c1ce017abd2773a7c79c5b7b7acc"
+  },
+  "results": [
+    {
+      "path": "working/world-producer-handoff-20261008/probe1/live-report.json",
+      "sha256": "de06b44e40d5fb7016f4b39a910716d28bab25ed7f026b648d7118a00c52d227",
+      "success": false,
+      "error": "std::bad_alloc",
+      "sources_stable": null
+    },
+    {
+      "path": "working/world-producer-handoff-20261008/probe2/live-report.json",
+      "sha256": "70dfea024af32e64bb7dbf3a5e77557374f08e2b5b94d79b1a67b56e14d09fe3",
+      "success": false,
+      "error": "Scene displacement samples outside canvas",
+      "sources_stable": null
+    },
+    {
+      "path": "working/tests/world-producer-handoff/run-_lrs57vz/report.json",
+      "sha256": "841b388c87b8707b705a0af6e9022539e042b4ee9840939b031a30df602792f7",
+      "success": false,
+      "error": null,
+      "sources_stable": false
+    },
+    {
+      "path": "working/tests/canvas-producers/run-bzwplzcf/capture/canvas-producers.bin",
+      "sha256": "af147cc10f09a694124ab2ecaf54b53e8b520fe2c70982fed6106e9aa76fdc4a"
+    },
+    {
+      "path": "working/experiments/scene-observer/run-kyc7ytga/native-producers/live-report.json",
+      "sha256": "340564c78158332a09a9a84231c3a17e3cbe0f56618455556402ccf6b253314b",
+      "success": false,
+      "error": "Malformed native World bypass request",
+      "sources_stable": null
+    },
+    {
+      "path": "working/world-producer-handoff-20261008/live-bypass.log",
+      "sha256": "ba7fad8e97dc1a4fc6163493cf71d38c333a14262050f3c789ecd54ecc97d404"
+    }
+  ],
+  "findings": [
+    "Temporary asset-store ownership caused first handoff allocation failure; fixed native owned store lifetime.",
+    "Rejected original horizontal distortion requests must not become native GPU draws.",
+    "Initial synthetic native-bypass target selected black instead of generic tag; tag13/14 now match actual generic sites.",
+    "Future queue16 bypass request must wait while native processes queues1..15; first attempt refused before writeback.",
+    "Early complete offline equality remains a historical result where later source edits caused end-of-run drift; never refresh its recorded hashes."
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "success": true,
+  "scope": "Static retained incomplete-limit/provenance diagnostics only. Native success and checked replies do not satisfy the requested eight-call capture limit; these runs are not current live replacement evidence.",
+  "sources": {},
+  "live_replacement": false,
+  "attempts": [
+    {
+      "experiment": "working/experiments/scene-observer/run-mn2z3zwu",
+      "native_success": true,
+      "requested_bypasses": 8,
+      "completed_bypasses": 3,
+      "artifacts": [
+        {
+          "path": "working/experiments/scene-observer/run-mn2z3zwu/native-producers/live-report.json",
+          "sha256": "a7bcdca412760a9cafb94b7ba34af5e38b026da70077f444bb7a2631dd88236f"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-mn2z3zwu/capture/world-bypass-0001.reply",
+          "sha256": "d8eb6dd1f20d303ee12d9d77b10e6a21ec8337b97041620703967693e4f7d8a4"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-mn2z3zwu/capture/world-bypass-0001.request",
+          "sha256": "36da5cfc474fb87bc24c0b8f4cda3009591eda5cccf3c7d1cc09eb5a4d9b8968"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-mn2z3zwu/capture/world-bypass-0002.reply",
+          "sha256": "14d49c2c482bf4ece982e9840731a6072d876b72e308ad8bcabda686b9ac8fdc"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-mn2z3zwu/capture/world-bypass-0002.request",
+          "sha256": "592bd6e8ebf756e43d14031bcd8d29cf834ab025ac72ddaeb86605a0a16c956a"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-mn2z3zwu/capture/world-bypass-0003.reply",
+          "sha256": "3f69336b7d64ad8e1169badc71bd336d333d76091a06c75979994592a88b0c0f"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-mn2z3zwu/capture/world-bypass-0003.request",
+          "sha256": "440ae7fd3e9121a5142435a64badac0211e78b4d04b1335d7e1dfd20a58a486c"
+        }
+      ],
+      "limitation": "Old frozen executable differed from current sprite header/atlas source; provenance not eligible"
+    },
+    {
+      "experiment": "working/experiments/scene-observer/run-0szxt6a9",
+      "native_success": true,
+      "requested_bypasses": 8,
+      "completed_bypasses": 3,
+      "artifacts": [
+        {
+          "path": "working/experiments/scene-observer/run-0szxt6a9/native-producers/live-report.json",
+          "sha256": "f229768de8eb17acba37791bfa617b8096c6d0551093aa5a147768def11a7084"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-0szxt6a9/capture/world-bypass-0001.reply",
+          "sha256": "127540ee6feb5954c0ec147927e9d2492e5b84b293e33ef99af55b615d2763af"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-0szxt6a9/capture/world-bypass-0001.request",
+          "sha256": "7d533a6929db8ece14989a8bc2b1fa59f0d58f5ee9bb12b4c6b7abbfd95fd93e"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-0szxt6a9/capture/world-bypass-0002.reply",
+          "sha256": "1d4a188eb57f2516ea022eccbb843b1bbf2cf56086eea36b7079d973057875f7"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-0szxt6a9/capture/world-bypass-0002.request",
+          "sha256": "42d400ab701fb4a6a8c8fe1952b0cc335ae33a0b7a2be271aa5e305f965abe00"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-0szxt6a9/capture/world-bypass-0003.reply",
+          "sha256": "bdd440b95c38966f25f122978b0f4df7338729bfb83b3b0826a729a6039982fc"
+        },
+        {
+          "path": "working/experiments/scene-observer/run-0szxt6a9/capture/world-bypass-0003.request",
+          "sha256": "2c861cc667264f19452d293f65ec10e8009fb887b06d51c3df02de35a98224a2"
+        }
+      ],
+      "limitation": "Verified current executable, but only three eligible draws appeared in queue16; capture driver requires exactly requested count"
+    }
+  ]
+}

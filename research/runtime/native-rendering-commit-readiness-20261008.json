@@ -1,0 +1,649 @@
+{
+  "scope": "First-commit reconciliation of new native rendering behaviors whose earlier milestones lack current source/scope proof. Preserve historical evidence and stages explicitly; no result rewrite or scientific failure claim. Already committed historical statuses are unchanged. Native preparation/atlas/diagnostic and kind8 current executions are accounted separately.",
+  "base": "63f32b1969a576f90a929167bd3b30c1f610dd28",
+  "register_before_sha256": "f1ceaf8031e4285ecfd91d924653a885b958c6f08dbc62fecc1c2128d773b6b5",
+  "behaviors": [
+    {
+      "behavior": "RS.canvas-create-lock",
+      "historical_status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RS.canvas-startup.static-20261008",
+        "RS.canvas-startup.live-20261008",
+        "RS.canvas-startup.forwarding-20261008",
+        "RS.canvas-startup.live-bound-20261008",
+        "RS.world-startup-queues.integrated-20261008",
+        "RS.startup-sequence.live-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.world-startup-queues.integrated-20261008",
+            "RS.startup-sequence.live-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale",
+            "unbound"
+          ]
+        },
+        "comparison": {
+          "state": "none",
+          "evidence": []
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.world-startup-queues.integrated-20261008",
+            "RS.startup-sequence.live-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale",
+            "unbound"
+          ]
+        },
+        "replacement": {
+          "state": "none",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "behavior": "RS.canvas-bind-clip",
+      "historical_status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RS.canvas-startup.static-20261008",
+        "RS.canvas-startup.live-20261008",
+        "RS.canvas-startup.forwarding-20261008",
+        "RS.canvas-startup.live-bound-20261008",
+        "RS.world-startup-queues.integrated-20261008",
+        "RS.startup-sequence.live-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.world-startup-queues.integrated-20261008",
+            "RS.startup-sequence.live-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale",
+            "unbound"
+          ]
+        },
+        "comparison": {
+          "state": "none",
+          "evidence": []
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.world-startup-queues.integrated-20261008",
+            "RS.startup-sequence.live-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale",
+            "unbound"
+          ]
+        },
+        "replacement": {
+          "state": "none",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "behavior": "RS.canvas-startup-clear",
+      "historical_status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RS.canvas-startup.static-20261008",
+        "RS.canvas-startup.live-20261008",
+        "RS.canvas-startup.forwarding-20261008",
+        "RS.canvas-startup.live-bound-20261008",
+        "RS.world-startup-queues.integrated-20261008",
+        "RS.startup-sequence.live-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.world-startup-queues.integrated-20261008",
+            "RS.startup-sequence.live-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale",
+            "unbound"
+          ]
+        },
+        "comparison": {
+          "state": "none",
+          "evidence": []
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.world-startup-queues.integrated-20261008",
+            "RS.startup-sequence.live-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale",
+            "unbound"
+          ]
+        },
+        "replacement": {
+          "state": "none",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "behavior": "RS.canvas-preworld-reuse",
+      "historical_status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RS.canvas-startup.static-20261008",
+        "RS.canvas-startup.live-20261008",
+        "RS.canvas-startup.forwarding-20261008",
+        "RS.canvas-startup.live-bound-20261008",
+        "RS.world-startup-queues.integrated-20261008",
+        "RS.startup-sequence.live-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [],
+          "limitations": [
+            "scope_changed",
+            "unbound"
+          ]
+        },
+        "comparison": {
+          "state": "none",
+          "evidence": []
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [],
+          "limitations": [
+            "scope_changed",
+            "unbound"
+          ]
+        },
+        "replacement": {
+          "state": "none",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "behavior": "RS.world-startup-queues",
+      "historical_status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RS.world-startup-queues.live-20261008",
+        "RS.world-startup-queues.forwarding-20261008",
+        "RS.world-startup-queues.integrated-20261008",
+        "RS.startup-sequence.live-20261008",
+        "RS.world-startup-queues.replay-forwarding-20261008",
+        "RS.world-kind-diagnostic.map2-20261008",
+        "RS.world-kind-diagnostic.map1-live-20261008",
+        "RS.world-kind-diagnostic.map1-items-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.startup-sequence.live-20261008",
+            "RS.world-startup-queues.replay-forwarding-20261008",
+            "RS.world-kind-diagnostic.map2-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale",
+            "unbound"
+          ]
+        },
+        "comparison": {
+          "state": "none",
+          "evidence": []
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.startup-sequence.live-20261008"
+          ],
+          "limitations": [
+            "scenario_unbound",
+            "scope_changed",
+            "stale",
+            "unbound"
+          ]
+        },
+        "replacement": {
+          "state": "none",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "behavior": "RS.world-startup-wave",
+      "historical_status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RS.startup-sequence.live-20261008",
+        "RS.world-startup-sequence.original-20261008",
+        "NR.world-startup-sequence.native-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.startup-sequence.live-20261008",
+            "RS.world-startup-sequence.original-20261008",
+            "NR.world-startup-sequence.native-20261008"
+          ],
+          "limitations": [
+            "stale"
+          ]
+        },
+        "comparison": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.world-startup-sequence.original-20261008"
+          ],
+          "limitations": [
+            "stale"
+          ]
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.startup-sequence.live-20261008"
+          ],
+          "limitations": [
+            "stale"
+          ]
+        },
+        "replacement": {
+          "state": "none",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "behavior": "NR.world-startup-sequence",
+      "historical_status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.world-startup-sequence.native-20261008",
+        "RS.world-startup-sequence.original-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "NR.world-startup-sequence.native-20261008",
+            "RS.world-startup-sequence.original-20261008"
+          ],
+          "limitations": [
+            "stale"
+          ]
+        },
+        "comparison": {
+          "state": "none",
+          "evidence": []
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "NR.world-startup-sequence.native-20261008"
+          ],
+          "limitations": [
+            "stale"
+          ]
+        },
+        "replacement": {
+          "state": "none",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "behavior": "RS.world-startup-palette",
+      "historical_status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RS.startup-sequence.live-20261008",
+        "RS.world-startup-palette.negative-20261008",
+        "RS.world-startup-sequence.original-20261008",
+        "NR.world-startup-sequence.native-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.startup-sequence.live-20261008",
+            "RS.world-startup-sequence.original-20261008",
+            "NR.world-startup-sequence.native-20261008"
+          ],
+          "limitations": [
+            "stale",
+            "unbound"
+          ]
+        },
+        "comparison": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.world-startup-sequence.original-20261008"
+          ],
+          "limitations": [
+            "stale",
+            "unbound"
+          ]
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.startup-sequence.live-20261008"
+          ],
+          "limitations": [
+            "stale"
+          ]
+        },
+        "replacement": {
+          "state": "none",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "behavior": "RS.canvas-producer-sequence",
+      "historical_status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "RS.canvas-producers.forwarding-20261008",
+        "NR.canvas-producers.live-20261008",
+        "RS.canvas-producers.negative-index-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [],
+          "limitations": [
+            "scope_changed"
+          ]
+        },
+        "comparison": {
+          "state": "none",
+          "evidence": []
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [],
+          "limitations": [
+            "scope_changed"
+          ]
+        },
+        "replacement": {
+          "state": "none",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "behavior": "NR.canvas-producer-replay",
+      "historical_status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.canvas-producers.comparison-20261008",
+        "NR.canvas-producers.headless-20261008",
+        "NR.canvas-producers.live-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [],
+          "limitations": [
+            "scope_changed"
+          ]
+        },
+        "comparison": {
+          "state": "none",
+          "evidence": []
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [],
+          "limitations": [
+            "scope_changed"
+          ]
+        },
+        "replacement": {
+          "state": "none",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "behavior": "NR.world-producer-handoff",
+      "historical_status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.world-producer-handoff.live-20261008",
+        "NR.world-producer-handoff.original-20261008",
+        "NR.world-producer-handoff.headless-20261008",
+        "RS.world-producer-bypass.abi-20261008",
+        "NR.world-producer-handoff.negatives-20261008",
+        "NR.world-producer-handoff.original-gpu-20261008",
+        "NR.world-producer-handoff.headless-gpu-20261008",
+        "RS.world-producer-bypass.abi-gpu-20261008",
+        "NR.world-producer-handoff.limit-negatives-gpu-reviewed-20261008",
+        "NR.world-producer-handoff.live-gpu-20261008",
+        "NR.world-producer-handoff.original-gpu-current-20261008",
+        "NR.world-producer-handoff.headless-gpu-current-20261008",
+        "RS.world-producer-bypass.live-gpu-current-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "NR.world-producer-handoff.original-gpu-20261008",
+            "NR.world-producer-handoff.headless-gpu-20261008",
+            "RS.world-producer-bypass.abi-gpu-20261008",
+            "NR.world-producer-handoff.live-gpu-20261008",
+            "NR.world-producer-handoff.original-gpu-current-20261008",
+            "NR.world-producer-handoff.headless-gpu-current-20261008",
+            "RS.world-producer-bypass.live-gpu-current-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale"
+          ]
+        },
+        "comparison": {
+          "state": "none",
+          "evidence": []
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "NR.world-producer-handoff.live-gpu-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale"
+          ]
+        },
+        "replacement": {
+          "state": "none",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "behavior": "RS.world-producer-bypass",
+      "historical_status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "scoped_live"
+      },
+      "evidence": [
+        "RS.world-producer-bypass.abi-20261008",
+        "RS.world-producer-bypass.live-20261008",
+        "NR.world-producer-handoff.original-20261008",
+        "NR.world-producer-handoff.negatives-20261008",
+        "NR.world-producer-handoff.original-gpu-20261008",
+        "NR.world-producer-handoff.headless-gpu-20261008",
+        "RS.world-producer-bypass.abi-gpu-20261008",
+        "NR.world-producer-handoff.limit-negatives-gpu-reviewed-20261008",
+        "NR.world-producer-handoff.live-gpu-20261008",
+        "NR.world-producer-handoff.original-gpu-current-20261008",
+        "NR.world-producer-handoff.headless-gpu-current-20261008",
+        "RS.world-producer-bypass.live-gpu-current-20261008"
+      ],
+      "current_validation": {
+        "implementation": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "NR.world-producer-handoff.original-gpu-20261008",
+            "NR.world-producer-handoff.headless-gpu-20261008",
+            "RS.world-producer-bypass.abi-gpu-20261008",
+            "NR.world-producer-handoff.live-gpu-20261008",
+            "NR.world-producer-handoff.original-gpu-current-20261008",
+            "NR.world-producer-handoff.headless-gpu-current-20261008",
+            "RS.world-producer-bypass.live-gpu-current-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale"
+          ]
+        },
+        "comparison": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "NR.world-producer-handoff.original-gpu-20261008",
+            "NR.world-producer-handoff.original-gpu-current-20261008",
+            "RS.world-producer-bypass.live-gpu-current-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale"
+          ]
+        },
+        "integration": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.world-producer-bypass.live-gpu-current-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale"
+          ]
+        },
+        "replacement": {
+          "state": "pending",
+          "evidence": [],
+          "historical_evidence": [
+            "RS.world-producer-bypass.live-gpu-current-20261008"
+          ],
+          "limitations": [
+            "scope_changed",
+            "stale"
+          ]
+        }
+      }
+    }
+  ]
+}

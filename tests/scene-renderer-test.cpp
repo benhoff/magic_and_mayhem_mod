@@ -52,6 +52,12 @@ int main(int argc,char** argv)try{
         require(scene.read().pixels==expected.pixels,"Execution retry changed bitmap pixels");
     }
     require(renderer.stats().surfaces==0 && renderer.stats().pixels==0,"Scene destruction leaked resources");
+    {render::SceneLimits limits;limits.cache.residentOnly=true;render::SceneRenderer scene(renderer,resources,background,limits);
+        scene.draw({});resources.unload(body);const auto loads=resources.stats().loads;
+        rejected([&]{scene.beginFrame({{body,0,2,0}});});
+        require(resources.stats().loads==loads&&scene.read().pixels==background.pixels,"Resident-only scene reloaded missing CPU data or lost its completed frame");
+        resources.adopt(assets::prepareResource(resources.request(body)));scene.draw({{body,0,2,0}});
+        require(scene.read().pixels[7]==0xf800,"Prepared scene pixels differ");}
     // Second-surface construction failure frees the successfully created first.
     std::vector<render::SurfaceId> external;for(unsigned i=0;i<63;++i)external.push_back(renderer.create({1,1,{0}},render::spriteFormat));
     rejected([&]{render::SceneRenderer scene(renderer,resources,background);});require(renderer.stats().surfaces==63,"Scene constructor leaked first surface");

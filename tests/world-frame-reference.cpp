@@ -16,7 +16,38 @@ int main(int argc,char** argv)try{
     std::size_t at=80;
     for(unsigned i=0;i<u32(input,36);++i){
         const auto size=u32(input,at),op=u32(input,at+4),n=u32(input,at+32),indexed=u32(input,at+36),payload=u32(input,at+40);
-        if(size!=64+n+payload||n<40||at+size>input.size()||op>5)throw std::runtime_error("World raster record");
+        if(size!=64+n+payload||(op<6&&n<40)||at+size>input.size()||op>7)throw std::runtime_error("World raster record");
+        if(op==7){
+            if(n||indexed||payload<14||u32(input,at+52)!=12)throw std::runtime_error("Colour rectangle record");
+            const auto w=u32(input,at+64),h=u32(input,at+68),mode=u32(input,at+72);
+            if(!w||!h||w>64||h>64||mode>3||payload!=12+w*h*2)throw std::runtime_error("Colour rectangle extent");
+            std::vector<std::uint16_t> rgb(w*h*3);for(unsigned j=0;j<w*h;++j){const auto p=input.at(at+76+j*2)|unsigned(input.at(at+77+j*2))<<8;rgb[j*3]=p>>11;rgb[j*3+1]=(p>>5)&63;rgb[j*3+2]=p&31;}
+            unsigned char object[80]={};const std::uint32_t fields[]={mode,w,h};std::memcpy(object+28,fields,12);const auto pointer=std::uint32_t(reinterpret_cast<std::uintptr_t>(rgb.data()));std::memcpy(object+46,&pointer,4);
+            for(const auto& pair:std::vector<std::pair<std::uintptr_t,unsigned>>{{0x6e0008,16},{0x6cbb6c,20},{0x6a49b8,24},{0x656618,28}})global(pair.first,u32(input,at+pair.second));
+            using Colour=unsigned (__attribute__((thiscall)) *)(void*,int,int);const auto x=std::int32_t(u32(input,at+8)),y=std::int32_t(u32(input,at+12));
+            const auto prior=pixels;reinterpret_cast<Colour>(0x54ab60)(object,x,y);const auto expected=pixels;
+            bool uniform=true;for(unsigned j=1;j<w*h;++j)if(std::memcmp(rgb.data(),rgb.data()+j*3,6))uniform=false;
+            if(uniform){pixels=prior;std::memcpy(object+40,rgb.data(),6);const std::uint32_t zero=0;std::memcpy(object+46,&zero,4);reinterpret_cast<Colour>(0x54ab60)(object,x,y);if(pixels!=expected)throw std::runtime_error("Uniform/plane colour source differs");}
+            at+=size;continue;
+        }
+        if(op==6){
+            if(n||indexed||payload!=20||u32(input,at+52)!=11)throw std::runtime_error("Additive record");
+            std::uint32_t object[18]={};object[0]=0x5c7420;
+            for(unsigned j=0;j<5;++j)object[12+j]=u32(input,at+64+j*4);
+            if(!object[12]||object[12]>2048||!object[13]||object[13]>2048)throw std::runtime_error("Additive extent");
+            for(const auto& pair:std::vector<std::pair<std::uintptr_t,unsigned>>{{0x6e0008,16},{0x6cbb6c,20},{0x6a49b8,24},{0x656618,28}})global(pair.first,u32(input,at+pair.second));
+            using Additive=unsigned (__attribute__((thiscall)) *)(void*,int,int);
+            const auto prior=pixels;reinterpret_cast<Additive>(0x54ab00)(object,std::int32_t(u32(input,at+8)),std::int32_t(u32(input,at+12)));
+            if(reinterpret_cast<unsigned char*>(object)[0x44]!=1)throw std::runtime_error("Original drawn side effect missing");
+            // Independently exercise the second additive wrapper's owner/player gates.
+            const auto expected=pixels;std::uint32_t gated[26]={},owner[58]={};for(unsigned j=0;j<5;++j)gated[13+j]=object[12+j];
+            using Gated=unsigned (__attribute__((thiscall)) *)(void*,int,int);const auto x=std::int32_t(u32(input,at+8)),y=std::int32_t(u32(input,at+12));
+            pixels=prior;reinterpret_cast<Gated>(0x546540)(gated,x,y);if(pixels!=expected)throw std::runtime_error("Owner-free additive wrapper differs");
+            gated[24]=reinterpret_cast<std::uintptr_t>(owner);owner[57]=1;
+            for(int player:{-1,0,8}){global(0x644520,player);pixels=prior;reinterpret_cast<Gated>(0x546540)(gated,x,y);if(pixels!=prior)throw std::runtime_error("Disabled owner/player additive gate drew pixels");}
+            global(0x644520,0);owner[9]=1;pixels=prior;reinterpret_cast<Gated>(0x546540)(gated,x,y);if(pixels!=expected)throw std::runtime_error("Active owner/player additive wrapper differs");
+            at+=size;continue;
+        }
         Bytes frame(input.begin()+at+64,input.begin()+at+64+n);std::vector<std::uint32_t> palette(3+128,0);
         if(indexed&&op!=3){if(payload!=512)throw std::runtime_error("Palette extent");std::memcpy(palette.data()+3,input.data()+at+64+n,512);const auto pointer=std::uint32_t(reinterpret_cast<std::uintptr_t>(palette.data()));std::memcpy(frame.data()+28,&pointer,4);}
         else if(!indexed){std::uint32_t marker=UINT32_MAX;std::memcpy(frame.data()+28,&marker,4);}
@@ -35,6 +66,12 @@ int main(int argc,char** argv)try{
         }else if(!indexed){using Direct=unsigned (*)(void*,int,int);reinterpret_cast<Direct>(0x597086)(frame.data(),x,y);}
         else reinterpret_cast<Draw>(op==0?0x57e1b0:op==1?0x57ec90:op==2?0x57f5f0:0x57f0f0)(frame.data(),x,y,0,0);
         at+=size;
+    }
+    {
+        unsigned char flagObject[80]={};const auto prior=pixels;
+        using Noop=unsigned (__attribute__((thiscall)) *)(void*,int,int);reinterpret_cast<Noop>(0x54ac00)(flagObject,-123,456);
+        if(pixels!=prior||flagObject[64]!=1)throw std::runtime_error("Original flag-only draw changed pixels or missed flag");
+        for(unsigned i=0;i<80;++i)if(i!=64&&flagObject[i])throw std::runtime_error("Original flag-only draw changed other fields");
     }
     if(at!=input.size())throw std::runtime_error("Trailing raster bytes");
     save(argv[3],pixels);std::cout<<"Independent original World raster canvas complete\n";return 0;

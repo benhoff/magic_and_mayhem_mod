@@ -1,0 +1,59 @@
+{
+  "success": true,
+  "sources": {
+    "tools/diagnose-native-history-gap.py": "02f30055309aa334b4d0390acef3e81efaccad03a5795d97297e6a22c2d33980",
+    "tests/world-frame-reference.cpp": "cbfc818cdcf536b01593f4d039546f7687a3a44a63ef5a1590681775fadeb1a7",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-world-frames.py": "a023070c8a8656b1a787d1cb3473e3364f16e39b9c5c562336701ab4945e9706",
+    "protocols/include/mnm/world_frame_v1.h": "f96ec37f282f145480f57f36cc0d5414200e52182c739e6b642bd6b75c4d0c79"
+  },
+  "inputs": {
+    "working/experiments/scene-observer/run-iquaf367/world-1.bin": "452ae021229b1ea340550428e05fc1eb09359ed642c777973fc1e7fb3043fb49",
+    "working/experiments/scene-observer/run-iquaf367/world-1.native.565": "57d8f31fcfb25e2c7924bc41cfbaaccf75d7ff6eab5a7fa19fcaa95fd526311a",
+    "working/experiments/scene-observer/run-iquaf367/world-1.original.565": "3f090c52f1b234059addb184503f8bed4e1487060cfd85ca670bc595d4667869"
+  },
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "scope": "Diagnostic first-canvas original replay from native zero versus retained native output and actual original output; no initialization reconstruction or whole-prefix equivalence.",
+  "entry_anchors": {
+    "0x57e1b0": "83ec1453558bc156"
+  },
+  "native_vs_original_zero": {
+    "mismatches": 0,
+    "samples": []
+  },
+  "original_zero_vs_live": {
+    "mismatches": 2,
+    "samples": [
+      [
+        254572,
+        0,
+        22752
+      ],
+      [
+        257764,
+        0,
+        43685
+      ]
+    ]
+  },
+  "native_vs_live": {
+    "mismatches": 2,
+    "samples": [
+      [
+        254572,
+        0,
+        22752
+      ],
+      [
+        257764,
+        0,
+        43685
+      ]
+    ]
+  },
+  "original_zero_sha256": "57d8f31fcfb25e2c7924bc41cfbaaccf75d7ff6eab5a7fa19fcaa95fd526311a",
+  "reference_sha256": "2f2c6a27a7cf9001637394a6de83529a2b2b3525a717b695bfda598eee90d551",
+  "sources_stable": true,
+  "original_pixels_used_as_native_inputs": false,
+  "original_manifest_verified_before_after": true
+}

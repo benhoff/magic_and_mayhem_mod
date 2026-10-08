@@ -17,6 +17,7 @@ struct SceneSnapshot {
 };
 SceneSnapshot decodeSceneSnapshot(const QByteArray&);
 QByteArray frameIdentity(const QByteArray&,bool indexed);
+QByteArray spriteVisualIdentity(const assets::Sprite&,const assets::SpriteFrame&);
 struct BoundFrame { assets::ResourceId resource; std::size_t frame=0; };
 // Explicit pinned candidate files. Original pointers never become ResourceIds.
 class SnapshotResources final {

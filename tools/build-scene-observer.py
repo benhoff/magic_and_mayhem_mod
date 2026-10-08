@@ -17,14 +17,14 @@ def build(selftest=False):
     output = ROOT/('working/build/scene-observer-selftest' if selftest else 'working/build/scene-observer')
     output.mkdir(parents=True, exist_ok=True)
     definition = output/'kernel32.def'
-    imports={**module.IMPORTS,'CreateFileMappingA':24,'MapViewOfFile':20,'GetFileSize':8,'UnmapViewOfFile':4}
+    imports={**module.IMPORTS,'CreateFileMappingA':24,'MapViewOfFile':20,'GetFileSize':8,'UnmapViewOfFile':4,'ReadFile':20,'Sleep':4,'GetTickCount':0}
     definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{s}\n' for n,s in imports.items()))
     subprocess.run(['llvm-dlltool','-m','i386','-D','KERNEL32.dll','-d',str(definition),'-l',str(output/'kernel32.lib'),'--kill-at'],check=True)
     flags = ['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin',
              '-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror']
     if selftest:
         flags += ['-DMNM_SCENE_SELFTEST']
-    names=('observer.c','entry.S','world_trace.c','world_entry.S','world_stream.c','world_lifetime.c')
+    names=('observer.c','entry.S','world_trace.c','world_entry.S','world_stream.c','world_lifetime.c','canvas_startup.c','canvas_startup.S','startup_queue.c','kind8_observer.c','canvas_producers.c','canvas_producers.S')
     for name in names:
         subprocess.run([*flags,'-c',str(ROOT/'runtime/scene'/name),'-o',str(output/(name+'.obj'))],check=True)
     dll = output/'MnmScene.dll'
@@ -34,7 +34,7 @@ def build(selftest=False):
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no',
                     '/timestamp:0',f'/out:{dll}',*[str(output/(name+'.obj')) for name in names],str(output/'kernel32.lib')],check=True)
     paths = [*sorted((ROOT/'runtime/scene').glob('*.[chS]')),ROOT/'runtime/shadow/win32_min.h',
-             ROOT/'protocols/include/mnm/scene_snapshot_v1.h',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',Path(__file__).resolve()]
+             ROOT/'protocols/include/mnm/scene_snapshot_v1.h',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',ROOT/'protocols/include/mnm/world_channel_v2.h',ROOT/'protocols/include/mnm/canvas_producers_v1.h',Path(__file__).resolve()]
     (output/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
         'sources':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}},indent=2)+'\n')
     if selftest:

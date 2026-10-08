@@ -6,6 +6,55 @@ remaining dependencies and complete launcher-mode criteria. This ledger and the
 coverage register retain achieved milestones and their evidence. Current default
 launches retain original drawing through native capture/replay presentation.
 
+## Native World live startup history — 2026-10-08
+
+`NR.world-history-channel` and `NR.world-live-history` connect the async CPU/GPU
+preparation pipeline to retained native `SceneHistory`. The opt-in v2 journal
+preserves every first1..16 original consumer queue with explicit source sequence,
+logical canvas and native zero-reset metadata. Original drawing never waits for
+the viewer. Gaps, missing capture, unsupported work, producer canvas changes and
+incomplete termination refuse the prefix; final ENDED drains queued/pending work.
+
+[Fresh synthetic execution](native-world-live-history-synthetic-20261008.json)
+passes69 native tests and12 actual PE32 producer modes. A separate
+[source-stable installed fixture](native-world-live-history-verified-20261008.json)
+presents all16 first Quick Battle queues and matches7,680,000 original output
+pixels with zero mismatches/drops/superseding. Adaptive pending polling measures
+about3seconds per frame on software OpenGL; hard latency and real-time throughput
+remain pending. A separate strict first-canvas attempt refuses2pixels; independent
+original replay from zero matches native exactly, leaving external producer/init
+coverage as a confirmed output gap with an unresolved exact cause. Retain/reset/resize,
+whole-prefix draining and malformed/source-gap/refusal cases are exercised with
+owned inputs. Installed presentation remains an observed fixed-canvas fixture, not all seeds. No original
+initialization, HUD/input ownership, sustained channel, loading transitions,
+hard driver latency, memory reservation or drawing bypass is inferred.
+See [scope and launch instructions](native-world-live-history.md). Final frozen-source
+normal/verified runs again present16 frames (normal zero readbacks; verified
+7,680,000 exact pixels), and the69-test/12-PE32-mode corpus passes. Independent
+canvas-producer protocol/hook/replay edits occurred during those runs; retained
+hashes remain historical and current workspace promotion is explicitly pending.
+The new behaviors therefore retain partial implementation/no integration rather
+than asserting validation of later concurrent sources.
+
+## Native World CPU asset preparation — 2026-10-08
+
+`AS.resource-preparation` and `NR.world-preparation` introduce owned worker
+preparation and owner-thread adoption. Live catalogue scanning, packet decoding,
+pinned SPR reads/decoding and encoded/visual identity resolution run on one CPU
+worker. GUI adoption reuses that decode; the live scene/cache refuse absent
+residents instead of synchronously loading. Unload invalidates pending binding
+tokens, and close cancels without joining worker I/O or accepting late results.
+One pending packet retains existing channel acknowledgement semantics.
+
+Synthetic preparation/Qt tests cover file deletion before adoption, warm reuse,
+stale/foreign tokens, pins/budgets, held-load GUI heartbeat, cancelled work,
+resident-only rendering and existing refusal/resize/mismatch/cleanup contracts.
+See [ownership, evidence and remaining boundaries](native-world-asset-preparation.md).
+GPU plane conversion/uploads, projected shadow generation, complete GUI scene
+preflight, packet-copy cost, sustained CPU retirement and process RSS reservations
+remain pending. Historical original/live evidence retains its recorded hashes;
+this change does not establish current installed-game speed, initial-canvas
+correctness, consumer bypass or full native rendering.
 
 ## Execution-claim accounting hardening — 2026-10-08
 
@@ -2550,3 +2599,389 @@ checked; there are no missing receipts. See
 from uncommitted performance work and asserts no retrospective gate/execution
 result. Concurrent uncommitted canvas-startup work is excluded from this change
 and its staged census; its owner retains its accounting and validation scope.
+
+
+## Permanent native rendering web focus — 2026-10-08
+
+The local Coverage Atlas now opens on Native rendering and retains it as the
+first sidebar entry (`#view=rendering`). Its refreshed rendering checklist links
+World raster comparison, owned canvas history, continuous shadow presentation,
+capability refusal recovery and selected direct-word bypass. The initial-canvas
+producer/ownership task and authoritative DRAW-01..07 release gates remain
+visible; original World drawing is retained and complete replacement is open.
+Milestones derive independent stages and evidence freshness from the register;
+curated next-task wording requires review as research advances.
+
+`UI05.native-rendering` records 13 semantic/HTTP tests and 27 Chromium interaction
+checks, including restored bookmarks, contract/evidence details, rendering gaps,
+existing coverage views and desktop/mobile layout. Screenshots and results are
+retained under `working/coverage-ui-native-rendering-20261008/browser-v4`. This
+validates only the UI; historical evidence hashes and engine stages are preserved.
+
+Committed history e3d3c69..8e43ed5 was checked against exact parent/current
+receipts with no unresolved file transitions; see
+`coverage/committed-history-native-render-ui-20261008.json`. The reviewed census
+updates only this UI's sources, retaining the prior reviewed entries elsewhere.
+Concurrent uncommitted canvas-startup work remains outside this increment's
+review and validation; its census drift and historical staleness remain visible.
+
+
+## Canvas startup before first World draw — 2026-10-08
+
+The opt-in startup observer now traces selected create/release/lock/bind/clip,
+fill/copy/JPEG and sprite paths before the first World queue. A pinned original
+800×600 Quick Battle map-2 capture records 8,407 events: wrapper `0x6a49e0` is
+created once, receives one initial zero-fill request, is never released during
+the observed prefix, and returns the same pixel pointer on 686 locks. Menu/loading
+work reuses it before World. The final copy, lock, bind and first queue entry share
+the same fingerprint with 365,306 nonzero pixels. There is no selected clear
+between that startup initialization and first World. The initial fill lacks a
+prior lock sample, so pixel completion is not asserted.
+
+`RS.canvas-create-lock`, `RS.canvas-bind-clip`, `RS.canvas-startup-clear` and
+`RS.canvas-preworld-reuse` separate these recovered partial boundaries. The
+existing initial-state behavior keeps its historical comparison and native
+history milestones; this observation advances no equivalence or replacement
+claim. The alternate nonzero `0x6e1f68` path, physical allocation generations,
+complete upstream per-pixel producers, indirect writers, lost-surface/failure
+branches, alternate modes/movies and later transitions remain pending. Native
+rendering receives no original initial pixels and retains its explicit reset policy.
+
+Evidence and reproduction are in [canvas startup](native-world-canvas-startup.md)
+and [diagnostic format](../formats/canvas-startup-diagnostics.md), with immutable
+static/live/synthetic reports `native-world-canvas-startup*-20261008.json`. The
+actual PE32 forwarding fixture checks all twelve entries, nested JPEG/lock call
+relocation, registers/EFLAGS/x87/XMM/LastError, all-entry byte mismatch refusal,
+post-boundary forwarding, and eleven malformed diagnostic refusals. Original
+manifest verification passed before/after captures and disassembly exports.
+Shared observer/build/capture source edits leave older evidence fingerprints
+historical; unrelated subsystem comparisons are not rerun or refreshed.
+
+
+## Opt-in coverage UI IPv4 binding — 2026-10-08
+
+`serve-coverage-ui.py --host 0.0.0.0 --no-open` now binds all IPv4
+interfaces; the default remains127.0.0.1. Numeric IPv4 URL hosts are accepted
+for wildcard binding, while specific binding admits its selected address and
+loopback aliases. Refresh rejects nonmatching origins; arbitrary DNS authorities,
+wrong ports and malformed hosts remain rejected. Registered read-only source
+and research links have no authentication and become reachable with LAN binding.
+
+`UI06.lan-binding` records15 semantic/HTTP tests, including a synthetic wildcard
+listener and LAN headers, and27 actual Chromium checks on a loopback-only server.
+The live wildcard smoke test carrying repository payload was denied by automatic
+approval review pending explicit LAN exposure approval; physical remote-client
+reachability remains untested. Earlier UI05 fingerprints are retained as history.
+No engine status, comparison or replacement stage is advanced. No commits landed
+after8e43ed5; the preceding committed-history review remains applicable.
+
+The existing disabled-trace scene snapshot suite also completed successfully
+(three CTests plus PE32 forwarding and native fixture/admission checks), retained
+as `native-world-canvas-startup-default-regressions-20261008.json`. Subsequent
+concurrent resource edits leave its affected source fingerprints historical.
+The startup observation itself has a separate exact scope/scenario binding and
+captured build provenance in `native-world-canvas-startup-bound-20261008.json`;
+this binds the retained run and does not rerun or refresh old evidence.
+
+Committed-history review covers dd3205a..8e43ed5: 37 exact parent/current file
+transitions have preserved matching receipts, with no missing transitions.
+See `coverage/committed-history-canvas-startup-20261008.json`; this does not assert
+a retrospective gate pass or new execution. The source census acknowledges the
+canvas observer/decoder/forwarding files and explicit dependency links. Concurrent
+UI, asynchronous resource and coverage-tooling edits keep their separate owners,
+receipts and validation boundaries; indexing their current paths alone does not
+validate their changed engine behavior.
+
+### Every bounded startup queue and actual unsupported kinds (2026-10-08)
+
+`RS.world-startup-queues` records raw queue rows before sampling/admission.
+Canvas startup and finite refusal captures automatically journal a prefix and
+require zero skipped queues and interval one; `--startup-queues` extends the
+bounded prefix up to 256 entries. Empty/invalid/unselected entries retain their
+own diagnostics. Allocation or output omissions fail prefix validation.
+
+The new original run retains all first 16 queues and all 21,888 rows. Actual
+observer-unsupported kinds are 20 in queues 3/4, 17 in 5/6 and 16 in 7/8,
+one row per queue. Queue 1 separately refuses wave state (reason 7); kinds are
+reported independently of raster refusal reasons. All raw rows and exact
+queue/sample correlations are retained. The synthetic PE32 run validates
+eight entries, empty/unreadable/over-capacity/unknown-view inputs, all kinds
+0..40 and signed extremes, capture beyond the scene budget, exact cap,
+EAX/LastError forwarding and 13 malformed/missing-prefix refusals.
+
+See `native-world-startup-queues.md`, immutable live/test records dated20261008,
+and `formats/startup-queue-diagnostics.md`. This promotes only the new scoped
+live observation. Original drawing remains active; numeric kinds16/17/20 do not
+establish their raster semantics. Full-frame equivalence/replacement and
+concurrent/reentrant producers remain pending. Prior evidence keeps its source
+hashes; shared observer/build/capture dependency changes leave those results
+historical. Concurrent resource/UI work retains separate accounting.
+
+### Worker sprite planes and GPU admission (2026-10-08)
+
+Native World now requests one worker-owned colour/coverage or projected-shadow
+variant at each ordered GPU cache miss. GUI uploads resume through full-width
+rows with 256 KiB and 32-draw limits plus a cooperative 2 ms elapsed check,
+retaining the previous complete GPU lease. Shape keys cache projected shadows.
+The additional immutable worker decoded store is bounded at 64 resources/128 MiB;
+it does not reserve total RSS. Background creation, preflight, individual driver
+calls and long-session CPU retirement remain pending. See
+[native upload preparation](native-world-upload-preparation.md). Synthetic
+execution, original comparison and live replacement remain separate milestones.
+
+The [new synthetic report](native-world-upload-preparation-20261008.json) records
+69 passing CTests: 1 MiB in 128 ticks at 8192 bytes/tick, independently expected
+pixels, cache-pressure order and warm shape/value reuse. Held worker preparation
+retained the prior GPU frame and delivered 46 heartbeat callbacks/50 ms; close
+completed in 3 ms with zero remaining surfaces. This validates the synthetic
+native policy only. Historical live/original evidence remains unchanged and does
+not establish current-code equivalence or installed-session latency.
+
+The [final progress execution](native-world-upload-preparation-progress-20261008.json)
+again passes all 69 tests after ensuring each tick attempts one step even when
+context setup consumes the time allowance. Tiny 1 microsecond budgets cannot
+strand ready drawing or pending row uploads. Final heartbeat remains 46/50 ms;
+close takes 2 ms. The preceding upload result is retained as historical evidence.
+
+
+### Every completed native startup World canvas (2026-10-08)
+
+`RS.world-startup-wave` recovers selected kinds 16/17/20 and observes the original
+lazy displacement initializer after its first primitive returns.
+`RS.world-startup-palette` corrects the clipped fallback's actual shade-minus127
+palette: only explicit black producers synthesize zero. The first negative
+comparison remains immutable. Effective-mode unsupported kinds and default-policy
+refusals are now reported separately; lifetime diagnostics stop before hashing.
+
+`NR.world-startup-sequence` reproduces every queue in a bounded 16-queue chain
+using native word-zero creation/reset, binding/clip and retained completed native
+pixels. All 16 completed 800×600 canvases match actual original completions and the
+independent original same-zero-state chain: 7,680,000 pixels, zero mismatches. Every
+private original replay initialized from diagnostic before-state also matches.
+Active wave return ABI, synthetic shade-minus127 palette capture, World/history
+regressions and default/startup-mode queue diagnostics pass. No original destination
+pixels are native inputs. See `native-startup-sequence.md` and immutable reports.
+
+Original loading/menu and intervening HUD producers remain unreproduced. Actual
+entry states differ by 365,338 pixels initially and 27,473..27,537 between queues;
+the selected World completions overwrite these differences. Original rendering
+stays active; native integration is headless replay, not live history presentation,
+whole-startup equivalence or bypass. Separate policies and historical statuses
+remain independent; shared-source older evidence remains stale.
+
+## Closed canvas producer replay (2026-10-08)
+
+`RS.canvas-producer-sequence` and `NR.canvas-producer-replay` now have a finite
+original/Qt comparison path from800x600 Quick Battle menus and loading through
+all16 contiguous startup consumer returns. The49 signature-checked hooks
+record create/release/bind/clip/fill/copy, encoded JPEG/BMP/PCX, tinted fonts,
+selected raster/blend/wave/shadow requests, panels, packed-word transition fade,
+minimap source-cell colors/visibility and source-derived marker/outline points.
+The live run matched all1,062 sampled completions /474,236,912 RGB565 pixels
+with zero differences. Raw queues retain actual unsupported kinds20 in3–4,
+17 in5–6 and16 in7–8, including their ordinals/coordinates. No queue is skipped.
+Evidence: `native-canvas-producers-live-20261008.json`, independent source-only
+replay `native-canvas-producers-comparison-20261008.json` and forwarding
+`native-canvas-producers-forwarding-20261008.json`; see
+[native-canvas-producers.md](native-canvas-producers.md).
+
+Native producer storage begins undefined and retains logical generations;
+original completion bytes remain separate oracle files. The experimental Qt
+consumer composes in native CPU storage, mirrors completed canvases to retained
+GPU surfaces and checks exact readbacks before presentation. Original rendering
+stays active; this validates bounded replay/observation, not live replacement
+or an all-operations GPU compositor. The independent Worldv2 zero-history
+renderer retains its own seed/integration boundary. Native generation of
+minimap source geometry/visibility, front-buffer/driver behavior, unsampled
+outputs, allocation/restore/error paths, format changes, stretched copies,
+minimap rotations and unobserved producers remain separate gaps. Historical
+negative results and their source fingerprints are preserved. Three copy-entry
+exceptions cover only signature-pinned16-byte entries executed with private COM
+adapters; inferred whole-function coverage and original inventory unknowns remain.
+
+## Reconstructed native producer history to World and bounded bypass (2026-10-08)
+
+`NR.world-producer-handoff` now hands fully defined native startup/HUD generations
+to the existing World GPU SceneRenderer at each contiguous queue entry and
+commits checked GPU World completions back to native producer storage. It preserves
+bindings/clips and intervening native producer writes; no zero or original
+destination seed is used. Initial original-active execution matches all16 World
+returns and1,062 observed canvas checkpoints /474,236,912 RGB565 pixels exactly.
+
+`RS.world-producer-bypass` records a separate scoped live replacement: eight outer
+indexed-copy59521a bodies in queue16 are skipped and correlated native GPU words
+are written to the already locked original canvas. Every reply matches both
+independent original prefix execution and the exact suppressed original entry
+from its reconstructed native before-state /3,840,000 pixels. The frozen run
+also matches16 independent original World completions /7,680,000 pixels and
+1,064 mixed destination observations /474,262,832 pixels. Mixed observations
+alone cannot establish bypass equivalence. Synthetic forwarding/state/refusal
+and native handoff/HUD-retention tests pass. See
+[native-world-producer-handoff.md](native-world-producer-handoff.md) and its
+new immutable live, comparison, forwarding, bypass and negative evidence.
+
+Native policy and recovered bypass retain independent implementation/comparison/
+integration/replacement statuses. Only the eight selected59521a bodies have a
+live replacement claim;5947b2 is synthetic-only. Full consumer bypass, other
+producer takeover, driver/error paths, native minimap geometry/visibility and
+native simulation remain gaps. The default independent Worldv2 viewer keeps
+its zero-history policy. Prior evidence/source hashes and discovery unknowns
+remain unchanged; historical shared-source validation can be stale. HEAD remains
+63f32b1 after the previously retained8e43ed5..63f32b1 exact committed-history review.
+
+
+The GPU dependency refresh pins119 actual compiler/build/runtime/validation files,
+including the shared sprite atlas. New evidence separately revalidates the prior
+eight bypass requests offline and a current one-draw live replacement. Current
+live and frozen replay both match1,062 completion observations /474,236,912 pixels;
+all16 independent original World completions match, and the selected59521a reply
+matches both exact original entry and prefix over480,000 pixels. No original
+pixels seed native history; cleanup leaves no native surfaces. The verified live
+binary is hash-bound to its frozen build. Earlier source/evidence fingerprints
+remain historical. Two incomplete eight-limit captures and an initial static
+index provenance audit refusal are retained separately. See the current GPU
+refresh evidence in [native-world-producer-handoff.md](native-world-producer-handoff.md).
+The repository-wide gate may still expose shared historical scope/freshness debt;
+this narrow replacement does not promote those other contracts.
+
+
+### Live startup kind-refusal diagnostics (2026-10-08)
+
+`NR.world-kind-diagnostic` connects the bounded raw queue journal to the live
+startup launcher and stopped failure attribution. The original channel/native
+admission stay strict; absent or inconsistent raw rows never acquire a guessed
+kind. The earlier manual queue-13 failure is still unassigned. Saved map/item
+settings differ from the automated fixture; map1/no-items normal live16 and
+map1/item15 finite16 both complete without unsupported kinds. A frozen pointed
+map1/item15 256-queue capture records kind8 beginning queue133;
+`RS.world-kind8-virtual` separately records the pinned first-table object virtual
+call, with concrete class/method and full mode semantics pending.
+`RS.world-dispatch-targets` inventories numeric targets without expanding raster
+admission. See [kind diagnostics](native-world-kind-diagnostics.md). GPU atlas
+and palette reuse remains the next performance work; the current 32-frame/64-
+surface cache bound prevents solving churn by increasing frame retention alone.
+The staged-source symlink failure was restored exactly and is covered by new
+guards; original media is unchanged. Historical fingerprints remain intact.
+
+### 2026-10-08: bounded sprite atlas and independent shader palette reuse
+
+Native World now enables NR.sprite-atlas: bounded packed index/RGB565/coverage
+pages, owned palette values independent of indexed frame keys, shape-aware shadows,
+row transfer admission and page LRU/revision/lifecycle cleanup. Existing per-frame
+clients remain available for comparison; no original draw-kind admission changes.
+The prospective source-bound final run-t7x04nmz passed all 70 native CTests, including
+GUI heartbeat/cancellation and large/invalid transfer admission. Two passes of the
+same 16 captured queues produced identical native pixels: 43,988 expanded uploads
+per pass versus 500 atlas cold and zero warm, one two-plane page/250 entries and
+zero normal native readbacks. Debug llvmpipe frame submission averaged 528.4/526.6 ms
+expanded cold/warm versus 238.5/205.7 ms atlas. Explicit comparison readbacks remain
+test-only. Originals verified 2,927 files before/after. Native storage policy is
+scoped/headless; original comparison and replacement remain none.
+
+See [atlas policy and boundaries](native-sprite-atlas.md) and immutable
+[native execution record](native-sprite-atlas-validation-20261008.json). Historical
+renderer/preparation/handoff evidence retains old hashes and is source-stale where
+shared code changed. User live startup timing, initial-canvas equivalence, unsupported
+kind 8, context loss, page fragmentation and destination snapshot reuse remain
+separate. No source census refresh or native-path equality claims original equivalence.
+HEAD 63f32b1 is unchanged since the retained committed-history review; no new commit
+range, staging or commit occurred in this work.
+
+### Selected kind8 particle primitives (2026-10-08)
+
+- Native World now conditionally admits six checked kind8vtable/method pairs:
+ 5c7420/54ab00,5c73f0and5c7408/546540,5c7494and5c74b0/54ab60,
+ 5c74cc/54ac00. RGB565first dispatch route and inactive auxiliary markers
+ only; unknown classes, alternate formats/routes retain complete refusal.
+ Original object/gating/flag execution remains active.
+- Pointer-free operation6captures saturating additive rectangles; operation7
+ captures bounded64x64uniform/plane RGB565colour rectangles and four selected
+ composition modes. The native worker and scene carry them in sprite order
+ without asset binding. Colour planes have bounded transient uploads; their
+ bytes are outside SPRupload counters. Additive draws freeze the owned GPU
+ destination without normal CPUreadback. This is rendering, not simulation.
+- Fresh prospective comparison/headless evidence: [validation](native-world-kind8-validation-final-20261008.json),
+ 17synthetic cases1048960pixels plus one1497-request/480000pixel captured
+ queue. All native pixels match independent original execution from the same
+ independently constructed base; owner/player and flag-only methods and both
+ active primitive hook ABIs pass. The separate original-before diagnostic
+ replay exactly reproduces live after; native zero differs from that live
+ canvas. Startup/HUD/retained initialization parity remains separate.
+- [Frozen discovery](native-world-kind8-discovery-20261008.json) preserves
+ 57298read-only rows across236queues and five class pairs, original manifest
+ verification and frozen source/claim provenance. The earlier432-row
+ 5c7420capture remains historical underworking/tests/kind8/run-le6ejqbj.
+ Recovered wrapper range exceptions retain missing discovery-body boundaries;
+ six vtables map only draw slot3and retain all other slots unknown.
+- RS.world-kind8-additive/colour/noop now have scoped implementation, recorded
+ isolated original comparison and headless integration. Current-code live
+ native GUI class coverage, other virtual classes, RGB555, other dispatch
+ routes, object writers/state and original replacement remain pending.
+ Earlier atlas/world/producer evidence keeps its hashes and may be source-stale
+ after shared renderer, protocol and observer edits.
+
+- Final class/raster evidence uses the actual native library and active raster
+ ABI dependency closure, with unrelated producer objects compiled only as
+ smoke checks. Earlier broader source-bound results remain historical.
+ Read-only PE32diagnostics pass in a frozen snapshot (15malformed refusals,
+ unreadable object/vtable, truncation and original forwarding).
+ [Current native regressions](native-sprite-atlas-kind8-regressions-20261008.json)
+ retain all70CTestpasses and renew atlas headless validation after the shared
+ shader change; earlier measured captured timings/uploads are not rerun claims.
+
+
+## Complete World raster queue replacement (2026-10-08)
+
+`RS.world-raster-queue-replacement` separates complete raster-body suppression
+from original World traversal. Caller fallback/store semantics consume low16AX,
+so the adapter recovers that return rather than preserving incomingEAX. Black
+and destination-displacement entries return1 on horizontal refusal; sampled
+indexed-copy entries clip internally and return0. Thirteen entries have explicit
+callee cleanup, caller signatures and native V2 source/reply admission. Unknown
+inside-World routes remain refusals.
+
+One complete live queue16 replaces1521actual original raster bodies. Every
+native intermediate andAX matches its precise original entry over730080000pixels;
+all16independent original World returns and1062observed canvas checkpoints also
+match. These are separate from observations containing native contributions.
+Native inputs remain reconstructed startup/HUD history and owned source data.
+
+The first whole-prefix attempt refused a backend8HUD raster after World queue1:
+selection incorrectly persisted beyond World return. Actual entry/return lifetime
+now bounds suppression, and the following original HUD raster is covered by a
+body-counter regression. All13synthetic body skips,49forwards and strict
+identity/checksum refusals pass. The current frozen125-source preflight matches
+1817canonical queue16 intermediates/AX,1062checkpoints and16World returns.
+The current whole16-prefix retry remains pending.
+
+Original traversal, simulation, menu/HUD raster work outside selected queues,
+palette preparation and non-drawing lazy wave initialization remain active.
+No full dispatcher, general driver/error-path, all-format or real-time claim is
+made. Historical evidence retains its hashes; shared source changes leave older
+contracts pending/stale without their own domain-specific reruns. See
+[native-world-raster-queue.md](native-world-raster-queue.md) and its immutable
+caller, ABI, preflight, queue16 comparison/replacement and refusal evidence.
+
+### Native rendering commit readiness, 2026-10-08
+
+The first accumulated rendering commit retains previous results and stage values in
+`native-rendering-commit-readiness-20261008.json` and each affected new behavior's
+`historical_status`. Twelve newly registered startup/producer behaviors have no
+current source/scope-bound execution support after shared-file and contract edits.
+Their present implementation is partial; current comparison, integration and
+replacement remain pending. This does not change any already committed historical
+stage or immutable evidence, nor assert that earlier comparisons failed. Fresh
+preparation, atlas, refusal diagnostics and selected kind8 results are registered
+separately. Whole contiguous World replacement remains a separate milestone: the
+first prefix attempt completed queue1 but refused a HUD draw after World return.
+The boundary fix requires a fresh complete-prefix run and independent comparison.
+
+Commit verification adds immutable prospective results
+`native-world-preparation-commit-20261008.json` (4 focused tests),
+`native-world-kind-diagnostic-commit-20261008.json` (16 diagnostic fixtures),
+and `native-sprite-atlas-commit-regressions-20261008.json` (70 native CTests).
+Selected kind8 original/native final proof remains current; no new pixel or
+performance claim is inferred from the general regression run. Coverage guard
+suites pass 60 audit tests and 51 gate tests. The latest committed range
+`8e43ed5..63f32b1` has exact existing file/behavior receipts, retained in
+`coverage/committed-history-native-rendering-commit-20261008.json`.
