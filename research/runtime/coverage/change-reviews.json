@@ -57066,6 +57066,80 @@
         "reason": "Documentation links (13 roadmap links and 10 entry points), git diff --check and the coverage audit pass. No engine/protocol/source/test behavior was changed and no original artifacts were consumed or game execution performed. Existing implementation/comparison/integration/replacement statuses and historical evidence hashes are preserved; document fingerprint changes retain their explicit per-evidence/source pending gap identities. The new plan has pending implementation, scenario execution, independent comparison and actual live bypass. This receipt accounts for planning and shared-document changes without claiming current original equivalence or fresh runtime validation.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "38cf3fda043567aac3874dbaeb80fd156f80c74763729b48c9be342be0a3ff1e",
+          "before_sha256": null,
+          "id": "NR.word-admission"
+        },
+        {
+          "after_sha256": "66b170af5ee94904998b4f4fd0779bb2a993242ba4b9a268308d0d0569cb0d92",
+          "before_sha256": null,
+          "id": "RS.word-raster"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "949132dedb0210f6c0781777d0d3ab34165743f7f3061728295ac8fd5f66bbb1",
+          "before_sha256": null,
+          "path": "renderer/sprites/word-raster/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+          "before_sha256": null,
+          "path": "renderer/sprites/word_raster.c"
+        },
+        {
+          "after_sha256": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+          "before_sha256": null,
+          "path": "renderer/sprites/word_raster.h"
+        },
+        {
+          "after_sha256": "b4f0a5cb4f1d4d975b4c684ae45f4780b2b5ac9e9cde53de4118083aa77b902a",
+          "before_sha256": "62dec415b70e483f3537a9038f8f2f73c68bffa92a990f9e37eb55967edb3f32",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "9d8aedf12dd3f6da62e54e599b23a9534acbe9ef0fcbb271a47a322e286aedb5",
+          "before_sha256": "f7d8e04e390a13151e8adbbe8865a2318f8f86b61c42226a8158aacbb281879d",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "6edb6f9170c3d52d5bd846b2ecbfdd7fbfddc6880e5f020790e654131b1c68e0",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-commit-chunk-1-20261007.json"
+        },
+        {
+          "after_sha256": "6bb294b90b84edf09a27743b4875a8a9e9198c9a7b096c6247b1abf96dcdf73d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-commit-chunk-1-reviewed-20261007.md"
+        },
+        {
+          "after_sha256": "62b4d7c43210419b3c42ba0b1a85af2b12f5caf2ef7252261a8da203dfc6b276",
+          "before_sha256": null,
+          "path": "research/runtime/native-renderer-commit-boundaries-20261007.md"
+        },
+        {
+          "after_sha256": "c6e28331724bc90d710c20738495524336bde401b61809deb304581faeeabcbe",
+          "before_sha256": null,
+          "path": "tests/word-raster-test.c"
+        }
+      ],
+      "id": "commit-split-portable-word-raster-20261007",
+      "pending_gaps": [
+        "behaviors_without_comparison:4b9f03042cedc1ab7ce2aa4a9b9c2b5c2c5a7cccac451d7b6ca6554431ab5b3e",
+        "behaviors_without_comparison:993989176513d42be5761806ec041825240c98dfa38e99ab4bb5c311d070a2d3",
+        "behaviors_without_scenarios:4b9f03042cedc1ab7ce2aa4a9b9c2b5c2c5a7cccac451d7b6ca6554431ab5b3e",
+        "behaviors_without_scenarios:993989176513d42be5761806ec041825240c98dfa38e99ab4bb5c311d070a2d3"
+      ],
+      "reason": "Reviewed the portable borrowed-input C rasterizer, complete preflight/refusal contract, signed origins and opaque-word writes, host tests and standalone build. Seeded separate recovered raster and native admission behaviors with scoped original anchors, partial implementation and explicit pending comparison/runtime milestones; reviewed the exact source census and retained existing evidence unchanged. Prior committed-history report working/tests/world-frames/history-review-20261007.json confirms no commits after reviewed c0fb4bf.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Debug standalone CMake build and native-word-raster CTest pass. This intermediate tree has no original runner or runtime hook and deliberately makes no original comparison, integration or live replacement promotion. Those preserved evidence records are introduced with the integration chunk."
+      }
     }
   ]
 }
