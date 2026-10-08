@@ -24,11 +24,25 @@ or READING. With no FREE slot it increments its dropped count and continues
 original drawing. The consumer copies the newest READY packet into host-owned
 bytes and can release an older READY packet as superseded. WRITING is invisible.
 The finite closed packet is decoded and all native resources are resolved before
-presentation. Invalid identity, ownership, extents, sequence, unknown draws or
-diagnostic mismatches cancel/refuse the session. No partial frame is presented.
+presentation. Invalid identity, ownership, extents, sequence, unknown native
+operations or diagnostic mismatches cancel/refuse the session. No partial frame
+is presented.
 
-Cancellation at an original queue boundary publishes ENDED. Capture failures
-publish FAILED with their reason. An original process killed without DLL detach
+Cancellation at an original queue boundary publishes ENDED. Verification mode
+publishes FAILED for every capture failure. Normal shadow mode treats capture
+reasons 7 (uninitialized/unsupported wave) and 8 (unknown queue kind) as whole-frame
+capability refusals: ACTIVE is retained and a READY packet contains only the
+80-byte World header, zero raster count and zero oracle bytes. Partial captured
+draws are excluded from the published extent. The host validates the closed
+refusal envelope, clears its native viewport, shows a waiting/unsupported status
+and can resume on a later complete packet. All other capture failures publish
+FAILED. A malformed refusal or any refusal in verification mode is fatal.
+The layout and version remain unchanged; older consumers fail closed on nonzero
+World failure codes.
+
+Refusal counters describe packets consumed by the host. Dropped/superseded
+packets can hide other producer refusals. This policy does not render unsupported
+draws or establish complete canvas history. An original process killed without DLL detach
 need not publish ENDED: launcher process supervision handles that exit; it does
 not claim a completed producer shutdown. This shadow channel never suppresses
 the original consumer or its raster work. Sequences do not wrap; overflow fails.

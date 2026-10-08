@@ -2424,21 +2424,73 @@ committed independently with partial intermediate registrations. The integration
 change retains all original report hashes and append-only reviews. Original/live
 World reports preceding the capability-refusal edits are historical; they do not
 prove current live equivalence. Current synthetic regression and isolated-original
-reruns are registered under new evidence IDs. The additional World producer refusal tests remain in the active working tree
-and are excluded from this commit snapshot; dedicated producer validation is pending.
+reruns are registered under new evidence IDs. The additional standalone World
+producer refusal self-test is preserved as pending execution/build integration.
 Original startup ownership, missed-queue history, whole-dispatch/HUD/input coverage
 and complete raster bypass remain pending. See
 [commit boundaries](native-renderer-commit-boundaries-20261007.md).
 
-The frozen integration snapshot passes six affected native CTests. Eight
-contiguous native/private-original canvases match across all six modes (3,072
-pixels); four preserved before/after diagnostics match private original replay
-(1,920,000 pixels), with 15 retained initial pixels per frame still unresolved.
-Fresh evidence: `NR.world-commit.regressions-20261007`,
-`NR.world-commit.history-native-20261007`,
-`RS.world-commit.history-original-20261007` and
-`RS.world-commit.before-after-20261007`. Input relocation and verifier delegation
-are recorded separately; there is no new live execution or startup recovery.
-The committed range c0fb4bf..eadb973 was reviewed against exact parent/current
-receipts with no missing file receipts (journal excluded from its own hashes),
-as retained in working/commit-split-20261007/committed-history-first-two.json.
+## Normal World shadow refusal and recovery — 2026-10-07
+
+The retained manual launch failed with producer reason 8 before any native
+presentation. Its exact queue kind and user scenario remain unknown. New native
+policy `NR.world-shadow-refusal` keeps normal shadow sessions active on capture
+reasons 7/8: the producer publishes a strict diagnostic header with no partial
+requests or oracle, the host clears native presentation and shows a waiting
+message, and a later complete supported frame can resume drawing. Verification
+and malformed/structural/native admission failures retain fatal behavior.
+
+The dedicated actual PE32 producer now builds and passes normal/verification
+Wine tests, including partial-payload removal, recovery publication and fatal
+structural failure. Three focused native CTests and all 66 current Debug
+renderer/channel/Qt/history CTests pass. An original Quick Battle startup with
+skip 0/interval 1 consumes one refusal each for reasons 7 and 8, then presents
+24 native frames while original drawing/input remain active. Normal mode has
+zero native pixel readbacks, zero viewport image uploads and zero remaining
+surfaces. The 243 drops and 23 superseded packets preclude complete history;
+the two refusal counts cover consumed packets only. Original manifests verify
+before and after this experiment.
+
+Renewed isolated comparisons retain the eight-frame/six-mode native history
+match on all 3,072 pixels and the separate four-frame initial-state gap:
+15 unchanged prior pixels per frame, with private-original diagnostic before
+replay matching 1,920,000 live output pixels. Native initialization remains
+independent; unsupported original drawing, startup ownership, complete queue
+delivery, manual launcher routes, HUD/input and full replacement remain pending.
+The new immutable reports and scenarios are linked in the register; older hashes
+and evidence are preserved. See [scope and reproduction](native-world-shadow-refusal.md).
+
+Committed-history review covers c0fb4bf through eadb973 (two new commits), with
+exact parent/current SHA-256 receipts and affected behavior/evidence links checked,
+zero missing receipts, and no retrospective execution or gate claim. The retained
+report is `coverage/committed-history-world-refusal-20261007.json`. Uncommitted
+refusal work and shared historical staleness receive separate exact reviews.
+
+## World shadow recovery tests after the commit split — 2026-10-08
+
+The concurrent split finished with commit dd3205a. Its two new exact receipts,
+four source-bound execution records, three scenarios and behavior links are
+preserved alongside the current increment. A further committed-history review
+covers c0fb4bf..dd3205a: all three commits have matching parent/current file
+SHA-256 receipts and valid implementation/test/evidence links, with no missing
+receipts. This is retrospective accounting, not a past gate or execution claim;
+see `coverage/committed-history-world-refusal-20261008.json`.
+
+The split restored the older Qt test file. The 2026-10-07 producer test remained
+valid, but that earlier native CTest run did not execute the dedicated refusal/
+recovery/bounded-diagnostic assertions described in its broad scope. Its hashes
+and result are retained with an explicit retrospective scope limitation. The
+restored Qt checks now execute initial kind refusal, native recovery, wave lease
+clearing, 100 repeated kind refusals, a second native recovery, fatal malformed
+partial refusal and strict verification. They assert 102 consumed refusals,
+64 retained records, per-reason counts, zero normal readbacks/uploads and final
+surface cleanup. The actual PE32 producer and all three focused native CTests
+pass again, and the complete 66-test native regression suite passes with this
+test source. New immutable evidence IDs carry these current executions.
+
+The earlier source-bound original startup recovery and isolated history/retained
+initial-state comparison remain fresh: their sources did not change during this
+test restoration. The unsupported paths, original startup ownership, complete
+queue history, public manual scenario and full replacement boundaries remain
+pending. Coverage is checked against dd3205a; historical shared-source staleness
+and earlier evidence fingerprints remain visible.

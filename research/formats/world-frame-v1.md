@@ -75,6 +75,14 @@ queue kind. A failure file is diagnostic evidence and cannot be rendered as a
 complete frame. Hook installation/admission failures can instead yield no World
 file; the capture tool times out and refuses success.
 
+Normal live shadow delivery may publish a diagnostic-only 80-byte header with
+failure 7 or 8 and raster count zero. It excludes partial payload and is never
+admitted by `decodeWorldFrame` or finite rendering tools. A separate strict
+refusal decoder accepts only this closed envelope with valid build, sequence,
+dimensions and colour format. The [channel policy](world-channel-v1.md) controls
+waiting and recovery; verification retains fatal capture failures. No header or
+record layout changes are involved.
+
 The CLI owns a constant initial RGB565 background (zero by default). It never
 loads the original before canvas. The independent comparison must demonstrate
 that these drawing inputs construct the entire claimed canvas from that native

@@ -44,6 +44,10 @@ def build(selftest=False):
         subprocess.run([*flags,'-c',str(ROOT/'runtime/scene/selftest.c'),'-o',str(output/'selftest.obj')],check=True)
         subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x18000000','/nodefaultlib','/safeseh:no',
                         '/timestamp:0',f'/out:{output / "selftest.exe"}',str(output/'selftest.obj'),str(output/'scene.lib'),str(output/'kernel32.lib')],check=True)
+        subprocess.run([*flags,'-c',str(ROOT/'runtime/scene/world_stream_selftest.c'),'-o',str(output/'world_stream_selftest.obj')],check=True)
+        subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no',
+                        '/timestamp:0',f'/out:{output / "world-stream-selftest.exe"}',str(output/'world_stream_selftest.obj'),
+                        str(output/'world_stream.c.obj'),str(output/'kernel32.lib')],check=True)
     return dll
 
 
