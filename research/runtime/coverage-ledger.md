@@ -6,6 +6,41 @@ remaining dependencies and complete launcher-mode criteria. This ledger and the
 coverage register retain achieved milestones and their evidence. Current default
 launches retain original drawing through native capture/replay presentation.
 
+## Scoped direct-word sprite raster MVP — 2026-10-07
+
+`RS.word-raster`, `RS.word-route` and `NR.word-admission` add an opt-in native CPU
+raster route at pinned No-CD backends `0x596cb8` / `0x597086`. Fully in-bounds
+contiguous direct-word SPR draws are admitted; original clipping, empty/indexed
+requests and caller-side auxiliary passes remain on their original paths. Complete
+World rendering and the ordinary capture/replay pipeline retain their boundaries.
+This is a partial DRAW-05 route, not DRAW-03 scene completeness or DRAW-07.
+
+Fresh original comparisons match 256 synthetic draws / 119,288 complete canvas
+pixels; 647 native refusals leave destination bytes unchanged. The independent
+64-bit CTest checks full pixels, opaque zero, origins, stride, edge refusal, late
+malformation and aliases. A live shadow run through Quick Battle setup and World
+entry matches 12,608 admitted destination/workspace pairs with zero mismatches
+and 940 forwarded refusals. The separate takeover run bypasses at least 12,608
+original backend calls, forwards 705 refusals, and captures eight complete native
+before/after canvas/workspace samples. Independent unmodified original execution
+matches all 1,070,400 sample pixels and selected workspace words. Original
+simulation, other raster producers and auxiliary drawing remain active.
+
+`MNM_WORD_SPRITES=takeover ./tools/run-qt-shell.sh --frame-readback --skip-movies`
+selects the partial route; `shadow` selects comparison. The actual staging entry
+point passes pinned import/DLL/mode/fresh-directory checks. GUI Launch-button,
+full session/shutdown, register/exception-state stress, loss/recovery, sustained
+play and physical driver validation remain pending. Diagnostics copy canvases;
+no performance improvement is claimed. The initial call-site-only observation
+saw zero calls and establishes no bypass; the failed relative-path report and
+both corrected live results remain separate historical records. All installed
+experiments verify the 2,927 immutable originals before and after.
+
+See [contract and evidence](native-word-sprite-mvp.md),
+[shadow result](native-word-sprite-shadow-20261007.json),
+[takeover comparison](native-word-sprite-takeover-20261007.json), and
+[launcher staging](native-word-sprite-launch-staging-20261007.json).
+
 ## Surface contention and application-held presentation — 2026-10-07
 
 [Diagnosis and retained evidence](render-surface-contention.md) records four
@@ -2225,6 +2260,59 @@ repeat suppression, chrome and geometry restoration. This is native display
 policy; original-game interaction and physical desktop input remain pending.
 Historical F11 evidence is retained unchanged.
 
+## Complete native World canvas comparison — 2026-10-07
+
+`RS.world-frame`, `RS.world-composition` and `NR.world-admission` now own
+[effective World input capture and native composition](native-world-frame-rendering.md).
+The original consumer remains active; selected primitive entry/return hooks
+export pointer-free owned SPR requests, actual selected colours/offsets and
+effective clips, with separate original canvas oracles. Native strict resource
+binding uses 243 normalized frame identities in eight pinned installed SPR files.
+No omitted requests, original destination inputs or unshaded approximation
+supply the native result.
+
+Four complete 800x600 consumer canvases/1,920,000 pixels match both independently
+executed original raster routines and the captured live original output exactly.
+Each contains 1298 ordered requests: 1259 copies, 35 displacement requests and one
+each half, quarter-source, quarter-destination and projected shadow. Eighteen
+additional six-mode clipped fixtures match 6912 complete pixels. Four native
+wire/resource/cache/scene CTests pass, including opaque zero, actual palette
+aliases, malformed/truncated input, atomic refusal and surface cleanup. Native
+integer OpenGL composition uses owned zero initial storage and runs on llvmpipe;
+one readback per frame is deliberate evidence export, not a live producer path.
+
+The [fresh comparison](native-world-frame-comparison-anchored-20261007.json)
+also pins the original reference's entry bytes. All
+[16 shared renderer regressions](native-world-frame-renderer-regressions-20261007.json)
+pass, including native sprite frames, persistent surfaces, palettes, command
+ring/replay/consumer and capture replay. Earlier comparison reports remain
+immutable; new anchored results use new evidence IDs.
+
+This advances bounded DRAW-02 comparison and the pixel composition part of
+DRAW-03. Integration is headless and replacement is none. Continuous immutable
+frame publication, Qt live World presentation, camera/active battle actions,
+consumer state/readback retention and bypass, later HUD/minimap/text/cursor,
+movies/transitions/recovery/full shutdown and physical-driver evidence remain
+pending. Original gameplay balance and simulation timing are unchanged.
+
+The first incorrect terrain colour-table interpretation and an intermediate
+trace omitting internal horizontal clipping are retained failed runs, not
+comparison passes. The latter's 32,948 border-pixel mismatch identified a concrete
+missing branch. Current observation/comparison reports preserve pinned build,
+source/input hashes and original-manifest verification before/after. The original
+copy reference's `0x57e1b0` entry remains outside discovered Ghidra functions;
+only its verified eight-byte entry anchor is explicitly registered, without
+inventing a complete function boundary.
+
+Earlier shared renderer/observer/staging evidence keeps its recorded hashes and
+historical statuses. Source-only changes leave those comparisons stale; this
+increment's finite World and synthetic regression checks do not renew the whole
+command-stream, UI, recovery or previous live-observer corpus. HEAD remains
+`c0fb4bf21064962a491ca8d04ccf679e3bb34a78`; the preceding exact committed-history
+review is retained at `working/native-word-mvp/history-review.json` with no
+intervening commits. New execution/accounting reports are retained under
+`working/tests/world-frames/`.
+
 ## User native tracker refusal investigation — 2026-10-07
 
 [Exact-source investigation](native-tracker-investigation.md) retains the
@@ -2248,6 +2336,109 @@ code, wait budget, status promotion or original replacement changes. User NVIDIA
 reproduction, callback-stage timing, active gameplay and full-frame equivalence
 remain pending. Prior reports and hashes remain untouched.
 
-## Renderer source split, 2026-10-07
+## 2026-10-07 continuous native World shadow presentation
 
-Portable word raster and native World composition/frame/history sources are independently buildable. This intermediate tree retains historical shared-scene evidence and makes no new original comparison or live status claim. Runtime producers, channel and Qt session follow in the integration commit. See [commit boundaries](native-renderer-commit-boundaries-20261007.md).
+`NR.world-channel` and `NR.world-live-view` add the versioned two-slot owned
+World delivery channel, bounded native v4 sprite catalogue, lazy pinned asset
+binding and a standalone Qt GPU viewer. The producer drops publication attempts
+without waiting for the host; the reader consumes complete owned requests and
+supersedes older completed packets. Rendering proceeds in32-request batches;
+partial frames are never presented. Failure, resize and close release the viewport
+lease before scene storage. The opt-in launcher is `tools/run-native-world.py`;
+menus and battle input remain in the original window, and original drawing runs.
+
+Current execution records65 passing native CTests,18 independent six-mode
+original/native composition fixtures and4 focused World/scene CTests. The current
+ordinary live run presents24 owned native World frames with0 CPU pixel readbacks,
+0 viewport image uploads and0 remaining surfaces;53 publication attempts are dropped
+and23 older completed packets superseded. These results validate native delivery
+and presentation, not all original World outputs, physical GPU performance or
+whole-scene replacement. Cold asset admission remains synchronous (about1.2 s
+worst poll), and sustained resource retirement/public launcher/input/HUD/transition
+lifecycles remain pending. Reports are linked through the central register and
+`native-world-live-*`, `native-world-primitives-current-*` evidence records.
+
+`RS.world-initial-state` records a newly explicit baseline boundary. A retained
+live frame has7 nonzero pixels where both current native rendering and private
+unmodified original raster execution from zero initial canvas produce zero;
+all480000 native/private-original pixels match. Live failures with13 and11 pixels
+are also retained. Earlier pre-batching24-frame live equality remains historical
+at its original hashes. Retained previous canvas pixels are a hypothesis; initial
+canvas ownership/clear/reuse and an untraced writer require observation. Native
+rendering is never seeded from the original oracle. Whole-consumer bypass and
+unqualified live baseline equivalence remain unavailable. See
+`research/runtime/native-world-live-background-gap.md` for the evidence boundary.
+
+No commits landed after the retained c0 fb4 bf committed-history review. Historical
+source/evidence hashes and prior receipts remain preserved. Current source-only
+staleness is acknowledged separately from the new native and original execution
+results; prior unrelated milestones are not renewed by these tests.
+
+## Native canvas history and confirmed retained pixels — 2026-10-07
+
+`NR.scene-history` adds an owned GPU canvas that retains complete native pixels
+across contiguous source frames. It starts only from an explicit native
+background, checks logical canvas identity and actual source sequence, refuses
+gaps/regressions/partial frames, and requires a native reset after execution
+failure. The offline `mnm-world-history-preview` accepts pinned closed request
+timelines with no original destination pixels. Eight frames across all six
+composition modes match private unmodified original execution on all 3,072
+pixels. Native initialization in this comparison is explicitly zero. All 66
+native renderer/channel/Qt/history regression CTests pass.
+
+The current ordinary viewer presents 24 complete native frames with zero CPU
+pixel readbacks, zero viewport image uploads and zero remaining surfaces.
+Its 212 dropped publication attempts and 23 superseded packets preserve the
+need for complete source-history accounting. The run uses the explicit stateless
+native background; it does not establish live retained-history equivalence.
+
+`RS.world-initial-state` now has confirmed retained pixels for a separate
+four-frame failing capture: each frame's 15 differences already exist before
+the consumer and survive unchanged. Private original replay from that
+diagnostic before-canvas matches all 1,920,000 actual output pixels. Native and
+private original replay from zero also agree, so the selected discrepancy
+comes from the earlier canvas state. Original before pixels are supplied only
+to the private original reference and never to native rendering. Another fresh
+four-frame capture matches from zero on all 1,920,000 pixels; positive and
+failing cases remain separate evidence. The first startup queue already has
+365,306 nonzero pixels. Eight bounded pointer-value records do not establish
+allocation generations or ownership. Startup diagnostics retain the lazy wave
+initialization refusal and unadmitted draw-kind refusals, with original work
+forwarded.
+
+This is native history implementation and scoped original comparison, not
+interactive history integration or original startup recovery. The continuous
+viewer still starts each admitted frame from its explicit native background.
+Publication drops and superseding require reconstruction of every intervening
+queue before retained live native history is sound. Startup producers, clear/
+reuse ownership, remaining draw kinds, HUD/window composition and whole-consumer
+bypass remain pending. See [the bounded results and reproduction](native-world-canvas-history.md).
+Historical hashes/receipts remain intact. HEAD is still c0fb4bf; no intervening
+commits require a new committed-history audit. New census and exact reviews
+account for this increment and newly stale shared-source evidence separately.
+
+## Renderer commit split and current evidence, 2026-10-07
+
+The portable word rasterizer and native World composition/frame/history core are
+committed independently with partial intermediate registrations. The integration
+change retains all original report hashes and append-only reviews. Original/live
+World reports preceding the capability-refusal edits are historical; they do not
+prove current live equivalence. Current synthetic regression and isolated-original
+reruns are registered under new evidence IDs. The additional World producer refusal tests remain in the active working tree
+and are excluded from this commit snapshot; dedicated producer validation is pending.
+Original startup ownership, missed-queue history, whole-dispatch/HUD/input coverage
+and complete raster bypass remain pending. See
+[commit boundaries](native-renderer-commit-boundaries-20261007.md).
+
+The frozen integration snapshot passes six affected native CTests. Eight
+contiguous native/private-original canvases match across all six modes (3,072
+pixels); four preserved before/after diagnostics match private original replay
+(1,920,000 pixels), with 15 retained initial pixels per frame still unresolved.
+Fresh evidence: `NR.world-commit.regressions-20261007`,
+`NR.world-commit.history-native-20261007`,
+`RS.world-commit.history-original-20261007` and
+`RS.world-commit.before-after-20261007`. Input relocation and verifier delegation
+are recorded separately; there is no new live execution or startup recovery.
+The committed range c0fb4bf..eadb973 was reviewed against exact parent/current
+receipts with no missing file receipts (journal excluded from its own hashes),
+as retained in working/commit-split-20261007/committed-history-first-two.json.

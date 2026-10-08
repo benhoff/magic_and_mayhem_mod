@@ -15961,14 +15961,15 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Shared resource-backed ordered scene service",
-      "scope": "Persistent RGB565 background/canvas and ResourceCache ownership; caller-ordered visible resource/frame/projected anchor/colour entries with optional clipping. Whole-list admission preserves previous completed pixels; execution failures refuse partial presentation until a complete retry. Sprite/world preview adapters preserve recovered clocks/order/visibility. Explicit owned checkpoint ANI recipe bytes have separate encoded capacity budgets. Live snapshots, full scene admission/lighting/effects and original replacement remain pending. Native beginFrame/drawNext and retainedCanvas source are now present; intermediate commit preserves historical validation only, with current runtime integration accounted separately.",
+      "scope": "Persistent RGB565 background/canvas and ResourceCache ownership; caller-ordered visible resource/frame/projected anchor/colour entries with optional clipping. Whole-list admission preserves previous completed pixels; execution failures refuse partial presentation until a complete retry. Sprite/world preview adapters preserve recovered clocks/order/visibility. Explicit owned checkpoint ANI recipe bytes have separate encoded capacity budgets. Live snapshots, full scene admission/lighting/effects and original replacement remain pending. Current beginFrame/drawNext policy validates and owns a finite ordered list before drawing, exposes no partial read/presentation, rejects reentry/zero budgets, and allows bounded timer batches. Current synthetic execution is registered independently of historical scene comparisons and live lifecycle claims. Explicit retainedCanvas starts require a complete native canvas; sequence/identity admission is owned by the separate SceneHistory service. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-shared-scene-renderer.md",
         "renderer/scenes/README.md",
         "docs/live-drawing-replacement.md",
-        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+        "research/runtime/native-world-live-rendering.md",
+        "research/runtime/native-world-canvas-history.md"
       ],
       "implementation": [
         "renderer/scenes/scene_renderer.hpp",
@@ -15986,7 +15987,12 @@
         "NR.scene-service.installed-20261006",
         "NR.scene-service.native-commit-20261006",
         "NR.scene-service.native-commit-head-20261006",
-        "NR.scene-service.native-commit-final-20261006"
+        "NR.scene-service.native-commit-final-20261006",
+        "NR.world-live.regressions-20261007",
+        "NR.scene-history.native-20261007",
+        "NR.world-history.regressions-20261007",
+        "NR.world-commit.regressions-20261007",
+        "NR.world-commit.history-native-20261007"
       ],
       "status": {
         "understanding": "scoped",
@@ -17418,8 +17424,8 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Selected unclipped direct-word SPR rasterization",
-      "scope": "Fully in-bounds positive direct-word frames with contiguous skip/opaque and WORD streams; signed origins, opaque zero, complete destination padding and guards. Clipping, empty/indexed/auxiliary execution and malformed original semantics remain outside scope. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
-      "confidence": "provisional",
+      "scope": "Fully in-bounds positive direct-word frames with contiguous skip/opaque and WORD streams; signed origins, opaque zero, complete destination padding and guards. Clipping, empty/indexed/auxiliary execution and malformed original semantics remain outside scope. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -17433,7 +17439,9 @@
         }
       ],
       "documents": [
-        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+        "research/runtime/native-word-sprite-mvp.md",
+        "research/formats/word-sprite-samples-v1.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [
         "renderer/sprites/word_raster.h",
@@ -17441,15 +17449,71 @@
         "renderer/sprites/word-raster/CMakeLists.txt"
       ],
       "tests": [
+        "tests/word-sprite-reference.cpp",
+        "tools/test-word-sprites.py",
         "tests/word-raster-test.c"
       ],
-      "evidence": [],
+      "evidence": [
+        "RS.word-raster.original-20261007",
+        "NR.word-admission.host-20261007"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
-        "integration": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.word-route",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Scoped direct-word sprite backend bypass",
+      "scope": "Pinned backend entries 0x597086 and 0x596cb8 only; runtime access admission, selected workspace writes, argument-slot mutation, zero return, original forwarding or native raster bypass while caller-managed auxiliary passes remain active. Single drawing thread, selected registers/x87 values and LastError; exact x87 instruction pointer history and other draw paths excluded. Live comparison covers destination/workspace and continued caller operation through World startup; isolated instruction-register/flags/floating exception-state stress and complete Qt-session shutdown remain pending. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Selected unclipped backend entry bypass; original clipping fallback and caller auxiliary passes retained."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Selected unclipped backend entry bypass; original clipping fallback and caller auxiliary passes retained."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-word-sprite-mvp.md",
+        "research/formats/word-sprite-samples-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "implementation": [
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_entry.S",
+        "tools/build-word-sprites.py",
+        "tools/run-opengl-game.py",
+        "tools/render-game-runner.py",
+        "tools/prepare-scene-observer.py",
+        "tools/scene-game-runner.py"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py",
+        "tools/test-word-sprites.py",
+        "tests/word-sprite-reference.cpp"
+      ],
+      "evidence": [
+        "RS.word-route.shadow-20261007",
+        "RS.word-route.takeover-20261007",
+        "RS.word-route.launch-staging-20261007"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "scoped_live"
       }
     },
     {
@@ -17457,25 +17521,31 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded native word-sprite refusal and diagnostics",
-      "scope": "Preflight entire stable borrowed frame and canvas before any writes; bounded dimensions/extents, contiguous rows, exact right/bottom-edge and malformed refusals, explicit shadow/takeover modes and separate fallback/bypass counters. Does not reproduce unsafe original malformed acceptance. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
-      "confidence": "provisional",
+      "scope": "Preflight entire stable borrowed frame and canvas before any writes; bounded dimensions/extents, contiguous rows, exact right/bottom-edge and malformed refusals, explicit shadow/takeover modes and separate fallback/bypass counters. Does not reproduce unsafe original malformed acceptance. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+        "research/runtime/native-word-sprite-mvp.md",
+        "research/formats/word-sprite-samples-v1.md",
+        "docs/live-drawing-replacement.md"
       ],
       "implementation": [
         "renderer/sprites/word_raster.h",
-        "renderer/sprites/word_raster.c"
+        "renderer/sprites/word_raster.c",
+        "runtime/scene/word_route.c"
       ],
       "tests": [
+        "tools/test-word-sprites.py",
         "tests/word-raster-test.c"
       ],
-      "evidence": [],
+      "evidence": [
+        "NR.word-admission.host-20261007"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -17484,8 +17554,8 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Owned effective World raster inputs and complete native canvas comparison",
-      "scope": "Finite selected Quick Battle World consumer canvases from ordered owned raster requests, actual selected colours/clips and every pinned native SPR binding. Comparison with separately captured whole original output; original pixels cannot drive native rendering. Later HUD/window composition, alternate dispatch, continuous delivery, consumer side effects and whole-scene bypass remain pending. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: initial canvas or untraced writes remain unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
-      "confidence": "provisional",
+      "scope": "Finite selected Quick Battle World consumer canvases from ordered owned raster requests, actual selected colours/clips and every pinned native SPR binding. Comparison with separately captured whole original output; original pixels cannot drive native rendering. Later HUD/window composition, alternate dispatch, continuous delivery, consumer side effects and whole-scene bypass remain pending. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: initial canvas or untraced writes remain unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -17559,28 +17629,69 @@
         }
       ],
       "documents": [
-        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-live-rendering.md",
+        "research/formats/world-channel-v1.md",
+        "research/runtime/native-world-live-background-gap.md",
+        "research/runtime/native-world-canvas-history.md"
       ],
       "implementation": [
+        "runtime/scene/world_trace.c",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/observer.c",
         "protocols/include/mnm/world_frame_v1.h",
+        "tools/build-scene-observer.py",
+        "tools/prepare-scene-observer.py",
+        "tools/scene-game-runner.py",
         "compat/legacy/world_frame.cpp",
         "compat/legacy/world_frame.hpp",
         "compat/legacy/world_frame_main.cpp",
         "compat/legacy/scene_snapshot.cpp",
         "compat/legacy/scene_snapshot.hpp",
-        "compat/legacy/CMakeLists.txt"
+        "compat/legacy/CMakeLists.txt",
+        "runtime/scene/world_stream.c",
+        "protocols/include/mnm/world_channel_v1.h"
       ],
       "tests": [
+        "tools/test-world-frames.py",
         "tests/world-frame-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/capture-scene-game.py",
+        "tools/test-world-background.py",
         "tests/scene-renderer-test.cpp",
+        "tools/test-native-world.py",
+        "tools/test-world-history.py",
         "tests/scene-history-test.cpp"
       ],
-      "evidence": [],
+      "evidence": [
+        "NR.world-frame.native-20261007",
+        "RS.world-frame.original-20261007",
+        "RS.world-frame.observation-20261007",
+        "NR.world-frame.native-anchored-20261007",
+        "RS.world-frame.original-anchored-20261007",
+        "RS.world-primitives.original-current-20261007",
+        "NR.world-primitives.native-current-20261007",
+        "RS.world-background.gap-20261007",
+        "NR.world-live.regressions-20261007",
+        "RS.world-live.historical-equivalence-20261007",
+        "RS.world-history.original-20261007",
+        "RS.world-initial-state.before-after-20261007",
+        "NR.world-history.regressions-20261007",
+        "RS.world-initial-state.startup-20261007",
+        "RS.world-frame.history-current-capture-20261007",
+        "NR.world-frame.history-current-native-20261007",
+        "NR.world-commit.regressions-20261007",
+        "RS.world-commit.history-original-20261007",
+        "NR.world-commit.history-native-20261007"
+      ],
       "status": {
         "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
-        "integration": "none",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -17589,9 +17700,15 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Selected native integer World raster composition",
-      "scope": "Actual RGB565 colour tables and separate coverage; selected indexed copy, half/quarter-source/quarter-destination, nonnegative rightward displacement and alternating-row projected shadow. Six-mode clipped fixtures and captured indexed World requests; full original raster family, RGB555, negative displacement, palette generation and direct-word live World routes remain outside scope. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: selected retained pre-consumer pixels are confirmed; upstream initialization/ownership remains unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
-      "confidence": "provisional",
+      "scope": "Actual RGB565 colour tables and separate coverage; selected indexed copy, half/quarter-source/quarter-destination, nonnegative rightward displacement and alternating-row projected shadow. Six-mode clipped fixtures and captured indexed World requests; full original raster family, RGB555, negative displacement, palette generation and direct-word live World routes remain outside scope. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: selected retained pre-consumer pixels are confirmed; upstream initialization/ownership remains unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "confidence": "high_within_scope",
       "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5759408,
+          "scope": "Verified original generic copy reference entry; only eight-byte entry anchor exception, not a complete function boundary.",
+          "recovered_range": "world-copy-reference-entry-57e1b0"
+        },
         {
           "build": "nocd-40209ca7",
           "address": 5758464,
@@ -17654,7 +17771,13 @@
         }
       ],
       "documents": [
-        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-live-rendering.md",
+        "research/formats/world-channel-v1.md",
+        "research/runtime/native-world-live-background-gap.md",
+        "research/runtime/native-world-canvas-history.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -17667,16 +17790,40 @@
         "renderer/scenes/scene_renderer.hpp"
       ],
       "tests": [
+        "tools/test-world-frames.py",
         "tests/world-frame-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-world-background.py",
         "tests/scene-renderer-test.cpp",
+        "tools/test-native-world.py",
+        "tools/test-world-history.py",
         "tests/scene-history-test.cpp"
       ],
-      "evidence": [],
+      "evidence": [
+        "NR.world-frame.native-20261007",
+        "RS.world-frame.original-20261007",
+        "NR.world-frame.regressions-20261007",
+        "NR.world-frame.native-anchored-20261007",
+        "RS.world-frame.original-anchored-20261007",
+        "RS.world-primitives.original-current-20261007",
+        "NR.world-primitives.native-current-20261007",
+        "RS.world-background.gap-20261007",
+        "NR.world-live.regressions-20261007",
+        "RS.world-history.original-20261007",
+        "RS.world-initial-state.before-after-20261007",
+        "NR.world-history.regressions-20261007",
+        "RS.world-frame.history-current-capture-20261007",
+        "NR.world-frame.history-current-native-20261007",
+        "NR.world-commit.regressions-20261007",
+        "RS.world-commit.history-original-20261007",
+        "NR.world-commit.history-native-20261007"
+      ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
-        "comparison": "none",
-        "integration": "none",
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -17685,11 +17832,17 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Strict complete owned World frame admission",
-      "scope": "Pointer-free bounded closed files, exact extents/build/format/operation checks, actual-colour palette aliases, all-resource binding and atomic scene preflight. Native refusal of malformed/unknown/unsafe sampling input, separate independent background and oracle outputs; no malformed original semantics, continuous IPC or silent supported-only preview. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: initial canvas or untraced writes remain unresolved; broad equivalence/replacement not promoted. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
-      "confidence": "provisional",
+      "scope": "Pointer-free bounded closed files, exact extents/build/format/operation checks, actual-colour palette aliases, all-resource binding and atomic scene preflight. Native refusal of malformed/unknown/unsafe sampling input, separate independent background and oracle outputs; no malformed original semantics, continuous IPC or silent supported-only preview. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: initial canvas or untraced writes remain unresolved; broad equivalence/replacement not promoted. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-live-rendering.md",
+        "research/formats/world-channel-v1.md",
+        "research/runtime/native-world-live-background-gap.md",
+        "research/runtime/native-world-canvas-history.md"
       ],
       "implementation": [
         "compat/legacy/world_frame.cpp",
@@ -17709,15 +17862,186 @@
         "protocols/include/mnm/world_frame_v1.h"
       ],
       "tests": [
+        "tools/test-world-frames.py",
         "tests/world-frame-test.cpp",
-        "tests/scene-renderer-test.cpp"
+        "tests/world-frame-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-world-background.py",
+        "tests/scene-renderer-test.cpp",
+        "tools/test-native-world.py"
       ],
-      "evidence": [],
+      "evidence": [
+        "NR.world-frame.native-20261007",
+        "NR.world-frame.regressions-20261007",
+        "NR.world-frame.native-anchored-20261007",
+        "RS.world-primitives.original-current-20261007",
+        "NR.world-primitives.native-current-20261007",
+        "RS.world-background.gap-20261007",
+        "NR.world-live.regressions-20261007",
+        "NR.scene-history.native-20261007",
+        "NR.world-history.regressions-20261007",
+        "NR.world-initial-state.diagnostics-native-20261007",
+        "NR.world-frame.history-current-native-20261007",
+        "NR.world-commit.regressions-20261007",
+        "NR.world-commit.history-native-20261007"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.world-channel",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded continuous owned World delivery",
+      "scope": "Native policy: two-slot immutable identity/ownership, newest complete admission, finite extents, nonblocking publication drops, superseding, cancellation and refusal; separate optional original oracle. Current synthetic execution and24 ordinary live native World presentations validated. Natural initial-canvas equivalence, synchronous cold admission, native input/HUD ownership, transitions, sustained resource retirement, public manual launcher lifecycle and full raster bypass remain pending; original drawing retained. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-live-rendering.md",
+        "research/formats/world-channel-v1.md",
+        "research/runtime/native-world-live-background-gap.md",
+        "apps/qt-shell/README.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-canvas-history.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/world_channel_v1.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_trace.c",
+        "runtime/scene/observer.c",
+        "compat/legacy/world_channel.cpp",
+        "compat/legacy/world_channel.hpp",
+        "tools/build-scene-observer.py",
+        "tools/prepare-scene-observer.py",
+        "tools/scene-game-runner.py"
+      ],
+      "tests": [
+        "tests/world-channel-test.cpp",
+        "tests/world-live-session-test.cpp",
+        "tools/test-native-world.py",
+        "tests/scene-renderer-test.cpp",
+        "tools/capture-scene-game.py"
+      ],
+      "evidence": [
+        "NR.world-live.regressions-20261007",
+        "NR.world-live.normal-20261007",
+        "NR.world-history.regressions-20261007",
+        "NR.world-history.live-normal-20261007",
+        "NR.world-commit.regressions-20261007"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.world-live-view",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Continuous native World Qt presentation",
+      "scope": "Native policy: bounded v4 native identity catalogue, lazy pinned resources, shared-context Qt GPU leases,32-draw timer batches and explicit zero initial background; resize/refusal/cleanup. Current synthetic execution and24 ordinary live native World presentations validated. Natural initial-canvas equivalence, synchronous cold admission, native input/HUD ownership, transitions, sustained resource retirement, public manual launcher lifecycle and full raster bypass remain pending; original drawing retained. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-live-rendering.md",
+        "research/formats/world-channel-v1.md",
+        "research/runtime/native-world-live-background-gap.md",
+        "apps/qt-shell/README.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-canvas-history.md"
+      ],
+      "implementation": [
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "apps/qt-shell/live_world_session.cpp",
+        "apps/qt-shell/live_world_session.hpp",
+        "apps/qt-shell/world_live_main.cpp",
+        "compat/legacy/CMakeLists.txt",
+        "tools/run-native-world.py",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp"
+      ],
+      "tests": [
+        "tests/world-channel-test.cpp",
+        "tests/world-live-session-test.cpp",
+        "tools/test-native-world.py",
+        "tests/scene-renderer-test.cpp",
+        "tools/capture-scene-game.py"
+      ],
+      "evidence": [
+        "NR.world-live.regressions-20261007",
+        "NR.world-live.normal-20261007",
+        "NR.world-history.regressions-20261007",
+        "NR.world-history.live-normal-20261007",
+        "NR.world-commit.regressions-20261007"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.world-initial-state",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Retained pre-consumer World canvas pixels and unresolved initialization",
+      "scope": "Separate four-frame live before/after observation confirms selected nonzero pixels survive the consumer unchanged; native/private original zero-initial replay agrees, private original replay from diagnostic before state reproduces live after. First World entry already has nonzero contents; pointer-value identity is observed, allocation generation/ownership/clear and upstream producers remain unresolved. Startup reason7 lazy displacement initialization and reason8 unadmitted kinds remain explicit refusal diagnostics, with original work forwarded. Native history starts only from owned native policy; no original initial pixels are native input. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Consumer post-output versus independently initialized replay; no complete consumer or canvas lifecycle recovery."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-world-live-background-gap.md",
+        "research/runtime/native-world-live-rendering.md",
+        "research/runtime/native-world-canvas-history.md",
+        "research/formats/world-history-v1.md"
+      ],
+      "implementation": [
+        "runtime/scene/world_trace.c",
+        "compat/legacy/world_frame.cpp",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/observer.c",
+        "tools/build-scene-observer.py"
+      ],
+      "tests": [
+        "tools/test-world-background.py",
+        "tests/world-frame-reference.cpp",
+        "tools/capture-scene-game.py",
+        "tools/test-world-history.py"
+      ],
+      "evidence": [
+        "RS.world-background.gap-20261007",
+        "NR.world-background.native-20261007",
+        "RS.world-initial-state.before-after-20261007",
+        "RS.world-initial-state.startup-20261007",
+        "RS.world-frame.history-current-capture-20261007",
+        "NR.world-initial-state.diagnostics-native-20261007",
+        "NR.world-frame.history-current-native-20261007",
+        "RS.world-commit.before-after-20261007",
+        "NR.world-commit.history-native-20261007"
+      ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
-        "comparison": "none",
-        "integration": "none",
+        "comparison": "recorded",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -17725,12 +18049,14 @@
       "id": "NR.scene-history",
       "subsystem": "native_rendering",
       "title": "Owned native canvas history with contiguous source admission",
-      "scope": "Native GPU canvas retention from an explicit caller-owned initial background; nonzero logical canvas identity and contiguous source sequence, refusal of gaps/reuse without reset, incomplete/failed-frame refusal. This does not recover original startup initialization or producer history. Intermediate source commit only: runtime adapters and retained original/live evidence are introduced in the later integration commit; current comparison, integration and replacement are not asserted.",
-      "confidence": "provisional",
+      "scope": "Native GPU canvas retention from an explicit caller-owned initial background; nonzero logical canvas identity and contiguous source sequence, refusal of gaps/reuse without reset, incomplete/failed-frame refusal. This does not recover original startup initialization or producer history. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "confidence": "high_within_scope",
       "kind": "native_policy",
       "original": [],
       "documents": [
-        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+        "research/runtime/native-world-canvas-history.md",
+        "research/formats/world-history-v1.md",
+        "renderer/README.md"
       ],
       "implementation": [
         "renderer/scenes/scene_history.hpp",
@@ -17742,7 +18068,46 @@
         "compat/legacy/CMakeLists.txt"
       ],
       "tests": [
-        "tests/scene-history-test.cpp"
+        "tests/scene-history-test.cpp",
+        "tools/test-world-history.py",
+        "tools/test-native-world.py"
+      ],
+      "evidence": [
+        "NR.scene-history.native-20261007",
+        "NR.world-history.regressions-20261007",
+        "NR.world-commit.regressions-20261007",
+        "NR.world-commit.history-native-20261007"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.world-shadow-refusal",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Normal World shadow capability refusal without ending the game",
+      "scope": "Explicit normal shadow policy: recoverable capture failures7/8 publish bounded diagnostic-only refusal packets, never partial drawing; the host clears native presentation, reports unsupported/waiting state and resumes on a later complete owned packet. Verify mode and structural/transport failures remain fatal. Original work remains active; rendering the unsupported route and full-session equivalence remain pending. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence. Dedicated producer refusal/recovery tests are being developed in a separate active session and are excluded from this source snapshot; current producer-specific and original/live refusal validation remain pending.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-live-rendering.md",
+        "research/runtime/native-renderer-commit-boundaries-20261007.md"
+      ],
+      "implementation": [
+        "runtime/scene/world_stream.c",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "apps/qt-shell/live_world_session.cpp",
+        "apps/qt-shell/live_world_session.hpp"
+      ],
+      "tests": [
+        "tests/world-channel-test.cpp",
+        "tests/world-live-session-test.cpp"
       ],
       "evidence": [],
       "status": {
@@ -32984,6 +33349,1078 @@
       "original_hash_pointer": "/source_sha256",
       "sha256": "4c05c05e90a57c29af6a54f3423d3cb0d89d47e9b25d0c143bf26a89a5c20ac8",
       "sources_pointer": "/sources"
+    },
+    {
+      "id": "RS.word-raster.original-20261007",
+      "kind": "isolated_original",
+      "scope": "256 original/native direct-word fixtures, two selected backends; 119288 complete pixels. Native unsafe-input refusals are intentional policies.",
+      "record": "research/runtime/native-word-sprite-takeover-20261007.json",
+      "sha256": "ff3e3444cb48d31dd83cc578ebb9c4bb90dd8849e9b8c161a2b8c7015da578fd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/synthetic_original_matches",
+          "equals": 256
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NR.word-admission.host-20261007",
+      "kind": "native_integration",
+      "scope": "Native host CTest and647 pre-write refusals; complete pixels, signed origin, opaque zero, stride guards, late malformed row and input/canvas alias.",
+      "record": "research/runtime/native-word-sprite-takeover-20261007.json",
+      "sha256": "ff3e3444cb48d31dd83cc578ebb9c4bb90dd8849e9b8c161a2b8c7015da578fd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/host_ctest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_refusals",
+          "equals": 647
+        }
+      ]
+    },
+    {
+      "id": "RS.word-route.shadow-20261007",
+      "kind": "live_equivalence",
+      "scope": "12608 live native/original destination/workspace pairs,940 forwarded refusals; original calls continue, no bypass.",
+      "record": "research/runtime/native-word-sprite-shadow-20261007.json",
+      "sha256": "8f568295dd429bd250302a12aa64bc31891aff59ddb19440b2c6986d5a0129e3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/compared_draws",
+          "equals": 12608
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/shadow_pixels_workspace_match"
+    },
+    {
+      "id": "RS.word-route.takeover-20261007",
+      "kind": "live_replacement",
+      "scope": "12608 admitted backend calls bypassed through World startup; eight actual native before/after canvas and workspace samples match independently executed original backends.705 original fallbacks remain distinct. Whole scene, remaining ABI branches, gameplay duration, full shutdown and physical driver claims excluded.",
+      "record": "research/runtime/native-word-sprite-takeover-20261007.json",
+      "sha256": "ff3e3444cb48d31dd83cc578ebb9c4bb90dd8849e9b8c161a2b8c7015da578fd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/live_original_pixels_match",
+      "bypass_pointer": "/original_work_bypassed"
+    },
+    {
+      "id": "RS.word-route.launch-staging-20261007",
+      "kind": "native_integration",
+      "scope": "Pinned opt-in partial raster DLL/import staging through the ordinary Qt launcher tool; not Qt button or full-session integration.",
+      "record": "research/runtime/native-word-sprite-launch-staging-20261007.json",
+      "sha256": "32324381bf96bbb70d0667f4d00498cd8614ddbc55245923f4c57a3cfc5bf65e",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/stage_mode",
+          "equals": "takeover"
+        },
+        {
+          "pointer": "/original_manifest_before_after_passed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.world-frame.original-20261007",
+      "kind": "isolated_original",
+      "scope": "18 six-mode clipped fixtures/6912 pixels and four complete native/private-original World canvases/1920000 pixels, also exact to captured live consumer output. Effective palettes and assets are inputs; no original destination input, consumer bypass or continuous live integration.",
+      "record": "research/runtime/native-world-frame-comparison-20261007.json",
+      "sha256": "be5ead93edb6d514008ffe834fc69ae163e732cccafd96463a87949769d99ffb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-frame.native-20261007",
+      "kind": "native_integration",
+      "scope": "Four native CTests and 22 complete headless canvas outputs with six modes, actual colour tables, clips, opaque zero, malformed-wire/resource/atomic refusal and no remaining owned surfaces. Mesa llvmpipe only.",
+      "record": "research/runtime/native-world-frame-comparison-20261007.json",
+      "sha256": "be5ead93edb6d514008ffe834fc69ae163e732cccafd96463a87949769d99ffb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 4
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.world-frame.observation-20261007",
+      "kind": "live_observation",
+      "scope": "Four original Quick Battle World consumer samples after 120 queues, interval10; original simulation/raster work retained. Effective primitive order, assets, colours/offsets and clips plus separately pinned original before/after output. No continuous native presentation/bypass, active battle actions or full window.",
+      "record": "research/runtime/native-world-frame-capture-20261007.json",
+      "sha256": "8463d256d7d0961e9f2fe77e95b58ca744d18e91fb032758232cd1059c1f8caa",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation",
+          "equals": true
+        },
+        {
+          "pointer": "/samples",
+          "equals": 4
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-frame.regressions-20261007",
+      "kind": "native_integration",
+      "scope": "Sixteen current-source synthetic renderer/scene regression CTests, Debug Xvfb/Mesa. Original code/media not consumed; physical drivers, live World scheduling and original equivalence are not asserted.",
+      "record": "research/runtime/native-world-frame-renderer-regressions-20261007.json",
+      "sha256": "d24cf9dbf0551b0c9dcb2cfc04de8d4711035bb7d98f1c58b733d7801865cd5c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 16
+        }
+      ]
+    },
+    {
+      "id": "RS.world-frame.original-anchored-20261007",
+      "kind": "isolated_original",
+      "scope": "18 six-mode clipped fixtures/6912 pixels and four complete native/private-original World canvases/1920000 pixels, also exact to captured live consumer output. Effective palettes and assets are inputs; no original destination input, consumer bypass or continuous live integration.",
+      "record": "research/runtime/native-world-frame-comparison-anchored-20261007.json",
+      "sha256": "74a1a345bbdf5db32f81b99c78f8c90f93b76c7af51dbcd3ab1a774d314957bf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/entry_anchors/0x57e1b0",
+          "equals": "83ec1453558bc156"
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-frame.native-anchored-20261007",
+      "kind": "native_integration",
+      "scope": "Four native CTests and 22 complete headless canvas outputs with six modes, actual colour tables, clips, opaque zero, malformed-wire/resource/atomic refusal and no remaining owned surfaces. Mesa llvmpipe only.",
+      "record": "research/runtime/native-world-frame-comparison-anchored-20261007.json",
+      "sha256": "74a1a345bbdf5db32f81b99c78f8c90f93b76c7af51dbcd3ab1a774d314957bf",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 4
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/entry_anchors/0x57e1b0",
+          "equals": "83ec1453558bc156"
+        }
+      ]
+    },
+    {
+      "id": "NR.world-live.regressions-20261007",
+      "kind": "native_integration",
+      "scope": "65 current Debug native renderer/asset/World ownership/session CTests; concurrent channel/batch/refusal/no-readback/resize/cleanup. Xvfb/Mesa; no original/full live equivalence.",
+      "record": "research/runtime/native-world-live-regressions-20261007.json",
+      "sha256": "1e77eeaa7bb87a8581bebed094284b961648e446285659566cf0bfd9a6f06fb7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 65
+        }
+      ]
+    },
+    {
+      "id": "NR.world-live.normal-20261007",
+      "kind": "native_integration",
+      "scope": "24 complete owned native World Qt shadow presentations;0 readbacks/image uploads,53 drops/23 superseded packets,0 remaining surfaces. No natural original comparison/input/HUD/whole bypass claim.",
+      "record": "research/runtime/native-world-live-normal-20261007.json",
+      "sha256": "d4809d233685305c4e596137218f44c946f904255cee507b1e83e3b31e9165eb",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_native_presentation",
+          "equals": true
+        },
+        {
+          "pointer": "/native_world/presentations",
+          "equals": 24
+        },
+        {
+          "pointer": "/native_world/native_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_world/viewport_image_uploads",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_world/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.world-background.gap-20261007",
+      "kind": "isolated_original",
+      "scope": "480000 native/private-original zero-background pixels match;7 live pixels differ. Initial state/other producer unknown; no baseline live equivalence.",
+      "record": "research/runtime/native-world-background-comparison-20261007.json",
+      "sha256": "13b5540a6dc1621c2936cd4fc8fb5de25aa07a3604d006b5dcaa16283aa28ab3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": false
+        },
+        {
+          "pointer": "/live_mismatches",
+          "equals": 7
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-background.native-20261007",
+      "kind": "native_integration",
+      "scope": "Current native zero-background replay of retained failing live frame matches independent original, with7 live output differences retained.",
+      "record": "research/runtime/native-world-background-comparison-20261007.json",
+      "sha256": "13b5540a6dc1621c2936cd4fc8fb5de25aa07a3604d006b5dcaa16283aa28ab3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/live_original_pixels_match",
+          "equals": false
+        },
+        {
+          "pointer": "/live_mismatches",
+          "equals": 7
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.world-primitives.original-current-20261007",
+      "kind": "isolated_original",
+      "scope": "18 independent six-mode clipped fixtures/6912 pixels with zero initial canvases; original entry anchored; no actual live/lifecycle equivalence.",
+      "record": "research/runtime/native-world-primitives-current-20261007.json",
+      "sha256": "f3cbe76fb20a7598ecd28d554cf0798fbab8d02b508aa20c06591af6932c6682",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/independent_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/entry_anchors/0x57e1b0",
+          "equals": "83ec1453558bc156"
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-primitives.native-current-20261007",
+      "kind": "native_integration",
+      "scope": "4 current native World/scene CTests and18 six-mode outputs, including fresh batched scene test; headless execution, no live replacement.",
+      "record": "research/runtime/native-world-primitives-current-20261007.json",
+      "sha256": "f3cbe76fb20a7598ecd28d554cf0798fbab8d02b508aa20c06591af6932c6682",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 4
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.world-live.historical-equivalence-20261007",
+      "kind": "live_equivalence",
+      "scope": "Historical pre-batching24 outputs/11520000 pixels match. Preserved fingerprints; no current batched/failed background coverage.",
+      "record": "research/runtime/native-world-live-equivalence-historical-20261007.json",
+      "sha256": "3e6336e8d9c7013d8136738dd9f55e9e52c4c9a99e970d11bdd8ab5577986c17",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/live_equivalence",
+          "equals": true
+        },
+        {
+          "pointer": "/native_world/presentations",
+          "equals": 24
+        },
+        {
+          "pointer": "/native_world/pixels_compared",
+          "equals": 11520000
+        },
+        {
+          "pointer": "/native_world/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "equivalence_pointer": "/live_equivalence"
+    },
+    {
+      "id": "NR.scene-history.native-20261007",
+      "kind": "native_integration",
+      "scope": "Eight contiguous native GPU World outputs/3072pixels, six compositions, explicit native zero initialization, source-gap refusal. No original startup recovery or interactive history claim.",
+      "record": "research/runtime/native-world-history-comparison-20261007.json",
+      "sha256": "040f61870070d08ed1f87a718ebc643dcadb87ed2e318cd950e30e993b1a16d2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_history_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/history_required",
+          "equals": true
+        },
+        {
+          "pointer": "/gap_refused",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.world-history.original-20261007",
+      "kind": "isolated_original",
+      "scope": "Eight native/private-original zero-initialized contiguous canvases/3072pixels, six modes and retained masked destinations; separate actual before/after diagnostics. Original startup producers/ownership and unpublished-queue history unresolved.",
+      "record": "research/runtime/native-world-history-comparison-20261007.json",
+      "sha256": "040f61870070d08ed1f87a718ebc643dcadb87ed2e318cd950e30e993b1a16d2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_history_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_history_pixels",
+          "equals": 3072
+        },
+        {
+          "pointer": "/entry_anchors/0x57e1b0",
+          "equals": "83ec1453558bc156"
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RS.world-initial-state.before-after-20261007",
+      "kind": "isolated_original",
+      "scope": "Current private original diagnostic replay and native zero replay of four retained older live inputs:15unchanged before/after mismatches each,1920000pixels compared; original before state supplied only to private original process. Does not recover original writer/lifecycle or validate live native history.",
+      "record": "research/runtime/native-world-history-comparison-20261007.json",
+      "sha256": "040f61870070d08ed1f87a718ebc643dcadb87ed2e318cd950e30e993b1a16d2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/retained_initial_pixels_confirmed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostic_pixels",
+          "equals": 1920000
+        },
+        {
+          "pointer": "/original_before_used_only_by_private_original_reference",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostics/0/zero_live_mismatches",
+          "equals": 15
+        },
+        {
+          "pointer": "/live_diagnostics/0/unchanged_prior_mismatches",
+          "equals": 15
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-history.regressions-20261007",
+      "kind": "native_integration",
+      "scope": "66current Debug Xvfb/Mesa native checks, including history gap/identity/batch/poison/reset/cleanup plus continuous World Qt/channel regressions; no original equivalence.",
+      "record": "research/runtime/native-world-history-regressions-20261007.json",
+      "sha256": "406b15797534d9a744eda86fdfcba03d2a2e3a847bbe14aeebfb952dccc42867",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 66
+        }
+      ]
+    },
+    {
+      "id": "RS.world-initial-state.startup-20261007",
+      "kind": "live_observation",
+      "scope": "First World queue has365306nonzero pixels;8bounded pointer-value records, no allocation generations. Four startup diagnostics retain three refused inputs including lazy wave initialization and unknown kinds; original work forwarded, no complete native admission.",
+      "record": "research/runtime/native-world-startup-capture-20261007.json",
+      "sha256": "5235b902b20ca882092558484c04e907de08f8431f85a2f037bc1141a1f98513",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_observation",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_native_admission",
+          "equals": false
+        },
+        {
+          "pointer": "/canvas_lifetime/first_nonzero_pixels",
+          "equals": 365306
+        },
+        {
+          "pointer": "/canvas_lifetime/allocation_generations_observed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RS.world-frame.history-current-capture-20261007",
+      "kind": "isolated_original",
+      "scope": "Four current finite live inputs/1920000pixels match native/private-original zero replay and private original replay from diagnostic before state. This capture has no retained mismatch; it does not erase the separate15pixel case or establish startup/full live history.",
+      "record": "research/runtime/native-world-history-current-capture-20261007.json",
+      "sha256": "111721303c1e3ac360f98ebf316a70bd9605f1c9aebb59f12248f8c39869bb38",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostic_pixels",
+          "equals": 1920000
+        },
+        {
+          "pointer": "/live_diagnostics/0/zero_live_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/live_diagnostics/1/zero_live_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/live_diagnostics/2/zero_live_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/live_diagnostics/3/zero_live_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/retained_initial_pixels_confirmed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-initial-state.diagnostics-native-20261007",
+      "kind": "native_integration",
+      "scope": "Four current native zero-initialized replays of retained earlier live requests/1920000pixels match private original zero replay, with15unchanged live differences per frame; native original pixels remain forbidden.",
+      "record": "research/runtime/native-world-history-comparison-20261007.json",
+      "sha256": "040f61870070d08ed1f87a718ebc643dcadb87ed2e318cd950e30e993b1a16d2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/retained_initial_pixels_confirmed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostic_pixels",
+          "equals": 1920000
+        },
+        {
+          "pointer": "/original_before_used_only_by_private_original_reference",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostics/0/zero_live_mismatches",
+          "equals": 15
+        },
+        {
+          "pointer": "/live_diagnostics/0/unchanged_prior_mismatches",
+          "equals": 15
+        }
+      ]
+    },
+    {
+      "id": "NR.world-frame.history-current-native-20261007",
+      "kind": "native_integration",
+      "scope": "Four current finite native World output comparisons/1920000pixels; separate original diagnostics, no startup lifecycle or interactive native history claim.",
+      "record": "research/runtime/native-world-history-current-capture-20261007.json",
+      "sha256": "111721303c1e3ac360f98ebf316a70bd9605f1c9aebb59f12248f8c39869bb38",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostic_pixels",
+          "equals": 1920000
+        },
+        {
+          "pointer": "/live_diagnostics/0/zero_live_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/live_diagnostics/1/zero_live_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/live_diagnostics/2/zero_live_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/live_diagnostics/3/zero_live_mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/retained_initial_pixels_confirmed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.world-history.live-normal-20261007",
+      "kind": "native_integration",
+      "scope": "24 current ordinary native World Qt shadow presentations after history-service changes,0CPU pixel readbacks/0viewport image uploads/0remaining surfaces;212nonblocking producer drops and23superseded packets. Explicit native stateless background, no original equivalence or integrated history claim.",
+      "record": "research/runtime/native-world-history-live-normal-20261007.json",
+      "sha256": "89575087f0144fe849cfb31b916f22a3af8eb1409cab0a74c4423cb57809dba8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_native_presentation",
+          "equals": true
+        },
+        {
+          "pointer": "/live_equivalence",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/native_world/presentations",
+          "equals": 24
+        },
+        {
+          "pointer": "/native_world/native_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_world/viewport_image_uploads",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_world/remaining_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.world-commit.regressions-20261007",
+      "kind": "native_integration",
+      "scope": "Six affected native channel/session/frame/scene/history/snapshot CTests in the frozen integration tree; dedicated producer refusal, original/live equivalence and whole-scene replacement remain pending.",
+      "record": "research/runtime/native-world-commit-regressions-20261007.json",
+      "sha256": "d89fb193f5e8ca8acf75c81e927da0a227b46f19584a5d9117157a7188c0fb60",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 6
+        }
+      ]
+    },
+    {
+      "id": "NR.world-commit.history-native-20261007",
+      "kind": "native_integration",
+      "scope": "Eight contiguous native GPU World outputs/3072pixels, six compositions, explicit native zero initialization, source-gap refusal. No original startup recovery or interactive history claim. Fresh isolated replay in the frozen integration tree, using byte-identical retained captures with normalized input paths; no new original/live capture, producer ABI or startup ownership validation.",
+      "record": "research/runtime/native-world-commit-history-20261007.json",
+      "sha256": "38edcba571b536ad2a4d40d1b8649547ebd5936af14a00f1b52d34ee1f2d6eb5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_history_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/history_required",
+          "equals": true
+        },
+        {
+          "pointer": "/gap_refused",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.world-commit.history-original-20261007",
+      "kind": "isolated_original",
+      "scope": "Eight native/private-original zero-initialized contiguous canvases/3072pixels, six modes and retained masked destinations; separate actual before/after diagnostics. Original startup producers/ownership and unpublished-queue history unresolved. Fresh isolated replay in the frozen integration tree, using byte-identical retained captures with normalized input paths; no new original/live capture, producer ABI or startup ownership validation.",
+      "record": "research/runtime/native-world-commit-history-20261007.json",
+      "sha256": "38edcba571b536ad2a4d40d1b8649547ebd5936af14a00f1b52d34ee1f2d6eb5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_history_original_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native_history_pixels",
+          "equals": 3072
+        },
+        {
+          "pointer": "/entry_anchors/0x57e1b0",
+          "equals": "83ec1453558bc156"
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RS.world-commit.before-after-20261007",
+      "kind": "isolated_original",
+      "scope": "Current private original diagnostic replay and native zero replay of four retained older live inputs:15unchanged before/after mismatches each,1920000pixels compared; original before state supplied only to private original process. Does not recover original writer/lifecycle or validate live native history. Fresh isolated replay in the frozen integration tree, using byte-identical retained captures with normalized input paths; no new original/live capture, producer ABI or startup ownership validation.",
+      "record": "research/runtime/native-world-commit-history-20261007.json",
+      "sha256": "38edcba571b536ad2a4d40d1b8649547ebd5936af14a00f1b52d34ee1f2d6eb5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/retained_initial_pixels_confirmed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostic_pixels",
+          "equals": 1920000
+        },
+        {
+          "pointer": "/original_before_used_only_by_private_original_reference",
+          "equals": true
+        },
+        {
+          "pointer": "/live_diagnostics/0/zero_live_mismatches",
+          "equals": 15
+        },
+        {
+          "pointer": "/live_diagnostics/0/unchanged_prior_mismatches",
+          "equals": 15
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
     }
   ],
   "classifications": [],
@@ -35089,12 +36526,86 @@
         "build": "nocd-40209ca7",
         "address": 5247364,
         "relation": "data",
-        "scope": "Static computed jump at 0x5003fc; table semantics unclassified."
+        "scope": "First consumer computed jump at 0x5003fc; selected raster links only, complete table semantics not claimed."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
+      "scope": "Selected first consumer path links recovered from static calls and bounded effective raster capture. Other values, default branches, alternate tables and complete consumer state/readback semantics remain unresolved.",
       "complete": false,
-      "entries": []
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 31,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "RS.world-initial-state"
+          ]
+        },
+        {
+          "value": "other-or-default",
+          "behaviors": []
+        }
+      ]
     },
     {
       "id": "RI.queue-draw-00501210",
@@ -38252,6 +39763,351 @@
       "tests": [
         "tools/test-render-mutations.py"
       ]
+    },
+    {
+      "id": "word-sprite-fixtures-20261007",
+      "scope": "256 independent original word raster comparisons;647 native refusals and portable host full-pixel/alias/late-admission test.",
+      "level": "headless",
+      "behaviors": [
+        "RS.word-raster",
+        "NR.word-admission"
+      ],
+      "evidence": [
+        "RS.word-raster.original-20261007",
+        "NR.word-admission.host-20261007"
+      ],
+      "tests": [
+        "tools/test-word-sprites.py",
+        "tests/word-raster-test.c",
+        "tests/word-sprite-reference.cpp"
+      ]
+    },
+    {
+      "id": "word-sprite-shadow-world-entry-20261007",
+      "scope": "Isolated original quick-battle menu setup through four World snapshots;12608 admitted destination/workspace pairs and940 original fallbacks. No original bypass or full-frame equivalence.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "RS.word-route"
+      ],
+      "evidence": [
+        "RS.word-route.shadow-20261007"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py"
+      ]
+    },
+    {
+      "id": "word-sprite-takeover-world-entry-20261007",
+      "scope": "12608 partial native backend bypass calls,705 original fallbacks; eight native recorded canvases/1070400 pixels and workspace independently compared with the original. Original scene/auxiliary drawing and simulation remain; no complete World or long-session/shutdown claim.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "RS.word-route"
+      ],
+      "evidence": [
+        "RS.word-route.takeover-20261007"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py",
+        "tools/test-word-sprites.py"
+      ]
+    },
+    {
+      "id": "word-sprite-launch-staging-20261007",
+      "scope": "Ordinary Qt staging launcher constructs pinned partial word-raster imports and fresh diagnostic manifest from a valid frame stream; no GUI/game execution in this staging result.",
+      "level": "headless",
+      "behaviors": [
+        "RS.word-route"
+      ],
+      "evidence": [
+        "RS.word-route.launch-staging-20261007"
+      ],
+      "tests": [
+        "tools/run-opengl-game.py"
+      ]
+    },
+    {
+      "id": "world-raster-fixtures-20261007",
+      "scope": "18 independent original/native canvases with six raster modes, three clips, signed origins, opaque zero and coloured native preceding layers; strict malformed input/resource admission and scene lifetime tests. Selected original pixel arithmetic, not full ABI/backend coverage.",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-composition",
+        "NR.world-admission"
+      ],
+      "evidence": [
+        "RS.world-frame.original-20261007",
+        "NR.world-frame.native-20261007",
+        "RS.world-frame.original-anchored-20261007",
+        "NR.world-frame.native-anchored-20261007"
+      ],
+      "tests": [
+        "tests/world-frame-test.cpp",
+        "tests/world-frame-reference.cpp",
+        "tools/test-world-frames.py"
+      ]
+    },
+    {
+      "id": "world-complete-canvas-20261007",
+      "scope": "Four 800x600 World consumer canvases after120 queues, interval10; 1298 native requests each,243 pinned frame identities/eight asset files.1920000 whole pixels match independent private original raster execution and captured live output. Native starts from owned zero; no later HUD/continuous presentation/consumer bypass.",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "NR.world-admission"
+      ],
+      "evidence": [
+        "RS.world-frame.original-20261007",
+        "NR.world-frame.native-20261007",
+        "RS.world-frame.observation-20261007",
+        "RS.world-frame.original-anchored-20261007",
+        "NR.world-frame.native-anchored-20261007"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py",
+        "tools/test-world-frames.py",
+        "tests/world-frame-reference.cpp"
+      ]
+    },
+    {
+      "id": "world-renderer-regressions-20261007",
+      "scope": "Sixteen current-source synthetic renderer/scene regression CTests, Debug Xvfb/Mesa. Original code/media not consumed; physical drivers, live World scheduling and original equivalence are not asserted.",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-composition",
+        "NR.world-admission"
+      ],
+      "evidence": [
+        "NR.world-frame.regressions-20261007"
+      ],
+      "tests": [
+        "tests/world-frame-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/resource-cache-test.cpp",
+        "tests/render-blit-test.cpp",
+        "tests/render-surfaces-test.cpp",
+        "tests/render-command-consumer-test.cpp"
+      ]
+    },
+    {
+      "id": "world-live-native-preview-20261007",
+      "scope": "24 live Qt native World previews with independent zero background; no original equivalence",
+      "level": "preview",
+      "behaviors": [
+        "NR.world-channel",
+        "NR.world-live-view"
+      ],
+      "evidence": [
+        "NR.world-live.normal-20261007"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py"
+      ]
+    },
+    {
+      "id": "world-live-policy-regressions-20261007",
+      "scope": "65 native checks; channel/Qt ownership/partial-frame refusal",
+      "level": "headless",
+      "behaviors": [
+        "NR.world-channel",
+        "NR.world-live-view",
+        "NR.world-admission",
+        "NR.scene-service"
+      ],
+      "evidence": [
+        "NR.world-live.regressions-20261007"
+      ],
+      "tests": [
+        "tests/world-channel-test.cpp",
+        "tests/world-live-session-test.cpp",
+        "tools/test-native-world.py",
+        "tests/scene-renderer-test.cpp",
+        "tools/capture-scene-game.py"
+      ]
+    },
+    {
+      "id": "world-initial-canvas-gap-20261007",
+      "scope": "7 pixel live gap versus matching native/private-original zero-background replay",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-initial-state",
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "evidence": [
+        "RS.world-background.gap-20261007",
+        "NR.world-background.native-20261007"
+      ],
+      "tests": [
+        "tools/test-world-background.py"
+      ]
+    },
+    {
+      "id": "world-primitives-current-20261007",
+      "scope": "18 current six-mode clipped fixtures/4 native CTests",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "NR.world-admission"
+      ],
+      "evidence": [
+        "RS.world-primitives.original-current-20261007",
+        "NR.world-primitives.native-current-20261007"
+      ],
+      "tests": [
+        "tools/test-world-frames.py"
+      ]
+    },
+    {
+      "id": "world-native-history-20261007",
+      "scope": "Eight owned contiguous zero-initialized canvases and66 native regressions; six compositions, masked retention and gap/poison/batch refusal",
+      "level": "headless",
+      "behaviors": [
+        "NR.scene-history",
+        "NR.scene-service",
+        "NR.world-admission",
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "evidence": [
+        "NR.scene-history.native-20261007",
+        "RS.world-history.original-20261007",
+        "NR.world-history.regressions-20261007"
+      ],
+      "tests": [
+        "tools/test-world-history.py",
+        "tests/scene-history-test.cpp",
+        "tools/test-native-world.py"
+      ]
+    },
+    {
+      "id": "world-retained-before-after-20261007",
+      "scope": "Four retained earlier live inputs match private original before replay;15differences each survive unchanged; original before pixels are diagnostic only",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-initial-state",
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "evidence": [
+        "RS.world-initial-state.before-after-20261007",
+        "NR.world-initial-state.diagnostics-native-20261007"
+      ],
+      "tests": [
+        "tools/test-world-history.py",
+        "tests/world-frame-reference.cpp"
+      ]
+    },
+    {
+      "id": "world-first-canvas-observation-20261007",
+      "scope": "First queue starts nonzero and startup requests explicitly refuse; no original lifecycle recovery or native startup admission",
+      "level": "live_observation",
+      "behaviors": [
+        "RS.world-initial-state",
+        "RS.world-frame"
+      ],
+      "evidence": [
+        "RS.world-initial-state.startup-20261007"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py"
+      ]
+    },
+    {
+      "id": "world-current-before-after-comparison-20261007",
+      "scope": "Four current finite canvases match across independent initialization and separate diagnostic before state; this case has no initial mismatch",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-initial-state",
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "evidence": [
+        "RS.world-frame.history-current-capture-20261007",
+        "NR.world-frame.history-current-native-20261007"
+      ],
+      "tests": [
+        "tools/test-world-history.py"
+      ]
+    },
+    {
+      "id": "world-history-current-live-preview-20261007",
+      "scope": "24 current stateless native World Qt frames with212producer drops/23superseded packets; no original equivalence or retained live history",
+      "level": "preview",
+      "behaviors": [
+        "NR.world-channel",
+        "NR.world-live-view"
+      ],
+      "evidence": [
+        "NR.world-history.live-normal-20261007"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py"
+      ]
+    },
+    {
+      "id": "world-commit-snapshot-headless-20261007",
+      "scope": "Frozen-source synthetic native headless checks; original inputs, live game delivery, producer refusal ABI and full scene replacement are not validated by this scenario.",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "NR.world-admission",
+        "NR.scene-history"
+      ],
+      "evidence": [
+        "NR.world-commit.regressions-20261007"
+      ],
+      "tests": [
+        "tests/world-channel-test.cpp",
+        "tests/world-live-session-test.cpp",
+        "tests/world-frame-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/scene-history-test.cpp",
+        "tests/scene-snapshot-test.cpp"
+      ],
+      "level": "headless"
+    },
+    {
+      "id": "world-commit-snapshot-preview-20261007",
+      "scope": "Frozen-source synthetic native preview checks; original inputs, live game delivery, producer refusal ABI and full scene replacement are not validated by this scenario.",
+      "behaviors": [
+        "NR.scene-service",
+        "NR.world-channel",
+        "NR.world-live-view"
+      ],
+      "evidence": [
+        "NR.world-commit.regressions-20261007"
+      ],
+      "tests": [
+        "tests/world-channel-test.cpp",
+        "tests/world-live-session-test.cpp",
+        "tests/world-frame-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/scene-history-test.cpp",
+        "tests/scene-snapshot-test.cpp"
+      ],
+      "level": "preview"
+    },
+    {
+      "id": "world-commit-snapshot-original-history-20261007",
+      "scope": "Eight independent original/native retained canvases and four retained before/after diagnostics; native initialization is explicit, original initial pixels never enter the native renderer. No new live scenario or startup recovery.",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "NR.world-admission",
+        "NR.scene-history",
+        "RS.world-initial-state"
+      ],
+      "evidence": [
+        "NR.world-commit.history-native-20261007",
+        "RS.world-commit.history-original-20261007",
+        "RS.world-commit.before-after-20261007"
+      ],
+      "tests": [
+        "tools/test-world-history.py",
+        "tests/world-frame-reference.cpp",
+        "tests/scene-history-test.cpp"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -38389,6 +40245,15 @@
       "document": "research/runtime/campaign-preferences-engine-bridge.md",
       "evidence": "UI34.fixture",
       "anchors_pointer": "/fixture/anchors"
+    },
+    {
+      "id": "world-copy-reference-entry-57e1b0",
+      "build": "nocd-40209ca7",
+      "start": 5759408,
+      "end": 5759416,
+      "document": "research/runtime/native-world-frame-rendering.md",
+      "evidence": "RS.world-history.original-20261007",
+      "anchors_pointer": "/entry_anchors"
     }
   ],
   "register_imports": [
@@ -38499,7 +40364,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-commit-chunk-2-20261007.json",
-    "sha256": "db53fd1a642adf2c11714ad1a29be498b9328b873063276a35b1079ac4d2976b"
+    "path": "research/runtime/coverage/source-index-commit-chunk-3-frozen-20261007.json",
+    "sha256": "b3c81e27a310b8704d3e0c150de955ca21facb3eabcce2c203d30a1d08ec1f36"
   }
 }

@@ -9,8 +9,17 @@ import subprocess
 root=Path(os.environ['MNM_RENDER_EXPERIMENT']);metadata=json.loads((root/'manifest.json').read_text());game=root/'game'
 binaries=[('Chaos.exe','staged_sha256'),('MnmRender.dll','dll_sha256')]
 if metadata.get('audio_dll_sha256'):binaries.append(('MnmAudio.dll','audio_dll_sha256'))
+if metadata.get('word_dll_sha256'):binaries.append(('MnmWord.dll','word_dll_sha256'))
 for name,key in binaries:
     if hashlib.sha256((game/name).read_bytes()).hexdigest()!=metadata[key]:raise ValueError(f'{name} hash mismatch')
+os.environ.pop('MNM_WORD_DIRECTORY',None)
+os.environ.pop('MNM_WORD_SPRITES',None)
+if metadata.get('word_dll_sha256'):
+    if metadata.get('word_sprites_mode') not in ('shadow','takeover'):raise ValueError('Unsupported word-sprite mode')
+    directory=Path(metadata['word_directory']).resolve()
+    if directory!=root.resolve()/'word-sprites' or any(directory.iterdir()):raise ValueError('Word-sprite capture directory must be fresh')
+    os.environ['MNM_WORD_SPRITES']=metadata['word_sprites_mode']
+    os.environ['MNM_WORD_DIRECTORY']='Z:'+str(directory).replace('/','\\')
 os.chdir(game)
 if metadata.get('capture_locks'):
     timing=root/'presentation-rate.jsonl'

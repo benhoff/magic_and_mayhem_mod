@@ -1,9 +1,15 @@
 #include "../shadow/win32_min.h"
 #include "../../protocols/include/mnm/scene_snapshot_v1.h"
 extern void scene_enter(void);
+extern void world_begin(u32*,u32);
+extern int world_stream_init(void);
+extern void world_stream_close(void);
+extern void world_lifetime_observe(u32*);
+extern void world_lifetime_close(void);
 u32 scene_trampoline;
 static u32 image_base,samples,limit=4;
 static volatile u32 busy;
+static u32 calls,skip,interval=1,continuous;
 static char directory[220];
 static const u8 expected[9]={0x83,0xec,0x18,0x53,0xb8,0x00,0x6c,0xca,0x88};
 static u32 pointers[MNM_SCENE_V1_MAX_BLOBS];
@@ -29,7 +35,10 @@ static int save(const u8* bytes,u32 size){
 void scene_observe(u32* registers){
     u32 error=GetLastError();if(!__sync_bool_compare_and_swap(&busy,0,1)){SetLastError(error);return;}
     u8* bytes=0;
-    if(samples>=limit)goto done;
+    world_lifetime_observe(registers);
+    if(!continuous&&samples>=limit)goto done;
+    if(calls++<skip||(calls-skip-1)%interval)goto done;
+    if(continuous){world_begin(registers,0);goto done;}
     /* pushal ECX is word 6. All reads happen on the original engine thread. */
     u32 queue=registers[6];if(!readable(queue,24))goto done;
     u32 base=get((void*)queue),count=get((void*)(queue+8)),capacity=get((void*)(queue+12)),view=get((void*)(queue+20));
@@ -59,7 +68,7 @@ void scene_observe(u32* registers){
         if(!token&&!(flags&MNM_SCENE_V1_HIDDEN))flags|=MNM_SCENE_V1_NO_FRAME;
         put(out,token);put(out+28,flags);
     }
-    ++samples;put(bytes+16,at);put(bytes+20,samples);put(bytes+28,blobs);save(bytes,at);
+    ++samples;put(bytes+16,at);put(bytes+20,samples);put(bytes+28,blobs);if(save(bytes,at))world_begin(registers,samples);
 done:
     if(bytes)HeapFree(GetProcessHeap(),0,bytes);__sync_lock_release(&busy);SetLastError(error);
 }
@@ -79,11 +88,14 @@ __declspec(dllexport) void SceneAnchor(void){}
 __declspec(dllexport) int WIN SceneInstallForTest(u32 base){return install(base);}
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
-    (void)instance;(void)reserved;if(reason!=1)return 1;
+    (void)instance;(void)reserved;if(reason==0){world_lifetime_close();world_stream_close();return 1;}if(reason!=1)return 1;
     u32 n=GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory))return 1;
     char number[8];n=GetEnvironmentVariableA("MNM_SCENE_SAMPLES",number,8);
     if(n){if(n>=8)return 1;limit=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 1;limit=limit*10+number[i]-'0';}if(!limit||limit>16)return 1;}
+    n=GetEnvironmentVariableA("MNM_SCENE_SKIP",number,8);if(n){if(n>=8)return 1;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 1;skip=skip*10+number[i]-'0';}if(skip>3600)return 1;}
+    n=GetEnvironmentVariableA("MNM_SCENE_INTERVAL",number,8);if(n){if(n>=8)return 1;interval=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 1;interval=interval*10+number[i]-'0';}if(!interval||interval>3600)return 1;}
 #ifndef MNM_SCENE_SELFTEST
+    continuous=world_stream_init();
     install((u32)GetModuleHandleA(0));
 #endif
     return 1;

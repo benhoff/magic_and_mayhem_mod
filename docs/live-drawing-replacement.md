@@ -57,6 +57,35 @@ pixels. The scene observer exports bounded display records and forwards the
 original queue consumer; its native adapter requires unshaded replay and can
 explicitly permit partial previews.
 
+The [owned World frame path](../research/runtime/native-world-frame-rendering.md)
+extends that boundary with effective primitive order, actual colours and clips,
+complete resource admission and six native raster modes. It compares finite
+full World consumer canvases against independent original output. It has its
+own strict adapter; the earlier snapshot preview retains its unshaded policy.
+The [continuous World shadow viewer](../research/runtime/native-world-live-rendering.md)
+now publishes owned requests through a bounded two-slot channel and draws finite
+batches into the Qt GPU viewport. Ordinary mode performs no CPU pixel readback.
+The [initial-canvas gap](../research/runtime/native-world-live-background-gap.md),
+later HUD/window composition and complete consumer bypass remain separate
+milestones. Complete delivery and native presentation do not establish baseline
+equivalence for an unknown initial canvas.
+
+The [native canvas history increment](../research/runtime/native-world-canvas-history.md)
+adds contiguous source admission and owned GPU canvas retention. Before/after
+original diagnostics establish retained pre-consumer pixels for selected failing
+frames. An explicitly zero-initialized native history chain matches private
+original execution. Startup already has nonzero canvas contents and refused
+drawing paths; its producers/ownership are still unresolved. Continuous history
+requires every intervening queue despite publication drops and superseding.
+
+The [direct-word sprite MVP](../research/runtime/native-word-sprite-mvp.md) adds
+an explicit partial CPU raster route at the two selected original word-backend
+entries. Fully in-bounds admitted SPR draws can bypass those original routines;
+clipped and unsupported draws retain their original path. Original caller-side
+auxiliary passes, indexed World sprites and the other frame producers remain
+active. Its bounded shadow/takeover comparisons are scoped primitive evidence,
+not a complete scene or supported-session milestone.
+
 | Area | Current boundary | Work required for complete replacement |
 | --- | --- | --- |
 | Copies and fills | Native operations and selected original/driver comparisons exist; live hooks still call original drawing. | Route admitted operations directly to native storage, preserving clipping, keys, flags, partial writes and caller-visible results. |
@@ -86,19 +115,22 @@ research's historical milestone numbers retain their local meaning.
 | Milestone | Deliverable | Current state | Exit gate |
 | --- | --- | --- | --- |
 | DRAW-01 Drawing coverage | Scenario-tagged inventory of active producers, consumers and graphics side effects. | Partial static and bounded live inventory. | Every encountered route has a behavior ID, owner, classification and explicit support decision; unresolved indirect flows remain visible. |
-| DRAW-02 Independent comparison | Original-output corpus for surfaces and complete scenes, with frame/input identities. | Selected surface fixtures and stable-region comparisons exist. | Native output is compared with independent original output for the selected scenario; oracle pixels never drive native rendering. |
-| DRAW-03 Native scene completeness | Asset-backed rendering for the admitted draw kinds, backgrounds, shading and UI. | Scoped native services and unshaded scene replay exist. | The declared scene is complete, including required side effects; diagnostic backgrounds, omitted draws and unshaded approximations cannot pass baseline comparison. |
-| DRAW-04 Continuous scene delivery | Versioned live drawing inputs from original simulation to native services. | Bounded scene snapshots and a separate pixel-backed command stream exist. | Complete frame admission, identity/lifetime, backpressure and transitions pass without sourcing dynamic frames from original raster output. |
-| DRAW-05 Scoped live takeover | Bypass original drawing for one validated route or complete scene, with explicit mode identity. | No drawing takeover established. | Independent live comparison and counters prove the selected original work was skipped; caller-visible behavior, readbacks and cleanup pass. |
+| DRAW-02 Independent comparison | Original-output corpus for surfaces and complete scenes, with frame/input identities. | Full World consumer inputs and independent whole-canvas comparisons added; broader session corpus remains open. | Native output is compared with independent original output for the selected scenario; oracle pixels never drive native rendering. |
+| DRAW-03 Native scene completeness | Asset-backed rendering for the admitted draw kinds, backgrounds, shading and UI. | Six raster modes, actual colours, clips and strict complete World resource binding implemented. Whole-consumer side effects and later HUD/window output remain open. | The declared scene is complete, including required side effects; diagnostic backgrounds, omitted draws and unshaded approximations cannot pass baseline comparison. |
+| DRAW-04 Continuous scene delivery | Versioned live drawing inputs from original simulation to native services. | Owned World two-slot delivery and GPU shadow presentation exist; original initialization and complete intervening history remain open. | Complete frame admission, identity/lifetime, backpressure and transitions pass without sourcing dynamic frames from original raster output. |
+| DRAW-05 Scoped live takeover | Bypass original drawing for one validated route or complete scene, with explicit mode identity. | Direct-word sprite backend MVP has bounded shadow/takeover execution; complete-scene takeover remains outstanding. | Independent live comparison and counters prove the selected original work was skipped; caller-visible behavior, readbacks and cleanup pass. |
 | DRAW-06 Supported session coverage | Expand takeover to every required drawing route and scenario. | Outstanding. | Full-session corpus, failure/recovery and supported physical-driver checks pass; every fallback or unsupported route is reported as a separate outcome. |
 | DRAW-07 Complete launcher mode | Expose a capability-checked complete-replacement option. | Unavailable. | All completion criteria below pass for the declared build/scenario scope, and the register records the appropriate replacement evidence. |
 
-Start by extending DRAW-01 and DRAW-02 around the existing scene queue boundary.
-Use `runtime/scene/`, `compat/legacy/` and `renderer/scenes/` as the initial
-integration path. Native asset identity, draw order and anchors already have a
-bounded adapter; unsupported draw kinds, shade remapping and complete original
-batch output are the next dependencies. Work on DRAW-03 and DRAW-04 can proceed
-for that bounded scene while the broader inventory continues.
+The initial implementation path is `runtime/scene/`, `compat/legacy/` and
+`renderer/scenes/`. The owned World frame increment supplies actual colours,
+effective draw order/clips and complete original batch output for finite
+comparison. The continuous World shadow viewer supplies bounded immutable publication,
+backpressure and Qt GPU presentation. Next recover startup canvas producers,
+clear/reuse ownership and the lazy displacement/unadmitted startup routes, then
+deliver complete native history across unpublished queues. Extend the DRAW-02
+corpus with camera actions and active battles while classifying additional
+draw kinds and required consumer side effects before complete scene takeover.
 
 DRAW-05 is the first milestone that removes original drawing work. It may cover
 a small route before the whole game is ready. Its experiment must identify the
