@@ -12285,7 +12285,7 @@
       "subsystem": "tooling",
       "kind": "native_policy",
       "title": "Interactive read-only coverage atlas",
-      "scope": "Local read-only browser presentation of curated major engine tracks, equally counted named capability milestones, partial foundations and concrete remaining work, with explicit required behavior stages and execution evidence. Track achievements retain historical/current evidence boundaries, separate native policy, observation and replacement, and group the spell dispatch checklist as one outcome. Detailed views retain binary associations, registered checklist stages, applicable baseline comparisons, filters, source links and discovered direct-entry calls. No effort or whole-game completion estimate, semantic address inference, hosted deployment, editing or original execution.",
+      "scope": "Local read-only browser presentation of curated major engine tracks, equally counted named capability milestones, partial foundations and concrete remaining work, with explicit required behavior stages and execution evidence. Track achievements retain historical/current evidence boundaries, separate native policy, observation and replacement, and group the spell dispatch checklist as one outcome. Detailed views retain binary associations, registered checklist stages, applicable baseline comparisons, filters, source links and discovered direct-entry calls. No effort or whole-game completion estimate, semantic address inference, hosted deployment, editing or original execution. Native rendering is the default permanent focus view: registered World composition/history/shadow/refusal and selected word-route bypass milestones, visible initialization blockers, authoritative release gates and rendering behavior/evidence drilldowns. Curated next-task prose requires upkeep; dynamic stages/freshness follow the refreshed register. UI evidence validates presentation only, not new engine execution. Optional explicit IPv4 binding supports LAN URL hosts and matching same-origin requests; loopback remains the default and unconfigured DNS hosts remain rejected. The read-only UI has no authentication.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -12307,7 +12307,10 @@
         "UI01.dashboard",
         "UI02.dashboard",
         "UI03.dashboard",
-        "UI04.dashboard"
+        "UI04.dashboard",
+        "UI05.native-rendering",
+        "UI06.lan-binding",
+        "COV01.execution-claims-20261008"
       ],
       "status": {
         "understanding": "scoped",
@@ -18189,6 +18192,42 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "preview",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Exact execution claims and composable coverage accounting",
+      "scope": "Offline build/address/source accounting, immutable scope and scenario identities, complete declared implementation/dependency fingerprints, historical/current validation separation, exact receipt composition and root build census. Synthetic guard fixtures and read-only UI validation only; scientific adequacy, inferred transitive dependencies, original execution, full-player-session corpus and engine equivalence are outside this toolkit contract.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/coverage/README.md",
+        "research/runtime/coverage-ledger.md"
+      ],
+      "implementation": [
+        "tools/coverage_claims.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_gate.py",
+        "tools/index-coverage-sources.py",
+        "tools/check-re-coverage.py",
+        "tools/audit-re-coverage.py",
+        "tools/draft-coverage-claims.py"
+      ],
+      "tests": [
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-gate.py"
+      ],
+      "evidence": [
+        "COV01.execution-claims-20261008"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -34925,6 +34964,101 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "UI05.native-rendering",
+      "kind": "native_integration",
+      "record": "research/runtime/coverage-ui-native-rendering-validation-20261008.json",
+      "sha256": "0d3a9e8812f0796bf8d8841182924039e61de2893b8b4aca3a91f74cdb7055dc",
+      "scope": "UI-only permanent native rendering focus, register-derived milestone/freshness boundaries, exact contract/evidence drilldowns, bookmarks, rendering gaps, preserved detailed views, loopback HTTP and desktop/mobile layout. No original artifacts consumed; no engine validation/status promotion.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/unit_tests/success",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_tests/checks",
+          "equals": 13
+        },
+        {
+          "pointer": "/browser/success",
+          "equals": true
+        },
+        {
+          "pointer": "/browser/checks_count",
+          "equals": 27
+        },
+        {
+          "pointer": "/browser/browser_errors",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "UI06.lan-binding",
+      "kind": "native_integration",
+      "record": "research/runtime/coverage-ui-lan-validation-20261008.json",
+      "sha256": "5bab49be7b0f51754f6005cc90ad513f5c3e92c0e30b21fdb3ae20442b2be3a0",
+      "scope": "UI-only IPv4 authority admission, wildcard/specific interface request rules and same-origin refresh;15 semantic/HTTP tests and27 actual desktop/mobile Chromium checks on loopback. The wildcard HTTP fixture uses synthetic data only; launching repository payload on a real LAN was not executed because automatic approval review denied the smoke test pending explicit exposure approval. No game artifacts or engine validation.",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/unit_tests/success",
+          "equals": true
+        },
+        {
+          "pointer": "/unit_tests/checks",
+          "equals": 15
+        },
+        {
+          "pointer": "/browser/success",
+          "equals": true
+        },
+        {
+          "pointer": "/browser/checks_count",
+          "equals": 27
+        },
+        {
+          "pointer": "/browser/browser_errors",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "COV01.execution-claims-20261008",
+      "kind": "native_integration",
+      "scope": "Executed synthetic accounting guards and read-only coverage dashboard preview. No original artifacts consumed; no engine comparison/integration/replacement promoted. Claims were declared before execution.",
+      "record": "research/runtime/coverage/execution-claims-validation-20261008.json",
+      "sha256": "1e57255173e0e3c496cd6d367bfcf36fd470845f27e19df35efc259db19ef681",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/checks/audit_guards/checks",
+          "equals": 60
+        },
+        {
+          "pointer": "/checks/gate_guards/checks",
+          "equals": 51
+        },
+        {
+          "pointer": "/checks/ui_guards/checks",
+          "equals": 18
+        },
+        {
+          "pointer": "/browser/browser_errors",
+          "equals": []
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -40676,6 +40810,66 @@
         "tests/world-frame-reference.cpp",
         "tests/scene-history-test.cpp"
       ]
+    },
+    {
+      "id": "tooling.native-rendering-focus-preview",
+      "level": "preview",
+      "behaviors": [
+        "TOOL.coverage-ui"
+      ],
+      "evidence": [
+        "UI05.native-rendering"
+      ],
+      "scope": "UI-only permanent native rendering focus, register-derived milestone/freshness boundaries, exact contract/evidence drilldowns, bookmarks, rendering gaps, preserved detailed views, loopback HTTP and desktop/mobile layout. No original artifacts consumed; no engine validation/status promotion.",
+      "tests": [
+        "tests/test-coverage-ui.py",
+        "tests/test-coverage-ui-browser.py"
+      ]
+    },
+    {
+      "id": "tooling.coverage-atlas-ipv4-bind",
+      "level": "preview",
+      "behaviors": [
+        "TOOL.coverage-ui"
+      ],
+      "evidence": [
+        "UI06.lan-binding"
+      ],
+      "scope": "UI-only IPv4 authority admission, wildcard/specific interface request rules and same-origin refresh;15 semantic/HTTP tests and27 actual desktop/mobile Chromium checks on loopback. The wildcard HTTP fixture uses synthetic data only; launching repository payload on a real LAN was not executed because automatic approval review denied the smoke test pending explicit exposure approval. No game artifacts or engine validation.",
+      "tests": [
+        "tests/test-coverage-ui.py",
+        "tests/test-coverage-ui-browser.py"
+      ]
+    },
+    {
+      "id": "tooling.execution-claim-guards-20261008",
+      "level": "headless",
+      "scope": "Synthetic accounting guard fixtures: immutable scope/scenario claims, dependency/source omissions, status promotions, historical freshness, exact receipt chains and root build census. No original execution or engine equivalence.",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "evidence": [
+        "COV01.execution-claims-20261008"
+      ],
+      "tests": [
+        "tests/test-re-coverage.py",
+        "tests/test-coverage-gate.py"
+      ]
+    },
+    {
+      "id": "tooling.scope-bound-dashboard-preview-20261008",
+      "level": "preview",
+      "scope": "Read-only coverage UI unit/HTTP and desktop/mobile browser checks, exact-claim current readiness and historical-source boundaries. No engine validation.",
+      "behaviors": [
+        "TOOL.coverage-ui"
+      ],
+      "evidence": [
+        "COV01.execution-claims-20261008"
+      ],
+      "tests": [
+        "tests/test-coverage-ui.py",
+        "tests/test-coverage-ui-browser.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -40932,7 +41126,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-audit-performance-20261008.json",
-    "sha256": "ecd1ea5aa2aee504254c0c2b04caf65f3629fc99050a500d2c7b0d03e075cfa9"
-  }
+    "path": "research/runtime/coverage/source-index-execution-claims-commit-20261008.json",
+    "sha256": "9fba380f2af72db67860b16827421318d1f8220ee1dd4187b141222d4c042985"
+  },
+  "claim_bindings_required": true
 }

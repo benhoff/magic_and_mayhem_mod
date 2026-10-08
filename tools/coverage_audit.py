@@ -5,6 +5,7 @@ from pathlib import Path
 import re
 from bisect import bisect_right
 from functools import cache
+from coverage_claims import validation_support
 
 STAGES = {
     'understanding': {'unknown', 'partial', 'scoped'},
@@ -95,6 +96,8 @@ def audit(root, register):
                 'behaviors_without_implementation': [], 'behaviors_without_comparison': [], 'behaviors_without_tests': [],
                 'stale_evidence': []}
     findings['behavior_anchors_outside_discovered_functions'] = []
+    findings['validation_gaps'] = []
+    findings['retired_execution_claims'] = []
     # An invocation observes each file once. Never retain cached paths/hashes
     # across audits: working files, staged trees and Git bases are independent.
     files = {}
@@ -128,6 +131,7 @@ def audit(root, register):
 
     try:
         require(register['schema'] == 1, 'Unsupported register schema')
+        require(isinstance(register.get('claim_bindings_required', False), bool), 'Invalid execution-claim policy')
         builds = unique(register['builds'], 'build')
         behaviors = unique(register['behaviors'], 'behavior')
         evidence = unique(register['evidence'], 'evidence')
@@ -225,7 +229,7 @@ def audit(root, register):
             require(bool(ref['scope'].strip()), f'{label}: original scope missing')
             return (build_id, owners[0]) if owners else None
 
-        evidence_sources = {}
+        evidence_sources, evidence_claims = {}, {}
         for eid, ev in evidence.items():
             require(ev['kind'] in KINDS, f'{eid}: invalid evidence kind')
             require(bool(ev['scope'].strip()), f'{eid}: evidence scope missing')
@@ -271,6 +275,32 @@ def audit(root, register):
                 sources = {path: digest for path, digest in sources.items() if path not in recorded_inputs}
             require(bool(sources), f'{eid}: empty source provenance')
             evidence_sources[eid] = sources
+            if 'claims_pointer' in ev:
+                claimed = pointer(record, ev['claims_pointer'])
+                if not isinstance(claimed, list) or not claimed:
+                    raise ValueError(f'{eid}: execution claims must be a nonempty list')
+                require(ev['kind'] != 'static', f'{eid}: static evidence cannot bind execution claims')
+                evidence_claims[eid] = {}
+                for claim in claimed:
+                    bid = claim['behavior']
+                    if bid not in behaviors:
+                        findings['retired_execution_claims'].append({'evidence': eid, 'behavior': bid})
+                    require(bid not in evidence_claims[eid], f'{eid}: duplicate behavior claim {bid}')
+                    require(bool(re.fullmatch(r'[0-9a-f]{64}', claim['contract_sha256'])),
+                            f'{eid}: malformed behavior contract digest')
+                    require(isinstance(claim.get('scenarios', {}), dict), f'{eid}: claim scenarios must be a digest map')
+                    if bid in behaviors:
+                        if eid not in behaviors[bid]['evidence']:
+                            findings['retired_execution_claims'].append({'evidence': eid, 'behavior': bid, 'reason': 'link_removed'})
+                    for sid, digest in claim.get('scenarios', {}).items():
+                        if sid not in scenarios:
+                            findings['retired_execution_claims'].append({'evidence': eid, 'behavior': bid, 'scenario': sid})
+                        require(bool(re.fullmatch(r'[0-9a-f]{64}', digest)), f'{eid}: malformed scenario contract digest')
+                        if sid in scenarios:
+                            if bid not in scenarios[sid]['behaviors'] or eid not in scenarios[sid]['evidence']:
+                                findings['retired_execution_claims'].append({'evidence': eid, 'behavior': bid,
+                                                                          'scenario': sid, 'reason': 'link_removed'})
+                    evidence_claims[eid][bid] = claim
             changed = []
             for path, digest in sources.items():
                 require(bool(re.fullmatch(r'[0-9a-f]{64}', digest)), f'{eid}: malformed source digest')
@@ -301,6 +331,11 @@ def audit(root, register):
             for path in behavior['tests']:
                 file(path)
             for path in behavior['implementation']:
+                file(path)
+            dependencies = behavior.get('validation_dependencies', [])
+            require(isinstance(dependencies, list) and len(dependencies) == len(set(dependencies)),
+                    f'{bid}: invalid/duplicate validation dependencies')
+            for path in dependencies:
                 file(path)
             links(behavior['evidence'], evidence, bid)
             kinds = {evidence[x]['kind'] for x in behavior['evidence'] if x in evidence}
@@ -407,8 +442,17 @@ def audit(root, register):
         stale_ids = {item['id'] for item in findings['stale_evidence']}
         rows = [{**behavior, 'evidence_freshness': 'stale' if set(behavior['evidence']) & stale_ids else
                  ('current_fingerprints' if behavior['evidence'] else 'no_evidence'),
+                 'current_validation': validation_support(behavior, builds, evidence, evidence_sources,
+                                                           evidence_claims, scenarios, stale_ids),
                  'scenarios': [sid for sid, s in scenarios.items() if bid in s['behaviors']]}
                 for bid, behavior in behaviors.items()]
+        for row in rows:
+            for stage, support in row['current_validation'].items():
+                if support['state'] == 'pending':
+                    findings['validation_gaps'].append({'behavior': row['id'], 'stage': stage,
+                                                       'limitations': support['limitations']})
+        if findings['validation_gaps']:
+            warnings.append('Historical stages are retained; current validation requires exact execution claims, complete provenance and matching scenarios.')
         if 'register_imports' in register:
             findings['changed_focused_registers'] = []
             for imported in register['register_imports']:
@@ -455,11 +499,11 @@ def audit(root, register):
                 path = item['path']
                 parts = Path(path).parts
                 require(bool(parts) and not Path(path).is_absolute() and '..' not in parts
-                        and parts[0] in source_tool.SOURCE_ROOTS,
+                        and source_tool.in_scope(path),
                         f'{path}: source index path outside census scope')
                 require(bool(re.fullmatch(r'[0-9a-f]{64}', item['sha256'])), f'{path}: malformed source index digest')
                 expected = [{'behavior': b['id'], 'role': role} for b in behaviors.values()
-                            for role in ('implementation', 'tests') if path in b[role]]
+                            for role in ('implementation', 'tests', 'validation_dependencies') if path in b.get(role, [])]
                 require(item['references'] == expected, f'{path}: source index/register link drift')
                 if not expected:
                     findings['sources_without_behavior_links'].append(path)
@@ -469,7 +513,11 @@ def audit(root, register):
                 warnings.append('Source census differs from current tree; review and refresh affected index entries.')
             source_counts['indexed_sources'] = len(indexed_paths)
         return {'schema': 1, 'scope': 'Registered checklist only; no whole-engine completion percentage',
+                'claim_bindings_required': register.get('claim_bindings_required', False),
                 'errors': errors, 'warnings': warnings, 'status_counts': summaries,
+                'current_validation_counts': {stage: {state: sum(b['current_validation'][stage]['state'] == state for b in rows)
+                                                      for state in ('none', 'pending', 'current')}
+                                              for stage in ('implementation', 'comparison', 'integration', 'replacement')},
                 'behaviors': rows,
                 'counts': {'builds': len(builds), 'behaviors': len(behaviors), 'evidence': len(evidence),
                            'scenarios': len(scenarios), 'functions': sum(len(i['functions']) for i in inventories.values()),
@@ -490,10 +538,13 @@ def markdown(report):
     lines += ['', '| Independent status | Counts |', '| --- | --- |']
     for stage, counts in report.get('status_counts', {}).items():
         lines.append(f'| {stage} | ' + '; '.join(f'{v}: {n}' for v, n in counts.items()) + ' |')
+    lines += ['', '| Current scope-bound validation | Counts |', '| --- | --- |']
+    for stage, counts in report.get('current_validation_counts', {}).items():
+        lines.append(f'| {stage} | ' + '; '.join(f'{v}: {n}' for v, n in counts.items()) + ' |')
     subsystems = sorted({b['subsystem'] for b in report.get('behaviors', [])})
     for subsystem in subsystems:
         lines += ['', f'## {subsystem.replace("_", " ").title()} checklist', '',
-                  '| ID | Behavior | Original addresses | Understanding | Implementation | Comparison | Integration | Replacement | Evidence freshness |',
+                  '| ID | Behavior | Original addresses | Understanding | Implementation | Comparison | Integration | Replacement | Evidence source freshness |',
                   '| --- | --- | --- | --- | --- | --- | --- | --- | --- |']
         for b in report.get('behaviors', []):
             if b['subsystem'] != subsystem:

@@ -8,10 +8,29 @@ python3 tools/serve-coverage-ui.py
 
 The launcher prints `http://127.0.0.1:8786` and opens the default browser.
 Use `--no-open` to print the URL only, or `--port <number>` for another port.
+To serve on all IPv4 interfaces:
+
+```sh
+python3 tools/serve-coverage-ui.py --host 0.0.0.0 --port 8786 --no-open
+```
+
+Open `http://<server-ip>:8786` from another machine, using this server's LAN IP.
+`0.0.0.0` is the bind address. You can also bind a single interface with
+`--host <server-ip>`. The server remains read-only and has no authentication;
+network visitors can view its registered research/source/evidence links.
+
 Ctrl+C stops the server. Python's standard library is sufficient; there is no
 frontend build, package installation, hosted service or game execution.
 
-The default **Major tracks** view groups movement, native scene controls,
+The default **Native rendering** view is a permanent focus page and sidebar entry.
+It follows native World composition, owned history, continuous shadow presentation,
+refusal recovery and selected word-sprite bypass, with the initial-canvas task and
+authoritative replacement roadmap always visible. Milestone states and evidence
+freshness come from the current register. Open contracts for exact scope and
+evidence; browse rendering gaps for both recovered behavior and native policies.
+Bookmark `#view=rendering`; existing view bookmarks continue to work.
+
+The **Major tracks** view groups movement, native scene controls,
 rendering/animation, effects/lighting, audio, assets/persistence, menus/campaign,
 and core gameplay/spells. Planned commander orders, veterancy and mana changes
 appear separately. Each card shows demonstrated capabilities, partial work,
@@ -64,8 +83,9 @@ remain visible. Filters are retained in the URL for bookmarks.
 - **Comparison and replacement**: applicable recovered behaviors only. Native
   policy and tooling behavior is separate; an empty denominator is `N/A`.
   Original comparisons remain historical if linked source fingerprints changed.
-  Current comparison counts require all linked original comparison evidence to
-  have current fingerprints; mixed current/historical records stay separate.
+  Current comparison counts require an exact scope-bound execution result with
+  complete implementation, test and declared dependency fingerprints. A new valid
+  result can supersede stale history; fresh unbound records remain historical.
 - **Any integration** includes headless tests, preview and observation; it is
   not equivalent to replacing original engine work during live execution.
 
@@ -85,8 +105,10 @@ Audit errors are shown above the dashboard; source-census drift and historical
 staleness remain findings, not silently refreshed validation.
 
 Only explicitly registered document/source/test/evidence links are served as
-plain text. The server binds to loopback, rejects foreign Host/Origin headers,
-and blocks traversal, original/working inputs and symlinks outside the repository.
+plain text. The server binds to loopback by default. Explicit IPv4 URL hosts are admitted
+for a wildcard bind; a single-interface bind also admits its selected IP.
+Unconfigured DNS hosts and nonmatching Origin headers are rejected. The server
+blocks traversal, original/working inputs and symlinks outside the repository.
 
 Run the semantic and HTTP checks with:
 

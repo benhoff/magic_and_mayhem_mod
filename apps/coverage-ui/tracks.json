@@ -50,7 +50,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -73,7 +73,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -144,7 +144,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -179,7 +179,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -201,7 +201,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -222,7 +222,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -243,7 +243,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -265,7 +265,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -299,7 +299,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -309,7 +309,7 @@
           "id": "commands",
           "title": "Consume streamed drawing commands",
           "scope": "Bounded incremental native command consumption and live command transport.",
-          "remaining": "Recover lost-command resynchronization and broader drawing command coverage.",
+          "remaining": "Extend bounded command coverage and independently validate complete scenes and required graphics side effects.",
           "requirements": [
             {
               "behaviors": [
@@ -321,7 +321,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -331,7 +331,7 @@
           "id": "startup",
           "title": "Observe original startup drawing",
           "scope": "Selected original-game startup commands feed the native shadow renderer. The original still draws.",
-          "remaining": "Compare original pixels, then extend observation into gameplay and missing command families.",
+          "remaining": "Keep startup observation distinct from the native World viewer and actual drawing bypass.",
           "requirements": [
             {
               "behaviors": [
@@ -341,8 +341,135 @@
                 "implementation": "scoped",
                 "integration": [
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "world-composition",
+          "title": "Compare native World raster composition",
+          "scope": "Selected integer World raster modes match independent original replay under controlled inputs; complete consumer side effects and live initial state remain outside this result.",
+          "remaining": "Extend independent comparison to complete live scenes, required side effects and additional draw kinds.",
+          "requirements": [
+            {
+              "behaviors": [
+                "RS.world-composition"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "live_equivalence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "canvas-history",
+          "title": "Retain owned native canvas history",
+          "scope": "Owned native history admits contiguous source frames; original initial pixels are never native rendering inputs.",
+          "remaining": "Recover natural initialization and all intervening writes before extending live equivalence.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NR.scene-history"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "live_equivalence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "world-shadow",
+          "title": "Present continuous native World frames",
+          "scope": "Bounded two-slot World delivery, strict complete frame admission and Qt GPU shadow presentation. Original drawing remains active.",
+          "remaining": "Validate camera actions, active battles, transitions, native input/HUD and sustained resource retirement.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NR.world-admission",
+                "NR.world-channel",
+                "NR.world-live-view"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "headless",
+                  "preview",
+                  "live_observation",
+                  "live_equivalence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "shadow-refusal",
+          "title": "Recover from unsupported shadow frames",
+          "scope": "Normal capability refusals clear unsupported presentation and resume on a supported complete frame; verification and structural failures remain fatal.",
+          "remaining": "Implement unadmitted drawing kinds and extend manual scenario coverage without hiding refusals.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NR.world-shadow-refusal"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "integration": [
+                  "preview",
+                  "live_observation",
+                  "live_equivalence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "word-takeover",
+          "title": "Bypass selected direct-word sprite drawing",
+          "scope": "Bounded live equivalence and bypass evidence for selected fully in-bounds direct-word SPR backend entries. Clipped and unsupported draws keep original paths.",
+          "remaining": "Extend supported routes and caller-visible behavior before attempting complete-scene takeover.",
+          "requirements": [
+            {
+              "behaviors": [
+                "RS.word-route"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "replacement": "scoped_live"
+              }
+            }
+          ]
+        },
+        {
+          "id": "world-initialization",
+          "title": "Own the original World initialization contract",
+          "scope": "Recover canvas allocation, generation, clearing/reuse and upstream producers. Selected retained-state observations do not complete this contract.",
+          "remaining": "Resolve the nonzero startup canvas and untraced writes; compare independent native history against live output.",
+          "requirements": [
+            {
+              "behaviors": [
+                "RS.world-initial-state",
+                "RS.world-frame"
+              ],
+              "status": {
+                "understanding": "scoped",
+                "implementation": "scoped",
+                "comparison": "recorded"
               }
             }
           ]
@@ -365,7 +492,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             },
@@ -399,8 +526,43 @@
               }
             }
           ]
+        },
+        {
+          "id": "complete-replacement",
+          "title": "Complete supported live drawing replacement",
+          "scope": "All declared drawing routes, lifecycle, HUD, transitions and failure/recovery gates must pass for the supported build and scenarios.",
+          "remaining": "Complete DRAW-01 through DRAW-07 in the authoritative roadmap and record fresh bypass and supported-session evidence.",
+          "requirements": [
+            {
+              "behaviors": [
+                "NR.live-drawing-replacement"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "replacement": "scoped_live"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "focus": {
+        "boundary": "Native World rendering and continuous shadow presentation have bounded evidence. Original drawing remains active in the World viewer. Selected unclipped direct-word sprite routes have scoped bypass proof; complete live drawing replacement remains outstanding.",
+        "next_title": "Recover the initial World canvas and its producers",
+        "next_task": "Trace allocation, clearing, reuse and upstream writes before the first World consumer. Establish owned native initialization and complete intervening history, then compare live output independently across camera actions and active battles.",
+        "next_behaviors": [
+          "RS.world-initial-state",
+          "RS.world-frame",
+          "NR.scene-history",
+          "NR.world-shadow-refusal"
+        ],
+        "documents": [
+          "docs/live-drawing-replacement.md",
+          "research/runtime/native-world-live-background-gap.md",
+          "research/runtime/native-world-canvas-history.md",
+          "research/runtime/native-world-shadow-refusal.md"
+        ]
+      }
     },
     {
       "id": "effects",
@@ -429,7 +591,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -455,7 +617,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -480,7 +642,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -507,7 +669,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -542,7 +704,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -566,7 +728,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -619,7 +781,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -654,7 +816,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -678,7 +840,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -703,7 +865,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -725,7 +887,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -762,7 +924,7 @@
                 "comparison": "recorded",
                 "integration": [
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             },
@@ -775,7 +937,7 @@
                 "implementation": "scoped",
                 "integration": [
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -797,7 +959,7 @@
                 "implementation": "scoped",
                 "integration": [
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -818,7 +980,7 @@
                 "implementation": "scoped",
                 "integration": [
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -843,7 +1005,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -868,7 +1030,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -905,7 +1067,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -929,7 +1091,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -952,7 +1114,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             },
@@ -982,7 +1144,7 @@
                   "headless",
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -1014,7 +1176,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -1035,7 +1197,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }
@@ -1056,7 +1218,7 @@
                 "integration": [
                   "preview",
                   "live_observation",
-                  "scoped_live"
+                  "live_equivalence"
                 ]
               }
             }

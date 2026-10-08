@@ -117,6 +117,74 @@ explicitly accepts existing accounting debt without changing any original
 evidence hashes. It refuses overwrite and requires a valid, reconciled audit.
 Ordinary changes should use receipts rather than repeatedly freezing baselines.
 
+### Exact execution claims and current readiness
+
+The central register now enables `claim_bindings_required: true`. The gate rejects
+disabling it after adoption. Retained Git trees predating this policy keep their
+historical accounting rules; their results do not acquire current scope bindings.
+Historical statuses and evidence hashes are unchanged. `current_validation`
+independently reports support for implementation, comparison, integration and
+replacement. Unbound, changed-scope, incomplete-source and stale results remain
+explicit pending limitations. A fresh superseding result can support a current
+claim while older records remain stale.
+
+For a new execution record, set its evidence definition's `claims_pointer` to a
+JSON list in the immutable report. Each item contains `behavior`,
+`contract_sha256`, and an optional `scenarios` map from scenario ID to its exact
+contract SHA-256. Prepare these declarations **before** running the experiment:
+
+```sh
+python3 tools/draft-coverage-claims.py --behavior <behavior-id> \
+  --scenario <scenario-id> --output working/tests/claims-next.json
+```
+
+The declaration is not execution evidence and contains no success assertion.
+Include its claims and source fingerprints in the executed report, verify that
+the sources remained stable, and register the actual outcome under a new ID.
+Do not attach declarations retrospectively to old records to make them current.
+The declared behavior/scenario/evidence links must agree in the register.
+
+Behavior identities include the scoped input domain, original-build references,
+implementation and test paths, and optional `validation_dependencies` and
+`validation_domain`. Statuses and evidence IDs are excluded to avoid a cycle.
+`validation_domain` can describe required inputs, branches, failures and explicit
+exclusions; reviewing its scientific adequacy remains a research responsibility.
+Scenario identities include level, scope, behavior IDs and test paths. Widening
+either identity leaves prior results historical. All implementation and linked
+test paths and explicit dependencies must appear in a supporting result's source provenance;
+integration/replacement additionally require a bound scenario and its test-input
+fingerprints. Compiler dependencies are not inferred: review shared headers,
+build settings, libraries and data inputs explicitly.
+
+The dashboard distinguishes source-fingerprint freshness from scope-bound current
+validation. Milestone achievements retain historical stage accounting; they count
+as current only when all required stages have appropriate bound execution proof.
+Track targets are checked against the status schema, including
+`integration: live_equivalence` and `replacement: scoped_live`.
+
+### Receipt composition and census scope
+
+Exact A-to-B and B-to-C receipts can now satisfy an A-to-C accounting delta.
+The gate reports the receipt chains it used and requires a continuous hash path
+for every changed file and behavior. Empty reasons, missing transitions, and
+unsupported final recorded-validation claims still fail. Intermediate execution
+results remain historical; a chain cannot promote a final status without current
+execution evidence. This is content/contract accounting, not an audit of which
+Git commits contained each intermediate version; retain the committed-history
+review required by AGENTS.md.
+
+The census also includes root build/dependency files (`CMakeLists.txt`, Makefiles,
+Meson files, Python project/requirements files and CMake presets), and component
+`.cmake`, `.mk`, `.pro` and `.pri` inputs. New build formats still require an
+explicit census-scope review. Exclude immutable originals and generated working
+trees. Adding a build file does not validate the code it builds.
+
+Preserve existing snapshots and immutable results. For future work, prefer one
+reviewed durable census per coherent change, retain full per-run reports under
+`working/`, and regenerate summaries only when they communicate a changed
+milestone. The scenario corpus should grow around complete player journeys and
+failure/recovery transitions; checklist totals are not a release criterion.
+
 ## Discovery audit details
 
 The normal audit fails on invalid references, unsupported status claims,
