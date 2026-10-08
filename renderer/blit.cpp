@@ -58,6 +58,8 @@ void main(){
 })";
 constexpr auto fragmentSource=R"(#version 330 core
 uniform usampler2D sourcePixels;
+uniform bool indexedSource;
+uniform uint spritePalette[256];
 uniform usampler2D sourceMask;
 uniform bool hasMask;
 uniform ivec2 sourceOrigin;
@@ -70,6 +72,7 @@ void main(){
     ivec2 at=ivec2(gl_FragCoord.xy)-destinationOrigin+sourceOrigin;
     if(hasMask && texelFetch(sourceMask,at,0).r==0u)discard;
     uint pixel=texelFetch(sourcePixels,at,0).r;
+    if(indexedSource)pixel=spritePalette[pixel];
     if(hasKey && (pixel&keyMask)==sourceKey)discard;
     nativePixel=pixel;
 })";
@@ -77,19 +80,29 @@ void main(){
 namespace {
 constexpr auto compositeSource=R"(#version 330 core
 uniform usampler2D sourcePixels;
+uniform bool indexedSource;
+uniform uint spritePalette[256];
 uniform usampler2D sourceMask;
 uniform usampler2D oldPixels;
 uniform ivec2 sourceOrigin;
 uniform ivec2 destinationOrigin;
 uniform int mode;
+uniform uvec3 additiveChannels;
 uniform int rowOffsets[16];
 uniform int rowPeriod;
 layout(location=0) out uint nativePixel;
 void main(){
     ivec2 destination=ivec2(gl_FragCoord.xy);
+    if(mode==6){
+        uint d=texelFetch(oldPixels,destination,0).r;
+        uvec3 channels=uvec3(d>>11u,(d>>5u)&63u,d&31u);
+        channels=min((channels+additiveChannels)&uvec3(65535u),uvec3(31u,63u,31u));
+        nativePixel=(channels.x<<11u)|(channels.y<<5u)|channels.z;return;
+    }
     ivec2 at=destination-destinationOrigin+sourceOrigin;
     if(texelFetch(sourceMask,at,0).r==0u)discard;
     uint s=texelFetch(sourcePixels,at,0).r;
+    if(indexedSource)s=spritePalette[s];
     uint d=texelFetch(oldPixels,destination,0).r;
     uint m=0x7befu;
     if(mode==1)nativePixel=((s>>1u)&m)+((d>>1u)&m);
@@ -156,9 +169,10 @@ struct GlBlitter::Impl {
     QSize viewport;
     bool scissor=false;
     unsigned batchDepth=0;
-    struct CopyUniforms {GLint hasMask,sourceOrigin,destinationOrigin,hasKey,sourceKey,keyMask;} copyUniforms{};
+    struct CopyUniforms {GLint hasMask,sourceOrigin,destinationOrigin,hasKey,sourceKey,keyMask,indexed,palette;} copyUniforms{};
     struct PresentationUniforms {GLint indexed,rgb565,masks,lowBits,maxima;} presentationUniforms{};
-    struct CompositeUniforms {GLint sourceOrigin,destinationOrigin,mode,rowOffsets,rowPeriod;} compositeUniforms{};
+    struct CompositeUniforms {GLint sourceOrigin,destinationOrigin,mode,rowOffsets,rowPeriod,indexed,palette,additive;} compositeUniforms{};
+    std::optional<std::array<std::uint16_t,256>> copyPalette,compositePalette;
     GLint maxTexture=0;
     Driver info;
     RenderStats counters;
@@ -197,14 +211,14 @@ struct GlBlitter::Impl {
             return value;
         };
         copyUniforms={location(*program,"hasMask"),location(*program,"sourceOrigin"),location(*program,"destinationOrigin"),
-                      location(*program,"hasKey"),location(*program,"sourceKey"),location(*program,"keyMask")};
+                      location(*program,"hasKey"),location(*program,"sourceKey"),location(*program,"keyMask"),location(*program,"indexedSource"),location(*program,"spritePalette[0]")};
         presentationUniforms={location(*presentation,"indexed"),location(*presentation,"rgb565"),location(*presentation,"masks"),
                               location(*presentation,"lowBits"),location(*presentation,"maxima")};
         useProgram(program->programId());
         gl.glUniform1i(location(*program,"sourcePixels"),0);gl.glUniform1i(location(*program,"sourceMask"),1);
         useProgram(presentation->programId());
         gl.glUniform1i(location(*presentation,"nativePixels"),0);gl.glUniform1i(location(*presentation,"palette"),1);
-        compositeUniforms={location(*compositing,"sourceOrigin"),location(*compositing,"destinationOrigin"),location(*compositing,"mode"),location(*compositing,"rowOffsets"),location(*compositing,"rowPeriod")};
+        compositeUniforms={location(*compositing,"sourceOrigin"),location(*compositing,"destinationOrigin"),location(*compositing,"mode"),location(*compositing,"rowOffsets"),location(*compositing,"rowPeriod"),location(*compositing,"indexedSource"),location(*compositing,"spritePalette[0]"),location(*compositing,"additiveChannels")};
         useProgram(compositing->programId());gl.glUniform1i(location(*compositing,"sourcePixels"),0);gl.glUniform1i(location(*compositing,"sourceMask"),1);gl.glUniform1i(location(*compositing,"oldPixels"),2);
         gl.glGenVertexArrays(1,&vao);gl.glGenFramebuffers(1,&fbo);gl.glGetIntegerv(GL_MAX_TEXTURE_SIZE,&maxTexture);
         // This context is private to the renderer; caller/viewport state lives
@@ -252,13 +266,21 @@ struct GlBlitter::Impl {
         if(viewport!=QSize(width,height)){gl.glViewport(0,0,width,height);viewport={width,height};}
     }
     // Both samplers refer to storage distinct from the attached destination.
+    void selectPalette(GLint indexed,GLint location,std::optional<std::array<std::uint16_t,256>>& previous,const std::array<std::uint16_t,256>* palette){
+        gl.glUniform1i(indexed,palette!=nullptr);
+        if(palette&&(!previous||*previous!=*palette)){
+            std::array<GLuint,256> words;std::copy(palette->begin(),palette->end(),words.begin());
+            gl.glUniform1uiv(location,256,words.data());previous=*palette;++counters.paletteUpdates;
+        }
+    }
     void copyTexture(GLuint sourceTexture,GLuint maskTexture,Surface& dst,Rect r,int x,int y,
-                     std::optional<std::uint32_t> key,std::uint32_t keyMask=UINT32_MAX){
+                     std::optional<std::uint32_t> key,std::uint32_t keyMask=UINT32_MAX,const std::array<std::uint16_t,256>* palette=nullptr){
         attach(dst.native,dst.width,dst.height);
         setScissor(true);gl.glScissor(x,y,r.right-r.left,r.bottom-r.top);
         gl.glActiveTexture(GL_TEXTURE0);gl.glBindTexture(GL_TEXTURE_2D,sourceTexture);
         gl.glActiveTexture(GL_TEXTURE1);gl.glBindTexture(GL_TEXTURE_2D,maskTexture?maskTexture:sourceTexture);
         useProgram(program->programId());
+        selectPalette(copyUniforms.indexed,copyUniforms.palette,copyPalette,palette);
         gl.glUniform1i(copyUniforms.hasMask,maskTexture!=0);
         gl.glUniform2i(copyUniforms.sourceOrigin,r.left,r.top);gl.glUniform2i(copyUniforms.destinationOrigin,x,y);
         gl.glUniform1i(copyUniforms.hasKey,key.has_value());gl.glUniform1ui(copyUniforms.sourceKey,key.value_or(0));
@@ -358,9 +380,43 @@ SurfaceId GlBlitter::create(const Image& image,PixelFormat format){
         s.native=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,s.width,s.height,image.pixels.data());
         if(format.bits==8){std::array<std::uint8_t,1024> black{};for(unsigned i=0;i<256;++i)black[i*4+3]=255;
             s.palette=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,256,1,black.data());}
-        p.check(true);p.surfaces.emplace(id,s);
+        p.check(true);p.surfaces.emplace(id,std::move(s));
     }catch(...){p.release(s);throw;}
     ++p.counters.uploads;p.counters.pixels+=image.pixels.size();return id;
+}
+SurfaceId GlBlitter::allocate(int width,int height,PixelFormat format){
+    validateFormat(format);auto& p=*impl_;p.thread();
+    if(width<1||height<1||width>2048||height>2048||width>p.maxTexture||height>p.maxTexture)
+        throw std::runtime_error("Invalid allocated surface dimensions");
+    const auto count=std::size_t(width)*height;
+    if(p.surfaces.size()>=64||count>16*1024*1024-p.counters.pixels)throw std::runtime_error("Renderer surface budget exceeded");
+    const auto id=nextId();Current current(p.context,&p.surface);Impl::Surface s;
+    s.width=width;s.height=height;s.format=format;s.validity=KnownPixels(width,height);s.validity.invalidate();
+    auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);
+    try{
+        s.native=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,width,height,nullptr);
+        if(format.bits==8){std::array<std::uint8_t,1024> black{};for(unsigned i=0;i<256;++i)black[i*4+3]=255;
+            s.palette=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,256,1,black.data());}
+        p.check(true);p.surfaces.emplace(id,std::move(s));
+    }catch(...){p.release(s);throw;}
+    p.counters.pixels+=count;return id;
+}
+void GlBlitter::updateRows(SurfaceId id,const Image& plane,int first,int rows){
+    auto& p=*impl_;p.thread();const auto& s=p.get(id);
+    if(plane.width!=s.width||plane.height!=s.height)throw std::runtime_error("Invalid upload plane extent");
+    updateRegionRows(id,0,0,plane,first,rows);
+}
+void GlBlitter::updateRegionRows(SurfaceId id,int x,int y,const Image& plane,int first,int rows){
+    auto& p=*impl_;p.thread();auto& s=p.get(id);
+    if(plane.width<1||plane.height<1||plane.pixels.size()!=std::size_t(plane.width)*plane.height||first<0||rows<1||first>plane.height-rows||
+       x<0||y<0||x>s.width-plane.width||y>s.height-plane.height)
+        throw std::runtime_error("Invalid upload rows");
+    const auto begin=plane.pixels.begin()+std::size_t(first)*plane.width,end=begin+std::size_t(rows)*plane.width;
+    const auto maximum=s.format.bits==32?UINT32_MAX:((std::uint32_t{1}<<s.format.bits)-1);
+    if(std::any_of(begin,end,[maximum](auto value){return value>maximum;}))throw std::runtime_error("Native upload pixel exceeds format");
+    Current current(p.context,&p.surface);auto& g=p.gl;g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,s.native);
+    g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y+first,plane.width,rows,GL_RED_INTEGER,GL_UNSIGNED_INT,&*begin);
+    p.check();s.validity.define({x,y+first,x+plane.width,y+first+rows});++p.counters.uploads;
 }
 void GlBlitter::destroy(SurfaceId id){
     auto& p=*impl_;p.thread();auto& s=p.get(id);Current current(p.context,&p.surface);
@@ -450,14 +506,14 @@ void GlBlitter::copy(SurfaceId source,SurfaceId destination,Rect r,int x,int y,s
     p.copyTexture(src.native,mask?p.get(*mask).native:0,dst,r,x,y,key,keyMask);
     dst.validity.define({x,y,x+r.right-r.left,y+r.bottom-r.top});
 }
-void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,int y,SurfaceId mask,const SpriteComposite& c){
-    if(c.mode==CompositeMode::copy){copy(source,destination,r,x,y,std::nullopt,mask);return;}
+void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,int y,SurfaceId mask,const SpriteComposite& c,const std::array<std::uint16_t,256>* palette){
+    if(c.mode==CompositeMode::copy&&!palette){copy(source,destination,r,x,y,std::nullopt,mask);return;}
     auto& p=*impl_;p.thread();auto& src=p.get(source);auto& dst=p.get(destination);auto& coverage=p.get(mask);
     const PixelFormat rgb565{16,{0xf800,0x7e0,0x1f}};
     if(source==destination||mask==destination||src.format.bits!=rgb565.bits||src.format.masks!=rgb565.masks||dst.format.bits!=rgb565.bits||dst.format.masks!=rgb565.masks||coverage.format.bits!=8||coverage.width!=src.width||coverage.height!=src.height)
         throw std::invalid_argument("Sprite composition requires distinct RGB565 source/destination and matching coverage");
     if(r.left<0||r.top<0||r.right<=r.left||r.bottom<=r.top||r.right>src.width||r.bottom>src.height||x<0||y<0||x>dst.width-(r.right-r.left)||y>dst.height-(r.bottom-r.top))throw std::invalid_argument("Composition rectangle outside storage");
-    if(c.mode!=CompositeMode::half&&c.mode!=CompositeMode::quarterSource&&c.mode!=CompositeMode::quarterDestination&&c.mode!=CompositeMode::displace)throw std::invalid_argument("Unsupported sprite composite mode");
+    if(c.mode!=CompositeMode::copy&&c.mode!=CompositeMode::half&&c.mode!=CompositeMode::quarterSource&&c.mode!=CompositeMode::quarterDestination&&c.mode!=CompositeMode::displace)throw std::invalid_argument("Unsupported sprite composite mode");
     int reach=0;
     if(c.mode==CompositeMode::displace){
         if(!c.rowPeriod||c.rowPeriod>16)throw std::invalid_argument("Displacement row period outside bounds");
@@ -465,14 +521,41 @@ void GlBlitter::composite(SurfaceId source,SurfaceId destination,Rect r,int x,in
         if(x+r.right-r.left+reach>dst.width)throw std::invalid_argument("Displacement sample outside destination");
     }
     src.validity.require(r);coverage.validity.require(r);dst.validity.require({0,0,dst.width,dst.height});
-    Current current(p.context,&p.surface);auto& g=p.gl;GLuint frozen=0;
+    Current current(p.context,&p.surface);
+    if(c.mode==CompositeMode::copy){p.copyTexture(src.native,coverage.native,dst,r,x,y,std::nullopt,UINT32_MAX,palette);return;}
+    auto& g=p.gl;GLuint frozen=0;
     try{
         g.glActiveTexture(GL_TEXTURE2);frozen=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,dst.width,dst.height,nullptr);
         p.attach(dst.native,dst.width,dst.height);g.glBindTexture(GL_TEXTURE_2D,frozen);g.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,0,0,dst.width,dst.height);p.check();
         p.setScissor(true);g.glScissor(x,y,r.right-r.left,r.bottom-r.top);
         g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,src.native);g.glActiveTexture(GL_TEXTURE1);g.glBindTexture(GL_TEXTURE_2D,coverage.native);g.glActiveTexture(GL_TEXTURE2);g.glBindTexture(GL_TEXTURE_2D,frozen);
-        p.useProgram(p.compositing->programId());g.glUniform2i(p.compositeUniforms.sourceOrigin,r.left,r.top);g.glUniform2i(p.compositeUniforms.destinationOrigin,x,y);g.glUniform1i(p.compositeUniforms.mode,int(c.mode));g.glUniform1iv(p.compositeUniforms.rowOffsets,16,c.rowOffsets.data());g.glUniform1i(p.compositeUniforms.rowPeriod,int(c.rowPeriod));
+        p.useProgram(p.compositing->programId());p.selectPalette(p.compositeUniforms.indexed,p.compositeUniforms.palette,p.compositePalette,palette);g.glUniform2i(p.compositeUniforms.sourceOrigin,r.left,r.top);g.glUniform2i(p.compositeUniforms.destinationOrigin,x,y);g.glUniform1i(p.compositeUniforms.mode,int(c.mode));g.glUniform1iv(p.compositeUniforms.rowOffsets,16,c.rowOffsets.data());g.glUniform1i(p.compositeUniforms.rowPeriod,int(c.rowPeriod));
         g.glDrawArrays(GL_TRIANGLES,0,3);p.check();++p.counters.copies;p.deleteTextures(1,&frozen);frozen=0;
+    }catch(...){p.deleteTextures(1,&frozen);throw;}
+}
+void GlBlitter::colourRect(SurfaceId destination,const Image& pixels,Rect source,int x,int y,const SpriteComposite& mode){
+    if(pixels.width>64||pixels.height>64)throw std::invalid_argument("Colour rectangle exceeds primitive budget");
+    SurfaceId colour=0,mask=0;
+    try{colour=create(pixels,{16,{0xf800,0x7e0,0x1f}});mask=create({pixels.width,pixels.height,std::vector<std::uint32_t>(pixels.pixels.size(),1)},{8,{}});
+        composite(colour,destination,source,x,y,mask,mode);destroy(mask);destroy(colour);
+    }catch(...){if(mask)destroy(mask);if(colour)destroy(colour);throw;}
+}
+void GlBlitter::additiveRect(SurfaceId destination,Rect r,const std::array<std::uint16_t,3>& channels){
+    auto& p=*impl_;p.thread();auto& dst=p.get(destination);
+    if(dst.format.bits!=16||dst.format.masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f}||
+       r.left<0||r.top<0||r.right<=r.left||r.bottom<=r.top||r.right>dst.width||r.bottom>dst.height)
+        throw std::invalid_argument("Additive rectangle requires in-bounds RGB565 storage");
+    dst.validity.require({0,0,dst.width,dst.height});
+    Current current(p.context,&p.surface);auto& g=p.gl;GLuint frozen=0;
+    try{
+        g.glActiveTexture(GL_TEXTURE2);frozen=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,dst.width,dst.height,nullptr);
+        p.attach(dst.native,dst.width,dst.height);g.glBindTexture(GL_TEXTURE_2D,frozen);g.glCopyTexSubImage2D(GL_TEXTURE_2D,0,0,0,0,0,dst.width,dst.height);
+        p.setScissor(true);g.glScissor(r.left,r.top,r.right-r.left,r.bottom-r.top);
+        // All integer samplers have distinct storage from the framebuffer. Only oldPixels is sampled in mode6.
+        for(unsigned unit=0;unit<3;++unit){g.glActiveTexture(GL_TEXTURE0+unit);g.glBindTexture(GL_TEXTURE_2D,frozen);}
+        p.useProgram(p.compositing->programId());g.glUniform1i(p.compositeUniforms.mode,6);
+        g.glUniform3ui(p.compositeUniforms.additive,channels[0],channels[1],channels[2]);g.glDrawArrays(GL_TRIANGLES,0,3);
+        p.check();++p.counters.copies;p.deleteTextures(1,&frozen);frozen=0;
     }catch(...){p.deleteTextures(1,&frozen);throw;}
 }
 void GlBlitter::invalidateContents(SurfaceId id){

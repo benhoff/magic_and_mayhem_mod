@@ -1,7 +1,9 @@
 #include "resource_manager.hpp"
+#include <algorithm>
 #include <limits>
 #include <stdexcept>
 #include <tuple>
+#include <QCryptographicHash>
 
 namespace mnm::assets {
 namespace {
@@ -94,7 +96,7 @@ void ResourceManager::bind(const ResourceId& id,const ResourceRecipe& recipe){
     const auto bytes=recipe.animationBytes?recipe.animationBytes->size():0;
     if(bytes>limits_.animation.inputBytes || bytes>limits_.recipeBytes-stats_.recipeBytes)
         throw std::runtime_error("Owned ANI recipe byte budget exceeded");
-    Entry entry{recipe,{}};
+    Entry entry{recipe,{},std::make_shared<const int>(0)};
     const auto capacity=entry.recipe.animationBytes?storage(*entry.recipe.animationBytes):0;
     if(capacity>limits_.recipeBytes-stats_.recipeBytes)throw std::runtime_error("Owned ANI recipe capacity budget exceeded");
     entries_.emplace(id,std::move(entry));stats_.recipeBytes+=capacity;stats_.bindings=entries_.size();
@@ -110,40 +112,102 @@ const VisualResource& ResourceManager::load(const ResourceId& id){
     if(entry.resource){++stats_.hits;return *entry.resource;}
     if(stats_.residentResources>=limits_.residentResources)throw std::runtime_error("Decoded resource count budget exceeded");
     if(nextRevision_==std::numeric_limits<std::uint64_t>::max())throw std::runtime_error("Resource revision exhausted");
-    auto result=std::make_unique<VisualResource>();const auto& r=entry.recipe;
-    {
-        auto input=open(r.image);
-        switch(r.format){
-        case ResourceImageFormat::sprite:result->image=take(loadSprite(*input,limits_.sprite),r.image);break;
-        case ResourceImageFormat::bmp:result->image=take(loadBmp(*input,limits_.bmp),r.image);break;
-        case ResourceImageFormat::pcx:result->image=take(loadPcx(*input,limits_.pcx),r.image);break;
-        case ResourceImageFormat::jpeg:result->image=take(loadJpeg(*input,limits_.jpeg),r.image);break;
-        }
+    return adopt(prepareResource(request(id)));
+}
+ResourcePreparation ResourceManager::request(const ResourceId& id){
+    checkThread();validateId(id);auto& entry=entries_.at(id);
+    if(!entry.binding)entry.binding=std::make_shared<const int>(0);
+    return ResourcePreparation(store_,id,entry.recipe,limits_,entry.binding);
+}
+namespace {
+std::vector<std::uint8_t> readPrepared(const AssetStore& store,const std::string& path,std::uint64_t limit,
+                                     const std::function<void()>& checkpoint){
+    if(checkpoint)checkpoint();
+    auto file=take(store.open(path),path);const auto count=take(file->size(),path);
+    if(count<0||std::uint64_t(count)>limit)throw std::runtime_error(path+": preparation input limit exceeded");
+    std::vector<std::uint8_t> bytes(static_cast<std::size_t>(count));
+    std::size_t at=0;
+    while(at<bytes.size()){
+        if(checkpoint)checkpoint();
+        const auto read=file->read(bytes.data()+at,std::int64_t(std::min<std::size_t>(65536,bytes.size()-at)));
+        if(read.error)throw std::runtime_error(path+": "+read.error->detail);
+        if(read.transferred<=0||std::uint64_t(read.transferred)>bytes.size()-at)
+            throw std::runtime_error(path+": preparation input truncated or invalid read");
+        at+=std::size_t(read.transferred);
     }
+    if(checkpoint)checkpoint();
+    return bytes;
+}
+}
+PreparedResource prepareResource(const ResourcePreparation& request,const std::function<void()>& checkpoint,const std::string& expected){
+    validateRecipe(request.id_,request.recipe_);
+    PreparedResource prepared(request);
+    auto result=std::make_unique<VisualResource>();const auto& r=request.recipe_;const auto& limits=request.limits_;
+    const auto read=[&](const std::string& path,std::uint64_t limit){return readPrepared(request.store_,path,limit,checkpoint);};
+    std::uint64_t inputLimit=0;
+    switch(r.format){
+    case ResourceImageFormat::sprite:inputLimit=limits.sprite.inputBytes;break;
+    case ResourceImageFormat::bmp:inputLimit=limits.bmp.inputBytes;break;
+    case ResourceImageFormat::pcx:inputLimit=limits.pcx.inputBytes;break;
+    case ResourceImageFormat::jpeg:inputLimit=limits.jpeg.inputBytes;break;
+    }
+    prepared.source_=read(r.image,inputLimit);
+    if(!expected.empty()){
+        const auto& bytes=prepared.source_;
+        if(expected.size()!=64||QCryptographicHash::hash(QByteArrayView(reinterpret_cast<const char*>(bytes.data()),qsizetype(bytes.size())),QCryptographicHash::Sha256).toHex().toStdString()!=expected)
+            throw std::runtime_error("Pinned preparation image hash mismatch");
+    }
+    if(checkpoint)checkpoint();
+    switch(r.format){
+    case ResourceImageFormat::sprite:result->image=take(decodeSprite(prepared.source_,limits.sprite),r.image);break;
+    case ResourceImageFormat::bmp:result->image=take(decodeBmp(prepared.source_,limits.bmp),r.image);break;
+    case ResourceImageFormat::pcx:result->image=take(decodePcx(prepared.source_,limits.pcx),r.image);break;
+    case ResourceImageFormat::jpeg:result->image=take(decodeJpeg(prepared.source_,limits.jpeg),r.image);break;
+    }
+    if(checkpoint)checkpoint();
     if(r.animation || r.animationBytes){
-        const auto path=r.animation?*r.animation:id.text()+" owned ANI";
-        if(r.animation){auto input=open(*r.animation);result->animation=take(loadAnimation(*input,limits_.animation),path);}
-        else result->animation=take(decodeAnimation(*r.animationBytes,limits_.animation),path);
+        const auto path=r.animation?*r.animation:request.id_.text()+" owned ANI";
+        if(r.animation)result->animation=take(decodeAnimation(read(*r.animation,limits.animation.inputBytes),limits.animation),path);
+        else result->animation=take(decodeAnimation(*r.animationBytes,limits.animation),path);
         for(const auto& record:result->animation->records)
             if(record.opcode==0 && (record.argument<0 || std::uint32_t(record.argument)>=result->frameCount()))
                 throw std::runtime_error(path+": bitmap record outside paired SPR");
         if(r.sequence && *r.sequence>=result->animation->starts.size()-1)
             throw std::runtime_error(path+": selected sequence outside ANI");
     }
-    if(r.terrainCatalog){auto input=open(*r.terrainCatalog);result->terrainCatalog=take(loadTerrainCatalog(*input),*r.terrainCatalog);}
+    if(r.terrainCatalog)result->terrainCatalog=take(decodeTerrainCatalog(read(*r.terrainCatalog,16+65536ULL*356)),*r.terrainCatalog);
     result->decodedBytes=footprint(*result);
+    if(result->decodedBytes>limits.decodedBytes)throw std::runtime_error("Prepared resource byte budget exceeded");
+    if(checkpoint)checkpoint();
+    prepared.resource_=std::move(result);return prepared;
+}
+const VisualResource& ResourceManager::adopt(PreparedResource&& prepared){
+    checkThread();auto& entry=entries_.at(prepared.id());
+    if(!prepared.resource_||entry.binding!=prepared.request_.binding_)
+        throw std::runtime_error("Stale or foreign resource preparation");
+    if(entry.resource)throw std::runtime_error("Resource already resident");
+    if(stats_.residentResources>=limits_.residentResources)throw std::runtime_error("Decoded resource count budget exceeded");
+    if(nextRevision_==std::numeric_limits<std::uint64_t>::max())throw std::runtime_error("Resource revision exhausted");
+    auto& result=prepared.resource_;
     if(result->decodedBytes>limits_.decodedBytes-stats_.decodedBytes)
-        throw std::runtime_error("Decoded resource byte budget exceeded: "+id.text());
+        throw std::runtime_error("Decoded resource byte budget exceeded: "+prepared.id().text());
     result->revision=nextRevision_++;
     stats_.decodedBytes+=result->decodedBytes;++stats_.residentResources;++stats_.loads;
     entry.resource=std::move(result);return *entry.resource;
 }
+bool ResourceManager::isResident(const ResourceId& id) const{checkThread();validateId(id);return bool(entries_.at(id).resource);}
+const VisualResource& ResourceManager::resident(const ResourceId& id) const{
+    checkThread();validateId(id);const auto& entry=entries_.at(id);
+    if(!entry.resource)throw std::runtime_error("Resource is not resident: "+id.text());
+    return *entry.resource;
+}
 void ResourceManager::unload(const ResourceId& id){
     checkThread();validateId(id);auto& entry=entries_.at(id);
+    entry.binding.reset();
     if(entry.resource){stats_.decodedBytes-=entry.resource->decodedBytes;--stats_.residentResources;entry.resource.reset();}
 }
 void ResourceManager::unloadAll(){
-    checkThread();for(auto& item:entries_)item.second.resource.reset();stats_.decodedBytes=0;stats_.residentResources=0;
+    checkThread();for(auto& item:entries_){item.second.resource.reset();item.second.binding.reset();}stats_.decodedBytes=0;stats_.residentResources=0;
 }
 ResourceStats ResourceManager::stats() const{checkThread();return stats_;}
 }

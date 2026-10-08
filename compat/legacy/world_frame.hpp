@@ -11,12 +11,15 @@ struct WorldDraw {
     std::optional<render::SpriteColourTable> colours;
     render::SpriteComposite composite;
     std::uint32_t backend=0;
+    std::optional<render::AdditiveRectangle> additive;
+    std::optional<render::ColourRectangle> colourRectangle;
 };
 struct WorldFrame {
     std::uint32_t sequence=0,width=0,height=0,stride=0;
     std::vector<WorldDraw> draws;
 };
 WorldFrame decodeWorldFrame(const QByteArray&);
+render::SceneDraw worldPrimitiveDraw(const WorldDraw&);
 // Strict, all-or-nothing asset binding. Neither oracle canvas is an input.
 std::vector<render::SceneDraw> worldDisplay(const WorldFrame&,const SnapshotResources&);
 }

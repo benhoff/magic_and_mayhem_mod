@@ -55,6 +55,8 @@ unshaded ambiguity refusal remains its default.
 | 3 displacement | Sixteen signed DWORD rightward offsets, period 1..16 |
 | 4 quarter-destination | Same table layout; selected quarter-destination blend |
 | 5 projected shadow | Same table layout; recovered alternating-row coverage and destination darkening |
+| 6 additive rectangle | No encoded frame, indexed flag zero; five DWORDs: width, height, red, green, blue increments |
+| 7 colour rectangle | No encoded frame, indexed flag zero; width/height/mode DWORDs then width*height RGB565 WORDs |
 
 Non-displacement periods must be zero. Native displacement admits offsets
 0..16 and refuses sampling outside its owned canvas. Blend and shadow arithmetic
@@ -87,3 +89,25 @@ The CLI owns a constant initial RGB565 background (zero by default). It never
 loads the original before canvas. The independent comparison must demonstrate
 that these drawing inputs construct the entire claimed canvas from that native
 base. This format alone cannot prove that every pixel producer was observed.
+
+Operation6 is a tagged extension of the closed v1 record, retaining its offsets
+and reserved-field meaning. Existing readers reject the unknown operation.
+It uses backend11 exclusively, zero shade/phase/ordinal/period, dimensions
+1..2048 and increments0..65535. X/Y are the rectangle's top-left coordinates;
+there is no SPR origin or asset binding. The clip still belongs to the canvas.
+Each existing RGB565 channel is added to its increment, wrapped to16bits, then
+clamped to31/63/31 before repacking. Destination pixels come from preceding
+ordered native draws. No object or host pointer crosses this extension.
+
+The selected kind8 class is admitted conditionally by the observer's checked
+vtable/method and first-route/auxiliary-marker checks. Numeric startup journals
+still conservatively list8 as unsupported because they contain no object
+identity; this is not an unconditional kind8 admission. Unknown classes and
+unvalidated dispatch routes still refuse the entire World request.
+
+Operation7 uses backend12 and zero shade/phase/ordinal/period. It owns1..64
+width/height and mode0..3, mapped tocopy/quarter-destination/half/quarter-source.
+The exact payload is12+2*width*height bytes. X/Y are top-left anchors. It has
+no asset binding, coverage gaps or source/host pointers. Every owned WORD is
+opaque, including zero. Admission rejects SPR bytes, indexed flags, other
+backend combinations, geometry/mode/size mismatches or trailing bytes.

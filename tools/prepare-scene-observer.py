@@ -24,11 +24,24 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def prepare(menu=False,word_mode=None,world_frames=False,world_live=False):
+def copy_installation(source, game):
+    # cp -a preserves a directory symlink instead of making an isolated copy.
+    source=Path(source).resolve()
+    if game.exists() or game.is_symlink():
+        raise ValueError('Disposable destination must be new')
+    subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
+    if game.is_symlink() or game.resolve()==source:
+        raise ValueError('Disposable game copy aliases its source')
+    for name in ['Chaos.exe','MnmScene.dll','MnmMenu.dll','MnmWord.dll','CFG/prefs.cfg']:
+        if not (game/name).resolve().is_relative_to(game.resolve()):
+            raise ValueError('Disposable write target escapes the game copy: '+name)
+
+
+def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None):
     if world_live and not world_frames:raise ValueError('Continuous World needs the World input observer')
     if world_frames and word_mode:raise ValueError('World observation and word takeover use separate experiments')
     if word_mode not in (None,'shadow','takeover'):raise ValueError('Unsupported word-sprite mode')
-    source=ROOT/'working/game-nocd'
+    source=(Path(source_game) if source_game else ROOT/'working/game-nocd').resolve()
     data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=HASH:
         raise ValueError('Unsupported source executable; no patch applied')
@@ -41,7 +54,7 @@ def prepare(menu=False,word_mode=None,world_frames=False,world_live=False):
     parent.mkdir(parents=True,exist_ok=True)
     output=Path(tempfile.mkdtemp(prefix='run-',dir=parent))
     game=output/'game'
-    subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
+    copy_installation(source,game)
     if sha(game/'Chaos.exe')!=HASH:
         raise ValueError('Disposable copy hash mismatch')
     patch=load('scene_import','tools/prepare-shadow-experiment.py').add_import

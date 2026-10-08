@@ -5,6 +5,14 @@
 
 namespace mnm::render {
 using SpriteColourTable=std::array<std::uint16_t,256>;
+struct PreparedSpriteFrame {
+    Image pixels,mask;
+    std::int32_t originX=0,originY=0;
+    std::optional<SpriteColourTable> palette={}; // indices when present, RGB565 otherwise
+};
+// CPU-only owned planes; retainIndices keeps indices plus an embedded RGB565
+// table for atlas sampling. The default expands colour words. Checkpoint per row.
+PreparedSpriteFrame prepareSpriteFrame(const assets::Sprite&,std::size_t,const SpriteColourTable* colours=nullptr,const std::function<void()>& checkpoint={},bool retainIndices=false);
 inline constexpr PixelFormat spriteFormat{16,{0xf800,0x07e0,0x001f}};
 // An owned RGB565 upload and separate coverage texture. Indexed source colours
 // use embedded RGB >> 3/2/3 or a supplied RGB565 table. Supplied colours
@@ -13,6 +21,10 @@ inline constexpr PixelFormat spriteFormat{16,{0xf800,0x07e0,0x001f}};
 class UploadedSpriteFrame final {
 public:
     UploadedSpriteFrame(GlBlitter& renderer,const assets::Sprite& sprite,std::size_t frame,const SpriteColourTable* colours=nullptr);
+    // Prepared inputs allocate GPU storage only; advanceUpload writes bounded rows.
+    UploadedSpriteFrame(GlBlitter&,PreparedSpriteFrame);
+    bool advanceUpload(std::size_t& availableBytes); // at most one plane patch
+    bool ready() const {return !pending_.has_value();}
     ~UploadedSpriteFrame();
     UploadedSpriteFrame(const UploadedSpriteFrame&)=delete;
     UploadedSpriteFrame& operator=(const UploadedSpriteFrame&)=delete;
@@ -23,6 +35,8 @@ public:
     void drawClipped(SurfaceId destination,int anchorX,int anchorY,Rect viewport,const SpriteComposite& composite={});
     bool empty() const {return width_==0;}
 private:
+    std::optional<PreparedSpriteFrame> pending_;
+    int uploadPlane_=0,uploadRow_=0;
     GlBlitter& renderer_;
     SurfaceId pixels_=0,mask_=0;
     int width_=0,height_=0;

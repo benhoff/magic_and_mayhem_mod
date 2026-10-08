@@ -20,7 +20,7 @@ int main(int argc,char** argv)try{
     const auto snapshot=mnm::legacy::decodeWorldFrame(read(p.value("snapshot"),32*1024*1024));
     auto configured=mnm::assets::AssetStore::create(p.value("root").toStdString());if(auto* e=std::get_if<mnm::assets::Error>(&configured))throw std::runtime_error(e->detail);
     auto store=std::get<mnm::assets::AssetStore>(std::move(configured));mnm::assets::ResourceManager resources(store);mnm::legacy::SnapshotResources bindings(store,resources);
-    const auto doc=QJsonDocument::fromJson(read(p.value("bindings"),1024*1024));if(!doc.isArray()||doc.array().isEmpty()||doc.array().size()>256)throw std::invalid_argument("Bindings must be a bounded nonempty array");
+    const auto doc=QJsonDocument::fromJson(read(p.value("bindings"),1024*1024));if(!doc.isArray()||doc.array().size()>256)throw std::invalid_argument("Bindings must be a bounded array");
     for(const auto& value:doc.array()){if(!value.isObject())throw std::invalid_argument("Invalid binding record");const auto o=value.toObject();
         if(o.size()!=3||!o.value("id").isString()||!o.value("sprite").isString()||!o.value("sha256").isString())throw std::invalid_argument("Binding requires only id/sprite/sha256 strings");
         bindings.add({mnm::assets::ResourceKind::ui,o.value("id").toString().toStdString()},o.value("sprite").toString().toStdString(),o.value("sha256").toString().toLatin1());}
@@ -35,10 +35,10 @@ int main(int argc,char** argv)try{
     {mnm::render::SceneRenderer scene(renderer,resources,{width,height,std::vector<std::uint32_t>(std::size_t(width)*height,background)});
         scene.draw(drawsInput);const auto native=scene.read();image=scene.present();pixels.reserve(width*height*2);
         for(auto pixel:native.pixels){pixels.append(char(pixel));pixels.append(char(pixel>>8));}
-        for(const auto& d:drawsInput)draws.append(QJsonObject{{"id",QString::fromStdString(d.resource.text())},{"frame",qint64(d.frame)},{"x",d.anchorX},{"y",d.anchorY}});
+        for(const auto& d:drawsInput)draws.append(QJsonObject{{"id",(d.additive||d.colourRectangle)?QStringLiteral("additive-rectangle"):QString::fromStdString(d.resource.text())},{"frame",qint64(d.frame)},{"x",d.anchorX},{"y",d.anchorY}});
     }
     const auto stats=renderer.stats();if(stats.surfaces)throw std::runtime_error("Snapshot scene surface ownership leaked");
-    QJsonObject operations;for(const auto& d:drawsInput){const auto key=QString::number(int(d.composite.mode));operations[key]=operations.value(key).toInt()+1;}
+    QJsonObject operations;for(const auto& d:drawsInput){const auto key=QString::number(d.colourRectangle?7:d.additive?6:int(d.composite.mode));operations[key]=operations.value(key).toInt()+1;}
     if(!image.save(QString::fromStdString(prefix.string()+".png")))throw std::runtime_error("PNG export failed");
     QFile raw(QString::fromStdString(prefix.string()+".565"));if(!raw.open(QIODevice::NewOnly|QIODevice::WriteOnly)||raw.write(pixels)!=pixels.size()||!raw.flush())throw std::runtime_error("Native export failed");raw.close();
     const QJsonObject report{{"success",true},{"sequence",qint64(snapshot.sequence)},

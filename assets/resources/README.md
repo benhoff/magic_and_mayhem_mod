@@ -90,6 +90,19 @@ the cache. Neither service exposes texture pointers as resource identities.
 
 ## Build and validation
 
+For asynchronous CPU preparation, call `request(id)` on the manager's owner
+thread, pass the owned request to `prepareResource(request)` on a worker, then
+call `adopt(std::move(result))` on the owner thread. Preparation opens its own
+files and validates complete paired assets. Optional checkpoints can cancel by
+throwing; an optional expected image SHA-256 pins the decoded byte source.
+Adoption performs no file reads or decoding. Unload invalidates outstanding
+requests; stale/foreign results and budget failures leave residency unchanged.
+`resident(id)` refuses absent CPU data, and `isResident(id)` permits explicit
+scheduling. A cache with `residentOnly=true` refuses a miss instead of invoking
+synchronous loading. The World integration and its remaining memory/scheduling
+boundaries are documented in
+[native asset preparation](../../research/runtime/native-world-asset-preparation.md).
+
 ```sh
 cmake -S renderer/resources -B working/build/resources -DCMAKE_BUILD_TYPE=Debug
 cmake --build working/build/resources --target \

@@ -7,6 +7,7 @@
 #include "../terrain_catalog.hpp"
 #include <map>
 #include <thread>
+#include <functional>
 
 namespace mnm::assets {
 enum class ResourceKind { creature, terrain, effect, ui };
@@ -54,6 +55,43 @@ struct ResourceStats {
     std::uint64_t decodedBytes=0, loads=0, hits=0;
     std::uint64_t recipeBytes=0;
 };
+class PreparedResource;
+// Immutable, owned request. Its private binding token makes late completions
+// inadmissible after unload, or in another ResourceManager.
+class ResourcePreparation final {
+public:
+    const ResourceId& id() const { return id_; }
+private:
+    friend class ResourceManager;
+    friend PreparedResource prepareResource(const ResourcePreparation&,const std::function<void()>&,const std::string&);
+    ResourcePreparation(AssetStore store,ResourceId id,ResourceRecipe recipe,ResourceLimits limits,
+                        std::shared_ptr<const int> binding)
+        :store_(std::move(store)),id_(std::move(id)),recipe_(std::move(recipe)),limits_(limits),binding_(std::move(binding)){}
+    AssetStore store_;
+    ResourceId id_;
+    ResourceRecipe recipe_;
+    ResourceLimits limits_;
+    std::shared_ptr<const int> binding_;
+};
+class PreparedResource final {
+public:
+    PreparedResource(PreparedResource&&)=default;
+    PreparedResource& operator=(PreparedResource&&)=default;
+    const ResourceId& id() const { return request_.id(); }
+    const VisualResource& resource() const { return *resource_; }
+    const std::vector<std::uint8_t>& sourceImage() const { return source_; }
+    void discardSource() { std::vector<std::uint8_t>().swap(source_); }
+private:
+    friend class ResourceManager;
+    friend PreparedResource prepareResource(const ResourcePreparation&,const std::function<void()>&,const std::string&);
+    explicit PreparedResource(ResourcePreparation request):request_(std::move(request)){}
+    ResourcePreparation request_;
+    std::unique_ptr<VisualResource> resource_;
+    std::vector<std::uint8_t> source_;
+};
+// CPU-only preparation; checkpoint may cancel by throwing. No manager, widget,
+// file handle or GL object is borrowed. Encoded image remains owned until adoption.
+PreparedResource prepareResource(const ResourcePreparation&,const std::function<void()>& checkpoint={},const std::string& expectedImageSha256={});
 // Thread-confined, read-only input. Immutable bindings; unload releases decoded
 // data but preserves the ID/recipe. Each subsequent successful load gets a fresh
 // revision, so GPU caches never reuse a retired image. No implicit file watching.
@@ -66,11 +104,15 @@ public:
     void bind(const ResourceId&,const ResourceRecipe&);
     const ResourceRecipe& recipe(const ResourceId&) const;
     const VisualResource& load(const ResourceId&);
+    ResourcePreparation request(const ResourceId&);
+    const VisualResource& adopt(PreparedResource&&);
+    bool isResident(const ResourceId&) const;
+    const VisualResource& resident(const ResourceId&) const;
     void unload(const ResourceId&);
     void unloadAll();
     ResourceStats stats() const;
 private:
-    struct Entry {ResourceRecipe recipe;std::unique_ptr<VisualResource> resource;};
+    struct Entry {ResourceRecipe recipe;std::unique_ptr<VisualResource> resource;std::shared_ptr<const int> binding;};
     AssetStore store_;
     ResourceLimits limits_;
     std::thread::id thread_;

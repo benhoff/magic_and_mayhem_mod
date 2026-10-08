@@ -83,6 +83,12 @@ public:
     // Persistent, renderer-owned surfaces: max 2048x2048, 64 handles, 16M pixels.
     // Copies retain textures; read/present are explicit synchronization points.
     SurfaceId create(const Image& image,PixelFormat format);
+    // Allocate undefined native storage without a CPU fill/upload. Sampling and
+    // presentation remain forbidden until the written region is defined.
+    SurfaceId allocate(int width,int height,PixelFormat format);
+    // Upload contiguous full-width rows without copying the owned CPU plane.
+    void updateRows(SurfaceId surface,const Image& plane,int first,int rows);
+    void updateRegionRows(SurfaceId surface,int x,int y,const Image& plane,int first,int rows);
     void destroy(SurfaceId surface);
     void update(SurfaceId surface,int x,int y,const Image& patch);
     // SRCCOPY at origin to indexed8 (fully installed palette), RGB565 or RGB24/32.
@@ -95,7 +101,10 @@ public:
               std::optional<std::uint32_t> key=std::nullopt,
               std::optional<SurfaceId> mask=std::nullopt,std::uint32_t keyMask=UINT32_MAX);
     void composite(SurfaceId source,SurfaceId destination,Rect rect,int x,int y,
-                   SurfaceId mask,const SpriteComposite&);
+                   SurfaceId mask,const SpriteComposite&,
+                   const std::array<std::uint16_t,256>* palette=nullptr);
+    void colourRect(SurfaceId,const Image&,Rect,int,int,const SpriteComposite&);
+    void additiveRect(SurfaceId destination,Rect,const std::array<std::uint16_t,3>& channels);
     // Surface2-style same-format native operation; see surface_copy.hpp for the bounded policy.
     // Same-ID opaque copies freeze each ordered source piece on the GPU (max16MiB
     // transient storage). copy() retains its distinct-ID primitive contract.

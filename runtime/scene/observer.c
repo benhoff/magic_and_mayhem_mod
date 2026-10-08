@@ -2,14 +2,25 @@
 #include "../../protocols/include/mnm/scene_snapshot_v1.h"
 extern void scene_enter(void);
 extern void world_begin(u32*,u32);
+extern int canvas_producers_install(void);
+extern void canvas_producers_close(void),canvas_producers_queue(u32*);
 extern int world_stream_init(void);
 extern void world_stream_close(void);
+extern int world_stream_history(void),world_stream_queue(u32);
+extern void world_stream_missing(void),world_stream_fail(u32);
 extern void world_lifetime_observe(u32*);
 extern void world_lifetime_close(void);
+extern int canvas_startup_install(void);
+extern void canvas_startup_world(u32*);
+extern void canvas_startup_close(void);
+extern void startup_queue_init(void);
+extern void kind8_init(void),kind8_queue(u32*);
+extern void startup_queue_begin(u32*);
+extern void startup_queue_end(u32);
 u32 scene_trampoline;
 static u32 image_base,samples,limit=4;
 static volatile u32 busy;
-static u32 calls,skip,interval=1,continuous;
+static u32 calls,skip,interval=1,continuous,kind8_samples;
 static char directory[220];
 static const u8 expected[9]={0x83,0xec,0x18,0x53,0xb8,0x00,0x6c,0xca,0x88};
 static u32 pointers[MNM_SCENE_V1_MAX_BLOBS];
@@ -34,15 +45,20 @@ static int save(const u8* bytes,u32 size){
 }
 void scene_observe(u32* registers){
     u32 error=GetLastError();if(!__sync_bool_compare_and_swap(&busy,0,1)){SetLastError(error);return;}
-    u8* bytes=0;
+    u8* bytes=0;u32 saved_sample=0;
+    startup_queue_begin(registers);
+    kind8_queue(registers);
+    canvas_producers_queue(registers);
+    canvas_startup_world(registers);
     world_lifetime_observe(registers);
     if(!continuous&&samples>=limit)goto done;
     if(calls++<skip||(calls-skip-1)%interval)goto done;
-    if(continuous){world_begin(registers,0);goto done;}
+    if(continuous){if(world_stream_queue(calls)){world_begin(registers,0);world_stream_missing();}goto done;}
     /* pushal ECX is word 6. All reads happen on the original engine thread. */
     u32 queue=registers[6];if(!readable(queue,24))goto done;
     u32 base=get((void*)queue),count=get((void*)(queue+8)),capacity=get((void*)(queue+12)),view=get((void*)(queue+20));
     if(!count||count>MNM_SCENE_V1_MAX_DRAWS||count>capacity||view>3||!readable(base,count*36))goto done;
+    if(kind8_samples){u32 found=0;for(u32 i=0;i<count;++i)if(get((void*)(base+i*36+24))==8){found=1;break;}if(!found)goto done;}
     bytes=HeapAlloc(GetProcessHeap(),0,MNM_SCENE_V1_MAX_BYTES);if(!bytes)goto done;
     u32 blobs=0,at=64+count*32;zero(bytes,at);copy(bytes,MNM_SCENE_V1_MAGIC,8);
     put(bytes+8,1);put(bytes+12,64);put(bytes+24,count);put(bytes+32,view);put(bytes+40,MNM_SCENE_V1_BUILD);put(bytes+48,64);put(bytes+52,at);
@@ -68,8 +84,9 @@ void scene_observe(u32* registers){
         if(!token&&!(flags&MNM_SCENE_V1_HIDDEN))flags|=MNM_SCENE_V1_NO_FRAME;
         put(out,token);put(out+28,flags);
     }
-    ++samples;put(bytes+16,at);put(bytes+20,samples);put(bytes+28,blobs);if(save(bytes,at))world_begin(registers,samples);
+    ++samples;put(bytes+16,at);put(bytes+20,samples);put(bytes+28,blobs);if(save(bytes,at)){saved_sample=samples;world_begin(registers,samples);}
 done:
+    startup_queue_end(saved_sample);
     if(bytes)HeapFree(GetProcessHeap(),0,bytes);__sync_lock_release(&busy);SetLastError(error);
 }
 static int install(u32 base){
@@ -88,14 +105,18 @@ __declspec(dllexport) void SceneAnchor(void){}
 __declspec(dllexport) int WIN SceneInstallForTest(u32 base){return install(base);}
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
-    (void)instance;(void)reserved;if(reason==0){world_lifetime_close();world_stream_close();return 1;}if(reason!=1)return 1;
+    (void)instance;(void)reserved;if(reason==0){canvas_producers_close();canvas_startup_close();world_lifetime_close();world_stream_close();return 1;}if(reason!=1)return 1;
     u32 n=GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory))return 1;
-    char number[8];n=GetEnvironmentVariableA("MNM_SCENE_SAMPLES",number,8);
+    startup_queue_init();kind8_init();
+    char number[8];kind8_samples=GetEnvironmentVariableA("MNM_SCENE_KIND8_SAMPLES",number,8)!=0;
+    n=GetEnvironmentVariableA("MNM_SCENE_SAMPLES",number,8);
     if(n){if(n>=8)return 1;limit=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 1;limit=limit*10+number[i]-'0';}if(!limit||limit>16)return 1;}
     n=GetEnvironmentVariableA("MNM_SCENE_SKIP",number,8);if(n){if(n>=8)return 1;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 1;skip=skip*10+number[i]-'0';}if(skip>3600)return 1;}
     n=GetEnvironmentVariableA("MNM_SCENE_INTERVAL",number,8);if(n){if(n>=8)return 1;interval=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 1;interval=interval*10+number[i]-'0';}if(!interval||interval>3600)return 1;}
 #ifndef MNM_SCENE_SELFTEST
     continuous=world_stream_init();
+    if(world_stream_history()&&(skip||interval!=1||!GetEnvironmentVariableA("MNM_SCENE_STARTUP_REPLAY",number,8))){world_stream_fail(110);return 1;}
+    if(!canvas_startup_install()||!canvas_producers_install())return 0;
     install((u32)GetModuleHandleA(0));
 #endif
     return 1;

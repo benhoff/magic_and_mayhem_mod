@@ -21,14 +21,16 @@ int main(int argc,char** argv)try{
     GlViewport viewport;QLabel status;status.setContentsMargins(8,4,8,4);status.setWordWrap(true);
     layout.addWidget(&viewport,1);layout.addWidget(&status);
     LiveWorldSession session(viewport,p.value("channel"),p.value("root"),p.value("diagnostics"));status.setText(session.status());window.resize(800,630);window.show();QElapsedTimer elapsed;elapsed.start();
+    QTimer heartbeat;heartbeat.setInterval(5);quint64 heartbeats=0;qint64 lastHeartbeat=0,maxHeartbeatGap=0;
+    QObject::connect(&heartbeat,&QTimer::timeout,[&]{const auto now=elapsed.elapsed();maxHeartbeatGap=std::max(maxHeartbeatGap,now-lastHeartbeat);lastHeartbeat=now;++heartbeats;});heartbeat.start();
     QTimer timer;timer.setInterval(16);int code=0;quint64 timerTicks=0;
     QObject::connect(&timer,&QTimer::timeout,[&]{++timerTicks;
-        const auto running=session.poll();if(status.text()!=session.status())status.setText(session.status());
+        const auto running=session.poll();const auto interval=session.hasPendingFrame()?1:16;if(timer.interval()!=interval)timer.setInterval(interval);if(status.text()!=session.status())status.setText(session.status());
         if(!running){code=2;app.quit();}
         else if(frames&&session.presentations()>=frames)app.quit();
         else if(session.ended())app.quit();
         else if(seconds&&elapsed.elapsed()>qint64(seconds)*1000){code=3;app.quit();}
-    });timer.start();app.exec();timer.stop();session.close();auto report=session.report();report["timer_ticks"]=qint64(timerTicks);report["elapsed_ms"]=elapsed.elapsed();report["exit_code"]=code;
+    });timer.start();app.exec();timer.stop();heartbeat.stop();session.close();auto report=session.report();report["timer_ticks"]=qint64(timerTicks);report["gui_heartbeats"]=qint64(heartbeats);report["gui_max_heartbeat_gap_ms"]=maxHeartbeatGap;report["elapsed_ms"]=elapsed.elapsed();report["exit_code"]=code;
     if(frames&&session.presentations()<frames){if(!code)code=3;report["success"]=false;report["exit_code"]=code;}
     if(p.isSet("report")){QFile out(p.value("report"));const auto bytes=QJsonDocument(report).toJson();if(!out.open(QIODevice::NewOnly|QIODevice::WriteOnly)||out.write(bytes)!=bytes.size()||!out.flush())throw std::runtime_error("Cannot save new World report");}
     std::cout<<QJsonDocument(report).toJson(QJsonDocument::Compact).constData()<<'\n';return code;

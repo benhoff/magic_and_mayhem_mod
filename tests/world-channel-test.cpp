@@ -38,5 +38,28 @@ int main(int argc,char** argv)try{
     {WorldChannel channel(path);rejected([&]{channel.poll();});}
     *word(20)=0;*word(24)=0;
     {WorldChannel channel(path);*word(16)=8;rejected([&]{channel.poll();});*word(16)=7;}
+    // Ordered journal must drain queued packets after producer ENDED.
+    for(unsigned scenario=0;scenario<7;++scenario){
+        const auto historyPath=dir.filePath(QString("history-%1").arg(scenario));WorldChannel::createHistory(historyPath,9,false,3);
+        QFile journal(historyPath);require(journal.open(QIODevice::ReadWrite),"History fixture map");auto* bytes=journal.map(0,MNM_WCH_HISTORY_SIZE(3));
+        auto header=reinterpret_cast<quint32*>(bytes);
+        auto publishHistory=[&](unsigned index,unsigned sequence,unsigned canvas,unsigned source,unsigned reset){auto* p=reinterpret_cast<quint32*>(bytes+MNM_WCH_HEADER+index*MNM_WCH_HISTORY_SLOT);
+            require(mnm_wch_cas(p,0,1),"History slot overwrite");p[1]=sequence;p[2]=80;p[3]=0;p[4]=canvas;p[5]=source;p[6]=reset;p[7]=0;std::memset(reinterpret_cast<char*>(p)+32,0,80);mnm_wch_store(p,2);};
+        {WorldChannel channel(historyPath);require(channel.history()&&channel.targetFrames()==3&&!channel.drained(),"History mode identity differs");
+            if(scenario==0){publishHistory(0,1,1,1,1);publishHistory(1,2,1,2,0);publishHistory(2,3,2,3,1);mnm_wch_store(header+5,MNM_WCH_ENDED);
+                for(unsigned i=1;i<=3;++i){auto packet=channel.poll();require(packet&&packet->sequence==i&&packet->sourceSequence==i&&packet->reset==(i!=2),"History superseded or lost reset metadata");channel.presented(i);require(channel.drained()==(i==3),"History ended before draining journal");}
+                require(channel.superseded()==0&&!channel.poll(),"History used latest-frame policy");
+            }else{
+                if(scenario==1)publishHistory(0,1,1,2,1);
+                if(scenario==2)publishHistory(1,2,1,2,1);
+                if(scenario==3)publishHistory(0,1,1,1,0);
+                if(scenario==4){publishHistory(0,1,1,1,1);require(channel.poll().has_value(),"Initial history packet absent");publishHistory(1,2,2,2,0);}
+                if(scenario==5)mnm_wch_store(header+5,MNM_WCH_ENDED);
+                if(scenario==6){publishHistory(0,1,1,1,1);reinterpret_cast<quint32*>(bytes+MNM_WCH_HEADER)[7]=1;}
+                rejected([&]{channel.poll();});
+            }
+        }
+        journal.unmap(bytes);
+    }
     file.unmap(mapping);std::cout<<"World ownership, superseding, concurrent publication, malformed extent, identity, failure and cancellation pass\n";return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
