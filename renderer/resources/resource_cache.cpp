@@ -78,9 +78,30 @@ UploadedSpriteFrame& ResourceCache::upload(const assets::ResourceId& id,std::siz
     return *entries_.back().upload;
 }
 void ResourceCache::draw(const assets::ResourceId& id,std::size_t frame,SurfaceId destination,int x,int y,
-                         std::optional<Rect> viewport,const SpriteColourTable* colours){
+                         std::optional<Rect> viewport,const SpriteColourTable* colours,const SpriteComposite& composite){
+    if(composite.mode==CompositeMode::projectedShadow){
+        checkThread();if(!viewport)throw std::invalid_argument("Projected shadow requires a viewport");
+        const auto& resource=resources_.load(id);const auto* sprite=std::get_if<assets::Sprite>(&resource.image);
+        if(!sprite||frame>=sprite->frames.size())throw std::invalid_argument("Projected shadow requires a sprite frame");
+        const auto& f=sprite->frames[frame];if(!f.width||!f.height)return;
+        const auto left=std::int64_t(x)-f.originX,top=std::int64_t(y)-f.originY+f.height/2;
+        // The original shadow route refuses horizontal clipping as a whole.
+        if(left<viewport->left||left+f.width>viewport->right||top>=viewport->bottom||top+f.height<=viewport->top)return;
+        const int first=int(std::max<std::int64_t>(0,viewport->top-top));
+        const int last=int(std::min<std::int64_t>(f.height,viewport->bottom-top));
+        if(first>=last)return;
+        const int shift=last/2,rows=(last-first+1)/2;
+        assets::Sprite shadow;shadow.storage=assets::SpriteStorage::rgb565;assets::SpriteFrame shaped;
+        shaped.width=f.width+shift;shaped.height=rows;
+        shaped.opaqueMask.assign(std::size_t(shaped.width)*rows,0);shaped.pixels=std::vector<std::uint16_t>(shaped.opaqueMask.size(),0);
+        for(int row=0;row<rows;++row)for(unsigned column=0;column<f.width;++column)
+            shaped.opaqueMask[std::size_t(row)*shaped.width+column+shift-row]=f.opaqueMask[std::size_t(first+row*2)*f.width+column];
+        shadow.frames.push_back(std::move(shaped));UploadedSpriteFrame uploaded(renderer_,shadow,0);
+        SpriteComposite darken;darken.mode=CompositeMode::half;
+        uploaded.draw(destination,int(left),int(top+first),darken);return;
+    }
     checkThread();auto& uploaded=upload(id,frame,colours);
-    if(viewport)uploaded.drawClipped(destination,x,y,*viewport);else uploaded.draw(destination,x,y);
+    if(viewport)uploaded.drawClipped(destination,x,y,*viewport,composite);else uploaded.draw(destination,x,y,composite);
 }
 void ResourceCache::release(const assets::ResourceId& id){
     checkThread();resources_.recipe(id); // reject invalid/unknown IDs before mutation

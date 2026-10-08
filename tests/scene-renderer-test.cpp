@@ -23,6 +23,12 @@ int main(int argc,char** argv)try{
         require(before.uploads==after.uploads && before.nativeReadbacks==after.nativeReadbacks &&
                 before.rgbaReadbacks==after.rgbaReadbacks && after.copies==before.copies+3,"Resident scene drew with upload/readback");
         require(scene.cacheStats().hits>=2,"Scene did not reuse frame cache");
+        scene.beginFrame({{body,0,2,0},{indexed,1,3,0}});
+        rejected([&]{scene.beginFrame({});});rejected([&]{scene.drawNext(0);});
+        require(!scene.drawNext(1),"Partial scene reported complete");
+        rejected([&]{scene.read();});rejected([&]{scene.presentGpu();});
+        require(scene.drawNext(1)&&scene.read().pixels==expected.pixels,"Batched scene differs from atomic draw");
+        rejected([&]{scene.drawNext(1);});
         // Explicit caller order is retained, including equal-depth permutations.
         scene.draw({{indexed,1,3,0},{body,0,2,0}});expected.pixels[7]=0xf800;
         require(scene.read().pixels==expected.pixels,"Scene reordered caller queue");

@@ -33,6 +33,13 @@ void validate(const Blit& command);
 struct Driver {std::string vendor, renderer, version;};
 using SurfaceId=std::uint64_t;
 struct PixelFormat {unsigned bits=0;std::array<std::uint32_t,3> masks{};};
+enum class CompositeMode {copy,half,quarterSource,displace,quarterDestination,projectedShadow};
+struct SpriteComposite {
+    CompositeMode mode=CompositeMode::copy;
+    // Nonnegative horizontal displacement, sampling untouched pixels to the right.
+    std::array<int,16> rowOffsets{};
+    unsigned rowPeriod=16;
+};
 struct Rgb {std::uint8_t red=0,green=0,blue=0;};
 // GUI-thread lease of the latest GPU presentation. Copies share its texture.
 // It survives source-surface and renderer destruction; subsequent presentations
@@ -87,6 +94,8 @@ public:
     void copy(SurfaceId source,SurfaceId destination,Rect rect,int x,int y,
               std::optional<std::uint32_t> key=std::nullopt,
               std::optional<SurfaceId> mask=std::nullopt,std::uint32_t keyMask=UINT32_MAX);
+    void composite(SurfaceId source,SurfaceId destination,Rect rect,int x,int y,
+                   SurfaceId mask,const SpriteComposite&);
     // Surface2-style same-format native operation; see surface_copy.hpp for the bounded policy.
     // Same-ID opaque copies freeze each ordered source piece on the GPU (max16MiB
     // transient storage). copy() retains its distinct-ID primitive contract.

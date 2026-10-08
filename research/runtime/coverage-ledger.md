@@ -2250,4 +2250,4 @@ remain pending. Prior reports and hashes remain untouched.
 
 ## Renderer source split, 2026-10-07
 
-Portable word raster source and synthetic host test are committed independently. Runtime/original/live evidence remains pending in this intermediate tree. See [commit boundaries](native-renderer-commit-boundaries-20261007.md).
+Portable word raster and native World composition/frame/history sources are independently buildable. This intermediate tree retains historical shared-scene evidence and makes no new original comparison or live status claim. Runtime producers, channel and Qt session follow in the integration commit. See [commit boundaries](native-renderer-commit-boundaries-20261007.md).
