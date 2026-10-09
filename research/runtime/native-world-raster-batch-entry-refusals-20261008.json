@@ -1,0 +1,34 @@
+{
+  "scope": "Preserved failed pilot runs; diagnoses entry observation ordering, not successful replacement or original equivalence. v4 private producer heap alone did not resolve the subsequent scene observer allocation. v5 delays activation until all entry snapshots finish and retains private producer storage.",
+  "cases": [
+    {
+      "version": "v3",
+      "experiment": "working/experiments/scene-observer/run-jm4frwmp",
+      "claims_sha256": "2696d0d88a6cd17297503e733dbec7d63c91c7cefb52d2f30010088a00486017",
+      "fault_sha256": "78106cc604ce316fa8f2e1c6d587d2ca49e92f2a67a38502562981d9dd68a774",
+      "instruction": "0x7bcdaaf3",
+      "address": "0x34a0004",
+      "access": 1,
+      "queue": 1,
+      "rasters_admitted": 0,
+      "guard_bytes": 962560,
+      "request_published": false,
+      "interpretation": "Entry adapter remained active after protection: scene_observe allocated/freed a process-heap snapshot after canvas_producers_queue. Guard conservatively includes original allocation metadata. No original raster was admitted and no positive pixel comparison follows."
+    },
+    {
+      "version": "v4",
+      "experiment": "working/experiments/scene-observer/run-pt8l6ixh",
+      "claims_sha256": "26e94831442e8485efca979da9c0f415ffae889ad14aece860f98c66e15d6c13",
+      "fault_sha256": "c18d06253f18c2bfece2e4f73d882d07d1cc59b0b20b9487ebf7211d91cd54c3",
+      "instruction": "0x7bcdaaf3",
+      "address": "0x34c0004",
+      "access": 1,
+      "queue": 1,
+      "rasters_admitted": 0,
+      "guard_bytes": 962560,
+      "request_published": false,
+      "interpretation": "Entry adapter remained active after protection: scene_observe allocated/freed a process-heap snapshot after canvas_producers_queue. Guard conservatively includes original allocation metadata. No original raster was admitted and no positive pixel comparison follows."
+    }
+  ],
+  "original_files_modified": false
+}

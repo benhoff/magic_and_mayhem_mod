@@ -19,6 +19,7 @@ public:
   unsigned canvas() const { return canvas_; }
   unsigned completedQueues() const { return completed_; }
   unsigned draws() const { return totalDraws_; }
+  unsigned readbacks() const { return readbacks_; }
 private:
   render::GlBlitter &renderer_;
   assets::AssetStore store_;
@@ -27,6 +28,7 @@ private:
   std::unique_ptr<render::SceneRenderer> scene_;
   WorldFrame pending_;
   unsigned queue_=0,canvas_=0,completed_=0,totalDraws_=0,queueDraws_=0;
+  unsigned readbacks_=0;
   bool active_=false,checked_=false;
 };
 }

@@ -14,10 +14,13 @@ Native zero initialization is intentional policy. No unbounded history, loading
 transitions, HUD/input ownership, total GPU/RSS bound, hard driver latency or
 original raster bypass is claimed.
 
-`./tools/run-native-world.py --startup-history` opens the native viewer alongside
-the original game and stops after16 completed World frames. Add `--verify` for
-separate original post-consumer oracle comparison. Start Quick Battle in the
-original window. Existing default continuous newest-frame mode remains available.
+The public `./tools/run-native-world.py --startup-history [--verify]` now runs
+the automatic bounded producer-history startup instead of this World-only
+channel. It captures menu/loading/HUD producers and compares every completed
+canvas through16World queues. See [public launcher](native-world-startup-launcher.md).
+The World-only history implementation and historical evidence below remain
+available through the dedicated capture/test tools. Default continuous launches
+still use the interactive newest-frame mode.
 
 Automated installed-game execution uses `tools/capture-scene-game.py
 --world-live history-verify --live-frames 16` under Xvfb. Synthetic checks cover
@@ -112,3 +115,30 @@ also require fresh execution after shared hook sources changed; their historical
 evidence and source hashes remain intact. No new current integration promotion
 is made for live history. Machine-readable completion audit and gate reports
 remain under `working/tests/world-live-history-completion-*`.
+
+## Manual launcher: queue-2 mismatch, 2026-10-08
+
+`./tools/run-native-world.py --startup-history --verify` in experiment
+`run-l5v_hzru` builds successfully and starts the existing World-only shadow
+preview. Queue 1 matches; queue 2 is refused with eight differing pixels at
+x425–427/y131–134. This is an output comparison failure, with zero capture
+refusals and producer reason0, rather than an unsupported-kind refusal.
+
+The [retained independent diagnostic](native-world-manual-history-gap-20261008.json)
+extracts the first two immutable channel packets and runs the private unmodified
+original World reference from zero, then its own first completion. Both complete
+replay hashes equal the native report hashes. Queue 1 also equals live original;
+queue 2 differs from live original at precisely the same eight pixels. Sources
+and inputs remain stable; original manifests verify 2,927 files before/after.
+The replay uses no live destination bytes as native inputs.
+
+The captured requests and chosen initial-state replay reproduce the native
+result. The two packets do not identify the missing original writer, its timing,
+or any omitted original context; between-queue producer content and untraced
+writes remain possibilities. No rendering arithmetic change is justified by
+this diagnostic alone. The standalone producer-history/raster-prefix proof is a
+separate path: this manual launcher still builds `mnm-world-live`, rather than
+`mnm-canvas-producers-live --world-handoff`. Wiring the validated native producer
+history into the public startup launcher remains an integration milestone.
+Historical successful prefixes retain their hashes; this failure receives its
+own diagnostic ID and does not claim fresh complete-prefix equivalence.

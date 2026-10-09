@@ -1,0 +1,75 @@
+{
+  "success": true,
+  "sources": {
+    "runtime/scene/canvas_producers.c": "e9a8bedff75e95b8957077381641319213bf7d25d0b5d927377d87eda816c119",
+    "runtime/scene/canvas_producers.S": "82a1ff30f52bd0eca3e54eb2f77a695bc3ae36525ac22da0491e926b11f463ef",
+    "tests/canvas-producers-test.c": "8f4ef1b1eb225b7b9b59c75006a30697e3e51510cefdf7c9112cddb6eaa93a68",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tools/test-canvas-producers.py": "0841f9153bf92051b7c3891683e89c1d10e45e479d08aca9cd8a19e55f8d38d7",
+    "tools/inspect-canvas-producers.py": "1672cb8754b72f34fa93ae45919af9b884c83b2b77cdd77bfe4af88b29ed4282",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "protocols/include/mnm/canvas_producers_v1.h": "5a644332be8e73853cda426477835aed3e330d68acdb88f1ad3004e8a00da52c",
+    "tools/build-scene-observer.py": "5db6bab23127152a61f2f05f0d116f059995ce44746835d6166269ed764ed3ae",
+    "runtime/scene/world_producer_bypass.c": "98eec5d46516454ad224fe760922231d7b5c345ef5336422c8aedae30ef13e57",
+    "protocols/include/mnm/world_producer_bypass_v1.h": "62f85f8ed92092185692fdb066bfec489d2bd1493ad2fea72af44002b9974424",
+    "tests/world-producer-bypass-call.S": "a853b13197f69c7beb864b725a9b4aaade4138fc9d4968a34c789638c8cc3640",
+    "runtime/scene/world_raster_callers.h": "d2a2c29e4ff60c213bd8fc2e4a2a12f0f3a5b6de7c8e1a1038da3a94b571daf7",
+    "runtime/scene/world_raster_batch.c": "efc4cb225782f9ab164b67c3e1cca912e8a412541bb3b14f987cd8ef0d6db744",
+    "protocols/include/mnm/world_raster_batch_v3.h": "f66950a0fc86061a3b489cf03986e43ba18ca9b34087cb371501f3f555815912"
+  },
+  "sources_stable": true,
+  "forwarded_entries": 49,
+  "native_bypass_entries": 1,
+  "complete_raster_bypass_entries": 13,
+  "complete_raster_ax_and_cleanup_preserved": true,
+  "outside_world_raster_forwarded": true,
+  "native_bypass_state_preserved": true,
+  "malformed_bypass_refusals": 2,
+  "nested_jpeg_lock_forwarded": true,
+  "register_flags_float_error_preserved": true,
+  "signature_refusal_before_mutation": true,
+  "malformed_refusals": 12,
+  "original_renderer_executed": false,
+  "scope": "Actual PE32 entry/return/relocated JPEG-call forwarding against synthetic compatible prologues, all49hook sites, post-close calls, full register/flags/x87/SSE/LastError and atomic signature refusal. No original pixel equivalence.",
+  "batch_body_skips": 13,
+  "batch_canvas_writebacks": 1,
+  "batch_prescribed_ax_cleanup": true,
+  "batch_guard_refusals": [
+    {
+      "mode": "read",
+      "exit": 96,
+      "failure_code": 44
+    },
+    {
+      "mode": "write",
+      "exit": 96,
+      "failure_code": 44
+    },
+    {
+      "mode": "source",
+      "exit": 95,
+      "failure_code": 40
+    },
+    {
+      "mode": "producer",
+      "exit": 95,
+      "failure_code": 45
+    }
+  ],
+  "malformed_batch_reply_refusals": 3,
+  "batch_original_canvas_unwritten_before_return": true,
+  "batch_hud_forwarded_after_return": true,
+  "oracle_budget_invalid_values_refused": 7,
+  "oracle_budget_max_mib": 3072,
+  "oracle_budget_default_mib": 1024,
+  "oracle_budget_crosses_old_ceiling": true,
+  "oracle_budget_exact_ceiling_accepted": true,
+  "oracle_budget_over_ceiling_refusals": 3,
+  "oracle_budget_counter_underflow_refused": true,
+  "oracle_environment_refused_before_hook_mutation": [
+    "0",
+    "3073",
+    "99999999",
+    ""
+  ]
+}

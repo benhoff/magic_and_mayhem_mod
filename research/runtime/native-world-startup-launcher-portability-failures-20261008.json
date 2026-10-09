@@ -1,0 +1,73 @@
+{
+  "scope": "Immutable diagnosis of user launcher failures; historical output comparison, no current-source execution claim.",
+  "sessions": [
+    {
+      "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-_g_wjtth",
+      "artifacts": {
+        "native-world.json": {
+          "sha256": "9bb728dde78532f6433dab0e74f74b806fe24f968c0276afbfda21b32b7d50b4",
+          "bytes": 189
+        },
+        "native-producers/live-report.json": {
+          "sha256": "2bf117bc4fddaed5c32f232d12ba839fb94893d17a1f4059084bde677ac5ada9",
+          "bytes": 293919
+        },
+        "manifest.json": {
+          "sha256": "4c3f50755232e956aa1bbe94ed6aabe295229c957326a2f67e0c641d6729394a",
+          "bytes": 1109
+        },
+        "capture/canvas-producers.bin": {
+          "sha256": "6032c53da92e860d448a02c0a1b5b0cc5cabd634db67f22991c97e3e09d27126",
+          "bytes": 14386631
+        }
+      },
+      "worker_success": false,
+      "worker_error": "Original producer capture refused input, code 11",
+      "world_queues": 0,
+      "records": 7409,
+      "oracle_files": 1118,
+      "oracle_bytes": 1073280000,
+      "closed_marker": false,
+      "child_report_exists": false,
+      "launcher_error": "Original producer capture refused input, code 11",
+      "comparisons": 0,
+      "all_recorded_comparisons_match": false
+    },
+    {
+      "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-scltemki",
+      "artifacts": {
+        "native-world.json": {
+          "sha256": "5ad5bcb60cfb7b164535490a908d10237898613e9e8510074b816a4dd811f3cf",
+          "bytes": 370056
+        },
+        "native-producers/live-report.json": {
+          "sha256": "53860d19f00e6e140962cb7a1afdef38aa095d38f2c515fa8df106af713fd549",
+          "bytes": 254007
+        },
+        "manifest.json": {
+          "sha256": "adcdfa0bc6f7b8540b293c591d716edb3ee23239555ebce82f7362c74509a935",
+          "bytes": 1197
+        },
+        "capture/canvas-producers.bin": {
+          "sha256": "3dd849e11aacc6ef8d094dd83c9605a205faf62efd41d3ebf00adcd57fa11ff9",
+          "bytes": 69581030
+        },
+        "capture/canvas-producers.done": {
+          "sha256": "dcd4dd91496f7fb76a75dabd526c022a63fefc9c80ec15873a407167c685d33f",
+          "bytes": 32
+        }
+      },
+      "worker_success": true,
+      "worker_error": "",
+      "world_queues": 16,
+      "records": 42515,
+      "oracle_files": 938,
+      "oracle_bytes": 829433824,
+      "closed_marker": true,
+      "child_report_exists": false,
+      "launcher_error": "Native startup capture failed; details: /home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-scltemki/report.json",
+      "comparisons": 938,
+      "all_recorded_comparisons_match": true
+    }
+  ]
+}

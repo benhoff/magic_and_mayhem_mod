@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "no_original_artifacts": true,
+  "scope": "Python startup completion/admission and capture-dispatch fixtures only; no native renderer or original engine execution.",
+  "completion_cases": 19,
+  "dispatch_cases": 2,
+  "sources": {
+    "tools/run-native-world.py": "ab4693cc6acb77cbcaf739107956b35aa8d67ea337fe88b3b803061d11e5fcfc",
+    "tools/native_world_startup.py": "f81c041182f9844f2dffb2f1d1980696a90e87dfc424a1953b98f306112ba452",
+    "tests/native-world-startup-test.py": "a769a7fe36e7fc237e88b3a7949e9bd469c4a908b81c2f84bb2c0be568a13ba9"
+  },
+  "test_log_sha256": "261435fdd17b382effb8a40035ec9accb1cb7ed43ef4c710bb16a5f7d0b57634",
+  "batch_codec_test_passed": true,
+  "batch_live_behavior_validated": false
+}

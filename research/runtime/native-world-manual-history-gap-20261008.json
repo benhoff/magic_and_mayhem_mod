@@ -1,0 +1,102 @@
+{
+  "success": true,
+  "scope": "Two retained manual World packets replayed independently from native zero/previous native-equivalent completion; diagnostic only, no complete-prefix or current-code live-equivalence claim.",
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-l5v_hzru",
+  "sources": {
+    "tests/world-frame-reference.cpp": "4d79a1c0df363218f5366a12d4829f53f0be527db5ca9b826bbbc1b0a79b8138",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "protocols/include/mnm/world_frame_v1.h": "b9b2f78c8e5b513232f803d2a0ec6643626974a8909db18611e87262a22f83b5",
+    "apps/qt-shell/live_world_session.cpp": "a0258328b8dfdf3bb42393638b7e9e5cc81902cdfa40d610ad8cb258a0d4fb5c",
+    "tools/run-native-world.py": "f86fca55781042c5be2fdf0f77f65657c9e84909aa77d7fd94b40045fc11050c"
+  },
+  "inputs": {
+    "working/tests/world-producer-handoff/run-3v9yw24b/world-reference": "820d64f3fa0a7596598d38d0256685d0872bde476c3ba3766179745099d67e35",
+    "working/experiments/scene-observer/run-l5v_hzru/native-world.json": "32b1aa65638a4f212d7e031c557a23d223ec83c5dcb72382e43b0205fdc80ad4",
+    "working/experiments/scene-observer/run-l5v_hzru/world-channel.bin": "53cd67c7c4e4ba07086cd5ab10988a28a8be45c2130903c1ea2179762b294de5"
+  },
+  "original_pixels_used_as_native_inputs": false,
+  "checks": [
+    {
+      "queue": 1,
+      "independent_sha256": "374ecef48e3539e273384fa049ddd4ab80d4e0ffa5184e2e05d81bc197dff3e3",
+      "native_sha256": "374ecef48e3539e273384fa049ddd4ab80d4e0ffa5184e2e05d81bc197dff3e3",
+      "independent_matches_native": true,
+      "independent_vs_live_mismatches": 0,
+      "mismatch_samples": []
+    },
+    {
+      "queue": 2,
+      "independent_sha256": "6945bcaf308396da78560d2e7a4aa4e68c7e8a3e7992b1f4576378e656ec5dd1",
+      "native_sha256": "6945bcaf308396da78560d2e7a4aa4e68c7e8a3e7992b1f4576378e656ec5dd1",
+      "independent_matches_native": true,
+      "independent_vs_live_mismatches": 8,
+      "mismatch_samples": [
+        {
+          "x": 425,
+          "y": 131,
+          "independent": 4258,
+          "live": 27501
+        },
+        {
+          "x": 426,
+          "y": 131,
+          "independent": 8547,
+          "live": 25388
+        },
+        {
+          "x": 427,
+          "y": 131,
+          "independent": 4290,
+          "live": 23275
+        },
+        {
+          "x": 425,
+          "y": 132,
+          "independent": 4290,
+          "live": 27469
+        },
+        {
+          "x": 426,
+          "y": 132,
+          "independent": 8483,
+          "live": 25356
+        },
+        {
+          "x": 427,
+          "y": 132,
+          "independent": 6370,
+          "live": 23243
+        },
+        {
+          "x": 426,
+          "y": 133,
+          "independent": 6370,
+          "live": 23275
+        },
+        {
+          "x": 426,
+          "y": 134,
+          "independent": 6402,
+          "live": 23243
+        }
+      ]
+    }
+  ],
+  "sources_stable": true,
+  "inputs_stable": true,
+  "original_manifest_verified_before_after": true,
+  "outputs": {
+    "working/tests/native-world-manual-diagnostic/run-h37liqt_/world-1.bin": "d5c6bb7a23a3ba2d474d504f8d75be773f857d7ae08f84414cd633a5bc25ebdf",
+    "working/tests/native-world-manual-diagnostic/run-h37liqt_/world-1.independent.565": "374ecef48e3539e273384fa049ddd4ab80d4e0ffa5184e2e05d81bc197dff3e3",
+    "working/tests/native-world-manual-diagnostic/run-h37liqt_/world-2.bin": "d2a48d5e30c9f9a0a2b5a0e50828f0199e7ca84040c3b3c34660652f6eb07a37",
+    "working/tests/native-world-manual-diagnostic/run-h37liqt_/world-2.independent.565": "6945bcaf308396da78560d2e7a4aa4e68c7e8a3e7992b1f4576378e656ec5dd1"
+  },
+  "diagnostic_only": true,
+  "current_code_live_equivalence_claim": false,
+  "limitations": [
+    "Retained packets identify neither the missing writer nor its timing; between-queue producer history, untraced writes and missing original context remain possible.",
+    "The public launcher selects mnm-world-live with native-zero/World-only history, rather than the separately validated native producer-history handoff.",
+    "This result is a two-packet diagnostic; it does not validate all16startup queues or renew broader native World contracts."
+  ]
+}

@@ -161,3 +161,35 @@ The committed range `63f32b1..e94f344` was reviewed separately in
 436 file/link transitions and 138 behavior transitions have exact receipt chains;
 prior receipt contents are preserved, with no unresolved exact transitions.
 This historical accounting does not assert a past gate pass or new execution.
+
+
+## Additional complete-prefix run
+
+A second [complete-prefix replacement](native-world-raster-prefix16-replacement-20261008.json)
+independently validates another startup capture in the same declared domain.
+All 33,920 actual native intermediate canvases and low16AX match their precise
+original entries over 16,281,600,000 pixels. All 16 final World canvases and 1,062
+observed completions also match, and every intermediate before/reply link is
+continuous. Its 973 AX=1 refusals exercise original fallback; 32,947 calls return
+AX=0. The preceding 36,556-call result and its early queue-1 evidence belong to
+another capture and retain their original identities and hashes.
+
+The [live record](native-world-raster-prefix16-live-20261008.json) and
+[frozen comparison](native-world-raster-prefix16-comparison-20261008.json) retain
+the executed prospective claims, source/input stability, 125-source provenance,
+reviewed 76-input compiler closure and four passing focused CTests. Original
+manifests verify 2,927 files before and after each experiment. Native replay
+reads no original oracles. An early comparator was stopped by sandbox SIGSYS
+before comparison; its isolated unsandboxed retry matched 8,656 calls in queues
+1–4. The setup failure and retry remain referenced separately, without an engine
+mismatch claim. No broader domain or real-time milestone follows from this repeat.
+
+Per-raster full-canvas readback, reply and writeback remain expensive.
+Queue-boundary batching is the next performance step and requires its own
+admission, return/fallback and intermediate-reader validation.
+
+The subsequently committed range `e94f344..b4d5007` is reviewed separately in
+[repeat committed-history accounting](coverage/committed-history-world-raster-prefix16-repeat-20261008.json):
+all 11 committed files are hash-reviewed, with exact receipt chains for 10 source
+and two behavior transitions. The review journal remains append-only. This
+accounting does not assert a past gate pass or a new execution result.

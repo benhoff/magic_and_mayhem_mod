@@ -24,6 +24,21 @@ equivalence and whole-scene bypass remain pending. See the
 [implementation](../../research/runtime/native-world-live-rendering.md) and
 [initial-background boundary](../../research/runtime/native-world-live-background-gap.md).
 
+For a finite startup comparison, run:
+
+```bash
+./tools/run-native-world.py --startup-history --verify
+```
+
+Startup verification compares raw completed canvases without a desktop
+screenshot utility. It requests a bounded3GiB original-oracle allowance;
+ordinary research captures retain their1GiB default.
+
+This automatically starts Quick Battle and compares every completed native
+menu/loading/HUD/World canvas through the first16World queues. It reports exact
+pixel differences and incomplete captures, then closes the isolated session.
+See the [startup launcher scope](../../research/runtime/native-world-startup-launcher.md).
+
 An explicit partial sprite raster MVP is available with:
 
 ```bash

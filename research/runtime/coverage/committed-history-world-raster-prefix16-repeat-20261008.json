@@ -1,0 +1,212 @@
+{
+  "scope": "Committed-history accounting only. Review exact parent/current hashes and receipt chains; no past gate pass or new execution assertion. Engine sources did not change. Current uncommitted repeat evidence is separate.",
+  "reviewed_range": "e94f3449b4decf218ba0c94b0176c84dc9935a41..b4d5007d060fa5d8defcd95b8d27b4ffadcf52d9",
+  "raw_committed_files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "parent_sha256": "f4e478f84b67011e34853b739bf6d2a4a1a1c9e17ecc11ca56afabf1847b6a8e",
+      "commit_sha256": "cf3ccf48ea3cfee408c31d64f20f28ac6948184929af2c1a11423a1268cc9da7",
+      "classification": "exact source transition reviewed"
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "parent_sha256": "663e5e19a8db8ad552bb5d89c34c26c094fe26106258ff260b0e4813ccea529c",
+      "commit_sha256": "1a7cce9e3b5a0329f639f3ab643d3a5f8004381f08d453e6e193d1a150bbbf02",
+      "classification": "append-only review journal; excluded from self-fingerprints"
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-world-raster-prefix-20261008.json",
+      "parent_sha256": null,
+      "commit_sha256": "aed1be68ef667ca58bb783fa197fb6de7fa9faa1c71ba36295a207350d85c40e",
+      "classification": "exact source transition reviewed"
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "parent_sha256": "fc06a56c44a50b9f473c25b9f11db4c00df46d5a183c0437a5d47e1cf6189149",
+      "commit_sha256": "8b10cd72a019d9fef82c839a016f63fd554b892670f3cd74648db69f437ebacc",
+      "classification": "exact source transition reviewed"
+    },
+    {
+      "path": "research/runtime/coverage/source-index-world-raster-prefix16-20261008.json",
+      "parent_sha256": null,
+      "commit_sha256": "903bf83b5dfa72da3499d6767f3e11a16489a1c36df9c6dd8a8c8748fd5cf954",
+      "classification": "exact source transition reviewed"
+    },
+    {
+      "path": "research/runtime/coverage/summary-world-raster-prefix16-20261008.md",
+      "parent_sha256": null,
+      "commit_sha256": "f660e6eb2d13330b6cc36197e333a0366d183b1d77a1acdf1167796c1ddeed83",
+      "classification": "exact source transition reviewed"
+    },
+    {
+      "path": "research/runtime/native-world-raster-prefix-early-queue1-20261008.json",
+      "parent_sha256": null,
+      "commit_sha256": "c120f39ff2de1bc8992f032e12b98960742f30b217dec5d8edddebbbeacb951d",
+      "classification": "exact source transition reviewed"
+    },
+    {
+      "path": "research/runtime/native-world-raster-prefix16-boundary-comparison-20261008.json",
+      "parent_sha256": null,
+      "commit_sha256": "103532bddb9830e2686c27b15ae8aeefc4afec24d815c047536e9f2b363ced8f",
+      "classification": "exact source transition reviewed"
+    },
+    {
+      "path": "research/runtime/native-world-raster-prefix16-boundary-live-20261008.json",
+      "parent_sha256": null,
+      "commit_sha256": "4cf2d62aff9f100b41bbf66b336e9712b11a8f1ab444ba59c07c6a2e33dccb1b",
+      "classification": "exact source transition reviewed"
+    },
+    {
+      "path": "research/runtime/native-world-raster-prefix16-boundary-replacement-20261008.json",
+      "parent_sha256": null,
+      "commit_sha256": "dbca0dfbc1adf8c23ae2a8de784ff2118e08d21c59db86880fee814834d9069e",
+      "classification": "exact source transition reviewed"
+    },
+    {
+      "path": "research/runtime/native-world-raster-queue.md",
+      "parent_sha256": "58d59386b14571b3eeafa1ad686fe5ee666eb6c8f3babe4802c740a83809b0b3",
+      "commit_sha256": "7a08039b077fab9cca394dc564052d43f60900b02e2f44701e22c0b5958a1b93",
+      "classification": "exact source transition reviewed"
+    }
+  ],
+  "source_transitions": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f4e478f84b67011e34853b739bf6d2a4a1a1c9e17ecc11ca56afabf1847b6a8e",
+      "after_sha256": "cf3ccf48ea3cfee408c31d64f20f28ac6948184929af2c1a11423a1268cc9da7",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "receipt_chain": [
+        "world-raster-prefix16-exact-replacement-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-world-raster-prefix-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "aed1be68ef667ca58bb783fa197fb6de7fa9faa1c71ba36295a207350d85c40e",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "receipt_chain": [
+        "world-raster-prefix16-exact-replacement-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "fc06a56c44a50b9f473c25b9f11db4c00df46d5a183c0437a5d47e1cf6189149",
+      "after_sha256": "8b10cd72a019d9fef82c839a016f63fd554b892670f3cd74648db69f437ebacc",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "receipt_chain": [
+        "world-raster-prefix16-exact-replacement-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-world-raster-prefix16-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "903bf83b5dfa72da3499d6767f3e11a16489a1c36df9c6dd8a8c8748fd5cf954",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "receipt_chain": [
+        "world-raster-prefix16-exact-replacement-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-world-raster-prefix16-20261008.md",
+      "before_sha256": null,
+      "after_sha256": "f660e6eb2d13330b6cc36197e333a0366d183b1d77a1acdf1167796c1ddeed83",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "receipt_chain": [
+        "world-raster-prefix16-exact-replacement-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-raster-prefix-early-queue1-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "c120f39ff2de1bc8992f032e12b98960742f30b217dec5d8edddebbbeacb951d",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "receipt_chain": [
+        "world-raster-prefix16-exact-replacement-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-raster-prefix16-boundary-comparison-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "103532bddb9830e2686c27b15ae8aeefc4afec24d815c047536e9f2b363ced8f",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "receipt_chain": [
+        "world-raster-prefix16-exact-replacement-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-raster-prefix16-boundary-live-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "4cf2d62aff9f100b41bbf66b336e9712b11a8f1ab444ba59c07c6a2e33dccb1b",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "receipt_chain": [
+        "world-raster-prefix16-exact-replacement-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-raster-prefix16-boundary-replacement-20261008.json",
+      "before_sha256": null,
+      "after_sha256": "dbca0dfbc1adf8c23ae2a8de784ff2118e08d21c59db86880fee814834d9069e",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "receipt_chain": [
+        "world-raster-prefix16-exact-replacement-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-raster-queue.md",
+      "before_sha256": "58d59386b14571b3eeafa1ad686fe5ee666eb6c8f3babe4802c740a83809b0b3",
+      "after_sha256": "7a08039b077fab9cca394dc564052d43f60900b02e2f44701e22c0b5958a1b93",
+      "behaviors": [
+        "RS.world-raster-queue-replacement"
+      ],
+      "role": "research",
+      "change": "modified",
+      "receipt_chain": [
+        "world-raster-prefix16-exact-replacement-20261008"
+      ]
+    }
+  ],
+  "behavior_transitions": [
+    {
+      "id": "RS.world-raster-queue-replacement",
+      "before_sha256": "058e2a21ffa73c4e9f1cafd620bb0d292b2a847533a8013612d49e536179f742",
+      "after_sha256": "211397510dd8842448aeb81e8474679f09af72bfb1e88b9b19a23a47d887a514",
+      "receipt_chain": [
+        "world-raster-prefix16-exact-replacement-20261008"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "a426942812e31566611bfa90c79edb468fd71113f24286ced45507536f978ce6",
+      "after_sha256": "460add3abd4a8abc89eae411c69e6f6c716b056b3c143281b0d2506269108356",
+      "receipt_chain": [
+        "world-raster-prefix16-coverage-document-link-20261008"
+      ]
+    }
+  ],
+  "source_receipt_count": 10,
+  "behavior_receipt_count": 2,
+  "prior_journal_receipts_unchanged": true,
+  "prior_journal_prefix_order_unchanged": true,
+  "unresolved_exact_receipts": [],
+  "gap_identities_added": []
+}
