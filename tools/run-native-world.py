@@ -11,17 +11,17 @@ import subprocess
 import time
 
 from world_channel import create
-from world_refusal import log_refusal
+from native_world_startup import run_startup
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--verify', action='store_true', help='Compare each presented native World frame with a separately owned original oracle')
+    parser.add_argument('--verify', action='store_true', help='Compare completed native canvases with original oracles (startup history always verifies)')
     parser.add_argument('--interval', type=int, default=None, help='Original World queues between publication attempts (1..3600)')
     parser.add_argument('--skip-queues', type=int, default=None, help='Original startup queues to skip (0..3600)')
-    parser.add_argument('--startup-history', action='store_true', help='Retain and present all first 16 startup World queues; stop at the completed prefix')
+    parser.add_argument('--startup-history', action='store_true', help='Automatically run Quick Battle startup through 16 World queues and compare every completed native canvas')
     parser.add_argument('--prefix-template', type=Path, default=ROOT/'working/wineprefix-x86_64')
     args = parser.parse_args()
     if args.startup_history and (args.interval not in (None,1) or args.skip_queues not in (None,0)):parser.error('Startup history requires --interval 1 --skip-queues 0')
@@ -29,9 +29,14 @@ def main():
     if args.skip_queues is None:args.skip_queues=0 if args.startup_history else 120
     if not os.environ.get('DISPLAY'):parser.error('An X11 display is required')
     if not 1 <= args.interval <= 3600 or not 0 <= args.skip_queues <= 3600:parser.error('Queue bounds exceeded')
-    build = ROOT/'working/build/world-frame'
-    subprocess.run(['cmake', '-S', str(ROOT/'compat/legacy'), '-B', str(build), '-DCMAKE_BUILD_TYPE=Debug'], check=True)
-    subprocess.run(['cmake', '--build', str(build), '--target', 'mnm-world-live', '-j4'], check=True)
+    build = ROOT/('working/build/canvas-producers' if args.startup_history else 'working/build/world-frame')
+    source = ROOT/('compat/legacy/canvas-producers' if args.startup_history else 'compat/legacy')
+    target = 'mnm-canvas-producers-live' if args.startup_history else 'mnm-world-live'
+    subprocess.run(['cmake', '-S', str(source), '-B', str(build), '-DCMAKE_BUILD_TYPE=Debug', *(['-DBUILD_TESTING=OFF'] if args.startup_history else [])], check=True)
+    subprocess.run(['cmake', '--build', str(build), '--target', target, '-j4'], check=True)
+    if args.startup_history:
+        run_startup(ROOT,build,args.prefix_template)
+        return
     spec = importlib.util.spec_from_file_location('world_prepare', ROOT/'tools/prepare-scene-observer.py')
     staging = importlib.util.module_from_spec(spec);spec.loader.exec_module(staging)
     game = None;viewer = None;env = None;root = None
@@ -41,19 +46,16 @@ def main():
         env = {k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
         env.update(MNM_SCENE_EXPERIMENT=str(root), MNM_SCENE_SKIP=str(args.skip_queues), MNM_SCENE_INTERVAL=str(args.interval),
                    WINEPREFIX=str(root/'wineprefix'), WINEDEBUG='-all')
-        if args.startup_history:
-            env['MNM_SCENE_STARTUP_REPLAY']='1'
-            env['MNM_STARTUP_QUEUES']='16'
         env.pop('WAYLAND_DISPLAY', None)
         subprocess.run(['cp', '-a', '--reflink=auto', str(args.prefix_template.resolve()), env['WINEPREFIX']], check=True)
         with (root/'wineboot.log').open('x') as log:
             subprocess.run(['wineboot', '-u'], env=env, stdout=log, stderr=subprocess.STDOUT, timeout=90, check=True)
-        create(root/'world-channel.bin',args.verify,16 if args.startup_history else 0)
+        create(root/'world-channel.bin',args.verify,0)
         print('Native World shadow session:', root, flush=True)
         print('Use the original game window for menus and battle input. Close either window to end this isolated session.', flush=True)
         with (root/'native-world.log').open('x') as native_log, (root/'game.log').open('x') as game_log:
             viewer = subprocess.Popen([str(build/'mnm-world-live'), '--root', str(root/'game'), '--channel', str(root/'world-channel.bin'),
-                                       '--report', str(root/'native-world.json'), *(['--frames','16','--timeout','600'] if args.startup_history else [])], env={**env, 'QT_QPA_PLATFORM':'xcb'}, stdout=native_log, stderr=subprocess.STDOUT)
+                                       '--report', str(root/'native-world.json')], env={**env, 'QT_QPA_PLATFORM':'xcb'}, stdout=native_log, stderr=subprocess.STDOUT)
             game = subprocess.Popen([str(ROOT/'tools/run-game.sh'), 'launch', '--no-gamescope', '--prefix', env['WINEPREFIX'],
                                      '--runner', str(ROOT/'tools/scene-game-runner.py')], env=env, stdout=game_log, stderr=subprocess.STDOUT, start_new_session=True)
             while game.poll() is None and viewer.poll() is None:time.sleep(.1)
@@ -73,11 +75,10 @@ def main():
             try:game.wait(timeout=5)
             except subprocess.TimeoutExpired:os.killpg(game.pid, signal.SIGKILL);game.wait(timeout=5)
         if env:subprocess.run(['wineserver', '-k'], env=env, timeout=10, check=False)
-        if args.startup_history and root is not None:log_refusal(root)
         subprocess.run([str(ROOT/'tools/original-manifest.sh'), 'verify'], check=True)
 
 
 if __name__ == '__main__':
     try:main()
-    except (RuntimeError,subprocess.CalledProcessError) as error:
+    except (RuntimeError,OSError,ValueError,subprocess.SubprocessError) as error:
         print('Native World session failed: '+str(error),file=sys.stderr);sys.exit(1)

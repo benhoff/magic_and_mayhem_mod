@@ -56,3 +56,4 @@ static int bypass_reply(u32* r,struct Surface* surface,u32 entry){
  }
  HeapFree(GetProcessHeap(),0,pixels);return 0;
 }
+#include "world_raster_batch.c"

@@ -13,6 +13,7 @@ def source_paths():
     paths += ['protocols/include/mnm/'+n for n in ('canvas_producers_v1.h','world_producer_bypass_v1.h','scene_snapshot_v1.h','world_channel_v1.h','world_channel_v2.h','world_frame_v1.h')]
     paths += ['runtime/shadow/win32_min.h','tests/canvas-world-test.cpp','tests/canvas-sequence-test.cpp','tests/canvas-producers-test.c','tests/world-producer-bypass-call.S','tests/canvas-startup-call.S','tests/world-frame-reference.cpp','tests/sprite-binary-reference.cpp','tests/resource-fixtures.hpp','tests/scene-renderer-test.cpp','tests/scene-history-test.cpp','tools/test-world-producer-handoff.py','tools/test-canvas-producers.py','tools/build-scene-observer.py','tools/build-shadow-bridge.py','tools/prepare-scene-observer.py','tools/capture-scene-game.py','tools/scene-game-runner.py','tools/inspect-canvas-producers.py','tools/inspect-startup-queues.py','tools/world_channel.py']
     paths += ['tests/world-producer-reference.cpp','tests/world-raster-queue-reference.cpp','tests/world-raster-reference.hpp','tools/test-world-raster-queue.py','tools/inspect-world-raster-callers.py']
+    paths += ['protocols/include/mnm/world_raster_batch_v3.h','compat/legacy/world_raster_batch.cpp','compat/legacy/world_raster_batch.hpp','tests/world-raster-batch-test.cpp','tests/world-raster-batch-reference.cpp','tools/test-world-raster-batch.py','tools/inspect-world-raster-batch.py']
     return sorted(set(paths))
 def world_record(r,p):
     width,height=struct.unpack_from('<II',p,4);ox,oy=struct.unpack_from('<ii',p,12)
@@ -49,6 +50,7 @@ def main():
     run('original-before',[ROOT/'tools/original-manifest.sh','verify'])
     try:
         capturePath=args.capture_report.resolve();pin(capturePath);capture=json.loads(capturePath.read_text());experiment=Path(capture['experiment']);directory=experiment/'capture';report['source_executable_sha256']=capture['source_executable_sha256'];assert report['source_executable_sha256']==ORIGINAL_SHA
+        if capture.get('world_raster_batch'):raise ValueError('Use test-world-raster-batch.py for guarded queue-completion captures')
         spec=importlib.util.spec_from_file_location('producer_inspector',ROOT/'tools/inspect-canvas-producers.py');inspector=importlib.util.module_from_spec(spec);spec.loader.exec_module(inspector)
         analysis=inspector.analyze(directory);assert analysis==capture['canvas_producers'];stream=directory/'canvas-producers.bin';pin(stream);pin(directory/'canvas-producers.done');header,operations=inspector.decode(stream.read_bytes())
         frozen=out/'source';names=subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z'],cwd=ROOT).decode().split('\0')

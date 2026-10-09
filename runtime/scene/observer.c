@@ -3,7 +3,7 @@
 extern void scene_enter(void);
 extern void world_begin(u32*,u32);
 extern int canvas_producers_install(void);
-extern void canvas_producers_close(void),canvas_producers_queue(u32*);
+extern void canvas_producers_close(void),canvas_producers_queue(u32*),canvas_producers_protect(void);
 extern int world_stream_init(void);
 extern void world_stream_close(void);
 extern int world_stream_history(void),world_stream_queue(u32);
@@ -87,7 +87,7 @@ void scene_observe(u32* registers){
     ++samples;put(bytes+16,at);put(bytes+20,samples);put(bytes+28,blobs);if(save(bytes,at)){saved_sample=samples;world_begin(registers,samples);}
 done:
     startup_queue_end(saved_sample);
-    if(bytes)HeapFree(GetProcessHeap(),0,bytes);__sync_lock_release(&busy);SetLastError(error);
+    if(bytes)HeapFree(GetProcessHeap(),0,bytes);canvas_producers_protect();__sync_lock_release(&busy);SetLastError(error);
 }
 static int install(u32 base){
     u32 a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1));if(!(d&(1u<<24)))return 0;

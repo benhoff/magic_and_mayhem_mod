@@ -3012,3 +3012,98 @@ preserves prior receipt objects and lists no unresolved transitions. Historical
 accounting is separate from this new uncommitted execution evidence and does not
 assert a retrospective gate pass. Historical evidence retains its original
 fingerprints and separate current-readiness limitations.
+
+
+### Complete startup raster prefix repeated, 2026-10-08
+
+An additional source/scope-bound run validates 33,920 admitted outer raster
+replacements across all 16 contiguous startup World queues. Every native
+intermediate canvas and low16AX matches its actual original entry over
+16,281,600,000 pixels, with continuous native before/reply state. All 16 final
+World canvases and 1,062 observed checkpoints also match. No original destination
+pixels seed native work. Actual and frozen builds declare all 125 reviewed
+sources and 76 normalized compiler inputs; four focused CTests pass, sources and
+captured inputs remain stable, and 2,927 original files verify before/after.
+
+This repeat supports the same bounded `RS.world-raster-queue-replacement`
+claim. The separate 36,556-call run, historical stage values, wider pending
+startup/HUD contracts and existing clipping/caller/global limitations remain
+unchanged. Traversal, simulation, menu/HUD outside World, palette setup and
+non-drawing lazy wave preparation still run originally. Three admitted entries
+remain unsampled by these live runs. Queue-boundary batching is the next
+performance step. See [the repeat replacement evidence](native-world-raster-prefix16-replacement-20261008.json)
+and [the updated contract](native-world-raster-queue.md).
+
+### Manual startup shadow gap, 2026-10-08
+
+The public `run-native-world.py --startup-history --verify` launcher still selects
+the World-only retained preview. In manual run `run-l5v_hzru`, queue1matches and
+queue2refuses8pixels. Independent original replay of both retained packets from
+zero/its prior completion exactly reproduces both native hashes; queue2still
+differs from live original at the same8pixels. The writer/timing or omitted
+context is not identified. The two-packet diagnostic does not renew full-prefix
+or public-launcher parity, and existing statuses remain unchanged. Original
+manifests pass2,927files before/after. See the [manual diagnostic](native-world-manual-history-gap-20261008.json)
+and [integration boundary](native-world-live-history.md). This is separate from
+the successful producer-history/raster replacement proofs.
+
+Public native startup launcher integration: `--startup-history [--verify]` now
+selects the bounded automatic original Quick Battle map2/zero-items menu route
+and retained source-only CPU/GPU producer/World handoff. Every completed canvas
+is compared, including menu/loading/HUD producers; all first16raw startup queues
+and actual unsupported World-observer draw kinds are retained. Ordinary
+continuous launching remains interactive. `NR.world-startup-launcher` is a
+native launcher policy, separate from raster replacement and World-only zero
+history. Manual producer-menu input remains pending: `run-ekeoh6y5` hit the1GiB
+oracle budget before World entry and had duplicate/noncontiguous sequences; its
+immutable diagnostic preserves the failure without thread attribution or
+original-equivalence claims. The former manual World-only eight-pixel discrepancy
+also remains preserved. A narrow RGB565 wire-container conversion fixes the
+concurrently developed batch branch's build; this launcher does not enable it.
+
+Current public-launcher validation: `NR.world-startup-launcher.verified-20261008`
+records1062original-completion comparisons/474236912pixels, all16startup queues,
+176unchanged prospective sources and74declared compiler dependencies. Every
+comparison matches, CPU/GPU checks pass, no original destination pixels seed
+native state, no original work is bypassed, and2927original files verify
+before/after. The earlier normal result remains historical after shared hook/test
+edits; fingerprints are preserved. Four full-register audit errors concern the
+other task's planned batch ABI/startup scenarios without evidence. Owned launcher
+accounting is also retained separately with those exact omissions disclosed;
+no whole-repository gate pass is asserted while that work is incomplete.
+
+Public launcher portability correction: the user failure `run-scltemki`
+closed16World returns with938matching native/original completion comparisons
+but failed only on the diagnostic ImageMagick root screenshot.
+`run-_g_wjtth` exhausted the1GiB diagnostic oracle budget before World entry.
+The public startup route now skips desktop screenshots and explicitly requests
+3072MiB of original-oracle storage; ordinary research captures retain1024MiB.
+Record/stream/oracle-count limits,180-second worker deadline, contiguous queues,
+complete output identity/hash/GPU checks and exact every-canvas comparisons stay
+enforced. This is native diagnostic policy, not recovered original-engine
+budget behavior. The49-entry actual PE32 synthetic fixture passes, including
+old-ceiling crossing, exact configured-ceiling acceptance, three budget refusals,
+underflow protection and four invalid-environment refusals before hook mutation.
+No original equivalence is claimed by those synthetic tests. The first broken-
+screenshot live regression matched1062canvases but correctly refused after a
+concurrent consumer edit; its scope/source stability was not promoted.
+Historical evidence fingerprints remain intact; unrelated batch startup
+validation remains with its existing pending scenario.
+
+Fresh portability regression `NR.world-startup-launcher.portability-20261008`
+completes16World queues and1062matching canvases/474236912pixels
+through the public verified command with a deliberately failing ImageMagick
+`import` executable first on PATH. That utility is never called. All176
+prospective sources stay stable and all74normalized compiler dependencies
+are declared;2927original files verify before/after. Exact raw startup rows
+and all completion comparisons remain required. The synthetic budget fixture
+proves the strict ceilings independently; this live run does not exhaust3GiB
+or assert broader menu-route/whole-engine equivalence. Historical source-only
+results retain their original scope and hashes.
+
+Final launcher portability audit: `audit-portability-current.json` records zero
+full-register audit errors after the separate batch owner supplied its pending
+pilot metadata. Earlier failed audit reports remain historical. This launcher
+comparison does not validate that separate batch replacement. Exact source
+census and review receipts accompany the launcher changes; no staged files
+or original artifacts are altered.

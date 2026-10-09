@@ -70,6 +70,7 @@ render::Image CanvasWorld::complete(const render::Image &reference){
     pending_.draws.clear();
   }
   auto native=scene_->read();
+  ++readbacks_;
   if(native.width!=reference.width||native.height!=reference.height||native.pixels!=reference.pixels)
     throw std::runtime_error("Native GPU World differs from independent native producer composition");
   checked_=true;return native;

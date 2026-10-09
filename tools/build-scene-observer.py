@@ -17,7 +17,7 @@ def build(selftest=False):
     output = ROOT/('working/build/scene-observer-selftest' if selftest else 'working/build/scene-observer')
     output.mkdir(parents=True, exist_ok=True)
     definition = output/'kernel32.def'
-    imports={**module.IMPORTS,'CreateFileMappingA':24,'MapViewOfFile':20,'GetFileSize':8,'UnmapViewOfFile':4,'ReadFile':20,'Sleep':4,'GetTickCount':0}
+    imports={**module.IMPORTS,'CreateFileMappingA':24,'MapViewOfFile':20,'GetFileSize':8,'UnmapViewOfFile':4,'ReadFile':20,'Sleep':4,'GetTickCount':0,'AddVectoredExceptionHandler':8,'HeapCreate':12}
     definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{s}\n' for n,s in imports.items()))
     subprocess.run(['llvm-dlltool','-m','i386','-D','KERNEL32.dll','-d',str(definition),'-l',str(output/'kernel32.lib'),'--kill-at'],check=True)
     flags = ['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin',

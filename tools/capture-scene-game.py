@@ -36,8 +36,11 @@ def main():
     parser.add_argument('--world-producer-handoff',action='store_true',help='Use reconstructed producer history in native GPU World drawing')
     parser.add_argument('--world-raster-queue',type=int,choices=range(1,17),help='Replace every admitted raster in this selected World queue')
     parser.add_argument('--world-raster-prefix',type=int,choices=range(1,17),help='Replace every admitted raster in contiguous startup queues1..N')
+    parser.add_argument('--world-raster-batch',action='store_true',help='Guard the original destination and complete selected raster queues with one native canvas reply')
     parser.add_argument('--world-producer-bypass',type=int,choices=range(1,9),help='Replace this many selected generic raster entries in the final captured queue')
     parser.add_argument('--canvas-producers',action='store_true',help='Capture owned menu/loading/font/raster inputs and completed canvases through each sampled World return')
+    parser.add_argument('--producer-oracle-mib',type=int,choices=range(1,3073),default=1024,metavar='1..3072',help='Bounded original completion storage in MiB (default: 1024)')
+    parser.add_argument('--skip-window-screenshot',action='store_true',help='Skip the diagnostic desktop screenshot; raw completion comparisons remain independent')
     parser.add_argument('--canvas-startup',action='store_true',help='Trace selected creation/lock/bind/clear/copy paths from process startup through first World queue')
     parser.add_argument('--startup-queues',type=int,choices=range(1,257),help='Retain every raw queue in this startup prefix (automatic with canvas/refusal diagnostics)')
     parser.add_argument('--kind8-objects',action='store_true',help='Finite read-only kind8 object/vtable diagnostics')
@@ -50,11 +53,13 @@ def main():
     parser.add_argument('--skip-queues',type=int,default=None,help='Wait this many queue calls before the first sample (World default: 120)')
     parser.add_argument('--interval',type=int,default=1,help='Queue calls between samples')
     args=parser.parse_args()
+    if args.producer_oracle_mib!=1024 and not args.canvas_producers:parser.error('--producer-oracle-mib requires --canvas-producers')
     if args.producer_live and not args.canvas_producers:parser.error('--producer-live requires --canvas-producers')
     if args.world_producer_handoff and not args.producer_live:parser.error('--world-producer-handoff requires --producer-live')
     if args.world_producer_bypass and not args.world_producer_handoff:parser.error('--world-producer-bypass requires --world-producer-handoff')
     full_rasters=args.world_raster_queue or args.world_raster_prefix
     if full_rasters and (not args.world_producer_handoff or args.world_producer_bypass or (args.world_raster_queue and args.world_raster_prefix) or full_rasters>args.samples):parser.error('Complete raster queues require handoff, valid sample bounds and a separate bypass mode')
+    if args.world_raster_batch and not full_rasters:parser.error('--world-raster-batch requires selected complete raster queues')
     history=args.world_live in ('history-normal','history-verify')
     verify=args.world_live in ('verify','history-verify')
     if args.canvas_producers:
@@ -107,6 +112,8 @@ def main():
         sources += [ROOT/p for p in ['apps/qt-shell/live_world_session.cpp','apps/qt-shell/live_world_session.hpp','apps/qt-shell/world_live_main.cpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp']]
     if args.producer_live:
         sources += [ROOT/p for p in ['apps/qt-shell/canvas_producer_session.cpp','apps/qt-shell/canvas_producer_session.hpp','apps/qt-shell/canvas_producer_main.cpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp','compat/legacy/canvas_producers.cpp','compat/legacy/canvas_producers.hpp','renderer/canvas_sequence.cpp','renderer/canvas_sequence.hpp','renderer/dib.cpp','renderer/dib.hpp']]
+    if args.world_raster_batch:
+        sources += [ROOT/p for p in ['protocols/include/mnm/world_raster_batch_v3.h','compat/legacy/world_raster_batch.cpp','compat/legacy/world_raster_batch.hpp']]
     if args.word_sprites:sources += [ROOT/p for p in ['renderer/sprites/word_raster.h','renderer/sprites/word_raster.c','runtime/shadow/win32_min.h','tools/build-word-sprites.py']]
     fingerprints={str(p.relative_to(ROOT)):sha(p) for p in sources}
     spec=importlib.util.spec_from_file_location('scene_prepare',ROOT/'tools/prepare-scene-observer.py')
@@ -124,9 +131,12 @@ def main():
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
         root=staging.prepare(menu=True,word_mode=args.word_sprites,world_frames=args.world_frames,world_live=bool(args.world_live),source_game=args.source_game);print(root,flush=True)
+        if args.canvas_producers:
+            policy={'producer_oracle_mib':args.producer_oracle_mib,'window_screenshot_requested':not args.skip_window_screenshot}
+            (root/'capture-policy.json').write_text(json.dumps(policy,indent=2)+'\n')
         if args.producer_live:
             viewer_log=(root/'native-producers.log').open('x')
-            viewer=subprocess.Popen([str(args.producer_live.resolve()),str(root/'capture/canvas-producers.bin'),str(root/'game'),str(root/'native-producers'),*(['--world-handoff'] if args.world_producer_handoff else [])],env={**os.environ,'QT_QPA_PLATFORM':'xcb','LIBGL_ALWAYS_SOFTWARE':'1'},stdout=viewer_log,stderr=subprocess.STDOUT)
+            viewer=subprocess.Popen([str(args.producer_live.resolve()),str(root/'capture/canvas-producers.bin'),str(root/'game'),str(root/'native-producers'),*(['--world-handoff'] if args.world_producer_handoff else []),*(['--world-batch'] if args.world_raster_batch else [])],env={**os.environ,'QT_QPA_PLATFORM':'xcb','LIBGL_ALWAYS_SOFTWARE':'1'},stdout=viewer_log,stderr=subprocess.STDOUT)
         if args.world_live:
             create(root/'world-channel.bin',verify,args.live_frames if history else 0)
             viewer_log=(root/'native-world.log').open('x')
@@ -138,9 +148,10 @@ def main():
         env.update(MNM_SCENE_SKIP=str(args.skip_queues),MNM_SCENE_INTERVAL=str(args.interval))
         if args.world_raster_queue:env['MNM_WORLD_RASTER_QUEUE']=str(args.world_raster_queue)
         if args.world_raster_prefix:env['MNM_WORLD_RASTER_PREFIX']=str(args.world_raster_prefix)
+        if args.world_raster_batch:env['MNM_WORLD_RASTER_BATCH']='1'
         if args.world_lifetime:env['MNM_SCENE_LIFETIME']='1'
         if args.canvas_startup:env['MNM_CANVAS_STARTUP']='1'
-        if args.canvas_producers:env['MNM_CANVAS_PRODUCERS']='1'
+        if args.canvas_producers:env.update(MNM_CANVAS_PRODUCERS='1',MNM_CANVAS_ORACLE_MIB=str(args.producer_oracle_mib))
         if args.world_producer_bypass:env['MNM_WORLD_PRODUCER_BYPASS']=str(args.world_producer_bypass)
         if args.startup_queues:env['MNM_STARTUP_QUEUES']=str(args.startup_queues)
         if args.kind8_objects:env['MNM_KIND8_QUEUES']=str(3600 if args.sample_kind8 else args.startup_queues)
@@ -230,7 +241,8 @@ def main():
                 if process.poll() is not None:raise RuntimeError('Original game exited during scene capture')
                 time.sleep(.05)
             else:raise RuntimeError('Original simulation produced no complete bounded scene samples')
-            subprocess.run(['import','-window','root',str(root/'original-window.png')],env=env,timeout=10,check=True)
+            if not args.skip_window_screenshot:
+                subprocess.run(['import','-window','root',str(root/'original-window.png')],env=env,timeout=10,check=True)
         # Freeze lifetime diagnostics before recording their final hashes.
         stop_original()
         metadata=json.loads((root/'manifest.json').read_text())
@@ -249,6 +261,8 @@ def main():
                 'sources':fingerprints,'sources_stable':True,'source_executable_sha256':metadata['source_sha256'],
                 'samples':args.samples,'map_selection':args.map,'magic_items':args.magic_items,'menu_trace':trace,'snapshots':{str(p.relative_to(root)):sha(p) for p in paths},'experiment':str(root)}
         if claims:report['claims']=claims['claims']
+        report['window_screenshot_requested']=not args.skip_window_screenshot
+        if args.canvas_producers:report['producer_oracle_mib']=args.producer_oracle_mib
         report['startup_replay']=args.startup_replay
         if args.startup_queues:
             spec=importlib.util.spec_from_file_location('startup_queues',ROOT/'tools/inspect-startup-queues.py')
@@ -315,6 +329,15 @@ def main():
                     replies=native['native_bypass_replies']
                     if not native.get('complete_raster_queues') or not expected or [row['sequence'] for row in replies]!=expected:raise RuntimeError('Incomplete complete-queue native raster replacement')
                     report['complete_raster_queues']=sorted(selected)
+                    if args.world_raster_batch:
+                        batches=native.get('native_batch_replies',[])
+                        returns={r[14]:r for r,_ in operations if r[2]==12 and r[14] in selected}
+                        if (not native.get('world_raster_batch') or [b['queue'] for b in batches]!=sorted(selected) or native.get('native_canvas_writebacks')!=len(selected) or native.get('world_readbacks')!=args.samples):raise RuntimeError('Incomplete one-canvas World batch replacement')
+                        for i,b in enumerate(batches,1):
+                            r=returns[b['queue']]
+                            if r[17]!=i or r[19]!=b['rasters'] or r[15]!=b['cumulative_rasters'] or r[20]!=1 or not b['guarded']:raise RuntimeError('World batch return/guard/count changed')
+                        if list((root/'capture').glob('world-raster-*.request')):raise RuntimeError('Batch mode emitted a per-raster handshake')
+                        report.update(world_raster_batch=True,canvas_guard_verified=True,native_canvas_writebacks=len(batches),capture_elapsed_seconds=time.monotonic()-started_live)
                 compared=[]
                 for old,new in zip(original,checks):
                     if (old['sequence'],old['oracle'],old['canvas'])!=(new['sequence'],new['oracle'],new['canvas']) or not new['gpu_equal']:raise RuntimeError('Native producer completion identity changed')
@@ -328,6 +351,7 @@ def main():
                 if args.world_producer_handoff:report['scope']='Live native startup/HUD history handed to GPU World drawing at each queue, GPU output committed back to native producer storage; no original destination seeds'
                 if full_rasters:
                     report.update(original_work_bypassed=True,live_replacement=True,bypassed_rasters=native['native_bypass_count'],original_oracle_policy='All admitted raster bodies in selected queues bypassed; independent exact-original checks required for every intermediate native canvas')
+                    if args.world_raster_batch:report['original_oracle_policy']='One guarded native canvas writeback per selected World queue; post-bypass checkpoints contain native work, independent exact-entry intermediate and AX checks still required'
                 if args.world_producer_bypass:
                     report.update(original_work_bypassed=True,live_replacement=True,bypassed_rasters=args.world_producer_bypass,original_oracle_policy='After native bypass, observed original destination contains native contribution; independent original replay required for equivalence')
 
