@@ -22651,6 +22651,199 @@
         "tools/prepare-shadow-experiment.py",
         "tools/profile-render-stream.py"
       ]
+    },
+    {
+      "id": "HOST.native-campaign-casting-combat",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native viewport successful summon and melee combat",
+      "scope": "Bounded Apprentice or highest-difficulty first campaign native menu/command session. Physical native viewport Zombie spell selection and right-click summon, newly living player-owned creature, independent native/original controlled-creature count 0/15 to 1/15. Original melee resolver health loss from player Zombie to opposing living creature, continued native rendering and fixed throughput floors, native Mini Cancel/resume. Passive build-specific creature observations only; no game state writes, balance changes, full damage formula, cast rejection branches, pixel equivalence, original drawing or simulation replacement.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5292240,
+          "scope": "Six-byte guarded entry and forwarding observation of original melee resolver return only; damage formulas, all caller paths and full function recovery excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/creature-ai-combat-spells.md",
+        "research/runtime/entity-lifetimes.md",
+        "research/runtime/opengl-world-summon-observation.md",
+        "research/runtime/native-campaign-casting-combat.md",
+        "research/runtime/coverage/native-campaign-history-review-0857efe-3f106d9.json"
+      ],
+      "implementation": [
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "tools/prepare-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/run-qt-shell.sh",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "tools/campaign_gameplay.py"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign-combat-input.py"
+      ],
+      "evidence": [
+        "HOST.native-campaign.combat-negative-1-20261010",
+        "HOST.native-campaign.combat-negative-2-20261010"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/frame_stream.cpp",
+        "apps/qt-shell/frame_stream.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/bridge.c",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/palette_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/selftest.c",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-shadow-experiment.py",
+        "tools/profile-render-stream.py",
+        "runtime/menu/campaign_gameplay_observe.h"
+      ]
     }
   ],
   "evidence": [
@@ -44461,6 +44654,52 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-campaign.combat-negative-1-20261010",
+      "kind": "live_observation",
+      "scope": "Source-stable failed casting/combat journey: initial count OCR omitted zero despite visible 0/15 images; no casting/combat claim.",
+      "record": "research/runtime/native-campaign-combat-negative-1-20261010.json",
+      "sha256": "14c21d8517d73cb7cdd632c7c6f684b6f48c7325b1204f1a66fefbd8c2d76bfe",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.combat-negative-2-20261010",
+      "kind": "live_observation",
+      "scope": "Source-stable failed casting/combat journey: Zombie creation and both 1/15 HUD counts passed; two portrait-selected movement probes did not move the wizard. Combat remained unverified.",
+      "record": "research/runtime/native-campaign-combat-negative-2-20261010.json",
+      "sha256": "749af73462e9ea865ae95898d83daedd58ab677ed2c01faa08132962ec9d0c67",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -51216,6 +51455,26 @@
         "HOST.native-campaign.final-default-smoke-20261009"
       ],
       "scope": "Public Launch/New Game/Region Enter, independent initialized same-thread World readiness, native command/Qt paint presentation, bounded physical camera/rotation/scene/HUD clicks, spell/creature selection and target/source-order attempts, wheel input and repeated Escape/native Mini/Cancel returns. Diagnostic native/original images and explicit 20 FPS average/10 FPS one-second floors; preserves negative early-Escape/copy-GAP evidence. Original callbacks/World resume independently checked; no pixel equivalence or movement/combat/replacement claim."
+    },
+    {
+      "id": "native-campaign-casting-combat-20261010",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.native-campaign-casting-combat"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign-combat-input.py"
+      ],
+      "evidence": [
+        "HOST.native-campaign.combat-negative-1-20261010",
+        "HOST.native-campaign.combat-negative-2-20261010"
+      ],
+      "scope": "Native Main/New Game/Apprentice or highest-difficulty Enter, actual native viewport Zombie summon and new player creature plus 0/15-to-1/15 count in independent native/original images, player Zombie versus enemy melee health loss, native Mini Cancel/resume and strict publication/paint floors. Scripted enemy damage alone cannot pass."
     }
   ],
   "recovered_ranges": [
@@ -51544,8 +51803,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-campaign-spells-20261009.json",
-    "sha256": "7589a26a2b83a49326f6a20ad99786cc05f78b05a010808308d158547a847615"
+    "path": "research/runtime/coverage/source-index-native-combat-checkpoint-20261010.json",
+    "sha256": "117f3503ef61e88f18cda5c09a1798fba203dbad2c5fd480470e0da82ef61ec7"
   },
   "claim_bindings_required": true
 }
