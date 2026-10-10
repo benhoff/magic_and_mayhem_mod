@@ -118,3 +118,22 @@ validates final source. This chunk establishes the opt-in scheduling mechanism
 and independent cross-thread ordering, not repeatable native active gameplay.
 Next: classify the contended pixel operation and tracker hold causing the miss,
 then validate bounded ownership across those other mutation families.
+
+## Current crowded-battle follow-up (2026-10-10)
+
+The [fresh twelve-case PE32/GPU result](native-surface-order-passed-20261010.json)
+uses prospective contract/source claims and its own Wine prefix. Cross-thread
+Blt/BltFast, writable locks, DC release and flips retain complete pixels and
+original call counts; copy/lock/DC/flip timeouts and same-thread source mutation
+end in explicit GAP. Seven valid sessions retire resources and acknowledge END;
+five intentionally uncertain sessions refuse. Identical metadata and mixedRGB16
+regressions bring the total to418 complete independent pixel comparisons.
+Original HRESULT/LastError assertions remain in the actual original-call fakes.
+No runtime renderer algorithm was changed by this follow-up.
+
+This confirms current synthetic refusal behavior, not the scheduling cause of
+the historical original-game GAP under rejected Sleep1 pacing. The separate
+[three-minute crowded native battle](native-crowded-passed-20261010.json) has
+zero fallback/recovery. Arbitrary original callback dependencies, interrupted
+owners, actual driver timing, other maps and longer hardware sessions remain
+pending. Historical evidence and its source hashes are preserved unchanged.

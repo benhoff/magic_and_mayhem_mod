@@ -3542,3 +3542,12 @@ The commit rangee5b4180..8e37e6b has38 exact reviewed transitions and zero gaps.
   Existing smoke results retain historical hashes.
   Reviewed committed history8e37e6b..7f361b0:17 exact file transitions,zero gaps;
   retrospective accounting makes no past gate-pass or new execution claim.
+
+- 2026-10-10 surface-history follow-up: fresh prospective source-bound
+  `NR.copy-order.current-stress-20261010` reruns twelve actual PE32/GPU cases.
+ 418 complete native pixel comparisons,seven valid END/ACK sessions,five expected
+  GAP refusals across copy/lock/DC/flip timeouts and reentrant source writes.
+  No new renderer defect or algorithm change; actual original driver scheduling
+  and the historical Sleep1-related gameplay GAP remain separate boundaries.
+  Reviewed7f361b0..0df3a72:27 exact committed file transitions,zero receipt gaps;
+  retrospective review is not new behavior validation or a claim of a past gate.
