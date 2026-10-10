@@ -21,7 +21,8 @@ def main():
  parent=ROOT/'working/tests/world-raster-batch';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
  report={'success':False,'sources':sources,'claims':declaration['claims'],'original_pixels_used_as_native_inputs':False,'scope':'Frozen source-only native CPU/GPU replay and every precise actual original raster/low16AX in guarded complete startup queues. Native pixels stream to the independent original comparator through a bounded FIFO; native reads no original oracle. Live one-canvas writeback and guarded traversal remain separate captured evidence.'}
  inputs={};children=[]
- def pin(path):inputs[path.resolve().relative_to(ROOT).as_posix()]=sha(path)
+ def pin(path):
+  resolved=path.resolve();name=resolved.relative_to(ROOT).as_posix() if resolved.is_relative_to(ROOT) else str(resolved);inputs[name]=sha(resolved)
  def run(name,cmd,timeout=300):
   with (out/(name+'.log')).open('x') as log:subprocess.run([str(c) for c in cmd],cwd=ROOT,env={**os.environ,'QT_QPA_PLATFORM':'xcb','LIBGL_ALWAYS_SOFTWARE':'1'},stdout=log,stderr=subprocess.STDOUT,check=True,timeout=timeout)
  run('original-before',[ROOT/'tools/original-manifest.sh','verify'])
