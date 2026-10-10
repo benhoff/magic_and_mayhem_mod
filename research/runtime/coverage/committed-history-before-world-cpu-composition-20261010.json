@@ -1,0 +1,1098 @@
+{
+  "schema": 1,
+  "reviewed_range": "9c64221b2f89e7c342ee271c5d2eae380bd48481..b0bd799b1ad3e9dc8524d1f282350981956202f0",
+  "scope": "Both committed minimap milestones reviewed before CPU optimization: exact parent/current file and behavior-contract hashes compared with preserved receipt chains. Committed evidence/source fingerprints and census links remain historical. Uncommitted main-checkout changes are excluded. No historical gate pass or renewed engine execution asserted.",
+  "commits": [
+    {
+      "commit": "59388b175e1a70f3f9c8c2a31cbaa11bb08cd75b",
+      "parent": "9c64221b2f89e7c342ee271c5d2eae380bd48481",
+      "files": [
+        {
+          "path": "compat/legacy/canvas-producers/CMakeLists.txt",
+          "parent_sha256": "9e17f82a9e61df23d4955e702968c74d83a2e2f925658e0a63f7835c47368751",
+          "commit_sha256": "7d76e1d42ae948ebb323a7a34e6cf71961c193970bfad8e836b74d9a56a802bc",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "compat/legacy/canvas_producers.cpp",
+          "parent_sha256": "63fda75afe19b36ddc9e9f20ae3dbdd6a6ad2c6daa97e2e91e193479a8f26965",
+          "commit_sha256": "5a0c4a59b9add26bbe70c25ce44582a4eb1758626a389c1134d2d20ed97d7a26",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "compat/legacy/canvas_producers.hpp",
+          "parent_sha256": "45499987ce2ac155bc040aa85bb951e8dc1c46fb5ee34e02e4aa31d270eaacfb",
+          "commit_sha256": "5d10471819f2805134120122b3b778c83060ae8b6de17a46bd1a35cb5ec7580d",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "compat/legacy/canvas_producers_main.cpp",
+          "parent_sha256": "f3c6e42887c9f7d52fd978c467cade7ace838a08eae84828139c73ea72e07940",
+          "commit_sha256": "f6cbf786c400804495b25e3950a7eab71514238c0e24d18faa21619f08662515",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "protocols/include/mnm/canvas_producers_v2.h",
+          "parent_sha256": null,
+          "commit_sha256": "c94a25cfe470eecaa0781aba576ee7fb0009a627e60ac8690e8ea6f4efc0b48f",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "renderer/canvas_sequence.cpp",
+          "parent_sha256": "f7ff9c90d5e8c237618f4ccc2228f0fd1f88b981f5ad8f0be305ee8fb745f00a",
+          "commit_sha256": "403679040f2f9a087b28108ca85ccc8bd7aaac99598cf7d60771440242cb4946",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "renderer/canvas_sequence.hpp",
+          "parent_sha256": "71b3ca6e633b8f6aed11147ae0ed7cc4d6c425eb534bf722702f5a2233cf6b3d",
+          "commit_sha256": "93b70d6c5a5af09c81e1b9e1be673018d29251fda1112691d225c626127e63f5",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/formats/canvas-producers-v2.md",
+          "parent_sha256": null,
+          "commit_sha256": "be63138b33beb5a635b74c4092ea9a88d854e95c6dc879f37cebfe657af0043c",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "parent_sha256": "99c6d55bab0c6f8efe0f53bf7a28ad44d4327e5cabf0c221f256295235a488d5",
+          "commit_sha256": "07c8ef3a1f7838535878a9caa243654533f3e81ec6a4ef138dae5f513f3263ec",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "parent_sha256": "e139f58c80bdf2bc2cdf675f34ddc0bffac65e05a5469d595f7a6ffcc5f18487",
+          "commit_sha256": "7818d12e4aa626bb79719504ae6cf2df151da5f911ebb8210a6dd88b734d3d4e",
+          "receipt_chain": null,
+          "classification": "Append-only receipts directly reviewed; excluded from self fingerprints"
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-before-minimap-live-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "2aab5f41a77616922494b7f79a6c55fa9a70edde6ce7949047c14e18f56cc7d8",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-minimap-live-latest-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "9c562b52f01eae85583a20da93d57fb889eb1c907a4ab8a1691b2cf408d0b577",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "parent_sha256": "f09114f090b7b5dcf91ab244b4cb8ecf81c4e1895b9fc53d8e51f0e6ca8a9057",
+          "commit_sha256": "a829ddcbb99aef21bbb2d404a6c1e541f9587f2c5d0eedb28635e3880c139339",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-minimap-live-committed-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "1f9ad52c2f51751d1ffd7374b6bf34c63f1552511acbfe5bc32cc1b10284afc7",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/summary-minimap-live-committed-20261009.md",
+          "parent_sha256": null,
+          "commit_sha256": "92b026f4152f6902fba489eaabbeac8bcd83483147bdac557452ebfa8fd95e72",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/native-minimap-camera-input-trace-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "df881a0dcb7b08063c94c3f71937266d7a4062bf03c0e80fd57d74f604f0bfdd",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/native-minimap-live-motion-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "6fc3d2c6fd4107661061496db66876d6606c7cdf66cea8f5929594337db5f513",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/native-minimap-live-startup-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "9ec359015e5d01beb9b4ba9866e688c5f8527606afbd225113bbb29cd69de184",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/native-minimap-live.md",
+          "parent_sha256": null,
+          "commit_sha256": "bfbcd99cc6e9e410b82d0ceba7f4c0ec372ff7ff3427db8e2e1edbd4df280cc3",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "runtime/scene/canvas_producers.S",
+          "parent_sha256": "82a1ff30f52bd0eca3e54eb2f77a695bc3ae36525ac22da0491e926b11f463ef",
+          "commit_sha256": "9acf79e06ded8251084acbd6050d7c62135240b645405892876ae58addd3e7ee",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "runtime/scene/canvas_producers.c",
+          "parent_sha256": "e9a8bedff75e95b8957077381641319213bf7d25d0b5d927377d87eda816c119",
+          "commit_sha256": "f9f5111a6c094c960045ecaee1bc25f5da3c6f0fbdf4f7de2a047f0bf0009f7c",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tests/canvas-producers-test.c",
+          "parent_sha256": "8f4ef1b1eb225b7b9b59c75006a30697e3e51510cefdf7c9112cddb6eaa93a68",
+          "commit_sha256": "3ebdbd6b1017cfdae8026656ab5fb17e4a85a8ecf6227607032fbc76cfec8ca6",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tests/minimap-live-input.cpp",
+          "parent_sha256": null,
+          "commit_sha256": "b926d4d658594f438c0bb94efceab0fecb047618dbf9c5fcbcdd2bcb2d21157c",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tests/minimap-live-input/CMakeLists.txt",
+          "parent_sha256": null,
+          "commit_sha256": "568b999d54711d3ff7a8933e5c52a148f8ed92ec3f7cfeca82dfaee4af397ea0",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tests/minimap-producer-test.cpp",
+          "parent_sha256": null,
+          "commit_sha256": "95f3d3d8219d98b3b0953cf7d7d50b6150364e5072e248f8304295f23f979671",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tools/build-scene-observer.py",
+          "parent_sha256": "5db6bab23127152a61f2f05f0d116f059995ce44746835d6166269ed764ed3ae",
+          "commit_sha256": "4240e358c293da1dc2cb259f7d4fc1f6d491a0c2740af3ef5be16aa40c73fb85",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tools/capture-scene-game.py",
+          "parent_sha256": "2ab1396818aa16e3d11e487e03dca3985c1c53e59f2bef73636de115e39a8910",
+          "commit_sha256": "63a68ef97560f1a1af36af3015d94e76120c3abfcd57c0940df5e3a323b8ea02",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tools/inspect-canvas-producers.py",
+          "parent_sha256": "1672cb8754b72f34fa93ae45919af9b884c83b2b77cdd77bfe4af88b29ed4282",
+          "commit_sha256": "6a34d12bc530d31c763498d4df3f508f5ece9979bf324683323d7839d65e3990",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tools/test-canvas-producers.py",
+          "parent_sha256": "0841f9153bf92051b7c3891683e89c1d10e45e479d08aca9cd8a19e55f8d38d7",
+          "commit_sha256": "d8c14358500df7023792da8279edcddfa2b243274bcad44a0d50320e18f43c21",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tools/test-minimap-live.py",
+          "parent_sha256": null,
+          "commit_sha256": "c681be5f5e683e3dc0404f91c884ba736c7e2d9a1d4d4ebfc81905f7a575d59c",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tools/test-native-canvas-producers.py",
+          "parent_sha256": "02e51a2f9f30385a30c2997cd94c5467b1a19489636e75f24fb335cfec8a8884",
+          "commit_sha256": "82da48aeb56b7da935b6682b6f10d3722a3222c26268385496fc7bded496e9c0",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ],
+          "classification": "Exact preserved receipt chain"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "INPUT.camera-minimap-orientation-update",
+          "parent_accounting_sha256": null,
+          "commit_accounting_sha256": "d86a840313f753d5196860ecb7e6ff06ba5fac4c9c64595bc88c8d2bab181a95",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.canvas-producer-replay",
+          "parent_accounting_sha256": "bf03a98c85ff96df8dafd8358a49d5ed0ae1360135306972a0aa1d120b226356",
+          "commit_accounting_sha256": "12bc8e4085b602ba33e36634db1aa9511830d3a9f333b9850fe65a8252648e06",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.minimap-input-fixture",
+          "parent_accounting_sha256": null,
+          "commit_accounting_sha256": "c4afce789acf99b41ec69514a71edbe815ecc8ebc093a0da01871750793a4573",
+          "receipt_chain": [
+            "minimap-live-motion-execution-20261009"
+          ]
+        },
+        {
+          "id": "NR.minimap-owned-observation",
+          "parent_accounting_sha256": null,
+          "commit_accounting_sha256": "c5dfc1f71577955fe9d10157f51f468b2c556cd2cc08c9497e11adb466f584fd",
+          "receipt_chain": [
+            "minimap-live-motion-execution-20261009"
+          ]
+        },
+        {
+          "id": "NR.scene-snapshot",
+          "parent_accounting_sha256": "27a0bd566e9c929de483c1413a8930749386bcdd36b33de1ca8568bdfc2bbe34",
+          "commit_accounting_sha256": "3a6bb4957cdbfb11b02719c2ddf0da6e4007b55c990d64a4dce6b86c536f6a3f",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-batch-profiling",
+          "parent_accounting_sha256": "481a666ac4afceaa86e7af2ab1c75b28523648afc2677d1444124ecafd3ec8da",
+          "commit_accounting_sha256": "8a2249594d8f505563f72f0619e23d59cf67c5f4932fc4141f64f00978be23e2",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-channel",
+          "parent_accounting_sha256": "27a3ca7e67c2b1b3071bc2c9975ee2456034dddf4de2d999414061010912854c",
+          "commit_accounting_sha256": "f5e0c5e3d9b847f4ef679ba3c34a5c14aa70c4e3ebb273df44c516bad6538549",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-frame-identity-cache",
+          "parent_accounting_sha256": "503c898910dc616fc9afe232b0a345c57a49014c140b4f00663f998908cf6526",
+          "commit_accounting_sha256": "2a822cd5b26597deed2320729c0a91022fdb808d1984d7e9cfffb29dd8186fcb",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-history-channel",
+          "parent_accounting_sha256": "098d654b957672f0704f4891414d3de202e05705a2edf13ad7b87b3b0ae5a023",
+          "commit_accounting_sha256": "0dfb232e14c849ec049cb4328fa6670f7c84e930c7b5cecdae31e8d08428015d",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-interactive-batch-launcher",
+          "parent_accounting_sha256": "8887d51d6f841bdc5f3950f09579761df16074641c956638c1f893507a188a3c",
+          "commit_accounting_sha256": "be75ebfa6c74b7195f336a625ae040d025cec0a963a7f8101d7e59b47a89ba69",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-kind-diagnostic",
+          "parent_accounting_sha256": "0f8a72deffe0b2d458ac00acdc7590d70a16f0842b4ad875a29233426c9b3ce5",
+          "commit_accounting_sha256": "055e2f7afa29723e8be1319690ef1d864612589731bef26a0c711d6c2ea3dd19",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-live-history",
+          "parent_accounting_sha256": "442948be812dd3abceaa3ed20942eedd6c62dae3a2b10e1f7ba1bbcba4ebd54e",
+          "commit_accounting_sha256": "588905e467061d058cfd77479771e10eb196459503f0ac54c184a9c43a2446a4",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-live-view",
+          "parent_accounting_sha256": "83f240ab9ecb53161e5cc56a2059e06384105cb24ad617feeed16d77a7ecd87b",
+          "commit_accounting_sha256": "b92d8353b08f7009f1264f48f61e879d68ecf397912ab2e1f81ac624899babdc",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-producer-handoff",
+          "parent_accounting_sha256": "266473246bc086a50ba6867a15b74e8150a9f38e0a676a03abd51228b2abd535",
+          "commit_accounting_sha256": "ce5bce9ce56ae2deeaa1df77761cd222a96ce5328933795689d33a8fd32c1f84",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-raster-batch-transport",
+          "parent_accounting_sha256": "ff50a88fe438ec0f4c90e73cd07ca325f0e0dafe5ad87093f50f38ad7cac3ffd",
+          "commit_accounting_sha256": "147a0648c4050369e539cbfe2ed3820591c4e08ca902a813610116e8cf775ee8",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-resource-reuse",
+          "parent_accounting_sha256": "c021c419c1e0819df17b8fad2752a0cfebd7740a8e750c009283155f7b21d30c",
+          "commit_accounting_sha256": "ff546d09491e801f151f43512ea32985de95ef86e3b23ced5ba5a17c8acfa903",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-shadow-refusal",
+          "parent_accounting_sha256": "054c1a9ea8532d76791362835eaa32a6269144334d342227cde87514f3e2df1c",
+          "commit_accounting_sha256": "0e87f941b1adb934ff5b2eadcb184bfe23ce8199fa5871e2ddd58747030dc465",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "NR.world-startup-launcher",
+          "parent_accounting_sha256": "df595f5515c2dc6b9b88f235830e83624442c7797a28ab34044ba8b241e58f46",
+          "commit_accounting_sha256": "05a7c7a89d85b9f9e4cdd8dbe3a4f42953f6bddec49277197a8698a157b9ecb7",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.canvas-bind-clip",
+          "parent_accounting_sha256": "ea1ac3d76de561bd3f8ef2836d9412e50c6a4745409f96a2fe9627f6a2435654",
+          "commit_accounting_sha256": "516a5b7c8d27eb51ffee33141bbb4b8df05f7b2aef110923ab653b4b388552d2",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.canvas-create-lock",
+          "parent_accounting_sha256": "f2edc04e37052323da94d1d1150196aa77cd791597e47d70acdd0d93370c6e36",
+          "commit_accounting_sha256": "633b63e2907561bf683a71e771acbd920e7dc149a31f075a7b13fbd9d1c0cc81",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.canvas-preworld-reuse",
+          "parent_accounting_sha256": "a4b872cffee1e2bbda4f0f82e02b84afbbb9ba8938b0ae204db79e09bddd5fdc",
+          "commit_accounting_sha256": "477a9374a2861d1cff8b7ddd12ad9c71b5badf3d1327cd14a79c74a5ceb44704",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.canvas-producer-sequence",
+          "parent_accounting_sha256": "49bd0a627273c77639e01d17447334cf21267cb28d39f5d67349a127cba979b1",
+          "commit_accounting_sha256": "59af98bd964ac1b2509bb6cce5e4a56d9f3341e2605dcd80274e67270420df15",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.canvas-startup-clear",
+          "parent_accounting_sha256": "cf3bed685a5156a406c5dce6d2762f362df573796f0305db8172c02c27a34155",
+          "commit_accounting_sha256": "2c535ce92b4e894978169d20a2b5fd9c8b39dbf4baebf7eef719941b37e4d4ce",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.word-route",
+          "parent_accounting_sha256": "a57e0f9753a2c3312a9718d7f2202472df84a27d440bf0d306e3dbb6ca424cf9",
+          "commit_accounting_sha256": "c2d3de0c8f6b2bf7948cb53874920e5fe7c540404fc285bf00f927b502b92b0d",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-frame",
+          "parent_accounting_sha256": "6ff146c4fc76c288fab64ce7fc439856aada8d099e8fbfc6398f97311c3f1d27",
+          "commit_accounting_sha256": "b17a60af523945fb2869e5a074e79f07b26f49feb860a2ef24de0e2e1c38060e",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-initial-state",
+          "parent_accounting_sha256": "b68ac3988a368dc65b410e0ea1963f1ced5e3fc9ef49b92b809be8df93481f9d",
+          "commit_accounting_sha256": "aeadd99aff0044166fee23b30f9b5420f75e92885a4f7a83534d760eb4d76a11",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-kind8-additive",
+          "parent_accounting_sha256": "b538ff6ff79cd83c4881985ac01c81abbb5fefe31af829c93ee42132c8d10a04",
+          "commit_accounting_sha256": "b5f41222f3909359d57be8f4c5ee0af2eab45df541a8d7f1e4c3e96fed0fbef5",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-kind8-colour",
+          "parent_accounting_sha256": "fe24909f72de3286fa347cefb0a5a3e190fba36515f18fea49ed62189b110ed8",
+          "commit_accounting_sha256": "91e06d34cadf79e62af9a5d7ac618ac25fe72512785e52c1bdc142fabf506224",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-kind8-noop",
+          "parent_accounting_sha256": "af08f4d351b9ef0fcc1a584839e17bc9f8e9a1e9578261d9232b98b94b7675f0",
+          "commit_accounting_sha256": "b9a76cec16be714343d73ec3bd1cdf8406c00bdc3e0a8642c4d1b64d6d6c390e",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-kind8-virtual",
+          "parent_accounting_sha256": "2d18089ffe1491c0bb9afdcc0c635e59863c0e1b9ac2d34533d5264fe4c61f5e",
+          "commit_accounting_sha256": "f2bce564c8edda36ddebc75cf563e7cbcba3287c2600ff0aa4baa3fc4f10da32",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-producer-bypass",
+          "parent_accounting_sha256": "8a3649d0e17f23169d9d5f14cb2d885c730bb3508d0396b749c6303c11e914b1",
+          "commit_accounting_sha256": "dc35120624b21d7f3350928f06c8642c738f66ab026278f2be5adf70a5ce2748",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-raster-batch-return",
+          "parent_accounting_sha256": "8cb444b77953b36cf39132b777bda97e779c940cbb6c7fb0d13ab63857b4c7a7",
+          "commit_accounting_sha256": "5084a7f80642cbe4cd8f162800fcd0ba5181d05948fc3ceac5c5222b5aa6d750",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-raster-queue-replacement",
+          "parent_accounting_sha256": "daeb88bc519ed88fa07aaee1b00cd02792ae0934021c1daef3e232dc672650c8",
+          "commit_accounting_sha256": "caf259d62037e958d48ff9f9dbf641652a5459248cb742f2dabfd26d2f5864f2",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-startup-palette",
+          "parent_accounting_sha256": "deeadf649df62d4f522eb3c9006cfe19868c8c164ec92cf71601aa1f3aef7a68",
+          "commit_accounting_sha256": "6407a5fd1ca0596586d2f0304e13ed2e07b3a9ea857e6b479c170613de52ccdf",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-startup-queues",
+          "parent_accounting_sha256": "32b2a1d6d2f0e9350654bc6e3b4f2f99f431be7772113e1818d9ac6b19e67748",
+          "commit_accounting_sha256": "4b2beabc079e9a941496920533a101c42098c2742468878c326f50f4e53db7ea",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "RS.world-startup-wave",
+          "parent_accounting_sha256": "892a680ec18cc9e0c79873b808605074028b8a3cbaf9e64ed2fb6ee79048774a",
+          "commit_accounting_sha256": "de01924c9ff127fcc0eb701ab2083bef7aac96d45228fcebddb355124b76fe76",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        },
+        {
+          "id": "TOOL.coverage-accounting",
+          "parent_accounting_sha256": "b854b7190c6b4732177f1ab270fcf8d9102daf22513273d4a8b0037569b4d619",
+          "commit_accounting_sha256": "e93a3c6029610f9097d5c7579811ee3b72f5ca2a056fd18f6a5258f16e61beb4",
+          "receipt_chain": [
+            "minimap-live-source-and-accounting-20261009"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "b0bd799b1ad3e9dc8524d1f282350981956202f0",
+      "parent": "59388b175e1a70f3f9c8c2a31cbaa11bb08cd75b",
+      "files": [
+        {
+          "path": "apps/qt-shell/README.md",
+          "parent_sha256": "09766edae7c8293fa41aa7297a7136a7374f37be2176cdbb5d23ee407ef5ab06",
+          "commit_sha256": "22d426e590fdab2957a5c001dc7ac1d84ce3bc75ae19fd65ae0f9a8b3440fee0",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "apps/qt-shell/canvas_producer_session.cpp",
+          "parent_sha256": "62e14ea0294e9168f57d1b08fb8009527b14bb6aba0162fc18763634fb78d277",
+          "commit_sha256": "4c021cc0c5bb3ee0d7d0ffc9594366f9124bed5f386c726676f3ec5a6c4ed9f0",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "apps/qt-shell/canvas_producer_session.hpp",
+          "parent_sha256": "c302e297fe9825be36ff73ab74a0ba072c36d5cd0e549839e8e551f3ea692968",
+          "commit_sha256": "5c08da77d0c9868022d7529017c52c1b433dc501ae473a6d36035acc1242f22f",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "docs/live-drawing-replacement.md",
+          "parent_sha256": "6b08fb3f54c5b5b5167d46b889d680a4d09f9bb63e6458cdbf41ea3056f02f3c",
+          "commit_sha256": "ed7b9b2cd377d4f91f601723e62bbf034c683ec2a8a04e88e5c44cc4474e8de3",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "parent_sha256": "07c8ef3a1f7838535878a9caa243654533f3e81ec6a4ef138dae5f513f3263ec",
+          "commit_sha256": "bda18624ecec1c3f7089366c2cb650570994b313106714f33a0951cc0c612f26",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "parent_sha256": "7818d12e4aa626bb79719504ae6cf2df151da5f911ebb8210a6dd88b734d3d4e",
+          "commit_sha256": "948a5354c17a8a208adc5cdb7939e8b3230f827e192ed8d5ab76ce73cce623f9",
+          "receipt_chain": null,
+          "classification": "Append-only receipts directly reviewed; excluded from self fingerprints"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "parent_sha256": "a829ddcbb99aef21bbb2d404a6c1e541f9587f2c5d0eedb28635e3880c139339",
+          "commit_sha256": "888ec4942d13f473ba25a4eabebcc914765ca869f908310f0e808463a10ca370",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-minimap-interactive-20261010.json",
+          "parent_sha256": null,
+          "commit_sha256": "8d3cc1c906c69481f84cf8ea9856616ccd60230c9eb3b257c8dd7c1f0e42300a",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/summary-minimap-interactive-20261010.md",
+          "parent_sha256": null,
+          "commit_sha256": "f0e11425cc0c5a29f90f2251450b7397f317dd877bed62a5276e07485c631b6f",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/native-minimap-interactive-20261010.json",
+          "parent_sha256": null,
+          "commit_sha256": "ee972c4154eb1b96db98207f738c56c9c4e6f7987573492f72330b30494dd3f0",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "research/runtime/native-minimap-interactive.md",
+          "parent_sha256": null,
+          "commit_sha256": "146dc9c39b653987a8f007138d9ca81d58a11c4532e56112ab192129ed037a9d",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tests/canvas-producer-tail-test.py",
+          "parent_sha256": null,
+          "commit_sha256": "fbd6c06dd6fb43fc64a049ec65202581a418630e8a01ba54c4ac40572984a3d9",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tools/native_world_startup.py",
+          "parent_sha256": "9dc82990875e8253e02b7aa0184e2c1cecdc3e3adb411cb4d4baaef4e75c116d",
+          "commit_sha256": "bad00e814dddf7c4e98aea5334744798ea656f6f745325aba6ebd164481a3a19",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tools/run-native-world.py",
+          "parent_sha256": "6f9e3b37aa0ef8d2ac62130da697e7fd90c49c984fad7dc59ca8a39e222fc268",
+          "commit_sha256": "bfebaf9bdb933e3fd53316d4b596fae4e5e3708b984f328a5b75097e4b721678",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        },
+        {
+          "path": "tools/test-minimap-interactive.py",
+          "parent_sha256": null,
+          "commit_sha256": "a8e912624fca580443487b4c8152e7dbdd24c86f9ac0fa5a5256f9a1660ce156",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ],
+          "classification": "Exact preserved receipt chain"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "HOST.native-command-launch",
+          "parent_accounting_sha256": "6a2d6f9b8f6842677d93c27424191a1ac279fa34a5c2ea72b77877e0aab5f102",
+          "commit_accounting_sha256": "feb02a3e805eb5c8e2957d19c553123aa11fa5c2eb914a2f51532b3a864dc919",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "HOST.native-command-responsiveness",
+          "parent_accounting_sha256": "2b696f4ce9abbbc74b68b63a5403fcc82be9207ac7f85dd71dd62465daa66418",
+          "commit_accounting_sha256": "d4a809d62d657e745190e8be7e0cbc9ab8230c2b7f44b4279c07322f1898acf5",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "HOST.presentation",
+          "parent_accounting_sha256": "062e1232b45391051d80b05b04fbb6934e1ffe4447f257e3093312b56d2454df",
+          "commit_accounting_sha256": "11a7c055853a79ae232f13bdaa68ac20811553955adbe720f5a297d9bc99a3cc",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.application-shutdown",
+          "parent_accounting_sha256": "82de3f7dcf595d3edff4adcc7482bc2dd145048068168d748ecd09e6b1034d43",
+          "commit_accounting_sha256": "034743a1cbc7439813ccd71a68edac57526a052795cc5552ae220392e7c1e1fe",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.canvas-producer-replay",
+          "parent_accounting_sha256": "12bc8e4085b602ba33e36634db1aa9511830d3a9f333b9850fe65a8252648e06",
+          "commit_accounting_sha256": "a8b73caee9f1309ad731ecc787f2bb2e3cdfcbc9b1aadfc0872098a95d538a0b",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.command-host-recovery",
+          "parent_accounting_sha256": "5b698cbb328db06a145ff581723e13d7160340c5818d24dacd4b1f3908884c2d",
+          "commit_accounting_sha256": "4c20f5ecbc88054797ab6da7be1c19006603a32cc736cd21c4936e80d7713a94",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.incremental-command-consumer",
+          "parent_accounting_sha256": "78c3c3313be993e59a00ab36c5b95d3df8973fdbf515fc81437f59bfd9e5645c",
+          "commit_accounting_sha256": "3535cf05e9038b558cccbf62add4e447665987332631f520342275cfc76fb05c",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.live-command-transport",
+          "parent_accounting_sha256": "7b984a3482936cf9f362c682eb9a6bc3066cb4fd198d38e151ac80fbaac2df98",
+          "commit_accounting_sha256": "365932b7c56e4c807738dbafca249b175deb4fab35ab6e620612ce9c66b9060f",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.live-drawing-replacement",
+          "parent_accounting_sha256": "156471ac25664d4d864a7d7655df7310eb99430a0422422bb48f7826996fb51f",
+          "commit_accounting_sha256": "7deb312072f3ca43e6c2b6cb9de9eed0c4a48c4efe95e54a444e229b75246924",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.minimap-interactive-presentation",
+          "parent_accounting_sha256": null,
+          "commit_accounting_sha256": "9f3e7cd77f7fda7b9f8b0c49fd19719dc0fc1de673b466d05e4a940de88239f5",
+          "receipt_chain": [
+            "minimap-interactive-public-execution-20261010"
+          ]
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "parent_accounting_sha256": "b49f0bf9c10b3516f5cefe52eeb7bd0f6ef8c80c898f72eabaee67f918aa1331",
+          "commit_accounting_sha256": "820a615bf68c60ebc9f07d3c14801108c6156861bac0be2a05b8db92f986bd81",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.scene-service",
+          "parent_accounting_sha256": "5c7bde974ff075ca042da939f4f63bd4149dbedeec2905b2441fff03b421bc65",
+          "commit_accounting_sha256": "7a9f8233192852bd322508de99e23c51ae303fbe8b4f23970fcd095ae2337185",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.scene-snapshot",
+          "parent_accounting_sha256": "3a6bb4957cdbfb11b02719c2ddf0da6e4007b55c990d64a4dce6b86c536f6a3f",
+          "commit_accounting_sha256": "29084ba2eeff0bc0215d8ce118572678da5581a21727e4c25a5e7649a1e4edff",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "parent_accounting_sha256": "20b759be3348b1a81ca3af5ff77626862785fddac7a1ceda9d92073c85a9778c",
+          "commit_accounting_sha256": "fb19501f48345b32055bc23cc71dd646ec4105cafa7c99ccbee4f2358d878dfe",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.word-admission",
+          "parent_accounting_sha256": "8701a172c60db0aaa8a7be75ae1d9388ece437fa5e6d1bba8bae4cb23cfb0d54",
+          "commit_accounting_sha256": "e22c371c507aac58eb460188e71ef59ad41a1523fae03121b154d89635585fb9",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-admission",
+          "parent_accounting_sha256": "0df4d6de7f6c5df36efa72006d940b0af74fdbe0d3dd773b7033765524dcc8f3",
+          "commit_accounting_sha256": "f612a3b3a117f95696edaa478dd7e7e5b7e195b528e93e94bba4fa4c09ede0a4",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-batch-profiling",
+          "parent_accounting_sha256": "8a2249594d8f505563f72f0619e23d59cf67c5f4932fc4141f64f00978be23e2",
+          "commit_accounting_sha256": "7c3bea0d9a410d97263f02ef9ac4d02bf742bf1bc666ac2b0085e0f11b8ccf2a",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-channel",
+          "parent_accounting_sha256": "f5e0c5e3d9b847f4ef679ba3c34a5c14aa70c4e3ebb273df44c516bad6538549",
+          "commit_accounting_sha256": "dcfd4eaf44db45a0af88708f81426560b6179cbefa8947a0d1f4ad6333a74aab",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-frame-identity-cache",
+          "parent_accounting_sha256": "2a822cd5b26597deed2320729c0a91022fdb808d1984d7e9cfffb29dd8186fcb",
+          "commit_accounting_sha256": "0a5bd9ae8669f57b3c315224e5bdbe222b3936c15a95d4415550843a74fa88c7",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-interactive-batch-launcher",
+          "parent_accounting_sha256": "be75ebfa6c74b7195f336a625ae040d025cec0a963a7f8101d7e59b47a89ba69",
+          "commit_accounting_sha256": "daf3c36141e7cc49a6e16d205f930301c3446177cd39d4aca6840d75cbd615f3",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-kind-diagnostic",
+          "parent_accounting_sha256": "055e2f7afa29723e8be1319690ef1d864612589731bef26a0c711d6c2ea3dd19",
+          "commit_accounting_sha256": "edc5ec0b47e6ad8da56faba8d0fcc97b9bde1e4d6eabdd19cd75fd5c7114be21",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-live-history",
+          "parent_accounting_sha256": "588905e467061d058cfd77479771e10eb196459503f0ac54c184a9c43a2446a4",
+          "commit_accounting_sha256": "b7be535fea958d2fe38acae1b92706def0e67127e7213bc098a4ed18dcadb102",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-live-view",
+          "parent_accounting_sha256": "b92d8353b08f7009f1264f48f61e879d68ecf397912ab2e1f81ac624899babdc",
+          "commit_accounting_sha256": "a92aebd1b34510270593dd216b1d2ad01607e492c78873c450f52d0924d07d40",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-producer-handoff",
+          "parent_accounting_sha256": "ce5bce9ce56ae2deeaa1df77761cd222a96ce5328933795689d33a8fd32c1f84",
+          "commit_accounting_sha256": "dcbe329e2a983286d9126224f69ac5303b29b2ee89063cb8135370e71d0f7f3c",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-raster-batch-transport",
+          "parent_accounting_sha256": "147a0648c4050369e539cbfe2ed3820591c4e08ca902a813610116e8cf775ee8",
+          "commit_accounting_sha256": "7694ee08e2e8e8418f7823afafe4d088919922d9421507db21ee968e0af6f233",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-resource-reuse",
+          "parent_accounting_sha256": "ff546d09491e801f151f43512ea32985de95ef86e3b23ced5ba5a17c8acfa903",
+          "commit_accounting_sha256": "28665232a2f9e3fa60607f557040e87e54919ce692b642423f7df0967c886010",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-shadow-refusal",
+          "parent_accounting_sha256": "0e87f941b1adb934ff5b2eadcb184bfe23ce8199fa5871e2ddd58747030dc465",
+          "commit_accounting_sha256": "8bfaf788e20e5c23b899c2e64a474e5742115fbb7cedec09dac84fd0ffebfd6c",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "NR.world-startup-launcher",
+          "parent_accounting_sha256": "05a7c7a89d85b9f9e4cdd8dbe3a4f42953f6bddec49277197a8698a157b9ecb7",
+          "commit_accounting_sha256": "f63591c2fcab69dd2649a40abe17e59cc4c1088c138def297970dc8bb7014d0d",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RI.copies",
+          "parent_accounting_sha256": "d2716904bd7fc123a53296771620b98551a88c6e8fc5b8db570ef760675729f6",
+          "commit_accounting_sha256": "c4eb1a0af583b3bcb8f15b7560de1f618f9f693fd1bf8f167bb5c96cae918943",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RI.effects",
+          "parent_accounting_sha256": "4d2773e3e8bdfde63d1c200ee507e2c7d7e55a21e914120925757fed8069652a",
+          "commit_accounting_sha256": "f2d3ac43c7bd59250406bfb4c7152f357e071ccc6e5ca85ca5ec760e2f8e7e43",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RI.fills",
+          "parent_accounting_sha256": "79d4d28e956d7b4cf35e09bba24914b60de39d24f8a52af75f40033cb4e33de6",
+          "commit_accounting_sha256": "b4be3e7b944fe81e4a8b57ec69438d5d40698d6d57f5ddae7a0550fc58044bda",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RI.gdi-text",
+          "parent_accounting_sha256": "679fa4e23a6784949d6252923bddd222d25096b4d287b3716b1f95ff24f06b11",
+          "commit_accounting_sha256": "6972b6b0f951325d99a0bd5d5e7bf16a74be7fa5b9c28256b38a9d13cc382379",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RI.locked-writes",
+          "parent_accounting_sha256": "c3435cf64b7916b49abef48014bd0b38e19c85b924ea3048305f73f91a2c7e14",
+          "commit_accounting_sha256": "47dc76ea4e695beb40cbb1ee650012d4b98630b17cdd47ddf8076137bedebba1",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RI.movies",
+          "parent_accounting_sha256": "846231fa04334884db6ecf8111c8ae790c436daff7d4dad928419b09e6c3a6de",
+          "commit_accounting_sha256": "6ef0541c9e91b59f5304d7b569c6065eea88fe46dc09f1465cb16964494d2a9d",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RI.sprites",
+          "parent_accounting_sha256": "410cfad459ff68ab984060172a7011e3e4e450ebc2e2b4c30fcbe0b599491176",
+          "commit_accounting_sha256": "97409d9fb4972570ae571c7ad50e7dc01e934466ee14d6e0cc809a307daa6092",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RI.terrain",
+          "parent_accounting_sha256": "cc11655cb9654f17d2f52c36740afc0d901348f5017197f3aa897f5dbab6016b",
+          "commit_accounting_sha256": "e4708d25f867b217e0a53fff14c64e98ba387e8b64408826182f0af7682af6f2",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RI.ui",
+          "parent_accounting_sha256": "eef1c3b6c8818b17ffabc5b6704610d72a3144b8e4eae6b935ab93dc987a71fc",
+          "commit_accounting_sha256": "aa5fd9eabe5fc6d157adc6945f7aafb0402ed0f41c643da4db5c20237427d149",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RS.word-raster",
+          "parent_accounting_sha256": "258f38f64f93ad3e4bda8ef97975acba3dca98998d49d386426e5279ae304dfe",
+          "commit_accounting_sha256": "0d80e516fb3bd40db9a7a415b3f18f7c42e757016a549990e2ccabaabd46677f",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RS.word-route",
+          "parent_accounting_sha256": "c2d3de0c8f6b2bf7948cb53874920e5fe7c540404fc285bf00f927b502b92b0d",
+          "commit_accounting_sha256": "4e74626c8a24b79b5604fdd4646b56bfa65ba01197435c9d6737fbb7311fb138",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RS.world-composition",
+          "parent_accounting_sha256": "45146010358f2e2bd1043081d5da53d62ef2eb426ef1780631b1cf090570a5e9",
+          "commit_accounting_sha256": "a878506040ac7c9c9b773083d600e91a622a51434c2838c42eb4d02cdccac583",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RS.world-frame",
+          "parent_accounting_sha256": "b17a60af523945fb2869e5a074e79f07b26f49feb860a2ef24de0e2e1c38060e",
+          "commit_accounting_sha256": "7233122fd98bf095cf8d3ce2dcd3c035d7b31a9d80de1ab5f827af2f72053dcd",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RS.world-producer-bypass",
+          "parent_accounting_sha256": "dc35120624b21d7f3350928f06c8642c738f66ab026278f2be5adf70a5ce2748",
+          "commit_accounting_sha256": "3ca8a71305793f6e8185b7f5a07241f13fc37cd5c03db03d31f39aa8358741c2",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RS.world-raster-batch-return",
+          "parent_accounting_sha256": "5084a7f80642cbe4cd8f162800fcd0ba5181d05948fc3ceac5c5222b5aa6d750",
+          "commit_accounting_sha256": "2e95d58884a249b2c3da8d6083977be35ee10af82a3200d008065c50200c3dd7",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "RS.world-raster-queue-replacement",
+          "parent_accounting_sha256": "caf259d62037e958d48ff9f9dbf641652a5459248cb742f2dabfd26d2f5864f2",
+          "commit_accounting_sha256": "f8545c04517bf89aaff0a00f9475686e186de81b2ef5399b09a489220760c4c5",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "TOOL.coverage-accounting",
+          "parent_accounting_sha256": "e93a3c6029610f9097d5c7579811ee3b72f5ca2a056fd18f6a5258f16e61beb4",
+          "commit_accounting_sha256": "f7e4dcf7616fcea9ea324338b0f7856fa01cc04c251eb7a567f204f13395edbc",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        },
+        {
+          "id": "UI.preview",
+          "parent_accounting_sha256": "438b29b46eba20f3960888b7fcc8e2b823339114c7416e45a5c2f960d06bedd6",
+          "commit_accounting_sha256": "9abc1300844410d863f48f016a8f85e406d56b00d93184e56e8b4f05bce5c665",
+          "receipt_chain": [
+            "minimap-interactive-source-accounting-20261010"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

@@ -13,6 +13,7 @@ def main():
  p.add_argument('--scenario',default='world-resource-reuse-replay-20261009')
  p.add_argument('--prepared',type=Path,help='Reuse a build only after every compiler dependency matches current declared bytes')
  p.add_argument('--prepared-inputs',type=Path,help='Reuse closed owned inputs only after checking every file against its previous input manifest')
+ p.add_argument('--compare-original',action='store_true',help='Also compare current CPU intermediates/AX to precise original entries using historical closed capture inputs')
  a=p.parse_args();baseline=a.baseline.resolve();before=json.loads((baseline/'baseline.json').read_text())
  register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
  ids=a.behavior or ['NR.world-resource-reuse']
@@ -30,12 +31,14 @@ def main():
  run('original-before',[ROOT/'tools/original-manifest.sh','verify'])
  try:
   assert all(sha(baseline/'source'/n)==h for n,h in before['sources'].items())
+  if 'binary_sha256' in before:assert sha(baseline/'build/mnm-canvas-producers-live')==before['binary_sha256']
   capture=json.loads(a.capture_report.read_text());assert capture['success']
   experiment=Path(capture['experiment']);directory=experiment/'capture'
   stream=directory/'canvas-producers.bin'
   inputs=out/'inputs';inputs.mkdir()
   for name in ('canvas-producers.bin','canvas-producers.done'):shutil.copyfile(directory/name,inputs/name)
   input_hashes={str(p.resolve()):sha(p) for p in [stream,directory/'canvas-producers.done',inputs/stream.name,inputs/'canvas-producers.done']}
+  input_hashes[str((baseline/'baseline.json').resolve())]=sha(baseline/'baseline.json')
   assets=out/'assets';assets.mkdir();asset_hashes={}
   if a.prepared_inputs:
    previous=a.prepared_inputs.resolve();manifest=previous/'report.json';old=json.loads(manifest.read_text())
@@ -67,8 +70,8 @@ def main():
    dst=frozen/n;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,dst)
   build=(a.prepared.resolve()/'build') if a.prepared else out/'build'
   if not a.prepared:run('configure',['cmake','-S',frozen/'compat/legacy/canvas-producers','-B',build,'-DCMAKE_BUILD_TYPE=Debug'])
-  if not a.prepared:run('build',['cmake','--build',build,'--target','mnm-canvas-producers-live','world-raster-batch-test','canvas-world-test','canvas-sequence-test','scene-renderer-test','scene-history-test','-j4'])
-  run('native-tests',['xvfb-run','-a','ctest','--test-dir',build,'-R','native-world-raster-batch|native-canvas-world-handoff|native-canvas-sequence|native-shared-scene-renderer|native-scene-history','--output-on-failure'])
+  if not a.prepared:run('build',['cmake','--build',build,'--target','mnm-canvas-producers-live','world-raster-batch-test','canvas-world-test','canvas-sequence-test','minimap-producer-test','scene-renderer-test','scene-history-test','-j4'])
+  run('native-tests',['xvfb-run','-a','ctest','--test-dir',build,'-R','native-world-raster-batch|native-canvas-world-handoff|native-canvas-sequence|native-minimap-producer|native-shared-scene-renderer|native-scene-history','--output-on-failure'])
   compiled=set()
   for dep in build.rglob('*.o.d'):
    for token in dep.read_text().replace('\\\n',' ').split():
@@ -101,8 +104,11 @@ def main():
    assert identity_totals['hits']>identity_totals['hashes']
    assert all(f['identities']['frames']<=4096 and f['identities']['bytes']<=16*1024*1024 for f in frames)
   assert totals['visual_reuses']>totals['visual_checks'] and totals['cache_hits']>totals['cache_uploads']
-  timings={label:{key:statistics.median(f['profile'][key] for f in result['world_frames'][1:]) for key in ('resource_prepare_ms','gpu_submit_ms','gpu_readback_ms')} for label,result in zip(('before','after'),results)}
-  report.update(success=True,inputs=input_hashes,inputs_stable=True,baseline_sources=before['sources'],baseline_binary_sha256=sha(baseline/'build/mnm-canvas-producers-live'),native_binary_sha256=sha(build/'mnm-canvas-producers-live'),capture_report_sha256=sha(a.capture_report),owned_stream_sha256=sha(stream),asset_sources=asset_hashes,checkpoints=checks,completed=len(checks),warm_median_ms=timings,reuse_totals=totals,identity_totals=identity_totals,world_frames=frames,native_tests_passed=5,compiled_dependency_review={'compiled_dependencies':sorted(compiled),'undeclared_dependencies':[]},frozen_sources_stable=all(sha(frozen/n)==h for n,h in sources.items()))
+  timings={label:{key:statistics.median(f['profile'][key] for f in result['world_frames'][1:]) for key in ('cpu_composition_ms','resource_prepare_ms','gpu_submit_ms','gpu_readback_ms','consumer_entry_to_return_ms')} for label,result in zip(('before','after'),results)}
+  if a.compare_original:
+   run('original-comparison',['python3',frozen/'tools/compare-world-cpu-original.py','--source',frozen,'--binary',build/'mnm-canvas-producers-live','--pe',ROOT/'original/Arcane_Nocd/Chaos.exe','--capture-report',a.capture_report.resolve(),'--inputs',inputs,'--assets',assets,'--output',out/'original-comparison'])
+   report['original_comparison']=json.loads((out/'original-comparison/report.json').read_text())
+  report.update(success=True,inputs=input_hashes,inputs_stable=True,baseline_sources=before['sources'],baseline_binary_sha256=sha(baseline/'build/mnm-canvas-producers-live'),native_binary_sha256=sha(build/'mnm-canvas-producers-live'),capture_report_sha256=sha(a.capture_report),owned_stream_sha256=sha(stream),asset_sources=asset_hashes,checkpoints=checks,completed=len(checks),warm_median_ms=timings,reuse_totals=totals,identity_totals=identity_totals,world_frames=frames,native_tests_passed=6,compiled_dependency_review={'compiled_dependencies':sorted(compiled),'undeclared_dependencies':[]},frozen_sources_stable=all(sha(frozen/n)==h for n,h in sources.items()))
  except Exception as error:report['error']=str(error)
  finally:
   run('original-after',[ROOT/'tools/original-manifest.sh','verify'])

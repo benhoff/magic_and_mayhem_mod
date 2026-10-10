@@ -3403,3 +3403,41 @@ active. Shared World/batch/launcher historical evidence retains its hashes and
 requires separate current-contract reruns. Unbounded/manual gameplay, complete
 HUD, borders, source generation, driver/ABI and original minimap suppression
 remain pending. See [scope and diagnostic costs](native-minimap-interactive.md).
+
+
+### Native World CPU composition reuse (2026-10-10)
+
+`NR.world-cpu-composition-reuse` introduces an exact owned-byte/indexed-tag decoded
+SPR LRU (4096 frames/64MiB resident encoded+decoded vector capacity, with object,
+transient and externally retained handle storage additional). Per-draw palette
+and effect tables remain independent. RGB565 blends sample only their own
+destination; nonnegative displacement with left-to-right traversal samples
+untouched pixels, preserving pre-draw semantics without whole-canvas/mask copies.
+Undefined pixels, malformed frames, invalid offsets, clipping and CPU/GPU/AX
+guards remain admitted/refused as before.
+
+[Current bounded native result](native-world-cpu-composition-native-20261010.json)
+passes six native tests, all1058 same-input prechange checkpoints and independent
+historical capture checkpoints, and all23843 precise original intermediates/low16
+AX in16 queues. Prospective claims bind100 source/build/test/helper inputs; actual
+consumer compiler dependencies and the three local original-reference includes
+are reviewed. Sources, frozen sources and owned inputs stay stable; original
+manifests pass before/after. Warm median CPU composition falls141.556ms
+to78.498ms (44.55%) in Debug/software GL. This is a
+diagnostic queue measurement, not hardware-general FPS or original simulation cost.
+
+The final replay incorporates concurrent minimap integration commit`b0bd799`;
+the earlier successful [pre-integration result](native-world-cpu-composition-preminimap-20261010.json)
+retains its hashes separately. The committed-history report reviews9c64221..b0bd799
+(46 file transitions/83 exact behavior-accounting transitions) with no missing
+receipt chains; uncommitted main-checkout work is excluded. No historical gate
+pass or renewed minimap validation is inferred.
+
+Only scoped implementation/headless integration is promoted for the new native
+policy. Original comparison/replacement remain none for that policy. The pinned
+original execution supports these closed CPU inputs offline; the historical
+capture supplies provenance, not fresh live-hook, caller ABI or writeback evidence.
+Shared-file historical renderer/producer/minimap/live results retain their source
+hashes and become stale where affected. Current V2 motion/interactive minimap,
+unobserved original branches and unbounded/all-map gameplay remain separate
+validation boundaries. [Contract and reproduction](native-world-cpu-composition.md).
