@@ -31,11 +31,13 @@ LiveMenuSession::LiveMenuSession(QString repository,QObject* parent):QObject(par
                     preferencesStore_.begin(preferencesStorePath,snapshot.value("revision").toString().toLatin1());
                 }
             }
+            if(nativeCommandsEnabled&&(!prepareNativePresentation||!prepareNativePresentation(root_))){fallback("Cannot create native presentation channels.");if(finished)finished();return;}
             channel_=QDir(root_).filePath("channel.bin");bridge_=std::make_unique<MenuBridge>();
             if(!bridge_->create(channel_,true,true,miniMenusEnabled(),resultMenusEnabled,preferencesMenusEnabled,regionMenusEnabled&&preferencesMenusEnabled,regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled,campaignPreferencesEnabled&&campaignDefeatEnabled&&campaignQuitEnabled&&campaignMiniEnabled&&regionEnterEnabled&&regionMenusEnabled&&preferencesMenusEnabled)){fallback("Cannot create menu channel.");if(finished)finished();return;}
             active_=!bypass_;clock_.restart();lastState_=0;
             if(active_)timer_.start();else bridge_->retire();
             QStringList arguments{root_,"--menu-channel",channel_,"--prefix",winePrefix.isEmpty()?QDir(repo_).filePath("working/tests/menu-live-wine"):winePrefix};
+            if(nativeCommandsEnabled)arguments.append("--native-render");
             if(smokeSeconds)arguments.append({"--seconds",QString::number(smokeSeconds)});
             process_.start(QDir(repo_).filePath("tools/run-menu-observer.py"),arguments);
             if(launched)launched();
@@ -53,7 +55,7 @@ bool LiveMenuSession::start(){
     preferencesToSave_=false;preparation_.clear();root_.clear();sequence_=0;state_={};pending_=transition_=bypass_=exitRequested_=quitting_=inBattle_=false;
     auto env=QProcessEnvironment::systemEnvironment();env.remove("MNM_MENU_CHANNEL");env.remove("MNM_RUNNER");env.remove("MNM_MENU_OBSERVE");
     process_.setProcessEnvironment(env);process_.setWorkingDirectory(repo_);preparing_=true;
-    QStringList arguments{"--actions"};if(preferencesMenusEnabled)arguments.append({"--preferences-store",preferencesStorePath});if(MNM_MENU_MINI_EXPERIMENTAL)arguments.append("--experimental-mini");
+    QStringList arguments{"--actions"};if(nativeCommandsEnabled)arguments.append("--native-render");if(preferencesMenusEnabled)arguments.append({"--preferences-store",preferencesStorePath});if(MNM_MENU_MINI_EXPERIMENTAL)arguments.append("--experimental-mini");
     process_.start(QDir(repo_).filePath("tools/prepare-menu-observer.py"),arguments);return true;
 }
 bool LiveMenuSession::running() const{return preparing_||process_.state()!=QProcess::NotRunning;}

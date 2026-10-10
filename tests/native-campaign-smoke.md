@@ -12,13 +12,16 @@ one campaign session**. It runs the same `tools/run-qt-shell.sh` and
 `--live-menus` and `--native-commands`. It never retries with either requirement
 removed and never treats Wine-window fallback as a pass.
 
-The current public shell rejects that combination with exit 2. The test therefore
-exits nonzero at `combined-mode-admission`, before launching the game. This is the
-first integration blocker, not a passing campaign test. The click-through driver
-is compiled but cannot execute through the public route until menu/rendering
-integration exists. Merely removing argument rejection will not suffice: live
-menus currently select Wine embedding and their game runner stages the menu
-bridge, separately from the rendering bridge/command channels.
+The combined route stages hash-checked `MnmMenu.dll` and `MnmRender.dll` imports
+in the same disposable installation. The host creates versioned render, input,
+command and recovery channels before launch. Qt menus own input during supported
+menu screens; gameplay hands input to the native OpenGL viewport. The ordinary
+menu-only route remains available. Cold Wine startup has a bounded two-minute
+first-frame allowance; recovery retains the existing ten-second bound.
+
+The previous public-mode rejection is preserved as historical admission evidence.
+Combined gameplay/rendering behavior is under active validation; admission alone
+is never a passing campaign result.
 
 For just the build and mode check, without a game or display:
 
