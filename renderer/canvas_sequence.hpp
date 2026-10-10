@@ -1,6 +1,8 @@
 #pragma once
 #include "../assets/sprite_loader.hpp"
 #include "blit.hpp"
+#include "minimap/overlays.hpp"
+#include <functional>
 #include <array>
 #include <unordered_map>
 namespace mnm::render {
@@ -10,6 +12,7 @@ class CanvasSequence final {
 public:
   void create(std::uint32_t, int width, int height);
   void terrainMap(std::uint32_t id, int x, int y, int width, int height, int centerX, int centerY, const std::vector<std::uint16_t> &colours, const std::vector<unsigned char> &hidden = {}, std::uint32_t previous = 0);
+  std::size_t minimap(std::uint32_t, int stride, const std::function<std::size_t(MinimapPlane &)> &);
   void fade(std::uint32_t id);
   void release(std::uint32_t);
   void panel(std::uint32_t, Rect, unsigned mode, unsigned percent = 0,

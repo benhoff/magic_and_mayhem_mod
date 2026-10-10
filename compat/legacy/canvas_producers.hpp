@@ -11,6 +11,7 @@ struct CanvasProducer {
 struct CanvasProducerStream {
   unsigned queues;
   std::vector<CanvasProducer> operations;
+  unsigned version = 0;
 };
 void appendCanvasProducers(CanvasProducerStream &, const std::vector<std::uint8_t> &, bool complete = false);
 CanvasProducerStream decodeCanvasProducers(const std::vector<std::uint8_t> &, bool complete = true);
