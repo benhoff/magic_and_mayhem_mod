@@ -3966,3 +3966,7 @@ older evidence historical and stale; their hashes/statuses are preserved.
 Initial host alignment failure and short/GL-startup captures remain retained
 diagnostics. The committed range 0415793..652c01d has 19 exact reviewed file
 transitions, including append-only journals, with no unresolved receipt gaps.
+
+### Pinned native World admission and cold preparation (2026-10-10)
+
+`NR.world-prepared-admission` has fresh scoped/headless saved-input evidence:12 retained-renderer sessions,384 CPU/GPU completions and14688 checkpoint assertions, plus three Debug fixtures. Owned pinned preparations avoid repeated SPR decode; on-demand revision-bound visual indexing and reusable per-thread SHA contexts reduce cold queues from historical444.20ms median to118.98ms median/138.89ms maximum. Warm median38.83/p9547.28/max70.48ms and11.96MiB retained growth pass unchanged warm/memory limits. Catalogue initialization is reported separately at539.99ms median. Three rejected exploratory budgets and the unsuccessful two-worker memory/latency trial remain recorded; the final implementation prepares sequentially. This is no full-game cadence, original comparison or live replacement claim. See [admission evidence and limitations](native-world-prepared-admission.md). Committed50bec93..c9f99e8 accounting reviewed34 exact file transitions with no gaps. Older evidence touching changed shared source stays historical.

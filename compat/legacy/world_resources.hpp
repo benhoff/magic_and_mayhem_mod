@@ -45,6 +45,7 @@ public:
     WorldIdentityStats identityStats() const { return identities_.stats(); }
 private:
     WorldCatalogue catalogue_;
+    assets::ResourceManager& resources_;
     std::set<assets::ResourceId> bound_;
     SnapshotResources bindings_;
     WorldIdentityCache identities_;

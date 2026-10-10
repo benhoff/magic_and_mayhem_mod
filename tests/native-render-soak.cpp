@@ -27,21 +27,21 @@ static double rss(){std::ifstream f("/proc/self/statm");std::uint64_t total=0,re
 static QJsonObject replay(GlBlitter& renderer,const legacy::CanvasProducerStream& stream,const assets::AssetStore& store,const QJsonArray& expected){
   QJsonArray timings;unsigned checkpoints=0;double cpuMs=0;unsigned inside=0;
   legacy::CanvasProducerReplay producer([&](const auto& name){auto opened=store.open(name);if(auto* error=std::get_if<assets::Error>(&opened))throw std::runtime_error(error->detail);auto file=std::get<std::unique_ptr<assets::AssetFile>>(std::move(opened));auto read=assets::readWhole(*file,16*1024*1024);if(auto* error=std::get_if<assets::Error>(&read))throw std::runtime_error(error->detail);return std::get<std::vector<std::uint8_t>>(std::move(read));});
-  legacy::CanvasWorld world(renderer,store);
+  const auto initialize=Clock::now();legacy::CanvasWorld world(renderer,store);const double initializationMs=elapsed(initialize);
   for(const auto& c:stream.operations){
     const auto& r=c.fields;auto started=Clock::now();producer.apply(c);if(world.active())cpuMs+=elapsed(started);
     if(r[2]==11){cpuMs=0;world.begin(c,producer.read(r[3]));}
     else if(world.active()){
       if(r[2]==9)world.append(c);
       else if(r[2]==10&&r[3]==world.canvas()){producer.commitNativeWorld(r[3],world.complete(producer.read(r[3])));++inside;}
-      else if(r[2]==12){const auto& p=world.profile();require(p.identityFrames<=4096&&p.identityBytes<=16*1024*1024,"World identity cache exceeds bound");require(p.cacheSurfaces<=64,"World cache surface bound exceeded");timings.append(QJsonObject{{"queue",int(world.queue())},{"native_work_ms",cpuMs+p.adoptMs+p.prepareMs+p.submitMs+p.readbackMs+p.compareMs},{"gpu_submit_ms",p.submitMs},{"uploads",double(p.cacheUploads)},{"cache_frames",double(p.cacheFrames)},{"identity_bytes",double(p.identityBytes)}});world.end(c);}
+      else if(r[2]==12){const auto& p=world.profile();require(p.identityFrames<=4096&&p.identityBytes<=16*1024*1024,"World identity cache exceeds bound");require(p.cacheSurfaces<=64,"World cache surface bound exceeded");timings.append(QJsonObject{{"queue",int(world.queue())},{"native_work_ms",cpuMs+p.adoptMs+p.prepareMs+p.submitMs+p.readbackMs+p.compareMs},{"cpu_composition_ms",cpuMs},{"resource_prepare_ms",p.prepareMs},{"history_adopt_ms",p.adoptMs},{"gpu_readback_ms",p.readbackMs},{"gpu_compare_ms",p.compareMs},{"gpu_submit_ms",p.submitMs},{"uploads",double(p.cacheUploads)},{"cache_frames",double(p.cacheFrames)},{"identity_bytes",double(p.identityBytes)}});world.end(c);}
       else require(r[2]==4||r[2]==10||r[2]==25,"Unsupported producer inside World");
     }
     if(r[2]==10){require(checkpoints<unsigned(expected.size()),"Unexpected checkpoint");const auto e=expected[int(checkpoints)].toObject();require(unsigned(e["sequence"].toInt())==r[1]&&unsigned(e["canvas"].toInt())==r[3]&&unsigned(e["oracle"].toInt())==r[14],"Checkpoint identity mismatch");const auto image=producer.read(r[3]);require(image.width==int(r[5])&&image.height==int(r[6])&&digest(image)==e["sha256"].toString(),"Checkpoint pixels changed");++checkpoints;}
   }
   require(!world.active()&&world.completedQueues()==stream.queues&&world.readbacks()==stream.queues,"Incomplete World replay");
   require(checkpoints==unsigned(expected.size())&&inside==stream.queues,"Incomplete checkpoint comparison");
-  return {{"checkpoints",int(checkpoints)},{"queues",int(world.completedQueues())},{"frames",timings}};
+  return {{"checkpoints",int(checkpoints)},{"queues",int(world.completedQueues())},{"initialization_ms",initializationMs},{"frames",timings}};
 }
 // Independent scalar RGB565 arithmetic; snapshots are per draw, never per batch.
 static void oracleDraw(Image& dest,const Image& source,const Image& mask,Rect rect,int x,int y,const SpriteComposite& op,const SpriteColourTable& palette){

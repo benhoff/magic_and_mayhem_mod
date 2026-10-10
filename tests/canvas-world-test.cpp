@@ -113,6 +113,36 @@ int main(int argc,char **argv)try{
     frame.draws={spriteDraw};require(resources.display(frame).size()==1,"Unmapped identity poisoned valid World binding");
   }
   {
+    const auto input=store(root);assets::ResourceManager manager(input);legacy::SnapshotResources bindings(input,manager);
+    const assets::ResourceId id{assets::ResourceKind::ui,"prepared/body"};
+    manager.bind(id,{assets::ResourceImageFormat::sprite,"body.spr",{},{},{}});
+    bindings.addPrepared(assets::prepareResource(manager.request(id)),QCryptographicHash::hash(raw,QCryptographicHash::Sha256).toHex());
+    require(manager.stats().loads==1&&manager.stats().residentResources==1,"Pinned indexing did not retain its decoded resource");
+    legacy::SnapshotFrame frame{bool(r[17]),{reinterpret_cast<const char*>(raster.payload.data()),int(r[19])}};
+    bindings.resolve(frame);bindings.resolve(frame);
+    require(manager.stats().loads==1&&bindings.stats().visualChecks==1&&bindings.stats().visualReuses==1,"First resolve repeated pinned decode or omitted revision verification");
+    manager.unload(id);write(root,"body.spr",sprite(false,0x07e0));
+    rejected([&]{bindings.resolve(frame);});
+    manager.unload(id);write(root,"body.spr",Bytes(raw.begin(),raw.end()));bindings.resolve(frame);
+    require(bindings.stats().visualChecks==3,"Reload did not recheck prepared indexing");
+    const assets::ResourceId late{assets::ResourceKind::ui,"prepared/late"};
+    manager.bind(late,{assets::ResourceImageFormat::sprite,"body.spr",{},{},{}});
+    bindings.addPrepared(assets::prepareResource(manager.request(late)),QCryptographicHash::hash(raw,QCryptographicHash::Sha256).toHex());
+    manager.unload(late);write(root,"body.spr",sprite(false,0x07e0));
+    rejected([&]{bindings.resolve(frame);}); // The unrequested alias must re-pin.
+    manager.unload(late);write(root,"body.spr",Bytes(raw.begin(),raw.end()));bindings.resolve(frame);
+    const auto indexed=sprite(true);auto other=indexed;other[27]=0;other[29]=255;
+    write(root,"prepared-indexed.spr",indexed);write(root,"prepared-other.spr",other);
+    for(const auto& item:std::vector<std::pair<std::string,Bytes>>{{"prepared-indexed.spr",indexed},{"prepared-other.spr",other}}){
+      const QByteArray data(reinterpret_cast<const char*>(item.second.data()),int(item.second.size()));
+      const assets::ResourceId candidate{assets::ResourceKind::ui,item.first=="prepared-indexed.spr"?"prepared/indexed":"prepared/other"};
+      manager.bind(candidate,{assets::ResourceImageFormat::sprite,item.first,{},{},{}});
+      bindings.addPrepared(assets::prepareResource(manager.request(candidate)),QCryptographicHash::hash(data,QCryptographicHash::Sha256).toHex());
+    }
+    legacy::SnapshotFrame indexedFrame{true,QByteArray(reinterpret_cast<const char*>(indexed.data()+804),53)};
+    rejected([&]{bindings.resolve(indexedFrame);});bindings.resolve(indexedFrame,true);
+  }
+  {
     assets::ResourceManager resources(store(root));const render::Image background{5,3,std::vector<std::uint32_t>(15,0x1234)};
     render::SceneRenderer scene(renderer,resources,background);scene.adoptNativeCanvas(background);
     auto invalid=background;invalid.pixels[0]=65536;rejected([&]{scene.adoptNativeCanvas(invalid);});require(scene.read().pixels==background.pixels,"Malformed handoff mutated native canvas");

@@ -27437,6 +27437,133 @@
           "general installed-asset equivalence"
         ]
       }
+    },
+    {
+      "id": "NR.world-prepared-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Pinned World preparation retention and on-demand visual indexing",
+      "scope": "Intentional native resource admission policy: retain the exact pinned SPR preparation used for raw identity indexing; derive visual identities on demand against its immutable resident revision, re-pin never-requested frames after reload, preserve alias/palette and revision refusals. Saved World32 checkpoint/CPU-GPU parity and cold/warm latency budgets only; no live pacing or new original comparison. Requests, sequential preparation and ordered adoption remain on the owning renderer thread. Explicitly owned indexed palettes waive only established palette ambiguity, so unused alternate palette aliases need no visual expansion. Reusable per-thread SHA-256 context preserves exact digest inputs/results while avoiding repeated provider lookup.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-world-prepared-admission.md"
+      ],
+      "implementation": [
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp"
+      ],
+      "tests": [
+        "tests/native-render-soak.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tools/test-native-render-soak.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/canvas-world-test.cpp",
+        "tests/native-render-soak.cpp",
+        "tests/native-render-soak/CMakeLists.txt",
+        "tests/resource-fixtures.hpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/original-manifest.sh"
+      ],
+      "validation_domain": "Frozen optimized saved owned World32 corpus; eight Mesa workers; first-queue median<=250ms/max<=350ms, warm median50/p95100/max250ms, growth32MiB; Debug alias/reload, cache and malformed batch fixtures.",
+      "evidence": [
+        "NR.world-prepared-admission.headless-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -52630,6 +52757,73 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NR.world-prepared-admission.headless-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh optimized frozen-source12-session owned World32 replay:384 CPU/GPU completions,14688 saved checkpoint digests; retained pinned preparation, lazy visual indexing and reusable per-thread SHA context. Cold median118.98/max138.89ms, warm median38.83/p9547.28/max70.48ms, resident growth11.96MiB; three Debug handoff/reload/palette, raster and atlas fixtures pass. Initialization median539.99ms reported separately. No live execution or new original comparison.",
+      "record": "research/runtime/native-world-prepared-admission-20261010.json",
+      "sha256": "03eb25348ea80d0e10a3bae24b54bac1b016a4b6244513281a7cf010f02f3e30",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/cold_budget_enforced",
+          "equals": true
+        },
+        {
+          "pointer": "/totals/world_queues",
+          "equals": 384
+        },
+        {
+          "pointer": "/totals/checkpoint_comparisons",
+          "equals": 14688
+        },
+        {
+          "pointer": "/assertion_enabled_tests_passed",
+          "equals": 3
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        },
+        {
+          "pointer": "/debug_compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -59913,6 +60107,23 @@
       "evidence": [
         "RS.word-clip-shadow.live-20261010"
       ]
+    },
+    {
+      "id": "native-world-prepared-admission-20261010",
+      "subsystem": "native_rendering",
+      "level": "headless",
+      "behaviors": [
+        "NR.world-prepared-admission"
+      ],
+      "tests": [
+        "tests/native-render-soak.cpp",
+        "tools/test-native-render-soak.py",
+        "tests/canvas-world-test.cpp"
+      ],
+      "scope": "Frozen optimized saved owned World32 corpus; eight Mesa workers; first-queue median<=250ms/max<=350ms, warm median50/p95100/max250ms, growth32MiB; Debug alias/reload, cache and malformed batch fixtures.",
+      "evidence": [
+        "NR.world-prepared-admission.headless-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -60241,8 +60452,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-word-clip-shadow-20261010.json",
-    "sha256": "d58c636b2edc2ce3f37a81f9751248dcf4671a8373fa65c574a8077370910c5e"
+    "path": "research/runtime/coverage/source-index-world-prepared-20261010.json",
+    "sha256": "56ac339dca181f9aa98cea503a7c864fe63de6b4685edb932d6bc20504bac3f5"
   },
   "claim_bindings_required": true
 }
