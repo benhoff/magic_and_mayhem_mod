@@ -30,6 +30,15 @@ freshness come from the current register. Open contracts for exact scope and
 evidence; browse rendering gaps for both recovered behavior and native policies.
 Bookmark `#view=rendering`; existing view bookmarks continue to work.
 
+For API/producer denominators rather than equally counted dashboard milestones,
+use `python3 tools/report-rendering-coverage.py`. The
+[rendering crosswalk](../../research/runtime/rendering-coverage.md) separates
+scoped code, independent original/driver comparisons and actual bypass across
+the twelve required surface categories and nine binary drawing families. It
+retains the newer queues1..16 World takeover executions separately. Those support
+percentages are not full-category completion or effort estimates; audit errors
+suppress current readiness while preserving historical scoped results.
+
 The **Major tracks** view groups movement, native scene controls,
 rendering/animation, effects/lighting, audio, assets/persistence, menus/campaign,
 and core gameplay/spells. Planned commander orders, veterancy and mana changes

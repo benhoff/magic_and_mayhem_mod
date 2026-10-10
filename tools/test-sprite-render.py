@@ -24,6 +24,7 @@ def sha(data):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--preview', type=Path, default=REPO / 'working/build/sprite-render/mnm-sprite-preview')
+    parser.add_argument('--claims', type=Path, help='Prospective source/scope declaration for this execution')
     args = parser.parse_args()
     preview = args.preview.resolve()
     source_paths = ['renderer/blit.cpp', 'renderer/blit.hpp', 'renderer/sprites/sprite.cpp',
@@ -32,6 +33,14 @@ def main():
                     'tests/sprite-render-test.cpp', 'tools/test-sprite-render.py',
                     'tools/compare-mmsprite-binary.py', 'tests/sprite-binary-reference.cpp']
     sources = {path: sha((REPO / path).read_bytes()) for path in source_paths}
+    declaration = json.loads(args.claims.read_text()) if args.claims else {'claims': [], 'sources': {}}
+    for path, expected in declaration['sources'].items():
+        target = (REPO / path).resolve()
+        if Path(path).is_absolute() or not target.is_relative_to(REPO) or target.relative_to(REPO).parts[0] in {'original', 'working', '.git'}:
+            raise ValueError('Unsafe prospective source: ' + path)
+        if sha(target.read_bytes()) != expected:
+            raise ValueError('Prospective source changed: ' + path)
+        sources[path] = expected
     executable_hash = sha(preview.read_bytes())
     parent = REPO / 'working/tests/sprite-render'
     parent.mkdir(parents=True, exist_ok=True)
@@ -91,7 +100,12 @@ def main():
                 raise ValueError(f'Native OpenGL/original draw mismatch: {case["path"]}:{case["frame"]}')
             rgba = bytearray()
             for (pixel,) in struct.iter_unpack('<H', original):
-                rgba.extend((((pixel >> 11) & 31) * 255 // 31, ((pixel >> 5) & 63) * 255 // 63, (pixel & 31) * 255 // 31, 255))
+                # Independent Surface2/DC measurements establish bit replication
+                # for all 32/64/32 channel levels (surface-dib-ddraw.md). The old
+                # floor-scaled policy is a distinct, superseded expectation.
+                red, green, blue = pixel >> 11, (pixel >> 5) & 63, pixel & 31
+                rgba.extend(((red << 3) | (red >> 2), (green << 2) | (green >> 4),
+                             (blue << 3) | (blue >> 2), 255))
             if sha(rgba) != actual['presentation_rgba_sha256']:
                 raise ValueError('OpenGL RGB565 presentation differs from CPU expansion')
             png = Path(entry['preview']).read_bytes()
@@ -111,13 +125,15 @@ def main():
                 raise ValueError(f'Installed input changed after rendering: {path}')
         if sha(preview.read_bytes()) != executable_hash or any(sha((REPO / path).read_bytes()) != expected for path, expected in sources.items()):
             raise ValueError('Preview executable or experiment sources changed during run')
-        report = {'validation': 'offline native loading and OpenGL rendering against isolated original x86 draws',
+        report = {'success': True, 'sources_stable': True, 'claims': declaration['claims'],
+                  'validation': 'offline native loading and OpenGL rendering against isolated original x86 draws',
                   'evidence_directory': str(evidence.relative_to(REPO)),
                   'reference_directory': str(reference_dir.relative_to(REPO)),
                   'reference_report_sha256': sha(reference_bytes), 'reference_executable_sha256': baseline['executable_sha256'],
                   'preview_executable_sha256': executable_hash, 'source_sha256': sources, 'inputs_unchanged': True,
                   'original_palette_builder_executed': False, 'live_game_validated': False,
                   'indexed_conversion_policy': 'embedded RGB >> 3/2/3 into unshaded RGB565',
+                  'presentation_policy': 'RGB565 5/6/5 bit replication; independently measured Surface2/DC expansion',
                   'driver': {key: rendered[key] for key in ('vendor', 'renderer', 'version')},
                   'summary': {'frames': len(cases), 'indexed_frames': sum(c['storage'] == 'indexed8' for c in cases),
                               'direct_frames': sum(c['storage'] == 'rgb565' for c in cases),

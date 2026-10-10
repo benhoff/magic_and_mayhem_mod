@@ -4465,7 +4465,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native sprite decoding and drawing",
-      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result.",
+      "scope": "Owned native presentation and independent output policy; evidence for a scene is scoped to its supplied inputs. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Fresh installed-frame regression uses independent original RGB565 draws and the Surface2/DC-measured bit-replicated presentation policy. Its 91 sampled frames retain indexed embedded-palette/native policy, empty-frame and resource lifetime checks; this is not complete producer equivalence or live replacement.",
       "confidence": "provisional",
       "original": [],
       "documents": [
@@ -4479,11 +4479,13 @@
       ],
       "tests": [
         "tests/sprite-render-test.cpp",
-        "tests/sprite-binary-reference.cpp"
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-sprite-render.py"
       ],
       "evidence": [
         "REVIEW.NR.sprites",
-        "NR.surface-colors.rgb565-dc.regressions-20261006"
+        "NR.surface-colors.rgb565-dc.regressions-20261006",
+        "NR.sprites.installed-bitrep-20261010"
       ],
       "status": {
         "understanding": "partial",
@@ -4491,7 +4493,142 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/animation_inspect_main.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/bmp_inspect_main.cpp",
+        "assets/compare_main.cpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/cursor.cpp",
+        "assets/cursor.hpp",
+        "assets/cursor_inspect_main.cpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/dat_inspect_main.cpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/effect_lighting.cpp",
+        "assets/effect_lighting.hpp",
+        "assets/evt.cpp",
+        "assets/evt.hpp",
+        "assets/evt_inspect_main.cpp",
+        "assets/fp.cpp",
+        "assets/fp.hpp",
+        "assets/fp_inspect_main.cpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/jpeg_inspect_main.cpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/map_inspect_main.cpp",
+        "assets/mps.cpp",
+        "assets/mps.hpp",
+        "assets/mps_inspect_main.cpp",
+        "assets/nod.cpp",
+        "assets/nod.hpp",
+        "assets/nod_inspect_main.cpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/pcx_inspect_main.cpp",
+        "assets/persistence.hpp",
+        "assets/persistence_inspect_main.cpp",
+        "assets/persistence_internal.hpp",
+        "assets/profile.cpp",
+        "assets/profile.hpp",
+        "assets/region_recipe.cpp",
+        "assets/region_recipe.hpp",
+        "assets/region_recipe_inspect_main.cpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sft_inspect_main.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_inspect_main.cpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/tag_inspect_main.cpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "assets/text.cpp",
+        "assets/text.hpp",
+        "assets/text_inspect_main.cpp",
+        "assets/wbt.cpp",
+        "assets/wbt.hpp",
+        "assets/wizard.cpp",
+        "assets/wizard.hpp",
+        "assets/wizard_inspect_main.cpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/CMakeLists.txt",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/minimap/overlays/CMakeLists.txt",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/replay_main.cpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/preview_main.cpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/preview_main.cpp",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/word-raster/CMakeLists.txt",
+        "renderer/sprites/word_raster.c",
+        "renderer/sprites/word_raster.h",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tools/compare-mmsprite-binary.py"
+      ]
     },
     {
       "id": "NR.sprite_scene",
@@ -26280,6 +26417,88 @@
         "tools/world_channel.py",
         "tools/world_refusal.py"
       ]
+    },
+    {
+      "id": "TOOL.rendering-coverage",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Reviewed rendering API and producer support report",
+      "scope": "Read-only reconciliation of all required surface matrix categories and inventoried drawing families with explicitly reviewed scoped code, original-executable versus standalone-driver subset comparisons, bounded World entry counts and actual bypass proof. Source/scope/scenario-bound current validation is suppressed on audit errors. Categories overlap and partial support never becomes full-category completion, effort or overall replacement. Synthetic reporter guard tests validate accounting semantics only; engine equivalence, adequacy of discovery/mappings and new live execution are outside scope.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/rendering-coverage.md",
+        "research/runtime/rendering-coverage-scope.json",
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-surface-operation-matrix.json",
+        "docs/live-drawing-replacement.md"
+      ],
+      "implementation": [
+        "tools/rendering_coverage.py",
+        "tools/report-rendering-coverage.py"
+      ],
+      "tests": [
+        "tests/test-rendering-coverage.py"
+      ],
+      "validation_dependencies": [
+        "tools/coverage_audit.py",
+        "tools/coverage_claims.py",
+        "research/runtime/rendering-coverage-scope.json",
+        "research/runtime/native-surface-operation-matrix.json"
+      ],
+      "evidence": [
+        "TOOL.rendering-coverage.guards-20261010",
+        "TOOL.rendering-coverage.guards-final-20261010",
+        "TOOL.rendering-coverage.world32-guards-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-family-regressions",
+      "subsystem": "tooling",
+      "kind": "native_policy",
+      "title": "Bounded drawing-family regression runner",
+      "scope": "Reproducible source-bound execution of existing surface/copy/fill/access/DC, terrain submission, sprite original/GPU, effect ANI state, native menu/media and optional direct-word takeover fixtures across all nine inventoried families. The wrapper records per-case outcomes, immutable logs and source stability. Tests of transport or upstream state do not validate complete producers. No new family admission or full/live replacement, physical driver, effect-to-pixel or original GDI/text/movie contract claim.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/drawing-family-validation.md"
+      ],
+      "implementation": [
+        "tools/test-drawing-families.py"
+      ],
+      "tests": [
+        "tools/check-native-surface-backend.py",
+        "tools/check-native-surface-ownership.py",
+        "tools/check-native-surface-formats.py",
+        "tools/test-render-drawing-recovery.py",
+        "tools/test-terrain-submission.py",
+        "tools/test-effect-animation-binding.py",
+        "tools/test-sprite-render.py",
+        "tools/test-native-media.py",
+        "tests/menu-font-test.cpp",
+        "tests/menu-sprite-test.cpp",
+        "tests/menu-image-test.cpp",
+        "tools/capture-scene-game.py",
+        "tools/test-word-sprites.py"
+      ],
+      "validation_dependencies": [],
+      "evidence": [
+        "TOOL.drawing-families.regressions-negative-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -50140,6 +50359,157 @@
           "equals": []
         }
       ]
+    },
+    {
+      "id": "TOOL.rendering-coverage.guards-20261010",
+      "kind": "native_integration",
+      "scope": "Synthetic rendering reporter correctness only: scoped category support, immutable proof verification, explicit domains, current versus historical claims, denominators and safe output boundaries. No new original execution, driver or engine comparison, UI browser run or drawing bypass.",
+      "record": "research/runtime/rendering-coverage-tests-20261010.json",
+      "sha256": "8d8486cdc96d7d5b00a6ffb6686c9f2eb0497a1ef085634ea9cb52476c60b232",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests",
+          "equals": 14
+        }
+      ]
+    },
+    {
+      "id": "TOOL.rendering-coverage.guards-final-20261010",
+      "kind": "native_integration",
+      "scope": "Final synthetic reporter guard execution including preservation of wholly unassigned render dispatch tables. Accounting correctness only; no new engine, original-executable or driver equivalence, live execution or replacement.",
+      "record": "research/runtime/rendering-coverage-tests-final-20261010.json",
+      "sha256": "845363ba43ce35973b24d3c737f805a4f9ebe9f9bfd4675c532da39571d66130",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests",
+          "equals": 15
+        }
+      ]
+    },
+    {
+      "id": "TOOL.rendering-coverage.world32-guards-20261010",
+      "kind": "native_integration",
+      "scope": "Reporter guard execution after admitting the reviewed finite queues1..32 execution. Accounting correctness only; no new engine execution or family replacement.",
+      "record": "research/runtime/rendering-coverage-world32-tests-20261010.json",
+      "sha256": "01a8d072d8041c29d612e3ed20e6d3a49644be3bb600a5893e56100d3f9e1abe",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests",
+          "equals": 15
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-families.regressions-negative-20261010",
+      "kind": "native_integration",
+      "scope": "Complete family-run execution surfaces one stale floor-scaled sprite presentation expectation while all other selected groups and direct-word takeover pass. Negative suite result and original source hashes retained. Corrected sprite comparison is a separate later result; this record never becomes an all-pass/current-code run.",
+      "record": "research/runtime/drawing-family-regressions-negative-20261010.json",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/changed_sources",
+          "equals": []
+        },
+        {
+          "pointer": "/cases/9/id",
+          "equals": "sprite-original-gpu"
+        },
+        {
+          "pointer": "/cases/9/success",
+          "equals": false
+        },
+        {
+          "pointer": "/cases/14/success",
+          "equals": true
+        }
+      ],
+      "sha256": "120acf7ab49a1c67dce361082d7c83f11bf14b9cf523ee361f448a4637a40042"
+    },
+    {
+      "id": "NR.sprites.installed-bitrep-20261010",
+      "kind": "native_integration",
+      "scope": "Current-source native SPR loading/GPU rendering of 91 sampled installed frames versus independent original RGB565 draws; bit-replicated RGBA presentation follows separately measured Surface2/DC expansion. Fourteen indexed frames use the stated embedded-palette policy. No original producer/driver physical/live replacement or complete scene equivalence.",
+      "record": "research/runtime/native-sprite-bitrep-regression-20261010.json",
+      "sources_pointer": "/source_sha256",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/summary/original_draw_matches",
+          "equals": 91
+        },
+        {
+          "pointer": "/summary/presentation_matches",
+          "equals": 91
+        },
+        {
+          "pointer": "/summary/remaining_surfaces",
+          "equals": 0
+        }
+      ],
+      "sha256": "dfa2b56b2b33340fb7db463e3cfd6c254237db5640c8ae57fb7efcb2c25418a8"
     }
   ],
   "classifications": [],
@@ -57649,8 +58019,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-world32-validated-20261010.json",
-    "sha256": "732f2aa6949d1af6e374d38204f2f932682242cf0cadeffb54c15ff4d06d78af"
+    "path": "research/runtime/coverage/source-index-drawing-families-tested-final-20261010.json",
+    "sha256": "3f28bdb942908caca394550191d689a7160cbea123012584dae53a3d32bdc01a"
   },
   "claim_bindings_required": true
 }

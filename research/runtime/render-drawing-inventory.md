@@ -4,6 +4,18 @@ The [complete live drawing replacement plan](../../docs/live-drawing-replacement
 owns cross-subsystem scope, implementation order and launcher readiness. This
 inventory owns drawing-route classifications and their build-specific evidence.
 
+## Reconciled support accounting — 2026-10-10
+
+The [rendering coverage crosswalk](rendering-coverage.md) now connects all nine
+inventoried families and twelve required surface categories to reviewed scoped
+code and selected independent comparisons. It separately records newer complete
+startup World raster-body bypass evidence: ten of thirteen admitted entries in
+two queues1..16 executions, and nine in a later identity-cache execution. These
+are per-experiment whitelist counts, not an exhaustive binary API percentage.
+Original terrain traversal, outside-World UI/GDI producers and full-session
+replacement remain separate. The static inventory and historical findings below
+retain their recorded dates, inputs and limitations.
+
 ## Current rendering inventory — 2026-10-06
 
 Scope: No-CD SHA-256

@@ -1,5 +1,21 @@
 # Native SPR upload and OpenGL rendering
 
+## Regression follow-up — 2026-10-10
+
+The [drawing-family validation](drawing-family-validation.md) found that
+`tools/test-sprite-render.py` retained the floor-scaled RGB565 expectation after
+the [independently measured bit-replication policy](surface-dib-ddraw.md) landed.
+The test now uses that driver-derived expansion. Its
+[fresh installed-frame execution](native-sprite-bitrep-regression-20261010.json)
+matches all 91 independent original RGB565 outputs and presentation hashes,
+including 14 indexed and 77 direct frames, two empty frames and zero leaked
+surfaces. The failed prior suite remains separate and unchanged. Rendering code,
+producer admission and live replacement scope did not change; indexed embedded
+palette policy, original layout/callers and supported-session behavior remain
+bounded as described below.
+
+## Historical implementation
+
 Rendering asset chunk 3, reviewed 2026-10-04. The version-4 native SPR loader
 now feeds owned OpenGL surfaces through a small sprite adapter and an offline
 preview CLI. This milestone renders selected assets without Wine; it does not
