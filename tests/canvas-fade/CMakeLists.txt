@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.16)
+project(mnm_canvas_fade LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Gui)
+foreach(name native test)
+  add_executable(canvas-fade-${name} ../canvas-fade-${name}.cpp ../../renderer/canvas_sequence.cpp
+    ../../renderer/minimap/minimap.cpp ../../renderer/minimap/overlays.cpp)
+  target_link_libraries(canvas-fade-${name} PRIVATE Qt6::Gui)
+  target_compile_options(canvas-fade-${name} PRIVATE -Wall -Wextra -Werror -pedantic)
+endforeach()

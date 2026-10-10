@@ -4124,3 +4124,58 @@ Committed range `577d293..eb3cd18` has 18 file and 28 behavior transitions with
 zero unresolved receipts. No live hook is installed: process-memory/lifetime
 admission, bounded live capture/replay, GPU glyph takeover and higher text
 layout/reset/lifecycle remain open.
+
+
+### 2026-10-10 other pixel producers
+
+- `RS.font-line-layout`: unchanged NoCD rectangle text4a5ce0, height-limited
+  text4a6190 and measurement4a6630 match16,480fixtures and135,004,160RGB565words,
+  full cursor/contour state, line triples and consumed pointers. Source/object/
+  padding guards and9atomic native refusals pass withASan/UBSan. Owned SFT
+  composition stages whole text operations. Bounded malformed-source admission
+  is native policy; allocation/lifetime, arbitrary ABI/FP and higher-text live
+  bypass remain pending. See [text layout](font-line-layout.md).
+- `NR.canvas-image-production`: memory-DIB cropping now matches frozen independent
+  Wine DC output instead of refusing smaller canvases. Positioned BMP uses the
+  same owned quantization/cropping helper.288fixtures/5,387,712words and288atomic
+  malformed-format refusals pass. This is current native integration against
+  historical driver pixels, not fresh wrapper/driver execution or live bypass.
+  See [image production](native-canvas-image-production.md).
+- `RS.canvas-fade-span`: original58ed80 ignores pitch and modifies exactly
+  2*floor(width/2)*height contiguousWORDs; formatzero selects565, nonzero555.
+  Native physical-plane reconstruction and logical canvas projection match
+  972fixtures/1,738,592physical+visiblewords.10atomic refusals andASan/UBSan pass.
+  Private Lock/Unlock adapters bound the comparison; real driver failures,
+  wrapper ABI and native writeback/suppression remain pending. See [fade](canvas-fade-span.md).
+- `NR.movie-frame-production`: owned opaqueRGBA and full sequence hashes,
+  explicit limitedBT.601YUV420P conversion, full playback and cancellation pass
+  against independent source decoding:3,868frames/888,459,264pixels, zero channel
+  differences, all five installed movies plus changing synthetic alpha frames.
+  Reference normalization policy is explicit; other colorspaces/ranges,
+  original DirectShow/placement/control and audible devices are excluded.
+  See [movie pixels](native-movie-frame-production.md).
+- `NR.movie-enabled-startup`: fixed native broker admission for original
+  `.\fmv/intro0.avi`/intro1 paths; a single leading current-directory component
+  is accepted while traversal/interior dot components remain refused. Both
+  enabled intros complete natively (1,777+1,004frames), followed by at least
+  three original published frames. Native media completion/skip/path/ABI
+  regressions also pass. This is bounded live observation; original post-movie
+  drawing, active World transition and full-session ownership remain separate.
+  See [enabled intros](native-enabled-movie-startup.md).
+
+Prospective source/contract/scenario bindings accompany the execution reports.
+Failed and superseded experiments are preserved separately. Current comparisons
+supersede only their declared scopes; shared-source edits leave older unrelated
+surface/world/media evidence historical, without implying current equivalence.
+The committed-history review from577d293through1abdfe3 checks43file transitions
+and56affected behavior transitions, with no missing exact receipts. Complete
+live drawing replacement remains unavailable: unclassified writers, wider
+player journeys, admitted suppression/state preservation, recovery and sustained
+World delivery remain explicit boundaries in [the replacement plan](../../docs/live-drawing-replacement.md).
+
+The final source-bound [live producer shadow](native-canvas-producers-final-shadow-20261010.json)
+passes four startup World returns, 954 completed canvases/422875312RGB565pixels,
+2002 positive glyph calls and allGPUmirrors, zero differences. It exercises
+source BMP/JPEG/PCX, copies, panels, fades, HUD rasters, minimap and markers.
+Original producer bodies remain active; higher text state is isolated-comparison
+only, and memory-DIB/positioned-image branches retain their separate corpus scope.

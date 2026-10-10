@@ -28372,6 +28372,7 @@
         "protocols/include/mnm/world_producer_bypass_v1.h",
         "protocols/include/mnm/world_raster_batch_v3.h",
         "protocols/include/mnm/world_rolling_v1.h",
+        "reconstruction/rendering/fade_span.hpp",
         "renderer/CMakeLists.txt",
         "renderer/bitmap_dc.hpp",
         "renderer/blit.cpp",
@@ -28473,7 +28474,8 @@
         "tools/world_refusal.py"
       ],
       "evidence": [
-        "NR.font-glyph-live-shadow.live-20261010"
+        "NR.font-glyph-live-shadow.live-20261010",
+        "NR.font-glyph-live-shadow.live-producers-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -28586,6 +28588,198 @@
           "pixel operation",
           "FP/live admission"
         ]
+      }
+    },
+    {
+      "id": "RS.font-line-layout",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "NoCD bounded higher byte text line layout and drawing",
+      "scope": "Selected 4a5ce0 rectangle draw, 4a6190 height-limited draw and 4a6630 measurement: byte contours, signed32 wrapping arithmetic, 32-row reset, word backtracking, alignment, height cutoffs, line table and RGB565 glyph plans. Bounded terminated strings, valid owned SFTv3. Unsafe stack/pointer overrun paths are native refusals, not recovered failure equivalence. No font allocation/lifetime, general codepages, x87/Win32 ABI or live entry replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4873440,
+          "scope": "Selected higher byte text layout entry; bounded original comparison pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4874640,
+          "scope": "Selected higher byte text layout entry; bounded original comparison pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4875824,
+          "scope": "Selected higher byte text layout entry; bounded original comparison pending."
+        }
+      ],
+      "documents": [
+        "research/runtime/font-line-layout.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/font_layout.cpp",
+        "reconstruction/rendering/font_layout.hpp",
+        "compat/legacy/font_layout.cpp",
+        "compat/legacy/font_layout.hpp"
+      ],
+      "tests": [
+        "tests/font-layout-native.cpp",
+        "tests/font-layout-reference.cpp",
+        "tests/font-layout-test.cpp",
+        "tools/test-font-line-layout.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "compat/legacy/font_text.cpp",
+        "compat/legacy/font_text.hpp",
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "tests/font-byte/CMakeLists.txt",
+        "tests/font-layout/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tools/export-font-text-support.py",
+        "tools/ghidra/ExportSftSupport.java"
+      ],
+      "evidence": [
+        "RS.font-line-layout.comparison-20261010",
+        "RS.font-line-layout.native-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.movie-frame-production",
+      "subsystem": "qt-shell",
+      "kind": "native_policy",
+      "title": "Owned opaque AVI movie frames and complete bounded playback",
+      "scope": "Qt FFmpeg-backed movie decoding to owned opaque RGBA frames; complete sequence diagnostics, PCM output and bounded complete/cancel/error outcomes. Native media ownership callbacks. This is native policy, not equivalence to original DirectShow, original placement/control modes, audible devices or complete live drawing replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-movie-frame-production.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/native_playback.hpp"
+      ],
+      "tests": [
+        "tools/test-native-movie-frames.py",
+        "tests/native-movie-frame-test.cpp",
+        "tests/native-movie-frames/CMakeLists.txt"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/media_cli.cpp",
+        "apps/qt-shell/media_cli.hpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "protocols/include/mnm/media_v1.h"
+      ],
+      "evidence": [
+        "NR.movie-frame-production.native-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "comparison": "Exact synthetic changing RGBA frames after deliberate opaque-alpha policy; five installed AVI clips to EOF, decoded frame count/order and every pixel matching independent FFmpeg-normalized YUV420P and independent fixed limited BT.601 RGB calculation. Full delivered byte hash and retained first-frame ownership; cancellation at third frame. Empty AVI slots are not decoded frames.",
+        "excluded": [
+          "Original DirectShow equivalence",
+          "Original placement/control modes",
+          "Live movie-to-menu/World return",
+          "Audible device output",
+          "Whole-session replacement"
+        ]
+      }
+    },
+    {
+      "id": "NR.canvas-image-production",
+      "subsystem": "rendering",
+      "kind": "native_policy",
+      "title": "Owned clipped DIB and positioned BMP canvas production",
+      "scope": "RGB565 source-only CanvasProducerReplay DIB at origin and positioned BMP: canonical positive 40-byte BI_RGB 1/4/8-bit indexed and 24-bit BGR inputs, palette/row orientation, destination cropping and retained borders. Compare memory-DIB output with frozen independent Wine Surface2 GetDC/GDI/ReleaseDC RGB565 captures. Positioned BMP uses native crop policy with independently projected source placement. No live wrapper/ABI bypass, indexed destinations, DC clipping/palettes, alternate headers/compression or DirectDraw failure semantics.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-canvas-image-production.md"
+      ],
+      "implementation": [
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp"
+      ],
+      "tests": [
+        "tests/canvas-image-producer-test.cpp",
+        "tests/canvas-image-producers/CMakeLists.txt",
+        "tools/test-canvas-image-producers.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "research/runtime/surface-dib-ddraw-capture-20261006.json",
+        "tests/fixtures/surfaces/original-sentinel-corpus.json",
+        "tests/fixtures/surfaces/original-sentinel.json.gz",
+        "tests/fixtures/surfaces/surface-dib-ddraw.json.gz",
+        "tests/font-byte/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "NR.canvas-image-production.native-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
       }
     },
     {
@@ -28710,6 +28904,548 @@
           "higher layout/reset/lifecycle",
           "GPU glyph takeover"
         ]
+      }
+    },
+    {
+      "id": "NR.movie-enabled-startup",
+      "subsystem": "qt-shell",
+      "kind": "native_policy",
+      "title": "Enabled native startup movies and original presentation return",
+      "scope": "Bounded NoCD startup with PlayFMV enabled in disposable Wine/Xvfb installation, existing control-zero movie hook and Qt media broker, both installed intro clips complete natively, subsequent original frame publication resumes. Source-bound movie frame reports, media acceptance/completion and staged binary hashes. Observed integration only; no original DirectShow pixel/state equivalence, arbitrary control/placement, active World ownership, audible device or complete rendering replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-enabled-movie-startup.md"
+      ],
+      "implementation": [
+        "runtime/render/media_bridge.h",
+        "apps/qt-shell/media_broker.cpp",
+        "apps/qt-shell/media_broker.hpp",
+        "apps/qt-shell/native_playback.cpp",
+        "apps/qt-shell/native_playback.hpp",
+        "apps/qt-shell/media_cli.cpp"
+      ],
+      "tests": [
+        "tools/test-native-enabled-movies.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/../../protocols/include/mnm/frame_v1.h",
+        "apps/qt-shell/../../protocols/include/mnm/input_v1.h",
+        "apps/qt-shell/../../protocols/include/mnm/media_v1.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v1.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v10.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v11.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v12.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v2.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v3.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v4.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v5.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v6.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v7.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v8.h",
+        "apps/qt-shell/../../protocols/include/mnm/menu_v9.h",
+        "apps/qt-shell/../../protocols/include/mnm/render_command_ring.h",
+        "apps/qt-shell/../../protocols/include/mnm/render_commands_v1.h",
+        "apps/qt-shell/../../protocols/include/mnm/render_commands_v2.h",
+        "apps/qt-shell/../../protocols/include/mnm/render_control_v1.h",
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/audio_cli.cpp",
+        "apps/qt-shell/audio_cli.hpp",
+        "apps/qt-shell/audio_session.cpp",
+        "apps/qt-shell/audio_session.hpp",
+        "apps/qt-shell/battle_result_widget.cpp",
+        "apps/qt-shell/battle_result_widget.hpp",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/character_screen_widget.cpp",
+        "apps/qt-shell/character_screen_widget.hpp",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/command_replay.cpp",
+        "apps/qt-shell/command_replay.hpp",
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "apps/qt-shell/engine_preferences_store.hpp",
+        "apps/qt-shell/frame_stream.cpp",
+        "apps/qt-shell/frame_stream.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/grimoire_assets.cpp",
+        "apps/qt-shell/grimoire_assets.hpp",
+        "apps/qt-shell/grimoire_widget.cpp",
+        "apps/qt-shell/grimoire_widget.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "apps/qt-shell/input_forwarder.cpp",
+        "apps/qt-shell/input_forwarder.hpp",
+        "apps/qt-shell/input_state.cpp",
+        "apps/qt-shell/input_state.hpp",
+        "apps/qt-shell/live_battle_menu_controller.cpp",
+        "apps/qt-shell/live_battle_menu_controller.hpp",
+        "apps/qt-shell/live_battle_menu_test.cpp",
+        "apps/qt-shell/live_campaign_defeat_controller.cpp",
+        "apps/qt-shell/live_campaign_defeat_controller.hpp",
+        "apps/qt-shell/live_campaign_defeat_test.cpp",
+        "apps/qt-shell/live_campaign_mini_test.cpp",
+        "apps/qt-shell/live_campaign_preferences_test.cpp",
+        "apps/qt-shell/live_campaign_quit_test.cpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_menu_test.cpp",
+        "apps/qt-shell/live_menu_test.hpp",
+        "apps/qt-shell/live_mini_menu_controller.cpp",
+        "apps/qt-shell/live_mini_menu_controller.hpp",
+        "apps/qt-shell/live_preferences_display_test.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.cpp",
+        "apps/qt-shell/live_preferences_menu_controller.hpp",
+        "apps/qt-shell/live_preferences_menu_test.cpp",
+        "apps/qt-shell/live_preferences_restore_test.cpp",
+        "apps/qt-shell/live_region_enter_test.cpp",
+        "apps/qt-shell/live_region_entry_controller.cpp",
+        "apps/qt-shell/live_region_entry_controller.hpp",
+        "apps/qt-shell/live_region_entry_test.cpp",
+        "apps/qt-shell/live_result_menu_controller.cpp",
+        "apps/qt-shell/live_result_menu_controller.hpp",
+        "apps/qt-shell/live_spell_menu_controller.cpp",
+        "apps/qt-shell/live_spell_menu_controller.hpp",
+        "apps/qt-shell/load_game_widget.cpp",
+        "apps/qt-shell/load_game_widget.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/main_menu_widget.cpp",
+        "apps/qt-shell/main_menu_widget.hpp",
+        "apps/qt-shell/map_selection_widget.cpp",
+        "apps/qt-shell/map_selection_widget.hpp",
+        "apps/qt-shell/media_cli.hpp",
+        "apps/qt-shell/menu_assets.cpp",
+        "apps/qt-shell/menu_assets.hpp",
+        "apps/qt-shell/menu_audio_controller.cpp",
+        "apps/qt-shell/menu_audio_controller.hpp",
+        "apps/qt-shell/menu_audio_preferences.hpp",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/menu_fonts.cpp",
+        "apps/qt-shell/menu_fonts.hpp",
+        "apps/qt-shell/menu_music_controller.cpp",
+        "apps/qt-shell/menu_music_controller.hpp",
+        "apps/qt-shell/menu_music_devices.hpp",
+        "apps/qt-shell/menu_music_output.cpp",
+        "apps/qt-shell/menu_preview.cpp",
+        "apps/qt-shell/menu_preview.hpp",
+        "apps/qt-shell/menu_sprites.cpp",
+        "apps/qt-shell/menu_sprites.hpp",
+        "apps/qt-shell/mini_menu_widget.cpp",
+        "apps/qt-shell/mini_menu_widget.hpp",
+        "apps/qt-shell/multiplayer_game_selection_widget.cpp",
+        "apps/qt-shell/multiplayer_game_selection_widget.hpp",
+        "apps/qt-shell/multiplayer_lobby_widget.cpp",
+        "apps/qt-shell/multiplayer_lobby_widget.hpp",
+        "apps/qt-shell/multiplayer_setup_widget.cpp",
+        "apps/qt-shell/multiplayer_setup_widget.hpp",
+        "apps/qt-shell/preferences_widget.cpp",
+        "apps/qt-shell/preferences_widget.hpp",
+        "apps/qt-shell/quick_battle_menu_widget.cpp",
+        "apps/qt-shell/quick_battle_menu_widget.hpp",
+        "apps/qt-shell/quick_battle_result_widget.cpp",
+        "apps/qt-shell/quick_battle_result_widget.hpp",
+        "apps/qt-shell/realm_viewer_assets.cpp",
+        "apps/qt-shell/realm_viewer_assets.hpp",
+        "apps/qt-shell/realm_viewer_visuals.cpp",
+        "apps/qt-shell/realm_viewer_visuals.hpp",
+        "apps/qt-shell/realm_viewer_widget.cpp",
+        "apps/qt-shell/realm_viewer_widget.hpp",
+        "apps/qt-shell/region_entry_widget.cpp",
+        "apps/qt-shell/region_entry_widget.hpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/save_game_widget.cpp",
+        "apps/qt-shell/save_game_widget.hpp",
+        "apps/qt-shell/single_player_battle_widget.cpp",
+        "apps/qt-shell/single_player_battle_widget.hpp",
+        "apps/qt-shell/spell_research_widget.cpp",
+        "apps/qt-shell/spell_research_widget.hpp",
+        "apps/qt-shell/spellbox_widget.cpp",
+        "apps/qt-shell/spellbox_widget.hpp",
+        "apps/qt-shell/viewport_presentation.cpp",
+        "apps/qt-shell/viewport_presentation.hpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/animation_inspect_main.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/bmp_inspect_main.cpp",
+        "assets/compare_main.cpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/cursor.cpp",
+        "assets/cursor.hpp",
+        "assets/cursor_inspect_main.cpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/dat_inspect_main.cpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/effect_lighting.cpp",
+        "assets/effect_lighting.hpp",
+        "assets/evt.cpp",
+        "assets/evt.hpp",
+        "assets/evt_inspect_main.cpp",
+        "assets/fp.cpp",
+        "assets/fp.hpp",
+        "assets/fp_inspect_main.cpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/jpeg_inspect_main.cpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/map_inspect_main.cpp",
+        "assets/mps.cpp",
+        "assets/mps.hpp",
+        "assets/mps_inspect_main.cpp",
+        "assets/nod.cpp",
+        "assets/nod.hpp",
+        "assets/nod_inspect_main.cpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/pcx_inspect_main.cpp",
+        "assets/persistence.hpp",
+        "assets/persistence_inspect_main.cpp",
+        "assets/persistence_internal.hpp",
+        "assets/profile.cpp",
+        "assets/profile.hpp",
+        "assets/region_recipe.cpp",
+        "assets/region_recipe.hpp",
+        "assets/region_recipe_inspect_main.cpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sft_inspect_main.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_inspect_main.cpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/tag_inspect_main.cpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "assets/text.cpp",
+        "assets/text.hpp",
+        "assets/text_inspect_main.cpp",
+        "assets/wbt.cpp",
+        "assets/wbt.hpp",
+        "assets/wizard.cpp",
+        "assets/wizard.hpp",
+        "assets/wizard_inspect_main.cpp",
+        "audio/../reconstruction/audio/catalog_preflight.hpp",
+        "audio/../reconstruction/audio/dsound_setup.hpp",
+        "audio/../reconstruction/audio/manager_configuration.hpp",
+        "audio/../reconstruction/audio/manager_contract.hpp",
+        "audio/../reconstruction/audio/manager_lifecycle.hpp",
+        "audio/../reconstruction/audio/native_manager_backend.hpp",
+        "audio/../reconstruction/audio/source_cache.hpp",
+        "audio/../reconstruction/audio/voice_admission.hpp",
+        "audio/../reconstruction/audio/voice_contract.hpp",
+        "audio/../reconstruction/audio/voice_lifetime.hpp",
+        "audio/../reconstruction/audio/voice_scheduler.hpp",
+        "audio/../runtime/audio/protocol.h",
+        "audio/CMakeLists.txt",
+        "audio/buffers.cpp",
+        "audio/buffers.hpp",
+        "audio/mixer.cpp",
+        "audio/output_main.cpp",
+        "audio/qt_output.cpp",
+        "audio/qt_output.hpp",
+        "audio/upload_main.cpp",
+        "audio/voice_bridge.cpp",
+        "audio/voice_bridge.hpp",
+        "audio/voice_server_main.cpp",
+        "audio/voices.cpp",
+        "audio/wave_loader.cpp",
+        "audio/wave_loader.hpp",
+        "protocols/generate.py",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "protocols/python/mnm_protocols/__init__.py",
+        "protocols/python/mnm_protocols/frame_v1.py",
+        "protocols/python/mnm_protocols/input_v1.py",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v2.py",
+        "protocols/python/mnm_protocols/render_control_v1.py",
+        "protocols/python/mnm_protocols/render_stream_v2.py",
+        "protocols/python/mnm_protocols/render_stream_v3.py",
+        "protocols/schemas/frame-v1.json",
+        "protocols/schemas/input-v1.json",
+        "protocols/schemas/media-v1.json",
+        "protocols/schemas/render_commands-v1.json",
+        "protocols/schemas/render_commands-v2.json",
+        "protocols/schemas/render_control-v1.json",
+        "protocols/schemas/render_stream-v2.json",
+        "protocols/schemas/render_stream-v3.json",
+        "reconstruction/audio/attenuation_map.cpp",
+        "reconstruction/audio/attenuation_map.hpp",
+        "reconstruction/audio/camera_projection.cpp",
+        "reconstruction/audio/camera_projection.hpp",
+        "reconstruction/audio/catalog_preflight.cpp",
+        "reconstruction/audio/catalog_preflight.hpp",
+        "reconstruction/audio/dsound_setup.cpp",
+        "reconstruction/audio/dsound_setup.hpp",
+        "reconstruction/audio/manager_configuration.cpp",
+        "reconstruction/audio/manager_configuration.hpp",
+        "reconstruction/audio/manager_contract.cpp",
+        "reconstruction/audio/manager_contract.hpp",
+        "reconstruction/audio/manager_lifecycle.cpp",
+        "reconstruction/audio/manager_lifecycle.hpp",
+        "reconstruction/audio/native_manager_backend.cpp",
+        "reconstruction/audio/native_manager_backend.hpp",
+        "reconstruction/audio/positional_audio.cpp",
+        "reconstruction/audio/positional_audio.hpp",
+        "reconstruction/audio/source_cache.cpp",
+        "reconstruction/audio/source_cache.hpp",
+        "reconstruction/audio/voice_admission.cpp",
+        "reconstruction/audio/voice_admission.hpp",
+        "reconstruction/audio/voice_contract.cpp",
+        "reconstruction/audio/voice_contract.hpp",
+        "reconstruction/audio/voice_lifetime.cpp",
+        "reconstruction/audio/voice_lifetime.hpp",
+        "reconstruction/audio/voice_scheduler.cpp",
+        "reconstruction/audio/voice_scheduler.hpp",
+        "renderer/../protocols/include/mnm/render_stream_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/CMakeLists.txt",
+        "renderer/minimap/overlays/CMakeLists.txt",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/replay_main.cpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/word-clipped/CMakeLists.txt",
+        "renderer/sprites/word-raster/CMakeLists.txt",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/audio/protocol.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/bridge.c",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/palette_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/selftest.c",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/shadow/win32_min.h",
+        "tests/audio-installed-manager.cpp",
+        "tests/profile-api/installed_native.cpp",
+        "tests/profile-api/installed_wire.h",
+        "tests/profile-api/native.cpp",
+        "tests/profile-api/queries.inc",
+        "tools/build-render-bridge.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-original-surface-keys.py",
+        "tools/decode-cfg.py",
+        "tools/encode-cfg.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-opengl-game.py"
+      ],
+      "evidence": [
+        "NR.movie-enabled-startup.live-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.canvas-fade-span",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "NoCD odd and padded RGB565/RGB555 fade span",
+      "scope": "Selected 58ed80 pixel loop, positive bounded width/height and stride>=width, initialized physical WORD plane. Exactly2*floor(width/2)*height contiguous WORDs are halved/masked irrespective of pitch; format selector zero=RGB565, any nonzero=RGB555. Full padded physical-word comparison and native logical-canvas projection. Lock/unlock supplied private adapters, no driver/return/ABI/recovery or live bypass equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5827968,
+          "scope": "Selected contiguous physical DWORD pixel loop, original lock/unlock adapter boundaries."
+        }
+      ],
+      "documents": [
+        "research/runtime/canvas-fade-span.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "compat/legacy/canvas_producers.cpp"
+      ],
+      "tests": [
+        "tests/canvas-fade-reference.cpp",
+        "tests/canvas-fade-native.cpp",
+        "tests/canvas-fade-test.cpp",
+        "tests/canvas-fade/CMakeLists.txt",
+        "tools/test-canvas-fade-span.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "renderer/blit.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "research/runtime/surface-dib-ddraw-capture-20261006.json",
+        "tests/fixtures/surfaces/original-sentinel-corpus.json",
+        "tests/fixtures/surfaces/original-sentinel.json.gz",
+        "tests/fixtures/surfaces/surface-dib-ddraw.json.gz",
+        "tests/font-byte/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "RS.canvas-fade-span.comparison-20261010",
+        "RS.canvas-fade-span.native-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
       }
     }
   ],
@@ -55737,6 +56473,255 @@
           "equals": []
         }
       ]
+    },
+    {
+      "id": "RS.font-line-layout.comparison-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/font-line-layout-comparison-20261010.json",
+      "sha256": "168a98512a07017653343d0680c7babd283ad48249df0a63b0436958d54d4bf0",
+      "scope": "Bounded NoCD rectangle text, height-limited text and measurement, full cursor/contours, line triples, consumed offset and RGB565 canvases. Explicit initialized raster state; no allocation/lifetime, machine ABI or live bypass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RS.font-line-layout.native-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/font-line-layout-comparison-20261010.json",
+      "sha256": "168a98512a07017653343d0680c7babd283ad48249df0a63b0436958d54d4bf0",
+      "scope": "Bounded NoCD rectangle text, height-limited text and measurement, full cursor/contours, line triples, consumed offset and RGB565 canvases. Explicit initialized raster state; no allocation/lifetime, machine ABI or live bypass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.canvas-image-production.native-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-canvas-image-comparison-20261010.json",
+      "sha256": "e307081ead33a1e134e5859e18a23ca0dcb0fd9fadfd25ec9f1e29c5659c723d",
+      "scope": "Source-only RGB565 memory-DIB and positioned BMP canvas production. Memory-DIB output compared with frozen independent Wine DirectDraw DC RGB565 captures; positioned BMP with independent placement of the captured source plane. No new driver/original execution, original wrapper ABI or live bypass.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.canvas-fade-span.comparison-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/canvas-fade-span-comparison-20261010.json",
+      "sha256": "6a78d715b48cb8c487469a59965d7c4293b1da48c2c19642a5baf6d8b3fd83c3",
+      "scope": "Positive bounded original 58ed80 contiguous packed-WORD loop with private lock/unlock adapters. Full physical padding and logical canvas projection, RGB565/555 masks. No real driver, wrapper ABI or live replacement equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RS.canvas-fade-span.native-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/canvas-fade-span-comparison-20261010.json",
+      "sha256": "6a78d715b48cb8c487469a59965d7c4293b1da48c2c19642a5baf6d8b3fd83c3",
+      "scope": "Positive bounded original 58ed80 contiguous packed-WORD loop with private lock/unlock adapters. Full physical padding and logical canvas projection, RGB565/555 masks. No real driver, wrapper ABI or live replacement equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.movie-frame-production.native-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-movie-frame-comparison-20261010.json",
+      "sha256": "a74dff40db72aa72b241ca3d93543419c169919a51443ddaa90543ba6cdf9a66",
+      "scope": "Owned opaque RGBA AVI movie production, all decoded frames, complete playback and bounded cancellation. Exact synthetic RGBA and independent FFmpeg-normalized YUV420P decoded planes with independently calculated limited BT.601 RGB policy for installed Indeo movies. Not original DirectShow/placement/control or live gameplay return equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.movie-enabled-startup.live-20261010",
+      "kind": "live_observation",
+      "record": "research/runtime/native-enabled-movie-startup-20261010.json",
+      "sha256": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+      "scope": "Bounded enabled NoCD intro0/intro1 through native Qt media hook/broker and subsequent original frame publication. No original DirectShow equivalence, arbitrary controls/placement, audible device, active World ownership or full replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/movie_preferences_enabled",
+          "equals": true
+        },
+        {
+          "pointer": "/original_frame_publication_resumed",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_native_intros",
+          "equals": 2
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.font-glyph-live-shadow.live-producers-20261010",
+      "kind": "live_equivalence",
+      "record": "research/runtime/native-canvas-producers-final-shadow-20261010.json",
+      "sha256": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+      "scope": "Four startup World returns with live native owned menu/loading/HUD history, positive tinted glyph inputs and external whole-canvas completion/GPU mirror comparisons. Original text state and drawing active; no byte-state hook or suppression.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/gpu_mirror_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/world_returns",
+          "equals": 4
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 954
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 422875312
+        },
+        {
+          "pointer": "/glyph_calls",
+          "equals": 2002
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "equivalence_pointer": "/gpu_mirror_equal"
     }
   ],
   "classifications": [],
@@ -63175,7 +64160,8 @@
         "tools/test-font-glyph-live-shadow.py"
       ],
       "evidence": [
-        "NR.font-glyph-live-shadow.live-20261010"
+        "NR.font-glyph-live-shadow.live-20261010",
+        "NR.font-glyph-live-shadow.live-producers-20261010"
       ]
     },
     {
@@ -63212,6 +64198,89 @@
       ],
       "tests": [
         "tools/test-glyph-backend.py"
+      ]
+    },
+    {
+      "id": "font-line-layout-20261010",
+      "level": "headless",
+      "scope": "Higher byte text layout and atomic owned canvas composition across installed fonts and synthetic row/reset/arithmetic branches.",
+      "behaviors": [
+        "RS.font-line-layout"
+      ],
+      "tests": [
+        "tests/font-layout-native.cpp",
+        "tests/font-layout-reference.cpp",
+        "tests/font-layout-test.cpp",
+        "tools/test-font-line-layout.py"
+      ],
+      "evidence": [
+        "RS.font-line-layout.native-20261010"
+      ]
+    },
+    {
+      "id": "canvas-image-production-20261010",
+      "level": "headless",
+      "scope": "Owned DIB/BMP RGB565 composition against frozen independent driver output and positioned projections; atomic refusals, no new driver or live bypass.",
+      "behaviors": [
+        "NR.canvas-image-production"
+      ],
+      "tests": [
+        "tests/canvas-image-producer-test.cpp",
+        "tests/canvas-image-producers/CMakeLists.txt",
+        "tools/test-canvas-image-producers.py"
+      ],
+      "evidence": [
+        "NR.canvas-image-production.native-20261010"
+      ]
+    },
+    {
+      "id": "native-movie-frames-20261010",
+      "level": "headless",
+      "scope": "Complete installed AVI and changing synthetic owned opaque movie frames, decoded frame counts, fixed conversion and third-frame cancellation; no original/live return claim.",
+      "behaviors": [
+        "NR.movie-frame-production"
+      ],
+      "tests": [
+        "tools/test-native-movie-frames.py",
+        "tests/native-movie-frame-test.cpp",
+        "tests/native-movie-frames/CMakeLists.txt"
+      ],
+      "evidence": [
+        "NR.movie-frame-production.native-20261010"
+      ]
+    },
+    {
+      "id": "native-enabled-intros-20261010",
+      "level": "live_observation",
+      "scope": "Bounded NoCD startup with PlayFMV enabled in disposable Wine/Xvfb installation, existing control-zero movie hook and Qt media broker, both installed intro clips complete natively, subsequent original frame publication resumes. Source-bound movie frame reports, media acceptance/completion and staged binary hashes. Observed integration only; no original DirectShow pixel/state equivalence, arbitrary control/placement, active World ownership, audible device or complete rendering replacement.",
+      "behaviors": [
+        "NR.movie-enabled-startup"
+      ],
+      "tests": [
+        "tools/test-native-enabled-movies.py"
+      ],
+      "evidence": [
+        "NR.movie-enabled-startup.live-20261010"
+      ]
+    },
+    {
+      "id": "canvas-fade-span-20261010",
+      "title": "Bounded physical fade and native canvas projection",
+      "scope": "Selected 58ed80 pixel loop, positive bounded width/height and stride>=width, initialized physical WORD plane. Exactly2*floor(width/2)*height contiguous WORDs are halved/masked irrespective of pitch; format selector zero=RGB565, any nonzero=RGB555. Full padded physical-word comparison and native logical-canvas projection. Lock/unlock supplied private adapters, no driver/return/ABI/recovery or live bypass equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "RS.canvas-fade-span"
+      ],
+      "tests": [
+        "tests/canvas-fade-reference.cpp",
+        "tests/canvas-fade-native.cpp",
+        "tests/canvas-fade-test.cpp",
+        "tests/canvas-fade/CMakeLists.txt",
+        "tools/test-canvas-fade-span.py"
+      ],
+      "evidence": [
+        "RS.canvas-fade-span.comparison-20261010",
+        "RS.canvas-fade-span.native-20261010"
       ]
     }
   ],
@@ -63550,8 +64619,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-glyph-backend-20261010.json",
-    "sha256": "10426f7beff9ed0064bdc2436cd34ff451e6ed459dd848771ea50dd65e09b8ad"
+    "path": "research/runtime/coverage/source-index-pixel-producers-20261010.json",
+    "sha256": "364218286110df96d757f36acbfb2097fbf93dd45c551291a50e63bf231ed007"
   },
   "claim_bindings_required": true
 }

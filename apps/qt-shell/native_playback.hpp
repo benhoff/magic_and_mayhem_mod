@@ -33,5 +33,6 @@ private:
     qint64 audioFrames_=0,audioBytes_=0;QSize videoSize_;
     QMediaPlayer player_;QAudioOutput output_;QVideoSink video_;
     QAudioBufferOutput audio_;
-    QCryptographicHash audioHash_{QCryptographicHash::Sha256};QByteArray firstFrameHash_;
+    QCryptographicHash audioHash_{QCryptographicHash::Sha256},videoHash_{QCryptographicHash::Sha256};
+    QByteArray firstFrameHash_;
 };

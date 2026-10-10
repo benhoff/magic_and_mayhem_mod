@@ -81,11 +81,20 @@ void CanvasSequence::terrainMap(std::uint32_t id, int rootX, int rootY, int w, i
       s.defined[at] = 1;
     }
 }
-void CanvasSequence::fade(std::uint32_t id) {
+void CanvasSequence::fade(std::uint32_t id,unsigned stride,
+                          std::optional<std::size_t> physicalWords,std::uint16_t mask) {
   auto &s = surface(id);
-  if (s.image.width % 2) throw std::invalid_argument("Fade requires even packed rows");
-  for (std::size_t i = 0; i < s.image.pixels.size(); ++i) known(s.defined, i);
-  for (auto &p : s.image.pixels) p = (p >> 1) & 0x7bef;
+  if(!stride)stride=s.image.width;
+  const auto count=physicalWords.value_or(s.image.pixels.size());
+  if(stride<unsigned(s.image.width) || stride>4096 || count>std::size_t(stride)*s.image.height)
+    throw std::invalid_argument("Fade span outside canvas storage");
+  // Padding has no cross-WORD influence after the original channel mask. Only
+  // visible pixels in the contiguous physical span require destination reads.
+  for(int y=0;y<s.image.height;++y)for(int x=0;x<s.image.width;++x)
+    if(std::size_t(y)*stride+x<count)known(s.defined,slot(s.image,x,y));
+  for(int y=0;y<s.image.height;++y)for(int x=0;x<s.image.width;++x)
+    if(std::size_t(y)*stride+x<count){auto &p=s.image.pixels[slot(s.image,x,y)];
+      p=(std::uint16_t(p)>>1)&mask;}
 }
 void CanvasSequence::release(std::uint32_t id) {
   auto &s = surface(id);

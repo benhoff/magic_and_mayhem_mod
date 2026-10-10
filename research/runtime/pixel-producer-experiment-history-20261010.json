@@ -1,0 +1,233 @@
+{
+  "schema": 1,
+  "scope": "Pixel-producer experiment history. Failed, superseded and interrupted attempts remain historical; only explicitly registered successful results support current contracts. Larger corpora/logs remain in disposable working output.",
+  "results": [
+    {
+      "working_report": "working/tests/font-line-layout/run-32tcbpda/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-font-line-layout-run-32tcbpda-20261010.json",
+      "sha256": "eabff14ca1a5131e9e136eeac13a579404e80ce10cfbd9114eba398d3a0fc30a",
+      "success": false,
+      "sources_stable_at_execution": true,
+      "error": "Command '['g++', '-m32', '-std=c++17', '-O2', '-Wall', '-Wextra', '-Werror', '-no-pie', '-MMD', '-MF', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/font-line-layout/run-32tcbpda/reference.d', '/home/hoff/swdev/magic_and_mayhem_mod/tests/font-layout-reference.cpp', '-o', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/font-line-layout/run-32tcbpda/font-layout-reference']' returned non-zero exit status 1."
+    },
+    {
+      "working_report": "working/tests/font-line-layout/run-4bwxtxqi/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-font-line-layout-run-4bwxtxqi-20261010.json",
+      "sha256": "be1d659f59cbd77dae269d5871d6a3a2fac5212278b61c6b900e2e5ba33ef7dc",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/font-line-layout/run-k4ea0efq/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-font-line-layout-run-k4ea0efq-20261010.json",
+      "sha256": "ac7ca1b3c1c461cb89c638cde8e86863a0e5ec5e800a7c422f4cb7a70a2eb474",
+      "success": false,
+      "sources_stable_at_execution": false,
+      "error": "Command '['/home/hoff/swdev/magic_and_mayhem_mod/working/tests/font-line-layout/run-k4ea0efq/font-layout-reference', '/home/hoff/swdev/magic_and_mayhem_mod/original/Arcane_Nocd/Chaos.exe', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/font-line-layout/run-k4ea0efq/cases.bin', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/font-line-layout/run-k4ea0efq/original.bin']' returned non-zero exit status 1."
+    },
+    {
+      "working_report": "working/tests/font-line-layout/run-nbqove3o/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-font-line-layout-run-nbqove3o-20261010.json",
+      "sha256": "168a98512a07017653343d0680c7babd283ad48249df0a63b0436958d54d4bf0",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/font-line-layout/run-xu7nmm6d/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-font-line-layout-run-xu7nmm6d-20261010.json",
+      "sha256": "a0fca9bdcc31855c5e22f8cd90437710fd43c8f2fa6924f105aada505f3a8aaf",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/canvas-image-producers/run-0mcjz4p5/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-canvas-image-producers-run-0mcjz4p5-20261010.json",
+      "sha256": "d4b9bc252d0d551b70f4425c0fb15d4c708dd18ff2da04017209b9bffc16c9c1",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/canvas-image-producers/run-avvoaj23/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-canvas-image-producers-run-avvoaj23-20261010.json",
+      "sha256": "90ceb54f27ffa9646f833aa82cd02a0f5f7f26693a7d89492748f067658657c6",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/canvas-image-producers/run-c77g8yq4/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-canvas-image-producers-run-c77g8yq4-20261010.json",
+      "sha256": "e307081ead33a1e134e5859e18a23ca0dcb0fd9fadfd25ec9f1e29c5659c723d",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/canvas-image-producers/run-hwu45wzn/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-canvas-image-producers-run-hwu45wzn-20261010.json",
+      "sha256": "afb57280ddcbec5bb58aaa693021b78e016666218e07b6bb5ce4cf288343a818",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/canvas-image-producers/run-tjva0rnb/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-canvas-image-producers-run-tjva0rnb-20261010.json",
+      "sha256": "ae730e1ab7f6dc03cb6375524af94745fe8be29f83f2470744db3ff04357c6b4",
+      "success": false,
+      "sources_stable_at_execution": true,
+      "error": "Command '['cmake', '--build', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/canvas-image-producers/run-tjva0rnb/build', '--target', 'canvas-image-producer-test', '-j4']' returned non-zero exit status 2."
+    },
+    {
+      "working_report": "working/tests/canvas-fade-span/run-30w8ni96/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-canvas-fade-span-run-30w8ni96-20261010.json",
+      "sha256": "6a78d715b48cb8c487469a59965d7c4293b1da48c2c19642a5baf6d8b3fd83c3",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/canvas-fade-span/run-qj5c28kg/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-canvas-fade-span-run-qj5c28kg-20261010.json",
+      "sha256": "af83c32ced92a7cd6de5905114344e63b7a5f202a13c27da9dab3bbc79692c80",
+      "success": false,
+      "sources_stable_at_execution": true,
+      "error": "Command '['/home/hoff/swdev/magic_and_mayhem_mod/working/tests/canvas-fade-span/run-qj5c28kg/reference', '/home/hoff/swdev/magic_and_mayhem_mod/original/Arcane_Nocd/Chaos.exe', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/canvas-fade-span/run-qj5c28kg/cases.bin', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/canvas-fade-span/run-qj5c28kg/original.bin']' died with <Signals.SIGSYS: 31>."
+    },
+    {
+      "working_report": "working/tests/canvas-fade-span/run-tnuuh7le/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-canvas-fade-span-run-tnuuh7le-20261010.json",
+      "sha256": "8db800af54ee2aff7e24bc928ce9aabaf0e4311117c8525def51a3c02194c9b9",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/canvas-fade-span/run-zvh6w0w9/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-canvas-fade-span-run-zvh6w0w9-20261010.json",
+      "sha256": "455c849b1d923865239886c7fd61c527e545b071a1e7f974119129f2665e8c82",
+      "success": false,
+      "sources_stable_at_execution": true,
+      "error": "Command '['cmake', '--build', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/canvas-fade-span/run-zvh6w0w9/build', '-j4']' returned non-zero exit status 2."
+    },
+    {
+      "working_report": "working/tests/native-movie-frames/run-i_o1xfxk/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-native-movie-frames-run-i_o1xfxk-20261010.json",
+      "sha256": "004c860082d9576065376f50b0d9d1b26c755972a3b7e1485d022ea82ebf5262",
+      "success": false,
+      "sources_stable_at_execution": true,
+      "error": "Celtic exceeds declared RGB tolerance: 15>2"
+    },
+    {
+      "working_report": "working/tests/native-movie-frames/run-kar353a8/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-native-movie-frames-run-kar353a8-20261010.json",
+      "sha256": "a74dff40db72aa72b241ca3d93543419c169919a51443ddaa90543ba6cdf9a66",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/native-movie-frames/run-tfaqk5iu/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-native-movie-frames-run-tfaqk5iu-20261010.json",
+      "sha256": "e719b40ebea95581493d2025faef56c64a162421e9ebb5bc31b687a2caa855b5",
+      "success": false,
+      "sources_stable_at_execution": false,
+      "error": "Celtic exceeds declared RGB tolerance: 13>0"
+    },
+    {
+      "working_report": "working/tests/native-enabled-movies/run-29kknr4m/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-native-enabled-movies-run-29kknr4m-20261010.json",
+      "sha256": "ef80e8554827244b2d9f59d300367bfbb1ab260282a0a2fd05471c182ae87417",
+      "success": false,
+      "sources_stable_at_execution": true,
+      "error": "Undeclared shell compiler inputs: ['runtime/audio/protocol.h']"
+    },
+    {
+      "working_report": "working/tests/native-enabled-movies/run-8ntcyoj0/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-native-enabled-movies-run-8ntcyoj0-20261010.json",
+      "sha256": "20a5335c20d9309c5f03b965b6c37530566e98eb727a981ef7c0fe66a266aaf6",
+      "success": false,
+      "sources_stable_at_execution": true,
+      "error": "Another Wine session is active; serialize the runs before collecting evidence"
+    },
+    {
+      "working_report": "working/tests/native-enabled-movies/run-f5gjddgv/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-native-enabled-movies-run-f5gjddgv-20261010.json",
+      "sha256": "544707a80c059c90c92e5f342a32bb2cf774005143da27c3edea60f94e7ec197",
+      "success": false,
+      "sources_stable_at_execution": false,
+      "error": "Native broker did not complete both intros"
+    },
+    {
+      "working_report": "working/tests/native-enabled-movies/run-vwkp_qzh/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-native-enabled-movies-run-vwkp_qzh-20261010.json",
+      "sha256": "13a677dd9754a402c0c234725042940a418dc2d69d7fb57702234c4bc59314f9",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/font-glyph-live-shadow/run-ri8dzglt/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-font-glyph-live-shadow-run-ri8dzglt-20261010.json",
+      "sha256": "c157c5019c26baeaa510a97aa3b6dcaf13173079b8c62b4009ab185b0c35286d",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/font-glyph-live-shadow/run-wbgjwym3/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-font-glyph-live-shadow-run-wbgjwym3-20261010.json",
+      "sha256": "116167c630f2acee16ea8a5dfe1026bb5af59c5a2b63dcea8e928b20784c4fb8",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/native-enabled-movies/run-j85fv7kd/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-native-enabled-movies-run-j85fv7kd-20261010.json",
+      "sha256": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    },
+    {
+      "working_report": "working/tests/font-glyph-live-shadow/run-68qans53/report.json",
+      "retained_report": "research/runtime/pixel-producer-run-font-glyph-live-shadow-run-68qans53-20261010.json",
+      "sha256": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+      "success": true,
+      "sources_stable_at_execution": true,
+      "error": null
+    }
+  ],
+  "interrupted": [
+    {
+      "directory": "working/tests/native-movie-frames/run-62qq7ngr",
+      "success": false,
+      "final_report_available": false,
+      "reason": "Initial Qt decoder attempt blocked on unavailable sandbox audio/socket environment and had a synthetic source/output filename collision. Only this task's matching decoder processes were terminated. No execution equivalence claimed; subsequent runs verified the original manifest before/after.",
+      "retained_log_hashes": {
+        "working/tests/native-movie-frames/run-62qq7ngr/Celtic-native.log": "1cf332e31339a81dcf32baf33a6dc3ce5f29fb2a9dcdb4a5984aed5126f68bdf",
+        "working/tests/native-movie-frames/run-62qq7ngr/Celtic-reference.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "working/tests/native-movie-frames/run-62qq7ngr/Greek-native.log": "1cf332e31339a81dcf32baf33a6dc3ce5f29fb2a9dcdb4a5984aed5126f68bdf",
+        "working/tests/native-movie-frames/run-62qq7ngr/Greek-reference.log": "f5888885183f50f7cef0a526c0489da7b0c75a07abf021d10f0ee4f359813685",
+        "working/tests/native-movie-frames/run-62qq7ngr/build.log": "6e5775c3978e2ec1bb85b3e0b8508d47b269efc6c1e2795f3d3b1770d136e219",
+        "working/tests/native-movie-frames/run-62qq7ngr/configure.log": "c3ee320fe633bc53fda4e6ad475bf6b79a468862f869778cf28fafd925a5f379",
+        "working/tests/native-movie-frames/run-62qq7ngr/original-before.log": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+        "working/tests/native-movie-frames/run-62qq7ngr/synthetic-encode.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "working/tests/native-movie-frames/run-62qq7ngr/synthetic-native.log": "d287ddbfb552e94f82db06cc97f69101c82eb031717af369f99962cdab2f551e",
+        "working/tests/native-movie-frames/run-62qq7ngr/synthetic-reference.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "supplemental_regressions": [
+    {
+      "report": "research/runtime/native-media-producer-regression-20261010.json",
+      "sha256": "1e7a2c62cc851f768606f4d6b024314076199163e27f9ba7fca0bb77c6d2f172",
+      "scope": "Existing synthetic native media regression runner, passing current movie/PCM decoding, PE32 completion/cancel/path/ABI tests. No retrospective prospective claim binding or status promotion."
+    }
+  ]
+}

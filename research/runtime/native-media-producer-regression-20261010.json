@@ -1,0 +1,107 @@
+{
+  "origin": "synthetic_qt_media_to_pe32",
+  "architecture": "PE32 i386",
+  "live_game_validated": false,
+  "audible_output_validated": false,
+  "directsound_replaced": false,
+  "decoded": {
+    "movie": {
+      "accepted": true,
+      "audible_output_requested": false,
+      "audio_bytes": 88200,
+      "audio_device_available": true,
+      "audio_frames": 22050,
+      "audio_s16le_stereo_22050_sha256": "9e11a88efd2baf60fcd773bcfc06770fcdf7aa9bb5a6251be13a9bd6d75fb440",
+      "error": "",
+      "first_frame_quadrants": [
+        [
+          255,
+          0,
+          0,
+          255
+        ],
+        [
+          0,
+          255,
+          0,
+          255
+        ],
+        [
+          0,
+          0,
+          255,
+          255
+        ],
+        [
+          255,
+          255,
+          255,
+          255
+        ]
+      ],
+      "first_frame_rgba_sha256": "781098a7070c20767b54feddb87e880f4aadfe47742caf741c202fdb5b9ff8a4",
+      "height": 48,
+      "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-media/run-fvy188km/assets/FMV/Test.avi",
+      "pixel_format": 10,
+      "result": 3,
+      "video_frames": 10,
+      "video_rgba_sha256": "09080cec3cc2d6bfd77b0ce648960a5fd38b761dba32e309002ae6137b607f56",
+      "width": 64
+    },
+    "sound": {
+      "accepted": true,
+      "audible_output_requested": false,
+      "audio_bytes": 88200,
+      "audio_device_available": true,
+      "audio_frames": 22050,
+      "audio_s16le_stereo_22050_sha256": "9e11a88efd2baf60fcd773bcfc06770fcdf7aa9bb5a6251be13a9bd6d75fb440",
+      "error": "",
+      "first_frame_quadrants": [],
+      "first_frame_rgba_sha256": "",
+      "height": -1,
+      "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-media/run-fvy188km/assets/Sounds/Test.wav",
+      "pixel_format": 0,
+      "result": 3,
+      "video_frames": 0,
+      "video_rgba_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "width": -1
+    },
+    "missing": {
+      "accepted": false,
+      "audible_output_requested": false,
+      "audio_bytes": 0,
+      "audio_device_available": true,
+      "audio_frames": 0,
+      "audio_s16le_stereo_22050_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "Could not open file",
+      "first_frame_quadrants": [],
+      "first_frame_rgba_sha256": "",
+      "height": -1,
+      "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-media/run-fvy188km/assets/FMV/Missing.avi",
+      "pixel_format": 0,
+      "result": 5,
+      "video_frames": 0,
+      "video_rgba_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "width": -1
+    }
+  },
+  "checks": [
+    "exact_movie_rgba",
+    "exact_movie_pcm",
+    "exact_wav_pcm",
+    "missing_media",
+    "movie_complete",
+    "movie_skip",
+    "async_sound",
+    "loop_stop",
+    "nostop_busy",
+    "path_traversal_rejected",
+    "unsupported_sound_fallback",
+    "native_to_legacy_sound_replacement",
+    "stale_host_fallback",
+    "last_error",
+    "fastcall_trampoline",
+    "prologue_guard"
+  ],
+  "dll_sha256": "4245798fd48963be11fa7182dc9bfbbf7142d099c2b943e7a627090215639dbb"
+}
