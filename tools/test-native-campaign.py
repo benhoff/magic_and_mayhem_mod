@@ -29,6 +29,43 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'apps/qt-shell/live_command_session.hpp', 'tools/prepare-menu-observer.py',
            'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py']
+SOURCES += ['renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
+
+
+def validate_portrait_stress(inputs, flow, capture_root, seconds, min_fps=20):
+    stress=inputs.get('portrait_stress',{})
+    cycles=[a for a in inputs['actions'] if a['action']=='portrait-recenter']
+    starts=[a['seconds'] for a in inputs['actions'] if a['action']=='portrait-stress-start']
+    ends=[a['seconds'] for a in inputs['actions'] if a['action']=='portrait-stress-complete']
+    if len(starts)!=1 or len(ends)!=1 or stress.get('seconds',0)<seconds or len(cycles)<3 or stress.get('cycles')!=len(cycles):
+        raise ValueError('Incomplete repeated portrait recentering')
+    elapsed=0;samples=[]
+    for row in flow['gameplay_rates']:
+        if row['cycle']!=0:continue
+        begin=elapsed;elapsed+=row['seconds']
+        # The helper starts just after the Qt sampling clock. Keep complete
+        # interior windows; the whole-phase gate still includes both boundaries.
+        if begin>=starts[0]+2 and elapsed<=ends[0]-2:samples.append(row)
+    duration=sum(r['seconds'] for r in samples)
+    if duration<seconds-7:raise ValueError('Missing portrait performance windows')
+    native=sum(r['native_frames'] for r in samples)/duration
+    paints=sum(r['painted_frames'] for r in samples)/duration
+    worst=min(min(r['native_fps'],r['paint_fps']) for r in samples)
+    if min(native,paints)<min_fps or worst<min_fps/2 or any(r['seconds']>2 for r in samples):raise ValueError('Portrait rendering too slow')
+    capture=next(c for c in inputs['captures'] if c['name'].endswith('-portrait-stress'))
+    if not re.fullmatch(r'combat-\d{2}-[a-z-]+',capture['name']):raise ValueError('Unsafe portrait capture name')
+    if capture['metadata']['fallback'] or not all(capture['metadata'][r+'_saved'] for r in ('native','original')):raise ValueError('Missing independent portrait capture')
+    from PIL import Image,ImageChops
+    images=[]
+    for route in ('native','original'):
+        path=capture_root/(capture['name']+'-'+route+'.png')
+        if sha(path)!=capture['image_sha256'][route]:raise ValueError('Portrait image changed after capture')
+        images.append(Image.open(path).convert('RGB').crop((716,507,759,538)))
+    maximum=max(hi for lo,hi in ImageChops.difference(*images).getextrema())
+    if maximum>1:raise ValueError('Native portrait face differs from independent original pixels')
+    return dict(cycles=len(cycles),seconds=duration,native_fps=native,paint_fps=paints,worst_window_fps=worst,
+                portrait_region=[716,507,759,538],maximum_channel_error=maximum,
+                scope='Unsynchronized stable wizard face region only; full World and animation equivalence remain pending')
 
 
 def validate_casting_combat(experiment, inputs, capture_root):
@@ -163,6 +200,7 @@ def main():
     parser.add_argument('--min-fps', type=float, default=20, help='Minimum average native publications and visible Qt paints during stress')
     parser.add_argument('--difficulty', type=int, choices=range(4), default=0, help='Choose the normal Region Entry difficulty via its native radio (0 Initiate; 1 Apprentice for camera/combat stress)')
     parser.add_argument('--require-casting-combat', action='store_true', help='Require successful native-viewport summon and player-versus-enemy melee damage observation')
+    parser.add_argument('--portrait-stress-seconds', type=int, default=0, help='Repeat portrait recentering after verified combat (0 or 10..120)')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
@@ -174,6 +212,7 @@ def main():
         if not args.stress_seconds:args.stress_seconds=60
     if not 30 <= args.timeout <= 600:
         parser.error('--timeout must be between 30 and 600')
+    if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
     if args.stress_seconds and not 10 <= args.stress_seconds <= 120:parser.error('--stress-seconds must be 0 or 10..120')
     if not 1 <= args.min_fps <= 120:parser.error('--min-fps must be 1..120')
     parent = ROOT / 'working/tests/native-campaign'
@@ -186,6 +225,7 @@ def main():
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
+              'portrait_stress_seconds':args.portrait_stress_seconds,
               'difficulty': args.difficulty, 'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
     if args.claims:
@@ -259,6 +299,7 @@ def main():
             env['MNM_CAMPAIGN_SMOKE_TEST'] = '1'
             env['MNM_CAMPAIGN_DIFFICULTY'] = str(args.difficulty)
             env['MNM_CAMPAIGN_CASTING_COMBAT'] = '1' if args.require_casting_combat else '0'
+            env['MNM_CAMPAIGN_PORTRAIT_SECONDS'] = str(args.portrait_stress_seconds)
             env['MNM_CAMPAIGN_STRESS_SECONDS'] = str(args.stress_seconds)
             env['MNM_CAMPAIGN_MENU_CYCLES'] = str(args.menu_cycles)
             env['MNM_CAMPAIGN_TIMEOUT_MS'] = str((args.timeout-5)*1000)
@@ -303,10 +344,14 @@ def main():
             if len(roots) != 1 or not roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer'):
                 raise RuntimeError('Missing unique menu experiment identity')
             report['experiment'] = str(roots[0])
+            report['native_draw_cadence']=json.loads((roots[0]/'manifest.json').read_text())['native_draw_cadence']
+            if report['native_draw_cadence']['settings']!={'SkipFrameEvery':0,'SkipXFrames':0,'MaxSkipXFrames':0}:raise RuntimeError('Native draw skipping remained enabled')
             report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty)
             if args.require_casting_combat:
                 report['gameplay']=validate_casting_combat(roots[0],json.loads((out/'input-0.json').read_text()),out)
                 report.update(casting_verified=True,combat_verified=True)
+            if args.portrait_stress_seconds:
+                report['portrait']=validate_portrait_stress(json.loads((out/'input-0.json').read_text()),flow,out,args.portrait_stress_seconds,args.min_fps)
             validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps)
             if any(sha(ROOT / p) != h for p,h in report['sources'].items()):raise RuntimeError('Source changed during execution')
             report.update(success=True, status='passed', stage='campaign-complete', flow_completed=True, game_entry_verified=True)

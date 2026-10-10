@@ -160,3 +160,11 @@ portrait recentering remains a documented negative performance branch. Apprentic
 early movement gating, other maps/difficulties, hardware performance, rejected
 casts/refunds, ranged resolution and original drawing/simulation replacement
 remain open. The passing result does not refresh older historical evidence.
+
+## Portrait follow-up
+
+The later [portrait rendering fix](native-portrait-rendering.md) restores
+repeated recentering during combat and validates sixty seconds afterward.
+Bounded presentation damage plus a hash-checked native no-draw-skip policy
+passes the unchanged FPS floors and independently compares stable face pixels.
+The earlier failures and their source fingerprints remain historical.
