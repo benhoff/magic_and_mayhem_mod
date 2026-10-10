@@ -1,0 +1,1045 @@
+{
+  "schema": 1,
+  "scope": "Retained failure/intermediate/regression diagnostics; no current-scope live or replacement promotion. Full run artifacts remain under working; their exact report/source/input hashes and pre-execution declarations are preserved here.",
+  "experiments": [
+    {
+      "record": "working/tests/word-clip-shadow/run-kgp0xxzl/report.json",
+      "sha256": "94f9af0f9e9ddf96b3ca36e435ce7f304d7a9a10386637a2bbe8b8decfb2bd53",
+      "reason": "Failed initial Linux host ABI build: production Windows entry does not supply Linux16-byte call alignment. SIGSEGV at compiler-generated MOVAPS; fixed with host-only-mstackrealign.",
+      "result": {
+        "schema": 1,
+        "success": false,
+        "claims": [
+          {
+            "behavior": "RS.word-clip-shadow",
+            "contract_sha256": "6e4bdc10997b17331eed75ff5bb60fbea1c060790049057466d7a5d6a3aa9cce",
+            "scenarios": {
+              "word-clip-shadow-isolated-20261010": "cb53a2fadd1c6fa2570e3e022e3ab42859d387d3b872a8c0df1ce2fad0a7b35d"
+            }
+          }
+        ],
+        "sources": {
+          "reconstruction/rendering/word_backend_state.c": "90e747fe1490ca94892ce974dfb1dbf90af71ba5da3923bef887c9396ad1134a",
+          "reconstruction/rendering/word_backend_state.h": "3f76d1b3eb2a4ce5974aa7ebcd9584d2a5a63e7887eaf67d37848c6064828f7f",
+          "tests/word-clip-shadow-reference.cpp": "b13e0e077ad68ea313a5a573999f1563ccdecfd448acb4632259afca8ef6addc",
+          "tests/word-backend-probe.S": "113851c9b6af2e3b7e9fc5e604bce8b321b1218ff708b1fef1ce2c96678bbe24",
+          "tests/word-clip-shadow-host.c": "a1e6e331c0e461eb0ecd33611fa4cbac26eb0329f1674f6f2458082b79aa6ac9",
+          "tests/word-clip-shadow-host.S": "2834588a71e45031514c9378dfea2248f4bb6f851a2969e2b047b24097ba64f9",
+          "tools/test-word-clip-shadow.py": "88dc2ed936365af0da2a5fa199e5a2e940f49ead2b807a5d289be329f69da02d",
+          "tools/test-word-sprites.py": "f16742eb6423499a035ea00c9d7fb0c4c366627cc6e7b515d82fafb6dd27bcfe",
+          "renderer/sprites/word_clipped.c": "11172af3b6e6409d10ce747dde1b1a325d61fa931d127ef5873eec446fabff5b",
+          "renderer/sprites/word_clipped.h": "82ae0479efb1f5854adc958a78a12b5b0ec174554cd60c1b19d84f863a9419a7",
+          "renderer/sprites/word_raster.c": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+          "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+          "runtime/scene/word_entry.S": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+          "runtime/scene/word_route.c": "9349585787972bf479d05422d304c10977c4d50a3797e779ea1f6925ec929026",
+          "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+          "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+          "renderer/sprites/word-clipped/CMakeLists.txt": "bb2d2bfa48a4941b51972040a9f2f2befe1333dc064de6f62cb118ac94dd7d6a",
+          "tests/word-clipped-test.c": "bb7e89075fb9b8b412d32f16e03584488494974c49bb779bc44fa591f61362a8",
+          "tools/build-word-sprites.py": "1916ce9657666a9581450737deddda9b5a00f00c7155909fb1e0f0b50225c958",
+          "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+          "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+          "tools/replay-word-clip-shadow.py": "bcfeb1c016c0f3203f0c591a1030904e037cfacad0d1d3ba7aa7127dcdc54eb7",
+          "tests/word-clip-shadow-replay.cpp": "b425ffa4bd2d1959836f6c734dc0d5192d31e0b1998d7a0fc85b12adf5ea5999",
+          "tools/capture-scene-game.py": "8dad071b00064e048f009d755a4941d3a953b54368c7ae962be987676bd3c8c1",
+          "tools/prepare-scene-observer.py": "bdda217c1c20c1a0ff1f01ef7ca54ee06f21de99b9228f06a66957cc63176407",
+          "tools/scene-game-runner.py": "d7dd632b7e08ab76e5dd0e92c70006fa8dd60337b316c867de897660ea5a7a5a",
+          "tools/render-game-runner.py": "97193487a39b8a4cfdcf4fe9dd630190663f2bd6c1b9def979c8efb2d6cb2dcc",
+          "tools/run-opengl-game.py": "775966327b7ffdebcb3b25c21bfe82aec156bcde3ab39ab3157a6314b84b2a1a"
+        },
+        "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+        "experiment": "working/tests/word-clip-shadow/run-kgp0xxzl",
+        "scope": "Actual production clipping shadow route with substituted host Win32 APIs; five forced safe-original refusals per case, exact original-once counters and LastError retention. Bounded contiguous direct-word CPU clipping versus two unchanged original No-CD backends, zero/(2,2) clip origins, exact/partial edges/corners, hidden/oversized frames, zero dimensions. Complete workspace/argument/integer/defined flags/selected masked floating/guards comparison through production entry assembly and a host-only clipped admission stand-in; empty requests forwarded for original FP handling. Core malformed/alias/clip-bounds refusal is native safety policy, not original malformed acceptance. Win32 access/LastError/reentry, unmasked/full-stack/exception FP, other backends, auxiliary/indexed inputs, installed assets and live clipping replacement excluded.",
+        "original_work_bypassed": false,
+        "live_replacement": false,
+        "host_ctest_passed": true,
+        "host_test_sha256": "64028160b10b8d209e29912425d3f5f8bf532a39f683270aaa26a66da92902ca",
+        "host_boundaries": "288 clipped placements, 43 atomic refusals, 3 empty no-ops passed",
+        "pe32_core_object_sha256": "bb5798ea3a7a34a4bea96e7d68599412e1cd788dfaac251d81890ce77d0d8483",
+        "disassembly_sha256": "991fb702e683af8852137236123a06ecdce3b670abea834b0d1867484cea4836",
+        "compiled_project_sources": [
+          "reconstruction/rendering/word_backend_state.c",
+          "reconstruction/rendering/word_backend_state.h",
+          "renderer/sprites/word_clipped.c",
+          "renderer/sprites/word_clipped.h",
+          "renderer/sprites/word_raster.c",
+          "renderer/sprites/word_raster.h",
+          "runtime/scene/word_route.c",
+          "runtime/scene/word_workspace.h",
+          "runtime/shadow/win32_min.h",
+          "tests/word-clip-shadow-host.c",
+          "tests/word-clip-shadow-reference.cpp",
+          "tests/word-clipped-test.c"
+        ],
+        "error": "Command '['/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word-clipped-reference', '/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/inputs.txt', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/state-results.bin']' died with <Signals.SIGSEGV: 11>.",
+        "changed_sources": [],
+        "sources_stable": true
+      },
+      "commands": [
+        {
+          "argv": [
+            "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+            "verify"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/manifest-before.log",
+          "log_sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+        },
+        {
+          "argv": [
+            "cmake",
+            "-S",
+            "/home/hoff/swdev/magic_and_mayhem_mod/renderer/sprites/word-clipped",
+            "-B",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/host-build",
+            "-DCMAKE_BUILD_TYPE=Debug",
+            "-DCMAKE_C_FLAGS=-fsanitize=address,undefined -fno-omit-frame-pointer"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/host-configure.log",
+          "log_sha256": "4b4fe5ceaf703f516967cca8510d40a91d069883fab61c0e80ca37ed23defc48"
+        },
+        {
+          "argv": [
+            "cmake",
+            "--build",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/host-build",
+            "--parallel",
+            "4"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/host-build.log",
+          "log_sha256": "a2a78d06d2579d50bbe92b9701c0d99781a43a9ae802ea0db655a4e8098959a3"
+        },
+        {
+          "argv": [
+            "ctest",
+            "--test-dir",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/host-build",
+            "--output-on-failure"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/host-ctest.log",
+          "log_sha256": "6d1c45822b8dd7bb742921c9ad4d80dc91c46bb818839dab8214e5849560636d"
+        },
+        {
+          "argv": [
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/host-build/word-clipped-test"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/host-boundaries.log",
+          "log_sha256": "7db1820abb4fe465b0c2873bdd8087ebe600310cd4ccd717525e488b3d4d734d"
+        },
+        {
+          "argv": [
+            "clang",
+            "--target=i686-pc-windows-msvc",
+            "-O2",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-mno-sse",
+            "-mno-mmx",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/pe32.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/renderer/sprites/word_clipped.c",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word-clipped-pe32.obj"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/pe32-core-build.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "objdump",
+            "-d",
+            "-Mintel",
+            "--start-address=0x596cb8",
+            "--stop-address=0x5974d0",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/original-assembly.log",
+          "log_sha256": "991fb702e683af8852137236123a06ecdce3b670abea834b0d1867484cea4836"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-O2",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-pedantic",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word_backend_state.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/word_backend_state.c",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word_backend_state.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/word_backend_state.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-O2",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-pedantic",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word_clipped.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/renderer/sprites/word_clipped.c",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word_clipped.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/word_clipped.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-O2",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-pedantic",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word_raster.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/renderer/sprites/word_raster.c",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word_raster.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/word_raster.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-O2",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-pedantic",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word-clip-shadow-host.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/tests/word-clip-shadow-host.c",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word-clip-shadow-host.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/word-clip-shadow-host.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "g++",
+            "-m32",
+            "-O2",
+            "-std=c++17",
+            "-fno-pie",
+            "-no-pie",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/reference.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/tests/word-clip-shadow-reference.cpp",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/reference.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/reference-object.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/tests/word-backend-probe.S",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/probe.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/probe-build.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/runtime/scene/word_entry.S",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/entry.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/entry-build.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/tests/word-clip-shadow-host.S",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/host-count.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/host-count-build.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "g++",
+            "-m32",
+            "-fno-pie",
+            "-no-pie",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/reference.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/probe.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/entry.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word_backend_state.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word_clipped.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word_raster.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word-clip-shadow-host.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/host-count.o",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word-clipped-reference"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/reference-build.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/word-clipped-reference",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/inputs.txt",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-kgp0xxzl/state-results.bin"
+          ],
+          "returncode": -11,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/original-model.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+            "verify"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-kgp0xxzl/manifest-after.log",
+          "log_sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+        }
+      ],
+      "failure_count": 0
+    },
+    {
+      "record": "working/tests/word-clip-shadow/run-zwifk_ir/report.json",
+      "sha256": "95d8a4484f2c11d5d857be530852eced5ba8342a669b9ce15b29d095c6a14b97",
+      "reason": "Passing intermediate host run before repeated map-dialog source/scope update; remains historical.",
+      "result": {
+        "schema": 1,
+        "success": true,
+        "claims": [
+          {
+            "behavior": "RS.word-clip-shadow",
+            "contract_sha256": "6e4bdc10997b17331eed75ff5bb60fbea1c060790049057466d7a5d6a3aa9cce",
+            "scenarios": {
+              "word-clip-shadow-isolated-20261010": "cb53a2fadd1c6fa2570e3e022e3ab42859d387d3b872a8c0df1ce2fad0a7b35d"
+            }
+          }
+        ],
+        "sources": {
+          "reconstruction/rendering/word_backend_state.c": "90e747fe1490ca94892ce974dfb1dbf90af71ba5da3923bef887c9396ad1134a",
+          "reconstruction/rendering/word_backend_state.h": "3f76d1b3eb2a4ce5974aa7ebcd9584d2a5a63e7887eaf67d37848c6064828f7f",
+          "tests/word-clip-shadow-reference.cpp": "b13e0e077ad68ea313a5a573999f1563ccdecfd448acb4632259afca8ef6addc",
+          "tests/word-backend-probe.S": "113851c9b6af2e3b7e9fc5e604bce8b321b1218ff708b1fef1ce2c96678bbe24",
+          "tests/word-clip-shadow-host.c": "a1e6e331c0e461eb0ecd33611fa4cbac26eb0329f1674f6f2458082b79aa6ac9",
+          "tests/word-clip-shadow-host.S": "2834588a71e45031514c9378dfea2248f4bb6f851a2969e2b047b24097ba64f9",
+          "tools/test-word-clip-shadow.py": "a44bb1b23582c346fc445ddef3d87c50176766669ef2a01a4efe1d69c6480adf",
+          "tools/test-word-sprites.py": "f16742eb6423499a035ea00c9d7fb0c4c366627cc6e7b515d82fafb6dd27bcfe",
+          "renderer/sprites/word_clipped.c": "11172af3b6e6409d10ce747dde1b1a325d61fa931d127ef5873eec446fabff5b",
+          "renderer/sprites/word_clipped.h": "82ae0479efb1f5854adc958a78a12b5b0ec174554cd60c1b19d84f863a9419a7",
+          "renderer/sprites/word_raster.c": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+          "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+          "runtime/scene/word_entry.S": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+          "runtime/scene/word_route.c": "9349585787972bf479d05422d304c10977c4d50a3797e779ea1f6925ec929026",
+          "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+          "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+          "renderer/sprites/word-clipped/CMakeLists.txt": "bb2d2bfa48a4941b51972040a9f2f2befe1333dc064de6f62cb118ac94dd7d6a",
+          "tests/word-clipped-test.c": "bb7e89075fb9b8b412d32f16e03584488494974c49bb779bc44fa591f61362a8",
+          "tools/build-word-sprites.py": "1916ce9657666a9581450737deddda9b5a00f00c7155909fb1e0f0b50225c958",
+          "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+          "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+          "tools/replay-word-clip-shadow.py": "bcfeb1c016c0f3203f0c591a1030904e037cfacad0d1d3ba7aa7127dcdc54eb7",
+          "tests/word-clip-shadow-replay.cpp": "b425ffa4bd2d1959836f6c734dc0d5192d31e0b1998d7a0fc85b12adf5ea5999",
+          "tools/capture-scene-game.py": "8dad071b00064e048f009d755a4941d3a953b54368c7ae962be987676bd3c8c1",
+          "tools/prepare-scene-observer.py": "bdda217c1c20c1a0ff1f01ef7ca54ee06f21de99b9228f06a66957cc63176407",
+          "tools/scene-game-runner.py": "d7dd632b7e08ab76e5dd0e92c70006fa8dd60337b316c867de897660ea5a7a5a",
+          "tools/render-game-runner.py": "97193487a39b8a4cfdcf4fe9dd630190663f2bd6c1b9def979c8efb2d6cb2dcc",
+          "tools/run-opengl-game.py": "775966327b7ffdebcb3b25c21bfe82aec156bcde3ab39ab3157a6314b84b2a1a"
+        },
+        "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+        "experiment": "working/tests/word-clip-shadow/run-zwifk_ir",
+        "scope": "Actual production clipping shadow route with substituted host Win32 APIs; five forced safe-original refusals per case, exact original-once counters and LastError retention. Bounded contiguous direct-word CPU clipping versus two unchanged original No-CD backends, zero/(2,2) clip origins, exact/partial edges/corners, hidden/oversized frames, zero dimensions. Complete workspace/argument/integer/defined flags/selected masked floating/guards comparison through production entry assembly and a host-only clipped admission stand-in; empty requests forwarded for original FP handling. Core malformed/alias/clip-bounds refusal is native safety policy, not original malformed acceptance. Win32 access/LastError/reentry, unmasked/full-stack/exception FP, other backends, auxiliary/indexed inputs, installed assets and live clipping replacement excluded.",
+        "original_work_bypassed": false,
+        "live_replacement": false,
+        "host_ctest_passed": true,
+        "host_test_sha256": "29447c5e45a8f3c5c08c34945ce9519cc810677dd1f32c4337c74bf0bc646398",
+        "host_boundaries": "288 clipped placements, 43 atomic refusals, 3 empty no-ops passed",
+        "pe32_core_object_sha256": "c33ef88c29183bc5574d6b24ffd35638f732cabe6a4dead861a4833b5840aadf",
+        "disassembly_sha256": "991fb702e683af8852137236123a06ecdce3b670abea834b0d1867484cea4836",
+        "compiled_project_sources": [
+          "reconstruction/rendering/word_backend_state.c",
+          "reconstruction/rendering/word_backend_state.h",
+          "renderer/sprites/word_clipped.c",
+          "renderer/sprites/word_clipped.h",
+          "renderer/sprites/word_raster.c",
+          "renderer/sprites/word_raster.h",
+          "runtime/scene/word_route.c",
+          "runtime/scene/word_workspace.h",
+          "runtime/shadow/win32_min.h",
+          "tests/word-clip-shadow-host.c",
+          "tests/word-clip-shadow-reference.cpp",
+          "tests/word-clipped-test.c"
+        ],
+        "counts": {
+          "model_original_matches": 4448,
+          "native_entry_original_matches": 4448,
+          "cpu_clip_admissions": 4448,
+          "shadow_compared_positive": 4400,
+          "original_forwarded_empty": 48,
+          "clipped_compared": 3632,
+          "original_once": 4448,
+          "last_error_preserved": 4448,
+          "forced_refusal_checks": 22240,
+          "workspace_matches": 4448,
+          "arguments_matches": 4448,
+          "registers_matches": 4448,
+          "stack_matches": 4448,
+          "return_flags_matches": 4448,
+          "x87_control_status_matches": 4448,
+          "x87_values_matches": 4448,
+          "xmm_matches": 4448,
+          "mxcsr_matches": 4448,
+          "pixels_guards_source_matches": 4448
+        },
+        "case_count": 4448,
+        "branches": {
+          "interior": 256,
+          "exact-left": 256,
+          "exact-top": 256,
+          "exact-right": 256,
+          "exact-bottom": 256,
+          "left": 256,
+          "top": 256,
+          "right": 256,
+          "bottom": 256,
+          "top-left": 256,
+          "top-right": 256,
+          "bottom-left": 256,
+          "bottom-right": 256,
+          "hidden-left": 256,
+          "hidden-top": 256,
+          "hidden-right": 256,
+          "hidden-bottom": 256,
+          "oversized-both-axes": 48,
+          "empty-dimensions": 48
+        },
+        "state_results_sha256": "9dccd01058374c09ca5664c5268397df7dd4883a8a7a8c7a82918aea213e8dda",
+        "reference_sha256": "aeb009288b8f2d740c7161a3eae81a4c3797585cbfa7f7dd5b87fc8ef229482c",
+        "isolated_original_body_bypasses": 0,
+        "pe32_adapter_manifest": {
+          "architecture": "PE32 i386",
+          "scope": "Selected direct-word backend entries only",
+          "sha256": "2037960899ded9069509ab86a705d3fb29d15dc5808ccb68779f339408cb188d",
+          "sources": {
+            "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+            "renderer/sprites/word_raster.c": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+            "runtime/scene/word_route.c": "9349585787972bf479d05422d304c10977c4d50a3797e779ea1f6925ec929026",
+            "runtime/scene/word_entry.S": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+            "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+            "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+            "tools/build-word-sprites.py": "1916ce9657666a9581450737deddda9b5a00f00c7155909fb1e0f0b50225c958",
+            "renderer/sprites/word_clipped.c": "11172af3b6e6409d10ce747dde1b1a325d61fa931d127ef5873eec446fabff5b",
+            "renderer/sprites/word_clipped.h": "82ae0479efb1f5854adc958a78a12b5b0ec174554cd60c1b19d84f863a9419a7",
+            "reconstruction/rendering/word_backend_state.c": "90e747fe1490ca94892ce974dfb1dbf90af71ba5da3923bef887c9396ad1134a",
+            "reconstruction/rendering/word_backend_state.h": "3f76d1b3eb2a4ce5974aa7ebcd9584d2a5a63e7887eaf67d37848c6064828f7f",
+            "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33"
+          }
+        },
+        "changed_sources": [],
+        "sources_stable": true
+      },
+      "commands": [
+        {
+          "argv": [
+            "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+            "verify"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/manifest-before.log",
+          "log_sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+        },
+        {
+          "argv": [
+            "cmake",
+            "-S",
+            "/home/hoff/swdev/magic_and_mayhem_mod/renderer/sprites/word-clipped",
+            "-B",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/host-build",
+            "-DCMAKE_BUILD_TYPE=Debug",
+            "-DCMAKE_C_FLAGS=-fsanitize=address,undefined -fno-omit-frame-pointer"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/host-configure.log",
+          "log_sha256": "5ad4fd3dfafd70c0d34d8a96d8f8b60271a4c2645dd23150f80c78ca5970989d"
+        },
+        {
+          "argv": [
+            "cmake",
+            "--build",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/host-build",
+            "--parallel",
+            "4"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/host-build.log",
+          "log_sha256": "a2a78d06d2579d50bbe92b9701c0d99781a43a9ae802ea0db655a4e8098959a3"
+        },
+        {
+          "argv": [
+            "ctest",
+            "--test-dir",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/host-build",
+            "--output-on-failure"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/host-ctest.log",
+          "log_sha256": "03cdf24e3355f6abfcba28a3801aa927f207388ca15aa745bf0a802388f4aab5"
+        },
+        {
+          "argv": [
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/host-build/word-clipped-test"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/host-boundaries.log",
+          "log_sha256": "7db1820abb4fe465b0c2873bdd8087ebe600310cd4ccd717525e488b3d4d734d"
+        },
+        {
+          "argv": [
+            "clang",
+            "--target=i686-pc-windows-msvc",
+            "-O2",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-mno-sse",
+            "-mno-mmx",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/pe32.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/renderer/sprites/word_clipped.c",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word-clipped-pe32.obj"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/pe32-core-build.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "objdump",
+            "-d",
+            "-Mintel",
+            "--start-address=0x596cb8",
+            "--stop-address=0x5974d0",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/original-assembly.log",
+          "log_sha256": "991fb702e683af8852137236123a06ecdce3b670abea834b0d1867484cea4836"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-mstackrealign",
+            "-O2",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-pedantic",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word_backend_state.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/word_backend_state.c",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word_backend_state.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/word_backend_state.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-mstackrealign",
+            "-O2",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-pedantic",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word_clipped.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/renderer/sprites/word_clipped.c",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word_clipped.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/word_clipped.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-mstackrealign",
+            "-O2",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-pedantic",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word_raster.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/renderer/sprites/word_raster.c",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word_raster.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/word_raster.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-mstackrealign",
+            "-O2",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-pedantic",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word-clip-shadow-host.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/tests/word-clip-shadow-host.c",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word-clip-shadow-host.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/word-clip-shadow-host.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "g++",
+            "-m32",
+            "-O2",
+            "-std=c++17",
+            "-fno-pie",
+            "-no-pie",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-MMD",
+            "-MF",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/reference.d",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/tests/word-clip-shadow-reference.cpp",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/reference.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/reference-object.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/tests/word-backend-probe.S",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/probe.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/probe-build.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/runtime/scene/word_entry.S",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/entry.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/entry-build.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "gcc",
+            "-m32",
+            "-c",
+            "/home/hoff/swdev/magic_and_mayhem_mod/tests/word-clip-shadow-host.S",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/host-count.o"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/host-count-build.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "g++",
+            "-m32",
+            "-fno-pie",
+            "-no-pie",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/reference.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/probe.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/entry.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word_backend_state.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word_clipped.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word_raster.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word-clip-shadow-host.o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/host-count.o",
+            "-o",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word-clipped-reference"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/reference-build.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/word-clipped-reference",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/inputs.txt",
+            "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-shadow/run-zwifk_ir/state-results.bin"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/original-model.log",
+          "log_sha256": "5c2877cc401f97ec86ded41507ebabe054da1fb72e4cf6e269cf8f80742360b6"
+        },
+        {
+          "argv": [
+            "python3",
+            "/home/hoff/swdev/magic_and_mayhem_mod/tools/build-word-sprites.py"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/pe32-adapter-build.log",
+          "log_sha256": "53ba2167f6ced8b7f3623514c7111fb479dff2305b81804171e43747835fc68c"
+        },
+        {
+          "argv": [
+            "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+            "verify"
+          ],
+          "returncode": 0,
+          "log": "working/tests/word-clip-shadow/run-zwifk_ir/manifest-after.log",
+          "log_sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+        }
+      ],
+      "failure_count": 0
+    },
+    {
+      "record": "working/tests/word-clip-shadow-legacy-regression-20261010.json",
+      "sha256": "f857698a1c6909a7a5e73ae8005d414e789058675b5f3a493261e0900af40ebe",
+      "reason": "Unbound supporting regression only:256 strict in-bounds original comparisons,647 native refusals and host CTest pass; does not refresh old live claims.",
+      "result": {
+        "schema": 1,
+        "success": true,
+        "sources": {
+          "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+          "renderer/sprites/word_raster.c": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+          "runtime/scene/word_route.c": "9349585787972bf479d05422d304c10977c4d50a3797e779ea1f6925ec929026",
+          "runtime/scene/word_entry.S": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+          "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+          "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+          "tests/word-sprite-reference.cpp": "cfecefe2101e2de029e4bd1f56f70444f4308428ab3a9e80273c44c7dda1fc21",
+          "renderer/sprites/word-raster/CMakeLists.txt": "949132dedb0210f6c0781777d0d3ab34165743f7f3061728295ac8fd5f66bbb1",
+          "tests/word-raster-test.c": "c6e28331724bc90d710c20738495524336bde401b61809deb304581faeeabcbe",
+          "tools/build-word-sprites.py": "1916ce9657666a9581450737deddda9b5a00f00c7155909fb1e0f0b50225c958",
+          "tools/test-word-sprites.py": "f16742eb6423499a035ea00c9d7fb0c4c366627cc6e7b515d82fafb6dd27bcfe"
+        },
+        "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+        "experiment": "working/tests/word-sprites/run-pdvtv31n",
+        "live_replacement": false,
+        "scope": "Fully in-bounds direct-word contiguous SPR rows only; selected backend entries. Clipped/empty/indexed/unknown routes excluded; original auxiliary passes and other rendering remain active.",
+        "synthetic_original_matches": 256,
+        "compared_pixels": 119288,
+        "native_refusals": 647,
+        "sources_stable": true,
+        "binary_sha256": "5729164195f4e886a484fdde4351b808abde543d7d231bcaea8d4b406b59666e",
+        "dll_sha256": "2037960899ded9069509ab86a705d3fb29d15dc5808ccb68779f339408cb188d",
+        "host_ctest_passed": true,
+        "host_test_sha256": "26a5dbae9c62960d21bd190c214833209835ac3a11094fd659abbebba1f4563a"
+      },
+      "commands": [],
+      "failure_count": 0
+    },
+    {
+      "experiment": "working/experiments/scene-observer/run-svcn6qyd",
+      "success": false,
+      "reason": "Original menu readiness timed out before word comparisons; default host GL startup failed. Software-rendered rerun used.",
+      "files": {
+        "manifest.json": "a5a14a742115a984d82a3f986bc375fd78ee583bd5514aac509937ac2081dce4",
+        "game.log": "82a72afc9d80dbf0d3ee5cccc1c5772fed3c90cde94b30b0ada604f5e6134dde",
+        "wineboot.log": "28c2b2e4a1cf042326218d71d06f1012d1b8d5b91767ef0e6643bc253842be06",
+        "word-sprites/stats.bin": "6e2d339c28946d9e60505d230afd4d4749d7b26bd9e940909aa43a99f72374e7",
+        "word-sprites/clip-stats.bin": "5b7b3206144f8967802814cdfa3c401eabb527067648b9cfc8196b0caf6089fc",
+        "events.bin": "895d8b9ed83af9d6ad7155c5b1ecb2fb807821dee2595ad871671b694c5895ed",
+        "channel.bin": "80a4886a16bee0577fbd38484660060f55dbfc95c7ba5e5737a8945442d94abf"
+      },
+      "claims": {
+        "schema": 1,
+        "scope": "Prospective scope/source declaration only. Execute the experiment and verify source stability before registering its result.",
+        "claims": [
+          {
+            "behavior": "RS.word-clip-shadow",
+            "contract_sha256": "6e4bdc10997b17331eed75ff5bb60fbea1c060790049057466d7a5d6a3aa9cce",
+            "scenarios": {
+              "word-clip-shadow-world-entry-20261010": "43182875017e1061681e2d46fa91fe018947f5ac65070097889fb14961699ae8"
+            }
+          }
+        ],
+        "sources": {
+          "reconstruction/rendering/word_backend_state.c": "90e747fe1490ca94892ce974dfb1dbf90af71ba5da3923bef887c9396ad1134a",
+          "reconstruction/rendering/word_backend_state.h": "3f76d1b3eb2a4ce5974aa7ebcd9584d2a5a63e7887eaf67d37848c6064828f7f",
+          "renderer/sprites/word-clipped/CMakeLists.txt": "bb2d2bfa48a4941b51972040a9f2f2befe1333dc064de6f62cb118ac94dd7d6a",
+          "renderer/sprites/word_clipped.c": "11172af3b6e6409d10ce747dde1b1a325d61fa931d127ef5873eec446fabff5b",
+          "renderer/sprites/word_clipped.h": "82ae0479efb1f5854adc958a78a12b5b0ec174554cd60c1b19d84f863a9419a7",
+          "renderer/sprites/word_raster.c": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+          "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+          "runtime/scene/word_entry.S": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+          "runtime/scene/word_route.c": "9349585787972bf479d05422d304c10977c4d50a3797e779ea1f6925ec929026",
+          "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+          "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+          "tests/word-backend-probe.S": "113851c9b6af2e3b7e9fc5e604bce8b321b1218ff708b1fef1ce2c96678bbe24",
+          "tests/word-clip-shadow-host.S": "2834588a71e45031514c9378dfea2248f4bb6f851a2969e2b047b24097ba64f9",
+          "tests/word-clip-shadow-host.c": "a1e6e331c0e461eb0ecd33611fa4cbac26eb0329f1674f6f2458082b79aa6ac9",
+          "tests/word-clip-shadow-reference.cpp": "b13e0e077ad68ea313a5a573999f1563ccdecfd448acb4632259afca8ef6addc",
+          "tests/word-clip-shadow-replay.cpp": "b425ffa4bd2d1959836f6c734dc0d5192d31e0b1998d7a0fc85b12adf5ea5999",
+          "tests/word-clipped-test.c": "bb7e89075fb9b8b412d32f16e03584488494974c49bb779bc44fa591f61362a8",
+          "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+          "tools/build-word-sprites.py": "1916ce9657666a9581450737deddda9b5a00f00c7155909fb1e0f0b50225c958",
+          "tools/capture-scene-game.py": "8dad071b00064e048f009d755a4941d3a953b54368c7ae962be987676bd3c8c1",
+          "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+          "tools/prepare-scene-observer.py": "bdda217c1c20c1a0ff1f01ef7ca54ee06f21de99b9228f06a66957cc63176407",
+          "tools/render-game-runner.py": "97193487a39b8a4cfdcf4fe9dd630190663f2bd6c1b9def979c8efb2d6cb2dcc",
+          "tools/replay-word-clip-shadow.py": "bcfeb1c016c0f3203f0c591a1030904e037cfacad0d1d3ba7aa7127dcdc54eb7",
+          "tools/run-opengl-game.py": "775966327b7ffdebcb3b25c21bfe82aec156bcde3ab39ab3157a6314b84b2a1a",
+          "tools/scene-game-runner.py": "d7dd632b7e08ab76e5dd0e92c70006fa8dd60337b316c867de897660ea5a7a5a",
+          "tools/test-word-clip-shadow.py": "a44bb1b23582c346fc445ddef3d87c50176766669ef2a01a4efe1d69c6480adf",
+          "tools/test-word-sprites.py": "f16742eb6423499a035ea00c9d7fb0c4c366627cc6e7b515d82fafb6dd27bcfe"
+        }
+      },
+      "word-sprites/stats.bin": [
+        1464684109,
+        825246802,
+        1,
+        64,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "word-sprites/clip-stats.bin": [
+        1464684109,
+        825248835,
+        1,
+        80,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sample_hashes": {}
+    },
+    {
+      "experiment": "working/experiments/scene-observer/run-8p6fg_n4",
+      "success": false,
+      "reason": "Capture refused: seven clipped comparisons/samples instead of predeclared eight; zero mismatches/bypasses/errors. Original manifests verified before/after. Repeated map round trip added and prospectively redeclared.",
+      "files": {
+        "manifest.json": "51bffaec2a2febf2389ee28b0912280d1f3a853285734cdf07f92587caba5114",
+        "game.log": "fe3db18aa0f6b4ca69830d8e115a75dee8b1426fb769375fad7f2cbf71fae10e",
+        "wineboot.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "word-sprites/stats.bin": "a182989f87b31ddfbfde293a86c7c692a1ee868d2ff8098390616b7b0c7d121c",
+        "word-sprites/clip-stats.bin": "42c60bcf717db4925a1eabe6422b5bec60d6a26e3a9e5ec4483115b8d2feed5f",
+        "events.bin": "3e5df69d0dd4f3094dd9a7182b6459375e4ee4ad4069f76234ec885585efb342",
+        "channel.bin": "dbae88dcf279981b9bdd21808610ee1be958c74f3217d95a1a6eddb932b5de6d"
+      },
+      "claims": {
+        "schema": 1,
+        "scope": "Prospective scope/source declaration only. Execute the experiment and verify source stability before registering its result.",
+        "claims": [
+          {
+            "behavior": "RS.word-clip-shadow",
+            "contract_sha256": "6e4bdc10997b17331eed75ff5bb60fbea1c060790049057466d7a5d6a3aa9cce",
+            "scenarios": {
+              "word-clip-shadow-world-entry-20261010": "43182875017e1061681e2d46fa91fe018947f5ac65070097889fb14961699ae8"
+            }
+          }
+        ],
+        "sources": {
+          "reconstruction/rendering/word_backend_state.c": "90e747fe1490ca94892ce974dfb1dbf90af71ba5da3923bef887c9396ad1134a",
+          "reconstruction/rendering/word_backend_state.h": "3f76d1b3eb2a4ce5974aa7ebcd9584d2a5a63e7887eaf67d37848c6064828f7f",
+          "renderer/sprites/word-clipped/CMakeLists.txt": "bb2d2bfa48a4941b51972040a9f2f2befe1333dc064de6f62cb118ac94dd7d6a",
+          "renderer/sprites/word_clipped.c": "11172af3b6e6409d10ce747dde1b1a325d61fa931d127ef5873eec446fabff5b",
+          "renderer/sprites/word_clipped.h": "82ae0479efb1f5854adc958a78a12b5b0ec174554cd60c1b19d84f863a9419a7",
+          "renderer/sprites/word_raster.c": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+          "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+          "runtime/scene/word_entry.S": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+          "runtime/scene/word_route.c": "9349585787972bf479d05422d304c10977c4d50a3797e779ea1f6925ec929026",
+          "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+          "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+          "tests/word-backend-probe.S": "113851c9b6af2e3b7e9fc5e604bce8b321b1218ff708b1fef1ce2c96678bbe24",
+          "tests/word-clip-shadow-host.S": "2834588a71e45031514c9378dfea2248f4bb6f851a2969e2b047b24097ba64f9",
+          "tests/word-clip-shadow-host.c": "a1e6e331c0e461eb0ecd33611fa4cbac26eb0329f1674f6f2458082b79aa6ac9",
+          "tests/word-clip-shadow-reference.cpp": "b13e0e077ad68ea313a5a573999f1563ccdecfd448acb4632259afca8ef6addc",
+          "tests/word-clip-shadow-replay.cpp": "b425ffa4bd2d1959836f6c734dc0d5192d31e0b1998d7a0fc85b12adf5ea5999",
+          "tests/word-clipped-test.c": "bb7e89075fb9b8b412d32f16e03584488494974c49bb779bc44fa591f61362a8",
+          "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+          "tools/build-word-sprites.py": "1916ce9657666a9581450737deddda9b5a00f00c7155909fb1e0f0b50225c958",
+          "tools/capture-scene-game.py": "8dad071b00064e048f009d755a4941d3a953b54368c7ae962be987676bd3c8c1",
+          "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+          "tools/prepare-scene-observer.py": "bdda217c1c20c1a0ff1f01ef7ca54ee06f21de99b9228f06a66957cc63176407",
+          "tools/render-game-runner.py": "97193487a39b8a4cfdcf4fe9dd630190663f2bd6c1b9def979c8efb2d6cb2dcc",
+          "tools/replay-word-clip-shadow.py": "bcfeb1c016c0f3203f0c591a1030904e037cfacad0d1d3ba7aa7127dcdc54eb7",
+          "tools/run-opengl-game.py": "775966327b7ffdebcb3b25c21bfe82aec156bcde3ab39ab3157a6314b84b2a1a",
+          "tools/scene-game-runner.py": "d7dd632b7e08ab76e5dd0e92c70006fa8dd60337b316c867de897660ea5a7a5a",
+          "tools/test-word-clip-shadow.py": "a44bb1b23582c346fc445ddef3d87c50176766669ef2a01a4efe1d69c6480adf",
+          "tools/test-word-sprites.py": "f16742eb6423499a035ea00c9d7fb0c4c366627cc6e7b515d82fafb6dd27bcfe"
+        }
+      },
+      "word-sprites/stats.bin": [
+        1464684109,
+        825246802,
+        1,
+        64,
+        3,
+        1,
+        13577,
+        7,
+        0,
+        13577,
+        7,
+        0,
+        13570,
+        7,
+        0,
+        0
+      ],
+      "word-sprites/clip-stats.bin": [
+        1464684109,
+        825248835,
+        1,
+        80,
+        1,
+        13577,
+        7,
+        7,
+        0,
+        0,
+        13577,
+        13570,
+        0,
+        0,
+        7,
+        0,
+        0,
+        7,
+        7,
+        0
+      ],
+      "sample_hashes": {
+        "word-0007.bin": "b18309eedd8d0cab9d5bd619761f4f8db34f860bf3a5bfa479a279707d58a8c2",
+        "word-0002.bin": "60d0b6f1a262b61b9cc9f35e10366aab4a8a5abfd4330457c94e5ffd43c24118",
+        "word-0006.bin": "112920e7f424660ba6400ffbead64448b89015ca002c37a4897dd1b50212129d",
+        "word-0003.bin": "6df89b4ca0f81c07407f5d6c08fe2460d9def4b54892eb699ba8b9f4d9b2c0f3",
+        "word-0001.bin": "f0e059724e33bc503b0cff406135f2f5cd1fd21ebea8696ba01e5a1da17560f3",
+        "word-0004.bin": "56041a6769bf2516bd7c59461991fd77899e388da384d00f73333cf970ed0640",
+        "word-0005.bin": "62a3e16eaa0297c61ae96c0da95233087fb4a871a0b5db79b07bb8e65b428080"
+      }
+    }
+  ]
+}

@@ -33,7 +33,7 @@ def main():
     parser.add_argument('--samples',type=int,choices=[*range(1,17),32],default=4)
     parser.add_argument('--map',type=int,choices=range(1,129),default=2)
     parser.add_argument('--magic-items',type=int,choices=range(22),default=0,help='Original Quick Battle item count; nonzero accepts its initial spell assignments through the existing V3 bridge')
-    parser.add_argument('--word-sprites',choices=['shadow','takeover'],help='Observe the explicit partial direct-word raster experiment')
+    parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow'],help='Observe the explicit partial direct-word raster experiment')
     parser.add_argument('--world-frames',action='store_true',help='Capture complete effective raster inputs and separate original output oracles')
     parser.add_argument('--world-lifetime',action='store_true',help='Bounded diagnostic canvas identity/initial-content observations from first queue call')
     parser.add_argument('--producer-live',type=Path,help='Native Qt closed-producer consumer executable, starts before original launch')
@@ -125,7 +125,7 @@ def main():
         sources += [ROOT/p for p in ['apps/qt-shell/canvas_producer_session.cpp','apps/qt-shell/canvas_producer_session.hpp','apps/qt-shell/canvas_producer_main.cpp','apps/qt-shell/gl_viewport.cpp','apps/qt-shell/gl_viewport.hpp','compat/legacy/canvas_producers.cpp','compat/legacy/canvas_producers.hpp','renderer/canvas_sequence.cpp','renderer/canvas_sequence.hpp','renderer/dib.cpp','renderer/dib.hpp']]
     if args.world_raster_batch:
         sources += [ROOT/p for p in ['protocols/include/mnm/world_raster_batch_v3.h','compat/legacy/world_raster_batch.cpp','compat/legacy/world_raster_batch.hpp']]
-    if args.word_sprites:sources += [ROOT/p for p in ['renderer/sprites/word_raster.h','renderer/sprites/word_raster.c','runtime/shadow/win32_min.h','tools/build-word-sprites.py']]
+    if args.word_sprites:sources += [ROOT/p for p in ['renderer/sprites/word_raster.h','renderer/sprites/word_raster.c','runtime/shadow/win32_min.h','tools/build-word-sprites.py','tools/build-shadow-bridge.py','renderer/sprites/word_clipped.c','renderer/sprites/word_clipped.h','reconstruction/rendering/word_backend_state.c','reconstruction/rendering/word_backend_state.h']]
     fingerprints={str(p.relative_to(ROOT)):sha(p) for p in sources}
     spec=importlib.util.spec_from_file_location('scene_prepare',ROOT/'tools/prepare-scene-observer.py')
     staging=importlib.util.module_from_spec(spec);spec.loader.exec_module(staging)
@@ -224,6 +224,11 @@ def main():
                 rules+= [struct.unpack_from('<I',s[1],60+i*48+12)[0] for i in range(4)]
                 rules[2]=args.magic_items # Zero retains the established no-spell fixture.
                 send(14,6,rules=rules);send(25,9,args.map)
+                if args.word_sprites=='clip-shadow':
+                    # Exercise the original map-dialog round trip again. This
+                    # yields bounded clipped menu samples before World startup;
+                    # auxiliary-bearing World frames remain original fallbacks.
+                    send(14,6,rules=rules);send(25,9,args.map)
                 if args.minimap_input_fixture:
                     input_fixture=subprocess.Popen([str(args.minimap_input_fixture.resolve()),str(root/'capture'),str(root/'minimap-input.json')],env={**os.environ,'QT_QPA_PLATFORM':'xcb'},stdout=(root/'minimap-input.log').open('x'),stderr=subprocess.STDOUT)
                 send(14,7,rules=rules)
@@ -282,6 +287,12 @@ def main():
             stats=struct.unpack_from('<16I',raw,len(raw)-64)
             if not stats[5] or not stats[7] or stats[11] or stats[14] or stats[15]:raise RuntimeError('Word-sprite route failed: '+str(stats))
             if args.word_sprites=='takeover' and (not stats[8] or stats[13]!=8):raise RuntimeError('No complete takeover samples')
+            if args.word_sprites=='clip-shadow':
+                raw_clip=(root/'word-sprites/clip-stats.bin').read_bytes()
+                if not raw_clip or len(raw_clip)%80:raise RuntimeError('Incomplete clipping shadow statistics')
+                clip_stats=struct.unpack_from('<20I',raw_clip,len(raw_clip)-80)
+                if clip_stats[:5]!=(0x574d4e4d,0x31304c43,1,80,1) or not clip_stats[7] or clip_stats[12] or clip_stats[13] or clip_stats[15] or stats[8] or clip_stats[14]!=8:
+                    raise RuntimeError('Clipping shadow failed or no eight clipped samples: '+str(clip_stats))
         if {str(p.relative_to(ROOT)):sha(p) for p in sources}!=fingerprints:raise RuntimeError('Capture sources changed during validation')
         report={'success':True,'live_observation':True,'live_replacement':False,'original_pixels_compared':False,
                 'scope':'Original Single Player battle setup and ordered queue consumer entry. Original simulation/drawing remain active; bounded immutable snapshots, no whole-scene visual equivalence.',
@@ -406,6 +417,7 @@ def main():
             report['minimap_input_fixture']=json.loads((root/'minimap-input.json').read_text())
             report['minimap_input_fixture']['executable_sha256']=sha(args.minimap_input_fixture)
             report['minimap_input_fixture']['world_return_pace_ms']=250
+        if args.word_sprites=='clip-shadow':report.update(word_clip_stats=list(clip_stats),word_clip_stats_sha256=sha(root/'word-sprites/clip-stats.bin'),word_clipped_samples={str(p.relative_to(root)):sha(p) for p in sorted((root/'word-sprites').glob('word-*.bin'))})
         if args.word_sprites:report.update(word_sprites_mode=args.word_sprites,word_stats=list(stats),word_directory=metadata['word_directory'],word_scope='Partial direct-word backend entries; full scene pixels and other original drawing are outside the replacement claim')
     except CaptureCancelled as cancelled:
         report={'success':False,'cancelled':True,'reason':str(cancelled),'experiment':str(root),

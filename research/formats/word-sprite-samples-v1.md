@@ -35,3 +35,8 @@ refused/fallback, successful pixel samples, capture/log errors, and stopped.
 Snapshots occur at startup, early calls, every 64 calls and process detach when
 available. The final logged counter can lag a forcibly terminated process;
 it is a lower bound, not an exact total or a performance measurement.
+
+The opt-in mode 3 extension is documented separately in
+[clipping shadow diagnostics](word-clip-shadow-v1.md). It retains original
+after-pixels/workspace and uses a capture ordinal for clipped samples. Existing
+mode 1/2 readers may reject it; its clipping counters use a separate versioned log.

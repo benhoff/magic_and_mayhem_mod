@@ -1,0 +1,219 @@
+{
+  "schema": 1,
+  "scope": "Committed-history accounting only; no assertion of past gate passes or new execution validation.",
+  "range": {
+    "base": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+    "head": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e"
+  },
+  "prior_receipts_preserved": true,
+  "files": [
+    {
+      "commit": "50bec93a600c9f30153637163173840f98f68032",
+      "parent": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "4a86d0be431e2daffc9ffa02b42a605ad644918fbd730ec6931cfc959af2de91",
+      "after_sha256": "2151d0e670f2b2d1470f960044acd1b2019bc817421b33bedd3f872c697b7344",
+      "receipts": [
+        "native-render-offline-soak-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "50bec93a600c9f30153637163173840f98f68032",
+      "parent": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "db86bd39a129bd4ba3cc2d69b6f6a71c04dc50c667ee7367ba67d70a3f0ca8dd",
+      "after_sha256": "c540eef5cdfa63850e6c254f7b0a91fe6e7f9009d75e4427c1ab6ad2753224af",
+      "receipts": [],
+      "classification": "append_only_review_journal"
+    },
+    {
+      "commit": "50bec93a600c9f30153637163173840f98f68032",
+      "parent": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+      "path": "research/runtime/coverage/native-render-soak-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "dea92d5ecb2dfe2ae3fb861284022c13ec39f52bfe7b52f44aea3c7bd0c9c0a8",
+      "receipts": [
+        "native-render-offline-soak-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "50bec93a600c9f30153637163173840f98f68032",
+      "parent": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "2599452252d792c95d5a1573745af869dc04e5816c9666543685d471685b889a",
+      "after_sha256": "c7e90aad21bf0d03d371f1c4a8331c9fe6fc75c76e28044cbccfff344ee1c349",
+      "receipts": [
+        "native-render-offline-soak-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "50bec93a600c9f30153637163173840f98f68032",
+      "parent": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+      "path": "research/runtime/coverage/source-index-native-render-soak-validated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d60be1348bb5830371d8e66be02c97a0d0eaf91164ad678d8ae3b1264b44fb9e",
+      "receipts": [
+        "native-render-offline-soak-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "50bec93a600c9f30153637163173840f98f68032",
+      "parent": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "e50302acee979f9a7211603cc7a7fb60cc3161affd7ad5caa079c3da88202d1e",
+      "after_sha256": "4295260f38512b424932a168192a45b7bb419e8890c59abeac0e25a89c83ae82",
+      "receipts": [
+        "native-render-offline-soak-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "50bec93a600c9f30153637163173840f98f68032",
+      "parent": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+      "path": "research/runtime/native-render-offline-soak-default-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "66933f4cdd6af2989ec8850a60af20d98446079ffebaf59bc07ebbaa3d0c7244",
+      "receipts": [
+        "native-render-offline-soak-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "50bec93a600c9f30153637163173840f98f68032",
+      "parent": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+      "path": "research/runtime/native-render-offline-soak.md",
+      "before_sha256": null,
+      "after_sha256": "7272b0569c376cc2cb9035fae6a14561a65fa7b72deb369776a073aa56134903",
+      "receipts": [
+        "native-render-offline-soak-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "50bec93a600c9f30153637163173840f98f68032",
+      "parent": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+      "path": "tests/native-render-soak.cpp",
+      "before_sha256": null,
+      "after_sha256": "d30e6a0442fdea4d07c73ec74a8f5ca03f5fd72b567b985f15459fa922c3c8f6",
+      "receipts": [
+        "native-render-offline-soak-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "50bec93a600c9f30153637163173840f98f68032",
+      "parent": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+      "path": "tests/native-render-soak/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "eacf58ab2cc7539f9d44980421a4ff12063e5ab6c1df5a1cc8d9f91dc37d4043",
+      "receipts": [
+        "native-render-offline-soak-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "50bec93a600c9f30153637163173840f98f68032",
+      "parent": "0415793fd882ffa3e17beb83772e966e3b3a6c72",
+      "path": "tools/test-native-render-soak.py",
+      "before_sha256": null,
+      "after_sha256": "3e675ae16956cf02b52eb5de6933535957b33f670aa463748f68be70f25d40e4",
+      "receipts": [
+        "native-render-offline-soak-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "parent": "50bec93a600c9f30153637163173840f98f68032",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "2151d0e670f2b2d1470f960044acd1b2019bc817421b33bedd3f872c697b7344",
+      "after_sha256": "4aada8649bd06edbe45124d9e85c18ecab45283f2de6c04882aba7ba93640ae7",
+      "receipts": [
+        "native-render-offline-soak-followup-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "parent": "50bec93a600c9f30153637163173840f98f68032",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "c540eef5cdfa63850e6c254f7b0a91fe6e7f9009d75e4427c1ab6ad2753224af",
+      "after_sha256": "0cef08d300a9794e743e51ba21bd154daa65790aac7d1884a8a1fa49637e86bc",
+      "receipts": [],
+      "classification": "append_only_review_journal"
+    },
+    {
+      "commit": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "parent": "50bec93a600c9f30153637163173840f98f68032",
+      "path": "research/runtime/coverage/native-render-soak-followup-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "11af7ff08acbfbee8ad3c549aafa3b17bca6c0441b6ba26cfdf268f7569cecc3",
+      "receipts": [
+        "native-render-offline-soak-followup-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "parent": "50bec93a600c9f30153637163173840f98f68032",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "c7e90aad21bf0d03d371f1c4a8331c9fe6fc75c76e28044cbccfff344ee1c349",
+      "after_sha256": "0b3f99da72d28585dfb1171803f82a3e47afe9be5a2daf25933400193e40cec3",
+      "receipts": [
+        "native-render-offline-soak-followup-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "parent": "50bec93a600c9f30153637163173840f98f68032",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "4295260f38512b424932a168192a45b7bb419e8890c59abeac0e25a89c83ae82",
+      "after_sha256": "c04b9b2f87e73c9208cdc16feed5b6e1428c4100c8d71c842ef71b04c1b404ac",
+      "receipts": [
+        "native-render-offline-soak-followup-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "parent": "50bec93a600c9f30153637163173840f98f68032",
+      "path": "research/runtime/native-render-offline-soak-budget-refusal-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9284b71767652d2b24574945d2512ba418ea9b0a6ddf9511caeb6c4b0fbb7208",
+      "receipts": [
+        "native-render-offline-soak-followup-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "parent": "50bec93a600c9f30153637163173840f98f68032",
+      "path": "research/runtime/native-render-offline-soak-gl33-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "86b04ac220eb9135503446a90648527b109da90ca87a2f752488a9a81e863f66",
+      "receipts": [
+        "native-render-offline-soak-followup-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "parent": "50bec93a600c9f30153637163173840f98f68032",
+      "path": "research/runtime/native-render-offline-soak.md",
+      "before_sha256": "7272b0569c376cc2cb9035fae6a14561a65fa7b72deb369776a073aa56134903",
+      "after_sha256": "770a7cfd0af35420eee3c97e8b676e723280fb2bf0aa68e9e454c25ced202059",
+      "receipts": [
+        "native-render-offline-soak-followup-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    }
+  ],
+  "unresolved_gaps": [],
+  "reviewed_transitions": 19,
+  "unresolved_count": 0
+}

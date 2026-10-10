@@ -11,6 +11,9 @@ SOURCES=['renderer/sprites/word_raster.h','renderer/sprites/word_raster.c',
          'runtime/scene/word_route.c','runtime/scene/word_entry.S',
          'runtime/scene/word_workspace.h',
          'runtime/shadow/win32_min.h','tools/build-word-sprites.py']
+SOURCES += ['renderer/sprites/word_clipped.c','renderer/sprites/word_clipped.h',
+            'reconstruction/rendering/word_backend_state.c','reconstruction/rendering/word_backend_state.h',
+            'tools/build-shadow-bridge.py']
 
 def build():
     spec=importlib.util.spec_from_file_location('word_imports',ROOT/'tools/build-shadow-bridge.py')
@@ -20,7 +23,8 @@ def build():
     definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{s}\n' for n,s in module.IMPORTS.items()))
     subprocess.run(['llvm-dlltool','-m','i386','-D','KERNEL32.dll','-d',str(definition),'-l',str(out/'kernel32.lib'),'--kill-at'],check=True)
     objects=[]
-    for name in ['renderer/sprites/word_raster.c','runtime/scene/word_route.c','runtime/scene/word_entry.S']:
+    for name in ['renderer/sprites/word_raster.c','renderer/sprites/word_clipped.c',
+                 'reconstruction/rendering/word_backend_state.c','runtime/scene/word_route.c','runtime/scene/word_entry.S']:
         obj=out/(Path(name).name+'.obj');objects.append(str(obj))
         subprocess.run(['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin',
             '-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror',

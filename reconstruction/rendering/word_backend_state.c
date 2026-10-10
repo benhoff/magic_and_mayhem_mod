@@ -1,5 +1,11 @@
 #include "word_backend_state.h"
-#include <string.h>
+
+/* Explicit word copies keep the recovered model usable in a no-CRT PE32 hook. */
+static void store(MnmWordBackendState *out,const MnmWordBackendState *in) {
+    for(unsigned i=0;i<16;++i)out->words[i]=in->words[i];
+    out->argument_x=in->argument_x;out->argument_y=in->argument_y;
+    out->return_eax=in->return_eax;
+}
 
 static uint32_t word(const uint8_t *p) {
     return p[0]|(uint32_t)p[1]<<8|(uint32_t)p[2]<<16|(uint32_t)p[3]<<24;
@@ -36,10 +42,10 @@ int mnm_word_backend_state(const MnmWordBackendInput *in,const uint32_t before[1
     uint32_t width=word(f+4),height=word(f+8);
     if(width>2048||height>2048)return 1;
     MnmWordBackendState result;
-    memcpy(result.words,before,sizeof(result.words));
+    for(unsigned i=0;i<16;++i)result.words[i]=before[i];
     result.argument_x=in->anchor_x;result.argument_y=in->anchor_y;result.return_eax=0;
     result.words[10]=in->frame_address;
-    if(!width||!height){*out=result;return 0;}
+    if(!width||!height){store(out,&result);return 0;}
     if(!valid_frame(f,in->frame_bytes,width,height))return 1;
     int64_t left=(int64_t)in->anchor_x-(int32_t)word(f+12);
     int64_t top=(int64_t)in->anchor_y-(int32_t)word(f+16);
@@ -55,7 +61,7 @@ int mnm_word_backend_state(const MnmWordBackendInput *in,const uint32_t before[1
     s[0]=start_y;s[1]=(uint32_t)end_y;s[2]=(in->stride_words-width)*2;s[5]=width;
     s[6]=(uint32_t)(top<in->clip_top?in->clip_top:top)*in->stride_words;
     s[7]=in->frame_address+40+start_y*8;
-    if(end_y<=(int32_t)start_y){*out=result;return 0;}
+    if(end_y<=(int32_t)start_y){store(out,&result);return 0;}
     int scalar=in->backend_rva==0x197086;
     s[8]=(uint32_t)end_y-start_y;
     for(uint32_t y=start_y;y<(uint32_t)end_y;++y){
@@ -93,5 +99,5 @@ int mnm_word_backend_state(const MnmWordBackendInput *in,const uint32_t before[1
         }
         --s[8];
     }
-    *out=result;return 0;
+    store(out,&result);return 0;
 }
