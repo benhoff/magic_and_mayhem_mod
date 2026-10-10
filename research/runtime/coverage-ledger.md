@@ -25,8 +25,9 @@ Fireball defended damage. Earlier assumed Cure attempts failed: the green
 starting spell is Fireball71; historical reports and traces are preserved. The [fresh bounded spell-case run](native-campaign-spell-cases-passed-20261010.json)
 passes original Fireball110→90 damage,10 Zombie melee hits plus Cornelius7→0
 finish, two UI refusals, independent movement, native Mini/resume and strict rate
-floors (combat36.04/27.34, resumed56.97/37.05native/paint FPS). Longer combined
-portrait stress remains separate. Healing/refunds, other maps, timing equivalence,
+floors (combat36.04/27.34, resumed56.97/37.05native/paint FPS). The [combined long run](native-campaign-fireball-portrait-passed-20261010.json)
+also passes22 portrait cycles over61.48seconds, independent stable face pixels
+and60seconds resumed input. Ordinary retreat leaves the wizard alive at126HP. Healing/refunds, other maps, timing equivalence,
 native GDI and complete drawing replacement remain pending. The exact committed
 range `ab40f5a..754f961` contains two reviewed file transitions and no gaps.
 

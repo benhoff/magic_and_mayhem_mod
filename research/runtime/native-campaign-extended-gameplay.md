@@ -98,3 +98,20 @@ not recovered internal rejection branches. Raw V2 spell and GP traces remain
 beside the report. This run uses ten-second resumed stress; the longer combined
 portrait/ranged journey remains a separate validation target. Cure/formulas,
 exception cleanup, full lineage and physical GPU equivalence remain pending.
+
+## Combined long portrait/ranged pass
+
+[Fresh combined evidence](native-campaign-fireball-portrait-passed-20261010.json)
+passes difficulty3 with60seconds required in each gameplay phase and60seconds
+additional portrait stress.22 recenter cycles complete in61.48seconds; ordinary
+retreat leaves Cornelius alive at126HP near `(9,68)` after the first enemy fight.
+Portrait native/paint averages45.81/33.21FPS, worst16.39FPS; full combat plus
+portrait averages41.96/31.00 and resumed58.15/37.97FPS, worst18.38FPS.
+10,139native frames and7,118paint frames have zero fallback/recovery.
+The independent stable face crop matches within one channel value; both
+[retained native](native-campaign-fireball-portrait-native-20261010.png) and
+[original](native-campaign-fireball-portrait-original-20261010.png) images remain. Fireball
+lowers Redcap104→84;8 Zombie hits precede that Zombie's1→0 finish. Both blocked
+cast windows contain no internal cast returns, new Zombie or mana loss. Raw GP
+and V2 traces retain their source hashes. This renews only the declared bounded
+presentation/cadence and gameplay scopes; original simulation/drawing still run.

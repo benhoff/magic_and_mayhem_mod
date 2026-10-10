@@ -7,7 +7,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 500 |
-| evidence | 767 |
+| evidence | 768 |
 | scenarios | 226 |
 | functions | 6675 |
 | registered recovered ranges | 24 |
@@ -28,7 +28,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without tests | 1 |
 | stale evidence | 567 |
 | behavior anchors outside discovered functions | 43 |
-| validation gaps | 613 |
+| validation gaps | 609 |
 | retired execution claims | 79 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
@@ -46,9 +46,9 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Current scope-bound validation | Counts |
 | --- | --- |
-| implementation | none: 159; pending: 334; current: 7 |
+| implementation | none: 159; pending: 332; current: 9 |
 | comparison | none: 414; pending: 86; current: 0 |
-| integration | none: 303; pending: 190; current: 7 |
+| integration | none: 303; pending: 188; current: 9 |
 | replacement | none: 497; pending: 3; current: 0 |
 
 ## Animation checklist
