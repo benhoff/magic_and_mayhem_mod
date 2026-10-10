@@ -23974,7 +23974,8 @@
         "research/runtime/native-campaign-combat-profile-20261010.json",
         "research/runtime/native-portrait-rendering.md",
         "research/runtime/coverage/native-campaign-history-review-52dcdf8-5c086ce.json",
-        "research/runtime/native-portrait-cpu-profile-20261010.json"
+        "research/runtime/native-portrait-cpu-profile-20261010.json",
+        "research/runtime/native-campaign-remaining-20261010.md"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -24022,7 +24023,8 @@
         "HOST.native-campaign.normal-quit-passed-20261010",
         "HOST.native-campaign.adept-party-defeat-20261010",
         "HOST.native-campaign.precise-portrait-passed-20261010",
-        "HOST.native-integration.casting-portrait-20261010"
+        "HOST.native-integration.casting-portrait-20261010",
+        "HOST.native-campaign.remaining-gameplay-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -24195,7 +24197,8 @@
       "documents": [
         "research/runtime/native-portrait-rendering.md",
         "research/runtime/opengl-direct-presentation.md",
-        "research/runtime/native-portrait-cpu-profile-20261010.json"
+        "research/runtime/native-portrait-cpu-profile-20261010.json",
+        "research/runtime/native-campaign-remaining-20261010.md"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -24219,7 +24222,8 @@
         "HOST.native-campaign.final-portrait-profiled-slow-20261010",
         "HOST.native-pacer.sleep0-slow-20261010",
         "HOST.native-campaign.precise-portrait-passed-20261010",
-        "HOST.native-integration.casting-portrait-20261010"
+        "HOST.native-integration.casting-portrait-20261010",
+        "HOST.native-campaign.remaining-gameplay-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -24273,7 +24277,8 @@
       "documents": [
         "research/runtime/native-portrait-rendering.md",
         "research/runtime/world-tick-loop.md",
-        "research/runtime/native-portrait-cpu-profile-20261010.json"
+        "research/runtime/native-portrait-cpu-profile-20261010.json",
+        "research/runtime/native-campaign-remaining-20261010.md"
       ],
       "implementation": [
         "tools/native_render_config.py",
@@ -24291,7 +24296,8 @@
         "HOST.native-portrait.passed-20261010",
         "HOST.native-campaign.fireball-portrait-passed-20261010",
         "HOST.native-campaign.precise-portrait-passed-20261010",
-        "HOST.native-integration.casting-portrait-20261010"
+        "HOST.native-integration.casting-portrait-20261010",
+        "HOST.native-campaign.remaining-gameplay-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -25920,7 +25926,8 @@
       "documents": [
         "research/runtime/native-portrait-rendering.md",
         "research/runtime/world-tick-loop.md",
-        "research/runtime/native-portrait-cpu-profile-20261010.json"
+        "research/runtime/native-portrait-cpu-profile-20261010.json",
+        "research/runtime/native-campaign-remaining-20261010.md"
       ],
       "implementation": [
         "runtime/render/precise_clock.h",
@@ -25937,7 +25944,8 @@
         "HOST.native-precise-clock.fixture-20261010",
         "HOST.native-campaign.precise-portrait-passed-20261010",
         "HOST.native-integration.casting-portrait-20261010",
-        "HOST.native-integration.clock-20261010"
+        "HOST.native-integration.clock-20261010",
+        "HOST.native-campaign.remaining-gameplay-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -54327,6 +54335,61 @@
           "equals": 5
         }
       ]
+    },
+    {
+      "id": "HOST.native-campaign.remaining-gameplay-20261010",
+      "kind": "live_observation",
+      "scope": "Fresh public native menu/command session: successful summon, player melee and lethal enemy damage, Fireball damage, invalid-target/mana refusals, physical movement,25 portrait recenter cycles/57.171s complete interior samples20.0101 native/paint FPS, worst19.9275 FPS and maximum stable-face channel error1, native Mini/resume/normal Quit (exit0).8642 native completions/6478 paints, zero fallback/recovery. Original simulation/drawing retained; this is independent of the32-queue guarded rolling session.",
+      "record": "research/runtime/native-campaign-remaining-gameplay-20261010.json",
+      "sha256": "dab201a68653a58ba20138be62d43ab8661068f5173b849316bf781ccfcd6006",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/flow_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/spell_cases/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_precise_clock/enabled",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/complete_drawing_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -61292,7 +61355,8 @@
         "HOST.native-portrait.passed-20261010",
         "HOST.native-campaign.fireball-portrait-passed-20261010",
         "HOST.native-campaign.precise-portrait-passed-20261010",
-        "HOST.native-integration.casting-portrait-20261010"
+        "HOST.native-integration.casting-portrait-20261010",
+        "HOST.native-campaign.remaining-gameplay-20261010"
       ],
       "scope": "Highest-difficulty native casting and lethal player combat with repeated portrait recentering during the fight, at least60-second post-combat portrait stress, independent stable wizard face pixels within one channel value, native Mini Cancel/resume and unchanged20-FPS averages/10-FPS window floors including diagnostic overhead. Original simulation and drawing remain active. Native staged fixed/adaptive draw skips disabled; selected game-speed setting and original pacing instructions unchanged."
     },
@@ -61468,7 +61532,8 @@
       ],
       "evidence": [
         "HOST.native-campaign.precise-portrait-passed-20261010",
-        "HOST.native-integration.casting-portrait-20261010"
+        "HOST.native-integration.casting-portrait-20261010",
+        "HOST.native-campaign.remaining-gameplay-20261010"
       ]
     },
     {

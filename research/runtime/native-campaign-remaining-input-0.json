@@ -1,0 +1,2125 @@
+{
+  "success": true,
+  "monotonic_start": 80057.40642174,
+  "player_owner": 0,
+  "wizard_slot": 0,
+  "initial_creatures": {
+    "0": {
+      "sequence": 10,
+      "slot": 0,
+      "type": 0,
+      "owner": 0,
+      "active": 1,
+      "health": 200,
+      "x": 10,
+      "y": 71,
+      "z": 4,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 12800
+    },
+    "1": {
+      "sequence": 11,
+      "slot": 1,
+      "type": 10,
+      "owner": 2,
+      "active": 1,
+      "health": 33,
+      "x": 7,
+      "y": 67,
+      "z": 4,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 0
+    },
+    "2": {
+      "sequence": 12,
+      "slot": 2,
+      "type": 10,
+      "owner": 2,
+      "active": 1,
+      "health": 110,
+      "x": 31,
+      "y": 52,
+      "z": 4,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 0
+    },
+    "3": {
+      "sequence": 13,
+      "slot": 3,
+      "type": 10,
+      "owner": 2,
+      "active": 1,
+      "health": 110,
+      "x": 23,
+      "y": 57,
+      "z": 6,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 0
+    },
+    "4": {
+      "sequence": 14,
+      "slot": 4,
+      "type": 10,
+      "owner": 2,
+      "active": 1,
+      "health": 110,
+      "x": 10,
+      "y": 60,
+      "z": 4,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 0
+    },
+    "5": {
+      "sequence": 15,
+      "slot": 5,
+      "type": 10,
+      "owner": 2,
+      "active": 1,
+      "health": 110,
+      "x": 8,
+      "y": 51,
+      "z": 6,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 0
+    },
+    "6": {
+      "sequence": 16,
+      "slot": 6,
+      "type": 24,
+      "owner": 1,
+      "active": 1,
+      "health": 155,
+      "x": 43,
+      "y": 27,
+      "z": 5,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 17152
+    },
+    "7": {
+      "sequence": 17,
+      "slot": 7,
+      "type": 10,
+      "owner": 1,
+      "active": 1,
+      "health": 110,
+      "x": 24,
+      "y": 57,
+      "z": 5,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 0
+    },
+    "8": {
+      "sequence": 18,
+      "slot": 8,
+      "type": 10,
+      "owner": 1,
+      "active": 1,
+      "health": 110,
+      "x": 23,
+      "y": 58,
+      "z": 5,
+      "behavior": 1,
+      "action": 1,
+      "target": 4294967295,
+      "mana": 0
+    }
+  },
+  "dialogue_checks": [
+    {
+      "capture": "combat-00-dialogue-check-0",
+      "texts": {
+        "native": "N R",
+        "original": "N oEy"
+      },
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "capture": "combat-01-dialogue-check-1",
+      "texts": {
+        "native": "o \ufb01%@?,",
+        "original": "o \ufb01%@?,"
+      },
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "capture": "combat-02-dialogue-check-2",
+      "texts": {
+        "native": "N\n\u2018*1 o e $h\nX",
+        "original": "N AR\n\u2018*1 o e $h\nN"
+      },
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "capture": "combat-03-dialogue-check-3",
+      "texts": {
+        "native": "o \ufb01%@?,",
+        "original": "o \ufb01%@?,"
+      },
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "capture": "combat-04-dialogue-check-4",
+      "texts": {
+        "native": "",
+        "original": ""
+      },
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    }
+  ],
+  "blocked_casts": [
+    {
+      "kind": "invalid-target",
+      "before_sequence": 540,
+      "after_sequence": 621,
+      "mana_before": 12800,
+      "mana_after": 12800,
+      "created_slots": []
+    },
+    {
+      "kind": "insufficient-mana",
+      "before_sequence": 2990,
+      "after_sequence": 3090,
+      "mana_before": 3072,
+      "mana_after": 3072,
+      "created_slots": []
+    }
+  ],
+  "summon": {
+    "before_sequence": 675,
+    "after_sequence": 753,
+    "slot": 9,
+    "before_capture": "combat-05-before-summon",
+    "after_capture": "combat-07-after-summon"
+  },
+  "additional_summons": [
+    {
+      "before_sequence": 1992,
+      "after_sequence": 2062,
+      "slot": 1
+    }
+  ],
+  "movement_probes": [
+    {
+      "before_sequence": 1323,
+      "after_sequence": 1429,
+      "screen_delta": [
+        140,
+        -50
+      ],
+      "tile_delta": [
+        0,
+        -4
+      ]
+    },
+    {
+      "before_sequence": 1473,
+      "after_sequence": 1573,
+      "screen_delta": [
+        150,
+        0
+      ],
+      "tile_delta": [
+        2,
+        -3
+      ]
+    }
+  ],
+  "ranged": {
+    "first_damage": [
+      31,
+      3,
+      396,
+      80117815,
+      4,
+      10,
+      2,
+      83,
+      63,
+      1,
+      20,
+      0,
+      71,
+      4779300,
+      0,
+      0
+    ]
+  },
+  "combat": {
+    "first_hit": [
+      2121,
+      2,
+      396,
+      80123460,
+      1,
+      14,
+      0,
+      90,
+      4,
+      10,
+      2,
+      61,
+      60,
+      1,
+      1,
+      0
+    ],
+    "hit_count": 5,
+    "lethal_hit": [
+      2550,
+      2,
+      396,
+      80135548,
+      0,
+      0,
+      0,
+      108,
+      4,
+      10,
+      2,
+      9,
+      0,
+      1,
+      1,
+      0
+    ]
+  },
+  "portrait_stress": {
+    "seconds": 61.30280852600117,
+    "cycles": 25
+  },
+  "seconds": 157.1095022160007,
+  "actions": [
+    {
+      "action": "motion",
+      "seconds": 0.00028001000464428216,
+      "logical_x": 400,
+      "logical_y": 300
+    },
+    {
+      "action": "click",
+      "seconds": 0.3409413100016536,
+      "button": 1
+    },
+    {
+      "action": "capture",
+      "seconds": 1.4552273640001658,
+      "name": "combat-00-dialogue-check-0"
+    },
+    {
+      "action": "dialogue-check",
+      "seconds": 1.971824338004808,
+      "attempt": 0,
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "action": "capture",
+      "seconds": 4.482845844991971,
+      "name": "combat-01-dialogue-check-1"
+    },
+    {
+      "action": "dialogue-check",
+      "seconds": 5.27403822800261,
+      "attempt": 1,
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "action": "capture",
+      "seconds": 7.787023971992312,
+      "name": "combat-02-dialogue-check-2"
+    },
+    {
+      "action": "dialogue-check",
+      "seconds": 8.334020192996832,
+      "attempt": 2,
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "action": "capture",
+      "seconds": 10.949832668004092,
+      "name": "combat-03-dialogue-check-3"
+    },
+    {
+      "action": "dialogue-check",
+      "seconds": 11.695051318994956,
+      "attempt": 3,
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "action": "capture",
+      "seconds": 14.202818167992518,
+      "name": "combat-04-dialogue-check-4"
+    },
+    {
+      "action": "dialogue-check",
+      "seconds": 14.653372753004078,
+      "attempt": 4,
+      "visible": {
+        "native": false,
+        "original": false
+      }
+    },
+    {
+      "action": "capture",
+      "seconds": 15.569044400996063,
+      "name": "combat-05-before-summon"
+    },
+    {
+      "action": "motion",
+      "seconds": 15.569802250000066,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 15.910783578001428,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 15.911491363993264,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 16.252445809994242,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 17.004347148002125,
+      "logical_x": 523,
+      "logical_y": 575
+    },
+    {
+      "action": "click",
+      "seconds": 17.34539559300174,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 17.596071873995243,
+      "logical_x": 90,
+      "logical_y": 90
+    },
+    {
+      "action": "click",
+      "seconds": 17.93741293999483,
+      "button": 3
+    },
+    {
+      "action": "capture",
+      "seconds": 20.876409361997503,
+      "name": "combat-06-invalid-target"
+    },
+    {
+      "action": "blocked-cast",
+      "seconds": 20.87711071599915,
+      "kind": "invalid-target",
+      "before_sequence": 540,
+      "after_sequence": 621,
+      "mana_before": 12800,
+      "mana_after": 12800,
+      "created_slots": []
+    },
+    {
+      "action": "motion",
+      "seconds": 20.87807008299569,
+      "logical_x": 523,
+      "logical_y": 575
+    },
+    {
+      "action": "click",
+      "seconds": 21.219098804998794,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 21.723403006006265,
+      "logical_x": 440,
+      "logical_y": 310
+    },
+    {
+      "action": "click",
+      "seconds": 22.064529483992374,
+      "button": 3
+    },
+    {
+      "action": "summon-order",
+      "seconds": 22.065112008000142,
+      "before_sequence": 675
+    },
+    {
+      "action": "capture",
+      "seconds": 24.30607878000592,
+      "name": "combat-07-after-summon"
+    },
+    {
+      "action": "summon-confirmed",
+      "seconds": 24.306931229992188,
+      "slot": 9
+    },
+    {
+      "action": "motion",
+      "seconds": 39.32254428099259,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 39.663837550004246,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 39.66466667600616,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 40.00570788199548,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 40.762342264002655,
+      "logical_x": 540,
+      "logical_y": 230
+    },
+    {
+      "action": "click",
+      "seconds": 41.103586747005465,
+      "button": 3
+    },
+    {
+      "action": "movement-probe",
+      "seconds": 44.108347560002585,
+      "before_sequence": 1323,
+      "after_sequence": 1429,
+      "screen_delta": [
+        140,
+        -50
+      ],
+      "tile_delta": [
+        0,
+        -4
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 44.10908317100257,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 44.45001044499804,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 44.45079813200573,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 44.79181585999322,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 45.549075678994996,
+      "logical_x": 550,
+      "logical_y": 280
+    },
+    {
+      "action": "click",
+      "seconds": 45.89035454500117,
+      "button": 3
+    },
+    {
+      "action": "movement-probe",
+      "seconds": 48.89670476899482,
+      "before_sequence": 1473,
+      "after_sequence": 1573,
+      "screen_delta": [
+        150,
+        0
+      ],
+      "tile_delta": [
+        2,
+        -3
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 48.897563478996744,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 49.238920240997686,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 49.23983799200505,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 49.58097380500112,
+      "button": 1
+    },
+    {
+      "action": "movement-calibration",
+      "seconds": 50.33191140899726,
+      "basis": [
+        [
+          [
+            0,
+            -4
+          ],
+          [
+            140,
+            -50
+          ]
+        ],
+        [
+          [
+            2,
+            -3
+          ],
+          [
+            150,
+            0
+          ]
+        ]
+      ]
+    },
+    {
+      "action": "capture",
+      "seconds": 50.8463769450027,
+      "name": "combat-08-navigation-start"
+    },
+    {
+      "action": "approach-enemy",
+      "seconds": 50.85383003899187,
+      "wizard": {
+        "sequence": 1636,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 200,
+        "x": 12,
+        "y": 64,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 8448
+      },
+      "enemy": {
+        "sequence": 1639,
+        "slot": 4,
+        "type": 10,
+        "owner": 2,
+        "active": 1,
+        "health": 110,
+        "x": 11,
+        "y": 60,
+        "z": 4,
+        "behavior": 3,
+        "action": 8,
+        "target": 0,
+        "mana": 0
+      },
+      "screen_delta": [
+        117.5,
+        -68.75
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 50.85436277199187,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 51.19522530600079,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 51.195954372000415,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 51.53697898000246,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 52.28785476900521,
+      "logical_x": 517.5,
+      "logical_y": 211.25
+    },
+    {
+      "action": "click",
+      "seconds": 52.62928089300112,
+      "button": 3
+    },
+    {
+      "action": "motion",
+      "seconds": 55.63038368600246,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 55.97172335299547,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 55.97274781600572,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 56.313918287996785,
+      "button": 1
+    },
+    {
+      "action": "capture",
+      "seconds": 57.5798193429946,
+      "name": "combat-09-ranged-aim"
+    },
+    {
+      "action": "ranged-target-projection",
+      "seconds": 57.59106848499505,
+      "wizard": {
+        "sequence": 1837,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 190,
+        "x": 12,
+        "y": 61,
+        "z": 4,
+        "behavior": 3,
+        "action": 10,
+        "target": 4,
+        "mana": 8448
+      },
+      "enemy": {
+        "sequence": 1840,
+        "slot": 4,
+        "type": 10,
+        "owner": 2,
+        "active": 1,
+        "health": 92,
+        "x": 11,
+        "y": 60,
+        "z": 4,
+        "behavior": 3,
+        "action": 10,
+        "target": 0,
+        "mana": 0
+      },
+      "logical_point": [
+        400,
+        246
+      ]
+    },
+    {
+      "action": "motion",
+      "seconds": 57.59710706300393,
+      "logical_x": 477,
+      "logical_y": 575
+    },
+    {
+      "action": "click",
+      "seconds": 57.93808498600265,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 58.189071632994455,
+      "logical_x": 400,
+      "logical_y": 246
+    },
+    {
+      "action": "click",
+      "seconds": 58.53025477999472,
+      "button": 3
+    },
+    {
+      "action": "fireball-order",
+      "seconds": 59.5315780529927,
+      "before_sequence": 1845,
+      "logical_x": 400,
+      "logical_y": 246
+    },
+    {
+      "action": "motion",
+      "seconds": 59.542536763998214,
+      "logical_x": 477,
+      "logical_y": 575
+    },
+    {
+      "action": "click",
+      "seconds": 59.88329214899568,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 60.13436844700482,
+      "logical_x": 400,
+      "logical_y": 220
+    },
+    {
+      "action": "click",
+      "seconds": 60.47609431200544,
+      "button": 3
+    },
+    {
+      "action": "fireball-order",
+      "seconds": 61.477728193000075,
+      "before_sequence": 1910,
+      "logical_x": 400,
+      "logical_y": 220
+    },
+    {
+      "action": "capture",
+      "seconds": 61.90054558600241,
+      "name": "combat-10-fireball-damage"
+    },
+    {
+      "action": "motion",
+      "seconds": 61.901065779005876,
+      "logical_x": 523,
+      "logical_y": 575
+    },
+    {
+      "action": "click",
+      "seconds": 62.24176816600084,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 62.24916339099582,
+      "logical_x": 517.5,
+      "logical_y": 211.25
+    },
+    {
+      "action": "click",
+      "seconds": 62.59022386999277,
+      "button": 3
+    },
+    {
+      "action": "capture",
+      "seconds": 65.22122247899824,
+      "name": "combat-11-combat-approach"
+    },
+    {
+      "action": "capture",
+      "seconds": 68.84112269600155,
+      "name": "combat-12-combat-damage"
+    },
+    {
+      "action": "motion",
+      "seconds": 68.84455621699453,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 69.18526370699692,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 69.1864218749979,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 69.52762020500086,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 70.278869183996
+    },
+    {
+      "action": "motion",
+      "seconds": 71.2937972189975,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 71.6352454010048,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 71.63598274599644,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 71.97687594300078,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 72.72741120700084
+    },
+    {
+      "action": "motion",
+      "seconds": 73.73887061400455,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 74.08032122800068,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 74.0821455080004,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 74.42378297500545,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 75.1749857370014
+    },
+    {
+      "action": "motion",
+      "seconds": 76.19007473099919,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 76.53146414000366,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 76.53266462299507,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 76.87402175199531,
+      "button": 1
+    },
+    {
+      "action": "combat-portrait-recenter",
+      "seconds": 77.62546268399456
+    },
+    {
+      "action": "casting-combat-complete",
+      "seconds": 78.63168198599305
+    },
+    {
+      "action": "motion",
+      "seconds": 78.63245088400436,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 78.97372987300332,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 78.97497136199672,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 79.31634334300179,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 80.07874875399284,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 80.41992568000569,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 80.42154715099605,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 80.76350427800207,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 81.51497548499901,
+      "logical_x": 230.0,
+      "logical_y": 330.4237288135593
+    },
+    {
+      "action": "click",
+      "seconds": 81.85660778199963,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 84.87031647900585,
+      "attempt": 1,
+      "wizard": {
+        "sequence": 2771,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 108,
+        "x": 10,
+        "y": 63,
+        "z": 4,
+        "behavior": 2,
+        "action": 2,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 84.88243427099951,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 85.22375674499199,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 85.22505245999491,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 85.56652110400319,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 86.31803812600265,
+      "logical_x": 230.0,
+      "logical_y": 340.7142857142857
+    },
+    {
+      "action": "click",
+      "seconds": 86.65962348299217,
+      "button": 3
+    },
+    {
+      "action": "post-combat-retreat",
+      "seconds": 89.66688553300628,
+      "attempt": 2,
+      "wizard": {
+        "sequence": 2931,
+        "slot": 0,
+        "type": 0,
+        "owner": 0,
+        "active": 1,
+        "health": 108,
+        "x": 8,
+        "y": 67,
+        "z": 4,
+        "behavior": 1,
+        "action": 1,
+        "target": 4294967295,
+        "mana": 3072
+      }
+    },
+    {
+      "action": "motion",
+      "seconds": 89.67286654499185,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 90.01379802600422,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 90.01451308300602,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 90.3556197979924,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 91.11588548599684,
+      "logical_x": 523,
+      "logical_y": 575
+    },
+    {
+      "action": "click",
+      "seconds": 91.45696717899409,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 91.70763684199483,
+      "logical_x": 440,
+      "logical_y": 310
+    },
+    {
+      "action": "click",
+      "seconds": 92.05079711499275,
+      "button": 3
+    },
+    {
+      "action": "capture",
+      "seconds": 94.9786133979942,
+      "name": "combat-13-insufficient-mana"
+    },
+    {
+      "action": "blocked-cast",
+      "seconds": 94.97911013900011,
+      "kind": "insufficient-mana",
+      "before_sequence": 2990,
+      "after_sequence": 3090,
+      "mana_before": 3072,
+      "mana_after": 3072,
+      "created_slots": []
+    },
+    {
+      "action": "portrait-stress-start",
+      "seconds": 94.9800307359983
+    },
+    {
+      "action": "motion",
+      "seconds": 94.98364681100065,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 95.32445057599398,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 95.3252738279989,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 95.66617830100586,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 96.41763156799425,
+      "cycle": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 97.42968173300324,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 97.7712298129918,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 97.7726797649957,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 98.11437920099706,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 98.86621869799274,
+      "cycle": 2
+    },
+    {
+      "action": "motion",
+      "seconds": 99.87237177700445,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 100.21347962500295,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 100.21453582200047,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 100.55575813099858,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 101.30728524900042,
+      "cycle": 3
+    },
+    {
+      "action": "motion",
+      "seconds": 102.32046981800522,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 102.66187133299536,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 102.6633503530029,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 103.00485846000083,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 103.75551052899391,
+      "cycle": 4
+    },
+    {
+      "action": "motion",
+      "seconds": 104.76994582099724,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 105.11154016500222,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 105.1131063770008,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 105.45493878499838,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 106.20603693700104,
+      "cycle": 5
+    },
+    {
+      "action": "motion",
+      "seconds": 107.22002380799677,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 107.56179531299858,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 107.56257671299682,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 107.90362180200464,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 108.65541640200536,
+      "cycle": 6
+    },
+    {
+      "action": "motion",
+      "seconds": 109.68804194500262,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 110.02962469799968,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 110.0318443080032,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 110.37633659600397,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 111.12786120999954,
+      "cycle": 7
+    },
+    {
+      "action": "motion",
+      "seconds": 112.14490933799243,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 112.48654387499846,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 112.48814608699467,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 112.82982415000151,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 113.58086429799732,
+      "cycle": 8
+    },
+    {
+      "action": "motion",
+      "seconds": 114.59450179099804,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 114.93602864000422,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 114.93760252000357,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 115.27927204599837,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 116.03089110700239,
+      "cycle": 9
+    },
+    {
+      "action": "motion",
+      "seconds": 117.04476755400538,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 117.38630860300327,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 117.38777526299236,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 117.72940506099258,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 118.48073406600452,
+      "cycle": 10
+    },
+    {
+      "action": "motion",
+      "seconds": 119.49636468199606,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 119.83816295200086,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 119.83979934100353,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 120.18152764599654,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 120.93313485800172,
+      "cycle": 11
+    },
+    {
+      "action": "motion",
+      "seconds": 121.94993186899228,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 122.29178364599647,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 122.29445140999451,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 122.63625462500204,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 123.38778218900552,
+      "cycle": 12
+    },
+    {
+      "action": "motion",
+      "seconds": 124.4042342610046,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 124.74576014999184,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 124.7474405989924,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 125.08929519099183,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 125.84095879900269,
+      "cycle": 13
+    },
+    {
+      "action": "motion",
+      "seconds": 126.8552615869994,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 127.19679944799282,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 127.19845465599792,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 127.54037700800109,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 128.2920943460049,
+      "cycle": 14
+    },
+    {
+      "action": "motion",
+      "seconds": 129.3044933380006,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 129.64588512999762,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 129.64764001200092,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 129.98962613599724,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 130.74140513199382,
+      "cycle": 15
+    },
+    {
+      "action": "motion",
+      "seconds": 131.75182842000504,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 132.092966805998,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 132.09476185200037,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 132.4365751229925,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 133.1882820519968,
+      "cycle": 16
+    },
+    {
+      "action": "motion",
+      "seconds": 134.20579316199291,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 134.54742719400383,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 134.54891760200553,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 134.89006203100143,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 135.64139655299368,
+      "cycle": 17
+    },
+    {
+      "action": "motion",
+      "seconds": 136.65839658200275,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 137.00016680400586,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 137.00214029599738,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 137.34402218900505,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 138.09625324199442,
+      "cycle": 18
+    },
+    {
+      "action": "motion",
+      "seconds": 139.11303457600297,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 139.45481076999567,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 139.45653444899654,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 139.7983802200033,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 140.5501327660022,
+      "cycle": 19
+    },
+    {
+      "action": "motion",
+      "seconds": 141.56811392000236,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 141.90970134199597,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 141.91225411300547,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 142.25427400700573,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 143.00613922899356,
+      "cycle": 20
+    },
+    {
+      "action": "motion",
+      "seconds": 144.02359207399422,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 144.3652309110039,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 144.3676188739919,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 144.70966575099737,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 145.4615453580045,
+      "cycle": 21
+    },
+    {
+      "action": "motion",
+      "seconds": 146.47925534799288,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 146.82122124600573,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 146.82289556600153,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 147.16477630600275,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 147.9170600780053,
+      "cycle": 22
+    },
+    {
+      "action": "motion",
+      "seconds": 148.93480722200184,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 149.27645784699416,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 149.27836762300285,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 149.62041847300134,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 150.3723070230044,
+      "cycle": 23
+    },
+    {
+      "action": "motion",
+      "seconds": 151.38654156400298,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 151.72805071699258,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 151.72993623399816,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 152.07192567600578,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 152.82404283000506,
+      "cycle": 24
+    },
+    {
+      "action": "motion",
+      "seconds": 153.84332809799525,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 154.18498823700065,
+      "button": 1
+    },
+    {
+      "action": "motion",
+      "seconds": 154.187075697002,
+      "logical_x": 744,
+      "logical_y": 522
+    },
+    {
+      "action": "click",
+      "seconds": 154.52908101100184,
+      "button": 1
+    },
+    {
+      "action": "portrait-recenter",
+      "seconds": 155.280956357994,
+      "cycle": 25
+    },
+    {
+      "action": "capture",
+      "seconds": 157.10606235200248,
+      "name": "combat-14-portrait-stress"
+    },
+    {
+      "action": "portrait-stress-complete",
+      "seconds": 157.1078822749987
+    },
+    {
+      "action": "input-released",
+      "seconds": 157.1094988190016
+    }
+  ],
+  "captures": [
+    {
+      "name": "combat-00-dialogue-check-0",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 131,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 80
+      },
+      "sequence": 63,
+      "ocr": {},
+      "image_sha256": {
+        "native": "a53ccefa3f77cc6e92fc7f7f74cd92cef2fcf46ef9fa149c82f3e6f66d4eafa8",
+        "original": "417ce0910584034c0d439efb379991228300b8a1b8c17bdf8b087a5a2837763e"
+      }
+    },
+    {
+      "name": "combat-01-dialogue-check-1",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 324,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 220
+      },
+      "sequence": 153,
+      "ocr": {},
+      "image_sha256": {
+        "native": "7354a73fa341111998f30ce60e9322c723936d75add82164e841156e59a86480",
+        "original": "bb0787f39a97a63bd238b9c84c0cf199fe457db185a66753ac54d6a3f89b72c4"
+      }
+    },
+    {
+      "name": "combat-02-dialogue-check-2",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 529,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 363
+      },
+      "sequence": 252,
+      "ocr": {},
+      "image_sha256": {
+        "native": "f58eaf565864faff85d0422a292c8488010e189ddec22668cb5def1399966a1e",
+        "original": "185185fe8b251bcab2f0ae70a4411ba14781111e72321234f93aaf8adeb0bf49"
+      }
+    },
+    {
+      "name": "combat-03-dialogue-check-3",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 727,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 504
+      },
+      "sequence": 351,
+      "ocr": {},
+      "image_sha256": {
+        "native": "6e0d3d0582080ea89af043bd2230c25bb6b0b091701344921e0dfc50a34e06ce",
+        "original": "fcab6289064fcfa084b1062b11f77b19efdc907d2af51cb86c160ee1ea3d9d82"
+      }
+    },
+    {
+      "name": "combat-04-dialogue-check-4",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 929,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 638
+      },
+      "sequence": 450,
+      "ocr": {},
+      "image_sha256": {
+        "native": "b9a1fc512e86f09ba0fd06ec91a3bbfaeb7a0ac9317fb9c418264c3dd0a80d14",
+        "original": "33edd471a1871e19fdf28e22f82c1a8fcf8df1fad08535e12c7e9d198cac2798"
+      }
+    },
+    {
+      "name": "combat-05-before-summon",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 991,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 678
+      },
+      "sequence": 477,
+      "ocr": {
+        "native": "0/15",
+        "original": "0/15"
+      },
+      "image_sha256": {
+        "native": "988e6983a56281025a506b9cbcbc3e242b5917220c54deb5bafd565b6050d4d2",
+        "original": "228b44a850330382fa262c45fa4de49de5fd1afd01efc3c05f379b0b32e82c86"
+      }
+    },
+    {
+      "name": "combat-06-invalid-target",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 1155,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 813
+      },
+      "sequence": 639,
+      "ocr": {
+        "native": "0/15",
+        "original": "0/15"
+      },
+      "image_sha256": {
+        "native": "4ea0031d6172e71bb1af656fb5d67e19e15067728ee2df90631ced20c01f0afb",
+        "original": "ef8eaa3cb78ec14eec07927a52d14e1e067202db5524122e43ebef442d66cac3"
+      }
+    },
+    {
+      "name": "combat-07-after-summon",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 1257,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 899
+      },
+      "sequence": 753,
+      "ocr": {
+        "native": "1/15",
+        "original": "1/15"
+      },
+      "image_sha256": {
+        "native": "b6422c1b7080cfb80c80e74ab52c1a73a66a8eea9967d24db4889ea8aa8a3021",
+        "original": "cc4828472e732b44a0bc55aba56486996ec64a78059181ee6e7f7236c63e1d77"
+      }
+    },
+    {
+      "name": "combat-08-navigation-start",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 2195,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 1655
+      },
+      "sequence": 1644,
+      "ocr": {},
+      "image_sha256": {
+        "native": "bae6e229b20a4ee5699852e69f84f2c7f54da3a4f74c044ee54e6c970c6fd042",
+        "original": "599cb69ccd7478206cd6b6cca9f0180eaa3c805d26715109f5a9097ca8c95ae6"
+      }
+    },
+    {
+      "name": "combat-09-ranged-aim",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 2473,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 1865
+      },
+      "sequence": 1845,
+      "ocr": {},
+      "image_sha256": {
+        "native": "e7c41efbba8cc60aa55d99b58762404c11a37cf03125fd16ab8314ba82ae99aa",
+        "original": "777276034bf310b0be165d1457a2aee01fa74c6d7bbb4cb59cdcf64ad2faff34"
+      }
+    },
+    {
+      "name": "combat-10-fireball-damage",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 2625,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 1989
+      },
+      "sequence": 1983,
+      "ocr": {},
+      "image_sha256": {
+        "native": "6094977abdce956f6fa741c54f7c5a7f5432218b9e65c8d9f6701c8cd63f5950",
+        "original": "19e948b2cc06ebab83d2551ae9c14ae8282b7cfaaad2bd4bcdaef15c7d5a643a"
+      }
+    },
+    {
+      "name": "combat-11-combat-approach",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 2731,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 2073
+      },
+      "sequence": 2090,
+      "ocr": {},
+      "image_sha256": {
+        "native": "949702d820a41ba3fb5a7ff59d690a4266304805c073c4fafddb0147a70d0c2a",
+        "original": "f16412dd186021c0d1b2a1035ec13a200be00ede2f6c07d5e9c277e8dd0d0a10"
+      }
+    },
+    {
+      "name": "combat-12-combat-damage",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 2829,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 2158
+      },
+      "sequence": 2216,
+      "ocr": {},
+      "image_sha256": {
+        "native": "13e45ad2d8b21c28512bb3b0bf91a231ab61de84d8848726830cf412de0c8add",
+        "original": "78ec8413d87a4dbc001ef19d2e664a23f66499d9a3e24f5ea82114dfd2ef04ae"
+      }
+    },
+    {
+      "name": "combat-13-insufficient-mana",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 3642,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 2841
+      },
+      "sequence": 3110,
+      "ocr": {
+        "native": "2/15",
+        "original": "2/15"
+      },
+      "image_sha256": {
+        "native": "a92ab27cccab2b130ef445be509123f515e5138035503720724a66a56cb2c6fb",
+        "original": "c14c1eeaa295ae359e47a7087e5aa49356d2a8b74e861c84e2b579f2460c1025"
+      }
+    },
+    {
+      "name": "combat-14-portrait-stress",
+      "metadata": {
+        "fallback": false,
+        "native_frames": 4900,
+        "native_saved": true,
+        "original_saved": true,
+        "painted_frames": 4095
+      },
+      "sequence": 5101,
+      "ocr": {},
+      "image_sha256": {
+        "native": "ed6e9aa7a659beb94b85ebd8076f2dc7d76975f333b622516163df2579208e00",
+        "original": "fdd66d97760bad49ab874fbc0bd4555e126f19b0dd5fe1e53c7e993d50ae5764"
+      }
+    }
+  ]
+}
