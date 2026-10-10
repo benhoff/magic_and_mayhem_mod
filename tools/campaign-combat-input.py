@@ -97,12 +97,23 @@ def main():
             time.sleep(1)
         # Public wizard selection/centering and ground movement, calibrated from
         # actual observed tile movement. No writes to positions, AI or health.
-        calibration=[]
+        calibration=[]; probes=[]
         if 'combat' not in result:center()
-        for dx,dy in (() if 'combat' in result else ((140,-50),(150,0))):
-            a=state()[wizard['slot']];click(400+dx,280+dy,3);time.sleep(3)
-            b=state()[wizard['slot']];calibration.append((b['x']-a['x'],b['y']-a['y']));center()
-        record('movement-calibration',deltas=calibration)
+        # Ground can be occupied or unreachable; two idle clicks are not an
+        # input failure. Try bounded directions and retain the actual basis.
+        for dx,dy in (() if 'combat' in result else ((140,-50),(150,0),(-140,50),(-140,-60),(0,110),(0,-110),(100,90),(-100,90))):
+            a=state()[wizard['slot']];begin=read_rows(trace)[-1][0]
+            click(400+dx,280+dy,3);time.sleep(3)
+            b=state()[wizard['slot']]
+            delta=(b['x']-a['x'],b['y']-a['y'])
+            probes.append(dict(before_sequence=begin,after_sequence=b['sequence'],screen_delta=[dx,dy],tile_delta=list(delta)))
+            record('movement-probe',**probes[-1]);center()
+            if delta!=(0,0):
+                if not calibration:calibration.append((delta,(dx,dy)))
+                elif calibration[0][0][0]*delta[1]-calibration[0][0][1]*delta[0]:
+                    calibration.append((delta,(dx,dy)));break
+        result['movement_probes']=probes
+        record('movement-calibration',basis=calibration)
         capture('navigation-start')
         combat_deadline=time.monotonic()+180; extra_slots=[summoned[0]['slot']]
         while 'combat' not in result and time.monotonic()<combat_deadline:
@@ -115,10 +126,11 @@ def main():
             if not enemies:raise RuntimeError('No living enemy Redcap for combat')
             enemy=min(enemies,key=lambda a:math.hypot(a['x']-actor['x'],a['y']-actor['y']))
             dx,dy=enemy['x']-actor['x'],enemy['y']-actor['y']
-            (ax,ay),(bx,by)=calibration;det=ax*by-ay*bx
+            if len(calibration)!=2:raise RuntimeError('No independent movement after bounded ground probes')
+            ((ax,ay),(asx,asy)),((bx,by),(bsx,bsy))=calibration;det=ax*by-ay*bx
             if not det:raise RuntimeError('Wizard movement calibration did not move in two directions')
             u=(by*dx-bx*dy)/det;v=(ax*dy-ay*dx)/det
-            sx=140*u+150*v;sy=-50*u
+            sx=asx*u+bsx*v;sy=asy*u+bsy*v
             scale=max(1,abs(sx)/170,abs(sy)/110);sx/=scale;sy/=scale
             record('approach-enemy',wizard=actor,enemy=enemy,screen_delta=[sx,sy])
             center();click(400+sx,280+sy,3);time.sleep(3)
@@ -142,6 +154,7 @@ def main():
             lethal=player_lethal_rows(rows,owner,wizard['slot'],hits)
             if lethal and time.monotonic()-start>=args.seconds:
                 result['combat'].update(lethal_hit=list(lethal[0]),hit_count=len(hits));break
+            if state()[wizard['slot']]['health']<=0:raise RuntimeError('Player wizard died before required combat completion')
             if time.monotonic()>finish_deadline:raise RuntimeError('No player party lethal health depletion before combat deadline')
             if args.portrait_stress_seconds:
                 center();record('combat-portrait-recenter');time.sleep(1);continue

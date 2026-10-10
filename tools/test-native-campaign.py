@@ -17,6 +17,8 @@ import struct
 import subprocess
 import time
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
+from campaign_movement import validate_movement_probes
+from campaign_spell import read_spell_rows, validate_spell_observation
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = ['main', 'region', 'campaign-handoff', 'gameplay', 'campaign-menu', 'gameplay-resumed']
@@ -29,7 +31,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'apps/qt-shell/live_command_session.hpp', 'tools/prepare-menu-observer.py',
            'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py']
-SOURCES += ['renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
+SOURCES += ['tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 
 
 def validate_portrait_stress(inputs, flow, capture_root, seconds, min_fps=20):
@@ -100,6 +102,9 @@ def validate_casting_combat(experiment, inputs, capture_root):
     lethal=player_lethal_rows(rows,owner,wizards[0]['slot'],hits)
     if not lethal:raise ValueError('No observed player party lethal enemy health depletion')
     return dict(casting_verified=True,combat_verified=True,summoned_slot=slot,player_owner=owner,
+                movement=validate_movement_probes(rows,inputs),
+                spells=validate_spell_observation(read_spell_rows(experiment/'spell-events.bin',complete=True),rows,inputs),
+                spell_trace_sha256=sha(experiment/'spell-events.bin'),
                 enemy_health_depleted=True,lethal_melee_events=len(lethal),first_lethal_melee=list(lethal[0]),
                 combat_source_slots=sorted({r[4] for r in hits}),melee_damage_events=len(hits),first_melee_damage=list(hits[0]),trace_sha256=sha(experiment/'gameplay-events.bin'))
 
@@ -208,7 +213,7 @@ def main():
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
     if args.require_casting_combat:
-        if args.difficulty not in (1,3):parser.error('Casting/combat requires --difficulty 1 or 3 (other campaign journeys remain separate)')
+        if args.difficulty not in (1,2,3):parser.error('Casting/combat requires --difficulty 1, 2 or 3 (other campaign journeys remain separate)')
         if not args.stress_seconds:args.stress_seconds=60
     if not 30 <= args.timeout <= 600:
         parser.error('--timeout must be between 30 and 600')
@@ -349,7 +354,7 @@ def main():
             report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty)
             if args.require_casting_combat:
                 report['gameplay']=validate_casting_combat(roots[0],json.loads((out/'input-0.json').read_text()),out)
-                report.update(casting_verified=True,combat_verified=True)
+                report.update(casting_verified=True,combat_verified=True,movement_verified=report['gameplay']['movement']['verified'])
             if args.portrait_stress_seconds:
                 report['portrait']=validate_portrait_stress(json.loads((out/'input-0.json').read_text()),flow,out,args.portrait_stress_seconds,args.min_fps)
             validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps)

@@ -25,6 +25,9 @@ if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')=='1':
     trace=root/'gameplay-events.bin'
     if not metadata.get('native_render') or trace.exists():raise ValueError('Refusing unapproved or stale gameplay observation')
     os.environ['MNM_MENU_GAMEPLAY_OBSERVE']='Z:'+str(trace).replace('/','\\')
+    spells=root/'spell-events.bin'
+    if spells.exists():raise ValueError('Refusing stale spell observation')
+    os.environ['MNM_MENU_SPELL_OBSERVE']='Z:'+str(spells).replace('/','\\')
 if os.environ.get('MNM_MENU_NATIVE_RENDER')=='1':
     if not metadata.get('native_render'):raise ValueError('Native rendering was not staged')
     if hashlib.sha256((game/'MnmRender.dll').read_bytes()).hexdigest()!=metadata['render_dll_sha256']:raise ValueError('Render DLL hash mismatch')

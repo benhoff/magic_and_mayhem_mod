@@ -1,5 +1,29 @@
 # Engine modernization coverage ledger
 
+## Native gameplay follow-up checkpoint — 2026-10-10
+
+[Extended gameplay research](native-campaign-extended-gameplay.md) preserves
+three new negative journeys: Apprentice idle fixed probes, subsequent successful
+movement/player damage followed by wizard death, and highest-difficulty lethal
+combat with a busy original-frame capture failure. A longer portrait run defeated
+the first enemy before later enemies killed Cornelius and the old harness waited
+after original World returned to Main. These are failures, not overall passes.
+
+`HOST.native-campaign-movement-probes` seeds bounded measured navigation with
+identity/delta guards. `HOST.native-campaign-spell-observation` seeds a separate
+guarded original cast/impact trace and successful-summon mana-debit validation.
+`HOST.native-campaign-capture-retry` seeds bounded UI-poll acquisition and prompt
+unexpected-exit failure.20 offline validator tests pass; build/admission and fresh
+end-to-end validation are recorded separately. New statuses do not claim live
+equivalence or replacement. Existing source-bound portrait evidence retains its
+historical hashes; changed dependencies require another full live run.
+
+The final no-draw-skip policy has an owned20-second CPU profile with6,864 samples
+and no sample loss. Hardware validation is unavailable (`/dev/dri` absent).
+Failed/refunded casts, healing, ranged outcomes, other maps, timing equivalence,
+native GDI and complete drawing replacement remain pending. The exact committed
+range `ab40f5a..754f961` contains two reviewed file transitions and no gaps.
+
 The [complete live drawing replacement plan](../../docs/live-drawing-replacement.md)
 is the authoritative source for drawing takeover scope, implementation order,
 remaining dependencies and complete launcher-mode criteria. This ledger and the
