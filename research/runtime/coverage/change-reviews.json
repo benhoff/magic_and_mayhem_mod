@@ -126212,6 +126212,122 @@
           "HOST.native-campaign.spells-stress-passed-20261009"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "21aed7d1b7fb78472f4d0687a277763fc02e680f17d5f4baa3b0a1ad2dae34e3",
+          "before_sha256": "386a63df68d479c99ab245b149656a6f5784934fd812e6cbdd9005f823a2977a",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "a6336982aa7e6a06ed7e17ad030671551eb02a97877083ab98737f6879e2b4c8",
+          "before_sha256": "1e4fdffb28fbedeb6183b21c9068a269744ba2cd4a55ed79169af3fdfbb0801d",
+          "id": "NR.surface-backend.owned"
+        },
+        {
+          "after_sha256": "8b15479b06d152db0943d8c3c04be5de43ff8f32282782af651bd4287aa56719",
+          "before_sha256": "b3fd0c7260f708a048061d0b081e3af649ec9046730410c55ee2e45f3daab5dc",
+          "id": "NR.surface-colors.rgb565-dc"
+        },
+        {
+          "after_sha256": "bfc28cf5763ff1fd5c13af2de3652dae289ff11013c11e7c1d4e6c5f63d37180",
+          "before_sha256": "46b534315b6467a9373213fdcfac4ccf15f0a2189fa7cd5ace86d2976d2b35c4",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "97cffd2aee76dff8a874ac72159d2c8ab80a996c7c6c78b381a96cd664fd12b5",
+          "before_sha256": "f2cc8bce75c362cdc1cace2733e7e6e042389f815d3c352110edc93ce9504182",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "6addcbd7f41812f4d0606442c5343dec03529421dc22cef0663cabfa35064739",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-campaign-history-review-b70c9e6-0857efe.json"
+        },
+        {
+          "after_sha256": "5424eaf7e3c79bbcf6a841334f5d76a6595cd9e7a2237217536c920fc78bf38c",
+          "before_sha256": "6adab84c437227c9ad2ef869b02a713428d97f3922f0b37b3ecbe81d2b1124d1",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "2accf60a6353d1545b2f38535da1732603668526753ddd5c51f5d8074248d1c9",
+          "before_sha256": "f039be2f19ec5ba21908f1f11b72a01ec2cd14698edbe3b66dabbc1a4440a7c2",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "306c8bdb398ed40cb631270609884fb3a1ab17203925634e9c7979d17ae4a115",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-final-default-smoke-20261009.json"
+        },
+        {
+          "after_sha256": "461ea8e314b16cd2a342e3a94c4d438f97694038910ac99b9fb94339cc2f6be9",
+          "before_sha256": "f3ee8f069050744d18a2301485434df810afeba2f64556df88e69661b4ee8cdd",
+          "path": "research/runtime/native-campaign-rendering.md"
+        }
+      ],
+      "id": "native-campaign-default-smoke-closeout-accounting-20261009",
+      "pending_gaps": [],
+      "reason": "Reviewed immutable final default Initiate smoke, current register links/generated summary and73 committed parent/current file-hash transitions through0857efe. Preserve existing historical failures, retrospective omission/reconciliation reports and source-bound long stress result.",
+      "validation": {
+        "status": "pending",
+        "reason": "Research/evidence closeout does not rerun broader renderer/recovered-color contracts; historical scopes/fingerprints remain retained and those validation boundaries remain pending. No code or source declaration changed.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "40490c48d28b0795781e2365a3fff346ea3dacd887d05af0d3ceae6d271b7bac",
+          "before_sha256": "a0f507f8f0f3b842b028ea75071995568804e7fb1ff42b70614fa17d5cea8d0d",
+          "id": "HOST.native-campaign-session"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "97cffd2aee76dff8a874ac72159d2c8ab80a996c7c6c78b381a96cd664fd12b5",
+          "before_sha256": "f2cc8bce75c362cdc1cace2733e7e6e042389f815d3c352110edc93ce9504182",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "6addcbd7f41812f4d0606442c5343dec03529421dc22cef0663cabfa35064739",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-campaign-history-review-b70c9e6-0857efe.json"
+        },
+        {
+          "after_sha256": "5424eaf7e3c79bbcf6a841334f5d76a6595cd9e7a2237217536c920fc78bf38c",
+          "before_sha256": "6adab84c437227c9ad2ef869b02a713428d97f3922f0b37b3ecbe81d2b1124d1",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "2accf60a6353d1545b2f38535da1732603668526753ddd5c51f5d8074248d1c9",
+          "before_sha256": "f039be2f19ec5ba21908f1f11b72a01ec2cd14698edbe3b66dabbc1a4440a7c2",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "306c8bdb398ed40cb631270609884fb3a1ab17203925634e9c7979d17ae4a115",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-final-default-smoke-20261009.json"
+        },
+        {
+          "after_sha256": "461ea8e314b16cd2a342e3a94c4d438f97694038910ac99b9fb94339cc2f6be9",
+          "before_sha256": "f3ee8f069050744d18a2301485434df810afeba2f64556df88e69661b4ee8cdd",
+          "path": "research/runtime/native-campaign-rendering.md"
+        }
+      ],
+      "id": "native-campaign-default-smoke-closeout-live-20261009",
+      "pending_gaps": [],
+      "reason": "Fresh final default Initiate end-to-end native menus/rendering smoke completes independent initialized World readiness, native Mini Cancel and same-thread World resume with89native frames/56visible paints and zero fallback/recovery. Adds smoke coverage beside the already fresh four40-second Apprentice stress result; does not validate extended tutorial or combat.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Final default public test and unchanged-source Apprentice stress both pass with stable complete source declarations, ordinary v12 callbacks and before/after immutable verification. Default flow has three initialized World ticks and one same-thread Cancel/resume; stress has three returns and passes fixed20/10FPS floors. Original comparison/replacement, extended tutorial, movement/casting/combat, hardware/other-map/unbounded boundaries remain separate.",
+        "evidence": [
+          "HOST.native-campaign.final-default-smoke-20261009",
+          "HOST.native-campaign.spells-stress-passed-20261009"
+        ]
+      }
     }
   ]
 }
