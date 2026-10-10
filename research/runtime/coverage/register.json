@@ -22506,7 +22506,8 @@
         "HOST.native-campaign.directcopy-stress-passed-20261009",
         "HOST.native-campaign.tutorial-stall-20261009",
         "HOST.native-campaign.spells-stress-passed-20261009",
-        "HOST.native-campaign.final-default-smoke-20261009"
+        "HOST.native-campaign.final-default-smoke-20261009",
+        "HOST.native-campaign.repeated-resume-precise-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -24532,7 +24533,8 @@
         "HOST.native-pacer.sleep0-slow-20261010",
         "HOST.native-pacer.sleep1-gap-20261010",
         "HOST.native-pacer.overlap-negative-20261010",
-        "HOST.native-pacer.zero-fixture-20261010"
+        "HOST.native-pacer.zero-fixture-20261010",
+        "HOST.native-pacer.final-guard-fixture-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -47568,6 +47570,60 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-campaign.repeated-resume-precise-passed-20261010",
+      "kind": "live_observation",
+      "scope": "Fresh final-source Apprentice public native NewGame/Region difficulty1/Enter, four43.2second physical camera/rotation/scene/HUD/spell/creature/order/wheel phases and three original MiniCancel/World resumes.10774native frames7168paints,zero recovery/fallback,20/10/two-second floors,stable sources and both immutable manifests. Independent native/original captures are unsynchronized diagnostics; no movement/casting/combat semantics or pixel/full replacement equivalence.",
+      "record": "research/runtime/native-repeated-resume-precise-passed-20261010.json",
+      "sha256": "f9d5a15007fdd5bc119a78d06fcd6c57caf3c81c3909d76e6aaf33787e00e9fa",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/flow_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/native_precise_clock/enabled",
+          "equals": true
+        },
+        {
+          "pointer": "/engine/world_resumes",
+          "equals": 3
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-pacer.final-guard-fixture-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-pacer-final-guard-fixture-20261010.json",
+      "sha256": "ddfb3dc852e651241913a18ddb4580d81e3a0a798dc04e117a141ada37494cef",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ],
+      "scope": "Final-source PE32 synthetic18-byte mutation/import/base/caller/state/LastError forwarding guards with precise clock disabled; not a performance fix or live timing/history guarantee."
     }
   ],
   "classifications": [],
@@ -54320,7 +54376,8 @@
         "HOST.native-campaign.directcopy-stress-passed-20261009",
         "HOST.native-campaign.tutorial-stall-20261009",
         "HOST.native-campaign.spells-stress-passed-20261009",
-        "HOST.native-campaign.final-default-smoke-20261009"
+        "HOST.native-campaign.final-default-smoke-20261009",
+        "HOST.native-campaign.repeated-resume-precise-passed-20261010"
       ],
       "scope": "Public Launch/New Game/Region Enter, independent initialized same-thread World readiness, native command/Qt paint presentation, bounded physical camera/rotation/scene/HUD clicks, spell/creature selection and target/source-order attempts, wheel input and repeated Escape/native Mini/Cancel returns. Diagnostic native/original images and explicit 20 FPS average/10 FPS one-second floors; preserves negative early-Escape/copy-GAP evidence. Original callbacks/World resume independently checked; no pixel equivalence or movement/combat/replacement claim."
     },

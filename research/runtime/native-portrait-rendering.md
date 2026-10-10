@@ -230,3 +230,19 @@ This renews only the stated scenarios; Cure and generic repeated Mini Cancel
 are independently checked. Original timing/physics, natural defeat, full surface
 history, complete GDI/drawing/simulation replacement and other hardware remain
 outside the result. Earlier negative reports and their hashes remain intact.
+
+The independent final-source Apprentice repeat route also passes three original
+native Mini Cancel/World resumes and four43.2second physical gameplay stress
+phases. It retains10774native frames/7168paints, zero recovery/fallback and fixed
+performance floors. Native phase averages57.5568/65.4852/56.9435/62.2264FPS and
+paint averages39.4514/42.4533/39.4551/41.8216FPS pass; worst window22.1198FPS.
+This renews `HOST.native-campaign-session` only, with unsynchronized diagnostic
+images and no movement/combat/pixel equivalence assertion. Source-bound evidence
+is `native-repeated-resume-precise-passed-20261010.json`; all older reports stay
+historical. The committed rangee5b4180..8e37e6b has38 reviewed exact transitions
+and zero missing receipt gaps.
+
+The retained disabled-by-default Sleep0 policy also passes its final-source PE32
+byte/import/base/caller/state/original-clock/LastError guard fixture with the
+precise clock disabled. `native-pacer-final-guard-fixture-20261010.json` adds only
+fresh synthetic guard evidence; no yield performance or live history guarantee.

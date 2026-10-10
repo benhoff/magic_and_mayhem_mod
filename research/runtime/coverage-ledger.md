@@ -3517,3 +3517,16 @@ health, Cure41 delta100 and actual caster mana debit from the reviewed caller;
 native41.5934/paint30.6934FPS,worst19.0909FPS, zero recovery/fallback and stable
 prospective sources/manifests. The selected clamp is observed without a full
 formula/cleansing/refund claim. Original277to377 evidence stays historical.
+
+### Final repeated native Mini Cancel stress (2026-10-10)
+
+The source-bound Apprentice repeat smoke passes four43.2second ordinary physical
+input phases and three independently observed original MiniCancel/World resumes:
+10774native frames/7168paints, zero recovery/fallback, native phase averages
+57.5568/65.4852/56.9435/62.2264FPS and painted39.4514/42.4533/39.4551/41.8216FPS,
+worst22.1198FPS. Sources/manifests and protocolV12 remain verified. This renews
+only the bounded host session; images are unsynchronized diagnostics and there
+is no new movement/combat/pixel or full engine replacement equivalence claim.
+Together with fresh portrait/casting/blocked-spell/Quit and separate Cure runs,
+the outlined bounded smoke cases now have final-source execution evidence.
+The commit rangee5b4180..8e37e6b has38 exact reviewed transitions and zero gaps.
