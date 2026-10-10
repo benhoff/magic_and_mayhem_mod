@@ -1,0 +1,296 @@
+{
+  "schema": 1,
+  "scope": "Committed-history accounting only; no assertion of past gate passes or new execution validation.",
+  "range": {
+    "base": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+    "head": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d"
+  },
+  "prior_receipts_preserved": true,
+  "files": [
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "ccd885cc469b08102c1fc30bbd4c5c1996abbecc07fa9e7753d9607bed5881b5",
+      "after_sha256": "f2b02e3e62bb42af8744ccc2fb49f55820a4a3e3611b81f3d24a89e8cffa3086",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "reconstruction/rendering/word_backend_state.c",
+      "before_sha256": null,
+      "after_sha256": "4cef77abdb5f5ce2a42dcfcf8f8406354fb9a8ae3ec3a6659208ce183f840707",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "reconstruction/rendering/word_backend_state.h",
+      "before_sha256": null,
+      "after_sha256": "3f76d1b3eb2a4ce5974aa7ebcd9584d2a5a63e7887eaf67d37848c6064828f7f",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/formats/word-backend-state-fixtures-v1.md",
+      "before_sha256": null,
+      "after_sha256": "b91d4a1f518e1fe2d053548fc21db7f05569f2f9b052edf33dcc07c93e0abc42",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "ef7e09d5993315be26872b7662e8732fc876888587a66e9210582b591e4b6c49",
+      "after_sha256": "ed2e09a56f9f9a328353c3702207efeac60d811b0014dfd8bc50b546fed11183",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "f6d3f79bb6abcab3fd5be4880c0a7ac4b901517438d4f3b27523c4c74cc192ca",
+      "after_sha256": "99d9a9917baee0481b47120d29269bb1559f780963b2d6f79d8bc04601e35220",
+      "receipts": null,
+      "classification": "append_only_review_container"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "d77328c99fa9b190125211d26d6d7bb0957cf9b6d276eaf96362569edc893a32",
+      "after_sha256": "351fe0d7539d44383240c1167719990e794deb6e69ea00fd9284e4b67b92d9b1",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/coverage/source-index-word-state-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bbdc4aa7ef811ade623008caed6da25497e97c97f621b520b801d6a8b6eb4f4f",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "98b74506e31687acf58e036011d720057d4f5d9944089ac2d313b524ee09f2cc",
+      "after_sha256": "7e2edd90e43fa17e66cb22428f3c988cddae99a735aa5834782ad5c388541093",
+      "receipts": [
+        "word-state-generated-summary-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/coverage/word-state-history-review-01e160a-89a3efa-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "336b2e50929ab5243bec920cd627356126ad999b711b9b5bd17a67a4b56cf1ed",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/coverage/word-state-history-review-f60b55c-01e160a-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "fb2d39a78c3bbf1405fca3137a708a92e1f4c95b72bb63349d9728a497604090",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/native-word-sprite-mvp.md",
+      "before_sha256": "60732d6a985cf14035aa76955bd2b48ac46351bd047abc35172f7921101e05d5",
+      "after_sha256": "5655e9e831780b25aa9ed3da2d525ee32463eaee410658e35748f51c4eda1b51",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/word-backend-state-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b482183bb8aa65bf2c7f943519385e0c77bff9472c4f1e05454c83ef8cd4c0f2",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/word-backend-state-final-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1b1a70b5d692023eded52bb244e4c6dd759928beb88eec973026338886223734",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/word-backend-state.md",
+      "before_sha256": null,
+      "after_sha256": "4c85440f66b1889266f48d7ff0b65454bff4a04eb2fbfd542d937eaf7b9b32c9",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/word-route-state-fix-shadow-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "616846b0e7b8182960c3b7ac0e81d3fb9c76578085cfccfb576e6cb7a96f5147",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/word-route-state-fix-takeover-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f471be2cda7251cccfc635bae43ea460aadc54729880f4ccfabf9f9ed489c073",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "research/runtime/word-sprite-clipping.md",
+      "before_sha256": "427ac432ffcf1cc388d325370008af12d6bf2de9f0fa021ddf99128a7bb025bc",
+      "after_sha256": "a9ebc7c43ce031aa139da3998be1fb2143405c15d760702d3668ffe0522d744b",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "runtime/scene/word_entry.S",
+      "before_sha256": "f4ad46c7c503212db820bbdcea7570f33d8d6735b8837db034e3bf52ad18d1f7",
+      "after_sha256": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "runtime/scene/word_route.c",
+      "before_sha256": "f8a39a190ef1350d54a0119a0d72f981accc634add1c4534cb85d5c4aea58a6d",
+      "after_sha256": "0e364ed82223cc79267e10771b402479ec5d37aac8bbe9b6c03353955dc7e772",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "runtime/scene/word_workspace.h",
+      "before_sha256": null,
+      "after_sha256": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "tests/word-backend-probe.S",
+      "before_sha256": null,
+      "after_sha256": "113851c9b6af2e3b7e9fc5e604bce8b321b1218ff708b1fef1ce2c96678bbe24",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "tests/word-backend-state-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "33b1ecc3fc04678375679f56c59e2222f8d7124f42bc5820d95711ae1777ed7e",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "tools/build-word-sprites.py",
+      "before_sha256": "7508933e5ad1f42b2e20864a2d9667342fa4eee72fd254a2aa89e173b9c27e61",
+      "after_sha256": "deb5ad545dfc79aab3a7d267f65c2a0091bcd9694728697e65ecaf750b1183f0",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "tools/test-word-backend-state.py",
+      "before_sha256": null,
+      "after_sha256": "38f0bcb56a44bef46e907646f3b2ef01155480acad6454f09f22cfd767dc7e5c",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "3ff3fbe635679ce7f68e4814262bb6d38d6b287d",
+      "parent": "89a3efa352e7dbaf9cd5e78fe1445b7f6cbcb45c",
+      "path": "tools/test-word-sprites.py",
+      "before_sha256": "b72007824fa68eb82be928b1032ebd29a985844974907ae6c054a4be89affc00",
+      "after_sha256": "f16742eb6423499a035ea00c9d7fb0c4c366627cc6e7b515d82fafb6dd27bcfe",
+      "receipts": [
+        "word-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    }
+  ],
+  "unresolved_gaps": []
+}

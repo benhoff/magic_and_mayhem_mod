@@ -3916,3 +3916,23 @@ admitted calls without mismatches; fresh takeover bypasses 12,608 calls while
 policy, host entry testing and finite live proof separate. Clipped native raster
 admission, unmasked floating exceptions, Win32 LastError/reentry stress and
 long-session/physical-driver coverage remain pending.
+
+### Native CPU direct-word clipping — 2026-10-10
+
+The separate portable CPU clipping service now implements half-open run
+intersection and full-frame preflight, including hidden rows. Fresh independent
+original comparison passed 4,448 cases over both pinned backends with all 16
+workspace words, arguments, integer/stack/defined flags, selected masked floating
+state, complete canvas/source guards and pixels matching. The host clipped
+adapter actually handled all 4,400 positive requests; 48 empty requests forwarded
+for original floating handling. ASan/UBSan boundary checks passed 288 manually
+expanded placements, 43 atomic refusals and 3 empty no-ops; freestanding PE32 core
+compilation passed. The initial null-output failure and corrected prospective
+rerun are separately preserved.
+
+This establishes bounded CPU clipping plus recovered state composition in an
+isolated host adapter, not clipped live admission. The existing live hook still
+forwards clipped requests. Win32 access/LastError/reentry, unmasked/full-stack/
+exception floating behavior, installed-asset generality and sustained live
+validation remain open. See [CPU clipping evidence](word-cpu-clipping.md) and
+`RS.word-cpu-clipping` / `NR.word-cpu-clipping-admission`.

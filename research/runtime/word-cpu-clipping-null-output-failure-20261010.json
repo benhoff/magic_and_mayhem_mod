@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "success": false,
+  "claims": [
+    {
+      "behavior": "RS.word-cpu-clipping",
+      "contract_sha256": "d66093ceafd2e3fcb1d1d22a4fee4c378bc40779e2749a9d33226a4414ca3030",
+      "scenarios": {}
+    },
+    {
+      "behavior": "NR.word-cpu-clipping-admission",
+      "contract_sha256": "dc4b528f456f6d3f1cd71a23d690acac54fc25f96f0a78301f9ec6653a187167",
+      "scenarios": {
+        "word-cpu-clipping-admission-host-20261010": "d137e99b4d0fa6c3454f61102347ce22a61d71c5f02f57d2861f7c6da216e915"
+      }
+    }
+  ],
+  "sources": {
+    "reconstruction/rendering/word_backend_state.c": "4cef77abdb5f5ce2a42dcfcf8f8406354fb9a8ae3ec3a6659208ce183f840707",
+    "reconstruction/rendering/word_backend_state.h": "3f76d1b3eb2a4ce5974aa7ebcd9584d2a5a63e7887eaf67d37848c6064828f7f",
+    "tests/word-clipped-reference.cpp": "83d6b8bb2e7c10b801597b6dcc3b6a9a98e60be71b986565897ef35c1f8d50a6",
+    "tests/word-backend-probe.S": "113851c9b6af2e3b7e9fc5e604bce8b321b1218ff708b1fef1ce2c96678bbe24",
+    "tools/test-word-clipped.py": "b7a704035b3a4c3e9617024b2cdb82e25eede2f6800a197a4c5a787205ed0385",
+    "tools/test-word-sprites.py": "f16742eb6423499a035ea00c9d7fb0c4c366627cc6e7b515d82fafb6dd27bcfe",
+    "renderer/sprites/word_clipped.c": "6107ae4b0a9a157e50423eb463fe3fe198f6a2cedc5dc59fdae62c0faebb3c2b",
+    "renderer/sprites/word_clipped.h": "82ae0479efb1f5854adc958a78a12b5b0ec174554cd60c1b19d84f863a9419a7",
+    "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+    "runtime/scene/word_entry.S": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+    "renderer/sprites/word-clipped/CMakeLists.txt": "bb2d2bfa48a4941b51972040a9f2f2befe1333dc064de6f62cb118ac94dd7d6a",
+    "tests/word-clipped-test.c": "bb7e89075fb9b8b412d32f16e03584488494974c49bb779bc44fa591f61362a8",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45"
+  },
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "experiment": "working/tests/word-clipped/run-xnqej5au",
+  "scope": "Bounded contiguous direct-word CPU clipping versus two unchanged original No-CD backends, zero/(2,2) clip origins, exact/partial edges/corners, hidden/oversized frames, zero dimensions. Complete workspace/argument/integer/defined flags/selected masked floating/guards comparison through production entry assembly and a host-only clipped admission stand-in; empty requests forwarded for original FP handling. Core malformed/alias/clip-bounds refusal is native safety policy, not original malformed acceptance. Win32 access/LastError/reentry, unmasked/full-stack/exception FP, other backends, auxiliary/indexed inputs, installed assets and live clipping replacement excluded.",
+  "original_work_bypassed": false,
+  "live_replacement": false,
+  "commands": [
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clipped/run-xnqej5au/manifest-before.log",
+      "log_sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    },
+    {
+      "argv": [
+        "cmake",
+        "-S",
+        "/home/hoff/swdev/magic_and_mayhem_mod/renderer/sprites/word-clipped",
+        "-B",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clipped/run-xnqej5au/host-build",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_C_FLAGS=-fsanitize=address,undefined -fno-omit-frame-pointer"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clipped/run-xnqej5au/host-configure.log",
+      "log_sha256": "3184ec45ee2baa6b110c9c59e372f49fc39940c6bc49a645f16070a4d28ad258"
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clipped/run-xnqej5au/host-build",
+        "--parallel",
+        "4"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clipped/run-xnqej5au/host-build.log",
+      "log_sha256": "a2a78d06d2579d50bbe92b9701c0d99781a43a9ae802ea0db655a4e8098959a3"
+    },
+    {
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clipped/run-xnqej5au/host-build",
+        "--output-on-failure"
+      ],
+      "returncode": 8,
+      "log": "working/tests/word-clipped/run-xnqej5au/host-ctest.log",
+      "log_sha256": "91109e2c6b976f9087127631b80b765b536b77e558a34b67ecb89b0b660a41ee"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clipped/run-xnqej5au/manifest-after.log",
+      "log_sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    }
+  ],
+  "error": "Command '['ctest', '--test-dir', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clipped/run-xnqej5au/host-build', '--output-on-failure']' returned non-zero exit status 8.",
+  "changed_sources": [],
+  "sources_stable": true
+}

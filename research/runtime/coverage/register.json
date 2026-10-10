@@ -27011,6 +27011,117 @@
           "other backends and original malformed handling"
         ]
       }
+    },
+    {
+      "id": "RS.word-cpu-clipping",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Bounded native CPU clipping composed with recovered direct-word caller state",
+      "scope": "Two pinned original direct-word backends; generated contiguous positive frames at exact/partial edges, all corners, hidden/oversized sprites, signed origins, zero/(2,2) clip-left/top and padded canvas/WORD alignments, plus empty dimensions. Portable CPU drawing plus recovered sixteen-word workspace prediction is checked through unchanged production entry assembly and a host-only clipped admission stand-in. Positive requests must execute native; empty requests forward for original FP handling. Integer/stack/argument/defined-flags/DF and selected masked x87/control/status/three finite active values, XMM0..7/MXCSR and complete pixel/source guards are compared. Win32 admission/LastError/reentry, live replacement, unmasked/full-stack/exception floating behavior, floating instruction/data history/unused slots, undefined AF, other backends, auxiliary/indexed inputs, installed assets and original malformed acceptance excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Selected bounded clipped pixels and workspace/caller state only; malformed acceptance and complete backend/Win32 semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Selected bounded clipped pixels and workspace/caller state only; malformed acceptance and complete backend/Win32 semantics excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/word-cpu-clipping.md",
+        "research/formats/word-cpu-clipping-results-v1.md"
+      ],
+      "implementation": [
+        "renderer/sprites/word_clipped.c",
+        "renderer/sprites/word_clipped.h",
+        "renderer/sprites/word-clipped/CMakeLists.txt",
+        "reconstruction/rendering/word_backend_state.c",
+        "reconstruction/rendering/word_backend_state.h"
+      ],
+      "tests": [
+        "tests/word-clipped-reference.cpp",
+        "tests/word-backend-probe.S",
+        "tools/test-word-clipped.py"
+      ],
+      "evidence": [
+        "RS.word-cpu-clipping.original-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "inputs": "64 deterministic positive frames across17 placements with zero/(2,2) clip origins, selected smaller viewports and12 empty templates; both selected backends.",
+        "floating": "Four masked rounding/status/EFLAGS seeds and three finite active x87 values; XMM/MXCSR seeded.",
+        "execution": "Actual host clipped handler must handle every positive fixture and forward every empty fixture; no positive fallback credit.",
+        "exclusions": [
+          "Win32 access/LastError/reentry",
+          "live clipping",
+          "unmasked/full-stack/exception FP",
+          "undefined AF and floating history/unused slots",
+          "other backends",
+          "indexed/auxiliary inputs",
+          "installed-asset generality",
+          "unsafe original malformed handling"
+        ]
+      },
+      "validation_dependencies": [
+        "tools/test-word-sprites.py",
+        "renderer/sprites/word_raster.h",
+        "runtime/scene/word_entry.S",
+        "tests/word-clipped-test.c",
+        "tools/original-manifest.sh"
+      ]
+    },
+    {
+      "id": "NR.word-cpu-clipping-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic preflight and bounded refusal for native CPU clipping",
+      "scope": "Entire stable contiguous direct-word frame is preflighted before any canvas or output metadata writes, including hidden rows. Bounds frame40..4MiB, canvas/frame dimensions<=2048, stride<=4096, nonempty clip inside canvas, positive translated anchors[-4096,4096]. Invalid rows/controls/planes/header/dimensions/extents/null inputs/clip bounds and input/canvas overlap refuse without mutation. Generated288 manual placements include subrectangle bounds, byte alignment, opaque zero and stride/guards; late malformed/hidden cases and empty extreme anchors included. Output/descriptors must not alias storage; inputs must remain stable. Refusals are intentional native policy, not original malformed semantics. Does not validate Win32 admission/concurrency or live replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/word-cpu-clipping.md",
+        "research/formats/word-cpu-clipping-results-v1.md"
+      ],
+      "implementation": [
+        "renderer/sprites/word_clipped.c",
+        "renderer/sprites/word_clipped.h",
+        "renderer/sprites/word-clipped/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/word-clipped-test.c",
+        "tools/test-word-clipped.py"
+      ],
+      "evidence": [
+        "NR.word-cpu-clipping-admission.null-output-failure-20261010",
+        "NR.word-cpu-clipping-admission.sanitized-host-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "reconstruction/rendering/word_backend_state.c",
+        "reconstruction/rendering/word_backend_state.h",
+        "tests/word-clipped-reference.cpp",
+        "tests/word-backend-probe.S",
+        "tools/test-word-sprites.py",
+        "renderer/sprites/word_raster.h",
+        "runtime/scene/word_entry.S",
+        "tools/original-manifest.sh"
+      ]
     }
   ],
   "evidence": [
@@ -51696,6 +51807,125 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.word-cpu-clipping-admission.null-output-failure-20261010",
+      "kind": "native_integration",
+      "scope": "Initial ASan/UBSan host CTest failed on the newly added null-output case before original-backend execution. Original manifest checks passed; report preserves pre-fix sources. Superseded by a fresh prospectively declared successful rerun after the missing draw guard was fixed. No passing validation claim.",
+      "record": "research/runtime/word-cpu-clipping-null-output-failure-20261010.json",
+      "sha256": "ad8a71baa16423de6d07f37aacd802a56a9eecaaca30fe91c3bcad4242b3a8b3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/commands/3/returncode",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "record": "research/runtime/word-cpu-clipping-original-20261010.json",
+      "sha256": "f9d5b52e052051b392e49d1d59e44a17e2130425025dfa9002aecbf6f840e896",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "id": "RS.word-cpu-clipping.original-20261010",
+      "kind": "isolated_original",
+      "scope": "4448 unchanged-original/model/production-entry comparisons;4400 actually native positive requests (all clipping groups),48 empty forwards. Complete workspace/args/integer/selected masked FP/flags/guarded canvas/source match. Host-only clipped adapter; Win32 and live clipping excluded.",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/changed_sources",
+          "equals": []
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/model_original_matches",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/native_entry_original_matches",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/cpu_clip_admissions",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/native_handled_positive",
+          "equals": 4400
+        },
+        {
+          "pointer": "/counts/original_forwarded_empty",
+          "equals": 48
+        },
+        {
+          "pointer": "/isolated_original_body_bypasses",
+          "equals": 4400
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "record": "research/runtime/word-cpu-clipping-original-20261010.json",
+      "sha256": "f9d5b52e052051b392e49d1d59e44a17e2130425025dfa9002aecbf6f840e896",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "id": "NR.word-cpu-clipping-admission.sanitized-host-20261010",
+      "kind": "native_integration",
+      "scope": "New native CPU core under ASan/UBSan:288 manually expanded placements,43 atomic refusals and3 empty no-ops; complete guard/padding/opaque-zero checks. PE32 core compilation also passes. No original malformed semantics or Win32/live proof.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/host_ctest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/host_boundaries",
+          "equals": "288 clipped placements, 43 atomic refusals, 3 empty no-ops passed"
+        },
+        {
+          "pointer": "/changed_sources",
+          "equals": []
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -58916,6 +59146,21 @@
         "tools/capture-scene-game.py",
         "tools/test-word-sprites.py"
       ]
+    },
+    {
+      "id": "word-cpu-clipping-admission-host-20261010",
+      "level": "headless",
+      "behaviors": [
+        "NR.word-cpu-clipping-admission"
+      ],
+      "tests": [
+        "tests/word-clipped-test.c",
+        "tools/test-word-clipped.py"
+      ],
+      "scope": "Media-independent CTest under AddressSanitizer/UndefinedBehaviorSanitizer:288 manually expanded placements covering subrectangles/byte alignment, opaque zero, padding/guards; atomic malformed/late/hidden/overlap/null/clip-bounds refusal and three empty no-ops including extreme anchors. CPU service only; original malformed handling, Win32 integration, concurrency and live admission excluded.",
+      "evidence": [
+        "NR.word-cpu-clipping-admission.sanitized-host-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -59244,8 +59489,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-word-state-20261010.json",
-    "sha256": "bbdc4aa7ef811ade623008caed6da25497e97c97f621b520b801d6a8b6eb4f4f"
+    "path": "research/runtime/coverage/source-index-word-cpu-20261010.json",
+    "sha256": "fe02d305a1e0cdcc2aac6f20c5f453527852bf99a015a745316cfb0c1c67e8ba"
   },
   "claim_bindings_required": true
 }
