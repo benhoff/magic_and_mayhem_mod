@@ -152,9 +152,9 @@ The private Xvfb software-Mesa backend uses an explicit four-worker pool;
 `--software-threads` selects and records another size. This controls both native
 and original Wine software-renderer workers and changes no game rules. The
 four-worker rerun passed resumed camera/HUD stress but still failed briefly during
-repeated post-hit wizard recentering. That negative performance route remains a
-limitation; the ordinary casting/combat journey now observes the fight with
-terrain hover until lethal enemy HP depletion. It retains the same timing floors.
+repeated post-hit wizard recentering. That run remains historical negative evidence. The portrait follow-up below
+restores recentering during combat and passes the same timing floors. The
+ordinary route without portrait stress still uses terrain hover.
 
 The [retained passing result](../research/runtime/native-campaign-combat-passed-20261010.json)
 verifies two player Zombie summons, 14 Zombie damage events and Cornelius's
@@ -162,7 +162,7 @@ verifies two player Zombie summons, 14 Zombie damage events and Cornelius's
 It presents 5,798 native frames and 3,958 visible Qt paints with no fallback or
 recovery. Combat averages 27.21 native/20.57 paint FPS, worst 10.95 FPS; resumed
 stress averages 55.06/35.40 FPS, worst 15.89 FPS. This is one bounded software-Mesa
-journey; the earlier recentering performance failure remains explicitly open.
+journey. The later portrait route below validates the recentering correction.
 
 ## Portrait rendering stress
 
@@ -180,4 +180,6 @@ one-second windows. The complete flow also includes both capture boundaries
 and retains its two-second stall ceiling. A stable wizard face crop must match
 independent original-owned pixels within one channel value; hashes, both image
 saves and absence of fallback are required. This is not full-frame or animated
-World equivalence. Game simulation, frame pacing and balance remain original.
+World equivalence. Simulation and balance remain original. Native staging
+disables legacy draw skipping while preserving the selected game speed and
+original pacing instructions; precise scheduling equivalence remains pending.
