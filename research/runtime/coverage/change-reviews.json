@@ -140928,6 +140928,166 @@
           "HOST.native-smoke.cleanup-clock-fixture-20261010"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "f6f56b273661990c8c87e3c5542719dbd34045cfd94d22bd74a2a949d44b34af",
+          "before_sha256": "889d6d366b7f23e76e32b7ec20be0646d3b98383df4734fe09bd862373d25099",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "cf44d6757c3eaa799b3c513d730efb673311755dc2d0dd99cb5a32eaa6c1bc85",
+          "before_sha256": "9d82576c455e216f9a4096650a071920c7838c697a0f4e292b5746f5c9fa2f9c",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "86e77c9fa69c29bdb6ec66da4290022f88201f0216cd7457e8c6bc881e45cfd3",
+          "before_sha256": "c51f75d21022d37b5cfb8861c67cea6f249207e65bdbcd151a1c402c581e300a",
+          "id": "HOST.native-pacer-yield"
+        },
+        {
+          "after_sha256": "b3e4860fd787468a16f5a76ad5e724314828458b2ed48d508b2e7cd7244ab7d5",
+          "before_sha256": "fd956bf1734a7ca5479ce8c9306c3f4f03a0bd8a554e846f288a02804f8c3be4",
+          "id": "HOST.native-precise-uptime-clock"
+        },
+        {
+          "after_sha256": "d3b6aa573106cf0c97f1f1e52e9690e2591c70419ea08834bde041ba476c09cd",
+          "before_sha256": "75fc201dbba2780ce8fa820e2184ee15f21939e1acfeba2f029fdab9c4786c25",
+          "id": "HOST.native-render-draw-cadence"
+        },
+        {
+          "after_sha256": "623a5f3b2d30327342b4a47c7ad9141500da3dba4206f4e2cc6e51ad3dee9d97",
+          "before_sha256": "a853bc0e04f06903e406a0a3ebaad2c31455e5efd8d6e9ebcea6813e78a503d5",
+          "id": "NR.presentation-damage"
+        },
+        {
+          "after_sha256": "ab2258539deb634ca331a90eb33815f57ce0d6584bcd149d72d0ec5be5b02396",
+          "before_sha256": "0fb0ce25cbffa342c657b57e405fb4a8aeb6af12aacd3aca78f16a32ec592159",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "5e8e88f8d3d16671bccd78880ab518d02e31425e48d9ae52e6df4452f5566e76",
+          "before_sha256": "da321629794bfa647877d5b832b5b2c18f204f44449623c12eaf0bdc14f1e70c",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "42642cb5ea3c7e7c38e1e17d6c6841d817be50170ca8bc3d003ab7e5af5b0bf4",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-campaign-history-review-e5b4180-8e37e6b.json"
+        },
+        {
+          "after_sha256": "c880717d4f66d3bb6fe1430a0c4e8c8d5e4e4e32fa5b69ab5abf58a2d545b79c",
+          "before_sha256": "d957cba176d578649ffbedbdbb6df5a729b19097078abbe353fc3f4840462afa",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "3e98f2c79a7863f4c6d03d6851a41f4a4c43f2b5ef73d93f02e4ce85bb709f9d",
+          "before_sha256": "26115aeba12f966e9ecdb1598234625a6da41add44dac6b9cc9f8663b0f21e16",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "ddfb3dc852e651241913a18ddb4580d81e3a0a798dc04e117a141ada37494cef",
+          "before_sha256": null,
+          "path": "research/runtime/native-pacer-final-guard-fixture-20261010.json"
+        },
+        {
+          "after_sha256": "a93c3d02469f0ca503296667d79ea7213df68338cfb1bb9f639807587e05f576",
+          "before_sha256": "043f2f1d0c0d632474de7b2eba733fe25139061f24edf164c7ff38424f441572",
+          "path": "research/runtime/native-portrait-rendering.md"
+        },
+        {
+          "after_sha256": "f9d5a15007fdd5bc119a78d06fcd6c57caf3c81c3909d76e6aaf33787e00e9fa",
+          "before_sha256": null,
+          "path": "research/runtime/native-repeated-resume-precise-passed-20261010.json"
+        },
+        {
+          "path": "research/runtime/native-repeated-resume-precise-gameplay-native-0.png",
+          "before_sha256": null,
+          "after_sha256": "1b131e532cee78046af8e97a0eeab2c072e556679ba8571576c2efaa00d21e0d"
+        },
+        {
+          "path": "research/runtime/native-repeated-resume-precise-gameplay-original-0.png",
+          "before_sha256": null,
+          "after_sha256": "cd8eb34737192a069023084dabdcffc1efeeaa76582f4f838bc167291f309a49"
+        },
+        {
+          "path": "research/runtime/native-repeated-resume-precise-gameplay-resumed-native-1.png",
+          "before_sha256": null,
+          "after_sha256": "53ed1a5e32ada84d4a9d1792e2bd25c76837e64e810c2b458f9ed236016b4e92"
+        },
+        {
+          "path": "research/runtime/native-repeated-resume-precise-gameplay-resumed-native-2.png",
+          "before_sha256": null,
+          "after_sha256": "74beaff8b9fff783baee71cdecee43dcdc086db9a9d005df42216f63c716888e"
+        },
+        {
+          "path": "research/runtime/native-repeated-resume-precise-gameplay-resumed-native-3.png",
+          "before_sha256": null,
+          "after_sha256": "dd6b34fb42a3350549d081edd274c91b8846b33d745ab8276b89f22c12847a4e"
+        },
+        {
+          "path": "research/runtime/native-repeated-resume-precise-gameplay-resumed-original-1.png",
+          "before_sha256": null,
+          "after_sha256": "ec9ead646cafa7646e1131f6406df32f4a024a4d3175cb04f4d242efda4da0da"
+        },
+        {
+          "path": "research/runtime/native-repeated-resume-precise-gameplay-resumed-original-2.png",
+          "before_sha256": null,
+          "after_sha256": "e7d51c8d7cd974030f19ba873ef29df00fe345268f5ceff16c4e9f488474171b"
+        },
+        {
+          "path": "research/runtime/native-repeated-resume-precise-gameplay-resumed-original-3.png",
+          "before_sha256": null,
+          "after_sha256": "6e0ae1064d05a7028c692d30bbf816b799d45b786156a54a96762a90828851f9"
+        },
+        {
+          "path": "research/runtime/native-repeated-resume-precise-passed-20261010-channel.bin",
+          "before_sha256": null,
+          "after_sha256": "90fe54c43bebd7753773fae32cec97e29f42adb2e9b8881b57e292a1802d9eed"
+        },
+        {
+          "path": "research/runtime/native-repeated-resume-precise-passed-20261010-events.bin",
+          "before_sha256": null,
+          "after_sha256": "3cb6075e3426059bc59cb20154c02bbf47d5917007e2f265ae8acb8e1f220ded"
+        }
+      ],
+      "id": "native-final-resume-review-20261010",
+      "pending_gaps": [],
+      "reason": "Retain final-source Apprentice four-phase gameplay stress and three native MiniCancel/World resume traces, channel bytes and independent diagnostic images; retain fresh opt-in yield guard fixture and exact38-transition committed history review.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh repeat run passes fixed20/10FPS andtwo-second floors with10774native frames7168paints,zero recovery/fallback and three original World resumes. Final PE32 yield guards pass with precise clock disabled. No new code changes or full timing/hardware/pixel/gameplay/replacement equivalence; historical reports and remaining shared boundaries stay preserved.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "cf44d6757c3eaa799b3c513d730efb673311755dc2d0dd99cb5a32eaa6c1bc85",
+          "before_sha256": "9d82576c455e216f9a4096650a071920c7838c697a0f4e292b5746f5c9fa2f9c",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "86e77c9fa69c29bdb6ec66da4290022f88201f0216cd7457e8c6bc881e45cfd3",
+          "before_sha256": "c51f75d21022d37b5cfb8861c67cea6f249207e65bdbcd151a1c402c581e300a",
+          "id": "HOST.native-pacer-yield"
+        }
+      ],
+      "files": [],
+      "id": "native-final-resume-recorded-20261010",
+      "pending_gaps": [],
+      "reason": "Retain final-source Apprentice four-phase gameplay stress and three native MiniCancel/World resume traces, channel bytes and independent diagnostic images; retain fresh opt-in yield guard fixture and exact38-transition committed history review.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh prospective source/scope-bound Apprentice repeat workflow verifies three original MiniCancel/World resumes and all four physical input/render phases; final PE32 fixture verifies only opt-in yield guards with precise clock disabled. No code change or broader equivalence claim.",
+        "evidence": [
+          "HOST.native-campaign.repeated-resume-precise-passed-20261010",
+          "HOST.native-pacer.final-guard-fixture-20261010"
+        ]
+      }
     }
   ]
 }
