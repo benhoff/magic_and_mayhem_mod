@@ -10,14 +10,15 @@
 #include <algorithm>
 #include <chrono>
 #include "../../protocols/include/mnm/world_producer_bypass_v1.h"
+#include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include "../../compat/legacy/world_raster_batch.hpp"
 #include "../../protocols/include/mnm/world_raster_batch_v3.h"
 namespace {
 using ProfileClock=std::chrono::steady_clock;
 double elapsedMs(ProfileClock::time_point start){return std::chrono::duration<double,std::milli>(ProfileClock::now()-start).count();}
-QByteArray read(const QString &path) {
+QByteArray read(const QString &path, qint64 limit = 128 * 1024 * 1024) {
   QFile f(path);
-  if (!f.open(QIODevice::ReadOnly) || f.size() > 128 * 1024 * 1024)
+  if (!f.open(QIODevice::ReadOnly) || f.size() > limit)
     throw std::runtime_error("Unavailable bounded input: " + path.toStdString());
   return f.readAll();
 }
@@ -76,14 +77,18 @@ void CanvasProducerSession::tick() {
     if (applied_ == pending_.operations.size()) {
       const auto ingestStarted=ProfileClock::now();
       if (!QFile::exists(input_)) return;
-      QFile input(input_);if(!input.open(QIODevice::ReadOnly)||input.size()>128*1024*1024)throw std::runtime_error("Unavailable bounded producer tail");
+      QFile input(input_);if(!input.open(QIODevice::ReadOnly))throw std::runtime_error("Unavailable bounded producer tail");
       QByteArray header=input.read(64);
       if(header.size()<64){if(done)throw std::runtime_error("Missing producer header");return;}
+      mnm::legacy::CanvasProducerStream envelope{0,{}};
+      mnm::legacy::appendCanvasProducers(envelope,{header.begin(),header.end()},false);
+      const qint64 streamLimit=envelope.version==2?MNM_PRODUCER_V2_MAX_BYTES:128u*1024u*1024u;
+      if(input.size()>streamLimit)throw std::runtime_error("Producer tail exceeds version bound");
       if(!accepted_.isEmpty()&&accepted_.left(64)!=header)throw std::runtime_error("Producer envelope changed");
       const unsigned offset=accepted_.isEmpty()?64:unsigned(accepted_.size());
       if(input.size()<offset||!input.seek(offset))throw std::runtime_error("Producer input shrank");
       auto tail=input.readAll();unsigned end=0;
-      while(unsigned(tail.size())-end>=96){const auto size=word(tail,end);if(size<96||size>128*1024*1024)throw std::runtime_error("Invalid producer extent");if(size>unsigned(tail.size())-end)break;end+=size;}
+      while(unsigned(tail.size())-end>=96){const auto size=word(tail,end);if(size<96||size>unsigned(streamLimit))throw std::runtime_error("Invalid producer extent");if(size>unsigned(tail.size())-end)break;end+=size;}
       if(done&&end!=unsigned(tail.size()))throw std::runtime_error("Incomplete final producer record");
       tail.truncate(end);
       if(accepted_.isEmpty())accepted_=header;
@@ -108,6 +113,7 @@ void CanvasProducerSession::tick() {
       const auto cpuStarted=ProfileClock::now();replay_.apply(c);
       const auto cpuElapsed=elapsedMs(cpuStarted);cpuMs_+=cpuElapsed;
       if(world_&&world_->active())queueCpuMs_+=cpuElapsed;
+      if(r[2]==22||r[2]==MNM_PRODUCER_OWNED_MINIMAP){minimapMs_+=cpuElapsed;++minimapOperations_;}
       if(world_){
         if(r[2]==11){
           queueClock_.start();queueCpuMs_=queueCheckpointMs_=batchValidationMs_=batchPublishMs_=0;
@@ -136,7 +142,11 @@ void CanvasProducerSession::tick() {
       }
       if (r[2] == 1) surfaces_[r[3]] = renderer_->allocate(r[5], r[6], mnm::render::PixelFormat{16, {0xf800, 0x07e0, 0x001f}});
       if (r[2] == 2) { renderer_->destroy(surfaces_.at(r[3])); surfaces_.erase(r[3]); }
-      if (r[2] == 12) ++queues_;
+      if (r[2] == 12) {
+        ++queues_;
+        producerFrames_.append(QJsonObject{{"queue",int(r[14])},{"cpu_composition_ms",cpuMs_-lastCpuMs_},{"checkpoint_diagnostics_ms",checkpointMs_-lastCheckpointMs_},{"stream_ingest_ms",ingestMs_-lastIngestMs_},{"minimap_composition_ms",minimapMs_-lastMinimapMs_}});
+        lastCpuMs_=cpuMs_;lastCheckpointMs_=checkpointMs_;lastIngestMs_=ingestMs_;lastMinimapMs_=minimapMs_;
+      }
       if (r[2] == 10) {
         const auto checkpointStarted=ProfileClock::now();
         const auto image = replay_.read(r[3]);
@@ -158,7 +168,7 @@ void CanvasProducerSession::tick() {
     if(worldBatch_)batchReply();else bypassReply();
     if (done && applied_ == pending_.operations.size()) {
       // Re-read complete input on the next tick if it grew during this batch.
-      if (read(input_) != accepted_) return;
+      if (read(input_,pending_.version==2?MNM_PRODUCER_V2_MAX_BYTES:128u*1024u*1024u) != accepted_) return;
       const auto marker = read(donePath);
       if (marker.size() != 32 || marker.left(8) != "MNMPDONE" || word(marker,8) != 1 || word(marker,12) != queues_ || word(marker,16) != applied_ || word(marker,20) || word(marker,24) != unsigned(checkpoints_.size()) || word(marker,28) != unsigned(accepted_.size()) || queues_ != pending_.queues)
         throw std::runtime_error("Final producer marker does not close the native sequence");
@@ -256,6 +266,8 @@ void CanvasProducerSession::finish(const QString &error) {
   report["complete_raster_queues"]=fullRasters_;report["native_bypass_replies"]=bypasses_;report["native_bypass_count"]=bypasses_.size();
   report["world_raster_batch"]=worldBatch_;report["native_batch_replies"]=batches_;report["native_canvas_writebacks"]=batches_.size();
   report["profile"]=QJsonObject{{"clock","steady host clock, milliseconds"},{"scope","Debug diagnostic consumer; GPU submission is host time, readback includes deferred GPU work. Queue wall time includes producer/timer waits; excludes original simulation and pre-entry work. Checkpoints include GPU mirror, readback, serialization, hashing and disk writes. CPU reference remains enabled; proof FIFO blocking is not a frame benchmark."},{"cpu_composition_ms",cpuMs_},{"checkpoint_diagnostics_ms",checkpointMs_},{"stream_ingest_ms",ingestMs_}};
+  report["wire_version"]=int(pending_.version);report["stream_bytes"]=accepted_.size();
+  report["producer_frames"]=producerFrames_;report["minimap_operations"]=int(minimapOperations_);report["minimap_composition_ms"]=minimapMs_;
   if(world_){report["world_handoff"]=true;report["world_queues"]=int(world_->completedQueues());report["world_draws"]=int(world_->draws());report["world_readbacks"]=int(world_->readbacks());report["world_frames"]=worldFrames_;world_.reset();}
   if (renderer_) {
     for (auto [id, handle] : surfaces_) { (void)id; renderer_->destroy(handle); }

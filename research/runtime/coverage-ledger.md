@@ -3380,3 +3380,26 @@ now have scoped implementation/live-observation integration; comparison and
 replacement remain `none`. The interactive V2 Qt tail consumer and unobserved
 border/driver/ABI states remain pending. Original manifest verification passes
 before/after; historical reports and source hashes are preserved.
+
+### Bounded public V2 minimap viewer (2026-10-10)
+
+`NR.minimap-interactive-presentation` exposes original-active owned minimap
+composition via `run-native-world.py --startup-history --minimap-owned`.
+The Qt tail validates its envelope before payload reads; V1 retains128MiB,
+V2 admits512MiB/262144records and assets retain128MiB. Optional
+`--minimap-motion` uses the existing private-Xvfb completed-return fixture.
+
+[Fresh public-launcher evidence](native-minimap-interactive-20261010.json)
+records two16queue sessions with1062/1062 equal checkpoints each and zero pixel
+mismatches. Motion observes all four stored views and seven centers; its
+262822134byte stream exercises the former Qt limit. Unpaced startup separately
+measures native diagnostic costs. Five Qt malformed/oversized tails refuse
+before applying records. All84compiled repository dependencies are declared,
+sources remain stable and original manifests verify before/after.
+
+Scoped implementation/live-observation integration advances only this native
+viewer policy. Comparison/replacement remain none; original rendering stays
+active. Shared World/batch/launcher historical evidence retains its hashes and
+requires separate current-contract reruns. Unbounded/manual gameplay, complete
+HUD, borders, source generation, driver/ABI and original minimap suppression
+remain pending. See [scope and diagnostic costs](native-minimap-interactive.md).

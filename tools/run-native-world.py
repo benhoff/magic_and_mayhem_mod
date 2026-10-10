@@ -24,12 +24,16 @@ def main():
     parser.add_argument('--skip-queues', type=int, default=None, help='Original startup queues to skip (0..3600)')
     parser.add_argument('--startup-history', action='store_true', help='Automatically run Quick Battle startup through 16 World queues and compare every completed native canvas')
     parser.add_argument('--world-batch', action='store_true', help='Opt-in guarded native replacement of the first 16 World queues; manual original-window input unless --startup-history is set')
-    parser.add_argument('--claims', type=Path, help='Prospective execution claims for the bounded batch experiment')
+    parser.add_argument('--minimap-owned', action='store_true', help='Owned V2 minimap composition in the bounded startup-history viewer; original drawing remains active')
+    parser.add_argument('--minimap-motion', action='store_true', help='Private-Xvfb paced rotation/pan validation with --minimap-owned')
+    parser.add_argument('--claims', type=Path, help='Prospective execution claims for bounded batch or owned minimap startup')
     parser.add_argument('--prefix-template', type=Path, default=ROOT/'working/wineprefix-x86_64')
     args = parser.parse_args()
     producer = args.startup_history or args.world_batch
     if producer and (args.interval not in (None,1) or args.skip_queues not in (None,0)):parser.error('Producer history requires --interval 1 --skip-queues 0')
-    if args.claims and not args.world_batch:parser.error('--claims requires --world-batch')
+    if args.minimap_owned and (not args.startup_history or args.world_batch):parser.error('--minimap-owned requires original-active --startup-history')
+    if args.minimap_motion and not args.minimap_owned:parser.error('--minimap-motion requires --minimap-owned')
+    if args.claims and not (args.world_batch or args.minimap_owned):parser.error('--claims requires --world-batch or --minimap-owned')
     if args.interval is None:args.interval=1 if args.startup_history else 3
     if args.skip_queues is None:args.skip_queues=0 if args.startup_history else 120
     if not os.environ.get('DISPLAY'):parser.error('An X11 display is required')
@@ -43,7 +47,7 @@ def main():
         run_batch(ROOT, build, args.prefix_template, manual=not args.startup_history, claims=args.claims)
         return
     if args.startup_history:
-        run_startup(ROOT,build,args.prefix_template)
+        run_startup(ROOT,build,args.prefix_template,minimap_owned=args.minimap_owned,motion=args.minimap_motion,claims=args.claims)
         return
     spec = importlib.util.spec_from_file_location('world_prepare', ROOT/'tools/prepare-scene-observer.py')
     staging = importlib.util.module_from_spec(spec);spec.loader.exec_module(staging)

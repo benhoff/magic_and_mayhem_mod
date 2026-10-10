@@ -10,13 +10,20 @@ import sys
 import signal
 
 
-def run_startup(repository, build, prefix_template):
+def run_startup(repository, build, prefix_template, *, minimap_owned=False, motion=False, claims=None):
     """Reuse the validated bounded menu driver and capture lifecycle."""
     command = [sys.executable, str(repository/'tools/capture-scene-game.py'),
                '--canvas-producers', '--world-producer-handoff', '--samples', '16',
                '--producer-oracle-mib', '3072', '--skip-window-screenshot',
                '--map', '2', '--magic-items', '0', '--producer-live', str(build/'mnm-canvas-producers-live'),
                '--prefix-template', str(prefix_template.resolve())]
+    if minimap_owned:command.append('--minimap-owned')
+    if claims:command += ['--claims',str(claims.resolve())]
+    if motion:
+        fixture_build=build/'minimap-input'
+        subprocess.run(['cmake','-S',str(repository/'tests/minimap-live-input'),'-B',str(fixture_build)],check=True)
+        subprocess.run(['cmake','--build',str(fixture_build),'-j4'],check=True)
+        command += ['--minimap-input-fixture',str(fixture_build/'mnm-minimap-live-input')]
     print('Automatically running Quick Battle startup; comparing every completed native canvas.', flush=True)
     root = None
     env = {key: value for key, value in os.environ.items() if not key.startswith('MNM_')}
@@ -34,6 +41,21 @@ def run_startup(repository, build, prefix_template):
         process.wait()
         if root is None:raise RuntimeError('Native startup capture failed before staging')
         result = complete(root, True)
+        try:
+            if minimap_owned:
+                captured=json.loads((root/'report.json').read_text())
+                observed=captured['canvas_producers']['minimap_owned']
+                native=result['native']
+                if native['wire_version']!=2 or not native['minimap_operations'] or not observed['terrain_calls'] or any(not observed['kinds'].get(str(k)) for k in range(3)):raise RuntimeError('Incomplete native minimap composition')
+                if motion:
+                    timeline=observed['timeline']
+                    if observed['orientations']!=[0,1,2,3] or not any(a['view']==b['view'] and a['center']!=b['center'] for a,b in zip(timeline,timeline[1:])):raise RuntimeError('Incomplete minimap rotation/pan coverage')
+                result.update(minimap_owned=observed,minimap_fixture_pacing=motion)
+                (root/'native-world.json').write_text(json.dumps(result,indent=2)+'\n')
+        except (KeyError, ValueError, RuntimeError) as error:
+            result.update(success=False,error=str(error))
+            (root/'native-world.json').write_text(json.dumps(result,indent=2)+'\n')
+            raise RuntimeError(str(error)) from error
         if process.returncode:
             details=root/'report.json' if (root/'report.json').exists() else root
             result.update(success=False, error='Native startup capture failed; details: '+str(details))
