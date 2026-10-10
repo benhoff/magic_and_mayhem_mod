@@ -1,0 +1,37 @@
+{
+  "scope": "Exploratory pre-final contract/code reports, not current execution support; source/binary closure was not frozen for these development probes. Cold consumer500ms and warm median60ms were retained; failures led to bounded local-source/decode retention and clipped row copies, not relaxed limits.",
+  "runs": [
+    {
+      "artifact": "working/rolling-dev-native.json",
+      "sha256": "3ade99926a62364308643eccf0af542cade62b6922d10e3916caab9821342900",
+      "pixel_protocol_success": true,
+      "cold_consumer_ms": 573.2919090000014,
+      "continued_median_ms": 58.6944,
+      "queues": 64
+    },
+    {
+      "artifact": "working/rolling-compact-dev.json",
+      "sha256": "642b9095060946796ec35e21ce5185e46841a829510d31a555f421c38b9dfb54",
+      "pixel_protocol_success": true,
+      "cold_consumer_ms": 543.5000550000004,
+      "continued_median_ms": 60.095583000000005,
+      "queues": 64
+    },
+    {
+      "artifact": "working/rolling-cache-dev.json",
+      "sha256": "de4ba10af3a8761c352f5f56c97168be2566db593d61adb9696a29af29036a3c",
+      "pixel_protocol_success": true,
+      "cold_consumer_ms": 520.426794999998,
+      "continued_median_ms": 58.612899,
+      "queues": 64
+    },
+    {
+      "artifact": "working/rolling-copy-dev.json",
+      "sha256": "65380562727750e5c9d6995af0b69527ddd6bcb8f6acb531410b9f4dcf55ed93",
+      "pixel_protocol_success": true,
+      "cold_consumer_ms": 283.5726119999979,
+      "continued_median_ms": 54.9091155,
+      "queues": 64
+    }
+  ]
+}

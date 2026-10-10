@@ -1,0 +1,113 @@
+{
+  "base": "c9f99e8",
+  "head": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+  "scope": "Exact committed parent/current receipt review; journal excluded; no retrospective execution claim. Uncommitted rolling work is reviewed separately.",
+  "transitions": [
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/scene_snapshot.cpp",
+      "before_sha256": "80f2c356cf458d995c89bf3e35c6e5539c8906fe23c37d28c15fd379cd14fa18",
+      "after_sha256": "b5611c499a9a8500d381e8368c0fb2030a03499e3a3bb997ae0f612c76a770d3",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/scene_snapshot.hpp",
+      "before_sha256": "9151090479d58c5c06242a10d61d6cca550784997cdd4a9d4dbd44eb8da8c313",
+      "after_sha256": "7bf5a558d7c8361617331523e1fc80dc61a285c5a9d2c36395f2abf5c812f868",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/world_resources.cpp",
+      "before_sha256": "cfbca3efc3a1b258ced01b8bac08496bd4567f124fb4bea490a40c93abfc72cb",
+      "after_sha256": "2da404f70d690a8b86b4f605ebc8ecc6c62303e52559329b075152c636e3aab5",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/world_resources.hpp",
+      "before_sha256": "da01617cc0d96f03537e5db41014c32319baf9196496ca17a0d0d482948a0194",
+      "after_sha256": "7cdbbbedcdca0907c164ebd20b4378ecb183a65560530d88efabed1a1e58b484",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f0e2fa870fa87184ab601b777f3fb8494ab84e7b5c35828b6de9ca6abd72e41c",
+      "after_sha256": "b259fa8c025455752c35da0847ce67eeac17ad315fb3580a3884755c7064f305",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/coverage/native-world-prepared-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "91e493f78c70deaa5e8c42440385b06c9635ee7f043e923bde0ad18477a33564",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "aad5fa354d34a2b4a0214233532cfaaa37978f4c1b5096128118c7b23a4d2e23",
+      "after_sha256": "7d15e2f10db3c97ab7d74555dd8b1c5e5d380dd72368e77c2ebdb16d96a372ef",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/coverage/source-index-world-prepared-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "56ac339dca181f9aa98cea503a7c864fe63de6b4685edb932d6bc20504bac3f5",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "3a26cccc9d1ea332d7ac216f83c28255e27e3751b65be540a77a228c247b08d6",
+      "after_sha256": "eef211c44626c85e80acc319dd0c8e26ac336341d9af0ffeb238e884a03221f4",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/native-world-prepared-admission-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "03eb25348ea80d0e10a3bae24b54bac1b016a4b6244513281a7cf010f02f3e30",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/native-world-prepared-admission.md",
+      "before_sha256": null,
+      "after_sha256": "3f16355a81891db641d17eca4d33a7e3623e638a958ce60c5271dcda5cdb3139",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/native-world-prepared-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "022df98d80f508b865b2f66a5d0cd7fccbb3d165ee248017a124598ffe41b219",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "tests/canvas-world-test.cpp",
+      "before_sha256": "d362af2c4703d46b452d64bf821a93505274d617230e2f7c38b8350b801c11f2",
+      "after_sha256": "506b91fb9f253575d2f64ef22bf39cc05723904985d2d3c1926be444a6bd4b10",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "tests/native-render-soak.cpp",
+      "before_sha256": "d30e6a0442fdea4d07c73ec74a8f5ca03f5fd72b567b985f15459fa922c3c8f6",
+      "after_sha256": "27279ccb576f04adae5a64f953e820ad9af8baf5869993fcb1741cfe8a1a3a45",
+      "receipt_found": true
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "tools/test-native-render-soak.py",
+      "before_sha256": "3e675ae16956cf02b52eb5de6933535957b33f670aa463748f68be70f25d40e4",
+      "after_sha256": "ab6c0592f3ec6880b772b11998739e73b67c5c63bf55b0fe95f733333205f869",
+      "receipt_found": true
+    }
+  ],
+  "unresolved": []
+}

@@ -27555,7 +27555,143 @@
       ],
       "validation_domain": "Frozen optimized saved owned World32 corpus; eight Mesa workers; first-queue median<=250ms/max<=350ms, warm median50/p95100/max250ms, growth32MiB; Debug alias/reload, cache and malformed batch fixtures.",
       "evidence": [
-        "NR.world-prepared-admission.headless-20261010"
+        "NR.world-prepared-admission.headless-20261010",
+        "NR.world-prepared-admission.rolling-source-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.world-rolling-delivery",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Ordered source-only native rolling World history and completions",
+      "scope": "Intentional native policy: separately versioned two-slot source/RGB565 completion ownership, ordered uint64 sequencing and bounded non-dropping backpressure, immutable copied packets and role/session admission, terminal refusal/cancellation and fresh-session recovery; persistent CPU producer history and GPU/decoded resources across complete one-queue packets. Saved32 prefix asserts all hashes then unchanged last-queue requests continue synthetically over retained evolving history beyond32. CPU/GPU completion parity, cache bounds, optimized packet refusals, separately mapped1000-cycle process fixture and host-specific consumer completion latency/retained memory budgets. Saved digest assertion overhead is separately timed/excluded from budgets; full verified completion is reported. No original live producer adaptation, simulation/desktop cadence, hardware or new original comparison. Owned source references are bounded per packet to2048 definitions/16MiB and cannot cross packet/session boundaries; no indefinite source journal. One exact-byte owned packet decode cache is retained at most16MiB/131072 records/2048 definitions; changed requests invalidate it. Every64th continued queue moves one indexed copy request and asserts native CPU/GPU parity. Native producer copies preflight only sampled clipped row spans, snapshot only same-ID sources and bulk-copy opaque rows;300 seeded scalar overlap/key/clipping/extreme-offset cases and undefined refusal/atomicity fixtures accompany the saved-prefix assertions.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-world-rolling.md",
+        "research/formats/native-world-rolling-v1.md"
+      ],
+      "implementation": [
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "renderer/canvas_sequence.cpp"
+      ],
+      "tests": [
+        "tests/native-world-rolling.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tools/test-native-world-rolling.py",
+        "tests/canvas-world-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/canvas-sequence-test.cpp"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/resource-fixtures.hpp",
+        "tools/coverage_claims.py",
+        "tools/original-manifest.sh"
+      ],
+      "validation_domain": "Frozen optimized saved owned World32 source corpus,512 queues default with480 repeated last-queue synthetic continuation requests in one retained session; source-only two-slot channel. Eight software Mesa workers, GL3.3 fallback selectable; post32 consumer polling/copy/checksum/decode/native work/reply publication median60/p95120/max300ms, cold500ms, post64 RSS growth32MiB. Saved checkpoint assertion cost separately reported and excluded. Five Debug fixtures include1000 cross-process cycles and producer exit/cancel/fresh session. No game launch.",
+      "evidence": [
+        "NR.world-rolling-delivery.default-20261010",
+        "NR.world-rolling-delivery.gl33-20261010",
+        "NR.world-rolling-delivery.budget-refusal-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -52824,6 +52960,326 @@
           "equals": []
         }
       ]
+    },
+    {
+      "id": "NR.world-rolling-delivery.default-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh frozen-source rolling512 queue saved-prefix and synthetic continuation, strict ordered ACK/CPU-GPU/saved hash/cache/lifecycle checks,300 scalar copy cases,16 optimized refusals, one-byte source ownership mutation, five Debug fixtures including1000 separately mapped process cycles and producer exit/cancel/restart. Default software Mesa8-worker path; consumer median54.79/p9574.88/max102.49ms, retained growth0.19MiB. No live gameplay/new original comparison.",
+      "record": "research/runtime/native-world-rolling-default-20261010.json",
+      "sha256": "c08cf949f0b3f7110dcb00093386d216a0583a0731f937c2c9bbd153e4d96705",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_gameplay_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native/world_queues",
+          "equals": 512
+        },
+        {
+          "pointer": "/native/acknowledgements",
+          "equals": 512
+        },
+        {
+          "pointer": "/native/saved_checkpoint_comparisons",
+          "equals": 1224
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/source_packet_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/native/scalar_copy_cases",
+          "equals": 300
+        },
+        {
+          "pointer": "/native/packet_source_ownership_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        },
+        {
+          "pointer": "/assertion_enabled_tests_passed",
+          "equals": 5
+        },
+        {
+          "pointer": "/debug_compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "NR.world-rolling-delivery.gl33-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh frozen-source rolling512 queue saved-prefix and synthetic continuation, strict ordered ACK/CPU-GPU/saved hash/cache/lifecycle checks,300 scalar copy cases,16 optimized refusals, one-byte source ownership mutation, five Debug fixtures including1000 separately mapped process cycles and producer exit/cancel/restart. GL3.3 copy-image-disabled fallback; consumer median57.14/p9574.83/max88.50ms, retained growth0.19MiB. No live gameplay/new original comparison.",
+      "record": "research/runtime/native-world-rolling-gl33-20261010.json",
+      "sha256": "ac2e8935f94ea3275d5fc1f463e51f8d537c3a8f7b69347d8d8aa3a673947112",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_gameplay_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/native/world_queues",
+          "equals": 512
+        },
+        {
+          "pointer": "/native/acknowledgements",
+          "equals": 512
+        },
+        {
+          "pointer": "/native/saved_checkpoint_comparisons",
+          "equals": 1224
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/source_packet_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/native/scalar_copy_cases",
+          "equals": 300
+        },
+        {
+          "pointer": "/native/packet_source_ownership_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        },
+        {
+          "pointer": "/assertion_enabled_tests_passed",
+          "equals": 5
+        },
+        {
+          "pointer": "/debug_compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "NR.world-rolling-delivery.budget-refusal-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh negative performance-control evidence:64 ordered native CPU/GPU completions and1224 saved checkpoint assertions pass, but intentionally impossible0.001ms continuation budgets record performance failure and exit1. Source/input/frozen/manifest verification persists. This validates refusal, not performance readiness; no live gameplay.",
+      "record": "research/runtime/native-world-rolling-budget-refusal-20261010.json",
+      "sha256": "cbc92866b4a3916e596b518009e3ca666ec0626367202c1e63d1131c84a986ab",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_gameplay_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": false
+        },
+        {
+          "pointer": "/native/world_queues",
+          "equals": 64
+        },
+        {
+          "pointer": "/native/acknowledgements",
+          "equals": 64
+        },
+        {
+          "pointer": "/native/saved_checkpoint_comparisons",
+          "equals": 1224
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/source_packet_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/native/scalar_copy_cases",
+          "equals": 300
+        },
+        {
+          "pointer": "/native/packet_source_ownership_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "NR.world-prepared-admission.rolling-source-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh final rolling/row-copy source tree: four frozen optimized World32 sessions,128 CPU/GPU completions,4896 saved checkpoint digests,7000 seeded draws and three Debug fixtures. Cold116.67 median/134.05 maximum ms, warm37.80 median/47.44 p95/53.94 maximum ms and4MiB retained growth pass unchanged budgets. Separate initialization and assertions excluded from native queue work. No live or new original comparison.",
+      "record": "research/runtime/native-world-prepared-admission-rolling-source-20261010.json",
+      "sha256": "3163817e4c259c847ffe95a238274f0911431e331ca38ce6867276ac504c9c85",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/cold_budget_enforced",
+          "equals": true
+        },
+        {
+          "pointer": "/totals/world_queues",
+          "equals": 128
+        },
+        {
+          "pointer": "/totals/checkpoint_comparisons",
+          "equals": 4896
+        },
+        {
+          "pointer": "/assertion_enabled_tests_passed",
+          "equals": 3
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        },
+        {
+          "pointer": "/debug_compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -60122,7 +60578,31 @@
       ],
       "scope": "Frozen optimized saved owned World32 corpus; eight Mesa workers; first-queue median<=250ms/max<=350ms, warm median50/p95100/max250ms, growth32MiB; Debug alias/reload, cache and malformed batch fixtures.",
       "evidence": [
-        "NR.world-prepared-admission.headless-20261010"
+        "NR.world-prepared-admission.headless-20261010",
+        "NR.world-prepared-admission.rolling-source-20261010"
+      ]
+    },
+    {
+      "id": "native-world-rolling-delivery-20261010",
+      "subsystem": "native_rendering",
+      "level": "headless",
+      "behaviors": [
+        "NR.world-rolling-delivery"
+      ],
+      "tests": [
+        "tests/native-world-rolling.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tools/test-native-world-rolling.py",
+        "tests/canvas-world-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/canvas-sequence-test.cpp"
+      ],
+      "scope": "Frozen optimized saved owned World32 source corpus,512 queues default with480 repeated last-queue synthetic continuation requests in one retained session; source-only two-slot channel. Eight software Mesa workers, GL3.3 fallback selectable; post32 consumer polling/copy/checksum/decode/native work/reply publication median60/p95120/max300ms, cold500ms, post64 RSS growth32MiB. Saved checkpoint assertion cost separately reported and excluded. Five Debug fixtures include1000 cross-process cycles and producer exit/cancel/fresh session. No game launch.",
+      "evidence": [
+        "NR.world-rolling-delivery.default-20261010",
+        "NR.world-rolling-delivery.gl33-20261010",
+        "NR.world-rolling-delivery.budget-refusal-20261010"
       ]
     }
   ],
@@ -60452,8 +60932,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-prepared-20261010.json",
-    "sha256": "56ac339dca181f9aa98cea503a7c864fe63de6b4685edb932d6bc20504bac3f5"
+    "path": "research/runtime/coverage/source-index-world-rolling-20261010.json",
+    "sha256": "e9f24d07befd8c1ec9369f09a8e7c6b082485b27dcbc3c175ad0759f22b67a44"
   },
   "claim_bindings_required": true
 }

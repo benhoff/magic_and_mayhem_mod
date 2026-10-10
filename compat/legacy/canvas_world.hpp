@@ -20,6 +20,7 @@ public:
   };
   CanvasWorld(render::GlBlitter &, const assets::AssetStore &);
   void begin(const CanvasProducer &, const render::Image &nativeHistory);
+  void beginRolling(const CanvasProducer &,const render::Image &nativeHistory,std::uint64_t sequence);
   void append(const CanvasProducer &);
   render::Image complete(const render::Image &nativeReference);
   void end(const CanvasProducer &);
@@ -27,8 +28,9 @@ public:
   unsigned queue() const { return queue_; }
   unsigned canvas() const { return canvas_; }
   unsigned completedQueues() const { return completed_; }
-  unsigned draws() const { return totalDraws_; }
-  unsigned readbacks() const { return readbacks_; }
+  std::uint64_t completedSequence() const {return rolling_?rollingCompleted_:completed_;}
+  std::uint64_t draws() const { return totalDraws_; }
+  std::uint64_t readbacks() const { return readbacks_; }
   const Profile &profile() const { return profile_; }
 private:
   render::GlBlitter &renderer_;
@@ -37,8 +39,10 @@ private:
   WorldResources bindings_;
   std::unique_ptr<render::SceneRenderer> scene_;
   WorldFrame pending_;
-  unsigned queue_=0,canvas_=0,completed_=0,totalDraws_=0,queueDraws_=0;
-  unsigned readbacks_=0;
+  void beginFrame(const CanvasProducer&,const render::Image&);
+  unsigned queue_=0,canvas_=0,completed_=0,queueDraws_=0;
+  std::uint64_t rollingSequence_=0,rollingCompleted_=0,totalDraws_=0,readbacks_=0;
+  bool rolling_=false;
   bool active_=false,checked_=false;
   Profile profile_;
 };
