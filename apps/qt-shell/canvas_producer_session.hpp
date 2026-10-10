@@ -53,5 +53,8 @@ private:
   QTimer timer_;
   QElapsedTimer queueClock_;
   double ingestMs_=0,cpuMs_=0,checkpointMs_=0;
+  QJsonArray producerFrames_;
+  unsigned minimapOperations_=0;
+  double minimapMs_=0,lastCpuMs_=0,lastCheckpointMs_=0,lastIngestMs_=0,lastMinimapMs_=0;
   double queueCpuMs_=0,queueCheckpointMs_=0,batchValidationMs_=0,batchPublishMs_=0;
 };

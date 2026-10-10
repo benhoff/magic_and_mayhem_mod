@@ -740,3 +740,10 @@ joins both producer workers and releases rendering storage after borrowed owners
 return; refusal retains storage for retry or OS process teardown. Dynamic DLL
 unloading remains unsupported; installed hook code is pinned. See
 [terminal ownership and synthetic validation](../../research/runtime/opengl-application-shutdown.md).
+
+Owned minimap inputs can be included in the bounded, original-active startup
+viewer with `./tools/run-native-world.py --startup-history --minimap-owned`.
+It uses producer journal V2 and compares every completed CPU/GPU canvas.
+`--minimap-motion` additionally runs the private-Xvfb paced rotation/pan fixture;
+use it under `xvfb-run`, for validation rather than gameplay timing.
+This mode ends after sixteen World queues and keeps original rendering active.

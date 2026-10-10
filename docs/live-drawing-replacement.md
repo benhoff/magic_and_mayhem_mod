@@ -99,6 +99,12 @@ not a complete scene or supported-session milestone.
 | Movies and transitions | Optional Qt media routes and native menu bridges have bounded coverage. | Integrate enabled media, screen ownership and return to World without original graphics fallback in complete mode. |
 | Surface lifecycle and recovery | Native ownership/storage and transport recovery have scoped tests. | Integrate aliases, palettes, clip state, borrowed intervals, reads, flips, loss/Restore, transitions and coherent recovery while original raster work is bypassed. |
 
+The [owned minimap viewer](../research/runtime/native-minimap-interactive.md)
+adds opt-in V2 terrain, marker and camera-corner composition to the finite public
+startup-history launcher. Paced rotation/pan comparison and independent unpaced
+diagnostic costs are separate from original minimap suppression, unbounded
+gameplay and complete HUD replacement. Original drawing stays active.
+
 The [drawing inventory](../research/runtime/render-drawing-inventory.md) owns
 caller/branch classifications. The
 [surface operation matrix](../research/runtime/native-surface-operation-matrix.json)
