@@ -3375,3 +3375,7 @@ Final default Initiate smoke also passes on the final source: 89 native frames/
 and one same-thread Cancel/resume. Extended tutorial input remains separate.
 Retrospective review through 0857efe checks 73 committed file transitions with
 exact receipts and no unresolved gaps; prior gap/reconciliation reports remain.
+
+## Native campaign successful casting/combat checkpoint (2026-10-10)
+
+`HOST.native-campaign-casting-combat` seeds a bounded public native-menu/native-viewport journey with passive original creature and melee-return observations. Two retained negative runs distinguish count OCR failure from a confirmed original Zombie summon with independent native/original `1/15` readings but unverified movement/combat. Actual original enemy HP loss inside a player Zombie melee call remains required; scripted damage cannot pass. No simulation, damage formula, balance or drawing replacement is claimed. The existing strict native/paint throughput floors remain active. See [observation boundary and remaining gaps](native-campaign-casting-combat.md). The committed range `0857efe..3f106d9` has six exact file transitions reviewed with no missing receipts; current uncommitted changes remain separate.

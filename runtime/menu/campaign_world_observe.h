@@ -16,6 +16,7 @@ static u32 THIS campaign_world_tick(void* object){
     SetLastError(error);u32 result=((TickFn)0x46afc0)(object);error=GetLastError();
     if(menu_version>=8)menu_poll(object,0);
     if(sample){record(12,object,campaign_world_ticks,result);++campaign_world_ticks;}
+    if(object==(void*)0x6cbb78)gameplay_sample();
     if(exit_sample){campaign_exit_record(object,27);u8* owner=(u8*)get((void*)0x6f34e0);if(readable(owner,8))record(28,object,get(owner),get(owner+4));++campaign_exit_ticks;}
     SetLastError(error);return result;
 }
