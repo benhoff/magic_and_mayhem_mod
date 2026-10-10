@@ -1,5 +1,30 @@
 # Engine modernization coverage ledger
 
+## Other pixel producers: byte text and live glyph shadow — 2026-10-10
+
+`RS.font-byte-consumer` now has isolated-original proof for contour-based byte
+spacing, punctuation modes, signed wrapping arithmetic, cursor/profile updates
+and admitted single-byte draw chains:3776 cases,64793 operations and59424768
+RGB565 WORDs match unchanged NoCD code. `NR.font-byte-producer` owns decoded
+SFT data and stages state until atomic raster admission; six refusals and
+ASan/UBSan pass. [Scope and reproduction](font-byte-producer.md). Higher string
+layout, reset/lifecycle, reader/palette initialization and original failure/ABI
+behavior remain outside this increment.
+
+`NR.font-glyph-live-shadow` supplies fresh current-source evidence through the
+existing original-active producer pipeline:1935 glyph calls,941 completed
+canvases/416635312 pixels, four startup World returns, no differences or producer
+failures, and all GPU mirrors equal. [Live scope and reproduction](font-glyph-live-shadow.md).
+Native destinations come from owned source history; original completed pixels
+are external comparison oracles. The new byte-state adapter remains headless,
+and original text drawing stays active. Per-glyph live comparison and text
+takeover are separate pending milestones. Broader historical canvas/World
+contracts retain their existing statuses and hashes. Committed1fc0b3e..0191a55
+review covers15 exact file transitions with zero missing receipts; this records
+history accounting without asserting new execution. The concurrent clipped-word
+commit0191a55..d6e32e9 was also checked:26 exact transitions, zero missing
+receipts. Its own validation remains separate from the text increment.
+
 ## Other pixel producers: tinted glyph increment — 2026-10-10
 
 The replacement plan now prioritizes other pixel producers: text, source images,
