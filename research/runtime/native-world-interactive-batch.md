@@ -91,7 +91,7 @@ The guarded experiment can explicitly request32 queues, preserving strict
 comparisons and destination protection:
 
 ```sh
-LP_NUM_THREADS=4 xvfb-run -a -s '-screen 0 1280x1024x24' \
+LP_NUM_THREADS=8 xvfb-run -a -s '-screen 0 1280x1024x24' \
   python3 tools/test-native-world-batch.py --queues 32
 ```
 
@@ -170,3 +170,41 @@ workloads. The live32 run passes at29.11ms native work and66.28ms diagnostic que
 Both use RelWithDebInfo; independent original proof builds Debug and never
 counts FIFO wait time as performance. Live outside-World/original simulation,
 rolling native rendering, sustained frame rate and hardware remain separate.
+
+The [fresh original comparison](native-world-throughput-replacement-20261010.json)
+now matches all49,113 precise raster canvases/low16AX returns,23,574,240,000pixels,
+1,222checkpoint canvases and32live final canvases. Native replay consumes owned
+inputs only; source/input stability, dependency closure and immutable original
+manifest checks pass. This restores the finite32 rendering/transport contracts
+and native throughput policy, while broader historical scopes remain pending.
+
+Recreate the frozen optimized baseline in a new working directory (the old
+source fingerprints remain those of the immutable World32 record):
+
+```sh
+mkdir -p working/world-throughput-baseline/source
+git archive 3687a38 -- apps assets audio compat docs game protocols reconstruction renderer research runtime tests tools | tar -x -C working/world-throughput-baseline/source
+cmake -S working/world-throughput-baseline/source/compat/legacy/canvas-producers -B working/world-throughput-baseline/build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=OFF
+cmake --build working/world-throughput-baseline/build --target mnm-canvas-producers-live -j4
+python3 - <<'PYBASE'
+import hashlib, json
+from pathlib import Path
+base = Path('working/world-throughput-baseline')
+sources = json.loads(Path('research/runtime/native-world32-live-20261010.json').read_text())['sources']
+assert all(hashlib.sha256((base/'source'/n).read_bytes()).hexdigest() == h for n, h in sources.items())
+binary = base/'build/mnm-canvas-producers-live'
+(base/'baseline.json').write_text(json.dumps(dict(commit='3687a38', sources=sources,
+    binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(), build_type='RelWithDebInfo'), indent=2)+'\n')
+PYBASE
+```
+
+Use a newly captured complete32-queue report or the retained historical owned
+input corpus; the runner verifies source/assets and compares exact checkpoints:
+
+```sh
+LP_NUM_THREADS=8 python3 tools/test-world-resource-reuse.py \
+  --baseline working/world-throughput-baseline \
+  --capture-report working/experiments/scene-observer/run-of44p5ua/report.json \
+  --behavior NR.world-batch-throughput --scenario world-throughput-replay32-20261010 \
+  --queues 32 --optimized --budget-ms 50
+```

@@ -205414,6 +205414,208 @@
           "NR.world-throughput.live-20261010"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "4cb17f53ca9b56942bd468b0523d7958b44754436f62a4ed3eff87d83217dde8",
+          "before_sha256": "bbdf496e99a6aea6b4852d6be25b2eca5bd4ebccddadc8e4e6ff8d18ea8c9300",
+          "id": "NR.world-batch-extended-prefix"
+        },
+        {
+          "after_sha256": "fdc0bd37354e913572748a6d28aadeea81a0d6c46d54a6fb514576e7b2e9ebb9",
+          "before_sha256": "f9b7f9a70b95ac2d388c6476b57f59f9e93bca9ef898718e0c17b28e199840bc",
+          "id": "NR.world-batch-profiling"
+        },
+        {
+          "after_sha256": "e7d31943ed323834c2083b419f4e0ea0286af5eca76d3347c9e05de237c90ac1",
+          "before_sha256": "add58806ad3307af7edcdde6963148eb4f16147141261af8c1575f5af43f4a30",
+          "id": "NR.world-batch-throughput"
+        },
+        {
+          "after_sha256": "671ccfdc909dad48bf86e8cef7a909331d918f44bfa0060042aad3a9a0d71403",
+          "before_sha256": "4ba78aa462659d84631dfded90d329cd7a99b9c3aec732ee362918496c3d6b4d",
+          "id": "NR.world-cpu-composition-reuse"
+        },
+        {
+          "after_sha256": "ab01512edee535d0f0c3f3fd6fb7e6f2635b65d83b52061bcc1c1c7b7e734a50",
+          "before_sha256": "16d9a04449ce3fe29178c0af3f6715855b5dfd929b984189ee4535fc287a5140",
+          "id": "NR.world-interactive-batch-launcher"
+        },
+        {
+          "after_sha256": "5feee7056207b82fb017b83fc51b94e8a2199d75698f0fe1e010784f49012d3f",
+          "before_sha256": "1971e2ce99087c40da5254b2dab60f98d998d1694e1d2f0758847dffff44c916",
+          "id": "NR.world-raster-batch-transport"
+        },
+        {
+          "after_sha256": "07b9e29d2ee7930fd1531881121811e080b40317eb500ce31a935814496350cc",
+          "before_sha256": "2b8b1b9f2a506a0d11a3ba180248a631a0743e8d2f0f8103931d74daf98f5de3",
+          "id": "NR.world-resource-reuse"
+        },
+        {
+          "after_sha256": "be2e4677aefd3fbf5fccb0e25983b35f014cc82ee52311ac4aecdc1b2e8d35cc",
+          "before_sha256": "89c4c04d9129ed21d0b875a60f1043af780417856863a73e8ab09d43c7877710",
+          "id": "RS.world-raster-batch-return"
+        },
+        {
+          "after_sha256": "95ce7749c31f1a3879479969f148cc7109602a53ed23e130d705d2d6630b5730",
+          "before_sha256": "2695adeeb519b0a20c68ae20c9d6478f8c2a50a34c7d8a7a9e32f2e72f2f1cb6",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "ef7e09d5993315be26872b7662e8732fc876888587a66e9210582b591e4b6c49",
+          "before_sha256": "e69324d10352f30ecaacad373eca818612a2a12bfbac3d2793fc19e0f981e7a0",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "90d94018092958547ae3cb6193cfe08d8de8761ca0861a3b88ba358d3e9d2a8d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-world-throughput-history-review-f60b55c-01e160a.json"
+        },
+        {
+          "after_sha256": "d77328c99fa9b190125211d26d6d7bb0957cf9b6d276eaf96362569edc893a32",
+          "before_sha256": "00ae393452153f91c7b6575550465bbbc86cbcbdb227ff423e5bddc4d802aade",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "98b74506e31687acf58e036011d720057d4f5d9944089ac2d313b524ee09f2cc",
+          "before_sha256": "7d65c6743b11eec6cd66de3ceab5d8bfecd27e843ea4716986bf43cd16198d5e",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "f53348c95c67f1cc91ed1b4eee95c258851303373039137822c01b6e504e90d4",
+          "before_sha256": "62683d9f76cde6eeb8f2e17891c94f68c202b6b869662b6399055ecb0508dc54",
+          "path": "research/runtime/native-world-interactive-batch.md"
+        },
+        {
+          "after_sha256": "8055207a02d0eae7721ba9b37e393991a614041308596d3d8df7875261481e57",
+          "before_sha256": null,
+          "path": "research/runtime/native-world-throughput-original-20261010.json"
+        },
+        {
+          "after_sha256": "1a50b0fe833c8464ac059844083432b467c4ba0cd151073ec23b43e4c28261f1",
+          "before_sha256": null,
+          "path": "research/runtime/native-world-throughput-replacement-20261010.json"
+        },
+        {
+          "path": "research/runtime/native-world-throughput-actual-entries-20261010.tsv",
+          "before_sha256": null,
+          "after_sha256": "861ece4d953bbdb01d5465cef82dc6386541d7a0ca3a032ac7f2189678b69f57"
+        },
+        {
+          "path": "research/runtime/native-world-throughput-owned-producers-20261010.bin",
+          "before_sha256": null,
+          "after_sha256": "49f0646ee603a90ee4ae5440ad9dd1fd942254e9146dda1068d63c3ff91b0058"
+        },
+        {
+          "path": "research/runtime/native-world-throughput-precise-results-20261010.tsv",
+          "before_sha256": null,
+          "after_sha256": "195b9dbd0c5ca435c0ab6b188a096dbf09f8f6ae90a8459627f0cfe077b584eb"
+        }
+      ],
+      "id": "native-world-throughput-original-accounting-20261010",
+      "pending_gaps": [],
+      "reason": "Reviewed the paired protected RelWithDebInfo live32 capture and frozen Debug/native FIFO versus actual unmodified nocd40209ca7 execution:49113 precise raster canvases/low16AX,23574240000pixels,1222checkpoint canvases and32live finals. Reviewed exact source/contract/scenario assertions,86 compiled dependency paths and no undeclared dependencies, native-only inputs, actual-entry/result TSVs and archived11.37MB producer journal, and source/input/original-manifest stability. Reused the immutable source census only after regenerating its1540 rows in memory and confirming every source hash/reference remains exact; no code or implementation/test links change in this commit. Reviewed f60b55c..01e160a:29 exact transitions, zero receipt gaps. Historical evidence hashes and unrelated committed rendering/word-clipping work are preserved. Performance remains distinct: frozen Debug/FIFO proof time is not a frame benchmark, eight-worker same-input optimized68.36\u219240.51ms native work/201.16\u219255.18ms diagnostic queue and protected live29.11/66.28ms pass unchanged50/100ms budgets.",
+      "validation": {
+        "status": "pending",
+        "reason": "Only the five declared finite rendering/transport/throughput contracts receive fresh scoped evidence. Historical16-queue public-launcher/profiling and headless CPU-reuse contracts lack their own matching new scenario execution, and broader menus/HUD/dispatcher/media/word-clipping contracts remain pending after shared source changes. Continuous rolling native World, full simulation/sustained interactive cadence, hardware, manual journeys and wider callbacks remain pending. First and second four-worker performance failures and corrected copy-image binding failure stay separate historical evidence; no old hashes are refreshed.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "4cb17f53ca9b56942bd468b0523d7958b44754436f62a4ed3eff87d83217dde8",
+          "before_sha256": "bbdf496e99a6aea6b4852d6be25b2eca5bd4ebccddadc8e4e6ff8d18ea8c9300",
+          "id": "NR.world-batch-extended-prefix"
+        },
+        {
+          "after_sha256": "e7d31943ed323834c2083b419f4e0ea0286af5eca76d3347c9e05de237c90ac1",
+          "before_sha256": "add58806ad3307af7edcdde6963148eb4f16147141261af8c1575f5af43f4a30",
+          "id": "NR.world-batch-throughput"
+        },
+        {
+          "after_sha256": "5feee7056207b82fb017b83fc51b94e8a2199d75698f0fe1e010784f49012d3f",
+          "before_sha256": "1971e2ce99087c40da5254b2dab60f98d998d1694e1d2f0758847dffff44c916",
+          "id": "NR.world-raster-batch-transport"
+        },
+        {
+          "after_sha256": "07b9e29d2ee7930fd1531881121811e080b40317eb500ce31a935814496350cc",
+          "before_sha256": "2b8b1b9f2a506a0d11a3ba180248a631a0743e8d2f0f8103931d74daf98f5de3",
+          "id": "NR.world-resource-reuse"
+        },
+        {
+          "after_sha256": "be2e4677aefd3fbf5fccb0e25983b35f014cc82ee52311ac4aecdc1b2e8d35cc",
+          "before_sha256": "89c4c04d9129ed21d0b875a60f1043af780417856863a73e8ab09d43c7877710",
+          "id": "RS.world-raster-batch-return"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "ef7e09d5993315be26872b7662e8732fc876888587a66e9210582b591e4b6c49",
+          "before_sha256": "e69324d10352f30ecaacad373eca818612a2a12bfbac3d2793fc19e0f981e7a0",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "90d94018092958547ae3cb6193cfe08d8de8761ca0861a3b88ba358d3e9d2a8d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-world-throughput-history-review-f60b55c-01e160a.json"
+        },
+        {
+          "after_sha256": "d77328c99fa9b190125211d26d6d7bb0957cf9b6d276eaf96362569edc893a32",
+          "before_sha256": "00ae393452153f91c7b6575550465bbbc86cbcbdb227ff423e5bddc4d802aade",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "98b74506e31687acf58e036011d720057d4f5d9944089ac2d313b524ee09f2cc",
+          "before_sha256": "7d65c6743b11eec6cd66de3ceab5d8bfecd27e843ea4716986bf43cd16198d5e",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "f53348c95c67f1cc91ed1b4eee95c258851303373039137822c01b6e504e90d4",
+          "before_sha256": "62683d9f76cde6eeb8f2e17891c94f68c202b6b869662b6399055ecb0508dc54",
+          "path": "research/runtime/native-world-interactive-batch.md"
+        },
+        {
+          "after_sha256": "8055207a02d0eae7721ba9b37e393991a614041308596d3d8df7875261481e57",
+          "before_sha256": null,
+          "path": "research/runtime/native-world-throughput-original-20261010.json"
+        },
+        {
+          "after_sha256": "1a50b0fe833c8464ac059844083432b467c4ba0cd151073ec23b43e4c28261f1",
+          "before_sha256": null,
+          "path": "research/runtime/native-world-throughput-replacement-20261010.json"
+        },
+        {
+          "path": "research/runtime/native-world-throughput-actual-entries-20261010.tsv",
+          "before_sha256": null,
+          "after_sha256": "861ece4d953bbdb01d5465cef82dc6386541d7a0ca3a032ac7f2189678b69f57"
+        },
+        {
+          "path": "research/runtime/native-world-throughput-owned-producers-20261010.bin",
+          "before_sha256": null,
+          "after_sha256": "49f0646ee603a90ee4ae5440ad9dd1fd942254e9146dda1068d63c3ff91b0058"
+        },
+        {
+          "path": "research/runtime/native-world-throughput-precise-results-20261010.tsv",
+          "before_sha256": null,
+          "after_sha256": "195b9dbd0c5ca435c0ab6b188a096dbf09f8f6ae90a8459627f0cfe077b584eb"
+        }
+      ],
+      "id": "native-world-throughput-original-validated-20261010",
+      "pending_gaps": [],
+      "reason": "Reviewed fresh evidence for exactly five finite contracts: protected native32 return/writeback boundary, source/entry/AX-bound batch transport, retained resource/identity reuse, bounded extended V3 prefix/source definitions, and intentional native throughput policy. Every49113 native CPU raster intermediate/low16AX matches actual unmodified-original bodies,1222checkpoint canvases and32native GPU/live finals match. Source hashes, exact prospective scope/scenario claims, full dependency closure, immutable manifests and no original oracle inputs pass. Native throughput has live-equivalence integration while comparison/replacement remain none because batching/buffering/budgets are policies, not recovered functions. The original return-boundary scoped-live status retains its same finite domain; no broad replacement or full-game frame-rate claim.",
+      "validation": {
+        "status": "recorded",
+        "reason": "NR.world-throughput.replacement-20261010 binds the successful frozen original every-intermediate/AX proof to the protected live current-source capture and its unchanged performance budgets. NR.world-throughput.live-20261010 supplies fresh matching live-observation resource reuse; NR.world-throughput.benchmark-20261010 supplies the same-input optimized timing comparison. All five audited stages report current scope-bound support; other historical statuses retain pending validation.",
+        "evidence": [
+          "NR.world-throughput.replacement-20261010",
+          "NR.world-throughput.live-20261010",
+          "NR.world-throughput.benchmark-20261010"
+        ]
+      }
     }
   ]
 }

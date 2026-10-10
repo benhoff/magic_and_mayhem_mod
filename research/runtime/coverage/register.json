@@ -21354,7 +21354,9 @@
         "RS.world-raster-batch.resource-reuse-replacement-20261009",
         "RS.world-raster-batch.identity-cache-replacement-20261009",
         "NR.world32.live-20261010",
-        "NR.world32.replacement-20261010"
+        "NR.world32.replacement-20261010",
+        "NR.world-throughput.live-20261010",
+        "NR.world-throughput.replacement-20261010"
       ],
       "status": {
         "understanding": "partial",
@@ -21622,7 +21624,9 @@
         "RS.world-raster-batch.resource-reuse-replacement-20261009",
         "RS.world-raster-batch.identity-cache-replacement-20261009",
         "NR.world32.live-20261010",
-        "NR.world32.replacement-20261010"
+        "NR.world32.replacement-20261010",
+        "NR.world-throughput.live-20261010",
+        "NR.world-throughput.replacement-20261010"
       ],
       "status": {
         "understanding": "partial",
@@ -22262,7 +22266,9 @@
         "NR.world-resource-reuse.live-20261009",
         "NR.world-frame-identity-cache.live-20261009",
         "NR.world32.live-20261010",
-        "NR.world32.replacement-20261010"
+        "NR.world32.replacement-20261010",
+        "NR.world-throughput.live-20261010",
+        "NR.world-throughput.replacement-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22476,7 +22482,9 @@
         "NR.world-resource-reuse.live-20261009",
         "NR.world-frame-identity-cache.live-20261009",
         "NR.world32.live-20261010",
-        "NR.world32.replacement-20261010"
+        "NR.world32.replacement-20261010",
+        "NR.world-throughput.live-20261010",
+        "NR.world-throughput.replacement-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22697,7 +22705,9 @@
         "NR.world-frame-identity-cache.live-20261009",
         "NR.world-frame-identity-cache.replay-20261009",
         "NR.world32.live-20261010",
-        "NR.world32.replacement-20261010"
+        "NR.world32.replacement-20261010",
+        "NR.world-throughput.live-20261010",
+        "NR.world-throughput.replacement-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23719,7 +23729,9 @@
         "NR.world-cpu-composition-reuse.native-20261010",
         "NR.world-cpu-composition-reuse.preminimap-20261010",
         "NR.world32.live-20261010",
-        "NR.world32.replacement-20261010"
+        "NR.world32.replacement-20261010",
+        "NR.world-throughput.live-20261010",
+        "NR.world-throughput.replacement-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -26216,7 +26228,9 @@
         "NR.world32.journal-budget-negative-20261010",
         "NR.world32.original-parser-negative-20261010",
         "NR.world32.live-20261010",
-        "NR.world32.replacement-20261010"
+        "NR.world32.replacement-20261010",
+        "NR.world-throughput.live-20261010",
+        "NR.world-throughput.replacement-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -26910,13 +26924,14 @@
         "NR.world-throughput.copy-image-budget-negative-20261010",
         "NR.world-throughput.copy-image-binding-negative-20261010",
         "NR.world-throughput.benchmark-20261010",
-        "NR.world-throughput.live-20261010"
+        "NR.world-throughput.live-20261010",
+        "NR.world-throughput.replacement-20261010"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_equivalence",
         "replacement": "none"
       }
     }
@@ -51274,6 +51289,93 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-throughput.replacement-20261010",
+      "kind": "live_replacement",
+      "scope": "Bounded optimized source-only native32 World replacement with separate exact unmodified-original PE32 intermediate canvases/low16AX and final live canvases. Protected live capture uses RelWithDebInfo/eight software-Mesa workers; independent original proof uses frozen Debug/native FIFO and is not a performance benchmark. Native throughput policy is intentional and remains separate from original raster semantics. Original simulation/traversal and outside-World drawing remain active. No rolling/sustained gameplay cadence or hardware replacement claim. All49113 precise raster canvases/low16AX,23574240000pixels,1222checkpoint canvases and32live final canvases match. Sources, inputs, compiler closure and immutable manifests verified; native-work/diagnostic performance budgets come from the paired protected capture and controlled same-input benchmark.",
+      "record": "research/runtime/native-world-throughput-replacement-20261010.json",
+      "sha256": "1a50b0fe833c8464ac059844083432b467c4ba0cd151073ec23b43e4c28261f1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "equivalence_pointer": "/equivalent_intermediates",
+      "bypass_pointer": "/original_work_bypassed",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/native_original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/canvas_guard_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/precise_rasters_equal",
+          "equals": 49113
+        },
+        {
+          "pointer": "/caller_ax_equal",
+          "equals": 49113
+        },
+        {
+          "pointer": "/precise_pixels_compared",
+          "equals": 23574240000
+        },
+        {
+          "pointer": "/live_final_equal",
+          "equals": 32
+        },
+        {
+          "pointer": "/native_world_readbacks",
+          "equals": 32
+        },
+        {
+          "pointer": "/native_canvas_writebacks",
+          "equals": 32
+        },
+        {
+          "pointer": "/completed",
+          "equals": 1222
+        },
+        {
+          "pointer": "/equivalent_intermediates",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -57928,7 +58030,9 @@
         "RS.world-raster-batch.resource-reuse-replacement-20261009",
         "RS.world-raster-batch.identity-cache-replacement-20261009",
         "NR.world32.live-20261010",
-        "NR.world32.replacement-20261010"
+        "NR.world32.replacement-20261010",
+        "NR.world-throughput.live-20261010",
+        "NR.world-throughput.replacement-20261010"
       ]
     },
     {
@@ -58060,7 +58164,9 @@
         "NR.world-resource-reuse.live-20261009",
         "NR.world-frame-identity-cache.live-20261009",
         "NR.world32.live-20261010",
-        "NR.world32.replacement-20261010"
+        "NR.world32.replacement-20261010",
+        "NR.world-throughput.live-20261010",
+        "NR.world-throughput.replacement-20261010"
       ]
     },
     {
@@ -58455,7 +58561,9 @@
         "NR.world32.original-parser-negative-20261010",
         "NR.world32.live-20261010",
         "NR.world32.replacement-20261010",
-        "NR.world-throughput.budget-negative-20261010"
+        "NR.world-throughput.budget-negative-20261010",
+        "NR.world-throughput.live-20261010",
+        "NR.world-throughput.replacement-20261010"
       ]
     },
     {
