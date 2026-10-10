@@ -14,14 +14,14 @@ def signed(value):
     return value if value < 0x80000000 else value - 0x100000000
 
 
-def decode(raw, startup_replay=False):
+def decode(raw, startup_replay=False, sample_limit=16):
     if len(raw) < 64 or raw[:8] != b'MNMSTQ01':
         raise ValueError('Invalid startup queue magic/header')
     h = struct.unpack_from('<14I', raw, 8)
     version, header, size, sequence, sample, status, view, count, capacity, queue, base, stride, rows, reserved = h
     if version != 1 or header != 64 or size != len(raw) or stride != 36 or reserved:
         raise ValueError('Invalid startup queue envelope')
-    if not 1 <= sequence <= 256 or sample > 16 or status > 3 or rows > 12320 or size != 64 + rows * 36:
+    if not 1 <= sequence <= 256 or sample_limit not in (16,32) or sample > sample_limit or status > 3 or rows > 12320 or size != 64 + rows * 36:
         raise ValueError('Invalid startup queue bounds')
     if status == 0 and (rows != count or count > capacity):
         raise ValueError('Incomplete startup draw rows')
@@ -39,7 +39,7 @@ def decode(raw, startup_replay=False):
             'default_policy_unsupported_draws': [{'ordinal': i, 'kind': signed(row[6])} for i, row in enumerate(records) if signed(row[6]) not in ADMITTED]}
 
 
-def collect(directory, limit, startup_replay=False):
+def collect(directory, limit, startup_replay=False, sample_limit=16):
     if not 1 <= limit <= 256:
         raise ValueError('Invalid startup queue prefix length')
     paths = sorted(directory.glob('startup-queue-*.bin'))
@@ -48,7 +48,7 @@ def collect(directory, limit, startup_replay=False):
     queues, samples, kinds, default_kinds = [], set(), Counter(), Counter()
     for sequence, path in enumerate(paths, 1):
         raw = path.read_bytes()
-        row = decode(raw, startup_replay)
+        row = decode(raw, startup_replay, sample_limit)
         if row['queue'] != sequence or path.name != f'startup-queue-{sequence:04}.bin':
             raise ValueError('Startup queue capture has a gap/reordered sequence')
         if row['sample'] and row['sample'] in samples:

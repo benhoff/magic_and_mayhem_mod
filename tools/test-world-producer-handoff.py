@@ -14,6 +14,7 @@ def source_paths():
     paths += ['runtime/shadow/win32_min.h','tests/canvas-world-test.cpp','tests/canvas-sequence-test.cpp','tests/canvas-producers-test.c','tests/world-producer-bypass-call.S','tests/canvas-startup-call.S','tests/world-frame-reference.cpp','tests/sprite-binary-reference.cpp','tests/resource-fixtures.hpp','tests/scene-renderer-test.cpp','tests/scene-history-test.cpp','tools/test-world-producer-handoff.py','tools/test-canvas-producers.py','tools/build-scene-observer.py','tools/build-shadow-bridge.py','tools/prepare-scene-observer.py','tools/capture-scene-game.py','tools/scene-game-runner.py','tools/inspect-canvas-producers.py','tools/inspect-startup-queues.py','tools/world_channel.py']
     paths += ['tests/world-producer-reference.cpp','tests/world-raster-queue-reference.cpp','tests/world-raster-reference.hpp','tools/test-world-raster-queue.py','tools/inspect-world-raster-callers.py']
     paths += ['protocols/include/mnm/world_raster_batch_v3.h','compat/legacy/world_raster_batch.cpp','compat/legacy/world_raster_batch.hpp','tests/world-raster-batch-test.cpp','tests/world-raster-batch-reference.cpp','tools/test-world-raster-batch.py','tools/inspect-world-raster-batch.py']
+    paths += ['protocols/include/mnm/canvas_producers_v3.h']
     return sorted(set(paths))
 def world_record(r,p):
     width,height=struct.unpack_from('<II',p,4);ox,oy=struct.unpack_from('<ii',p,12)

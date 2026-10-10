@@ -21215,7 +21215,9 @@
         "RS.world-raster-batch.prefix16-replacement-v7-20261008",
         "RS.world-raster-batch.instrumented-replacement-20261009",
         "RS.world-raster-batch.resource-reuse-replacement-20261009",
-        "RS.world-raster-batch.identity-cache-replacement-20261009"
+        "RS.world-raster-batch.identity-cache-replacement-20261009",
+        "NR.world32.live-20261010",
+        "NR.world32.replacement-20261010"
       ],
       "status": {
         "understanding": "partial",
@@ -21481,7 +21483,9 @@
         "RS.world-raster-batch.prefix16-replacement-v7-20261008",
         "RS.world-raster-batch.instrumented-replacement-20261009",
         "RS.world-raster-batch.resource-reuse-replacement-20261009",
-        "RS.world-raster-batch.identity-cache-replacement-20261009"
+        "RS.world-raster-batch.identity-cache-replacement-20261009",
+        "NR.world32.live-20261010",
+        "NR.world32.replacement-20261010"
       ],
       "status": {
         "understanding": "partial",
@@ -22119,7 +22123,9 @@
         "NR.world-interactive-batch.complete-20261009",
         "NR.world-interactive-batch.cancel-20261009",
         "NR.world-resource-reuse.live-20261009",
-        "NR.world-frame-identity-cache.live-20261009"
+        "NR.world-frame-identity-cache.live-20261009",
+        "NR.world32.live-20261010",
+        "NR.world32.replacement-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22331,7 +22337,9 @@
       "evidence": [
         "NR.world-interactive-batch.complete-20261009",
         "NR.world-resource-reuse.live-20261009",
-        "NR.world-frame-identity-cache.live-20261009"
+        "NR.world-frame-identity-cache.live-20261009",
+        "NR.world32.live-20261010",
+        "NR.world32.replacement-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22550,7 +22558,9 @@
         "NR.world-resource-reuse.replay-20261009",
         "NR.world-resource-reuse.live-20261009",
         "NR.world-frame-identity-cache.live-20261009",
-        "NR.world-frame-identity-cache.replay-20261009"
+        "NR.world-frame-identity-cache.replay-20261009",
+        "NR.world32.live-20261010",
+        "NR.world32.replacement-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23570,7 +23580,9 @@
       "validation_domain": "Six native tests including V2 minimap adapter regression, direct/indexed cache separation, caller-byte mutation, palette changes, LRU/count/capacity/oversized bypass and malformed retry, blend/positive-or-zero displacement snapshot equality with clipped/transparent/repeated draws and undefined/negative/out-of-bounds refusal. Same owned default V1 first16 map2/zero-items closed corpus compared with unchanged HEAD59388b1 prechange Debug binary at all1058 checkpoints. Precise pinned No-CD original entries and low16 AX at all23843 captured raster requests compared offline through FIFO; historical capture source hashes remain provenance, not current hook evidence. Every actual compiler dependency and build/test/declaration/helper input reviewed. Original oracles never enter native storage. New V2 minimap motion branches, unobserved original callers and unbounded gameplay excluded.",
       "evidence": [
         "NR.world-cpu-composition-reuse.native-20261010",
-        "NR.world-cpu-composition-reuse.preminimap-20261010"
+        "NR.world-cpu-composition-reuse.preminimap-20261010",
+        "NR.world32.live-20261010",
+        "NR.world32.replacement-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -26028,6 +26040,245 @@
         "tools/test-native-clock.py",
         "tools/campaign_crowded.py",
         "tests/campaign-crowded-test.py"
+      ]
+    },
+    {
+      "id": "NR.world-batch-extended-prefix",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Versioned bounded World takeover beyond sixteen queues",
+      "scope": "Intentional finite extended guarded World prefix1..32, pinned800x600 RGB565 format0 Quick Battle map2/zero items. Producer MNMPRO03/version3 has exactly32 queues,131072records and128MiB byte cap; V1/V2 envelopes remain1..16 and unchanged. Full owned startup/HUD history precedes each selected World raster batch; original destination access guard, complete return/reply identity/AX/source binding, strict source-only CPU/GPU parity and separate exact-original raster comparisons remain mandatory. Original traversal/simulation and HUD outside selected World remain active. Finite diagnostic, not rolling/unbounded takeover, manual32/hardware validation or real-time gameplay proof. Journal/descriptor/cache/oracle exhaustion refuses rather than claiming completion. V3 definition25 owns an entire closed font/raster source and per-draw state snapshot, with at most2048definitions/16MiB. Later kind8/9 records may reference its earlier sequence via word4 with zero wire payload; native/Python decode restore the exact full canonical header/payload for descriptor hashing. Shared immutable native storage avoids repeated expanded allocations. Runtime equality verifies every byte, kind and storage tag; cache exhaustion retains raw input under unchanged journal cap. Missing/future/mismatched references and over-budget definitions refuse. Source dictionaries are native policies, not original pointers or output oracles.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-raster-batch.md",
+        "research/runtime/native-world-interactive-batch.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/observer.c",
+        "compat/legacy/canvas_producers.cpp",
+        "tools/native_world_batch.py",
+        "tools/run-native-world.py",
+        "tools/capture-scene-game.py",
+        "tools/inspect-canvas-producers.py",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp"
+      ],
+      "tests": [
+        "tests/extended-world-producer-test.py",
+        "tests/native-world-batch-test.py",
+        "tests/canvas-sequence-test.cpp",
+        "tools/test-native-world-batch.py",
+        "tools/test-world-raster-batch.py"
+      ],
+      "evidence": [
+        "NR.world32.journal-budget-negative-20261010",
+        "NR.world32.original-parser-negative-20261010",
+        "NR.world32.live-20261010",
+        "NR.world32.replacement-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/canvas-producers-test.c",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-startup-call.S",
+        "tests/canvas-world-test.cpp",
+        "tests/extended-world-producer-test.py",
+        "tests/minimap-producer-test.cpp",
+        "tests/native-world-batch-test.py",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-history-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/world-frame-reference.cpp",
+        "tests/world-producer-bypass-call.S",
+        "tests/world-producer-reference.cpp",
+        "tests/world-raster-batch-reference.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-raster-queue-reference.cpp",
+        "tests/world-raster-reference.hpp",
+        "tools/build-menu-observer.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-scene-game.py",
+        "tools/compare-world-cpu-original.py",
+        "tools/coverage_claims.py",
+        "tools/export-menu-support.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inspect-startup-queues.py",
+        "tools/inspect-world-raster-batch.py",
+        "tools/inspect-world-raster-callers.py",
+        "tools/native_world_batch.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-native-world.py",
+        "tools/run-opengl-game.py",
+        "tools/scene-game-runner.py",
+        "tools/test-canvas-producers.py",
+        "tools/test-native-world-batch.py",
+        "tools/test-world-producer-handoff.py",
+        "tools/test-world-raster-batch.py",
+        "tools/test-world-raster-queue.py",
+        "tools/test-world-resource-reuse.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py"
       ]
     }
   ],
@@ -49709,6 +49960,186 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.world32.journal-budget-negative-20261010",
+      "kind": "live_observation",
+      "scope": "Extended32 prototype before owned source reuse: journal hit its unchanged128MiB cap after25completed returns; queue26 refused/incomplete, no full-prefix validation. Both immutable manifest checks passed. Keep original declared sources and contracts, now historical.",
+      "record": "research/runtime/native-world32-journal-budget-negative-20261010.json",
+      "sha256": "89e8273423b9e1639226f83ba08598e63b048d933ba63fa8a2ac6432e2fef8f7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/completed_queues",
+          "equals": 25
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.world32.original-parser-negative-20261010",
+      "kind": "native_integration",
+      "scope": "Source-bound frozen32 replay: five native fixtures passed but the independent original parser refused V3 source definitions as unadmitted producers. No original equivalence claim. New source-definition handling remains bounded and separate from original raster execution.",
+      "record": "research/runtime/native-world32-original-parser-negative-20261010.json",
+      "sha256": "026397b002052dc4320edf90f0da4dfec521bb68a19800cd1c476e06936303c8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.world32.live-20261010",
+      "kind": "live_observation",
+      "scope": "Optimized finite guarded World prefix1..32, full startup/HUD history, source-only CPU/GPU parity, protection and32 correlated native writebacks/readbacks.2016 owned source definitions/3.94MiB and12.87MiB journal remain bounded. Original raster equivalence independently established in the paired comparison; post-bypass checkpoints alone do not establish original-only results. Median warm CPU11.11ms/GPU63.24ms/queue223.83ms: too slow for real-time continuous gameplay.",
+      "record": "research/runtime/native-world32-live-20261010.json",
+      "sha256": "5d4d3f289a430ac835e62adcf5db8c405428f38de4da1b0f72864e370f42ea0f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/canvas_guard_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_canvas_writebacks",
+          "equals": 32
+        },
+        {
+          "pointer": "/completed/bypassed_rasters",
+          "equals": 63124
+        },
+        {
+          "pointer": "/completed/native_producers/wire_version",
+          "equals": 3
+        },
+        {
+          "pointer": "/completed/native_producers/native_build_type",
+          "equals": "RelWithDebInfo"
+        },
+        {
+          "pointer": "/completed/native_producers/owned_payload_sources",
+          "equals": 2016
+        },
+        {
+          "pointer": "/completed/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.world32.replacement-20261010",
+      "kind": "live_replacement",
+      "scope": "Bounded source-only native32 World raster replacement with separate exact original PE32 intermediate/AX comparisons. Live capture uses RelWithDebInfo and software Mesa; frozen independent comparison uses Debug. Original traversal/simulation and outside-World drawing remain active. Transport source definitions are not original drawing calls. No continuous/hardware/full-dispatch/realtime claim. Every63124 precise raster RGB565 canvas and low16AX matches unmodified nocd40209ca7 bodies,1224 checkpoint canvases and32live finals match. Matching source/contract/input hashes and86compiler dependencies reviewed; immutable original manifests verified before/after. No broad scope or status promotion of historical contracts.",
+      "record": "research/runtime/native-world32-replacement-20261010.json",
+      "sha256": "e39e164abe7f446e0d1996f2efe2cb5b2c6c193d34bf7eb9f2a43a9cbc283fcc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "equivalence_pointer": "/equivalent_intermediates",
+      "bypass_pointer": "/original_work_bypassed",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/native_original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/canvas_guard_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/precise_rasters_equal",
+          "equals": 63124
+        },
+        {
+          "pointer": "/caller_ax_equal",
+          "equals": 63124
+        },
+        {
+          "pointer": "/live_final_equal",
+          "equals": 32
+        },
+        {
+          "pointer": "/native_world_readbacks",
+          "equals": 32
+        },
+        {
+          "pointer": "/native_canvas_writebacks",
+          "equals": 32
+        },
+        {
+          "pointer": "/completed",
+          "equals": 1224
+        },
+        {
+          "pointer": "/equivalent_intermediates",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": true
+        },
+        {
+          "pointer": "/compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -56361,7 +56792,9 @@
         "RS.world-raster-batch.prefix16-replacement-v7-20261008",
         "RS.world-raster-batch.instrumented-replacement-20261009",
         "RS.world-raster-batch.resource-reuse-replacement-20261009",
-        "RS.world-raster-batch.identity-cache-replacement-20261009"
+        "RS.world-raster-batch.identity-cache-replacement-20261009",
+        "NR.world32.live-20261010",
+        "NR.world32.replacement-20261010"
       ]
     },
     {
@@ -56491,7 +56924,9 @@
       ],
       "evidence": [
         "NR.world-resource-reuse.live-20261009",
-        "NR.world-frame-identity-cache.live-20261009"
+        "NR.world-frame-identity-cache.live-20261009",
+        "NR.world32.live-20261010",
+        "NR.world32.replacement-20261010"
       ]
     },
     {
@@ -56862,6 +57297,30 @@
         "HOST.native-integration.crowded-negative2-20261010",
         "HOST.native-integration.crowded-20261010"
       ]
+    },
+    {
+      "id": "world-raster-batch-prefix32-20261010",
+      "level": "live_equivalence",
+      "scope": "Intentional finite extended guarded World prefix1..32, pinned800x600 RGB565 format0 Quick Battle map2/zero items. Producer MNMPRO03/version3 has exactly32 queues,131072records and128MiB byte cap; V1/V2 envelopes remain1..16 and unchanged. Full owned startup/HUD history precedes each selected World raster batch; original destination access guard, complete return/reply identity/AX/source binding, strict source-only CPU/GPU parity and separate exact-original raster comparisons remain mandatory. Original traversal/simulation and HUD outside selected World remain active. Finite diagnostic, not rolling/unbounded takeover, manual32/hardware validation or real-time gameplay proof. Journal/descriptor/cache/oracle exhaustion refuses rather than claiming completion. V3 definition25 owns an entire closed font/raster source and per-draw state snapshot, with at most2048definitions/16MiB. Later kind8/9 records may reference its earlier sequence via word4 with zero wire payload; native/Python decode restore the exact full canonical header/payload for descriptor hashing. Shared immutable native storage avoids repeated expanded allocations. Runtime equality verifies every byte, kind and storage tag; cache exhaustion retains raw input under unchanged journal cap. Missing/future/mismatched references and over-budget definitions refuse. Source dictionaries are native policies, not original pointers or output oracles.",
+      "behaviors": [
+        "NR.world-interactive-batch-launcher",
+        "NR.world-batch-profiling",
+        "RS.world-raster-batch-return",
+        "NR.world-raster-batch-transport",
+        "NR.world-resource-reuse",
+        "NR.world-cpu-composition-reuse",
+        "NR.world-batch-extended-prefix"
+      ],
+      "tests": [
+        "tools/test-native-world-batch.py",
+        "tools/test-world-raster-batch.py"
+      ],
+      "evidence": [
+        "NR.world32.journal-budget-negative-20261010",
+        "NR.world32.original-parser-negative-20261010",
+        "NR.world32.live-20261010",
+        "NR.world32.replacement-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -57190,8 +57649,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-integration-validated-20261010.json",
-    "sha256": "f129a01185647d52da1d6089f0a30dc91f1b2281f8b156943334857dd6f7fbc9"
+    "path": "research/runtime/coverage/source-index-native-world32-validated-20261010.json",
+    "sha256": "732f2aa6949d1af6e374d38204f2f932682242cf0cadeffb54c15ff4d06d78af"
   },
   "claim_bindings_required": true
 }

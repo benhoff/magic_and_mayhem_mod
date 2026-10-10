@@ -56,12 +56,15 @@ def close_native_window():
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--mode',choices=['complete','cancel'],default='complete')
+    p.add_argument('--queues',type=int,choices=(16,32),default=16)
     a=p.parse_args()
+    if a.queues!=16 and a.mode!='complete':p.error('Extended prefix is complete-mode only')
     parent=ROOT/'working/tests/native-world-batch';parent.mkdir(parents=True,exist_ok=True)
     run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
     register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
     ids=['NR.world-interactive-batch-launcher','NR.world-batch-profiling']
-    scenario_id='world-batch-public-'+a.mode+'-20261009'
+    scenario_id='world-raster-batch-prefix32-20261010' if a.queues==32 else 'world-batch-public-'+a.mode+'-20261009'
+    if a.queues==32:ids+=['NR.world-batch-extended-prefix','NR.world-cpu-composition-reuse']
     scenario=next(s for s in register['scenarios'] if s['id']==scenario_id)
     if a.mode=='complete':ids+=['RS.world-raster-batch-return','NR.world-raster-batch-transport','NR.world-resource-reuse']
     selected=[b for b in register['behaviors'] if b['id'] in ids]
@@ -78,13 +81,13 @@ def main():
             scenarios[s['id']]=scenario_contract(s)
         claims.append(dict(behavior=b['id'],contract_sha256=behavior_contract(b,builds),scenarios=scenarios))
     declaration=run/'claims.json';declaration.write_text(json.dumps(dict(sources=sources,claims=claims),indent=2)+'\n')
-    command=[str(ROOT/'tools/run-native-world.py'),'--world-batch','--claims',str(declaration)]
+    command=[str(ROOT/'tools/run-native-world.py'),'--world-batch','--world-queues',str(a.queues),'--claims',str(declaration)]
     if a.mode=='complete':command.append('--startup-history')
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
     env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1')
     with (run/'launcher.log').open('x') as log:
         process=subprocess.Popen(command,env=env,stdout=log,stderr=subprocess.STDOUT)
-        experiment=None;closed=False;deadline=time.monotonic()+360
+        experiment=None;closed=False;deadline=time.monotonic()+600
         try:
             while process.poll() is None:
                 rows=[l for l in (run/'launcher.log').read_text().splitlines() if l.startswith('Native World batch session: ')]
@@ -98,9 +101,12 @@ def main():
             result=json.loads((experiment/'native-world.json').read_text())
             if a.mode=='cancel':assert closed and result['cancelled'] and not result['success']
             else:
-                assert result['success'] and result['canvas_guard_verified'] and result['native_canvas_writebacks']==16
-                n=result['native_producers'];assert n['world_readbacks']==16
-                assert [f['queue'] for f in n['world_frames']]==list(range(1,17))
+                assert result['success'] and result['canvas_guard_verified'] and result['native_canvas_writebacks']==a.queues
+                n=result['native_producers'];assert n['world_readbacks']==a.queues
+                if a.queues==32:
+                    assert n['wire_version']==3 and 0<n['owned_payload_sources']<=2048
+                    assert 0<n['owned_payload_bytes']<=16*1024*1024 and n['stream_bytes']<=128*1024*1024
+                assert [f['queue'] for f in n['world_frames']]==list(range(1,a.queues+1))
                 for f in n['world_frames']:
                     assert f['profile']['visible_draws']>0
                     assert all(v>=0 for v in f['profile'].values())

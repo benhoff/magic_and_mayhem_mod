@@ -85,6 +85,37 @@ void decodedFrameCache() {
   draw.payload[r[19]+2]=0x78; draw.payload[r[19]+3]=0x56; replay.apply(draw);
   expect(replay.read(7).pixels[0]==0x5678 && replay.frameCacheStats().decodes==1 && replay.frameCacheStats().hits==1);
 }
+void ownedPacketReferences() {
+  using namespace mnm;
+  const auto source=encodedFrame();
+  std::vector<std::uint8_t> wire(64+96+source.payload.size()+192,0);
+  auto put=[&](unsigned p,unsigned v){for(unsigned k=0;k<4;++k)wire[p+k]=std::uint8_t(v>>(k*8));};
+  std::copy_n("MNMPRO03",8,wire.begin());put(8,3);put(12,64);put(16,0x40209ca7);put(20,131072);put(24,32);
+  put(64,96+source.payload.size());put(68,1);put(72,25);put(120,9);put(140,source.payload.size());put(136,source.payload.size());
+  std::copy(source.payload.begin(),source.payload.end(),wire.begin()+160);
+  const unsigned start=160+source.payload.size();
+  for(unsigned i=0;i<2;++i){auto p=start+i*96;put(p,96);put(p+4,2+i);put(p+8,9);put(p+12,7);put(p+16,1);put(p+20,2);put(p+24,1);put(p+28,2);put(p+48,2);put(p+52,1);put(p+60,1);put(p+76,source.payload.size());}
+  legacy::CanvasProducerStream stream{0,{}};
+  legacy::appendCanvasProducers(stream,{wire.begin(),wire.begin()+start});
+  std::vector<std::uint8_t> tail(wire.begin(),wire.begin()+64);tail.insert(tail.end(),wire.begin()+start,wire.end());
+  legacy::appendCanvasProducers(stream,tail);
+  expect(stream.operations.size()==3 && stream.ownedPayloads.size()==1 && stream.ownedPayloadBytes==source.payload.size());
+  const auto &first=stream.operations[1], &second=stream.operations[2];
+  expect(first.payload.empty() && first.ownedPayload==second.ownedPayload && first.ownedPayload==stream.operations[0].ownedPayload);
+  expect(first.bytes()==source.payload && first.fields[4]==0 && first.fields[18]==source.payload.size() && first.fields[0]==96+source.payload.size());
+  wire[160+50]^=1;expect(first.bytes()==source.payload);wire[160+50]^=1; // owns its snapshot
+  legacy::CanvasProducerReplay replay([](const auto &) -> std::vector<std::uint8_t> { throw std::runtime_error("Unexpected asset"); });
+  legacy::CanvasProducer create{};create.fields[2]=1;create.fields[3]=7;create.fields[5]=2;create.fields[6]=1;replay.apply(create);
+  for(const auto &c:stream.operations)replay.apply(c);
+  expect(replay.read(7).pixels[0]==0xf800 && replay.read(7).pixels[1]==0x001f);
+  put(start+16,999);refuses([&]{legacy::decodeCanvasProducers(wire,false);});put(start+16,1);
+  put(start+68,1);refuses([&]{legacy::decodeCanvasProducers(wire,false);});put(start+68,0);
+  put(140,39);refuses([&]{legacy::decodeCanvasProducers(wire,false);});put(140,source.payload.size());
+  legacy::CanvasProducerStream bounded{0,{}};bounded.ownedPayloadBytes=16*1024*1024;
+  refuses([&]{legacy::appendCanvasProducers(bounded,{wire.begin(),wire.begin()+start});});
+  bounded.ownedPayloadBytes=0;for(unsigned i=0;i<2048;++i)bounded.ownedPayloads.emplace(i,create);
+  refuses([&]{legacy::appendCanvasProducers(bounded,{wire.begin(),wire.begin()+start});});
+}
 void rasterSampling() {
   using namespace mnm;
   const render::Image initial{6, 2, {0xffff,0xf800,0x07e0,0x001f,0x1234,0x5678,
@@ -133,7 +164,8 @@ void rasterSampling() {
 int main() {
   try {
     using namespace mnm;
-    decodedFrameCache(); rasterSampling();
+    decodedFrameCache();
+    ownedPacketReferences(); rasterSampling();
     render::CanvasSequence canvases;
     canvases.create(1, 4, 2);
     refuses([&] { canvases.read(1); });
@@ -183,6 +215,17 @@ int main() {
     expect(incremental.operations.size()==full.operations.size());expect(incremental.operations.back().fields==full.operations.back().fields);
     refuses([&]{legacy::appendCanvasProducers(incremental,last);});
     first[24]=2;refuses([&]{legacy::appendCanvasProducers(incremental,first);});
+    // V3 extends only the queue envelope: old versions still reject queue32.
+    put(24,32);refuses([&]{legacy::decodeCanvasProducers(wire,false);});
+    std::copy_n("MNMPRO03",8,wire.begin());put(8,3);put(20,131072);
+    auto extended=legacy::decodeCanvasProducers(wire,false);expect(extended.version==3 && extended.queues==32);
+    put(24,33);refuses([&]{legacy::decodeCanvasProducers(wire,false);});
+    put(24,16);refuses([&]{legacy::decodeCanvasProducers(wire,false);});
+    put(24,32);put(20,262144);refuses([&]{legacy::decodeCanvasProducers(wire,false);});put(20,131072);
+    wire.resize(64+32*192,0);
+    for(unsigned q=0;q<32;++q)for(unsigned i=0;i<2;++i){unsigned at=64+q*192+i*96;put(at,96);put(at+4,q*2+i+1);put(at+8,i?12:11);put(at+56,q+1);}
+    extended=legacy::decodeCanvasProducers(wire);expect(extended.operations.size()==64 && extended.queues==32);
+    auto truncated=wire;truncated.resize(truncated.size()-96);refuses([&]{legacy::decodeCanvasProducers(truncated);});
     std::cout << "Bounded decoded-frame reuse, raster sample ordering, undefined input, retained self-copy, colour key, font "
                  "clipping/truncation and malformed stream checks passed\n";
     return 0;

@@ -5,6 +5,7 @@
 #include <array>
 #include <map>
 #include <sstream>
+static void set32(Bytes& b,unsigned at,unsigned value){if(at>b.size()||b.size()-at<4)throw std::runtime_error("Canonical source extent");for(unsigned i=0;i<4;++i)b[at+i]=value>>(8*i);}
 static Bytes fastRead(const std::string& name){std::ifstream f(name,std::ios::binary|std::ios::ate);if(!f)throw std::runtime_error("Open "+name);const auto n=f.tellg();if(n<0||n>128*1024*1024)throw std::runtime_error("Read bound");Bytes b(std::size_t(n),0);f.seekg(0);if(!f.read(reinterpret_cast<char*>(b.data()),n))throw std::runtime_error("Read "+name);return b;}
 int main(int argc,char** argv)try{
  if(argc!=6)throw std::runtime_error("Expected PE, producer stream, actual-entry TSV, native FIFO, output TSV");
@@ -12,6 +13,7 @@ int main(int argc,char** argv)try{
  std::map<unsigned,std::pair<unsigned,unsigned>> entries;std::ifstream list(argv[3]);unsigned seq,entry,ax;
  while(list>>seq>>entry>>ax){if(!entries.emplace(seq,std::make_pair(entry,ax)).second||ax>1)throw std::runtime_error("Duplicate/invalid original input");}if(!list.eof()||entries.empty())throw std::runtime_error("Incomplete original input list");
  std::ifstream pipe(argv[4],std::ios::binary);std::ofstream out(argv[5]);if(!pipe||!out)throw std::runtime_error("FIFO/result open");
+ std::map<unsigned,Bytes> sources;unsigned sourceBytes=0;
  unsigned queue=0,count=0,completed=0;std::vector<std::uint16_t> original;
  auto native=[&](const Bytes& record,unsigned type){
   Bytes h(40);if(!pipe.read(reinterpret_cast<char*>(h.data()),h.size())||std::memcmp(h.data(),"MNMBPF01",8)||u32(h,8)!=type||u32(h,12)!=u32(record,4)||u32(h,16)!=queue||u32(h,20)!=u32(record,12)||u32(h,24)!=u32(record,20)||u32(h,28)!=u32(record,24))throw std::runtime_error("Native proof frame identity");
@@ -21,6 +23,22 @@ int main(int argc,char** argv)try{
  };
  for(std::size_t at=64;at<stream.size();){
   const auto size=u32(stream,at);if(size<96||size>stream.size()-at)throw std::runtime_error("Producer extent");Bytes r(stream.begin()+at,stream.begin()+at+size);at+=size;const auto kind=u32(r,8);
+  if(kind==25){
+   if(stream.size()<64||std::memcmp(stream.data(),"MNMPRO03",8)||u32(stream,8)!=3||
+      (u32(r,56)!=8&&u32(r,56)!=9)||u32(r,76)<40||u32(r,76)>1048576||
+      u32(r,72)!=u32(r,76)+u32(r,80)||u32(r,96)!=u32(r,76)||u32(r,124)||
+      (u32(r,56)==8 ? u32(r,80)!=272 : u32(r,68)>1 || (u32(r,80)!=0&&u32(r,80)!=64&&u32(r,80)!=512))||
+      sources.size()>=2048||r.size()-96>16*1024*1024-sourceBytes||sources.count(u32(r,4)))
+     throw std::runtime_error("Invalid original-input owned source");
+   sourceBytes+=r.size()-96;sources.emplace(u32(r,4),std::move(r));continue;
+  }
+  if((kind==8||kind==9)&&u32(r,16)){
+   auto found=sources.find(u32(r,16));
+   if(std::memcmp(stream.data(),"MNMPRO03",8)||u32(stream,8)!=3||u32(r,72)||found==sources.end())throw std::runtime_error("Invalid original-input source reference");
+   const auto& source=found->second;
+   if(u32(source,56)!=kind||u32(source,68)!=u32(r,68)||u32(source,76)!=u32(r,76)||u32(source,80)!=u32(r,80))throw std::runtime_error("Mismatched original-input source reference");
+   r.insert(r.end(),source.begin()+96,source.end());set32(r,0,r.size());set32(r,16,0);set32(r,72,r.size()-96);
+  }
   if(kind==11){if(queue)throw std::runtime_error("Nested World queue");queue=u32(r,56);auto [pixels,unused]=native(r,1);if(unused)throw std::runtime_error("Entry AX");original.resize(pixels.size()/2);std::memcpy(original.data(),pixels.data(),pixels.size());}
   else if(queue&&kind==9){
    const auto id=u32(r,4);auto i=entries.find(id);if(i==entries.end())throw std::runtime_error("Unlisted actual raster entry");

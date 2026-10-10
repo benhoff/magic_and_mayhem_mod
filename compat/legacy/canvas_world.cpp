@@ -16,12 +16,12 @@ unsigned word(const std::vector<std::uint8_t>& b,std::size_t at){
 WorldDraw producerWorldDraw(const CanvasProducer &c){
   const auto &r=c.fields;
   if(r[2]!=MNM_PRODUCER_RASTER||r[14]>5||r[15]>10||r[17]>1||
-     r[19]<40||r[19]>1048576||c.payload.size()!=r[19]+r[20]||
-     word(c.payload,0)!=r[19]||word(c.payload,28)||
+     r[19]<40||r[19]>1048576||c.bytes().size()!=r[19]+r[20]||
+     word(c.bytes(),0)!=r[19]||word(c.bytes(),28)||
      r[20]!=(r[14]==3?64u:r[17]?512u:0u))
     throw std::invalid_argument("Unclosed native World producer request");
   WorldDraw draw;
-  draw.frame={bool(r[17]),QByteArray(reinterpret_cast<const char*>(c.payload.data()),r[19])};
+  draw.frame={bool(r[17]),QByteArray(reinterpret_cast<const char*>(c.bytes().data()),r[19])};
   frameIdentity(draw.frame.encoded,draw.frame.indexed);
   draw.x=signedWord(r[8]);draw.y=signedWord(r[9]);
   draw.clip={signedWord(r[10]),signedWord(r[11]),signedWord(r[12]),signedWord(r[13])};
@@ -29,12 +29,12 @@ WorldDraw producerWorldDraw(const CanvasProducer &c){
   if(r[14]==3){
     draw.composite.rowPeriod=r[16];
     if(!r[16]||r[16]>16)throw std::invalid_argument("Native World displacement period");
-    for(unsigned i=0;i<16;++i){draw.composite.rowOffsets[i]=signedWord(word(c.payload,r[19]+i*4));
+    for(unsigned i=0;i<16;++i){draw.composite.rowOffsets[i]=signedWord(word(c.bytes(),r[19]+i*4));
       if(draw.composite.rowOffsets[i]<0||draw.composite.rowOffsets[i]>16)
         throw std::invalid_argument("Native World displacement offset");}
   }else if(r[17]){
     render::SpriteColourTable colours{};
-    for(unsigned i=0;i<256;++i)colours[i]=std::uint16_t(c.payload[r[19]+i*2]|unsigned(c.payload[r[19]+i*2+1])<<8);
+    for(unsigned i=0;i<256;++i)colours[i]=std::uint16_t(c.bytes()[r[19]+i*2]|unsigned(c.bytes()[r[19]+i*2+1])<<8);
     draw.colours=colours;
   }
   return draw;
@@ -60,7 +60,7 @@ void CanvasWorld::append(const CanvasProducer &c){
   if(!active_||c.fields[3]!=canvas_||c.fields[5]!=pending_.width||c.fields[6]!=pending_.height||queueDraws_>=12320)
     throw std::invalid_argument("World producer changed destination or exceeded queue budget");
   auto draw=producerWorldDraw(c);++queueDraws_;++totalDraws_;checked_=false;
-  const auto &bytes=c.payload;
+  const auto &bytes=c.bytes();
   const auto width=word(bytes,4),height=word(bytes,8);
   const auto left=std::int64_t(draw.x)-signedWord(word(bytes,12));
   const auto top=std::int64_t(draw.y)-signedWord(word(bytes,16));

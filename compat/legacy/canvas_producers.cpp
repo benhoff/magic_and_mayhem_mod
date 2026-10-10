@@ -3,6 +3,7 @@
 #include "../../assets/pcx.hpp"
 #include "../../renderer/dib.hpp"
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
+#include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include <algorithm>
 #include <cstring>
 #include <stdexcept>
@@ -35,7 +36,7 @@ assets::SpriteFrame decodeFrame(const CanvasProducer &c, bool indexed) {
   put(spr, 8, 4);
   put(spr, 12, 1);
   put(spr, 16, indexed ? 1 : 0);
-  std::copy_n(c.payload.begin(), size, spr.begin() + base);
+  std::copy_n(c.bytes().begin(), size, spr.begin() + base);
   put(spr, base + 28, indexed ? 0 : 0xffffffff);
   auto decoded = assets::decodeSprite(spr);
   if (auto *error = std::get_if<assets::SpriteError>(&decoded))
@@ -54,10 +55,10 @@ bool CanvasFrameCache::Less::operator()(View a, View b) const {
 }
 std::shared_ptr<const assets::SpriteFrame> CanvasFrameCache::frame(const CanvasProducer &c, bool indexed) {
   const auto size = c.fields[19];
-  if (size < 40 || size > 1048576 || size > c.payload.size() ||
-      word(c.payload, 0) != size || word(c.payload, 28))
+  if (size < 40 || size > 1048576 || size > c.bytes().size() ||
+      word(c.bytes(), 0) != size || word(c.bytes(), 28))
     throw std::invalid_argument("Unclosed producer frame cache input");
-  const View view{indexed, c.payload.data(), size};
+  const View view{indexed, c.bytes().data(), size};
   if (auto found = entries_.find(view); found != entries_.end()) {
     ++stats_.hits;
     recent_.splice(recent_.begin(), recent_, found->second.recent);
@@ -66,7 +67,7 @@ std::shared_ptr<const assets::SpriteFrame> CanvasFrameCache::frame(const CanvasP
   // Decode failures neither enter the cache nor evict previously valid frames.
   auto decoded = std::make_shared<const assets::SpriteFrame>(decodeFrame(c, indexed));
   ++stats_.decodes;
-  Key key{indexed, {c.payload.begin(), c.payload.begin() + size}};
+  Key key{indexed, {c.bytes().begin(), c.bytes().begin() + size}};
   auto bytes = key.encoded.capacity() + decoded->opaqueMask.capacity();
   std::visit([&](const auto &plane) { bytes += plane.capacity() * sizeof(plane[0]); }, decoded->pixels);
   for (const auto &plane : decoded->auxiliaryData) bytes += plane.capacity();
@@ -83,12 +84,13 @@ std::shared_ptr<const assets::SpriteFrame> CanvasFrameCache::frame(const CanvasP
 }
 void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::uint8_t> &b, bool complete) {
   if (b.size() < 64 || b.size() > (!std::memcmp(b.data(), "MNMPRO02", 8) ? 512u : 128u) * 1024 * 1024 ||
-      (std::memcmp(b.data(), "MNMPRO01", 8) && std::memcmp(b.data(), "MNMPRO02", 8)))
+      (std::memcmp(b.data(), "MNMPRO01", 8) && std::memcmp(b.data(), "MNMPRO02", 8) && std::memcmp(b.data(), MNM_PRODUCER_V3_MAGIC, 8)))
     throw std::invalid_argument("Invalid producer envelope");
   const bool ownedMinimap = !std::memcmp(b.data(), "MNMPRO02", 8);
-  if (word(b, 8) != (ownedMinimap ? 2u : 1u) || word(b, 12) != 64 || word(b, 16) != 0x40209ca7 ||
-      (word(b, 20) != 32768 && word(b, 20) != 65536 && (!ownedMinimap || (word(b, 20) != 131072 && word(b, 20) != 262144))) || word(b, 24) < 1 ||
-      word(b, 24) > 16)
+  const bool extendedWorld = !std::memcmp(b.data(), MNM_PRODUCER_V3_MAGIC, 8);
+  if (word(b, 8) != (extendedWorld ? 3u : ownedMinimap ? 2u : 1u) || word(b, 12) != 64 || word(b, 16) != 0x40209ca7 ||
+      (extendedWorld ? word(b,20) != MNM_PRODUCER_V3_MAX_RECORDS : (word(b, 20) != 32768 && word(b, 20) != 65536 && (!ownedMinimap || (word(b, 20) != 131072 && word(b, 20) != 262144)))) || word(b, 24) < 1 ||
+      (extendedWorld ? word(b,24) != MNM_PRODUCER_V3_QUEUES : word(b,24) > 16))
     throw std::invalid_argument("Unsupported producer envelope");
   if (result.version && result.version != word(b, 8)) throw std::invalid_argument("Producer append changed wire version");
   result.version = word(b, 8);
@@ -103,16 +105,33 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
     CanvasProducer c;
     for (unsigned k = 0; k < 24; ++k)
       c.fields[k] = word(b, at + k * 4);
-    const auto &r = c.fields;
+    auto &r = c.fields;
     if (result.operations.size() >= word(b, 20) ||
         r[18] > (ownedMinimap ? 512u : 128u) * 1024 * 1024 - 96 || r[0] != 96 + r[18] ||
         r[0] > b.size() - at || r[1] != result.operations.size() + 1 ||
-        r[2] < 1 || r[2] > (ownedMinimap ? 24u : 23u) || r[23])
+        r[2] < 1 || r[2] > (extendedWorld ? 25u : ownedMinimap ? 24u : 23u) || (r[2]==24 && !ownedMinimap) || r[23])
       throw std::invalid_argument("Invalid producer record");
     c.payload.assign(b.begin() + at + 96, b.begin() + at + r[0]);
-    if (r[2] == 8 || r[2] == 9) {
+    const auto wireSize = r[0];
+    if (extendedWorld && (r[2]==8 || r[2]==9) && r[4]) {
+      const auto found=result.ownedPayloads.find(r[4]);
+      if (r[18] || found==result.ownedPayloads.end() || found->second.fields[14]!=r[2] ||
+          found->second.fields[17]!=r[17] || found->second.fields[19]!=r[19] || found->second.fields[20]!=r[20])
+        throw std::invalid_argument("Invalid producer owned-source reference");
+      c.ownedPayload=found->second.ownedPayload;r[4]=0;r[18]=c.bytes().size();r[0]=96+r[18];
+    }
+    if (r[2]==MNM_PRODUCER_PAYLOAD_SOURCE) {
+      if (!extendedWorld || (r[14]!=8 && r[14]!=9) || r[19]<40 || r[19]>1048576 ||
+          r[18]!=r[19]+r[20] || word(c.bytes(),0)!=r[19] || word(c.bytes(),28) ||
+          (r[14]==8 ? r[20]!=272 : r[17]>1 || (r[20]!=0 && r[20]!=64 && r[20]!=512)) ||
+          result.ownedPayloads.size()>=MNM_PRODUCER_V3_SOURCES ||
+          c.bytes().size()>MNM_PRODUCER_V3_SOURCE_BYTES-result.ownedPayloadBytes)
+        throw std::invalid_argument("Invalid producer owned-source definition");
+      c.ownedPayload=std::make_shared<const std::vector<std::uint8_t>>(std::move(c.payload));
+      result.ownedPayloadBytes+=c.bytes().size();result.ownedPayloads.emplace(r[1],c);
+    } else if (r[2] == 8 || r[2] == 9) {
       if (r[19] < 40 || r[19] > 1048576 || r[18] != r[19] + r[20] ||
-          word(c.payload, 0) != r[19] || word(c.payload, 28))
+          word(c.bytes(), 0) != r[19] || word(c.bytes(), 28))
         throw std::invalid_argument("Unclosed producer frame");
       if (r[2] == 8 && r[20] != 272)
         throw std::invalid_argument("Invalid producer font table");
@@ -121,16 +140,16 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
            r[20] != (r[14] == 3 ? 64u : r[17] ? 512u : 0u)))
         throw std::invalid_argument("Invalid producer raster table");
     } else if (r[2] == 7 || r[2] == 20) {
-      if (c.payload.empty() || c.payload.size() > 1024 || c.payload.back() ||
-          std::find(c.payload.begin(), c.payload.end() - 1, 0) !=
-              c.payload.end() - 1)
+      if (c.bytes().empty() || c.bytes().size() > 1024 || c.bytes().back() ||
+          std::find(c.bytes().begin(), c.bytes().end() - 1, 0) !=
+              c.bytes().end() - 1)
         throw std::invalid_argument("Invalid JPEG source name");
     } else if (r[2] == 24) {
-      if (c.payload.size() < 148 || word(c.payload, 0) > 2 || word(c.payload, 36) > 3 ||
-          word(c.payload, 40) > 1 || word(c.payload, 44) > 1 || word(c.payload, 48) > 1 ||
-          word(c.payload, 68) > 1024 || c.payload.size() != 148 + word(c.payload, 68) * 12 ||
-          (word(c.payload, 0) != 1 && word(c.payload, 68)) ||
-          (word(c.payload, 0) == 2 ? r[17] > 3 : r[17] != 0))
+      if (c.bytes().size() < 148 || word(c.bytes(), 0) > 2 || word(c.bytes(), 36) > 3 ||
+          word(c.bytes(), 40) > 1 || word(c.bytes(), 44) > 1 || word(c.bytes(), 48) > 1 ||
+          word(c.bytes(), 68) > 1024 || c.bytes().size() != 148 + word(c.bytes(), 68) * 12 ||
+          (word(c.bytes(), 0) != 1 && word(c.bytes(), 68)) ||
+          (word(c.bytes(), 0) == 2 ? r[17] > 3 : r[17] != 0))
         throw std::invalid_argument("Invalid owned minimap overlay packet");
     } else if (r[2] == 23) {
       if (r[14] > 16384 || r[18] != r[14] * 12) throw std::invalid_argument("Invalid point requests");
@@ -147,7 +166,7 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
     } else if (r[2] == 14) {
       if (r[18] != 20 || r[14])
         throw std::invalid_argument("Invalid RGB addition input");
-    } else if (!c.payload.empty())
+    } else if (!c.bytes().empty())
       throw std::invalid_argument("Unexpected producer payload");
     if (r[2] == 11) {
       if (entered != returned || r[14] != entered + 1)
@@ -160,7 +179,7 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
       ++returned;
     }
     result.operations.push_back(std::move(c));
-    at += r[0];
+    at += wireSize;
   }
   if (complete && (entered != result.queues || returned != result.queues ||
       result.operations.empty() || result.operations.back().fields[2] != 12))
@@ -184,6 +203,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
   case 10:
   case 11:
   case 12:
+  case MNM_PRODUCER_PAYLOAD_SOURCE:
     break;
   case 5:
     canvases_.fill(id, rect(c), r[14]);
@@ -196,7 +216,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
   case 7: {
     if (r[14])
       throw std::invalid_argument("JPEG requires recovered RGB565 format");
-    std::string name(c.payload.begin(), c.payload.end() - 1);
+    std::string name(c.bytes().begin(), c.bytes().end() - 1);
     auto decoded = assets::decodeJpeg(source_(name));
     if (auto *e = std::get_if<assets::JpegError>(&decoded))
       throw std::invalid_argument("JPEG source refused: " + e->detail);
@@ -217,13 +237,13 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
   }
   case 8: {
     const auto p = r[19];
-    if (word(c.payload, p) != 0 || word(c.payload, p + 4) != 0xf800 ||
-        word(c.payload, p + 8) != 0x07e0 || word(c.payload, p + 12) != 0x001f)
+    if (word(c.bytes(), p) != 0 || word(c.bytes(), p + 4) != 0xf800 ||
+        word(c.bytes(), p + 8) != 0x07e0 || word(c.bytes(), p + 12) != 0x001f)
       throw std::invalid_argument(
           "Font format/masks outside recovered RGB565 scope");
     std::array<float, 64> table;
     for (unsigned k = 0; k < 64; ++k) {
-      const auto raw = word(c.payload, p + 16 + k * 4);
+      const auto raw = word(c.bytes(), p + 16 + k * 4);
       std::memcpy(&table[k], &raw, 4);
     }
     canvases_.glyph(id, *frames_.frame(c, true), signedWord(r[8]), signedWord(r[9]),
@@ -235,21 +255,21 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     std::array<int, 16> offsets{};
     if (r[20] == 512)
       for (unsigned k = 0; k < 256; ++k)
-        colours[k] = c.payload.at(r[19] + k * 2) |
-                     unsigned(c.payload.at(r[19] + k * 2 + 1)) << 8;
+        colours[k] = c.bytes().at(r[19] + k * 2) |
+                     unsigned(c.bytes().at(r[19] + k * 2 + 1)) << 8;
     if (r[20] == 64)
       for (unsigned k = 0; k < 16; ++k)
-        offsets[k] = signedWord(word(c.payload, r[19] + k * 4));
+        offsets[k] = signedWord(word(c.bytes(), r[19] + k * 4));
     canvases_.raster(id, *frames_.frame(c, r[17] != 0), signedWord(r[8]),
                      signedWord(r[9]), rect(c), r[14], signedWord(r[15]),
                      colours, offsets, r[20] == 64 ? r[16] : 16);
     break;
   }
   case 14: {
-    if (r[14] || c.payload.size() != 20)
+    if (r[14] || c.bytes().size() != 20)
       throw std::invalid_argument(
           "RGB addition requires recovered RGB565 input");
-    const auto width = word(c.payload, 0), height = word(c.payload, 4);
+    const auto width = word(c.bytes(), 0), height = word(c.bytes(), 4);
     const auto x = signedWord(r[8]), y = signedWord(r[9]);
     if (width > 2048 || height > 2048 || std::int64_t(x) + width > 2147483647 ||
         std::int64_t(y) + height > 2147483647)
@@ -261,8 +281,8 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     area.right = std::min(area.right, int(std::int64_t(x) + width));
     area.bottom = std::min(area.bottom, int(std::int64_t(y) + height));
     canvases_.addRgb(id, area,
-                     {word(c.payload, 8) & 0xffff, word(c.payload, 12) & 0xffff,
-                      word(c.payload, 16) & 0xffff});
+                     {word(c.bytes(), 8) & 0xffff, word(c.bytes(), 12) & 0xffff,
+                      word(c.bytes(), 16) & 0xffff});
     break;
   }
   case 15:
@@ -274,7 +294,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     canvases_.panel(id, rect(c), r[2], r[14], r[15] != 0, r[16] != 0);
     break;
   case 24: {
-    const auto m = [&](unsigned i) { return word(c.payload, i * 4); };
+    const auto m = [&](unsigned i) { return word(c.bytes(), i * 4); };
     render::MinimapOverlayView v{signedWord(m(1)), signedWord(m(2)), signedWord(m(3)), signedWord(m(4)),
         signedWord(m(5)), signedWord(m(6)), signedWord(m(7)), signedWord(m(8)), m(9), m(10) != 0};
     canvases_.minimap(id, int(r[7]), [&](render::MinimapPlane &p) -> std::size_t {
@@ -289,9 +309,9 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
       if (m(0) == 1) {
         std::vector<render::MinimapCreatureMarker> markers;
         for (unsigned i = 0; i < m(17); ++i) {
-          const auto at = 148 + i * 12; const auto hidden = word(c.payload, at+8);
+          const auto at = 148 + i * 12; const auto hidden = word(c.bytes(), at+8);
           if (hidden > 1) throw std::invalid_argument("Invalid closed creature visibility");
-          markers.push_back({signedWord(word(c.payload, at)), signedWord(word(c.payload, at+4)), hidden != 0});
+          markers.push_back({signedWord(word(c.bytes(), at)), signedWord(word(c.bytes(), at+4)), hidden != 0});
         }
         const auto result = render::drawMinimapCreatureMarkers(p, v, markers, m(11) != 0);
         if (unsigned(result.gridWidth) != r[19] || unsigned(result.gridHeight) != r[20])
@@ -310,15 +330,15 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
   }
   case 23:
     for (unsigned i = 0; i < r[14]; ++i)
-      canvases_.update(id, signedWord(word(c.payload, i * 12)), signedWord(word(c.payload, i * 12 + 4)), {1, 1, {word(c.payload, i * 12 + 8)}});
+      canvases_.update(id, signedWord(word(c.bytes(), i * 12)), signedWord(word(c.bytes(), i * 12 + 4)), {1, 1, {word(c.bytes(), i * 12 + 8)}});
     break;
   case 22: {
     std::vector<std::uint16_t> colours;
     std::vector<unsigned char> hidden;
-    for (std::size_t i = 0; i < c.payload.size(); i += 3) {
-      colours.push_back(unsigned(c.payload[i]) | unsigned(c.payload[i + 1]) << 8);
-      if (c.payload[i + 2] > 1 || (!r[17] && c.payload[i + 2])) throw std::invalid_argument("Invalid minimap visibility");
-      hidden.push_back(c.payload[i + 2]);
+    for (std::size_t i = 0; i < c.bytes().size(); i += 3) {
+      colours.push_back(unsigned(c.bytes()[i]) | unsigned(c.bytes()[i + 1]) << 8);
+      if (c.bytes()[i + 2] > 1 || (!r[17] && c.bytes()[i + 2])) throw std::invalid_argument("Invalid minimap visibility");
+      hidden.push_back(c.bytes()[i + 2]);
     }
     // V2 uses the validated four-orientation service and owned prior auxiliary
     // composition. V1 retains its historical orientation-zero contract.
@@ -337,7 +357,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     break;
   case 20: {
     if (r[14]) throw std::invalid_argument("BMP requires RGB565 destination");
-    std::string name(c.payload.begin(), c.payload.end() - 1);
+    std::string name(c.bytes().begin(), c.bytes().end() - 1);
     const auto raw = source_(name);
     if (raw.size() < 54 || raw[0] != 'B' || raw[1] != 'M' || word(raw, 14) != 40)
       throw std::invalid_argument("Unsupported bitmap file header");
@@ -371,9 +391,9 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
   }
   case 19: {
     render::DibInput dib;
-    std::copy_n(c.payload.begin(), 40, dib.header.begin());
-    dib.palette.assign(c.payload.begin() + 40, c.payload.begin() + r[19]);
-    dib.pixels.assign(c.payload.begin() + r[19], c.payload.end());
+    std::copy_n(c.bytes().begin(), 40, dib.header.begin());
+    dib.palette.assign(c.bytes().begin() + 40, c.bytes().begin() + r[19]);
+    dib.pixels.assign(c.bytes().begin() + r[19], c.bytes().end());
     dib.usage = r[14];
     auto image = render::decodeDibRgb(dib);
     for (auto &rgb : image.pixels)
@@ -382,10 +402,10 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     break;
   }
   case 18: {
-    std::vector<std::uint8_t> raw(c.payload.begin(), c.payload.begin() + r[19]);
+    std::vector<std::uint8_t> raw(c.bytes().begin(), c.bytes().begin() + r[19]);
     if (raw.size() < 897 || raw[raw.size() - 769] != 12)
       throw std::invalid_argument("PCX producer source lacks terminal palette");
-    std::copy_n(c.payload.begin() + r[19], 768, raw.end() - 768);
+    std::copy_n(c.bytes().begin() + r[19], 768, raw.end() - 768);
     auto decoded = assets::decodePcx(raw);
     if (auto *e = std::get_if<assets::PcxError>(&decoded))
       throw std::invalid_argument("PCX producer refused: " + e->detail);

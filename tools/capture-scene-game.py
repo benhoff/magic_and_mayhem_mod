@@ -30,7 +30,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-game',type=Path,help='Pinned read-only source installation for an isolated capture')
     parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64')
-    parser.add_argument('--samples',type=int,choices=range(1,17),default=4)
+    parser.add_argument('--samples',type=int,choices=[*range(1,17),32],default=4)
     parser.add_argument('--map',type=int,choices=range(1,129),default=2)
     parser.add_argument('--magic-items',type=int,choices=range(22),default=0,help='Original Quick Battle item count; nonzero accepts its initial spell assignments through the existing V3 bridge')
     parser.add_argument('--word-sprites',choices=['shadow','takeover'],help='Observe the explicit partial direct-word raster experiment')
@@ -39,7 +39,7 @@ def main():
     parser.add_argument('--producer-live',type=Path,help='Native Qt closed-producer consumer executable, starts before original launch')
     parser.add_argument('--world-producer-handoff',action='store_true',help='Use reconstructed producer history in native GPU World drawing')
     parser.add_argument('--world-raster-queue',type=int,choices=range(1,17),help='Replace every admitted raster in this selected World queue')
-    parser.add_argument('--world-raster-prefix',type=int,choices=range(1,17),help='Replace every admitted raster in contiguous startup queues1..N')
+    parser.add_argument('--world-raster-prefix',type=int,choices=[*range(1,17),32],help='Replace every admitted raster in contiguous startup queues1..N')
     parser.add_argument('--world-raster-batch',action='store_true',help='Guard the original destination and complete selected raster queues with one native canvas reply')
     parser.add_argument('--world-producer-bypass',type=int,choices=range(1,9),help='Replace this many selected generic raster entries in the final captured queue')
     parser.add_argument('--canvas-producers',action='store_true',help='Capture owned menu/loading/font/raster inputs and completed canvases through each sampled World return')
@@ -68,8 +68,9 @@ def main():
     if args.world_producer_bypass and not args.world_producer_handoff:parser.error('--world-producer-bypass requires --world-producer-handoff')
     full_rasters=args.world_raster_queue or args.world_raster_prefix
     if full_rasters and (not args.world_producer_handoff or args.world_producer_bypass or (args.world_raster_queue and args.world_raster_prefix) or full_rasters>args.samples):parser.error('Complete raster queues require handoff, valid sample bounds and a separate bypass mode')
+    if args.samples>16 and (not args.world_raster_batch or args.world_raster_prefix!=args.samples or args.minimap_owned or args.magic_items or args.map!=2):parser.error('Extended32 samples require guarded prefix32, map2 and zero items')
     if args.world_raster_batch and not full_rasters:parser.error('--world-raster-batch requires selected complete raster queues')
-    if args.manual_input and (not args.world_raster_batch or args.samples!=16 or args.world_raster_prefix!=16 or args.magic_items):parser.error('Manual input requires the bounded first16 World batch route with zero-items fixture')
+    if args.manual_input and (not args.world_raster_batch or args.samples not in (16,32) or args.world_raster_prefix!=args.samples or args.magic_items):parser.error('Manual input requires the bounded first16/32 World batch route with zero-items fixture')
     history=args.world_live in ('history-normal','history-verify')
     verify=args.world_live in ('verify','history-verify')
     if args.canvas_producers:
@@ -108,7 +109,7 @@ def main():
     if args.magic_items:
         sources += [*sorted((ROOT/'runtime/menu').glob('*.[chS]')),ROOT/'tools/build-menu-observer.py',
                     *[ROOT/('protocols/include/mnm/menu_v'+str(v)+'.h') for v in (1,2,3)]]
-    if args.canvas_producers:sources += [ROOT/'tools/inspect-canvas-producers.py',ROOT/'protocols/include/mnm/canvas_producers_v1.h',ROOT/'protocols/include/mnm/canvas_producers_v2.h']
+    if args.canvas_producers:sources += [ROOT/'tools/inspect-canvas-producers.py',ROOT/'protocols/include/mnm/canvas_producers_v1.h',ROOT/'protocols/include/mnm/canvas_producers_v2.h',ROOT/'protocols/include/mnm/canvas_producers_v3.h']
     claims=json.loads(args.claims.read_text()) if args.claims else None
     if claims:
         for source,digest in claims['sources'].items():
@@ -293,7 +294,7 @@ def main():
         if args.startup_queues:
             spec=importlib.util.spec_from_file_location('startup_queues',ROOT/'tools/inspect-startup-queues.py')
             inspector=importlib.util.module_from_spec(spec);spec.loader.exec_module(inspector)
-            report['startup_queues']=inspector.collect(root/'capture',args.startup_queues,args.startup_replay)
+            report['startup_queues']=inspector.collect(root/'capture',args.startup_queues,args.startup_replay,32 if args.samples==32 and args.world_raster_batch else 16)
         if args.world_live:
             native=json.loads((root/'native-world.json').read_text())
             if not native['success'] or native['presentations']!=args.live_frames or native['mismatches'] or native['remaining_surfaces'] or native['viewport_image_uploads']:raise RuntimeError('Continuous native World invariant failed')

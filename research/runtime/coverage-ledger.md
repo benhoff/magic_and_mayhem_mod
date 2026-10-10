@@ -3752,3 +3752,36 @@ establish hardware performance or full animation/physics equivalence.
 Shared World/minimap/surface-history comparisons retain their historical hashes
 and explicit current-source limitations. Guarded World replacement beyond the
 first16 queues and independent current-code raster comparison remain next.
+
+### Guarded World prefix32 and owned source reuse (2026-10-10)
+
+The finite Quick Battle map2/zero-items World route now admits an explicit32
+queue prefix through MNMPRO03; legacy16-queue envelopes and defaults remain.
+Full source definitions and shared immutable references preserve canonical packet
+hashes and original caller identity. Bounds remain128MiB journal,131072records,
+2048definitions and16MiB owned sources; missing/mismatched/over-budget references
+refuse. The original32 prototype hit128MiB after25queues. That failure and an
+independent parser refusal before definition support retain separate new negative
+records and historical source hashes.
+
+Fresh `NR.world32.live-20261010` and `NR.world32.replacement-20261010` bind
+32protected native writebacks/readbacks to separate unmodified PE32 comparisons:
+63124precise raster canvases and low16AX returns,30299520000pixels,
+1224checkpoint canvases and32live final canvases all match. Five frozen native
+fixtures pass,86compiled dependencies are declared, input/source hashes remain
+stable and original manifests pass before/after. Source-only CPU/GPU parity,
+exact original comparison and destination guards remain mandatory. New native
+prefix policy has scoped implementation/live equivalence; it is not an original
+function or broad replacement claim. Older evidence fingerprints are retained.
+
+The RelWithDebInfo software-Mesa run uses12.87MiB journal and2016definitions
+(3.94MiB). Median warm CPU11.11ms, GPU submit63.24ms, guarded queue223.83ms.
+This fails real-time performance expectations even though finite correctness
+passes. Continuous rolling history, GPU batching, normal-mode/camera/combat
+profiling and hardware validation remain outstanding. Native campaign smoke FPS
+belongs to its separate original-raster-active presentation route.
+
+Reviewed first-parent integration8c3da6a..8610a25:347exact file transitions,
+zero unresolved receipt gaps after23retrospective binary artifact receipts.
+These receipts assert provenance, not new execution or a past gate pass.
+Concurrent rendering-accounting edits are excluded from this commit projection.
