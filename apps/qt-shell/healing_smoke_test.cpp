@@ -27,6 +27,7 @@
 void installNativeHealingSmokeTest(
     QApplication &app, QMainWindow &window, LiveMenuSession &session,
     const QString &path, std::function<CampaignPresentationProbe()> probe) {
+  const bool crowded = qEnvironmentVariableIntValue("MNM_NATIVE_CROWDED") == 1;
   struct Run {
     int stage = 0;
     quint32 thread = 0, owner = 0;
@@ -37,7 +38,7 @@ void installNativeHealingSmokeTest(
     std::future<void> capture;
   };
   auto run = std::make_shared<Run>();
-  auto finish = [run, path, probe, &app](bool success, const QString &error) {
+  auto finish = [run, path, probe, crowded, &app](bool success, const QString &error) {
     if (run->done)
       return;
     run->done = true;
@@ -46,7 +47,8 @@ void installNativeHealingSmokeTest(
     QJsonObject r{
         {"success", success},
         {"error", error},
-        {"healing_mode", true},
+        {"healing_mode", !crowded},
+        {"crowded_mode", crowded},
         {"steps", run->steps},
         {"gameplay_rates", run->rates},
         {"native_command_frames", qint64(p.frames)},
@@ -57,7 +59,8 @@ void installNativeHealingSmokeTest(
         {"renderer", p.renderer},
         {"owner", int(run->owner)},
         {"scope",
-         "Native Quick Battle setup/map/Cure loadout and original health "
+         "Native Quick Battle setup/map/Cure loadout, optional explicit crowded "
+         "setup, and original health "
          "recovery through native command presentation; original "
          "simulation/drawing retained, bounded private cleanup"}};
     const bool saved = f.open(QIODevice::WriteOnly) &&
@@ -95,7 +98,7 @@ void installNativeHealingSmokeTest(
     finish(false, e);
   };
   auto state = session.stateChanged;
-  session.stateChanged = [run, state, click, snapshot, finish,
+  session.stateChanged = [run, state, click, snapshot, finish, crowded,
                           &window](const MenuBridge::State &s) {
     if (state)
       state(s);
@@ -117,7 +120,7 @@ void installNativeHealingSmokeTest(
       return;
     const int stage = run->stage++;
     QTimer::singleShot(
-        0, &window, [run, stage, click, snapshot, finish, &window, s] {
+        0, &window, [run, stage, click, snapshot, finish, crowded, &window, s] {
           const QString names[] = {"main", "quick",       "setup",
                                    "map",  "setup-ready", "spells"};
           snapshot(names[stage]);
@@ -132,6 +135,17 @@ void installNativeHealingSmokeTest(
               return;
             }
             slider->setValue(slider->maximum());
+            if (crowded) {
+              for (int index : {1, 2, 13}) {
+                auto *rule = window.findChild<QSlider *>(
+                    "singlePlayerSlider" + QString::number(index));
+                if (!rule) {
+                  finish(false, "Native crowded setup control unavailable");
+                  return;
+                }
+                rule->setValue(rule->maximum());
+              }
+            }
             click("singlePlayerMap");
           }
           if (stage == 3) {
@@ -147,6 +161,16 @@ void installNativeHealingSmokeTest(
             if (s.battle.map != 2) {
               finish(false, "Original setup did not select map2");
               return;
+            }
+            if (crowded) {
+              if (s.battle.rules[0] != 200 || s.battle.rules[1] != 800 ||
+                  s.battle.rules[12] != 30) {
+                finish(false, "Original crowded setup rules did not match");
+                return;
+              }
+              run->steps.append(QJsonObject{{"step", "crowded-setup"},
+                  {"mana", s.battle.rules[0]}, {"health", s.battle.rules[1]},
+                  {"control_limit", s.battle.rules[12]}});
             }
             click("singlePlayerStart");
           }
@@ -212,7 +236,7 @@ void installNativeHealingSmokeTest(
   poll->setInterval(100);
   QObject::connect(
       poll, &QTimer::timeout, &window,
-      [run, path, probe, finish, &window, &session] {
+      [run, path, probe, finish, crowded, &window, &session] {
         if (run->done)
           return;
         const auto p = probe();
@@ -349,9 +373,8 @@ void installNativeHealingSmokeTest(
                          : QString());
               input->deleteLater();
             });
-        input->start(
-            "python3",
-            {QDir::current().filePath("tools/campaign-healing-input.py"),
+        QStringList arguments{
+             QDir::current().filePath("tools/campaign-healing-input.py"),
              "--rect", QString::number(origin.x()), QString::number(origin.y()),
              QString::number(qRound(rect.width())),
              QString::number(qRound(rect.height())), "--experiment",
@@ -359,7 +382,10 @@ void installNativeHealingSmokeTest(
              QString::number(run->owner), "--seconds",
              QString::number(
                  qEnvironmentVariableIntValue("MNM_CAMPAIGN_STRESS_SECONDS")),
-             "--output", dir.filePath("healing-input.json")});
+             "--output", dir.filePath("healing-input.json")};
+        if (crowded)
+          arguments.append("--crowded");
+        input->start("python3", arguments);
       });
   poll->start();
   auto ended = session.finished;

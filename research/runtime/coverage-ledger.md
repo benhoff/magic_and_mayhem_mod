@@ -3530,3 +3530,15 @@ is no new movement/combat/pixel or full engine replacement equivalence claim.
 Together with fresh portrait/casting/blocked-spell/Quit and separate Cure runs,
 the outlined bounded smoke cases now have final-source execution evidence.
 The commit rangee5b4180..8e37e6b has38 exact reviewed transitions and zero gaps.
+
+- 2026-10-10 crowded native Quick Battle next step: registered
+  `HOST.native-crowded-battle-stress` and the native map2 scenario before live
+  execution. Uses ordinary native setup controls (mana200/health800/control30),
+  original simulation, physical summon/Cure orders and180..240seconds of passive
+  population/combat and strict native/visible rendering checks. Live validation
+  passes in `native-crowded-passed-20261010.json`:182.34seconds,34 actors peak,
+  eight actual summons,213 player melee damage returns, successful Cure,
+  native29.1996/visible25.3715FPS,worst19.8556 andzero fallback/recovery.
+  Existing smoke results retain historical hashes.
+  Reviewed committed history8e37e6b..7f361b0:17 exact file transitions,zero gaps;
+  retrospective accounting makes no past gate-pass or new execution claim.
