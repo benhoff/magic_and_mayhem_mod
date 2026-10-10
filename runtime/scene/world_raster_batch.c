@@ -60,7 +60,7 @@ static int batch_reply(struct Surface* s,const u32* request){
 }
 static int batch_finish(struct Surface* s){
  if(!batch_guard_open||!batch_count||!batch_identity(s))return 0;
- u32 h[16];batch_header(h,s);if(!batch_restore())return 0;
+ u32 h[16];batch_header(h,s);if(!journal_flush()||!batch_restore())return 0;
  char name[260];path(name,"world-batch-",queue,".request");HANDLE f=CreateFileA(name,0x40000000,0,0,1,0x80,0);
  if(f==(HANDLE)-1)return 0;int okay=write(f,h,64)&&write(f,batch_rows,h[11]);if(!CloseHandle(f))okay=0;
  return okay&&batch_reply(s,h);

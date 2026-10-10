@@ -22,7 +22,8 @@ WorldDraw producerWorldDraw(const CanvasProducer &c){
     throw std::invalid_argument("Unclosed native World producer request");
   WorldDraw draw;
   draw.frame={bool(r[17]),QByteArray(reinterpret_cast<const char*>(c.bytes().data()),r[19])};
-  frameIdentity(draw.frame.encoded,draw.frame.indexed);
+  // Closed frame bounds and pointer normalization are checked above. Identity
+  // hashing belongs to WorldIdentityCache, which retains the digest for reuse.
   draw.x=signedWord(r[8]);draw.y=signedWord(r[9]);
   draw.clip={signedWord(r[10]),signedWord(r[11]),signedWord(r[12]),signedWord(r[13])};
   draw.backend=r[15];draw.composite.mode=render::CompositeMode(r[14]);
@@ -89,10 +90,15 @@ render::Image CanvasWorld::complete(const render::Image &reference){
     profile_.prepareMs+=milliseconds(started);started=Clock::now();
     // This bounded completion already runs synchronously. Keep the private GL
     // context for the whole queue; drawNext's nested batches retain draw order.
+    const auto rendererBefore=renderer_.stats();
     renderer_.batch([&]{
       scene_->beginFrame(draws,render::SceneStart::retainedCanvas);
       while(!scene_->drawNext(32)){}
     });
+    const auto rendererAfter=renderer_.stats();
+    profile_.copyBatches+=rendererAfter.copyBatches-rendererBefore.copyBatches;
+    profile_.snapshotPixels+=rendererAfter.snapshotPixels-rendererBefore.snapshotPixels;
+    profile_.scratchAllocations+=rendererAfter.scratchAllocations-rendererBefore.scratchAllocations;
     pending_.draws.clear();
     profile_.submitMs+=milliseconds(started);
     const auto cacheAfter=scene_->cacheStats();

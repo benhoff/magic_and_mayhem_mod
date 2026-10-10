@@ -12,6 +12,7 @@ public:
   struct Profile {
     double adoptMs=0, prepareMs=0, submitMs=0, readbackMs=0, compareMs=0;
     unsigned visibleDraws=0;
+    std::uint64_t copyBatches=0,snapshotPixels=0,scratchAllocations=0;
     std::uint64_t visualChecks=0,visualReuses=0,cacheUploads=0,cacheHits=0,cacheEvictions=0;
     std::size_t cacheFrames=0,cacheSurfaces=0;
     std::uint64_t identityHashes=0,identityHits=0,identityEvictions=0,identityBypasses=0;

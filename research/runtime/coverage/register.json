@@ -26679,6 +26679,246 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.world-batch-throughput",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded guarded World transport and scratch throughput",
+      "scope": "Intentional bounded native throughput policy for finite guarded32 World: reusable R32UI scratch snapshots of only the blend/additive destination rectangle or displacement rectangle plus admitted rightward reach; original RGB565 arithmetic, absolute displacement row phase, strict known-pixel admission and draw ordering remain. Scratch is separate private storage, at most2048x2048 pixels, retained until renderer destruction. V3 guarded producer buffers at most64KiB owned journal bytes, flushes before World batch requests, queue-entry/return/checkpoint barriers and close, and refuses write/flush failures before successful DONE. V1/V2 and per-raster handshakes retain their existing immediate writes. Native consumer drains finite guarded batches without per256record timer gaps, with a bounded per-tick budget and unchanged checkpoint/CPU/GPU/original pixel comparisons. Tight RGB565 packing preserves wire bytes. Diagnostic correctness and warm consumer throughput on software Mesa are separate from full simulation cadence, continuous/hardware rendering and normal-mode gameplay. Consecutive opaque copy rectangles with identical source/mask/destination/key and indexed policy, carrying per-instance palette row from at most64owned256word palettes in a private256x64 R32UI bank are instanced in original order, at most512instances; source/destination mutations, blends, reads, storage deletion and outer batch exits flush pending copies. Full original checkpoint bytes are emitted in one write when original stride equals width; padded rows retain exact row writes. No shader blend arithmetic or original simulation changes. Per-raster JSON diagnostic objects are serialized after finite completion; compact ordered identity tuples remain bounded by the admitted stream and descriptor counts. Every descriptor still undergoes full source/AX/identity validation before publishing a reply. Closed producer-frame extent, header and normalized-pointer admission remain mandatory; the discarded per-draw identity hash is removed, while WorldIdentityCache retains exact owned bytes/tag identity and verifies resource revisions. Partially defined atlas pages retain at most512 proven write rectangles; only contained reads bypass the authoritative per-pixel validity scan, proof eviction falls back to that map, and invalidation clears every proof. V3 owned replay also uses the bounded4096-record drain budget. Source FNV and reply packing preserve canonical little-endian bytes/checksums while streaming into one owned completion buffer instead of copying temporary vectors. Closed owned replay skips live per-raster reply-file polling when DONE exists; marker and native proof validation remain mandatory, live guarded replies are unchanged. Warm median budgets on the declared software-Mesa host are50ms native work (CPU reference, adoption, preparation, GPU submission/readback/comparison) and100ms diagnostic queue wall time including transport, checkpoint artifacts and reply waits. These budgets do not assert50ms simulation frames; cold uploads, full-session cadence and continuous/hardware gameplay remain separate. On contexts advertising OpenGL4.3 or ARB_copy_image and its entry point, regional snapshots use same-format copy-image;3.3 framebuffer copy remains the fallback. Both paths preserve preceding writes and distinct scratch storage, checked against scalar pixels. Software-Mesa performance runs pin eight workers on the measured12-core host; public regression runner defaults to eight while preserving explicit caller thread settings. All before/after comparisons use the same worker count; hardware performance is not inferred.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-interactive-batch.md"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/world_raster_batch.c",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "renderer/known_pixels.hpp",
+        "compat/legacy/world_raster_batch.cpp"
+      ],
+      "tests": [
+        "tests/sprite-atlas-test.cpp",
+        "tests/canvas-producers-test.c",
+        "tools/test-canvas-producers.py",
+        "tools/test-native-world-batch.py",
+        "tools/test-world-raster-batch.py",
+        "tests/canvas-world-test.cpp",
+        "tools/test-world-resource-reuse.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/canvas-producers-test.c",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-startup-call.S",
+        "tests/canvas-world-test.cpp",
+        "tests/extended-world-producer-test.py",
+        "tests/minimap-producer-test.cpp",
+        "tests/native-world-batch-test.py",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-history-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/world-frame-reference.cpp",
+        "tests/world-producer-bypass-call.S",
+        "tests/world-producer-reference.cpp",
+        "tests/world-raster-batch-reference.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-raster-queue-reference.cpp",
+        "tests/world-raster-reference.hpp",
+        "tools/build-menu-observer.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-scene-game.py",
+        "tools/compare-world-cpu-original.py",
+        "tools/coverage_claims.py",
+        "tools/export-menu-support.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inspect-startup-queues.py",
+        "tools/inspect-world-raster-batch.py",
+        "tools/inspect-world-raster-callers.py",
+        "tools/native_world_batch.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-native-world.py",
+        "tools/run-opengl-game.py",
+        "tools/scene-game-runner.py",
+        "tools/test-canvas-producers.py",
+        "tools/test-native-world-batch.py",
+        "tools/test-world-producer-handoff.py",
+        "tools/test-world-raster-batch.py",
+        "tools/test-world-raster-queue.py",
+        "tools/test-world-resource-reuse.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py"
+      ],
+      "evidence": [
+        "NR.world-throughput.budget-negative-20261010",
+        "NR.world-throughput.copy-image-budget-negative-20261010",
+        "NR.world-throughput.copy-image-binding-negative-20261010",
+        "NR.world-throughput.benchmark-20261010",
+        "NR.world-throughput.live-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -50850,6 +51090,190 @@
           "equals": 16
         }
       ]
+    },
+    {
+      "id": "NR.world-throughput.budget-negative-20261010",
+      "kind": "live_observation",
+      "scope": "Historical prospective50ms warm native-work budget failure at51.418ms on pre-copy-image code, despite finite correctness completion. Source/scope hashes remain original; no current-code or exact-original comparison claim.",
+      "record": "research/runtime/native-world-throughput-budget-negative-20261010.json",
+      "sha256": "716368fe2c4f341e952b43ca65f6bd14d9e1c00cca43a2ebd8d066fc9ccaa5a9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/performance_passed",
+          "equals": false
+        },
+        {
+          "pointer": "/correctness_completed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.world-throughput.copy-image-budget-negative-20261010",
+      "kind": "live_observation",
+      "scope": "Historical four-worker copy-image trial completed guarded32 correctness but failed the unchanged50ms native-work budget at54.932ms. Original source/scenario hashes retained; no current-code or original-equivalence claim.",
+      "record": "research/runtime/native-world-throughput-copy-image-budget-negative-20261010.json",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/performance_budget/passed",
+          "equals": false
+        },
+        {
+          "pointer": "/completed/canvas_guard_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_canvas_writebacks",
+          "equals": 32
+        }
+      ],
+      "sha256": "1078b0b63adcf93afdb41ceb47641b3739e308767ab766603321446d0a312c4a"
+    },
+    {
+      "id": "NR.world-throughput.copy-image-binding-negative-20261010",
+      "kind": "static",
+      "scope": "Retained failed scalar test log and reconstructed exact blit source hash of the first copy-image snapshot prototype. Evidence of a discovered binding branch, not fresh validation or original equivalence.",
+      "record": "research/runtime/native-world-throughput-copy-image-negative-20261010.json",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/failed_test",
+          "equals": "opengl-sprite-atlas"
+        }
+      ],
+      "sha256": "108aa5bc83aeb14dde55c1e0ee2a6d7c1ae187c4790676a6f0514f51ec914357",
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NR.world-throughput.benchmark-20261010",
+      "kind": "native_integration",
+      "scope": "Same owned32-queue input/assets compared between frozen3687a38 and current RelWithDebInfo consumers, same eight software-Mesa workers; every1224checkpoint byte matches, compiler closure and source/input stability reviewed. Warm native work68.36\u219240.51ms, diagnostic queue201.16\u219255.18ms, GPU host49.28\u219223.98ms. No original oracle native inputs, original comparison or broad interactive cadence claim.",
+      "record": "research/runtime/native-world-throughput-benchmark-20261010.json",
+      "sha256": "411f8b4d683437a813f17c235d41f63b522e8e33e7acde787522a667042fdb20",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/checkpoints_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/completed",
+          "equals": 1224
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        },
+        {
+          "pointer": "/build_type",
+          "equals": "RelWithDebInfo"
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.world-throughput.live-20261010",
+      "kind": "live_observation",
+      "scope": "Finite guarded Quick Battle map2/zero-items32 native World writebacks with native CPU/GPU pixel/AX/source/guard admission and protected original destination. Software-Mesa eight workers, warm native work29.11ms and diagnostic queue66.28ms pass declared50/100ms limits. Separate exact unmodified-original intermediate comparison remains pending; no full-game frame rate claim.",
+      "record": "research/runtime/native-world-throughput-live-20261010.json",
+      "sha256": "849d87caf72098c659013092aed95da585e2f5b368216326e3d55921dd411476",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_canvas_writebacks",
+          "equals": 32
+        },
+        {
+          "pointer": "/completed/canvas_guard_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_producers/wire_version",
+          "equals": 3
+        },
+        {
+          "pointer": "/completed/native_producers/native_build_type",
+          "equals": "RelWithDebInfo"
+        },
+        {
+          "pointer": "/completed/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/software_mesa_threads",
+          "equals": "8"
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
     }
   ],
   "classifications": [],
@@ -58019,7 +58443,8 @@
         "NR.world-raster-batch-transport",
         "NR.world-resource-reuse",
         "NR.world-cpu-composition-reuse",
-        "NR.world-batch-extended-prefix"
+        "NR.world-batch-extended-prefix",
+        "NR.world-batch-throughput"
       ],
       "tests": [
         "tools/test-native-world-batch.py",
@@ -58029,7 +58454,23 @@
         "NR.world32.journal-budget-negative-20261010",
         "NR.world32.original-parser-negative-20261010",
         "NR.world32.live-20261010",
-        "NR.world32.replacement-20261010"
+        "NR.world32.replacement-20261010",
+        "NR.world-throughput.budget-negative-20261010"
+      ]
+    },
+    {
+      "id": "world-throughput-replay32-20261010",
+      "subsystem": "native_rendering",
+      "level": "headless",
+      "behaviors": [
+        "NR.world-batch-throughput"
+      ],
+      "tests": [
+        "tools/test-world-resource-reuse.py"
+      ],
+      "scope": "Same closed native-only32 queue input/assets and exact checkpoint canvases compared between frozen3687a38 baseline and fresh RelWithDebInfo consumer, software Mesa eight worker threads. Cold queue excluded from warm median50ms native-work and100ms diagnostic queue budgets. No original oracle inputs, no claim of full simulation cadence or hardware performance.",
+      "evidence": [
+        "NR.world-throughput.benchmark-20261010"
       ]
     }
   ],
@@ -58359,8 +58800,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-word-clipping-complete-20261010.json",
-    "sha256": "1cd25d3f5263923af3cacaf8de506203cfb038cbdc2fbd3db2304562abbc5733"
+    "path": "research/runtime/coverage/source-index-native-world-throughput-20261010.json",
+    "sha256": "00d09ac59e5e63064d027fe932bbe9192e30db9930f42531a8882cb2ad7a408d"
   },
   "claim_bindings_required": true
 }

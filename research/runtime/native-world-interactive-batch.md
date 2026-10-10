@@ -106,3 +106,67 @@ Manual32 input, rolling/unbounded sessions and real-time guarded gameplay have
 not been validated. Public diagnostic builds now use RelWithDebInfo and record
 that build type; the independent frozen comparator still builds Debug and does
 not claim frame-rate evidence.
+
+### Bounded throughput policy (2026-10-10)
+
+`NR.world-batch-throughput` covers the finite32 diagnostic route. Opaque copies
+retain draw order in batches of at most512 instances with at most64 owned256-entry
+palettes. Blend/additive snapshots copy only their destination rectangle;
+displacement additionally snapshots the admitted rightward reach, preserving
+absolute row phase. Private scratch remains at most2048x2048 R32UI pixels.
+Source/mask/destination validity checks and original RGB565 arithmetic remain.
+At most512 proven write rectangles accelerate repeated atlas admission; eviction
+falls back to the authoritative pixel map and invalidation retires every proof.
+The redundant discarded producer-frame digest is removed; closed extent/header/
+pointer checks and exact owned frame identity/resource revision checks remain.
+
+V3 producer transport buffers64KiB on its private heap, outside the protected
+original allocation. It flushes before requests, entry/return/checkpoint barriers
+and close. Flush failure refuses DONE. Legacy16 envelopes retain immediate
+writes. Tight original oracle rows use one contiguous write; padded rows still
+write separately. Checksum/reply packing streams identical little-endian bytes.
+The consumer drains at most4096 records per tick for guarded/V3 input, packs
+RGB565 directly, defers raster diagnostic JSON to completion, and stops live
+reply-file polling during closed DONE replay. Native proof and final marker
+checks remain independent and mandatory.
+
+Performance regression budgets apply to warm medians, excluding the first queue:
+50ms for native work including CPU reference, history adoption, resource
+preparation, GPU submission/readback/comparison;100ms for guarded diagnostic
+entry-to-return wall time including checkpoint files, transport and reply waits.
+The latter is a diagnostic overhead ceiling, not a20FPS full-game claim. Cold
+uploads, simulation/pre-entry cost, sustained interactive cadence and hardware
+remain separate. GPU submission is host time, with deferred work in readback.
+
+The same-workload runner accepts `--queues 32 --optimized --budget-ms 50` through
+`tools/test-world-resource-reuse.py`, with a frozen baseline and capture report.
+It builds a fresh RelWithDebInfo consumer, verifies compiler dependency closure,
+pins both binaries/assets/closed input, compares every checkpoint byte, verifies
+immutable inputs before/after, and reports both before/after timing definitions.
+Assertion-enabled Debug integration/negative fixtures run separately; optimized
+builds do not count disabled assertions as tested.
+
+Software-Mesa regression runs explicitly pin `LP_NUM_THREADS=8` on the measured
+12-core i9-9920X host. The public test defaults to eight and preserves explicit
+caller overrides. Four-worker trials that miss50ms remain negative records;
+one-worker execution was slower. Same-input before/after benchmarks use the
+same eight workers. This is a recorded software-driver test configuration,
+not a hardware-independent performance guarantee.
+
+The source-bound same-input optimized benchmark uses the frozen3687a38 consumer
+and the same32-queue native-only journal/assets, with eight workers for both.
+All1224 checkpoint canvases match byte for byte, compiler dependency closure
+contains no undeclared source, and both original manifest checks pass.
+
+| Warm median cost | Frozen baseline (ms) | Current (ms) |
+| --- | ---: | ---: |
+| Native work, CPU reference included | 68.36 | 40.51 |
+| GPU submission, host time | 49.28 | 23.98 |
+| Diagnostic entry-to-return | 201.16 | 55.18 |
+
+[Benchmark record](native-world-throughput-benchmark-20261010.json) and
+[guarded live record](native-world-throughput-live-20261010.json) preserve distinct
+workloads. The live32 run passes at29.11ms native work and66.28ms diagnostic queue.
+Both use RelWithDebInfo; independent original proof builds Debug and never
+counts FIFO wait time as performance. Live outside-World/original simulation,
+rolling native rendering, sustained frame rate and hardware remain separate.

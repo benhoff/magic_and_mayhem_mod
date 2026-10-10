@@ -3830,3 +3830,43 @@ source-bound result validates a bounded pixel contract; no runtime hooks or live
 admission were changed. [Research and limitations](word-sprite-clipping.md)
 retain the initial harness failure separately. Clipped scratch/argument state,
 ABI, other clip globals, installed assets and live replacement remain pending.
+
+### Bounded World throughput implementation (2026-10-10)
+
+`NR.world-batch-throughput` separates bounded native optimization from recovered
+baseline and broader interactive frame rate. Regional reusable R32UI snapshots,
+ordered512-instance copies with64 owned palettes, at most512 atlas validity
+proofs, retained exact frame identity, private64KiB V3 journal/barrier flushes,
+tight original checkpoint writes, direct RGB565/wire packing, deferred raster
+JSON and bounded4096-record drain preserve existing pixel/return/guard checks.
+Optional same-format copy-image snapshots have a3.3 framebuffer-copy fallback.
+Closed DONE replay skips live reply polling while retaining marker/proof checks.
+
+Six assertion-enabled Debug native fixtures pass, including overlapping ordered
+palettes, scalar RGB565 blend/displacement/additive pixels, regional warm scratch,
+atlas validity holes/eviction/invalidation, malformed closed-frame bounds and
+resource revisions. PE32 hook fixtures pass buffer boundary/exact bytes/flush
+failure refusal alongside register/flags/x87/SSE/LastError and guard checks.
+The first copy-image prototype failed the atlas scalar comparison; its destination
+framebuffer binding is corrected and the same fixture passes. The3.3 fallback
+also passes. Whole original every-intermediate/AX revalidation remains pending.
+
+A prospective warm50ms native-work gate failed at51.418ms despite32 guarded
+correctness completions; the new negative evidence preserves executed source
+and contract hashes. Do not infer original equivalence or frame rate from that
+run. Fresh same-input optimized benchmark and protected live32 execution pass. Native
+policy implementation is scoped/headless; exact original comparison is pending.
+Eight workers for both baseline/current: native work68.36→40.51ms, GPU host
+49.28→23.98ms, diagnostic queue201.16→55.18ms;1224checkpoint canvases match.
+Separate live32 workload: native work29.11ms, diagnostic queue66.28ms; all32
+guarded writebacks complete under unchanged50/100ms limits. Four-worker budget
+misses remain recorded, and no hardware/full-game cadence equivalence is claimed.
+Budgets are50ms native work including CPU reference, and100ms diagnostic queue
+wall time including capture/transport overhead; full simulation cadence,
+continuous rolling native World and hardware remain outstanding. Earlier
+performance evidence is historical, with its original source hashes retained.
+
+Reviewed first-parent8610a25..3687a38:35 exact parent/current file transitions,
+zero unresolved receipt gaps. Also reviewed3687a38..f60b55c:52 exact transitions,
+zero unresolved receipt gaps. This is committed-history provenance, not new
+validation or a past gate pass. Concurrent edits remain outside this projection.

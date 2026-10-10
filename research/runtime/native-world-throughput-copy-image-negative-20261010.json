@@ -1,0 +1,14 @@
+{
+  "success": false,
+  "scope": "Original optional copy-image prototype failed atlas scalar pixels because the destination framebuffer was not rebound. Exact failed blit source is reconstructed by removing only the corrective attach line; no current-code/original-equivalence claim.",
+  "failed_source_sha256": "0c92df25728f06a89adaad30984dcc5c6e21afda6570ca28b7f94ab9efa63ddc",
+  "corrective_file": "renderer/blit.cpp",
+  "test_log": "working/world-throughput-copy-image-debug-tests-20261010.log",
+  "test_log_sha256": "dc94244b00b1ad1ee59195a52048c620a9277d465e868768d75268589971a8e3",
+  "failed_test": "opengl-sprite-atlas",
+  "failure": "Indexed atlas composite/clipping differs from expanded words",
+  "sources": {
+    "renderer/blit.cpp": "0c92df25728f06a89adaad30984dcc5c6e21afda6570ca28b7f94ab9efa63ddc",
+    "tests/sprite-atlas-test.cpp": "b4deb545a6cc3a93e1d9a14ce1ce35bc20225f2d1fea344b584cb4a358d840fc"
+  }
+}

@@ -11,10 +11,16 @@ def main():
  p.add_argument('--capture-report',type=Path,required=True)
  p.add_argument('--behavior',action='append',help='Behavior IDs to declare; defaults to NR.world-resource-reuse')
  p.add_argument('--scenario',default='world-resource-reuse-replay-20261009')
+ p.add_argument('--queues',type=int,choices=(16,32),default=16)
+ p.add_argument('--optimized',action='store_true',help='Compare optimized consumers; assertion-enabled fixtures run separately')
+ p.add_argument('--budget-ms',type=float,help='Require warm median native work (CPU reference included) within this host-specific budget')
  p.add_argument('--prepared',type=Path,help='Reuse a build only after every compiler dependency matches current declared bytes')
  p.add_argument('--prepared-inputs',type=Path,help='Reuse closed owned inputs only after checking every file against its previous input manifest')
  p.add_argument('--compare-original',action='store_true',help='Also compare current CPU intermediates/AX to precise original entries using historical closed capture inputs')
- a=p.parse_args();baseline=a.baseline.resolve();before=json.loads((baseline/'baseline.json').read_text())
+ a=p.parse_args()
+ if a.optimized and a.prepared:p.error('Optimized comparisons require a fresh declared build')
+ if a.budget_ms is not None and (a.budget_ms<=0 or not a.optimized):p.error('A positive performance budget requires --optimized')
+ baseline=a.baseline.resolve();before=json.loads((baseline/'baseline.json').read_text())
  register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
  ids=a.behavior or ['NR.world-resource-reuse']
  selected=[next(b for b in register['behaviors'] if b['id']==id) for id in ids]
@@ -69,9 +75,9 @@ def main():
    if n not in sources and path.suffix not in ('.cpp','.hpp','.c','.h','.S','.py','.cmake') and path.name not in ('CMakeLists.txt','README.md'):continue
    dst=frozen/n;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,dst)
   build=(a.prepared.resolve()/'build') if a.prepared else out/'build'
-  if not a.prepared:run('configure',['cmake','-S',frozen/'compat/legacy/canvas-producers','-B',build,'-DCMAKE_BUILD_TYPE=Debug'])
-  if not a.prepared:run('build',['cmake','--build',build,'--target','mnm-canvas-producers-live','world-raster-batch-test','canvas-world-test','canvas-sequence-test','minimap-producer-test','scene-renderer-test','scene-history-test','-j4'])
-  run('native-tests',['xvfb-run','-a','ctest','--test-dir',build,'-R','native-world-raster-batch|native-canvas-world-handoff|native-canvas-sequence|native-minimap-producer|native-shared-scene-renderer|native-scene-history','--output-on-failure'])
+  if not a.prepared:run('configure',['cmake','-S',frozen/'compat/legacy/canvas-producers','-B',build,'-DCMAKE_BUILD_TYPE='+('RelWithDebInfo' if a.optimized else 'Debug')]+(['-DBUILD_TESTING=OFF'] if a.optimized else []))
+  if not a.prepared:run('build',['cmake','--build',build,'--target','mnm-canvas-producers-live']+([] if a.optimized else ['world-raster-batch-test','canvas-world-test','canvas-sequence-test','minimap-producer-test','scene-renderer-test','scene-history-test'])+['-j4'])
+  if not a.optimized:run('native-tests',['xvfb-run','-a','ctest','--test-dir',build,'-R','native-world-raster-batch|native-canvas-world-handoff|native-canvas-sequence|native-minimap-producer|native-shared-scene-renderer|native-scene-history','--output-on-failure'])
   compiled=set()
   for dep in build.rglob('*.o.d'):
    for token in dep.read_text().replace('\\\n',' ').split():
@@ -87,7 +93,7 @@ def main():
    destination=out/label
    run(label,['xvfb-run','-a','-s','-screen 0 1280x1024x24',binary,inputs/stream.name,assets,destination,'--world-handoff'])
    result=json.loads((destination/'live-report.json').read_text())
-   assert result['success'] and result['world_queues']==16 and result['world_readbacks']==16
+   assert result['success'] and result['world_queues']==a.queues and result['world_readbacks']==a.queues
    assert not result['remaining_surfaces'] and not result['original_oracles_read'] and not result['original_pixels_used_as_native_inputs']
    results.append(result)
   checks=[]
@@ -105,11 +111,16 @@ def main():
    assert all(f['identities']['frames']<=4096 and f['identities']['bytes']<=16*1024*1024 for f in frames)
   assert totals['visual_reuses']>totals['visual_checks'] and totals['cache_hits']>totals['cache_uploads']
   timings={label:{key:statistics.median(f['profile'][key] for f in result['world_frames'][1:]) for key in ('cpu_composition_ms','resource_prepare_ms','gpu_submit_ms','gpu_readback_ms','consumer_entry_to_return_ms')} for label,result in zip(('before','after'),results)}
+  for label,result in zip(('before','after'),results):
+   timings[label]['native_work_ms']=statistics.median(sum(f['profile'][k] for k in ('cpu_composition_ms','history_adopt_ms','resource_prepare_ms','gpu_submit_ms','gpu_readback_ms','gpu_compare_ms')) for f in result['world_frames'][1:])
   if a.compare_original:
    run('original-comparison',['python3',frozen/'tools/compare-world-cpu-original.py','--source',frozen,'--binary',build/'mnm-canvas-producers-live','--pe',ROOT/'original/Arcane_Nocd/Chaos.exe','--capture-report',a.capture_report.resolve(),'--inputs',inputs,'--assets',assets,'--output',out/'original-comparison'])
    report['original_comparison']=json.loads((out/'original-comparison/report.json').read_text())
-  report.update(success=True,inputs=input_hashes,inputs_stable=True,baseline_sources=before['sources'],baseline_binary_sha256=sha(baseline/'build/mnm-canvas-producers-live'),native_binary_sha256=sha(build/'mnm-canvas-producers-live'),capture_report_sha256=sha(a.capture_report),owned_stream_sha256=sha(stream),asset_sources=asset_hashes,checkpoints=checks,completed=len(checks),warm_median_ms=timings,reuse_totals=totals,identity_totals=identity_totals,world_frames=frames,native_tests_passed=6,compiled_dependency_review={'compiled_dependencies':sorted(compiled),'undeclared_dependencies':[]},frozen_sources_stable=all(sha(frozen/n)==h for n,h in sources.items()))
- except Exception as error:report['error']=str(error)
+  report.update(success=True,inputs=input_hashes,inputs_stable=True,baseline_sources=before['sources'],baseline_binary_sha256=sha(baseline/'build/mnm-canvas-producers-live'),native_binary_sha256=sha(build/'mnm-canvas-producers-live'),capture_report_sha256=sha(a.capture_report),owned_stream_sha256=sha(stream),asset_sources=asset_hashes,checkpoints=checks,completed=len(checks),warm_median_ms=timings,reuse_totals=totals,identity_totals=identity_totals,world_frames=frames,native_tests_passed=0 if a.optimized else 6,build_type='RelWithDebInfo' if a.optimized else 'Debug',compiled_dependency_review={'compiled_dependencies':sorted(compiled),'undeclared_dependencies':[]},frozen_sources_stable=all(sha(frozen/n)==h for n,h in sources.items()))
+  if a.budget_ms is not None:
+   actual=timings['after']['native_work_ms'];queue=timings['after']['consumer_entry_to_return_ms'];report['performance_budget']=dict(native_work_warm_median_limit_ms=a.budget_ms,native_work_measured_ms=actual,diagnostic_queue_limit_ms=100,diagnostic_queue_measured_ms=queue,passed=actual<=a.budget_ms and queue<=100)
+   assert report['performance_budget']['passed'],'Native warm work or diagnostic queue exceeds performance budget'
+ except Exception as error:report['success']=False;report['error']=str(error)
  finally:
   run('original-after',[ROOT/'tools/original-manifest.sh','verify'])
   report.update(original_manifest_verified_before_after=True,sources_stable=all(sha(ROOT/n)==h for n,h in sources.items()))

@@ -39,6 +39,7 @@ private:
   bool worldBatch_=false,batchReplied_=false;
   std::size_t batchStart_=0;
   QJsonArray batches_;
+  std::vector<std::array<unsigned,5>> batchRasterLogs_;
   QFile proofPipe_;
   std::map<std::uint32_t, mnm::render::SurfaceId> surfaces_;
   std::map<std::string, std::vector<std::uint8_t>> assets_;

@@ -9,7 +9,6 @@ unsigned word(const std::vector<std::uint8_t>& b,std::size_t at){
   if(at>b.size()||b.size()-at<4)throw std::invalid_argument("Truncated World batch word");
   return b[at]|unsigned(b[at+1])<<8|unsigned(b[at+2])<<16|unsigned(b[at+3])<<24;
 }
-void put(std::vector<std::uint8_t>& b,unsigned w){for(unsigned k=0;k<4;++k)b.push_back(std::uint8_t(w>>(k*8)));}
 bool admitted(unsigned entry,unsigned backend){
   constexpr std::pair<unsigned,unsigned> entries[]={{0x595677,0},{0x5947b2,1},{0x59521a,1},{0x595b47,2},{0x59603e,2},{0x57de00,3},{0x57ec90,4},{0x57f0f0,5},{0x57f5f0,6},{0x5806f0,7},{0x596490,9},{0x5968a4,9},{0x57e540,10}};
   return std::any_of(std::begin(entries),std::end(entries),[&](auto p){return p.first==entry&&p.second==backend;});
@@ -17,7 +16,10 @@ bool admitted(unsigned entry,unsigned backend){
 }
 std::uint32_t worldBatchHash(const std::vector<std::uint8_t>& b){std::uint32_t h=2166136261u;for(auto c:b)h=(h^c)*16777619u;return h;}
 std::uint32_t worldRasterSourceHash(const CanvasProducer& c){
-  std::vector<std::uint8_t> b;b.reserve(96+c.bytes().size());for(auto w:c.fields)put(b,w);b.insert(b.end(),c.bytes().begin(),c.bytes().end());return worldBatchHash(b);
+  std::uint32_t h=2166136261u;
+  for(auto w:c.fields)for(unsigned k=0;k<4;++k)h=(h^std::uint8_t(w>>(k*8)))*16777619u;
+  for(auto byte:c.bytes())h=(h^byte)*16777619u;
+  return h;
 }
 unsigned worldRasterAX(const CanvasProducer& c){
   const auto& r=c.fields;const auto& p=c.bytes();
@@ -46,8 +48,10 @@ WorldRasterBatch validateWorldRasterBatch(const std::vector<std::uint8_t>& reque
 }
 std::vector<std::uint8_t> worldRasterBatchReply(const WorldRasterBatch& b,const std::vector<std::uint16_t>& pixels){
   if(pixels.size()!=std::size_t(b.header[8])*b.header[9])throw std::invalid_argument("World batch completion extent");
-  std::vector<std::uint8_t> payload;payload.reserve(pixels.size()*2);for(auto p:pixels){payload.push_back(std::uint8_t(p));payload.push_back(std::uint8_t(p>>8));}
-  auto h=b.header;std::memcpy(h.data(),MNM_WORLD_BATCH_REPLY,8);h[11]=unsigned(payload.size());h[12]=worldBatchHash(payload);h[13]=1;
-  std::vector<std::uint8_t> out;out.reserve(64+payload.size());for(auto w:h)put(out,w);out.insert(out.end(),payload.begin(),payload.end());return out;
+  std::vector<std::uint8_t> out(64+pixels.size()*2);std::uint32_t hash=2166136261u;std::size_t at=64;
+  for(auto pixel:pixels){const auto low=std::uint8_t(pixel),high=std::uint8_t(pixel>>8);out[at++]=low;out[at++]=high;hash=((hash^low)*16777619u^high)*16777619u;}
+  auto h=b.header;std::memcpy(h.data(),MNM_WORLD_BATCH_REPLY,8);h[11]=unsigned(out.size()-64);h[12]=hash;h[13]=1;
+  for(unsigned i=0;i<16;++i)for(unsigned k=0;k<4;++k)out[i*4+k]=std::uint8_t(h[i]>>(k*8));
+  return out;
 }
 }
