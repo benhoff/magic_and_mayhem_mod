@@ -1,0 +1,58 @@
+{
+  "failures": [
+    {
+      "record": "research/runtime/native-render-integration-failure-latency-before-20261010.json",
+      "sha256": "ead52fed9731091e126db206fcb35fb9f7d1568d1b16217f6b5a53500dc39de4",
+      "success": false,
+      "error": "Rolling live native/delivery latency budget exceeded",
+      "performance_budget": {
+        "native_warm_median_ms": 59.484420999999905,
+        "native_warm_limit_ms": 60,
+        "native_cold_ms": 344.20468000000176,
+        "native_cold_limit_ms": 500,
+        "delivery_warm_median_ms": 138.72214200000002,
+        "delivery_warm_limit_ms": 120,
+        "passed": false
+      }
+    },
+    {
+      "record": "research/runtime/native-render-integration-failure-startup-timeout-20261010.json",
+      "sha256": "bbdc1cf1e5b6a567c5ede9b84ceb9cd59cae730c328ca58683821d219b609478",
+      "success": false,
+      "error": "Original/native capture failed; inspect /home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-world-rolling-live/run-_y7ufbk0/capture.log",
+      "performance_budget": null
+    },
+    {
+      "record": "research/runtime/native-render-integration-failure-recovery-latency-20261010.json",
+      "sha256": "dd9c84d79676d0dc01871273ff97115bb7a83e607b638fe9286e9585ee5ba1ad",
+      "success": false,
+      "error": "Rolling live native/delivery latency budget exceeded",
+      "performance_budget": {
+        "native_warm_median_ms": 31.525497,
+        "native_warm_limit_ms": 60,
+        "native_cold_ms": 308.12572799998935,
+        "native_cold_limit_ms": 500,
+        "delivery_warm_median_ms": 146.423222,
+        "delivery_warm_limit_ms": 120,
+        "passed": false
+      }
+    }
+  ],
+  "profile": {
+    "scope": "Disposable diagnostic publication benchmark; no original/native equivalence or complete game-path performance claim.",
+    "source": "#include <QCoreApplication>\n#include <QSaveFile>\n#include <QTemporaryDir>\n#include <QElapsedTimer>\n#include <QFile>\n#include <iostream>\nint main(int argc,char**argv){QCoreApplication app(argc,argv);QTemporaryDir d(\"working/save-profile-XXXXXX\");QByteArray b(960000,'x');QElapsedTimer t;t.start();for(int i=0;i<40;++i){QSaveFile f(d.filePath(QString::number(i)));if(!f.open(QIODevice::WriteOnly)||f.write(b)!=b.size()||!f.commit())return 1;}std::cout<<\"qsave ms \"<<t.elapsed()<<'\\n';t.restart();for(int i=0;i<40;++i){const auto p=d.filePath(QString::number(i+40));QFile f(p+\".tmp\");if(!f.open(QIODevice::WriteOnly|QIODevice::NewOnly)||f.write(b)!=b.size())return 1;f.close();if(!QFile::rename(p+\".tmp\",p))return 1;}std::cout<<\"close/rename ms \"<<t.elapsed()<<'\\n';}\n",
+    "source_sha256": "9aa3ee115178bcd909f1a33d1a9014d5d0080e0a5ad084525309ee5318d75f64",
+    "images": 40,
+    "image_bytes": 960000,
+    "qsavefile_ms": 579,
+    "atomic_close_rename_ms": 42,
+    "qsavefile_fdatasync_calls": 40,
+    "compiler": "Qt6 C++ benchmark, retained source above",
+    "durable_protocol_replies": true
+  },
+  "limitations": [
+    "Passing complete run precedes peer-death experiments. Subsequent recovery pixels passed but delivery146.423ms exceeds unchanged120ms and is not performance readiness.",
+    "Only disposable diagnostic image publication changed; original/native replies and final reports remain durable.",
+    "Continuous original streaming and normal whole-path pacing are separate next milestones."
+  ]
+}

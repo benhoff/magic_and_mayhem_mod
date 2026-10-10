@@ -1,0 +1,43 @@
+{
+  "scope": "Exact configuration review of the reused source/compiler/binary-pinned native build. Every declared CMake/configuration source matches the original frozen build and the current branch. Live runner/scenario changes affected orchestration/fault timing only; compiled dependencies and native binary remain those pinned by the new execution reports. This indexing/configuration review is not new execution evidence or merged-source validation.",
+  "prepared_report_sha256": "fe1c12c53bce9d81643b30d6da4aad7de49bca4cd1a875919e43c3a8247b7a48",
+  "native_binary_sha256": "a85799b636b7bd086a8fa3111433e951429d1592128ef55d3e542555f1955aff",
+  "configuration": [
+    {
+      "path": "assets/CMakeLists.txt",
+      "sha256": "aa61db073f3eef0758f5402c22fbcc4b57ca51bdb2bdbda0dc37d96293d3f401"
+    },
+    {
+      "path": "assets/resources/CMakeLists.txt",
+      "sha256": "b30bada87cdd7804bb490d204d6b35f75b0b9445a1a04ffee4eb02c32bdd3ee9"
+    },
+    {
+      "path": "compat/legacy/canvas-producers/CMakeLists.txt",
+      "sha256": "db2bbcd48c3c4be25d798281ee5cdc6dd35cf61fbc2383c580c46b3a715a6cf1"
+    },
+    {
+      "path": "compat/legacy/world-rolling/CMakeLists.txt",
+      "sha256": "7ce63098d22d778f319683f302021665e471f0ad97197d1382eae7175aea04cf"
+    },
+    {
+      "path": "renderer/CMakeLists.txt",
+      "sha256": "588be24c5f2f2f3ab15080814b9a91ce646084e419c19901ae69db361bc4a646"
+    },
+    {
+      "path": "renderer/resources/CMakeLists.txt",
+      "sha256": "2406af37eab58c53d7526ebd38d88b34e449bc71b234a2fe5f15822a6bdd67b2"
+    },
+    {
+      "path": "renderer/scenes/CMakeLists.txt",
+      "sha256": "e6330a5e14d6aaa56816780a93e230601c9b1fea36f98f8dc1f8408ecc7d4dac"
+    },
+    {
+      "path": "renderer/sprites/CMakeLists.txt",
+      "sha256": "925072708b6db2f7e478b3c7f0f74dd9a5c2b624bc4af02534b53f49c130d7ce"
+    },
+    {
+      "path": "tests/native-world-rolling/CMakeLists.txt",
+      "sha256": "87ff685aaa1985be0bdac845f9a7942d9143d82558a45f4c0448ee8a7208e730"
+    }
+  ]
+}
