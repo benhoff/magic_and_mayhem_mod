@@ -3330,3 +3330,24 @@ Native viewport initialization and software-Xvfb backend selection are explicit.
 Physical gameplay input, repeated native menu returns and separate native/Qt
 paint throughput checks are implemented; positive live validation remains
 pending. Historical source hashes and statuses are retained.
+
+The corrected World-ready smoke now completes native Main/Region/Mini, original
+World updates and Cancel/resume with native GPU command presentation. Historical
+positive smoke: 88 command presentations/56 paints, zero fallback/recovery.
+Active Apprentice stress completes four physical-input phases and three native
+Mini returns but fails the fixed first-camera 10 FPS window floor (about 9 FPS).
+Initiate tutorial input gating and original desktop screenshot occlusion were
+also observed separately. Ordered-copy scheduling avoids the captured GAP;
+native desktop lowering restores presentation visibility. Optimized builds and
+single-process immutable manifest verification improve launch/test overhead.
+
+RGB565 constant-shift presentation preserves all 65,536 colors at scales1/1.5,
+but its gameplay rerun still fails the same floor; do not call it a performance
+fix. Direct opaque GPU copies preserve five backend/format/overlap/ownership/
+blit/surface regression checks and the exhaustive GPU viewport test. Another
+live run is in progress at this checkpoint. Profiles attribute native CPU time
+primarily to software Mesa JIT; hardware, synchronized pixel equivalence,
+movement/combat outcomes, other maps and complete drawing replacement remain
+pending. Historical evidence fingerprints are preserved. The committed range
+b70c9e6..6f7d9ab has26 exact hash receipt transitions, no unresolved gaps, in its
+retrospective report; this review does not assert new execution or past gates.

@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "success": true,
+  "status": "passed",
+  "stage": "campaign-complete",
+  "required_mode": [
+    "native-menus",
+    "native-command-presentation"
+  ],
+  "launch_requested": true,
+  "game_entry_verified": true,
+  "flow_completed": true,
+  "movement_verified": false,
+  "complete_drawing_replacement": false,
+  "cleanup": "bounded private-session termination",
+  "stress_seconds_per_phase": 0,
+  "menu_cycles": 1,
+  "minimum_fps": 20,
+  "sources": {
+    "tools/test-native-campaign.py": "1b84f4ece14e187fdfbc03f374f50294c04af9c7d0e85917b2446a5bf59306bf",
+    "tools/run-qt-shell.sh": "614cedac6421b12f28e28b1211f4b59636785fbb35fd5bff29b0bcfdba111417",
+    "apps/qt-shell/campaign_smoke_test.cpp": "1f0ba735e8fb91cd86c9b4faeb3831539f80b4dd56283a620ce496af661c9f01",
+    "apps/qt-shell/campaign_smoke_test.hpp": "33ddc9022a5e41d79a5e2c368bf1a39947c6e49b4f1ff9e5834ce2c0147a770c",
+    "apps/qt-shell/main.cpp": "959ea39bf6d05ce01024aa5bf31aca24f1c2ab68a293e9f7bd9d1fa43855cacc",
+    "apps/qt-shell/CMakeLists.txt": "3ae9d1f7f28ca570b17be9f5ccd83b84e4c9ba083d7bfb887b6b060b94d4e84f",
+    "apps/qt-shell/live_menu_session.cpp": "2fa553befe672b777b6abfca9d51901b91dfd4e2be7abbf61f50533b0bc6ba6c",
+    "apps/qt-shell/menu_bridge.cpp": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea",
+    "tools/test-live-campaign-mini.py": "886050526ad714e82965cbaedcf9e834d7202c2e5ffa5016794177a6697459ee",
+    "tools/campaign-gameplay-input.py": "7ca51550e4022b5cb58579ad72c0d9380731e67c1bd264e0bc75e3c936f504bd",
+    "apps/qt-shell/live_menu_session.hpp": "1ba1c0fa72e4c82874d535eb1d8391198aaa265902b9a8d7fb9711f19f0bcf34",
+    "apps/qt-shell/live_command_session.cpp": "911867d74b39bb0f8d3cb41168c4abcf4c9b18bffaa14b934c2ff2981c08bfbc",
+    "apps/qt-shell/live_command_session.hpp": "8fb9707437828b6da54f747572158dce60509e8115990a6a0b01e52d0f209ea4",
+    "tools/prepare-menu-observer.py": "5368487dfc6ec433dd04fa659b17b3644ba5af7b64c5aaa6536c969540e31e7a",
+    "tools/run-menu-observer.py": "9071fd188dd069355678b66d4423863cdf442a59bb67647f0f356e8d1e86a4f9",
+    "tools/menu-game-runner.py": "b274f9c340193a43962768150963cf08ecc0806c2f0805c22a22c9111f860561"
+  },
+  "shell_sha256": "006d96055d2ce47bff692c0a8ac94db1b227b73d5181e17c8ff9bd5746495342",
+  "mode_probe": {
+    "command": [
+      "/tmp/mnm-native-campaign-exercise/working/build/qt-shell/mnm-qt-shell",
+      "--repo",
+      "/tmp/mnm-native-campaign-exercise",
+      "--live-menus",
+      "--native-commands",
+      "--smoke-test"
+    ],
+    "exit_code": 0
+  },
+  "launch_command": [
+    "/tmp/mnm-native-campaign-exercise/tools/run-qt-shell.sh",
+    "--live-menus",
+    "--native-commands",
+    "--live-menu-test",
+    "/tmp/mnm-native-campaign-exercise/working/tests/native-campaign/run-_hwb1aug/flow.json"
+  ],
+  "flow": {
+    "error": "",
+    "gameplay_rates": [],
+    "movement_verified": false,
+    "native_command_fallback": false,
+    "native_command_frames": 88,
+    "native_error": "",
+    "native_painted_frames": 56,
+    "native_recoveries": 0,
+    "original_drawing_retained": true,
+    "scope": "Native Qt New Game/Enter, native command presentation, Escape/Mini/Cancel and resumed presentation; no movement, pixel equivalence or complete drawing replacement claim",
+    "steps": [
+      {
+        "screenshot": "/tmp/mnm-native-campaign-exercise/working/tests/native-campaign/run-_hwb1aug/main-0.png",
+        "screenshot_saved": true,
+        "step": "main"
+      },
+      {
+        "screenshot": "/tmp/mnm-native-campaign-exercise/working/tests/native-campaign/run-_hwb1aug/region-0.png",
+        "screenshot_saved": true,
+        "step": "region"
+      },
+      {
+        "step": "campaign-handoff"
+      },
+      {
+        "screenshot": "/tmp/mnm-native-campaign-exercise/working/tests/native-campaign/run-_hwb1aug/gameplay-0.png",
+        "screenshot_saved": true,
+        "step": "gameplay"
+      },
+      {
+        "screenshot": "/tmp/mnm-native-campaign-exercise/working/tests/native-campaign/run-_hwb1aug/campaign-menu-0.png",
+        "screenshot_saved": true,
+        "step": "campaign-menu"
+      },
+      {
+        "screenshot": "/tmp/mnm-native-campaign-exercise/working/tests/native-campaign/run-_hwb1aug/gameplay-resumed-1.png",
+        "screenshot_saved": true,
+        "step": "gameplay-resumed"
+      }
+    ],
+    "success": true
+  },
+  "experiment": "/tmp/mnm-native-campaign-exercise/working/experiments/menu-observer/run-h2u2d8mv",
+  "engine": {
+    "actions": [
+      [
+        3,
+        0
+      ],
+      [
+        18,
+        0
+      ],
+      [
+        17,
+        4
+      ]
+    ],
+    "world_ticks": 3,
+    "world_resumes": 1,
+    "protocol_version": 12,
+    "events_sha256": "f9fcd36c5178259077e0acec910d1063bde9da0ea4e07dd45ecbecc4e7b4790e"
+  },
+  "original_manifest_verified_after": true
+}

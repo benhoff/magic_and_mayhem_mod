@@ -1,8 +1,11 @@
 #include "campaign_smoke_test.hpp"
 #include "live_menu_session.hpp"
+#include "gl_viewport.hpp"
+#include "frame_stream.hpp"
 #include <QApplication>
 #include <QMainWindow>
 #include <QPushButton>
+#include <QAbstractButton>
 #include <QTimer>
 #include <QProcess>
 #include <QFileInfo>
@@ -21,6 +24,7 @@
 // protocol downgrade or fallback is enabled by this automation.
 void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSession& session,
                              const QString& path,std::function<CampaignPresentationProbe()> probe){
+    const int difficulty=qEnvironmentVariableIntValue("MNM_CAMPAIGN_DIFFICULTY");
     const int stressSeconds=qEnvironmentVariableIntValue("MNM_CAMPAIGN_STRESS_SECONDS");
     const int cycles=qMax(1,qEnvironmentVariableIntValue("MNM_CAMPAIGN_MENU_CYCLES"));
     struct Run {int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;QElapsedTimer sampleClock;QJsonArray rates;int stage=0;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
@@ -30,7 +34,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         run->done=true;const auto p=probe();
         QSaveFile file(path);
         const QJsonObject result{{"success",success},{"error",reason},{"steps",run->steps},
-            {"native_command_frames",qint64(p.frames)},{"native_painted_frames",qint64(p.paints)},{"native_recoveries",int(p.recoveries)},{"native_error",p.error},{"gameplay_rates",run->rates},{"native_command_fallback",p.fallback},
+            {"native_command_frames",qint64(p.frames)},{"native_painted_frames",qint64(p.paints)},{"native_recoveries",int(p.recoveries)},{"native_error",p.error},{"renderer",p.renderer},{"gameplay_rates",run->rates},{"native_command_fallback",p.fallback},
             {"movement_verified",false},{"original_drawing_retained",true},
             {"scope","Native Qt New Game/Enter, native command presentation, Escape/Mini/Cancel and resumed presentation; no movement, pixel equivalence or complete drawing replacement claim"}};
         const bool saved=file.open(QIODevice::WriteOnly)&&file.write(QJsonDocument(result).toJson())>0&&file.commit();
@@ -38,30 +42,47 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         // The runner owns bounded cleanup of its private Wine prefix.
         if(!saved)app.exit(1);
     };
-    auto snapshot=[run,&window,path](const QString& name){
-        const auto file=QFileInfo(path).dir().filePath(name+".png");
+    auto snapshot=[run,&window,path,&session](const QString& name){
+        window.raise();
+        const auto file=QFileInfo(path).dir().filePath(name+QString("-%1.png").arg(run->cycle));
         bool saved=false;if(auto* screen=window.screen())saved=screen->grabWindow(window.winId()).save(file);
-        run->steps.append(QJsonObject{{"step",name},{"screenshot",file},{"screenshot_saved",saved}});
+        QString nativeFile,originalFile;bool nativeSaved=false,originalSaved=false;
+        if(name=="gameplay"||name=="gameplay-resumed"){
+            auto* widget=window.findChild<QOpenGLWidget*>("nativeGameViewport");
+            auto* viewport=dynamic_cast<GlViewport*>(widget);
+            if(viewport&&viewport->isVisible()){
+                const auto rect=viewport->imageRect();const auto ratio=viewport->devicePixelRatioF();
+                nativeFile=QFileInfo(path).dir().filePath(name+QString("-native-%1.png").arg(run->cycle));
+                nativeSaved=viewport->grabFramebuffer().copy(QRect(qRound(rect.x()*ratio),qRound(rect.y()*ratio),qRound(rect.width()*ratio),qRound(rect.height()*ratio))).scaled(viewport->frameSize(),Qt::IgnoreAspectRatio,Qt::FastTransformation).save(nativeFile);
+            }
+            FrameStream reference;
+            if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin"))){
+                originalFile=QFileInfo(path).dir().filePath(name+QString("-original-%1.png").arg(run->cycle));
+                const auto image=reference.nextFrame();originalSaved=!image.isNull()&&image.save(originalFile);
+            }
+        }
+        run->steps.append(QJsonObject{{"native_image",nativeFile},{"native_image_saved",nativeSaved},{"original_image",originalFile},{"original_image_saved",originalSaved},{"step",name},{"screenshot",file},{"screenshot_saved",saved}});
     };
     auto click=[&window,finish](const QString& name){
-        auto* button=window.findChild<QPushButton*>(name);
+        auto* button=window.findChild<QAbstractButton*>(name);
         if(!button||!button->isVisible()||!button->isEnabled()){finish(false,"Public control unavailable: "+name);return;}
         button->click();
     };
     auto output=session.output;session.output=[output](const QString& text){if(output)output(text);std::fprintf(stderr,"%s",qPrintable(text));};
     auto failed=session.failed;session.failed=[failed,finish](const QString& text){if(failed)failed(text);finish(false,"Native menu fallback: "+text);};
     auto state=session.stateChanged;
-    session.stateChanged=[run,state,finish,snapshot,click,probe,&window](const MenuBridge::State& s){
+    session.stateChanged=[run,state,finish,snapshot,click,probe,difficulty,&window](const MenuBridge::State& s){
         if(state)state(s);
         if(run->done||!s.ready)return;
         if(run->thread&&run->thread!=s.thread){finish(false,"Menu engine thread changed");return;}
         run->thread=s.thread;
         QString action,step;
         if(run->stage==0&&s.screen==3&&s.ack==0){run->stage=1;step="main";action="mainMenuAction0";}
-        else if(run->stage==1&&s.screen==18&&s.ack==1){run->stage=2;step="region";action="regionEntryEnter";}
-        else if(run->stage==4&&s.screen==17&&s.ack==quint32(2+run->cycle)){run->stage=5;run->frameBase=probe().frames;step="campaign-menu";action="miniMenuButton5";}
+        else if(run->stage==1&&s.screen==18&&s.ack==1){run->stage=difficulty?10:2;step="region";action=difficulty?QString("regionEntryDifficulty%1").arg(difficulty):QString("regionEntryEnter");}
+        else if(run->stage==10&&s.screen==18&&s.ack==2){run->stage=2;action="regionEntryEnter";}
+        else if(run->stage==4&&s.screen==17&&s.ack==quint32(2+run->cycle+(difficulty?1:0))){run->stage=5;run->frameBase=probe().frames;step="campaign-menu";action="miniMenuButton5";}
         if(action.isEmpty())return;
-        QTimer::singleShot(0,&window,[snapshot,click,step,action]{snapshot(step);click(action);});
+        QTimer::singleShot(0,&window,[snapshot,click,step,action]{if(!step.isEmpty())snapshot(step);click(action);});
     };
     auto battle=session.battleStarted;
     session.battleStarted=[run,battle,finish,probe](quint32 destination){
@@ -94,7 +115,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                 window.activateWindow();window.raise();
                 auto* viewport=window.findChild<QOpenGLWidget*>("nativeGameViewport");
                 if(!viewport||!viewport->isVisible()){finish(false,"Native stress viewport unavailable");return;}
-                viewport->setFocus();const auto origin=viewport->mapToGlobal(QPoint(0,0));
+                viewport->setFocus();auto* native=dynamic_cast<GlViewport*>(viewport);const auto rect=native?native->imageRect():QRectF(viewport->rect());const auto origin=viewport->mapToGlobal(rect.topLeft().toPoint());
                 auto* input=new QProcess(&window);
                 QObject::connect(input,&QProcess::errorOccurred,&window,[finish](QProcess::ProcessError error){if(error==QProcess::FailedToStart)finish(false,"Could not start gameplay input helper");});
                 QObject::connect(input,qOverload<int,QProcess::ExitStatus>(&QProcess::finished),&window,[run,input,finish](int code,QProcess::ExitStatus status){
@@ -102,7 +123,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                     if(code||status!=QProcess::NormalExit)finish(false,"Gameplay input failed: "+QString::fromLocal8Bit(input->readAllStandardError()));
                     input->deleteLater();
                 });
-                input->start("python3",{QDir::current().filePath("tools/campaign-gameplay-input.py"),"--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(viewport->width()),QString::number(viewport->height()),"--seconds",QString::number(stressSeconds),"--output",QFileInfo(path).dir().filePath(QString("input-%1.json").arg(run->cycle))});
+                input->start("python3",{QDir::current().filePath("tools/campaign-gameplay-input.py"),"--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--seconds",QString::number(stressSeconds),"--output",QFileInfo(path).dir().filePath(QString("input-%1.json").arg(run->cycle))});
             }
             const auto elapsed=run->sampleClock.elapsed();
             if(elapsed>=1000){
@@ -133,6 +154,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     auto finished=session.finished;session.finished=[finished,finish]{if(finished)finished();finish(false,"Game exited before campaign smoke completed");};
     session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");
     session.preferencesStorePath=QFileInfo(path).dir().filePath("config/engine-preferences.json");
-    QTimer::singleShot(300000,&window,[finish]{finish(false,"Campaign flow exceeded five minutes");});
+    const int timeoutMs=qEnvironmentVariableIntValue("MNM_CAMPAIGN_TIMEOUT_MS");
+    QTimer::singleShot(timeoutMs>0?timeoutMs:300000,&window,[finish]{finish(false,"Campaign flow exceeded five minutes");});
     QTimer::singleShot(0,&window,[click]{click("launchGame");});
 }

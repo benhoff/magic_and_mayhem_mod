@@ -40,16 +40,30 @@ confirm_replacement() {
 }
 
 snapshot() {
-    local destination=$1 file relative size digest
-
-    printf 'sha256\tsize\tpath\n' >"$destination"
-    while IFS= read -r -d '' file; do
-        relative=${file#"$REPO_DIR/"}
-        size=$(stat -c '%s' -- "$file")
-        digest=$(sha256sum -- "$file")
-        digest=${digest%% *}
-        printf '%s\t%s\t%s\n' "$digest" "$size" "$relative" >>"$destination"
-    done < <(find "$ORIGINAL_DIR" -type f -print0 | LC_ALL=C sort -z)
+    # One Python process avoids two subprocesses per original file. The path
+    # order and TSV bytes match find -type f | LC_ALL=C sort -z exactly.
+    python3 - "$REPO_DIR" "$ORIGINAL_DIR" "$1" <<'PYTHON'
+import hashlib
+import os
+from pathlib import Path
+import sys
+repo, original, destination = map(Path, sys.argv[1:])
+files = []
+for directory, _, names in os.walk(original, followlinks=False):
+    for name in names:
+        path = Path(directory) / name
+        if path.is_file() and not path.is_symlink():
+            files.append(path)
+files.sort(key=lambda path: os.fsencode(str(path)))
+with destination.open('wb') as output:
+    output.write(b'sha256\tsize\tpath\n')
+    for path in files:
+        size = path.stat().st_size
+        with path.open('rb') as source:
+            digest = hashlib.file_digest(source, 'sha256').hexdigest()
+        relative = os.fsencode(str(path.relative_to(repo)))
+        output.write(digest.encode() + b'\t' + str(size).encode() + b'\t' + relative + b'\n')
+PYTHON
 }
 
 refresh() {

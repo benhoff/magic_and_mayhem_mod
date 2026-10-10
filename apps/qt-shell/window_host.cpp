@@ -58,6 +58,12 @@ QVector<xcb_window_t> WindowHost::desktops(const QSet<xcb_window_t>& excluded) c
     }
     return result;
 }
+bool WindowHost::lowerDesktop(xcb_window_t window) const {
+    if(!available() || !window)return false;
+    const uint32_t stack=XCB_STACK_MODE_BELOW;
+    auto* error=xcb_request_check(connection_,xcb_configure_window_checked(connection_,window,XCB_CONFIG_WINDOW_STACK_MODE,&stack));
+    const bool ok=!error;std::free(error);xcb_flush(connection_);return ok;
+}
 bool WindowHost::exists(xcb_window_t window) const {
     if(!available() || !window)return false;
     auto* tree=xcb_query_tree_reply(connection_,xcb_query_tree(connection_,window),nullptr);
