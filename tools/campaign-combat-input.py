@@ -3,13 +3,14 @@
 import argparse
 import ctypes as c
 import json
+import hashlib
 import math
 import os
 from pathlib import Path
 import subprocess
 import time
 
-from campaign_gameplay import read_rows, creatures, damage_rows
+from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
 
 
 def main():
@@ -50,7 +51,7 @@ def main():
             time.sleep(.1)
         meta=json.loads((out/(name+'.json')).read_text())
         if not meta['native_saved'] or not meta['original_saved'] or meta['fallback']:raise RuntimeError('Independent native/original capture failed')
-        item=dict(name=name,metadata=meta,sequence=read_rows(trace)[-1][0],ocr={})
+        item=dict(name=name,metadata=meta,sequence=read_rows(trace)[-1][0],ocr={},image_sha256={route:hashlib.sha256((out/(name+'-'+route+'.png')).read_bytes()).hexdigest() for route in ('native','original')})
         if count:
             from PIL import Image
             for route in ('native','original'):
@@ -73,17 +74,18 @@ def main():
         click(400,300);time.sleep(.5) # dismiss ordinary Hermes dialogue
         before=capture('before-summon',True)
         if before['ocr']!={'native':'0/15','original':'0/15'}:raise RuntimeError('Missing initial native/original 0/15 controlled-creature count: '+str(before['ocr']))
-        click(523,575);time.sleep(.5);cast_before=read_rows(trace)[-1][0]
-        click(400,280,3);record('summon-order',before_sequence=cast_before)
+        click(523,575);time.sleep(.5);cast_before=read_rows(trace)[-1][0];cast_prior=state()
+        click(440,310,3);record('summon-order',before_sequence=cast_before)
         deadline=time.monotonic()+12; summoned=[]
         while time.monotonic()<deadline:
-            summoned=[a for a in state().values() if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0 and a['slot'] not in initial]
+            summoned=[a for a in state().values() if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0 and
+                      (a['slot'] not in cast_prior or not cast_prior[a['slot']]['active'] or cast_prior[a['slot']]['type']!=14 or cast_prior[a['slot']]['owner']!=owner)]
             if summoned:break
             time.sleep(.25)
         if not summoned:raise RuntimeError('Native right-click did not create a living player Zombie')
         time.sleep(1);after=capture('after-summon',True)
         if after['ocr']!={'native':'1/15','original':'1/15'}:raise RuntimeError('Missing independent native/original 1/15 summon count: '+str(after['ocr']))
-        result.update(summon=dict(before_sequence=cast_before,after_sequence=after['sequence'],slot=summoned[0]['slot'],before_capture=before['name'],after_capture=after['name']))
+        result.update(summon=dict(before_sequence=cast_before,after_sequence=after['sequence'],slot=summoned[0]['slot'],before_capture=before['name'],after_capture=after['name']),additional_summons=[])
         record('summon-confirmed',slot=summoned[0]['slot'])
         # Permit nearby enemies to engage the actual summoned Zombie first.
         extra_slots=[summoned[0]['slot']]
@@ -122,13 +124,30 @@ def main():
             center()
             if math.hypot(dx,dy)<7:
                 # Summon beside the enemy, through the same native spell HUD.
-                click(523,575);click(400+sx,280+sy,3);time.sleep(2)
+                click(523,575);cast_sequence=read_rows(trace)[-1][0];prior=state()
+                click(400+sx,280+sy,3);time.sleep(2)
+                current=state()
+                for a in current.values():
+                    old=prior.get(a['slot'])
+                    if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0 and (not old or not old['active'] or old['type']!=14 or old['owner']!=owner):
+                        result['additional_summons'].append(dict(before_sequence=cast_sequence,after_sequence=a['sequence'],slot=a['slot']))
                 extra_slots=[a['slot'] for a in state().values() if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0]
                 capture('combat-approach')
                 time.sleep(3)
         if 'combat' not in result:raise RuntimeError('No player Zombie melee damage before bounded combat deadline')
-        while time.monotonic()-start<args.seconds:
-            center();time.sleep(1)
+        finish_deadline=time.monotonic()+60
+        while True:
+            rows=read_rows(trace);hits=damage_rows(rows,owner,extra_slots,cast_before)
+            lethal=player_lethal_rows(rows,owner,wizard['slot'],hits)
+            if lethal and time.monotonic()-start>=args.seconds:
+                result['combat'].update(lethal_hit=list(lethal[0]),hit_count=len(hits));break
+            if time.monotonic()>finish_deadline:raise RuntimeError('No player party lethal health depletion before combat deadline')
+            # Continue observing the fight without repeatedly reselecting and
+            # recentering the wizard. Hover ordinary empty terrain through the
+            # native viewport; retained negative runs cover portrait stress.
+            px,py=((180,380),(600,350))[len(actions)%2]
+            if not xt.XTestFakeMotionEvent(display,-1,x0+int(w*px/800),y0+int(h*py/600),0):raise RuntimeError('Motion injection failed')
+            x.XFlush(display);record('combat-terrain-hover',logical_x=px,logical_y=py);time.sleep(.5)
         result['success']=True;record('casting-combat-complete')
     except Exception as error:
         result['error']=str(error)

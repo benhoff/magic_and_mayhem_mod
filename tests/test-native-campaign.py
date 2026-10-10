@@ -104,5 +104,80 @@ class EvidenceTests(unittest.TestCase):
             with self.assertRaises(ValueError): smoke.validate_events(root)
 
 
+class CombatEvidenceTests(unittest.TestCase):
+    def fixture(self, root):
+        def creature(slot, kind, owner, hp):
+            return [0,1,400,100,slot,kind,owner,1,hp,10,71,4,1,1,0xffffffff,0]
+        rows=[creature(0,0,0,200),creature(1,10,2,0),creature(3,14,0,90),creature(1,14,0,90),
+              [0,2,400,200,1,14,0,90,2,10,2,110,0,1,1,0]]
+        for index,row in enumerate(rows,1):row[0]=index
+        inputs=dict(player_owner=0,summon=dict(before_sequence=2,after_sequence=3,slot=3,
+                    before_capture='combat-00-before-summon',after_capture='combat-01-after-summon'),
+                    additional_summons=[dict(before_sequence=3,after_sequence=4,slot=1)],captures=[])
+        for name,count in [('combat-00-before-summon','0/15'),('combat-01-after-summon','1/15')]:
+            hashes={}
+            for route in ('native','original'):
+                image=root/(name+'-'+route+'.png');image.write_bytes(b'synthetic image fixture '+route.encode())
+                hashes[route]=smoke.sha(image)
+            inputs['captures'].append(dict(name=name,ocr=dict(native=count,original=count),image_sha256=hashes,
+                metadata=dict(native_saved=True,original_saved=True,fallback=False)))
+        return rows,inputs
+
+    def write_trace(self, root, rows):
+        (root/'gameplay-events.bin').write_bytes(b'MNMGP001'+struct.pack('<II',1,64)+b''.join(struct.pack('<16I',*r) for r in rows))
+
+    def test_actual_melee_and_summons_including_reused_original_slot(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);rows,inputs=self.fixture(root);self.write_trace(root,rows)
+            result=smoke.validate_casting_combat(root,inputs,root)
+            self.assertTrue(result['casting_verified']);self.assertTrue(result['combat_verified'])
+            self.assertEqual(result['combat_source_slots'],[1])
+
+    def test_wizard_can_finish_enemy_damaged_by_summoned_zombie(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);rows,inputs=self.fixture(root);rows[-1][12]=104
+            rows.append([6,2,400,220,0,0,0,200,2,10,2,1,0,1,1,0]);self.write_trace(root,rows)
+            result=smoke.validate_casting_combat(root,inputs,root)
+            self.assertEqual(result['first_lethal_melee'][4],0)
+            rows[-1][8]=99;self.write_trace(root,rows)
+            with self.assertRaises(ValueError):smoke.validate_casting_combat(root,inputs,root)
+
+    def test_orders_script_damage_and_nonplayer_damage_cannot_pass(self):
+        for mutate in [lambda r:r[-1].__setitem__(1,1),lambda r:r[-1].__setitem__(12,110),
+                       lambda r:r[-1].__setitem__(12,104),
+                       lambda r:r[-1].__setitem__(6,2),lambda r:r[-1].__setitem__(10,0),
+                       lambda r:r[-1].__setitem__(13,0),lambda r:r[-1].__setitem__(7,0),
+                       lambda r:r[-1].__setitem__(11,0),lambda r:r[-1].__setitem__(4,99),
+                       lambda r:r[-1].__setitem__(2,401)]:
+            with tempfile.TemporaryDirectory() as directory:
+                root=Path(directory);rows,inputs=self.fixture(root);mutate(rows);self.write_trace(root,rows)
+                with self.assertRaises(ValueError):smoke.validate_casting_combat(root,inputs,root)
+
+    def test_existing_wrong_owner_or_dead_zombie_cannot_prove_summon(self):
+        for mutate in [lambda r:r[1].__setitem__(5,14),lambda r:r[2].__setitem__(6,2),
+                       lambda r:r[2].__setitem__(8,0),lambda r:r[2].__setitem__(7,0)]:
+            with tempfile.TemporaryDirectory() as directory:
+                root=Path(directory);rows,inputs=self.fixture(root);mutate(rows)
+                if rows[1][5]==14:rows[1][6]=0
+                self.write_trace(root,rows)
+                with self.assertRaises(ValueError):smoke.validate_casting_combat(root,inputs,root)
+
+    def test_native_count_missing_image_or_modified_capture_cannot_pass(self):
+        for case in ('wrong-native-count','missing-original-count','changed-image','fallback'):
+            with tempfile.TemporaryDirectory() as directory:
+                root=Path(directory);rows,inputs=self.fixture(root);self.write_trace(root,rows)
+                if case=='wrong-native-count':inputs['captures'][1]['ocr']['native']='0/15'
+                elif case=='missing-original-count':del inputs['captures'][1]['ocr']['original']
+                elif case=='changed-image':(root/'combat-01-after-summon-native.png').write_bytes(b'changed')
+                else:inputs['captures'][1]['metadata']['fallback']=True
+                with self.assertRaises(ValueError):smoke.validate_casting_combat(root,inputs,root)
+
+    def test_truncated_trace_cannot_pass(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);rows,inputs=self.fixture(root);self.write_trace(root,rows)
+            path=root/'gameplay-events.bin';path.write_bytes(path.read_bytes()[:-1])
+            with self.assertRaises(ValueError):smoke.validate_casting_combat(root,inputs,root)
+
+
 if __name__ == '__main__':
     unittest.main()

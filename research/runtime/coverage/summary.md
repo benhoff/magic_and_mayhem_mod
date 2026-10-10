@@ -7,7 +7,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 494 |
-| evidence | 748 |
+| evidence | 755 |
 | scenarios | 222 |
 | functions | 6675 |
 | registered recovered ranges | 24 |
@@ -26,9 +26,9 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 159 |
 | behaviors without comparison | 408 |
 | behaviors without tests | 1 |
-| stale evidence | 546 |
+| stale evidence | 552 |
 | behavior anchors outside discovered functions | 43 |
-| validation gaps | 610 |
+| validation gaps | 609 |
 | retired execution claims | 65 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
@@ -38,17 +38,17 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Independent status | Counts |
 | --- | --- |
-| understanding | partial: 273; scoped: 188; unknown: 33 |
-| implementation | none: 159; partial: 154; scoped: 181 |
+| understanding | partial: 272; scoped: 189; unknown: 33 |
+| implementation | none: 159; partial: 153; scoped: 182 |
 | comparison | none: 408; recorded: 86 |
-| integration | headless: 88; live_equivalence: 4; live_observation: 33; none: 304; preview: 65 |
+| integration | headless: 88; live_equivalence: 4; live_observation: 34; none: 303; preview: 65 |
 | replacement | none: 491; scoped_live: 3 |
 
 | Current scope-bound validation | Counts |
 | --- | --- |
-| implementation | none: 159; pending: 333; current: 2 |
+| implementation | none: 159; pending: 332; current: 3 |
 | comparison | none: 408; pending: 86; current: 0 |
-| integration | none: 304; pending: 188; current: 2 |
+| integration | none: 303; pending: 188; current: 3 |
 | replacement | none: 491; pending: 3; current: 0 |
 
 ## Animation checklist
@@ -500,7 +500,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | HOST.command-input-fallback | Direct original-window input after terminal native command refusal | native policy | scoped | scoped | none | preview | none | stale |
 | HOST.native-command-responsiveness | Queued native command presentation and responsive backlog drain | native policy | scoped | scoped | none | preview | none | stale |
 | HOST.native-campaign-session | One-process native menus and command presentation | native policy | scoped | scoped | none | live_observation | none | stale |
-| HOST.native-campaign-casting-combat | Native viewport successful summon and melee combat | `0x50c0d0` | partial | partial | none | none | none | stale |
+| HOST.native-campaign-casting-combat | Native viewport successful summon and melee combat | `0x50c0d0` | scoped | scoped | none | live_observation | none | stale |
 
 ## Spell Dispatch checklist
 
@@ -1211,8 +1211,14 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **HOST.native-campaign.tutorial-stall-20261009**: `apps/qt-shell/campaign_smoke_test.cpp`, `renderer/blit.cpp`, `runtime/menu/campaign_world_observe.h`, `runtime/menu/observer.c`, `tests/test-native-campaign.py`, `tools/campaign-gameplay-input.py`, `tools/menu-game-runner.py`, `tools/test-native-campaign.py`
 - **HOST.native-campaign.spells-stress-passed-20261009**: `apps/qt-shell/campaign_smoke_test.cpp`, `runtime/menu/campaign_world_observe.h`, `runtime/menu/observer.c`, `tests/test-native-campaign.py`, `tools/menu-game-runner.py`, `tools/test-native-campaign.py`
 - **HOST.native-campaign.final-default-smoke-20261009**: `apps/qt-shell/campaign_smoke_test.cpp`, `runtime/menu/campaign_world_observe.h`, `runtime/menu/observer.c`, `tests/test-native-campaign.py`, `tools/menu-game-runner.py`, `tools/test-native-campaign.py`
-- **HOST.native-campaign.combat-negative-1-20261010**: `tests/test-native-campaign.py`, `tools/campaign-combat-input.py`, `tools/test-native-campaign.py`
-- **HOST.native-campaign.combat-negative-2-20261010**: `tools/campaign-combat-input.py`, `tools/test-native-campaign.py`
+- **HOST.native-campaign.combat-negative-1-20261010**: `apps/qt-shell/campaign_smoke_test.cpp`, `runtime/menu/campaign_gameplay_observe.h`, `tests/test-native-campaign.py`, `tools/campaign-combat-input.py`, `tools/campaign_gameplay.py`, `tools/test-native-campaign.py`
+- **HOST.native-campaign.combat-negative-2-20261010**: `apps/qt-shell/campaign_smoke_test.cpp`, `runtime/menu/campaign_gameplay_observe.h`, `tests/test-native-campaign.py`, `tools/campaign-combat-input.py`, `tools/campaign_gameplay.py`, `tools/test-native-campaign.py`
+- **HOST.native-campaign.combat-negative-3-20261010**: `apps/qt-shell/campaign_smoke_test.cpp`, `runtime/menu/campaign_gameplay_observe.h`, `tests/test-native-campaign.py`, `tools/campaign-combat-input.py`, `tools/campaign_gameplay.py`, `tools/test-native-campaign.py`
+- **HOST.native-campaign.combat-negative-4-20261010**: `apps/qt-shell/campaign_smoke_test.cpp`, `runtime/menu/campaign_gameplay_observe.h`, `tests/test-native-campaign.py`, `tools/campaign-combat-input.py`, `tools/campaign_gameplay.py`, `tools/test-native-campaign.py`
+- **HOST.native-campaign.combat-negative-5-20261010**: `apps/qt-shell/campaign_smoke_test.cpp`, `tests/test-native-campaign.py`, `tools/campaign-combat-input.py`, `tools/campaign_gameplay.py`, `tools/test-native-campaign.py`
+- **HOST.native-campaign.combat-negative-6-20261010**: `tests/test-native-campaign.py`, `tools/campaign-combat-input.py`, `tools/campaign_gameplay.py`, `tools/test-native-campaign.py`
+- **HOST.native-campaign.combat-negative-7-20261010**: `tests/test-native-campaign.py`, `tools/campaign-combat-input.py`, `tools/campaign_gameplay.py`, `tools/test-native-campaign.py`
+- **HOST.native-campaign.combat-negative-8-20261010**: `tests/test-native-campaign.py`, `tools/campaign-combat-input.py`, `tools/campaign_gameplay.py`, `tools/test-native-campaign.py`
 
 ## Checklist gaps
 

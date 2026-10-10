@@ -12,10 +12,11 @@ import os
 from pathlib import Path
 import shutil
 import signal
+import re
 import struct
 import subprocess
 import time
-from campaign_gameplay import read_rows, creatures, damage_rows
+from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = ['main', 'region', 'campaign-handoff', 'gameplay', 'campaign-menu', 'gameplay-resumed']
@@ -30,26 +31,40 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py']
 
 
-def validate_casting_combat(experiment, inputs):
+def validate_casting_combat(experiment, inputs, capture_root):
     rows=read_rows(experiment/'gameplay-events.bin', complete=True)
     summon=inputs['summon']; before=summon['before_sequence']; after=summon['after_sequence']; slot=summon['slot']; owner=inputs['player_owner']
+    if len({r[2] for r in rows})!=1:raise ValueError('Gameplay observation thread changed')
     initial=creatures([r for r in rows if r[0]<=before])
-    later=creatures([r for r in rows if before<r[0]<=after])
-    if slot in initial and initial[slot]['active']:
-        raise ValueError('Summon slot was already active before the cast')
-    zombie=later.get(slot)
-    if not zombie or zombie['type']!=14 or zombie['owner']!=owner or not zombie['active'] or zombie['health']<=0:
-        raise ValueError('No newly living player Zombie after native summon')
+    wizards=[a for a in initial.values() if a['type']==0 and a['active'] and a['health']>0]
+    if len(wizards)!=1 or wizards[0]['owner']!=owner:raise ValueError('Missing original player owner identity')
+    created={}
+    for cast in [summon]+inputs.get('additional_summons',[]):
+        begin,end,source=cast['before_sequence'],cast['after_sequence'],cast['slot']
+        if not before<=begin<end<=rows[-1][0]:raise ValueError('Invalid summon observation interval')
+        old=creatures([r for r in rows if r[0]<=begin]).get(source)
+        zombie=creatures([r for r in rows if begin<r[0]<=end]).get(source)
+        if old and old['active'] and old['type']==14 and old['owner']==owner:
+            raise ValueError('Player Zombie was already active before the cast')
+        if not zombie or zombie['type']!=14 or zombie['owner']!=owner or not zombie['active'] or zombie['health']<=0:
+            raise ValueError('No newly living player Zombie after native summon')
+        created[source]=end
     captures={c['name']:c for c in inputs['captures']}
     for key,count in [('before_capture','0/15'),('after_capture','1/15')]:
         capture=captures[summon[key]]
+        if not re.fullmatch(r'combat-\d{2}-[a-z-]+',capture['name']):raise ValueError('Unsafe capture name')
+        for route in ('native','original'):
+            if sha(capture_root/(capture['name']+'-'+route+'.png'))!=capture['image_sha256'][route]:raise ValueError('Capture image changed after OCR')
         if capture['ocr']!={'native':count,'original':count} or not capture['metadata']['native_saved'] or not capture['metadata']['original_saved'] or capture['metadata']['fallback']:
             raise ValueError('Missing independent native/original summon count')
-    hits=damage_rows(rows,owner,[slot],after)
+    hits=[r for r in damage_rows(rows,owner,list(created),after) if r[0]>created[r[4]]]
     if not hits:
         raise ValueError('No observed original player Zombie versus enemy melee damage')
+    lethal=player_lethal_rows(rows,owner,wizards[0]['slot'],hits)
+    if not lethal:raise ValueError('No observed player party lethal enemy health depletion')
     return dict(casting_verified=True,combat_verified=True,summoned_slot=slot,player_owner=owner,
-                melee_damage_events=len(hits),first_melee_damage=list(hits[0]),trace_sha256=sha(experiment/'gameplay-events.bin'))
+                enemy_health_depleted=True,lethal_melee_events=len(lethal),first_lethal_melee=list(lethal[0]),
+                combat_source_slots=sorted({r[4] for r in hits}),melee_damage_events=len(hits),first_melee_damage=list(hits[0]),trace_sha256=sha(experiment/'gameplay-events.bin'))
 
 
 def sha(path):
@@ -151,6 +166,7 @@ def main():
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
+    parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
     if args.require_casting_combat:
@@ -226,6 +242,8 @@ def main():
                         if number:
                             env['DISPLAY'] = ':' + number
                             env['LIBGL_ALWAYS_SOFTWARE'] = '1'
+                            env['LP_NUM_THREADS'] = str(args.software_threads)
+                            report['software_renderer_threads'] = args.software_threads
                             break
                         if server.poll() is not None:
                             raise RuntimeError('Private X display exited')
@@ -287,7 +305,7 @@ def main():
             report['experiment'] = str(roots[0])
             report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty)
             if args.require_casting_combat:
-                report['gameplay']=validate_casting_combat(roots[0],json.loads((out/'input-0.json').read_text()))
+                report['gameplay']=validate_casting_combat(roots[0],json.loads((out/'input-0.json').read_text()),out)
                 report.update(casting_verified=True,combat_verified=True)
             validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps)
             if any(sha(ROOT / p) != h for p,h in report['sources'].items()):raise RuntimeError('Source changed during execution')
