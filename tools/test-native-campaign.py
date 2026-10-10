@@ -18,7 +18,7 @@ import subprocess
 import time
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
 from campaign_movement import validate_movement_probes
-from campaign_spell import read_spell_rows, validate_spell_observation, validate_spell_cases
+from campaign_spell import read_spell_rows, validate_spell_observation, validate_spell_cases, player_cure_healing
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = ['main', 'region', 'campaign-handoff', 'gameplay', 'campaign-menu', 'gameplay-resumed']
@@ -31,7 +31,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'apps/qt-shell/live_command_session.hpp', 'tools/prepare-menu-observer.py',
            'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py']
-SOURCES += ['tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
+SOURCES += ['apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 
 
 def validate_portrait_stress(inputs, flow, capture_root, seconds, min_fps=20):
@@ -127,6 +127,56 @@ def validate_casting_combat(experiment, inputs, capture_root):
                 enemy_health_depleted=True,lethal_melee_events=len(lethal),first_lethal_melee=list(lethal[0]),
                 combat_source_slots=sorted({r[4] for r in hits}),melee_damage_events=len(hits),first_melee_damage=list(hits[0]),trace_sha256=sha(experiment/'gameplay-events.bin'))
 
+
+
+def validate_healing(experiment, inputs, flow, capture_root, seconds, min_fps=20):
+    if not flow.get('success') or not flow.get('healing_mode') or flow.get('native_command_fallback') is not False or flow.get('native_command_frames',0)<6:
+        raise ValueError('Incomplete native healing presentation')
+    if flow.get('native_recoveries') or flow.get('native_error'):
+        raise ValueError('Healing presentation recovered or failed')
+    steps=flow.get('steps',[])
+    if [s.get('step') for s in steps]!=['main','quick','setup','map','setup-ready','spells','healing-loadout'] or any(not s.get('screenshot_saved') for s in steps[:-1]):
+        raise ValueError('Incomplete native healing menus')
+    loadout=steps[-1]
+    if sorted(a['spell'] for a in loadout['assignments'] if a['spell'])!=['14','41'] or loadout['owner']!=inputs['owner'] or flow['owner']!=inputs['owner']:
+        raise ValueError('Native loadout did not assign exactly Cure and Zombie')
+    if not inputs.get('success') or inputs.get('seconds',0)<seconds:
+        raise ValueError('Incomplete physical native healing input')
+    samples=flow.get('gameplay_rates',[]);elapsed=sum(r['seconds'] for r in samples)
+    if elapsed<seconds-2 or any(r['cycle']!=0 for r in samples):raise ValueError('Missing healing rate samples')
+    native=sum(r['native_frames'] for r in samples)/elapsed;paints=sum(r['painted_frames'] for r in samples)/elapsed
+    if min(native,paints)<min_fps or any(min(r['native_fps'],r['paint_fps'])<min_fps/2 or r['seconds']>2 for r in samples):raise ValueError('Healing rendering too slow')
+    gp=read_rows(experiment/'gameplay-events.bin',complete=True);spells=read_spell_rows(experiment/'spell-events.bin',complete=True)
+    if len({r[2] for r in gp+spells})!=1 or len({r[3] for r in gp if r[1]==1})<3:raise ValueError('Healing observation thread/World baseline missing')
+    proof=inputs['healing'];begin,end=proof['before_sequence'],proof['after_sequence']
+    if not 0<begin<end<=gp[-1][0]:raise ValueError('Invalid healing interval')
+    before=creatures([r for r in gp if r[0]<=begin]).get(inputs['wizard_slot'])
+    if not before or not before['active'] or before['type']!=0 or before['owner']!=inputs['owner'] or not 0<before['health']<inputs['initial_wizard']['health']:
+        raise ValueError('Original human wizard was not injured before Cure')
+    t0,t1=gp[begin-1][3],gp[end-1][3]
+    heals=[r for r in player_cure_healing(spells,inputs['owner'],inputs['wizard_slot']) if ((r[3]-t0)&0xffffffff)<=((t1-t0)&0xffffffff)]
+    if not heals or proof['first_health_change']!=list(heals[0]):raise ValueError('Missing matching original Cure health recovery and mana debit')
+    labels=[]
+    for cap in inputs['captures']:
+        if not re.fullmatch(r'healing-\d{2}-[a-z-]+',cap['name']) or cap['metadata']['fallback'] or not all(cap['metadata'][r+'_saved'] for r in ('native','original')):raise ValueError('Invalid healing image capture')
+        labels.append(cap['name'].split('-',2)[2])
+        for route in ('native','original'):
+            if sha(capture_root/(cap['name']+'-'+route+'.png'))!=cap['image_sha256'][route]:raise ValueError('Healing image changed after input')
+    if not {'before-cure','after-cure'}<=set(labels):raise ValueError('Missing independent before/after Cure images')
+    events=(experiment/'events.bin').read_bytes()
+    if events[:16]!=b'MNMMENU1'+struct.pack('<II',1,64) or (len(events)-16)%64:raise ValueError('Invalid healing menu trace')
+    rows=list(struct.iter_unpack('<16I',events[16:]));actions=[(r[3],r[9]) for r in rows if r[1]==3]
+    if [r[0] for r in rows]!=list(range(1,len(rows)+1)) or len(rows)>256 or len({r[2] for r in rows if r[1]==3})!=1:
+        raise ValueError('Invalid healing menu sequence/thread')
+    if actions[:5]!=[(3,2),(22,2),(14,2),(25,0),(14,1)] or actions[-1]!=(7,12) or any(menu!=7 for menu,arg in actions[5:]):
+        raise ValueError('Unexpected original Quick Battle/loadout callbacks')
+    channel=(experiment/'channel.bin').read_bytes()
+    if len(channel)!=106496 or channel[:16]!=b'MNMMCM12'+struct.pack('<II',12,106496) or struct.unpack_from('<I',channel,36*4)[0]!=6:
+        raise ValueError('Missing native healing menu acknowledgements')
+    return dict(verified=True,first_health_change=list(heals[0]),healing_events=len(heals),native_fps=native,paint_fps=paints,
+                worst_window_fps=min(min(r['native_fps'],r['paint_fps']) for r in samples),actions=actions,
+                spell_trace_sha256=sha(experiment/'spell-events.bin'),trace_sha256=sha(experiment/'gameplay-events.bin'),
+                scope='Native offered Cure/Zombie Quick Battle map2 loadout, injured living human wizard and original Cure positive HP plus mana debit; no cleanse/clamp/refund formula or full battle completion claim')
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -236,6 +286,7 @@ def main():
     parser.add_argument('--difficulty', type=int, choices=range(4), default=0, help='Choose the normal Region Entry difficulty via its native radio (0 Initiate; 1 Apprentice for camera/combat stress)')
     parser.add_argument('--require-casting-combat', action='store_true', help='Require successful native-viewport summon and player-versus-enemy melee damage observation')
     parser.add_argument('--portrait-stress-seconds', type=int, default=0, help='Repeat portrait recentering after verified combat (0 or 10..120)')
+    parser.add_argument('--healing-case',action='store_true',help='Separate native Quick Battle Cure loadout and injured human-wizard healing case')
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
@@ -244,6 +295,9 @@ def main():
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
+    if args.healing_case:
+        if args.require_casting_combat or args.spell_cases or args.normal_quit or args.portrait_stress_seconds:parser.error('Healing is a separate Quick Battle journey')
+        if not args.stress_seconds:args.stress_seconds=20
     if args.require_casting_combat:
         if args.difficulty not in (1,2,3):parser.error('Casting/combat requires --difficulty 1, 2 or 3 (other campaign journeys remain separate)')
         if not args.stress_seconds:args.stress_seconds=60
@@ -264,7 +318,7 @@ def main():
               'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
-              'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
+              'healing_required':args.healing_case,'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
               'difficulty': args.difficulty, 'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
     if args.claims:
@@ -337,7 +391,8 @@ def main():
             report['stage'] = 'campaign-flow'
             env['MNM_CAMPAIGN_SMOKE_TEST'] = '1'
             env['MNM_CAMPAIGN_DIFFICULTY'] = str(args.difficulty)
-            env['MNM_CAMPAIGN_CASTING_COMBAT'] = '1' if args.require_casting_combat else '0'
+            env['MNM_CAMPAIGN_CASTING_COMBAT'] = '1' if args.require_casting_combat or args.healing_case else '0'
+            env['MNM_NATIVE_HEALING']='1' if args.healing_case else '0'
             env['MNM_CAMPAIGN_PORTRAIT_SECONDS'] = str(args.portrait_stress_seconds)
             env['MNM_CAMPAIGN_NORMAL_QUIT']='1' if args.normal_quit else '0'
             env['MNM_CAMPAIGN_SPELL_CASES'] = '1' if args.spell_cases else '0'
@@ -368,14 +423,14 @@ def main():
                     raise RuntimeError('Public campaign flow exceeded its deadline')
             flow = json.loads((out / 'flow.json').read_text())
             report['flow'] = flow
-            validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
-            if args.stress_seconds:
+            if not args.healing_case:validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
+            if args.stress_seconds and not args.healing_case:
                 for cycle in range(args.menu_cycles+1):
                     inputs=json.loads((out/f'input-{cycle}.json').read_text())
                     if inputs.get('success') is not True or inputs['seconds']<args.stress_seconds or len(inputs['actions'])<20:raise RuntimeError('Incomplete gameplay input sequence')
                 report['gameplay_input_exercised']=True
             for step in flow['steps']:
-                if step['step'] != 'campaign-handoff':
+                if step['step'] not in ('campaign-handoff','healing-loadout'):
                     if step['step'] in ('gameplay','gameplay-resumed') and (step.get('native_image_saved') is not True or step.get('original_image_saved') is not True):raise RuntimeError('Missing independent native/original gameplay image')
                     shot = Path(step['screenshot']).resolve()
                     if shot.parent != out or not shot.is_file() or shot.stat().st_size == 0:
@@ -387,7 +442,10 @@ def main():
             report['experiment'] = str(roots[0])
             report['native_draw_cadence']=json.loads((roots[0]/'manifest.json').read_text())['native_draw_cadence']
             if report['native_draw_cadence']['settings']!={'SkipFrameEvery':0,'SkipXFrames':0,'MaxSkipXFrames':0}:raise RuntimeError('Native draw skipping remained enabled')
-            report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty,args.normal_quit)
+            if args.healing_case:
+                report['healing']=validate_healing(roots[0],json.loads((out/'healing-input.json').read_text()),flow,out,args.stress_seconds,args.min_fps)
+                report['healing_verified']=True
+            else:report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty,args.normal_quit)
             if args.normal_quit:
                 for n in (0,1):
                     q=json.loads((out/f'quit-input-{n}.json').read_text())
@@ -408,7 +466,7 @@ def main():
                     report['spell_cases']=validate_spell_cases(read_spell_rows(roots[0]/'spell-events.bin',complete=True),read_rows(roots[0]/'gameplay-events.bin',complete=True),json.loads((out/'input-0.json').read_text()))
             if args.portrait_stress_seconds:
                 report['portrait']=validate_portrait_stress(json.loads((out/'input-0.json').read_text()),flow,out,args.portrait_stress_seconds,args.min_fps)
-            validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps,args.normal_quit)
+            if not args.healing_case:validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps,args.normal_quit)
             if any(sha(ROOT / p) != h for p,h in report['sources'].items()):raise RuntimeError('Source changed during execution')
             report.update(success=True, status='passed', stage='campaign-complete', flow_completed=True, game_entry_verified=True)
             exit_code = 0

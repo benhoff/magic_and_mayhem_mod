@@ -4,15 +4,16 @@ from campaign_gameplay import signed, creatures
 
 HEADER = b'MNMCA001' + struct.pack('<II', 1, 64)
 HEADER_V2 = b'MNMCA002' + struct.pack('<II', 2, 64)
+HEADER_V3 = b'MNMCA003' + struct.pack('<II', 3, 64)
 
 
 def read_spell_rows(path, complete=False):
     data = path.read_bytes()
-    if data[:16] not in (HEADER,HEADER_V2) or complete and (len(data)-16) % 64:
+    if data[:16] not in (HEADER,HEADER_V2,HEADER_V3) or complete and (len(data)-16) % 64:
         raise ValueError('Invalid or truncated spell observation')
     end = 16 + (len(data)-16)//64*64
     rows = list(struct.iter_unpack('<16I', data[16:end]))
-    kinds=(1,2,3) if data[:16]==HEADER_V2 else (1,2)
+    kinds=(1,2,3,4) if data[:16]==HEADER_V3 else ((1,2,3) if data[:16]==HEADER_V2 else (1,2))
     if len(rows) >= 65536 or [r[0] for r in rows] != list(range(1, len(rows)+1)) or any(r[1] not in kinds for r in rows):
         raise ValueError('Invalid or exhausted spell observation sequence')
     return rows
@@ -89,3 +90,12 @@ def player_fireball_damage(rows,owner,wizard_slot):
             and signed(r[10])>0 and r[13] in (0x48ed24,0x48b4e2)
             and any(c[1]==1 and c[2]==r[2] and c[4]==71 and c[5]==wizard_slot and c[6]==0 and c[7]==owner
                     and c[15]==1 and signed(c[8])>signed(c[9])>=0 and ((r[3]-c[3])&0xffffffff)<=10000 for c in rows)]
+
+
+def player_cure_healing(rows,owner,wizard_slot):
+    return [r for r in rows if r[1]==4 and r[12]==41 and r[14]==wizard_slot and r[15]==owner
+            and r[5]==0 and r[4]==wizard_slot and r[6]==owner and r[9] and signed(r[7])>0
+            and signed(r[8])>signed(r[7]) and signed(r[10])>0 and r[13]==0x48b5d8
+            and any(c[1]==1 and c[2]==r[2] and c[4]==41 and c[5]==wizard_slot and c[6]==0 and c[7]==owner
+                    and c[10]==r[4] and c[15]==1 and signed(c[8])>signed(c[9])>=0
+                    and min((r[3]-c[3])&0xffffffff,(c[3]-r[3])&0xffffffff)<=10000 for c in rows)]

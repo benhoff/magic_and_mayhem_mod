@@ -341,7 +341,7 @@ endif()
 target_sources(mnm-qt-shell PRIVATE command_replay.cpp viewport_presentation.cpp)
 
 # Public campaign smoke automation; keeps ordinary menu feature selection.
-target_sources(mnm-qt-shell PRIVATE campaign_smoke_test.cpp)
+target_sources(mnm-qt-shell PRIVATE campaign_smoke_test.cpp healing_smoke_test.cpp)
 
 # Bounded mapped command transport and presentation adapter.
 target_sources(mnm-qt-shell PRIVATE command_channel.cpp live_command_renderer.cpp render_control.cpp live_command_session.cpp)

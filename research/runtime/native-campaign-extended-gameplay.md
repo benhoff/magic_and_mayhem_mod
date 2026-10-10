@@ -168,3 +168,59 @@ Cure is available from Brimstone Item1 in a Law talisman according to read-only
 `CFG/mitems.cfg`; the starting Neutral assignment supplies Fireball71 instead.
 The current campaign adapter does not expose Region Entry loadout editing.
 A separate native Quick Battle loadout case is needed for successful healing.
+
+## Native Quick Battle healing route and V3 observation
+
+The separate `--healing-case` route uses native Main → Quick Battle → setup →
+second map → Portmanteau. The ordinary magic-item slider supplies the offered
+inventory; native spell assignment places Brimstone in Law (Cure41) and Holly in
+Chaos (Zombie14). Campaign Region Entry currently cannot edit this loadout.
+Physical native-viewport orders seek an injured human wizard and self-targeted
+Cure. No helper writes creature health, mana, AI or random state.
+
+V3 (`MNMCA003`, version3, 64-byte rows) adds kind4 at original signed-health
+entry `0x5076f0`, guarding six whole bytes `51 a0 58 98 6e 00`. Four DWORD
+arguments are delta, attribution owner, borrowed attribution pointer and feedback
+flag; the original epilogue at `0x507c1d` returns with `ret 0x10`. All are forwarded
+unchanged. Kind4 uses the kind3 target/context fields, recording actual positive
+or negative HP change; its delta is signed. Cure's reviewed call returns to
+`0x48b5d8` after pushing feedback1, effect attribution+0x216, owner+0x212 and
+configured magnitude. The proof requires a living injured human wizard, positive
+HP increase, positive delta, exact Cure caller and spell/source/owner/target,
+plus a same-thread identity-valid original Cure cast/mana debit within10seconds.
+The health row can precede the enclosing post-cast row. V1/V2 readers remain
+supported, but cannot admit kind4. No EAX acceptance, cleansing, clamping,
+refund/damage formulas, complete lineage or exception-unwind cleanup is claimed.
+The same strict20FPS average,10FPS windows and two-second stalls apply to healing;
+independent before/after native framebuffer and original publication are required.
+The battle itself ends with bounded private cleanup, not a completed Quick Battle
+or validated natural defeat/result route.
+
+[The first healing attempt](native-healing-hud-negative-20261010.json) reaches
+native gameplay, genuinely summons Zombie14 and injures the human wizard, but
+selects the wrong Cure HUD coordinate. The independent image shows the two-item
+Quick Battle HUD centered at Zombie523575/Cure573575. The failed source-bound
+report and raw V3 spell, gameplay and menu traces remain retained; it cannot
+support successful healing. Empty talisman assignments are retained in the native
+loadout report; validation requires exactly the two nonempty spell assignments.
+
+[The second healing attempt](native-healing-interval-negative-20261010.json)
+actually observes Cure380→400, but still fails: the one-second probe retries
+before the delayed Cure effect, then attaches the previous heal to a later,
+already-full-health observation interval. The strict interval check rejects it.
+The helper now retains the original injured actor's sequence as the transaction
+start and waits three seconds for each ordinary target attempt. The proof still
+requires a positive original health return and same-thread matching caster debit,
+with the health return inside the retained injury-to-recovery interval; a later
+full-health cast cannot validate an earlier heal.
+
+[The fresh complete healing run](native-healing-passed-20261010.json) passes
+native Quick Battle map2 and the original-offered two-spell loadout. Cure41 raises
+the injured human wizard277→377 at original caller `0x48b5d8`, with positive
+signed delta100 and matching same-thread player cast/mana debit. Its observed
+injury-to-healing interval, raw V3/GP/menu traces and independent before/after
+images are retained. Native/paint averages40.81/30.15FPS, worst16.38FPS, with
+1,290native publications/918paints and zero fallback/recovery. Original manifests
+and stable declared sources pass. This closes successful bounded healing, while
+retaining both failed attempts; original rules/drawing remain active and full
+battle completion, cleansing/clamp/refund formulas and other exclusions remain.

@@ -3457,3 +3457,20 @@ remain pending.
 Committed-history review 52dcdf8..5c086ce checks 23 exact file transitions
 against retained receipts with zero gaps; it asserts neither a past gate pass
 nor new original validation.
+
+### Native healing loadout and health observation — 2026-10-10
+
+The isolated native Quick Battle map2 route now assigns original-offered Cure41
+and Zombie14 through native setup/Portmanteau controls. Physical orders produce
+original human injury and Cure277→377, matching original caster mana debit and
+same-thread/source/owner/target/caller. Native/paint averages40.81/30.15FPS and
+worst16.38FPS pass the unchanged20/10FPS/two-second gates; zero fallback/recovery,
+independent images and original manifests pass. V3 signed-health forwarding
+preserves original arguments/return/LastError; V1/V2 readers remain supported.
+The wrong-HUD and delayed-effect interval failures retain immutable reports/raw
+traces. See [extended findings](native-campaign-extended-gameplay.md).
+This is bounded healing with private cleanup, not complete Quick Battle or
+cleansing/clamp/refund/timing/exception/hardware/replacement equivalence. Shared
+campaign/portrait scopes await the final combined rerun after these source edits.
+History `fd3d55e..0c935ad` has29 exact committed-file transitions and zero missing
+receipts; it asserts no past gate pass or new validation.

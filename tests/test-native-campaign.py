@@ -119,6 +119,43 @@ class EvidenceTests(unittest.TestCase):
         with self.assertRaises(ValueError):smoke.validate_flow(flow,normal_quit=True)
         flow['normal_quit']=True;smoke.validate_flow(flow,normal_quit=True)
 
+    def test_healing_requires_injury_caster_debit_captures_and_strict_rates(self):
+        import hashlib
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            def actor(seq,tick,hp):return [seq,1,400,tick,0,0,0,1,hp,10,70,0,0,0,0xffffffff,12800]
+            gp=[actor(1,1000,130),actor(2,1500,130),actor(3,2500,180)]
+            cast=[1,1,400,2001,41,0,0,0,12800,12032,0,1,2,4,6,1]
+            heal=[2,4,400,2000,0,0,0,130,180,1,50,0,41,0x48b5d8,0,0]
+            from campaign_spell import HEADER_V3
+            (root/'spell-events.bin').write_bytes(HEADER_V3+b''.join(struct.pack('<16I',*r) for r in [cast,heal]))
+            (root/'gameplay-events.bin').write_bytes(b'MNMGP001'+struct.pack('<II',1,64)+b''.join(struct.pack('<16I',*r) for r in gp))
+            callbacks=[(3,2),(22,2),(14,2),(25,0),(14,1),(7,2003),(7,2046),(7,12)]
+            rows=[]
+            for seq,(menu,arg) in enumerate(callbacks,1):
+                row=[0]*16;row[0]=seq;row[1]=3;row[2]=400;row[3]=menu;row[9]=arg;rows.append(row)
+            self.write_events(root,rows)
+            ch=bytearray(106496);ch[:16]=b'MNMMCM12'+struct.pack('<II',12,len(ch));struct.pack_into('<I',ch,36*4,6);(root/'channel.bin').write_bytes(ch)
+            inp=dict(success=True,seconds=20,owner=0,wizard_slot=0,initial_wizard=dict(health=200),healing=dict(before_sequence=1,after_sequence=3,first_health_change=heal),captures=[])
+            for label in ('before-cure','after-cure'):
+                name='healing-00-'+label;data=b'owned image fixture'
+                for route in ('native','original'):(root/(name+'-'+route+'.png')).write_bytes(data)
+                inp['captures'].append(dict(name=name,metadata=dict(native_saved=True,original_saved=True,fallback=False),image_sha256={r:hashlib.sha256(data).hexdigest() for r in ('native','original')}))
+            flow=dict(success=True,healing_mode=True,native_command_fallback=False,native_command_frames=600,native_recoveries=0,native_error='',owner=0,
+                      steps=[dict(step=n,screenshot_saved=True) for n in ['main','quick','setup','map','setup-ready','spells']]+[dict(step='healing-loadout',owner=0,assignments=[dict(spell='14'),dict(spell='41'),dict(spell='')])],
+                      gameplay_rates=[dict(cycle=0,seconds=1,native_frames=40,painted_frames=30,native_fps=40,paint_fps=30) for i in range(20)])
+            self.assertTrue(smoke.validate_healing(root,inp,flow,root,20)['verified'])
+            for change in ('uninjured','wrong-proof','capture','fallback','slow','stall','loadout'):
+                bad,f=copy.deepcopy(inp),copy.deepcopy(flow)
+                if change=='uninjured':bad['initial_wizard']['health']=130
+                elif change=='wrong-proof':bad['healing']['first_health_change'][8]=179
+                elif change=='capture':bad['captures'].pop()
+                elif change=='fallback':f['native_command_fallback']=True
+                elif change=='slow':f['gameplay_rates'][0]['paint_fps']=9.99
+                elif change=='stall':f['gameplay_rates'][0]['seconds']=2.1
+                else:f['steps'][-1]['assignments'][0]['spell']='71'
+                with self.subTest(change=change),self.assertRaises(ValueError):smoke.validate_healing(root,bad,f,root,20)
+
     def test_dialogue_readiness_checks_both_views_and_capture_hashes(self):
         import hashlib
         with tempfile.TemporaryDirectory() as d:
