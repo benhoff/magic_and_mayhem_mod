@@ -7,7 +7,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 518 |
-| evidence | 830 |
+| evidence | 831 |
 | scenarios | 241 |
 | functions | 6675 |
 | registered recovered ranges | 24 |
@@ -28,8 +28,8 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without tests | 1 |
 | stale evidence | 632 |
 | behavior anchors outside discovered functions | 45 |
-| validation gaps | 651 |
-| retired execution claims | 308 |
+| validation gaps | 638 |
+| retired execution claims | 290 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
 | removed indexed sources | 0 |
@@ -41,15 +41,15 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | understanding | partial: 273; scoped: 212; unknown: 33 |
 | implementation | none: 160; partial: 157; scoped: 201 |
 | comparison | none: 431; recorded: 87 |
-| integration | headless: 92; live_equivalence: 5; live_observation: 47; none: 309; preview: 65 |
+| integration | headless: 91; live_equivalence: 6; live_observation: 47; none: 309; preview: 65 |
 | replacement | none: 515; scoped_live: 3 |
 
 | Current scope-bound validation | Counts |
 | --- | --- |
-| implementation | none: 160; pending: 354; current: 4 |
-| comparison | none: 431; pending: 87; current: 0 |
-| integration | none: 309; pending: 207; current: 2 |
-| replacement | none: 515; pending: 3; current: 0 |
+| implementation | none: 160; pending: 347; current: 11 |
+| comparison | none: 431; pending: 86; current: 1 |
+| integration | none: 309; pending: 203; current: 6 |
+| replacement | none: 515; pending: 2; current: 1 |
 
 ## Animation checklist
 
@@ -339,7 +339,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | NR.presentation-damage | Bounded incremental presentation of HUD and portrait updates | native policy | scoped | scoped | none | live_observation | none | stale |
 | NR.world-batch-extended-prefix | Versioned bounded World takeover beyond sixteen queues | native policy | scoped | scoped | none | live_equivalence | none | stale |
 | RS.word-clipping | Selected direct-word backend clipped pixel output | `0x596cb8`, `0x597086` | scoped | scoped | recorded | none | none | stale |
-| NR.world-batch-throughput | Bounded guarded World transport and scratch throughput | native policy | scoped | scoped | none | headless | none | stale |
+| NR.world-batch-throughput | Bounded guarded World transport and scratch throughput | native policy | scoped | scoped | none | live_equivalence | none | stale |
 
 ## Native World checklist
 

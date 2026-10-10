@@ -3870,3 +3870,31 @@ Reviewed first-parent8610a25..3687a38:35 exact parent/current file transitions,
 zero unresolved receipt gaps. Also reviewed3687a38..f60b55c:52 exact transitions,
 zero unresolved receipt gaps. This is committed-history provenance, not new
 validation or a past gate pass. Concurrent edits remain outside this projection.
+
+### Optimized World32 original revalidation (2026-10-10)
+
+`NR.world-throughput.replacement-20261010` pairs the protected optimized live
+capture with a frozen Debug source-only native proof and actual unmodified
+nocd40209ca7 backend execution. Every49113 precise raster canvas and low16AX
+return matches:23574240000pixels,1222checkpoint canvases and32live finals.
+Native reads no original oracle; source/input hashes, compiler dependency closure
+and original manifests before/after pass. Evidence binds exact source/contract/
+scenario versions and preserves historical records, including both four-worker
+performance failures and the corrected copy-image framebuffer branch.
+
+Freshness is restored only for RS.world-raster-batch-return,
+NR.world-raster-batch-transport, NR.world-resource-reuse,
+NR.world-batch-extended-prefix and the new native throughput policy. The latter
+has scoped implementation/live equivalence, with comparison/replacement none
+because buffering/batching/budgets are intentional policies rather than recovered
+original functions. Wider historical contracts retain explicit pending validation.
+The frozen Debug original FIFO proof is correctness evidence, not a timing run.
+
+The controlled same-input optimized benchmark remains68.36→40.51ms native work,
+49.28→23.98ms GPU host submission and201.16→55.18ms diagnostic queue, using
+same eight Mesa workers and1224identical checkpoints. Separate protected live32
+workload passes29.11/66.28ms warm native-work/diagnostic medians.50/100ms budgets
+remain enforced. Full simulation cadence, rolling native World, sustained
+interactive gameplay and hardware validation remain outstanding. These are
+separate from the original-raster-active campaign smoke and from the diagnostic
+capture ceiling. Reviewed f60b55c..01e160a:29 exact transitions, zero receipt gaps.
