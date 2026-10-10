@@ -1,5 +1,23 @@
 # Engine modernization coverage ledger
 
+## Other pixel producers: tinted glyph increment — 2026-10-10
+
+The replacement plan now prioritizes other pixel producers: text, source images,
+HUD/minimap/cursor, remaining CPU writers and enabled movies/transitions.
+`RS.font-glyph-raster` has fresh dedicated isolated-original RGB565 pixel proof:
+720 synthetic cases plus3615 placements of all1205 glyphs in six installed fonts,
+4335 whole canvases/3420849 WORDs, zero differences and original source/padding
+guards intact. `NR.font-glyph-admission` separately records eight atomic refusals
+and transparent/horizontal no-ops in Debug and ASan/UBSan. Native admission now
+preflights indices and visible destination reads before mutation and rejects
+coverage greater than one. This is an intentional safety policy, not recovered
+failure equivalence. [Scope, evidence and reproduction](font-glyph-raster.md).
+Text layout/caller state, RGB555, coverage initialization, general ABI and live
+shadow/bypass remain open. Original text drawing stays active. Historical shared
+canvas/World/minimap evidence retains its hashes and pending current validation.
+Committed `ae448ba..d412789` review covers27 exact transitions with zero gaps;
+retrospective accounting does not assert new execution or a past gate pass.
+
 ## Drawing-family regression follow-up — 2026-10-10
 
 The [reproducible family runner and results](drawing-family-validation.md) execute

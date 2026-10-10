@@ -27702,6 +27702,113 @@
       }
     },
     {
+      "id": "RS.font-glyph-raster",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Selected RGB565 tinted glyph raster pixels",
+      "scope": "Pinned581ec0 indexed RLE glyph pixels: byte RGB tint quantization,64 owned float coverage values, signed origins, complete horizontal rejection, vertical row cropping, transparent runs and RGB565 destination interpolation with truncation. Bounded synthetic/installed glyph source corpus, private original execution and source/guard checks. Excludes original text layout, font loading/palette conversion, RGB555, arbitrary floating state, Win32 ABI, live text admission and bypass.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5775040,
+          "scope": "Selected RGB565 glyph raster branch with initialized coverage table and ordinary masked x87 arithmetic."
+        }
+      ],
+      "documents": [
+        "research/runtime/font-glyph-raster.md"
+      ],
+      "implementation": [
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp"
+      ],
+      "tests": [
+        "tests/glyph-raster-native.cpp",
+        "tests/glyph-raster-reference.cpp",
+        "tests/glyph-raster-test.cpp",
+        "tools/test-font-glyph-raster.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "renderer/blit.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "tests/glyph-raster/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "RS.font-glyph-raster.comparison-20261010",
+        "NR.font-glyph-admission.synthetic-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": "720 synthetic RLE/tint/coverage/placement fixtures and3615 placements from all1205 glyph records in six installed SFTv3 fonts;3,420,849 whole-canvas RGB565 WORDs; original source and padded row guards. Ordinary initialized-table RGB565 pixels only."
+    },
+    {
+      "id": "NR.font-glyph-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic native tinted glyph admission",
+      "scope": "Intentional owned CPU glyph policy: validate plane/mask extents, indexed storage, byte tint, finite unit coverage and every opaque coverage index before drawing, including cropped rows; preflight every visible destination-dependent sample before mutation. Invalid coverage/late undefined pixels preserve canvas state. Excludes original failure equivalence, text layout, live hook admission and bypass.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/font-glyph-raster.md"
+      ],
+      "implementation": [
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp"
+      ],
+      "tests": [
+        "tests/glyph-raster-test.cpp",
+        "tools/test-font-glyph-raster.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "renderer/blit.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "tests/glyph-raster-native.cpp",
+        "tests/glyph-raster-reference.cpp",
+        "tests/glyph-raster/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "RS.font-glyph-raster.comparison-20261010",
+        "NR.font-glyph-admission.synthetic-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
       "id": "RS.word-clip-aux-shadow",
       "subsystem": "native_rendering",
       "kind": "recovered",
@@ -53430,6 +53537,110 @@
       ]
     },
     {
+      "id": "RS.font-glyph-raster.comparison-20261010",
+      "kind": "isolated_original",
+      "scope": "Selected RGB565 initialized-table glyph pixels; isolated original code, synthetic and installed sources. No text layout, Win32 ABI, live admission or bypass.",
+      "record": "research/runtime/font-glyph-raster-comparison-20261010.json",
+      "sha256": "5055dc17c1d6b2b7c01da61a1a38eb56787bf20d216d7d55bd57296e823e87fc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4335
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 3420849
+        },
+        {
+          "pointer": "/source_and_padding_guards_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 8
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.font-glyph-admission.synthetic-20261010",
+      "kind": "native_integration",
+      "scope": "Eight atomic native admission refusals plus transparent/horizontal no-ops; Debug CTest and ASan/UBSan. Native safety policy, no original failure or live equivalence.",
+      "record": "research/runtime/font-glyph-raster-comparison-20261010.json",
+      "sha256": "5055dc17c1d6b2b7c01da61a1a38eb56787bf20d216d7d55bd57296e823e87fc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4335
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 3420849
+        },
+        {
+          "pointer": "/source_and_padding_guards_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 8
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ]
+    },
+    {
       "id": "RS.word-clip-aux-shadow.original-20261010",
       "kind": "isolated_original",
       "record": "research/runtime/word-clip-aux-isolated-20261010.json",
@@ -60971,6 +61182,22 @@
       ]
     },
     {
+      "id": "font-glyph-atomic-20261010",
+      "scope": "Headless native glyph admission: eight invalid-input/late-undefined atomic refusals, transparent undefined no-op and horizontal rejection; assertion-enabled native CTest and ASan/UBSan fixture. No original failure/driver/live admission equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "NR.font-glyph-admission"
+      ],
+      "evidence": [
+        "RS.font-glyph-raster.comparison-20261010",
+        "NR.font-glyph-admission.synthetic-20261010"
+      ],
+      "tests": [
+        "tests/glyph-raster-test.cpp",
+        "tools/test-font-glyph-raster.py"
+      ]
+    },
+    {
       "id": "word-clip-aux-host-20261010",
       "level": "headless",
       "scope": "Actual production route/entry with host Win32 substitutes:22048 original comparison cases and110240 forced refusals; atomic native plane bounds1440/79/3. OS/nested-reentry excluded.",
@@ -61329,8 +61556,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-word-clip-aux-20261010.json",
-    "sha256": "ada92990ffbbc6674f4647352535561c23d2acd50a1370805339370584109c28"
+    "path": "research/runtime/coverage/source-index-font-glyph-20261010.json",
+    "sha256": "a6778d2f95ec8879b7edbdaabf896e6a455b8beccdf0bae3875c3e42b2d79a77"
   },
   "claim_bindings_required": true
 }

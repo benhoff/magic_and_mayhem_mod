@@ -234,13 +234,27 @@ void CanvasSequence::glyph(std::uint32_t id, const assets::SpriteFrame &f,
     if (v > 255)
       throw std::invalid_argument("Font tint outside byte range");
   for (float c : coverage)
-    if (!std::isfinite(c) || c < 0 || c > 1.000001f)
+    if (!std::isfinite(c) || c < 0 || c > 1)
       throw std::invalid_argument("Font coverage outside unit range");
+  // Reject malformed owned inputs before any destination mutation, including
+  // invalid indices in rows which this particular draw would crop away.
+  for (std::size_t i = 0; i < f.opaqueMask.size(); ++i)
+    if (f.opaqueMask[i] && alpha->at(i) >= 64)
+      throw std::invalid_argument("Font coverage index exceeds initialized table");
   const auto left = std::int64_t(x) - f.originX,
              top = std::int64_t(y) - f.originY;
   // Original581ec0 refuses horizontal clipping; vertical rows are cropped.
   if (left < clip.left || left + f.width > clip.right)
     return;
+  // Coverage reads the destination even at weight zero/one. Preflight every
+  // visible sample so a late undefined pixel cannot leave a partial glyph.
+  for (unsigned j = 0; j < f.height; ++j)
+    for (unsigned i = 0; i < f.width; ++i) {
+      const auto dx = left + i, dy = top + j;
+      if (dx >= 0 && dy >= 0 && dx < s.image.width && dy < s.image.height &&
+          dy >= clip.top && dy < clip.bottom && f.opaqueMask[std::size_t(j) * f.width + i])
+        known(s.defined, slot(s.image, int(dx), int(dy)));
+    }
   const unsigned target[3] = {rgb[0] >> 3, rgb[1] >> 2, rgb[2] >> 3};
   for (unsigned j = 0; j < f.height; ++j)
     for (unsigned i = 0; i < f.width; ++i) {
@@ -252,11 +266,7 @@ void CanvasSequence::glyph(std::uint32_t id, const assets::SpriteFrame &f,
       if (!f.opaqueMask[from])
         continue;
       const auto a = alpha->at(from);
-      if (a >= 64)
-        throw std::invalid_argument(
-            "Font coverage index exceeds initialized table");
       const auto at = slot(s.image, int(dx), int(dy));
-      known(s.defined, at);
       const auto old = s.image.pixels[at];
       const double weight = coverage[a];
       const unsigned d[3] = {(old >> 11) & 31, (old >> 5) & 63, old & 31};

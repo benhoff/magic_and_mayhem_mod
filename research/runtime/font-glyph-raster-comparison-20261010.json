@@ -1,0 +1,71 @@
+{
+  "success": true,
+  "sources": {
+    "assets/CMakeLists.txt": "aa61db073f3eef0758f5402c22fbcc4b57ca51bdb2bdbda0dc37d96293d3f401",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "assets/sprite_frame_decoder.hpp": "55ff6be0e30d13672c8fc2fab5c2328582fc3eb0ffdf4456d3b2c6ab1a0ec6ab",
+    "assets/sprite_loader.cpp": "00abda9b22c1f85be51e2f00028bcd448a044efbacc0fff1a24fec676df68e67",
+    "assets/sprite_loader.hpp": "0ab5f80fe75601ad3010afd048c87176bd1b3d37d371525a5c4ea6e3991d263e",
+    "renderer/blit.hpp": "4abf821da5214e469c8305ff713c3099535495270095fc882b93709b6e60c068",
+    "renderer/canvas_sequence.cpp": "283fc4103ed3a5f38b798bb1b5cda1c6604ce1e746c45e8323497ec454123ee0",
+    "renderer/canvas_sequence.hpp": "93b70d6c5a5af09c81e1b9e1be673018d29251fda1112691d225c626127e63f5",
+    "renderer/minimap/minimap.cpp": "1f340ea7d1a0307660e8d262dbe1580a3d0ccadfaa6e6e156b2e94b8652f5857",
+    "renderer/minimap/minimap.hpp": "74970c73a9eff06a2c2fd015b47e38fce5229c712250f11fe5c9dea1dbd5f470",
+    "renderer/minimap/overlays.cpp": "d1d5b6bdc8d3b6bb156aeac0055257450e35e12069567c03befce1f415b4e3c8",
+    "renderer/minimap/overlays.hpp": "93e97d2697085e12e68fd8e7a7fe25a6634a3ff9cf80ca31d31c2f834b41acba",
+    "tests/glyph-raster-native.cpp": "32e547c17f4ab88d337732c9032d61d6d66ab9b99880617e34bd835ea5ebf4d9",
+    "tests/glyph-raster-reference.cpp": "06132cd8c77995948f7b50e934ab00ecaf6f570e60b5694b598ed494ce18b177",
+    "tests/glyph-raster-test.cpp": "3908a407ea69fa5c8005db9203b8ac799b5728940dcb6a65ec93285e834cd8cc",
+    "tests/glyph-raster/CMakeLists.txt": "9a598e03fd61544c808a8f77f22513df4240db5455b3daf2116affb07a519262",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-font-glyph-raster.py": "29529321224d10f7122049bbef592158225f8f07471534b379031df1f07803ae"
+  },
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "original_pixels_used_as_native_inputs": false,
+  "live_replacement": false,
+  "scope": "Selected RGB565 initialized-table glyph pixels; isolated original code, synthetic and installed sources. No text layout, Win32 ABI, live admission or bypass.",
+  "inputs": {
+    "working/game-clean/Sprites/Tooltip Text.sft": "339149c522191e8c8cd4c5dc3e94f6b03ac3659171894d9230083dd2f3f5c448",
+    "working/game-clean/Sprites/body text 640.sft": "1c3e0fa5b5edb73bfc91586d36fa525429312ff56148761db08e42b7c507213c",
+    "working/game-clean/Sprites/body text 800.sft": "188e7f64dd0439334b8a6b65c0d20de4aa051d8e11e7bb74e11dfa3b879d6d80",
+    "working/game-clean/Sprites/heading text 640.sft": "e61954f2d244d0f54800a672c31f78ad8fff09df2e9a8996047ea4dd4568352a",
+    "working/game-clean/Sprites/heading text 800.sft": "5208106ee09588e65c7241759bce28a5b9c7d670e2cfa49581c9b0567c612d1a",
+    "working/game-clean/Sprites/yellowtext.sft": "ecbaf127077d4c8355a73426f380674c88616d103f61edaee803c742e4577b9f",
+    "original/Arcane_Nocd/Chaos.exe": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+  },
+  "cases": 4335,
+  "synthetic_cases": 720,
+  "installed_cases": 3615,
+  "installed_fonts": 6,
+  "corpus_sha256": "769313cea9cda503ad608c7220421028efa2b65b4b6a05a7ec697c24d36caca3",
+  "sanitizer_passed": true,
+  "claims": [
+    {
+      "behavior": "RS.font-glyph-raster",
+      "contract_sha256": "ba4d7554b9a724429873abeb9d3eaceb31752f54d7bb578eacef3c948825a658",
+      "scenarios": {}
+    },
+    {
+      "behavior": "NR.font-glyph-admission",
+      "contract_sha256": "80067c2acfc13a9440493f2541925c0d60d9f0653e4b59bd2ee11f6181392e4b",
+      "scenarios": {
+        "font-glyph-atomic-20261010": "871a47940ca800b8a3b7081fe0778bed4419f96263e6a8d81cf05d488528c6af"
+      }
+    }
+  ],
+  "equal": 4335,
+  "mismatched_cases": [],
+  "words_compared": 3420849,
+  "source_and_padding_guards_passed": true,
+  "original_sha256": "651bcbc7d5544aaa94a2a492fff338f89654778af373ecfef1e6a405d6ef0730",
+  "native_sha256": "651bcbc7d5544aaa94a2a492fff338f89654778af373ecfef1e6a405d6ef0730",
+  "native_binary_sha256": "76e9ac01c9cff9283c77a73a7b82059d663bb3f65b502082a1cb71d0c35dd9a3",
+  "reference_binary_sha256": "e294d6f1867413c227be3ff8a36cc4d17e64d4b6b0e17f5a55883682b17561b8",
+  "atomic_refusals": 8,
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true,
+  "inputs_stable": true
+}

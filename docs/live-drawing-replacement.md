@@ -159,11 +159,32 @@ effective draw order/clips and complete original batch output for finite
 comparison. The continuous World shadow viewer supplies bounded immutable publication,
 backpressure and Qt GPU presentation. Source-only startup/HUD reconstruction and
 bounded complete raster-body suppression now support selected queues1..32.
-Next reduce measured delivery cost and extend guarded
-replacement beyond queue32 while classifying outside-World producers and
-remaining initialization, displacement/clipping and ownership routes. Extend the DRAW-02
-corpus with camera actions and active battles while classifying additional
-draw kinds and required consumer side effects before complete scene takeover.
+The current work priority is completing the other pixel producers, starting
+with exact text pixels and continuing through source images, HUD/minimap/cursor
+composition and remaining CPU writers. World delivery beyond queue32 remains
+a separate pending integration milestone. Extend the DRAW-02 corpus with camera
+actions and active battles while classifying additional draw kinds and required
+consumer side effects before complete scene takeover.
+
+### Other pixel producers: current work priority
+
+Complete each selected producer in bounded steps: owned inputs and native pixel
+implementation, independent original pixel/state comparison, original-active
+live observation/shadow, then an explicitly admitted bypass. Existing native
+previews and captured-destination uploads cannot satisfy the bypass step.
+
+| Order | Producer work | Concrete completion boundary |
+| --- | --- | --- |
+| 1 | SFT tinted glyph raster and original text consumers | Finish the dedicated [glyph comparison](../research/runtime/font-glyph-raster.md); preserve original contour spacing/cursor behavior before live admission. General text layout and original font lifecycle remain separate from glyph pixels. |
+| 2 | BMP/DIB/PCX/JPEG source image writers and panel/fade operations | Exercise the memory-DIB and positioned-image branches beyond startup, preserve source cropping, padded rows and caller/DC lifetime, and admit native output without original GDI destination pixels. |
+| 3 | HUD, tooltips, minimap and cursor | Attribute active callers and compose complete output from owned state/resources. Existing minimap four-view comparisons and native cursor/menu assets are foundations; validate live updates, hotspots, picking and producer suppression. |
+| 4 | Remaining Lock/Unlock writers and alternate dispatch | Attribute unclassified writes and effect-to-pixel routes; recover their inputs, destination dependence and required side effects. Keep unknown routes visible and outside replacement admission. |
+| 5 | Enabled movies and screen transitions | Validate owned native decoding/presentation, completion/cancellation and return to menus/World while replacement owns the screen. |
+
+Each completed pixel contract retains its own scope and evidence. Wider live
+takeover needs new evidence after shared producer or renderer sources change;
+historical hashes are preserved. Surface recovery and sustained World delivery
+remain completion dependencies even while this producer work takes priority.
 
 DRAW-05 is the first milestone that removes original drawing work. It may cover
 a small route before the whole game is ready. Its experiment must identify the
