@@ -3311,7 +3311,6 @@ manual/all-map/unbounded boundaries remain intact. The newly landed minimap comm
 was reviewed separately over `e25290c..8dce3ac`; all24 committed file transitions
 have exact receipt chains. Its accounting review does not assert new execution.
 
-
 ## Bounded World frame identity cache (2026-10-09)
 
 `NR.world-frame-identity-cache` shares closed validated normalized identities
@@ -3381,6 +3380,24 @@ replacement remain `none`. The interactive V2 Qt tail consumer and unobserved
 border/driver/ABI states remain pending. Original manifest verification passes
 before/after; historical reports and source hashes are preserved.
 
+### Remote pull reconciliation (2026-10-09)
+
+Fast-forwarded local `60f6b3d` to remote `b70c9e6`, restoring the prior
+uncommitted work from a retained Git stash. Coverage register collections were
+merged by stable ID and review receipts retained verbatim from both branches.
+The combined source census is `coverage/source-index-pull-reconcile-20261009.json`;
+incoming committed file hashes are reviewed separately in
+`coverage/committed-history-pull-reconcile-20261009.json`.
+
+Offline campaign runner (5 tests) and World batch launcher (3 tests) pass.
+Combined-tree audit report is retained under
+`working/tests/coverage-audit-pull-reconcile-20261009.json`. It reports the
+pre-existing restored local scenario `minimap-owned-live-motion16-20261009`
+referencing missing evidence `NR.minimap-owned-observation.motion-20261009`
+and its resulting level mismatch. That unfinished local evidence link remains
+pending; no result was invented or historical fingerprint refreshed. No engine
+comparison, integration or replacement milestone is promoted by this pull.
+
 ### Bounded public V2 minimap viewer (2026-10-10)
 
 `NR.minimap-interactive-presentation` exposes original-active owned minimap
@@ -3441,3 +3458,24 @@ Shared-file historical renderer/producer/minimap/live results retain their sourc
 hashes and become stale where affected. Current V2 motion/interactive minimap,
 unobserved original branches and unbounded/all-map gameplay remain separate
 validation boundaries. [Contract and reproduction](native-world-cpu-composition.md).
+
+### Existing workspace accounting committed (2026-10-10)
+
+The retained World frame identity live/replay/original comparison records,
+World/minimap source censuses and earlier pull/history reconciliation reports
+are reviewed together against main checkout `48c2638`. Evidence bytes and
+previous review receipts remain unchanged; earlier reports describe their
+original execution sources, not a new run against the later CPU composition
+implementation. The earlier pull note's missing minimap motion evidence is
+present in the current register; the combined audit now has no errors. Historical
+staleness and changed-scope validation remain explicit pending boundaries.
+
+The pending edits to the historical minimap terrain census are preserved under
+`coverage/source-index-minimap-terrain-workspace-preserved-20261010.json`; the
+historical snapshot retains its committed bytes. The current reviewed source
+index is `coverage/source-index-existing-work-reviewed-20261010.json`.
+Committed history `b0bd799..48c2638` contains14 reviewed file transitions with
+zero missing exact receipts, recorded in
+`coverage/committed-history-existing-work-20261010.json`. This is retrospective
+accounting, not new runtime evidence or a claim about past gate execution.
+No engine source, game balance or original artifacts change in this commit.

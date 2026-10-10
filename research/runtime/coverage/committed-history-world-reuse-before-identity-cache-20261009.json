@@ -1,0 +1,3005 @@
+{
+  "scope": "Committed-history accounting for World resource-reuse commit before frame-identity-cache work. Inspect exact parent/current source transitions, receipt chains, behavior/evidence links and retained gaps without executing historical code. No past gate pass or renewed execution is asserted; current uncommitted World rendering validation remains separate.",
+  "reviewed_range": "8dce3ac8602ce3bfd5b5e2241ee5264353516363..60f6b3dbfb352151fbc2e7a33bd3ad67e4ce5624",
+  "raw_committed_files": [
+    {
+      "path": "apps/qt-shell/canvas_producer_session.cpp",
+      "parent_sha256": "3e32d3e29f363bb787670a5f1f332828e6cb3e10aed96f798774e5abcf90d091",
+      "commit_sha256": "21b0297ca62fc930565a42b148764c68a3913b76a64987b4bdb6477c160b59ac",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "apps/qt-shell/canvas_producer_session.hpp",
+      "parent_sha256": "ecb30834d5933ad304050d8c4839148cab390427696c8f112ba4fc9795fdbc3a",
+      "commit_sha256": "c302e297fe9825be36ff73ab74a0ba072c36d5cd0e549839e8e551f3ea692968",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-interactive-batch-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "compat/legacy/canvas_world.cpp",
+      "parent_sha256": "0217d366e7b3199a618258d597272d7a8b387451974c0776cda2f9b3dd1add11",
+      "commit_sha256": "1371213cf7635d351dc7ca4761686817d91e8c3977518e133fd1f83fcd9a671a",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "compat/legacy/canvas_world.hpp",
+      "parent_sha256": "685fbf34152c966c1ed5ca82f111eb1cec95310f2d2fceed046a675e342fd450",
+      "commit_sha256": "431c97d78d6b2adb1e0234642a5906667ad1950d4acd6d727220d720b0be1abd",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "compat/legacy/scene_snapshot.cpp",
+      "parent_sha256": "7b87222bbed4adb0016673bb699ad86b75116393b4253893aba36a019e24a8b9",
+      "commit_sha256": "915dc76fa9dc0d4b1bd38ceab6856d2d8ff10e0ef15f55d60cdc02341a40410e",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "compat/legacy/scene_snapshot.hpp",
+      "parent_sha256": "ecfa7427724b514b84a6620fe57ea85d876d2176b3015f557aa489958fefcb8f",
+      "commit_sha256": "be2ca5753c27a7ebd8d74cee0ba850ebcf7f5a6cc9fbfb2245189ca2b5258062",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "compat/legacy/world_resources.hpp",
+      "parent_sha256": "bbf6005fa8de1e1ca1ebb2a6f437afb605d6ceaf5f81a91d9f24941bd8595270",
+      "commit_sha256": "f04bfffe6b7adbd237509f7e0cacdf97f751ce7dcf96a974467856f8e56caf9e",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/formats/world-raster-batch-v3.md",
+      "parent_sha256": "55cad045ec3ecf3f2454d85be345e6aa642fa675e6dc4fa4d60f3500933df0d1",
+      "commit_sha256": "76a8d2122352c015f9b61fc11e42baee679f1654ca469c82c1bfa66fc39c2198",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-raster-batch-final-metadata-v7-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "parent_sha256": "cc0f2064c0058c7a545708da0fb2a81de103d026df53543eab086238d340a1fc",
+      "commit_sha256": "c2afac5c77d87765720954217638a50a2bafab61bfd7fe1541d8bcdae44b563f",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "parent_sha256": "671d1a53f3f2e87773589a7f50737a36ffa3abcaf2c0a3a0f77b0c1fadce4f62",
+      "commit_sha256": "337c947b20711d8aef2390aee6dacc5272a607656d9a68c50607f59033a60c12",
+      "classification": "append-only journal, excluded from self fingerprints",
+      "receipt_chain": []
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-minimap-during-world-reuse-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "c5a32e5f08962f8f003fca1952e3990c2214e6438695608ba6b0ab1878459d3e",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-world-raster-batch-v7-20261008.json",
+      "parent_sha256": null,
+      "commit_sha256": "469b4798a79457203f5ce8fbc43797e230d8b1ae204d6b5d3d8ee066dc366f61",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-raster-batch-final-history-and-regression-metadata-v7-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "parent_sha256": "5e9ae71568da4e104c8c35e7ef020aac95f8a650662fed71aa8c58c2dea67cfe",
+      "commit_sha256": "a6e2cbab35d8fcde6c104300912be85e262033f98936cab5313994997aa60529",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-world-interactive-batch-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "ce9cf9f65e45507190ca80cec42e9b933085393e1380125ecd167c23b2010dcb",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-interactive-batch-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-world-resource-reuse-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "92df85e102b6aa312f9b323ce542a9f5fb6464a7c00effac26b42c894ce60523",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-world-interactive-batch-20261009.md",
+      "parent_sha256": null,
+      "commit_sha256": "ba067e531fb45b8ba08d4119c3d32290a8f24eb0390bf04c58f0aa2f58e863c3",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-interactive-batch-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-world-raster-batch-v7-20261008.md",
+      "parent_sha256": null,
+      "commit_sha256": "f2be7dd2639f05a5aab52285a2a8a4dd7a7287100dc9a3d9b96afa7ced2f71e7",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-raster-batch-final-metadata-v7-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-world-raster-batch-v7-complete-20261008.md",
+      "parent_sha256": null,
+      "commit_sha256": "e3b131acb5978b0974a23c79c7c13624b55fcbe24c87133dd06800b6f403623c",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-raster-batch-final-history-and-regression-metadata-v7-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-world-resource-reuse-20261009.md",
+      "parent_sha256": null,
+      "commit_sha256": "b4c4706cd07b0334bb14ae62ce0253406a1da49c5728458c705c18585115eb23",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-batch-instrumented-replacement-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "97014f8fd9c3985ff7788f16d914d412abb771f512f0061069cf5c6a9588b903",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-interactive-batch-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-batch-public-cancel-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "e6a0c6cb3cdffca8d5be114eaefccd25aa0b8d521117fd1071659064994f2cd8",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-interactive-batch-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-batch-public-complete-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "a872f730dfc1d722866150e59781e011806cce3bfa8a863ed1d7ad246a601943",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-interactive-batch-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-interactive-batch.md",
+      "parent_sha256": null,
+      "commit_sha256": "6c4194edd5e17e326273d999ab107374f9dd114d9fb203dfefd2985983947d08",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-interactive-batch-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-raster-batch-launcher-regression-v7-20261008.json",
+      "parent_sha256": null,
+      "commit_sha256": "53f38d3845ed9ff403533a357fa6574b8a9a596e326e5d45710e53684024b88e",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-raster-batch-final-history-and-regression-metadata-v7-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-raster-batch-prefix16-comparison-v7-20261008.json",
+      "parent_sha256": null,
+      "commit_sha256": "545d4be48300f03fc6c8bb668df8aaaed35dc78888ab9c950e9a3c373e5b6460",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-raster-batch-final-metadata-v7-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-raster-batch-prefix16-replacement-v7-20261008.json",
+      "parent_sha256": null,
+      "commit_sha256": "a719e427ef2f6c61617511d647f6789eee3181572835b9ad8ef16381135d2204",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-raster-batch-final-metadata-v7-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-raster-batch.md",
+      "parent_sha256": "3604548ec0b6bca14988ca18484a49a13c3bc46c4717b6290c19a6f61ac5ad69",
+      "commit_sha256": "2d2a0a6146a097c3053f5fd798d94e4c5f491e6b64ae55ad09defc0e6f84bcae",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-raster-batch-final-metadata-v7-20261008"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-resource-reuse-live-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "7f510a143336de77add8a7eb514ac267ea393b7f07756228e2871470d409531d",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-resource-reuse-original-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "c33e560e34808a9ccb5e232170b01e8d59949e1c0abd1a03c10a8fa19155c615",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-resource-reuse-prechange.patch",
+      "parent_sha256": null,
+      "commit_sha256": "c4c83a169dfe7f11de843b2e8afe6d45f66c2c3b08254a951c7f0b5bd7495f34",
+      "classification": "missing committed source transition; retrospective pending receipt appended",
+      "receipt_chain": []
+    },
+    {
+      "path": "research/runtime/native-world-resource-reuse-replay-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "c5ad7ffdf111df7aa838939821bd047babed496fca7548df1a7addd118ee4e0b",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-resource-reuse.md",
+      "parent_sha256": null,
+      "commit_sha256": "d216a68d461e4ab7fcad1cf2200ca165535886819af4abda63944b44557e1a60",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "tests/canvas-world-test.cpp",
+      "parent_sha256": "8e1c5a7d850ef09a63bb15fc20a2021b273ea89e9a5f0de70108e763ebe4a8b2",
+      "commit_sha256": "d79cf635e791f750df89551942fc23ddf5e05e517b1ec708f533e857f7e98e00",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "tests/native-world-batch-test.py",
+      "parent_sha256": null,
+      "commit_sha256": "5d10d3cc7121bac779234bce64fd917f28868f11f07d73cb4ec6d9f9b855fb8e",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-interactive-batch-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "tools/capture-scene-game.py",
+      "parent_sha256": "70aff1071ef5ff78e85293cf235efd721d9339db04db93025d0ee47814f4ba5b",
+      "commit_sha256": "2ab1396818aa16e3d11e487e03dca3985c1c53e59f2bef73636de115e39a8910",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-interactive-batch-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "tools/native_world_batch.py",
+      "parent_sha256": null,
+      "commit_sha256": "d1d6c1d3f6f09bffe9b9bd47701c38fb5caf93a0b097ddfdce1666dc51e52d73",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-interactive-batch-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "tools/run-native-world.py",
+      "parent_sha256": "ab4693cc6acb77cbcaf739107956b35aa8d67ea337fe88b3b803061d11e5fcfc",
+      "commit_sha256": "6f9e3b37aa0ef8d2ac62130da697e7fd90c49c984fad7dc59ca8a39e222fc268",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-interactive-batch-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "tools/test-native-world-batch.py",
+      "parent_sha256": null,
+      "commit_sha256": "9abeadfffa01d8a6d49f6273f8bf08d921f8ce87e1f2e9cce851e8db7f3fd55c",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    },
+    {
+      "path": "tools/test-world-resource-reuse.py",
+      "parent_sha256": null,
+      "commit_sha256": "2f940626e65dd9d189693665f87f8731880bd3b633cc5ba4df2182cfaf942330",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "world-resource-reuse-source-and-index-review-20261009"
+      ]
+    }
+  ],
+  "changed_behaviors": [
+    "AS.access",
+    "AS.animation",
+    "AS.bmp",
+    "AS.effect-animation-catalog",
+    "AS.jpeg",
+    "AS.legacy",
+    "AS.pcx",
+    "AS.resource-manager",
+    "AS.resource-preparation",
+    "AS.sprite",
+    "AS.terrain_catalog",
+    "BR.battle",
+    "BR.main",
+    "BR.mini",
+    "BR.result",
+    "BR.spell",
+    "CP.campaign-defeat-report",
+    "CP.campaign-mini-cancel",
+    "CP.campaign-mini-lifecycle",
+    "CP.campaign-mini-preferences",
+    "CP.campaign-mini-quit",
+    "CP.campaign-mini-quit-lifecycle",
+    "CP.campaign-preferences-lifecycle",
+    "CP.campaign-world-handoff-observation",
+    "CP.realm-observation",
+    "CP.region-entry-bridge",
+    "CP.region-entry-enter",
+    "CP.region-entry-observation",
+    "HOST.presentation",
+    "HOST.session",
+    "NP.campaign-defeat-policy",
+    "NP.campaign-mini-cancel-policy",
+    "NP.campaign-mini-quit-policy",
+    "NP.campaign-preferences-policy",
+    "NP.region-entry-fresh-policy",
+    "NR.canvas-producer-replay",
+    "NR.command-checkpoint-attachment",
+    "NR.command-context-batching",
+    "NR.command-host-recovery",
+    "NR.command-ring",
+    "NR.command-ring-adapter",
+    "NR.command-streaming",
+    "NR.continuous-producer",
+    "NR.gpu-presentation",
+    "NR.headless-command-profile",
+    "NR.incremental-command-consumer",
+    "NR.live-command-transport",
+    "NR.palette-resources",
+    "NR.resource-cache",
+    "NR.scene-history",
+    "NR.scene-service",
+    "NR.scene-snapshot",
+    "NR.sprite-atlas",
+    "NR.sprites",
+    "NR.surface-access",
+    "NR.surface-backend.formats-pitch",
+    "NR.surface-backend.owned",
+    "NR.surface-backend.ownership-recovery",
+    "NR.surface-colors.rgb565-dc",
+    "NR.surface-contents.validity",
+    "NR.surface-copy.clipping",
+    "NR.surface-copy.clipping-stream",
+    "NR.surface-reload.bitmap-dc",
+    "NR.surface-reload.dc-regions",
+    "NR.surface-reload.dib-indexed",
+    "NR.surface-reload.dib-rgb",
+    "NR.surfaces",
+    "NR.upload-preparation",
+    "NR.word-admission",
+    "NR.world-admission",
+    "NR.world-batch-profiling",
+    "NR.world-channel",
+    "NR.world-history-channel",
+    "NR.world-interactive-batch-launcher",
+    "NR.world-kind-diagnostic",
+    "NR.world-live-history",
+    "NR.world-live-view",
+    "NR.world-preparation",
+    "NR.world-producer-handoff",
+    "NR.world-raster-batch-transport",
+    "NR.world-resource-reuse",
+    "NR.world-shadow-refusal",
+    "NR.world-startup-launcher",
+    "NR.world-startup-sequence",
+    "PR.apply",
+    "PR.audio-preview-cancel",
+    "PR.control-admission",
+    "PR.display-rebuild",
+    "PR.main-entry",
+    "RE.surface-copy.restore-retry",
+    "RE.surface-copy.rgb565-bltfast",
+    "RE.surface-copy.rgb565-keyed",
+    "RE.surface-copy.rgb565-keyed-overlap",
+    "RE.surface-copy.rgb565-overlap",
+    "RE.surface-driver.borrowed-draw",
+    "RE.surface-driver.formats-pitch",
+    "RE.surface-driver.indexed-restore",
+    "RE.surface-driver.loss-restore",
+    "RE.surface-driver.ownership-flip",
+    "RE.surface-fill.rgb565",
+    "RE.surface-reload.cursor-sentinel",
+    "RS.canvas-bind-clip",
+    "RS.canvas-create-lock",
+    "RS.canvas-preworld-reuse",
+    "RS.canvas-producer-sequence",
+    "RS.canvas-startup-clear",
+    "RS.minimap-camera-corners",
+    "RS.minimap-cell-marker",
+    "RS.minimap-creature-markers",
+    "RS.minimap-terrain-raster",
+    "RS.word-route",
+    "RS.world-composition",
+    "RS.world-frame",
+    "RS.world-initial-state",
+    "RS.world-kind8-additive",
+    "RS.world-kind8-colour",
+    "RS.world-kind8-noop",
+    "RS.world-kind8-virtual",
+    "RS.world-producer-bypass",
+    "RS.world-raster-batch-return",
+    "RS.world-raster-queue-replacement",
+    "RS.world-startup-palette",
+    "RS.world-startup-queues",
+    "RS.world-startup-wave",
+    "RT.shadow",
+    "TL.effect-table-policy",
+    "TOOL.coverage-accounting",
+    "WIRE.contracts",
+    "WIRE.menu_fixtures"
+  ],
+  "new_pending_gaps": {
+    "behaviors_without_comparison:1b529cc5ffb73415df68e94d6f75988cd15da535f661017d72c48281da995dd8": {
+      "kind": "behaviors_without_comparison",
+      "identity": "NR.world-batch-profiling"
+    },
+    "behaviors_without_comparison:6d4704cb864faf27bd7b9aa853c63d38c909d5283949438b106a6ff6a4f5b8e6": {
+      "kind": "behaviors_without_comparison",
+      "identity": "NR.world-resource-reuse"
+    },
+    "behaviors_without_comparison:821cc665b7c98f5c6e2d28a392d770246c7fdbc196e2bd093da21cd063ad6199": {
+      "kind": "behaviors_without_comparison",
+      "identity": "NR.world-interactive-batch-launcher"
+    },
+    "retired_execution_claims:03be438289ca6c8ffebe7757c2d855e7ea925c6d4ccce68a61a7a5ab98c69e68": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "NR.world-interactive-batch.complete-20261009",
+        "behavior": "NR.world-raster-batch-transport",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:0e7b9bc5fa3902b67bd77dd0fb85838ebb190b8ab78d24962a1dbcdf30b82dbc": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "NR.world-resource-reuse.live-20261009",
+        "behavior": "RS.world-raster-batch-return",
+        "scenario": "world-raster-batch-startup-20261008",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:8ee595e2b94164d90cbb7382403011785066969571d0b655aa670393b277a608": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.world-raster-batch.prefix16-comparison-v7-20261008",
+        "behavior": "RS.world-raster-batch-return",
+        "scenario": "world-raster-batch-abi-20261008",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:8efeb6e3cb450f77c29bbb9bad0db97a296ca57ecce6bee509831ba757cf79c5": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "NR.world-resource-reuse.live-20261009",
+        "behavior": "RS.world-raster-batch-return",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:9bd1d7ea80b9cd73375ca3224317eb8e97ac5dfc3a575230b845181593366b0d": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "NR.world-interactive-batch.cancel-20261009",
+        "behavior": "NR.world-batch-profiling",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:a05e796a91320d1719dffab4563601119ee44da6c6530d5aba605667e67ae0ab": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+        "behavior": "NR.world-raster-batch-transport",
+        "scenario": "world-raster-batch-abi-20261008",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:ccc3b7df849f897479a4f5afc845f458193110a67d977bd3d65430513eb3a8de": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "NR.world-resource-reuse.live-20261009",
+        "behavior": "NR.world-raster-batch-transport",
+        "scenario": "world-raster-batch-startup-20261008",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:d58fe4d4c941da6ac1d19b485449c666447e630100404f405bcfc2bac4e11834": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "NR.world-interactive-batch.complete-20261009",
+        "behavior": "NR.world-raster-batch-transport",
+        "scenario": "world-raster-batch-startup-20261008",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:ee6cee1e1cb7773b44a94e8237c9615175e6d333f4aaaccbca5ef765d2d7f59d": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "NR.world-interactive-batch.complete-20261009",
+        "behavior": "RS.world-raster-batch-return",
+        "scenario": "world-raster-batch-startup-20261008",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:f79a38c1fc505cea98180b546af58b40f32a37857988509039976b38c9520bc5": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "NR.world-resource-reuse.live-20261009",
+        "behavior": "NR.world-raster-batch-transport",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:f97ea60f292b4eca32b270f2622f4fd387a276827a2c2a85e18a0ee6df8ca382": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+        "behavior": "RS.world-raster-batch-return",
+        "scenario": "world-raster-batch-abi-20261008",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:f9cd44b036b8037b141eadeb3e6e8477a68de00e1319c7e6274270036563d7c6": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "NR.world-interactive-batch.complete-20261009",
+        "behavior": "RS.world-raster-batch-return",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:faadc4d74e74dba56b7d3b4cd73d73c1a661ed53c95950b443bce44e91e9daca": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.world-raster-batch.prefix16-comparison-v7-20261008",
+        "behavior": "NR.world-raster-batch-transport",
+        "scenario": "world-raster-batch-abi-20261008",
+        "reason": "link_removed"
+      }
+    },
+    "stale_evidence:00228b301db22c6fb42cd2cadf87f0ec6371a85fecdf9cf7f4873e949d711c14": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.verified-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:00e736c0f240e4898f4a55878fd7438776086e8535631304542af0b54f4343ef": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-native-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:0384c796d8686bb2ffada728aea9b26747e6719564aac31ccee6a8798a7030fb": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.live-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:082205395785a7023c011e7a4a477a2bc93aa9832a302bbbf91dbf709e834f49": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:08695b3f0f3efb8807d3a49992613a38247bc1a11bb8d6a0700f462e7bf74664": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.snapshot-synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:09ea32af02c91a20644037ecf49d269f334445d0d3333faf7410d9e3729ad83b": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-comparison-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:0a9b89dbc6b9d0f00ea5400a7055bd803acfcf854ff4f8ffc2b68f4a92353e3c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v7-20261008",
+        "source": "tools/capture-scene-game.py"
+      }
+    },
+    "stale_evidence:0b7766eb7bbe205425c97521c9ba86d8c065c142c6b1a55aab029d943562719c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-preparation.commit-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:0cc9774aaf902a926e705664f6577ff5e793f13f2483de5e14e2fce4bdee77a3": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.native-final-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:0dcd137d7025ca8fc917a21113e87fb53d5553bd672ef31ec4be2ffa50fb2d12": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-sequence.native-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:0e72c9e8801e2838640770e974b628cae2f320497c4fee167ab7cb602c1eb731": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:0f4610216a6f52b332e076fce4ac11eec0b5b5b8d11c7e2e01ceaa0c997d5ec7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.polling-interrupted-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:0fced4d42481a0f08e84a8613dbe9121a96876fed722b39a20cb5cbffe847db3": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.batch-regression-v7-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:13af782c4795fcf7739b6cfd3490da81bbe51ce9b974cde94112f67a78fc5cca": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.upload-preparation.synthetic-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:1444c40423211dfa0ff27a266151402e6ff7aca36997f005c925170033f62c0b": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.cpp"
+      }
+    },
+    "stale_evidence:14be0c8ff42096b9e334399c6d73d61b95c1e690e29c083e00c9878a51efb8e5": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-replacement-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:15b5ae8acc5b7b932d263c6cf9603f0766d1b6770308ea00a88d60e603918f51": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-live-v7-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:15bcfca2b9bfcbc3d50c15388dcbe7ecb837c1726ecd63e454c1ae81806fdc82": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-gpu-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:15e9c4ca2703758052014c1e36c902a43a1b8fc37e55cfdc5889880a8d8db006": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-gpu-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:16020f1144f57cc4d6dceba27fe397f16bdc753a6e32ef75c1c068db129bfe79": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.commit-regressions-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:17d43caa5ad1018ad6393d7609dd2b47ef2876c18e2230b1f7868b368f91ae73": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-gpu-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:180a70bca12189e3180a27fe246730acc7afd1b212b290a7b0ce2270e8e11e4a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-comparison-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:18f83d3dacdabd73d3a20f0ef3789062dc4042760487681bb6f9bf3eabcc2b28": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "AS.world-history-preparation.focused-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:19b1e21ae93bf4f06492a46c0d89572ff9af7ca0cc60f97505707feae7051072": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-live-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:1aab42f0384903d20b7903ad9a8f9b9ac1cd4eb6f95f855314f963ac9c43bde8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.normal-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:1aae50c99b51461fac97bfea3a439c493f002df692c13e5a1cae5809821c66a7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-comparison-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:1ac8c9110e4184d13269199b8bb3b75f760d1d539f25487d29d4af430cd4aa51": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-live-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:1b8985779f8103c5df6a43755d747069ef585456c697852a418db672ca5dfd6e": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.manual-refusal-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:1c3f25f88aec75fb5eeba503d45727930a868ea6394891bd45d1540022c27732": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-comparison-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:1c73903aa41df128969aa7df392c7ee5f7ad3dc1fce6dad99596c1aea6e70885": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-replacement-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:1ddebc92798246deba6ec4cae19ba335e316510f871e5fb4e2ff0ed7c37ad9aa": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v5-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:1e7f586e933eecb0400dbe0a84a3c2297d45b60cc9cdb66c139739575c62a72c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.normal-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:1ef4b4fdb5840e195b12de3268843145e772549c5e0a916f6c7670b45a32f318": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.native-final-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:202953daf2ce15be502b6ba92486cf882769ef3682833741a9094bea49e2581b": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.upload-preparation.progress-synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:20a62f4d807826f5cf104e60024c1a285669c1520925ad7b078b159e5aab22fc": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:20d6d759facc82f94292ebfe73d69faea15a4821ba78e3cd115ad4cd8de468a2": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-replacement-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:22245f6fc15b16bb108d86d84f1573d37bf77436c14ed30988a8fead7e8c3629": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.manual-refusal-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:22b6c8d9221c7ac541bcc170f087f23eb013817b1c7520b4b1a4512ecd1c8320": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.abi-boundary-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:232f6bc1331e545016fa7cfb21cf0c2d06d67695609dbd2d85a7910866608fe1": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-comparison-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:24a40ff33112ea9a751d5ea16fdbfde2bab5d17d6e6675c105ac7cf7edcefd98": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.original-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:24b8449098d912d8c3124221f99bb1cdd60534ceccc5c5fdfad5da35399a841a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-sequence.native-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:25d91a119733bd39c2b5e62db0293d7ac104947d6e94b0d59210f02f1a9c1789": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.first-canvas-refusal-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:2704ae6993beb3b2b19fc04caa5bd96e988836ce3070c2d95983bf3ddfa6e38f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.live-gpu-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:27485c9411217902bc99c63e5c13a9f55321e2ee88efaa1946653e3d252208ae": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:276821aa71aba8dcbd1dfe6e5bb1e0d61be83d8c5700eb0da9dfc36867cedffb": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v6-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:2819ae0475ade267267c723aab9e3db5bc9746c1c42669370839ad4b24c74055": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-comparison-v7-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:283212a3da98456ec043a00bfe2543ef192a9911558d28adc3ef9c5e912abe40": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.pilot-replacement-v7-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:2a82bad2466ef2a3eaeeb31a9701a4765c678f1665a8f0263dafa9dfed011e55": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.batch-regression-v7-20261008",
+        "source": "tools/run-native-world.py"
+      }
+    },
+    "stale_evidence:2bee6cbc8256feddfef5e8b39daa3d9d3f827f83fba109a3cdabe6d679d0f109": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v5-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:2bf0ae3e11db4061c89b584cb76d63a562287ab97c1352d5758a9c7ed7dbccc4": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-comparison-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:2c2753a0b7cc105007d5f9bc0f957282b7aff7b85454ea155d2772722ce80ccd": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.verified-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:2c4d3a979127f379a1c3a216679bd13bed3944bf0dd07c93bee40b7dda048b3a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.abi-gpu-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:2df07b1083c78bb4512551d0cf3b2dcc1705500d06a56d5b42e07f1651f4ef1f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-gpu-current-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:2e202d585d219e2b24cbec3f693dd66da2f1b59332d5bd3c87f892006127732e": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.boundary-fixture-diagnostics-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:2e381ab3864362f78b2bda1a88693ce709d2ec369dcfa696abe878849741277a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.snapshot-normal-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:2f07f38eef1265a2083dbee9f244160b0c7650c70f924b0fb51949cd2f931afa": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-native-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:2f52aa04a97105377a2a4cde236824f0e0181fc60e1a371cbeb6ec10e8c3e9bf": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.cpp"
+      }
+    },
+    "stale_evidence:309a53527e6f6cd2f60affe40fdf782edac7f498efb36e808503f3d8373e934f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v7-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:30bc0d75d90ca5f2915ec1971cc96ab8c771e2eb71abf56503c9dc533a0ff19f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.complete-20261009",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:30d51981c8959c31fc98aadd5738d88f7e9d4115cf522b217b37198c61e4e677": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.commit-regressions-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:313a9fe21237413bfaa56628c909a28d4ef93f77d8230b416b0fd3d9c20e9c7f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.abi-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:3148f0974ade5dcf6a715e4d2cb98b2b0e00f9fd8c9f19e0d10cc6a0db26e04c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.original-final-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:31709a5ef1d55855740634258f8dbbe9014ca67a24cafc580580770b183bb21a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.abi-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:32bc23a600bbf3f3ad88fc061d478397b43bfb00f85f918021441628a04315b1": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.upload-preparation.synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:33311dfd2df73d806a5e46488b426746f779163c89eee7f99fc4f2e566501652": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.snapshot-synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:33a62602a2ee45c0bede106e9b82aa7002782e05167280bc96932a57fd6b6246": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:33d931e6b0360a03af4e3614b45f20a49b4c97154a88c61987454be9ec3c8a5e": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.boundary-refusal-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:347413bfaa3e236f72f7035eb4470dae3378e487bddb316e2733b817bc932873": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v6-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:35f2a18fabf59252365e9c3d13f394f66e3aaa3686f972fed68ecd6eb20d8ef5": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix-early-queue1-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:361df078a289ed550d1160af690e4be2798322bc8da996430ff47ae205ee308a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-preparation.commit-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:36d28410618fd3499f780f5e1bcc0e9c16267d864b1c493705a2aa76de058ee0": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "AS.world-history-preparation.focused-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:36eae3e4f00f602e16b3775f1a59ce4d040a17e155a86df78fa9fe5c0180d70f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.snapshot-verified-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:3737a739b221267b569a9d12916fbe93474240a69c9be4ec3cd5e23c104e82da": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-gpu-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:373e7c10ea55196e79ec89ce8a31fe92c2ad84ddeb3f8c1eb25147033df98686": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.pilot-replacement-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.cpp"
+      }
+    },
+    "stale_evidence:39d542c7f9a78700019b83e2a5af96e8f4f2235dc69ae56890af7b9898a4c7b9": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-comparison-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.cpp"
+      }
+    },
+    "stale_evidence:3aef3065084e7657ad3b01bd24f085cd7c5140c2fd6d0505a97c89c8bdd2fc16": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.instrumented-replacement-20261009",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:3b52620d0cc324ec0e127952eddac22d8544f5d7756aa76db17a9366c507b06d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.live-gpu-current-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:3bd58ed38df68a06dcd308459fce869a2a7ebf1cac8e4e2ff443ad8b2baea985": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.cancel-20261009",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:3c8bf9b58cb1be8f7efa908bb53d970d5e6f038007c2a9b51779d8dbf48933c5": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.batch-regression-v7-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:3ce14703ec09e4bf8568f7cd545321789125c608904de2cca1002be699e2d6e1": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.boundary-fixture-diagnostics-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:3cffd1e783f59d19f91d861467e77afc45069d3ee4f18e70b1e10a124ac39430": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-replacement-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:3e147828e093e20a32d41b211cfd73ff1843d7085557dd286d10c66c28703063": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.portability-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:3e87de09571b90624d92d6dd21f553a10f6753faa64ebc3e61700c203054bb84": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.native-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:3e8c329eaf33994972f0694702750e9db12339005cb7ce51413e7f7d7a81975c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.synthetic-20261008",
+        "source": "tools/run-native-world.py"
+      }
+    },
+    "stale_evidence:40634970ba8fb6c14ca0a6b55ee8c4e4bd897247b0ed1c6bf30aa1dcdd1aada2": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:40ba426aee36d3e049115dc7bf2fea93182abba101a284c62da597bbca44d898": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-boundary-native-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:43469396223e88c85b2358c888da948d008f826bfd8aa79a2cb8bfa2585b1314": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.pilot-replacement-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:4432640de127ce598a73b994f3ecf5752ebbf632ca4f95a0f7726e58af43bf1d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.complete-20261009",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:449dd221078f10526439b46ccabe31be294f474f038d731f4d9fb5686d35942f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:44e061368093ea6299def5bb7e784be90102ee592f6fa7cec4bcfd418e8c21c6": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix-early-queue1-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:453655c7db3b9e9e49f28e64488476fa792c011ecff08cb255d7646843b6c9b8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-live-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:455472e80fe3048fda02e9c4a5f26f94880b350ac8bf90ef06398c5a407e56dc": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-live-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:45c8bd53cceedf38acc1602e205ae3daa9920ecbfc0bbe55b1d3708f5edb2f85": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:4648147c6169813c4119fb9b5aa88d9f5c3bd89877eb0068612c3355c144e350": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.abi-gpu-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:4675d65cab2d11fbc65ff8e33af59cde012604a87de80b6e2ae4c0ae2763d44a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.batch-regression-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:473fcb40a1b0641aa178848f7ab6c255bfa53dd3731ce52083b32feea7dd59de": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-live-v7-20261008",
+        "source": "tools/capture-scene-game.py"
+      }
+    },
+    "stale_evidence:474ac2cda16b32d57828cebb2782d4783d123172fd2d681cb16728146225b00d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.live-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:48332f89c712f8f9c676c41b198b9d5728f417fc895c3ea67ad6711fcc6e6d25": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.abi-boundary-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:485377e158714d198fb24f9fd7368f93bdaca16f893993f385fa29ef22a44e88": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.boundary-refusal-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:491d97064e872ae52c9a551cd640ce730ae26064dda1e3df884e75183d51fba5": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-live-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:4b1d7282492d157f222ab3017c3b6a6f6000e37d85dfb5eca8b4040dda5abeb8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.portability-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:4bef0ccca2b1c079b0dcc04c4f4fe249189200bd778ecb371854a5b4e2341b00": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-preparation.commit-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:4d5c6e913d75383509cc25699573e35934737f6584b701c435d3f052d3ea7bcb": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:4e6a00b3590fba99ee18f4ded5f491836d619ddc85181312a15775eafd420b0e": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.pilot-replacement-v7-20261008",
+        "source": "tools/capture-scene-game.py"
+      }
+    },
+    "stale_evidence:4f82a46d39cbc0796343f719dd240de856e7c95bddd08ba3626a6889119407ca": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-replacement-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:4fa34290c94827d8c4a3b54c6a18f3f0cba8f7579fc4b63f26b33e1d0582819d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.live-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:519debf3dde04b089a4df35f06b7416967a430b885f844351f83e96ed45687bb": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.boundary-fixture-diagnostics-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:533d36283b028e971e7a24ab586e31d37877aeca2e2f1dd4f8dc63028bfbe011": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.kind8-regressions-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:542d891747e71e5f83523d66a7d293ed71889426af0311cefa9c9c062a80d49c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-gpu-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:54875e4354bcdf3049dbbb67edba3615947b94e069cb4c3ae76e99270f79ae5c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-replacement-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:549cd5016da6f1b33a8bfef4b3aae10a26c70342bbbf603d89ea99ebfbf75ac5": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:5644ee0841553869d1414bd625ab17d68579a9f9c81ebf6ddedba7e329f4b81c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-preparation.final-drain-synthetic-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:568d8bcadd89db30b1c809fb69064f4ec2b0c78c756be567c364354e18ba2f27": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-comparison-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:56ceacbc1e558f2ca0b8393463b7ef11abd825719f8aa5e4a0a8caeb5136368b": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.cancel-20261009",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:572ffdf901c6cc24fe972e5aa74f340722d7fddb4fa56b5d54cbbab56bce3b0d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v7-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:5737193732697f321722349ba3499df56281285cd31989870225d1b0497928bc": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-gpu-current-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:587dad73c62ff17986e64467010272bbed5c541aa3fc48120fbfcb136f870663": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.abi-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:58cae04e011dd25fc1c014a206f8decb7bb22281eef0f1c1ad9474d53a1ba14e": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:59ff8bdb8fec3164fcd5189d0b1c6b5f08f7edf447c069b82d4010191958deb8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.abi-gpu-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:5aac00e29635c6be246a5bcf7a31ccff4483fac2c007097c418a2ffc5f9db7a2": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v5-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:5bfcaa0038cd32d864f971a5bb78e2b7f8e8b0475be42dda1d26db4d51cd7cd4": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.verified-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:5c401805057aaafdc69df3dd08af6c083e7d96027c1ba8597067b5e3e4d9b67b": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-native-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:5e5d78872b5aed3e9250538b65503a3cd595e68dce1458998cb116560efe1ad7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.snapshot-verified-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:5ee00a2eb448c37e263fad7840804a8d49a710948313a3e3915074d961c089f5": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.boundary-fixture-diagnostics-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:602ccc63b8782c50a58c577f9fac1a6d83bfafb10192c410a128d8042df603cd": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.portability-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:617fc3cbc8946f36fb9a2b497194b6608e4447624f06a15e4db6900047a12ed2": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.kind8-regressions-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:61ab5b82bb86de4d383879f138a7ba89f68cfcbf8731a283ab6fe47a3781fd02": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-comparison-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:6292d648bb6c7c23aefd0618d534ea2162032e1eee5d7631e9dd7774626e21e7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-boundary-native-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:62bf27e695ebf81fda6c75914f72d03b2c1f5c7a9f9c6a3991df941f2a364195": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-gpu-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:64126c288093582e003558e4ce1c29fe5ab4e1b780421c3e4c7d269362d218a9": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.original-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:642cb680d35b20779b5a8d376656efffb63e2d3388e1a25ff133ceaf3fcc5f34": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-comparison-v7-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:64373eab77fea54493ddfa58fed12c0380bfcc89a64364332a463b2c0ec26a51": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.abi-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:65e2db668281c96427dec4ef243bb44019cab8f5dbc479582c1caf0bb6f51f1e": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-live-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:66726c1b14bf103909263ea3e1fd8a306db9c4c1c0281e7023c8a1e26cebf490": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.normal-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:674b2f32572c9b101afc44f82bd42b63daf1bd17d043db143f4595843a083089": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.native-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:67f6bc45b463a152d441451b10ea1ef4c6949d09486ab272af4f6c8addf686f1": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.upload-preparation.synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:68d3c60ee55ce6de40a233aeb3e6ef1003c8ac4b6412808cbdc53b6ba043dcb2": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.cancel-20261009",
+        "source": "apps/qt-shell/canvas_producer_session.cpp"
+      }
+    },
+    "stale_evidence:6950e1bbe7d3d4f858a95825b73d5060bbf47365f3677291ef36e4f6d1c42b37": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-sequence.native-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:69986b1fb86b0ec49555aa06f2e43ac35c6bd91fc385c2248083e5952e805722": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.manual-refusal-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:6a6c616d1539069afb3381551d6331d15b9300dac6e76045b3d0039505b3c26d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-live-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:6b91c0593e9f5f503977e150400fc250875c94bc2bdfd8f828f68130cb2d20e7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind-diagnostic.map1-live-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:6c9f58c9890f9dd8c38ec9aa1fcf9521dd2d7cbc76ee8be4fd491e2d6933ae9d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.live-gpu-current-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:6e3fe322ef15f6df7e195724b5e8dba582f0954f6338a3145b278cd7231c92ff": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.live-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:6f34589101f11c06f5c6c831775e120986e78c7cd0f8ea60ac4c85379a603b20": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v7-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:6f80fd83daaf383b8a45005aed6a4557ca14fe2734a13b22af3652dc8db3f96a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-comparison-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:7133846003560e19023e1129ee2d13fc4c08066139dcffaeace454270e9db9ea": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.live-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:71a509d31482107b449f1f5ad0a943ddc853e881a5c17b62e704707017531b6c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.portability-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:7274d22279d9e0028ba6f3ebca732b70973465bb5596c0c04a4128fd9a56ce51": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.portability-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:74077a7381fac43c700b56ad6ba85e37a668e3929000cd2d90d266d078988578": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-gpu-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:742b53eb56063fb6871386ce0679637bd7d2f45093a9b7fd2059ff8442b5e7c9": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix-early-queue1-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:762ab9c1ebe354dd1825bca8e16bd2f5323432e47602098cd624cf5321661df9": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.native-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:774f3f900fa1b77407572b9a8566afa94353d9e2a55ff96443746a13abd8ede8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.pilot-replacement-v7-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:77e7722588ebf219bf3aabea71be081e008889184e27dc97a8332146c8dd62b7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.native-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:781fee7ffe57c24a771afc8bde13562a7f878c106fe20d6fdd9099ce07f2a2dc": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v6-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:7865ca9f6bc1c14eb733adcf7c39a7b9a282e19441208e00d2a53c1798457fe7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.verified-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:79469208910ecdb649d262c762751c31c6c344f5cf44f729f40646b9ef300f28": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-gpu-current-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:7951031ec13c00310dba45f7bb8eb9e5fe2779e67ce3e9a97b3887cdeaa25dde": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.complete-20261009",
+        "source": "tools/test-native-world-batch.py"
+      }
+    },
+    "stale_evidence:79ca4d24b2033081e9c988c98d4acc197c647edb076890cee4a4e985e0c72611": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-live-v7-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:7a368c3b8f061120e0dfe09a2730ebbab71969cd507291ea30360d30add17619": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-boundary-native-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:7a76262f7fdaa9c4a914cac29db066efa995dbe3890ab32e9fea9e7766a6736d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-comparison-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:7a81454df6644705bf3f4a428544768ffd2b463e051c2d0590f7d21515f8b632": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.portability-synthetic-20261008",
+        "source": "tools/run-native-world.py"
+      }
+    },
+    "stale_evidence:7affe384578d571eaab87ee48cf81d101363e7fea774483437f0ddaadf209fd7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v5-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:7b50b64328558e713f30bfaa9164f0a68e5b1f90145ea0f5987d817453b463cb": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-comparison-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:7b6d4166cddbf875fe990f2dbd5d145141a144658d6c5c011a3b7c6534896aad": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.commit-regressions-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:7b92153cd5a49021e69adcb61df2002c4feee2734141112c29dc65c769d99c61": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-comparison-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:7b926685123cd91fc6fe90995dc9c33d0556345295979f784a882dbc3636c8bb": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.instrumented-replacement-20261009",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:7cdff3de4365681794111d9b5f55b460f622a64b20365ff7c9e8b3ca88823954": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-live-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.cpp"
+      }
+    },
+    "stale_evidence:7d33b494bffe8b78964caecbea4652e5efec3a0d5d57bf5370a9689cd751d767": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-live-v7-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:7e8d8b7bc1ca652bcaa91d379a6a999b9621205e77ddb07bc72c0a8e9659d675": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.first-canvas-refusal-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:7f734daab687826f2f95d16a7a7d47beefbcd037c1459ea35c551a8d861fae69": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.instrumented-replacement-20261009",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:803919d4d0b89babf543aac1749e461459e2b3f0592697330853806a495417a8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-replacement-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:80784545b4768a2c7c34c4d8efcd65da5f3aed48d6fb07aecdef4ec9970038d8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-live-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:825025d692ac7e4bba581c7557b9fe117a715c1cb10c1ad2e1126444bc1753e7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.polling-interrupted-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:82b9e54e4c815886360c265f0913cd54d4109e7f546071a82e7bed145f90d6aa": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-replacement-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:82d02c79d77f10801fa3099a55cc6a302e57ebdbc6a492b68f919fbea9609f0e": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:8524b2622233fb858dc25dd59a3efc2ceb4f5f9482c48a0a54880a6a40d8dc94": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-replacement-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:8533efdc068b70ae3a7a0990265449fc3b0833eca3b364c2497f4cccc73f2282": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.instrumented-replacement-20261009",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:855a611d4ad648505ee800bf67b66c47043308268a6c0acad3f315278af3ea75": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.original-final-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:858e698da36724f96e3a5217a16fb946e17ca212a581c19a2c114d6d850c8a10": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.normal-20261008",
+        "source": "tools/run-native-world.py"
+      }
+    },
+    "stale_evidence:879241c7348d1ed0e08d121696194d54129eaac0763db9891e5059bd6ca1f901": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.first-canvas-refusal-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:87fa42ab67c60ecd5399d76461744be6d2ef75929f497000fa7eb9cf5782c857": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.portability-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:891a5576c36819d1868a71d80dad4fbb593033e3872ac7b42ff661d83c9ca9c7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v3-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:8a04f7f48900a9d878dfabb9ae1a9b8fdc39d3d3e12ea8be9df57f2e111cc102": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-boundary-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:8cedaba04b58ed35f75e2d3f2c6d2e1c668d8c7c93d091850ffc9ad7b5f9a318": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-live-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:8d16173c15c8327e8ea527e9340f10fe20b8d4aa68179e609de6189117f55b52": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.live-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:8d18f546f639ef66e7024a75ed43c6c409d7e35cef79b5ddfcc24f7b41a41e4f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.commit-regressions-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:8d48ffbdee6c0b0df87c12a1b3755e6ba589c00c30457cdaeabe58ef1ede30ca": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.live-gpu-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:8dae0e0afb44df32f7b80b79a27c49842fb7e641053f7a07f394918215351164": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.abi-boundary-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:8f40d05f4c1501ee6951c293febcd78c8375f11bde84f57dc4f0f18e34f315d8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.snapshot-synthetic-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:8f46f9caa2b2feaf37fe71d40d038d75c116b5fc1d6c818af8dde5f458b7446a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.complete-20261009",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:8f7fe35d54c44bc85ab8ef70499cbc0f6efab3c0b004f577b548aec34268cc08": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v3-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:8fce498c73dbf0408b4dcd6580556e880d60bd4b0eeba3c81876be7d49334ee3": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind-diagnostic.map1-live-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:910ec1fc8a8b84351590880e4890a219263078dd8a72631192715ecd223026c1": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.cancel-20261009",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:9131c8c7650495cf2e5c370c6e1d9b32d94dff723b9604d4f4578cd4b69afab1": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-replacement-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:926c3736b3f1dfb0ab37f10f33f614d2929e3216bdf4c5e77b56070bbe47714a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.abi-gpu-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:9277ac7e7f302a6ba15417940ffb25dcd9109fd846deff53129d603e8e015436": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-replacement-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:92db068d192e2c933793973c437672d126445025779a84272a20ad085ec6e668": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.normal-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:9369bb6e5b714ea41f820d7b69710b87470a2af4fd3b63dd8e70bc0c5703e480": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.complete-20261009",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:942ef8c11c395fb44d5aae69ffbca7d9705cb927b207b7fee44b0d00a043390d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.original-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:94b0686b0e10584f83086df137f7afb5543bea20b98764318f390a2b669f7797": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.verified-20261008",
+        "source": "tools/run-native-world.py"
+      }
+    },
+    "stale_evidence:95a42a09c4f892e7d86c43ced37476ac0c69cd387a8111b9c791568fce0aa6d2": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.native-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:95c191420a6c2caeaf92786558ea94ce24875632e0589662c95a4e9a81c04c19": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:9615918033be65e6c006b27c9cae79b0ae9112465e9129f698ec3468be8f8e21": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-startup-sequence.original-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:966e98305168fa4df1446fc0d370c135582097b6747bf00d5943e1a58d58b344": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-comparison-v7-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:98545aa687018d68fe090a7fe46dbc37087930f36788337d8e64fcced8de409e": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.synthetic-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:9923180fd7e0a0d96861735ddc41c9ad8782698e82e8e3eeff5fddb59fe6a21a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.batch-regression-v7-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:9a6359146d98b5542b39ede6759ade44f06012d632f914bcec2b6a4a26e97630": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-preparation.synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:9b383787bb4266c1d54c4a0131c4166ef65f2ccb6c5624f7c85a5191d0599ad4": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-gpu-current-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:9b8a1b253e383790fb425daec6fbb5422270a6474a6585897dd41bc9d322c2b4": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-live-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:9cc69ac5ebef37bbe8fd0f99c805760aaad0730a202fc75fb25231baa2098139": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v3-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:9fa1c4cab5381180629d5b1e56388f5ab81ba2e79483409207a65014dd11e9b4": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-boundary-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:9fb8b96e1902ef37cf79770664c7ee98f82089366edfabc419fad6c04ce7eb7c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.verified-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:a19708d487d9b32207fd27ae1da8605b842e11a124ab0a409e6a07ad2cab487c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v5-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:a20ce76d6a6b3210c2a034bbed9159b6b458a3fd8e001900015e8e41b2aa5281": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.native-final-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:a2f423d7b27914e4214c4a853590d806aa74948ff24afafcb250601269a7f2c7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.batch-regression-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.cpp"
+      }
+    },
+    "stale_evidence:a364310aa4a695da4b252ad34373ebb120b0d93e9a3904fa6460c7151ad43258": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.live-gpu-current-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:a39f373aa70014e94f1f424d0272c84a2a1609cd148297cd9d2918a424e51c2c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:a3c9d10f3c27903b0522edd07ed26af89f2cbe7f559028f8d8593c571b27f77d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-startup-palette.negative-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:a4bd30defbbcfa8cb1de95dc48cceb283a975c23b2e79f48ae5f39405b1afe81": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.cancel-20261009",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:a52c689547a36bda369a1767201bd858e29281e72361a15d6d78af6e6e020b5c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.pilot-replacement-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:a7d28c2c157bc7230a64bb5b299122a8d371f7a34a09aa5c085b6852373a2602": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-gpu-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:a7d6841540732aa5c2cd5b26c57ceed4ce32feb9f96b7377a3b984fa920ef0b1": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v5-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:a806c84e12752f96f396821eab758ea85f008eb01474fcb952071cd92fbb2543": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-startup-sequence.original-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:a87e22a40c6f9746fb1bf8db138fe3fc20f3a80e62b6e3ad700c6eea77a3572c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v3-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:a8e0da6a692e4027c560947dfe2aadf807ea7a0322b7c278b9e9c5e4860469dd": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-preparation.synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:a9fa6e90858ae2d17ceffb693c3c4e1b898a90b81034d448323ad20879a6e36d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.cancel-20261009",
+        "source": "tools/test-native-world-batch.py"
+      }
+    },
+    "stale_evidence:aaa42ba986e6b0d7dc439ca91378a3ba9060032e730c082f46f97a6f070afea5": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-startup-palette.negative-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:ad472c9ae5fd6c7760cbab4bbd4edaa66de7a4073e5fbd14213a2ac06a46ff32": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.verified-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:ae3b6f8081890a978a4c1d99a9dd003ea779cfb52158175bed17135d3124418f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:afe196cbc46c83509ca1594b50b630396792513efd668eb448cb4a5c89c8a177": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.upload-preparation.progress-synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:b09e90b43a9f087ce2996d4eae63d5bbd3f0951f9690472f5b9db1d3ca9425f5": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-comparison-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:b14ddfefc6884937819f429cb64fcebee08f9722a4fabd682f55d869376f52bc": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-boundary-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:b1e84f526dfe6c9708cac46d1c191a869d8b9c43de6e30de977868fcd3b4a69f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-comparison-v7-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:b28c866e0bf666f9faad3b95e738f00b402c564af259820acef3e8eaf1aa729c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix-early-queue1-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:b3a1ae03ec88b849be3f58044962f0dd7e332cc4de52265f83f620b1845af78c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v6-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:b40b978d25c0d302cda91b96d525bba0e1038884c03e7b0516dddc6348dfffe2": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.live-gpu-current-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:b43c17e61ce65247637b67667001df6fda82c4d7abfdc1007bac5d94eb6e3a4e": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-preparation.final-drain-synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:b756262c779d5d0df1f29ed09d06ba1307878eaa0b005727176f07511a5eec64": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.native-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:b774f34fa272d09eb31610e3d4bc95b3fd566f85af74b3cff09aab62443e3f57": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+        "source": "tools/capture-scene-game.py"
+      }
+    },
+    "stale_evidence:b784a4b828d21c6d4432e3dabad48969059bde113c60439eb3218a84bdbb37c0": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.original-final-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:b7eada472d8342386d47b7beddd9da788a8712be5b7959cd9c5b34067e13780a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:ba517c93af38dfa15e9af02982b50fd9646258bbe4fee8f1ac239c8cd992d435": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.normal-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:ba5fa70b4813b10b5128201001ea33549db85b14c53ddb1ee31130d18dcc97d5": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-comparison-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:bcb9bb450abc705c0ee5e9cd6f2a2c529e2b0e616ccef3af8d4452c4f2ed9c4a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.abi-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:bd6aa2973755334355387c89248064a47b8278addc5864eca24ad29f949c1483": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-preparation.synthetic-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:bdbd81e462ba62e1260293c78424a701bfd52f1ad27f6c0f8f33bdc8f0140527": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.complete-20261009",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:be31e1c9c3dbc58961c5e9eb5e27077df9b05381de8d51bd4d5c20a9ec0c30fe": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:bea6aa128fb8168515c469002a11bee38771ad3f75fbef06e555432154ea0c38": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.normal-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:bee8457422d5efa09c2d0e4e26c1f30b39c1fa999de38347ecedf5515f430bfc": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.snapshot-normal-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:c0fbc506b1a5c04dbf8d861dd2c6d7bf8aec54f4d31aa872ca9cb915f3a0c629": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-live-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:c17d445cff01bab99b409e00057bd0936c4e484a080ea78dcb43076bb198ca75": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v5-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:c1efcc0ddd376a99188ae1054a257d7cd4444680cbf4fd7da8fc424903240187": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-live-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:c209bd0e7677f59b9ac96044a72cc02a4a693f51ddd22e43d5b2eaf4019739a8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.verified-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:c290001a14f53c0bfcc9c9118efb532e70d969e665eeeb8732a365b2220f8368": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.verified-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:c3ad3179aa7e817ae7795238cb292f1cd0b26209de913112f73efa3d0d00a4c6": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-live-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:c3e5a03c163a3c8177da6dc4d4a09cf7f77255260765deb9370a555ad646b735": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-startup-sequence.original-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:c40c4748dfac7beeeecd6e504325f8a2c76f1b281dadf669a05214443490687b": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v3-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:c418775e20bce9a661ae226bcf490cd0f52191463614b9c5e6ad458f61dffdd0": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.batch-regression-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:c5548ab199c4d343e5949d7360dc4ce568b97407a7a0c4a319ac6d9cc6c9ffb8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.pilot-replacement-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:c71e6c8207f8d443207cb0ea2d07cc5d7fa005122113f232bfde91da439c4b72": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-comparison-v7-20261008",
+        "source": "tools/capture-scene-game.py"
+      }
+    },
+    "stale_evidence:c7310dca4892054278c517cc37faef2d13520f8b369f3eef51d04c190d2e25e9": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.normal-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:c9b7d48b191669f7289139b3e1f095fb49286b3d4c590e1ee4540fa6834e03c0": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v3-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:caccf3062a42e529468640ed2205296be933a6b836d2513a73fb7b14e51df250": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v6-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:cb4eedfb2d1c471daba413d1e161134dc893c360c447f85774b1046282641d8a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-boundary-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:cb5b84b0e45dbbb823dd370fb8e15cb5acd683d43812752e99742341aeab5831": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-live-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:cb65d03d3409579e43ca18baaff898df4567c5f56d3255917e1f3af86be845e2": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.batch-regression-v7-20261008",
+        "source": "tools/capture-scene-game.py"
+      }
+    },
+    "stale_evidence:cb9ced4e9bf229dcdb84357dc7f629f5517bf9b061d7a118ebdeb5fd8aae5d5d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.verified-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:cc4ba0bf28b4b6fcd5aa4a6eb9862f8387004b87d747c290c2c61e63f9e22b38": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.kind8-regressions-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:ce33794677c1a56e4e697808ecc3b3cfa148c2cc9556ea46f43ec2a91d30a07f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-preparation.final-drain-synthetic-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:ce86487809cbe87548b7cf1e8b4176b53a86cb4278b1afef269a20d13288cf8f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind-diagnostic.map1-live-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:cea9bfc7b110b81a4a45400a2845124513d16d6885b58c4d3bed0183a0f1da5d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.boundary-refusal-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:cec94c7d426368ea513fbf366700dfd91a7096a2f69a3e37631f7303b83aa57c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-gpu-current-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:ced2bfe6922df311dff5d2c2b92bcbeecdddfe6c27735002f51673cf4973e5d8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.manual-refusal-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:d062df79c18bb481394df2e59e142c103d194179b2d4f39e82801a13c4cb4ba1": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.batch-regression-v7-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:d2609d40ff2080f970013269827732f140d2c9c2fdbf379976667640924345e4": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.manual-refusal-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:d2f53af0e1d55f831ff6f6e4777c2c375cfce9bc72ffd579398a8d8fd7022793": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-boundary-native-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:d3b8a7b330b6bec011abc1fc9a66bad9b4976759e32bd8a74746ebf6d2b1f314": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.snapshot-verified-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:d4612a7d47944f527f5571191d0b4f38be26737d5295919fb51a3c4bc7bae9f4": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.boundary-refusal-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:d5179c05b8b5fd0798d8e524675b39cb346cbd9c8940575d734832a224c12bc2": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.complete-20261009",
+        "source": "apps/qt-shell/canvas_producer_session.cpp"
+      }
+    },
+    "stale_evidence:d5c13a44b37ee5c0bad2e2ad48290cc804f1a2d2f9f4849c3092e437747fc8ee": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.pilot-replacement-v7-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:d5f0995099a0dcd58645dd60d7811999ef209f0e1d4c49a9fbd7f76240dd33ee": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "AS.world-history-preparation.focused-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:d68eb8cfbfed233afb7e4aeac24a3d0b3868dbea74cbb259af155356ca1f1f13": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.live-gpu-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:d882af7fc02ea95c712d2a14f5fddee111f970dc31d3ce56b275b65c316c949c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v7-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.hpp"
+      }
+    },
+    "stale_evidence:d88c16a81fbc1bef5527c98740a62c2e1de16b2c7cefebb79292d550b61ba1bd": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v7-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:d8ded9e6a337188b1198024b5058cdcdc3ead08ccf26772b5f9a7fe49222fdec": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.manual-refusal-20261008",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:d921345561ff1daf5fc3a58c2357df05869b28adb7e06de86e2ac1eec30d1e0d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.upload-preparation.progress-synthetic-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:d97576b0f81827271232d1311ea4a10765802a4fdfab9e8646ae217e583a9063": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:dc422dd4d518e1e6b56f95e118ae1fda2ca7f252016dd6667a791e349ca6bc94": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.polling-interrupted-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:dd16ff2d2cd72be9052bd32310bfeee6073f652b343741756f542b91c8e1bcc8": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v3-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:dd55f81fe541518186f5819b50e5d154112754a9e108eea6d573b42a30bb3918": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-live-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:dd82fe393b97269b207be0f51e8bb94065d0c8d57f44c7468f480e0ba4f89839": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:dd9c280e88a1c48ef79484d7ea382f6ee0cba99a85f417865892d5ba2c9e830b": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:ddc883dfa88459aabc9c00f277555ffc3a0b64e28d953170000a751cf0336b81": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.portability-20261008",
+        "source": "apps/qt-shell/canvas_producer_session.cpp"
+      }
+    },
+    "stale_evidence:de1e13dd2a8e746b2d16514f322de39475dc7f006840fe3c407e1147205e0d5d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.sprite-atlas.kind8-regressions-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:df1a4468b9763cae5a84b9236cec7c4a954673afd5068c884f82c0773ef79c4b": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.portability-20261008",
+        "source": "tools/capture-scene-game.py"
+      }
+    },
+    "stale_evidence:df4411b669a427f0f91d13384b1520f25b8a92e3c109bd20b360df8a1fbf4635": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.instrumented-replacement-20261009",
+        "source": "apps/qt-shell/canvas_producer_session.cpp"
+      }
+    },
+    "stale_evidence:e25b54abd9c14876bdf25ac2e4a4c689415de95b4cc8c32fff8d582485a55c52": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-startup-palette.negative-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:e2a31b3dac140a776196f7c81761a3afbfa4ccda9bb40844ffaf94d2dd051434": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v6-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:e364f4f4cc40730ccf3c438c955290722ee22436feecdb0e869dac466290e6a1": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:e3725b60cab84a91a6d02c6ceed7409e6bce8f63f9abadcf7ecf5f92020a3103": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.abi-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:e43c5296c7cb0bb16b1693c2cc64e1067bc714f0a24697b3fbc65402b6df9aca": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-gpu-current-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:e5457ba286c2cc3edb230ccd24db25a5328364288d534e9eca0210d14235b430": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.portability-20261008",
+        "source": "tools/run-native-world.py"
+      }
+    },
+    "stale_evidence:e5ebf73ff074ab424e6c6bec99c4bba1ef4c75c3ab5f58b84bfc2a628d06af0f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.abi-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:e6db1e782625557c21dccbdaef73ddafc53179acafd3cb8aab05cdd9a0ccca85": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.live-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:e732e009761c05363cd15120448cb09c215c301a41d855feaeac592033408285": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.complete-20261009",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:e8eaed4e8b39ff02648ba183de7c5a39f1fddd7f309553c229588e4ef8aa009f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-gpu-current-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:e94bf68f782f5e0487ec89ea2c543aec483cc6fbd1d468c4093f7c9c92009947": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.verified-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:ea4a31831ee6e6c81f770d4d354cf23f53921510a1e751f5d0cb491f4372c8e5": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.preflight-native-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:ea7ee87babb6acaba4516600466f4a01f665d7131719061342fb596554dcda0c": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.cancel-20261009",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:eaa1bcb82b12081eb18115bc73bc5a5fdd00da242adf55e00b505ca9d24f2cf2": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v6-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:eaa515a006bb331befd317c94bb7f8be72f3b7fb77213807733e72ba263efc34": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.prefix16-live-v7-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:ee215a1d3b4eb856983444ae800aae5f6d3762c01a957795690ea9d2c2fc11af": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.portability-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:eed4878de3f520d1f40f5f2cf10a935a49ab421f0788a9596ff068779f82d0ae": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-raster-batch.abi-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:efaceb1baae078afecdfd0bae815fa01b5ed4b255ce2e2050b9abc453cae7d8d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.instrumented-replacement-20261009",
+        "source": "compat/legacy/canvas_world.cpp"
+      }
+    },
+    "stale_evidence:f0404ea6ad20ed8ab3ae2ce72a0a0e34bbc1eeba5293b9c10d507ca1120f1a6f": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.abi-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:f0d2ad22e918ac0a2dfa7721d9ba319f993939e383f0323290a377b7880407a7": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.original-gpu-current-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:f1be1ac9dd5868114d4ce00536373970ad098474974ddda4d0354b1d25294b46": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-interactive-batch.cancel-20261009",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:f1ec2e0c4d1d9aa642104f635507e53c73bccd45a055cbc34a305e4113688622": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.abi-boundary-20261008",
+        "source": "tests/canvas-world-test.cpp"
+      }
+    },
+    "stale_evidence:f29fb032e1033807b0aca7a037b4232ab0bf1adfa58d5518e6913e9449614d6a": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.queue16-replacement-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:f39e1c1738a642b34daac6db15b6dece51ed3b7cec2108143b5207a7409749f1": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-kind8.native-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:f3b3f72a16fc5e69552589dcf0760e9c8e1674febca12aee2f2decc02baf0da5": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-queue.prefix16-boundary-comparison-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:f72306ede3686b7974627c836e4998f3fd7c7d689b051ee2481bc7837f9fcf94": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.instrumented-replacement-20261009",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:f784c2c9629f6c38805fd5f4c31772a59ad29a9898dcce9eefc8923ad912cc8d": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.manual-refusal-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:f7cae26fbc408b27c5cdce9192efa404333809b2aadee1887de07efdab255681": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-startup-launcher.batch-regression-v7-20261008",
+        "source": "compat/legacy/scene_snapshot.cpp"
+      }
+    },
+    "stale_evidence:fa4092a0488a1a5740ec6ef037f6bdff0a908889a3fdeeb22569ad83c4643e6e": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.live-gpu-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:faf3d8d1a0290a26b64ab321177b85c89607d783d07d6107f4e00f3448f0bb02": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-producer-bypass.live-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "stale_evidence:fd4de3584cfc9be442d298322bf31210bc5523dfebda0c118ad1cbfbb35d52c0": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-live-history.snapshot-normal-20261008",
+        "source": "compat/legacy/world_resources.hpp"
+      }
+    },
+    "stale_evidence:ff886ccb8fb6c65cb428cee5f6aff1efedf862dea03392ce9b4c500326555cda": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.world-raster-batch.pilot-replacement-v7-20261008",
+        "source": "compat/legacy/canvas_world.hpp"
+      }
+    },
+    "stale_evidence:ffd88718455c483f00c5c9182c1c264cd229dcddb0e64e2edb1e7f3f1472c6ab": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "NR.world-producer-handoff.headless-20261008",
+        "source": "compat/legacy/scene_snapshot.hpp"
+      }
+    },
+    "validation_gaps:154e933f257397b5354a795e892f5c4315a3d1b4f88f6417c46bbce278cfccef": {
+      "kind": "validation_gaps",
+      "identity": {
+        "behavior": "AS.resource-preparation",
+        "stage": "implementation",
+        "limitations": [
+          "stale"
+        ]
+      }
+    },
+    "validation_gaps:47630b36e3e39759a051e7f79409be3609b4a814b537fa2422647aaf57931b11": {
+      "kind": "validation_gaps",
+      "identity": {
+        "behavior": "NR.world-preparation",
+        "stage": "integration",
+        "limitations": [
+          "scope_changed",
+          "stale"
+        ]
+      }
+    },
+    "validation_gaps:47a638ea4ca6249fdcd43c86e2647b1fcc59d044fe3a602be9825767f78a12f9": {
+      "kind": "validation_gaps",
+      "identity": {
+        "behavior": "NR.world-startup-launcher",
+        "stage": "implementation",
+        "limitations": [
+          "scope_changed",
+          "stale",
+          "unbound"
+        ]
+      }
+    },
+    "validation_gaps:4e3596c02c09c3581d0260c7fe642a8a5b3751d362ac8e8c19da1f3359388aab": {
+      "kind": "validation_gaps",
+      "identity": {
+        "behavior": "NR.world-startup-launcher",
+        "stage": "integration",
+        "limitations": [
+          "scope_changed",
+          "stale",
+          "unbound"
+        ]
+      }
+    },
+    "validation_gaps:6552448daa448e238be65b36e3cd7b0e14401251af036e856d07af95f9e8d956": {
+      "kind": "validation_gaps",
+      "identity": {
+        "behavior": "NR.upload-preparation",
+        "stage": "implementation",
+        "limitations": [
+          "scope_changed",
+          "stale"
+        ]
+      }
+    },
+    "validation_gaps:7e521af8c1721d0048808fff9bf26daa08655bfb049146a7224ef1280ad8f78d": {
+      "kind": "validation_gaps",
+      "identity": {
+        "behavior": "NR.world-preparation",
+        "stage": "implementation",
+        "limitations": [
+          "scope_changed",
+          "stale"
+        ]
+      }
+    },
+    "validation_gaps:83550be5b6d521281146ecfc3e1f23d85e99023fad362de906fc7110db46e7bb": {
+      "kind": "validation_gaps",
+      "identity": {
+        "behavior": "AS.resource-preparation",
+        "stage": "integration",
+        "limitations": [
+          "stale"
+        ]
+      }
+    },
+    "validation_gaps:a3ea7e3be1883a3b61fbdb12a3bcbb167cce5ba82ebc3141b25568ee9d2fcc40": {
+      "kind": "validation_gaps",
+      "identity": {
+        "behavior": "NR.upload-preparation",
+        "stage": "integration",
+        "limitations": [
+          "scope_changed",
+          "stale"
+        ]
+      }
+    }
+  },
+  "missing_transitions": [
+    "research/runtime/native-world-resource-reuse-prechange.patch"
+  ],
+  "unresolved_gaps": []
+}

@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "reviewed_range": "b0bd799..48c2638df69b85f4209f209ce61134bef7f782ce",
+  "scope": "Retrospective committed-history accounting before committing the existing World/minimap research workspace; no past gate-pass or renewed behavior validation claim.",
+  "transitions": [
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "compat/legacy/canvas_producers.cpp",
+      "before_sha256": "5a0c4a59b9add26bbe70c25ce44582a4eb1758626a389c1134d2d20ed97d7a26",
+      "after_sha256": "1407882370d14c3f0c16382b696c4c5c4bd8d39d4b5048a57b7b53c641ed39be",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "compat/legacy/canvas_producers.hpp",
+      "before_sha256": "5d10471819f2805134120122b3b778c83060ae8b6de17a46bd1a35cb5ec7580d",
+      "after_sha256": "d5f20bd5df0831dab2c6c15da53cdfd1712f0f0b1fae27534c41b7f8b91d8148",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "403679040f2f9a087b28108ca85ccc8bd7aaac99598cf7d60771440242cb4946",
+      "after_sha256": "94aa14d12600e857b9b4868e21c79b48f13c9cee0bfef796db7c67dff1d0415e",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "bda18624ecec1c3f7089366c2cb650570994b313106714f33a0951cc0c612f26",
+      "after_sha256": "498891851ccc2bd1d15269fdf1b67b4242cff0146df94c2aded9afa91426165a",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "research/runtime/coverage/committed-history-before-world-cpu-composition-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f43e20f7492f122e5be20bbc0a1a6e878071946d01f17c6b460106b77e3913ed",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "888ec4942d13f473ba25a4eabebcc914765ca869f908310f0e808463a10ca370",
+      "after_sha256": "0335dae1d9c662a33a679a2375369abad5dda0a3ff044ef92af8edd1b2c4fb6e",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "research/runtime/coverage/source-index-world-cpu-composition-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "19e84b0ea6bcdc517de5e4576cab303f5dd92f5962d16a2410ed1f32a7f3359c",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "research/runtime/coverage/summary-world-cpu-composition-20261010.md",
+      "before_sha256": null,
+      "after_sha256": "9765b3e35b8451818fa5d84a6642790d1b3c085d422e6154b1e601a9257ef996",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "research/runtime/native-world-cpu-composition-native-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "30f427abe1b063dc1c7f2ac5b585b4b21ad11c0ae718d470038ba58981697b0e",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "research/runtime/native-world-cpu-composition-preminimap-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ec2c3653e7f3fe57e85ff3947f9bd6ab4058e85be04ad0f24889213649a19c15",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "research/runtime/native-world-cpu-composition.md",
+      "before_sha256": null,
+      "after_sha256": "062b2c9fa240ee460aa93eefc77bda0ceab989a9ba83145a5d0ef7461af778f7",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "tests/canvas-sequence-test.cpp",
+      "before_sha256": "1908712c374a1221ac0107050758d703b5e0f89c088674383ac93eb108232eef",
+      "after_sha256": "9410508411bff7b12faba0a9ba24a17af9afade7e8179c27e4958c44444f648c",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "tools/compare-world-cpu-original.py",
+      "before_sha256": null,
+      "after_sha256": "e1e5ef06da68877733d9b60cd7ac796d32787f41e2e7c09e647ef242a4be4875",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "48c2638df69b85f4209f209ce61134bef7f782ce",
+      "path": "tools/test-world-resource-reuse.py",
+      "before_sha256": "faf90abf4b1b19fbeff6d289b67e899420bb1f1f2274785e8a369db00aa3e98f",
+      "after_sha256": "6dc7c808f586c86330da659f2f1ee197e6b055e1377329f33e360a2dd0883780",
+      "exact_receipts": [
+        "world-cpu-composition-source-accounting-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}
