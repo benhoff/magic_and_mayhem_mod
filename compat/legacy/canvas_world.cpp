@@ -3,6 +3,7 @@
 #include <cstring>
 #include <stdexcept>
 #include <chrono>
+#include <limits>
 namespace mnm::legacy {
 namespace {
 using Clock=std::chrono::steady_clock;
@@ -43,9 +44,19 @@ WorldDraw producerWorldDraw(const CanvasProducer &c){
 CanvasWorld::CanvasWorld(render::GlBlitter &renderer,const assets::AssetStore &store)
   :renderer_(renderer),store_(store),resources_(store_),bindings_(store_,resources_){}
 void CanvasWorld::begin(const CanvasProducer &c,const render::Image &native){
+  if(rolling_||completed_==std::numeric_limits<unsigned>::max()||c.fields[14]!=completed_+1)
+    throw std::invalid_argument("Native producer/World sequence gap, exhaustion or mixed delivery mode");
+  beginFrame(c,native);
+}
+void CanvasWorld::beginRolling(const CanvasProducer& c,const render::Image& native,std::uint64_t sequence){
+  if((completed_&&!rolling_)||rollingCompleted_==std::numeric_limits<std::uint64_t>::max()||sequence!=rollingCompleted_+1||c.fields[14]!=1)
+    throw std::invalid_argument("Rolling World sequence gap, exhaustion or mixed delivery mode");
+  beginFrame(c,native);rolling_=true;rollingSequence_=sequence;
+}
+void CanvasWorld::beginFrame(const CanvasProducer &c,const render::Image &native){
   profile_={};const auto started=Clock::now();
   const auto &r=c.fields;
-  if(active_||r[2]!=MNM_PRODUCER_QUEUE_ENTRY||r[14]!=completed_+1||!r[3]||
+  if(active_||r[2]!=MNM_PRODUCER_QUEUE_ENTRY||!r[3]||
      (canvas_&&canvas_!=r[3])||native.width!=int(r[5])||native.height!=int(r[6]))
     throw std::invalid_argument("Native producer/World handoff identity or sequence gap");
   if(!scene_){
@@ -58,7 +69,7 @@ void CanvasWorld::begin(const CanvasProducer &c,const render::Image &native){
   profile_.adoptMs=milliseconds(started);
 }
 void CanvasWorld::append(const CanvasProducer &c){
-  if(!active_||c.fields[3]!=canvas_||c.fields[5]!=pending_.width||c.fields[6]!=pending_.height||queueDraws_>=12320)
+  if(!active_||c.fields[3]!=canvas_||c.fields[5]!=pending_.width||c.fields[6]!=pending_.height||queueDraws_>=12320||totalDraws_==std::numeric_limits<std::uint64_t>::max())
     throw std::invalid_argument("World producer changed destination or exceeded queue budget");
   auto draw=producerWorldDraw(c);++queueDraws_;++totalDraws_;checked_=false;
   const auto &bytes=c.bytes();
@@ -72,7 +83,7 @@ void CanvasWorld::append(const CanvasProducer &c){
   ++profile_.visibleDraws;
 }
 render::Image CanvasWorld::complete(const render::Image &reference){
-  if(!active_)throw std::runtime_error("No native producer/World queue to complete");
+  if(!active_||readbacks_==std::numeric_limits<std::uint64_t>::max())throw std::runtime_error("No native producer/World queue to complete or readback counter exhausted");
   if(!pending_.draws.empty()){
     const auto bindingsBefore=bindings_.bindingStats();const auto cacheBefore=scene_->cacheStats();
     const auto identitiesBefore=bindings_.identityStats();
@@ -119,6 +130,8 @@ void CanvasWorld::end(const CanvasProducer &c){
   if(!active_||!checked_||!queueDraws_||c.fields[2]!=MNM_PRODUCER_QUEUE_RETURN||
      c.fields[14]!=queue_||c.fields[3]!=canvas_||!pending_.draws.empty())
     throw std::invalid_argument("Incomplete native World return");
-  completed_=queue_;active_=false;
+  if(rolling_)rollingCompleted_=rollingSequence_;
+  else completed_=queue_;
+  active_=false;
 }
 }

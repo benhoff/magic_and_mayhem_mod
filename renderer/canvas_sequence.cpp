@@ -182,34 +182,27 @@ void CanvasSequence::fill(std::uint32_t id, Rect r, std::uint16_t colour) {
 void CanvasSequence::copy(std::uint32_t source, std::uint32_t destination,
                           Rect r, int x, int y,
                           std::optional<std::uint16_t> key) {
-  const auto src = surface(source);
+  const auto &original = surface(source);
   auto &dst = surface(destination);
   if (r.left < 0 || r.top < 0 || r.right < r.left || r.bottom < r.top ||
-      r.right > src.image.width || r.bottom > src.image.height)
+      r.right > original.image.width || r.bottom > original.image.height)
     throw std::invalid_argument("Invalid producer copy source");
+  const auto left=std::max<std::int64_t>(0,-std::int64_t(x)),top=std::max<std::int64_t>(0,-std::int64_t(y));
+  const auto right=std::min<std::int64_t>(r.right-r.left,std::int64_t(dst.image.width)-x),bottom=std::min<std::int64_t>(r.bottom-r.top,std::int64_t(dst.image.height)-y);
+  if(left>=right||top>=bottom)return;
+  const int sx=int(r.left+left),sy=int(r.top+top),dx=int(std::int64_t(x)+left),dy=int(std::int64_t(y)+top),width=int(right-left),height=int(bottom-top);
   // Validate every sampled source before any destination write. Same-ID copies
   // retain the source snapshot, matching ordered owned-storage copy semantics.
-  for (int j = r.top; j < r.bottom; ++j)
-    for (int i = r.left; i < r.right; ++i) {
-      const auto dx = std::int64_t(x) + i - r.left,
-                 dy = std::int64_t(y) + j - r.top;
-      if (dx < 0 || dy < 0 || dx >= dst.image.width || dy >= dst.image.height)
-        continue;
-      known(src.defined, slot(src.image, i, j));
-    }
-  for (int j = r.top; j < r.bottom; ++j)
-    for (int i = r.left; i < r.right; ++i) {
-      const auto dx = std::int64_t(x) + i - r.left,
-                 dy = std::int64_t(y) + j - r.top;
-      if (dx < 0 || dy < 0 || dx >= dst.image.width || dy >= dst.image.height)
-        continue;
-      auto word = src.image.pixels[slot(src.image, i, j)];
-      if (key && word == *key)
-        continue;
-      const auto at = slot(dst.image, int(dx), int(dy));
-      dst.image.pixels[at] = word;
-      dst.defined[at] = 1;
-    }
+  for(int row=0;row<height;++row){const auto at=slot(original.image,sx,sy+row);const auto begin=original.defined.begin()+at;
+    if(std::find(begin,begin+width,0)!=begin+width)throw std::runtime_error("Native producer reads undefined canvas pixels");}
+  // Distinct IDs own distinct vectors. Only same-ID copies need a snapshot;
+  // preflight above still completes before allocation or any destination write.
+  std::optional<Surface> snapshot;if(source==destination)snapshot.emplace(original);
+  const auto& src=snapshot?*snapshot:original;
+  for(int row=0;row<height;++row){const auto from=slot(src.image,sx,sy+row),to=slot(dst.image,dx,dy+row);
+    if(!key){std::copy_n(src.image.pixels.begin()+from,width,dst.image.pixels.begin()+to);std::fill_n(dst.defined.begin()+to,width,1);}
+    else for(int col=0;col<width;++col){const auto word=src.image.pixels[from+col];if(word!=*key){dst.image.pixels[to+col]=word;dst.defined[to+col]=1;}}
+  }
 }
 void CanvasSequence::update(std::uint32_t id, int x, int y,
                             const Image &image) {
