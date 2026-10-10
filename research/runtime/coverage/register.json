@@ -28587,6 +28587,130 @@
           "FP/live admission"
         ]
       }
+    },
+    {
+      "id": "RS.glyph-backend",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Guarded native glyph pixels and selected x87 effects through actual RET16 entry",
+      "scope": "Pinned No-CD581ec0 RGB565 bounded indexed RLE native kernel and explicit owned-context route/entry. Cold/initialized coverage, byte tints, bounded geometry with complete horizontal rejection and vertical cropping, empty/padded/transparent/all-installed glyph fixtures. Actual handled RET16 path compares complete canvas/table, volatile/callee GPRs, four rewritten arguments/stack guards, defined flags/DF, selected x87 CW/full status/TOP/tag/occupied values and XMM/MXCSR. Native independent x87 run/channel/truncation helpers replace original glyph arithmetic under24/53/64-bit precision and four rounding controls; original-once fallback for selected two-active-slot diagnostics. No installed live hook, arbitrary FP/unmasked exceptions, pointer/opcode history/empty register contents, process-memory admission/lifetime, GPU glyph takeover, complete text layout/font lifecycle or Win32 ABI claim. Targeted safe original-once refusal branches include absent context, mismatched owned frame, IE-unmasked finite draws and finite warm coverage aboveone.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5775040,
+          "scope": "Selected glyph pixels/table/caller state and x87 effects through independently implemented bounded native entry."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881568,
+          "scope": "Selected channel truncation and control/status effects; independent native helper, original helper is not called by native handled path."
+        }
+      ],
+      "documents": [
+        "research/runtime/glyph-backend.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "runtime/scene/glyph_entry.S"
+      ],
+      "tests": [
+        "tests/glyph-backend-reference.cpp",
+        "tests/glyph-backend-entry-probe.S",
+        "tests/glyph-backend-test.c",
+        "tools/test-glyph-backend.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "tests/glyph-backend-state-probe.S",
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh",
+        "tools/test-glyph-backend-state.py"
+      ],
+      "evidence": [
+        "RS.glyph-backend.original-20261010",
+        "RS.glyph-backend.host-20261010",
+        "RS.glyph-backend.initial-original-20261010",
+        "RS.glyph-backend.initial-host-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "corpus": "MNMGLS01 synthetic geometry/controls and all1205 glyphs six SFTs. Actual route/entry comparison of0/1 active values; two-active automatic original-once fallbacks. Atomic malformed/FP/canvas native refusals under ASan/UBSan. Targeted absent/mismatched contexts, IE-unmasked finite draw and warm aboveone original-once fallback checks.",
+        "exclusions": [
+          "live installation/discovery/lifetime",
+          "arbitrary FP/unmasked exceptions",
+          "FP instruction/data pointers/opcodes and empty slots",
+          "RGB555",
+          "higher layout/reset/lifecycle",
+          "GPU glyph takeover"
+        ]
+      }
+    },
+    {
+      "id": "NR.glyph-backend-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic guarded glyph kernel and entry admission",
+      "scope": "Intentional preflight: inherited bounded source/index/geometry/byte tint domain, owned nonaliasing canvas/table/FX buffers, aligned16 FX images, legal canvas stride/clip, masked supported precision/rounding, seven physical push slots empty and remaining canonical finite value, legal MXCSR, warm finite unit coverage. Cold endpoint aboveone is admitted only as recovered generation. Refusal is atomic and actual entry forwards original once. No original malformed equivalence, process-memory hook admission/lifetime or live replacement. Targeted safe original-once refusal branches include absent context, mismatched owned frame, IE-unmasked finite draws and finite warm coverage aboveone.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/glyph-backend.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "runtime/scene/glyph_entry.S"
+      ],
+      "tests": [
+        "tests/glyph-backend-reference.cpp",
+        "tests/glyph-backend-entry-probe.S",
+        "tests/glyph-backend-test.c",
+        "tools/test-glyph-backend.py"
+      ],
+      "validation_dependencies": [
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "tests/glyph-backend-state-probe.S",
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh",
+        "tools/test-glyph-backend-state.py"
+      ],
+      "evidence": [
+        "NR.glyph-backend-admission.host-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "corpus": "MNMGLS01 synthetic geometry/controls and all1205 glyphs six SFTs. Actual route/entry comparison of0/1 active values; two-active automatic original-once fallbacks. Atomic malformed/FP/canvas native refusals under ASan/UBSan. Targeted absent/mismatched contexts, IE-unmasked finite draw and warm aboveone original-once fallback checks.",
+        "exclusions": [
+          "live installation/discovery/lifetime",
+          "arbitrary FP/unmasked exceptions",
+          "FP instruction/data pointers/opcodes and empty slots",
+          "RGB555",
+          "higher layout/reset/lifecycle",
+          "GPU glyph takeover"
+        ]
+      }
     }
   ],
   "evidence": [
@@ -55366,6 +55490,253 @@
           "equals": ""
         }
       ]
+    },
+    {
+      "id": "RS.glyph-backend.original-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/glyph-backend-comparison-20261010.json",
+      "sha256": "859310cd0c934bd826d74117b5409d8ff737474d5c512f891d8bb22377b7ae4f",
+      "scope": "Actual guarded RET16 entry and explicit owned-context route, native bounded RGB565 RLE pixels, integer/stack/defined flags and selected x87 control/status/TOP/tag/active values plus XMM/MXCSR versus unchanged pinned original. Cold/initialized tables, 24/53/64-bit precision/four rounding controls, contiguous0/1 finite active values and automatic original-once fallback for two active values. Instruction/data pointer history and empty FP register contents excluded. No installed live hook, process-memory admission/lifetime, GPU glyph takeover, higher text layout/lifecycle or arbitrary FP/unmasked exception claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        },
+        {
+          "pointer": "/execution_count",
+          "equals": 28142
+        },
+        {
+          "pointer": "/counts/complete_matches",
+          "equals": 28142
+        },
+        {
+          "pointer": "/counts/native_handled",
+          "equals": 27966
+        },
+        {
+          "pointer": "/counts/original_body_calls",
+          "equals": 176
+        },
+        {
+          "pointer": "/counts/forced_forward_matches",
+          "equals": 168
+        },
+        {
+          "pointer": "/counts/unbound_context_original_once",
+          "equals": 48
+        },
+        {
+          "pointer": "/counts/compared_canvas_words",
+          "equals": 22656678
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 24
+        },
+        {
+          "pointer": "/pe32_undefined",
+          "equals": "U _mnm_glyph_original"
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.glyph-backend.host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/glyph-backend-comparison-20261010.json",
+      "sha256": "859310cd0c934bd826d74117b5409d8ff737474d5c512f891d8bb22377b7ae4f",
+      "scope": "Actual guarded RET16 entry and explicit owned-context route, native bounded RGB565 RLE pixels, integer/stack/defined flags and selected x87 control/status/TOP/tag/active values plus XMM/MXCSR versus unchanged pinned original. Cold/initialized tables, 24/53/64-bit precision/four rounding controls, contiguous0/1 finite active values and automatic original-once fallback for two active values. Instruction/data pointer history and empty FP register contents excluded. No installed live hook, process-memory admission/lifetime, GPU glyph takeover, higher text layout/lifecycle or arbitrary FP/unmasked exception claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        },
+        {
+          "pointer": "/execution_count",
+          "equals": 28142
+        },
+        {
+          "pointer": "/counts/complete_matches",
+          "equals": 28142
+        },
+        {
+          "pointer": "/counts/native_handled",
+          "equals": 27966
+        },
+        {
+          "pointer": "/counts/original_body_calls",
+          "equals": 176
+        },
+        {
+          "pointer": "/counts/forced_forward_matches",
+          "equals": 168
+        },
+        {
+          "pointer": "/counts/unbound_context_original_once",
+          "equals": 48
+        },
+        {
+          "pointer": "/counts/compared_canvas_words",
+          "equals": 22656678
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 24
+        },
+        {
+          "pointer": "/pe32_undefined",
+          "equals": "U _mnm_glyph_original"
+        }
+      ]
+    },
+    {
+      "id": "NR.glyph-backend-admission.host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/glyph-backend-comparison-20261010.json",
+      "sha256": "859310cd0c934bd826d74117b5409d8ff737474d5c512f891d8bb22377b7ae4f",
+      "scope": "Actual guarded RET16 entry and explicit owned-context route, native bounded RGB565 RLE pixels, integer/stack/defined flags and selected x87 control/status/TOP/tag/active values plus XMM/MXCSR versus unchanged pinned original. Cold/initialized tables, 24/53/64-bit precision/four rounding controls, contiguous0/1 finite active values and automatic original-once fallback for two active values. Instruction/data pointer history and empty FP register contents excluded. No installed live hook, process-memory admission/lifetime, GPU glyph takeover, higher text layout/lifecycle or arbitrary FP/unmasked exception claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        },
+        {
+          "pointer": "/execution_count",
+          "equals": 28142
+        },
+        {
+          "pointer": "/counts/complete_matches",
+          "equals": 28142
+        },
+        {
+          "pointer": "/counts/native_handled",
+          "equals": 27966
+        },
+        {
+          "pointer": "/counts/original_body_calls",
+          "equals": 176
+        },
+        {
+          "pointer": "/counts/forced_forward_matches",
+          "equals": 168
+        },
+        {
+          "pointer": "/counts/unbound_context_original_once",
+          "equals": 48
+        },
+        {
+          "pointer": "/counts/compared_canvas_words",
+          "equals": 22656678
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 24
+        },
+        {
+          "pointer": "/pe32_undefined",
+          "equals": "U _mnm_glyph_original"
+        }
+      ]
+    },
+    {
+      "id": "RS.glyph-backend.initial-original-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/glyph-backend-run-x_rsvcxi-20261010.json",
+      "sha256": "e60d7e77804525225867ac7911d6a862b0aedf229fc334d02bfa7f9f21d3422b",
+      "scope": "Actual guarded RET16 entry and explicit owned-context route, native bounded RGB565 RLE pixels, integer/stack/defined flags and selected x87 control/status/TOP/tag/active values plus XMM/MXCSR versus unchanged pinned original. Cold/initialized tables, 24/53/64-bit precision/four rounding controls, contiguous0/1 finite active values and automatic original-once fallback for two active values. Instruction/data pointer history and empty FP register contents excluded. No installed live hook, process-memory admission/lifetime, GPU glyph takeover, higher text layout/lifecycle or arbitrary FP/unmasked exception claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.glyph-backend.initial-host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/glyph-backend-run-x_rsvcxi-20261010.json",
+      "sha256": "e60d7e77804525225867ac7911d6a862b0aedf229fc334d02bfa7f9f21d3422b",
+      "scope": "Actual guarded RET16 entry and explicit owned-context route, native bounded RGB565 RLE pixels, integer/stack/defined flags and selected x87 control/status/TOP/tag/active values plus XMM/MXCSR versus unchanged pinned original. Cold/initialized tables, 24/53/64-bit precision/four rounding controls, contiguous0/1 finite active values and automatic original-once fallback for two active values. Instruction/data pointer history and empty FP register contents excluded. No installed live hook, process-memory admission/lifetime, GPU glyph takeover, higher text layout/lifecycle or arbitrary FP/unmasked exception claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -62823,6 +63194,25 @@
       "tests": [
         "tools/test-glyph-backend-state.py"
       ]
+    },
+    {
+      "id": "glyph-backend-host-20261010",
+      "level": "headless",
+      "scope": "Actual native owned-context route/RET16 entry and x87/RLE kernel versus unchanged PE32 glyph body across synthetic and installed glyphs, cold/warm coverage,4 rounding x3 precision,0/1 active finite values and original-once fallback for two-active diagnostics. Complete canvas/table, integer/stack/DF/defined flags and selected FX comparisons. Native atomic refusal/sanitizer and freestanding PE32 linkage. No live installation. Includes targeted absent/mismatched context, finite IE-unmasked and finite warm-aboveone original-once fallbacks.",
+      "behaviors": [
+        "RS.glyph-backend",
+        "NR.glyph-backend-admission"
+      ],
+      "evidence": [
+        "RS.glyph-backend.original-20261010",
+        "RS.glyph-backend.host-20261010",
+        "NR.glyph-backend-admission.host-20261010",
+        "RS.glyph-backend.initial-original-20261010",
+        "RS.glyph-backend.initial-host-20261010"
+      ],
+      "tests": [
+        "tools/test-glyph-backend.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -63160,8 +63550,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-glyph-backend-state-20261010.json",
-    "sha256": "858c8dc81bba7ad6cd4cd534ca06fd42ed77cbcdb5c4c258a20d59af387fbf6a"
+    "path": "research/runtime/coverage/source-index-glyph-backend-20261010.json",
+    "sha256": "10426f7beff9ed0064bdc2436cd34ff451e6ed459dd848771ea50dd65e09b8ad"
   },
   "claim_bindings_required": true
 }

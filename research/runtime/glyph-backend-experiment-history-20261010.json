@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "scope": "Immutable original/native glyph adapter experiment versions; failed attempts and narrower successful results retained without asserting current equivalence. Full raw results/commands under working; hashes and compact reports durable. No live installation or replacement.",
+  "experiments": [
+    {
+      "run": "run-e1emqe2_",
+      "record": "research/runtime/glyph-backend-run-e1emqe2_-20261010.json",
+      "sha256": "80fa02e7ae1391000449a452608d02bb2876a87e5ce4008f5e994e08fedeeb3e",
+      "success": false,
+      "error": "ValueError('Unexpected native runtime helper: U _memcpy\\n         U _mnm_glyph_original')",
+      "counts": null,
+      "claims": [
+        {
+          "behavior": "RS.glyph-backend",
+          "contract_sha256": "b345e0c9e2a2675ec85ac487b103f1b8ed2795d41a1da12ca5bc05e478ac1e5f",
+          "scenarios": {
+            "glyph-backend-host-20261010": "bd39bc0ad323975c9e885272d8bea72de6981614b05397247e7e34ef242f622d"
+          }
+        },
+        {
+          "behavior": "NR.glyph-backend-admission",
+          "contract_sha256": "21026295affe62299323528bc6bd8d35aeae932446faabdb2398f0678c924b57",
+          "scenarios": {
+            "glyph-backend-host-20261010": "bd39bc0ad323975c9e885272d8bea72de6981614b05397247e7e34ef242f622d"
+          }
+        }
+      ],
+      "review": "PE32 aggregate copy imported memcpy; removed freestanding CRT dependency before execution."
+    },
+    {
+      "run": "run-9lh29753",
+      "record": "research/runtime/glyph-backend-run-9lh29753-20261010.json",
+      "sha256": "a4e09e846e24596e73707fe688da352d0dae38d97477b3c257f17e2b4b589e53",
+      "success": false,
+      "error": "ValueError(\"27966 original/native mismatches; first {'case': 0, 'seed': {'source': 'mixed-0', 'placement': 'interior', 'tint': [0, 0, 0], 'cold': 0, 'fp_control_seed': 0, 'active_x87': 0, 'padding': 0}, 'record': [255, 0, 1, 1, 32, 32, 768, 0, 0, 0, 4292021832, 4292021832, 144, 144, 0, 0]}\")",
+      "counts": {
+        "complete_matches": 27974,
+        "native_handled": 0,
+        "original_once_fallbacks": 27974,
+        "original_body_calls": 27974,
+        "compared_canvas_words": 22523622
+      },
+      "claims": [
+        {
+          "behavior": "RS.glyph-backend",
+          "contract_sha256": "b345e0c9e2a2675ec85ac487b103f1b8ed2795d41a1da12ca5bc05e478ac1e5f",
+          "scenarios": {
+            "glyph-backend-host-20261010": "bd39bc0ad323975c9e885272d8bea72de6981614b05397247e7e34ef242f622d"
+          }
+        },
+        {
+          "behavior": "NR.glyph-backend-admission",
+          "contract_sha256": "21026295affe62299323528bc6bd8d35aeae932446faabdb2398f0678c924b57",
+          "scenarios": {
+            "glyph-backend-host-20261010": "bd39bc0ad323975c9e885272d8bea72de6981614b05397247e7e34ef242f622d"
+          }
+        }
+      ],
+      "review": "Original/native returned equivalent output, but every expected handle refused because the C call site did not honor16-byte alignment of its local FX image. Corrected both assembly C call sites."
+    },
+    {
+      "run": "run-x_rsvcxi",
+      "record": "research/runtime/glyph-backend-run-x_rsvcxi-20261010.json",
+      "sha256": "e60d7e77804525225867ac7911d6a862b0aedf229fc334d02bfa7f9f21d3422b",
+      "success": true,
+      "error": null,
+      "counts": {
+        "complete_matches": 27974,
+        "native_handled": 27966,
+        "original_once_fallbacks": 8,
+        "original_body_calls": 8,
+        "compared_canvas_words": 22523622
+      },
+      "claims": [
+        {
+          "behavior": "RS.glyph-backend",
+          "contract_sha256": "b345e0c9e2a2675ec85ac487b103f1b8ed2795d41a1da12ca5bc05e478ac1e5f",
+          "scenarios": {
+            "glyph-backend-host-20261010": "bd39bc0ad323975c9e885272d8bea72de6981614b05397247e7e34ef242f622d"
+          }
+        },
+        {
+          "behavior": "NR.glyph-backend-admission",
+          "contract_sha256": "21026295affe62299323528bc6bd8d35aeae932446faabdb2398f0678c924b57",
+          "scenarios": {
+            "glyph-backend-host-20261010": "bd39bc0ad323975c9e885272d8bea72de6981614b05397247e7e34ef242f622d"
+          }
+        }
+      ],
+      "review": "Initial27,974 entry/kernel comparisons pass. Remains historical after targeted guard expansion and harness changes."
+    },
+    {
+      "run": "run-v0q3f9wh",
+      "record": "research/runtime/glyph-backend-run-v0q3f9wh-20261010.json",
+      "sha256": "a2de2b17331236609f7968a3622eca181ec59f17748f759a9baea587fe8556c3",
+      "success": false,
+      "error": "ValueError(\"168 original/native mismatches; first {'case': 1, 'seed': {'source': 'mixed-0', 'placement': 'interior', 'tint': [0, 0, 0], 'cold': 0, 'fp_control_seed': 0, 'active_x87': 0, 'padding': 0}, 'record': [254, 0, 0, 1, 32, 32, 768, 0, 0, 0, 4290488840, 4290488840, 144, 144, 1, 0]}\")",
+      "counts": {
+        "complete_matches": 27974,
+        "native_handled": 27966,
+        "original_once_fallbacks": 128,
+        "original_body_calls": 176,
+        "compared_canvas_words": 22656678,
+        "forced_forward_matches": 0,
+        "unbound_context_original_once": 48
+      },
+      "claims": [
+        {
+          "behavior": "RS.glyph-backend",
+          "contract_sha256": "e4b199bb2ccfc418e4648a9746cc8d19790d481383a05dd485bcba66196a4445",
+          "scenarios": {
+            "glyph-backend-host-20261010": "5ad44dee33e892319f5f0932368ddf0156b62a5509b61fc5943d95a10782fd29"
+          }
+        },
+        {
+          "behavior": "NR.glyph-backend-admission",
+          "contract_sha256": "260f8f5ef60f1a15308cb3a11b75ef402a941e939071f6a9512d5e5aaad5ee29",
+          "scenarios": {
+            "glyph-backend-host-20261010": "5ad44dee33e892319f5f0932368ddf0156b62a5509b61fc5943d95a10782fd29"
+          }
+        }
+      ],
+      "review": "168 forced-fallback pixel mismatches were destination carryover in the harness: original next-mode canvas was not reset. Both implementations otherwise matched; corrected independent per-mode baseline."
+    },
+    {
+      "run": "run-2070t9ch",
+      "record": "research/runtime/glyph-backend-run-2070t9ch-20261010.json",
+      "sha256": "b0c5d55b35bd137ab1540f2a5f5481870a0d5eae620d6c12abad20d58100a53a",
+      "success": true,
+      "error": null,
+      "counts": {
+        "complete_matches": 28142,
+        "native_handled": 27966,
+        "original_once_fallbacks": 128,
+        "original_body_calls": 176,
+        "compared_canvas_words": 22656678,
+        "forced_forward_matches": 168,
+        "unbound_context_original_once": 48
+      },
+      "claims": [
+        {
+          "behavior": "RS.glyph-backend",
+          "contract_sha256": "e4b199bb2ccfc418e4648a9746cc8d19790d481383a05dd485bcba66196a4445",
+          "scenarios": {
+            "glyph-backend-host-20261010": "5ad44dee33e892319f5f0932368ddf0156b62a5509b61fc5943d95a10782fd29"
+          }
+        },
+        {
+          "behavior": "NR.glyph-backend-admission",
+          "contract_sha256": "260f8f5ef60f1a15308cb3a11b75ef402a941e939071f6a9512d5e5aaad5ee29",
+          "scenarios": {
+            "glyph-backend-host-20261010": "5ad44dee33e892319f5f0932368ddf0156b62a5509b61fc5943d95a10782fd29"
+          }
+        }
+      ],
+      "review": "Final widened28,142 comparisons pass before result-count/manifest/source-stability runner checks tightened. Historical after runner-only change."
+    },
+    {
+      "run": "run-e36s1j44",
+      "record": "research/runtime/glyph-backend-comparison-20261010.json",
+      "sha256": "859310cd0c934bd826d74117b5409d8ff737474d5c512f891d8bb22377b7ae4f",
+      "success": true,
+      "error": null,
+      "counts": {
+        "complete_matches": 28142,
+        "native_handled": 27966,
+        "original_once_fallbacks": 128,
+        "original_body_calls": 176,
+        "compared_canvas_words": 22656678,
+        "forced_forward_matches": 168,
+        "unbound_context_original_once": 48
+      },
+      "claims": [
+        {
+          "behavior": "RS.glyph-backend",
+          "contract_sha256": "e4b199bb2ccfc418e4648a9746cc8d19790d481383a05dd485bcba66196a4445",
+          "scenarios": {
+            "glyph-backend-host-20261010": "5ad44dee33e892319f5f0932368ddf0156b62a5509b61fc5943d95a10782fd29"
+          }
+        },
+        {
+          "behavior": "NR.glyph-backend-admission",
+          "contract_sha256": "260f8f5ef60f1a15308cb3a11b75ef402a941e939071f6a9512d5e5aaad5ee29",
+          "scenarios": {
+            "glyph-backend-host-20261010": "5ad44dee33e892319f5f0932368ddf0156b62a5509b61fc5943d95a10782fd29"
+          }
+        }
+      ],
+      "review": "Current source-pinned28,142 execution/24 atomic refusal result. All source/input/manifest checks pass."
+    }
+  ],
+  "current_run": "run-e36s1j44",
+  "corpus_provenance": {
+    "record": "research/runtime/glyph-backend-state-comparison-20261010.json",
+    "sha256": "c5d90404ef87dcce91395cff12c52ef4877002a49f58bd21a57625986031fe49",
+    "inputs": {
+      "working/tests/glyph-backend-state/run-3qrghf1m/cases.bin": "512ce3e354f91c2d80434fec7825513ed07d3223f8b5c072f6bf63a0d1f92a32",
+      "working/tests/glyph-backend-state/run-3qrghf1m/cases.json": "55e76ca7326ec855f94c05cd5b6dcc8769581f695f5f462453f8de5028c6ad9c"
+    }
+  }
+}

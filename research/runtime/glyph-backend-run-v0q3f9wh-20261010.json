@@ -1,0 +1,857 @@
+{
+  "schema": 1,
+  "success": false,
+  "claims": [
+    {
+      "behavior": "RS.glyph-backend",
+      "contract_sha256": "e4b199bb2ccfc418e4648a9746cc8d19790d481383a05dd485bcba66196a4445",
+      "scenarios": {
+        "glyph-backend-host-20261010": "5ad44dee33e892319f5f0932368ddf0156b62a5509b61fc5943d95a10782fd29"
+      }
+    },
+    {
+      "behavior": "NR.glyph-backend-admission",
+      "contract_sha256": "260f8f5ef60f1a15308cb3a11b75ef402a941e939071f6a9512d5e5aaad5ee29",
+      "scenarios": {
+        "glyph-backend-host-20261010": "5ad44dee33e892319f5f0932368ddf0156b62a5509b61fc5943d95a10782fd29"
+      }
+    }
+  ],
+  "sources": {
+    "reconstruction/rendering/glyph_backend.c": "3d6ed57e5d6837e6a0535ecd92c8416d3c57717b22684dacd5e99d0e1b704775",
+    "reconstruction/rendering/glyph_backend.h": "93104365980bf04eb6047cdc3f70ffddcc7958449c4c797bcad43c16b0603245",
+    "reconstruction/rendering/glyph_backend_state.c": "e10f3ec2ad7df0c9241ec3f2600b7f9b7f3fe64bcf92d17bdbd2302e8770703e",
+    "reconstruction/rendering/glyph_backend_state.h": "b58537f01dbaf0ea98ad9ae94b0351ccf416a525ea8bdb801fc0b4ae2f3a2660",
+    "reconstruction/rendering/glyph_backend_x87.S": "fefdf95c806778f7d39fff4e43ff0beed9731e3bc1afd7d1634b4e718951f77a",
+    "runtime/scene/glyph_entry.S": "9de083ae284419c71a47a99a4b88e1e192f9eef3c92b17fa16c0dcf0779b778e",
+    "runtime/scene/glyph_route.c": "9463e57889e297b6b43920d478bca3ecd5c269030618e7f8f3368a5814239868",
+    "runtime/scene/glyph_route.h": "401c70e73d7a63e920de890d0d8278c4224db5d06775372f01764db1a2fcebff",
+    "tests/glyph-backend-entry-probe.S": "684a2cf1646344b8ba2c9a5fd56e678e7b0e36ac2db74ac5d6796fdb514f38c5",
+    "tests/glyph-backend-reference.cpp": "bde878fd652f2b056a16af17bd2aac4fef8f4d23010a971a7e1296743805180d",
+    "tests/glyph-backend-state-probe.S": "65b6b81ec4088f7396713c649f9a884f14c9fa4cc22d3490e37d9c8d41674995",
+    "tests/glyph-backend-test.c": "bcb164ca55aaa1558960dae5dd6b3731f1f62f5234635a7550ac364580eaceeb",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/test-glyph-backend-state.py": "c6fb0c4a8c9b2428d7e4987e4940a948f074515752d98ced3368340910786633",
+    "tools/test-glyph-backend.py": "cc4f580ec182af76205f0604740b1184768d200ce7e42116dd8fe30b750a3690"
+  },
+  "inputs": {
+    "working/tests/glyph-backend-state/run-3qrghf1m/cases.bin": "512ce3e354f91c2d80434fec7825513ed07d3223f8b5c072f6bf63a0d1f92a32",
+    "working/tests/glyph-backend-state/run-3qrghf1m/cases.json": "55e76ca7326ec855f94c05cd5b6dcc8769581f695f5f462453f8de5028c6ad9c"
+  },
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "experiment": "working/tests/glyph-backend/run-v0q3f9wh",
+  "live_replacement": false,
+  "original_work_bypassed": false,
+  "scope": "Actual guarded RET16 entry and explicit owned-context route, native bounded RGB565 RLE pixels, integer/stack/defined flags and selected x87 control/status/TOP/tag/active values plus XMM/MXCSR versus unchanged pinned original. Cold/initialized tables, 24/53/64-bit precision/four rounding controls, contiguous0/1 finite active values and automatic original-once fallback for two active values. Instruction/data pointer history and empty FP register contents excluded. No installed live hook, process-memory admission/lifetime, GPU glyph takeover, higher text layout/lifecycle or arbitrary FP/unmasked exception claim.",
+  "atomic_result": "24 atomic admission refusals; admitted dispatch reached once",
+  "pe32_undefined": "U _mnm_glyph_original",
+  "compiled_project_sources": [
+    "reconstruction/rendering/glyph_backend.c",
+    "reconstruction/rendering/glyph_backend.h",
+    "reconstruction/rendering/glyph_backend_state.c",
+    "reconstruction/rendering/glyph_backend_state.h",
+    "reconstruction/rendering/glyph_backend_x87.S",
+    "runtime/scene/glyph_entry.S",
+    "runtime/scene/glyph_route.c",
+    "runtime/scene/glyph_route.h",
+    "tests/glyph-backend-entry-probe.S",
+    "tests/glyph-backend-reference.cpp",
+    "tests/glyph-backend-state-probe.S",
+    "tests/glyph-backend-test.c",
+    "tests/sprite-binary-reference.cpp",
+    "tools/original-manifest.sh",
+    "tools/test-glyph-backend.py"
+  ],
+  "case_count": 27974,
+  "execution_count": 28142,
+  "counts": {
+    "complete_matches": 27974,
+    "native_handled": 27966,
+    "original_once_fallbacks": 128,
+    "original_body_calls": 176,
+    "compared_canvas_words": 22656678,
+    "forced_forward_matches": 0,
+    "unbound_context_original_once": 48
+  },
+  "placements": {
+    "interior": 4314,
+    "exact-left": 1728,
+    "exact-right": 1728,
+    "partial-left": 4138,
+    "partial-right": 1728,
+    "top-cropped": 4138,
+    "bottom-cropped": 1728,
+    "hidden-top": 1728,
+    "hidden-bottom": 1728,
+    "hidden-left": 1728,
+    "hidden-right": 1728,
+    "clip-origin": 1728
+  },
+  "controls": {
+    "0": 2348,
+    "1": 2348,
+    "2": 2348,
+    "3": 2348,
+    "4": 2356,
+    "5": 2342,
+    "6": 2342,
+    "7": 2342,
+    "8": 2342,
+    "9": 2342,
+    "10": 2342,
+    "11": 2342
+  },
+  "atomic_refusals": 24,
+  "input_provenance": {
+    "corpus_format": "MNMGLS01",
+    "case_index_format": "glyph-backend-state case manifest",
+    "generator": "tools/test-glyph-backend-state.py",
+    "generator_sha256": "c6fb0c4a8c9b2428d7e4987e4940a948f074515752d98ced3368340910786633"
+  },
+  "original_entries": {
+    "glyph": {
+      "address": 5775040,
+      "bytes": "83ec288b442430"
+    },
+    "truncation": {
+      "address": 5881568,
+      "bytes": "558bec83c4f4"
+    }
+  },
+  "error": "ValueError(\"168 original/native mismatches; first {'case': 1, 'seed': {'source': 'mixed-0', 'placement': 'interior', 'tint': [0, 0, 0], 'cold': 0, 'fp_control_seed': 0, 'active_x87': 0, 'padding': 0}, 'record': [254, 0, 0, 1, 32, 32, 768, 0, 0, 0, 4290488840, 4290488840, 144, 144, 1, 0]}\")",
+  "commands": [
+    {
+      "label": "manifest-before",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/manifest-before.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    },
+    {
+      "label": "unit-build",
+      "argv": [
+        "gcc",
+        "-O1",
+        "-g",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend.c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend_state.c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/glyph-backend-test.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/admission"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/unit-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "atomic-sanitized",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/admission"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/atomic-sanitized.log",
+      "sha256": "e586a41d5255c7f969fcfa7547a64126c7ce8e67f8b03c731b342998871f2810"
+    },
+    {
+      "label": "glyph_backend",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph_backend-pe32",
+      "argv": [
+        "clang",
+        "--target=i686-pc-windows-msvc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.pe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend-pe32.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph_backend_state",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend_state.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph_backend_state-pe32",
+      "argv": [
+        "clang",
+        "--target=i686-pc-windows-msvc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.pe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend_state.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state-pe32.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph_backend_x87",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend_x87.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph_backend_x87-pe32",
+      "argv": [
+        "clang",
+        "--target=i686-pc-windows-msvc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.pe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend_x87.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87-pe32.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph_route",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_route.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/runtime/scene/glyph_route.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_route.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph_route.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph_route-pe32",
+      "argv": [
+        "clang",
+        "--target=i686-pc-windows-msvc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_route.pe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/runtime/scene/glyph_route.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_route.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph_route-pe32.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph_entry",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/runtime/scene/glyph_entry.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph_entry-pe32",
+      "argv": [
+        "clang",
+        "--target=i686-pc-windows-msvc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.pe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/runtime/scene/glyph_entry.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph_entry-pe32.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph-backend-state-probe",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-state-probe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/glyph-backend-state-probe.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-state-probe.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-state-probe.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph-backend-entry-probe",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-entry-probe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/glyph-backend-entry-probe.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-entry-probe.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-entry-probe.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "pe32-combine",
+      "argv": [
+        "ld",
+        "-r",
+        "-m",
+        "i386pe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.obj",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.obj",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.obj",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_route.obj",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.obj",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph-combined.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/pe32-combine.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "pe32-imports",
+      "argv": [
+        "nm",
+        "-u",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph-combined.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/pe32-imports.log",
+      "sha256": "2e050fa67798c10c40eeb6346958f3fd17f98f92cb616f5dc822dea4195b2f1f"
+    },
+    {
+      "label": "reference",
+      "argv": [
+        "g++",
+        "-m32",
+        "-O2",
+        "-std=c++17",
+        "-fno-pie",
+        "-no-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/reference.d",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/glyph-backend-reference.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_route.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-state-probe.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-entry-probe.o",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph-reference"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/reference.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "original-native-entry",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/glyph-reference",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "working/tests/glyph-backend-state/run-3qrghf1m/cases.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-backend/run-v0q3f9wh/results.bin"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/original-native-entry.log",
+      "sha256": "4a1f89fe20a25557f3b808c9525479d9742047ad4edda7071d5c1cbe0c5f6490"
+    },
+    {
+      "label": "manifest-after",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-backend/run-v0q3f9wh/manifest-after.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    }
+  ],
+  "sources_stable": true,
+  "inputs_stable": true,
+  "artifacts": {
+    "working/tests/glyph-backend/run-v0q3f9wh/admission": {
+      "sha256": "69fd4594171898aeb4adafe702a77b0a9a289e63c22d7421c2b24f7ed09f8769",
+      "bytes": 136608
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/atomic-sanitized.log": {
+      "sha256": "e586a41d5255c7f969fcfa7547a64126c7ce8e67f8b03c731b342998871f2810",
+      "bytes": 61
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-entry-probe.d": {
+      "sha256": "b2416543cf5f1c73b244fc9a46071f50d76b212c445eebcba1cf37c9dac6a977",
+      "bytes": 183
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-entry-probe.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-entry-probe.o": {
+      "sha256": "0a3959c49290796a8d09a15ff71d83aa9c9c35d0f44c7a47762b6dfdc4eacff2",
+      "bytes": 752
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-state-probe.d": {
+      "sha256": "9607846bbadc33073601bb0884951523d50f85d0912251cd8449b13ae034219b",
+      "bytes": 183
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-state-probe.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph-backend-state-probe.o": {
+      "sha256": "537daf753ca72897f113d9260dee3f2c8a7f4d924cb69de1c7a729d0dbd89f4f",
+      "bytes": 1544
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph-combined.obj": {
+      "sha256": "b89ec22026238643b646506e4a5d8a784e5bbe94180aabd3adab4021eeeb0a86",
+      "bytes": 5528
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph-reference": {
+      "sha256": "59f2562aee44bba6c4ab0c84b3d51d9c89f1d77be7765bdab9b278be1d64d507",
+      "bytes": 45388
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend-pe32.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.d": {
+      "sha256": "84afe562b169e88737c616efebbdf20aa12bedce874dedc22e4913ce72334d5c",
+      "bytes": 348
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.o": {
+      "sha256": "0afb40a897c5a1d1d3c0c4e99c0840ce4044a4cbd9abc63fbb55e40d9f668eeb",
+      "bytes": 2280
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.obj": {
+      "sha256": "1999ef28cf450721e587be873dd301754f0f6ea8d207b9d83d00559879b3cba0",
+      "bytes": 1682
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend.pe.d": {
+      "sha256": "f1b1d03fe6360b7da98bdefced955e837606d189ab136e76548c2c74127606f0",
+      "bytes": 353
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state-pe32.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.d": {
+      "sha256": "61f8afcf35931830f5c7179cdae6bd8eeb39ec23a055dc14dd234f2bec7ff4f8",
+      "bytes": 278
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.o": {
+      "sha256": "3214a92fa6e523c3054c0810bda67d6b17321af1fce8c251be52b928657b37de",
+      "bytes": 3276
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.obj": {
+      "sha256": "d0c38d818b2fd8001281391fc5dd8257697862b722835d2c9b76a7cc2646ed86",
+      "bytes": 2688
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_state.pe.d": {
+      "sha256": "4b0d72376908020441334bd4ecd036e8f4fd8a21db4e6e852b0e892aabbeadb9",
+      "bytes": 282
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87-pe32.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.d": {
+      "sha256": "a8c8276281f2344ce26a9d1e1b5ec477bce84c97ab63a05de6bc6f10eceebd19",
+      "bytes": 186
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.o": {
+      "sha256": "035f666a34bf48644a480e973fb646acffebc5de339632611b46d93fe18c6e9b",
+      "bytes": 1316
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.obj": {
+      "sha256": "c18f39f545377a2e8e421be021169965c1a0647731c9bda701e36f655fc7a91d",
+      "bytes": 1011
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_backend_x87.pe.d": {
+      "sha256": "9edcdaec30783e4c13674e5c65720290f90069d0e01ee82f6ef934ee2c7d1669",
+      "bytes": 189
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_entry-pe32.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.d": {
+      "sha256": "580a9cfdb632df25ad0d658838fe4b95626364cf36bd7bcfff97f2be2d027f6d",
+      "bytes": 163
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.o": {
+      "sha256": "e7159ac1e7fb31e2b2c28415c93d32cd5ae077e47823e7d2c01d9056b696e61f",
+      "bytes": 772
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.obj": {
+      "sha256": "012d68ae9811abbb0217f32b6ca50e6528b86e00919065a0bc4ce9153e30fb99",
+      "bytes": 442
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_entry.pe.d": {
+      "sha256": "4191f40812beca8ac582d59374e6810594da86acb61e6492dc88ef6da0d9400d",
+      "bytes": 166
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_route-pe32.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_route.d": {
+      "sha256": "0dff111ae9a593d016ee145d6446e1cc6ab195d725afdbdb2dd6e48f7e1719df",
+      "bytes": 442
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_route.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_route.o": {
+      "sha256": "72f6cf01327506b4dd523510e5444a1b891df7b38f4b58ecfb2791f8caf279a8",
+      "bytes": 1572
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_route.obj": {
+      "sha256": "7a18356d20566f5007beef65f83192a82617f430dbfd6c03da0595d9fd541850",
+      "bytes": 1065
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/glyph_route.pe.d": {
+      "sha256": "537735282fa61749e3e5affbc4d15761e68930a0e06f5f7f948a7d65e28bd106",
+      "bytes": 448
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/manifest-after.log": {
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+      "bytes": 65
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/manifest-before.log": {
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+      "bytes": 65
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/original-native-entry.log": {
+      "sha256": "4a1f89fe20a25557f3b808c9525479d9742047ad4edda7071d5c1cbe0c5f6490",
+      "bytes": 62
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/pe32-combine.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/pe32-imports.log": {
+      "sha256": "2e050fa67798c10c40eeb6346958f3fd17f98f92cb616f5dc822dea4195b2f1f",
+      "bytes": 31
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/reference.d": {
+      "sha256": "d6d58094d2674176b0b53efc01f3eb7f2730c94bd34da7a7b25a1464a9e65628",
+      "bytes": 552
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/reference.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/results.bin": {
+      "sha256": "d8b26bf967cbde28345c2d2d5e3faa342f6733193ca2b427996238366ba986a8",
+      "bytes": 1801100
+    },
+    "working/tests/glyph-backend/run-v0q3f9wh/unit-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "failure_count": 168,
+  "first_failures": [
+    {
+      "case": 1,
+      "seed": {
+        "source": "mixed-0",
+        "placement": "interior",
+        "tint": [
+          0,
+          0,
+          0
+        ],
+        "cold": 0,
+        "fp_control_seed": 0,
+        "active_x87": 0,
+        "padding": 0
+      },
+      "record": [
+        254,
+        0,
+        0,
+        1,
+        32,
+        32,
+        768,
+        0,
+        0,
+        0,
+        4290488840,
+        4290488840,
+        144,
+        144,
+        1,
+        0
+      ]
+    },
+    {
+      "case": 2,
+      "seed": {
+        "source": "mixed-0",
+        "placement": "interior",
+        "tint": [
+          0,
+          0,
+          0
+        ],
+        "cold": 0,
+        "fp_control_seed": 0,
+        "active_x87": 0,
+        "padding": 0
+      },
+      "record": [
+        254,
+        0,
+        1,
+        1,
+        32,
+        32,
+        768,
+        0,
+        0,
+        0,
+        4290488840,
+        4290488840,
+        144,
+        144,
+        2,
+        0
+      ]
+    },
+    {
+      "case": 3,
+      "seed": {
+        "source": "mixed-0",
+        "placement": "interior",
+        "tint": [
+          0,
+          0,
+          0
+        ],
+        "cold": 0,
+        "fp_control_seed": 0,
+        "active_x87": 0,
+        "padding": 0
+      },
+      "record": [
+        254,
+        0,
+        1,
+        1,
+        32,
+        32,
+        768,
+        0,
+        0,
+        0,
+        4290488840,
+        4290488840,
+        144,
+        144,
+        3,
+        0
+      ]
+    }
+  ],
+  "retained_full_report": {
+    "path": "working/tests/glyph-backend/run-v0q3f9wh/report.json",
+    "sha256": "e7439747d070714c82bc04f4bb229652b4c1dfefeba655783262872d5d3ddf22",
+    "bytes": 116785
+  }
+}

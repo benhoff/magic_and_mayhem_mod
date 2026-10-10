@@ -4102,3 +4102,25 @@ versions and the final prospectively declared execution. Committed history
 Existing glyph pixels, byte production and live shadow evidence retain their
 separate scopes. Higher text layout/reset/lifecycle and wider replacement remain
 open.
+
+
+### Native glyph entry and x87 kernel — 2026-10-10
+
+`RS.glyph-backend` now implements the guarded RLE/x87 kernel and an actual
+owned-context handled entry with RET16. Unchanged pinned original comparisons
+match 28,142 executions and 22,656,678 canvas WORDs: 27,966 native handles,
+eight two-active-stack original-once fallbacks and 168 targeted guard forwards.
+Pixels, tables, volatile/callee registers, rewritten arguments, stack guards,
+defined flags/DF, x87 CW/full status/TOP/tag/occupied values and XMM/MXCSR match.
+The native helper reproduces cold coverage and arithmetic under all twelve
+precision/rounding controls, including upward cold coverage aboveone.
+
+`NR.glyph-backend-admission` records 24 atomic ASan/UBSan refusals, seven-slot
+physical FP admission, strict warm coverage and explicit owned context. Native
+PE32 linkage needs only the embedding original-trampoline symbol, with no CRT.
+[Results and preserved experiment versions](glyph-backend.md) distinguish
+implementation, headless original comparison and pending live replacement.
+Committed range `577d293..eb3cd18` has 18 file and 28 behavior transitions with
+zero unresolved receipts. No live hook is installed: process-memory/lifetime
+admission, bounded live capture/replay, GPU glyph takeover and higher text
+layout/reset/lifecycle remain open.
