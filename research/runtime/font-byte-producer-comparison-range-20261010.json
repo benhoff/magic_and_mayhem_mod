@@ -1,0 +1,81 @@
+{
+  "success": true,
+  "sources": {
+    "assets/CMakeLists.txt": "aa61db073f3eef0758f5402c22fbcc4b57ca51bdb2bdbda0dc37d96293d3f401",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "assets/sft.cpp": "e317648525c1bd53d0a25a84db2ff943041b392c39ba34afc8781ac7fee8e985",
+    "assets/sft.hpp": "91a41125164f294985873e4812728886a10c763f7082275e04b99f1bd0483c3b",
+    "assets/sprite_frame_decoder.hpp": "55ff6be0e30d13672c8fc2fab5c2328582fc3eb0ffdf4456d3b2c6ab1a0ec6ab",
+    "assets/sprite_loader.cpp": "00abda9b22c1f85be51e2f00028bcd448a044efbacc0fff1a24fec676df68e67",
+    "assets/sprite_loader.hpp": "0ab5f80fe75601ad3010afd048c87176bd1b3d37d371525a5c4ea6e3991d263e",
+    "compat/legacy/font_text.cpp": "eaf712802b4f25c656c2c462f126464ebbf8a8608fad7f4ecfae004e2be72a26",
+    "compat/legacy/font_text.hpp": "29a4f4d3405985ec0e75192ba349f7535b1dbe59b960ba0d67e2cefceab06d14",
+    "reconstruction/rendering/font_byte.cpp": "dd5aa18463d5f3195ac9bfcbc65679f56bf888b127724e61d9c2be2d316da693",
+    "reconstruction/rendering/font_byte.hpp": "5120d1f2cd7827d899e6bdafbbd2ec4491dae5352664e70f085d9f10daa87690",
+    "renderer/blit.hpp": "4abf821da5214e469c8305ff713c3099535495270095fc882b93709b6e60c068",
+    "renderer/canvas_sequence.cpp": "283fc4103ed3a5f38b798bb1b5cda1c6604ce1e746c45e8323497ec454123ee0",
+    "renderer/canvas_sequence.hpp": "93b70d6c5a5af09c81e1b9e1be673018d29251fda1112691d225c626127e63f5",
+    "renderer/minimap/minimap.cpp": "1f340ea7d1a0307660e8d262dbe1580a3d0ccadfaa6e6e156b2e94b8652f5857",
+    "renderer/minimap/minimap.hpp": "74970c73a9eff06a2c2fd015b47e38fce5229c712250f11fe5c9dea1dbd5f470",
+    "renderer/minimap/overlays.cpp": "d1d5b6bdc8d3b6bb156aeac0055257450e35e12069567c03befce1f415b4e3c8",
+    "renderer/minimap/overlays.hpp": "93e97d2697085e12e68fd8e7a7fe25a6634a3ff9cf80ca31d31c2f834b41acba",
+    "tests/font-byte-native.cpp": "94760ba22d660b96af33838c3cff74618ab0937dd6c6fa5fed96b9b45cb3377c",
+    "tests/font-byte-reference.cpp": "b7c0a010f91c8ce4dfec26fd66fdae39dfdc509063640969a230a63486e21a4c",
+    "tests/font-byte-test.cpp": "56012c240b1c0241de89b943a1cbfc96c8ec7c9c19724ca61f61932cc9a716da",
+    "tests/font-byte/CMakeLists.txt": "af624a033391b84eb6e5c0cf373e0a7bd4c73b2636bc0372477236806feac3e5",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-font-byte-producer.py": "433fb63040b46b7851f0bb4bdafa8704c950f1ad5c2411aeb7e91134d79746ee"
+  },
+  "claims": [
+    {
+      "behavior": "RS.font-byte-consumer",
+      "contract_sha256": "a710330a06b08b1419110795066a639d401610448c135fddd7281c63f5bfbba4",
+      "scenarios": {}
+    },
+    {
+      "behavior": "NR.font-byte-producer",
+      "contract_sha256": "43a814ad5d40c3889546b985596c574c21a0960e8ed1e372c813bbf5053dfd6f",
+      "scenarios": {
+        "font-byte-atomic-20261010": "07f2c9cfc839901193d480172aa351c140a5b7250335d0da369e0218891445ec"
+      }
+    }
+  ],
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "live_replacement": false,
+  "original_pixels_used_as_native_inputs": false,
+  "scope": "NoCD byte advance, admitted single-byte draw cursor/contours and RGB565 canvases. Explicit initialized state, no higher text layout/lifecycle or live bypass.",
+  "original_entry_anchors": {
+    "0x4a58e0": "518a54240853578bf980fa20c7442408",
+    "0x4a59e0": "538b5c2408566a018bf153e8f0feffff"
+  },
+  "cases": 3776,
+  "operations": 64793,
+  "draw_cases": 3627,
+  "words_compared": 59424768,
+  "corpus_sha256": "f942d3a5aa8a8df52c68b93167ec78326b96cc087e8e71b818b3aae186a47907",
+  "sanitizer_passed": true,
+  "equal": 3776,
+  "mismatches": [],
+  "output_bytes": 125145992,
+  "source_and_padding_guards_passed": true,
+  "atomic_refusals": 6,
+  "original_sha256": "9794a82cc86ce4a9b55a4ed8cad6fa17dba7c28420b8fce0463a7bc3a732608c",
+  "native_sha256": "9794a82cc86ce4a9b55a4ed8cad6fa17dba7c28420b8fce0463a7bc3a732608c",
+  "original_binary_sha256": "7650c25d0fb3b3b79d76add73fd39161c3a6c3c14d00384e14970126203040e7",
+  "native_binary_sha256": "f0d161e146b1bed7f52db82ebeaf0e28b2ca3ffbed96f884b6890ddd2fef3a78",
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true,
+  "inputs": {
+    "original/Arcane_Nocd/Chaos.exe": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "working/game-clean/Sprites/Tooltip Text.sft": "339149c522191e8c8cd4c5dc3e94f6b03ac3659171894d9230083dd2f3f5c448",
+    "working/game-clean/Sprites/body text 640.sft": "1c3e0fa5b5edb73bfc91586d36fa525429312ff56148761db08e42b7c507213c",
+    "working/game-clean/Sprites/body text 800.sft": "188e7f64dd0439334b8a6b65c0d20de4aa051d8e11e7bb74e11dfa3b879d6d80",
+    "working/game-clean/Sprites/heading text 640.sft": "e61954f2d244d0f54800a672c31f78ad8fff09df2e9a8996047ea4dd4568352a",
+    "working/game-clean/Sprites/heading text 800.sft": "5208106ee09588e65c7241759bce28a5b9c7d670e2cfa49581c9b0567c612d1a",
+    "working/game-clean/Sprites/yellowtext.sft": "ecbaf127077d4c8355a73426f380674c88616d103f61edaee803c742e4577b9f"
+  },
+  "inputs_stable": true
+}

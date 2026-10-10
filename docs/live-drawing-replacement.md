@@ -180,7 +180,7 @@ previews and captured-destination uploads cannot satisfy the bypass step.
 
 | Order | Producer work | Concrete completion boundary |
 | --- | --- | --- |
-| 1 | SFT tinted glyph raster and original text consumers | Finish the dedicated [glyph comparison](../research/runtime/font-glyph-raster.md); preserve original contour spacing/cursor behavior before live admission. General text layout and original font lifecycle remain separate from glyph pixels. |
+| 1 | SFT tinted glyph raster and original text consumers | Dedicated [glyph pixels](../research/runtime/font-glyph-raster.md) and [byte spacing/cursor chains](../research/runtime/font-byte-producer.md) match original code; the [bounded live glyph shadow](../research/runtime/font-glyph-live-shadow.md) matches source-only completed canvases. Recover higher string layout and state reset/lifecycle, then validate an explicitly admitted text bypass. |
 | 2 | BMP/DIB/PCX/JPEG source image writers and panel/fade operations | Exercise the memory-DIB and positioned-image branches beyond startup, preserve source cropping, padded rows and caller/DC lifetime, and admit native output without original GDI destination pixels. |
 | 3 | HUD, tooltips, minimap and cursor | Attribute active callers and compose complete output from owned state/resources. Existing minimap four-view comparisons and native cursor/menu assets are foundations; validate live updates, hotspots, picking and producer suppression. |
 | 4 | Remaining Lock/Unlock writers and alternate dispatch | Attribute unclassified writes and effect-to-pixel routes; recover their inputs, destination dependence and required side effects. Keep unknown routes visible and outside replacement admission. |

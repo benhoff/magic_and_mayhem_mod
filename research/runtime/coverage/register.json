@@ -27958,6 +27958,134 @@
       }
     },
     {
+      "id": "RS.font-byte-consumer",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "NoCD byte contour advance and admitted single-byte text producer",
+      "scope": "Pinned4a58e0 contour advance/update across byte0..255, suppressed space/underscore mapped to a, tab and low controls, mode1 punctuation !?:;, five quote bytes, signed32 wrapping arithmetic; admitted4a59e0 cursor-before-glyph updates and suppressed tab/newline/space/underscore. Owned SFTv3 contours/glyphs, explicitly initialized state and RGB565 table. Unavailable/control frame draw lookups refused by native policy, never executed in original. Excludes higher string wrapping/line layout, Unicode/codepages, font reader/allocation/palette lifecycle, Win32 ABI, live text entry hooks and bypass.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4872416,
+          "scope": "Selected contour advance with supplied valid owned state and punctuation mode."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4872672,
+          "scope": "Admitted available glyph and four suppressed byte branches; cursor/contour state and selected RGB565 canvas pixels.",
+          "recovered_range": "font-byte-draw-4a59e0"
+        }
+      ],
+      "documents": [
+        "research/runtime/font-byte-producer.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "compat/legacy/font_text.cpp",
+        "compat/legacy/font_text.hpp"
+      ],
+      "tests": [
+        "tests/font-byte-native.cpp",
+        "tests/font-byte-reference.cpp",
+        "tests/font-byte-test.cpp",
+        "tools/test-font-byte-producer.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "tests/font-byte/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "RS.font-byte-consumer.comparison-20261010",
+        "NR.font-byte-producer.synthetic-20261010",
+        "RS.font-byte-consumer.comparison-range-20261010",
+        "NR.font-byte-producer.synthetic-range-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.font-byte-producer",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned atomic byte text producer",
+      "scope": "Intentional widget-free adapter owns decoded SFT data and recovered contour model; validates contour extent/128row bound and byte frame availability before mutation, stages cursor/profile changes, commits only after atomic glyph raster admission. Unsupported control/frame, incomplete state, invalid tint/coverage and undefined destination refuse without changing text state or defined pixels. Suppressed bytes advance without accessing canvas. Excludes original malformed failure equivalence, whole string transaction, native higher text layout, live text state lifecycle or takeover.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/font-byte-producer.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/font_byte.cpp",
+        "reconstruction/rendering/font_byte.hpp",
+        "compat/legacy/font_text.cpp",
+        "compat/legacy/font_text.hpp"
+      ],
+      "tests": [
+        "tests/font-byte-native.cpp",
+        "tests/font-byte-reference.cpp",
+        "tests/font-byte-test.cpp",
+        "tools/test-font-byte-producer.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "tests/font-byte/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp"
+      ],
+      "evidence": [
+        "RS.font-byte-consumer.comparison-20261010",
+        "NR.font-byte-producer.synthetic-20261010",
+        "RS.font-byte-consumer.comparison-range-20261010",
+        "NR.font-byte-producer.synthetic-range-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
       "id": "RS.word-clip-takeover",
       "subsystem": "native_rendering",
       "kind": "recovered",
@@ -28150,6 +28278,209 @@
           "FP fault delivery",
           "original malformed acceptance"
         ]
+      }
+    },
+    {
+      "id": "NR.font-glyph-live-shadow",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded live glyph-bearing native canvas shadow admission",
+      "scope": "Existing original-active producer observer supplies owned RLE frames, RGB tint, initialized64float coverage, RGB565 mode/masks and logical canvas placement. Native live CPU sequence admits glyphs after atomic index/coverage/defined-destination preflight, composes source-only menu/loading/HUD history, mirrors completed canvases to retained GPU surfaces and compares completions externally with original outputs. Bounded800x600 map2 zero-item Quick Battle startup through four World returns; positive glyph traffic and all completion identities/mirrors required, gap/refusal fails. No original destination seed, per-glyph live oracle, live byte-state adapter, text entry bypass, complete-session/other resolutions or driver equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/font-glyph-live-shadow.md"
+      ],
+      "implementation": [
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_producers.S",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp"
+      ],
+      "tests": [
+        "tools/test-font-glyph-live-shadow.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/CMakeLists.txt",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/minimap/overlays/CMakeLists.txt",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/word-clipped/CMakeLists.txt",
+        "renderer/sprites/word-raster/CMakeLists.txt",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-scene-game.py",
+        "tools/export-menu-support.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inspect-startup-queues.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/scene-game-runner.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py"
+      ],
+      "evidence": [
+        "NR.font-glyph-live-shadow.live-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
       }
     }
   ],
@@ -54054,6 +54385,200 @@
       "equivalence_pointer": "/live_pixels_workspace_match"
     },
     {
+      "id": "RS.font-byte-consumer.comparison-20261010",
+      "kind": "isolated_original",
+      "scope": "NoCD byte advance, admitted single-byte draw cursor/contours and RGB565 canvases. Explicit initialized state, no higher text layout/lifecycle or live bypass. Native atomic refusals are deliberate policy, not original malformed-failure equivalence.",
+      "record": "research/runtime/font-byte-producer-comparison-20261010.json",
+      "sha256": "0edbaa55fe3e31072368f50b64cd52d0c74c58d5823e8b7c53338207256e0edb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 3776
+        },
+        {
+          "pointer": "/equal",
+          "equals": 3776
+        },
+        {
+          "pointer": "/operations",
+          "equals": 64793
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 59424768
+        },
+        {
+          "pointer": "/source_and_padding_guards_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 6
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.font-byte-producer.synthetic-20261010",
+      "kind": "native_integration",
+      "scope": "NoCD byte advance, admitted single-byte draw cursor/contours and RGB565 canvases. Explicit initialized state, no higher text layout/lifecycle or live bypass. Native atomic refusals are deliberate policy, not original malformed-failure equivalence.",
+      "record": "research/runtime/font-byte-producer-comparison-20261010.json",
+      "sha256": "0edbaa55fe3e31072368f50b64cd52d0c74c58d5823e8b7c53338207256e0edb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 3776
+        },
+        {
+          "pointer": "/equal",
+          "equals": 3776
+        },
+        {
+          "pointer": "/operations",
+          "equals": 64793
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 59424768
+        },
+        {
+          "pointer": "/source_and_padding_guards_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 6
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.font-glyph-live-shadow.live-20261010",
+      "kind": "live_equivalence",
+      "scope": "Four startup World returns with live native owned menu/loading/HUD history, positive tinted glyph inputs and external whole-canvas completion/GPU mirror comparisons. Original text state and drawing active; no byte-state hook or suppression.",
+      "record": "research/runtime/font-glyph-live-shadow-comparison-20261010.json",
+      "sha256": "116167c630f2acee16ea8a5dfe1026bb5af59c5a2b63dcea8e928b20784c4fb8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "equivalence_pointer": "/gpu_mirror_equal",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/glyph_calls",
+          "equals": 1935
+        },
+        {
+          "pointer": "/world_returns",
+          "equals": 4
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 941
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 416635312
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/gpu_mirror_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
+    },
+    {
       "id": "RS.word-clip-takeover.original-20261010",
       "kind": "isolated_original",
       "record": "research/runtime/word-clip-takeover-isolated-20261010.json",
@@ -54431,6 +54956,134 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.font-byte-consumer.comparison-range-20261010",
+      "kind": "isolated_original",
+      "scope": "NoCD byte advance, admitted single-byte draw cursor/contours and RGB565 canvases. Explicit initialized state, no higher text layout/lifecycle or live bypass. Native atomic refusals are deliberate policy, not original malformed-failure equivalence.",
+      "record": "research/runtime/font-byte-producer-comparison-range-20261010.json",
+      "sha256": "2cb7efa0cf63e3c7e24bf99fd4dd3e508332db83444e56b82c74900187766e68",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 3776
+        },
+        {
+          "pointer": "/equal",
+          "equals": 3776
+        },
+        {
+          "pointer": "/operations",
+          "equals": 64793
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 59424768
+        },
+        {
+          "pointer": "/source_and_padding_guards_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 6
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.font-byte-producer.synthetic-range-20261010",
+      "kind": "native_integration",
+      "scope": "NoCD byte advance, admitted single-byte draw cursor/contours and RGB565 canvases. Explicit initialized state, no higher text layout/lifecycle or live bypass. Native atomic refusals are deliberate policy, not original malformed-failure equivalence.",
+      "record": "research/runtime/font-byte-producer-comparison-range-20261010.json",
+      "sha256": "2cb7efa0cf63e3c7e24bf99fd4dd3e508332db83444e56b82c74900187766e68",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/cases",
+          "equals": 3776
+        },
+        {
+          "pointer": "/equal",
+          "equals": 3776
+        },
+        {
+          "pointer": "/operations",
+          "equals": 64793
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 59424768
+        },
+        {
+          "pointer": "/source_and_padding_guards_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 6
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -61806,6 +62459,26 @@
       ]
     },
     {
+      "id": "font-byte-atomic-20261010",
+      "level": "headless",
+      "scope": "Six atomic native text refusals, suppressed tab/newline without canvas, read-only contour probe; explicitly initialized private owned state, no original malformed-failure or live claim.",
+      "behaviors": [
+        "NR.font-byte-producer"
+      ],
+      "tests": [
+        "tests/font-byte-native.cpp",
+        "tests/font-byte-reference.cpp",
+        "tests/font-byte-test.cpp",
+        "tools/test-font-byte-producer.py"
+      ],
+      "evidence": [
+        "RS.font-byte-consumer.comparison-20261010",
+        "NR.font-byte-producer.synthetic-20261010",
+        "RS.font-byte-consumer.comparison-range-20261010",
+        "NR.font-byte-producer.synthetic-range-20261010"
+      ]
+    },
+    {
       "id": "word-clip-takeover-host-20261010",
       "level": "headless",
       "scope": "Actual mode4 production route/entry:22048 original comparisons with22000 original-body-zero native positives and48 empty forwards;110240 classified original-once failures plus22000 unmasked IE/2240 occupied push-slot hidden guards. Selected caller-state and ASan/UBSan preflight boundaries;host Win32 substitutes.",
@@ -61836,6 +62509,20 @@
       "tests": [
         "tools/capture-scene-game.py",
         "tools/replay-word-clip-shadow.py"
+      ]
+    },
+    {
+      "id": "font-glyph-live-shadow-20261010",
+      "level": "live_equivalence",
+      "scope": "Pinned original-active800x600 map2 zero-item Quick Battle, live native producer history through four startup World returns, positive glyph requests and independent all-checkpoint/GPU mirror equality; no byte-state replacement or bypass.",
+      "behaviors": [
+        "NR.font-glyph-live-shadow"
+      ],
+      "tests": [
+        "tools/test-font-glyph-live-shadow.py"
+      ],
+      "evidence": [
+        "NR.font-glyph-live-shadow.live-20261010"
       ]
     }
   ],
@@ -62055,6 +62742,15 @@
       "document": "research/runtime/native-minimap-overlays.md",
       "evidence": "RS.minimap-camera-corners.comparison-range-20261009",
       "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "font-byte-draw-4a59e0",
+      "build": "nocd-40209ca7",
+      "start": 4872672,
+      "end": 4872777,
+      "document": "research/runtime/font-byte-producer.md",
+      "evidence": "RS.font-byte-consumer.comparison-range-20261010",
+      "anchors_pointer": "/original_entry_anchors"
     }
   ],
   "register_imports": [
@@ -62165,8 +62861,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-word-clip-takeover-20261010.json",
-    "sha256": "7f52676d43f2686c72cf92492438ed03b142adc5579fbe63a27e0bafd392e9c6"
+    "path": "research/runtime/coverage/source-index-font-byte-20261010.json",
+    "sha256": "1e7ff08813d550936ee6623d0e226fb20efe79a1e9cb127e46bb34e1eb265db2"
   },
   "claim_bindings_required": true
 }
