@@ -88,7 +88,7 @@ requires every intervening queue despite publication drops and superseding.
 The [direct-word sprite MVP](../research/runtime/native-word-sprite-mvp.md) adds
 an explicit partial CPU raster route at the two selected original word-backend
 entries. Fully in-bounds admitted SPR draws can bypass those original routines;
-clipped and unsupported draws retain their original path. Original caller-side
+Unsupported draws retain their original path. Original caller-side
 auxiliary passes, indexed World sprites and the other frame producers remain
 active. Its bounded shadow/takeover comparisons are scoped primitive evidence,
 not a complete scene or supported-session milestone. A separate
@@ -96,8 +96,13 @@ not a complete scene or supported-session milestone. A separate
 960 native GPU placements against both original backends. [Clipped caller-state recovery](../research/runtime/word-backend-state.md) now
 compares complete workspace/arguments and selected original ABI in 4,448 fixtures.
 It fixes existing unclipped workspace/C1 compatibility and validates a fresh
-finite startup takeover. Clipped native raster admission and full Win32 exception
-behavior remain open, so live admission is unchanged.
+finite startup takeover. [Guarded clipped takeover](../research/runtime/word-clip-takeover.md)
+now admits bounded main-word clipping under explicit mode4, with22,000 isolated
+native positives and13,312 reported Wine bypasses including705 clipped. Eight
+distinct captures independently match original pixels/workspace; this cohort
+comparison does not establish every reported bypass or whole-session equivalence.
+Auxiliary effects,indexed routes,complete Win32/FP exceptions and default
+admission remain separate open boundaries.
 
 The [complete startup World raster queue](../research/runtime/native-world-raster-queue.md)
 and [guarded batch return](../research/runtime/native-world-raster-batch.md)

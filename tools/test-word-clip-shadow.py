@@ -57,9 +57,11 @@ def pixels(frame, width, height, stride, left, top, before, clip_left, clip_top)
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--claims', type=Path, required=True)
+    parser.add_argument('--mode', choices=['clip-shadow','clip-takeover'], default='clip-shadow')
     args = parser.parse_args()
     declaration = json.loads(args.claims.read_text())
-    sources = {name: sha(ROOT / name) for name in SOURCES}
+    takeover = args.mode=='clip-takeover'
+    sources = {name: sha(ROOT / name) for name in sorted(set(SOURCES)|set(declaration['sources']))}
     assert declaration['claims']
     assert all(sources.get(p) == h for p, h in declaration['sources'].items())
     parent = ROOT / 'working/tests/word-clip-shadow'
@@ -69,7 +71,9 @@ def main():
     report = {'schema': 1, 'success': False, 'claims': declaration['claims'], 'sources': sources,
               'original_sha256': ORIGINAL, 'experiment': str(run.relative_to(ROOT)),
               'scope': 'Actual production clipping shadow route with substituted host Win32 APIs; five forced safe-original refusals per case, exact original-once counters and LastError retention. Bounded contiguous direct-word CPU clipping versus two unchanged original No-CD backends, zero/(2,2) clip origins, exact/partial edges/corners, hidden/oversized frames, zero dimensions. Complete workspace/argument/integer/defined flags/selected masked floating/guards comparison through the actual production route/entry with host Win32 substitutes; empty requests forwarded for original FP handling. Core malformed/alias/clip-bounds refusal is native safety policy, not original malformed acceptance. Win32 access/LastError/reentry, unmasked/full-stack/exception FP, other backends, auxiliary payload interpretation, indexed inputs, installed-asset generality and live clipping replacement excluded. Appended opaque auxiliary offsets bound main colours; five plane layouts per positive fixture.',
-              'original_work_bypassed': False, 'live_replacement': False}
+              'original_work_bypassed': False, 'live_replacement': False, 'mode':args.mode}
+    if takeover:
+        report['scope']='Actual production guarded clipped takeover route/entry versus unchanged original:22000 positive native bypasses,17600 auxiliary-bearing,48 empty forwards and110240 classified forced refusals. Four rounding modes across24/53/64-bit precision controls; selected x87 stack/status, XMM/MXCSR, integer/argument/workspace/pixels/guards/source, LastError and exact original-body counters. Unmasked IE forwarded on exact finite arithmetic; occupied push-slot forwarded on masked vertically hidden positive fixtures. Real Win32 permissions/nested-reentry, fault delivery, other backends, indexed/auxiliary payload interpretation/full-session excluded.'
 
     def command(argv, name):
         result = subprocess.run([str(a) for a in argv], capture_output=True, text=True, timeout=180)
@@ -153,13 +157,13 @@ def main():
                 data = bytearray(fixtures.sample(frame, width, height, stride, left - 3, top + 2, backend,
                                                 before, expected, (seed % 2) * 2))
                 struct.pack_into('<II', data, 64, clip_left, clip_top)
-                struct.pack_into('<I', data, 76, seed % 4)  # private probe seed; v1 live samples keep this reserved word zero
+                struct.pack_into('<I', data, 76, seed % (12 if takeover else 4))  # private probe seed; v1 live samples keep this reserved word zero
                 data[80:144] = workspace
                 path = run / f'case-{len(cases):05d}.bin'
                 path.write_bytes(data)
                 cases.append({'seed': seed, 'branch': branch, 'planes': variant, 'backend': hex(0x400000 + backend),
                               'clip_left': clip_left, 'clip_top': clip_top, 'alignment': (seed % 2) * 2,
-                              'fp_flags_seed': seed % 4, 'sample': str(path.relative_to(ROOT)), 'sample_sha256': sha(path)})
+                              'fp_flags_seed': seed % (12 if takeover else 4), 'sample': str(path.relative_to(ROOT)), 'sample_sha256': sha(path)})
                 paths.append(str(path))
 
         for seed in range(64):
@@ -190,15 +194,16 @@ def main():
         manifest.write_text('\n'.join(paths) + '\n')
         report['cases'] = cases
         output = run / 'state-results.bin'
-        command([reference, executable, manifest, output], 'original-model')
+        command([reference, executable, manifest, output, '4' if takeover else '3'], 'original-model')
         data = output.read_bytes()
-        assert data[:8] == b'MNMWSH01' and struct.unpack_from('<II', data, 8) == (1, 288)
-        assert len(data) == 16 + len(cases) * 288
+        assert data[:8] == b'MNMWSH01' and struct.unpack_from('<II', data, 8) == ((2,304) if takeover else (1,288))
+        record_bytes=304 if takeover else 288
+        assert len(data) == 16 + len(cases) * record_bytes
         counts = Counter()
         failures = []
         for index, case in enumerate(cases):
-            raw = data[16 + index * 288:16 + (index + 1) * 288]
-            row = struct.unpack('<72I', raw)
+            raw = data[16 + index * record_bytes:16 + (index + 1) * record_bytes]
+            row = struct.unpack('<76I' if takeover else '<72I', raw)
             case.update(check_mask=row[0], state_record_sha256=hashlib.sha256(raw).hexdigest(),
                         native_entry_check_mask=row[60],
                         cpu_clip_admitted=bool(row[7]), actual_native_handled=bool(row[52]),
@@ -206,17 +211,22 @@ def main():
             counts['model_original_matches'] += row[0] == 1023
             counts['native_entry_original_matches'] += row[60] == 1023
             counts['cpu_clip_admissions'] += row[7]
-            counts['shadow_compared_positive'] += bool(row[52])
+            counts['native_bypassed_positive' if takeover else 'shadow_compared_positive'] += bool(row[52])
             counts['original_forwarded_empty'] += bool(row[53])
             counts['clipped_compared'] += row[71]
             counts['auxiliary_compared'] += bool(row[52]) and case['planes'] != 'none'
             counts['original_once'] += row[64] == 1
+            if takeover:
+                counts['original_body_zero_positive'] += not row[63] and row[64]==0 and row[74]==1
+                counts['unmasked_guard_matches'] += row[72]
+                counts['occupied_push_guard_matches'] += row[73]
+                counts['guard_attempts'] += (row[75]&1)+bool(row[75]&2)
             counts['last_error_preserved'] += bool(row[65])
             counts['forced_refusal_checks'] += sum(v == 4095 for v in row[66:71])
             for bit, name in enumerate(('workspace', 'arguments', 'registers', 'stack', 'return_flags',
                                         'x87_control_status', 'x87_values', 'xmm', 'mxcsr', 'pixels_guards_source')):
                 counts[name + '_matches'] += bool(row[0] & (1 << bit))
-            if row[0] != 1023 or row[60] != 1023 or row[52] != int(not row[63]) or row[53] != row[63] or row[64] != 1 or not row[65] or any(v != 4095 for v in row[66:71]):
+            if row[0] != 1023 or row[60] != 1023 or row[52] != int(not row[63]) or row[53] != row[63] or row[64] != (row[63] if takeover else 1) or (takeover and (row[74]!=int(not row[63]) or (row[75]&1 and not row[72]) or (row[75]&2 and not row[73]))) or not row[65] or any(v != 4095 for v in row[66:71]):
                 failures.append({'case': index, **case, 'original_words': list(row[8:24]),
                                  'model_words': list(row[24:40]), 'first_workspace_mismatch': row[6],
                                  'flags_before': row[4], 'flags_after': row[5],
@@ -224,10 +234,11 @@ def main():
         report.update(counts=dict(counts), failures=failures, case_count=len(cases),
                       branches=dict(Counter(c['branch'] for c in cases)),
                       state_results_sha256=sha(output), reference_sha256=sha(reference))
-        report['isolated_original_body_bypasses'] = 0
+        report['isolated_original_body_bypasses'] = counts['original_body_zero_positive'] if takeover else 0
+        report['original_work_bypassed'] = takeover and report['isolated_original_body_bypasses']==22000
         command(['python3', ROOT / 'tools/build-word-sprites.py'], 'pe32-adapter-build')
         report['pe32_adapter_manifest'] = json.loads((ROOT / 'working/build/word-sprites/manifest.json').read_text())
-        report['success'] = not failures and len(cases) == 22048 and counts['cpu_clip_admissions'] == len(cases) and counts['shadow_compared_positive'] == 22000 and counts['auxiliary_compared'] == 17600 and counts['original_forwarded_empty'] == 48
+        report['success'] = not failures and len(cases) == 22048 and counts['cpu_clip_admissions'] == len(cases) and counts['native_bypassed_positive' if takeover else 'shadow_compared_positive'] == 22000 and counts['auxiliary_compared'] == 17600 and counts['original_forwarded_empty'] == 48 and (not takeover or counts['original_body_zero_positive']==22000 and counts['unmasked_guard_matches']==22000 and counts['occupied_push_guard_matches']==2240)
     except Exception as error:
         report['error'] = str(error)
     finally:

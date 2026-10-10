@@ -1,0 +1,1320 @@
+{
+  "schema": 1,
+  "scope": "Committed-history only. Parent/current exact file and behavior receipts reviewed separately from uncommitted takeover changes. Append-only journal verified without recursive self-hash. No historical gate or fresh-execution assertion.",
+  "range": {
+    "base": "d412789fcea7896da0f6553f9ca3966be70805ad",
+    "head": "0191a55449752ce7867cd81d33c2cbfdd36e40b9"
+  },
+  "files": [
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "reconstruction/rendering/word_backend_state.c",
+      "before_sha256": "90e747fe1490ca94892ce974dfb1dbf90af71ba5da3923bef887c9396ad1134a",
+      "after_sha256": "5ec05fbe6ae5c6a48839e3e8c4ee01d4546e730e235af6bd08d9ff654a09f0f2",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "renderer/sprites/word_clipped.c",
+      "before_sha256": "11172af3b6e6409d10ce747dde1b1a325d61fa931d127ef5873eec446fabff5b",
+      "after_sha256": "7ced88878d827606070b8ac0475360ffaead969d1321a6c848324d3b72a89bba",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "renderer/sprites/word_clipped.h",
+      "before_sha256": "82ae0479efb1f5854adc958a78a12b5b0ec174554cd60c1b19d84f863a9419a7",
+      "after_sha256": "df60421e209e66511eea2d8d19647506649575e5ff1237df9fa91ed9840912b6",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/formats/word-admission-stats-v1.md",
+      "before_sha256": null,
+      "after_sha256": "2b9e83711d49eff85c881b4703c2fb300092381a8c8fb9c1a1dad7d83e4b62d2",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "36d736520519c6a35dda5079ddf90adf57c4ff5f06249308115b963efa68c2e2",
+      "after_sha256": "337b953e1e9313fa70dd6fb537bf7cac1077754adb6a14c74df0bcc1c1fcd5e4",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "4cd1350c34bd566e80b2ed8e6c990c9aae54649b83054368bea7d7ce8703aaf4",
+      "after_sha256": "c5b4827dac7a83585d5f527b13b3e8d65ad2cfa103be165845ed84ade594e818",
+      "receipts": [],
+      "classification": "append_only_journal"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "bc284516941353ef60e5631b14c2a10cc08d45741cfb04380d0986c08af6d5a3",
+      "after_sha256": "9cce755b54aabf3b695a84241b94f6222eccf46704b786476b00150d57e98d36",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/coverage/source-index-word-clip-aux-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ada92990ffbbc6674f4647352535561c23d2acd50a1370805339370584109c28",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "e7959898f91831ed1c74e5589743fe3dc99bc459bf34ddba4674d023ba1f3b01",
+      "after_sha256": "81bc26e7f82960361d2f171c3f1b87e70a3585b8e6566f067129325d7d796d6e",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/coverage/word-clip-aux-history-652c01d-c9f99e8-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "911282a9415a11448a5c00cabd847a9a348b34a8607ee8aeb0c0a001c1920cf2",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/coverage/word-clip-aux-history-c9f99e8-d412789-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7dcff1c14675cb15c11afdb016b3a92e51e9f0278d9bbe95f7dfeee492e93fda",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/word-clip-aux-capture-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "cd0786d02a64da46a812a4293b1ff6b0ee797df1622e3d188a85c1b5417a59de",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/word-clip-aux-dimensional-sampler-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1f4c38246c904cee7af4ba1c505461b68847b68681f30743c5a6a6ad42b8afcb",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/word-clip-aux-distinct-sampler-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0d09e91191c4527bd3c6a178b223430c308b2c730e01333d87acec7b402d0c53",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/word-clip-aux-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "935ee10d6143bde26711a897382a1b76acb003c471cae1eea231c07307779cc8",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/word-clip-aux-isolated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1922c95c73718330b033bb4612acdba3d8b1a3cdbc90bff0bcb851ccd8f78c81",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/word-clip-aux-live-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bffb4ebac307af3dd2ce0d55396360c2ebd14df8370af1dc25722129e932d9c2",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/word-clip-aux-replay-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "121ecb6351244a790367954632830644000cb0c2025c13a6037ae1eabf3a6c13",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "research/runtime/word-clip-aux-shadow.md",
+      "before_sha256": null,
+      "after_sha256": "418e2986c2c93624328ba8d4d2f5c40e2ac3861f8ad9ceb5f41733ca81da5145",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "runtime/scene/word_route.c",
+      "before_sha256": "9349585787972bf479d05422d304c10977c4d50a3797e779ea1f6925ec929026",
+      "after_sha256": "9b64bc40bed96f4aad19c37528135cf82f4d251d12a44722b668ca06fab4e1bd",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "tests/word-clip-shadow-host.c",
+      "before_sha256": "a1e6e331c0e461eb0ecd33611fa4cbac26eb0329f1674f6f2458082b79aa6ac9",
+      "after_sha256": "891c514d2ce675559073495f1c75e1b5519eeb8a573a68ef6f766b0d1a619e5e",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "tests/word-clip-shadow-reference.cpp",
+      "before_sha256": "b13e0e077ad68ea313a5a573999f1563ccdecfd448acb4632259afca8ef6addc",
+      "after_sha256": "55e9390653942a89f7dbff0f70592f96a39338e8c3e64925fd3c2c1703b18957",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "tests/word-clipped-test.c",
+      "before_sha256": "bb7e89075fb9b8b412d32f16e03584488494974c49bb779bc44fa591f61362a8",
+      "after_sha256": "9d9ddc94c49c1bceec5d0f45dccd5fbbb7e52372c443b0ed7f58ff983082bb9b",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "tools/capture-scene-game.py",
+      "before_sha256": "a009162b0755e1bb813ec9ad7a5571933ff672a45019e6ee51e82340710b4c2e",
+      "after_sha256": "17922238c1d8bba5df271361a710bc784fbaa709aa60047fb63013801a66a932",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "tools/replay-word-clip-shadow.py",
+      "before_sha256": "bcfeb1c016c0f3203f0c591a1030904e037cfacad0d1d3ba7aa7127dcdc54eb7",
+      "after_sha256": "6c76305009eee307084f528ab0769eaf7e431f2458b68b36e0208ff1e651eb20",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "parent": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "path": "tools/test-word-clip-shadow.py",
+      "before_sha256": "a44bb1b23582c346fc445ddef3d87c50176766669ef2a01a4efe1d69c6480adf",
+      "after_sha256": "e5f472294cae689245644fe5e0a137252c0b018c43ea6fa9902e1e3ef0fe4705",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "f2b02e3e62bb42af8744ccc2fb49f55820a4a3e3611b81f3d24a89e8cffa3086",
+      "after_sha256": "a14e7a14edf87d6f1219d2bbc613fa9939ffaeb326b9b69f10f07a16355c57b8",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "dc91d5e21e8e47646acead95f4b444adeb52086d6fd9cd7791b6d850af51f7db",
+      "after_sha256": "283fc4103ed3a5f38b798bb1b5cda1c6604ce1e746c45e8323497ec454123ee0",
+      "receipts": [
+        "font-glyph-current-head-recorded-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "337b953e1e9313fa70dd6fb537bf7cac1077754adb6a14c74df0bcc1c1fcd5e4",
+      "after_sha256": "e3b7c9fac3d32037f2597fef1896b6202daaf0cafdf5bd4a12eaf9f85406fdad",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "c5b4827dac7a83585d5f527b13b3e8d65ad2cfa103be165845ed84ade594e818",
+      "after_sha256": "131ddaf59be890aec5a614e905b1a3a7112e23b0f9cf4759a5dec2f2e0df9b8f",
+      "receipts": [],
+      "classification": "prior_receipts_preserved_concurrent_insertion"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage/font-glyph-history-ae448ba-d412789-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "026dec07f2657d1446492ea522b1af10e9d35d9be61afb99184566e8a662aea3",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage/font-glyph-history-d412789-1fc0b3e-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ad842afd446a3e6c7bd1cf73954b49c0bab38992415dfc859417a9fa7c1ac767",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "9cce755b54aabf3b695a84241b94f6222eccf46704b786476b00150d57e98d36",
+      "after_sha256": "5cc664e42b5ee8e39aac6cf8daf3a7376cf85a859bcd2c61d2a8a8373cb384a9",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage/source-index-font-glyph-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a6778d2f95ec8879b7edbdaabf896e6a455b8beccdf0bae3875c3e42b2d79a77",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage/source-index-font-glyph-projection-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b1f64d218c6cc34f25817861496dcfc168bbd93eef2703f14717020cc5b63d85",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/font-glyph-raster-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "5055dc17c1d6b2b7c01da61a1a38eb56787bf20d216d7d55bd57296e823e87fc",
+      "receipts": [
+        "font-glyph-current-head-recorded-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/font-glyph-raster.md",
+      "before_sha256": null,
+      "after_sha256": "38e9681c80a9d0116129f566bed3a4572142b9bd8b16fc23f151e86ae205b2eb",
+      "receipts": [
+        "font-glyph-current-head-recorded-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "tests/glyph-raster-native.cpp",
+      "before_sha256": null,
+      "after_sha256": "32e547c17f4ab88d337732c9032d61d6d66ab9b99880617e34bd835ea5ebf4d9",
+      "receipts": [
+        "font-glyph-current-head-recorded-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "tests/glyph-raster-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "06132cd8c77995948f7b50e934ab00ecaf6f570e60b5694b598ed494ce18b177",
+      "receipts": [
+        "font-glyph-current-head-recorded-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "tests/glyph-raster-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "3908a407ea69fa5c8005db9203b8ac799b5728940dcb6a65ec93285e834cd8cc",
+      "receipts": [
+        "font-glyph-current-head-recorded-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "tests/glyph-raster/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "9a598e03fd61544c808a8f77f22513df4240db5455b3daf2116affb07a519262",
+      "receipts": [
+        "font-glyph-current-head-recorded-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "parent": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "tools/test-font-glyph-raster.py",
+      "before_sha256": null,
+      "after_sha256": "29529321224d10f7122049bbef592158225f8f07471534b379031df1f07803ae",
+      "receipts": [
+        "font-glyph-current-head-recorded-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.minimap-input-fixture",
+      "before_sha256": "6d9c3bba51b11c4a1433c352538c86b005fec1f5f5bdc47706868302f63e8b62",
+      "after_sha256": "b2e0bd1bbdf290c268de4836fe02662e9dc95637b0b7110ba3850e70d2523b73",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.minimap-interactive-presentation",
+      "before_sha256": "e5de28b9ed16f506fabfb90aacb65dc39903c8c837bf018558582b19006b1011",
+      "after_sha256": "043b3c29ad3171284343e91f52d2fce5e9cc599637cf5521cf4fc961ab176082",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.minimap-owned-observation",
+      "before_sha256": "3fc47ae787ccef7b8692b18f9e6baf8647ea3bcbdf6ae9d143dd1a85fb76d41d",
+      "after_sha256": "9057885263a02003bc88e5a4d7fb4ba6a83f201973f8b9856e68566c1f8e3354",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.offline-render-soak",
+      "before_sha256": "d5f061692006196137b6bb760b00d185daa26aa0357aeeb75039da820dddc3ce",
+      "after_sha256": "40da271917b39f7c1c1a838e0ef4b63203094a794ab2b536c83cb2095970b1f3",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.scene-snapshot",
+      "before_sha256": "7edc614222eadbadd1acb903b0393c88d8aa2150467875c8a540ab08f0bafd2f",
+      "after_sha256": "e62e32b763a5a8ab78e5e39865b33e6ce8b1c74b2eb99363e717513025d71cad",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.word-admission",
+      "before_sha256": "bab4a00c718a58c3b07963c60e07123ddf652cc2019ceb0725bb1d7c6d0896af",
+      "after_sha256": "8c7f666a17a81e9f9e5ceb6231f9a122742ea5a07ad4f2489281827d1e2f86d2",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.word-clipping-plane-bounds",
+      "before_sha256": null,
+      "after_sha256": "14ffdd5227ba1e3cb13b5949c15ab228608a9d880e65f1b2e22adfd38b2ef25e",
+      "receipts": [
+        "word-clip-aux-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.word-cpu-clipping-admission",
+      "before_sha256": "1c14a2e7d8248c5f21604a9ad3609a842b45855a8d2fc875e209ad25a77c7e04",
+      "after_sha256": "2ea8841cca1844930fe7646850a69131a8360c8f9ac28c22e46c8ae87661a344",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-batch-extended-prefix",
+      "before_sha256": "2025d4774de43b1ce4cd15c70397dcde3a4c25a0d2c972ec9da63453c7f83e4f",
+      "after_sha256": "6d087c20c3188b74e7304dee8d28889b3f007df7d2afae7c58f0adb9fbfcecad",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-batch-profiling",
+      "before_sha256": "cc99cc9727c019f4aad39402a7283d2ab239b56dd9637bccaf46e276eb09f055",
+      "after_sha256": "d2f5cbdbf2dc2213d0553f1afaadd26c178f98f3bb4dfbf73fe4c66b44325de6",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-batch-throughput",
+      "before_sha256": "af0ea0cb2bdf6b5c0664f98a389cede490cd61cbbc6bc8396997fa6b1a9bd304",
+      "after_sha256": "c63a11d2c1c289264ad5b7433855aafbb5fa2c4ef1d2fd4e1f8347fae616dd18",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-channel",
+      "before_sha256": "3c25fbc475340ff398e2b8a136ea82889416223852a17e2c1242160efba2cd35",
+      "after_sha256": "718ad052a0c63471c31b0c8d30815f025ccd58f7159e157fa1856fe7a97ac885",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-interactive-batch-launcher",
+      "before_sha256": "c7c4400ec2881ccec976f4852b171c4894953c7a3ccea5eb4376dffa3e18a6e4",
+      "after_sha256": "a7a5ab1e389523590accb3845750cd03a82ba7fd7052f91df973c1d3b4cafc75",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-kind-diagnostic",
+      "before_sha256": "4feb309b8f954c050a3728316f96bfbc518b9dec8f5c1f1c1ba43057812ca688",
+      "after_sha256": "ea0476522fe56ad27a624cfcdf7ad5892593741c1efe99f4ebf97f4f75ffd5ec",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-live-history",
+      "before_sha256": "2fec50cb2bc79acfa2479700940e978e03a9dc8edcff1c52a130cd65bb5738c3",
+      "after_sha256": "9f0044daf55da731117329fffee603475486b592758b2b048f5918e39f7d478c",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-live-view",
+      "before_sha256": "47562a02898c384b402170cb5c438d5b06ed2a9668335bf6bdd3abede9198b0e",
+      "after_sha256": "02d031d06df9a83828214b3e1ffa80a79383809324ba4b21ae54c17708e85f81",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-producer-handoff",
+      "before_sha256": "9be8687460e6f517ff305f82678f5afaf81e205779c7fb11a6d8d0ddfc5ea261",
+      "after_sha256": "26fbb8166af9ee175fdb992081d821fe2bb33d7df0dee78ea67ca25f11a93a05",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-raster-batch-transport",
+      "before_sha256": "6f3ed74f6890d53f9823d78e49fb7f5c39ee7f90b445fe7912f2a34aacf4c0b8",
+      "after_sha256": "9d12554d3fc9590f205e96b006cac7dbf42bf80e314ac27d9e94138a0cc0d4d9",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-resource-reuse",
+      "before_sha256": "2128a647184640e4d682f441d8d53f84264164857e9e394cd87bbb9e921e9d46",
+      "after_sha256": "c5068353bf1269c46a0af84dc52614f476d95a9be8ee7e7796b20997dba25e2f",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-shadow-refusal",
+      "before_sha256": "515e358632f517f3bc36820ef9dea2b18436dc01d904afa43827ec94bd75f762",
+      "after_sha256": "47584ce32140b2ab61d11473e94bd4a864b6e04ebf5770b96aa0adb112e5ddfa",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "NR.world-startup-launcher",
+      "before_sha256": "b51732889bcf1f5a9a4523b485f00fd7d5dffa3c244d6576af2e75db10b59888",
+      "after_sha256": "22c2a70c8c7f2061465f306e3de88afaeca57690abf1ae8ffcbb20c3e29e5251",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.canvas-bind-clip",
+      "before_sha256": "212cb0ade1e208480a6d7e059fd536cfb76f650326561987d5dec41f0bf71bc2",
+      "after_sha256": "033a5c3ef249c13531b1c42afac03d48f6394275f1b9bad6e5c5d3f723d95f36",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.canvas-create-lock",
+      "before_sha256": "a65a1a60508a8e15723925659f648d1ea0a63a78e7347a2b7310f4a981badbee",
+      "after_sha256": "f6f1b63fe2bb5926300a603f277df747882efcf6ca25be58c99cd1ca560ccd1a",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.canvas-preworld-reuse",
+      "before_sha256": "c06b5a5f1d9954e3096f92fe097697f1db3017d905043d1f0a4c6b32f50c1601",
+      "after_sha256": "a2357bc5459431d4c87b57026a20cc58ef834f5431a9b3918a95c677836854ab",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.canvas-producer-sequence",
+      "before_sha256": "e5ba6193ae26c8ef200209ca52b769aa6e4be100d0ac45940d80c95674c76ac1",
+      "after_sha256": "ee849ca7d1a1f06eed2969cc1954120f0985b1f7b329dddab66b7c8a36fd8edd",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.canvas-startup-clear",
+      "before_sha256": "d95128dd319e5fee3f44fdc9dc61490d7c06b4bbb984dd22c595c85f997a6102",
+      "after_sha256": "73f8254188c1103bd433c29c7e7604e011cad32af87609c98991fc4158d28204",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.word-backend-state",
+      "before_sha256": "c0f4d5071a8f59e82a34a588d3f05c22372712e8bcda4cf1aa31fe7fa13325aa",
+      "after_sha256": "5a2bf484d83fe062cd4489e099555719296ae53d97dae3fd195c95604da22201",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.word-clip-aux-shadow",
+      "before_sha256": null,
+      "after_sha256": "481256179e63399392d644b9f97f420ddc287d45e01e162791e7d9ff3a5b1fec",
+      "receipts": [
+        "word-clip-aux-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.word-clip-shadow",
+      "before_sha256": "4ceffbf03ac6a2069b187becd946b4137a1326dca83e2d92c9ea3d7341003b40",
+      "after_sha256": "1c1fbc7e0b8637a49950f477c2581379e6ed57d567cdf950c7bacaf22e932495",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.word-cpu-clipping",
+      "before_sha256": "f6ad681571a3c455d51099669344d4b81ea196ee12fc178fd757da6b111b3be6",
+      "after_sha256": "31565f40536e7c9214597f11446bb214f56794d92557850b1cfe76e1f5f0f644",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.word-route",
+      "before_sha256": "84d114e048b25a4d60fed2e9d47e0ce7aa8b7731e5ac14f4cd81681fd1f53962",
+      "after_sha256": "35a289f91782ab52901be4a0a01f28effbb724dbc1fd742de498ee62c2d1d844",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.world-frame",
+      "before_sha256": "4e0e2c0807325550daf1adb67c6651d21a48d2834390f87396154110ace1013d",
+      "after_sha256": "38dd054c22f11983a15ba9c0605cd56d60f6b2d46d8b8decc7762792503ae724",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.world-initial-state",
+      "before_sha256": "0cd39a752bd986fc1bef8617e7e3903d3625dfd6973b7ca5a520ade50c270ee5",
+      "after_sha256": "ec1f2cdb49f81e56ed2319095e5ef0fb94d42841e4a0e12b3e36bc0b6573c50a",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.world-kind8-additive",
+      "before_sha256": "d3cce31915bd183c43c19791de4192a86e2890eb8e323df917efcbbfdfed9fcd",
+      "after_sha256": "c30891458c25c83fd9fb1096985f15a3bdc129cc98c4cbf83e682747b0f3f8c1",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.world-kind8-colour",
+      "before_sha256": "7fa0c0a224f8caefdbf7c2e11cda181369dd595cb15353cf27ab35b980e7d650",
+      "after_sha256": "4082b9072f4a5a17e763e3acc345bda1413a76d9b42c04295c9759301cf0ed6e",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.world-kind8-noop",
+      "before_sha256": "a36b83bb3ff76b6fa1b4982f4b6a8b486b21074eb8eda7fb7be87190348a6805",
+      "after_sha256": "5bebd2653d17f06cde4cc2f8bb96da1d22f44c57098d416c7c89c034beda67f3",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.world-kind8-virtual",
+      "before_sha256": "5af926726fd8219499b8991f392a337d7764a1c020169ab322a48316c47168d8",
+      "after_sha256": "06391a451b821a9df1d437a41c64b67aa856de93259f719923bffe8a3eabdcd0",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.world-producer-bypass",
+      "before_sha256": "29ebd3cd82adef0d6b9b5b34dfef8cc4b525a439add7be52dcda8ebc1517d535",
+      "after_sha256": "9301cccda4d699473081fc5d39f39849f6024428834b5e0beb7f17c7462d9767",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.world-raster-batch-return",
+      "before_sha256": "0163d6002e956b5c819b14d5d647652e15fbe6d48d24ba915b91c77cd919b46f",
+      "after_sha256": "ed95be2d6d7e6487f188282ff1ca87d3267080c2ee7ea409b9fd8abc108e7a23",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.world-raster-queue-replacement",
+      "before_sha256": "22b7cda3764be86aaee80bb79d97a068856b41f0c558cc54b9b79b70112ee44f",
+      "after_sha256": "3f323cc54acaa3135e688402dd7826922474d2461adc3d4790b328e978a99c92",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.world-startup-queues",
+      "before_sha256": "f680f2b14174aee496fe23b0fa1b7bfd494f77e2f63f63d02d7a2312e2b87f93",
+      "after_sha256": "d9c0bed28462e01a800603980fd323bb867a1ab3e7b5b8de238aa9dc935028bd",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "RS.world-startup-wave",
+      "before_sha256": "1c28d4b9a61ee3d2ee30d0e8078c9bbf8f0210746703e995bb29c258de50bd7c",
+      "after_sha256": "65205107ae1700bedc23cd707e7626bc69afb45dc5b0cd0447ff845c0d25e52a",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "41b1f9c3a96fd444c47f72984298cf9d3cd426114a92ef00e1e0735fbf42c4df",
+      "after_sha256": "4e0044032c71a6e34a4ef0852afa5167ea86d086c41ad7df5cbe0ec286453c2b",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "id": "TOOL.drawing-family-regressions",
+      "before_sha256": "882c03d50975a00a64cee644128cf811317b9a43669c0013c2fba1f8cafb6f10",
+      "after_sha256": "e0f6f5b749325080c712c12ae72fcb43f1d20831b5ddf0c052a4bf5c9052734f",
+      "receipts": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "HOST.native-command-launch",
+      "before_sha256": "06a5dfdb387571265f28201e58fd574d69603f16f899f1e97ff7ddcb40d01192",
+      "after_sha256": "c05cb04c6dc5bb0f614640a72365ab22e18f777e320df2be448e43001267f6ec",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.canvas-producer-replay",
+      "before_sha256": "e41de4c775154b7b040c82627644e30c03ceb9e7f286f3c8a191fcc87ed470e1",
+      "after_sha256": "cd38958b0f130facc2065888b657ae0535b08e9a827b183f6874b32159b28d06",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.font-glyph-admission",
+      "before_sha256": null,
+      "after_sha256": "37c7358e914eca480e5ae500c6c207ec89b5811a01093ba85fb5fddf399ab3bd",
+      "receipts": [
+        "font-glyph-current-head-recorded-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.live-command-transport",
+      "before_sha256": "a2bb2643bddccb702722f3d77daac1e7967fb086bebb44451f8b891b0163c5e1",
+      "after_sha256": "331f4df6a7cf311162a43c6e3a600dc8cf8c385ccc3797f33c398fb28b1114e9",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.live-drawing-replacement",
+      "before_sha256": "1db91792436a4c39eeb3378b0c589ab889d3d8c38992efa95e6c7e522a0b6cad",
+      "after_sha256": "6c07126c47672e3419d00342008796d2509ddcaeb5f20d23aaa3a9e1ed55717e",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.minimap-input-fixture",
+      "before_sha256": "b2e0bd1bbdf290c268de4836fe02662e9dc95637b0b7110ba3850e70d2523b73",
+      "after_sha256": "e3bf71669cf04ce0a7f7d1ae348e41cbe5800f4b23a6ea955bf037b0b4160a88",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.minimap-interactive-presentation",
+      "before_sha256": "043b3c29ad3171284343e91f52d2fce5e9cc599637cf5521cf4fc961ab176082",
+      "after_sha256": "c02df6154d663ae7a6eba9f0622ece254fc6ecc4f31f78d7ced4a5cd3f6f8cee",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.minimap-owned-observation",
+      "before_sha256": "9057885263a02003bc88e5a4d7fb4ba6a83f201973f8b9856e68566c1f8e3354",
+      "after_sha256": "de915ba8a9d4be918dfe7c74308b7ed42b9f21264664b8a344edc8387ab0f392",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.offline-render-soak",
+      "before_sha256": "40da271917b39f7c1c1a838e0ef4b63203094a794ab2b536c83cb2095970b1f3",
+      "after_sha256": "c1cf7382a5e4dd42c0fe660a6c834b0cd1039c754d0a73dd0432dd1ac0f1d5a5",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.real-game-command-shadow",
+      "before_sha256": "76ab5a54812c76bcc057f86da168b399743720486233a6d88d21368eedfcc07d",
+      "after_sha256": "50802d04ba86eb0188bd27d0b78ed0df6b6e34bc3ca1d89d194e841c4a924c06",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.scene-service",
+      "before_sha256": "018373266661d01519f1d5b3e6eea0ebc5bf47d99418b640b4859a32ca12a51a",
+      "after_sha256": "f30ada819ee4f8b80933c9861e5302c04a9e23ce126b8e522a610302c7d4a730",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.scene-snapshot",
+      "before_sha256": "e62e32b763a5a8ab78e5e39865b33e6ce8b1c74b2eb99363e717513025d71cad",
+      "after_sha256": "dfdc7110dd5d4ae43d0345197a77f2567377b63c58f4b84fad2a0c10c2c0e22c",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.sprites",
+      "before_sha256": "ae48c5a82cf8891a710b46a83ecfdc9e81647d977200f5838d2a0d68391be19e",
+      "after_sha256": "8e636a361603da42d76fbddea12c583ea2056a1a97cb921f705a992519946393",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.surface-fixture-corpus",
+      "before_sha256": "4889ff4ab5f67debb8e832a9dfe620d75816ebc28010ea9cea45b506cdb820cf",
+      "after_sha256": "3bd8a60ef984300a7855b86b72d6bd1f9405b413f78396d0e9f95606d22ccb9f",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.word-admission",
+      "before_sha256": "8c7f666a17a81e9f9e5ceb6231f9a122742ea5a07ad4f2489281827d1e2f86d2",
+      "after_sha256": "efa7c070e276d426998080cba78679eb194470fb16bd13645425d77fb2e24887",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-admission",
+      "before_sha256": "70c480f87532756a36b27d0a649350e714325df859f3330a5a4e5690e7f50933",
+      "after_sha256": "a6bef47de7ac3398fa3166b609e7618cd69bff6a3bf20cba723eae8c0cb4437e",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-batch-extended-prefix",
+      "before_sha256": "6d087c20c3188b74e7304dee8d28889b3f007df7d2afae7c58f0adb9fbfcecad",
+      "after_sha256": "21d2fc3be5a1b6eb29b6cde9301b5d9ace6fc25451d9f1e6dfa9102a900592b2",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-batch-profiling",
+      "before_sha256": "d2f5cbdbf2dc2213d0553f1afaadd26c178f98f3bb4dfbf73fe4c66b44325de6",
+      "after_sha256": "19eb61a4d3fe466799c1cc8e209e547845c9cf46bbcb51959a877a23819188b5",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-batch-throughput",
+      "before_sha256": "c63a11d2c1c289264ad5b7433855aafbb5fa2c4ef1d2fd4e1f8347fae616dd18",
+      "after_sha256": "6b0147e7c5594808a3bb19b2eb0066c17915e471387856dfbd1dde0a90e7bb36",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-channel",
+      "before_sha256": "718ad052a0c63471c31b0c8d30815f025ccd58f7159e157fa1856fe7a97ac885",
+      "after_sha256": "84b03f53d89b2d5b32cc8c19ea37b1b4fada20b163fc2b26a74b87e968cc4b30",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-cpu-composition-reuse",
+      "before_sha256": "616bdab030ac16a5b2e3bab61321c949ccaa572115668df73a1eaaccdc70fae8",
+      "after_sha256": "3792bd053a640b5723e698981897d3e0a76ec240ed5bc2304ac6bd1b2871e768",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-frame-identity-cache",
+      "before_sha256": "df8b4ef1d3943819a98e81bd038ff3716b002ce3f9537c1ce7b41098932139a7",
+      "after_sha256": "c0d46d90156156bc6eeae5303c73af2fef81e0051d3826bb52d8163378fe28c5",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-interactive-batch-launcher",
+      "before_sha256": "a7a5ab1e389523590accb3845750cd03a82ba7fd7052f91df973c1d3b4cafc75",
+      "after_sha256": "b74b3323b1ba9623395ce4a2da36b7e22112a67dbd78c877b53bc49d4b8f8950",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-live-view",
+      "before_sha256": "02d031d06df9a83828214b3e1ffa80a79383809324ba4b21ae54c17708e85f81",
+      "after_sha256": "1e9f08acd21c40c1bfb6a0895158bed7650a2fadb30708d05f8b6f1a9668edaf",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-prepared-admission",
+      "before_sha256": "2b2af42eaf35a543c4793c20fbcede7ed421b83a6aab027f7604d9ff5f591700",
+      "after_sha256": "98887bbfad05a7e11ab2b8690e528b2e2caa70cbac253abe222046a76437e754",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-producer-handoff",
+      "before_sha256": "26fbb8166af9ee175fdb992081d821fe2bb33d7df0dee78ea67ca25f11a93a05",
+      "after_sha256": "fa9988e3c7b4c29226277010d40a1eb8dff1ac89cc0863e2409d11da07301537",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-raster-batch-transport",
+      "before_sha256": "9d12554d3fc9590f205e96b006cac7dbf42bf80e314ac27d9e94138a0cc0d4d9",
+      "after_sha256": "5d54cacf193da44ad344fde61d7cd091be99416473f1a30f222a168ff29a7e41",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-resource-reuse",
+      "before_sha256": "c5068353bf1269c46a0af84dc52614f476d95a9be8ee7e7796b20997dba25e2f",
+      "after_sha256": "20c0aae9cadf34098a51f796f707f81d8ac41f3f67391d3c91c954b04164d2e6",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-rolling-delivery",
+      "before_sha256": "aa46c82b7e6bd67373ee4d11c6ee369a989e4a692931ceaeaa101230ee9d0aeb",
+      "after_sha256": "f115cfe3a2379c5f07a9aeca40a2de8e9c6cbe0e0f549f6a1312428e5b9a293f",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "NR.world-startup-launcher",
+      "before_sha256": "22c2a70c8c7f2061465f306e3de88afaeca57690abf1ae8ffcbb20c3e29e5251",
+      "after_sha256": "f9772b0b61dafc2a872de21dd0f47f3915cefb46095e3acf5cdc7af69fc2c831",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RI.copies",
+      "before_sha256": "6d38696df0bf9c40e62c566405214aedc89354d8fb2313cc47123052187a5ada",
+      "after_sha256": "c06b067372c780a9e9dceb1773ca82909822e4bc2d64573b1ef0f948f692c133",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RI.effects",
+      "before_sha256": "1405697c25df49486902d9d41d60ab3680cd50e568032dcece2164a202180946",
+      "after_sha256": "0a2f599400c3cbdc9e2f9e3c484a15094d4c0382fa8e100977b3508d63b9423f",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RI.fills",
+      "before_sha256": "68b6cd0cf5c4518bdf878a49e940d1392d6f94b496276997c5836b8cbbbe00e5",
+      "after_sha256": "0e9a89a4c16eda81740341977660255721b26705f99f0b1b30dfbc9ae09fd00b",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RI.gdi-text",
+      "before_sha256": "276ba94b433780b2c0c551d876b7e099b662b58fdea6ab958be35603f2e4f4f8",
+      "after_sha256": "8e45335de1bcea5f0468294ff8549e15134226bd81e1181278f6b7b5ee676d45",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RI.locked-writes",
+      "before_sha256": "eb415a399908dcd69008f0cdfb8dda26afa691d202c0caed5c651d02c54319ee",
+      "after_sha256": "0e197fab3b680ec3445bde379ab8521234dfa2ada302303fa33f27f59d899297",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RI.movies",
+      "before_sha256": "3e0df400179d48d4d3fb299906a0275e2fc60b74461a64f6029314253fa57cf6",
+      "after_sha256": "3711416629759ffa90c9cb5e4416b45912b90d47bce44a5a83469d27d74b1b31",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RI.sprites",
+      "before_sha256": "66e2d506670999e87ba0a99ba4cc7192e0002874a5cde522d6a6a2dea3e7b1ff",
+      "after_sha256": "d3bae77d9a61527681aa66ca6496cc5eff2ce4aab9bd2dd70576d08e8ab2282a",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RI.terrain",
+      "before_sha256": "85be5aa4d80114bb56e21ec37bf522402f3c7667d48ec30f7ecd54202a6643a6",
+      "after_sha256": "91210b8f0002eac867c4820ced064580c651e2ba89f3d0c82a9fc763bca44e3a",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RI.ui",
+      "before_sha256": "e866d008a610f7842c58210385697bac6374f08119128e9884981f3d78e730dd",
+      "after_sha256": "d61a99906f03aec13109f67fb9a738c0c35f5357df825ab6b97e4183b4fa3d7e",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RS.font-glyph-raster",
+      "before_sha256": null,
+      "after_sha256": "a10d531566ae7a2a65dca2d49f8d53cb7c2624892371b650bb740714be7eff76",
+      "receipts": [
+        "font-glyph-current-head-recorded-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RS.word-clipping",
+      "before_sha256": "a0ddbe9a60895a69a3406ab771eaa33553d47291ca01dddf5c6e08c5668e5731",
+      "after_sha256": "514968008b205bb50267b1eabd4331f51f3ddb603ccbfcec0df8a004c716dbd7",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RS.word-raster",
+      "before_sha256": "5b8de3bb6b17dab19db42d26a6fd00c048d697a4f1d3ef67697407eccd609df9",
+      "after_sha256": "883d292f6a325733f62f562510792aa2b1341e84e7ed754727d621e925402718",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RS.word-route",
+      "before_sha256": "35a289f91782ab52901be4a0a01f28effbb724dbc1fd742de498ee62c2d1d844",
+      "after_sha256": "ebc7d5e03d0cf1ce71fbce6bfc66d86cb78839e6aac68d105b43279789c9e70f",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RS.world-composition",
+      "before_sha256": "213049dd92797bce730aafa4f04a8373fe3cd6918187a4c868df14c0fb30fca8",
+      "after_sha256": "3c28116dae4be22d618850445b16a5f19a7d251d03bb45c71a6cf28775f74121",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RS.world-frame",
+      "before_sha256": "38dd054c22f11983a15ba9c0605cd56d60f6b2d46d8b8decc7762792503ae724",
+      "after_sha256": "e334dba3ff61bd58446356aa9b510004dcd360deb2c232e6d0053a9d9640bcc8",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RS.world-producer-bypass",
+      "before_sha256": "9301cccda4d699473081fc5d39f39849f6024428834b5e0beb7f17c7462d9767",
+      "after_sha256": "cddba32e95fb9e3601eb9accc012e4b0423d30d7d209e8e1166bf90b5c58aa3b",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RS.world-raster-batch-return",
+      "before_sha256": "ed95be2d6d7e6487f188282ff1ca87d3267080c2ee7ea409b9fd8abc108e7a23",
+      "after_sha256": "5fd8e0553e831a12d80b444d889c55f6795f87c297c4cf94dfe9faf0c7bd4d6f",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "RS.world-raster-queue-replacement",
+      "before_sha256": "3f323cc54acaa3135e688402dd7826922474d2461adc3d4790b328e978a99c92",
+      "after_sha256": "6d33bf9f906b35a626f8ec3b7c5fac793fca738ff94b045277b410a3a758a6ed",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "4e0044032c71a6e34a4ef0852afa5167ea86d086c41ad7df5cbe0ec286453c2b",
+      "after_sha256": "229ca4ba65fa4df2d25e35afeea94c2e64d79d2ce28a3bcd6a50fff5cd131fe6",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "id": "TOOL.rendering-coverage",
+      "before_sha256": "c646699fe9564c8f5c5fb0ef84e2c5aba99b42eaeda728874fc7238d0ed50bc8",
+      "after_sha256": "ac520f8717cf67c5b307a3d8b066c23cbbac99e4dd892763e734bc185c366746",
+      "receipts": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "reviewed_transitions": 42,
+  "reviewed_behavior_transitions": 94,
+  "unresolved_count": 0
+}

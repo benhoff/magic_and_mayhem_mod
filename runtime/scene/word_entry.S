@@ -14,12 +14,13 @@ word_common:
     andl $-16, %esp
     fxsave (%esp)
     cld
+    pushl %esp /* saved caller FXSAVE image, second cdecl argument */
     pushl %ebx
     call _word_route
-    addl $4, %esp
+    addl $8, %esp
     testl %eax, %eax
     jz word_forward
-    /* Every admitted positive frame executes original FILD/FIMUL/FISTP.
+    /* Admitted positive frames reproduce the selected original FILD/FIMUL/FISTP state.
      * Their exact bounded integer product clears C1 while retaining the
      * masked sticky flags and active stack values. */
     andw $0xfdff, 2(%esp)

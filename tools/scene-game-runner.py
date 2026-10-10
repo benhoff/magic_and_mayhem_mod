@@ -27,7 +27,7 @@ if metadata.get('world_live'):
     os.environ['MNM_WORLD_CHANNEL']='Z:'+str(channel).replace('/','\\')
 if metadata.get('word_dll_sha256'):
     directory=Path(metadata['word_directory']).resolve()
-    if metadata.get('word_sprites_mode') not in ('shadow','takeover','clip-shadow') or directory!=root/'word-sprites' or any(directory.iterdir()):raise ValueError('Invalid word-sprite experiment')
+    if metadata.get('word_sprites_mode') not in ('shadow','takeover','clip-shadow','clip-takeover') or directory!=root/'word-sprites' or any(directory.iterdir()):raise ValueError('Invalid word-sprite experiment')
     os.environ['MNM_WORD_SPRITES']=metadata['word_sprites_mode']
     os.environ['MNM_WORD_DIRECTORY']='Z:'+str(directory).replace('/','\\')
 if any((root/'capture').iterdir()):

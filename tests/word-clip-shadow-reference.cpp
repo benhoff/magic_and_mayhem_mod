@@ -21,7 +21,8 @@ void _word_enter_scalar(void);
 void _word_enter_forward(void);
 extern std::uint32_t _word_original,mnm_host_original_calls;
 std::uint32_t mnm_host_admission_stat(std::uint32_t);
-void mnm_host_configure(std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t);
+void mnm_host_configure(std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t);
+std::uint32_t mnm_host_bypassed(void);
 std::uint32_t mnm_host_last_error(void),mnm_host_compared(void),mnm_host_forwarded(void),mnm_host_clipped(void),mnm_host_mismatches(void);
 }
 static Bytes read(const char* path){std::ifstream f(path,std::ios::binary);if(!f)throw std::runtime_error("open input");return Bytes(std::istreambuf_iterator<char>(f),{});}
@@ -45,7 +46,8 @@ static void seed(std::uint32_t variant){
     const double a=1.25,b=-2.0,c=3.141592653589793;
     __asm__ volatile("fxsave %0\n\tfninit\n\tfldl %1\n\tfldl %2\n\tfldl %3\n\tfxsave %4\n\tfxrstor %0"
                      :"=m"(host):"m"(a),"m"(b),"m"(c),"m"(mnm_probe_seed_fx):"memory");
-    const std::uint16_t control=std::uint16_t(0x037f|((variant&3)<<10));
+    const unsigned precisions[]={3,0,2};
+    const std::uint16_t control=std::uint16_t(0x007f|(precisions[(variant/4)%3]<<8)|((variant&3)<<10));
     std::memcpy(mnm_probe_seed_fx,&control,2);
     auto status=half(mnm_probe_seed_fx+2);
     if(variant&1)status|=0x0221; // masked sticky exceptions plus incoming C1
@@ -57,10 +59,12 @@ static void seed(std::uint32_t variant){
     mnm_probe_seed_flags=patterns[variant%4];
 }
 int main(int argc,char** argv)try{
-    if(argc!=4)throw std::runtime_error("PE manifest output");
+    if(argc!=4&&argc!=5)throw std::runtime_error("PE manifest output [mode3|4]");
+    const unsigned routeMode=argc==5?unsigned(std::stoul(argv[4])):3;
+    if(routeMode!=3&&routeMode!=4)throw std::runtime_error("route mode");
     map(read(argv[1]));std::ifstream manifest(argv[2]);std::ofstream output(argv[3],std::ios::binary);
     if(!manifest||!output)throw std::runtime_error("manifest/output open");
-    output.write("MNMWSH01",8);const std::uint32_t version=1,recordBytes=288;
+    output.write("MNMWSH01",8);const std::uint32_t version=routeMode==4?2:1,recordBytes=routeMode==4?304:288;
     output.write(reinterpret_cast<const char*>(&version),4);output.write(reinterpret_cast<const char*>(&recordBytes),4);
     std::string path;unsigned count=0;
     while(std::getline(manifest,path)){
@@ -86,7 +90,7 @@ int main(int argc,char** argv)try{
         global(0x6e0008,word(b,64));global(0x6cbb6c,word(b,68));
         seed(word(b,76));mnm_probe_function=0x400000+backend;
         mnm_word_probe(mnm_probe_function,frameAddress,word(b,52),word(b,56));
-        std::uint32_t row[72]={};row[1]=backend;row[2]=frameAddress;row[3]=canvasAddress;
+        std::uint32_t row[76]={};row[1]=backend;row[2]=frameAddress;row[3]=canvasAddress;
         row[4]=mnm_probe_seed_flags;row[5]=mnm_probe_after_flags;row[6]=UINT32_MAX;
         std::memcpy(row+8,reinterpret_cast<void*>(0x5f1e50),64);std::memcpy(row+24,predicted.words,64);
         for(unsigned i=0;i<16;++i)if(row[8+i]!=row[24+i]){row[6]=i;break;}
@@ -121,7 +125,7 @@ int main(int argc,char** argv)try{
         std::memcpy(pixels,b.data()+208+size,bytes);
         std::memcpy(reinterpret_cast<void*>(0x5f1e50),before,64);
         seed(word(b,76));
-        mnm_host_configure(frameAddress,size,canvasAddress,bytes,0);
+        mnm_host_configure(frameAddress,size,canvasAddress,bytes,0,routeMode);
         mnm_probe_function=std::uint32_t(reinterpret_cast<std::uintptr_t>(backend==0x197086?&_word_enter_scalar:&_word_enter_forward));
         mnm_word_probe(mnm_probe_function,frameAddress,word(b,52),word(b,56));
         std::uint32_t nativeMask=0;
@@ -141,12 +145,12 @@ int main(int argc,char** argv)try{
             if((i<std::size_t(pixels-guarded.data())||i>=std::size_t(pixels-guarded.data())+bytes)&&guarded[i]!=0xa5)canvasGuard=false;
         if(canvasGuard&&!std::memcmp(pixels,b.data()+208+size+bytes,bytes)&&!std::memcmp(frame.data(),b.data()+208,size))nativeMask|=512;
         row[60]=nativeMask;row[52]=mnm_host_compared();row[53]=mnm_host_forwarded();
-        row[64]=mnm_host_original_calls;row[65]=mnm_host_last_error()==0x7a21;row[71]=mnm_host_clipped();
+        row[74]=mnm_host_bypassed();row[64]=mnm_host_original_calls;row[65]=mnm_host_last_error()==0x7a21;row[71]=mnm_host_clipped();
         if(mnm_host_mismatches())row[60]=0;
         for(unsigned failure=1;failure<=5;++failure){
             std::memcpy(pixels,b.data()+208+size,bytes);
             std::memcpy(reinterpret_cast<void*>(0x5f1e50),before,64);
-            seed(word(b,76));mnm_host_configure(frameAddress,size,canvasAddress,bytes,failure);
+            seed(word(b,76));mnm_host_configure(frameAddress,size,canvasAddress,bytes,failure,routeMode);
             mnm_word_probe(mnm_probe_function,frameAddress,word(b,52),word(b,56));
         std::uint32_t nativeMask=0;
         if(!std::memcmp(row+8,reinterpret_cast<void*>(0x5f1e50),64))nativeMask|=1;
@@ -168,7 +172,39 @@ int main(int argc,char** argv)try{
             row[65+failure]=nativeMask|(mnm_host_original_calls==1?1024u:0u)|
                 (mnm_host_last_error()==0x7a21&&mnm_host_forwarded()==1&&mnm_host_compared()==0&&mnm_host_admission_stat(empty&&(failure==1||failure==3)?6:refusalFields[failure-1])==1?2048u:0u);
         }
-        output.write(reinterpret_cast<const char*>(row),sizeof(row));++count;
+        if(routeMode==4){
+            /* Safe guard comparisons: unmask IE with exact finite arithmetic;
+             * masked full stack only on vertically hidden positive frames, where
+             * original invalid conversion never reaches a pixel address. */
+            auto snapshot=[&](){
+                Bytes out;
+                auto append=[&](const void* p,unsigned n){auto* b=static_cast<const std::uint8_t*>(p);out.insert(out.end(),b,b+n);};
+                append(reinterpret_cast<void*>(0x5f1e50),64);append(mnm_probe_arguments,12);
+                for(unsigned i=0;i<8;++i)if(i!=4)append(mnm_probe_gpr+i,4);
+                append(mnm_probe_guards,16);auto flags=mnm_probe_after_flags&0xcc5;append(&flags,4);
+                append(mnm_probe_after_fx,5);append(mnm_probe_after_fx+24,4);
+                for(unsigned i=0;i<8;++i)append(mnm_probe_after_fx+32+i*16,10);
+                append(mnm_probe_after_fx+160,128);append(guarded.data(),unsigned(guarded.size()));append(frame.data(),size);
+                return out;
+            };
+            for(unsigned guard=0;guard<2&&!empty;++guard){
+                if(guard==1&&predicted.argument_y<std::int32_t(height))continue;
+                auto prepare=[&](){
+                    std::memcpy(pixels,b.data()+208+size,bytes);
+                    std::memcpy(reinterpret_cast<void*>(0x5f1e50),before,64);seed(0);
+                    if(guard==0)mnm_probe_seed_fx[0]&=0xfe;
+                    else mnm_probe_seed_fx[4]=0xff;
+                };
+                prepare();mnm_word_probe(0x400000+backend,frameAddress,word(b,52),word(b,56));
+                auto expectedGuard=snapshot();prepare();
+                mnm_host_configure(frameAddress,size,canvasAddress,bytes,0,routeMode);
+                mnm_word_probe(mnm_probe_function,frameAddress,word(b,52),word(b,56));
+                row[75]|=1u<<guard;
+                row[72+guard]=snapshot()==expectedGuard&&mnm_host_original_calls==1&&
+                    mnm_host_bypassed()==0&&mnm_host_forwarded()==1&&mnm_host_admission_stat(22+guard)==1&&mnm_host_last_error()==0x7a21;
+            }
+        }
+        output.write(reinterpret_cast<const char*>(row),recordBytes);++count;
     }
     if(!output)throw std::runtime_error("output write");
     std::cout<<count<<" original/model cases\n";return 0;

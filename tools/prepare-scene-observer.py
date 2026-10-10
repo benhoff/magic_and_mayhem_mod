@@ -40,7 +40,7 @@ def copy_installation(source, game):
 def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None):
     if world_live and not world_frames:raise ValueError('Continuous World needs the World input observer')
     if world_frames and word_mode:raise ValueError('World observation and word takeover use separate experiments')
-    if word_mode not in (None,'shadow','takeover','clip-shadow'):raise ValueError('Unsupported word-sprite mode')
+    if word_mode not in (None,'shadow','takeover','clip-shadow','clip-takeover'):raise ValueError('Unsupported word-sprite mode')
     source=(Path(source_game) if source_game else ROOT/'working/game-nocd').resolve()
     data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=HASH:
@@ -104,7 +104,7 @@ def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--menu-driver',action='store_true',help='Include the established opt-in menu adapter for bounded automatic battle startup')
-    parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow'],help='Explicit partial direct-word raster experiment')
+    parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow','clip-takeover'],help='Explicit partial direct-word raster experiment')
     args=parser.parse_args()
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:

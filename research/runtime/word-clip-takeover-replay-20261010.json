@@ -1,0 +1,510 @@
+{
+  "schema": 1,
+  "success": true,
+  "claims": [
+    {
+      "behavior": "RS.word-clip-takeover",
+      "contract_sha256": "1bb1e9b9d2a201b6682ced2837d40ac75f0779bf0ff8227825ceca342033f98c",
+      "scenarios": {
+        "word-clip-takeover-live-20261010": "561e488d7347903e7149f4c22db8fc399eabc817bb8c35217ece651d615356c4"
+      }
+    }
+  ],
+  "sources": {
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+    "protocols/include/mnm/world_channel_v2.h": "7950078b61ef26403a9661981c5dd4ae9553bc582c232c8782f0f1b7ce1504f4",
+    "protocols/include/mnm/world_frame_v1.h": "b9b2f78c8e5b513232f803d2a0ec6643626974a8909db18611e87262a22f83b5",
+    "reconstruction/rendering/word_backend_state.c": "5ec05fbe6ae5c6a48839e3e8c4ee01d4546e730e235af6bd08d9ff654a09f0f2",
+    "reconstruction/rendering/word_backend_state.h": "3f76d1b3eb2a4ce5974aa7ebcd9584d2a5a63e7887eaf67d37848c6064828f7f",
+    "renderer/sprites/word-clipped/CMakeLists.txt": "bb2d2bfa48a4941b51972040a9f2f2befe1333dc064de6f62cb118ac94dd7d6a",
+    "renderer/sprites/word_clipped.c": "7ced88878d827606070b8ac0475360ffaead969d1321a6c848324d3b72a89bba",
+    "renderer/sprites/word_clipped.h": "df60421e209e66511eea2d8d19647506649575e5ff1237df9fa91ed9840912b6",
+    "renderer/sprites/word_raster.c": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42",
+    "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+    "runtime/scene/canvas_producers.S": "9acf79e06ded8251084acbd6050d7c62135240b645405892876ae58addd3e7ee",
+    "runtime/scene/canvas_producers.c": "23c5b78b576bf78f423dc905fd199612c0e70203f982aaecb443a3f12dacf584",
+    "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+    "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/kind8_observer.c": "2446b756aa890f91a87fa4ae2d7a434c9f247c43b0ff7fabad994c75fa1f6563",
+    "runtime/scene/observer.c": "38e4f6fe21217a205a6c7f77b3381773d6eff8e33ce53b9e916d951f4587fd0a",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "runtime/scene/startup_queue.c": "466d66d8343dbaac7e196129cca7ff0d6a2e8cb60a2c9faed1bb75ee7c96d6a5",
+    "runtime/scene/word_entry.S": "23d72e078069edba6c1beed0dee47b1f3c8c1faf395bf6f36c9c06b92b450beb",
+    "runtime/scene/word_route.c": "d0a3ebcaf73d2df6451162dbf7e1aa224612953b4b40514c66cd4ed01acccf55",
+    "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+    "runtime/scene/world_entry.S": "48ce2eeaaa4ec8446e7b8804aefb0fa561a8f872a00f41e1e8b32c7500256cf1",
+    "runtime/scene/world_kinds.h": "dad1ab93f175db036c7b53fb3ee8f4f65259d016ae2ba3627a133e2685f87e4b",
+    "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+    "runtime/scene/world_producer_bypass.c": "98eec5d46516454ad224fe760922231d7b5c345ef5336422c8aedae30ef13e57",
+    "runtime/scene/world_raster_batch.c": "e53cf0826f8452525b0a1d53437ec2b95eb640dca93fa1cdaf11f270b709e7f5",
+    "runtime/scene/world_raster_callers.h": "d2a2c29e4ff60c213bd8fc2e4a2a12f0f3a5b6de7c8e1a1038da3a94b571daf7",
+    "runtime/scene/world_stream.c": "0f55cc0856779977a4b4c9a7795e4b5622fa6c16f00db06cc631fd0e12a48a60",
+    "runtime/scene/world_stream_selftest.c": "2828bc32ae8e1ff3a3675fd11d863d8d73729d07e12f48dc1b173c8b57d6ef29",
+    "runtime/scene/world_trace.c": "a2a40f336e007898f3bf44c60a25efda1b18d8466bdd69460bafa727cc752f4d",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/word-backend-probe.S": "113851c9b6af2e3b7e9fc5e604bce8b321b1218ff708b1fef1ce2c96678bbe24",
+    "tests/word-clip-shadow-host.S": "2834588a71e45031514c9378dfea2248f4bb6f851a2969e2b047b24097ba64f9",
+    "tests/word-clip-shadow-host.c": "379286d5c18de14d4d62d8caacdd328046821b004dc22ef77960837f4211cb90",
+    "tests/word-clip-shadow-reference.cpp": "43bfb5fa20af33e48ab3901fde8a001555a349c8300a5bf4e359f8317a3d31af",
+    "tests/word-clip-shadow-replay.cpp": "9e2a4830762a8b22e7bf79980c8664cf151dbf6b7fb8ddab0432e80e8c14c9b2",
+    "tests/word-clipped-test.c": "9d9ddc94c49c1bceec5d0f45dccd5fbbb7e52372c443b0ed7f58ff983082bb9b",
+    "tools/build-scene-observer.py": "0eafa12efc0b87696d8b21f5aefd3c041434acf2210c20e8ee0687886534ed7f",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/build-word-sprites.py": "1916ce9657666a9581450737deddda9b5a00f00c7155909fb1e0f0b50225c958",
+    "tools/capture-scene-game.py": "e90c7d8ae630fbad4ddc4a264bfc343880fd73264346874318aa59dff6081720",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-scene-observer.py": "38d49ece49d1eb69d69e3c221d970b004eb4e145c500dec9d8e2277312935479",
+    "tools/render-game-runner.py": "6ff5a8b633117cd9be416f495cacfca10521c09e04792571d5c8d0d3287f8478",
+    "tools/replay-word-clip-shadow.py": "ccb53d725cee7fa87a9ebbe205cdab9bb11de5518d4c7ded7177884b95f0803a",
+    "tools/run-opengl-game.py": "2831be408592dc9b1b38927f6205e85bad0e14ccaf2caf95bf8bca60824e8b46",
+    "tools/scene-game-runner.py": "cf6bad4dc1cafea2844c66cc1fc61459304a9a0273f5c4eb1aed34697aadb593",
+    "tools/test-word-clip-shadow.py": "db592ff1d1c4749ad897b0dd197f27554c3f9669f15c34cb52f5c010318732af",
+    "tools/test-word-sprites.py": "f16742eb6423499a035ea00c9d7fb0c4c366627cc6e7b515d82fafb6dd27bcfe",
+    "tools/world_channel.py": "7a29c9710c7552a399b9ae6424505402f605785adb5dc53aae2d595a1d064db0"
+  },
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "live_replacement": false,
+  "original_work_bypassed": false,
+  "scope": "Eight diverse mode3 shadow or mode4 native bypass samples independently replayed against unchanged original and native CPU/state composition. Complete canvas, guards, source and all16 workspace words; frame-pointer writes normalized. Replay alone does not establish live bypass or full-session equivalence.",
+  "experiment": "working/tests/word-clip-replay/run-363u8fzq",
+  "commands": [
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/manifest-before.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    },
+    {
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word_clipped.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/renderer/sprites/word_clipped.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word_clipped.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word_clipped.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word_backend_state.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/word_backend_state.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word_backend_state.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word_backend_state.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "g++",
+        "-m32",
+        "-O2",
+        "-std=c++17",
+        "-fno-pie",
+        "-no-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/reference.d",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/word-clip-shadow-replay.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word_clipped.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word_backend_state.o",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/reference-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0001.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0001-original.bin",
+        "original"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0001-original.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0001.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0001-native.bin",
+        "native"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0001-native.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0002.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0002-original.bin",
+        "original"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0002-original.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0002.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0002-native.bin",
+        "native"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0002-native.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0003.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0003-original.bin",
+        "original"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0003-original.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0003.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0003-native.bin",
+        "native"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0003-native.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0004.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0004-original.bin",
+        "original"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0004-original.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0004.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0004-native.bin",
+        "native"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0004-native.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0005.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0005-original.bin",
+        "original"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0005-original.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0005.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0005-native.bin",
+        "native"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0005-native.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0006.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0006-original.bin",
+        "original"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0006-original.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0006.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0006-native.bin",
+        "native"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0006-native.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0007.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0007-original.bin",
+        "original"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0007-original.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0007.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0007-native.bin",
+        "native"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0007-native.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0008.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0008-original.bin",
+        "original"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0008-original.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/clip-replay",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0008.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/word-clip-replay/run-363u8fzq/word-0008-native.bin",
+        "native"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/word-0008-native.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/word-clip-replay/run-363u8fzq/manifest-after.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    }
+  ],
+  "compiled_project_sources": [
+    "reconstruction/rendering/word_backend_state.c",
+    "reconstruction/rendering/word_backend_state.h",
+    "renderer/sprites/word_clipped.c",
+    "renderer/sprites/word_clipped.h",
+    "renderer/sprites/word_raster.h",
+    "tests/word-clip-shadow-replay.cpp"
+  ],
+  "capture_mode": 4,
+  "clipped_sample_count": 2,
+  "distinct_frames": 8,
+  "samples": [
+    {
+      "clipped": false,
+      "frame_sha256": "aeba63a5e8b8731c2bdabd7bff0b71609221ab52339263f160a4053b5da66160",
+      "backend": "0x596cb8",
+      "auxiliary_offsets": [
+        4599,
+        4683
+      ],
+      "width": 49,
+      "height": 50,
+      "sample": "working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0001.bin",
+      "sha256": "2562620b3db23dc2eb9c070e29f59955b34ce12091fe389da98e53ac5b873a16",
+      "pixels": 60800,
+      "pixels_match": true,
+      "workspace_match": true,
+      "canvas_alignment": 0
+    },
+    {
+      "clipped": false,
+      "frame_sha256": "54794d2f3ebe1a2b0962d1db98647e68b348f0d800e6ad5aa84f21c29736afa9",
+      "backend": "0x596cb8",
+      "auxiliary_offsets": [
+        3059,
+        3123
+      ],
+      "width": 40,
+      "height": 40,
+      "sample": "working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0002.bin",
+      "sha256": "ff107e48c524f3f6bb2f16a45521c8964f1c3cb1cfe8e3651f7839557f3b264d",
+      "pixels": 64800,
+      "pixels_match": true,
+      "workspace_match": true,
+      "canvas_alignment": 0
+    },
+    {
+      "clipped": false,
+      "frame_sha256": "7f56bb0618cf58d9673f2232f18a4987e923630f77bd8e7201b231b482c2752f",
+      "backend": "0x596cb8",
+      "auxiliary_offsets": [
+        1540,
+        1604
+      ],
+      "width": 25,
+      "height": 25,
+      "sample": "working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0003.bin",
+      "sha256": "0a967cfd5df7cfc78332be8a53aa20de62a47c5906d96b21f267e36ec6e77169",
+      "pixels": 160800,
+      "pixels_match": true,
+      "workspace_match": true,
+      "canvas_alignment": 0
+    },
+    {
+      "clipped": false,
+      "frame_sha256": "b25142381bb6dd7cd6a570f1d6356b966d63ca9f0da76419ffea8541063a49f9",
+      "backend": "0x596cb8",
+      "auxiliary_offsets": [
+        256,
+        320
+      ],
+      "width": 1,
+      "height": 18,
+      "sample": "working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0004.bin",
+      "sha256": "012dfa5eee3b28a94e17b71f96601bb59c26ac9018fe610df41a78390a2da3ce",
+      "pixels": 140800,
+      "pixels_match": true,
+      "workspace_match": true,
+      "canvas_alignment": 0
+    },
+    {
+      "clipped": false,
+      "frame_sha256": "e4a8ffe869267d6111c5e2e56dabfa5963f1979f30e35d1884376ab7c2a73097",
+      "backend": "0x596cb8",
+      "auxiliary_offsets": [
+        537,
+        601
+      ],
+      "width": 14,
+      "height": 15,
+      "sample": "working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0005.bin",
+      "sha256": "4a497ab29250f08034ef020d4040ae1d77b94fc988bdd7e530229f9c0fa09aa4",
+      "pixels": 137600,
+      "pixels_match": true,
+      "workspace_match": true,
+      "canvas_alignment": 0
+    },
+    {
+      "clipped": false,
+      "frame_sha256": "b0aa9857622b55c8072914b4ccbe45d3d984e01ef62525dbd3951f52e5f2dda2",
+      "backend": "0x596cb8",
+      "auxiliary_offsets": [
+        868,
+        932
+      ],
+      "width": 18,
+      "height": 18,
+      "sample": "working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0006.bin",
+      "sha256": "0657d894751418ca6d96ee8f91dcd0eb088ce93229aa9250e96f0c3fb6f92ddf",
+      "pixels": 137600,
+      "pixels_match": true,
+      "workspace_match": true,
+      "canvas_alignment": 0
+    },
+    {
+      "clipped": true,
+      "frame_sha256": "6319785438252df85caa73a913b46f88bf25469830ccc6c139bd6d1ada4e571c",
+      "backend": "0x596cb8",
+      "auxiliary_offsets": [
+        86,
+        150
+      ],
+      "width": 18,
+      "height": 1,
+      "sample": "working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0007.bin",
+      "sha256": "b22ba31f5cdd9f8c844fd4313e1898c0b2f96f4a5971fab39840ed78f5ec10f8",
+      "pixels": 359200,
+      "pixels_match": true,
+      "workspace_match": true,
+      "canvas_alignment": 0
+    },
+    {
+      "clipped": true,
+      "frame_sha256": "f4c2bb9c9da5e2017a9e2b1d03e067b821ba01966f81e8b5794cd8e6c6b62e70",
+      "backend": "0x596cb8",
+      "auxiliary_offsets": [
+        868,
+        932
+      ],
+      "width": 18,
+      "height": 18,
+      "sample": "working/experiments/scene-observer/run-uyag08uo/word-sprites/word-0008.bin",
+      "sha256": "56b11c9bf27b578a0de8ecb0897c56b1c6d3435205c7223a6fa278ae38e4b42d",
+      "pixels": 359200,
+      "pixels_match": true,
+      "workspace_match": true,
+      "canvas_alignment": 0
+    }
+  ],
+  "sample_count": 8,
+  "compared_pixels": 1420800,
+  "binary_sha256": "47688a60be640387b7ba0c5dea6df7757b5b1f82b2a2b8103216d8606067546e",
+  "original_pixels_match": true,
+  "native_pixels_match": true,
+  "workspace_match": true,
+  "sources_stable": true,
+  "full_report": {
+    "path": "working/tests/word-clip-replay/run-363u8fzq/report.json",
+    "sha256": "66a16c6934e99f8cc92333a547ad91e901a45c358622ef1440378a58a7c4e2c3"
+  }
+}

@@ -80,7 +80,7 @@ def main():
     parser.add_argument('--skip-movies',action='store_true',help='Disable movie playback only in the disposable staged preferences')
     args=parser.parse_args();args.capture_draws |= args.capture_history
     word_mode=os.environ.get('MNM_WORD_SPRITES','')
-    if word_mode not in ('','shadow','takeover','clip-shadow'):raise ValueError('MNM_WORD_SPRITES must be shadow, takeover or clip-shadow')
+    if word_mode not in ('','shadow','takeover','clip-shadow','clip-takeover'):raise ValueError('MNM_WORD_SPRITES must be shadow, takeover, clip-shadow or clip-takeover')
     args.capture_locks |= bool(args.command_channel)
     stream=args.stream.resolve()
     if not stream.is_relative_to(REPO/'working'):raise ValueError('Frame stream must be under working/')
