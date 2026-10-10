@@ -7,7 +7,8 @@ class WorldRollingSession final {
 public:
   WorldRollingSession(render::GlBlitter&,const assets::AssetStore&);
   render::Image consume(std::uint64_t sequence,const std::vector<std::uint8_t>&,
-    const std::function<void(const CanvasProducer&,const render::Image&)>& checkpoint={});
+    const std::function<void(const CanvasProducer&,const render::Image&)>& checkpoint={},
+    const std::function<void(const CanvasProducer&,const render::Image&)>& entry={});
   const CanvasWorld::Profile& profile() const {return world_.profile();}
   CanvasFrameCacheStats producerCacheStats() const {return producer_.frameCacheStats();}
   std::uint64_t completed() const {return completed_;}
