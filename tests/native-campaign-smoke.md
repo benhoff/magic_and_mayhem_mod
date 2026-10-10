@@ -90,3 +90,17 @@ paints per second on average in each gameplay phase; one-second samples below
 floor explicit in the retained report. Private Xvfb runs select software Mesa;
 performance there is scoped to that backend, not physical GPU certification.
 Player movement, combat effects and pixel equivalence need separate evidence.
+
+For active camera/gameplay stress, select Apprentice through the public native
+Region Entry radio, avoiding Initiate's spell tutorial gating:
+
+```sh
+python3 tools/test-native-campaign.py --difficulty 1 --stress-seconds 20 --menu-cycles 3
+```
+
+Native framebuffer and independently copied original-owned primary images are
+retained for each gameplay phase. They are unsynchronized diagnostic samples;
+whole-window screenshots can include an overlapping original Wine desktop.
+The shell lowers its identified original desktop during native presentation.
+A read-only original-owned publication sampler is retained alongside separate
+native presentation/Qt paint rates; none alone establishes simulation FPS.

@@ -122,10 +122,13 @@ layout(location=0) out uvec4 color;
 void main(){
     uint pixel=texelFetch(nativePixels,ivec2(gl_FragCoord.xy),0).r;
     if(indexed)color=texelFetch(palette,ivec2(int(pixel),0),0);
-    else {
+    else if(rgb565){
+        // Constant shifts avoid per-pixel uniform integer division on software GPUs.
+        uvec3 channels=uvec3((pixel>>11u)&31u,(pixel>>5u)&63u,pixel&31u);
+        color=uvec4((channels<<uvec3(3,2,3))|(channels>>uvec3(2,4,2)),255u);
+    } else {
         uvec3 channels=(uvec3(pixel)&masks)/lowBits;
-        // Match observed Surface2 GetDC/GetPixel expansion for canonical RGB565.
-        color=uvec4(rgb565?((channels<<uvec3(3,2,3))|(channels>>uvec3(2,4,2))):channels*255u/maxima,255u);
+        color=uvec4(channels*255u/maxima,255u);
     }
 })";
 void validateImage(const Image& i,unsigned bits){
@@ -275,6 +278,14 @@ struct GlBlitter::Impl {
     }
     void copyTexture(GLuint sourceTexture,GLuint maskTexture,Surface& dst,Rect r,int x,int y,
                      std::optional<std::uint32_t> key,std::uint32_t keyMask=UINT32_MAX,const std::array<std::uint16_t,256>* palette=nullptr){
+        if(!maskTexture && !key && !palette){
+            // Identical integer storage: opaque copies need no fragment shader.
+            // Sources are distinct here; overlap callers supply a frozen texture.
+            attach(sourceTexture,dst.width,dst.height);
+            gl.glActiveTexture(GL_TEXTURE0);gl.glBindTexture(GL_TEXTURE_2D,dst.native);
+            gl.glCopyTexSubImage2D(GL_TEXTURE_2D,0,x,y,r.left,r.top,r.right-r.left,r.bottom-r.top);
+            check();++counters.copies;return;
+        }
         attach(dst.native,dst.width,dst.height);
         setScissor(true);gl.glScissor(x,y,r.right-r.left,r.bottom-r.top);
         gl.glActiveTexture(GL_TEXTURE0);gl.glBindTexture(GL_TEXTURE_2D,sourceTexture);

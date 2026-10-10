@@ -26,7 +26,7 @@ def main():
     xt.XTestFakeMotionEvent.argtypes = [c.c_void_p, c.c_int, c.c_int, c.c_int, c.c_ulong]
     display = x.XOpenDisplay(os.environ['DISPLAY'].encode())
     if not display:raise RuntimeError('No input display')
-    start = time.monotonic(); log = []; held = set()
+    start = time.monotonic(); log = []; held = set(); completed = False
     def record(action, **values):log.append(dict(action=action, seconds=time.monotonic()-start, **values))
     def motion(fx, fy):
         px, py = x0+int(width*fx), y0+int(height*fy)
@@ -44,6 +44,7 @@ def main():
         xt.XTestFakeKeyEvent(display, code, 0, 0); held.remove(code); x.XFlush(display)
         record('key', keysym=sym, held_seconds=seconds); time.sleep(.1)
     try:
+        motion(.93, .87); button(1) # ordinary wizard HUD selection
         motion(.5, .45); button(1)
         while time.monotonic()-start < args.seconds:
             for sym in [0xff53, 0xff54, 0xff51, 0xff52]:key(sym, .45)
@@ -53,11 +54,12 @@ def main():
             motion(.86,.16);button(1) # HUD/minimap edge interaction
             motion(.5,.45);button(4);button(5)
             time.sleep(.5)
+        completed = True
     finally:
         for code in held:xt.XTestFakeKeyEvent(display,code,0,0)
         for b in [1,2,3]:xt.XTestFakeButtonEvent(display,b,0,0)
         x.XFlush(display);x.XCloseDisplay(display)
-        args.output.write_text(json.dumps(dict(success=True, seconds=time.monotonic()-start, actions=log,
+        args.output.write_text(json.dumps(dict(success=completed, seconds=time.monotonic()-start, actions=log,
             scope='Physical camera keys, rotation, scene/HUD clicks and wheel input. Movement/combat outcomes require separate observation.'),indent=2)+'\n')
 
 

@@ -65,6 +65,13 @@ int main(int argc,char** argv){
         auto renderer=std::make_unique<GlBlitter>(viewport.context());const auto driver=renderer->driver();
         std::vector<Rgb> palette;for(unsigned i=0;i<256;++i)palette.push_back({std::uint8_t(i),std::uint8_t(255-i),std::uint8_t(i*7)});
         const PixelFormat formats[]={{8,{}},{16,{0xf800,0x07e0,0x1f}},{24,{0xff0000,0xff00,0xff}},{32,{0xff0000,0xff00,0xff}}};
+        // Every canonical RGB565 value must survive shared-texture presentation.
+        Image exhaustive565{256,256,{}};
+        for(unsigned value=0;value<65536;++value)exhaustive565.pixels.push_back(value);
+        const auto exhaustiveSurface=renderer->create(exhaustive565,formats[1]);
+        viewport.resize(512,512);viewport.setGpuFrame(renderer->presentGpu(exhaustiveSurface));
+        compare(viewport,colors(exhaustive565,formats[1],{}));
+        renderer->destroy(exhaustiveSurface);viewport.resize(320,240);
         for(auto pixelFormat:formats){
             Image cpu{4,3,{}};for(unsigned i=0;i<12;++i)cpu.pixels.push_back((i*23457u+123u)&(pixelFormat.bits==8?255u:pixelFormat.bits==16?65535u:0xffffffu));
             Image otherCpu=cpu;

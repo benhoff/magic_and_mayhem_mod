@@ -25,7 +25,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'tools/test-live-campaign-mini.py', 'tools/campaign-gameplay-input.py',
            'apps/qt-shell/live_menu_session.hpp', 'apps/qt-shell/live_command_session.cpp',
            'apps/qt-shell/live_command_session.hpp', 'tools/prepare-menu-observer.py',
-           'tools/run-menu-observer.py', 'tools/menu-game-runner.py']
+           'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py']
 
 
 def sha(path):
@@ -69,7 +69,7 @@ def world_ready(experiment):
     return len(ticks) >= 3 and len({r[2] for r in ticks}) == 1
 
 
-def validate_events(experiment, cycles=1):
+def validate_events(experiment, cycles=1, difficulty=0):
     """Independent engine-side checks; window appearance alone cannot pass."""
     data = (experiment / 'events.bin').read_bytes()
     if data[:16] != b'MNMMENU1' + struct.pack('<II', 1, 64) or (len(data)-16) % 64:
@@ -78,7 +78,8 @@ def validate_events(experiment, cycles=1):
     if len(rows) > 256 or [r[0] for r in rows] != list(range(1, len(rows)+1)):
         raise ValueError('Invalid original callback sequence')
     actions = [(r[3], r[9]) for r in rows if r[1] == 3]
-    if actions != [(3, 0), (18, 0)] + [(17, 4)]*cycles:
+    expected=[(3, 0)] + ([(18,65536+difficulty)] if difficulty else []) + [(18,0)] + [(17,4)]*cycles
+    if actions != expected:
         raise ValueError('Unexpected New Game/Enter/Cancel callback trace: ' + str(actions))
     ticks = [r for r in rows if r[1] == 12 and r[3] == 2 and r[6] == 1 and r[11] == 0x6cbb78]
     cancels = [r for r in rows if r[1] == 3 and r[3] == 17 and r[9] == 4]
@@ -88,7 +89,7 @@ def validate_events(experiment, cycles=1):
     channel = (experiment / 'channel.bin').read_bytes()
     if channel[:16] != b'MNMMCM12' + struct.pack('<II', 12, 106496) or len(channel) != 106496:
         raise ValueError('Campaign test did not use the ordinary V12 menu protocol')
-    if struct.unpack_from('<I', channel, 36*4)[0] != 2+cycles:
+    if struct.unpack_from('<I', channel, 36*4)[0] != 2+cycles+bool(difficulty):
         raise ValueError('Missing third menu acknowledgement')
     return {'actions': actions, 'world_ticks': len(ticks), 'world_resumes': len(resumes),
             'protocol_version': 12, 'events_sha256': sha(experiment / 'events.bin')}
@@ -121,6 +122,8 @@ def main():
     parser.add_argument('--stress-seconds', type=int, default=0, help='Exercise physical gameplay input per phase (0 or 10..120)')
     parser.add_argument('--menu-cycles', type=int, choices=range(1,6), default=1, help='Number of native Escape/Mini/Cancel returns')
     parser.add_argument('--min-fps', type=float, default=20, help='Minimum average native publications and visible Qt paints during stress')
+    parser.add_argument('--difficulty', type=int, choices=range(4), default=0, help='Choose the normal Region Entry difficulty via its native radio (0 Initiate; 1 Apprentice for camera/combat stress)')
+    parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
@@ -138,10 +141,16 @@ def main():
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
-              'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
+              'difficulty': args.difficulty, 'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
+    if args.claims:
+        declaration=json.loads(args.claims.read_text())
+        for path,expected in declaration['sources'].items():
+            if Path(path).is_absolute() or not (ROOT/path).resolve().is_relative_to(ROOT):raise ValueError('Unsafe declared source')
+            if sha(ROOT/path)!=expected:raise ValueError('Declared source changed before execution: '+path)
+        report['claims']=declaration['claims'];report['sources'].update(declaration['sources'])
     env = clean_environment(out)
-    shell = server = None
+    shell = server = monitor = None
     verified = False
     exit_code = 1
     try:
@@ -150,6 +159,8 @@ def main():
                            stdout=log, stderr=subprocess.STDOUT, check=True, timeout=600)
         binary = ROOT / 'working/build/qt-shell/mnm-qt-shell'
         report['shell_sha256'] = sha(binary)
+        cache=(ROOT/'working/build/qt-shell/CMakeCache.txt').read_text().splitlines()
+        report['native_build_type']=next((v.split('=',1)[1] for v in cache if v.startswith('CMAKE_BUILD_TYPE:STRING=')),None)
         report['stage'] = 'combined-mode-admission'
         # A smoke probe opens/closes the shell without starting the game. The
         # invalid combination currently exits 2; never silently retry one mode.
@@ -199,8 +210,10 @@ def main():
             verified = True
             report['stage'] = 'campaign-flow'
             env['MNM_CAMPAIGN_SMOKE_TEST'] = '1'
+            env['MNM_CAMPAIGN_DIFFICULTY'] = str(args.difficulty)
             env['MNM_CAMPAIGN_STRESS_SECONDS'] = str(args.stress_seconds)
             env['MNM_CAMPAIGN_MENU_CYCLES'] = str(args.menu_cycles)
+            env['MNM_CAMPAIGN_TIMEOUT_MS'] = str((args.timeout-5)*1000)
             command = [str(ROOT / 'tools/run-qt-shell.sh'), '--live-menus', '--native-commands',
                        '--live-menu-test', str(out / 'flow.json')]
             report['launch_command'] = command
@@ -212,6 +225,8 @@ def main():
                 while time.monotonic() < deadline:
                     lines = (out / 'shell.log').read_text(errors='replace').splitlines()
                     roots = [Path(line[20:]).resolve() for line in lines if line.startswith('Evidence directory: ')]
+                    if monitor is None and len(roots)==1 and roots[0].is_relative_to(ROOT/'working/experiments/menu-observer') and (roots[0]/'render-frame.bin').exists():
+                        monitor=subprocess.Popen(['python3',str(ROOT/'tools/profile-render-stream.py'),str(roots[0]/'render-frame.bin'),'--output',str(out/'publication-rate.jsonl'),'--seconds',str(args.timeout)],env=env,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)
                     if len(roots) == 1 and roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer') and world_ready(roots[0]):
                         (out / 'flow.json.world-ready').touch(exist_ok=True)
                     if (out / 'flow.json').exists():
@@ -223,9 +238,15 @@ def main():
                     raise RuntimeError('Public campaign flow exceeded its deadline')
             flow = json.loads((out / 'flow.json').read_text())
             report['flow'] = flow
-            validate_flow(flow, args.menu_cycles, args.stress_seconds, args.min_fps)
+            validate_flow(flow, args.menu_cycles)
+            if args.stress_seconds:
+                for cycle in range(args.menu_cycles+1):
+                    inputs=json.loads((out/f'input-{cycle}.json').read_text())
+                    if inputs.get('success') is not True or inputs['seconds']<args.stress_seconds or len(inputs['actions'])<20:raise RuntimeError('Incomplete gameplay input sequence')
+                report['gameplay_input_exercised']=True
             for step in flow['steps']:
                 if step['step'] != 'campaign-handoff':
+                    if step['step'] in ('gameplay','gameplay-resumed') and (step.get('native_image_saved') is not True or step.get('original_image_saved') is not True):raise RuntimeError('Missing independent native/original gameplay image')
                     shot = Path(step['screenshot']).resolve()
                     if shot.parent != out or not shot.is_file() or shot.stat().st_size == 0:
                         raise RuntimeError('Missing or redirected screenshot: ' + str(shot))
@@ -234,7 +255,8 @@ def main():
             if len(roots) != 1 or not roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer'):
                 raise RuntimeError('Missing unique menu experiment identity')
             report['experiment'] = str(roots[0])
-            report['engine'] = validate_events(roots[0], args.menu_cycles)
+            report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty)
+            validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps)
             if any(sha(ROOT / p) != h for p,h in report['sources'].items()):raise RuntimeError('Source changed during execution')
             report.update(success=True, status='passed', stage='campaign-complete', flow_completed=True, game_entry_verified=True)
             exit_code = 0
@@ -244,6 +266,10 @@ def main():
             report['status'] = 'failed'
     finally:
         try:
+            stop_group(monitor)
+            profile=out/"publication-rate.jsonl"
+            if profile.exists():report["original_owned_publication_profile"]=[json.loads(line) for line in profile.read_text().splitlines()]
+            report["sources_unchanged"]=all(sha(ROOT/path)==expected for path,expected in report["sources"].items())
             stop_group(shell)
         except (OSError, subprocess.SubprocessError) as error:
             report.update(success=False, status='failed', cleanup_error=str(error))

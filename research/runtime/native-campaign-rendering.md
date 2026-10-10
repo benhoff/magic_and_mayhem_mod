@@ -45,3 +45,69 @@ one-second window below half that floor or sampling window longer than two
 seconds. Startup/loading and native menu intervals are excluded. This bounded
 latency/throughput policy is a test requirement, not the recovered engine's
 frame pacing. Injecting orders is not proof of movement or combat outcomes.
+
+## Ordered copy and presentation visibility findings
+
+`native-campaign-copy-gap-20261009.json` preserves the next failure after World
+readiness was corrected: independent World ticks and native Mini Cancel/World
+resume were observed, but overlapping commits on two original threads caused
+GAP and a failed recovery. The explicit combined route now enables the existing
+bounded ordered-copy scheduling policy. This is a native policy, not recovered
+original thread ordering. An optimized `RelWithDebInfo` shell build is the public
+launcher default; `MNM_QT_BUILD_TYPE` selects an explicit alternative.
+
+`native-campaign-smoke-passed-20261009.json` records the first positive full route:
+88 native presentations, 56 visible Qt paints, zero recoveries/fallback, three
+original World completions and original Cancel/resume on one thread. This result
+predates later stress/stacking/capture changes and remains historical.
+
+The early whole-window gameplay capture showed two HUD/minimap placements.
+The later native framebuffer and independently copied original-owned primary
+image showed the same single HUD. The original Wine desktop can overlap the Qt
+window during startup, contaminating X11 window screenshots. Native presentation
+now lowers only the identified new Wine desktop, without unmapping it; semantic
+Enter/Cancel restores Qt focus. Test captures distinguish the native framebuffer
+from the original owned frame stream. Comparisons remain unsynchronized.
+
+Initiate's first gameplay tutorial absorbs camera/Escape input while prompting
+for Zombie spell selection. A 20-second injection phase reached the tutorial,
+with matching native/original images, then stalled before native Mini return;
+its private Wine prefix was stopped deliberately to retain failure/timing.
+This does not establish a native renderer crash or working camera/movement.
+Apprentice is an explicit normal native Region Entry radio selection for active
+gameplay stress; the default smoke retains Initiate. No engine balance/config
+patch or diagnostic readiness bypass is used.
+
+## Active gameplay performance failure and shader correction
+
+`native-campaign-apprentice-stress-slow-20261009.json` retains a fail-closed active
+Apprentice run: four input phases and three native Mini Cancel/World resumes
+completed without recovery or fallback. Phase averages were 42.4/27.9, 59.7/34.3,
+59.2/32.5 and 59.5/34.6 native/visible-paint FPS. The first camera phase had a
+9.14 FPS one-second window, so the fixed 10 FPS minimum failed. Input completion
+and engine callback evidence do not turn that performance failure into a pass.
+
+A ten-second CPU-clock profile of the native process retained 2,919 samples,
+zero lost samples, with 83.01% in Mesa JIT code, 11.58% in Gallium and 0.89% in
+the shell. The symbol and DSO reports are retained beside this document. This is
+software-renderer CPU attribution, not an identified hardware GPU bottleneck.
+Canonical RGB565 presentation now selects constant masks/shifts before the
+generic-mask uniform division path, preserving the existing bit replication.
+`native-campaign-rgb565-regression-20261009.json` passes exhaustive 65,536 RGB565
+values through the shared GPU texture and independent CPU oracle, plus indexed,
+24/32-bit, lifetime, command replay and refusal checks at normal/1.5 Qt scales.
+The gameplay effect requires its own fresh run; historical evidence is unchanged.
+
+The first shader-only rerun also failed the original timing floor, despite all
+three Mini returns and zero fallback/recovery. It is retained under
+`native-campaign-fast565-stress-slow-20261009.json`; the color optimization alone
+is not a performance fix. Opaque unmasked, unkeyed, untranslated native surface
+copies now use `glCopyTexSubImage2D` from a distinct integer source texture.
+Masked, keyed and palette-translated copies retain their shader path. Overlap
+callers retain frozen-source/ordered-key semantics. Five independent renderer
+checks passed: recorded owned backend, formats, aliases/ownership, native blits
+and persistent surfaces. The live performance effect is assessed separately.
+
+The original manifest verifier now hashes the same 2,927 files in one Python
+process, retaining byte-sorted paths and identical TSV bytes, instead of spawning
+two processes per file. Both experiment sides still verify immutable inputs.

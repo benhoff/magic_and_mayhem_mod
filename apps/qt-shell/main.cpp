@@ -65,7 +65,7 @@
 class Shell final:public QMainWindow {
     quint64 nativeCommandFrames_=0,nativePaintedFrames_=0;
 public:
-    CampaignPresentationProbe campaignPresentation() const{return {nativeCommandFrames_,commands_&&commands_->state()==LiveCommandSession::State::Active,nativeFallback_,nativePaintedFrames_,commands_?commands_->recoveries():0,commands_?commands_->error():QString()};}
+    CampaignPresentationProbe campaignPresentation() const{return {nativeCommandFrames_,commands_&&commands_->state()==LiveCommandSession::State::Active,nativeFallback_,nativePaintedFrames_,commands_?commands_->recoveries():0,commands_?commands_->error():QString(),commands_&&commands_->result()?QString::fromStdString(commands_->result()->driver.renderer):QString()};}
     void showPresentation(){if(presentation_)presentation_->show();else show();}
     explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false,PresentationOptions presentation={}):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
         setWindowTitle("Magic & Mayhem Workshop");resize(1100,850);
@@ -113,8 +113,8 @@ public:
             liveMenus_->launched=[this]{elapsed_.restart();if(nativeCommands_){frames_.start();inputTimer_.start();}poll_.start();placeholder_->setText("Checking launch files and starting Wine…\nStartup may take a few minutes. See the launch log below.");statusBar()->showMessage("Checking launch files and starting Wine…");};
             liveMenus_->output=[this](const QString& text){log_->appendPlainText(text.trimmed());};
             liveMenus_->failed=[this](const QString& error){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);if(!foreign_)placeholder_->setText(error+"\nSee the launch log below.");statusBar()->showMessage(error);};
-            liveMenus_->battleStarted=[this](quint32 destination){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(!commands_||commands_->state()!=LiveCommandSession::State::Active);gl_->setFocus();return;}statusBar()->showMessage(destination==3?"Original campaign startup active. Use original game controls.":destination==1?"Original game active. Complete spell selection; Qt menus return after battle.":"Original game active. Qt menus return when the engine reaches Main or Quick Battle.");};
-            liveMenus_->originalViewportRequested=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(!commands_||commands_->state()!=LiveCommandSession::State::Active);gl_->setFocus();return;}statusBar()->showMessage("Original game controls active. Confirmations and Preferences use this viewport.");};
+            liveMenus_->battleStarted=[this](quint32 destination){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(!commands_||commands_->state()!=LiveCommandSession::State::Active);activateWindow();raise();gl_->setFocus();return;}statusBar()->showMessage(destination==3?"Original campaign startup active. Use original game controls.":destination==1?"Original game active. Complete spell selection; Qt menus return after battle.":"Original game active. Qt menus return when the engine reaches Main or Quick Battle.");};
+            liveMenus_->originalViewportRequested=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(!commands_||commands_->state()!=LiveCommandSession::State::Active);activateWindow();raise();gl_->setFocus();return;}statusBar()->showMessage("Original game controls active. Confirmations and Preferences use this viewport.");};
             liveMenus_->finished=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);finished();if(closeAfterGame_)close();};
             liveMenus_->stateChanged=[this](const MenuBridge::State& state){
                 if(!menuAssetsLoaded_){QString error;const auto root=QDir(repo_).filePath("working/game-nocd");
@@ -327,7 +327,7 @@ private:
         const auto candidates=host_.desktops(excluded_);
         if(opengl_ && !nativeFallback_){
             xcb_window_t target=0;
-            if(candidates.size()==1 && !gl_->frameSize().isEmpty())target=host_.inputWindow(candidates.front(),gl_->frameSize());
+            if(candidates.size()==1){host_.lowerDesktop(candidates.front());if(!gl_->frameSize().isEmpty())target=host_.inputWindow(candidates.front(),gl_->frameSize());}
             input_->setTarget(target);return;
         }
         if(candidates.size()==1 && attach(candidates.front()))return;
