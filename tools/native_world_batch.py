@@ -27,10 +27,11 @@ def producer_refusal(root):
     return None
 
 
-def command(repository, build, prefix_template, manual, claims=None):
+def command(repository, build, prefix_template, manual, claims=None, queues=16):
+    if queues not in (16,32):raise ValueError('World batch prefix must be16 or32')
     args = [sys.executable, str(repository/'tools/capture-scene-game.py'),
-            '--canvas-producers', '--world-producer-handoff', '--samples', '16',
-            '--world-raster-prefix', '16', '--world-raster-batch',
+            '--canvas-producers', '--world-producer-handoff', '--samples', str(queues),
+            '--world-raster-prefix', str(queues), '--world-raster-batch',
             '--producer-oracle-mib', '3072', '--skip-window-screenshot',
             '--map', '2', '--magic-items', '0', '--producer-live', str(build/'mnm-canvas-producers-live'),
             '--prefix-template', str(prefix_template.resolve())]
@@ -39,16 +40,16 @@ def command(repository, build, prefix_template, manual, claims=None):
     return args
 
 
-def run_batch(repository, build, prefix_template, manual=True, claims=None):
-    print('Guarded native World batching: bounded first 16 queues, 800x600 RGB565.', flush=True)
+def run_batch(repository, build, prefix_template, manual=True, claims=None, queues=16):
+    print(f'Guarded native World batching: bounded first {queues} queues, 800x600 RGB565.', flush=True)
     if manual:
         print('Use the original window: Single Player > Quick Battle, map 2, zero magic items. '
-              'Close either window to cancel; the session ends after queue 16.', flush=True)
+              f'Close either window to cancel; the session ends after queue {queues}.', flush=True)
     else:
         print('Automatically running the bounded Quick Battle map 2 startup route.', flush=True)
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
     root = None
-    process = subprocess.Popen(command(repository, build, prefix_template, manual, claims),
+    process = subprocess.Popen(command(repository, build, prefix_template, manual, claims, queues),
                                env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                                text=True, start_new_session=True)
     try:
@@ -76,10 +77,10 @@ def run_batch(repository, build, prefix_template, manual=True, claims=None):
                 raise RuntimeError(refusal)
             print('Native World batch cancelled before completion; no validation claimed.', flush=True)
             return
-        if not result.get('success') or result.get('native_canvas_writebacks') != 16:
+        if not result.get('success') or result.get('native_canvas_writebacks') != queues:
             raise RuntimeError('Incomplete native World batch; details: '+str(root/'report.json'))
         profile = result['native_producers']['profile']
-        print('Completed 16 guarded World batches. Profiling: '+str(root/'native-producers/live-report.json'), flush=True)
+        print(f'Completed {queues} guarded World batches. Profiling: '+str(root/'native-producers/live-report.json'), flush=True)
         print('Native consumer totals (ms): CPU composition {:.1f}, checkpoint diagnostics {:.1f}, stream ingest {:.1f}.'.format(
             profile['cpu_composition_ms'], profile['checkpoint_diagnostics_ms'], profile['stream_ingest_ms']), flush=True)
     finally:

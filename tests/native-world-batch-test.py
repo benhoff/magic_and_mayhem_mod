@@ -35,6 +35,13 @@ class BatchLauncher(unittest.TestCase):
             self.assertIn('--skip-window-screenshot', args)
             self.assertEqual(args[args.index('--claims')+1], '/claims')
 
+    def test_extended_command_requires_exact_bound(self):
+        args=command(Path('/repo'),Path('/build'),Path('/prefix'),False,queues=32)
+        for flag in ('--world-raster-prefix','--samples'):
+            self.assertEqual(args[args.index(flag)+1],'32')
+        for queues in (0,17,31,33,64):
+            with self.assertRaises(ValueError):command(Path('/repo'),Path('/build'),Path('/prefix'),False,queues=queues)
+
     def test_completion_cancellation_refusal(self):
         for case in ('complete','cancel','refuse','incomplete'):
             with self.subTest(case=case), tempfile.TemporaryDirectory() as directory:

@@ -1,5 +1,6 @@
 #include "../shadow/win32_min.h"
 #include "../../protocols/include/mnm/scene_snapshot_v1.h"
+#include "../../protocols/include/mnm/canvas_producers_v3.h"
 extern void scene_enter(void);
 extern void world_begin(u32*,u32);
 extern int canvas_producers_install(void);
@@ -110,7 +111,8 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     startup_queue_init();kind8_init();
     char number[8];kind8_samples=GetEnvironmentVariableA("MNM_SCENE_KIND8_SAMPLES",number,8)!=0;
     n=GetEnvironmentVariableA("MNM_SCENE_SAMPLES",number,8);
-    if(n){if(n>=8)return 1;limit=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 1;limit=limit*10+number[i]-'0';}if(!limit||limit>16)return 1;}
+    if(n){if(n>=8)return 1;limit=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 1;limit=limit*10+number[i]-'0';}if(!limit||limit>MNM_PRODUCER_V3_QUEUES)return 1;
+      if(limit>16){char flag[2];if(limit!=MNM_PRODUCER_V3_QUEUES||GetEnvironmentVariableA("MNM_CANVAS_PRODUCERS",flag,2)!=1||flag[0]!='1'||GetEnvironmentVariableA("MNM_WORLD_RASTER_BATCH",flag,2)!=1||flag[0]!='1')return 0;}}
     n=GetEnvironmentVariableA("MNM_SCENE_SKIP",number,8);if(n){if(n>=8)return 1;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 1;skip=skip*10+number[i]-'0';}if(skip>3600)return 1;}
     n=GetEnvironmentVariableA("MNM_SCENE_INTERVAL",number,8);if(n){if(n>=8)return 1;interval=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 1;interval=interval*10+number[i]-'0';}if(!interval||interval>3600)return 1;}
 #ifndef MNM_SCENE_SELFTEST

@@ -1,6 +1,7 @@
 /* Bounded closed producer inputs. Original destination bytes are oracle files. */
 #include "../shadow/win32_min.h"
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
+#include "../../protocols/include/mnm/canvas_producers_v3.h"
 #define HOOKS 52
 #define MAX_SURFACES 128
 #define MAX_FRAMES 128
@@ -88,7 +89,26 @@ static int readable(u32 p,u32 n){u32 end=p+n;if(!p||end<p)return 0;while(p<end){
 static int write(HANDLE f,const void* p,u32 n){u32 at=0;while(at<n){u32 done=0;if(!WriteFile(f,(const u8*)p+at,n-at,&done,0)||!done||done>n-at)return 0;at+=done;}return 1;}
 static void path(char* out,const char* name,u32 number,const char* suffix){u32 i=0;while(directory[i]){out[i]=directory[i];++i;}out[i++]='\\';while(*name)out[i++]=*name++;for(u32 d=1000;d;d/=10)out[i++]=(char)('0'+number/d%10);while(*suffix)out[i++]=*suffix++;out[i]=0;}
 void canvas_producers_close(void){if(file){CloseHandle(file);file=0;}stopped=1;}
-static void emit(u32* r,const void* payload,u32 n){if(!file||stopped)return;if(sequence>=(minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS)||bytes>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-96||n>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!write(file,r,96)||(n&&!write(file,payload,n))){canvas_producers_close();return;}bytes+=96+n;}
+static void emit_raw(u32* r,const void* payload,u32 n){if(!file||stopped)return;if(sequence>=(limit>16?MNM_PRODUCER_V3_MAX_RECORDS:minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS)||bytes>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-96||n>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!write(file,r,96)||(n&&!write(file,payload,n))){canvas_producers_close();return;}bytes+=96+n;}
+/* V3 source snapshots live on the private producer heap. No original pointers
+ * or destination pixels enter this cache; equality includes every state byte. */
+static struct SourcePacket {u32 sequence,kind,tag,size,hash;u8* data;} source_packets[MNM_PRODUCER_V3_SOURCES];
+static u32 source_packet_count,source_packet_bytes;
+static void emit(u32* r,const void* payload,u32 n){
+ if(limit<=16||(r[2]!=8&&r[2]!=9)||!n){emit_raw(r,payload,n);return;}
+ const u8* data=payload;u32 hash=2166136261u;for(u32 i=0;i<n;++i)hash=(hash^data[i])*16777619u;
+ struct SourcePacket* source=0;
+ for(u32 i=0;i<source_packet_count;++i){struct SourcePacket* s=source_packets+i;if(s->kind!=r[2]||s->tag!=r[17]||s->size!=n||s->hash!=hash)continue;u32 j=0;while(j<n&&s->data[j]==data[j])++j;if(j==n){source=s;break;}}
+ if(!source&&source_packet_count<MNM_PRODUCER_V3_SOURCES&&n<=MNM_PRODUCER_V3_SOURCE_BYTES-source_packet_bytes){
+  u8* owned=HeapAlloc(producer_heap(),0,n);
+  if(owned){copy(owned,data,n);u32 definition[24]={0};definition[2]=MNM_PRODUCER_PAYLOAD_SOURCE;definition[14]=r[2];definition[17]=r[17];definition[19]=r[19];definition[20]=r[20];emit_raw(definition,owned,n);
+   source=source_packets+source_packet_count++;source->sequence=definition[1];source->kind=r[2];source->tag=r[17];source->size=n;source->hash=hash;source->data=owned;source_packet_bytes+=n;}
+ }
+ if(!source){emit_raw(r,payload,n);return;} /* Cache exhaustion keeps raw input. */
+ u32 wire[24];copy(wire,r,96);wire[4]=source->sequence;emit_raw(wire,0,0);
+ /* Keep the producer's full canonical packet for exact batch descriptor hashes. */
+ r[0]=96+n;r[1]=wire[1];r[18]=n;
+}
 static void fail(u32 why,u32 detail){++failures;u32 r[24]={0};r[2]=MNM_PRODUCER_FAILURE;r[14]=why;r[15]=detail;emit(r,0,0);}
 static struct Surface* object(u32 p){for(u32 i=0;i<MAX_SURFACES;++i)if(surfaces[i].object==p&&p)return surfaces+i;return 0;}
 static struct Surface* bound(void){u32 p=get((void*)0x658174);for(u32 i=0;i<MAX_SURFACES;++i)if(surfaces[i].object&&surfaces[i].pixels==p&&p)return surfaces+i;return 0;}
@@ -271,13 +291,14 @@ int canvas_producers_install(void){
  SetLastError(0);u32 budget_n=GetEnvironmentVariableA("MNM_CANVAS_ORACLE_MIB",number,sizeof(number));
  if(budget_n){if(budget_n>=sizeof(number)||!oracle_configure(number,budget_n))return 0;}
  else if(GetLastError()!=203)return 0; /* ERROR_ENVVAR_NOT_FOUND; empty refuses. */
- limit=1;u32 n=GetEnvironmentVariableA("MNM_SCENE_SAMPLES",number,8);if(n){limit=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 0;limit=limit*10+number[i]-'0';}if(!limit||limit>16)return 0;}
+ limit=1;u32 n=GetEnvironmentVariableA("MNM_SCENE_SAMPLES",number,8);if(n){if(n>=sizeof(number))return 0;limit=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 0;limit=limit*10+number[i]-'0';}if(!limit||(limit>16&&limit!=MNM_PRODUCER_V3_QUEUES))return 0;}
  if(!bypass_init(limit)||!raster_init(limit)||(bypass_limit&&raster_first))return 0;
  if(!batch_init())return 0;
+ if(limit>16&&(!batch_enabled||minimap_owned||raster_first!=1||raster_last!=limit))return 0;
  n=GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory))return 0;
  for(u32 i=0;i<HOOKS;++i){struct Hook* h=hooks+i;if(!readable(h->address,h->length))return 0;for(u32 j=0;j<h->length;++j)if(*(u8*)(h->address+j)!=h->bytes[j])return 0;u8* t=VirtualAlloc(0,h->length+5,0x3000,0x40);if(!t)return 0;copy(t,(void*)h->address,h->length);if(i==9)put(t+5,0x58b660-(u32)t-9);t[h->length]=0xe9;put(t+h->length+1,h->address+h->length-(u32)t-h->length-5);producer_trampolines[i]=(u32)t;}
  char name[260];u32 i=0;while(directory[i]){name[i]=directory[i];++i;}const char* suffix="\\canvas-producers.bin";while(*suffix)name[i++]=*suffix++;name[i]=0;file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(file==(HANDLE)-1){file=0;return 0;}
- u32 header[16]={0};copy(header,minimap_owned?"MNMPRO02":MNM_PRODUCER_MAGIC,8);header[2]=minimap_owned?2:1;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS;header[6]=limit;if(!write(file,header,64))return 0;bytes=64;
+ u32 header[16]={0};copy(header,limit>16?MNM_PRODUCER_V3_MAGIC:minimap_owned?"MNMPRO02":MNM_PRODUCER_MAGIC,8);header[2]=limit>16?3:minimap_owned?2:1;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=limit>16?MNM_PRODUCER_V3_MAX_RECORDS:minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS;header[6]=limit;if(!write(file,header,64))return 0;bytes=64;
  for(u32 j=0;j<HOOKS;++j){struct Hook* h=hooks+j;u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;u8 patch[10]={0xe9};put(patch+1,(u32)h->entry-h->address-5);for(u32 k=5;k<h->length;++k)patch[k]=0x90;copy((void*)h->address,patch,h->length);FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);VirtualProtect((void*)h->address,h->length,old,&unused);}
  enabled=1;return 1;
 }

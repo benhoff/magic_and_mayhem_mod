@@ -132,3 +132,44 @@ with no recovered original batching-policy comparison/replacement claim. Origina
 and non-drawing lazy wave preparation remain active. Caller/global-state and
 top-clipped displacement gaps stay open. This evidence does not renew the
 earlier scalar replacement or public launcher domains after shared-source edits.
+
+## Extended guarded prefix and owned source packets (2026-10-10)
+
+The explicit `--world-queues 32` route uses producer `MNMPRO03`/version3,
+exactly32 queues and131072 records, retaining the128MiB journal byte cap. V1/V2
+remain limited to16 queues. Increasing only the prefix first exhausted the
+journal after25 completed queues; that refusal is preserved separately and is
+not original-equivalence evidence.
+
+V3 operation25 defines an immutable closed font/raster payload, including its
+per-draw colour/effect table. Word14 names kind8/9; words17/19/20 retain its tag,
+frame length and state length. The definition sequence is the source ID. A
+later kind8/9 record uses word4 for that earlier ID and a zero-length wire
+payload. Decoders restore word4=0 and full canonical extents/payload before
+batch source hashing or raster execution. Runtime lookup compares every source
+byte, kind and tag; it never borrows an original pointer or destination pixels.
+A maximum2048 definitions/16MiB bounds each source dictionary. The runtime
+keeps raw records when its cache cannot retain another source; journal limits
+still refuse incomplete sessions. Native operations share immutable owned
+vectors instead of allocating an expanded copy for each reference. Missing,
+future, mismatched and over-budget sources refuse. V1/V2 reject operation25.
+
+The separate original PE32 comparator resolves definitions/references itself
+before executing original raster bodies. Definitions are native transport
+metadata, never original drawing calls. Full canonical packets remain bound to
+actual entry, sequence, caller AX and source checksum; destination protection,
+CPU/GPU parity, original comparisons and one writeback per queue remain separate
+checks. Raw startup sample32 is accepted only with the explicit diagnostic
+sample limit; its legacy default still rejects sample17.
+
+The optimized public consumer records its actual CMake build type and uses
+RelWithDebInfo. With four software-Mesa workers, the guarded32 capture records
+32 writebacks/readbacks,63124 bypassed rasters,2016 source definitions/3.94MiB
+owned source data, and a12.87MiB journal. Median warm CPU composition11.11ms,
+GPU submission63.24ms and entry-to-return223.83ms. Earlier Debug diagnostics
+recorded405ms queue time; workloads differ, so these are measured runs rather
+than a controlled speedup claim. GPU submission alone exceeds a50ms frame
+budget. This diagnostic route is still too slow for real-time gameplay; rolling
+history, GPU batching, normal-mode profiling, camera/combat stress and hardware
+validation remain outstanding. The passing native campaign presentation smoke
+uses a separate original-raster-active path.

@@ -84,3 +84,25 @@ complete/cancel/incomplete/worker-failure dispatch and isolated-process launch.
 The final automatic record includes current per-queue timings and source bindings.
 Manual completed menu journeys and original-window cancellation remain pending;
 closing the native window is the directly exercised cancellation boundary.
+
+### Extended finite route
+
+The guarded experiment can explicitly request32 queues, preserving strict
+comparisons and destination protection:
+
+```sh
+LP_NUM_THREADS=4 xvfb-run -a -s '-screen 0 1280x1024x24' \
+  python3 tools/test-native-world-batch.py --queues 32
+```
+
+The public launcher counterpart is `tools/run-native-world.py --world-batch
+--startup-history --world-queues 32`. The16-queue default remains supported.
+The installed `xvfb-run` defaults to640x480, which cannot host the pinned
+800x600 original DirectDraw mode; use the explicit screen above. The32 route
+uses bounded immutable source-packet reuse documented in
+`native-world-raster-batch.md`; complete original-raster comparison still runs
+separately with the newly printed capture report and prospective claims.
+Manual32 input, rolling/unbounded sessions and real-time guarded gameplay have
+not been validated. Public diagnostic builds now use RelWithDebInfo and record
+that build type; the independent frozen comparator still builds Debug and does
+not claim frame-rate evidence.

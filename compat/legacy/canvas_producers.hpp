@@ -10,11 +10,15 @@ namespace mnm::legacy {
 struct CanvasProducer {
   std::array<std::uint32_t, 24> fields;
   std::vector<std::uint8_t> payload;
+  std::shared_ptr<const std::vector<std::uint8_t>> ownedPayload = {};
+  const std::vector<std::uint8_t> &bytes() const { return ownedPayload ? *ownedPayload : payload; }
 };
 struct CanvasProducerStream {
   unsigned queues;
   std::vector<CanvasProducer> operations;
   unsigned version = 0;
+  std::map<unsigned, CanvasProducer> ownedPayloads = {};
+  std::size_t ownedPayloadBytes = 0;
 };
 void appendCanvasProducers(CanvasProducerStream &, const std::vector<std::uint8_t> &, bool complete = false);
 CanvasProducerStream decodeCanvasProducers(const std::vector<std::uint8_t> &, bool complete = true);

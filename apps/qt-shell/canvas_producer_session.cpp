@@ -11,6 +11,7 @@
 #include <chrono>
 #include "../../protocols/include/mnm/world_producer_bypass_v1.h"
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
+#include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include "../../compat/legacy/world_raster_batch.hpp"
 #include "../../protocols/include/mnm/world_raster_batch_v3.h"
 namespace {
@@ -137,7 +138,7 @@ void CanvasProducerSession::tick() {
             frame["identities"]=QJsonObject{{"hashes",double(p.identityHashes)},{"hits",double(p.identityHits)},{"evictions",double(p.identityEvictions)},{"bypasses",double(p.identityBypasses)},{"frames",double(p.identityFrames)},{"bytes",double(p.identityBytes)}};
             world_->end(c);proof(c,3,nullptr);frame["gpu_world_equal"]=true;frame["return_sequence"]=int(r[1]);worldFrames_.replace(worldFrames_.size()-1,frame);
           }
-          else if(r[2]!=4&&r[2]!=10)throw std::runtime_error("Unadmitted write inside native World handoff");
+          else if(r[2]!=4&&r[2]!=10&&r[2]!=MNM_PRODUCER_PAYLOAD_SOURCE)throw std::runtime_error("Unadmitted write inside native World handoff");
         }
       }
       if (r[2] == 1) surfaces_[r[3]] = renderer_->allocate(r[5], r[6], mnm::render::PixelFormat{16, {0xf800, 0x07e0, 0x001f}});
@@ -203,7 +204,7 @@ void CanvasProducerSession::batchReply(){
   if(applied_!=sequence)throw std::runtime_error("Stale World batch completion sequence");
   std::vector<const mnm::legacy::CanvasProducer*> rasters;
   auto started=ProfileClock::now();
-  for(auto i=batchStart_;i<applied_;++i){const auto& c=pending_.operations.at(i);if(c.fields[2]==9)rasters.push_back(&c);else if(c.fields[2]!=4)throw std::runtime_error("Unadmitted producer before World batch completion");}
+  for(auto i=batchStart_;i<applied_;++i){const auto& c=pending_.operations.at(i);if(c.fields[2]==9)rasters.push_back(&c);else if(c.fields[2]!=4&&c.fields[2]!=MNM_PRODUCER_PAYLOAD_SOURCE)throw std::runtime_error("Unadmitted producer before World batch completion");}
   const auto nativeReference=replay_.read(world_->canvas());
   const auto plan=mnm::legacy::validateWorldRasterBatch({request.begin(),request.end()},unsigned(batches_.size())+1,world_->queue(),unsigned(applied_),world_->canvas(),nativeReference.width,nativeReference.height,unsigned(bypasses_.size()),rasters);
   batchValidationMs_+=elapsedMs(started);
@@ -241,7 +242,7 @@ void CanvasProducerSession::bypassReply(){
     const unsigned entry=word(request,56),backend=operation.fields[15];
     const std::pair<unsigned,unsigned> admitted[]={{0x595677,0},{0x5947b2,1},{0x59521a,1},{0x595b47,2},{0x59603e,2},{0x57de00,3},{0x57ec90,4},{0x57f0f0,5},{0x57f5f0,6},{0x5806f0,7},{0x596490,9},{0x5968a4,9},{0x57e540,10}};
     if(std::none_of(std::begin(admitted),std::end(admitted),[&](auto pair){return pair.first==entry&&pair.second==backend;}))throw std::runtime_error("Unreviewed complete-queue raster entry");
-    QByteArray source(reinterpret_cast<const char*>(operation.payload.data()),operation.payload.size());
+    QByteArray source(reinterpret_cast<const char*>(operation.bytes().data()),operation.bytes().size());
     const auto left=std::int64_t(std::int32_t(operation.fields[8]))-std::int32_t(word(source,12));
     const auto width=word(source,4),height=word(source,8);
     const unsigned ax=(backend==0||backend==9)&&width&&height&&(left<std::int32_t(operation.fields[10])||left+width>=std::int32_t(operation.fields[12]));
@@ -265,8 +266,9 @@ void CanvasProducerSession::finish(const QString &error) {
   viewport_.setGpuFrame({});
   report["complete_raster_queues"]=fullRasters_;report["native_bypass_replies"]=bypasses_;report["native_bypass_count"]=bypasses_.size();
   report["world_raster_batch"]=worldBatch_;report["native_batch_replies"]=batches_;report["native_canvas_writebacks"]=batches_.size();
-  report["profile"]=QJsonObject{{"clock","steady host clock, milliseconds"},{"scope","Debug diagnostic consumer; GPU submission is host time, readback includes deferred GPU work. Queue wall time includes producer/timer waits; excludes original simulation and pre-entry work. Checkpoints include GPU mirror, readback, serialization, hashing and disk writes. CPU reference remains enabled; proof FIFO blocking is not a frame benchmark."},{"cpu_composition_ms",cpuMs_},{"checkpoint_diagnostics_ms",checkpointMs_},{"stream_ingest_ms",ingestMs_}};
-  report["wire_version"]=int(pending_.version);report["stream_bytes"]=accepted_.size();
+  report["profile"]=QJsonObject{{"clock","steady host clock, milliseconds"},{"scope","Diagnostic consumer; GPU submission is host time, readback includes deferred GPU work. Queue wall time includes producer/timer waits; excludes original simulation and pre-entry work. Checkpoints include GPU mirror, readback, serialization, hashing and disk writes. CPU reference remains enabled; proof FIFO blocking is not a frame benchmark."},{"cpu_composition_ms",cpuMs_},{"checkpoint_diagnostics_ms",checkpointMs_},{"stream_ingest_ms",ingestMs_}};
+  report["native_build_type"]=MNM_CANVAS_PRODUCER_BUILD_TYPE;report["wire_version"]=int(pending_.version);report["stream_bytes"]=accepted_.size();
+  report["owned_payload_sources"]=int(pending_.ownedPayloads.size());report["owned_payload_bytes"]=double(pending_.ownedPayloadBytes);
   report["producer_frames"]=producerFrames_;report["minimap_operations"]=int(minimapOperations_);report["minimap_composition_ms"]=minimapMs_;
   if(world_){report["world_handoff"]=true;report["world_queues"]=int(world_->completedQueues());report["world_draws"]=int(world_->draws());report["world_readbacks"]=int(world_->readbacks());report["world_frames"]=worldFrames_;world_.reset();}
   if (renderer_) {

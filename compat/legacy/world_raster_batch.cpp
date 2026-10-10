@@ -17,10 +17,10 @@ bool admitted(unsigned entry,unsigned backend){
 }
 std::uint32_t worldBatchHash(const std::vector<std::uint8_t>& b){std::uint32_t h=2166136261u;for(auto c:b)h=(h^c)*16777619u;return h;}
 std::uint32_t worldRasterSourceHash(const CanvasProducer& c){
-  std::vector<std::uint8_t> b;b.reserve(96+c.payload.size());for(auto w:c.fields)put(b,w);b.insert(b.end(),c.payload.begin(),c.payload.end());return worldBatchHash(b);
+  std::vector<std::uint8_t> b;b.reserve(96+c.bytes().size());for(auto w:c.fields)put(b,w);b.insert(b.end(),c.bytes().begin(),c.bytes().end());return worldBatchHash(b);
 }
 unsigned worldRasterAX(const CanvasProducer& c){
-  const auto& r=c.fields;const auto& p=c.payload;
+  const auto& r=c.fields;const auto& p=c.bytes();
   if(r[2]!=9||p.size()<40||r[19]<40||r[18]!=p.size()||r[0]!=96+p.size()||r[23])throw std::invalid_argument("Unclosed batch raster");
   const auto width=word(p,4),height=word(p,8);
   const auto left=std::int64_t(std::int32_t(r[8]))-std::int32_t(word(p,12));

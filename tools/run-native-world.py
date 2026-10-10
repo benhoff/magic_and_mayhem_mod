@@ -24,12 +24,14 @@ def main():
     parser.add_argument('--skip-queues', type=int, default=None, help='Original startup queues to skip (0..3600)')
     parser.add_argument('--startup-history', action='store_true', help='Automatically run Quick Battle startup through 16 World queues and compare every completed native canvas')
     parser.add_argument('--world-batch', action='store_true', help='Opt-in guarded native replacement of the first 16 World queues; manual original-window input unless --startup-history is set')
+    parser.add_argument('--world-queues',type=int,choices=(16,32),default=16,help='Guarded batch prefix length;32 opts into producer V3 with unchanged128MiB journal byte cap')
     parser.add_argument('--minimap-owned', action='store_true', help='Owned V2 minimap composition in the bounded startup-history viewer; original drawing remains active')
     parser.add_argument('--minimap-motion', action='store_true', help='Private-Xvfb paced rotation/pan validation with --minimap-owned')
     parser.add_argument('--claims', type=Path, help='Prospective execution claims for bounded batch or owned minimap startup')
     parser.add_argument('--prefix-template', type=Path, default=ROOT/'working/wineprefix-x86_64')
     args = parser.parse_args()
     producer = args.startup_history or args.world_batch
+    if args.world_queues!=16 and not args.world_batch:parser.error('--world-queues32 requires --world-batch')
     if producer and (args.interval not in (None,1) or args.skip_queues not in (None,0)):parser.error('Producer history requires --interval 1 --skip-queues 0')
     if args.minimap_owned and (not args.startup_history or args.world_batch):parser.error('--minimap-owned requires original-active --startup-history')
     if args.minimap_motion and not args.minimap_owned:parser.error('--minimap-motion requires --minimap-owned')
@@ -41,10 +43,10 @@ def main():
     build = ROOT/('working/build/canvas-producers' if producer else 'working/build/world-frame')
     source = ROOT/('compat/legacy/canvas-producers' if producer else 'compat/legacy')
     target = 'mnm-canvas-producers-live' if producer else 'mnm-world-live'
-    subprocess.run(['cmake', '-S', str(source), '-B', str(build), '-DCMAKE_BUILD_TYPE=Debug', *(['-DBUILD_TESTING=OFF'] if producer else [])], check=True)
+    subprocess.run(['cmake', '-S', str(source), '-B', str(build), '-DCMAKE_BUILD_TYPE=RelWithDebInfo', *(['-DBUILD_TESTING=OFF'] if producer else [])], check=True)
     subprocess.run(['cmake', '--build', str(build), '--target', target, '-j4'], check=True)
     if args.world_batch:
-        run_batch(ROOT, build, args.prefix_template, manual=not args.startup_history, claims=args.claims)
+        run_batch(ROOT, build, args.prefix_template, manual=not args.startup_history, claims=args.claims, queues=args.world_queues)
         return
     if args.startup_history:
         run_startup(ROOT,build,args.prefix_template,minimap_owned=args.minimap_owned,motion=args.minimap_motion,claims=args.claims)
