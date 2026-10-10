@@ -18,6 +18,7 @@ import subprocess
 import time
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
 from campaign_movement import validate_movement_probes
+from campaign_crowded import validate_crowded
 from campaign_spell import read_spell_rows, validate_spell_observation, validate_spell_cases, player_cure_healing
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,7 +32,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'apps/qt-shell/live_command_session.hpp', 'tools/prepare-menu-observer.py',
            'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py']
-SOURCES += ['runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
+SOURCES += ['tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 
 
 def validate_portrait_stress(inputs, flow, capture_root, seconds, min_fps=20):
@@ -291,6 +292,7 @@ def main():
     pacer.add_argument('--enable-pacer-yield',dest='pacer_yield',action='store_true',help='Experimental opt-in cooperative Sleep0 wait; has no demonstrated portrait performance benefit')
     pacer.add_argument('--disable-pacer-yield',dest='pacer_yield',action='store_false')
     parser.set_defaults(pacer_yield=False)
+    parser.add_argument('--crowded-case',action='store_true',help='Four-player native Quick Battle with ordinary 200 mana/800 health/30 control settings, eight Zombie summon attempts and 180..240 seconds of observed crowded combat')
     parser.add_argument('--healing-case',action='store_true',help='Separate native Quick Battle Cure loadout and injured human-wizard healing case')
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
@@ -300,7 +302,11 @@ def main():
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
-    if args.healing_case:
+    if args.crowded_case:
+        if args.healing_case:parser.error('Select only one Quick Battle case')
+        if not args.stress_seconds:args.stress_seconds=180
+        if not 180 <= args.stress_seconds <= 240:parser.error('Crowded stress requires 180..240 seconds')
+    if args.healing_case or args.crowded_case:
         if args.require_casting_combat or args.spell_cases or args.normal_quit or args.portrait_stress_seconds:parser.error('Healing is a separate Quick Battle journey')
         if not args.stress_seconds:args.stress_seconds=20
     if args.require_casting_combat:
@@ -310,7 +316,7 @@ def main():
     if not 30 <= args.timeout <= 600:
         parser.error('--timeout must be between 30 and 600')
     if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
-    if args.stress_seconds and not 10 <= args.stress_seconds <= 120:parser.error('--stress-seconds must be 0 or 10..120')
+    if args.stress_seconds and not args.crowded_case and not 10 <= args.stress_seconds <= 120:parser.error('--stress-seconds must be 0 or 10..120')
     if not 1 <= args.min_fps <= 120:parser.error('--min-fps must be 1..120')
     parent = ROOT / 'working/tests/native-campaign'
     parent.mkdir(parents=True, exist_ok=True)
@@ -323,7 +329,7 @@ def main():
               'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
-              'healing_required':args.healing_case,'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
+              'crowded_required':args.crowded_case,'healing_required':args.healing_case,'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
               'difficulty': args.difficulty, 'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
     if args.claims:
@@ -396,10 +402,11 @@ def main():
             report['stage'] = 'campaign-flow'
             env['MNM_CAMPAIGN_SMOKE_TEST'] = '1'
             env['MNM_CAMPAIGN_DIFFICULTY'] = str(args.difficulty)
-            env['MNM_CAMPAIGN_CASTING_COMBAT'] = '1' if args.require_casting_combat or args.healing_case else '0'
+            env['MNM_CAMPAIGN_CASTING_COMBAT'] = '1' if args.require_casting_combat or args.healing_case or args.crowded_case else '0'
             env['MNM_CAMPAIGN_PRECISE_CLOCK']='0' if args.disable_precise_clock else '1'
             env['MNM_CAMPAIGN_PACER_YIELD']='1' if args.pacer_yield else '0'
-            env['MNM_NATIVE_HEALING']='1' if args.healing_case else '0'
+            env['MNM_NATIVE_HEALING']='1' if args.healing_case or args.crowded_case else '0'
+            env['MNM_NATIVE_CROWDED']='1' if args.crowded_case else '0'
             env['MNM_CAMPAIGN_PORTRAIT_SECONDS'] = str(args.portrait_stress_seconds)
             env['MNM_CAMPAIGN_NORMAL_QUIT']='1' if args.normal_quit else '0'
             env['MNM_CAMPAIGN_SPELL_CASES'] = '1' if args.spell_cases else '0'
@@ -430,14 +437,14 @@ def main():
                     raise RuntimeError('Public campaign flow exceeded its deadline')
             flow = json.loads((out / 'flow.json').read_text())
             report['flow'] = flow
-            if not args.healing_case:validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
-            if args.stress_seconds and not args.healing_case:
+            if not (args.healing_case or args.crowded_case):validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
+            if args.stress_seconds and not (args.healing_case or args.crowded_case):
                 for cycle in range(args.menu_cycles+1):
                     inputs=json.loads((out/f'input-{cycle}.json').read_text())
                     if inputs.get('success') is not True or inputs['seconds']<args.stress_seconds or len(inputs['actions'])<20:raise RuntimeError('Incomplete gameplay input sequence')
                 report['gameplay_input_exercised']=True
             for step in flow['steps']:
-                if step['step'] not in ('campaign-handoff','healing-loadout'):
+                if step['step'] not in ('campaign-handoff','healing-loadout','crowded-setup'):
                     if step['step'] in ('gameplay','gameplay-resumed') and (step.get('native_image_saved') is not True or step.get('original_image_saved') is not True):raise RuntimeError('Missing independent native/original gameplay image')
                     shot = Path(step['screenshot']).resolve()
                     if shot.parent != out or not shot.is_file() or shot.stat().st_size == 0:
@@ -460,6 +467,11 @@ def main():
             if args.healing_case:
                 report['healing']=validate_healing(roots[0],json.loads((out/'healing-input.json').read_text()),flow,out,args.stress_seconds,args.min_fps)
                 report['healing_verified']=True
+            elif args.crowded_case:
+                crowded_flow=dict(flow,healing_mode=True,steps=[s for s in flow['steps'] if s['step']!='crowded-setup'])
+                report['healing']=validate_healing(roots[0],json.loads((out/'healing-input.json').read_text()),crowded_flow,out,args.stress_seconds,args.min_fps)
+                report['crowded']=validate_crowded(roots[0],json.loads((out/'healing-input.json').read_text()),flow,out,args.stress_seconds,args.min_fps)
+                report['crowded_verified']=True
             else:report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty,args.normal_quit)
             if args.normal_quit:
                 for n in (0,1):
@@ -481,7 +493,7 @@ def main():
                     report['spell_cases']=validate_spell_cases(read_spell_rows(roots[0]/'spell-events.bin',complete=True),read_rows(roots[0]/'gameplay-events.bin',complete=True),json.loads((out/'input-0.json').read_text()))
             if args.portrait_stress_seconds:
                 report['portrait']=validate_portrait_stress(json.loads((out/'input-0.json').read_text()),flow,out,args.portrait_stress_seconds,args.min_fps)
-            if not args.healing_case:validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps,args.normal_quit)
+            if not (args.healing_case or args.crowded_case):validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps,args.normal_quit)
             if any(sha(ROOT / p) != h for p,h in report['sources'].items()):raise RuntimeError('Source changed during execution')
             report.update(success=True, status='passed', stage='campaign-complete', flow_completed=True, game_entry_verified=True)
             exit_code = 0

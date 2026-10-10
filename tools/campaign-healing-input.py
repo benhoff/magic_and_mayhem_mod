@@ -16,6 +16,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--rect',nargs=4,type=int,required=True);p.add_argument('--experiment',type=Path,required=True)
     p.add_argument('--owner',type=int,required=True);p.add_argument('--seconds',type=int,required=True);p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--crowded',action='store_true')
     a=p.parse_args();x0,y0,w,h=a.rect
     if w<320 or h<240:p.error('Native viewport too small')
     x=c.CDLL('libX11.so.6');xt=c.CDLL('libXtst.so.6')
@@ -50,7 +51,12 @@ def main():
         wizard=actors[0];slot=wizard['slot'];result.update(wizard_slot=slot,initial_wizard=wizard,initial_creatures=initial);center();capture('before-orders')
         # The native loadout holds Cure as its first Law item and Zombie as its
         # only Chaos item. This two-item HUD centers Zombie523 and Cure573. Original cast IDs, not artwork, determine outcomes.
-        click(523,575);click(440,310,3);time.sleep(2);center()
+        summon_attempts=8 if a.crowded else 1
+        for attempt in range(summon_attempts):
+            before=state();begin=read_rows(a.experiment/'gameplay-events.bin')[-1][0]
+            click(523,575);click(440+(attempt%3)*15,310+(attempt//3)*15,3);time.sleep(2);center()
+            after=state();created=[v for k,v in after.items() if v['type']==14 and v['owner']==a.owner and v['active'] and v['health']>0 and (k not in before or not before[k]['active'] or before[k]['health']<=0)]
+            record('summon-attempt',before_sequence=begin,after_sequence=read_rows(a.experiment/'gameplay-events.bin')[-1][0],created_slots=[v['slot'] for v in created])
         basis=[];probes=[]
         for sx,sy in [(140,-50),(150,0),(-140,50),(-140,-60),(0,110),(0,-110),(100,90),(-100,90)]:
             actor=state()[slot]
@@ -76,14 +82,28 @@ def main():
                     center()
                 if result.get('healing'):break
                 raise RuntimeError('No original player Cure health increase after bounded native targets')
-            enemies=[v for v in current.values() if v['active'] and v['health']>0 and v['owner'] not in (a.owner,0xffffffff) and v['type'] in (0,10,14,1,11)]
+            enemies=[v for v in current.values() if v['active'] and v['health']>0 and v['owner'] not in (a.owner,0xffffffff) and (a.crowded or v['type'] in (0,10,14,1,11))]
             if not enemies:raise RuntimeError('No original opponent to exercise injury/healing')
             if len(basis)!=2:raise RuntimeError('No independent native movement basis for healing route')
             enemy=min(enemies,key=lambda v:math.hypot(v['x']-actor['x'],v['y']-actor['y']));dx=enemy['x']-actor['x'];dy=enemy['y']-actor['y']
             ((ax,ay),(asx,asy)),((bx,by),(bsx,bsy))=basis;det=ax*by-ay*bx;u=(by*dx-bx*dy)/det;v=(ax*dy-ay*dx)/det;sx=asx*u+bsx*v;sy=asy*u+bsy*v;scale=max(1,abs(sx)/170,abs(sy)/110)
             center();click(400+sx/scale,280+sy/scale,3);record('approach-opponent',wizard=actor,enemy=enemy);time.sleep(3);center()
         if not result.get('healing'):raise RuntimeError('No successful native Cure before bounded deadline')
-        while time.monotonic()-start<a.seconds:time.sleep(.2)
+        while time.monotonic()-start<a.seconds:
+            if a.crowded:
+                actor=state()[slot]
+                if not actor['active'] or actor['health']<=0:raise RuntimeError('Original human wizard died during crowded stress')
+                center()
+                if actor['health'] < wizard['health']-50 and actor['mana'] >= 20*256:
+                    click(573,575);click(400,275,3);record('stress-cure',wizard=actor)
+                else:
+                    # Physical camera scroll, rotation and HUD selection. Restore
+                    # the wizard view so its summoned squad remains in view.
+                    xt.XTestFakeButtonEvent(display,4,1,0);xt.XTestFakeButtonEvent(display,4,0,0);x.XFlush(display)
+                    record('stress-camera-and-portrait',wizard=actor)
+                time.sleep(1)
+            else:time.sleep(.2)
+        if a.crowded:capture('crowded-end')
         result['success']=True
     except Exception as error:
         result['error']=str(error)

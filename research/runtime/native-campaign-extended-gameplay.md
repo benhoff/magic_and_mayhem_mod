@@ -253,3 +253,39 @@ cleansing, refund or spell formula. Native41.5934/paint30.6934FPS and worst
 19.0909FPS pass the fixed floors, with zero recovery/fallback, independent
 before/after captures, manifests and unchanged sources. The older277to377
 healing proof stays historical with its original hashes.
+
+## Crowded Quick Battle stress (2026-10-10)
+
+`tools/test-native-campaign.py --crowded-case --stress-seconds 180 --timeout 600`
+uses the existing native Quick Battle/map2/offered Cure+Zombie route. Native
+setup controls select ordinary scenario mana200, health800 and control30;
+the original setup must acknowledge those values before Start. This changes
+this test's normal scenario configuration, not global balance or actor memory.
+The original four-player setup is retained. Eight physical Zombie attempts,
+ordinary injury/Cure and continued portrait/camera input exercise the command
+renderer for180..240seconds. Cleanup remains bounded private termination.
+
+A crowded pass additionally requires six newly living player Zombies and six
+original mana-debited casts, actual original player melee damage, living human
+wizard throughout and thirty cumulative sampled seconds with twelve living
+actors across two owners and six actors within twelve tiles of the wizard.
+The spatial criterion does not claim a visible-pixel actor count. Both native
+command and visible Qt paint averages must reach20FPS, each sampled window10FPS,
+and windows over two seconds, fallback, recovery or exhausted observation
+capacity fail. Independent native/original PNGs are diagnostic, unsynchronized.
+Original simulation and drawing remain active; long hardware sessions, other
+maps and complete rendering/physics equivalence remain pending.
+
+The rejection fixture checks undersized, single-owner, distant, short or stalled
+populations, dead wizard, missing melee/debit and mixed observation threads.
+Historical successful smoke evidence remains unchanged; changes to shared smoke
+files require new live evidence before asserting current-code validation.
+
+The [source-stable live run](native-crowded-passed-20261010.json) passes:
+182.34seconds of original observation, eight genuine summons,34 actors at peak,
+12 near the wizard,113.687 cumulative dense seconds and213 player melee damage
+returns. Native command rate29.1996FPS, visible paints25.3715FPS, worst window
+19.8556FPS, no recovery/fallback. Cure restores an injured778HP wizard to800.
+Both immutable manifests verify; complete traces and diagnostic PNGs are retained.
+The final view has a smaller surviving squad; this is a bounded battle stress
+result, not a guarantee of a densely populated screen for every sampled second.
