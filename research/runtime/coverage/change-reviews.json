@@ -117077,6 +117077,258 @@
         "reason": "Source census is indexing review; shared accounting fingerprints change without rerunning older subsystems or claiming whole-tree freshness. Overlay executions are recorded separately, historical terrain/live evidence hashes retained.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [],
+      "files": [
+        {
+          "after_sha256": "7eaa24e52ab6bff8d836dae7d1cf63f0d2c0f0716b99472b4ad070220592d8a9",
+          "before_sha256": "5e9ae71568da4e104c8c35e7ef020aac95f8a650662fed71aa8c58c2dea67cfe",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "c1ab3281afe3144f2b6696f9ba93b0880ab4b4140554130ece9281f3a4c8a261",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-qt-shell-launch-target-20261009.json"
+        },
+        {
+          "after_sha256": "9502727ade3a2ee7ac882d9b039a9416f39ab3cf5ee0a56a17c31bfc5958a9b5",
+          "before_sha256": "8b38886dc5de89df025e06840164b81c0b8f2aa9fec8d6f353846dad6a608dbd",
+          "path": "tools/run-qt-shell.sh"
+        }
+      ],
+      "id": "qt-shell-launch-target-20261009",
+      "pending_gaps": [
+        "stale_evidence:d4c50e765479a98c58329f8ffed34686b88d6507b1733d2435fbabd9490e8224"
+      ],
+      "reason": "Limit the ordinary Qt shell launcher build to mnm-qt-shell and its transitive dependencies rather than the default all target. Review the shell links and retain BUILD_TESTING configuration so selected test targets remain available. Reconcile the sole indexed source change in a new durable census; no behavior definitions, engine contracts, milestones or historical evidence hashes change. Inspect the two committed transitions b4d5007..8dce3ac: all 90 file transitions have exact historical receipts (apart from the receipt journal itself, which is self-excluded); retain working/build/qt-shell/launcher-target-history-review.json separately without asserting past gate passage or new engine validation.",
+      "validation": {
+        "evidence": [],
+        "reason": "The actual updated launcher completes with QT_QPA_PLATFORM=offscreen --renderer native --smoke-test; qt-shell-help and qt-shell-startup both pass, bash -n and git diff --check pass. Logs are retained in working/build/qt-shell/launcher-target-validation.log. Build/startup checks do not establish OpenGL or actual-game equivalence: the current session has no accessible display or Xvfb. Preserve all historical evidence fingerprints and explicitly retain the new stale-evidence gap from source-index refresh; no stage or current-code comparison claim is promoted.",
+        "status": "pending"
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "15062b737298ff2413bb3a9397d1c09a445ca9d138a84245c002c59d1244753b",
+          "before_sha256": "a5484f895d6e122718c215450dd3c4aeb2a0cf7199d3dc45fed23f7f10d510b9",
+          "id": "CP.campaign-defeat-report"
+        },
+        {
+          "after_sha256": "4cec1b7965ee7e23c71c8b3f8446a2e01b8eb57c7e36f16b353a567ca64d09b9",
+          "before_sha256": "26abfe8bbc1f738b83184b1e0fa7316615e2702622a1c72962f590f4a9942a6a",
+          "id": "CP.campaign-mini-cancel"
+        },
+        {
+          "after_sha256": "f689466a6d83f9b87a2bcf439422b92d9066c289965df2aeb54923c9c8664caa",
+          "before_sha256": "d8e0e37d42bab0ab85259293d1ac31f0f3c368ce14cb12ad04562a09e8de126e",
+          "id": "CP.campaign-mini-lifecycle"
+        },
+        {
+          "after_sha256": "2c35715625594875e5eaf63d3a086a2c4bae6c1edac2d272d5d8553b3a22cb26",
+          "before_sha256": "e87ee13d3304f0b8afd2b3eeb7c7dfec25fe91e7e3f648d0c3341c08d2480662",
+          "id": "CP.campaign-mini-preferences"
+        },
+        {
+          "after_sha256": "1dbc8a8a058c10e2688f4e432c43450788694a3fef718ab2c83d5ba0fe22a5db",
+          "before_sha256": "0258e4640f291b8021d34db57a733f5899f48a928188880554ed904f2ff15ee0",
+          "id": "CP.campaign-mini-quit"
+        },
+        {
+          "after_sha256": "9be7d3744ac46f051e96321f8ddfdabfb3b3afab3a04e39d91381dbf40b4cfbb",
+          "before_sha256": "4e6215a0585e47ac0a6ebdf80a9a4064934b2389b84e97735871f6595bf75302",
+          "id": "CP.campaign-mini-quit-lifecycle"
+        },
+        {
+          "after_sha256": "802aac6599c0062cea04f5f4431a755e92ec669cc4c72db23b471e337296e6f8",
+          "before_sha256": "4ad822d8bd2457aefba3ce594752ee8a92f77a12e07484e7e05ce16840aadc35",
+          "id": "CP.campaign-world-handoff-observation"
+        },
+        {
+          "after_sha256": "df406a37457202e20afb32535596b964c0b44cf80a0605e4aabffad1c3fa4447",
+          "before_sha256": "66053d6aad93bfdafa51a3d36dc4d79a8898ada2bcd393f2b2f4a798361e8da8",
+          "id": "CP.region-entry-bridge"
+        },
+        {
+          "after_sha256": "ef3a7a29bc9beae5a30243024e40422a41d5b7e04ed02af48ece67866ad276ed",
+          "before_sha256": "159a0a1237414471662e1aa5e8c8702ce56fd57e6272762c947c27821f38cb18",
+          "id": "CP.region-entry-enter"
+        },
+        {
+          "after_sha256": "38f33b5e672bf6f5d65b0011b02b07390d5072e3a742ddb41f3b68cdd7cd7678",
+          "before_sha256": "ef7c81e72de52b12a5629d24c79b77ad200d65d14a733c914b3c603f1b363d89",
+          "id": "HOST.command-input-fallback"
+        },
+        {
+          "after_sha256": "6a2d6f9b8f6842677d93c27424191a1ac279fa34a5c2ea72b77877e0aab5f102",
+          "before_sha256": "dcb0f3c9803ead4b830209de379effd8dce701c6758dd972bdff7062b0155c17",
+          "id": "HOST.native-command-launch"
+        },
+        {
+          "after_sha256": "2b696f4ce9abbbc74b68b63a5403fcc82be9207ac7f85dd71dd62465daa66418",
+          "before_sha256": "3d3575058a78f10acf796edf10bec85c7935105327d673896db1a5fa1f394144",
+          "id": "HOST.native-command-responsiveness"
+        },
+        {
+          "after_sha256": "062e1232b45391051d80b05b04fbb6934e1ffe4447f257e3093312b56d2454df",
+          "before_sha256": "0e0129d8260e587c1552755b0a0b7eaa7d66077fb4985a33a07e857fd9124300",
+          "id": "HOST.presentation"
+        },
+        {
+          "after_sha256": "13508f7cdcd12505ef897ecbe5547fac4a32d6d42f3c305722344d64614093c8",
+          "before_sha256": "aff784d721829f4db8579dd5eac62aa19298710beebc1408159d3cd3c7f28c83",
+          "id": "HOST.session"
+        },
+        {
+          "after_sha256": "43373f1ae07547b98518896d4a690166c003c628c2baf87bece9110c7ba23d3a",
+          "before_sha256": "4f589553e6d5947953975a98de557528b6b697028f7b3bb81527519dc19b3ca5",
+          "id": "NP.campaign-defeat-policy"
+        },
+        {
+          "after_sha256": "4f5ccb6ed360e58149e8457996d7f5afa1c089a8552b930e4f9d275b3be2ff4f",
+          "before_sha256": "9be8944375fb203461e56e6298c5943154c172523601d68463699caf9ce1c3bf",
+          "id": "NP.campaign-mini-cancel-policy"
+        },
+        {
+          "after_sha256": "c3c36e2baa5cbed8e6fd06fa9f70e812abad175c71d3718ea815d5e71f45eadc",
+          "before_sha256": "324143d3a98649eda19ba33a81a61b70cd7944222a70424b7450ca6ce76f7ae1",
+          "id": "NP.campaign-mini-quit-policy"
+        },
+        {
+          "after_sha256": "6fe950dcb9df6b81a6132d46cbe388dc77c191635d1d89c0e6b1ee0d87478415",
+          "before_sha256": "4dcebd3b87857cbd8071049bf7cc39825c284a0efc766349189dc8fb01b70aca",
+          "id": "NP.campaign-preferences-policy"
+        },
+        {
+          "after_sha256": "6a5279631d76529398d1dbe2a5e224ac31d08c1646a0c32591843aa243e0fae6",
+          "before_sha256": "412478c8d0366959b4309381e9f62f5932e61da7ba6046a62cf0a8b37c373609",
+          "id": "NP.region-entry-fresh-policy"
+        },
+        {
+          "after_sha256": "82de3f7dcf595d3edff4adcc7482bc2dd145048068168d748ecd09e6b1034d43",
+          "before_sha256": "04f27462e6dd8874439580919d1b8207f96b8ca10dacb7b78ffdf2ff9e78c766",
+          "id": "NR.application-shutdown"
+        },
+        {
+          "after_sha256": "5b698cbb328db06a145ff581723e13d7160340c5818d24dacd4b1f3908884c2d",
+          "before_sha256": "db505732c3cbfc34ac66f569f06493697841c9bc9f337e5d0708a7da2219c2f9",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "ce91e80dbedf5ca58a53fc6bc0952cd4366237267b7e643319fe809871ee6db1",
+          "before_sha256": "78a6abc3bc2c9ec8527d33ddf0fbf222e547b1bb4e4ff3b4c0633b85185c7858",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "f56207cd474c990da722b6eee7d05b9af2d42777f50c4761122efea4e5a2cf70",
+          "before_sha256": "72bec9bff2677bf7533fb91537b7febdfb2c41aa62731807a4653c584553893a",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "932cb4912c16ae41e974d9f949637eaaaa3c1b84bf7e4dec11d43594e42726e9",
+          "before_sha256": "eb572a4c5728bb890c10108eb7e72887591314bb7eed3949e0ce92f024a65177",
+          "id": "NR.observer-lock-avoidance"
+        },
+        {
+          "after_sha256": "0669100d2002610e03206bb0fdb06f3bb15cc4306781ddd422c8c856a331072a",
+          "before_sha256": "0670d46b66c0e37cb187648d1579210a56867c9111cce07dbaaa34794c104e7a",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "3ae9d1f7f28ca570b17be9f5ccd83b84e4c9ba083d7bfb887b6b060b94d4e84f",
+          "before_sha256": "9b0747e40e5647f09287ad1ddc882c4fa394f157266610ca23f9406207466082",
+          "path": "apps/qt-shell/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "6ce9b947c275e58af9b3940c04218e5b2466166f3aaf68ddd2a9313734b6e020",
+          "before_sha256": null,
+          "path": "apps/qt-shell/campaign_smoke_test.cpp"
+        },
+        {
+          "after_sha256": "c217e30fe9cf1eed2d2b6de94d68029498afa1feab13cb164ec6471122452aed",
+          "before_sha256": null,
+          "path": "apps/qt-shell/campaign_smoke_test.hpp"
+        },
+        {
+          "after_sha256": "57802c759217ff2dbad0f088350325dd747b4cf432aedf63fc52b3be884c1b54",
+          "before_sha256": "f2836c60f047251f05b7920412f6c901193b90232147b0d5467fbbef558e8567",
+          "path": "apps/qt-shell/main.cpp"
+        },
+        {
+          "after_sha256": "05454bbec4a32c3b4531f2956c1015eeb728b083eaf7b57b2fae195219ab4f62",
+          "before_sha256": "cc0f2064c0058c7a545708da0fb2a81de103d026df53543eab086238d340a1fc",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "6d2a1735ff7a38edbc9c501e3410653214305da82e76b2698225d75a1b44d639",
+          "before_sha256": "5e9ae71568da4e104c8c35e7ef020aac95f8a650662fed71aa8c58c2dea67cfe",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "e36c5168690af76fcccb360fcf9c066d05024359e5e9190b7c97acd3e2f84e3f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-campaign-smoke-20261009.json"
+        },
+        {
+          "after_sha256": "c1ab3281afe3144f2b6696f9ba93b0880ab4b4140554130ece9281f3a4c8a261",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-qt-shell-launch-target-20261009.json"
+        },
+        {
+          "after_sha256": "246cf2779cc12f456ce35a1899b62be33a62455d0c985292a4796fd6591f02e7",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-smoke-admission-20261009.json"
+        },
+        {
+          "after_sha256": "098c21fd054bba566407313ce88ea9ac93c7734c70903352037f10951f90352e",
+          "before_sha256": null,
+          "path": "tests/native-campaign-smoke.md"
+        },
+        {
+          "after_sha256": "18c30560d5d3096c75e14e23de5b14afd8802ec4d7692751c7176cd7c6c67ab4",
+          "before_sha256": null,
+          "path": "tests/test-native-campaign.py"
+        },
+        {
+          "after_sha256": "9502727ade3a2ee7ac882d9b039a9416f39ab3cf5ee0a56a17c31bfc5958a9b5",
+          "before_sha256": "8b38886dc5de89df025e06840164b81c0b8f2aa9fec8d6f353846dad6a608dbd",
+          "path": "tools/run-qt-shell.sh"
+        },
+        {
+          "after_sha256": "dbd3eaa31b71d381a4ad72f13c04e041896f0814f7d6e6665fc01445d1005313",
+          "before_sha256": null,
+          "path": "tools/test-native-campaign.py"
+        }
+      ],
+      "id": "native-campaign-public-smoke-20261009",
+      "pending_gaps": [
+        "stale_evidence:0591975957ca6d866ada8f88dec3ca5035955be7d6bbe8e0cfa2b991a5774d18",
+        "stale_evidence:0b8b94a308931d6e233ef88cc70974c3f1c167f471c6924bcebf8354bd9d4053",
+        "stale_evidence:1b5cbca4c4a8a1742a6c7bb5ca61fe1405a8c5f416daa6aef8476f335fbb9986",
+        "stale_evidence:374cc0dc98492f1913518321ea410ca5fda8973284a5a2f450ea16adb3c4af2b",
+        "stale_evidence:44f77c26a4abcf91ab48ed946034767bf434e27c80e356fd52c32147cc3e6ffa",
+        "stale_evidence:66f1c66c77d0edb5f8ec9b330c8d0f2a660f7c00f60cf76c4a7a97c9a95e9064",
+        "stale_evidence:68520aa16b087259e7e6799b63baf76a97d8cd687d1e7f4a791b2ae0ea7a1897",
+        "stale_evidence:81ce081831bc3c0ae9774627888e77029c5ee77b52f5caacec709e0484f304be",
+        "stale_evidence:8aac25effdbed5f4a058eb35faa3825bc103d2831a4c6a10fa3222f323f80602",
+        "stale_evidence:9d3731fb1b426c4c4190cab635efd15d3eebfe3731138b30af77c2a248e8fd59",
+        "stale_evidence:b00b0d85016910c45ba6e7b02a4d9cba376793a0884902bfa39e0f3a01149347",
+        "stale_evidence:c3519889162fadf6ec62ceff93c814510030d9c163b47cf68774db33c156816e",
+        "stale_evidence:c3d87be0d5f10b4fdf602b17c8c27093e08b07d6810bd0c21c4aeffb68994c47",
+        "stale_evidence:cec1bd6cb0a642fabb0a6f0807548fbabe2727f770851d03b7321a85d8ba782e",
+        "stale_evidence:d1848267b174c30d208120c24c288e82c518cd16aace8b71f2c25a17f60b44e6",
+        "stale_evidence:d4c50e765479a98c58329f8ffed34686b88d6507b1733d2435fbabd9490e8224",
+        "stale_evidence:fdc14e617aeb45a58a08b045270317a74c3fb3588efee3f105c7b74cc75917c2"
+      ],
+      "reason": "Review a strict public-launcher campaign smoke requirement for native Qt menus and native command presentation together. Add a compiled semantic button driver that retains ordinary menu features, waits for menu acknowledgements, counts completed native frames before and after campaign Escape/Cancel, and rejects visible original gameplay/fallback. The Python runner builds the ordinary shell, refuses unsupported combined flags, isolates Wine/config/display, verifies immutable inputs only for admitted live experiments, retains screenshots/logs/results, and independently checks callback/World traces. Record the actual current exit-2 admission failure without claiming live campaign execution or fixing the startup race/integration. Preserve the earlier targeted-launcher build change and its receipt. Review source links and new census; leave original addresses, historical evidence and pending boundaries intact. HEAD remains8dce3ac: the previous separate b4d5007..8dce3ac history report in working/build/qt-shell/launcher-target-history-review.json accounts for90committed transitions, with no new committed range to inspect.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Current shell compiles; qt-shell-help and qt-shell-startup pass. Five synthetic report-validation tests reject incomplete steps, fallback, absent native frames, missing screenshots, wrong protocol, missing World resumes and inconsistent callback observations. The fresh admission record HOST.native-campaign.admission-20261009 retains combined CLI exit2 and no game launch. These checks do not establish live campaign/GPU integration, movement, pixel equivalence, original drawing replacement, or renewed validation of the25shared-source behavior contracts. The source-only instrumentation and all17new pending gap identities are explicitly retained; historical stages and fingerprints are not promoted."
+      }
     }
   ]
 }
