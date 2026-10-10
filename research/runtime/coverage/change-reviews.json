@@ -125837,6 +125837,381 @@
         "reason": "Seven fail-closed runner tests, five native surface/backend/format/ownership regression targets, and exhaustive RGB565 normal/HiDPI GPU presentation pass. Historical end-to-end smoke completes; two active Apprentice runs still fail first-camera 10 FPS floor. Latest direct-copy live result pending; shared renderer/recovered behaviors retain prior statuses without claiming fresh whole-subsystem equivalence, hardware performance, movement/combat or complete drawing replacement.",
         "evidence": []
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1931549a72f8099200935f418b3c00072b05600e5f224c16e40bcf56da77d367",
+          "before_sha256": "58040b185f7431212316f28113d7a0ea7e9d8500677a8da987ba0cd4ca791b19",
+          "id": "HOST.native-command-launch"
+        },
+        {
+          "after_sha256": "386a63df68d479c99ab245b149656a6f5784934fd812e6cbdd9005f823a2977a",
+          "before_sha256": "40e47d060e67c3762f1e0006e3013a8f5acbcdda6061c6a583e66e540aafc27b",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "1e4fdffb28fbedeb6183b21c9068a269744ba2cd4a55ed79169af3fdfbb0801d",
+          "before_sha256": "4e3366c1fd12972e18f8b8f0363789545cd8c98a5a98395a62055e32bf9c6b1d",
+          "id": "NR.surface-backend.owned"
+        },
+        {
+          "after_sha256": "b3fd0c7260f708a048061d0b081e3af649ec9046730410c55ee2e45f3daab5dc",
+          "before_sha256": "7481a20b5b14e23a13df7c074899989c1134131d5823793c405ef6011b03f71d",
+          "id": "NR.surface-colors.rgb565-dc"
+        },
+        {
+          "after_sha256": "b7b143b8140be16bf81ad5873f7438a2109f8b2e58b002167c790c7a61177c63",
+          "before_sha256": "33e92dac108859a86c5b1cc4e46917a1f22155bc90fc050de9824842ccfbf578",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "8067989b4fc9e841f72b938d3558a3edb1bd8e4cdcc051514d0ba210fba8548f",
+          "before_sha256": "4f1c31619e76462a8a1bf57a6621065ce97807e40a85a70fe3525ddfcf3c3a11",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "c16d61948f87d93f7796b25fb9d3c5d3830eb68fb5561636d940473e4d636b8f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-campaign-history-review-b70c9e6-3fbddc0.json"
+        },
+        {
+          "after_sha256": "83987c5c1bbadcbffe6a3a539c79efe3abf2739caf6964a6a98ff13796526a3c",
+          "before_sha256": "99c325abde3181ddb0caa6ecacafd28b99cce65385809718fce63f944f44c906",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "7589a26a2b83a49326f6a20ad99786cc05f78b05a010808308d158547a847615",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-campaign-spells-20261009.json"
+        },
+        {
+          "after_sha256": "f039be2f19ec5ba21908f1f11b72a01ec2cd14698edbe3b66dabbc1a4440a7c2",
+          "before_sha256": "d445bbcd08633c20ee9d9260a6424c911468c02da280b694fb789e20d964c6d4",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "e35d6d52000a5163be3d8282b6ac5f4f1258b9398bda37fe3405a6788f733a99",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-directcopy-stress-passed-20261009.json"
+        },
+        {
+          "after_sha256": "f3ee8f069050744d18a2301485434df810afeba2f64556df88e69661b4ee8cdd",
+          "before_sha256": "b0730c76f713e78a65f890963ce5638750c34c3b27780dc50680ded16650c1a8",
+          "path": "research/runtime/native-campaign-rendering.md"
+        },
+        {
+          "after_sha256": "94c2121ccac72c50fc637ce85e2a3963b44ee9eda254e4e063f167407b0a4da5",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-spells-profile-20261009.json"
+        },
+        {
+          "after_sha256": "239f16674a9cca3bad84d53e349b33f3c7d075170d2eae26a472d9167fc5baaf",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-spells-stress-passed-20261009.json"
+        },
+        {
+          "after_sha256": "5bdd29455964ef7881eececf97107fae2e529eaff44585b2174928174e24d9e2",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-tutorial-stall-20261009.json"
+        },
+        {
+          "after_sha256": "ffc7733e6bff855b71b2a0b6c545d84f505d2183a0f2663c72c3270b991675bf",
+          "before_sha256": "6e0a5bc0b2e1e1338a9625bfb7707820d04079e4eb1e5e563a8bb1841f18470a",
+          "path": "tests/native-campaign-smoke.md"
+        },
+        {
+          "after_sha256": "74d64792c83136ebdbbe5ef95e527cd2348f528f37dc52df1e27e4e226f1267a",
+          "before_sha256": "9c229ce871a475d781ce4b198c1a2fcbf18694bc52b8bd7e1201bad2c2166b03",
+          "path": "tools/campaign-gameplay-input.py"
+        }
+      ],
+      "id": "native-campaign-final-support-and-historical-boundaries-20261009",
+      "pending_gaps": [
+        "stale_evidence:3956b1dcf09b21bb0870b737e0a378ce03dca153a8db3fbf5c53a5a7ebd034f5",
+        "stale_evidence:460beab6e2eb7b364163155b41bc97ed132d52a982077a49ecf0979af5216e7d",
+        "stale_evidence:722b7d30b2d25dfc9f8191ae2e757902eb3f5c066a7e44484709e66038d63732",
+        "stale_evidence:7e2a3a44231171ec8b3e90d9988144dc2059c4fd9ca6e7d9e16f47942e9dd8fd",
+        "stale_evidence:8d6df13019dd5679cda940a338cb8ac9e69b00776b9443abc2643f29e2f7691e",
+        "stale_evidence:9a4bcaa670a4107ec112887833bc16f5b8332d543343ab16298467b778d6b477",
+        "stale_evidence:9cc7d092360afefd929efc60d908cd95d7c4fb2b6f176327c87a0c3030be1eaa"
+      ],
+      "reason": "Reviewed added spell/creature HUD and target/source-order attempts, separate profiled positive live result, historical tutorial stall with deliberate private-prefix stop, current source census and generated summary. Verified55 committed transitions through3fbddc0 against exact receipts. Historical results remain immutable and prior scope/source versions are not upgraded.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh campaign evidence supports only the named bounded one-process host route; shared renderer/recovered/color behavior document changes and historical accounting remain pending for their broader contracts. No hardware, synchronized pixel equivalence, spell/casting/combat semantics, other-map/unbounded validation or full original drawing replacement is asserted.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "e846b465c020ba8ba98ba0e22ca52347041ca8dc6af71a5eac5c8eeec9040b49",
+          "before_sha256": "6742a7ff5fdce7165fcf7bd9fe8663e93da966e75f655e86605be39e5806223b",
+          "id": "HOST.native-campaign-session"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "8067989b4fc9e841f72b938d3558a3edb1bd8e4cdcc051514d0ba210fba8548f",
+          "before_sha256": "4f1c31619e76462a8a1bf57a6621065ce97807e40a85a70fe3525ddfcf3c3a11",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "83987c5c1bbadcbffe6a3a539c79efe3abf2739caf6964a6a98ff13796526a3c",
+          "before_sha256": "99c325abde3181ddb0caa6ecacafd28b99cce65385809718fce63f944f44c906",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f3ee8f069050744d18a2301485434df810afeba2f64556df88e69661b4ee8cdd",
+          "before_sha256": "b0730c76f713e78a65f890963ce5638750c34c3b27780dc50680ded16650c1a8",
+          "path": "research/runtime/native-campaign-rendering.md"
+        },
+        {
+          "after_sha256": "239f16674a9cca3bad84d53e349b33f3c7d075170d2eae26a472d9167fc5baaf",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-spells-stress-passed-20261009.json"
+        },
+        {
+          "after_sha256": "ffc7733e6bff855b71b2a0b6c545d84f505d2183a0f2663c72c3270b991675bf",
+          "before_sha256": "6e0a5bc0b2e1e1338a9625bfb7707820d04079e4eb1e5e563a8bb1841f18470a",
+          "path": "tests/native-campaign-smoke.md"
+        },
+        {
+          "after_sha256": "74d64792c83136ebdbbe5ef95e527cd2348f528f37dc52df1e27e4e226f1267a",
+          "before_sha256": "9c229ce871a475d781ce4b198c1a2fcbf18694bc52b8bd7e1201bad2c2166b03",
+          "path": "tools/campaign-gameplay-input.py"
+        }
+      ],
+      "id": "native-campaign-final-live-observation-20261009",
+      "pending_gaps": [],
+      "reason": "Reviewed the exact source/scope declaration and independent engine callback trace for native Main, Apprentice Region Entry, World readiness and three native Mini Cancel/resume handoffs. Four40-second physical-input phases meet fixed20FPS phase-average/10FPS one-second floors, with9621native presentations/5862visible paints and zero fallback/recovery; before/after immutable verification and source stability pass. Scope-bound evidence supports scoped host implementation and live-observation integration only.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Executed the prospective HOST.native-campaign-session contract/scenario using the public shell in a fresh private Wine/Xvfb session on llvmpipe. Independently validated six original callbacks, three initialized World completions and three same-thread World resumes; all four input logs completed, averages51\u201355native/about33visible FPS and worst1-second14FPS pass. Seven fail-closed evidence tests also pass. Profiles and unsynchronized images are diagnostic; movement/casting/combat outcomes, hardware/other maps and original comparison/replacement remain excluded.",
+        "evidence": [
+          "HOST.native-campaign.spells-stress-passed-20261009"
+        ]
+      }
+    },
+    {
+      "id": "native-campaign-profile-text-retrospective-20261009",
+      "reason": "Retrospective review of two committed diagnostic perf text files introduced in3fbddc0. They are outside the watched source/research Markdown/JSON census and had no exact receipts; preserve original file bytes and record their addition hashes. This receipt does not assert a past gate pass, newly executed profile or stronger validation.",
+      "files": [
+        {
+          "path": "research/runtime/native-campaign-apprentice-mesa-dso-20261009.txt",
+          "before_sha256": null,
+          "after_sha256": "a3e7d904193974db998e64bae12ca3fef01cd671f49784f65bf15548e084114e"
+        },
+        {
+          "path": "research/runtime/native-campaign-apprentice-mesa-profile-20261009.txt",
+          "before_sha256": null,
+          "after_sha256": "0c69878938e6bcec3a2afe4e4a62259eab76d53cb3f8f496bf909d172ab38a4e"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "6742a7ff5fdce7165fcf7bd9fe8663e93da966e75f655e86605be39e5806223b",
+          "before_sha256": "b943b986209b80b1f8f345c991c74037cc9071ac23c7b826a81adb0aef955e3d",
+          "id": "HOST.native-campaign-session"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "reason": "Historical diagnostic profiles only; native Mesa CPU attribution retains original capture provenance and no hardware/causal-performance or full host validation assertion.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1931549a72f8099200935f418b3c00072b05600e5f224c16e40bcf56da77d367",
+          "before_sha256": "58040b185f7431212316f28113d7a0ea7e9d8500677a8da987ba0cd4ca791b19",
+          "id": "HOST.native-command-launch"
+        },
+        {
+          "after_sha256": "386a63df68d479c99ab245b149656a6f5784934fd812e6cbdd9005f823a2977a",
+          "before_sha256": "40e47d060e67c3762f1e0006e3013a8f5acbcdda6061c6a583e66e540aafc27b",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "1e4fdffb28fbedeb6183b21c9068a269744ba2cd4a55ed79169af3fdfbb0801d",
+          "before_sha256": "4e3366c1fd12972e18f8b8f0363789545cd8c98a5a98395a62055e32bf9c6b1d",
+          "id": "NR.surface-backend.owned"
+        },
+        {
+          "after_sha256": "b3fd0c7260f708a048061d0b081e3af649ec9046730410c55ee2e45f3daab5dc",
+          "before_sha256": "7481a20b5b14e23a13df7c074899989c1134131d5823793c405ef6011b03f71d",
+          "id": "NR.surface-colors.rgb565-dc"
+        },
+        {
+          "after_sha256": "46b534315b6467a9373213fdcfac4ccf15f0a2189fa7cd5ace86d2976d2b35c4",
+          "before_sha256": "33e92dac108859a86c5b1cc4e46917a1f22155bc90fc050de9824842ccfbf578",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "f2cc8bce75c362cdc1cace2733e7e6e042389f815d3c352110edc93ce9504182",
+          "before_sha256": "4f1c31619e76462a8a1bf57a6621065ce97807e40a85a70fe3525ddfcf3c3a11",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "2116875c42acd41ff016ef9e94fe148eeabc37843ac1c2675d98e7c46ddb0f32",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-campaign-history-profile-receipts-20261009.json"
+        },
+        {
+          "after_sha256": "c16d61948f87d93f7796b25fb9d3c5d3830eb68fb5561636d940473e4d636b8f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-campaign-history-review-b70c9e6-3fbddc0.json"
+        },
+        {
+          "after_sha256": "6adab84c437227c9ad2ef869b02a713428d97f3922f0b37b3ecbe81d2b1124d1",
+          "before_sha256": "99c325abde3181ddb0caa6ecacafd28b99cce65385809718fce63f944f44c906",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "7589a26a2b83a49326f6a20ad99786cc05f78b05a010808308d158547a847615",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-campaign-spells-20261009.json"
+        },
+        {
+          "after_sha256": "f039be2f19ec5ba21908f1f11b72a01ec2cd14698edbe3b66dabbc1a4440a7c2",
+          "before_sha256": "d445bbcd08633c20ee9d9260a6424c911468c02da280b694fb789e20d964c6d4",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "e35d6d52000a5163be3d8282b6ac5f4f1258b9398bda37fe3405a6788f733a99",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-directcopy-stress-passed-20261009.json"
+        },
+        {
+          "after_sha256": "f3ee8f069050744d18a2301485434df810afeba2f64556df88e69661b4ee8cdd",
+          "before_sha256": "b0730c76f713e78a65f890963ce5638750c34c3b27780dc50680ded16650c1a8",
+          "path": "research/runtime/native-campaign-rendering.md"
+        },
+        {
+          "after_sha256": "94c2121ccac72c50fc637ce85e2a3963b44ee9eda254e4e063f167407b0a4da5",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-spells-profile-20261009.json"
+        },
+        {
+          "after_sha256": "239f16674a9cca3bad84d53e349b33f3c7d075170d2eae26a472d9167fc5baaf",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-spells-stress-passed-20261009.json"
+        },
+        {
+          "after_sha256": "5bdd29455964ef7881eececf97107fae2e529eaff44585b2174928174e24d9e2",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-tutorial-stall-20261009.json"
+        },
+        {
+          "after_sha256": "ffc7733e6bff855b71b2a0b6c545d84f505d2183a0f2663c72c3270b991675bf",
+          "before_sha256": "6e0a5bc0b2e1e1338a9625bfb7707820d04079e4eb1e5e563a8bb1841f18470a",
+          "path": "tests/native-campaign-smoke.md"
+        },
+        {
+          "after_sha256": "74d64792c83136ebdbbe5ef95e527cd2348f528f37dc52df1e27e4e226f1267a",
+          "before_sha256": "9c229ce871a475d781ce4b198c1a2fcbf18694bc52b8bd7e1201bad2c2166b03",
+          "path": "tools/campaign-gameplay-input.py"
+        },
+        {
+          "path": "research/runtime/native-campaign-spells-native-perf-dso-20261009.txt",
+          "before_sha256": null,
+          "after_sha256": "12de7f11bee7d5ed637346881805a7851f3e3d6b25d67761d32ac2b1c9610240"
+        },
+        {
+          "path": "research/runtime/native-campaign-spells-original-perf-dso-20261009.txt",
+          "before_sha256": null,
+          "after_sha256": "b8b6849b92934a420c6bedf618f492df428346a3d881b0645ca44ee6f74c7a2f"
+        },
+        {
+          "path": "research/runtime/native-campaign-spells-original-perf-symbol-20261009.txt",
+          "before_sha256": null,
+          "after_sha256": "d39f4a207144f1e8c3f54b18202074814b8178cca8ca67df60393001248ce250"
+        },
+        {
+          "path": "research/runtime/native-campaign-spells-stress-passed-20261009.png",
+          "before_sha256": null,
+          "after_sha256": "533b4b0123327c5f56b4c25da0c24d8cfe20d7052495dce1888c310bfa8b4561"
+        },
+        {
+          "path": "research/runtime/native-campaign-tutorial-stall-20261009.png",
+          "before_sha256": null,
+          "after_sha256": "620a142fb6b35f3f28df298a812f8714b3246bfccb69455200791e988ad09a00"
+        }
+      ],
+      "id": "native-campaign-final-reconciled-support-20261009",
+      "pending_gaps": [
+        "stale_evidence:3956b1dcf09b21bb0870b737e0a378ce03dca153a8db3fbf5c53a5a7ebd034f5",
+        "stale_evidence:460beab6e2eb7b364163155b41bc97ed132d52a982077a49ecf0979af5216e7d",
+        "stale_evidence:722b7d30b2d25dfc9f8191ae2e757902eb3f5c066a7e44484709e66038d63732",
+        "stale_evidence:7e2a3a44231171ec8b3e90d9988144dc2059c4fd9ca6e7d9e16f47942e9dd8fd",
+        "stale_evidence:8d6df13019dd5679cda940a338cb8ac9e69b00776b9443abc2643f29e2f7691e",
+        "stale_evidence:9a4bcaa670a4107ec112887833bc16f5b8332d543343ab16298467b778d6b477",
+        "stale_evidence:9cc7d092360afefd929efc60d908cd95d7c4fb2b6f176327c87a0c3030be1eaa"
+      ],
+      "reason": "Reviewed added spell/creature HUD and target/source-order attempts, separate profiled positive live result, historical tutorial stall with deliberate private-prefix stop, current source census and generated summary. Verified55 committed transitions through3fbddc0 against exact receipts. Historical results remain immutable and prior scope/source versions are not upgraded. Added exact retrospective receipts for two profile text additions and retained both unresolved/resolved history reports.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh campaign evidence supports only the named bounded one-process host route; shared renderer/recovered/color behavior document changes and historical accounting remain pending for their broader contracts. No hardware, synchronized pixel equivalence, spell/casting/combat semantics, other-map/unbounded validation or full original drawing replacement is asserted.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a0f507f8f0f3b842b028ea75071995568804e7fb1ff42b70614fa17d5cea8d0d",
+          "before_sha256": "6742a7ff5fdce7165fcf7bd9fe8663e93da966e75f655e86605be39e5806223b",
+          "id": "HOST.native-campaign-session"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "f2cc8bce75c362cdc1cace2733e7e6e042389f815d3c352110edc93ce9504182",
+          "before_sha256": "4f1c31619e76462a8a1bf57a6621065ce97807e40a85a70fe3525ddfcf3c3a11",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "6adab84c437227c9ad2ef869b02a713428d97f3922f0b37b3ecbe81d2b1124d1",
+          "before_sha256": "99c325abde3181ddb0caa6ecacafd28b99cce65385809718fce63f944f44c906",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f3ee8f069050744d18a2301485434df810afeba2f64556df88e69661b4ee8cdd",
+          "before_sha256": "b0730c76f713e78a65f890963ce5638750c34c3b27780dc50680ded16650c1a8",
+          "path": "research/runtime/native-campaign-rendering.md"
+        },
+        {
+          "after_sha256": "239f16674a9cca3bad84d53e349b33f3c7d075170d2eae26a472d9167fc5baaf",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-spells-stress-passed-20261009.json"
+        },
+        {
+          "after_sha256": "ffc7733e6bff855b71b2a0b6c545d84f505d2183a0f2663c72c3270b991675bf",
+          "before_sha256": "6e0a5bc0b2e1e1338a9625bfb7707820d04079e4eb1e5e563a8bb1841f18470a",
+          "path": "tests/native-campaign-smoke.md"
+        },
+        {
+          "after_sha256": "74d64792c83136ebdbbe5ef95e527cd2348f528f37dc52df1e27e4e226f1267a",
+          "before_sha256": "9c229ce871a475d781ce4b198c1a2fcbf18694bc52b8bd7e1201bad2c2166b03",
+          "path": "tools/campaign-gameplay-input.py"
+        }
+      ],
+      "id": "native-campaign-final-reconciled-live-observation-20261009",
+      "pending_gaps": [],
+      "reason": "Reviewed the exact source/scope declaration and independent engine callback trace for native Main, Apprentice Region Entry, World readiness and three native Mini Cancel/resume handoffs. Four40-second physical-input phases meet fixed20FPS phase-average/10FPS one-second floors, with9621native presentations/5862visible paints and zero fallback/recovery; before/after immutable verification and source stability pass. Scope-bound evidence supports scoped host implementation and live-observation integration only.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Executed the prospective HOST.native-campaign-session contract/scenario using the public shell in a fresh private Wine/Xvfb session on llvmpipe. Independently validated six original callbacks, three initialized World completions and three same-thread World resumes; all four input logs completed, averages51\u201355native/about33visible FPS and worst1-second14FPS pass. Seven fail-closed evidence tests also pass. Profiles and unsynchronized images are diagnostic; movement/casting/combat outcomes, hardware/other maps and original comparison/replacement remain excluded.",
+        "evidence": [
+          "HOST.native-campaign.spells-stress-passed-20261009"
+        ]
+      }
     }
   ]
 }

@@ -3145,7 +3145,7 @@ The diagnostic live capture's39.27seconds includes startup, and does not establi
 real-time frame latency. All133declared sources/captured inputs are stable;
 80compiler inputs are covered. Five focused CTests and PE32 synthetic
 13-skip/49-forward/state/guard/malformed-reply fixtures pass. Original manifests
-verify2,927unchanged files before/after both live capture and comparison.
+verify 2,927unchanged files before/after both live capture and comparison.
 
 Understanding remains partial. The recovered return contract has scoped
 implementation, recorded original comparison, live-equivalence integration and
@@ -3351,3 +3351,21 @@ movement/combat outcomes, other maps and complete drawing replacement remain
 pending. Historical evidence fingerprints are preserved. The committed range
 b70c9e6..6f7d9ab has26 exact hash receipt transitions, no unresolved gaps, in its
 retrospective report; this review does not assert new execution or past gates.
+
+Final scope-bound Apprentice live observation passes four 40-second physical
+camera/rotation/scene-HUD/spell-creature-selection/target-attempt phases and three
+native Mini returns. 9,621 native frames / 5,862 visible paints, zero fallback/recovery;
+51–55 native/about 33paint FPS by phase,worst 1-second 14 FPS. Immutable before/after
+verification and stable source hashes pass. `HOST.native-campaign-session` now
+has scoped implementation and live-observation integration support; original
+comparison/replacement remain none. Paired CPU profiles and a diagnostic final
+frame are retained. Spell casting/summoning/combat outcomes, synchronized visual
+equivalence, hardware/other-map/unbounded validation and full drawing replacement
+remain outstanding; inspected mana is 0/15. Timing failures remain negative,
+with no causal speedup or60 visible-FPS claim.
+
+Retrospective review through 3fbddc0 checks 55 committed file transitions.
+Two diagnostic profile text files initially lacked exact receipts; explicit
+retrospective addition hashes reconcile them without modifying the original
+files. Both the report with these gaps and its resolved continuation are retained.
+The continuation has no unresolved gaps and makes no past gate/validation claim.

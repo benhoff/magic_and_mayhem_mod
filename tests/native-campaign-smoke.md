@@ -104,3 +104,16 @@ whole-window screenshots can include an overlapping original Wine desktop.
 The shell lowers its identified original desktop during native presentation.
 A read-only original-owned publication sampler is retained alongside separate
 native presentation/Qt paint rates; none alone establishes simulation FPS.
+
+Extended spell/creature selection and targeting attempt protocol:
+
+```sh
+python3 tools/test-native-campaign.py --difficulty 1 --stress-seconds 40 --menu-cycles 3 --timeout 600
+```
+
+The final retained software-Mesa run passes all four phases, averaging51–55 native
+FPS/about 33visible FPS, worst 1-second window 14 FPS, zero fallback/recovery.
+Spell/creature HUD clicks and source/target orders are attempted, not asserted
+as successful casting or combat. Initiate tutorial gating remains a separate
+negative route. Fresh source-bound reports and profiles are linked from
+`research/runtime/native-campaign-rendering.md`; historical failures remain.

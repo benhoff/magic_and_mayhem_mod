@@ -52,6 +52,13 @@ def main():
             for fx, fy, b in [(.46,.44,1),(.58,.49,3),(.65,.35,3),(.48,.6,1)]:
                 motion(fx,fy);button(b);time.sleep(.15)
             motion(.86,.16);button(1) # HUD/minimap edge interaction
+            record('spell-hud-and-target-attempt')
+            motion(.655,.945);button(1)
+            motion(.53,.51);button(3);time.sleep(.3)
+            record('creature-hud-and-source-order-attempt')
+            motion(.82,.945);button(1)
+            motion(.63,.25);button(3);time.sleep(.3)
+            motion(.93,.87);button(1)
             motion(.5,.45);button(4);button(5)
             time.sleep(.5)
         completed = True
@@ -60,7 +67,7 @@ def main():
         for b in [1,2,3]:xt.XTestFakeButtonEvent(display,b,0,0)
         x.XFlush(display);x.XCloseDisplay(display)
         args.output.write_text(json.dumps(dict(success=completed, seconds=time.monotonic()-start, actions=log,
-            scope='Physical camera keys, rotation, scene/HUD clicks and wheel input. Movement/combat outcomes require separate observation.'),indent=2)+'\n')
+            scope='Physical camera keys, rotation, scene/HUD clicks, spell/creature selection and target/source-order attempts, and wheel input. Movement/casting/combat outcomes require separate observation.'),indent=2)+'\n')
 
 
 if __name__ == '__main__':main()
