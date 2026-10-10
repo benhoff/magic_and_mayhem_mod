@@ -29,8 +29,8 @@ The No-CD executable is SHA-256
 `40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168`.
 Original manifests are checked before and after experiments. No immutable file
 is changed. Existing `MNMGP001` creature/melee records retain their wire format.
-The separate opt-in `spell-events.bin` starts with `MNMCA001`, version1 and
-record size64. Rows contain16 little-endian DWORDs; the first four are sequence,
+The separate opt-in `spell-events.bin` now starts with `MNMCA002`, version2 and
+record size64. The reader also accepts historical V1 (`MNMCA001`) cast/impact rows. Rows contain16 little-endian DWORDs; the first four are sequence,
 kind, original thread ID and Windows millisecond tick. Capacity is65,536 records.
 
 Kind1 forwards thiscall/no-stack-argument cast entry `0x57b710`, guarding whole
@@ -50,11 +50,13 @@ prior HP rather than inventing damage. Attribution is recorded without claiming
 full projectile/source lineage. Receivers, arguments, return bits and LastError
 are preserved; observers do not consume RNG or issue simulation orders.
 
-Live forwarding validation, failed cast/refund branches, Cure, ranged combat,
-other difficulties/maps, normal native-render Quit/save, animation comparison
-and scheduling equivalence remain pending. Physical hardware validation is
-unavailable here: `/dev/dri` is absent. Native GDI and complete original drawing
-replacement remain separate engine milestones.
+V2 additionally guards dispatcher `0x48b0f0` (seven entry bytes `6a ff 68 78 02 5c 00`, plain return at `0x48ea28`) and defended damage `0x514860` (five bytes `56 8b 74 24 08`, three DWORD amount/owner/borrowed attribution arguments). Normal same-thread dispatch copies spell+0x4c and living current-pool source+0x44/owner, restoring nested context afterward. Kind3 fields following the common four are target slot/type/owner, HP before/after, active before, amount, damage attribution owner, copied spell, original caller VA, copied source slot and owner. Borrowed attribution is forwarded unchanged and never retained. Exception-unwind context cleanup, complete source lineage and formulas remain pending.
+
+## Refusal and ranged cases
+
+`--spell-cases` requires distant/fogged terrain and insufficient-mana Zombie attempts, over at least1.5seconds with no new living player Zombie or caster mana loss. Same living caster identity and observed summon cost are independently checked. Pre-ingress UI refusal is separate from internal cast admission. Player Fireball71 requires original defended opposing HP reduction inside the copied effect context, with matching source and damage attribution owners. Cure41, refunds, damage formulas, other maps and full animation equivalence remain pending.
+
+[Negative1](native-campaign-spell-cases-negative-1-20261010.json) preserves an invalid rejection point which actually summoned. Distant `(90,90)` subsequently spent no mana or created actor. The assumed green Cure HUD case failed in [negative2](native-campaign-spell-cases-negative-2-20261010.json) and [negative3](native-campaign-spell-cases-negative-3-20261010.json). The third original trace identifies the green player spell as Fireball71 and a6mana debit, not Cure41. Both raw spell traces remain beside the reports. The starting loadout is Fireball71, Zombie14 and Brownie1; healing requires a separate loadout. Fresh complete ranged/forwarding validation is still pending. Native GDI and complete drawing replacement remain separate engine milestones.
 
 ## Capture and unexpected exit failures
 
@@ -79,3 +81,20 @@ The [final-cadence profile](native-portrait-final-profile-20261010.json) retains
 Wine game and private desktop processes. Software renderer JIT and original
 clock/busy-wait attribution remain substantial. This is an unpaired profile;
 it establishes neither a hardware speedup nor scheduling equivalence.
+
+## Fresh bounded spell-case pass
+
+[The V2 source-stable run](native-campaign-spell-cases-passed-20261010.json)
+passed both complete native phases at difficulty3. Native/paint FPS averaged
+36.04/27.34 during combat and56.97/37.05 resumed; the worst paint windows were
+16.80 and20.93FPS. No fallback/recovery occurred and manifests passed before/after.
+Two Zombies were summoned with original mana debit. Fireball71 lowered opposing
+Redcap HP110→90 at original damage caller `0x48ed24`; its player source and damage
+attribution owners agree.10 Zombie melee hits preceded Cornelius's7→0 finish on
+that same enemy. Two independent ground vectors were observed. Invalid-target
+and insufficient-mana windows lasted2.883 and2.943seconds with zero internal cast
+returns, no newly living Zombie or mana loss: these are observed UI refusals,
+not recovered internal rejection branches. Raw V2 spell and GP traces remain
+beside the report. This run uses ten-second resumed stress; the longer combined
+portrait/ranged journey remains a separate validation target. Cure/formulas,
+exception cleanup, full lineage and physical GPU equivalence remain pending.

@@ -13,14 +13,20 @@ after original World returned to Main. These are failures, not overall passes.
 identity/delta guards. `HOST.native-campaign-spell-observation` seeds a separate
 guarded original cast/impact trace and successful-summon mana-debit validation.
 `HOST.native-campaign-capture-retry` seeds bounded UI-poll acquisition and prompt
-unexpected-exit failure.20 offline validator tests pass; build/admission and fresh
+unexpected-exit failure.22 offline validator tests pass; build/admission and fresh
 end-to-end validation are recorded separately. New statuses do not claim live
 equivalence or replacement. Existing source-bound portrait evidence retains its
 historical hashes; changed dependencies require another full live run.
 
 The final no-draw-skip policy has an owned20-second CPU profile with6,864 samples
 and no sample loss. Hardware validation is unavailable (`/dev/dri` absent).
-Failed/refunded casts, healing, ranged outcomes, other maps, timing equivalence,
+The optional spell-case route now distinguishes bounded UI refusals and player
+Fireball defended damage. Earlier assumed Cure attempts failed: the green
+starting spell is Fireball71; historical reports and traces are preserved. The [fresh bounded spell-case run](native-campaign-spell-cases-passed-20261010.json)
+passes original Fireball110→90 damage,10 Zombie melee hits plus Cornelius7→0
+finish, two UI refusals, independent movement, native Mini/resume and strict rate
+floors (combat36.04/27.34, resumed56.97/37.05native/paint FPS). Longer combined
+portrait stress remains separate. Healing/refunds, other maps, timing equivalence,
 native GDI and complete drawing replacement remain pending. The exact committed
 range `ab40f5a..754f961` contains two reviewed file transitions and no gaps.
 

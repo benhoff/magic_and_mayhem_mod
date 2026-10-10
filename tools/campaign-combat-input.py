@@ -11,6 +11,7 @@ import subprocess
 import time
 
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
+from campaign_spell import read_spell_rows, player_fireball_damage
 
 
 def main():
@@ -20,6 +21,7 @@ def main():
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--experiment', type=Path, required=True)
     p.add_argument('--portrait-stress-seconds', type=int, default=0)
+    p.add_argument('--spell-cases', action='store_true')
     args=p.parse_args(); x0,y0,w,h=args.rect
     if w<320 or h<240:p.error('Native viewport is too small')
     out=args.output.parent; trace=args.experiment/'gameplay-events.bin'
@@ -30,7 +32,7 @@ def main():
     xt.XTestFakeMotionEvent.argtypes=[c.c_void_p,c.c_int,c.c_int,c.c_int,c.c_ulong]
     display=x.XOpenDisplay(os.environ['DISPLAY'].encode())
     if not display:raise RuntimeError('No native input display')
-    start=time.monotonic(); actions=[]; captures=[]; result=dict(success=False)
+    start=time.monotonic(); actions=[]; captures=[]; result=dict(success=False,monotonic_start=start)
     def record(action,**values):
         actions.append(dict(action=action,seconds=time.monotonic()-start,**values))
         args.output.write_text(json.dumps(dict(result,seconds=time.monotonic()-start,actions=actions,captures=captures),indent=2)+'\n')
@@ -63,7 +65,16 @@ def main():
         captures.append(item);record('capture',name=name)
         return item
     def center():
-        click(744,522);click(744,522);time.sleep(.5);click(400,270);time.sleep(.25)
+        click(744,522);click(744,522);time.sleep(.5);click(400,310);time.sleep(.25)
+    def blocked_cast(label, owner, wizard_slot):
+        prior_rows=read_rows(trace);begin=prior_rows[-1][0];prior=creatures(prior_rows)
+        click(523,575);time.sleep(.25);click(90 if label=='invalid-target' else 440,90 if label=='invalid-target' else 310,3)
+        time.sleep(2);current_rows=read_rows(trace);current=creatures(current_rows)
+        created=[a['slot'] for a in current.values() if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0 and
+                 (a['slot'] not in prior or not prior[a['slot']]['active'] or prior[a['slot']]['type']!=14 or prior[a['slot']]['owner']!=owner)]
+        if created or current[wizard_slot]['mana']<prior[wizard_slot]['mana']:raise RuntimeError('Expected blocked cast created a Zombie or spent mana')
+        item=dict(kind=label,before_sequence=begin,after_sequence=current_rows[-1][0],mana_before=prior[wizard_slot]['mana'],mana_after=current[wizard_slot]['mana'],created_slots=created)
+        capture(label,True);result.setdefault('blocked_casts',[]).append(item);record('blocked-cast',**item)
     try:
         deadline=time.monotonic()+12
         while not trace.exists() or not state():
@@ -75,6 +86,8 @@ def main():
         click(400,300);time.sleep(.5) # dismiss ordinary Hermes dialogue
         before=capture('before-summon',True)
         if before['ocr']!={'native':'0/15','original':'0/15'}:raise RuntimeError('Missing initial native/original 0/15 controlled-creature count: '+str(before['ocr']))
+        if args.spell_cases:
+            center();blocked_cast('invalid-target',owner,wizard['slot'])
         click(523,575);time.sleep(.5);cast_before=read_rows(trace)[-1][0];cast_prior=state()
         click(440,310,3);record('summon-order',before_sequence=cast_before)
         deadline=time.monotonic()+12; summoned=[]
@@ -136,6 +149,15 @@ def main():
             center();click(400+sx,280+sy,3);time.sleep(3)
             center()
             if math.hypot(dx,dy)<7:
+                if args.spell_cases and not result.get('ranged'):
+                    # The starting green spell is Fireball71. Cast at nearby
+                    # enemy terrain and require damage in its original effect.
+                    for px,py in ((400,270),(400,240)):
+                        begin=read_rows(trace)[-1][0];click(477,575);time.sleep(.25);click(px,py,3);time.sleep(1)
+                        effects=player_fireball_damage(read_spell_rows(args.experiment/'spell-events.bin'),owner,wizard['slot'])
+                        record('fireball-order',before_sequence=begin,logical_x=px,logical_y=py)
+                        if effects:result['ranged']=dict(first_damage=list(effects[0]));capture('fireball-damage');break
+                    if not result.get('ranged'):raise RuntimeError('No player Fireball enemy damage after bounded shots')
                 # Summon beside the enemy, through the same native spell HUD.
                 click(523,575);cast_sequence=read_rows(trace)[-1][0];prior=state()
                 click(400+sx,280+sy,3);time.sleep(2)
@@ -165,10 +187,29 @@ def main():
             if not xt.XTestFakeMotionEvent(display,-1,x0+int(w*px/800),y0+int(h*py/600),0):raise RuntimeError('Motion injection failed')
             x.XFlush(display);record('combat-terrain-hover',logical_x=px,logical_y=py);time.sleep(.5)
         record('casting-combat-complete')
+        if args.portrait_stress_seconds or args.spell_cases:
+            # Use ordinary ground orders to survive later enemy
+            # waves while exercising rendering; no health/position writes.
+            center()
+            for attempt in range(4):
+                actor=state()[wizard['slot']];dx=wizard['x']-actor['x'];dy=wizard['y']-actor['y']
+                if math.hypot(dx,dy)<5:break
+                if len(calibration)==2:
+                    ((ax,ay),(asx,asy)),((bx,by),(bsx,bsy))=calibration;det=ax*by-ay*bx
+                    u=(by*dx-bx*dy)/det;v=(ax*dy-ay*dx)/det;sx=asx*u+bsx*v;sy=asy*u+bsy*v
+                    scale=max(1,abs(sx)/170,abs(sy)/110);sx/=scale;sy/=scale
+                else:sx,sy=-140,50
+                center();click(400+sx,280+sy,3);time.sleep(3)
+                record('post-combat-retreat',attempt=attempt+1,wizard=state()[wizard['slot']])
+            center()
+        if args.spell_cases:
+            if state()[wizard['slot']]['mana']>=17*256:raise RuntimeError('Insufficient-mana case was not reached through normal casts')
+            blocked_cast('insufficient-mana',owner,wizard['slot'])
         if args.portrait_stress_seconds:
             portrait_start=time.monotonic();cycles=0
             record('portrait-stress-start')
             while time.monotonic()-portrait_start<args.portrait_stress_seconds:
+                if state()[wizard['slot']]['health']<=0:raise RuntimeError('Player wizard died during portrait stress')
                 center();cycles+=1;record('portrait-recenter',cycle=cycles);time.sleep(1)
             result['portrait_stress']=dict(seconds=time.monotonic()-portrait_start,cycles=cycles)
             capture('portrait-stress');record('portrait-stress-complete')
