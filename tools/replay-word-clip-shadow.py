@@ -24,7 +24,7 @@ def main():
     run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
     report=dict(schema=1,success=False,claims=declaration['claims'],sources=sources,
         original_sha256=ORIGINAL,live_replacement=False,original_work_bypassed=False,
-        scope='Eight captured clipped shadow samples replayed independently against unchanged original and native CPU/state composition. Complete canvas/guards/source and all16 workspace words; frame-pointer writes alone normalized. No live bypass/full-session/Win32 ABI exception claim.',experiment=str(run.relative_to(ROOT)))
+        scope='Eight diverse captured shadow samples (two clipped, six interior) replayed independently against unchanged original and native CPU/state composition. Complete canvas/guards/source and all16 workspace words; frame-pointer writes alone normalized. No live bypass/full-session/Win32 ABI exception claim.',experiment=str(run.relative_to(ROOT)))
     def command(argv,name):
         result=subprocess.run([str(a) for a in argv],capture_output=True,text=True,timeout=180)
         log=run/(name+'.log');log.write_text(result.stdout+result.stderr)
@@ -57,8 +57,12 @@ def main():
                 command([binary,exe,path,output,mode],path.stem+'-'+mode)
                 actual=output.read_bytes()
                 assert struct.unpack_from('<I',actual)[0]==0 and actual[4:68]==struct.pack('<16I',*expected_workspace) and actual[68:]==expected,(path,mode)
-            records.append(dict(sample=str(path.relative_to(ROOT)),sha256=sha(path),pixels=bytes_//2,pixels_match=True,workspace_match=True,canvas_alignment=canvas&3))
-        report.update(success=True,samples=records,sample_count=len(records),compared_pixels=sum(r['pixels'] for r in records),binary_sha256=sha(binary),original_pixels_match=True,native_pixels_match=True,workspace_match=True)
+            fw,fh,ox,oy=struct.unpack_from('<IIii',b,212);ax,ay=struct.unpack_from('<ii',b,52)
+            right,bottom=struct.unpack_from('<II',b,40);left,top=struct.unpack_from('<ii',b,64)
+            clipped=ax-ox<left or ay-oy<top or ax-ox+fw>=right or ay-oy+fh>=bottom
+            records.append(dict(clipped=clipped,frame_sha256=hashlib.sha256(b[208:208+size]).hexdigest(),backend=hex(struct.unpack_from('<I',b,60)[0]+0x400000),auxiliary_offsets=list(struct.unpack_from('<II',b,240)),width=struct.unpack_from('<I',b,212)[0],height=struct.unpack_from('<I',b,216)[0],sample=str(path.relative_to(ROOT)),sha256=sha(path),pixels=bytes_//2,pixels_match=True,workspace_match=True,canvas_alignment=canvas&3))
+        assert len({r['frame_sha256'] for r in records})>=4 and sum(r['clipped'] for r in records)==2
+        report.update(success=True,clipped_sample_count=sum(r['clipped'] for r in records),distinct_frames=len({r['frame_sha256'] for r in records}),samples=records,sample_count=len(records),compared_pixels=sum(r['pixels'] for r in records),binary_sha256=sha(binary),original_pixels_match=True,native_pixels_match=True,workspace_match=True)
     except Exception as error:report['error']=str(error)
     finally:
         try:command([ROOT/'tools/original-manifest.sh','verify'],'manifest-after')

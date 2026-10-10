@@ -68,7 +68,7 @@ def main():
     print(run, flush=True)
     report = {'schema': 1, 'success': False, 'claims': declaration['claims'], 'sources': sources,
               'original_sha256': ORIGINAL, 'experiment': str(run.relative_to(ROOT)),
-              'scope': 'Actual production clipping shadow route with substituted host Win32 APIs; five forced safe-original refusals per case, exact original-once counters and LastError retention. Bounded contiguous direct-word CPU clipping versus two unchanged original No-CD backends, zero/(2,2) clip origins, exact/partial edges/corners, hidden/oversized frames, zero dimensions. Complete workspace/argument/integer/defined flags/selected masked floating/guards comparison through production entry assembly and a host-only clipped admission stand-in; empty requests forwarded for original FP handling. Core malformed/alias/clip-bounds refusal is native safety policy, not original malformed acceptance. Win32 access/LastError/reentry, unmasked/full-stack/exception FP, other backends, auxiliary/indexed inputs, installed assets and live clipping replacement excluded.',
+              'scope': 'Actual production clipping shadow route with substituted host Win32 APIs; five forced safe-original refusals per case, exact original-once counters and LastError retention. Bounded contiguous direct-word CPU clipping versus two unchanged original No-CD backends, zero/(2,2) clip origins, exact/partial edges/corners, hidden/oversized frames, zero dimensions. Complete workspace/argument/integer/defined flags/selected masked floating/guards comparison through the actual production route/entry with host Win32 substitutes; empty requests forwarded for original FP handling. Core malformed/alias/clip-bounds refusal is native safety policy, not original malformed acceptance. Win32 access/LastError/reentry, unmasked/full-stack/exception FP, other backends, auxiliary payload interpretation, indexed inputs, installed-asset generality and live clipping replacement excluded. Appended opaque auxiliary offsets bound main colours; five plane layouts per positive fixture.',
               'original_work_bypassed': False, 'live_replacement': False}
 
     def command(argv, name):
@@ -128,8 +128,23 @@ def main():
         fixtures = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(fixtures)
         cases, paths = [], []
+        def planes(frame, variant):
+            if variant == 'none': return frame
+            f = bytearray(frame); end = len(f)
+            f += bytes([0xd7]) * 40
+            struct.pack_into('<I', f, 0, len(f))
+            if variant == 'first': struct.pack_into('<I', f, 32, end + 4)
+            if variant == 'second': struct.pack_into('<I', f, 36, end + 4)
+            if variant == 'both': struct.pack_into('<II', f, 32, end + 4, end + 20)
+            if variant == 'reverse': struct.pack_into('<II', f, 32, end + 20, end + 4)
+            return bytes(f)
 
         def add(frame, fw, fh, seed, width, height, stride, clip_left, clip_top, branch, left, top):
+            variants = ('none', 'first', 'second', 'both', 'reverse') if fw and fh else ('none',)
+            for variant in variants:
+                add_variant(planes(frame, variant), fw, fh, seed, width, height, stride, clip_left, clip_top, branch, left, top, variant)
+
+        def add_variant(frame, fw, fh, seed, width, height, stride, clip_left, clip_top, branch, left, top, variant):
             before = b''.join(struct.pack('<H', (i * 7919 + seed * 257) & 65535) for i in range(stride * height))
             expected = pixels(frame, width, height, stride, left, top, before, clip_left, clip_top)
             rng = random.Random(seed * 991 + len(cases))
@@ -142,7 +157,7 @@ def main():
                 data[80:144] = workspace
                 path = run / f'case-{len(cases):05d}.bin'
                 path.write_bytes(data)
-                cases.append({'seed': seed, 'branch': branch, 'backend': hex(0x400000 + backend),
+                cases.append({'seed': seed, 'branch': branch, 'planes': variant, 'backend': hex(0x400000 + backend),
                               'clip_left': clip_left, 'clip_top': clip_top, 'alignment': (seed % 2) * 2,
                               'fp_flags_seed': seed % 4, 'sample': str(path.relative_to(ROOT)), 'sample_sha256': sha(path)})
                 paths.append(str(path))
@@ -194,6 +209,7 @@ def main():
             counts['shadow_compared_positive'] += bool(row[52])
             counts['original_forwarded_empty'] += bool(row[53])
             counts['clipped_compared'] += row[71]
+            counts['auxiliary_compared'] += bool(row[52]) and case['planes'] != 'none'
             counts['original_once'] += row[64] == 1
             counts['last_error_preserved'] += bool(row[65])
             counts['forced_refusal_checks'] += sum(v == 4095 for v in row[66:71])
@@ -211,7 +227,7 @@ def main():
         report['isolated_original_body_bypasses'] = 0
         command(['python3', ROOT / 'tools/build-word-sprites.py'], 'pe32-adapter-build')
         report['pe32_adapter_manifest'] = json.loads((ROOT / 'working/build/word-sprites/manifest.json').read_text())
-        report['success'] = not failures and counts['cpu_clip_admissions'] == len(cases) and counts['shadow_compared_positive'] > 4000 and counts['original_forwarded_empty'] == 48
+        report['success'] = not failures and len(cases) == 22048 and counts['cpu_clip_admissions'] == len(cases) and counts['shadow_compared_positive'] == 22000 and counts['auxiliary_compared'] == 17600 and counts['original_forwarded_empty'] == 48
     except Exception as error:
         report['error'] = str(error)
     finally:

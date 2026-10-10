@@ -27700,6 +27700,154 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "RS.word-clip-aux-shadow",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Clipped main-word shadow admission with opaque auxiliary planes and diverse clipped capture",
+      "scope": "Selected two No-CD word backends with bounded contiguous main-plane streams and optional opaque auxiliary offsets. Earliest valid auxiliary offset bounds colours; payloads are never read or changed, caller auxiliary passes remain original. Actual production route/entry shadow comparisons include full canvas/workspace, selected caller state, exact original-once and host-substituted LastError/refusals. Five plane layouts per positive synthetic case; real Wine startup retains eight distinct auxiliary-bearing frame/backend pairs (two clipped, six interior) with at least four different frame byte sequences and independent original/native replay. Admission reasons and backend/clipped/auxiliary counters are separate. No bypass, indexed/source-padded input, payload-effect interpretation, complete FP/Win32/nested-reentry/physical-Windows/full-session or all-asset equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Selected direct-word clipped original pixel/workspace/caller state under bounded shadow admission only; full backend and original malformed handling excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Selected direct-word clipped original pixel/workspace/caller state under bounded shadow admission only; full backend and original malformed handling excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/word-clip-aux-shadow.md",
+        "research/formats/word-admission-stats-v1.md"
+      ],
+      "implementation": [
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_entry.S",
+        "tools/build-word-sprites.py",
+        "tools/prepare-scene-observer.py",
+        "tools/scene-game-runner.py",
+        "tools/render-game-runner.py",
+        "tools/run-opengl-game.py",
+        "renderer/sprites/word_clipped.c",
+        "renderer/sprites/word_clipped.h",
+        "reconstruction/rendering/word_backend_state.c",
+        "reconstruction/rendering/word_backend_state.h"
+      ],
+      "tests": [
+        "tests/word-clip-shadow-reference.cpp",
+        "tests/word-clip-shadow-host.c",
+        "tests/word-clip-shadow-host.S",
+        "tools/test-word-clip-shadow.py",
+        "tools/capture-scene-game.py",
+        "tools/replay-word-clip-shadow.py",
+        "tests/word-clip-shadow-replay.cpp"
+      ],
+      "validation_dependencies": [
+        "tests/word-backend-probe.S",
+        "tools/test-word-sprites.py",
+        "renderer/sprites/word_raster.c",
+        "renderer/sprites/word_raster.h",
+        "runtime/scene/word_workspace.h",
+        "runtime/shadow/win32_min.h",
+        "renderer/sprites/word-clipped/CMakeLists.txt",
+        "tests/word-clipped-test.c",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.word-clip-aux-shadow.original-20261010",
+        "RS.word-clip-aux-shadow.host-20261010",
+        "RS.word-clip-aux-shadow.live-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "synthetic": "22048 cases:22000 positive main-word comparisons, including17600 auxiliary-bearing variants, and48 empty forwards. Five plane layouts: absent/first/second/both/reversed, padded opaque payloads. Selected caller/workspace/pixels/guards/source, exact original-once and LastError;110240 forced refusals.",
+        "live": "Four original World startup observations, eight distinct auxiliary-bearing sample pairs (two clipped, six interior) with at least four frame byte sequences, positive auxiliary/clipped counters and independent original/native full-canvas/workspace replay. Backend/refusal counts recorded; scalar live support conditional on actual counter, semantic World caller attribution excluded.",
+        "exclusions": [
+          "clipped takeover",
+          "auxiliary payload effects",
+          "indexed/source-padded input",
+          "unsafe original malformed handling",
+          "full FP/Win32/real nested reentry",
+          "physical Windows/full-session",
+          "all installed assets"
+        ]
+      }
+    },
+    {
+      "id": "NR.word-clipping-plane-bounds",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic main-word preflight bounded by opaque auxiliary offsets",
+      "scope": "Native policy checks auxiliary offsets inside containing positive frame at/after row table; earliest offset bounds all colour reads including hidden rows. Five layouts and1440 manually expanded clipping placements with opaque zero/padding/byte alignments,79 atomic refusals and three empty extreme-anchor no-ops. No payload interpretation or original malformed-equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/word-clip-aux-shadow.md",
+        "research/formats/word-admission-stats-v1.md"
+      ],
+      "implementation": [
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_entry.S",
+        "tools/build-word-sprites.py",
+        "tools/prepare-scene-observer.py",
+        "tools/scene-game-runner.py",
+        "tools/render-game-runner.py",
+        "tools/run-opengl-game.py",
+        "renderer/sprites/word_clipped.c",
+        "renderer/sprites/word_clipped.h",
+        "reconstruction/rendering/word_backend_state.c",
+        "reconstruction/rendering/word_backend_state.h"
+      ],
+      "tests": [
+        "tests/word-clip-shadow-reference.cpp",
+        "tests/word-clip-shadow-host.c",
+        "tests/word-clip-shadow-host.S",
+        "tools/test-word-clip-shadow.py",
+        "tools/capture-scene-game.py",
+        "tools/replay-word-clip-shadow.py",
+        "tests/word-clip-shadow-replay.cpp"
+      ],
+      "validation_dependencies": [
+        "tests/word-backend-probe.S",
+        "tools/test-word-sprites.py",
+        "renderer/sprites/word_raster.c",
+        "renderer/sprites/word_raster.h",
+        "runtime/scene/word_workspace.h",
+        "runtime/shadow/win32_min.h",
+        "renderer/sprites/word-clipped/CMakeLists.txt",
+        "tests/word-clipped-test.c",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "NR.word-clipping-plane-bounds.host-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "native": "Sanitized1440 manual placements across five plane layouts,79 atomic refusals including36 plane-bound cases, three empty no-ops; source and destination guards preserved.",
+        "exclusions": [
+          "original malformed acceptance",
+          "payload effects",
+          "live takeover"
+        ]
+      }
     }
   ],
   "evidence": [
@@ -53280,6 +53428,223 @@
           "equals": []
         }
       ]
+    },
+    {
+      "id": "RS.word-clip-aux-shadow.original-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/word-clip-aux-isolated-20261010.json",
+      "sha256": "1922c95c73718330b033bb4612acdba3d8b1a3cdbc90bff0bcb851ccd8f78c81",
+      "scope": "22048 actual production route/entry original-state comparisons,22000 positive shadows including17600 auxiliary-bearing layouts,48 empty forwards,110240 forced refusals with exact classification/original-once/LastError checks. No original malformed/real OS/nested-reentry/bypass claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 22048
+        },
+        {
+          "pointer": "/counts/native_entry_original_matches",
+          "equals": 22048
+        },
+        {
+          "pointer": "/counts/shadow_compared_positive",
+          "equals": 22000
+        },
+        {
+          "pointer": "/counts/auxiliary_compared",
+          "equals": 17600
+        },
+        {
+          "pointer": "/counts/original_forwarded_empty",
+          "equals": 48
+        },
+        {
+          "pointer": "/counts/original_once",
+          "equals": 22048
+        },
+        {
+          "pointer": "/counts/last_error_preserved",
+          "equals": 22048
+        },
+        {
+          "pointer": "/counts/forced_refusal_checks",
+          "equals": 110240
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        },
+        {
+          "pointer": "/isolated_original_body_bypasses",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "RS.word-clip-aux-shadow.host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/word-clip-aux-isolated-20261010.json",
+      "sha256": "1922c95c73718330b033bb4612acdba3d8b1a3cdbc90bff0bcb851ccd8f78c81",
+      "scope": "Headless production route/entry and classified refusal composition with host Win32 substitutes; same immutable run as original comparison, no actual OS/nested-reentry claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/forced_refusal_checks",
+          "equals": 110240
+        }
+      ]
+    },
+    {
+      "id": "NR.word-clipping-plane-bounds.host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/word-clip-aux-isolated-20261010.json",
+      "sha256": "1922c95c73718330b033bb4612acdba3d8b1a3cdbc90bff0bcb851ccd8f78c81",
+      "scope": "Sanitized native clipping with five opaque auxiliary layouts:1440 manual placements,79 atomic refusals including36 plane-bound cases, three empty no-ops. No original malformed handling.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/host_ctest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/host_boundaries",
+          "equals": "1440 clipped placements, 79 atomic refusals, 3 empty no-ops passed"
+        }
+      ]
+    },
+    {
+      "id": "RS.word-clip-aux-shadow.live-20261010",
+      "kind": "live_equivalence",
+      "record": "research/runtime/word-clip-aux-live-20261010.json",
+      "sha256": "bffb4ebac307af3dd2ce0d55396360c2ebd14df8370af1dc25722129e932d9c2",
+      "scope": "Bounded main-word shadow with opaque auxiliary planes through four World startup observations.13312 original/native full-canvas/workspace matches,705 clipped and12607 interior, no fallback/mismatch/error/stop/bypass. All observed calls use forward0x596cb8; no live scalar or exact semantic caller attribution. Eight distinct auxiliary-bearing frames (two clipped, six interior),1420800 complete canvas WORDs and all workspace words independently replay against unchanged original and native. No payload-effect, indexed, all-assets, complete FP/Win32/full-session or replacement claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/world_observations",
+          "equals": 4
+        },
+        {
+          "pointer": "/sample_count",
+          "equals": 8
+        },
+        {
+          "pointer": "/distinct_frames",
+          "equals": 8
+        },
+        {
+          "pointer": "/clipped_sample_count",
+          "equals": 2
+        },
+        {
+          "pointer": "/compared_pixels",
+          "equals": 1420800
+        },
+        {
+          "pointer": "/live_pixels_workspace_match",
+          "equals": true
+        },
+        {
+          "pointer": "/word_clip_stats/6",
+          "equals": 13312
+        },
+        {
+          "pointer": "/word_clip_stats/7",
+          "equals": 705
+        },
+        {
+          "pointer": "/word_clip_stats/11",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/12",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/13",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/15",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_admission_stats/15",
+          "equals": 13312
+        },
+        {
+          "pointer": "/word_admission_stats/16",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_admission_stats/17",
+          "equals": 13312
+        },
+        {
+          "pointer": "/word_admission_stats/20",
+          "equals": 705
+        },
+        {
+          "pointer": "/word_stats/8",
+          "equals": 0
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ],
+      "equivalence_pointer": "/live_pixels_workspace_match"
     }
   ],
   "classifications": [],
@@ -60604,6 +60969,38 @@
         "NR.world-rolling-delivery.gl33-20261010",
         "NR.world-rolling-delivery.budget-refusal-20261010"
       ]
+    },
+    {
+      "id": "word-clip-aux-host-20261010",
+      "level": "headless",
+      "scope": "Actual production route/entry with host Win32 substitutes:22048 original comparison cases and110240 forced refusals; atomic native plane bounds1440/79/3. OS/nested-reentry excluded.",
+      "behaviors": [
+        "RS.word-clip-aux-shadow",
+        "NR.word-clipping-plane-bounds"
+      ],
+      "evidence": [
+        "RS.word-clip-aux-shadow.original-20261010",
+        "RS.word-clip-aux-shadow.host-20261010",
+        "NR.word-clipping-plane-bounds.host-20261010"
+      ],
+      "tests": [
+        "tools/test-word-clip-shadow.py"
+      ]
+    },
+    {
+      "id": "word-clip-aux-live-20261010",
+      "level": "live_equivalence",
+      "scope": "Four World startup observations; eight distinct auxiliary-bearing input pairs (two clipped, six interior), at least four frame byte sequences, positive auxiliary/clipped counters and independent original/native replay. Actual backend/refusal counts retained; no semantic caller/full-session/bypass claim.",
+      "behaviors": [
+        "RS.word-clip-aux-shadow"
+      ],
+      "evidence": [
+        "RS.word-clip-aux-shadow.live-20261010"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py",
+        "tools/replay-word-clip-shadow.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -60932,8 +61329,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-rolling-20261010.json",
-    "sha256": "e9f24d07befd8c1ec9369f09a8e7c6b082485b27dcbc3c175ad0759f22b67a44"
+    "path": "research/runtime/coverage/source-index-word-clip-aux-20261010.json",
+    "sha256": "ada92990ffbbc6674f4647352535561c23d2acd50a1370805339370584109c28"
   },
   "claim_bindings_required": true
 }

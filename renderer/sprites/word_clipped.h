@@ -11,8 +11,9 @@ typedef struct {
     uint32_t source_left, source_top, source_right, source_bottom;
 } MnmWordClippedDraw;
 
-/* Half-open clipping of bounded, contiguous, direct-word frames. No auxiliary
- * planes or indexed input. Empty dimensions and hidden frames are successful
+/* Half-open clipping of bounded, contiguous, direct-word frames. Auxiliary
+ * offsets bound the main word plane; their payloads are never read or changed.
+ * Indexed input remains unsupported. Empty dimensions and hidden frames are successful
  * no-ops. Validate the complete frame, including hidden rows, before writing.
  * Invalid input leaves pixels and output untouched. Output/descriptors must not
  * alias storage; borrowed frame and descriptors must remain stable throughout.

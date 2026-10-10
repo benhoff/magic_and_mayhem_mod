@@ -1,0 +1,320 @@
+{
+  "schema": 1,
+  "scope": "Committed-history accounting only; no assertion of past gate passes or new execution validation.",
+  "range": {
+    "base": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+    "head": "c9f99e82680b541cc4c569bfb4f85aabe23f535e"
+  },
+  "prior_receipts_preserved": true,
+  "files": [
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "reconstruction/rendering/word_backend_state.c",
+      "before_sha256": "4cef77abdb5f5ce2a42dcfcf8f8406354fb9a8ae3ec3a6659208ce183f840707",
+      "after_sha256": "90e747fe1490ca94892ce974dfb1dbf90af71ba5da3923bef887c9396ad1134a",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/formats/word-clip-shadow-v1.md",
+      "before_sha256": null,
+      "after_sha256": "748e8d5113dc85dc9949b645d7ec38b3201867655d8c28816721bdc506b003c1",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/formats/word-sprite-samples-v1.md",
+      "before_sha256": "2b75ad82c38c60c7805841a051b817470b7dc06479b28db67e897a53dceb584d",
+      "after_sha256": "9e38ed3523e75ef32ef42631bf0c47e626f87b6fb7758fe40debf3705bfc2323",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "4aada8649bd06edbe45124d9e85c18ecab45283f2de6c04882aba7ba93640ae7",
+      "after_sha256": "f0e2fa870fa87184ab601b777f3fb8494ab84e7b5c35828b6de9ca6abd72e41c",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "0cef08d300a9794e743e51ba21bd154daa65790aac7d1884a8a1fa49637e86bc",
+      "after_sha256": "6a4b9db7407ae439c6c02ccebc095e3dff36bf70c7199a79c6807e7144bed6d8",
+      "receipts": [],
+      "classification": "append_only_review_journal"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "0b3f99da72d28585dfb1171803f82a3e47afe9be5a2daf25933400193e40cec3",
+      "after_sha256": "aad5fa354d34a2b4a0214233532cfaaa37978f4c1b5096128118c7b23a4d2e23",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/coverage/source-index-word-clip-shadow-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d58c636b2edc2ce3f37a81f9751248dcf4671a8373fa65c574a8077370910c5e",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "c04b9b2f87e73c9208cdc16feed5b6e1428c4100c8d71c842ef71b04c1b404ac",
+      "after_sha256": "3a26cccc9d1ea332d7ac216f83c28255e27e3751b65be540a77a228c247b08d6",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/coverage/word-clip-shadow-history-0415793-652c01d-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "00d5977dec0c5bf4e7aa34860f429aea5f5f92e60dbf41c7edb5c1d14a646182",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/word-clip-shadow-capture-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "112ae4906f53e879e58a8bf3802865709e86e882641572011b9797c86ee278ba",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/word-clip-shadow-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "939a02da02c500b6f629630a208aa0dd62bdaca49aff36e55a205ed456ec7cfb",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/word-clip-shadow-isolated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "cce361716a913bf31f027b378eb9adac1caf9f83cbc365042b1bbda32883a001",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/word-clip-shadow-live-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a0e3794218f3c255a8b5c6b76c66052804313dfd5cf268cb687eda481a6c6b4d",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/word-clip-shadow-replay-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e751e2025230f83ae0360a45caec900191ca94cd2c5fe23591de752adeeb8d01",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "research/runtime/word-clip-shadow.md",
+      "before_sha256": null,
+      "after_sha256": "fa0686c6c59a69df896c9a4511b8a6569533a8ba1940d6026467fa2aca4da3d6",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "runtime/scene/word_route.c",
+      "before_sha256": "0e364ed82223cc79267e10771b402479ec5d37aac8bbe9b6c03353955dc7e772",
+      "after_sha256": "9349585787972bf479d05422d304c10977c4d50a3797e779ea1f6925ec929026",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tests/word-clip-shadow-host.S",
+      "before_sha256": null,
+      "after_sha256": "2834588a71e45031514c9378dfea2248f4bb6f851a2969e2b047b24097ba64f9",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tests/word-clip-shadow-host.c",
+      "before_sha256": null,
+      "after_sha256": "a1e6e331c0e461eb0ecd33611fa4cbac26eb0329f1674f6f2458082b79aa6ac9",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tests/word-clip-shadow-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "b13e0e077ad68ea313a5a573999f1563ccdecfd448acb4632259afca8ef6addc",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tests/word-clip-shadow-replay.cpp",
+      "before_sha256": null,
+      "after_sha256": "b425ffa4bd2d1959836f6c734dc0d5192d31e0b1998d7a0fc85b12adf5ea5999",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tools/build-word-sprites.py",
+      "before_sha256": "deb5ad545dfc79aab3a7d267f65c2a0091bcd9694728697e65ecaf750b1183f0",
+      "after_sha256": "1916ce9657666a9581450737deddda9b5a00f00c7155909fb1e0f0b50225c958",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tools/capture-scene-game.py",
+      "before_sha256": "d54c555e455a89e418b8bb9b6b100acd2e02015799423915781a3d9b27c2b0b8",
+      "after_sha256": "a009162b0755e1bb813ec9ad7a5571933ff672a45019e6ee51e82340710b4c2e",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tools/prepare-scene-observer.py",
+      "before_sha256": "cfa93d0ed820d288bffb6b2af5f73ebe02d215471f65b6fdb4fe825d5ff4cead",
+      "after_sha256": "bdda217c1c20c1a0ff1f01ef7ca54ee06f21de99b9228f06a66957cc63176407",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tools/render-game-runner.py",
+      "before_sha256": "3ebd48598261a7dbd2afba7ef94403f02d55f2c838a5e3f61ee9f23bea8ab553",
+      "after_sha256": "97193487a39b8a4cfdcf4fe9dd630190663f2bd6c1b9def979c8efb2d6cb2dcc",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tools/replay-word-clip-shadow.py",
+      "before_sha256": null,
+      "after_sha256": "bcfeb1c016c0f3203f0c591a1030904e037cfacad0d1d3ba7aa7127dcdc54eb7",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tools/run-opengl-game.py",
+      "before_sha256": "7e7c002c27946560ee8403da632a764cc89cc6946bada47a0457759457e7fdf9",
+      "after_sha256": "775966327b7ffdebcb3b25c21bfe82aec156bcde3ab39ab3157a6314b84b2a1a",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tools/scene-game-runner.py",
+      "before_sha256": "74176c9d773c647bc0f5a410bb44f917a6073dd968d4cdb659b1e3949627f932",
+      "after_sha256": "d7dd632b7e08ab76e5dd0e92c70006fa8dd60337b316c867de897660ea5a7a5a",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "parent": "652c01d9f8e5ce5d05b7570edad17d0cd91ad21e",
+      "path": "tools/test-word-clip-shadow.py",
+      "before_sha256": null,
+      "after_sha256": "a44bb1b23582c346fc445ddef3d87c50176766669ef2a01a4efe1d69c6480adf",
+      "receipts": [
+        "word-clip-shadow-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    }
+  ],
+  "unresolved_gaps": [],
+  "reviewed_transitions": 28,
+  "unresolved_count": 0
+}

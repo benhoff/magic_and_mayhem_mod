@@ -17,6 +17,9 @@ void mnm_host_configure(u32 frame,u32 length,u32 canvas,u32 bytes,u32 failure){
     const u32 initial_clip[20]={0x574d4e4d,0x31304c43,1,80};
     for(u32 i=0;i<16;++i)stats[i]=initial[i];
     for(u32 i=0;i<20;++i)clip_stats[i]=initial_clip[i];
+    for(u32 i=0;i<32;++i)admission_stats[i]=i==0?0x574d4e4d:i==1?0x31304441:i==2?1:i==3?128:0;
+    for(u32 i=0;i<8;++i){sampled_hash[i]=0;sampled_backend[i]=0;}
+    admission_log=(HANDLE)4;
     image_base=0x400000;mode=3;installed=1;stopped=failure==5;busy=failure==4;
     scalar_trampoline=(u32)&mnm_host_original_scalar;forward_trampoline=(u32)&mnm_host_original_forward;
     host_error=0x7a21;host_fail=failure;host_frame=frame;host_length=length;
@@ -27,6 +30,7 @@ u32 mnm_host_last_error(void){return host_error;}
 u32 mnm_host_compared(void){return clip_stats[6];}
 u32 mnm_host_forwarded(void){return clip_stats[11];}
 u32 mnm_host_clipped(void){return clip_stats[7];}
+u32 mnm_host_admission_stat(u32 index){return index<32?admission_stats[index]:0;}
 u32 mnm_host_mismatches(void){return clip_stats[12];}
 int _word_route(u32* registers){return word_route(registers);}
 u32 WIN GetLastError(void){return host_error;}

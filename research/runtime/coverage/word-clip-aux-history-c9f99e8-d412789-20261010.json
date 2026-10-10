@@ -1,0 +1,493 @@
+{
+  "schema": 1,
+  "scope": "Committed-history only; no assertion of past gate passes or new execution validation.",
+  "range": {
+    "base": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+    "head": "d412789fcea7896da0f6553f9ca3966be70805ad"
+  },
+  "files": [
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "compat/legacy/scene_snapshot.cpp",
+      "before_sha256": "80f2c356cf458d995c89bf3e35c6e5539c8906fe23c37d28c15fd379cd14fa18",
+      "after_sha256": "b5611c499a9a8500d381e8368c0fb2030a03499e3a3bb997ae0f612c76a770d3",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "compat/legacy/scene_snapshot.hpp",
+      "before_sha256": "9151090479d58c5c06242a10d61d6cca550784997cdd4a9d4dbd44eb8da8c313",
+      "after_sha256": "7bf5a558d7c8361617331523e1fc80dc61a285c5a9d2c36395f2abf5c812f868",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "compat/legacy/world_resources.cpp",
+      "before_sha256": "cfbca3efc3a1b258ced01b8bac08496bd4567f124fb4bea490a40c93abfc72cb",
+      "after_sha256": "2da404f70d690a8b86b4f605ebc8ecc6c62303e52559329b075152c636e3aab5",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "compat/legacy/world_resources.hpp",
+      "before_sha256": "da01617cc0d96f03537e5db41014c32319baf9196496ca17a0d0d482948a0194",
+      "after_sha256": "7cdbbbedcdca0907c164ebd20b4378ecb183a65560530d88efabed1a1e58b484",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f0e2fa870fa87184ab601b777f3fb8494ab84e7b5c35828b6de9ca6abd72e41c",
+      "after_sha256": "b259fa8c025455752c35da0847ce67eeac17ad315fb3580a3884755c7064f305",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "6a4b9db7407ae439c6c02ccebc095e3dff36bf70c7199a79c6807e7144bed6d8",
+      "after_sha256": "8927d7902957874acccab47093e92aa4425b8dd81e5285f03a28a2092494ddbe",
+      "receipts": [],
+      "classification": "append_only_journal"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "research/runtime/coverage/native-world-prepared-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "91e493f78c70deaa5e8c42440385b06c9635ee7f043e923bde0ad18477a33564",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "aad5fa354d34a2b4a0214233532cfaaa37978f4c1b5096128118c7b23a4d2e23",
+      "after_sha256": "7d15e2f10db3c97ab7d74555dd8b1c5e5d380dd72368e77c2ebdb16d96a372ef",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "research/runtime/coverage/source-index-world-prepared-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "56ac339dca181f9aa98cea503a7c864fe63de6b4685edb932d6bc20504bac3f5",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "3a26cccc9d1ea332d7ac216f83c28255e27e3751b65be540a77a228c247b08d6",
+      "after_sha256": "eef211c44626c85e80acc319dd0c8e26ac336341d9af0ffeb238e884a03221f4",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "research/runtime/native-world-prepared-admission-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "03eb25348ea80d0e10a3bae24b54bac1b016a4b6244513281a7cf010f02f3e30",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "research/runtime/native-world-prepared-admission.md",
+      "before_sha256": null,
+      "after_sha256": "3f16355a81891db641d17eca4d33a7e3623e638a958ce60c5271dcda5cdb3139",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "research/runtime/native-world-prepared-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "022df98d80f508b865b2f66a5d0cd7fccbb3d165ee248017a124598ffe41b219",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "tests/canvas-world-test.cpp",
+      "before_sha256": "d362af2c4703d46b452d64bf821a93505274d617230e2f7c38b8350b801c11f2",
+      "after_sha256": "506b91fb9f253575d2f64ef22bf39cc05723904985d2d3c1926be444a6bd4b10",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "tests/native-render-soak.cpp",
+      "before_sha256": "d30e6a0442fdea4d07c73ec74a8f5ca03f5fd72b567b985f15459fa922c3c8f6",
+      "after_sha256": "27279ccb576f04adae5a64f953e820ad9af8baf5869993fcb1741cfe8a1a3a45",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "parent": "c9f99e82680b541cc4c569bfb4f85aabe23f535e",
+      "path": "tools/test-native-render-soak.py",
+      "before_sha256": "3e675ae16956cf02b52eb5de6933535957b33f670aa463748f68be70f25d40e4",
+      "after_sha256": "ab6c0592f3ec6880b772b11998739e73b67c5c63bf55b0fe95f733333205f869",
+      "receipts": [
+        "native-world-prepared-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/canvas_world.cpp",
+      "before_sha256": "d9148b4e10018f87b773adf4acb60b59d9b952a638ab272fee9a02d0badd59f6",
+      "after_sha256": "d6a33acb2f948ba5e097d8d609acc641a8261cc597e71118a875c3c1b693a658",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/canvas_world.hpp",
+      "before_sha256": "c67ab4db3dbaaafebe59a55526b14df941779f1d8305510d2150a4038156f772",
+      "after_sha256": "08e8a2ded094f232fae424f8f8435bcb7a3a6c299741b17f1cd46b54c7f81060",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/world-rolling/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "558d394d31c0dcc599a1cac4309288953b733f5e857ac6f9934e7bd393487f71",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/world_rolling_channel.cpp",
+      "before_sha256": null,
+      "after_sha256": "73c89b63ab2cb7ef9ae29330054ae3093b0ebff2cee75cf6fc603f118f39ec64",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/world_rolling_channel.hpp",
+      "before_sha256": null,
+      "after_sha256": "3d2e8fe626eaca9046450c6a9f00925d7bc8fe9fb1dabee07081acd2098e371e",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/world_rolling_packet.cpp",
+      "before_sha256": null,
+      "after_sha256": "f4d2b7c568741aef8acc400b0effe7ae6fff878a0e639310b62339108a653d32",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/world_rolling_packet.hpp",
+      "before_sha256": null,
+      "after_sha256": "1c1e888406011ad46fb26652fa8ac4000c2723275ed5deaf37cd1b8ed53b9cdf",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/world_rolling_session.cpp",
+      "before_sha256": null,
+      "after_sha256": "5a999fa90524616fc7e00e2ff1c5d1ff220ca06e4b72b9a89f93c4c8539c8ffc",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "compat/legacy/world_rolling_session.hpp",
+      "before_sha256": null,
+      "after_sha256": "5d130275e03d9313bfc2988fbe9619d8243abf2086eb3f24ceee17ae00bbab0b",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "protocols/include/mnm/world_rolling_v1.h",
+      "before_sha256": null,
+      "after_sha256": "21c279fde51ea0e31d346fba054df754b7d4e376bec609d005dafb78e0e4f2bf",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "94aa14d12600e857b9b4868e21c79b48f13c9cee0bfef796db7c67dff1d0415e",
+      "after_sha256": "dc91d5e21e8e47646acead95f4b444adeb52086d6fd9cd7791b6d850af51f7db",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/formats/native-world-rolling-v1.md",
+      "before_sha256": null,
+      "after_sha256": "27c3387f6b9256d9feabdd058ed80ea21768237ea1f8d7e9b3fe9d4ac7f348d3",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "b259fa8c025455752c35da0847ce67eeac17ad315fb3580a3884755c7064f305",
+      "after_sha256": "36d736520519c6a35dda5079ddf90adf57c4ff5f06249308115b963efa68c2e2",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "8927d7902957874acccab47093e92aa4425b8dd81e5285f03a28a2092494ddbe",
+      "after_sha256": "4cd1350c34bd566e80b2ed8e6c990c9aae54649b83054368bea7d7ce8703aaf4",
+      "receipts": [],
+      "classification": "append_only_journal"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/coverage/native-world-rolling-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1b9822502c5178438c1f433acfb3645e7fa673aa7efb3b5d7a8f3aadcb578ae7",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "7d15e2f10db3c97ab7d74555dd8b1c5e5d380dd72368e77c2ebdb16d96a372ef",
+      "after_sha256": "bc284516941353ef60e5631b14c2a10cc08d45741cfb04380d0986c08af6d5a3",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/coverage/source-index-world-rolling-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e9f24d07befd8c1ec9369f09a8e7c6b082485b27dcbc3c175ad0759f22b67a44",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "eef211c44626c85e80acc319dd0c8e26ac336341d9af0ffeb238e884a03221f4",
+      "after_sha256": "e7959898f91831ed1c74e5589743fe3dc99bc459bf34ddba4674d023ba1f3b01",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/native-world-prepared-admission-rolling-source-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "3163817e4c259c847ffe95a238274f0911431e331ca38ce6867276ac504c9c85",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/native-world-rolling-budget-refusal-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "cbc92866b4a3916e596b518009e3ca666ec0626367202c1e63d1131c84a986ab",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/native-world-rolling-default-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c08cf949f0b3f7110dcb00093386d216a0583a0731f937c2c9bbd153e4d96705",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/native-world-rolling-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "864f265ec8a204baeafa6e19e01ae9eac4d339f403850da5a4131eefcbd057fb",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/native-world-rolling-gl33-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ac2e8935f94ea3275d5fc1f463e51f8d537c3a8f7b69347d8d8aa3a673947112",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "research/runtime/native-world-rolling.md",
+      "before_sha256": null,
+      "after_sha256": "6a0edf3618699ec626fa55838a26a770b9d7d8247e82159f24c561da3f667e47",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "tests/native-world-rolling.cpp",
+      "before_sha256": null,
+      "after_sha256": "4d74dba4c42e9d3427209876f8c8aff764c79d110e0cd8b102a2a5918373b249",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "tests/native-world-rolling/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "87ff685aaa1985be0bdac845f9a7942d9143d82558a45f4c0448ee8a7208e730",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "tests/world-rolling-channel-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "a487ee81a97fbbcd7a1d5c1365b3b251c42252c22508b491bd53f0fa00df20e2",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d412789fcea7896da0f6553f9ca3966be70805ad",
+      "parent": "ae448bafed7f4881f19cafa2a9234e66a5d0eb69",
+      "path": "tools/test-native-world-rolling.py",
+      "before_sha256": null,
+      "after_sha256": "279ed9be49d9ca10ce3fa5312798775155bc404b4543bb47159b948ecf8d0649",
+      "receipts": [
+        "native-world-rolling-exact-review-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    }
+  ],
+  "unresolved_gaps": [],
+  "reviewed_transitions": 44,
+  "unresolved_count": 0
+}

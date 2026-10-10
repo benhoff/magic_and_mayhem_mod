@@ -10,7 +10,7 @@ int mnm_word_sprite_clip_admit(const uint8_t *f, size_t bytes,
                              const MnmWordCanvas *c, const MnmWordClip *clip,
                              int32_t ax, int32_t ay, MnmWordClippedDraw *out) {
     if (!f || !c || !clip || !out || bytes<40 || bytes>4*1024*1024 ||
-        word(f)!=bytes || word(f+28)!=UINT32_MAX || word(f+32) || word(f+36) ||
+        word(f)!=bytes || word(f+28)!=UINT32_MAX ||
         !c->pixels || !c->width || !c->height || c->width>2048 || c->height>2048 ||
         c->stride_words<c->width || c->stride_words>4096 ||
         (size_t)c->stride_words*c->height*2>c->bytes ||
@@ -36,8 +36,16 @@ int mnm_word_sprite_clip_admit(const uint8_t *f, size_t bytes,
     d.source_bottom=limit(clip->bottom-top,d.height);
     size_t table=40+(size_t)d.height*8;
     if (table>bytes) return MNM_WORD_INVALID;
+    /* Only the main word plane is drawn. Opaque auxiliary payloads stay owned
+     * by the original caller; their earliest offset bounds our colour reads. */
+    size_t plane_end=bytes;
+    for (unsigned i=0;i<2;++i) {
+        uint32_t auxiliary=word(f+32+i*4);
+        if (auxiliary && (auxiliary<table || auxiliary>bytes)) return MNM_WORD_INVALID;
+        if (auxiliary && auxiliary<plane_end) plane_end=auxiliary;
+    }
     size_t control=word(f+40), colour=word(f+44), pixel_base=colour;
-    if (control<table || colour<control || colour>bytes) return MNM_WORD_INVALID;
+    if (control<table || colour<control || colour>plane_end) return MNM_WORD_INVALID;
     for (uint32_t y=0; y<d.height; ++y) {
         if (word(f+40+y*8)!=control || word(f+44+y*8)!=colour)
             return MNM_WORD_INVALID;
@@ -47,7 +55,7 @@ int mnm_word_sprite_clip_admit(const uint8_t *f, size_t bytes,
             uint32_t n=f[control++];
             if (n>d.width-x || (opaque && !n)) return MNM_WORD_INVALID;
             if (opaque) {
-                if (colour>bytes || n>(bytes-colour)/2) return MNM_WORD_INVALID;
+                if (colour>plane_end || n>(plane_end-colour)/2) return MNM_WORD_INVALID;
                 d.opaque_pixels+=n;
                 uint32_t begin=x>d.source_left?x:d.source_left;
                 uint32_t end=x+n<d.source_right?x+n:d.source_right;
