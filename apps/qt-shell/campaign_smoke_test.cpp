@@ -88,7 +88,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(run->done||!s.ready)return;
         if(run->thread&&run->thread!=s.thread){finish(false,"Menu engine thread changed");return;}
         run->thread=s.thread;
-        if(run->stage>=3&&run->stage<=6&&(s.screen==3||s.screen==MNM_MENU_DEFEAT_SCREEN||s.screen==MNM_MENU_RESULT_SCREEN)){
+        if(run->stage>=3&&run->stage<=7&&(s.screen==3||s.screen==MNM_MENU_DEFEAT_SCREEN||s.screen==MNM_MENU_RESULT_SCREEN)){
             finish(false,QString("Campaign left gameplay unexpectedly (screen %1)").arg(s.screen));return;
         }
         QString action,step;
@@ -243,6 +243,6 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     session.winePrefix=QFileInfo(path).dir().filePath("wineprefix");
     session.preferencesStorePath=QFileInfo(path).dir().filePath("config/engine-preferences.json");
     const int timeoutMs=qEnvironmentVariableIntValue("MNM_CAMPAIGN_TIMEOUT_MS");
-    QTimer::singleShot(timeoutMs>0?timeoutMs:300000,&window,[finish]{finish(false,"Campaign flow exceeded five minutes");});
+    QTimer::singleShot(timeoutMs>0?timeoutMs:300000,&window,[finish]{finish(false,"Campaign flow exceeded configured deadline");});
     QTimer::singleShot(0,&window,[click]{click("launchGame");});
 }

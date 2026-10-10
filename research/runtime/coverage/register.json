@@ -22523,6 +22523,7 @@
         "apps/qt-shell/frame_stream.hpp",
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
         "apps/qt-shell/live_command_renderer.cpp",
         "apps/qt-shell/live_command_renderer.hpp",
         "apps/qt-shell/render_control.cpp",
@@ -22634,6 +22635,7 @@
         "runtime/render/owned_dc_selftest.h",
         "runtime/render/owned_session.h",
         "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
@@ -22647,6 +22649,7 @@
         "runtime/shadow/win32_min.h",
         "tools/build-menu-observer.py",
         "tools/build-render-bridge.py",
+        "tools/campaign-healing-input.py",
         "tools/original-manifest.sh",
         "tools/prepare-shadow-experiment.py",
         "tools/profile-render-stream.py"
@@ -22854,6 +22857,7 @@
         "runtime/render/owned_dc_selftest.h",
         "runtime/render/owned_session.h",
         "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
@@ -22910,7 +22914,10 @@
         "NR.presentation-damage.synthetic-20261010",
         "HOST.native-portrait.damage-negative-20261010",
         "HOST.native-portrait.passed-20261010",
-        "HOST.native-campaign.fireball-portrait-passed-20261010"
+        "HOST.native-campaign.fireball-portrait-passed-20261010",
+        "HOST.native-campaign.final-portrait-slow-20261010",
+        "HOST.native-campaign.final-portrait-profiled-slow-20261010",
+        "HOST.native-pacer.sleep0-slow-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22936,6 +22943,7 @@
         "renderer/pixel_rows.cpp",
         "renderer/surface_backend.cpp",
         "renderer/surface_copy.cpp",
+        "runtime/render/pacer_yield.h",
         "tools/campaign-healing-input.py",
         "tools/menu-game-runner.py",
         "tools/native_render_config.py",
@@ -22988,6 +22996,7 @@
         "apps/qt-shell/campaign_smoke_test.hpp",
         "apps/qt-shell/healing_smoke_test.cpp",
         "apps/qt-shell/main.cpp",
+        "runtime/render/pacer_yield.h",
         "tools/build-menu-observer.py",
         "tools/build-render-bridge.py",
         "tools/campaign-healing-input.py",
@@ -23160,6 +23169,7 @@
         "runtime/render/owned_dc_selftest.h",
         "runtime/render/owned_session.h",
         "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
@@ -23385,6 +23395,7 @@
         "runtime/render/owned_dc_selftest.h",
         "runtime/render/owned_session.h",
         "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
@@ -23582,6 +23593,7 @@
         "runtime/render/owned_dc_selftest.h",
         "runtime/render/owned_session.h",
         "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
@@ -23785,6 +23797,7 @@
         "runtime/render/owned_dc_selftest.h",
         "runtime/render/owned_session.h",
         "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
@@ -24193,6 +24206,7 @@
         "runtime/render/owned_dc_selftest.h",
         "runtime/render/owned_session.h",
         "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
@@ -24403,6 +24417,7 @@
         "runtime/render/owned_dc_selftest.h",
         "runtime/render/owned_session.h",
         "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
@@ -24436,6 +24451,110 @@
         "tools/run-qt-shell.sh",
         "tools/test-native-campaign.py"
       ]
+    },
+    {
+      "id": "HOST.native-pacer-yield",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Scoped cooperative yield in original native-session frame wait",
+      "scope": "Intentional native hosting policy: guard pinned original pacing import load and whole busy-loop bytes plus loaded GetTickCount import identity; yield Sleep0 only for original busy-loop returnPC0x4e3f8b in configured live native command session, then forward original GetTickCount with entry LastError preserved. Other call sites, clock epoch/return bits, game speed, frame limit, wait target and pacing instructions remain original. Disable yield on closed/refused/failed/stopping native command lifecycle flags. Bounded synthetic guard/return/LastError/policy checks and prospective gameplay/portrait rates; no precise scheduling/physics/timing equivalence or native simulation replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5127744,
+          "scope": "Original no-skip frame target at0x6dbe95 and GetTickCount busy wait0x4e3f89..0x4e3f93; this policy preserves instructions/target and cooperatively yields only at returned callPC0x4e3f8b."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-portrait-rendering.md",
+        "research/runtime/world-tick-loop.md",
+        "research/runtime/native-portrait-cpu-profile-20261010.json"
+      ],
+      "implementation": [
+        "runtime/render/pacer_yield.h",
+        "runtime/render/bridge.c",
+        "tools/menu-game-runner.py"
+      ],
+      "tests": [
+        "tests/campaign-pacer-reference.c",
+        "tools/test-native-pacer.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-pacer.fixture-20261010",
+        "HOST.native-campaign.final-portrait-slow-20261010",
+        "HOST.native-campaign.final-portrait-profiled-slow-20261010",
+        "HOST.native-pacer.sleep0-slow-20261010",
+        "HOST.native-pacer.sleep1-gap-20261010",
+        "HOST.native-pacer.overlap-negative-20261010",
+        "HOST.native-pacer.zero-fixture-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "apps/qt-shell/main.cpp",
+        "runtime/render/bridge.c",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/shadow/win32_min.h",
+        "tests/campaign-pacer-reference.c",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/campaign-healing-input.py",
+        "tools/decode-cfg.py",
+        "tools/encode-cfg.py",
+        "tools/menu-game-runner.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-opengl-game.py",
+        "tools/run-qt-shell.sh",
+        "tools/test-native-campaign.py",
+        "tools/test-native-pacer.py"
+      ]
+    },
+    {
+      "id": "HOST.native-smoke-cleanup",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Retain bounded private cleanup after malformed auxiliary profile",
+      "scope": "Public native smoke finally block catches malformed/truncated auxiliary publication JSON, records failure, then stops exact owned monitor/shell groups, kills only its Wine prefix, stops private display and performs after-original-manifest verification before final report. Mocked public-runner failure-path fixture with no original execution; quota recovery remains separate historical manual evidence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-campaign-extended-gameplay.md"
+      ],
+      "implementation": [
+        "tools/test-native-campaign.py"
+      ],
+      "tests": [
+        "tests/campaign-cleanup-test.py"
+      ],
+      "evidence": [
+        "HOST.native-smoke.cleanup-fixture-20261010",
+        "HOST.native-smoke.cleanup-fixture-v4-20261010",
+        "HOST.native-smoke.cleanup-fixture-v5-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -47022,6 +47141,204 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-pacer.fixture-20261010",
+      "kind": "native_integration",
+      "scope": "Synthetic PE32 byte/caller/state/clock/LastError guards, not scheduling equivalence",
+      "record": "research/runtime/native-pacer-fixture-20261010.json",
+      "sha256": "9a5f7b099fb0dcbd68d8993585c3ba59a7b74991cdd289ffec775ace1442d2c8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.final-portrait-slow-20261010",
+      "kind": "live_observation",
+      "scope": "Failed combined portrait performance; normal Quit completed",
+      "record": "research/runtime/native-campaign-final-portrait-slow-20261010.json",
+      "sha256": "b78503bed7d8a1c07bfdbd75b0f6c02367d4c49422868110d67748bb2051555f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.final-portrait-profiled-slow-20261010",
+      "kind": "live_observation",
+      "scope": "Reproduced failed portrait performance with exact owned CPU profile",
+      "record": "research/runtime/native-campaign-final-portrait-profiled-slow-20261010.json",
+      "sha256": "c03a20731b28d2c707f47290c70a1c8768b05db36091ebc358f3409dfdff3d04",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-pacer.sleep0-slow-20261010",
+      "record": "research/runtime/native-pacer-sleep0-slow-20261010.json",
+      "kind": "live_observation",
+      "scope": "Failed Sleep0 combined run: 25 portrait cycles61.499sec,57.264interior sec16.6946FPS native/paint. Genuine Fireball110to90 and melee/blocked casts precede portrait; resumed random orders cause original wizard death at8,73, then native Main stage7 timeout. No native portrait or complete workflow pass.",
+      "sha256": "893e4226eb3a750557cbd1998959921e862ebfe4e0822909c46cf8a4a0309e40",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-pacer.sleep1-gap-20261010",
+      "record": "research/runtime/native-pacer-sleep1-gap-20261010.json",
+      "kind": "live_observation",
+      "scope": "Retained failed prototype with no status promotion",
+      "sha256": "d570bdb03c83a49635d505989fc64b797eb317d4a93be4cc8ffc2e5d10797997",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-pacer.overlap-negative-20261010",
+      "record": "research/runtime/native-pacer-overlap-negative-20261010.json",
+      "kind": "live_observation",
+      "scope": "Retained failed prototype with no status promotion",
+      "sha256": "e68fbd5d728ff7555ced378ed6ff87032f1b8c64ad73a5a28042c16b1d61023a",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-smoke.cleanup-fixture-20261010",
+      "record": "research/runtime/native-smoke-cleanup-fixture-20261010.json",
+      "kind": "native_integration",
+      "scope": "Mocked actual public runner retains owned cleanup and manifest after truncated auxiliary JSON",
+      "sha256": "2104bc8b0b1f0db703a0de35709eb34cc96b309ac13fae7c13e2770966de028c",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-smoke.cleanup-fixture-v4-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-smoke-cleanup-fixture-v4-20261010.json",
+      "sha256": "ebe4d7e1a7f3fea5977b3756ae8b48e5a1efa58bd4f3328601e729c70fa6eb24",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ],
+      "scope": "Source-bound synthetic fixture only; no original runtime or complete gameplay equivalence."
+    },
+    {
+      "id": "HOST.native-pacer.zero-fixture-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-pacer-zero-fixture-20261010.json",
+      "sha256": "62cfaf614e24a4812b6ae5a89ab2bdf059dd8e90d6542e1fed68516c66c72e8f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ],
+      "scope": "Source-bound synthetic fixture only; no original runtime or complete gameplay equivalence."
+    },
+    {
+      "id": "HOST.native-smoke.cleanup-fixture-v5-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-smoke-cleanup-fixture-v5-20261010.json",
+      "sha256": "08a5756943bbe0125ba0449c8575dd5b62c89304425262ac9147d991c75a035f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ],
+      "scope": "Source-bound synthetic fixture only; no original runtime or complete gameplay equivalence."
     }
   ],
   "classifications": [],
@@ -53929,6 +54246,38 @@
       "evidence": [
         "HOST.native-campaign.healing-passed-20261010"
       ]
+    },
+    {
+      "id": "native-pacer-portrait-session-20261010",
+      "level": "live_observation",
+      "scope": "Guarded native cooperative original wait yielding, successful original spell/combat, stationary portrait recenter60seconds and native menu/resume/normal Quit with strict20/10FPS/two-second floors. Original game speed/frame target retained; original simulation/drawing retained; precise timing/physics/hardware/replacement equivalence excluded.",
+      "behaviors": [
+        "HOST.native-pacer-yield"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/campaign-pacer-reference.c",
+        "tools/test-native-pacer.py"
+      ],
+      "evidence": [
+        "HOST.native-pacer.sleep0-slow-20261010"
+      ]
+    },
+    {
+      "id": "native-smoke-cleanup-fixture-20261010",
+      "level": "headless",
+      "scope": "Mocked actual public runner failure after truncated auxiliary JSON: monitor/shell/display owned stop order, exact Wine prefix, failed report and both immutable manifest calls; no game or Wine execution.",
+      "behaviors": [
+        "HOST.native-smoke-cleanup"
+      ],
+      "tests": [
+        "tests/campaign-cleanup-test.py"
+      ],
+      "evidence": [
+        "HOST.native-smoke.cleanup-fixture-20261010",
+        "HOST.native-smoke.cleanup-fixture-v4-20261010",
+        "HOST.native-smoke.cleanup-fixture-v5-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -54257,8 +54606,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-healing-20261010.json",
-    "sha256": "0fc5f5c8d105d3792b892af4f79c854b93846c94393b405c254bdd390092b901"
+    "path": "research/runtime/coverage/source-index-native-wait-findings-20261010.json",
+    "sha256": "5bd95abe0c2474855e04b02eced81250675264de1bb230fb74c280f378a6fedc"
   },
   "claim_bindings_required": true
 }

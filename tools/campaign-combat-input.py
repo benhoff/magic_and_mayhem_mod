@@ -181,7 +181,7 @@ def main():
                     predicted=(max(90,min(650,400+32*(tx-ty))),max(100,min(430,300+16*(tx+ty-tz)-22)))
                     record('ranged-target-projection',wizard=actor,enemy=enemy,logical_point=list(predicted))
                     spent=0
-                    for px,py in (predicted,(400,270),(400,240),(430,270),(370,270)):
+                    for px,py in (predicted,(400,220),(400,200),(420,225),(380,225),(400,270),(400,240),(430,270),(370,270)):
                         mana_before=state()[wizard['slot']]['mana']
                         begin=read_rows(trace)[-1][0];click(477,575);time.sleep(.25);click(px,py,3);time.sleep(1)
                         effects=player_fireball_damage(read_spell_rows(args.experiment/'spell-events.bin'),owner,wizard['slot'])
