@@ -130139,6 +130139,45 @@
         ],
         "reason": "Executed claims and all required source fingerprints match final sources. Portrait45.52native/32.83paint FPS,worst16.53; whole phases41.39/30.44 and58.56/38.66,worst16.41/17.04;zero fallback/recovery. Native texture conversion touches61.51percent fewer pixels than full conversion for this actual command sequence. Stable face max error1,successful controlled-creature count0/15-to1/15,twelve original Zombie enemy damage events and wizard8-to0 finishing hit.2,927 original files verify before/after; all declared sources remain unchanged. Synthetic pixel fixtures,354 incremental frames/30 refusals,14 evidence guard cases and3 exact config tests passed; complete timing/pixel/hardware/replacement equivalence is excluded."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "b80fe02383ddb63384fe8e2bdc5b91427ea8a195680cc1a5c6636d396a28286c",
+          "before_sha256": "52ca5be4d2e0ac9fcb6ac8e520b83065dc9d2af2c38f24c9ec04a89fe7f99006",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "6140e4e814772c083ac635add8a8f9820e4a7054e4fc10f9bbea32fdef0cfc69",
+          "before_sha256": "60fe277864182dfcd08a6be6c4c0c6f248470f27a37025a2ed2d6094d2f53d2a",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "c08a09f16f905baac907bca43f82e4e05040135b224902a80a985b6a9cfa92ff",
+          "before_sha256": "cd6940f285e1a6ff115bbe3637bf179e42cf6c7d4d67de286abc1568bb7be276",
+          "id": "HOST.native-command-launch"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "fb023624e51cc67b2b6019396df644b8b6917005fd576c72f62d0bd520d3f160",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-campaign-history-review-5c086ce-ab40f5a.json"
+        },
+        {
+          "after_sha256": "559427081907fd6ffa004fcea3d1df31af2f722bc6f0aa42793912079f8b1f89",
+          "before_sha256": "bf0208f651c72481aee03fada1aa94864ff2d8230c7b89ada868e80953fb9300",
+          "path": "tests/native-campaign-smoke.md"
+        }
+      ],
+      "id": "native-portrait-protocol-history-review-20261010",
+      "pending_gaps": [],
+      "reason": "Reviewed all 29 committed file transitions in 5c086ce..ab40f5a against exact parent/current SHA-256 receipts with zero unresolved gaps. Corrected smoke protocol wording to distinguish the historical portrait failures from the later bounded passing correction and the native no-draw-skip cadence policy.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Documentation and retrospective accounting only. Existing portrait live evidence is preserved unchanged; this correction adds no new execution or scheduling equivalence claim."
+      }
     }
   ]
 }
