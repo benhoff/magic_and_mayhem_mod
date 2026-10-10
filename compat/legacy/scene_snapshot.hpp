@@ -36,16 +36,21 @@ class SnapshotResources final {
 public:
     SnapshotResources(const assets::AssetStore&,assets::ResourceManager&);
     void add(const assets::ResourceId&,const std::string& sprite,const QByteArray& expectedSha256);
+    // World retains the pinned decode and indexes visuals only when requested.
+    // Ordinary snapshot addition retains eager indexing and lazy residency.
+    void addPrepared(assets::PreparedResource&&,const QByteArray& expectedSha256);
     BoundFrame resolve(const SnapshotFrame&,bool ownedColours=false) const;
     BoundFrame resolve(const SnapshotFrameIdentity&,bool ownedColours=false) const;
     SnapshotBindingStats stats() const { return stats_; }
 private:
-    struct Candidate {BoundFrame binding;QByteArray visual;mutable std::uint64_t checkedRevision=0;};
+    struct PinnedFile {QByteArray sha;std::uint64_t revision=0;};
+    struct Candidate {BoundFrame binding;mutable QByteArray visual;mutable std::uint64_t checkedRevision=0;std::shared_ptr<PinnedFile> pinned={};};
     const assets::AssetStore& store_;
     assets::ResourceManager& resources_;
     std::map<QByteArray,std::vector<Candidate>> index_;
     std::size_t files_=0,frames_=0;
     mutable SnapshotBindingStats stats_;
+    void index(const assets::ResourceId&,const QByteArray&,const QByteArray&,const assets::Sprite&,std::optional<assets::PreparedResource>&);
 };
 struct SnapshotDisplay {
     struct Gap {std::size_t record;std::int32_t kind;std::uint32_t token;std::string reason;};

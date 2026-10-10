@@ -42,6 +42,9 @@ def main():
     parser.add_argument('--p95-ms', type=float, default=100)
     parser.add_argument('--max-ms', type=float, default=250)
     parser.add_argument('--rss-growth-mib', type=float, default=32)
+    parser.add_argument('--cold-admission', action='store_true', help='Validate retained preparation and on-demand visual indexing with an explicit cold-queue budget')
+    parser.add_argument('--cold-median-ms', type=float, default=250)
+    parser.add_argument('--cold-max-ms', type=float, default=350)
     args = parser.parse_args()
     if not 4 <= args.iterations <= 10000 or not 1 <= args.rounds <= 10000:
         parser.error('Iterations must be4..10000; rounds1..10000')
@@ -49,18 +52,23 @@ def main():
         parser.error('Seed must fit uint32')
     if not 0 < args.median_ms <= args.p95_ms <= args.max_ms or args.rss_growth_mib <= 0:
         parser.error('Require positive ordered latency limits and positive memory-growth limit')
+    if not 0 < args.cold_median_ms <= args.cold_max_ms:
+        parser.error('Require positive ordered cold latency limits')
     corpus = args.corpus.resolve()
     register = json.loads((ROOT / 'research/runtime/coverage/register.json').read_text())
-    behavior = next(b for b in register['behaviors'] if b['id'] == BEHAVIOR)
-    scenario = next(s for s in register['scenarios'] if s['id'] == SCENARIO)
+    behavior_id = 'NR.world-prepared-admission' if args.cold_admission else BEHAVIOR
+    scenario_id = 'native-world-prepared-admission-20261010' if args.cold_admission else SCENARIO
+    behavior = next(b for b in register['behaviors'] if b['id'] == behavior_id)
+    scenario = next(s for s in register['scenarios'] if s['id'] == scenario_id)
     sources = {name: sha(ROOT / name) for name in sorted(required_sources(behavior))}
-    claims = [dict(behavior=BEHAVIOR,
+    claims = [dict(behavior=behavior_id,
                    contract_sha256=behavior_contract(behavior, {b['id']: b for b in register['builds']}),
-                   scenarios={SCENARIO: scenario_contract(scenario)})]
+                   scenarios={scenario_id: scenario_contract(scenario)})]
     parent = ROOT / 'working/tests/native-render-soak'
     parent.mkdir(parents=True, exist_ok=True)
     output = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
     print(output, flush=True)
+    (output / 'prospective-claims.json').write_text(json.dumps(dict(sources=sources, claims=claims), indent=2) + '\n')
     env = {**os.environ, 'QT_QPA_PLATFORM': 'xcb', 'LIBGL_ALWAYS_SOFTWARE': '1',
            'LP_NUM_THREADS': os.environ.get('LP_NUM_THREADS', '8')}
     if args.gl33:
@@ -172,8 +180,13 @@ def main():
                    and s['scratch_pixels'] == sessions[0]['scratch_pixels'] for s in sessions), 'Repeated identical sessions grew scratch storage'
         passed = (latency['median'] <= args.median_ms and latency['p95'] <= args.p95_ms
                   and latency['max'] <= args.max_ms and growth <= args.rss_growth_mib * 1024 * 1024)
+        cold_latency = distribution(cold)
+        if args.cold_admission:
+            passed = passed and cold_latency['median'] <= args.cold_median_ms and cold_latency['max'] <= args.cold_max_ms
         report['performance_budget'] = dict(passed=passed, warm_native_work_ms=latency,
-                                            cold_native_work_ms=distribution(cold),
+                                            cold_native_work_ms=cold_latency,
+                                            cold_budget_enforced=args.cold_admission,
+                                            cold_median_limit_ms=args.cold_median_ms, cold_max_limit_ms=args.cold_max_ms,
                                             median_limit_ms=args.median_ms, p95_limit_ms=args.p95_ms,
                                             max_limit_ms=args.max_ms, rss_growth_bytes=growth,
                                             rss_growth_limit_bytes=args.rss_growth_mib * 1024 * 1024)

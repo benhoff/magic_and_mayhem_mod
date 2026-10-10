@@ -12,17 +12,23 @@ std::uint32_t word(const QByteArray& b,qsizetype at){
     return p[0]|std::uint32_t(p[1])<<8|std::uint32_t(p[2])<<16|std::uint32_t(p[3])<<24;
 }
 std::int32_t signedWord(std::uint32_t n){std::int32_t v;std::memcpy(&v,&n,4);return v;}
-QByteArray hash(const QByteArray& b){return QCryptographicHash::hash(b,QCryptographicHash::Sha256);}
+QByteArray hash(const QByteArray& b){
+    // Reuse the per-thread SHA context; repeated one-shot construction needlessly
+    // repeats provider lookup on hosts where Qt uses the OpenSSL backend.
+    thread_local QCryptographicHash digest(QCryptographicHash::Sha256);
+    digest.reset();digest.addData(b);return digest.result();
+}
 }
 QByteArray spriteVisualIdentity(const assets::Sprite& sprite,const assets::SpriteFrame& f){
-    QByteArray out;out.reserve(qsizetype(f.opaqueMask.size()*3));
+    QByteArray out;out.resize(qsizetype(16+f.opaqueMask.size()*3));
+    auto* bytes=out.data();std::size_t at=0;
     for(auto word:{f.width,f.height,std::uint32_t(f.originX),std::uint32_t(f.originY)})
-        for(unsigned i=0;i<4;++i)out.append(char(word>>(i*8)));
+        for(unsigned i=0;i<4;++i)bytes[at++]=char(word>>(i*8));
     for(std::size_t i=0;i<f.opaqueMask.size();++i){std::uint16_t pixel=0;
         if(f.opaqueMask[i]&&sprite.storage==assets::SpriteStorage::rgb565)pixel=std::get<std::vector<std::uint16_t>>(f.pixels)[i];
         else if(f.opaqueMask[i]){const auto c=sprite.palettes.at(*f.paletteIndex)[std::get<std::vector<std::uint8_t>>(f.pixels)[i]];
             pixel=std::uint16_t((c.red>>3)<<11|(c.green>>2)<<5|(c.blue>>3));}
-        out.append(char(f.opaqueMask[i]));out.append(char(pixel));out.append(char(pixel>>8));
+        bytes[at++]=char(f.opaqueMask[i]);bytes[at++]=char(pixel);bytes[at++]=char(pixel>>8);
     }
     return hash(out);
 }
@@ -70,14 +76,34 @@ void SnapshotResources::add(const assets::ResourceId& id,const std::string& path
     const auto input=std::get<std::vector<std::uint8_t>>(std::move(read));
     const QByteArray bytes(reinterpret_cast<const char*>(input.data()),qsizetype(input.size()));
     if(expected.size()!=64||hash(bytes).toHex()!=expected)throw std::invalid_argument("Pinned snapshot SPR hash mismatch");
-    auto decoded=assets::decodeSprite(input);if(const auto* e=std::get_if<assets::SpriteError>(&decoded))throw std::runtime_error(e->detail);
+    auto decoded=assets::decodeSprite(input);
+    if(const auto* e=std::get_if<assets::SpriteError>(&decoded))throw std::runtime_error(e->detail);
     const auto& sprite=std::get<assets::Sprite>(decoded);
     if(sprite.version!=4||frames_+sprite.frames.size()>65536)throw std::invalid_argument("Snapshot SPR version/frame budget exceeded");
+    resources_.bind(id,{assets::ResourceImageFormat::sprite,path,{},{},{}});
+    std::optional<assets::PreparedResource> prepared;
+    index(id,bytes,expected,sprite,prepared);
+}
+void SnapshotResources::addPrepared(assets::PreparedResource&& resource,const QByteArray& expected){
+    if(files_>=256||resource.id().kind!=assets::ResourceKind::ui)throw std::invalid_argument("Snapshot prepared resource count/namespace invalid");
+    const auto& input=resource.sourceImage();
+    const QByteArray bytes(reinterpret_cast<const char*>(input.data()),qsizetype(input.size()));
+    if(expected.size()!=64||hash(bytes).toHex()!=expected)throw std::invalid_argument("Pinned prepared snapshot SPR hash mismatch");
+    const auto id=resource.id();std::optional<assets::PreparedResource> prepared(std::move(resource));
+    const auto* sprite=std::get_if<assets::Sprite>(&prepared->resource().image);
+    if(!sprite)throw std::invalid_argument("Snapshot preparation is not a SPR");
+    index(id,bytes,expected,*sprite,prepared);
+}
+void SnapshotResources::index(const assets::ResourceId& id,const QByteArray& bytes,const QByteArray& expected,const assets::Sprite& sprite,std::optional<assets::PreparedResource>& prepared){
+    if(sprite.version!=4||frames_+sprite.frames.size()>65536)throw std::invalid_argument("Snapshot SPR version/frame budget exceeded");
+    const auto pinned=prepared?std::make_shared<PinnedFile>(PinnedFile{expected,0}):nullptr;
     std::vector<std::pair<QByteArray,Candidate>> additions;
     for(std::size_t i=0;i<sprite.frames.size();++i){const auto& f=sprite.frames[i];
-        additions.push_back({frameIdentity(bytes.mid(f.sourceOffset,f.encodedSize),sprite.storage==assets::SpriteStorage::indexed8),{{id,i},spriteVisualIdentity(sprite,f)}});
+        // Raw identities still cover every frame. World visual identities are
+        // computed only when requested, against this exact pinned preparation.
+        additions.push_back({frameIdentity(bytes.mid(f.sourceOffset,f.encodedSize),sprite.storage==assets::SpriteStorage::indexed8),{{id,i},pinned?QByteArray{}:spriteVisualIdentity(sprite,f),0,pinned}});
     }
-    resources_.bind(id,{assets::ResourceImageFormat::sprite,path,{},{},{}});
+    if(prepared)pinned->revision=resources_.adopt(std::move(*prepared)).revision;
     for(auto& addition:additions)index_[addition.first].push_back(std::move(addition.second));
     ++files_;frames_+=sprite.frames.size();
 }
@@ -87,13 +113,31 @@ BoundFrame SnapshotResources::resolve(const SnapshotFrame& frame,bool ownedColou
 BoundFrame SnapshotResources::resolve(const SnapshotFrameIdentity& frame,bool ownedColours) const{
     const auto it=index_.find(frame.digest());if(it==index_.end())throw std::out_of_range("Unmapped observed frame content");
     const auto& candidates=it->second;
-    for(const auto& c:candidates)if(c.visual!=candidates.front().visual&&!(ownedColours&&frame.indexed()))
+    const bool paletteIndependent=ownedColours&&frame.indexed();
+    for(const auto& c:candidates){
+      if(paletteIndependent && &c!=&candidates.front())continue;
+      if(c.visual.isEmpty()){
+        const auto& owned=resources_.load(c.binding.resource);
+        if(c.pinned&&owned.revision==c.pinned->revision){
+            const auto& sprite=std::get<assets::Sprite>(owned.image);
+            c.visual=spriteVisualIdentity(sprite,sprite.frames.at(c.binding.frame));
+        }else{
+            // A never-requested frame cannot use a subsequently changed resident
+            // image as its baseline. Re-pin before deriving its expected pixels.
+            auto baseline=assets::prepareResource(resources_.request(c.binding.resource),{},c.pinned->sha.toStdString());
+            const auto& sprite=std::get<assets::Sprite>(baseline.resource().image);
+            c.visual=spriteVisualIdentity(sprite,sprite.frames.at(c.binding.frame));
+        }
+      }
+    }
+    for(const auto& c:candidates)if(!paletteIndependent&&c.visual!=candidates.front().visual)
         throw std::out_of_range("Ambiguous observed frame with different native palette pixels");
     const auto& choice=candidates.front();const auto& owned=resources_.load(choice.binding.resource);
     const auto& sprite=std::get<assets::Sprite>(owned.image);
     if(choice.checkedRevision!=owned.revision){
         ++stats_.visualChecks;
-        if(choice.binding.frame>=sprite.frames.size()||spriteVisualIdentity(sprite,sprite.frames[choice.binding.frame])!=choice.visual)
+        if(choice.binding.frame>=sprite.frames.size()||
+           (!(choice.pinned&&choice.pinned->revision==owned.revision)&&spriteVisualIdentity(sprite,sprite.frames[choice.binding.frame])!=choice.visual))
             throw std::out_of_range("Native resource changed since pinned identity indexing");
         // Manager resources are immutable while resident. Every reload/adoption
         // gets a fresh revision; failed checks never publish that revision.

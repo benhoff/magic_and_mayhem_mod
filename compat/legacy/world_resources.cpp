@@ -76,11 +76,14 @@ std::vector<WorldAssetFile> WorldCatalogue::needed(const std::vector<SnapshotFra
         needed.insert(it->second);}
     std::vector<WorldAssetFile> result;for(auto i:needed)result.push_back(files_[i]);return result;
 }
-WorldResources::WorldResources(const assets::AssetStore& store,assets::ResourceManager& resources):catalogue_(store),bindings_(store,resources){}
+WorldResources::WorldResources(const assets::AssetStore& store,assets::ResourceManager& resources):catalogue_(store),resources_(resources),bindings_(store,resources){}
 std::vector<render::SceneDraw> WorldResources::display(const WorldFrame& frame){
     std::vector<SnapshotFrameIdentity> identities;identities.reserve(frame.draws.size());
     for(const auto& draw:frame.draws)if(!draw.additive&&!draw.colourRectangle)identities.push_back(identities_.identity(draw.frame));
-    for(const auto& f:catalogue_.needed(identities))if(!bound_.count(f.id)){bindings_.add(f.id,f.path,f.sha);bound_.insert(f.id);}
+    std::vector<WorldAssetFile> needed;
+    for(const auto& f:catalogue_.needed(identities))if(!bound_.count(f.id))needed.push_back(f);
+    for(const auto& f:needed){resources_.bind(f.id,{assets::ResourceImageFormat::sprite,f.path,{},{},{}});
+        bindings_.addPrepared(assets::prepareResource(resources_.request(f.id),{},f.sha.toStdString()),f.sha);bound_.insert(f.id);}
     std::vector<render::SceneDraw> draws;draws.reserve(frame.draws.size());std::size_t i=0;
     for(const auto& draw:frame.draws){
         if(draw.additive||draw.colourRectangle){draws.push_back(worldPrimitiveDraw(draw));continue;}
