@@ -23323,6 +23323,142 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.world-cpu-composition-reuse",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded decoded-frame reuse and ordered CPU destination sampling",
+      "scope": "Intentional native CPU preparation/composition policy: exact indexed-tag/owned-encoded-frame LRU retains immutable decoded SPR frames, at most4096 entries/64MiB encoded+decoded vector capacities excluding object/map/list/shared-pointer overhead. Valid oversized frames bypass; invalid closed inputs/decoder failures never cache or evict; retained frame handles survive eviction. Per-draw palettes/effect tables remain independent. RGB565 blends read their own current destination; admitted nonnegative0..16 displacement offsets with left-to-right traversal preserve pre-draw samples without whole-canvas/mask copies. Existing undefined destination/sample checks, clipping, shadow, draw order, wire, AX and CPU/GPU guards remain. No original simulation, fresh live-hook/ABI replacement or hardware-general FPS claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-cpu-composition.md"
+      ],
+      "implementation": [
+        "renderer/canvas_sequence.cpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp"
+      ],
+      "tests": [
+        "tests/canvas-sequence-test.cpp",
+        "tools/test-world-resource-reuse.py",
+        "tools/compare-world-cpu-original.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-history-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/world-raster-batch-reference.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-raster-reference.hpp",
+        "tools/compare-world-cpu-original.py",
+        "tools/coverage_claims.py",
+        "tools/original-manifest.sh",
+        "tools/test-world-resource-reuse.py"
+      ],
+      "validation_domain": "Six native tests including V2 minimap adapter regression, direct/indexed cache separation, caller-byte mutation, palette changes, LRU/count/capacity/oversized bypass and malformed retry, blend/positive-or-zero displacement snapshot equality with clipped/transparent/repeated draws and undefined/negative/out-of-bounds refusal. Same owned default V1 first16 map2/zero-items closed corpus compared with unchanged HEAD59388b1 prechange Debug binary at all1058 checkpoints. Precise pinned No-CD original entries and low16 AX at all23843 captured raster requests compared offline through FIFO; historical capture source hashes remain provenance, not current hook evidence. Every actual compiler dependency and build/test/declaration/helper input reviewed. Original oracles never enter native storage. New V2 minimap motion branches, unobserved original callers and unbounded gameplay excluded.",
+      "evidence": [
+        "NR.world-cpu-composition-reuse.native-20261010",
+        "NR.world-cpu-composition-reuse.preminimap-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -45066,6 +45202,124 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.world-cpu-composition-reuse.native-20261010",
+      "kind": "native_integration",
+      "scope": "Closed owned V1 first16 map2/zero-items source-only CPU/GPU replay: all1058 prechange and independently captured checkpoints equal; six native tests; every23843 exact original intermediate/low16 AX matched offline. Historical capture supplies input provenance only; no fresh live replacement or benchmark FPS claim.",
+      "record": "research/runtime/native-world-cpu-composition-native-20261010.json",
+      "sha256": "30f427abe1b063dc1c7f2ac5b585b4b21ad11c0ae718d470038ba58981697b0e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/checkpoints_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/completed",
+          "equals": 1058
+        },
+        {
+          "pointer": "/native_tests_passed",
+          "equals": 6
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_comparison/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_comparison/precise_rasters_equal",
+          "equals": 23843
+        },
+        {
+          "pointer": "/original_comparison/caller_ax_equal",
+          "equals": 23843
+        }
+      ]
+    },
+    {
+      "id": "NR.world-cpu-composition-reuse.preminimap-20261010",
+      "kind": "native_integration",
+      "scope": "Closed owned V1 first16 map2/zero-items source-only CPU/GPU replay: all1058 prechange and independently captured checkpoints equal; six native tests; every23843 exact original intermediate/low16 AX matched offline. Historical capture supplies input provenance only; no fresh live replacement or benchmark FPS claim.",
+      "record": "research/runtime/native-world-cpu-composition-preminimap-20261010.json",
+      "sha256": "ec2c3653e7f3fe57e85ff3947f9bd6ab4058e85be04ad0f24889213649a19c15",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/checkpoints_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/completed",
+          "equals": 1058
+        },
+        {
+          "pointer": "/native_tests_passed",
+          "equals": 6
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_comparison/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_comparison/precise_rasters_equal",
+          "equals": 23843
+        },
+        {
+          "pointer": "/original_comparison/caller_ax_equal",
+          "equals": 23843
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -51910,6 +52164,23 @@
       "evidence": [
         "NR.minimap-interactive-presentation.live-20261010"
       ]
+    },
+    {
+      "id": "world-cpu-composition-replay-20261010",
+      "scope": "Closed owned V1 first16 map2/zero-items source-only CPU/GPU replay: all1058 prechange and independently captured checkpoints equal; six native tests; every23843 exact original intermediate/low16 AX matched offline. Historical capture supplies input provenance only; no fresh live replacement or benchmark FPS claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.world-cpu-composition-reuse"
+      ],
+      "tests": [
+        "tests/canvas-sequence-test.cpp",
+        "tools/test-world-resource-reuse.py",
+        "tools/compare-world-cpu-original.py"
+      ],
+      "evidence": [
+        "NR.world-cpu-composition-reuse.native-20261010",
+        "NR.world-cpu-composition-reuse.preminimap-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -52238,8 +52509,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-minimap-interactive-20261010.json",
-    "sha256": "8d3cc1c906c69481f84cf8ea9856616ccd60230c9eb3b257c8dd7c1f0e42300a"
+    "path": "research/runtime/coverage/source-index-world-cpu-composition-20261010.json",
+    "sha256": "19e84b0ea6bcdc517de5e4576cab303f5dd92f5962d16a2410ed1f32a7f3359c"
   },
   "claim_bindings_required": true
 }

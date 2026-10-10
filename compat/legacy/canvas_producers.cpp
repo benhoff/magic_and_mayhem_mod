@@ -26,7 +26,7 @@ render::Rect rect(const CanvasProducer &c) {
   return {signedWord(r[10]), signedWord(r[11]), signedWord(r[12]),
           signedWord(r[13])};
 }
-assets::SpriteFrame frame(const CanvasProducer &c, bool indexed) {
+assets::SpriteFrame decodeFrame(const CanvasProducer &c, bool indexed) {
   const auto size = c.fields[19];
   const unsigned base = 24 + (indexed ? 768 : 0) + 4;
   std::vector<std::uint8_t> spr(base + size);
@@ -43,6 +43,44 @@ assets::SpriteFrame frame(const CanvasProducer &c, bool indexed) {
   return std::move(std::get<assets::Sprite>(decoded).frames.at(0));
 }
 } // namespace
+CanvasFrameCache::CanvasFrameCache(CanvasFrameCacheLimits limits) : limits_(limits) {
+  if (!limits.frames || limits.frames > 4096 || !limits.bytes || limits.bytes > 64 * 1024 * 1024)
+    throw std::invalid_argument("Invalid producer decoded-frame cache limits");
+}
+bool CanvasFrameCache::Less::operator()(View a, View b) const {
+  if (a.indexed != b.indexed) return a.indexed < b.indexed;
+  if (a.size != b.size) return a.size < b.size;
+  return std::lexicographical_compare(a.data, a.data + a.size, b.data, b.data + b.size);
+}
+std::shared_ptr<const assets::SpriteFrame> CanvasFrameCache::frame(const CanvasProducer &c, bool indexed) {
+  const auto size = c.fields[19];
+  if (size < 40 || size > 1048576 || size > c.payload.size() ||
+      word(c.payload, 0) != size || word(c.payload, 28))
+    throw std::invalid_argument("Unclosed producer frame cache input");
+  const View view{indexed, c.payload.data(), size};
+  if (auto found = entries_.find(view); found != entries_.end()) {
+    ++stats_.hits;
+    recent_.splice(recent_.begin(), recent_, found->second.recent);
+    return found->second.frame;
+  }
+  // Decode failures neither enter the cache nor evict previously valid frames.
+  auto decoded = std::make_shared<const assets::SpriteFrame>(decodeFrame(c, indexed));
+  ++stats_.decodes;
+  Key key{indexed, {c.payload.begin(), c.payload.begin() + size}};
+  auto bytes = key.encoded.capacity() + decoded->opaqueMask.capacity();
+  std::visit([&](const auto &plane) { bytes += plane.capacity() * sizeof(plane[0]); }, decoded->pixels);
+  for (const auto &plane : decoded->auxiliaryData) bytes += plane.capacity();
+  if (bytes > limits_.bytes) { ++stats_.bypasses; return decoded; }
+  while (entries_.size() >= limits_.frames || bytes > limits_.bytes - stats_.bytes) {
+    auto victim = entries_.find(*recent_.back());
+    stats_.bytes -= victim->second.bytes;
+    recent_.pop_back(); entries_.erase(victim); ++stats_.evictions;
+  }
+  auto inserted = entries_.emplace(std::move(key), Entry{decoded, bytes, {}}).first;
+  recent_.push_front(&inserted->first); inserted->second.recent = recent_.begin();
+  stats_.bytes += bytes; stats_.frames = entries_.size();
+  return decoded;
+}
 void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::uint8_t> &b, bool complete) {
   if (b.size() < 64 || b.size() > (!std::memcmp(b.data(), "MNMPRO02", 8) ? 512u : 128u) * 1024 * 1024 ||
       (std::memcmp(b.data(), "MNMPRO01", 8) && std::memcmp(b.data(), "MNMPRO02", 8)))
@@ -188,7 +226,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
       const auto raw = word(c.payload, p + 16 + k * 4);
       std::memcpy(&table[k], &raw, 4);
     }
-    canvases_.glyph(id, frame(c, true), signedWord(r[8]), signedWord(r[9]),
+    canvases_.glyph(id, *frames_.frame(c, true), signedWord(r[8]), signedWord(r[9]),
                     rect(c), {r[15], r[16], r[17]}, table);
     break;
   }
@@ -202,7 +240,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     if (r[20] == 64)
       for (unsigned k = 0; k < 16; ++k)
         offsets[k] = signedWord(word(c.payload, r[19] + k * 4));
-    canvases_.raster(id, frame(c, r[17] != 0), signedWord(r[8]),
+    canvases_.raster(id, *frames_.frame(c, r[17] != 0), signedWord(r[8]),
                      signedWord(r[9]), rect(c), r[14], signedWord(r[15]),
                      colours, offsets, r[20] == 64 ? r[16] : 16);
     break;
