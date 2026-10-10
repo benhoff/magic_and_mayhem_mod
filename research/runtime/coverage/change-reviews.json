@@ -206505,6 +206505,414 @@
         "evidence": [],
         "reason": "Generated report only; final audit has zero errors and explicit unrelated historical staleness. Execution evidence and remaining boundaries are reviewed in separate exact contract receipts."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "bd29faf8ecc210c16365df58e90153232e293945d02f21790a9d73723a71a85d",
+          "before_sha256": "bd29faf8ecc210c16365df58e90153232e293945d02f21790a9d73723a71a85d",
+          "id": "HOST.native-campaign-capture-retry"
+        },
+        {
+          "after_sha256": "31f25881ec97c86c64f14ef5770f2aa5a35adeb3e3c0f4d750799081a27164ec",
+          "before_sha256": "31f25881ec97c86c64f14ef5770f2aa5a35adeb3e3c0f4d750799081a27164ec",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "6ec81f4a8eb8fb8cb01745c55b20518e8e1cc318bddba3b9900cd1f2b4a76697",
+          "before_sha256": "6ec81f4a8eb8fb8cb01745c55b20518e8e1cc318bddba3b9900cd1f2b4a76697",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "9c52f3303a8ef749a9cf50984f73d266efed4efe2e6eb11f842643e6db63c3a5",
+          "before_sha256": "9c52f3303a8ef749a9cf50984f73d266efed4efe2e6eb11f842643e6db63c3a5",
+          "id": "HOST.native-campaign-movement-probes"
+        },
+        {
+          "after_sha256": "f76fea342e27ff349ffa17a0ff8c1772e99d886dcc56368b65bd9c038a78e85f",
+          "before_sha256": "f76fea342e27ff349ffa17a0ff8c1772e99d886dcc56368b65bd9c038a78e85f",
+          "id": "HOST.native-campaign-normal-quit"
+        },
+        {
+          "after_sha256": "4b15087443902cbb971bf04f37182fc177709f6153993ec20fa98939b3998785",
+          "before_sha256": "4b15087443902cbb971bf04f37182fc177709f6153993ec20fa98939b3998785",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "84d05a23ebd0c640050618f5b481e8b55c59218c55ff01ee76192127b5e90ec8",
+          "before_sha256": "84d05a23ebd0c640050618f5b481e8b55c59218c55ff01ee76192127b5e90ec8",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "5ff6250149c05505ae48aa0ce386a28b240a86913d96431d316bc9234a2857da",
+          "before_sha256": "5ff6250149c05505ae48aa0ce386a28b240a86913d96431d316bc9234a2857da",
+          "id": "HOST.native-campaign-spell-observation"
+        },
+        {
+          "after_sha256": "a6b479b74ee8eeb3adcd2c6565f378792ac33e2c16e9cd27b36c19494ed5edc8",
+          "before_sha256": "a6b479b74ee8eeb3adcd2c6565f378792ac33e2c16e9cd27b36c19494ed5edc8",
+          "id": "HOST.native-crowded-battle-stress"
+        },
+        {
+          "after_sha256": "761d3dde4a7062fa44e730f5ac6e32a8e76e145bac6a4342f83583335f0d2c50",
+          "before_sha256": "761d3dde4a7062fa44e730f5ac6e32a8e76e145bac6a4342f83583335f0d2c50",
+          "id": "HOST.native-healing-loadout"
+        },
+        {
+          "after_sha256": "b0ee2e2a18aacb3eeda1c23f8a1aab154e5b1b76c3448c7d92e320aae8cfd4d6",
+          "before_sha256": "b0ee2e2a18aacb3eeda1c23f8a1aab154e5b1b76c3448c7d92e320aae8cfd4d6",
+          "id": "NR.minimap-input-fixture"
+        },
+        {
+          "after_sha256": "8291b192bcd9dfb267e7727d8de47cf5d6df4f3af1b20b26d3c962dad4b18e4e",
+          "before_sha256": "8291b192bcd9dfb267e7727d8de47cf5d6df4f3af1b20b26d3c962dad4b18e4e",
+          "id": "NR.minimap-interactive-presentation"
+        },
+        {
+          "after_sha256": "4e6f8d853991be06ddac806b2a6e8b2eb70b385754a2d8b72f3d93393753de23",
+          "before_sha256": "4e6f8d853991be06ddac806b2a6e8b2eb70b385754a2d8b72f3d93393753de23",
+          "id": "NR.minimap-owned-observation"
+        },
+        {
+          "after_sha256": "43dfe2d7a55ebefd8b43694c5ca9788fb3346ef53fc280dd7b6e4598ebcee53e",
+          "before_sha256": "43dfe2d7a55ebefd8b43694c5ca9788fb3346ef53fc280dd7b6e4598ebcee53e",
+          "id": "NR.sprites"
+        },
+        {
+          "after_sha256": "af07b55d6f50977d8f6f822068a78dfa3cad80fa3c469fed4b58d9b5d3db21cf",
+          "before_sha256": "af07b55d6f50977d8f6f822068a78dfa3cad80fa3c469fed4b58d9b5d3db21cf",
+          "id": "NR.word-admission"
+        },
+        {
+          "after_sha256": "109a98ac36af5bb3007fd9d992cbe16421e1c99e2381439affb5c3377f6ecb18",
+          "before_sha256": null,
+          "id": "NR.word-cpu-clipping-admission"
+        },
+        {
+          "after_sha256": "ba64186a7cc5082cec6ce8f137c4b43ed645024ee73abb2f774861f0167da3f2",
+          "before_sha256": "ba64186a7cc5082cec6ce8f137c4b43ed645024ee73abb2f774861f0167da3f2",
+          "id": "NR.world-batch-extended-prefix"
+        },
+        {
+          "after_sha256": "59df6880a3677b0955466f0eea2c309417310815700942c76bc02cee586544ab",
+          "before_sha256": "59df6880a3677b0955466f0eea2c309417310815700942c76bc02cee586544ab",
+          "id": "NR.world-batch-profiling"
+        },
+        {
+          "after_sha256": "4a84a8043b2b8ad2475c6309d7d6f6ce675d1920e743b27b92466c4e5f2afde8",
+          "before_sha256": "4a84a8043b2b8ad2475c6309d7d6f6ce675d1920e743b27b92466c4e5f2afde8",
+          "id": "NR.world-batch-throughput"
+        },
+        {
+          "after_sha256": "671ccfdc909dad48bf86e8cef7a909331d918f44bfa0060042aad3a9a0d71403",
+          "before_sha256": "671ccfdc909dad48bf86e8cef7a909331d918f44bfa0060042aad3a9a0d71403",
+          "id": "NR.world-cpu-composition-reuse"
+        },
+        {
+          "after_sha256": "f6d78e92d48caf6fd3deef42346652d76896f41e2bb0d58dc844c59c717bea28",
+          "before_sha256": "f6d78e92d48caf6fd3deef42346652d76896f41e2bb0d58dc844c59c717bea28",
+          "id": "NR.world-frame-identity-cache"
+        },
+        {
+          "after_sha256": "7f7ebd3fcdb7fe8ef19d32f12f4ae871fc43246522318a66c3af3f651c1bf9a0",
+          "before_sha256": "7f7ebd3fcdb7fe8ef19d32f12f4ae871fc43246522318a66c3af3f651c1bf9a0",
+          "id": "NR.world-interactive-batch-launcher"
+        },
+        {
+          "after_sha256": "8a5d033d9d908d564a67ba505b28094829f4c0abb8b00c3121c7c71b963c5acb",
+          "before_sha256": "8a5d033d9d908d564a67ba505b28094829f4c0abb8b00c3121c7c71b963c5acb",
+          "id": "NR.world-live-history"
+        },
+        {
+          "after_sha256": "560c61ccb295db9ebe16e60384e50925e1794ec3f2b6d1883a2d5dc5bd5e2bfb",
+          "before_sha256": "560c61ccb295db9ebe16e60384e50925e1794ec3f2b6d1883a2d5dc5bd5e2bfb",
+          "id": "NR.world-producer-handoff"
+        },
+        {
+          "after_sha256": "49e0c9e0093ce906d68f789629b9bb911bdea86fc3f5165ad172bb0ebfa30c42",
+          "before_sha256": "49e0c9e0093ce906d68f789629b9bb911bdea86fc3f5165ad172bb0ebfa30c42",
+          "id": "NR.world-raster-batch-transport"
+        },
+        {
+          "after_sha256": "46aa7c66d4280f1499bc557844d8e4abfac54e3b55c4168b26abd60346274279",
+          "before_sha256": "46aa7c66d4280f1499bc557844d8e4abfac54e3b55c4168b26abd60346274279",
+          "id": "NR.world-resource-reuse"
+        },
+        {
+          "after_sha256": "61b95dcf6960fcf3b1919ff6fc1e488b53428779574f8446500e06ec84e60d00",
+          "before_sha256": "61b95dcf6960fcf3b1919ff6fc1e488b53428779574f8446500e06ec84e60d00",
+          "id": "NR.world-startup-launcher"
+        },
+        {
+          "after_sha256": "69ca6cb30f2da4a64fb01a33e1578698dfb3ae679b99431a91913903b015ef8c",
+          "before_sha256": "69ca6cb30f2da4a64fb01a33e1578698dfb3ae679b99431a91913903b015ef8c",
+          "id": "RS.minimap-camera-corners"
+        },
+        {
+          "after_sha256": "0d6bdb48d540d1857a3fbd01198650e5f26386dade930c0714e4435fbfb2aa26",
+          "before_sha256": "0d6bdb48d540d1857a3fbd01198650e5f26386dade930c0714e4435fbfb2aa26",
+          "id": "RS.minimap-cell-marker"
+        },
+        {
+          "after_sha256": "5f901c4038808e980f5ae97ea9717437995a3f68a5a13dec62241c3f5b9d89f0",
+          "before_sha256": "5f901c4038808e980f5ae97ea9717437995a3f68a5a13dec62241c3f5b9d89f0",
+          "id": "RS.minimap-creature-markers"
+        },
+        {
+          "after_sha256": "4a97b887416941ded4915cd7759401b12162d461dbcc1bbd362b9261fbc984d2",
+          "before_sha256": "4a97b887416941ded4915cd7759401b12162d461dbcc1bbd362b9261fbc984d2",
+          "id": "RS.minimap-terrain-raster"
+        },
+        {
+          "after_sha256": "0c705dc6fcccf1c3b8241a7c7360047eb9fd5282dd750d58a2489664c4430e2e",
+          "before_sha256": "0c705dc6fcccf1c3b8241a7c7360047eb9fd5282dd750d58a2489664c4430e2e",
+          "id": "RS.word-backend-state"
+        },
+        {
+          "after_sha256": "137bdbf190926718f72749a1dddc4d424557d375716040e140cd906eaa082427",
+          "before_sha256": "137bdbf190926718f72749a1dddc4d424557d375716040e140cd906eaa082427",
+          "id": "RS.word-clipping"
+        },
+        {
+          "after_sha256": "ef6fa297c5557126f72a8a2bd921a59857c9946c14c732087e7c63fed8bf5dd8",
+          "before_sha256": null,
+          "id": "RS.word-cpu-clipping"
+        },
+        {
+          "after_sha256": "65391f3627ceb69b115f100c551191d12badae20ae7ddd8dc708bb4775c1c9ab",
+          "before_sha256": "65391f3627ceb69b115f100c551191d12badae20ae7ddd8dc708bb4775c1c9ab",
+          "id": "RS.word-raster"
+        },
+        {
+          "after_sha256": "d4a008feb19831901eb124eb44761b4b89c32045b10958bf00c346ed97d80d0e",
+          "before_sha256": "d4a008feb19831901eb124eb44761b4b89c32045b10958bf00c346ed97d80d0e",
+          "id": "RS.word-route"
+        },
+        {
+          "after_sha256": "2d39ddddddb2fd90666ccde908aa602b475352bfbadfb563ccee21c35df88081",
+          "before_sha256": "2d39ddddddb2fd90666ccde908aa602b475352bfbadfb563ccee21c35df88081",
+          "id": "RS.world-producer-bypass"
+        },
+        {
+          "after_sha256": "73b763bfc198bd0e1cbcfd55b5ebe12666ee7b6ba65ee62f32e4d569a9459372",
+          "before_sha256": "73b763bfc198bd0e1cbcfd55b5ebe12666ee7b6ba65ee62f32e4d569a9459372",
+          "id": "RS.world-raster-batch-return"
+        },
+        {
+          "after_sha256": "8d514577beab483e9d74ff185e4d2fdc7710918248b0c3bb5933a4718cd63a69",
+          "before_sha256": "8d514577beab483e9d74ff185e4d2fdc7710918248b0c3bb5933a4718cd63a69",
+          "id": "RS.world-raster-queue-replacement"
+        },
+        {
+          "after_sha256": "4fde3fed4f5fa55085f9c4dc044c8269ffa43ee926d08110666fe7ad7b022ca1",
+          "before_sha256": "25735b5c3a6794e4ddd792752a976a9379b164f0c755bab148f45720dcbb9d41",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "5ce12f71f297f86adb9a4f622a5c80f720b35db6b992aa4b6b5fe406ad4bc5a6",
+          "before_sha256": "5ce12f71f297f86adb9a4f622a5c80f720b35db6b992aa4b6b5fe406ad4bc5a6",
+          "id": "TOOL.drawing-family-regressions"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "4cef77abdb5f5ce2a42dcfcf8f8406354fb9a8ae3ec3a6659208ce183f840707",
+          "before_sha256": "4cef77abdb5f5ce2a42dcfcf8f8406354fb9a8ae3ec3a6659208ce183f840707",
+          "path": "reconstruction/rendering/word_backend_state.c"
+        },
+        {
+          "after_sha256": "3f76d1b3eb2a4ce5974aa7ebcd9584d2a5a63e7887eaf67d37848c6064828f7f",
+          "before_sha256": "3f76d1b3eb2a4ce5974aa7ebcd9584d2a5a63e7887eaf67d37848c6064828f7f",
+          "path": "reconstruction/rendering/word_backend_state.h"
+        },
+        {
+          "after_sha256": "bb2d2bfa48a4941b51972040a9f2f2befe1333dc064de6f62cb118ac94dd7d6a",
+          "before_sha256": null,
+          "path": "renderer/sprites/word-clipped/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "11172af3b6e6409d10ce747dde1b1a325d61fa931d127ef5873eec446fabff5b",
+          "before_sha256": null,
+          "path": "renderer/sprites/word_clipped.c"
+        },
+        {
+          "after_sha256": "82ae0479efb1f5854adc958a78a12b5b0ec174554cd60c1b19d84f863a9419a7",
+          "before_sha256": null,
+          "path": "renderer/sprites/word_clipped.h"
+        },
+        {
+          "after_sha256": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+          "before_sha256": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+          "path": "renderer/sprites/word_raster.h"
+        },
+        {
+          "after_sha256": "9e4e6538ee4bf2f3bf881d89748b4f9e80eead8514feda1cdafef9c16d9e3512",
+          "before_sha256": null,
+          "path": "research/formats/word-cpu-clipping-results-v1.md"
+        },
+        {
+          "after_sha256": "4a86d0be431e2daffc9ffa02b42a605ad644918fbd730ec6931cfc959af2de91",
+          "before_sha256": "ed2e09a56f9f9a328353c3702207efeac60d811b0014dfd8bc50b546fed11183",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "2599452252d792c95d5a1573745af869dc04e5816c9666543685d471685b889a",
+          "before_sha256": "351fe0d7539d44383240c1167719990e794deb6e69ea00fd9284e4b67b92d9b1",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "fe02d305a1e0cdcc2aac6f20c5f453527852bf99a015a745316cfb0c1c67e8ba",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-word-cpu-20261010.json"
+        },
+        {
+          "after_sha256": "5505b3787b391a08fdf80be3ee485c05a0ca55421b66c99629b78495054bb5ad",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/word-cpu-history-review-89a3efa-3ff3fbe-20261010.json"
+        },
+        {
+          "after_sha256": "ad8a71baa16423de6d07f37aacd802a56a9eecaaca30fe91c3bcad4242b3a8b3",
+          "before_sha256": null,
+          "path": "research/runtime/word-cpu-clipping-null-output-failure-20261010.json"
+        },
+        {
+          "after_sha256": "f9d5b52e052051b392e49d1d59e44a17e2130425025dfa9002aecbf6f840e896",
+          "before_sha256": null,
+          "path": "research/runtime/word-cpu-clipping-original-20261010.json"
+        },
+        {
+          "after_sha256": "71982c7e966a5fa106e60dcdc9947672467314b33407181d35c7f072ae07e2de",
+          "before_sha256": null,
+          "path": "research/runtime/word-cpu-clipping.md"
+        },
+        {
+          "after_sha256": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+          "before_sha256": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+          "path": "runtime/scene/word_entry.S"
+        },
+        {
+          "after_sha256": "113851c9b6af2e3b7e9fc5e604bce8b321b1218ff708b1fef1ce2c96678bbe24",
+          "before_sha256": "113851c9b6af2e3b7e9fc5e604bce8b321b1218ff708b1fef1ce2c96678bbe24",
+          "path": "tests/word-backend-probe.S"
+        },
+        {
+          "after_sha256": "83d6b8bb2e7c10b801597b6dcc3b6a9a98e60be71b986565897ef35c1f8d50a6",
+          "before_sha256": null,
+          "path": "tests/word-clipped-reference.cpp"
+        },
+        {
+          "after_sha256": "bb7e89075fb9b8b412d32f16e03584488494974c49bb779bc44fa591f61362a8",
+          "before_sha256": null,
+          "path": "tests/word-clipped-test.c"
+        },
+        {
+          "after_sha256": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+          "before_sha256": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+          "path": "tools/original-manifest.sh"
+        },
+        {
+          "after_sha256": "b7a704035b3a4c3e9617024b2cdb82e25eede2f6800a197a4c5a787205ed0385",
+          "before_sha256": null,
+          "path": "tools/test-word-clipped.py"
+        },
+        {
+          "after_sha256": "f16742eb6423499a035ea00c9d7fb0c4c366627cc6e7b515d82fafb6dd27bcfe",
+          "before_sha256": "f16742eb6423499a035ea00c9d7fb0c4c366627cc6e7b515d82fafb6dd27bcfe",
+          "path": "tools/test-word-sprites.py"
+        }
+      ],
+      "id": "word-cpu-clipping-source-accounting-20261010",
+      "pending_gaps": [
+        "behaviors_without_comparison:591bd536fc35d6faa9a4f1820ef3f6504bd44abf1bab851ff265871d016e0ccc",
+        "behaviors_without_scenarios:bd433f3c77493740f708e55f30bbbdf8219eb9434995461f02a8374992e32b58",
+        "retired_execution_claims:1cfb5ad82d79eac94d028f8421cc14d64884c719dfe31486fd3e8283910054c0",
+        "retired_execution_claims:93c868f500876dd9fb07f108eac90be029189b17d8563c70b999985b04a0fb26",
+        "retired_execution_claims:de3f936e97a3ce6d52de5b926be788f5b01b0b03c3d8d480a002958143cc3c37",
+        "retired_execution_claims:e623b0132d39380ff1f7481a70473d77146ea2c2673120c63e3ff9f5e9f82ced",
+        "retired_execution_claims:e884d16c6e5755e6ea76361fc0e345c8e090f8aab9dfd2c66817166a1afb1782",
+        "stale_evidence:a0c817a9886bc1334a622c229c861dcca30554b7a7ce301532489e8f7b75c708"
+      ],
+      "reason": "Reviewed portable CPU half-open run clipping, complete preflight of visible and hidden contiguous streams, empty no-ops and bounded malformed/overlap/null refusal. Native code remains independent of recovered addresses and Qt. Reviewed original/state/production-entry comparison with actual native-handled counters; the host-only adapter composes the existing recovered workspace model without altering live admission or entry assembly. New census links also reuse unchanged source/test/header inputs; their additional roles are explicitly reviewed, not source edits or broader validation. Committed-history89a3efa..3ff3fbe has26 exact receipt transitions and no unresolved gaps. Preserve the initial null-output failure and its old source hashes alongside the corrected prospective rerun.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Fresh execution validates only the two new scoped CPU contracts, recorded separately. Existing GPU clipping, unclipped live routes, World/minimap, rendering-family and accounting contracts receive source-census/research-link accounting only; their historical statuses and fingerprints are retained without new equivalence claims. Native refusal has no original-malformed comparison by design; isolated recovered CPU/state composition has no live scenario. The failed pre-fix host run is historical/stale and its unbound scenario/report claims do not support a passing result. Win32 admission/LastError/reentry, live clipping, installed-asset generality and unmasked/full-stack/exception FP remain pending. Sanitized host boundary suite and independent original comparison pass after correction; coverage guard suites60+51 pass."
+      }
+    },
+    {
+      "id": "word-cpu-clipping-recorded-contracts-20261010",
+      "reason": "Record exact scoped implementation/comparison forRS.word-cpu-clipping and native-policy/headless integration forNR.word-cpu-clipping-admission; other reused/source-linked contracts remain pending in the source receipt. Positive requests actually execute native code; empty wrapper forwarding remains explicit.",
+      "files": [
+        {
+          "after_sha256": "bb2d2bfa48a4941b51972040a9f2f2befe1333dc064de6f62cb118ac94dd7d6a",
+          "before_sha256": null,
+          "path": "renderer/sprites/word-clipped/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "11172af3b6e6409d10ce747dde1b1a325d61fa931d127ef5873eec446fabff5b",
+          "before_sha256": null,
+          "path": "renderer/sprites/word_clipped.c"
+        },
+        {
+          "after_sha256": "82ae0479efb1f5854adc958a78a12b5b0ec174554cd60c1b19d84f863a9419a7",
+          "before_sha256": null,
+          "path": "renderer/sprites/word_clipped.h"
+        },
+        {
+          "after_sha256": "83d6b8bb2e7c10b801597b6dcc3b6a9a98e60be71b986565897ef35c1f8d50a6",
+          "before_sha256": null,
+          "path": "tests/word-clipped-reference.cpp"
+        },
+        {
+          "after_sha256": "bb7e89075fb9b8b412d32f16e03584488494974c49bb779bc44fa591f61362a8",
+          "before_sha256": null,
+          "path": "tests/word-clipped-test.c"
+        },
+        {
+          "after_sha256": "b7a704035b3a4c3e9617024b2cdb82e25eede2f6800a197a4c5a787205ed0385",
+          "before_sha256": null,
+          "path": "tools/test-word-clipped.py"
+        }
+      ],
+      "behaviors": [
+        {
+          "after_sha256": "109a98ac36af5bb3007fd9d992cbe16421e1c99e2381439affb5c3377f6ecb18",
+          "before_sha256": null,
+          "id": "NR.word-cpu-clipping-admission"
+        },
+        {
+          "after_sha256": "ef6fa297c5557126f72a8a2bd921a59857c9946c14c732087e7c63fed8bf5dd8",
+          "before_sha256": null,
+          "id": "RS.word-cpu-clipping"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "RS.word-cpu-clipping.original-20261010",
+          "NR.word-cpu-clipping-admission.sanitized-host-20261010"
+        ],
+        "reason": "Prospectively declared stable-source rerun passes4448 original/model and production-entry checks (all ten categories),4400 actual native positive requests and48 observed empty forwards. New CPU core under ASan/UBSan passes288 manual placements,43 atomic refusals and3 empty no-ops; freestanding PE32 compiles and compiler dependencies are accounted for. Original manifests before/after and pinned executable/signature guards pass. Host admission stand-in excludes Win32 access/logging/LastError/reentry, live bypass and unmasked/full-stack/exception floating behavior; no live status promotion."
+      }
+    },
+    {
+      "id": "word-cpu-clipping-generated-summary-20261010",
+      "reason": "Refresh generated coverage summary from the retained final audit. New scoped CPU comparison and native policy milestones remain separate from live admission; no whole-engine completion claim.",
+      "files": [
+        {
+          "after_sha256": "e50302acee979f9a7211603cc7a7fb60cc3161affd7ad5caa079c3da88202d1e",
+          "before_sha256": "7e2edd90e43fa17e66cb22428f3c988cddae99a735aa5834782ad5c388541093",
+          "path": "research/runtime/coverage/summary.md"
+        }
+      ],
+      "behaviors": [],
+      "pending_gaps": [],
+      "validation": {
+        "status": "not_required",
+        "evidence": [],
+        "reason": "Generated report only; final audit has zero errors. Initial failed source fingerprints and unrelated historical staleness remain explicit; original/native execution and promotions are covered by separate exact scoped receipts."
+      }
     }
   ]
 }
