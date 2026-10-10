@@ -14899,7 +14899,8 @@
         "NR.lifecycle-races.native-20261006",
         "NR.tracker.user-investigation-20261007",
         "NR.tracker.paired-observation-20261007",
-        "NR.tracker.ordering-synthetic-20261007"
+        "NR.tracker.ordering-synthetic-20261007",
+        "NR.copy-order.current-stress-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -47967,6 +47968,41 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NR.copy-order.current-stress-20261010",
+      "kind": "native_integration",
+      "scope": "Twelve actual synthetic PE32 ordered surface-history fixtures: cross-thread Blt/BltFast, writable Lock/Unlock, held DC release and Flip; bounded timeout and same-thread source-write reentry refuse uncertain histories. Identical metadata and RGB16 mixed mutation fixtures extend complete pixel coverage.418 independent complete native/GPU frame comparisons,7 valid END/ACK/retired-resource sessions and5 expected GAP refusals. Original-once counts, original HRESULT/LastError fixture assertions and no ordinary viewport uploads/readbacks checked. Private owned Wine prefix terminated by exact prefix. No original game/media/driver scheduling or hardware equivalence.",
+      "record": "research/runtime/native-surface-order-passed-20261010.json",
+      "sha256": "0ff781afbcb37255f9b8b6fc2a37d01b5223afabfb7f638c2cd284eb531cb2a3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/source_rechecked_for_registration",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 418
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 7
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 5
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -52728,7 +52764,8 @@
       ],
       "evidence": [
         "NR.copy-order.native-20261006",
-        "NR.copy-order.native-verified-20261006"
+        "NR.copy-order.native-verified-20261006",
+        "NR.copy-order.current-stress-20261010"
       ],
       "tests": [
         "runtime/render/mutation_selftest.h",

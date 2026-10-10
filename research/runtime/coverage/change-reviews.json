@@ -143893,6 +143893,340 @@
           "HOST.native-crowded.passed-20261010"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1c2a268a5461b2c7a0a7fb6cfd36725e78bb87956cef81793a33bfd49845cf7e",
+          "before_sha256": "915701f33fca69e64784bf1f2f71cb7c0341e1c33056a371f5ff9233a3d12368",
+          "id": "NR.bounded-copy-order"
+        },
+        {
+          "after_sha256": "432bec2d8ed7855eaa9dcd4bc35fa922b932b297f25d494c2ce2730b7a0b34a3",
+          "before_sha256": "c45d3df44595f17a2d42200baffbe888e72d714b789c72ab2d674c068f0ea49c",
+          "id": "NR.continuous-mutations"
+        },
+        {
+          "after_sha256": "ab631a9828d028928d27e5a5a5d455bdcda7b5d0ca41b1cfd5aef02f93fa8865",
+          "before_sha256": "9d3459408bc1ce1d4e560605afb61fe35b08398fbc7029eba22bdb2a0c7be4b3",
+          "id": "NR.observed-metadata-idempotence"
+        },
+        {
+          "after_sha256": "a280b6ea16e417b675f4a74fcc18e0a91d28bd54b0fb9d52bd7118410d7dc4b6",
+          "before_sha256": "b49f0bf9c10b3516f5cefe52eeb7bd0f6ef8c80c898f72eabaee67f918aa1331",
+          "id": "NR.real-game-command-shadow"
+        },
+        {
+          "after_sha256": "cc08134fa8a67265c03045c28e8b744647582de4cf4604870044a400ca015076",
+          "before_sha256": "d2716904bd7fc123a53296771620b98551a88c6e8fc5b8db570ef760675729f6",
+          "id": "RI.copies"
+        },
+        {
+          "after_sha256": "dca3e7376a5e4e328d6959acff9beed648e278c9ef5aa91badef7e8ddeb233a3",
+          "before_sha256": "5055e3d5b0cb50180e46601af659c9cfb0bc1fa154426e85568585b4143c18f9",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "27a55aa337b8199cef33c8ff75b552d4dff965d91848190d00c79face6407bd6",
+          "before_sha256": "9f241564f090cab5725ba5b123943b064e853f19a5f13b757d44a602c10292fd",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "d72f1975983589ab99367ecda7a12ac23d188b3f9aebe2d5cfbd98ccc47cc399",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-campaign-history-review-7f361b0-0df3a72.json"
+        },
+        {
+          "after_sha256": "da61b6b2beaa0fda725b98f4a1515b06e2f41d167bf4a8fdb6ff15f6b0c3fd98",
+          "before_sha256": "b2fa224f4f90f4abda0c6a739af6bd1e1c3cdb505fd7a6d6473e15f0b87d7e94",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "a85fe5849e946e4d1125ffca7441d02b02c67c2d7090d6978a45c7cb61d60f15",
+          "before_sha256": "3a1e3d44d1f26247089dd04c2a0c7e759c6eaa9da24d106555749dc4af8076b4",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "0ff781afbcb37255f9b8b6fc2a37d01b5223afabfb7f638c2cd284eb531cb2a3",
+          "before_sha256": null,
+          "path": "research/runtime/native-surface-order-passed-20261010.json"
+        },
+        {
+          "after_sha256": "37f1e422b609e8bdc2d55cdadc69b5fb6693def8c17137d863eb37e8b2d45183",
+          "before_sha256": "cb1a2f0bd7f69efe62c9d2daf97b35ba035d005b5983c122893e8dbfcf0770f8",
+          "path": "research/runtime/opengl-copy-order.md"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-copy-timeout-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "531ce8ed109c990ca93a7358a50e81c8254b70d8aea9a3462f97875dd394e2d5"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-copy-timeout-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "dea44fbfb66763ea71924b3cda9663eaf46e668606ad2a764be8b4bfae2a3d74"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-copy-timeout-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "fd9e0cd85516a409377fc60de82dc7e1f4a689a4c7c2c519f7dbf12361e8bc00"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-copy-timeout-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "95ce6e723aa31c9f229302004a3867913aa25752c1fa4f2c4727ffa26fa45f2d"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-copy-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "48fc10f69e8593edab30f822e2e597da1921ca7f39ecce8b4ca72a418a09a83f"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-copy-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "0c494f70ca587a795fdeb0a5f206626cc438f52403a2027c700dd08aa4519141"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-copy-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "fd9e0cd85516a409377fc60de82dc7e1f4a689a4c7c2c519f7dbf12361e8bc00"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-copy-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "6d877315d692d0522a1fe49411a3dc205646c0e726f4b999e453d0a75732df7c"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-dc-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "99b1c5daa4f7f2bea8d09d55390ad9c9c4802d1052a30feac73ba5081d71a2cf"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-dc-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "f6630e09c045ef6009f1a4ba332c9615becc358d9f358e30daf4fe3dbda9fcdf"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-dc-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "1ebf6d7c4e34e798b1651fcd525800d39ddbec772a117429b3b1b1a62d629c95"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-dc-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "6d877315d692d0522a1fe49411a3dc205646c0e726f4b999e453d0a75732df7c"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-fast-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "67e93e0ca9aa2211ed7ea939cd3832d498d013360161d8a17bafb7c998cf724b"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-fast-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "0c494f70ca587a795fdeb0a5f206626cc438f52403a2027c700dd08aa4519141"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-fast-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "fd9e0cd85516a409377fc60de82dc7e1f4a689a4c7c2c519f7dbf12361e8bc00"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-fast-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "6d877315d692d0522a1fe49411a3dc205646c0e726f4b999e453d0a75732df7c"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-flip-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "950fde03c9761371a7926d50d5a41b0932a7d07a37eef0ad8773016d0954a003"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-flip-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "562bfe110dfe38824325993326812b9e71950f1cb3dbbe780efed7f68d0b80d4"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-flip-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "dd3a9426805e68dfe39834b8095afd08b03b89c55be4728695fb2c61019ff61a"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-flip-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "70d1009a32df071288c4fd99fb959aabec365a7c01108122ae1eff2d7879d691"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-lock-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "945f1c35a121caacccc90c07010b10cfc441a8b80998c1fa93677076e21cdd40"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-lock-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "058f5a24310bc3e06063f700925c8f426ba81fb00976575402d70a416a4025ac"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-lock-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "15c367a59b2dc6899993f57277b8eea8b75122253407e28be86e2b037f4d079a"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-cross-lock-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "6d877315d692d0522a1fe49411a3dc205646c0e726f4b999e453d0a75732df7c"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-dc-timeout-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "7704464915ef42455f307ac8a007aecc0d34e18e9c0c6024af66ac767c3cfc12"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-dc-timeout-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "dea44fbfb66763ea71924b3cda9663eaf46e668606ad2a764be8b4bfae2a3d74"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-dc-timeout-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "1ebf6d7c4e34e798b1651fcd525800d39ddbec772a117429b3b1b1a62d629c95"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-dc-timeout-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "ef7757a2502a9f487bb0e92551e90cca905ac2e1261bdb3401f22940f4a212f1"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-flip-timeout-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "1819cf65f46e6b57d6a54a346b779474970c731b0cdb8038ba39823ab9544157"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-flip-timeout-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "dea44fbfb66763ea71924b3cda9663eaf46e668606ad2a764be8b4bfae2a3d74"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-flip-timeout-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "dd3a9426805e68dfe39834b8095afd08b03b89c55be4728695fb2c61019ff61a"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-flip-timeout-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "b05531422c4da29b3003af21d6172f894bab269e91464cfedf226cdb6f89fb9c"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-lock-timeout-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "4e60ce8a88f7a1219586a3e2736884bc7357e867c6e94b4ddf87987667d830e9"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-lock-timeout-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "dea44fbfb66763ea71924b3cda9663eaf46e668606ad2a764be8b4bfae2a3d74"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-lock-timeout-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "15c367a59b2dc6899993f57277b8eea8b75122253407e28be86e2b037f4d079a"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-lock-timeout-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "553b09d008c5e95c072c9249f6cd2a6ecf3f28ecc264ae78f84630cf8b9a0b84"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-meta16-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "3f8884c20867cc4aefe976357dba202d81e714fe21687cc431c6a122b6a7e4b5"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-meta16-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "620add380972a14b484522b681a65418c67be69b875c0a2483b56111cf5680d6"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-meta16-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "cfdc23d44e27095713d617b4debf097782425e33b5ddc9018c5ba0f590e3b34e"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-meta16-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "b7b9ea3b629835571e68f80b3facaeba07a0723aa31e068fde9a94491b88d65f"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-mx16-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "e286eac73c882569c0965407a8e68276613d1d85293b5543cfd3743317fdb08d"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-mx16-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "620add380972a14b484522b681a65418c67be69b875c0a2483b56111cf5680d6"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-mx16-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "28a84c73bbfbfa7ac3a50bf6aab7b91d2109ae1d865e7f30387ab93047c781b1"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-mx16-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "b7b9ea3b629835571e68f80b3facaeba07a0723aa31e068fde9a94491b88d65f"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-source-write-capture-lifecycle.log",
+          "before_sha256": null,
+          "after_sha256": "5d2f4edee44f6e390e0e283f7f47ed3f4e1b289602c7a27961e0f9bb3d14fea0"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-source-write-capture-session-00000001.bin",
+          "before_sha256": null,
+          "after_sha256": "24f75dc1d62808f3349087bb55d8dd7490f76ad7b1f98a9eb9041878b5e7b5ec"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-source-write-mutation-counts.bin",
+          "before_sha256": null,
+          "after_sha256": "fd9e0cd85516a409377fc60de82dc7e1f4a689a4c7c2c519f7dbf12361e8bc00"
+        },
+        {
+          "path": "research/runtime/native-surface-order-passed-20261010-source-write-mutation-frames.bin",
+          "before_sha256": null,
+          "after_sha256": "95ce6e723aa31c9f229302004a3867913aa25752c1fa4f2c4727ffa26fa45f2d"
+        }
+      ],
+      "id": "native-surface-order-current-proof-20261010",
+      "pending_gaps": [],
+      "reason": "Reviewed twelve actual PE32/GPU current-source ordered copy/lock/DC/flip and negative mutation fixtures,418 complete pixel comparisons,7valid orderly sessions and5expected GAP refusals. Linked new source-bound result without altering old evidence or original-driver claims. Reviewed27 exact committed transitions7f361b0..0df3a72 withzero receipt gaps.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh native integration proof applies only to the selected NR.bounded-copy-order contract; documents sharing other behavior scopes and original-driver/hardware equivalence retain pending limits. No renderer algorithm or tested source changed after execution.",
+        "evidence": []
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1c2a268a5461b2c7a0a7fb6cfd36725e78bb87956cef81793a33bfd49845cf7e",
+          "before_sha256": "915701f33fca69e64784bf1f2f71cb7c0341e1c33056a371f5ff9233a3d12368",
+          "id": "NR.bounded-copy-order"
+        }
+      ],
+      "files": [],
+      "id": "native-surface-order-current-proof-20261010-recorded",
+      "pending_gaps": [],
+      "reason": "Reviewed twelve actual PE32/GPU current-source ordered copy/lock/DC/flip and negative mutation fixtures,418 complete pixel comparisons,7valid orderly sessions and5expected GAP refusals. Linked new source-bound result without altering old evidence or original-driver claims. Reviewed27 exact committed transitions7f361b0..0df3a72 withzero receipt gaps.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Prospective unchanged-source twelve-case actual synthetic PE32/native GPU execution compares418 complete frames,7valid sessions and5explicit GAP refusals; original-once counts and original HRESULT/LastError checked. Full original scheduling/driver equivalence excluded. Metadata-only update names the new exact evidence without asserting historical reruns.",
+        "evidence": [
+          "NR.copy-order.current-stress-20261010"
+        ]
+      }
     }
   ]
 }
