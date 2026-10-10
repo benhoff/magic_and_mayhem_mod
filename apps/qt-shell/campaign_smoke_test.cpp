@@ -16,6 +16,7 @@
 #include <QJsonArray>
 #include <QScreen>
 #include <memory>
+#include <future>
 #include <QElapsedTimer>
 #include <QOpenGLWidget>
 #include <cstdio>
@@ -28,7 +29,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     const int stressSeconds=qEnvironmentVariableIntValue("MNM_CAMPAIGN_STRESS_SECONDS");
     const int cycles=qMax(1,qEnvironmentVariableIntValue("MNM_CAMPAIGN_MENU_CYCLES"));
     const bool castingCombat=qEnvironmentVariableIntValue("MNM_CAMPAIGN_CASTING_COMBAT")==1;
-    struct Run {int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;QElapsedTimer sampleClock;QJsonArray rates;int stage=0;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
+    struct Run {std::future<void> captureJob;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;QElapsedTimer sampleClock;QJsonArray rates;int stage=0;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
     auto run=std::make_shared<Run>();
     auto finish=[run,path,probe,&app](bool success,const QString& reason){
         if(run->done)return;
@@ -105,21 +106,28 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(run->done)return;
         const auto p=probe();
         const auto captureRequest=QFileInfo(path).dir().filePath("capture-request.json");
-        if(p.active&&QFileInfo::exists(captureRequest)){
+        if(p.active&&QFileInfo::exists(captureRequest)&&(!run->captureJob.valid()||run->captureJob.wait_for(std::chrono::seconds(0))==std::future_status::ready)){
             QFile file(captureRequest);
             if(file.open(QIODevice::ReadOnly)){
                 const auto request=QJsonDocument::fromJson(file.readAll()).object();const auto name=request.value("name").toString();file.close();
                 if(!name.isEmpty()&&name.size()<80&&!name.contains('/')&&!name.contains('\\')&&!name.contains("..")){
                     auto* viewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
-                    bool nativeSaved=false,originalSaved=false;
+                    QImage nativeImage,originalImage;
                     if(viewport&&viewport->isVisible()){
                         const auto rect=viewport->imageRect();const auto ratio=viewport->devicePixelRatioF();
-                        nativeSaved=viewport->grabFramebuffer().copy(QRect(qRound(rect.x()*ratio),qRound(rect.y()*ratio),qRound(rect.width()*ratio),qRound(rect.height()*ratio))).scaled(viewport->frameSize(),Qt::IgnoreAspectRatio,Qt::FastTransformation).save(QFileInfo(path).dir().filePath(name+"-native.png"));
+                        nativeImage=viewport->grabFramebuffer().copy(QRect(qRound(rect.x()*ratio),qRound(rect.y()*ratio),qRound(rect.width()*ratio),qRound(rect.height()*ratio))).scaled(viewport->frameSize(),Qt::IgnoreAspectRatio,Qt::FastTransformation);
                     }
                     FrameStream reference;
-                    if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin"))){const auto image=reference.nextFrame();originalSaved=!image.isNull()&&image.save(QFileInfo(path).dir().filePath(name+"-original.png"));}
-                    QSaveFile result(QFileInfo(path).dir().filePath(name+".json"));
-                    if(result.open(QIODevice::WriteOnly)){result.write(QJsonDocument(QJsonObject{{"native_saved",nativeSaved},{"original_saved",originalSaved},{"native_frames",qint64(p.frames)},{"painted_frames",qint64(p.paints)},{"fallback",p.fallback}}).toJson());result.commit();}
+                    if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))originalImage=reference.nextFrame();
+                    // Read back on the GL owner thread, then compress owned
+                    // image copies off the event loop. Keep one bounded job.
+                    const auto directory=QFileInfo(path).dir();
+                    run->captureJob=std::async(std::launch::async,[nativeImage,originalImage,directory,name,p]{
+                        const bool nativeSaved=!nativeImage.isNull()&&nativeImage.save(directory.filePath(name+"-native.png"));
+                        const bool originalSaved=!originalImage.isNull()&&originalImage.save(directory.filePath(name+"-original.png"));
+                        QSaveFile result(directory.filePath(name+".json"));
+                        if(result.open(QIODevice::WriteOnly)){result.write(QJsonDocument(QJsonObject{{"native_saved",nativeSaved},{"original_saved",originalSaved},{"native_frames",qint64(p.frames)},{"painted_frames",qint64(p.paints)},{"fallback",p.fallback}}).toJson());result.commit();}
+                    });
                 }
                 QFile::remove(captureRequest);
             }

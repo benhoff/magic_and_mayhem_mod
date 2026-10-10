@@ -128564,6 +128564,365 @@
         "evidence": [],
         "reason": "Qt shell and PE32 observer builds and existing seven fail-closed smoke tests pass. Negative execution confirms a real summon and independent 1/15 counts but does not establish full casting/combat flow or fresh shared engine equivalence. Final combat, native menu continuation, timing and new semantic rejection tests remain pending. Historical shared evidence is retained stale, without promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "86ef83f18cc1c06fc7da8d8638370cdeeb1b2ee3ee4cb2c4a0ee316c81ef9e77",
+          "before_sha256": "5c1eb98b497dc4a8179ebea8baa8a0b599cef0199627a76e775ef7a3fa3a0a18",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "4c5bfb914f5577a9ef82f5de543cc9a94d1a7f4064a922c2eb9e040cd01ee31a",
+          "before_sha256": "4232ada2e66c7c33556189352155fe75adc782fe0d715fb7eba8808d1fe08873",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "eefef044ab929d6740a37c3c69eb80d440260fec7ae109f3708e5ce6a298262f",
+          "before_sha256": "bc5dc024585ba71a079295a8d088e931b2e53577671d037d35acafdb342e441d",
+          "id": "HOST.native-command-launch"
+        },
+        {
+          "after_sha256": "1b0fdfbc29024359a687c5605dc9f750fc1cda3c8e1f0371bc2bdfa6f8ba164d",
+          "before_sha256": "5dfc1ccb51ebe67e2e6ee91c854ee956748955063e75b424026cae9141f22f5e",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "66f1c61c1efbce84e42bb01b83881362cc98d2d50b4e373be9e7e7b8b8244984",
+          "before_sha256": "922bf9d6397d09fa721800af2bd0b81326690679f639694ac68194b9ef14737b",
+          "path": "apps/qt-shell/campaign_smoke_test.cpp"
+        },
+        {
+          "after_sha256": "1d9fd2f55dfd2be25be3d32272579b79be6561ab28d8c8b88b21e44dadbda8e3",
+          "before_sha256": "df20d9a33081b142fb0b31d05e385c14edcf3208092a4f8583b8e4a4277520fb",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "93cc87158f9899b658ea167e269418fe1f4263e0138484fb7d73071006da748c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-campaign-history-review-3f106d9-52dcdf8.json"
+        },
+        {
+          "after_sha256": "e4bd548155c063d0e7dd94a4cba38c9be35b8c068ac09db3453879cbe878ed50",
+          "before_sha256": "1be6d054ac97ab9f3387ced5504e162f9ab89f1ccaecac6b51d594b2f77e2d7b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "c078c6bada73c1586d4f742829bd189a5ab86b48fc776a7ba83f581779a61d33",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-combat-party-20261010.json"
+        },
+        {
+          "after_sha256": "365f2716eea6524b4df9f4643fd38153d04db77d5399bb67ed916b8f61c77238",
+          "before_sha256": "5e9abe23cb6ade8eaccdcfff26fb6a33c12ba35fa9f1bdda501318d56aa5eadc",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "f17f7eac975af92a3acf375708c95d3dde260ff1a61700cb6052a293f7659bfe",
+          "before_sha256": "427e8d8661fbb94a37893fb71c36177a3fe6841ad1fee2ea5c1fd0a7731484a7",
+          "path": "research/runtime/native-campaign-casting-combat.md"
+        },
+        {
+          "after_sha256": "6c7b637f83ae953bae0fc39d502e416d230e6a0ba703e0d96ae4db2332544663",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-3-20261010.json"
+        },
+        {
+          "after_sha256": "4bd5eb2ba11d1ca4422573aa75b3e71d8469fb6cea257fed1ba6ad8dead07f8f",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-4-20261010.json"
+        },
+        {
+          "after_sha256": "13371e2492e36e9ac06ef6c4dc818c2dd1005fbd45c4f2186e8b20157a3027bf",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-5-20261010.json"
+        },
+        {
+          "after_sha256": "d30a2f174c020825079896261326d69bd16042a692acd1a97987b3601578d38d",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-6-20261010.json"
+        },
+        {
+          "after_sha256": "747a33bc8d4f5280f9b275c94640bec7f2f32d6da88531971dea09b24e3b0357",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-7-20261010.json"
+        },
+        {
+          "after_sha256": "1ae9a7e907702b37cc4b5d4f827f866c9aeb912f2071a2604e8ecac92c3f150d",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-8-20261010.json"
+        },
+        {
+          "after_sha256": "6d9e1e8bea48a08493fa8155fa99dc52bf88e949afc8498952dc535354bf8276",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-passed-20261010.json"
+        },
+        {
+          "after_sha256": "e6ac01844aadcd0240a6534103d9953e9be82bc24cf501beb6f0285dd76d0043",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-profile-20261010.json"
+        },
+        {
+          "after_sha256": "e963fc36c5c1b1752267c108ca9007df7e22cb270c2ae27c74e680536e088c28",
+          "before_sha256": "067abef52a8ad314454a75d6999fab86bc9aca28a9e3d340168c558dd1b74f7c",
+          "path": "runtime/menu/campaign_gameplay_observe.h"
+        },
+        {
+          "after_sha256": "9720eca7f95f32ec34a15c056ebeacc6b80f742beb654b80d9f38c55fa98beb6",
+          "before_sha256": "ffc7733e6bff855b71b2a0b6c545d84f505d2183a0f2663c72c3270b991675bf",
+          "path": "tests/native-campaign-smoke.md"
+        },
+        {
+          "after_sha256": "366d25990a38c92f23beeb406722ab734f4e63b34eac59e90e7e38641832ad2c",
+          "before_sha256": "fc71c0ec634534545862d0bee887eaa17daed3e6642f4713421f612886ed843f",
+          "path": "tests/test-native-campaign.py"
+        },
+        {
+          "after_sha256": "492be7aaaeb892c6ccc233960298687370da62bef91e4169ee4a8b50bd0a5989",
+          "before_sha256": "714e411304b5cfaeaaff90217bd6756614493635ba15fd79b5601fbc07daf334",
+          "path": "tools/campaign-combat-input.py"
+        },
+        {
+          "after_sha256": "5ad52f29bef23bc1a90a5a8caf653a7f0d63c8a8e3f0a67790cfbe90721bc329",
+          "before_sha256": "6cf069999fcf442de41c7d6149e7a1f671fb3da4a22612d51dad47fa5e88ff1f",
+          "path": "tools/campaign_gameplay.py"
+        },
+        {
+          "after_sha256": "edd11802e5dec4c073adb3c4bc7c8493689282d188bbc8cfa237bdfaaba089dd",
+          "before_sha256": "9e8f0520330d4b815893515404f5ca0f8ab290f2de3345930aa3e77add675e90",
+          "path": "tools/test-native-campaign.py"
+        },
+        {
+          "path": "research/runtime/native-campaign-combat-passed-20261010.bin",
+          "before_sha256": null,
+          "after_sha256": "f1540a781c9682dafe496609f58169c7ef9f864551fb05ffe04c0c79dcd4620a"
+        },
+        {
+          "path": "research/runtime/native-campaign-combat-native-20261010.png",
+          "before_sha256": null,
+          "after_sha256": "6b2142523c0dff1cbf62233593b912472f8f0d5e86d9a19c1bc12f926d2e904a"
+        }
+      ],
+      "id": "native-campaign-combat-outcomes-shared-review-20261010",
+      "pending_gaps": [
+        "stale_evidence:00a18e58ca117f66c116c5be6624bf3393cf5d418f669316c8b812b883dc2c18",
+        "stale_evidence:081aa24e66e0b55d080226fc9377c04c66a91fb65c48d620a9b64001c89e53bb",
+        "stale_evidence:08a4d9d6f8bb2350d14b1d5fd551d1098c72d8ef7f42411221f6df0be201078d",
+        "stale_evidence:09b741d09688d7eb162d02e61f0724c61314f6784b8e4fc5563c6599832da31b",
+        "stale_evidence:108b3140a3d567a306d617ca1760124e09e2937995105af60058e01514d760ca",
+        "stale_evidence:168445add260d4b3a40b106fd5180e09b94eba6da7aabc4deea8061edf9457e8",
+        "stale_evidence:1cb2b90d37ad7df2aa9a4147e43fdda2e66ac77aa1f70ddfe7c5c5e33ff94ced",
+        "stale_evidence:1ec5992cb69d1d2b46387085150d971a399ad52492e1c5a84e781bfd84d4be07",
+        "stale_evidence:22afc3e790bc6d2b4019fac143073b999e2cc289d75093a47ae2452d17b21f3a",
+        "stale_evidence:2c7200a1230a793016d034672e59de6cab643ac790819354d3ac9821446056b7",
+        "stale_evidence:3d7c0419bef671c2a45edbb398a2cc26e96079ad1fbc821cfef157bb5b8306af",
+        "stale_evidence:4cb393d8518adc25c7075bd767d1709f8bc4e9d0a4e05ae569c7989596193b03",
+        "stale_evidence:4ef3c807093e72e1702651a4493bc8f3e2607dade5f6ea365dfd15a15253ac9e",
+        "stale_evidence:59db66c28673bc37970f6266ebc847739d132856a7ca9190476b5aa6c90ac521",
+        "stale_evidence:5ebd0ffaa9eeafc755a38255fbc7c17b5494c740645060331ca9fa056804e85c",
+        "stale_evidence:639eeda573f23dc224bcf7d297ad8dd07f42251dfbc7d526bfdf50a4d091605a",
+        "stale_evidence:68f77e8dc411c754ae2e1cc7c85591e8fd44ee6c0ca16051b6e00033e12dc9dc",
+        "stale_evidence:6bc858d55ac9bc3226cb90e19207e32a0db264ee0019e2ed4949b0a7dbc49f3f",
+        "stale_evidence:7124dac78c3924d52acee629e2f432877d052e566769288043bb6847e8de4360",
+        "stale_evidence:71ed023771c512c25bd69a55544fea233d359abda4b99eb8e4170e2b0f47463e",
+        "stale_evidence:72b94a694787a4ab9501ea55f208c6c5e5526d667fcc1cb645b8141d3ea6b863",
+        "stale_evidence:765672cb167a77d47123733679abcc932ec034b537d874ed4012fc27b3177a05",
+        "stale_evidence:78085290bea7a9e494793055c3a02f08aed15dce48804cd6ef3850e6beeee726",
+        "stale_evidence:82bd7b7007ee87494e5b4c8acbb6217e057f7f3c53183a3baa0048faebc7fc41",
+        "stale_evidence:881b8db8b40c10666e750d2b399e9cd71da08fa1f72ee0e84754283f9996f0df",
+        "stale_evidence:8d95a77597887af0f682cc369b6f54c846f7bc1a57fa86f7e406b3eee5f0f4f8",
+        "stale_evidence:953b8e472fe34697ba3947341f21c0fdd24cb06191b1893ec22bac68e196be55",
+        "stale_evidence:9e45fc4b8e1c2cf047c0e64667ba07e3ae84c4eeed967067771b98b23b9f98a4",
+        "stale_evidence:9f82aa2d90daca5fb18e3568202997ca1f573b0594652a022bc003c39263ef4d",
+        "stale_evidence:ad60ebf3ed7a9e3b4e603c669f959409f2323cd87162b7282afbae378a0fe7d9",
+        "stale_evidence:b4798afab402d900cae251f351468c990508e8492cc7dd263d4ede667abaa5a4",
+        "stale_evidence:ba936a89d9e0e9183fc66081b8acf92aeb9b47ac883a9f53b06e0b7d932ae1ab",
+        "stale_evidence:c39afc8a48d243225ba41ff52efa96fca8268eb4a7046b1f2629d55d5de6ee1b",
+        "stale_evidence:cadeb75b12dcdc95e7a7f8b8168abe9097b553767fd83d073299a55be815a78e",
+        "stale_evidence:f48a08ff5109a22fa4c76e5cd044dc46bd96e0185f0cad2bcf50c00fc09fe950",
+        "stale_evidence:f5405390783dd352bba55f34e14db326eb3b4e854ac63127b43ce3d50b8837df"
+      ],
+      "reason": "Review cast identity around initial and subsequent summons, original slot reuse, native/original image hashes, living player damage and same-enemy party lethal melee validation, 13 rejection tests, clear-ground targeting, bounded PNG worker and explicit software-Mesa worker count. Retain eight negative runs, a passing full journey, raw trace/image, profiles and independent exact committed-history review. Census/status/ledger updates preserve original comparison and replacement boundaries.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "The new bounded casting/combat journey has a separate fresh recorded receipt. Shared command-launch/menu source and registry changes retain historical statuses and evidence; no fresh whole shared subsystem, original comparison or replacement claim. Repeated post-hit recentering still fails strict timing in retained negative runs; Apprentice early movement, placement rejection, other maps and hardware remain pending."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "86ef83f18cc1c06fc7da8d8638370cdeeb1b2ee3ee4cb2c4a0ee316c81ef9e77",
+          "before_sha256": "5c1eb98b497dc4a8179ebea8baa8a0b599cef0199627a76e775ef7a3fa3a0a18",
+          "id": "HOST.native-campaign-casting-combat"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "66f1c61c1efbce84e42bb01b83881362cc98d2d50b4e373be9e7e7b8b8244984",
+          "before_sha256": "922bf9d6397d09fa721800af2bd0b81326690679f639694ac68194b9ef14737b",
+          "path": "apps/qt-shell/campaign_smoke_test.cpp"
+        },
+        {
+          "after_sha256": "1d9fd2f55dfd2be25be3d32272579b79be6561ab28d8c8b88b21e44dadbda8e3",
+          "before_sha256": "df20d9a33081b142fb0b31d05e385c14edcf3208092a4f8583b8e4a4277520fb",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "93cc87158f9899b658ea167e269418fe1f4263e0138484fb7d73071006da748c",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-campaign-history-review-3f106d9-52dcdf8.json"
+        },
+        {
+          "after_sha256": "e4bd548155c063d0e7dd94a4cba38c9be35b8c068ac09db3453879cbe878ed50",
+          "before_sha256": "1be6d054ac97ab9f3387ced5504e162f9ab89f1ccaecac6b51d594b2f77e2d7b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "c078c6bada73c1586d4f742829bd189a5ab86b48fc776a7ba83f581779a61d33",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-combat-party-20261010.json"
+        },
+        {
+          "after_sha256": "365f2716eea6524b4df9f4643fd38153d04db77d5399bb67ed916b8f61c77238",
+          "before_sha256": "5e9abe23cb6ade8eaccdcfff26fb6a33c12ba35fa9f1bdda501318d56aa5eadc",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "f17f7eac975af92a3acf375708c95d3dde260ff1a61700cb6052a293f7659bfe",
+          "before_sha256": "427e8d8661fbb94a37893fb71c36177a3fe6841ad1fee2ea5c1fd0a7731484a7",
+          "path": "research/runtime/native-campaign-casting-combat.md"
+        },
+        {
+          "after_sha256": "6c7b637f83ae953bae0fc39d502e416d230e6a0ba703e0d96ae4db2332544663",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-3-20261010.json"
+        },
+        {
+          "after_sha256": "4bd5eb2ba11d1ca4422573aa75b3e71d8469fb6cea257fed1ba6ad8dead07f8f",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-4-20261010.json"
+        },
+        {
+          "after_sha256": "13371e2492e36e9ac06ef6c4dc818c2dd1005fbd45c4f2186e8b20157a3027bf",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-5-20261010.json"
+        },
+        {
+          "after_sha256": "d30a2f174c020825079896261326d69bd16042a692acd1a97987b3601578d38d",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-6-20261010.json"
+        },
+        {
+          "after_sha256": "747a33bc8d4f5280f9b275c94640bec7f2f32d6da88531971dea09b24e3b0357",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-7-20261010.json"
+        },
+        {
+          "after_sha256": "1ae9a7e907702b37cc4b5d4f827f866c9aeb912f2071a2604e8ecac92c3f150d",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-negative-8-20261010.json"
+        },
+        {
+          "after_sha256": "6d9e1e8bea48a08493fa8155fa99dc52bf88e949afc8498952dc535354bf8276",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-passed-20261010.json"
+        },
+        {
+          "after_sha256": "e6ac01844aadcd0240a6534103d9953e9be82bc24cf501beb6f0285dd76d0043",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-combat-profile-20261010.json"
+        },
+        {
+          "after_sha256": "e963fc36c5c1b1752267c108ca9007df7e22cb270c2ae27c74e680536e088c28",
+          "before_sha256": "067abef52a8ad314454a75d6999fab86bc9aca28a9e3d340168c558dd1b74f7c",
+          "path": "runtime/menu/campaign_gameplay_observe.h"
+        },
+        {
+          "after_sha256": "9720eca7f95f32ec34a15c056ebeacc6b80f742beb654b80d9f38c55fa98beb6",
+          "before_sha256": "ffc7733e6bff855b71b2a0b6c545d84f505d2183a0f2663c72c3270b991675bf",
+          "path": "tests/native-campaign-smoke.md"
+        },
+        {
+          "after_sha256": "366d25990a38c92f23beeb406722ab734f4e63b34eac59e90e7e38641832ad2c",
+          "before_sha256": "fc71c0ec634534545862d0bee887eaa17daed3e6642f4713421f612886ed843f",
+          "path": "tests/test-native-campaign.py"
+        },
+        {
+          "after_sha256": "492be7aaaeb892c6ccc233960298687370da62bef91e4169ee4a8b50bd0a5989",
+          "before_sha256": "714e411304b5cfaeaaff90217bd6756614493635ba15fd79b5601fbc07daf334",
+          "path": "tools/campaign-combat-input.py"
+        },
+        {
+          "after_sha256": "5ad52f29bef23bc1a90a5a8caf653a7f0d63c8a8e3f0a67790cfbe90721bc329",
+          "before_sha256": "6cf069999fcf442de41c7d6149e7a1f671fb3da4a22612d51dad47fa5e88ff1f",
+          "path": "tools/campaign_gameplay.py"
+        },
+        {
+          "after_sha256": "edd11802e5dec4c073adb3c4bc7c8493689282d188bbc8cfa237bdfaaba089dd",
+          "before_sha256": "9e8f0520330d4b815893515404f5ca0f8ab290f2de3345930aa3e77add675e90",
+          "path": "tools/test-native-campaign.py"
+        },
+        {
+          "path": "research/runtime/native-campaign-combat-passed-20261010.bin",
+          "before_sha256": null,
+          "after_sha256": "f1540a781c9682dafe496609f58169c7ef9f864551fb05ffe04c0c79dcd4620a"
+        },
+        {
+          "path": "research/runtime/native-campaign-combat-native-20261010.png",
+          "before_sha256": null,
+          "after_sha256": "6b2142523c0dff1cbf62233593b912472f8f0d5e86d9a19c1bc12f926d2e904a"
+        }
+      ],
+      "id": "native-campaign-combat-outcomes-live-validation-20261010",
+      "pending_gaps": [
+        "stale_evidence:00a18e58ca117f66c116c5be6624bf3393cf5d418f669316c8b812b883dc2c18",
+        "stale_evidence:081aa24e66e0b55d080226fc9377c04c66a91fb65c48d620a9b64001c89e53bb",
+        "stale_evidence:08a4d9d6f8bb2350d14b1d5fd551d1098c72d8ef7f42411221f6df0be201078d",
+        "stale_evidence:09b741d09688d7eb162d02e61f0724c61314f6784b8e4fc5563c6599832da31b",
+        "stale_evidence:108b3140a3d567a306d617ca1760124e09e2937995105af60058e01514d760ca",
+        "stale_evidence:168445add260d4b3a40b106fd5180e09b94eba6da7aabc4deea8061edf9457e8",
+        "stale_evidence:1cb2b90d37ad7df2aa9a4147e43fdda2e66ac77aa1f70ddfe7c5c5e33ff94ced",
+        "stale_evidence:1ec5992cb69d1d2b46387085150d971a399ad52492e1c5a84e781bfd84d4be07",
+        "stale_evidence:22afc3e790bc6d2b4019fac143073b999e2cc289d75093a47ae2452d17b21f3a",
+        "stale_evidence:2c7200a1230a793016d034672e59de6cab643ac790819354d3ac9821446056b7",
+        "stale_evidence:3d7c0419bef671c2a45edbb398a2cc26e96079ad1fbc821cfef157bb5b8306af",
+        "stale_evidence:4cb393d8518adc25c7075bd767d1709f8bc4e9d0a4e05ae569c7989596193b03",
+        "stale_evidence:4ef3c807093e72e1702651a4493bc8f3e2607dade5f6ea365dfd15a15253ac9e",
+        "stale_evidence:59db66c28673bc37970f6266ebc847739d132856a7ca9190476b5aa6c90ac521",
+        "stale_evidence:5ebd0ffaa9eeafc755a38255fbc7c17b5494c740645060331ca9fa056804e85c",
+        "stale_evidence:639eeda573f23dc224bcf7d297ad8dd07f42251dfbc7d526bfdf50a4d091605a",
+        "stale_evidence:68f77e8dc411c754ae2e1cc7c85591e8fd44ee6c0ca16051b6e00033e12dc9dc",
+        "stale_evidence:6bc858d55ac9bc3226cb90e19207e32a0db264ee0019e2ed4949b0a7dbc49f3f",
+        "stale_evidence:7124dac78c3924d52acee629e2f432877d052e566769288043bb6847e8de4360",
+        "stale_evidence:71ed023771c512c25bd69a55544fea233d359abda4b99eb8e4170e2b0f47463e",
+        "stale_evidence:72b94a694787a4ab9501ea55f208c6c5e5526d667fcc1cb645b8141d3ea6b863",
+        "stale_evidence:765672cb167a77d47123733679abcc932ec034b537d874ed4012fc27b3177a05",
+        "stale_evidence:78085290bea7a9e494793055c3a02f08aed15dce48804cd6ef3850e6beeee726",
+        "stale_evidence:82bd7b7007ee87494e5b4c8acbb6217e057f7f3c53183a3baa0048faebc7fc41",
+        "stale_evidence:881b8db8b40c10666e750d2b399e9cd71da08fa1f72ee0e84754283f9996f0df",
+        "stale_evidence:8d95a77597887af0f682cc369b6f54c846f7bc1a57fa86f7e406b3eee5f0f4f8",
+        "stale_evidence:953b8e472fe34697ba3947341f21c0fdd24cb06191b1893ec22bac68e196be55",
+        "stale_evidence:9e45fc4b8e1c2cf047c0e64667ba07e3ae84c4eeed967067771b98b23b9f98a4",
+        "stale_evidence:9f82aa2d90daca5fb18e3568202997ca1f573b0594652a022bc003c39263ef4d",
+        "stale_evidence:ad60ebf3ed7a9e3b4e603c669f959409f2323cd87162b7282afbae378a0fe7d9",
+        "stale_evidence:b4798afab402d900cae251f351468c990508e8492cc7dd263d4ede667abaa5a4",
+        "stale_evidence:ba936a89d9e0e9183fc66081b8acf92aeb9b47ac883a9f53b06e0b7d932ae1ab",
+        "stale_evidence:c39afc8a48d243225ba41ff52efa96fca8268eb4a7046b1f2629d55d5de6ee1b",
+        "stale_evidence:cadeb75b12dcdc95e7a7f8b8168abe9097b553767fd83d073299a55be815a78e",
+        "stale_evidence:f48a08ff5109a22fa4c76e5cd044dc46bd96e0185f0cad2bcf50c00fc09fe950",
+        "stale_evidence:f5405390783dd352bba55f34e14db326eb3b4e854ac63127b43ce3d50b8837df"
+      ],
+      "reason": "Review only the scoped native casting/combat behavior promotion using the prospective source-bound highest-difficulty journey: two physical Zombie summons and independent 0/15-to-1/15 counts; fourteen original Zombie damage events and player wizard 2-to-0 finishing melee on the same enemy; native Mini Cancel/resume; fixed20-FPS averages/10-FPS windows with zero recovery/fallback. Source fingerprints, original manifests and raw trace hash match; negative branches remain explicitly retained.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "HOST.native-campaign.combat-passed-20261010"
+        ],
+        "reason": "Final source-stable public native-menu/native-command execution passed on explicit four-worker software Mesa:5798 native frames/3958 visible paints, phase averages27.21/20.57 and55.06/35.40 FPS, worst10.95 and15.89 FPS. Thirteen synthetic rejection tests passed, observer and Qt builds passed, both original manifests verify2927 files. This validates only the bound journey and observation, with no formula/pixel equivalence or simulation/drawing replacement claim."
+      }
     }
   ]
 }

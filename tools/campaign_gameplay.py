@@ -33,5 +33,14 @@ def creatures(rows):
 
 def damage_rows(rows, owner, source_slots, after):
     return [r for r in rows if r[1] == 2 and r[0] > after and r[4] in source_slots
-            and r[5] == 14 and r[6] == owner and r[10] not in (owner, 0xffffffff)
+            and r[5] == 14 and r[6] == owner and signed(r[7]) > 0 and r[10] not in (owner, 0xffffffff)
             and r[13] and signed(r[11]) > 0 and signed(r[12]) < signed(r[11])]
+
+
+def player_lethal_rows(rows, owner, wizard_slot, zombie_hits):
+    """A player wizard or combat Zombie may finish the same engaged enemy."""
+    sources={wizard_slot}|{r[4] for r in zombie_hits}
+    return [r for r in rows if r[1]==2 and r[4] in sources and r[6]==owner
+            and signed(r[7])>0 and r[10] not in (owner,0xffffffff) and r[13]
+            and signed(r[11])>0 and signed(r[12])<=0
+            and any(h[0]<=r[0] and h[8:11]==r[8:11] for h in zombie_hits)]

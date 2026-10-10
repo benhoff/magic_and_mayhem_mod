@@ -117,3 +117,49 @@ Spell/creature HUD clicks and source/target orders are attempted, not asserted
 as successful casting or combat. Initiate tutorial gating remains a separate
 negative route. Fresh source-bound reports and profiles are linked from
 `research/runtime/native-campaign-rendering.md`; historical failures remain.
+
+Successful casting and combat through the native viewport:
+
+```sh
+python3 tools/test-native-campaign.py --require-casting-combat --difficulty 3 --stress-seconds 60 --timeout 600
+```
+
+This mode also needs Tesseract and Pillow. It selects the normal highest
+difficulty through native Region Entry; nearby live enemies make a bounded
+combat journey possible. Apprentice (`--difficulty 1`) is retained as an
+exploratory alternative, with early movement gating still unresolved. Initiate
+and the other difficulty journeys remain separate tests.
+
+The test selects the Zombie spell, right-clicks clear ground, and requires a
+new living player-owned Zombie plus `0/15` then `1/15` in independently captured
+native and original-owned images. It observes original creature state while
+using public actor selection, camera centering, ground orders and another
+normal summon near a living enemy. Combat requires player Zombie original melee
+calls to reduce an opposing active target's positive health, followed by player
+wizard or combat Zombie lethal melee HP depletion of that same enemy. Original slot
+reuse is checked by observing the type/owner transition around each cast;
+the attacker may be the later combat summon. Existing actors, order attempts,
+scripted damage, nonplayer hits, altered images and incomplete traces cannot pass.
+
+No simulation or health/mana writes, cheats or scenario edits are used. The
+private observation hook verifies original melee entry bytes and forwards the
+original function unchanged. A single worker compresses owned diagnostic images
+after GL-thread readback, keeping PNG saves out of the UI event loop. Capture
+overhead still counts toward the same strict performance floors. All evidence,
+including failed placements, movement probes and slow runs, remains retained.
+
+The private Xvfb software-Mesa backend uses an explicit four-worker pool;
+`--software-threads` selects and records another size. This controls both native
+and original Wine software-renderer workers and changes no game rules. The
+four-worker rerun passed resumed camera/HUD stress but still failed briefly during
+repeated post-hit wizard recentering. That negative performance route remains a
+limitation; the ordinary casting/combat journey now observes the fight with
+terrain hover until lethal enemy HP depletion. It retains the same timing floors.
+
+The [retained passing result](../research/runtime/native-campaign-combat-passed-20261010.json)
+verifies two player Zombie summons, 14 Zombie damage events and Cornelius's
+`2 → 0` melee finishing blow on the same enemy, then native Mini Cancel/resume.
+It presents 5,798 native frames and 3,958 visible Qt paints with no fallback or
+recovery. Combat averages 27.21 native/20.57 paint FPS, worst 10.95 FPS; resumed
+stress averages 55.06/35.40 FPS, worst 15.89 FPS. This is one bounded software-Mesa
+journey; the earlier recentering performance failure remains explicitly open.

@@ -26,10 +26,10 @@ static u32 THIS gameplay_melee(void* object){
     if(readable(source,0xe4b)&&gameplay_creature(get(source))==source){
         row[4]=get(source);row[5]=get(source+0xa8);row[6]=get(source+0x174);
         row[7]=get(source+0xe4);row[8]=get(source+0x64c);target=gameplay_creature(row[8]);
-        if(target){row[9]=get(target+0xa8);row[10]=get(target+0x174);row[11]=get(target+0xe4);row[13]=get(target+4);}
+        if(target){row[9]=get(target+0xa8);row[10]=get(target+0x174);row[11]=get(target+0xe4);row[12]=row[11];row[13]=get(target+4);}
     }
     SetLastError(error);u32 result=gameplay_original_melee(object);error=GetLastError();
-    if(target&&gameplay_creature(row[8])==target){row[12]=get(target+0xe4);row[14]=get(target+4);}
+    if(target&&gameplay_creature(row[8])==target&&get(target+0xa8)==row[9]&&get(target+0x174)==row[10]){row[12]=get(target+0xe4);row[14]=get(target+4);}
     row[15]=result;gameplay_write(row);SetLastError(error);return result;
 }
 static void gameplay_sample(void){

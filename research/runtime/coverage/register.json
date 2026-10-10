@@ -22657,8 +22657,8 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Native viewport successful summon and melee combat",
-      "scope": "Bounded Apprentice or highest-difficulty first campaign native menu/command session. Physical native viewport Zombie spell selection and right-click summon, newly living player-owned creature, independent native/original controlled-creature count 0/15 to 1/15. Original melee resolver health loss from player Zombie to opposing living creature, continued native rendering and fixed throughput floors, native Mini Cancel/resume. Passive build-specific creature observations only; no game state writes, balance changes, full damage formula, cast rejection branches, pixel equivalence, original drawing or simulation replacement.",
-      "confidence": "provisional",
+      "scope": "Bounded Apprentice or highest-difficulty first campaign native menu/command session. Physical native viewport Zombie spell selection and right-click summon, newly living player-owned creature, independent native/original controlled-creature count 0/15 to 1/15. Original melee resolver health loss from player Zombie to opposing living creature, followed by player wizard or combat Zombie lethal HP depletion of that engaged enemy, continued native rendering and fixed throughput floors, native Mini Cancel/resume. Passive build-specific creature observations only; no game state writes, balance changes, full damage formula, cast rejection branches, pixel equivalence, original drawing or simulation replacement.",
+      "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -22671,7 +22671,10 @@
         "research/runtime/entity-lifetimes.md",
         "research/runtime/opengl-world-summon-observation.md",
         "research/runtime/native-campaign-casting-combat.md",
-        "research/runtime/coverage/native-campaign-history-review-0857efe-3f106d9.json"
+        "research/runtime/coverage/native-campaign-history-review-0857efe-3f106d9.json",
+        "research/runtime/coverage/native-campaign-history-review-3f106d9-52dcdf8.json",
+        "tests/native-campaign-smoke.md",
+        "research/runtime/native-campaign-combat-profile-20261010.json"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -22698,13 +22701,20 @@
       ],
       "evidence": [
         "HOST.native-campaign.combat-negative-1-20261010",
-        "HOST.native-campaign.combat-negative-2-20261010"
+        "HOST.native-campaign.combat-negative-2-20261010",
+        "HOST.native-campaign.combat-negative-3-20261010",
+        "HOST.native-campaign.combat-negative-4-20261010",
+        "HOST.native-campaign.combat-negative-5-20261010",
+        "HOST.native-campaign.combat-negative-6-20261010",
+        "HOST.native-campaign.combat-negative-7-20261010",
+        "HOST.native-campaign.combat-negative-8-20261010",
+        "HOST.native-campaign.combat-passed-20261010"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "validation_dependencies": [
@@ -44700,6 +44710,207 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-campaign.combat-negative-3-20261010",
+      "kind": "live_observation",
+      "scope": "Explicit actor selection and ground probes still did not move Apprentice wizard; summon counts passed, combat pending.",
+      "record": "research/runtime/native-campaign-combat-negative-3-20261010.json",
+      "sha256": "6c7b637f83ae953bae0fc39d502e416d230e6a0ba703e0d96ae4db2332544663",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.combat-negative-4-20261010",
+      "kind": "live_observation",
+      "scope": "Highest-difficulty native summon and Mini Cancel/resume completed with no native fallback/recovery; old validator restricted damage to first Zombie and rejected the later summoned attacker in a reused slot. Independent retained rate samples also fail the strict ten-FPS window floor; no accepted combat/performance claim.",
+      "record": "research/runtime/native-campaign-combat-negative-4-20261010.json",
+      "sha256": "4bd5eb2ba11d1ca4422573aa75b3e71d8469fb6cea257fed1ba6ad8dead07f8f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.combat-negative-5-20261010",
+      "kind": "live_observation",
+      "scope": "Selected Zombie spell but right-click at original wizard position created no new creature; bounded casting attempt failed without mana use. Placement/timing cause remains unresolved.",
+      "record": "research/runtime/native-campaign-combat-negative-5-20261010.json",
+      "sha256": "13371e2492e36e9ac06ef6c4dc818c2dd1005fbd45c4f2186e8b20157a3027bf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.combat-negative-6-20261010",
+      "kind": "live_observation",
+      "scope": "Native summon/counts, new combat Zombie and nine player-versus-enemy melee health losses verified, native Mini Cancel/resume and zero fallback/recovery; strict window timing failed despite asynchronous screenshot compression. Default Mesa worker count was not pinned. No overall pass.",
+      "record": "research/runtime/native-campaign-combat-negative-6-20261010.json",
+      "sha256": "d30a2f174c020825079896261326d69bd16042a692acd1a97987b3601578d38d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.combat-negative-7-20261010",
+      "kind": "live_observation",
+      "scope": "Four-worker Mesa route verifies native casts and eight Zombie versus enemy melee HP losses and native Mini Cancel/resume with zero fallback/recovery. Resumed stress passes at 55.71 native/36.38 paint FPS, worst 19.04; repeated post-hit wizard recentering still produces 9.94-FPS window. Overall smoke fails without threshold relaxation.",
+      "record": "research/runtime/native-campaign-combat-negative-7-20261010.json",
+      "sha256": "747a33bc8d4f5280f9b275c94640bec7f2f32d6da88531971dea09b24e3b0357",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.combat-negative-8-20261010",
+      "kind": "live_observation",
+      "scope": "Real summon and Zombie hits observed; old finish criterion demanded the Zombie killing blow and timed out when Cornelius legitimately finished that same enemy at 1-to-0 HP. No passing flow, timing or final current-scope assertion.",
+      "record": "research/runtime/native-campaign-combat-negative-8-20261010.json",
+      "sha256": "1ae9a7e907702b37cc4b5d4f827f866c9aeb912f2071a2604e8ecac92c3f150d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.combat-passed-20261010",
+      "kind": "live_observation",
+      "scope": "Source-stable successful highest-difficulty native-menu/native-command journey on private four-worker software Mesa: initial independent native/original 0/15-to-1/15 count and living player Zombie, combat summon, fourteen original Zombie enemy melee health losses and original player wizard 2-to-0 lethal melee on that same enemy; native Mini Cancel/resume,5798 native frames/3958 visible paints,zero fallback/recovery. Both fixed20-FPS average/10-FPS window floors pass. Original simulation and drawing remain active; portrait-recentering negative route, hardware performance and full equivalence remain outside this pass.",
+      "record": "research/runtime/native-campaign-combat-passed-20261010.json",
+      "sha256": "6d9e1e8bea48a08493fa8155fa99dc52bf88e949afc8498952dc535354bf8276",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay/enemy_health_depleted",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/software_renderer_threads",
+          "equals": 4
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -51472,9 +51683,16 @@
       ],
       "evidence": [
         "HOST.native-campaign.combat-negative-1-20261010",
-        "HOST.native-campaign.combat-negative-2-20261010"
+        "HOST.native-campaign.combat-negative-2-20261010",
+        "HOST.native-campaign.combat-negative-3-20261010",
+        "HOST.native-campaign.combat-negative-4-20261010",
+        "HOST.native-campaign.combat-negative-5-20261010",
+        "HOST.native-campaign.combat-negative-6-20261010",
+        "HOST.native-campaign.combat-negative-7-20261010",
+        "HOST.native-campaign.combat-negative-8-20261010",
+        "HOST.native-campaign.combat-passed-20261010"
       ],
-      "scope": "Native Main/New Game/Apprentice or highest-difficulty Enter, actual native viewport Zombie summon and new player creature plus 0/15-to-1/15 count in independent native/original images, player Zombie versus enemy melee health loss, native Mini Cancel/resume and strict publication/paint floors. Scripted enemy damage alone cannot pass."
+      "scope": "Native Main/New Game/Apprentice or highest-difficulty Enter, actual native viewport Zombie summon and new player creature plus 0/15-to-1/15 count in independent native/original images, player Zombie versus enemy melee health loss followed by player-party lethal HP depletion of the engaged enemy, native Mini Cancel/resume and strict publication/paint floors. Scripted enemy damage alone cannot pass."
     }
   ],
   "recovered_ranges": [
@@ -51803,8 +52021,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-combat-checkpoint-20261010.json",
-    "sha256": "117f3503ef61e88f18cda5c09a1798fba203dbad2c5fd480470e0da82ef61ec7"
+    "path": "research/runtime/coverage/source-index-native-combat-party-20261010.json",
+    "sha256": "c078c6bada73c1586d4f742829bd189a5ab86b48fc776a7ba83f581779a61d33"
   },
   "claim_bindings_required": true
 }
