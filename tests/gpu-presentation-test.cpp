@@ -10,6 +10,7 @@
 using namespace mnm::render;
 namespace {
 unsigned comparisons=0;
+unsigned diagnosticReadbacks=0;
 void require(bool ok,const char* message){if(!ok)throw std::runtime_error(message);}
 QImage colors(const Image& image,PixelFormat format,const std::vector<Rgb>& palette){
     QImage result(image.width,image.height,QImage::Format_RGBA8888);
@@ -65,6 +66,13 @@ int main(int argc,char** argv){
         auto renderer=std::make_unique<GlBlitter>(viewport.context());const auto driver=renderer->driver();
         std::vector<Rgb> palette;for(unsigned i=0;i<256;++i)palette.push_back({std::uint8_t(i),std::uint8_t(255-i),std::uint8_t(i*7)});
         const PixelFormat formats[]={{8,{}},{16,{0xf800,0x07e0,0x1f}},{24,{0xff0000,0xff00,0xff}},{32,{0xff0000,0xff00,0xff}}};
+        // Every canonical RGB565 value must survive shared-texture presentation.
+        Image exhaustive565{256,256,{}};
+        for(unsigned value=0;value<65536;++value)exhaustive565.pixels.push_back(value);
+        const auto exhaustiveSurface=renderer->create(exhaustive565,formats[1]);
+        viewport.resize(512,512);viewport.setGpuFrame(renderer->presentGpu(exhaustiveSurface));
+        compare(viewport,colors(exhaustive565,formats[1],{}));
+        renderer->destroy(exhaustiveSurface);viewport.resize(320,240);
         for(auto pixelFormat:formats){
             Image cpu{4,3,{}};for(unsigned i=0;i<12;++i)cpu.pixels.push_back((i*23457u+123u)&(pixelFormat.bits==8?255u:pixelFormat.bits==16?65535u:0xffffffu));
             Image otherCpu=cpu;
@@ -80,14 +88,30 @@ int main(int argc,char** argv){
                 if(i%6==5){renderer->swapContents(surface,other);std::swap(cpu,otherCpu);}
                 if(pixelFormat.bits==8){palette[i]={std::uint8_t(i*3),std::uint8_t(i*5),std::uint8_t(i*9)};renderer->setPalette(surface,i,{palette[i]});}
                 const auto before=renderer->stats();auto frame=renderer->presentGpu(surface);const auto after=renderer->stats();
+                const auto resolved=(i==0 || i%6==5 || pixelFormat.bits==8)?12u:1u;
+                require(after.presentationPixels-before.presentationPixels==resolved,"GPU resolved unchanged frame pixels");
                 require(before.nativeReadbacks==after.nativeReadbacks && before.rgbaReadbacks==after.rgbaReadbacks,"GPU presentation read pixels back");
                 viewport.makeCurrent();const auto id=frame.textureForCurrentContext();viewport.doneCurrent();
                 if(texture)require(id==texture,"Retained presentation texture was not reused");
                 texture=id;
                 retained=frame;viewport.setGpuFrame(frame);if(i%8==7)viewport.resize(i%16==7?337:320,i%16==7?252:240);
                 compare(viewport,colors(cpu,pixelFormat,palette));
+                const auto diagnostic=renderer->present(surface);
+                ++diagnosticReadbacks;
+                require(diagnostic==colors(cpu,pixelFormat,palette),"Diagnostic cache lost changes after GPU resolve");
+                const auto stable=renderer->stats().presentationPixels;
+                renderer->presentGpu(surface);renderer->present(surface);
+                ++diagnosticReadbacks;
+                require(renderer->stats().presentationPixels==stable,"Unchanged presentation reconverted pixels");
                 require(viewport.imageUploads()==0,"GPU viewport uploaded CPU pixels");
             }
+            // A row upload must dirty precisely that row in both output caches.
+            renderer->updateRegionRows(surface,0,0,cpu,1,1);
+            const auto rowBefore=renderer->stats().presentationPixels;
+            viewport.setGpuFrame(renderer->presentGpu(surface));compare(viewport,colors(cpu,pixelFormat,palette));
+            require(renderer->present(surface)==colors(cpu,pixelFormat,palette),"Row upload lost diagnostic pixels");
+            ++diagnosticReadbacks;
+            require(renderer->stats().presentationPixels-rowBefore==8,"Row upload converted more than two four-pixel rows");
             renderer->destroy(surface);renderer->destroy(other);compare(viewport,colors(cpu,pixelFormat,palette));
         }
         // Use decoded complete commands and paint every PRESENT before END destroys its source.
@@ -133,8 +157,8 @@ int main(int argc,char** argv){
         lease={};viewport.makeCurrent();
         require(!viewport.context()->functions()->glIsTexture(releasedTexture),"Final lease did not release GPU texture");
         viewport.doneCurrent();
-        require(replay.stats.nativeReadbacks==before.nativeReadbacks && replay.stats.rgbaReadbacks==0,"PRESENT commands added readbacks");
-        std::printf("{\"success\":true,\"full_frame_comparisons\":%u,\"command_presentations\":%u,\"gpu_presentations\":%llu,\"rgba_readbacks\":%llu,\"gpu_viewport_uploads\":0,\"unshared_context_refused\":true,\"owner_release_survived\":true,\"driver\":\"%s\"}\n",comparisons,presentations,static_cast<unsigned long long>(before.gpuPresentations),static_cast<unsigned long long>(before.rgbaReadbacks),driver.renderer.c_str());
+        require(replay.stats.nativeReadbacks==before.nativeReadbacks && replay.stats.rgbaReadbacks==diagnosticReadbacks,"PRESENT commands added readbacks");
+        std::printf("{\"success\":true,\"full_frame_comparisons\":%u,\"command_presentations\":%u,\"gpu_presentations\":%llu,\"rgba_readbacks\":%llu,\"diagnostic_readbacks\":%u,\"damage_regions_checked\":true,\"gpu_viewport_uploads\":0,\"unshared_context_refused\":true,\"owner_release_survived\":true,\"driver\":\"%s\"}\n",comparisons,presentations,static_cast<unsigned long long>(before.gpuPresentations),static_cast<unsigned long long>(before.rgbaReadbacks-diagnosticReadbacks),diagnosticReadbacks,driver.renderer.c_str());
         return 0;
     }catch(const std::exception& e){std::fprintf(stderr,"GPU presentation test failed: %s\n",e.what());return 1;}
 }

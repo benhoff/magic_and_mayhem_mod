@@ -63,9 +63,9 @@
 #include "campaign_smoke_test.hpp"
 
 class Shell final:public QMainWindow {
-    quint64 nativeCommandFrames_=0;
+    quint64 nativeCommandFrames_=0,nativePaintedFrames_=0;
 public:
-    CampaignPresentationProbe campaignPresentation() const{return {nativeCommandFrames_,commands_&&commands_->state()==LiveCommandSession::State::Active,nativeFallback_};}
+    CampaignPresentationProbe campaignPresentation() const{return {nativeCommandFrames_,commands_&&commands_->state()==LiveCommandSession::State::Active,nativeFallback_,nativePaintedFrames_,commands_?commands_->recoveries():0,commands_?commands_->error():QString(),commands_&&commands_->result()?QString::fromStdString(commands_->result()->driver.renderer):QString(),commands_&&commands_->result()?commands_->result()->stats.presentationPixels:0};}
     void showPresentation(){if(presentation_)presentation_->show();else show();}
     explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false,PresentationOptions presentation={}):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
         setWindowTitle("Magic & Mayhem Workshop");resize(1100,850);
@@ -105,11 +105,16 @@ public:
                 if(action==QuickBattleMenuWidget::Action::Cancel)liveMenus_->request(MNM_MENU_BACK);
                 else if(action==QuickBattleMenuWidget::Action::CreateSinglePlayer)liveMenus_->request(MNM_MENU_OPEN_SINGLE);
             });
-            liveMenus_->launched=[this]{elapsed_.restart();poll_.start();placeholder_->setText("Checking launch files and starting Wine…\nStartup may take a few minutes. See the launch log below.");statusBar()->showMessage("Checking launch files and starting Wine…");};
+            liveMenus_->nativeCommandsEnabled=nativeCommands_;
+            liveMenus_->prepareNativePresentation=[this](const QString& directory){
+                QStringList arguments;
+                return createNativePresentation(directory+"/render-frame.bin",directory+"/render-input.bin",directory+"/render-commands.bin",true,arguments);
+            };
+            liveMenus_->launched=[this]{elapsed_.restart();if(nativeCommands_){frames_.start();inputTimer_.start();}poll_.start();placeholder_->setText("Checking launch files and starting Wine…\nStartup may take a few minutes. See the launch log below.");statusBar()->showMessage("Checking launch files and starting Wine…");};
             liveMenus_->output=[this](const QString& text){log_->appendPlainText(text.trimmed());};
             liveMenus_->failed=[this](const QString& error){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);if(!foreign_)placeholder_->setText(error+"\nSee the launch log below.");statusBar()->showMessage(error);};
-            liveMenus_->battleStarted=[this](quint32 destination){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();statusBar()->showMessage(destination==3?"Original campaign startup active. Use original game controls.":destination==1?"Original game active. Complete spell selection; Qt menus return after battle.":"Original game active. Qt menus return when the engine reaches Main or Quick Battle.");};
-            liveMenus_->originalViewportRequested=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();statusBar()->showMessage("Original game controls active. Confirmations and Preferences use this viewport.");};
+            liveMenus_->battleStarted=[this](quint32 destination){menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(!commands_||commands_->state()!=LiveCommandSession::State::Active);activateWindow();raise();gl_->setFocus();return;}statusBar()->showMessage(destination==3?"Original campaign startup active. Use original game controls.":destination==1?"Original game active. Complete spell selection; Qt menus return after battle.":"Original game active. Qt menus return when the engine reaches Main or Quick Battle.");};
+            liveMenus_->originalViewportRequested=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(true);if(container_)container_->setFocus(Qt::OtherFocusReason);if(foreign_)foreign_->requestActivate();if(nativeCommands_&&!nativeFallback_){input_->suspend(!commands_||commands_->state()!=LiveCommandSession::State::Active);activateWindow();raise();gl_->setFocus();return;}statusBar()->showMessage("Original game controls active. Confirmations and Preferences use this viewport.");};
             liveMenus_->finished=[this]{menuStack_->setCurrentWidget(viewport_);fallback_->setEnabled(false);finished();if(closeAfterGame_)close();};
             liveMenus_->stateChanged=[this](const MenuBridge::State& state){
                 if(!menuAssetsLoaded_){QString error;const auto root=QDir(repo_).filePath("working/game-nocd");
@@ -121,6 +126,7 @@ public:
                 }
                 QString error;if(!defeatMenus_->present(state,&error)||!regionMenus_->present(state,&error)||!preferencesMenus_->present(state,&error)||!resultMenus_->present(state,&error)||!battleMenus_->present(state,&error)||!spellMenus_->present(state,&error)||(miniMenus_&&!miniMenus_->present(state,&error))){liveMenus_->fallback(error);return;}
                 QWidget* screen=state.screen==MNM_MENU_DEFEAT_SCREEN?static_cast<QWidget*>(liveDefeat_):state.screen==18?static_cast<QWidget*>(liveRegion_):state.screen==10?static_cast<QWidget*>(livePreferences_):state.screen==MNM_MENU_RESULT_SCREEN?static_cast<QWidget*>(liveResults_):liveMini_&&state.screen==MNM_MENU_MINI_SCREEN?static_cast<QWidget*>(liveMini_):state.screen==7?static_cast<QWidget*>(liveSpells_):state.screen==14?static_cast<QWidget*>(liveSetup_):state.screen==25?static_cast<QWidget*>(liveMap_):state.screen==3?static_cast<QWidget*>(liveMain_):state.screen==22?static_cast<QWidget*>(liveQuick_):viewport_;
+                if(input_)input_->suspend(screen!=viewport_);
                 fallback_->setEnabled(true);const bool changed=menuStack_->currentWidget()!=screen;const bool gainedReady=state.ready&&(changed||!screen->isEnabled());menuStack_->setCurrentWidget(screen);
                 liveSpells_->setEnabled(state.ready&&state.screen==7);liveMain_->setEnabled(state.ready&&state.screen==3);liveQuick_->setEnabled(state.ready&&state.screen==22);liveSetup_->setEnabled(state.ready&&state.screen==14);liveMap_->setEnabled(state.ready&&state.screen==25);
                 liveRegion_->setEnabled(state.ready&&state.screen==18);
@@ -132,7 +138,7 @@ public:
                 statusBar()->showMessage(state.ready?(state.screen==7?QString("Spell selection connected. Edits apply on Start battle. Time remaining: %1").arg(state.spells.seconds<0?QString("expired"):QString::number(state.spells.seconds)):state.screen==14?"Battle setup connected. Edits apply when opening Map, changing a player or starting.":"Native menu connected to the engine. Other actions are available through Use original menus."):"Waiting for the engine menu transition…");
             };
         }
-        if(opengl_){gl_=new GlViewport(viewport_);layout_->addWidget(gl_);gl_->hide();input_=std::make_unique<InputForwarder>(*gl_,host_);}
+        if(opengl_){gl_=new GlViewport(viewport_);gl_->setObjectName("nativeGameViewport");connect(gl_,&QOpenGLWidget::frameSwapped,this,[this]{if(commands_&&commands_->state()==LiveCommandSession::State::Active&&gl_->isVisible()&&(!menuStack_||menuStack_->currentWidget()==viewport_))++nativePaintedFrames_;});layout_->addWidget(gl_);gl_->hide();input_=std::make_unique<InputForwarder>(*gl_,host_);}
         auto* toolbar=addToolBar("Game");toolbar->setMovable(false);
         launch_=new QPushButton("Launch game",this);launch_->setObjectName("launchGame");toolbar->addWidget(launch_);
         check_=new QPushButton("Check installation",this);toolbar->addWidget(check_);
@@ -246,6 +252,25 @@ private:
         statusBar()->showMessage("Reconnecting to original game presentation and input.");
         detach_->show();retry_->show();elapsed_.restart();poll_.start();discover();
     }
+    bool createNativePresentation(const QString& path,const QString& inputPath,const QString& commandPath,bool continuous,QStringList& arguments){
+            stream_=std::make_unique<FrameStream>();
+            if(!stream_->create(path)){statusBar()->showMessage(stream_->error());return false;}
+            inputState_=std::make_unique<InputState>();
+
+            if(!inputState_->create(inputPath)){statusBar()->showMessage("Cannot create game input channel.");return false;}
+            input_->setState(inputState_.get());inputTimer_.start();
+            arguments={"--stream",path,"--input",inputPath};elapsed_.restart();
+            if(nativeCommands_){
+                commands_=std::make_unique<LiveCommandSession>(*gl_);
+                commands_->stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
+                commands_->framePresented=[this]{++nativeCommandFrames_;input_->suspend((media_ && media_->movieActive()) || (menuStack_&&menuStack_->currentWidget()!=viewport_));placeholder_->hide();gl_->show();statusBar()->showMessage("Native command presentation active. Original rendering retained.");};
+                if(!commands_->create(commandPath,(QRandomGenerator::global()->generate()&0x7fffffffu)|1u,continuous?2:1,liveMenus_?120000:10000)){const auto error=commands_->error();statusBar()->showMessage(error);return false;}
+                arguments.append({"--command-channel",commandPath});
+                if(continuous){input_->suspend(true);arguments.append({"--render-control",commandPath+".control"});}
+            }
+        if(nativeCommands_)gl_->show();
+        return true;
+    }
     void start(bool check){
         if(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running()))return;
         nativeFallback_=false;
@@ -272,13 +297,8 @@ private:
         if(opengl_ && !check){
             const QString directory=QDir(repo_).filePath("working/runtime/render");
             QDir().mkpath(directory);const QString path=directory+"/frame-"+QUuid::createUuid().toString(QUuid::WithoutBraces)+".bin";
-            stream_=std::make_unique<FrameStream>();
-            if(!stream_->create(path)){finished();statusBar()->showMessage(stream_->error());return;}
-            inputState_=std::make_unique<InputState>();
-            const auto inputPath=path+".input";
-            if(!inputState_->create(inputPath)){finished();statusBar()->showMessage("Cannot create game input channel.");return;}
-            input_->setState(inputState_.get());inputTimer_.start();
-            arguments={"--stream",path,"--input",inputPath};elapsed_.restart();frames_.start();
+            if(!createNativePresentation(path,path+".input",path+".commands",continuous,arguments)){finished();return;}
+            frames_.start();
             if(nativeVoices_){
                 voices_=std::make_unique<mnm::audio::VoiceBroker>();
                 voices_->failed=[this](const QString& error){log_->appendPlainText("Native voice output failed: "+error);};
@@ -297,14 +317,6 @@ private:
             if(skipMovies_)arguments.append("--skip-movies");
             if(noReadback_)arguments.append("--no-readback");
             if(captureLocks_)arguments.append("--capture-locks");
-            if(nativeCommands_){
-                commands_=std::make_unique<LiveCommandSession>(*gl_);
-                commands_->stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
-                commands_->framePresented=[this]{++nativeCommandFrames_;input_->suspend(media_ && media_->movieActive());placeholder_->hide();gl_->show();statusBar()->showMessage("Native command presentation active. Original rendering retained.");};
-                if(!commands_->create(path+".commands",(QRandomGenerator::global()->generate()&0x7fffffffu)|1u,continuous?2:1)){const auto error=commands_->error();finished();statusBar()->showMessage(error);return;}
-                arguments.append({"--command-channel",path+".commands"});
-                if(continuous){input_->suspend(true);arguments.append({"--render-control",path+".commands.control"});}
-            }
             if(nativeCommands_)gl_->show();else gl_->hide();placeholder_->show();
             placeholder_->setText((noReadback_ && !captureLocks_)?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":"Waiting for the first DirectDraw frame…");
         }
@@ -315,7 +327,7 @@ private:
         const auto candidates=host_.desktops(excluded_);
         if(opengl_ && !nativeFallback_){
             xcb_window_t target=0;
-            if(candidates.size()==1 && !gl_->frameSize().isEmpty())target=host_.inputWindow(candidates.front(),gl_->frameSize());
+            if(candidates.size()==1){host_.lowerDesktop(candidates.front());if(!gl_->frameSize().isEmpty())target=host_.inputWindow(candidates.front(),gl_->frameSize());}
             input_->setTarget(target);return;
         }
         if(candidates.size()==1 && attach(candidates.front()))return;
@@ -428,7 +440,7 @@ int main(int argc,char** argv){
     parser.addOption({"menu-page-sound","Native preview page-turn cue catalog ID.","id","830"});
     parser.addOption({"native-voices","Experimental native DirectSound voices through the PCM mixer and Qt output."});
     parser.addOption({"live-menu-test","Bounded Qt-driven live menu round trip; write a new JSON report.","file"});
-    parser.addOption({"live-menus","Connect native Main, Quick Battle, Single Player setup and Map to the engine (Wine viewport)."});
+    parser.addOption({"live-menus","Connect native menus to the engine; --native-commands uses native gameplay presentation."});
     parser.addOption({"main-menu","Preview the native main menu without launching the game."});
     parser.addOption({"quick-battle-menu","Preview the native Quick Battle menu without launching the game."});
     parser.addOption({"mini-menu","Preview the Mini Menu: campaign or battle.","mode"});
@@ -499,7 +511,7 @@ int main(int argc,char** argv){
     if(parser.isSet("mini-menu") && parser.value("mini-menu")!="campaign" && parser.value("mini-menu")!="battle")parser.showHelp(2);
     if(parser.isSet("battle-results") && parser.value("battle-results")!="victory" && parser.value("battle-results")!="defeat")parser.showHelp(2);
     if(parser.isSet("quick-battle-results") && parser.value("quick-battle-results")!="continue" && parser.value("quick-battle-results")!="spectate")parser.showHelp(2);
-    if(parser.isSet("live-menus")&&(menuPreview||parser.isSet("embedding-test")||parser.isSet("native-media")||parser.isSet("native-voices")||parser.isSet("capture-draws")||parser.isSet("capture-history")||parser.isSet("skip-movies")||parser.isSet("no-readback")||parser.isSet("capture-locks")||parser.isSet("native-commands")))parser.showHelp(2);
+    if(parser.isSet("live-menus")&&(menuPreview||parser.isSet("embedding-test")||parser.isSet("native-media")||parser.isSet("native-voices")||parser.isSet("capture-draws")||parser.isSet("capture-history")||parser.isSet("skip-movies")||parser.isSet("no-readback")||parser.isSet("capture-locks")))parser.showHelp(2);
     if(menuPreview){
         MenuPreview preview;
         const auto root=parser.isSet("menu-assets")?parser.value("menu-assets"):QDir(parser.value("repo")).filePath("working/game-nocd");
@@ -647,7 +659,7 @@ int main(int argc,char** argv){
             app.exit(ok?0:7);
         });return app.exec();
     }
-    const auto renderer=parser.isSet("live-menus")?QString("native"):parser.value("renderer");
+    const auto renderer=parser.isSet("live-menus")&&!parser.isSet("native-commands")?QString("native"):parser.value("renderer");
     if(renderer!="opengl" && renderer!="native")parser.showHelp(2);
     if((parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("skip-movies") || parser.isSet("no-readback") || parser.isSet("capture-locks") || parser.isSet("native-commands") || parser.isSet("frame-readback") || parser.isSet("native-media") || parser.isSet("native-voices")) && renderer!="opengl")parser.showHelp(2);
     if(parser.isSet("frame-readback") && parser.isSet("native-commands")){

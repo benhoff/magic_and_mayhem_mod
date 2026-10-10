@@ -1,5 +1,47 @@
 # Engine modernization coverage ledger
 
+## Native gameplay follow-up checkpoint — 2026-10-10
+
+[Extended gameplay research](native-campaign-extended-gameplay.md) preserves
+three new negative journeys: Apprentice idle fixed probes, subsequent successful
+movement/player damage followed by wizard death, and highest-difficulty lethal
+combat with a busy original-frame capture failure. A longer portrait run defeated
+the first enemy before later enemies killed Cornelius and the old harness waited
+after original World returned to Main. These are failures, not overall passes.
+
+`HOST.native-campaign-movement-probes` seeds bounded measured navigation with
+identity/delta guards. `HOST.native-campaign-spell-observation` seeds a separate
+guarded original cast/impact trace and successful-summon mana-debit validation.
+`HOST.native-campaign-capture-retry` seeds bounded UI-poll acquisition and prompt
+unexpected-exit failure.25 offline validator tests pass; build/admission and fresh
+end-to-end validation are recorded separately. New statuses do not claim live
+equivalence or replacement. Existing source-bound portrait evidence retains its
+historical hashes; changed dependencies require another full live run.
+
+The final no-draw-skip policy has an owned20-second CPU profile with6,864 samples
+and no sample loss. Hardware validation is unavailable (`/dev/dri` absent).
+The optional spell-case route now distinguishes bounded UI refusals and player
+Fireball defended damage. Earlier assumed Cure attempts failed: the green
+starting spell is Fireball71; historical reports and traces are preserved. The [fresh bounded spell-case run](native-campaign-spell-cases-passed-20261010.json)
+passes original Fireball110→90 damage,10 Zombie melee hits plus Cornelius7→0
+finish, two UI refusals, independent movement, native Mini/resume and strict rate
+floors (combat36.04/27.34, resumed56.97/37.05native/paint FPS). The [combined long run](native-campaign-fireball-portrait-passed-20261010.json)
+also passes22 portrait cycles over61.48seconds, independent stable face pixels
+and60seconds resumed input. Ordinary retreat leaves the wizard alive at126HP. Healing/refunds, other maps, timing equivalence,
+native GDI and complete drawing replacement remain pending. The exact committed
+range `ab40f5a..754f961` contains two reviewed file transitions and no gaps.
+
+[Native normal Quit](native-campaign-normal-quit-passed-20261010.json) now passes
+original No/World resume, repeated Yes/native defeat Continue21/Main/Main Quit4,
+with original launcher/native shell exit0 and strict gameplay FPS floors.
+`HOST.native-campaign-dialogue-readiness` accounts for delayed Hermes prompts;
+one early blank frame was insufficient. Adept cleared two actual prompts and
+summoned but its old fixed ranged targets failed; revised full Adept validation
+remains pending. Confirmation still uses original pixels in native commands,
+with native Qt Mini/report/Main; native modal widgets and pause equivalence
+remain separate gaps. The reviewed range `b50f128..fd3d55e` has11 exact file
+transitions and zero unresolved receipt gaps.
+
 The [complete live drawing replacement plan](../../docs/live-drawing-replacement.md)
 is the authoritative source for drawing takeover scope, implementation order,
 remaining dependencies and complete launcher-mode criteria. This ledger and the
@@ -3145,7 +3187,7 @@ The diagnostic live capture's39.27seconds includes startup, and does not establi
 real-time frame latency. All133declared sources/captured inputs are stable;
 80compiler inputs are covered. Five focused CTests and PE32 synthetic
 13-skip/49-forward/state/guard/malformed-reply fixtures pass. Original manifests
-verify2,927unchanged files before/after both live capture and comparison.
+verify 2,927unchanged files before/after both live capture and comparison.
 
 Understanding remains partial. The recovered return contract has scoped
 implementation, recorded original comparison, live-equivalence integration and
@@ -3479,3 +3521,234 @@ zero missing exact receipts, recorded in
 `coverage/committed-history-existing-work-20261010.json`. This is retrospective
 accounting, not new runtime evidence or a claim about past gate execution.
 No engine source, game balance or original artifacts change in this commit.
+
+### Combined native campaign route (2026-10-09)
+
+The historical public admission failure is retained. The new isolated branch
+implements a one-process native-menu/native-command route with dual hash-checked
+DLL staging, native input ownership and versioned channels. Behavior
+`HOST.native-campaign-session` tracks validation independently from original
+simulation/drawing replacement; a live scenario will be linked with its first
+executed result. Live click-through, gameplay stress and
+performance remain pending at this implementation checkpoint.
+
+The first combined live observation is retained as
+`native-campaign-premature-escape-20261009.json`: the initial driver confused
+Region Entry transition presentations with gameplay and sent Escape before
+any completed World tick, opening an unsupported Realm-context Mini instead
+of campaign Mini. The test now waits for independent original World readiness.
+Native viewport initialization and software-Xvfb backend selection are explicit.
+Physical gameplay input, repeated native menu returns and separate native/Qt
+paint throughput checks are implemented; positive live validation remains
+pending. Historical source hashes and statuses are retained.
+
+The corrected World-ready smoke now completes native Main/Region/Mini, original
+World updates and Cancel/resume with native GPU command presentation. Historical
+positive smoke: 88 command presentations/56 paints, zero fallback/recovery.
+Active Apprentice stress completes four physical-input phases and three native
+Mini returns but fails the fixed first-camera 10 FPS window floor (about 9 FPS).
+Initiate tutorial input gating and original desktop screenshot occlusion were
+also observed separately. Ordered-copy scheduling avoids the captured GAP;
+native desktop lowering restores presentation visibility. Optimized builds and
+single-process immutable manifest verification improve launch/test overhead.
+
+RGB565 constant-shift presentation preserves all 65,536 colors at scales1/1.5,
+but its gameplay rerun still fails the same floor; do not call it a performance
+fix. Direct opaque GPU copies preserve five backend/format/overlap/ownership/
+blit/surface regression checks and the exhaustive GPU viewport test. Another
+live run is in progress at this checkpoint. Profiles attribute native CPU time
+primarily to software Mesa JIT; hardware, synchronized pixel equivalence,
+movement/combat outcomes, other maps and complete drawing replacement remain
+pending. Historical evidence fingerprints are preserved. The committed range
+b70c9e6..6f7d9ab has26 exact hash receipt transitions, no unresolved gaps, in its
+retrospective report; this review does not assert new execution or past gates.
+
+Final scope-bound Apprentice live observation passes four 40-second physical
+camera/rotation/scene-HUD/spell-creature-selection/target-attempt phases and three
+native Mini returns. 9,621 native frames / 5,862 visible paints, zero fallback/recovery;
+51–55 native/about 33paint FPS by phase,worst 1-second 14 FPS. Immutable before/after
+verification and stable source hashes pass. `HOST.native-campaign-session` now
+has scoped implementation and live-observation integration support; original
+comparison/replacement remain none. Paired CPU profiles and a diagnostic final
+frame are retained. Spell casting/summoning/combat outcomes, synchronized visual
+equivalence, hardware/other-map/unbounded validation and full drawing replacement
+remain outstanding; inspected mana is 0/15. Timing failures remain negative,
+with no causal speedup or60 visible-FPS claim.
+
+Retrospective review through 3fbddc0 checks 55 committed file transitions.
+Two diagnostic profile text files initially lacked exact receipts; explicit
+retrospective addition hashes reconcile them without modifying the original
+files. Both the report with these gaps and its resolved continuation are retained.
+The continuation has no unresolved gaps and makes no past gate/validation claim.
+
+Final default Initiate smoke also passes on the final source: 89 native frames/
+56 visible paints, zero recovery/fallback, three initialized World completions
+and one same-thread Cancel/resume. Extended tutorial input remains separate.
+Retrospective review through 0857efe checks 73 committed file transitions with
+exact receipts and no unresolved gaps; prior gap/reconciliation reports remain.
+
+## Native campaign successful casting/combat checkpoint (2026-10-10)
+
+`HOST.native-campaign-casting-combat` seeds a bounded public native-menu/native-viewport journey with passive original creature and melee-return observations. Two retained negative runs distinguish count OCR failure from a confirmed original Zombie summon with independent native/original `1/15` readings but unverified movement/combat. Actual original enemy HP loss inside a player Zombie melee call remains required; scripted damage cannot pass. No simulation, damage formula, balance or drawing replacement is claimed. The existing strict native/paint throughput floors remain active. See [observation boundary and remaining gaps](native-campaign-casting-combat.md). The committed range `0857efe..3f106d9` has six exact file transitions reviewed with no missing receipts; current uncommitted changes remain separate.
+
+## Native campaign successful casting/combat validation (2026-10-10)
+
+`HOST.native-campaign-casting-combat` now has scoped implementation and live observation from the source-stable highest-difficulty native-menu/native-command journey: two physical Zombie summons, independent native/original `0/15 → 1/15` readings, 14 original Zombie enemy melee HP losses, and Cornelius's original `2 → 0` finishing hit on that same enemy. Native Mini Cancel/resume, 5,798 native frames/3,958 visible paints, zero recovery/fallback and unchanged 20-FPS average/10-FPS window floors pass on private four-worker software Mesa. Original simulation/drawing remain active; comparison and replacement remain none. See [retained result and exact boundaries](native-campaign-casting-combat.md). Eight negative runs preserve OCR, movement/placement, slot reuse, strict timing and finishing-actor findings; repeated post-hit recentering still approaches 10 FPS and remains an open performance branch. The first default-worker and four-worker profiles are retained without a deterministic hardware-speedup claim. The committed range `3f106d9..52dcdf8` has 17 exact reviewed file transitions and zero unresolved receipt gaps. Shared historical evidence remains unchanged/stale after these source edits; only this new scoped journey has fresh execution support.
+
+### Native portrait rendering and draw cadence — 2026-10-10
+
+The [portrait investigation](native-portrait-rendering.md) restores repeated
+portrait recentering during successful casting/combat and adds a full minute
+after victory. Independent native/original stable face pixels agree within
+one channel value. Per-output damage envelopes avoid whole-frame conversion
+for small HUD/cursor/portrait updates; first allocation, palettes and swaps
+retain full conversion. The renderer-only negative still fails fixed 10 FPS
+windows and is preserved. Native staged DEBUG draw skips are now disabled
+in both plaintext and encrypted configurations, hash-checked before launch;
+selected game speed and original pacing instructions remain unchanged. This
+is an intentional native presentation policy, not recovered timing equivalence.
+
+The [fresh passing run](native-portrait-passed-20261010.json) records 22
+post-combat cycles/61.18 seconds, 45.52 native/32.83 visible FPS and worst
+16.53 FPS within the portrait phase. Whole cast/combat/portrait and resumed
+phases pass 20 FPS averages/10 FPS windows/two-second stall gates:
+41.39/30.44 and 58.56/38.66, worst 16.41/17.04. 9,443 frames/6,608 paints,
+zero fallback/recovery, successful Zombie summons, 12 original Zombie damage
+calls and player wizard 8→0 lethal melee on the same enemy. Conversion work
+is 61.51% lower than converting every whole frame in this command sequence.
+Independent GPU/CPU pixel fixtures, 354 incremental frame comparisons,
+14 evidence guards and 3 config tests pass. Original manifests verify 2,927
+files before/after. This closes the bounded portrait-recentering performance
+gap; prior failures remain historical. Other map/hardware/full-World/effect
+pixels, precise timing equivalence and complete drawing/simulation replacement
+remain pending.
+
+Committed-history review 52dcdf8..5c086ce checks 23 exact file transitions
+against retained receipts with zero gaps; it asserts neither a past gate pass
+nor new original validation.
+
+### Native healing loadout and health observation — 2026-10-10
+
+The isolated native Quick Battle map2 route now assigns original-offered Cure41
+and Zombie14 through native setup/Portmanteau controls. Physical orders produce
+original human injury and Cure277→377, matching original caster mana debit and
+same-thread/source/owner/target/caller. Native/paint averages40.81/30.15FPS and
+worst16.38FPS pass the unchanged20/10FPS/two-second gates; zero fallback/recovery,
+independent images and original manifests pass. V3 signed-health forwarding
+preserves original arguments/return/LastError; V1/V2 readers remain supported.
+The wrong-HUD and delayed-effect interval failures retain immutable reports/raw
+traces. See [extended findings](native-campaign-extended-gameplay.md).
+This is bounded healing with private cleanup, not complete Quick Battle or
+cleansing/clamp/refund/timing/exception/hardware/replacement equivalence. Shared
+campaign/portrait scopes await the final combined rerun after these source edits.
+History `fd3d55e..0c935ad` has29 exact committed-file transitions and zero missing
+receipts; it asserts no past gate pass or new validation.
+
+### Final stationary portrait and smoke cleanup (2026-10-10)
+
+The final stationary portrait workload fails the unchanged20FPS average in two
+complete casting/combat/normal-Quit workflows (16.7121/16.7054FPS). Exact owned
+CPU sampling locates original clock busy waiting; no native renderer speedup
+claim follows. Sleep1 yields expose native cross-thread history GAP; Sleep0
+still gives16.6946FPS and a later original wizard death after random resumed
+orders. The experimental yield is disabled by default and stage7 native Main
+now fails promptly. These failures and historical reports remain intact; no
+pacer integration promotion is made. A source-bound mocked public cleanup
+fixture passes after malformed auxiliary JSON, proving exact owned stop/prefix
+and manifest/report continuation only. The committed range0c935ad..2ab21f4
+has33 exact reviewed transitions and zero missing receipt gaps.
+
+### Native precise real uptime clock fixture (2026-10-10)
+
+`HOST.native-precise-uptime-clock` is a separate intentional hosting policy:
+guarded original GetTickCount import reads use actual loaded WinMM timeGetTime,
+with32ms shared-epoch admission and original entry/exit LastError preserved.
+The1024-sample standalone Wine fixture proves1/2ms versus16/17ms host clock
+steps and0..16ms epoch difference; no original game timing equivalence follows.
+Game-speed preference, wait target and original wait instructions are retained.
+Original gameplay/physics, full timers and other scheduling modes remain open.
+The reviewed committed range2ab21f4..e5b4180 has51 exact transitions and zero
+missing receipt gaps. Live portrait/casting/resume/normal Quit is being checked
+separately with prospective source and scope bindings.
+
+The precise-clock combined workflow now passes from native New Game to original
+normal Quit: genuine Fireball100to80, player Zombie melee and same-enemy lethal,
+blocked casts,25stationary portrait cycles61.296sec (56.477interior20.0081FPS,
+face error1),60.431sec resumed camera/HUD/wheel, MiniCancel and QuitNo/Yes/Main.
+It retains8642native frames/6499paints, zero recovery/fallback, manifests and
+stable prospective sources. `HOST.native-precise-uptime-clock` gains scoped/live
+observation support; no timing/physics or replacement equivalence. This result
+has little margin above the20FPS portrait floor and does not imply hardware or
+long-session performance. Cure and generic repeated menu stress remain separate.
+
+Fresh final-source native Quick Battle Cure also passes: original397to400
+health, Cure41 delta100 and actual caster mana debit from the reviewed caller;
+native41.5934/paint30.6934FPS,worst19.0909FPS, zero recovery/fallback and stable
+prospective sources/manifests. The selected clamp is observed without a full
+formula/cleansing/refund claim. Original277to377 evidence stays historical.
+
+### Final repeated native Mini Cancel stress (2026-10-10)
+
+The source-bound Apprentice repeat smoke passes four43.2second ordinary physical
+input phases and three independently observed original MiniCancel/World resumes:
+10774native frames/7168paints, zero recovery/fallback, native phase averages
+57.5568/65.4852/56.9435/62.2264FPS and painted39.4514/42.4533/39.4551/41.8216FPS,
+worst22.1198FPS. Sources/manifests and protocolV12 remain verified. This renews
+only the bounded host session; images are unsynchronized diagnostics and there
+is no new movement/combat/pixel or full engine replacement equivalence claim.
+Together with fresh portrait/casting/blocked-spell/Quit and separate Cure runs,
+the outlined bounded smoke cases now have final-source execution evidence.
+The commit rangee5b4180..8e37e6b has38 exact reviewed transitions and zero gaps.
+
+- 2026-10-10 crowded native Quick Battle next step: registered
+  `HOST.native-crowded-battle-stress` and the native map2 scenario before live
+  execution. Uses ordinary native setup controls (mana200/health800/control30),
+  original simulation, physical summon/Cure orders and180..240seconds of passive
+  population/combat and strict native/visible rendering checks. Live validation
+  passes in `native-crowded-passed-20261010.json`:182.34seconds,34 actors peak,
+  eight actual summons,213 player melee damage returns, successful Cure,
+  native29.1996/visible25.3715FPS,worst19.8556 andzero fallback/recovery.
+  Existing smoke results retain historical hashes.
+  Reviewed committed history8e37e6b..7f361b0:17 exact file transitions,zero gaps;
+  retrospective accounting makes no past gate-pass or new execution claim.
+
+- 2026-10-10 surface-history follow-up: fresh prospective source-bound
+  `NR.copy-order.current-stress-20261010` reruns twelve actual PE32/GPU cases.
+ 418 complete native pixel comparisons,seven valid END/ACK sessions,five expected
+  GAP refusals across copy/lock/DC/flip timeouts and reentrant source writes.
+  No new renderer defect or algorithm change; actual original driver scheduling
+  and the historical Sleep1-related gameplay GAP remain separate boundaries.
+  Reviewed7f361b0..0df3a72:27 exact committed file transitions,zero receipt gaps;
+  retrospective review is not new behavior validation or a claim of a past gate.
+
+### Merged native campaign baseline (2026-10-10)
+
+Native campaign branch07c2430 is integrated with master8c3da6a, preserving both
+stable-ID registers, historical evidence and append-only exact receipts. Reviewed
+48c2638..8c3da6a and0df3a72..07c2430:82 parent/current source transitions with
+exact receipts, zero unresolved history gaps. The incoming register is retained
+separately before integration; new census records the combined source review.
+
+Fresh prospective merged-code runs pass native campaign casting/melee/ranged
+combat, invalid-target/insufficient-mana cases, movement, portrait face comparison
+(maximum channel error1), mini-menu/resume and normal quit; ordinary native
+Quick Battle Cure, cleanup failure-path fixture and real WinMM clock guard pass.
+Reports and observation wires use new `HOST.native-integration.*-20261010`
+evidence IDs. Original simulation and drawing remain active in these runs.
+
+Two crowded workload failures are preserved separately: only9.601dense seconds
+in the first run and only five confirmed summons after eight clicks in the
+second. The smoke input now varies physical targets until eight original
+successful mana-debited casts (maximum24 attempts), calibrates movement even
+when injured, and follows the observed living squad using ordinary ground orders.
+No workload/FPS/health/mana rule or admission floor is weakened. The fresh
+three-minute pass observes25actors peak,10near wizard,108.579dense seconds,
+eight player summons,39original player melee damage events and Cure638→738.
+Native39.563FPS/visible29.245FPS average,19.724worst sample, no fallback/recovery.
+This is spatial workload evidence, not a visible-pixel population count. The
+portrait phase remains close to its20FPS floor; software-Mesa evidence does not
+establish hardware performance or full animation/physics equivalence.
+
+Shared World/minimap/surface-history comparisons retain their historical hashes
+and explicit current-source limitations. Guarded World replacement beyond the
+first16 queues and independent current-code raster comparison remain next.

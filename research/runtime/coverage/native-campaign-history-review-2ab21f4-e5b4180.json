@@ -1,0 +1,469 @@
+{
+  "schema": 1,
+  "scope": "Retrospective committed-history accounting only; no past gate pass or new validation claim.",
+  "range": "2ab21f4..e5b4180",
+  "transitions": [
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "apps/qt-shell/campaign_smoke_test.cpp",
+      "before_sha256": "18cadc4980573010893905db5ffe221a0ca996610c097cd315439b1af87ca26e",
+      "after_sha256": "c09dc1cb2ee6846c9ffa6afc1e698e18092d911d2a16d6426b22695e20ce6e20",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "1697df51bfdb755dce6691bb477123df3acbb8f44dc10505076c15cc55b8f7d2",
+      "after_sha256": "5d3b11ddf435a74bc39b623c1be24d3173e2232618b42352a120a4f3e95cf683",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/coverage/native-campaign-history-review-0c935ad-2ab21f4.json",
+      "before_sha256": null,
+      "after_sha256": "f50805b54a67dda1b9994e6e06475e0a15db0df342f299ee33339841cbe85580",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "7fbf5d15660229ed3a8069bd2e81917c30d1b51017fae152f791648424ed7c61",
+      "after_sha256": "bf678cea2598f7308919e2dad275e01fd9b16f592825ad4efbd9b532ce4d72d4",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/coverage/source-index-native-wait-findings-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "5bd95abe0c2474855e04b02eced81250675264de1bb230fb74c280f378a6fedc",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "bcda0a49724e8bacb303a9c472fee6e7645c4fa48babe12d8c78c11244f54427",
+      "after_sha256": "82d2b443053c6042c517a28a1860fb486a19e3f6f1842731306c2605772efdea",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-extended-gameplay.md",
+      "before_sha256": "d587c972cc1398bc0cc36027b6f03e89533c085c904bd26bc62eea21db8b5faa",
+      "after_sha256": "fbb2b14fa8c8f3f086672c26b0dca7c72558a8d0a48449136522b6a0a2474d01",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-final-portrait-profiled-slow-20261010-events.bin",
+      "before_sha256": null,
+      "after_sha256": "5b595db3579ae776cdae151a2509fd4308b92729c3df174b5ca27c3ea74d7757",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-final-portrait-profiled-slow-20261010-gameplay-events.bin",
+      "before_sha256": null,
+      "after_sha256": "d6a4fd8181473381e64c674c6e48767fd9b2ffac0bfc63ca865a9d81d3afe425",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-final-portrait-profiled-slow-20261010-spell-events.bin",
+      "before_sha256": null,
+      "after_sha256": "aaa594646abaa591b7a9d3a48ece4985aed1804b040c4cef3b5d6d55c48ee7c7",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-final-portrait-profiled-slow-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c03a20731b28d2c707f47290c70a1c8768b05db36091ebc358f3409dfdff3d04",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-final-portrait-slow-20261010-events.bin",
+      "before_sha256": null,
+      "after_sha256": "9b759aaacb0460d3cd10a8993a2dd821089b8d88ee0488056ff15c297ab29901",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-final-portrait-slow-20261010-gameplay-events.bin",
+      "before_sha256": null,
+      "after_sha256": "6a5805f801eadac6640ea3173787dbb64f0f38468d9faee20aa855f808e68c02",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-final-portrait-slow-20261010-spell-events.bin",
+      "before_sha256": null,
+      "after_sha256": "af591d990683079e888dd2dc4977d81a3fb0be31647a164b395b1e4ec1e2620b",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-final-portrait-slow-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b78503bed7d8a1c07bfdbd75b0f6c02367d4c49422868110d67748bb2051555f",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-final-portrait-slow-native-20261010.png",
+      "before_sha256": null,
+      "after_sha256": "aedacf02e6cc6dbba21ba4e898baa5f4c5eaaac5cb962fa7d70254e3f433cadd",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-final-portrait-slow-original-20261010.png",
+      "before_sha256": null,
+      "after_sha256": "915b2d33e891546f92c3bfdf94a51bac64ecebebf06e8fd79a7ab9445fae9a2f",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-campaign-quota-cleanup-findings-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "71fcdde76b73af5e1ec8b1f94fe0da554ba3aed4fe5891b067397e613d4c3d1b",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-fixture-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9a5f7b099fb0dcbd68d8993585c3ba59a7b74991cdd289ffec775ace1442d2c8",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-overlap-aim-native-20261010.png",
+      "before_sha256": null,
+      "after_sha256": "a6ed2ad641998417bf8e7080e75c54829d8268b45cc4beffc5b49b1cc34075d1",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-overlap-aim-original-20261010.png",
+      "before_sha256": null,
+      "after_sha256": "236f34665bc46919523681fd2c4b0ca6679080ed4087ae8d16a763f12c0691ab",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-overlap-negative-20261010-events.bin",
+      "before_sha256": null,
+      "after_sha256": "b8cc6ea54191d5120f420e63b5c58ee1b88b9f2645c20267c12c59c7768c113a",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-overlap-negative-20261010-gameplay-events.bin",
+      "before_sha256": null,
+      "after_sha256": "4c75963868e7e94c559774d6e0419a446cdcc6f8cdeb4d361be9f7f84f7a03fb",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-overlap-negative-20261010-lifecycle.log",
+      "before_sha256": null,
+      "after_sha256": "580ea4c4191d52228220d59783ad7def52f8d2bdd5d669cc0dd33b7a3ec30c76",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-overlap-negative-20261010-spell-events.bin",
+      "before_sha256": null,
+      "after_sha256": "2a95a53b258be2be6cb18f709ac49471577fd693bd0277012e3cc471c6da23a4",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-overlap-negative-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e68fbd5d728ff7555ced378ed6ff87032f1b8c64ad73a5a28042c16b1d61023a",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-sleep0-slow-20261010-events.bin",
+      "before_sha256": null,
+      "after_sha256": "fc071ea50e27c403155ee40da98775e5a5be6f7ac77616cf21e71c336319234c",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-sleep0-slow-20261010-gameplay-events.bin",
+      "before_sha256": null,
+      "after_sha256": "4e2c61757f7d652906328843a41a45374d54d6c9e819023e1f84aa4c00bb18b5",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-sleep0-slow-20261010-spell-events.bin",
+      "before_sha256": null,
+      "after_sha256": "81cae2c651cd77c3481e4603c699fe172f8acf9e0afc471f136d52c4aef58c0a",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-sleep0-slow-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "893e4226eb3a750557cbd1998959921e862ebfe4e0822909c46cf8a4a0309e40",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-sleep1-gap-20261010-events.bin",
+      "before_sha256": null,
+      "after_sha256": "9f9ed5b17e994c5912c3075311d0c09b30b6bd5e5a5de2574fefdf7ae6a680cc",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-sleep1-gap-20261010-gameplay-events.bin",
+      "before_sha256": null,
+      "after_sha256": "4916a0f6d872c67491faf22329d488ffdfc3491847c1179263f0e6b14461fb44",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-sleep1-gap-20261010-lifecycle.log",
+      "before_sha256": null,
+      "after_sha256": "2cb54ba85033183babc9f505822bd0d16b5a0652b6bfd490d04f7cef9cdfc2f7",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-sleep1-gap-20261010-spell-events.bin",
+      "before_sha256": null,
+      "after_sha256": "92468118a716f86033995acde167c07c66a4304909fea43d17cabad483256470",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-sleep1-gap-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d570bdb03c83a49635d505989fc64b797eb317d4a93be4cc8ffc2e5d10797997",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-pacer-zero-fixture-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "62cfaf614e24a4812b6ae5a89ab2bdf059dd8e90d6542e1fed68516c66c72e8f",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-portrait-rendering.md",
+      "before_sha256": "ca0ac7acc2c17f317ab9cac90ae6b0b91c73e76e5642059c9636dbd0e8ab7ba0",
+      "after_sha256": "5051b8de5fa8bc8097b1b467eaf3528044504545a1a007fd984028794c5c1265",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-portrait-wait-profile-20261010-portrait-current-profile.txt",
+      "before_sha256": null,
+      "after_sha256": "ae31a04698194966a0b032f8d80b0cafe4ac8fe489e58211b7d06332a8b0f1f5",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-portrait-wait-profile-20261010-portrait-current-samples.txt",
+      "before_sha256": null,
+      "after_sha256": "167908523d378fcc877f8838f5d7c0a364ada648cdcf53043304aa02c455c1e0",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-portrait-wait-profile-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "149f20388ff3d164302332001524b7c870a5b6f90f4f2351b6dbad2e7ab5498e",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-smoke-cleanup-fixture-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2104bc8b0b1f0db703a0de35709eb34cc96b309ac13fae7c13e2770966de028c",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-smoke-cleanup-fixture-v4-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ebe4d7e1a7f3fea5977b3756ae8b48e5a1efa58bd4f3328601e729c70fa6eb24",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "research/runtime/native-smoke-cleanup-fixture-v5-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "08a5756943bbe0125ba0449c8575dd5b62c89304425262ac9147d991c75a035f",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "runtime/render/bridge.c",
+      "before_sha256": "f7bc0400d3f8ab1dd3d1536ce4827bdd28c5e34c86b02a21ae3f531c9cad2798",
+      "after_sha256": "041781329497b1dbbeb5fa9ad8d7b6040073cd62a8dcbb68e049c6c271afb8ab",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "runtime/render/pacer_yield.h",
+      "before_sha256": null,
+      "after_sha256": "629a55b9a763d5f97d55768683088ba9a58e2d90d33051a02dff3d7494ffb07f",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "tests/campaign-cleanup-test.py",
+      "before_sha256": null,
+      "after_sha256": "9c05b18e93c9327a6ff2a2cbdfc439f8a7001e70b487da53f6720b88e0f4dec4",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010",
+        "native-wait-negative-review-20261010-recorded"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "tests/campaign-pacer-reference.c",
+      "before_sha256": null,
+      "after_sha256": "02f9e988c768b580a3a68688e22cef2b2e5238790444c1699052422e83a71676",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "tools/campaign-combat-input.py",
+      "before_sha256": "99c112f68b63a9817a5fc9867c4fd8142ecd1588e141814cd922d072b6413954",
+      "after_sha256": "d1baf39691685b70057de606f4e6a11862360fa7e09d5e1b227027d6bbda820e",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "tools/menu-game-runner.py",
+      "before_sha256": "5106be942a16f700f13070683d8160662dcbafaabe062072ec4fa505469505ea",
+      "after_sha256": "ede31cf4c568b0410ca180953996e2dffeb3d2c6b3296ba29f7950af2fc137d2",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "e7c85172f5e797e55dfd3cf8583d95330f98087c990b3c2b6c8cde5bb8bfb3b8",
+      "after_sha256": "eae6b6498bdbe9c6e9818cebea671b90249c7270a1616cd87825fe4f22604294",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010",
+        "native-wait-negative-review-20261010-recorded"
+      ]
+    },
+    {
+      "commit": "e5b418076bd24d8b15e67329aa3c87ae5312ca5c",
+      "path": "tools/test-native-pacer.py",
+      "before_sha256": null,
+      "after_sha256": "9ec0047e0eaff1b8de4ecee1df2076635fe870da379c0066a25787ba99137bb2",
+      "exact_receipts": [
+        "native-wait-negative-review-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

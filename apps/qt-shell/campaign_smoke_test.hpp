@@ -1,10 +1,13 @@
 #pragma once
 #include <QtGlobal>
 #include <functional>
+#include <QString>
 class QApplication;
 class QMainWindow;
 class LiveMenuSession;
 class QString;
-struct CampaignPresentationProbe { quint64 frames=0; bool active=false; bool fallback=false; };
+struct CampaignPresentationProbe { quint64 frames=0; bool active=false; bool fallback=false; quint64 paints=0; unsigned recoveries=0; QString error; QString renderer; quint64 presentationPixels=0; };
 void installCampaignSmokeTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&,
                              std::function<CampaignPresentationProbe()>);
+
+void installNativeHealingSmokeTest(QApplication&,QMainWindow&,LiveMenuSession&,const QString&,std::function<CampaignPresentationProbe()>);

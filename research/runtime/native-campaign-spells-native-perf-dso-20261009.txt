@@ -1,0 +1,34 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 2K of event 'cpu-clock:u'
+# Event count (approx.): 22929292700
+#
+# Overhead  Shared Object               
+# ........  ............................
+#
+    80.62%  [JIT] tid 924919            
+    12.47%  libgallium-26.2.1-arch1.1.so
+     4.85%  libc.so.6                   
+     1.59%  mnm-qt-shell                
+            |          
+             --0.57%--pixels (inlined)
+                       decodeRecord (inlined)
+                       append (inlined)
+                       poll (inlined)
+                       poll (inlined)
+                       operator() (inlined)
+                       0x7f640edeeff2
+                       QTimer::timerEvent(QTimerEvent*)
+                       QObject::event(QEvent*)
+                       QApplicationPrivate::notify_helper(QObject*, QEvent*)
+                       QCoreApplication::notifyInternal2(QObject*, QEvent*)
+                       QTimerInfoList::activateTimers()
+
+
+
+#
+# (Tip: Create an archive with symtabs to analyse on other machine: perf archive)
+#

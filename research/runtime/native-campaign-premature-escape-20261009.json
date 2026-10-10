@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "success": false,
+  "status": "failed",
+  "stage": "campaign-flow",
+  "required_mode": [
+    "native-menus",
+    "native-command-presentation"
+  ],
+  "launch_requested": true,
+  "game_entry_verified": false,
+  "flow_completed": false,
+  "movement_verified": false,
+  "complete_drawing_replacement": false,
+  "cleanup": "bounded private-session termination",
+  "sources": {
+    "tools/test-native-campaign.py": "dbd3eaa31b71d381a4ad72f13c04e041896f0814f7d6e6665fc01445d1005313",
+    "tools/run-qt-shell.sh": "9502727ade3a2ee7ac882d9b039a9416f39ab3cf5ee0a56a17c31bfc5958a9b5",
+    "apps/qt-shell/campaign_smoke_test.cpp": "6ce9b947c275e58af9b3940c04218e5b2466166f3aaf68ddd2a9313734b6e020",
+    "apps/qt-shell/campaign_smoke_test.hpp": "c217e30fe9cf1eed2d2b6de94d68029498afa1feab13cb164ec6471122452aed",
+    "apps/qt-shell/main.cpp": "6b49654322499978fd9e148b6f05d2ae64e62b1a71302272b229b8893ea7871c",
+    "apps/qt-shell/CMakeLists.txt": "3ae9d1f7f28ca570b17be9f5ccd83b84e4c9ba083d7bfb887b6b060b94d4e84f",
+    "apps/qt-shell/live_menu_session.cpp": "2fa553befe672b777b6abfca9d51901b91dfd4e2be7abbf61f50533b0bc6ba6c",
+    "apps/qt-shell/menu_bridge.cpp": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea",
+    "tools/test-live-campaign-mini.py": "886050526ad714e82965cbaedcf9e834d7202c2e5ffa5016794177a6697459ee"
+  },
+  "shell_sha256": "2e2bade6e73b033ecea62e39cd2aa4b99b99294c1be1350dc8bc5acba9da4294",
+  "mode_probe": {
+    "command": [
+      "/tmp/mnm-native-campaign-exercise/working/build/qt-shell/mnm-qt-shell",
+      "--repo",
+      "/tmp/mnm-native-campaign-exercise",
+      "--live-menus",
+      "--native-commands",
+      "--smoke-test"
+    ],
+    "exit_code": 0
+  },
+  "launch_command": [
+    "/tmp/mnm-native-campaign-exercise/tools/run-qt-shell.sh",
+    "--live-menus",
+    "--native-commands",
+    "--live-menu-test",
+    "/tmp/mnm-native-campaign-exercise/working/tests/native-campaign/run-0bk2vsg0/flow.json"
+  ],
+  "error": "Campaign test interrupted",
+  "original_manifest_verified_after": true,
+  "observations": {
+    "world_completed_ticks": 0,
+    "original_actions": [
+      [
+        3,
+        0
+      ],
+      [
+        18,
+        0
+      ]
+    ],
+    "premature_escape_mini_ingress": [
+      [
+        4,
+        5,
+        4
+      ]
+    ],
+    "native_gameplay_screenshot_was_region_entry": true,
+    "confidence": "high within captured trace and inspected screenshot"
+  },
+  "scope": "Negative combined-route observation: old driver sent Escape after native Region Entry transition frames, before any completed original World tick. Original Realm-context Mini opened; campaign Mini route not reached. Interrupted bounded session; no gameplay success, equivalence or replacement claim.",
+  "artifacts": {
+    "working/tests/native-campaign/run-0bk2vsg0/main.png": "bd3dbcb211eef3b69c98a84eb29e4b8d8937253fe1f389471bec25f372797903",
+    "working/tests/native-campaign/run-0bk2vsg0/region.png": "d8f719e26c60b2f6d0dc83bf55b9260b8be46afae7b1d05f820d53b4c910343d",
+    "working/tests/native-campaign/run-0bk2vsg0/gameplay.png": "255f61ef9583aac25ec505921fe702e0ee4a045e1b5d75e4693fab2c0b659265",
+    "working/tests/native-campaign/run-0bk2vsg0/shell.log": "7e753b516aa9ab16e104f6ea158e1f1de9c37ef07e4fe9788318f03ad14c6c12",
+    "working/experiments/menu-observer/run-v8bivpj1/events.bin": "1c982607aee6eb9bfb32dd84d8ebb435d7f61d8e92324319d98f6af290510874",
+    "working/experiments/menu-observer/run-v8bivpj1/manifest.json": "8f800a986816c98c5eaa027487dd7b310977dbf256f37ab0dff9489868724ebe"
+  }
+}

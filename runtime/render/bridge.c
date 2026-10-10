@@ -515,6 +515,11 @@ __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid
     original_create=original;return create_draw(guid,result,outer);
 }
 #endif
+#ifndef MNM_RENDER_SELFTEST
+#define PACER_PRECISE_CLOCK() lock_diagnostic("native_precise_clock",0,1,0x5c5164,0,0,0,0)
+#define PACER_FIRST_YIELD(caller) lock_diagnostic("native_pacer_yield",0,1,caller,0,0,0,0)
+#include "pacer_yield.h"
+#endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
     if(reason==0){command_control_detach();command_scheduler_detach();return 1;}
@@ -561,6 +566,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     u32 ignored;VirtualProtect(iat,0xc8,protection,&ignored);
 #ifndef MNM_RENDER_SELFTEST
     input_install(base);media_install(base);
+    if(!pacer_install(base)){stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_HOOK_FAILED;return 1;}
 #endif
     __atomic_store_n(stream+MNM_FRAME_V1_STATUS_OFFSET/4,MNM_FRAME_V1_STATUS_HOOK_ARMED,__ATOMIC_RELEASE);return 1;
 }

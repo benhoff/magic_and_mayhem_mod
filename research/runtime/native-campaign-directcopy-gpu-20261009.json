@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "scope": "Synthetic native integration on isolated Xvfb/Mesa; no original artifacts, live game or hardware performance claim.",
+  "source_sha256": {
+    "renderer/blit.cpp": "200bf920bf2e66a16dde219d3e52c537335251fa67c12dccdd88112c35b1b21b",
+    "renderer/blit.hpp": "fa38ea434b5c19d0417ff567909fe71870e337af3cb8cf0943903010e243b991",
+    "renderer/commands.cpp": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+    "renderer/commands.hpp": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+    "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+    "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+    "renderer/CMakeLists.txt": "588be24c5f2f2f3ab15080814b9a91ce646084e419c19901ae69db361bc4a646",
+    "apps/qt-shell/gl_viewport.cpp": "372bdf4b55fd7f9e6a00a411e2ebf916e58287294c0e0962b9dbd3f712843b45",
+    "apps/qt-shell/gl_viewport.hpp": "49f37c5d61b1d565eaff59fd68b2a17af77bd24d6625ed718c1697060a105c18",
+    "apps/qt-shell/main.cpp": "9dac7bdb1acc478ce58b96580530a59b91b20c5e681d8ffa99157b4a8893bcc4",
+    "apps/qt-shell/CMakeLists.txt": "3ae9d1f7f28ca570b17be9f5ccd83b84e4c9ba083d7bfb887b6b060b94d4e84f",
+    "tests/gpu-presentation-test.cpp": "d8944d4beac6079410a3982d41e21460331fc11c0860e610531327f1d0558f3b",
+    "tools/test-gpu-presentation.py": "af85e8b9ee3362e6556957010af363691fcd29afd560054a00cc52e1423a334c"
+  },
+  "run_directory": "working/tests/gpu-presentation/run-2wio4dr_",
+  "runs": [
+    {
+      "name": "frames-1",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/tmp/mnm-native-campaign-exercise/working/build/qt-shell/gpu-presentation-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "aa00b41bf7ed3f9e893277b8b60c23427aad1ccd690640c2625f12fd59ec1d1a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "frames-1.5",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/tmp/mnm-native-campaign-exercise/working/build/qt-shell/gpu-presentation-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "aa00b41bf7ed3f9e893277b8b60c23427aad1ccd690640c2625f12fd59ec1d1a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "shell-replay",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/tmp/mnm-native-campaign-exercise/working/build/qt-shell/mnm-qt-shell",
+        "--commands",
+        "/tmp/mnm-native-campaign-exercise/working/tests/gpu-presentation/run-2wio4dr_/commands.bin",
+        "--smoke-test"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "dc4c96ef649e3662823fb9bb3d789227eed78090ee6df84c276d92e0c17adf41"
+    },
+    {
+      "name": "shell-gap-refusal",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/tmp/mnm-native-campaign-exercise/working/build/qt-shell/mnm-qt-shell",
+        "--commands",
+        "/tmp/mnm-native-campaign-exercise/working/tests/gpu-presentation/run-2wio4dr_/gap.bin",
+        "--smoke-test"
+      ],
+      "returncode": 8,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b5aaaf74e93c576ccd0582c9abf7cb7cd658e1963d0139dcf1af485cb454ad92"
+    }
+  ],
+  "success": true,
+  "frames": [
+    {
+      "success": true,
+      "full_frame_comparisons": 105,
+      "command_presentations": 2,
+      "gpu_presentations": 100,
+      "rgba_readbacks": 0,
+      "gpu_viewport_uploads": 0,
+      "unshared_context_refused": true,
+      "owner_release_survived": true,
+      "driver": "llvmpipe (LLVM 22.1.8, 256 bits)"
+    },
+    {
+      "success": true,
+      "full_frame_comparisons": 105,
+      "command_presentations": 2,
+      "gpu_presentations": 100,
+      "rgba_readbacks": 0,
+      "gpu_viewport_uploads": 0,
+      "unshared_context_refused": true,
+      "owner_release_survived": true,
+      "driver": "llvmpipe (LLVM 22.1.8, 256 bits)"
+    }
+  ],
+  "native_integration": {
+    "all_match": true,
+    "full_frame_comparisons": 210,
+    "normal_and_hidpi": true,
+    "presentation_readbacks": 0,
+    "gpu_viewport_uploads": 0,
+    "source_and_renderer_release": true,
+    "unshared_context_refused": true,
+    "shell_command_replay": true,
+    "gap_refused": true
+  },
+  "artifacts": {
+    "gpu-presentation-test": "0350a625d716b1c374839a33c66fddd4b3e1e472382f44c5c6e80f9949d9a47c",
+    "mnm-qt-shell": "6f13bf3360eb2f546cf0007b7961a6f1258a50d5c2d17e7d26df71b5605cfb29"
+  }
+}
