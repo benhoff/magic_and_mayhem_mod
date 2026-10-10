@@ -3936,3 +3936,7 @@ forwards clipped requests. Win32 access/LastError/reentry, unmasked/full-stack/
 exception floating behavior, installed-asset generality and sustained live
 validation remain open. See [CPU clipping evidence](word-cpu-clipping.md) and
 `RS.word-cpu-clipping` / `NR.word-cpu-clipping-admission`.
+
+## Offline renderer robustness increment (2026-10-10)
+
+`NR.offline-render-soak` now has fresh headless integration evidence:20 complete saved World32 sessions in one renderer,640 CPU/GPU completions,24,480 checkpoint assertions and28,000 seeded adversarial draws. Three assertion-enabled Debug refusal/cache/atlas fixtures pass. Warm native work39.22ms median/72.71ms p95/116.15ms maximum and10.87MiB retained growth pass declared host budgets; every session retires GPU surfaces and scratch storage stays fixed. Cold first-queue preparation remains444.20ms median; no full-game cadence, fresh original comparison, rolling delivery or live replacement claim. See [offline soak scope](native-render-offline-soak.md). The committed range01e160a..0415793 has50 exact reviewed transitions with no gaps.
