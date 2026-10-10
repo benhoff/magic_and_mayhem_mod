@@ -7,7 +7,7 @@ public:
     enum class State {WaitingFrame,Active,Recovering,Fallback,Ended,Stopping};
     explicit LiveCommandSession(GlViewport& viewport):viewport_(viewport){}
     ~LiveCommandSession();
-    bool create(const QString& path,quint32 session,quint32 version=1);
+    bool create(const QString& path,quint32 session,quint32 version=1,int initialFrameTimeoutMs=10000);
     // Discard any backlog and attach through a strict complete owned checkpoint.
     bool attachCheckpoint();
     bool poll();
@@ -29,6 +29,7 @@ private:
     void change(State state);
     GlViewport& viewport_;std::unique_ptr<LiveCommandRenderer> renderer_;RenderControl control_;
     QString path_,error_;quint32 session_=0,version_=0;unsigned retries_=0;
+    int initialFrameTimeoutMs_=10000;
     bool stopAcknowledged_=false;
     State state_=State::WaitingFrame;QElapsedTimer deadline_;
 };

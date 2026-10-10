@@ -9,7 +9,8 @@ bool LiveCommandSession::fresh(const QString& path,quint32 session){
     if(!renderer_->create(path,session,version_))return fail(renderer_->error());
     return true;
 }
-bool LiveCommandSession::create(const QString& path,quint32 session,quint32 version){
+bool LiveCommandSession::create(const QString& path,quint32 session,quint32 version,int initialFrameTimeoutMs){
+    initialFrameTimeoutMs_=initialFrameTimeoutMs;
     path_=path;session_=session;version_=version;deadline_.start();
     if(!fresh(path,session))return false;
     if(version==2 && !control_.create(path+".control",session))return fail(control_.error());
@@ -60,7 +61,7 @@ bool LiveCommandSession::poll(){
         return recover();
     }
     if(renderer_->ended()){control_.cancel();change(State::Ended);return true;}
-    if(version_==2 && state_==State::WaitingFrame && deadline_.elapsed()>=MNM_RENDER_CONTROL_V1_FRAME_TIMEOUT_MS){
+    if(version_==2 && state_==State::WaitingFrame && deadline_.elapsed()>=(retries_?MNM_RENDER_CONTROL_V1_FRAME_TIMEOUT_MS:initialFrameTimeoutMs_)){
         if(retries_)return fail("Recovered producer did not publish a complete frame");
         return recover();
     }

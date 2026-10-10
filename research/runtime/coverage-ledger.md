@@ -3310,3 +3310,13 @@ and separate live-observation support. Historical evidence and the explicit
 manual/all-map/unbounded boundaries remain intact. The newly landed minimap commit
 was reviewed separately over `e25290c..8dce3ac`; all24 committed file transitions
 have exact receipt chains. Its accounting review does not assert new execution.
+
+### Combined native campaign route (2026-10-09)
+
+The historical public admission failure is retained. The new isolated branch
+implements a one-process native-menu/native-command route with dual hash-checked
+DLL staging, native input ownership and versioned channels. Behavior
+`HOST.native-campaign-session` tracks validation independently from original
+simulation/drawing replacement; a live scenario will be linked with its first
+executed result. Live click-through, gameplay stress and
+performance remain pending at this implementation checkpoint.

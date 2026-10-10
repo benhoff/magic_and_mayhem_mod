@@ -16082,7 +16082,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Continuous native command application launch default",
-      "scope": "Ordinary Qt OpenGL game launches select native command presentation by default, with continuous v2 and matching child environment/control channel. Explicit frame-readback selects the original-renderer mirror; conflicting explicit choices refuse. Draw/history/lock/no-readback diagnostics retain their prior paths unless native commands are explicitly selected; embedding/live menus retain Wine presentation. Explicit environment0 retains bounded diagnostics. Synthetic actual-shell visible startup/streaming beyond4096 commands in normal/fullscreen/fractional-DPI windows; historical bounded black startup captures inspected independently. User-desktop GPU selection, original-game retry, movies, sustained gameplay and native replacement remain pending. Capture ownership/history refusal and ordered drawing policy remain separate. Both ordinary native-command and explicit frame-copy presentation imply application-held capture, disabling observer DirectDraw locks; six fresh synthetic actual-shell launch cases validate mode selection and retained pixels. No all-duration driver claim. Public native campaign smoke requires live menus and native command presentation together; current CLI rejection is an explicit integration blocker. New Game/Enter/gameplay/Escape/Mini/Cancel automation preserves ordinary menu feature flags and requires native completed-frame callbacks plus independent original menu/World observations; live execution, movement and combined-route integration remain pending.",
+      "scope": "Ordinary Qt OpenGL game launches select native command presentation by default, with continuous v2 and matching child environment/control channel. Explicit frame-readback selects the original-renderer mirror; conflicting explicit choices refuse. Draw/history/lock/no-readback diagnostics retain their prior paths unless native commands are explicitly selected; embedding and menu-only launches retain Wine presentation. Explicit environment0 retains bounded diagnostics. Synthetic actual-shell visible startup/streaming beyond4096 commands in normal/fullscreen/fractional-DPI windows; historical bounded black startup captures inspected independently. User-desktop GPU selection, original-game retry, movies, sustained gameplay and native replacement remain pending. Capture ownership/history refusal and ordered drawing policy remain separate. Both ordinary native-command and explicit frame-copy presentation imply application-held capture, disabling observer DirectDraw locks; six fresh synthetic actual-shell launch cases validate mode selection and retained pixels. No all-duration driver claim. Public native campaign smoke requires live menus and native command presentation together; historical CLI rejection is retained as negative evidence; the combined route now stages both adapters, with live validation pending. New Game/Enter/gameplay/Escape/Mini/Cancel automation preserves ordinary menu feature flags and requires native completed-frame callbacks plus independent original menu/World observations; live execution, movement and combined-route integration remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -22444,6 +22444,43 @@
         "implementation": "scoped",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "HOST.native-campaign-session",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "One-process native menus and command presentation",
+      "scope": "Hash-checked dual adapter staging, private menu-launch prefix and shared native command/input/frame/control channels. Qt menu readiness suspends gameplay input; engine-confirmed handoff restores native viewport focus. Two-minute cold first-frame allowance and existing ten-second recovery bound. Original simulation/drawing retained; live gameplay, visual equivalence, performance, fallback and shutdown remain pending.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/native-campaign-rendering.md",
+        "tests/native-campaign-smoke.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "tools/prepare-menu-observer.py",
+        "tools/run-menu-observer.py",
+        "tools/menu-game-runner.py"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
         "replacement": "none"
       }
     }
@@ -51008,8 +51045,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-history-merge-20261009.json",
-    "sha256": "d53d620a09b73609a28edbbbe10baf71a7490f477f56e4c3535c9a084af390c5"
+    "path": "research/runtime/coverage/source-index-native-campaign-combined-20261009.json",
+    "sha256": "8609fd0e5352a8468f756bc2d800600ddf05c02263ab1f3b967d79a54d325e36"
   },
   "claim_bindings_required": true
 }
