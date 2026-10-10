@@ -114,3 +114,62 @@ the same strict native portrait route.22 post-combat cycles over61.48seconds,
 a living126HP wizard after ordinary retreat, independent stable face pixels and
 60seconds resumed input pass. This uses the current V2 observer/capture retry
 sources. Earlier source hashes, failures and CPU profiles remain historical.
+
+## Stationary HUD wait regression and native cooperative policy
+
+The final V3/normal-Quit run retains [a strict failure](native-campaign-final-portrait-slow-20261010.json):
+25portrait cycles over61seconds, but57.563seconds of complete interior samples
+average16.712FPS for both native publications and paints. Whole phases pass;
+normal original Quit exits0. The [profiled reproduction](native-campaign-final-portrait-profiled-slow-20261010.json)
+repeats16.705FPS. Removed speculative scene clicks leave the pointer over the
+wizard HUD; earlier active-cursor evidence cannot establish stationary throughput.
+Native/original portrait images agree visually, including the hovered face layout.
+
+[Owned20second99Hz evidence](native-portrait-wait-profile-20261010.json) retains
+4,692samples with zero losses and exact Qt/Wine process IDs. Original busy-loop
+PCs0x4e3f89..0x4e3f93 and kernel32 GetTickCount dominate the original main thread;
+software Mesa also consumes CPU. Installed Wine11.16 GetTickCount at image offset
+1b480 reads DWORD[0x7ffe0320]. Wine's historical [shared-clock discussion](https://www.winehq.org/pipermail/wine-devel/2020-August/171503.html)
+explains possible coarse updates, without proving this installed build's exact
+scheduling. These are unpaired CPU samples, not a causal native rendering speedup.
+
+The native cooperative policy guards the six-byte original import load,
+all12busy-loop bytes, base0x400000 and actual loaded GetTickCount identity. Only
+returnPC0x4e3f8b in a configured live native session yields Sleep1 before forwarding
+the original clock. Entry/exit LastError and actual return bits are preserved;
+other callers forward immediately. Game speed, frame limit, wait target and
+pacing instructions are untouched. Atomic close/refusal/queue-failure/end/stop
+flags disable yields without touching concurrently unmapped channels. PE32
+byte/caller/state/clock/LastError fixtures pass before live use. This intentional
+hosting policy needs live validation; precise scheduling/physics/balance
+comparison and hardware/replacement equivalence remain pending.
+
+## Stationary portrait failure and rejected yielding prototypes
+
+The final stationary hovered-portrait workload exposes a gap in the earlier
+cursor-heavy pass. Two source-stable full workflows finish casting/combat and
+normal Quit but fail the unchanged 20 FPS portrait average at 16.7121 and
+16.7054 FPS. Their complete reports and original gameplay/spell/menu traces are
+retained as `native-campaign-final-portrait{-profiled,}-slow-20261010.json`.
+The exact owned 20-second CPU profile has 4,692 samples, zero lost samples,
+and 541 direct samples at the pinned original busy-wait instructions. These
+are original wait observations, not evidence of native renderer time or a causal
+speedup. Installed Wine11.16 kernel32 GetTickCount reads shared DWORD0x7ffe0320;
+full original clock and scheduling equivalence remains unestablished.
+
+The guarded Sleep1 prototype triggers native GAP and fallback after 8 seconds;
+its cross-thread surface history is explicitly refused. Sleep0 avoids that GAP
+in a later bounded run but still produces 16.6946 native/paint FPS over57.264
+interior portrait seconds. Twenty-five cycles and genuine Fireball110to90 are
+observed, then the original wizard dies after resumed random physical orders.
+The smoke misses native Main in stage7 and times out. The failure guard now
+includes that stage. Neither prototype is a portrait performance fix. Sleep0
+remains experimental opt-in (`--enable-pacer-yield`), disabled by default.
+Historical Sleep1 fixture evidence is preserved separately; real timing,
+threading, complete surface history and physics equivalence remain pending.
+
+A separate failed Sleep0 aiming run retains native/original overlap images:
+Redcap is above the wizard and none of the original five bounded aim points
+produce a Fireball cast. Higher points are added, retaining the two actual-cast
+limit; the subsequent failed portrait run observes the required original
+Fireball damage. No health, mana, position or AI values are written.

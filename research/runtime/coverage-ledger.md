@@ -3474,3 +3474,17 @@ cleansing/clamp/refund/timing/exception/hardware/replacement equivalence. Shared
 campaign/portrait scopes await the final combined rerun after these source edits.
 History `fd3d55e..0c935ad` has29 exact committed-file transitions and zero missing
 receipts; it asserts no past gate pass or new validation.
+
+### Final stationary portrait and smoke cleanup (2026-10-10)
+
+The final stationary portrait workload fails the unchanged20FPS average in two
+complete casting/combat/normal-Quit workflows (16.7121/16.7054FPS). Exact owned
+CPU sampling locates original clock busy waiting; no native renderer speedup
+claim follows. Sleep1 yields expose native cross-thread history GAP; Sleep0
+still gives16.6946FPS and a later original wizard death after random resumed
+orders. The experimental yield is disabled by default and stage7 native Main
+now fails promptly. These failures and historical reports remain intact; no
+pacer integration promotion is made. A source-bound mocked public cleanup
+fixture passes after malformed auxiliary JSON, proving exact owned stop/prefix
+and manifest/report continuation only. The committed range0c935ad..2ab21f4
+has33 exact reviewed transitions and zero missing receipt gaps.

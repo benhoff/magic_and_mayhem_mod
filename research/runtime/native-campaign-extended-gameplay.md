@@ -224,3 +224,19 @@ images are retained. Native/paint averages40.81/30.15FPS, worst16.38FPS, with
 and stable declared sources pass. This closes successful bounded healing, while
 retaining both failed attempts; original rules/drawing remain active and full
 battle completion, cleansing/clamp/refund formulas and other exclusions remain.
+
+## Auxiliary profiling cleanup
+
+A private Wine initialization hit the temporary filesystem quota and left a
+truncated auxiliary publication JSON line. The original finally block raised
+while reading that line, skipping automatic owned cleanup; exact owned recovery
+and the after-experiment manifest are retained separately in
+`native-campaign-quota-cleanup-findings-20261010.json`.
+The runner now records the parse failure and continues stopping its monitor,
+shell, exact Wine prefix and private display, followed by manifest verification.
+`native-smoke-cleanup-fixture-20261010.json` prospectively binds an actual
+runner execution with mocked processes to verify that order, exact prefix,
+failed report and both manifest invocations. This is headless fixture evidence,
+not a claim of original engine execution under a full disk. Only completed
+owned experiment Wine prefixes were removed to recover temporary space;
+all input media, gameplay traces, images and reports remain retained.
