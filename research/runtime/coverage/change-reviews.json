@@ -208744,6 +208744,86 @@
         ],
         "reason": "Fresh frozen optimized20-session execution and separate Debug fixtures; all source/input fingerprints and compiler closures stable, immutable manifests verified, prospective behavior/scenario claims match. Exact saved-output assertions are not new original execution, and native input contains no destination oracle pixels."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "e7a8a0efcd037d27bcbdad3c9f4e1ebdad5eda27164be12be0b2d3edc629a904",
+          "before_sha256": "52f00c097b085684cdc2ac1fe65774d8ff568c8e0b1e83bccb2aa0dbe0f58742",
+          "id": "NR.offline-render-soak"
+        },
+        {
+          "after_sha256": "de50ffe4d65ad48b2de6023156e28b6b88be2351e470338ed6132be06c315ec5",
+          "before_sha256": "c1cbc7df7709a0f330b709c798961a986bc1121eca5a631d5c758e39546f8fee",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "4aada8649bd06edbe45124d9e85c18ecab45283f2de6c04882aba7ba93640ae7",
+          "before_sha256": "2151d0e670f2b2d1470f960044acd1b2019bc817421b33bedd3f872c697b7344",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "11af7ff08acbfbee8ad3c549aafa3b17bca6c0441b6ba26cfdf268f7569cecc3",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/native-render-soak-followup-history-20261010.json"
+        },
+        {
+          "after_sha256": "0b3f99da72d28585dfb1171803f82a3e47afe9be5a2daf25933400193e40cec3",
+          "before_sha256": "c7e90aad21bf0d03d371f1c4a8331c9fe6fc75c76e28044cbccfff344ee1c349",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "c04b9b2f87e73c9208cdc16feed5b6e1428c4100c8d71c842ef71b04c1b404ac",
+          "before_sha256": "4295260f38512b424932a168192a45b7bb419e8890c59abeac0e25a89c83ae82",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "9284b71767652d2b24574945d2512ba418ea9b0a6ddf9511caeb6c4b0fbb7208",
+          "before_sha256": null,
+          "path": "research/runtime/native-render-offline-soak-budget-refusal-20261010.json"
+        },
+        {
+          "after_sha256": "86b04ac220eb9135503446a90648527b109da90ca87a2f752488a9a81e863f66",
+          "before_sha256": null,
+          "path": "research/runtime/native-render-offline-soak-gl33-20261010.json"
+        },
+        {
+          "after_sha256": "770a7cfd0af35420eee3c97e8b676e723280fb2bf0aa68e9e454c25ced202059",
+          "before_sha256": "7272b0569c376cc2cb9035fae6a14561a65fa7b72deb369776a073aa56134903",
+          "path": "research/runtime/native-render-offline-soak.md"
+        }
+      ],
+      "id": "native-render-offline-soak-followup-accounting-20261010",
+      "pending_gaps": [],
+      "reason": "Review immutable GL3.3 fallback and intentional performance-budget refusal records, source/binary provenance, documented latency/cold-start limits, continued source-census identity and10 parent/current committed transitions. No renderer or protocol source bytes changed; original comparison, rolling delivery and live cadence remain separate.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Coverage-tool research/accounting fingerprints change through the updated register and reports; no new semantic validation or broad rendering/current-original comparison claim for that existing contract. The offline policy is validated in the separate exact recorded receipt below."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "e7a8a0efcd037d27bcbdad3c9f4e1ebdad5eda27164be12be0b2d3edc629a904",
+          "before_sha256": "52f00c097b085684cdc2ac1fe65774d8ff568c8e0b1e83bccb2aa0dbe0f58742",
+          "id": "NR.offline-render-soak"
+        }
+      ],
+      "files": [],
+      "id": "native-render-offline-soak-fallback-refusal-validated-20261010",
+      "pending_gaps": [],
+      "reason": "Register the completed same-binary GL3.3 fallback20-session/second-seed proof and deliberate0.001ms-budget rejection after correct pixels, without widening the offline scope.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.offline-render-soak.gl33-20261010",
+          "NR.offline-render-soak.budget-refusal-20261010"
+        ],
+        "reason": "Source-bound native execution with predeclared exact scenario claims; fallback640 World completions and24480 checkpoint hashes plus all seeded/Debug fixtures pass normal budgets. Negative four-session run retains correct pixels and manifest/source/input verification while budget failure and process exit1 are observed. No source changes, live gameplay or original-engine execution."
+      }
     }
   ]
 }

@@ -27342,7 +27342,9 @@
       ],
       "validation_domain": "Pinned saved owned V3 World32 corpus with no oracle pixel inputs; retained GlBlitter across finite session resets and seeded mixed native operations. Default20 sessions/40 rounds, median50ms/p95100ms/max250ms warm native work and32MiB growth. Software Mesa default8 workers; GL3.3 fallback separately selectable. CPU/GPU World final parity plus saved checkpoint assertions; original code and live producer are not executed.",
       "evidence": [
-        "NR.offline-render-soak.default-20261010"
+        "NR.offline-render-soak.default-20261010",
+        "NR.offline-render-soak.gl33-20261010",
+        "NR.offline-render-soak.budget-refusal-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -52218,6 +52220,136 @@
           "equals": []
         }
       ]
+    },
+    {
+      "id": "NR.offline-render-soak.gl33-20261010",
+      "kind": "native_integration",
+      "scope": "Verified same compiled optimized consumer and Debug fixture binaries, GL3.3 framebuffer snapshot fallback and independent seed20261011.20 complete World32 sessions,640 native CPU/GPU completions,24480 exact checkpoint hashes,28000 adversarial draws,360 scalar checks,120 runtime refusals and16 malformed envelopes pass. Warm median38.41/p9571.20/max92.42ms, resident growth12.00MiB; scratch/surface bounds and three Debug fixtures pass. No live gameplay or new original execution.",
+      "record": "research/runtime/native-render-offline-soak-gl33-20261010.json",
+      "sha256": "86b04ac220eb9135503446a90648527b109da90ca87a2f752488a9a81e863f66",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/settings/gl33",
+          "equals": true
+        },
+        {
+          "pointer": "/totals/world_queues",
+          "equals": 640
+        },
+        {
+          "pointer": "/totals/checkpoint_comparisons",
+          "equals": 24480
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/driver/version",
+          "equals": "3.3 (Core Profile) Mesa 26.2.1-arch1.1"
+        },
+        {
+          "pointer": "/assertion_enabled_tests_passed",
+          "equals": 3
+        },
+        {
+          "pointer": "/compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        },
+        {
+          "pointer": "/debug_compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "NR.offline-render-soak.budget-refusal-20261010",
+      "kind": "native_integration",
+      "scope": "Intentional negative offline policy test: impossible0.001ms median/p95/max limits after four closed source-only World32 sessions. All128 native CPU/GPU completions and4896 saved checkpoint comparisons pass with no surface leaks, while performance_budget.passed=false, overall success=false and process exit1. Sources/inputs and original manifests remain verified; no claim of a pixel-rendering defect or normal-budget failure.",
+      "record": "research/runtime/native-render-offline-soak-budget-refusal-20261010.json",
+      "sha256": "9284b71767652d2b24574945d2512ba418ea9b0a6ddf9511caeb6c4b0fbb7208",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/native/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": false
+        },
+        {
+          "pointer": "/settings/iterations",
+          "equals": 4
+        },
+        {
+          "pointer": "/settings/median_ms",
+          "equals": 0.001
+        },
+        {
+          "pointer": "/settings/p95_ms",
+          "equals": 0.001
+        },
+        {
+          "pointer": "/settings/max_ms",
+          "equals": 0.001
+        },
+        {
+          "pointer": "/error",
+          "equals": "Latency tail or sustained resident-memory growth exceeds declared budget"
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -59467,7 +59599,9 @@
       ],
       "scope": "Offline source-only replay of complete saved World32 sessions with persistent renderer lifetime, exact checkpoint digest assertions and native CPU/GPU completion parity; seeded scalar adversarial draws, Debug refusal/eviction fixtures, software Mesa8-worker warm median/p95/max and post-warm teardown memory-growth limits. No rolling delivery, independent original execution or live-game cadence claim.",
       "evidence": [
-        "NR.offline-render-soak.default-20261010"
+        "NR.offline-render-soak.default-20261010",
+        "NR.offline-render-soak.gl33-20261010",
+        "NR.offline-render-soak.budget-refusal-20261010"
       ]
     }
   ],
