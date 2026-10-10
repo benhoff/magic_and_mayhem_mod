@@ -22474,7 +22474,8 @@
         "research/runtime/coverage/native-campaign-history-review-b70c9e6-6f7d9ab.json",
         "research/runtime/native-campaign-spells-profile-20261009.json",
         "research/runtime/coverage/native-campaign-history-review-b70c9e6-3fbddc0.json",
-        "research/runtime/coverage/native-campaign-history-profile-receipts-20261009.json"
+        "research/runtime/coverage/native-campaign-history-profile-receipts-20261009.json",
+        "research/runtime/coverage/native-campaign-history-review-b70c9e6-0857efe.json"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -22504,7 +22505,8 @@
         "HOST.native-campaign.fast565-stress-slow-20261009",
         "HOST.native-campaign.directcopy-stress-passed-20261009",
         "HOST.native-campaign.tutorial-stall-20261009",
-        "HOST.native-campaign.spells-stress-passed-20261009"
+        "HOST.native-campaign.spells-stress-passed-20261009",
+        "HOST.native-campaign.final-default-smoke-20261009"
       ],
       "status": {
         "understanding": "scoped",
@@ -44428,6 +44430,37 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-campaign.final-default-smoke-20261009",
+      "kind": "live_observation",
+      "scope": "Final default Initiate smoke after all source changes: native Main/Region/World/Mini Cancel/resume,89native frames/56visible paints,zero recovery/fallback,independent initialized World readiness and same-thread callback/resume evidence. No extended Initiate tutorial, stress/FPS or casting/combat claim.",
+      "record": "research/runtime/native-campaign-final-default-smoke-20261009.json",
+      "sha256": "306c8bdb398ed40cb631270609884fb3a1ab17203925634e9c7979d17ae4a115",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/engine/world_resumes",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -51179,7 +51212,8 @@
         "HOST.native-campaign.fast565-stress-slow-20261009",
         "HOST.native-campaign.directcopy-stress-passed-20261009",
         "HOST.native-campaign.tutorial-stall-20261009",
-        "HOST.native-campaign.spells-stress-passed-20261009"
+        "HOST.native-campaign.spells-stress-passed-20261009",
+        "HOST.native-campaign.final-default-smoke-20261009"
       ],
       "scope": "Public Launch/New Game/Region Enter, independent initialized same-thread World readiness, native command/Qt paint presentation, bounded physical camera/rotation/scene/HUD clicks, spell/creature selection and target/source-order attempts, wheel input and repeated Escape/native Mini/Cancel returns. Diagnostic native/original images and explicit 20 FPS average/10 FPS one-second floors; preserves negative early-Escape/copy-GAP evidence. Original callbacks/World resume independently checked; no pixel equivalence or movement/combat/replacement claim."
     }

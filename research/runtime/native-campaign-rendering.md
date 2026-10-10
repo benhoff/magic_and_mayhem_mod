@@ -149,3 +149,10 @@ speedup,60 visible FPS or physical-GPU performance. Historical timing failures
 remain negative. Unbounded sessions, other regions, arbitrary menu contexts,
 synchronized pixel comparisons and complete original drawing replacement remain
 separate outstanding milestones.
+
+The default Initiate smoke was retested after all source changes. Its fresh
+`native-campaign-final-default-smoke-20261009.json` passes native Main/Region/
+World/Mini Cancel/resume, with 89 native frames, 56 visible paints, zero recovery/
+fallback and independent same-thread engine evidence. This short flow does not
+establish an extended Initiate tutorial journey. Both latest live runs have
+stable source fingerprints and before/after immutable input verification.

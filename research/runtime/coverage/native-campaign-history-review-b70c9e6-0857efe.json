@@ -1,0 +1,685 @@
+{
+  "schema": 1,
+  "scope": "Retrospective committed-history accounting only; historical gaps and reconciliations retained. No past gate pass or new behavior validation assertion.",
+  "range": "b70c9e6..0857efe",
+  "transitions": [
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "apps/qt-shell/live_command_session.cpp",
+      "before_sha256": "49061f9e095de104ca70ea5b4ac6c33d113d2f211821e470d0dd55171e6fb4f4",
+      "after_sha256": "911867d74b39bb0f8d3cb41168c4abcf4c9b18bffaa14b934c2ff2981c08bfbc",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "apps/qt-shell/live_command_session.hpp",
+      "before_sha256": "6a36d84d8e352cd85738d0952178ec5b911709a2adf08ed48d6e5f291e92640c",
+      "after_sha256": "8fb9707437828b6da54f747572158dce60509e8115990a6a0b01e52d0f209ea4",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "25ccbbd8f260523a060dc04455e82421ea439528ef6f64e0e894a02d5cbe2a2c",
+      "after_sha256": "2fa553befe672b777b6abfca9d51901b91dfd4e2be7abbf61f50533b0bc6ba6c",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "9253ed4ecaa4bd341a0423d33d42504c1e0c0700cb3ce842c9348286dcfdd3b8",
+      "after_sha256": "1ba1c0fa72e4c82874d535eb1d8391198aaa265902b9a8d7fb9711f19f0bcf34",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "57802c759217ff2dbad0f088350325dd747b4cf432aedf63fc52b3be884c1b54",
+      "after_sha256": "a0554409d5d17436fc89383592cf833c77d65c2dd613dc9aa465cd6eac8aa348",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "1d0e24bfc96df290b1e92c7746bbd7018166a881079508c36cdb25ac695de5af",
+      "after_sha256": "40fd83a57f3d0a2449c75c6ad4fe3ae2dcef8c88e7dedff5da4cd9dbb8a7fac5",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "467dc831b3b5478af0c3574098408674c2a9992d7450fbf12afd7d6ad53b37ff",
+      "after_sha256": "d9682cdf17cc993375ae22d614c91ff40bc2f6b4714f7049f0f46e00b1a6cb1a",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "research/runtime/coverage/source-index-native-campaign-combined-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "8609fd0e5352a8468f756bc2d800600ddf05c02263ab1f3b967d79a54d325e36",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "research/runtime/native-campaign-rendering.md",
+      "before_sha256": null,
+      "after_sha256": "72ca0b8d4bbb2bc3e5d1b8f07e9e68a6971a473564c4ee75d338d883d1d618d2",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "tests/native-campaign-smoke.md",
+      "before_sha256": "098c21fd054bba566407313ce88ea9ac93c7734c70903352037f10951f90352e",
+      "after_sha256": "ae6a98309b1407ca3a08d58c684ea236831a342802991f4e671e6b97649cb2b6",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "tools/menu-game-runner.py",
+      "before_sha256": "8b8057d0302256548e1c6ba598ccc00d4612ba539bc83021a04912e66acfa855",
+      "after_sha256": "1d92e2df3f2935b43643bc44707726dfa2192b554d69d8d086e51dbb7c2a0efd",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "9169e05631dc96bc9bf9e087c7e678fc42fe96b29ae1ebd74a4d945318fb153c",
+      "after_sha256": "5368487dfc6ec433dd04fa659b17b3644ba5af7b64c5aaa6536c969540e31e7a",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "86e9572a46328ded18f0c81407379e20f7d011a9",
+      "path": "tools/run-menu-observer.py",
+      "before_sha256": "42b40bbd9db95fe2cf096ec76f3b7d7102a0f2eb9a36b9b17e64a795e2a6bd56",
+      "after_sha256": "9071fd188dd069355678b66d4423863cdf442a59bb67647f0f356e8d1e86a4f9",
+      "exact_receipts": [
+        "native-campaign-combined-implementation-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "apps/qt-shell/campaign_smoke_test.cpp",
+      "before_sha256": "6ce9b947c275e58af9b3940c04218e5b2466166f3aaf68ddd2a9313734b6e020",
+      "after_sha256": "7f65c7aa763068128012f58bc1cb5ed5fa92f722b6a3d5388d82575ec19eb2c1",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "apps/qt-shell/campaign_smoke_test.hpp",
+      "before_sha256": "c217e30fe9cf1eed2d2b6de94d68029498afa1feab13cb164ec6471122452aed",
+      "after_sha256": "33ddc9022a5e41d79a5e2c368bf1a39947c6e49b4f1ff9e5834ce2c0147a770c",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "a0554409d5d17436fc89383592cf833c77d65c2dd613dc9aa465cd6eac8aa348",
+      "after_sha256": "959ea39bf6d05ce01024aa5bf31aca24f1c2ab68a293e9f7bd9d1fa43855cacc",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "40fd83a57f3d0a2449c75c6ad4fe3ae2dcef8c88e7dedff5da4cd9dbb8a7fac5",
+      "after_sha256": "d6ce7636dec99a500ed7fcd654c063b860e6a63066c994470cdad30dfe83b100",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "research/runtime/coverage/committed-history-native-campaign-integration-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "5c320d6a834e7aa4bfc7b514438b4a303c2b5d61b35f8435ad1fab22c85308b4",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "d9682cdf17cc993375ae22d614c91ff40bc2f6b4714f7049f0f46e00b1a6cb1a",
+      "after_sha256": "5dcf5b0a34641fe2a775d7470c7ffddaf0869dbe40dab77ade2e0bbc769a4581",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "research/runtime/coverage/source-index-native-campaign-readiness-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "7499bac0f7236822c23e079d7beaa92b5dc9c79b64f30255ea58a0ae40e76262",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "research/runtime/native-campaign-premature-escape-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "eac5c0bf4a241f7abc69c32490191698ac837fe714c63039b631644de8ee84ad",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "research/runtime/native-campaign-rendering.md",
+      "before_sha256": "72ca0b8d4bbb2bc3e5d1b8f07e9e68a6971a473564c4ee75d338d883d1d618d2",
+      "after_sha256": "e1c91675105d830ed73801e43924c6f57fafc8c81c4c4ec2a43df8eac326be35",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "tests/native-campaign-smoke.md",
+      "before_sha256": "ae6a98309b1407ca3a08d58c684ea236831a342802991f4e671e6b97649cb2b6",
+      "after_sha256": "8db3e7914819a201b17537aa59ce7a4e2a920004a16f6ccaf7b224f985bdfe0b",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "tests/test-native-campaign.py",
+      "before_sha256": "18c30560d5d3096c75e14e23de5b14afd8802ec4d7692751c7176cd7c6c67ab4",
+      "after_sha256": "7682b54f856f21ee4665d3796500f64f71758e713e08dc7ac2855ee6c243945e",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "tools/campaign-gameplay-input.py",
+      "before_sha256": null,
+      "after_sha256": "00f215adba24f28fa2a45a6468fa4b8c8863d552fe304f9bfe5bd800617495f0",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "6f7d9ab55de0863ed0096c1ea4baf0bd9fd9e575",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "dbd3eaa31b71d381a4ad72f13c04e041896f0814f7d6e6665fc01445d1005313",
+      "after_sha256": "1b84f4ece14e187fdfbc03f374f50294c04af9c7d0e85917b2446a5bf59306bf",
+      "exact_receipts": [
+        "native-campaign-world-readiness-stress-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "apps/qt-shell/campaign_smoke_test.cpp",
+      "before_sha256": "7f65c7aa763068128012f58bc1cb5ed5fa92f722b6a3d5388d82575ec19eb2c1",
+      "after_sha256": "1b1da08374d1e1226ece478a5f4ceb7443ee902b72c43955928d6de0ad018ef6",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "apps/qt-shell/campaign_smoke_test.hpp",
+      "before_sha256": "33ddc9022a5e41d79a5e2c368bf1a39947c6e49b4f1ff9e5834ce2c0147a770c",
+      "after_sha256": "1dc81a12fe0d90bce703b8125ddea323664cf63e7c6ee735bad524e838976d50",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "959ea39bf6d05ce01024aa5bf31aca24f1c2ab68a293e9f7bd9d1fa43855cacc",
+      "after_sha256": "9dac7bdb1acc478ce58b96580530a59b91b20c5e681d8ffa99157b4a8893bcc4",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "apps/qt-shell/window_host.cpp",
+      "before_sha256": "d1726a7802a05d56f9364ae2e1bd5053ddb8dd4f784836ff675246538725ffeb",
+      "after_sha256": "3b295714c214551c1e0b81c0213b816c45c1cad8a1ae4b231a164c61d6ccaad0",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "apps/qt-shell/window_host.hpp",
+      "before_sha256": "457bcd0312af429b28ebbc7c95d71bff8fb0c21b61007be38edabab8f2727bd3",
+      "after_sha256": "7357751429aff4692145f53bc4bc7a7454cb41c4d16006ea5f3b0ebbaadbc46b",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "renderer/blit.cpp",
+      "before_sha256": "dffc551cd662e40bac3be9207cd4fb5d805221e49aa0eb5bc9e81151cc9e801c",
+      "after_sha256": "200bf920bf2e66a16dde219d3e52c537335251fa67c12dccdd88112c35b1b21b",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "d6ce7636dec99a500ed7fcd654c063b860e6a63066c994470cdad30dfe83b100",
+      "after_sha256": "4f1c31619e76462a8a1bf57a6621065ce97807e40a85a70fe3525ddfcf3c3a11",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/coverage/native-campaign-history-review-b70c9e6-6f7d9ab.json",
+      "before_sha256": null,
+      "after_sha256": "a5739e4f7f7d4464658aa8112f40aadfcb60873cd912b170b4194306e4b9b222",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "5dcf5b0a34641fe2a775d7470c7ffddaf0869dbe40dab77ade2e0bbc769a4581",
+      "after_sha256": "99c325abde3181ddb0caa6ecacafd28b99cce65385809718fce63f944f44c906",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/coverage/source-index-native-campaign-stress-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "83ddc23e013332fad27786eb9cee7aa2b09dfa0160cc07352d41621ba46630ae",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-apprentice-mesa-dso-20261009.txt",
+      "before_sha256": null,
+      "after_sha256": "a3e7d904193974db998e64bae12ca3fef01cd671f49784f65bf15548e084114e",
+      "exact_receipts": [
+        "native-campaign-profile-text-retrospective-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-apprentice-mesa-profile-20261009.txt",
+      "before_sha256": null,
+      "after_sha256": "0c69878938e6bcec3a2afe4e4a62259eab76d53cb3f8f496bf909d172ab38a4e",
+      "exact_receipts": [
+        "native-campaign-profile-text-retrospective-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-apprentice-stress-slow-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "a718152ca3131789836d6b4cc489c145d61c13698ed3e742406d13ad56fc5841",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-copy-gap-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "554482b69b0643308d04c4b76231ee4602fa5e2f9997306d5a858918f82172d2",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-directcopy-backend-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "4b4d927ce1017e5c800cc94fbc2ce70bb8a17d48c1950804a404696d9c0de899",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-directcopy-formats-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "0aa303c46d6512277c6f1c844ce8014ca32636827d6714a09caca9763f9a3e01",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-directcopy-gpu-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "93e5c1717e64c457664eda84dcfdf8c088eb2235f09c616c6bcf7358d9ec3953",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-directcopy-ownership-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "e66b55e7055ad7d57736a692caebc784aa6b22a9d5c841b969236966f9e3ac58",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-fast565-stress-slow-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "90de54c27bb0e6e4b086f67ec6d690dc100a3b5b54c4d812653fd581884b567d",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-rendering.md",
+      "before_sha256": "e1c91675105d830ed73801e43924c6f57fafc8c81c4c4ec2a43df8eac326be35",
+      "after_sha256": "b0730c76f713e78a65f890963ce5638750c34c3b27780dc50680ded16650c1a8",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-rgb565-regression-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "3ea275f5c0db884a67789b550346d1f10aa1d4d6fbaaef1c5e7b8bbefee61ad3",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "research/runtime/native-campaign-smoke-passed-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "e72fc5b8b419a440575490804c3a76aae87de2e3798756c3c1bd4ba82535e0d8",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "tests/gpu-presentation-test.cpp",
+      "before_sha256": "01a0c59fa147b14c813a3870d2ab43c636516c280e28bbaf22a5b21b435abee3",
+      "after_sha256": "d8944d4beac6079410a3982d41e21460331fc11c0860e610531327f1d0558f3b",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "tests/native-campaign-smoke.md",
+      "before_sha256": "8db3e7914819a201b17537aa59ce7a4e2a920004a16f6ccaf7b224f985bdfe0b",
+      "after_sha256": "6e0a5bc0b2e1e1338a9625bfb7707820d04079e4eb1e5e563a8bb1841f18470a",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "tools/campaign-gameplay-input.py",
+      "before_sha256": "00f215adba24f28fa2a45a6468fa4b8c8863d552fe304f9bfe5bd800617495f0",
+      "after_sha256": "9c229ce871a475d781ce4b198c1a2fcbf18694bc52b8bd7e1201bad2c2166b03",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "tools/menu-game-runner.py",
+      "before_sha256": "1d92e2df3f2935b43643bc44707726dfa2192b554d69d8d086e51dbb7c2a0efd",
+      "after_sha256": "b274f9c340193a43962768150963cf08ecc0806c2f0805c22a22c9111f860561",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "tools/original-manifest.sh",
+      "before_sha256": "374c68532b6dc09b797396cb19ae2e753eecc1375ab393d323d0edf8d8c0f564",
+      "after_sha256": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "tools/run-qt-shell.sh",
+      "before_sha256": "9502727ade3a2ee7ac882d9b039a9416f39ab3cf5ee0a56a17c31bfc5958a9b5",
+      "after_sha256": "614cedac6421b12f28e28b1211f4b59636785fbb35fd5bff29b0bcfdba111417",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "3fbddc01605a30c8b2f4a4ab9a142a70174827db",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "1b84f4ece14e187fdfbc03f374f50294c04af9c7d0e85917b2446a5bf59306bf",
+      "after_sha256": "a94ea7bc661e355ea0480bd55bcce118a75873af34c7aad9c577b6a58c06a8aa",
+      "exact_receipts": [
+        "native-campaign-stress-and-gpu-copy-checkpoint-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "4f1c31619e76462a8a1bf57a6621065ce97807e40a85a70fe3525ddfcf3c3a11",
+      "after_sha256": "f2cc8bce75c362cdc1cace2733e7e6e042389f815d3c352110edc93ce9504182",
+      "exact_receipts": [
+        "native-campaign-final-reconciled-support-20261009",
+        "native-campaign-final-reconciled-live-observation-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/coverage/native-campaign-history-profile-receipts-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "2116875c42acd41ff016ef9e94fe148eeabc37843ac1c2675d98e7c46ddb0f32",
+      "exact_receipts": [
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/coverage/native-campaign-history-review-b70c9e6-3fbddc0.json",
+      "before_sha256": null,
+      "after_sha256": "c16d61948f87d93f7796b25fb9d3c5d3830eb68fb5561636d940473e4d636b8f",
+      "exact_receipts": [
+        "native-campaign-final-support-and-historical-boundaries-20261009",
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "99c325abde3181ddb0caa6ecacafd28b99cce65385809718fce63f944f44c906",
+      "after_sha256": "6adab84c437227c9ad2ef869b02a713428d97f3922f0b37b3ecbe81d2b1124d1",
+      "exact_receipts": [
+        "native-campaign-final-reconciled-support-20261009",
+        "native-campaign-final-reconciled-live-observation-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/coverage/source-index-native-campaign-spells-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "7589a26a2b83a49326f6a20ad99786cc05f78b05a010808308d158547a847615",
+      "exact_receipts": [
+        "native-campaign-final-support-and-historical-boundaries-20261009",
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "d445bbcd08633c20ee9d9260a6424c911468c02da280b694fb789e20d964c6d4",
+      "after_sha256": "f039be2f19ec5ba21908f1f11b72a01ec2cd14698edbe3b66dabbc1a4440a7c2",
+      "exact_receipts": [
+        "native-campaign-final-support-and-historical-boundaries-20261009",
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/native-campaign-directcopy-stress-passed-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "e35d6d52000a5163be3d8282b6ac5f4f1258b9398bda37fe3405a6788f733a99",
+      "exact_receipts": [
+        "native-campaign-final-support-and-historical-boundaries-20261009",
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/native-campaign-rendering.md",
+      "before_sha256": "b0730c76f713e78a65f890963ce5638750c34c3b27780dc50680ded16650c1a8",
+      "after_sha256": "f3ee8f069050744d18a2301485434df810afeba2f64556df88e69661b4ee8cdd",
+      "exact_receipts": [
+        "native-campaign-final-support-and-historical-boundaries-20261009",
+        "native-campaign-final-live-observation-20261009",
+        "native-campaign-final-reconciled-support-20261009",
+        "native-campaign-final-reconciled-live-observation-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/native-campaign-spells-native-perf-dso-20261009.txt",
+      "before_sha256": null,
+      "after_sha256": "12de7f11bee7d5ed637346881805a7851f3e3d6b25d67761d32ac2b1c9610240",
+      "exact_receipts": [
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/native-campaign-spells-original-perf-dso-20261009.txt",
+      "before_sha256": null,
+      "after_sha256": "b8b6849b92934a420c6bedf618f492df428346a3d881b0645ca44ee6f74c7a2f",
+      "exact_receipts": [
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/native-campaign-spells-original-perf-symbol-20261009.txt",
+      "before_sha256": null,
+      "after_sha256": "d39f4a207144f1e8c3f54b18202074814b8178cca8ca67df60393001248ce250",
+      "exact_receipts": [
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/native-campaign-spells-profile-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "94c2121ccac72c50fc637ce85e2a3963b44ee9eda254e4e063f167407b0a4da5",
+      "exact_receipts": [
+        "native-campaign-final-support-and-historical-boundaries-20261009",
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/native-campaign-spells-stress-passed-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "239f16674a9cca3bad84d53e349b33f3c7d075170d2eae26a472d9167fc5baaf",
+      "exact_receipts": [
+        "native-campaign-final-support-and-historical-boundaries-20261009",
+        "native-campaign-final-live-observation-20261009",
+        "native-campaign-final-reconciled-support-20261009",
+        "native-campaign-final-reconciled-live-observation-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/native-campaign-spells-stress-passed-20261009.png",
+      "before_sha256": null,
+      "after_sha256": "533b4b0123327c5f56b4c25da0c24d8cfe20d7052495dce1888c310bfa8b4561",
+      "exact_receipts": [
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/native-campaign-tutorial-stall-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "5bdd29455964ef7881eececf97107fae2e529eaff44585b2174928174e24d9e2",
+      "exact_receipts": [
+        "native-campaign-final-support-and-historical-boundaries-20261009",
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "research/runtime/native-campaign-tutorial-stall-20261009.png",
+      "before_sha256": null,
+      "after_sha256": "620a142fb6b35f3f28df298a812f8714b3246bfccb69455200791e988ad09a00",
+      "exact_receipts": [
+        "native-campaign-final-reconciled-support-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "tests/native-campaign-smoke.md",
+      "before_sha256": "6e0a5bc0b2e1e1338a9625bfb7707820d04079e4eb1e5e563a8bb1841f18470a",
+      "after_sha256": "ffc7733e6bff855b71b2a0b6c545d84f505d2183a0f2663c72c3270b991675bf",
+      "exact_receipts": [
+        "native-campaign-final-support-and-historical-boundaries-20261009",
+        "native-campaign-final-live-observation-20261009",
+        "native-campaign-final-reconciled-support-20261009",
+        "native-campaign-final-reconciled-live-observation-20261009"
+      ]
+    },
+    {
+      "commit": "0857efea39aa2e805f8e94762e53b6a1e556c93f",
+      "path": "tools/campaign-gameplay-input.py",
+      "before_sha256": "9c229ce871a475d781ce4b198c1a2fcbf18694bc52b8bd7e1201bad2c2166b03",
+      "after_sha256": "74d64792c83136ebdbbe5ef95e527cd2348f528f37dc52df1e27e4e226f1267a",
+      "exact_receipts": [
+        "native-campaign-final-support-and-historical-boundaries-20261009",
+        "native-campaign-final-live-observation-20261009",
+        "native-campaign-final-reconciled-support-20261009",
+        "native-campaign-final-reconciled-live-observation-20261009"
+      ]
+    }
+  ],
+  "unresolved": []
+}

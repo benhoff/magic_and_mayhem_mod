@@ -3369,3 +3369,9 @@ Two diagnostic profile text files initially lacked exact receipts; explicit
 retrospective addition hashes reconcile them without modifying the original
 files. Both the report with these gaps and its resolved continuation are retained.
 The continuation has no unresolved gaps and makes no past gate/validation claim.
+
+Final default Initiate smoke also passes on the final source: 89 native frames/
+56 visible paints, zero recovery/fallback, three initialized World completions
+and one same-thread Cancel/resume. Extended tutorial input remains separate.
+Retrospective review through 0857efe checks 73 committed file transitions with
+exact receipts and no unresolved gaps; prior gap/reconciliation reports remain.
