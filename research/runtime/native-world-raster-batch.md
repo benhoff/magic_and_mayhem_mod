@@ -12,8 +12,8 @@ World and non-drawing lazy wave preparation remain active. Evidence for the
 earlier per-raster contract remains immutable and may become stale after shared
 source edits. New batching validation must declare its own scope before running.
 
-The guarded queue pilot and synthetic ABI/refusal checks pass. Independent
-original comparison and the complete prefix remain pending. The domain is the pinned
+The current V7 guarded queue pilot and complete prefix pass independent
+original comparison and synthetic ABI/refusal checks. The domain is the pinned
 800x600 format0 Quick Battle map2 startup, one queue followed by queues1..16.
 Unknown callers, unsampled generic entries, vertical top-clipped displacement,
 volatile output state/scratch globals, other formats and general gameplay remain
@@ -95,3 +95,40 @@ Batching is opt-in in this bounded producer/raster experiment. The public
 interactive shadow launcher and the separate startup-history launcher do not
 select this raster replacement automatically. General gameplay/native input,
 longer sessions and performance profiling remain separate integration work.
+
+
+## Current bounded evidence, V7 (2026-10-08)
+
+The [queue1 pilot](native-world-raster-batch-pilot-replacement-v7-20261008.json)
+compares1,839native intermediate canvases/AX exactly to their actual original
+entries. The [complete prefix](native-world-raster-batch-prefix16-replacement-v7-20261008.json)
+then compares all23,480admitted calls in queues1..16 over11,270,400,000pixels.
+All16native CPU/GPU finals/live replies and1,062observed checkpoints match.
+The original destination remains protected during each traversal; every return
+verifies protection and performs exactly one native writeback before the
+checkpoint/HUD boundary. There are16World GPU readbacks and16queue handshakes,
+with zero per-raster handshakes. Other diagnostic checkpoint readbacks remain.
+
+Full-canvas reply pixels drop structurally from22,540,800,000bytes for one
+reply per raster to15,360,000bytes for one reply per queue. The diagnostic live
+capture elapsed39.27seconds including startup/menu work; this is not a frame
+latency or real-time benchmark. Independent FIFO comparison elapsed196.12seconds.
+All133declared source fingerprints and captured inputs remain stable;80normalized
+compiler inputs are within that declaration. Five focused native CTests pass.
+The [V7 ABI fixture](native-world-raster-batch-abi-v7-20261008.json) proves13
+synthetic body skips with prescribed AX/cleanup/state,49original forwards, four
+guard/source-alias/producer refusals and three bad-reply refusals before
+writeback. The native packet fixture rejects27malformed manifests. Original
+manifests verify2,927files before/after capture and comparison.
+
+Ten admitted entries were observed: black, clipped fallback, shadow, three
+blend wrappers, wave, indexed-copy`0x59521a`, terrain`0x59603e` and destination
+displacement`0x596490`. The other admitted entries`0x5947b2`,`0x595b47`,
+`0x5968a4` remain synthetic-only in live suppression. Understanding remains
+partial. The recovered return contract has scoped implementation, recorded
+original comparison, live-equivalence integration and scoped live replacement.
+The intentional transport has scoped implementation/live-equivalence integration,
+with no recovered original batching-policy comparison/replacement claim. Original traversal, simulation, menu/HUD outside World
+and non-drawing lazy wave preparation remain active. Caller/global-state and
+top-clipped displacement gaps stay open. This evidence does not renew the
+earlier scalar replacement or public launcher domains after shared-source edits.

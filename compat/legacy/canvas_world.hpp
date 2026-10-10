@@ -9,6 +9,12 @@ WorldDraw producerWorldDraw(const CanvasProducer &);
 // after a World batch starts. Completed GPU words become the retained history.
 class CanvasWorld final {
 public:
+  struct Profile {
+    double adoptMs=0, prepareMs=0, submitMs=0, readbackMs=0, compareMs=0;
+    unsigned visibleDraws=0;
+    std::uint64_t visualChecks=0,visualReuses=0,cacheUploads=0,cacheHits=0,cacheEvictions=0;
+    std::size_t cacheFrames=0,cacheSurfaces=0;
+  };
   CanvasWorld(render::GlBlitter &, const assets::AssetStore &);
   void begin(const CanvasProducer &, const render::Image &nativeHistory);
   void append(const CanvasProducer &);
@@ -20,6 +26,7 @@ public:
   unsigned completedQueues() const { return completed_; }
   unsigned draws() const { return totalDraws_; }
   unsigned readbacks() const { return readbacks_; }
+  const Profile &profile() const { return profile_; }
 private:
   render::GlBlitter &renderer_;
   assets::AssetStore store_;
@@ -30,5 +37,6 @@ private:
   unsigned queue_=0,canvas_=0,completed_=0,totalDraws_=0,queueDraws_=0;
   unsigned readbacks_=0;
   bool active_=false,checked_=false;
+  Profile profile_;
 };
 }

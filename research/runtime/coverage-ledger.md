@@ -3109,6 +3109,70 @@ census and review receipts accompany the launcher changes; no staged files
 or original artifacts are altered.
 
 
+### Guarded World raster queue batching, V7 (2026-10-08)
+
+`RS.world-raster-batch-return` and `NR.world-raster-batch-transport` are separate
+recovered-boundary and intentional-native-policy contracts. A mandatory original
+destination access guard begins after entry observers finish and before original
+traversal; unexpected reads/writes/source aliases/producers/callers refuse.
+Producer records use a private heap so observer allocations cannot touch
+protected original allocation metadata. Prescribed low16AX/callee cleanup is
+immediate, while owned raster sources queue for one GPU completion. The return
+verifies/restores protection, validates one correlated native canvas and writes
+it before the checkpoint/HUD boundary. V1/V2 remain independent diagnostic modes.
+
+An independent queue1 pilot matches1,839actual original raster canvases/AX. The
+current complete prefix then matches all23,480admitted calls/AX over
+11,270,400,000pixels, all16native CPU/GPU finals/live replies and1,062observed
+checkpoints. No original destination pixels seed native rendering. There are
+exactly16World GPU readbacks/writebacks/queue handshakes and zero per-raster
+handshakes; other diagnostic checkpoint readbacks remain. Reply pixel traffic
+is15,360,000bytes instead of22,540,800,000bytes at per-raster frequency.
+The diagnostic live capture's39.27seconds includes startup, and does not establish
+real-time frame latency. All133declared sources/captured inputs are stable;
+80compiler inputs are covered. Five focused CTests and PE32 synthetic
+13-skip/49-forward/state/guard/malformed-reply fixtures pass. Original manifests
+verify2,927unchanged files before/after both live capture and comparison.
+
+Understanding remains partial. The recovered return contract has scoped
+implementation, recorded original comparison, live-equivalence integration and
+scoped live replacement. The intentional transport has scoped implementation
+and live-equivalence integration; it claims no recovered original batching
+mechanism or original-policy replacement. Ten of13admitted entries are observed; three others
+remain synthetic-only. Original traversal/simulation, outside-World menu/HUD and
+non-drawing lazy wave preparation remain active. Other formats/callers,
+top-clipped displacement, volatile/scratch-global equality, general gameplay,
+public-launcher batch integration and real-time performance stay open. Earlier
+scalar/startup/HUD/launcher evidence and committed historical stages retain
+their hashes and domain-specific freshness limitations; this proof renews only
+the two prospectively declared batching contracts.
+
+The initial live guard ordering and later dependency-path/RGB565 proof-writer
+refusals are preserved as failures, rather than as positive original evidence.
+See [batch boundary and reproducible commands](native-world-raster-batch.md),
+[the exact comparison](native-world-raster-batch-prefix16-comparison-v7-20261008.json)
+and [combined replacement](native-world-raster-batch-prefix16-replacement-v7-20261008.json).
+
+
+A separate fresh public startup launcher regression uses its own prospective
+`NR.world-startup-launcher` declaration after these shared-source edits.
+`--startup-history --verify` still completes16World queues and1062producer
+checkpoints with zero original/native mismatches; all176sources remain stable.
+A deliberately failing screenshot utility is never invoked. This is the
+existing automatic shadow/history route with original drawing retained, not
+batch selection or manual interactive validation. See
+[the regression](native-world-raster-batch-launcher-regression-v7-20261008.json).
+
+The concurrently landed implementation/launcher commit `b4d5007..e25290c` was
+reviewed before completing this coverage update. The
+[committed-history report](coverage/committed-history-world-raster-batch-v7-20261008.json)
+finds exact existing receipt chains for219source/link and126behavior transitions
+across66committed files, preserves prior journal entries and lists no unresolved
+receipt/immutable-history gaps. This accounting does not assert a past gate
+pass; current full-prefix batching and public-launcher regression are separate
+new execution evidence.
+
+
 ## Independent four-orientation minimap terrain — 2026-10-09
 
 `RS.minimap-terrain-raster` adds the standalone Qt-independent
@@ -3161,6 +3225,40 @@ Independent exact-original intermediate/AX revalidation and real native-window
 cancellation are separate evidence steps; old batch/startup evidence is retained
 with its recorded hashes and does not become current merely through these edits.
 
+
+Fresh instrumented source-only comparison matched29,323 actual admitted raster
+intermediates/AX returns,16 final World canvases and1,062 checkpoints, with five
+native checks passing. `RS.world-raster-batch.instrumented-replacement-20261009`
+preserves the133-source batch contract closure and80 compiled dependencies. Raw
+execution retains the larger180-source launcher closure; final launcher-only
+refusal/cancellation changes require their own fresh public-route regressions.
+
+
+Final public automatic completion/profiling and real native-window cancellation
+passed after preserving original producer refusal/guard diagnostics across window
+closure. `NR.world-interactive-batch.complete-20261009` and
+`NR.world-interactive-batch.cancel-20261009` provide fresh180-source launcher
+policy evidence; the profiling policy links only the automatic completion result.
+Three synthetic launcher tests and the retained startup-shadow synthetic checks
+pass. Original-window cancellation and a completed manual menu journey remain
+explicit gaps; no continuous gameplay replacement or hardware-general frame-rate
+milestone is asserted.
+
+## Native World resource and submission reuse (2026-10-09)
+
+`NR.world-resource-reuse` separates this intentional native optimization from the
+recovered raster contracts. Chosen decoded visuals are verified once per resident
+resource revision; normalized input identity and palette ambiguity remain checked
+on every resolution. Reload/adoption rechecks and failed verification remains
+uncached. Guarded World rendering uses the existing bounded indexed atlas and one
+outer synchronous GL batch, retaining ordered draws, independent CPU composition,
+GPU equality checks and canvas guards. Synthetic invalidation/ambiguity/context
+checks, frozen prechange/current owned-source replay, public first16 guarded live
+completion and independent original intermediate/AX comparison are separate
+validation steps. Older shared-source results retain their historical hashes;
+current-code support requires the new executions. No unbounded gameplay, original
+simulation replacement, shader formula change or hardware-general latency claim.
+
 ### Native minimap overlays: bounded original comparison (2026-10-09)
 
 Owned Qt-independent cell/creature markers and selected camera-corner outlines
@@ -3179,3 +3277,23 @@ source camera directions/visibility, driver locks and general caller machine
 state remain pending. Terrain validation remains separate and its historical
 source fingerprints are preserved. Next integration must transport owned inputs
 and apply the observed object/result effects before considering replacement.
+
+The frozen resource-reuse replay now matches all1,062 checkpoints with five
+native checks passing. Warm preparation/submission fell310.87→137.93ms and
+268.58→67.88ms respectively in the same-input Debug/softwareGL comparison.
+`NR.world-resource-reuse.replay-20261009` retains the252-upload/zero-eviction
+reuse evidence. A separate public capture completed16 guarded writebacks and
+1,058 checkpoints; `NR.world-resource-reuse.live-20261009` supports intentional
+native integration, while exact-original intermediate/AX revalidation remains
+a separate evidence step. The prechange source patch reconstructs all133
+baseline source hashes in an isolated copy; historical artifacts remain intact.
+
+`RS.world-raster-batch.resource-reuse-replacement-20261009` now matches23,843
+precise original raster intermediates and low16AX returns,16 final GPU/live
+World canvases and1,058 checkpoints with five native tests and80 declared compiled
+dependencies. Existing recovered/native batch scopes have fresh current-code
+support; `NR.world-resource-reuse` retains original comparison/replacement `none`
+and separate live-observation support. Historical evidence and the explicit
+manual/all-map/unbounded boundaries remain intact. The newly landed minimap commit
+was reviewed separately over `e25290c..8dce3ac`; all24 committed file transitions
+have exact receipt chains. Its accounting review does not assert new execution.

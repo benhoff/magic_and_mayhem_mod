@@ -2,8 +2,11 @@
 #include "../../protocols/include/mnm/canvas_producers_v1.h"
 #include <cstring>
 #include <stdexcept>
+#include <chrono>
 namespace mnm::legacy {
 namespace {
+using Clock=std::chrono::steady_clock;
+double milliseconds(Clock::time_point start){return std::chrono::duration<double,std::milli>(Clock::now()-start).count();}
 int signedWord(unsigned w){std::int32_t v;std::memcpy(&v,&w,4);return v;}
 unsigned word(const std::vector<std::uint8_t>& b,std::size_t at){
   if(at>b.size()||b.size()-at<4)throw std::invalid_argument("Truncated World producer source");
@@ -39,14 +42,19 @@ WorldDraw producerWorldDraw(const CanvasProducer &c){
 CanvasWorld::CanvasWorld(render::GlBlitter &renderer,const assets::AssetStore &store)
   :renderer_(renderer),store_(store),resources_(store_),bindings_(store_,resources_){}
 void CanvasWorld::begin(const CanvasProducer &c,const render::Image &native){
+  profile_={};const auto started=Clock::now();
   const auto &r=c.fields;
   if(active_||r[2]!=MNM_PRODUCER_QUEUE_ENTRY||r[14]!=completed_+1||!r[3]||
      (canvas_&&canvas_!=r[3])||native.width!=int(r[5])||native.height!=int(r[6]))
     throw std::invalid_argument("Native producer/World handoff identity or sequence gap");
-  if(!scene_)scene_=std::make_unique<render::SceneRenderer>(renderer_,resources_,native);
+  if(!scene_){
+    render::SceneLimits limits;limits.cache.indexedAtlas=true;
+    scene_=std::make_unique<render::SceneRenderer>(renderer_,resources_,native,limits);
+  }
   scene_->adoptNativeCanvas(native);
   pending_={r[14],r[5],r[6],r[5],{}};
   queue_=r[14];canvas_=r[3];queueDraws_=0;checked_=false;active_=true;
+  profile_.adoptMs=milliseconds(started);
 }
 void CanvasWorld::append(const CanvasProducer &c){
   if(!active_||c.fields[3]!=canvas_||c.fields[5]!=pending_.width||c.fields[6]!=pending_.height||queueDraws_>=12320)
@@ -60,20 +68,39 @@ void CanvasWorld::append(const CanvasProducer &c){
   const auto coverageTop=top+(draw.composite.mode==render::CompositeMode::projectedShadow?height/2:0);
   if(!width||!height||left>=draw.clip.right||left+width<=draw.clip.left||coverageTop>=draw.clip.bottom||coverageTop+height<=draw.clip.top)return;
   pending_.draws.push_back(std::move(draw));
+  ++profile_.visibleDraws;
 }
 render::Image CanvasWorld::complete(const render::Image &reference){
   if(!active_)throw std::runtime_error("No native producer/World queue to complete");
   if(!pending_.draws.empty()){
+    const auto bindingsBefore=bindings_.bindingStats();const auto cacheBefore=scene_->cacheStats();
+    auto started=Clock::now();
     const auto draws=bindings_.display(pending_);
-    scene_->beginFrame(draws,render::SceneStart::retainedCanvas);
-    while(!scene_->drawNext(32)){}
+    const auto bindingsAfter=bindings_.bindingStats();
+    profile_.visualChecks+=bindingsAfter.visualChecks-bindingsBefore.visualChecks;
+    profile_.visualReuses+=bindingsAfter.visualReuses-bindingsBefore.visualReuses;
+    profile_.prepareMs+=milliseconds(started);started=Clock::now();
+    // This bounded completion already runs synchronously. Keep the private GL
+    // context for the whole queue; drawNext's nested batches retain draw order.
+    renderer_.batch([&]{
+      scene_->beginFrame(draws,render::SceneStart::retainedCanvas);
+      while(!scene_->drawNext(32)){}
+    });
     pending_.draws.clear();
+    profile_.submitMs+=milliseconds(started);
+    const auto cacheAfter=scene_->cacheStats();
+    profile_.cacheUploads+=cacheAfter.uploads-cacheBefore.uploads;
+    profile_.cacheHits+=cacheAfter.hits-cacheBefore.hits;
+    profile_.cacheEvictions+=cacheAfter.evictions-cacheBefore.evictions;
+    profile_.cacheFrames=cacheAfter.frames;profile_.cacheSurfaces=cacheAfter.surfaces;
   }
+  auto started=Clock::now();
   auto native=scene_->read();
+  profile_.readbackMs+=milliseconds(started);started=Clock::now();
   ++readbacks_;
   if(native.width!=reference.width||native.height!=reference.height||native.pixels!=reference.pixels)
     throw std::runtime_error("Native GPU World differs from independent native producer composition");
-  checked_=true;return native;
+  profile_.compareMs+=milliseconds(started);checked_=true;return native;
 }
 void CanvasWorld::end(const CanvasProducer &c){
   if(!active_||!checked_||!queueDraws_||c.fields[2]!=MNM_PRODUCER_QUEUE_RETURN||

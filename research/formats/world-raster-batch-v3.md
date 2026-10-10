@@ -15,7 +15,8 @@ contain original destination pixels. The original canvas is inaccessible during
 the queued traversal and restored before validation/writeback/checkpoint/HUD.
 
 This is an opt-in bounded policy; V1 and V2 remain separate diagnostic modes.
-Integration and original comparison are pending.
+V7 validates the guarded800x600 format0 startup prefix1..16. Wider gameplay,
+formats/callers/globals and public launcher integration remain separate gaps.
 
 
 ## Header and closure

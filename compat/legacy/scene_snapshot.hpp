@@ -19,18 +19,21 @@ SceneSnapshot decodeSceneSnapshot(const QByteArray&);
 QByteArray frameIdentity(const QByteArray&,bool indexed);
 QByteArray spriteVisualIdentity(const assets::Sprite&,const assets::SpriteFrame&);
 struct BoundFrame { assets::ResourceId resource; std::size_t frame=0; };
+struct SnapshotBindingStats { std::uint64_t visualChecks=0,visualReuses=0; };
 // Explicit pinned candidate files. Original pointers never become ResourceIds.
 class SnapshotResources final {
 public:
     SnapshotResources(const assets::AssetStore&,assets::ResourceManager&);
     void add(const assets::ResourceId&,const std::string& sprite,const QByteArray& expectedSha256);
     BoundFrame resolve(const SnapshotFrame&,bool ownedColours=false) const;
+    SnapshotBindingStats stats() const { return stats_; }
 private:
-    struct Candidate {BoundFrame binding;QByteArray visual;};
+    struct Candidate {BoundFrame binding;QByteArray visual;mutable std::uint64_t checkedRevision=0;};
     const assets::AssetStore& store_;
     assets::ResourceManager& resources_;
     std::map<QByteArray,std::vector<Candidate>> index_;
     std::size_t files_=0,frames_=0;
+    mutable SnapshotBindingStats stats_;
 };
 struct SnapshotDisplay {
     struct Gap {std::size_t record;std::int32_t kind;std::uint32_t token;std::string reason;};
