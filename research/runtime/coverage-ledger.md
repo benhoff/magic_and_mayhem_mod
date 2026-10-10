@@ -13,7 +13,7 @@ after original World returned to Main. These are failures, not overall passes.
 identity/delta guards. `HOST.native-campaign-spell-observation` seeds a separate
 guarded original cast/impact trace and successful-summon mana-debit validation.
 `HOST.native-campaign-capture-retry` seeds bounded UI-poll acquisition and prompt
-unexpected-exit failure.22 offline validator tests pass; build/admission and fresh
+unexpected-exit failure.25 offline validator tests pass; build/admission and fresh
 end-to-end validation are recorded separately. New statuses do not claim live
 equivalence or replacement. Existing source-bound portrait evidence retains its
 historical hashes; changed dependencies require another full live run.
@@ -30,6 +30,17 @@ also passes22 portrait cycles over61.48seconds, independent stable face pixels
 and60seconds resumed input. Ordinary retreat leaves the wizard alive at126HP. Healing/refunds, other maps, timing equivalence,
 native GDI and complete drawing replacement remain pending. The exact committed
 range `ab40f5a..754f961` contains two reviewed file transitions and no gaps.
+
+[Native normal Quit](native-campaign-normal-quit-passed-20261010.json) now passes
+original No/World resume, repeated Yes/native defeat Continue21/Main/Main Quit4,
+with original launcher/native shell exit0 and strict gameplay FPS floors.
+`HOST.native-campaign-dialogue-readiness` accounts for delayed Hermes prompts;
+one early blank frame was insufficient. Adept cleared two actual prompts and
+summoned but its old fixed ranged targets failed; revised full Adept validation
+remains pending. Confirmation still uses original pixels in native commands,
+with native Qt Mini/report/Main; native modal widgets and pause equivalence
+remain separate gaps. The reviewed range `b50f128..fd3d55e` has11 exact file
+transitions and zero unresolved receipt gaps.
 
 The [complete live drawing replacement plan](../../docs/live-drawing-replacement.md)
 is the authoritative source for drawing takeover scope, implementation order,

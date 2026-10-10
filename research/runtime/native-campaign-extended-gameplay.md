@@ -115,3 +115,56 @@ lowers Redcap104→84;8 Zombie hits precede that Zombie's1→0 finish. Both bloc
 cast windows contain no internal cast returns, new Zombie or mana loss. Raw GP
 and V2 traces retain their source hashes. This renews only the declared bounded
 presentation/cadence and gameplay scopes; original simulation/drawing still run.
+
+## Introductory dialogue and normal Quit
+
+[The Adept failure](native-campaign-adept-dialogue-negative-20261010.json) shows
+Hermes's Place of Power dialogue consuming attempted HUD/scene clicks. A
+[single early blank heading](native-campaign-late-dialogue-negative-20261010.json)
+also fails: original script EVENT3 starts at TimeElapsed100 at difficulties0–2,
+EVENT4 follows, and EVENT8 has another delayed Place of Power prompt. This
+corrects the earlier broad early-movement hypothesis; an idle click alone does
+not distinguish dialogue, terrain or selection. The harness now retains up to
+12 native/original heading captures, ordinary dismiss clicks and two quiet
+samples after a12second introductory observation interval. Other speakers,
+layouts and exact tutorial admission remain separate pending contracts.
+
+[The subsequent Adept attempt](native-campaign-adept-ranged-negative-20261010.json)
+clears two Hermes prompts, summons successfully and observes independent movement,
+but fixed center Fireball targets produce no player cast/damage. The enemy is
+off the guessed center. Selection/targeting are not individually recovered causes.
+The helper removes speculative scene reselection after wizard HUD centering,
+retains an aiming image and uses bounded orientation-zero tile projection plus
+center alternatives. At most two observed mana-debited Fireballs are allowed,
+leaving the later Zombie cost available. Exact projection/order equivalence is
+excluded. Fireball validation now requires a same-thread identity-valid player
+cast/mana debit within10seconds and a reviewed original caller (`0x48ed24` or
+`0x48b4e2`); arbitrary/stale-context health loss cannot pass.
+
+[Fresh highest-difficulty normal Quit](native-campaign-normal-quit-passed-20261010.json)
+passes the strengthened spell/combat journey and the existing rate floors:
+37.54/28.15 native/paint FPS, worst16.30FPS in gameplay;57.996/38.51 resumed,
+worst19.86FPS. Original No argument1 on receiver `0x6a5088` resumes World;
+repeated Yes argument0 reaches the native campaign defeat report. Its original
+Continue callback is local argument21 at `0x4747a0`, followed by native Main
+Quit4 at `0x4a75c0`. Original launcher and native shell exit0. The Quit confirmation
+is original-rendered through native command presentation; it is not a native Qt
+confirmation widget. Both native/original confirmation images and exact menu,
+spell and gameplay traces are retained. Modal timer pause equivalence, saves,
+other exit causes and newly changed-source portrait validation remain pending.
+
+The existing Ghidra inventory omits the first bytes of Main/confirmation entries;
+new links explicitly reuse the recorded eight-byte recovered entry ranges.
+[The additional normal-Quit pass](native-campaign-normal-quit-entry-bound-20261010.json)
+is prospectively bound to those reviewed range links, while the earlier report
+keeps its original declaration. This closes the new Quit accounting gap without
+asserting whole-function understanding or refreshing old evidence hashes.
+
+[The revised Adept combat run](native-campaign-adept-party-defeat-20261010.json)
+now reaches player Fireball110→90 and Zombie melee after dialogue clearance, but
+an original enemy wave kills Cornelius before the required player finishing blow.
+This remains a failed gameplay journey; no rendering bug is inferred from defeat.
+Cure is available from Brimstone Item1 in a Law talisman according to read-only
+`CFG/mitems.cfg`; the starting Neutral assignment supplies Fireball71 instead.
+The current campaign adapter does not expose Region Entry loadout editing.
+A separate native Quick Battle loadout case is needed for successful healing.

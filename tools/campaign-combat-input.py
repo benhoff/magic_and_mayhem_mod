@@ -65,7 +65,7 @@ def main():
         captures.append(item);record('capture',name=name)
         return item
     def center():
-        click(744,522);click(744,522);time.sleep(.5);click(400,310);time.sleep(.25)
+        click(744,522);click(744,522);time.sleep(.75)
     def blocked_cast(label, owner, wizard_slot):
         prior_rows=read_rows(trace);begin=prior_rows[-1][0];prior=creatures(prior_rows)
         click(523,575);time.sleep(.25);click(90 if label=='invalid-target' else 440,90 if label=='invalid-target' else 310,3)
@@ -84,6 +84,29 @@ def main():
         if len(wizards)!=1:raise RuntimeError('Expected unique living player wizard: '+str(wizards))
         wizard=wizards[0];owner=wizard['owner'];result.update(player_owner=owner,wizard_slot=wizard['slot'],initial_creatures=initial)
         click(400,300);time.sleep(.5) # dismiss ordinary Hermes dialogue
+        # Original introductory dialogues consume HUD/scene clicks. Verify
+        # both independent images rather than guessing that spell input failed.
+        result['dialogue_checks']=[]
+        dialogue_start=time.monotonic();quiet=0
+        for attempt in range(12):
+            item=capture('dialogue-check-'+str(attempt))
+            texts={}
+            from PIL import Image
+            for route in ('native','original'):
+                crop=out/(item['name']+'-'+route+'-dialogue.png')
+                Image.open(out/(item['name']+'-'+route+'.png')).crop((225,90,600,270)).save(crop)
+                texts[route]=subprocess.run(['tesseract',str(crop),'stdout','--psm','6'],capture_output=True,text=True,check=True,timeout=10).stdout.strip()
+            visible={r:'hermes' in texts[r].lower() for r in texts}
+            result['dialogue_checks'].append(dict(capture=item['name'],texts=texts,visible=visible))
+            record('dialogue-check',attempt=attempt,visible=visible)
+            if not any(visible.values()):
+                quiet+=1
+                if time.monotonic()-dialogue_start>=12 and quiet>=2:break
+                time.sleep(2);continue
+            quiet=0
+            if visible['native']!=visible['original']:time.sleep(.5);continue
+            click(400,300);time.sleep(.6)
+        else:raise RuntimeError('Introductory Hermes dialogue did not clear after bounded native input')
         before=capture('before-summon',True)
         if before['ocr']!={'native':'0/15','original':'0/15'}:raise RuntimeError('Missing initial native/original 0/15 controlled-creature count: '+str(before['ocr']))
         if args.spell_cases:
@@ -152,11 +175,20 @@ def main():
                 if args.spell_cases and not result.get('ranged'):
                     # The starting green spell is Fireball71. Cast at nearby
                     # enemy terrain and require damage in its original effect.
-                    for px,py in ((400,270),(400,240)):
+                    capture('ranged-aim')
+                    actor=state()[wizard['slot']];enemy=state()[enemy['slot']]
+                    tx,ty,tz=enemy['x']-actor['x'],enemy['y']-actor['y'],enemy['z']-actor['z']
+                    predicted=(max(90,min(650,400+32*(tx-ty))),max(100,min(430,300+16*(tx+ty-tz)-22)))
+                    record('ranged-target-projection',wizard=actor,enemy=enemy,logical_point=list(predicted))
+                    spent=0
+                    for px,py in (predicted,(400,270),(400,240),(430,270),(370,270)):
+                        mana_before=state()[wizard['slot']]['mana']
                         begin=read_rows(trace)[-1][0];click(477,575);time.sleep(.25);click(px,py,3);time.sleep(1)
                         effects=player_fireball_damage(read_spell_rows(args.experiment/'spell-events.bin'),owner,wizard['slot'])
                         record('fireball-order',before_sequence=begin,logical_x=px,logical_y=py)
+                        spent+=int(state()[wizard['slot']]['mana']<mana_before)
                         if effects:result['ranged']=dict(first_damage=list(effects[0]));capture('fireball-damage');break
+                        if spent>=2:break
                     if not result.get('ranged'):raise RuntimeError('No player Fireball enemy damage after bounded shots')
                 # Summon beside the enemy, through the same native spell HUD.
                 click(523,575);cast_sequence=read_rows(trace)[-1][0];prior=state()

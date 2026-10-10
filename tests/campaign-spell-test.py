@@ -59,9 +59,12 @@ class SpellTests(unittest.TestCase):
     def test_v2_defended_damage_requires_matching_player_effect(self):
         rows,gp,inp=self.cases_fixture()
         self.assertTrue(validate_spell_cases(rows,gp,inp)['verified'])
-        for field,value in [(6,0),(7,0),(8,105),(9,0),(11,2),(12,94),(14,99),(15,2)]:
+        for field,value in [(6,0),(7,0),(8,105),(9,0),(11,2),(12,94),(14,99),(15,2),(13,0x50c0d0),(10,0)]:
             bad=[list(r) for r in rows];bad[-1][field]=value
             self.assertEqual(player_fireball_damage(bad,0,0),[])
+            with self.assertRaises(ValueError):validate_spell_cases(bad,gp,inp)
+        for bad in [rows[:1]+rows[2:],[rows[0],list(rows[1]),rows[2]]]:
+            if len(bad)==3:bad[1][3]=rows[2][3]-10001
             with self.assertRaises(ValueError):validate_spell_cases(bad,gp,inp)
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)/'trace.bin';p.write_bytes(HEADER_V2+b''.join(struct.pack('<16I',*r) for r in rows))

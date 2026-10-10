@@ -85,4 +85,7 @@ def validate_spell_cases(rows, gameplay, inputs):
 
 def player_fireball_damage(rows,owner,wizard_slot):
     return [r for r in rows if r[1]==3 and r[12]==71 and r[14]==wizard_slot and r[15]==owner and r[11]==owner
-            and r[6] not in (owner,0xffffffff) and r[9] and signed(r[7])>0 and signed(r[8])<signed(r[7])]
+            and r[6] not in (owner,0xffffffff) and r[9] and signed(r[7])>0 and signed(r[8])<signed(r[7])
+            and signed(r[10])>0 and r[13] in (0x48ed24,0x48b4e2)
+            and any(c[1]==1 and c[2]==r[2] and c[4]==71 and c[5]==wizard_slot and c[6]==0 and c[7]==owner
+                    and c[15]==1 and signed(c[8])>signed(c[9])>=0 and ((r[3]-c[3])&0xffffffff)<=10000 for c in rows)]
