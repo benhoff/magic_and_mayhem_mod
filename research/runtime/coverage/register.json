@@ -22657,7 +22657,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Native viewport successful summon and melee combat",
-      "scope": "Bounded Apprentice or highest-difficulty first campaign native menu/command session. Physical native viewport Zombie spell selection and right-click summon, newly living player-owned creature, independent native/original controlled-creature count 0/15 to 1/15. Original melee resolver health loss from player Zombie to opposing living creature, followed by player wizard or combat Zombie lethal HP depletion of that engaged enemy, continued native rendering and fixed throughput floors, native Mini Cancel/resume. Passive build-specific creature observations only; no game state writes, balance changes, full damage formula, cast rejection branches, pixel equivalence, original drawing or simulation replacement.",
+      "scope": "Bounded Apprentice or highest-difficulty first campaign native menu/command session. Physical native viewport Zombie spell selection and right-click summon, newly living player-owned creature, independent native/original controlled-creature count 0/15 to 1/15. Original melee resolver health loss from player Zombie to opposing living creature, followed by player wizard or combat Zombie lethal HP depletion of that engaged enemy, continued native rendering and fixed throughput floors, native Mini Cancel/resume. Passive build-specific creature observations only; no game state writes, balance changes, full damage formula, cast rejection branches, pixel equivalence, original drawing or simulation replacement. Optional explicit portrait stress restores repeated wizard selection/recentering during combat and adds a bounded post-combat phase with independent stable face-region pixels and unchanged 20 FPS average/10 FPS window gates. Native presentation disables fixed/adaptive legacy draw skipping in both staged DEBUG config precedence variants while retaining the selected game-speed preference; no original executable pacing patch.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -22674,7 +22674,10 @@
         "research/runtime/coverage/native-campaign-history-review-0857efe-3f106d9.json",
         "research/runtime/coverage/native-campaign-history-review-3f106d9-52dcdf8.json",
         "tests/native-campaign-smoke.md",
-        "research/runtime/native-campaign-combat-profile-20261010.json"
+        "research/runtime/native-campaign-combat-profile-20261010.json",
+        "research/runtime/native-portrait-rendering.md",
+        "research/runtime/coverage/native-campaign-history-review-52dcdf8-5c086ce.json",
+        "research/runtime/native-portrait-cpu-profile-20261010.json"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -22708,7 +22711,10 @@
         "HOST.native-campaign.combat-negative-6-20261010",
         "HOST.native-campaign.combat-negative-7-20261010",
         "HOST.native-campaign.combat-negative-8-20261010",
-        "HOST.native-campaign.combat-passed-20261010"
+        "HOST.native-campaign.combat-passed-20261010",
+        "HOST.native-portrait.baseline-20261010",
+        "HOST.native-portrait.damage-negative-20261010",
+        "HOST.native-portrait.passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22852,7 +22858,121 @@
         "tools/original-manifest.sh",
         "tools/prepare-shadow-experiment.py",
         "tools/profile-render-stream.py",
-        "runtime/menu/campaign_gameplay_observe.h"
+        "runtime/menu/campaign_gameplay_observe.h",
+        "tools/native_render_config.py",
+        "tests/native-render-config-test.py"
+      ]
+    },
+    {
+      "id": "NR.presentation-damage",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded incremental presentation of HUD and portrait updates",
+      "scope": "GUI-thread owned native surfaces retain independent CPU diagnostic and shared GPU presentation damage envelopes. New output storage, palette changes and swaps resolve the whole frame; uploads, copies and raster destinations resolve their bounded written envelope. Unchanged outputs reuse prior conversion. Full definedness, unchanged integer color rules, command ordering and bidirectional GPU fences remain required. Synthetic full-frame pixel checks and bounded physical portrait recentering; original simulation/drawing remain active. Hardware performance, full original World pixels and native GDI replay remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-portrait-rendering.md",
+        "research/runtime/opengl-direct-presentation.md",
+        "research/runtime/native-portrait-cpu-profile-20261010.json"
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp"
+      ],
+      "tests": [
+        "tests/gpu-presentation-test.cpp",
+        "tools/test-gpu-presentation.py",
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "tools/campaign-combat-input.py"
+      ],
+      "evidence": [
+        "NR.presentation-damage.synthetic-20261010",
+        "HOST.native-portrait.damage-negative-20261010",
+        "HOST.native-portrait.passed-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "renderer/CMakeLists.txt",
+        "renderer/dib.cpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_backend.cpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "tools/native_render_config.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py"
+      ]
+    },
+    {
+      "id": "HOST.native-render-draw-cadence",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native render installation without legacy draw skipping",
+      "scope": "Hash-checked disposable native-menu/native-command installation sets DEBUG SkipFrameEvery,SkipXFrames,MaxSkipXFrames to0 in plain and encrypted chaos.cfg copies after validating every variant and encrypted round trips. Before/after hashes are retained and checked before Wine launch. Other config bytes, selected game-speed preference and original executable pacing code remain unchanged. Removes legacy draw batching/skips for native rendering. Static pacing/config links and bounded live portrait/casting/combat observations only; complete timing equivalence, all screens and physical GPU performance remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5127744,
+          "scope": "Static skip-enabled batching/skip suppression versus zero-skip nominal interval branches only; complete adaptive timing policy and simulation equivalence excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-portrait-rendering.md",
+        "research/runtime/world-tick-loop.md",
+        "research/runtime/native-portrait-cpu-profile-20261010.json"
+      ],
+      "implementation": [
+        "tools/native_render_config.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py"
+      ],
+      "tests": [
+        "tests/native-render-config-test.py",
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py",
+        "tools/campaign-combat-input.py",
+        "apps/qt-shell/campaign_smoke_test.cpp"
+      ],
+      "evidence": [
+        "HOST.native-portrait.passed-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "tools/encode-cfg.py",
+        "tools/decode-cfg.py",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "tools/run-qt-shell.sh",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-opengl-game.py"
       ]
     }
   ],
@@ -44911,6 +45031,116 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.presentation-damage.synthetic-20261010",
+      "kind": "native_integration",
+      "scope": "Full independent native GPU and diagnostic-image pixel comparisons after bounded presentation damage, four canonical formats, all65536 RGB565 values, palette/flip/reuse/lifetime and normal/HiDPI checks. No new original execution or hardware performance.",
+      "record": "research/runtime/native-portrait-damage-gpu-20261010.json",
+      "sha256": "e36bb8e6ea7900bbeed245bb2842c2bf5381eee6437f356e17dcea4c5b8b4378",
+      "sources_pointer": "/source_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-portrait.baseline-20261010",
+      "kind": "live_observation",
+      "scope": "Historical pre-fix native casting/combat with40-second post-combat portrait recentering:15 cycles, stable independent face crop within one channel value, fixed20/10-FPS gates pass narrowly. During-combat portrait recentering was not restored yet. Limited source fingerprint set; not current implementation validation.",
+      "record": "research/runtime/native-portrait-baseline-20261010.json",
+      "sha256": "3b64093be4033090227051f01fe538df6b7e26d9dad86392fa2545b2099bdb48",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-portrait.damage-negative-20261010",
+      "kind": "live_observation",
+      "scope": "Source-stable native casting/lethal combat with repeated combat and60-second post-combat portrait recentering. Damage optimization reduces converted pixels about67percent but strict window FPS fails; cadence correction and complete current performance validation pending.",
+      "record": "research/runtime/native-portrait-damage-negative-20261010.json",
+      "sha256": "813137ef4a76ccaf2178ae49f9470b7d21ded520e7c3a57677968856bc5818b5",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "HOST.native-portrait.passed-20261010",
+      "kind": "live_observation",
+      "scope": "Fresh source-stable highest-difficulty native summon and original player melee enemy depletion, repeated portrait recentering during combat and22 post-combat cycles over61.18seconds, independent stable face crop maximum error1. Portrait45.52native/32.83paint FPS,worst16.53. Whole phases41.39/30.44 and58.56/38.66FPS,worst16.41/17.04.9443nativeframes/6608paints,zero fallback/recovery,selected game-speed setting unchanged and legacy drawing skips disabled only in both disposable native config variants. Original drawing/simulation remain active; hardware/full-World/equivalence pending.",
+      "record": "research/runtime/native-portrait-passed-20261010.json",
+      "sha256": "5d7078464a435eea0f004501a7afb6d3b235b922fb6d403c76ed206c9d2e487a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay/enemy_health_depleted",
+          "equals": true
+        },
+        {
+          "pointer": "/portrait/cycles",
+          "equals": 22
+        },
+        {
+          "pointer": "/portrait/maximum_channel_error",
+          "equals": 1
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/software_renderer_threads",
+          "equals": 4
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_cadence/settings/SkipFrameEvery",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_draw_cadence/settings/SkipXFrames",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_draw_cadence/settings/MaxSkipXFrames",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -51693,6 +51923,42 @@
         "HOST.native-campaign.combat-passed-20261010"
       ],
       "scope": "Native Main/New Game/Apprentice or highest-difficulty Enter, actual native viewport Zombie summon and new player creature plus 0/15-to-1/15 count in independent native/original images, player Zombie versus enemy melee health loss followed by player-party lethal HP depletion of the engaged enemy, native Mini Cancel/resume and strict publication/paint floors. Scripted enemy damage alone cannot pass."
+    },
+    {
+      "id": "native-campaign-portrait-stress-20261010",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.native-campaign-casting-combat",
+        "NR.presentation-damage",
+        "HOST.native-render-draw-cadence"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "tools/campaign-combat-input.py"
+      ],
+      "evidence": [
+        "HOST.native-portrait.damage-negative-20261010",
+        "HOST.native-portrait.passed-20261010"
+      ],
+      "scope": "Highest-difficulty native casting and lethal player combat with repeated portrait recentering during the fight, at least60-second post-combat portrait stress, independent stable wizard face pixels within one channel value, native Mini Cancel/resume and unchanged20-FPS averages/10-FPS window floors including diagnostic overhead. Original simulation and drawing remain active. Native staged fixed/adaptive draw skips disabled; selected game-speed setting and original pacing instructions unchanged."
+    },
+    {
+      "id": "native-presentation-damage-fixtures-20261010",
+      "level": "preview",
+      "behaviors": [
+        "NR.presentation-damage"
+      ],
+      "tests": [
+        "tests/gpu-presentation-test.cpp",
+        "tools/test-gpu-presentation.py"
+      ],
+      "evidence": [
+        "NR.presentation-damage.synthetic-20261010"
+      ],
+      "scope": "Independent whole GPU framebuffer and CPU diagnostic images after bounded changes, palette/swap/row/reuse/lifetime checks and normal/HiDPI software Mesa. No original or hardware equivalence."
     }
   ],
   "recovered_ranges": [
@@ -52021,8 +52287,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-combat-party-20261010.json",
-    "sha256": "c078c6bada73c1586d4f742829bd189a5ab86b48fc776a7ba83f581779a61d33"
+    "path": "research/runtime/coverage/source-index-native-portrait-20261010.json",
+    "sha256": "a29593a44e7c1e035bcb7a6157e94a4fcd2e9d9406025f56a1b85064c08d1668"
   },
   "claim_bindings_required": true
 }

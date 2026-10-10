@@ -3383,3 +3383,35 @@ exact receipts and no unresolved gaps; prior gap/reconciliation reports remain.
 ## Native campaign successful casting/combat validation (2026-10-10)
 
 `HOST.native-campaign-casting-combat` now has scoped implementation and live observation from the source-stable highest-difficulty native-menu/native-command journey: two physical Zombie summons, independent native/original `0/15 → 1/15` readings, 14 original Zombie enemy melee HP losses, and Cornelius's original `2 → 0` finishing hit on that same enemy. Native Mini Cancel/resume, 5,798 native frames/3,958 visible paints, zero recovery/fallback and unchanged 20-FPS average/10-FPS window floors pass on private four-worker software Mesa. Original simulation/drawing remain active; comparison and replacement remain none. See [retained result and exact boundaries](native-campaign-casting-combat.md). Eight negative runs preserve OCR, movement/placement, slot reuse, strict timing and finishing-actor findings; repeated post-hit recentering still approaches 10 FPS and remains an open performance branch. The first default-worker and four-worker profiles are retained without a deterministic hardware-speedup claim. The committed range `3f106d9..52dcdf8` has 17 exact reviewed file transitions and zero unresolved receipt gaps. Shared historical evidence remains unchanged/stale after these source edits; only this new scoped journey has fresh execution support.
+
+### Native portrait rendering and draw cadence — 2026-10-10
+
+The [portrait investigation](native-portrait-rendering.md) restores repeated
+portrait recentering during successful casting/combat and adds a full minute
+after victory. Independent native/original stable face pixels agree within
+one channel value. Per-output damage envelopes avoid whole-frame conversion
+for small HUD/cursor/portrait updates; first allocation, palettes and swaps
+retain full conversion. The renderer-only negative still fails fixed 10 FPS
+windows and is preserved. Native staged DEBUG draw skips are now disabled
+in both plaintext and encrypted configurations, hash-checked before launch;
+selected game speed and original pacing instructions remain unchanged. This
+is an intentional native presentation policy, not recovered timing equivalence.
+
+The [fresh passing run](native-portrait-passed-20261010.json) records 22
+post-combat cycles/61.18 seconds, 45.52 native/32.83 visible FPS and worst
+16.53 FPS within the portrait phase. Whole cast/combat/portrait and resumed
+phases pass 20 FPS averages/10 FPS windows/two-second stall gates:
+41.39/30.44 and 58.56/38.66, worst 16.41/17.04. 9,443 frames/6,608 paints,
+zero fallback/recovery, successful Zombie summons, 12 original Zombie damage
+calls and player wizard 8→0 lethal melee on the same enemy. Conversion work
+is 61.51% lower than converting every whole frame in this command sequence.
+Independent GPU/CPU pixel fixtures, 354 incremental frame comparisons,
+14 evidence guards and 3 config tests pass. Original manifests verify 2,927
+files before/after. This closes the bounded portrait-recentering performance
+gap; prior failures remain historical. Other map/hardware/full-World/effect
+pixels, precise timing equivalence and complete drawing/simulation replacement
+remain pending.
+
+Committed-history review 52dcdf8..5c086ce checks 23 exact file transitions
+against retained receipts with zero gaps; it asserts neither a past gate pass
+nor new original validation.

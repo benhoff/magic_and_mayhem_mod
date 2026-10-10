@@ -163,3 +163,21 @@ It presents 5,798 native frames and 3,958 visible Qt paints with no fallback or
 recovery. Combat averages 27.21 native/20.57 paint FPS, worst 10.95 FPS; resumed
 stress averages 55.06/35.40 FPS, worst 15.89 FPS. This is one bounded software-Mesa
 journey; the earlier recentering performance failure remains explicitly open.
+
+## Portrait rendering stress
+
+Run the same bounded native casting/combat route with restored portrait
+reselection during combat and sixty seconds of post-victory recentering:
+
+```bash
+python3 tools/test-native-campaign.py --require-casting-combat --difficulty 3 \
+  --stress-seconds 60 --portrait-stress-seconds 60 --software-threads 4 \
+  --timeout 600
+```
+
+The portrait phase must separately pass 20 FPS native/paint averages and 10 FPS
+one-second windows. The complete flow also includes both capture boundaries
+and retains its two-second stall ceiling. A stable wizard face crop must match
+independent original-owned pixels within one channel value; hashes, both image
+saves and absence of fallback are required. This is not full-frame or animated
+World equivalence. Game simulation, frame pacing and balance remain original.

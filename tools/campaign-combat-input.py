@@ -19,6 +19,7 @@ def main():
     p.add_argument('--seconds', type=int, required=True)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--experiment', type=Path, required=True)
+    p.add_argument('--portrait-stress-seconds', type=int, default=0)
     args=p.parse_args(); x0,y0,w,h=args.rect
     if w<320 or h<240:p.error('Native viewport is too small')
     out=args.output.parent; trace=args.experiment/'gameplay-events.bin'
@@ -142,13 +143,23 @@ def main():
             if lethal and time.monotonic()-start>=args.seconds:
                 result['combat'].update(lethal_hit=list(lethal[0]),hit_count=len(hits));break
             if time.monotonic()>finish_deadline:raise RuntimeError('No player party lethal health depletion before combat deadline')
+            if args.portrait_stress_seconds:
+                center();record('combat-portrait-recenter');time.sleep(1);continue
             # Continue observing the fight without repeatedly reselecting and
             # recentering the wizard. Hover ordinary empty terrain through the
             # native viewport; retained negative runs cover portrait stress.
             px,py=((180,380),(600,350))[len(actions)%2]
             if not xt.XTestFakeMotionEvent(display,-1,x0+int(w*px/800),y0+int(h*py/600),0):raise RuntimeError('Motion injection failed')
             x.XFlush(display);record('combat-terrain-hover',logical_x=px,logical_y=py);time.sleep(.5)
-        result['success']=True;record('casting-combat-complete')
+        record('casting-combat-complete')
+        if args.portrait_stress_seconds:
+            portrait_start=time.monotonic();cycles=0
+            record('portrait-stress-start')
+            while time.monotonic()-portrait_start<args.portrait_stress_seconds:
+                center();cycles+=1;record('portrait-recenter',cycle=cycles);time.sleep(1)
+            result['portrait_stress']=dict(seconds=time.monotonic()-portrait_start,cycles=cycles)
+            capture('portrait-stress');record('portrait-stress-complete')
+        result['success']=True
     except Exception as error:
         result['error']=str(error)
         try:capture('failure')

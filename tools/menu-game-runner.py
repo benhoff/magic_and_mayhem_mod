@@ -28,6 +28,10 @@ if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')=='1':
 if os.environ.get('MNM_MENU_NATIVE_RENDER')=='1':
     if not metadata.get('native_render'):raise ValueError('Native rendering was not staged')
     if hashlib.sha256((game/'MnmRender.dll').read_bytes()).hexdigest()!=metadata['render_dll_sha256']:raise ValueError('Render DLL hash mismatch')
+    cadence=metadata.get('native_draw_cadence',{})
+    if cadence.get('settings')!={'SkipFrameEvery':0,'SkipXFrames':0,'MaxSkipXFrames':0} or not cadence.get('files'):raise ValueError('Native draw cadence was not staged')
+    for entry in cadence['files']:
+        if entry['path'] not in ('CFG/chaos.cfg','CFG/Encrypted/chaos.cfg') or hashlib.sha256((game/entry['path']).read_bytes()).hexdigest()!=entry['after_sha256']:raise ValueError('Native draw-cadence config changed before launch')
     import struct
     sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'protocols/python'))
     from mnm_protocols import frame_v1,input_v1,render_commands_v2,render_control_v1

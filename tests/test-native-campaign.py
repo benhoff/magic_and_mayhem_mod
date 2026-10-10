@@ -23,6 +23,29 @@ class EvidenceTests(unittest.TestCase):
     def test_complete_flow(self):
         smoke.validate_flow(self.flow())
 
+    def test_portrait_requires_repeated_input_pixels_and_strict_throughput(self):
+        import hashlib
+        from PIL import Image
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);name='combat-05-portrait-stress'
+            capture=dict(name=name,metadata=dict(native_saved=True,original_saved=True,fallback=False),image_sha256={})
+            for route in ('native','original'):
+                path=root/(name+'-'+route+'.png');Image.new('RGB',(800,600),(12,34,56)).save(path)
+                capture['image_sha256'][route]=hashlib.sha256(path.read_bytes()).hexdigest()
+            inputs=dict(portrait_stress=dict(seconds=15,cycles=5),captures=[capture],actions=[dict(action='portrait-stress-start',seconds=0)]+[dict(action='portrait-recenter',seconds=i*3) for i in range(5)]+[dict(action='portrait-stress-complete',seconds=15)])
+            flow=dict(gameplay_rates=[dict(cycle=0,seconds=1,native_frames=40,painted_frames=30,native_fps=40,paint_fps=30) for i in range(15)])
+            self.assertEqual(smoke.validate_portrait_stress(inputs,flow,root,15)['maximum_channel_error'],0)
+            for mutate in [lambda i,f:i['actions'].pop(),lambda i,f:i['portrait_stress'].update(cycles=6),
+                             lambda i,f:i['portrait_stress'].update(seconds=9),lambda i,f:i['captures'][0]['metadata'].update(fallback=True),
+                             lambda i,f:f['gameplay_rates'][5].update(native_fps=9.99),
+                             lambda i,f:f['gameplay_rates'][5].update(seconds=2.1)]:
+                bad,slow=copy.deepcopy(inputs),copy.deepcopy(flow);mutate(bad,slow)
+                with self.assertRaises(ValueError):smoke.validate_portrait_stress(bad,slow,root,15)
+            path=root/(name+'-native.png');image=Image.open(path);image.putpixel((730,520),(14,34,56));image.save(path)
+            with self.assertRaises(ValueError):smoke.validate_portrait_stress(inputs,flow,root,15)
+            capture['image_sha256']['native']=hashlib.sha256(path.read_bytes()).hexdigest()
+            with self.assertRaises(ValueError):smoke.validate_portrait_stress(inputs,flow,root,15)
+
     def test_original_window_or_missing_native_frames_cannot_pass(self):
         for updates in [{'success': False}, {'native_command_fallback': True},
                         {'native_command_fallback': None}, {'native_command_frames': 0},

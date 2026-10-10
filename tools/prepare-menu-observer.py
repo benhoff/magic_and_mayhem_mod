@@ -38,6 +38,11 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         stored=module('preferences_store','tools/menu_preferences_store.py').stage(game,preferences_store,encoder,decoder)
         if stored['warning']:print('Preferences store ignored: '+stored['warning'],flush=True)
     edits=preferences.disable_cd_music(game)+preferences.skip_movies(game)
+    native_cadence=None
+    if native_render:
+        encoder=preferences.load('native_cfg_encoder','tools/encode-cfg.py');decoder=encoder.load_decoder(REPO)
+        native_cadence=module('native_render_config','tools/native_render_config.py').stage_native_draw_cadence(
+            game,lambda text:encoder.encode(text,decoder)[0],lambda packed:decoder.decode(packed)[1])
     # Source engine code stays byte-identical; only the additional import is staged.
     exporter=module('menu_export','tools/export-menu-support.py')
     for start,end in [*exporter.CALLBACKS.values(),(0x4a9700,0x4a97c7),(0x4a9840,0x4a9b00),(0x4ce730,0x4ce798),(0x4cdf40,0x4cdfe4),(0x4a88f0,0x4a8ae6),(0x4a8b60,0x4a8bcd)]:
@@ -47,6 +52,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'game_copy':str(game),'events':str(root/'events.bin'),
               'campaign_observe':campaign_observe,'experimental_mini':experimental_mini,'preference_store':stored,'preferences':edits,'scope':('UNVALIDATED Mini Menu bridge; dedicated validation staging; original confirmation/drawing retained' if experimental_mini else 'Bounded Main/Quick/Single Player/Map/Spell/Quick results/Main Preferences engine-thread action bridge; original menu logic/drawing retained') if actions else 'Bounded callback/tick observation; original menu/drawing/actions retained',
               'native_render':native_render,'render_dll_sha256':hashlib.sha256(render_dll.read_bytes()).hexdigest() if render_dll else None,
+              'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')

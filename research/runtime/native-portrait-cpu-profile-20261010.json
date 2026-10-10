@@ -1,0 +1,1064 @@
+{
+  "schema": 1,
+  "scope": "25-second CPU-cycle attribution during post-combat repeated portrait recentering in two isolated four-worker software Mesa sessions. Different combat state and timing; not a controlled paired benchmark, hardware speedup or proof that all original pacing branches are recovered.",
+  "runs": [
+    {
+      "run": "run-ztjqjb03",
+      "seconds": 25,
+      "frequency_hz": 99,
+      "lost_samples": 0,
+      "perf_sha256": "6ea85871f93225bd3c163f36938c9bb956bed2129df1f5226e719c8dd8386da3",
+      "report_sha256": "6047123fadb1e1c6ac19c8fd933e83c0ecbfa71f21049277f58d364b5bbd5eb9",
+      "dso_rows": [
+        {
+          "percent": 29.0,
+          "tid": 1600094,
+          "command": "Chaos.exe",
+          "dso": "kernel32.dll"
+        },
+        {
+          "percent": 22.58,
+          "tid": 1600094,
+          "command": "Chaos.exe",
+          "dso": "Chaos.exe"
+        },
+        {
+          "percent": 6.41,
+          "tid": 1599308,
+          "command": "llvmpipe-0",
+          "dso": "[JIT] tid 1599098"
+        },
+        {
+          "percent": 6.37,
+          "tid": 1599310,
+          "command": "llvmpipe-2",
+          "dso": "[JIT] tid 1599098"
+        },
+        {
+          "percent": 6.31,
+          "tid": 1599311,
+          "command": "llvmpipe-3",
+          "dso": "[JIT] tid 1599098"
+        },
+        {
+          "percent": 6.25,
+          "tid": 1599309,
+          "command": "llvmpipe-1",
+          "dso": "[JIT] tid 1599098"
+        },
+        {
+          "percent": 3.26,
+          "tid": 1600094,
+          "command": "Chaos.exe",
+          "dso": "[JIT] tid 1600094"
+        },
+        {
+          "percent": 2.33,
+          "tid": 1600112,
+          "command": "llvmpipe-3",
+          "dso": "[JIT] tid 1600094"
+        },
+        {
+          "percent": 2.04,
+          "tid": 1600110,
+          "command": "llvmpipe-1",
+          "dso": "[JIT] tid 1600094"
+        },
+        {
+          "percent": 2.03,
+          "tid": 1600109,
+          "command": "llvmpipe-0",
+          "dso": "[JIT] tid 1600094"
+        },
+        {
+          "percent": 1.98,
+          "tid": 1600111,
+          "command": "llvmpipe-2",
+          "dso": "[JIT] tid 1600094"
+        },
+        {
+          "percent": 1.15,
+          "tid": 1600094,
+          "command": "Chaos.exe",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 1.01,
+          "tid": 1599309,
+          "command": "llvmpipe-1",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.97,
+          "tid": 1599308,
+          "command": "llvmpipe-0",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.9,
+          "tid": 1599311,
+          "command": "llvmpipe-3",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.82,
+          "tid": 1599310,
+          "command": "llvmpipe-2",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.72,
+          "tid": 1600125,
+          "command": "wined3d_cs",
+          "dso": "wined3d.dll"
+        },
+        {
+          "percent": 0.44,
+          "tid": 1599310,
+          "command": "llvmpipe-2",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.43,
+          "tid": 1600125,
+          "command": "wined3d_cs",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.4,
+          "tid": 1599308,
+          "command": "llvmpipe-0",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.39,
+          "tid": 1599309,
+          "command": "llvmpipe-1",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.36,
+          "tid": 1599311,
+          "command": "llvmpipe-3",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.35,
+          "tid": 1600233,
+          "command": "Chaos.exe",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.25,
+          "tid": 1600110,
+          "command": "llvmpipe-1",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.25,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.24,
+          "tid": 1600111,
+          "command": "llvmpipe-2",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.22,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "mnm-qt-shell"
+        },
+        {
+          "percent": 0.22,
+          "tid": 1600109,
+          "command": "llvmpipe-0",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.18,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.17,
+          "tid": 1600108,
+          "command": "wine_dsound_mix",
+          "dso": "dsound.dll"
+        },
+        {
+          "percent": 0.17,
+          "tid": 1600111,
+          "command": "llvmpipe-2",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.15,
+          "tid": 1600125,
+          "command": "wined3d_cs",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.14,
+          "tid": 1600109,
+          "command": "llvmpipe-0",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.13,
+          "tid": 1600094,
+          "command": "Chaos.exe",
+          "dso": "wow64cpu.dll"
+        },
+        {
+          "percent": 0.12,
+          "tid": 1600094,
+          "command": "Chaos.exe",
+          "dso": "ntdll.so"
+        },
+        {
+          "percent": 0.1,
+          "tid": 1600112,
+          "command": "llvmpipe-3",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.1,
+          "tid": 1600112,
+          "command": "llvmpipe-3",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.09,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.09,
+          "tid": 1599311,
+          "command": "llvmpipe-3",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.08,
+          "tid": 1600094,
+          "command": "Chaos.exe",
+          "dso": "ntdll.dll"
+        },
+        {
+          "percent": 0.07,
+          "tid": 1600110,
+          "command": "llvmpipe-1",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.07,
+          "tid": 1600125,
+          "command": "wined3d_cs",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.06,
+          "tid": 1600233,
+          "command": "Chaos.exe",
+          "dso": "[JIT] tid 1600094"
+        },
+        {
+          "percent": 0.05,
+          "tid": 1600094,
+          "command": "Chaos.exe",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.05,
+          "tid": 1600233,
+          "command": "Chaos.exe",
+          "dso": "ntdll.so"
+        },
+        {
+          "percent": 0.04,
+          "tid": 1600125,
+          "command": "wined3d_cs",
+          "dso": "ucrtbase.dll"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1599308,
+          "command": "llvmpipe-0",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1599309,
+          "command": "llvmpipe-1",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "libQt6Widgets.so.6.11.2"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "libQt6Core.so.6.11.2"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "libGLdispatch.so.0.0.0"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "libQt6Gui.so.6.11.2"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "libglib-2.0.so.0.8800.3"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1600125,
+          "command": "wined3d_cs",
+          "dso": "libGLdispatch.so.0.0.0"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1600125,
+          "command": "wined3d_cs",
+          "dso": "win32u.so"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1600109,
+          "command": "llvmpipe-0",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1599310,
+          "command": "llvmpipe-2",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1600233,
+          "command": "Chaos.exe",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600108,
+          "command": "wine_dsound_mix",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600106,
+          "command": "Chaos.exe",
+          "dso": "libpulsecommon-17.0.so"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600125,
+          "command": "wined3d_cs",
+          "dso": "winex11.so"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600094,
+          "command": "Chaos.exe",
+          "dso": "wined3d.dll"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600106,
+          "command": "Chaos.exe",
+          "dso": "libpulse.so.0.24.3"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "libGLX_mesa.so.0.0.0"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600233,
+          "command": "Chaos.exe",
+          "dso": "wow64cpu.dll"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600233,
+          "command": "Chaos.exe",
+          "dso": "ntdll.dll"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600125,
+          "command": "wined3d_cs",
+          "dso": "[vdso]"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600106,
+          "command": "Chaos.exe",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600107,
+          "command": "Chaos.exe",
+          "dso": "libpulsecommon-17.0.so"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600125,
+          "command": "wined3d_cs",
+          "dso": "wow64cpu.dll"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600107,
+          "command": "Chaos.exe",
+          "dso": "libpulse.so.0.24.3"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1600125,
+          "command": "wined3d_cs",
+          "dso": "libxcb.so.1.1.0"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "ld-linux-x86-64.so.2"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600107,
+          "command": "Chaos.exe",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600108,
+          "command": "wine_dsound_mix",
+          "dso": "ntdll.dll"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600233,
+          "command": "Chaos.exe",
+          "dso": "win32u.so"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600233,
+          "command": "Chaos.exe",
+          "dso": "win32u.dll"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1599098,
+          "command": "mnm-qt-shell",
+          "dso": "[vdso]"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600107,
+          "command": "Chaos.exe",
+          "dso": "[vdso]"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600108,
+          "command": "wine_dsound_mix",
+          "dso": "libpulsecommon-17.0.so"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600108,
+          "command": "wine_dsound_mix",
+          "dso": "ntdll.so"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600108,
+          "command": "wine_dsound_mix",
+          "dso": "ucrtbase.dll"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600233,
+          "command": "Chaos.exe",
+          "dso": "wow64.dll"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600233,
+          "command": "Chaos.exe",
+          "dso": "user32.dll"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600233,
+          "command": "Chaos.exe",
+          "dso": "winmm.dll"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1600106,
+          "command": "Chaos.exe",
+          "dso": "[unknown]"
+        }
+      ]
+    },
+    {
+      "run": "run-w3lp9zz9",
+      "seconds": 25,
+      "frequency_hz": 99,
+      "lost_samples": 0,
+      "perf_sha256": "60ccaa895a65620d07a1a813de06a9c6aad927d44ad6ff5868499f46b3e7dc76",
+      "report_sha256": "be2d1a24d0dec3200391c9e5e708cd464d616ed46fb86b2dd4ddf40e96fb3822",
+      "dso_rows": [
+        {
+          "percent": 32.14,
+          "tid": 1611324,
+          "command": "Chaos.exe",
+          "dso": "kernel32.dll"
+        },
+        {
+          "percent": 23.22,
+          "tid": 1611324,
+          "command": "Chaos.exe",
+          "dso": "Chaos.exe"
+        },
+        {
+          "percent": 5.53,
+          "tid": 1610629,
+          "command": "llvmpipe-0",
+          "dso": "[JIT] tid 1610459"
+        },
+        {
+          "percent": 5.27,
+          "tid": 1610630,
+          "command": "llvmpipe-1",
+          "dso": "[JIT] tid 1610459"
+        },
+        {
+          "percent": 5.22,
+          "tid": 1610632,
+          "command": "llvmpipe-3",
+          "dso": "[JIT] tid 1610459"
+        },
+        {
+          "percent": 5.12,
+          "tid": 1610631,
+          "command": "llvmpipe-2",
+          "dso": "[JIT] tid 1610459"
+        },
+        {
+          "percent": 3.31,
+          "tid": 1611324,
+          "command": "Chaos.exe",
+          "dso": "[JIT] tid 1611324"
+        },
+        {
+          "percent": 2.19,
+          "tid": 1611342,
+          "command": "llvmpipe-1",
+          "dso": "[JIT] tid 1611324"
+        },
+        {
+          "percent": 2.15,
+          "tid": 1611343,
+          "command": "llvmpipe-2",
+          "dso": "[JIT] tid 1611324"
+        },
+        {
+          "percent": 2.11,
+          "tid": 1611341,
+          "command": "llvmpipe-0",
+          "dso": "[JIT] tid 1611324"
+        },
+        {
+          "percent": 2.1,
+          "tid": 1611344,
+          "command": "llvmpipe-3",
+          "dso": "[JIT] tid 1611324"
+        },
+        {
+          "percent": 1.07,
+          "tid": 1611324,
+          "command": "Chaos.exe",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.94,
+          "tid": 1610632,
+          "command": "llvmpipe-3",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.94,
+          "tid": 1610631,
+          "command": "llvmpipe-2",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.86,
+          "tid": 1610629,
+          "command": "llvmpipe-0",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.85,
+          "tid": 1611356,
+          "command": "wined3d_cs",
+          "dso": "wined3d.dll"
+        },
+        {
+          "percent": 0.76,
+          "tid": 1610630,
+          "command": "llvmpipe-1",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.48,
+          "tid": 1610632,
+          "command": "llvmpipe-3",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.46,
+          "tid": 1610629,
+          "command": "llvmpipe-0",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.39,
+          "tid": 1610630,
+          "command": "llvmpipe-1",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.34,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.33,
+          "tid": 1610631,
+          "command": "llvmpipe-2",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.33,
+          "tid": 1611356,
+          "command": "wined3d_cs",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.3,
+          "tid": 1611341,
+          "command": "llvmpipe-0",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.29,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "mnm-qt-shell"
+        },
+        {
+          "percent": 0.26,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.25,
+          "tid": 1611324,
+          "command": "Chaos.exe",
+          "dso": "wow64cpu.dll"
+        },
+        {
+          "percent": 0.23,
+          "tid": 1611343,
+          "command": "llvmpipe-2",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.2,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.19,
+          "tid": 1611342,
+          "command": "llvmpipe-1",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.19,
+          "tid": 1611344,
+          "command": "llvmpipe-3",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.19,
+          "tid": 1611339,
+          "command": "wine_dsound_mix",
+          "dso": "dsound.dll"
+        },
+        {
+          "percent": 0.16,
+          "tid": 1611356,
+          "command": "wined3d_cs",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.16,
+          "tid": 1611344,
+          "command": "llvmpipe-3",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.12,
+          "tid": 1611324,
+          "command": "Chaos.exe",
+          "dso": "ntdll.so"
+        },
+        {
+          "percent": 0.12,
+          "tid": 1611356,
+          "command": "wined3d_cs",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.12,
+          "tid": 1611342,
+          "command": "llvmpipe-1",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.11,
+          "tid": 1611341,
+          "command": "llvmpipe-0",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.08,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.08,
+          "tid": 1611343,
+          "command": "llvmpipe-2",
+          "dso": "libgallium-26.2.1-arch1.1.so"
+        },
+        {
+          "percent": 0.06,
+          "tid": 1610629,
+          "command": "llvmpipe-0",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.06,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "[JIT] tid 1611324"
+        },
+        {
+          "percent": 0.06,
+          "tid": 1611324,
+          "command": "Chaos.exe",
+          "dso": "ntdll.dll"
+        },
+        {
+          "percent": 0.05,
+          "tid": 1610631,
+          "command": "llvmpipe-2",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.05,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "ntdll.so"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "libQt6Core.so.6.11.2"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1611356,
+          "command": "wined3d_cs",
+          "dso": "ucrtbase.dll"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1610630,
+          "command": "llvmpipe-1",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "libQt6Widgets.so.6.11.2"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "libQt6Gui.so.6.11.2"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "wow64cpu.dll"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1611324,
+          "command": "Chaos.exe",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1611324,
+          "command": "Chaos.exe",
+          "dso": "wow64.dll"
+        },
+        {
+          "percent": 0.03,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "ntdll.dll"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1611356,
+          "command": "wined3d_cs",
+          "dso": "ntdll.so"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "[JIT] tid 1610459"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1611337,
+          "command": "Chaos.exe",
+          "dso": "libpulsecommon-17.0.so"
+        },
+        {
+          "percent": 0.02,
+          "tid": 1611339,
+          "command": "wine_dsound_mix",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611356,
+          "command": "wined3d_cs",
+          "dso": "win32u.so"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611344,
+          "command": "llvmpipe-3",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "wow64.dll"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1610632,
+          "command": "llvmpipe-3",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "libGLX_mesa.so.0.0.0"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "libqxcb-glx-integration.so"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611338,
+          "command": "Chaos.exe",
+          "dso": "libpulsecommon-17.0.so"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611338,
+          "command": "Chaos.exe",
+          "dso": "libpulse.so.0.24.3"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611337,
+          "command": "Chaos.exe",
+          "dso": "[unknown]"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611342,
+          "command": "llvmpipe-1",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611356,
+          "command": "wined3d_cs",
+          "dso": "libEGL.so.1.1.0"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611339,
+          "command": "wine_dsound_mix",
+          "dso": "ntdll.dll"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611356,
+          "command": "wined3d_cs",
+          "dso": "libGLdispatch.so.0.0.0"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "libxcb.so.1.1.0"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611339,
+          "command": "wine_dsound_mix",
+          "dso": "ntdll.so"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1611337,
+          "command": "Chaos.exe",
+          "dso": "libc.so.6"
+        },
+        {
+          "percent": 0.01,
+          "tid": 1610459,
+          "command": "mnm-qt-shell",
+          "dso": "libglib-2.0.so.0.8800.3"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1611339,
+          "command": "wine_dsound_mix",
+          "dso": "winepulse.so"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1611356,
+          "command": "wined3d_cs",
+          "dso": "opengl32.so"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1611338,
+          "command": "Chaos.exe",
+          "dso": "winepulse.so"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "kernelbase.dll"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1611338,
+          "command": "Chaos.exe",
+          "dso": "ntdll.so"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1611339,
+          "command": "wine_dsound_mix",
+          "dso": "mmdevapi.dll"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "winmm.dll"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "user32.dll"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "win32u.so"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1611423,
+          "command": "Chaos.exe",
+          "dso": "ddraw.dll"
+        },
+        {
+          "percent": 0.0,
+          "tid": 1611337,
+          "command": "Chaos.exe",
+          "dso": "libpulse.so.0.24.3"
+        }
+      ]
+    }
+  ]
+}

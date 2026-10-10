@@ -36,7 +36,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         run->done=true;const auto p=probe();
         QSaveFile file(path);
         const QJsonObject result{{"success",success},{"error",reason},{"steps",run->steps},
-            {"native_command_frames",qint64(p.frames)},{"native_painted_frames",qint64(p.paints)},{"native_recoveries",int(p.recoveries)},{"native_error",p.error},{"renderer",p.renderer},{"gameplay_rates",run->rates},{"native_command_fallback",p.fallback},
+            {"native_command_frames",qint64(p.frames)},{"native_painted_frames",qint64(p.paints)},{"native_presentation_pixels",qint64(p.presentationPixels)},{"native_recoveries",int(p.recoveries)},{"native_error",p.error},{"renderer",p.renderer},{"gameplay_rates",run->rates},{"native_command_fallback",p.fallback},
             {"movement_verified",false},{"original_drawing_retained",true},
             {"scope","Native Qt New Game/Enter, native command presentation, Escape/Mini/Cancel and resumed presentation; no movement, pixel equivalence or complete drawing replacement claim"}};
         const bool saved=file.open(QIODevice::WriteOnly)&&file.write(QJsonDocument(result).toJson())>0&&file.commit();
@@ -153,7 +153,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                     input->deleteLater();
                 });
                 QStringList arguments{QDir::current().filePath(castingCombat&&run->cycle==0?"tools/campaign-combat-input.py":"tools/campaign-gameplay-input.py"),"--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--seconds",QString::number(stressSeconds),"--output",QFileInfo(path).dir().filePath(QString("input-%1.json").arg(run->cycle))};
-                if(castingCombat&&run->cycle==0)arguments<<"--experiment"<<session.evidenceDirectory();
+                if(castingCombat&&run->cycle==0)arguments<<"--experiment"<<session.evidenceDirectory()<<"--portrait-stress-seconds"<<QString::number(qEnvironmentVariableIntValue("MNM_CAMPAIGN_PORTRAIT_SECONDS"));
                 input->start("python3",arguments);
             }
             const auto elapsed=run->sampleClock.elapsed();
