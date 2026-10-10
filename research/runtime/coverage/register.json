@@ -22446,6 +22446,134 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.world-frame-identity-cache",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded owned-byte World frame identity reuse",
+      "scope": "Intentional native preparation policy: share closed normalized frame identities between World catalogue and binding, with an exact indexed-tag/owned-encoded-byte bounded LRU (4096 entries,16MiB encoded capacity excluding object/map/list/token overhead). Tokens can only be constructed through existing extent validation and normalized hashing; no arbitrary digest inputs. Oversized valid inputs bypass caching, malformed inputs cannot enter, token values survive eviction and primitives retain order. Every binding retains resource loading, palette ambiguity and revision visual checks; reload/adoption and failed/unmapped inputs still refuse. Producer admission, wire, guards, raster formulas and CPU/GPU checks unchanged. No original simulation replacement, unbounded/all-map gameplay or hardware-general latency claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-world-frame-identity-cache.md"
+      ],
+      "implementation": [
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "apps/qt-shell/canvas_producer_session.cpp"
+      ],
+      "tests": [
+        "tests/canvas-world-test.cpp",
+        "tools/test-world-resource-reuse.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-history-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/original-manifest.sh",
+        "tools/test-world-resource-reuse.py"
+      ],
+      "validation_domain": "Current headless native consumer: synthetic owned/fromRawData mutation, indexed-tag separation, invalid extents, count/allocation capacity limits, LRU eviction, oversized bypass, token lifetime, primitive order, unmapped retry, reload/adoption and palette ambiguity; same-owned default V1 first16 map2/zero-items replay versus prechange atlas/revision-reuse binary with every checkpoint and identity counter checked. Dependency scope is the actual compiled native consumer/test closure, CMake configurations, replay declaration/manifest tools with a closed owned-input fixture: prepared-input mode verifies the original captured stream/done and every owned asset against an immutable previous input manifest, does not execute the mutable capture decoder, and never reads original pixel oracles. Public launcher hook lifetime and original replacement equivalence are separate historical evidence until refreshed against their complete pipeline; headless support does not validate minimap V2 branches, original simulation, unbounded gameplay or hardware-general latency.",
+      "evidence": [
+        "NR.world-frame-identity-cache.native-20261009"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -43951,6 +44079,53 @@
       "original_hash_pointer": "/source_executable_sha256",
       "equivalence_pointer": "/equivalent_intermediates",
       "bypass_pointer": "/original_work_bypassed"
+    },
+    {
+      "id": "NR.world-frame-identity-cache.native-20261009",
+      "kind": "native_integration",
+      "scope": "Same frozen owned-source first16 map2/zero-items corpus through prechange and bounded frame-identity consumers, all native checkpoints equal; identity warm reuse/capacity counters and focused ownership/mutation/eviction/bypass/invalid/primitive/reload/adoption/palette tests. No original oracle input, live/original equivalence or hardware-general latency claim.",
+      "record": "research/runtime/native-world-frame-identity-cache-native-20261009.json",
+      "sha256": "380f33ebfba294fba78d5cd2e5ac23812db4925b6673331014578051989daafd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/checkpoints_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/completed",
+          "equals": 1058
+        },
+        {
+          "pointer": "/native_tests_passed",
+          "equals": 5
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -50680,6 +50855,21 @@
       "evidence": [
         "NR.world-resource-reuse.live-20261009"
       ]
+    },
+    {
+      "id": "world-frame-identity-cache-replay-20261009",
+      "scope": "Same frozen owned-source first16 map2/zero-items corpus through prechange and bounded frame-identity consumers, all native checkpoints equal; identity warm reuse/capacity counters and focused ownership/mutation/eviction/bypass/invalid/primitive/reload/adoption/palette tests. No original oracle input, live/original equivalence or hardware-general latency claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.world-frame-identity-cache"
+      ],
+      "tests": [
+        "tools/test-world-resource-reuse.py",
+        "tests/canvas-world-test.cpp"
+      ],
+      "evidence": [
+        "NR.world-frame-identity-cache.native-20261009"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -51008,8 +51198,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-history-merge-20261009.json",
-    "sha256": "d53d620a09b73609a28edbbbe10baf71a7490f477f56e4c3535c9a084af390c5"
+    "path": "research/runtime/coverage/source-index-world-frame-identity-cache-committed-20261009.json",
+    "sha256": "ec805593f444ee1958c13d24ea1e0c8c7e6a2caf28c6ccfd96a4f5bf4af5f30d"
   },
   "claim_bindings_required": true
 }

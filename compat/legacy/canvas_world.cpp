@@ -74,9 +74,16 @@ render::Image CanvasWorld::complete(const render::Image &reference){
   if(!active_)throw std::runtime_error("No native producer/World queue to complete");
   if(!pending_.draws.empty()){
     const auto bindingsBefore=bindings_.bindingStats();const auto cacheBefore=scene_->cacheStats();
+    const auto identitiesBefore=bindings_.identityStats();
     auto started=Clock::now();
     const auto draws=bindings_.display(pending_);
     const auto bindingsAfter=bindings_.bindingStats();
+    const auto identitiesAfter=bindings_.identityStats();
+    profile_.identityHashes+=identitiesAfter.hashes-identitiesBefore.hashes;
+    profile_.identityHits+=identitiesAfter.hits-identitiesBefore.hits;
+    profile_.identityEvictions+=identitiesAfter.evictions-identitiesBefore.evictions;
+    profile_.identityBypasses+=identitiesAfter.bypasses-identitiesBefore.bypasses;
+    profile_.identityFrames=identitiesAfter.frames;profile_.identityBytes=identitiesAfter.bytes;
     profile_.visualChecks+=bindingsAfter.visualChecks-bindingsBefore.visualChecks;
     profile_.visualReuses+=bindingsAfter.visualReuses-bindingsBefore.visualReuses;
     profile_.prepareMs+=milliseconds(started);started=Clock::now();

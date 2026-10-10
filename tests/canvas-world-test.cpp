@@ -30,6 +30,7 @@ int main(int argc,char **argv)try{
     auto native=world.complete(producer.read(7));producer.commitNativeWorld(7,native);
     require(QOpenGLContext::currentContext()==previous,"World completion changed caller GL context");
     require(world.profile().cacheUploads==1&&world.profile().cacheSurfaces==2&&world.profile().visualChecks==1,"Cold World atlas/binding admission differs");
+    require(world.profile().identityHashes==1&&world.profile().identityFrames==1,"Cold World identity was not retained");
     require(native.pixels[0]==0x1234&&native.pixels[7]==(r[17]?0xfc00u:0xf800u),"Native startup contents or World pixel lost");
     auto leave=enter;leave.fields[2]=12;world.end(leave);
     // Intervening native HUD update must enter the next retained World frame.
@@ -37,25 +38,53 @@ int main(int argc,char **argv)try{
     enter.fields[14]=2;world.begin(enter,producer.read(7));producer.apply(raster);world.append(raster);
     native=world.complete(producer.read(7));require(native.pixels[0]==0x4321,"Intervening HUD producer was reset");
     require(world.profile().cacheUploads==0&&world.profile().visualChecks==0&&world.profile().visualReuses==1,"Warm World repeated upload or visual verification");
+    require(world.profile().identityHashes==0&&world.profile().identityHits==1,"Warm World rehashed encoded input");
     leave.fields[14]=2;world.end(leave);require(world.completedQueues()==2&&world.draws()==2,"Native queue accounting");
     enter.fields[14]=4;rejected([&]{world.begin(enter,producer.read(7));});enter.fields[14]=3;enter.fields[3]=8;rejected([&]{world.begin(enter,producer.read(7));});
     auto malformed=raster;malformed.fields[19]++;rejected([&]{legacy::producerWorldDraw(malformed);});
     malformed=raster;malformed.fields[15]=11;rejected([&]{legacy::producerWorldDraw(malformed);});
   }
   {
+    legacy::SnapshotFrame frame{false,QByteArray(reinterpret_cast<const char*>(raster.payload.data()),int(r[19]))};
+    QByteArray borrowedBytes(frame.encoded.constData(),frame.encoded.size());
+    legacy::SnapshotFrame borrowed{false,QByteArray::fromRawData(borrowedBytes.constData(),borrowedBytes.size())};
+    legacy::WorldIdentityCache cache({2,512});const auto first=cache.identity(borrowed);
+    // Modify the external fromRawData buffer in place: cached keys must own it.
+    borrowedBytes.data()[54]^=1;const auto changed=cache.identity(borrowed);
+    require(changed.digest()!=first.digest(),"Changed borrowed source reused an old identity");
+    require(cache.identity(frame).digest()==first.digest()&&cache.stats().hashes==2&&cache.stats().hits==1,"Cache borrowed caller storage");
+    auto tagged=frame;tagged.indexed=true;require(cache.identity(tagged).digest()!=first.digest(),"Indexed tag omitted from identity key");
+    require(cache.stats().frames==2&&cache.stats().evictions==1,"Frame count bound did not evict");
+    require(cache.identity(frame).digest()==first.digest(),"Retained token changed after eviction");
+    auto malformed=frame;malformed.encoded[0]^=1;
+    const auto before=cache.stats();rejected([&]{cache.identity(malformed);});
+    require(cache.stats().hashes==before.hashes&&cache.stats().frames==before.frames,"Malformed frame entered identity cache");
+    rejected([&]{legacy::WorldIdentityCache invalid({0,512});});
+    rejected([&]{legacy::WorldIdentityCache invalid({4097,512});});
+    const auto capacity=std::size_t(QByteArray(frame.encoded.constData(),frame.encoded.size()).capacity());
+    legacy::WorldIdentityCache byteBound({4,capacity*2});byteBound.identity(frame);byteBound.identity(tagged);
+    auto third=frame;third.encoded[54]^=2;byteBound.identity(third);
+    require(byteBound.stats().frames==2&&byteBound.stats().bytes<=capacity*2&&byteBound.stats().evictions==1,"Owned byte capacity bound did not evict");
+    legacy::WorldIdentityCache bypass({1,capacity-1});bypass.identity(frame);bypass.identity(frame);
+    require(bypass.stats().frames==0&&bypass.stats().hashes==2&&bypass.stats().bypasses==2,"Oversized identity was cached or refused");
+  }
+  {
     const auto input=store(root);assets::ResourceManager manager(input);
     legacy::SnapshotResources bindings(input,manager);const assets::ResourceId id{assets::ResourceKind::ui,"revision/body"};
     bindings.add(id,"body.spr",QCryptographicHash::hash(raw,QCryptographicHash::Sha256).toHex());
     legacy::SnapshotFrame frame{bool(r[17]),{reinterpret_cast<const char*>(raster.payload.data()),int(r[19])}};
-    bindings.resolve(frame);bindings.resolve(frame);
+    legacy::WorldIdentityCache identities;const auto identity=identities.identity(frame);
+    bindings.resolve(frame);bindings.resolve(identity);
     require(bindings.stats().visualChecks==1&&bindings.stats().visualReuses==1,"Resident visual identity was rehashed");
-    manager.unload(id);bindings.resolve(frame);
+    manager.unload(id);bindings.resolve(identity);
     require(bindings.stats().visualChecks==2,"Reload did not recheck visual identity");
     manager.unload(id);write(root,"body.spr",sprite(false,0x07e0));
-    rejected([&]{bindings.resolve(frame);});rejected([&]{bindings.resolve(frame);});
+    rejected([&]{bindings.resolve(identity);});rejected([&]{bindings.resolve(identity);});
     require(bindings.stats().visualChecks==4,"Rejected revision entered visual cache");
-    manager.unload(id);write(root,"body.spr",Bytes(raw.begin(),raw.end()));bindings.resolve(frame);
+    manager.unload(id);write(root,"body.spr",Bytes(raw.begin(),raw.end()));bindings.resolve(identity);
     require(bindings.stats().visualChecks==5,"Restored revision was not checked");
+    manager.unload(id);manager.adopt(assets::prepareResource(manager.request(id)));bindings.resolve(identity);
+    require(bindings.stats().visualChecks==6,"Prepared resource adoption skipped token verification");
     const auto indexed=sprite(true);auto other=indexed;other[27]=0;other[29]=255;
     write(root,"indexed.spr",indexed);write(root,"other.spr",other);
     for(const auto& item:std::vector<std::pair<std::string,Bytes>>{{"indexed.spr",indexed},{"other.spr",other}}){
@@ -63,8 +92,21 @@ int main(int argc,char **argv)try{
       bindings.add({assets::ResourceKind::ui,item.first=="indexed.spr"?"indexed":"other"},item.first,QCryptographicHash::hash(data,QCryptographicHash::Sha256).toHex());
     }
     legacy::SnapshotFrame ambiguous{true,QByteArray(reinterpret_cast<const char*>(indexed.data()+804),53)};
-    bindings.resolve(ambiguous,true);bindings.resolve(ambiguous,true);
-    rejected([&]{bindings.resolve(ambiguous,false);}); // cached verification cannot waive palette ambiguity
+    const auto indexedIdentity=identities.identity(ambiguous);
+    bindings.resolve(indexedIdentity,true);bindings.resolve(indexedIdentity,true);
+    rejected([&]{bindings.resolve(indexedIdentity,false);}); // cached identity cannot waive palette ambiguity
+  }
+  {
+    const auto input=store(root);assets::ResourceManager manager(input);legacy::WorldResources resources(input,manager);
+    const auto spriteDraw=legacy::producerWorldDraw(raster);auto primitive=spriteDraw;primitive.frame={};
+    primitive.additive=render::AdditiveRectangle{1,1,{1,2,3}};
+    legacy::WorldFrame frame{1,5,3,5,{spriteDraw,primitive,spriteDraw}};
+    const auto cold=resources.display(frame);const auto warm=resources.display(frame);
+    require(cold.size()==3&&warm.size()==3&&warm[1].additive&&warm[0].resource==warm[2].resource,"Mixed primitive/sprite order changed");
+    require(resources.identityStats().hashes==1&&resources.identityStats().hits==3,"Repeated World frames were not deduplicated");
+    auto unmapped=spriteDraw;unmapped.frame.encoded[54]^=4;frame.draws={unmapped};
+    rejected([&]{resources.display(frame);});rejected([&]{resources.display(frame);});
+    frame.draws={spriteDraw};require(resources.display(frame).size()==1,"Unmapped identity poisoned valid World binding");
   }
   {
     assets::ResourceManager resources(store(root));const render::Image background{5,3,std::vector<std::uint32_t>(15,0x1234)};

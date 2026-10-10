@@ -31,6 +31,8 @@ QByteArray frameIdentity(const QByteArray& raw,bool indexed){
         throw std::invalid_argument("Invalid normalized frame extent");
     auto bytes=raw;bytes.replace(28,4,QByteArray(4,0));bytes.prepend(indexed?'\1':'\0');return hash(bytes);
 }
+SnapshotFrameIdentity::SnapshotFrameIdentity(const SnapshotFrame& frame)
+    :indexed_(frame.indexed),digest_(frameIdentity(frame.encoded,frame.indexed)){}
 SceneSnapshot decodeSceneSnapshot(const QByteArray& b){
     if(b.size()<64||b.size()>MNM_SCENE_V1_MAX_BYTES||b.first(8)!=MNM_SCENE_V1_MAGIC||word(b,8)!=1||word(b,12)!=64||word(b,16)!=std::uint32_t(b.size()))
         throw std::invalid_argument("Unsupported scene snapshot envelope");
@@ -80,9 +82,12 @@ void SnapshotResources::add(const assets::ResourceId& id,const std::string& path
     ++files_;frames_+=sprite.frames.size();
 }
 BoundFrame SnapshotResources::resolve(const SnapshotFrame& frame,bool ownedColours) const{
-    const auto it=index_.find(frameIdentity(frame.encoded,frame.indexed));if(it==index_.end())throw std::out_of_range("Unmapped observed frame content");
+    return resolve(SnapshotFrameIdentity(frame),ownedColours);
+}
+BoundFrame SnapshotResources::resolve(const SnapshotFrameIdentity& frame,bool ownedColours) const{
+    const auto it=index_.find(frame.digest());if(it==index_.end())throw std::out_of_range("Unmapped observed frame content");
     const auto& candidates=it->second;
-    for(const auto& c:candidates)if(c.visual!=candidates.front().visual&&!(ownedColours&&frame.indexed))
+    for(const auto& c:candidates)if(c.visual!=candidates.front().visual&&!(ownedColours&&frame.indexed()))
         throw std::out_of_range("Ambiguous observed frame with different native palette pixels");
     const auto& choice=candidates.front();const auto& owned=resources_.load(choice.binding.resource);
     const auto& sprite=std::get<assets::Sprite>(owned.image);

@@ -128,6 +128,7 @@ void CanvasProducerSession::tick() {
             auto frame=worldFrames_.last().toObject();
             frame["profile"]=QJsonObject{{"consumer_entry_to_return_ms",double(queueClock_.nsecsElapsed())/1e6},{"cpu_composition_ms",queueCpuMs_},{"checkpoint_diagnostics_ms",queueCheckpointMs_},{"history_adopt_ms",p.adoptMs},{"resource_prepare_ms",p.prepareMs},{"gpu_submit_ms",p.submitMs},{"gpu_readback_ms",p.readbackMs},{"gpu_compare_ms",p.compareMs},{"batch_validation_ms",batchValidationMs_},{"batch_publish_ms",batchPublishMs_},{"visible_draws",int(p.visibleDraws)}};
             frame["reuse"]=QJsonObject{{"visual_checks",double(p.visualChecks)},{"visual_reuses",double(p.visualReuses)},{"cache_uploads",double(p.cacheUploads)},{"cache_hits",double(p.cacheHits)},{"cache_evictions",double(p.cacheEvictions)},{"cache_frames",double(p.cacheFrames)},{"cache_surfaces",double(p.cacheSurfaces)}};
+            frame["identities"]=QJsonObject{{"hashes",double(p.identityHashes)},{"hits",double(p.identityHits)},{"evictions",double(p.identityEvictions)},{"bypasses",double(p.identityBypasses)},{"frames",double(p.identityFrames)},{"bytes",double(p.identityBytes)}};
             world_->end(c);proof(c,3,nullptr);frame["gpu_world_equal"]=true;frame["return_sequence"]=int(r[1]);worldFrames_.replace(worldFrames_.size()-1,frame);
           }
           else if(r[2]!=4&&r[2]!=10)throw std::runtime_error("Unadmitted write inside native World handoff");

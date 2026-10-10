@@ -1,0 +1,860 @@
+{
+  "schema": 1,
+  "reviewed_ranges": [
+    "8dce3ac..60f6b3d",
+    "60f6b3d..b70c9e6"
+  ],
+  "scope": "Exact incoming committed file hashes and receipt chains reviewed before isolated native cache work. First-parent merge transitions are retained separately from the remote sibling parent. No historical gate pass, semantic inference or renewed engine execution is asserted. Current uncommitted minimap work is excluded.",
+  "commits": [
+    {
+      "commit": "60f6b3dbfb352151fbc2e7a33bd3ad67e4ce5624",
+      "parent": "8dce3ac8602ce3bfd5b5e2241ee5264353516363",
+      "files": [
+        {
+          "path": "apps/qt-shell/canvas_producer_session.cpp",
+          "parent_sha256": "3e32d3e29f363bb787670a5f1f332828e6cb3e10aed96f798774e5abcf90d091",
+          "commit_sha256": "21b0297ca62fc930565a42b148764c68a3913b76a64987b4bdb6477c160b59ac",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "apps/qt-shell/canvas_producer_session.hpp",
+          "parent_sha256": "ecb30834d5933ad304050d8c4839148cab390427696c8f112ba4fc9795fdbc3a",
+          "commit_sha256": "c302e297fe9825be36ff73ab74a0ba072c36d5cd0e549839e8e551f3ea692968",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "compat/legacy/canvas_world.cpp",
+          "parent_sha256": "0217d366e7b3199a618258d597272d7a8b387451974c0776cda2f9b3dd1add11",
+          "commit_sha256": "1371213cf7635d351dc7ca4761686817d91e8c3977518e133fd1f83fcd9a671a",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "compat/legacy/canvas_world.hpp",
+          "parent_sha256": "685fbf34152c966c1ed5ca82f111eb1cec95310f2d2fceed046a675e342fd450",
+          "commit_sha256": "431c97d78d6b2adb1e0234642a5906667ad1950d4acd6d727220d720b0be1abd",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "compat/legacy/scene_snapshot.cpp",
+          "parent_sha256": "7b87222bbed4adb0016673bb699ad86b75116393b4253893aba36a019e24a8b9",
+          "commit_sha256": "915dc76fa9dc0d4b1bd38ceab6856d2d8ff10e0ef15f55d60cdc02341a40410e",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "compat/legacy/scene_snapshot.hpp",
+          "parent_sha256": "ecfa7427724b514b84a6620fe57ea85d876d2176b3015f557aa489958fefcb8f",
+          "commit_sha256": "be2ca5753c27a7ebd8d74cee0ba850ebcf7f5a6cc9fbfb2245189ca2b5258062",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "compat/legacy/world_resources.hpp",
+          "parent_sha256": "bbf6005fa8de1e1ca1ebb2a6f437afb605d6ceaf5f81a91d9f24941bd8595270",
+          "commit_sha256": "f04bfffe6b7adbd237509f7e0cacdf97f751ce7dcf96a974467856f8e56caf9e",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/formats/world-raster-batch-v3.md",
+          "parent_sha256": "55cad045ec3ecf3f2454d85be345e6aa642fa675e6dc4fa4d60f3500933df0d1",
+          "commit_sha256": "76a8d2122352c015f9b61fc11e42baee679f1654ca469c82c1bfa66fc39c2198",
+          "receipt_chain": [
+            "world-raster-batch-final-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "parent_sha256": "cc0f2064c0058c7a545708da0fb2a81de103d026df53543eab086238d340a1fc",
+          "commit_sha256": "c2afac5c77d87765720954217638a50a2bafab61bfd7fe1541d8bcdae44b563f",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "parent_sha256": "671d1a53f3f2e87773589a7f50737a36ffa3abcaf2c0a3a0f77b0c1fadce4f62",
+          "commit_sha256": "337c947b20711d8aef2390aee6dacc5272a607656d9a68c50607f59033a60c12",
+          "receipt_chain": [],
+          "classification": "append-only review journal excluded from self fingerprints"
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-minimap-during-world-reuse-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "c5a32e5f08962f8f003fca1952e3990c2214e6438695608ba6b0ab1878459d3e",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-world-raster-batch-v7-20261008.json",
+          "parent_sha256": null,
+          "commit_sha256": "469b4798a79457203f5ce8fbc43797e230d8b1ae204d6b5d3d8ee066dc366f61",
+          "receipt_chain": [
+            "world-raster-batch-final-history-and-regression-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "parent_sha256": "5e9ae71568da4e104c8c35e7ef020aac95f8a650662fed71aa8c58c2dea67cfe",
+          "commit_sha256": "a6e2cbab35d8fcde6c104300912be85e262033f98936cab5313994997aa60529",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-world-interactive-batch-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "ce9cf9f65e45507190ca80cec42e9b933085393e1380125ecd167c23b2010dcb",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-world-resource-reuse-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "92df85e102b6aa312f9b323ce542a9f5fb6464a7c00effac26b42c894ce60523",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-interactive-batch-20261009.md",
+          "parent_sha256": null,
+          "commit_sha256": "ba067e531fb45b8ba08d4119c3d32290a8f24eb0390bf04c58f0aa2f58e863c3",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-raster-batch-v7-20261008.md",
+          "parent_sha256": null,
+          "commit_sha256": "f2be7dd2639f05a5aab52285a2a8a4dd7a7287100dc9a3d9b96afa7ced2f71e7",
+          "receipt_chain": [
+            "world-raster-batch-final-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-raster-batch-v7-complete-20261008.md",
+          "parent_sha256": null,
+          "commit_sha256": "e3b131acb5978b0974a23c79c7c13624b55fcbe24c87133dd06800b6f403623c",
+          "receipt_chain": [
+            "world-raster-batch-final-history-and-regression-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-resource-reuse-20261009.md",
+          "parent_sha256": null,
+          "commit_sha256": "b4c4706cd07b0334bb14ae62ce0253406a1da49c5728458c705c18585115eb23",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-batch-instrumented-replacement-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "97014f8fd9c3985ff7788f16d914d412abb771f512f0061069cf5c6a9588b903",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-batch-public-cancel-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "e6a0c6cb3cdffca8d5be114eaefccd25aa0b8d521117fd1071659064994f2cd8",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-batch-public-complete-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "a872f730dfc1d722866150e59781e011806cce3bfa8a863ed1d7ad246a601943",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-interactive-batch.md",
+          "parent_sha256": null,
+          "commit_sha256": "6c4194edd5e17e326273d999ab107374f9dd114d9fb203dfefd2985983947d08",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-raster-batch-launcher-regression-v7-20261008.json",
+          "parent_sha256": null,
+          "commit_sha256": "53f38d3845ed9ff403533a357fa6574b8a9a596e326e5d45710e53684024b88e",
+          "receipt_chain": [
+            "world-raster-batch-final-history-and-regression-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-raster-batch-prefix16-comparison-v7-20261008.json",
+          "parent_sha256": null,
+          "commit_sha256": "545d4be48300f03fc6c8bb668df8aaaed35dc78888ab9c950e9a3c373e5b6460",
+          "receipt_chain": [
+            "world-raster-batch-final-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-raster-batch-prefix16-replacement-v7-20261008.json",
+          "parent_sha256": null,
+          "commit_sha256": "a719e427ef2f6c61617511d647f6789eee3181572835b9ad8ef16381135d2204",
+          "receipt_chain": [
+            "world-raster-batch-final-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-raster-batch.md",
+          "parent_sha256": "3604548ec0b6bca14988ca18484a49a13c3bc46c4717b6290c19a6f61ac5ad69",
+          "commit_sha256": "2d2a0a6146a097c3053f5fd798d94e4c5f491e6b64ae55ad09defc0e6f84bcae",
+          "receipt_chain": [
+            "world-raster-batch-final-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-resource-reuse-live-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "7f510a143336de77add8a7eb514ac267ea393b7f07756228e2871470d409531d",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-resource-reuse-original-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "c33e560e34808a9ccb5e232170b01e8d59949e1c0abd1a03c10a8fa19155c615",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-resource-reuse-prechange.patch",
+          "parent_sha256": null,
+          "commit_sha256": "c4c83a169dfe7f11de843b2e8afe6d45f66c2c3b08254a951c7f0b5bd7495f34",
+          "receipt_chain": [
+            "REVIEW.history-merge-retrospective-20261009-1"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-resource-reuse-replay-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "c5ad7ffdf111df7aa838939821bd047babed496fca7548df1a7addd118ee4e0b",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-resource-reuse.md",
+          "parent_sha256": null,
+          "commit_sha256": "d216a68d461e4ab7fcad1cf2200ca165535886819af4abda63944b44557e1a60",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tests/canvas-world-test.cpp",
+          "parent_sha256": "8e1c5a7d850ef09a63bb15fc20a2021b273ea89e9a5f0de70108e763ebe4a8b2",
+          "commit_sha256": "d79cf635e791f750df89551942fc23ddf5e05e517b1ec708f533e857f7e98e00",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tests/native-world-batch-test.py",
+          "parent_sha256": null,
+          "commit_sha256": "5d10d3cc7121bac779234bce64fd917f28868f11f07d73cb4ec6d9f9b855fb8e",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/capture-scene-game.py",
+          "parent_sha256": "70aff1071ef5ff78e85293cf235efd721d9339db04db93025d0ee47814f4ba5b",
+          "commit_sha256": "2ab1396818aa16e3d11e487e03dca3985c1c53e59f2bef73636de115e39a8910",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/native_world_batch.py",
+          "parent_sha256": null,
+          "commit_sha256": "d1d6c1d3f6f09bffe9b9bd47701c38fb5caf93a0b097ddfdce1666dc51e52d73",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/run-native-world.py",
+          "parent_sha256": "ab4693cc6acb77cbcaf739107956b35aa8d67ea337fe88b3b803061d11e5fcfc",
+          "commit_sha256": "6f9e3b37aa0ef8d2ac62130da697e7fd90c49c984fad7dc59ca8a39e222fc268",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/test-native-world-batch.py",
+          "parent_sha256": null,
+          "commit_sha256": "9abeadfffa01d8a6d49f6273f8bf08d921f8ce87e1f2e9cce851e8db7f3fd55c",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/test-world-resource-reuse.py",
+          "parent_sha256": null,
+          "commit_sha256": "2f940626e65dd9d189693665f87f8731880bd3b633cc5ba4df2182cfaf942330",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        }
+      ]
+    },
+    {
+      "commit": "5c978024c3df907b7682add0aad777fe382654ba",
+      "parent": "8dce3ac8602ce3bfd5b5e2241ee5264353516363",
+      "files": [
+        {
+          "path": "apps/qt-shell/CMakeLists.txt",
+          "parent_sha256": "9b0747e40e5647f09287ad1ddc882c4fa394f157266610ca23f9406207466082",
+          "commit_sha256": "3ae9d1f7f28ca570b17be9f5ccd83b84e4c9ba083d7bfb887b6b060b94d4e84f",
+          "receipt_chain": [
+            "native-campaign-public-smoke-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "apps/qt-shell/campaign_smoke_test.cpp",
+          "parent_sha256": null,
+          "commit_sha256": "6ce9b947c275e58af9b3940c04218e5b2466166f3aaf68ddd2a9313734b6e020",
+          "receipt_chain": [
+            "native-campaign-public-smoke-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "apps/qt-shell/campaign_smoke_test.hpp",
+          "parent_sha256": null,
+          "commit_sha256": "c217e30fe9cf1eed2d2b6de94d68029498afa1feab13cb164ec6471122452aed",
+          "receipt_chain": [
+            "native-campaign-public-smoke-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "apps/qt-shell/main.cpp",
+          "parent_sha256": "f2836c60f047251f05b7920412f6c901193b90232147b0d5467fbbef558e8567",
+          "commit_sha256": "57802c759217ff2dbad0f088350325dd747b4cf432aedf63fc52b3be884c1b54",
+          "receipt_chain": [
+            "native-campaign-public-smoke-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "parent_sha256": "cc0f2064c0058c7a545708da0fb2a81de103d026df53543eab086238d340a1fc",
+          "commit_sha256": "05454bbec4a32c3b4531f2956c1015eeb728b083eaf7b57b2fae195219ab4f62",
+          "receipt_chain": [
+            "native-campaign-public-smoke-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "parent_sha256": "671d1a53f3f2e87773589a7f50737a36ffa3abcaf2c0a3a0f77b0c1fadce4f62",
+          "commit_sha256": "d4a35dddc8f9c8fa0e8ff29e159d8ce37abbbb198f4014206b25a6dc6a570802",
+          "receipt_chain": [],
+          "classification": "append-only review journal excluded from self fingerprints"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "parent_sha256": "5e9ae71568da4e104c8c35e7ef020aac95f8a650662fed71aa8c58c2dea67cfe",
+          "commit_sha256": "6d2a1735ff7a38edbc9c501e3410653214305da82e76b2698225d75a1b44d639",
+          "receipt_chain": [
+            "native-campaign-public-smoke-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-native-campaign-smoke-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "e36c5168690af76fcccb360fcf9c066d05024359e5e9190b7c97acd3e2f84e3f",
+          "receipt_chain": [
+            "native-campaign-public-smoke-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-qt-shell-launch-target-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "c1ab3281afe3144f2b6696f9ba93b0880ab4b4140554130ece9281f3a4c8a261",
+          "receipt_chain": [
+            "qt-shell-launch-target-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-campaign-smoke-admission-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "246cf2779cc12f456ce35a1899b62be33a62455d0c985292a4796fd6591f02e7",
+          "receipt_chain": [
+            "native-campaign-public-smoke-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tests/native-campaign-smoke.md",
+          "parent_sha256": null,
+          "commit_sha256": "098c21fd054bba566407313ce88ea9ac93c7734c70903352037f10951f90352e",
+          "receipt_chain": [
+            "native-campaign-public-smoke-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tests/test-native-campaign.py",
+          "parent_sha256": null,
+          "commit_sha256": "18c30560d5d3096c75e14e23de5b14afd8802ec4d7692751c7176cd7c6c67ab4",
+          "receipt_chain": [
+            "native-campaign-public-smoke-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/run-qt-shell.sh",
+          "parent_sha256": "8b38886dc5de89df025e06840164b81c0b8f2aa9fec8d6f353846dad6a608dbd",
+          "commit_sha256": "9502727ade3a2ee7ac882d9b039a9416f39ab3cf5ee0a56a17c31bfc5958a9b5",
+          "receipt_chain": [
+            "qt-shell-launch-target-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/test-native-campaign.py",
+          "parent_sha256": null,
+          "commit_sha256": "dbd3eaa31b71d381a4ad72f13c04e041896f0814f7d6e6665fc01445d1005313",
+          "receipt_chain": [
+            "native-campaign-public-smoke-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        }
+      ]
+    },
+    {
+      "commit": "b70c9e639cf3aa08c4bf828a987475f563748746",
+      "parent": "5c978024c3df907b7682add0aad777fe382654ba",
+      "files": [
+        {
+          "path": "apps/qt-shell/canvas_producer_session.cpp",
+          "parent_sha256": "3e32d3e29f363bb787670a5f1f332828e6cb3e10aed96f798774e5abcf90d091",
+          "commit_sha256": "21b0297ca62fc930565a42b148764c68a3913b76a64987b4bdb6477c160b59ac",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "apps/qt-shell/canvas_producer_session.hpp",
+          "parent_sha256": "ecb30834d5933ad304050d8c4839148cab390427696c8f112ba4fc9795fdbc3a",
+          "commit_sha256": "c302e297fe9825be36ff73ab74a0ba072c36d5cd0e549839e8e551f3ea692968",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "compat/legacy/canvas_world.cpp",
+          "parent_sha256": "0217d366e7b3199a618258d597272d7a8b387451974c0776cda2f9b3dd1add11",
+          "commit_sha256": "1371213cf7635d351dc7ca4761686817d91e8c3977518e133fd1f83fcd9a671a",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "compat/legacy/canvas_world.hpp",
+          "parent_sha256": "685fbf34152c966c1ed5ca82f111eb1cec95310f2d2fceed046a675e342fd450",
+          "commit_sha256": "431c97d78d6b2adb1e0234642a5906667ad1950d4acd6d727220d720b0be1abd",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "compat/legacy/scene_snapshot.cpp",
+          "parent_sha256": "7b87222bbed4adb0016673bb699ad86b75116393b4253893aba36a019e24a8b9",
+          "commit_sha256": "915dc76fa9dc0d4b1bd38ceab6856d2d8ff10e0ef15f55d60cdc02341a40410e",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "compat/legacy/scene_snapshot.hpp",
+          "parent_sha256": "ecfa7427724b514b84a6620fe57ea85d876d2176b3015f557aa489958fefcb8f",
+          "commit_sha256": "be2ca5753c27a7ebd8d74cee0ba850ebcf7f5a6cc9fbfb2245189ca2b5258062",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "compat/legacy/world_resources.hpp",
+          "parent_sha256": "bbf6005fa8de1e1ca1ebb2a6f437afb605d6ceaf5f81a91d9f24941bd8595270",
+          "commit_sha256": "f04bfffe6b7adbd237509f7e0cacdf97f751ce7dcf96a974467856f8e56caf9e",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/formats/world-raster-batch-v3.md",
+          "parent_sha256": "55cad045ec3ecf3f2454d85be345e6aa642fa675e6dc4fa4d60f3500933df0d1",
+          "commit_sha256": "76a8d2122352c015f9b61fc11e42baee679f1654ca469c82c1bfa66fc39c2198",
+          "receipt_chain": [
+            "world-raster-batch-final-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage-ledger.md",
+          "parent_sha256": "05454bbec4a32c3b4531f2956c1015eeb728b083eaf7b57b2fae195219ab4f62",
+          "commit_sha256": "1d0e24bfc96df290b1e92c7746bbd7018166a881079508c36cdb25ac695de5af",
+          "receipt_chain": [
+            "REVIEW.history-merge-20261009-1"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/change-reviews.json",
+          "parent_sha256": "d4a35dddc8f9c8fa0e8ff29e159d8ce37abbbb198f4014206b25a6dc6a570802",
+          "commit_sha256": "5b73de09d57f59083a00c34d07a4ab55f8d583de0b99bd64486af156cb592306",
+          "receipt_chain": [],
+          "classification": "append-only review journal excluded from self fingerprints"
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-minimap-during-world-reuse-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "c5a32e5f08962f8f003fca1952e3990c2214e6438695608ba6b0ab1878459d3e",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/committed-history-world-raster-batch-v7-20261008.json",
+          "parent_sha256": null,
+          "commit_sha256": "469b4798a79457203f5ce8fbc43797e230d8b1ae204d6b5d3d8ee066dc366f61",
+          "receipt_chain": [
+            "world-raster-batch-final-history-and-regression-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/register.json",
+          "parent_sha256": "6d2a1735ff7a38edbc9c501e3410653214305da82e76b2698225d75a1b44d639",
+          "commit_sha256": "467dc831b3b5478af0c3574098408674c2a9992d7450fbf12afd7d6ad53b37ff",
+          "receipt_chain": [
+            "REVIEW.history-merge-20261009-1"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-history-merge-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "d53d620a09b73609a28edbbbe10baf71a7490f477f56e4c3535c9a084af390c5",
+          "receipt_chain": [
+            "REVIEW.history-merge-20261009-1"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-world-interactive-batch-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "ce9cf9f65e45507190ca80cec42e9b933085393e1380125ecd167c23b2010dcb",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/source-index-world-resource-reuse-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "92df85e102b6aa312f9b323ce542a9f5fb6464a7c00effac26b42c894ce60523",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-interactive-batch-20261009.md",
+          "parent_sha256": null,
+          "commit_sha256": "ba067e531fb45b8ba08d4119c3d32290a8f24eb0390bf04c58f0aa2f58e863c3",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-raster-batch-v7-20261008.md",
+          "parent_sha256": null,
+          "commit_sha256": "f2be7dd2639f05a5aab52285a2a8a4dd7a7287100dc9a3d9b96afa7ced2f71e7",
+          "receipt_chain": [
+            "world-raster-batch-final-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-raster-batch-v7-complete-20261008.md",
+          "parent_sha256": null,
+          "commit_sha256": "e3b131acb5978b0974a23c79c7c13624b55fcbe24c87133dd06800b6f403623c",
+          "receipt_chain": [
+            "world-raster-batch-final-history-and-regression-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/coverage/summary-world-resource-reuse-20261009.md",
+          "parent_sha256": null,
+          "commit_sha256": "b4c4706cd07b0334bb14ae62ce0253406a1da49c5728458c705c18585115eb23",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-batch-instrumented-replacement-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "97014f8fd9c3985ff7788f16d914d412abb771f512f0061069cf5c6a9588b903",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-batch-public-cancel-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "e6a0c6cb3cdffca8d5be114eaefccd25aa0b8d521117fd1071659064994f2cd8",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-batch-public-complete-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "a872f730dfc1d722866150e59781e011806cce3bfa8a863ed1d7ad246a601943",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-interactive-batch.md",
+          "parent_sha256": null,
+          "commit_sha256": "6c4194edd5e17e326273d999ab107374f9dd114d9fb203dfefd2985983947d08",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-raster-batch-launcher-regression-v7-20261008.json",
+          "parent_sha256": null,
+          "commit_sha256": "53f38d3845ed9ff403533a357fa6574b8a9a596e326e5d45710e53684024b88e",
+          "receipt_chain": [
+            "world-raster-batch-final-history-and-regression-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-raster-batch-prefix16-comparison-v7-20261008.json",
+          "parent_sha256": null,
+          "commit_sha256": "545d4be48300f03fc6c8bb668df8aaaed35dc78888ab9c950e9a3c373e5b6460",
+          "receipt_chain": [
+            "world-raster-batch-final-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-raster-batch-prefix16-replacement-v7-20261008.json",
+          "parent_sha256": null,
+          "commit_sha256": "a719e427ef2f6c61617511d647f6789eee3181572835b9ad8ef16381135d2204",
+          "receipt_chain": [
+            "world-raster-batch-final-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-raster-batch.md",
+          "parent_sha256": "3604548ec0b6bca14988ca18484a49a13c3bc46c4717b6290c19a6f61ac5ad69",
+          "commit_sha256": "2d2a0a6146a097c3053f5fd798d94e4c5f491e6b64ae55ad09defc0e6f84bcae",
+          "receipt_chain": [
+            "world-raster-batch-final-metadata-v7-20261008"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-resource-reuse-live-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "7f510a143336de77add8a7eb514ac267ea393b7f07756228e2871470d409531d",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-resource-reuse-original-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "c33e560e34808a9ccb5e232170b01e8d59949e1c0abd1a03c10a8fa19155c615",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-resource-reuse-prechange.patch",
+          "parent_sha256": null,
+          "commit_sha256": "c4c83a169dfe7f11de843b2e8afe6d45f66c2c3b08254a951c7f0b5bd7495f34",
+          "receipt_chain": [
+            "REVIEW.history-merge-retrospective-20261009-1"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-resource-reuse-replay-20261009.json",
+          "parent_sha256": null,
+          "commit_sha256": "c5ad7ffdf111df7aa838939821bd047babed496fca7548df1a7addd118ee4e0b",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "research/runtime/native-world-resource-reuse.md",
+          "parent_sha256": null,
+          "commit_sha256": "d216a68d461e4ab7fcad1cf2200ca165535886819af4abda63944b44557e1a60",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tests/canvas-world-test.cpp",
+          "parent_sha256": "8e1c5a7d850ef09a63bb15fc20a2021b273ea89e9a5f0de70108e763ebe4a8b2",
+          "commit_sha256": "d79cf635e791f750df89551942fc23ddf5e05e517b1ec708f533e857f7e98e00",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tests/native-world-batch-test.py",
+          "parent_sha256": null,
+          "commit_sha256": "5d10d3cc7121bac779234bce64fd917f28868f11f07d73cb4ec6d9f9b855fb8e",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/capture-scene-game.py",
+          "parent_sha256": "70aff1071ef5ff78e85293cf235efd721d9339db04db93025d0ee47814f4ba5b",
+          "commit_sha256": "2ab1396818aa16e3d11e487e03dca3985c1c53e59f2bef73636de115e39a8910",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/native_world_batch.py",
+          "parent_sha256": null,
+          "commit_sha256": "d1d6c1d3f6f09bffe9b9bd47701c38fb5caf93a0b097ddfdce1666dc51e52d73",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/run-native-world.py",
+          "parent_sha256": "ab4693cc6acb77cbcaf739107956b35aa8d67ea337fe88b3b803061d11e5fcfc",
+          "commit_sha256": "6f9e3b37aa0ef8d2ac62130da697e7fd90c49c984fad7dc59ca8a39e222fc268",
+          "receipt_chain": [
+            "world-interactive-batch-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/test-native-world-batch.py",
+          "parent_sha256": null,
+          "commit_sha256": "9abeadfffa01d8a6d49f6273f8bf08d921f8ce87e1f2e9cce851e8db7f3fd55c",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        },
+        {
+          "path": "tools/test-world-resource-reuse.py",
+          "parent_sha256": null,
+          "commit_sha256": "2f940626e65dd9d189693665f87f8731880bd3b633cc5ba4df2182cfaf942330",
+          "receipt_chain": [
+            "world-resource-reuse-source-and-index-review-20261009"
+          ],
+          "classification": "exact historical receipt chain"
+        }
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

@@ -9,13 +9,17 @@ def main():
  p=argparse.ArgumentParser(description=__doc__)
  p.add_argument('--baseline',type=Path,required=True)
  p.add_argument('--capture-report',type=Path,required=True)
+ p.add_argument('--behavior',action='append',help='Behavior IDs to declare; defaults to NR.world-resource-reuse')
+ p.add_argument('--scenario',default='world-resource-reuse-replay-20261009')
  p.add_argument('--prepared',type=Path,help='Reuse a build only after every compiler dependency matches current declared bytes')
+ p.add_argument('--prepared-inputs',type=Path,help='Reuse closed owned inputs only after checking every file against its previous input manifest')
  a=p.parse_args();baseline=a.baseline.resolve();before=json.loads((baseline/'baseline.json').read_text())
  register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
- behavior=next(b for b in register['behaviors'] if b['id']=='NR.world-resource-reuse')
- scenario=next(s for s in register['scenarios'] if s['id']=='world-resource-reuse-replay-20261009')
- sources={n:sha(ROOT/n) for n in sorted(required_sources(behavior))}
- claims=[dict(behavior=behavior['id'],contract_sha256=behavior_contract(behavior,{b['id']:b for b in register['builds']}),scenarios={scenario['id']:scenario_contract(scenario)})]
+ ids=a.behavior or ['NR.world-resource-reuse']
+ selected=[next(b for b in register['behaviors'] if b['id']==id) for id in ids]
+ scenario=next(s for s in register['scenarios'] if s['id']==a.scenario)
+ sources={n:sha(ROOT/n) for n in sorted(set().union(*(required_sources(b) for b in selected)))}
+ claims=[dict(behavior=b['id'],contract_sha256=behavior_contract(b,{b['id']:b for b in register['builds']}),scenarios={scenario['id']:scenario_contract(scenario)} if b['id'] in scenario['behaviors'] else {}) for b in selected]
  parent=ROOT/'working/tests/world-resource-reuse';parent.mkdir(parents=True,exist_ok=True)
  out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
  (out/'claims.json').write_text(json.dumps(dict(sources=sources,claims=claims),indent=2)+'\n')
@@ -28,17 +32,31 @@ def main():
   assert all(sha(baseline/'source'/n)==h for n,h in before['sources'].items())
   capture=json.loads(a.capture_report.read_text());assert capture['success']
   experiment=Path(capture['experiment']);directory=experiment/'capture'
-  spec=importlib.util.spec_from_file_location('inspect_producers',ROOT/'tools/inspect-canvas-producers.py');inspector=importlib.util.module_from_spec(spec);spec.loader.exec_module(inspector)
-  stream=directory/'canvas-producers.bin';_,ops=inspector.decode(stream.read_bytes())
+  stream=directory/'canvas-producers.bin'
   inputs=out/'inputs';inputs.mkdir()
   for name in ('canvas-producers.bin','canvas-producers.done'):shutil.copyfile(directory/name,inputs/name)
   input_hashes={str(p.resolve()):sha(p) for p in [stream,directory/'canvas-producers.done',inputs/stream.name,inputs/'canvas-producers.done']}
   assets=out/'assets';assets.mkdir();asset_hashes={}
-  encoded={b[:-1].decode('ascii').replace('\\','/').casefold() for r,b in ops if r[2] in (7,20)}
-  for path in (experiment/'game').rglob('*'):
-   if not path.is_file():continue
-   n=path.relative_to(experiment/'game')
-   if path.suffix.lower()!='.spr' and n.as_posix().casefold() not in encoded:continue
+  if a.prepared_inputs:
+   previous=a.prepared_inputs.resolve();manifest=previous/'report.json';old=json.loads(manifest.read_text())
+   assert old['inputs_stable'] and old['capture_report_sha256']==sha(a.capture_report)
+   assert old['owned_stream_sha256']==sha(stream)
+   input_hashes[str(manifest)]=sha(manifest)
+   for name in ('canvas-producers.bin','canvas-producers.done'):
+    assert sha(previous/'inputs'/name)==sha(directory/name)
+   paths=[]
+   for name,h in old['asset_sources'].items():
+    assert not Path(name).is_absolute() and '..' not in Path(name).parts,name
+    path=(previous/'assets'/name).resolve()
+    assert path.is_relative_to(previous/'assets') and sha(path)==h,name
+    paths.append((path,Path(name)))
+   report['prepared_input_manifest']=dict(path=str(manifest),sha256=sha(manifest))
+  else:
+   spec=importlib.util.spec_from_file_location('inspect_producers',ROOT/'tools/inspect-canvas-producers.py');inspector=importlib.util.module_from_spec(spec);spec.loader.exec_module(inspector)
+   _,ops=inspector.decode(stream.read_bytes())
+   encoded={b[:-1].decode('ascii').replace('\\','/').casefold() for r,b in ops if r[2] in (7,20)}
+   paths=[(path,path.relative_to(experiment/'game')) for path in (experiment/'game').rglob('*') if path.is_file() and (path.suffix.lower()=='.spr' or path.relative_to(experiment/'game').as_posix().casefold() in encoded)]
+  for path,n in paths:
    dst=assets/n;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,dst);asset_hashes[n.as_posix()]=sha(path);input_hashes[str(path.resolve())]=sha(path);input_hashes[str(dst.resolve())]=sha(dst)
   frozen=out/'source'
   names=subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z'],cwd=ROOT).decode().split('\0')
@@ -77,9 +95,14 @@ def main():
   assert all(c['equal'] for c in checks)
   assert all(sha(Path(n))==h for n,h in input_hashes.items())
   frames=results[1]['world_frames'];totals={k:sum(f['reuse'][k] for f in frames) for k in ('visual_checks','visual_reuses','cache_uploads','cache_hits','cache_evictions')}
+  identity_totals={}
+  if 'NR.world-frame-identity-cache' in ids:
+   identity_totals={k:sum(f['identities'][k] for f in frames) for k in ('hashes','hits','evictions','bypasses')}
+   assert identity_totals['hits']>identity_totals['hashes']
+   assert all(f['identities']['frames']<=4096 and f['identities']['bytes']<=16*1024*1024 for f in frames)
   assert totals['visual_reuses']>totals['visual_checks'] and totals['cache_hits']>totals['cache_uploads']
   timings={label:{key:statistics.median(f['profile'][key] for f in result['world_frames'][1:]) for key in ('resource_prepare_ms','gpu_submit_ms','gpu_readback_ms')} for label,result in zip(('before','after'),results)}
-  report.update(success=True,inputs=input_hashes,inputs_stable=True,baseline_sources=before['sources'],baseline_binary_sha256=sha(baseline/'build/mnm-canvas-producers-live'),native_binary_sha256=sha(build/'mnm-canvas-producers-live'),capture_report_sha256=sha(a.capture_report),owned_stream_sha256=sha(stream),asset_sources=asset_hashes,checkpoints=checks,completed=len(checks),warm_median_ms=timings,reuse_totals=totals,world_frames=frames,native_tests_passed=5,compiled_dependency_review={'compiled_dependencies':sorted(compiled),'undeclared_dependencies':[]},frozen_sources_stable=all(sha(frozen/n)==h for n,h in sources.items()))
+  report.update(success=True,inputs=input_hashes,inputs_stable=True,baseline_sources=before['sources'],baseline_binary_sha256=sha(baseline/'build/mnm-canvas-producers-live'),native_binary_sha256=sha(build/'mnm-canvas-producers-live'),capture_report_sha256=sha(a.capture_report),owned_stream_sha256=sha(stream),asset_sources=asset_hashes,checkpoints=checks,completed=len(checks),warm_median_ms=timings,reuse_totals=totals,identity_totals=identity_totals,world_frames=frames,native_tests_passed=5,compiled_dependency_review={'compiled_dependencies':sorted(compiled),'undeclared_dependencies':[]},frozen_sources_stable=all(sha(frozen/n)==h for n,h in sources.items()))
  except Exception as error:report['error']=str(error)
  finally:
   run('original-after',[ROOT/'tools/original-manifest.sh','verify'])
