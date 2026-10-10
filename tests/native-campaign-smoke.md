@@ -222,3 +222,21 @@ The test now waits for late introductory Hermes prompts before non-tutorial spel
 attempts. Initiate tutorial steps, Cure loadouts and modal pause equivalence remain
 separate cases. [Extended research](../research/runtime/native-campaign-extended-gameplay.md)
 preserves failed readiness/targeting attempts and the fresh Quit pass.
+
+## Native Cure loadout and healing
+
+```bash
+python3 tools/test-native-campaign.py --healing-case --stress-seconds 20 \
+  --software-threads 4 --timeout 420
+```
+
+This separate Quick Battle route selects map2 and assigns original-offered Cure41
+and Zombie14 through the native setup and Portmanteau controls. Ordinary physical
+orders seek an injured human wizard and a self-targeted Cure. Passing requires
+actual original positive HP recovery from the reviewed Cure caller, a matching
+identity-valid player cast and mana debit, independent before/after native and
+original images, and the same strict throughput/stall floors. The two-item HUD
+places Zombie at523575 and Cure at573575; the campaign's477575 Fireball coordinate
+is not a Cure target. Original simulation and balance remain active. This case
+ends through bounded private cleanup and excludes complete Quick Battle, Cure
+cleansing/clamping/refund formulas, other maps/seeds and native modal widgets.

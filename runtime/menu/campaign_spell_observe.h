@@ -7,6 +7,8 @@ static ActionFn spell_original_impact;
 typedef u32 (THIS *SpellDamageFn)(void*,u32,u32,u32);
 static TickFn spell_original_dispatch;
 static SpellDamageFn spell_original_damage;
+typedef u32 (THIS *SpellHealthFn)(void*,u32,u32,u32,u32);
+static SpellHealthFn spell_original_health;
 static volatile u32 spell_context_thread;
 static u32 spell_context_id=0xffffffff,spell_context_type=0xffffffff;
 static u32 spell_context_source=0xffffffff,spell_context_owner=0xffffffff;
@@ -88,6 +90,21 @@ static u32 THIS spell_damage(void* object,u32 amount,u32 owner,u32 attribution){
     if(target&&gameplay_creature(row[4])==target&&get(target+0xa8)==row[5]&&get(target+0x174)==row[6])row[8]=get(target+0xe4);
     spell_write(row);SetLastError(error);return result;
 }
+static u32 THIS spell_health(void* object,u32 amount,u32 owner,u32 attribution,u32 feedback){
+    u32 error=GetLastError();u8* target=object;
+    u32 row[16]={0,4,0,0,0xffffffff,0xffffffff,0xffffffff,0,0,0,amount,owner,0xffffffff,0xffffffff,0xffffffff,0xffffffff};
+    if(readable(target,0xe4b)&&gameplay_creature(get(target))==target){
+        row[4]=get(target);row[5]=get(target+0xa8);row[6]=get(target+0x174);
+        row[7]=get(target+0xe4);row[8]=row[7];row[9]=get(target+4);
+    }else target=0;
+    if(spell_context_thread==GetCurrentThreadId()){
+        row[12]=spell_context_id;row[14]=spell_context_source;row[15]=spell_context_owner;
+    }
+    row[13]=(u32)__builtin_return_address(0);
+    SetLastError(error);u32 result=spell_original_health(object,amount,owner,attribution,feedback);error=GetLastError();
+    if(target&&gameplay_creature(row[4])==target&&get(target+0xa8)==row[5]&&get(target+0x174)==row[6])row[8]=get(target+0xe4);
+    spell_write(row);SetLastError(error);return result;
+}
 static int install_spell_observe(void){
     char path[2048];u32 n=GetEnvironmentVariableA("MNM_MENU_SPELL_OBSERVE",path,sizeof(path));
     if(!n)return 1;
@@ -95,28 +112,31 @@ static int install_spell_observe(void){
     const u8 impact_bytes[5]={0x8b,0xd1,0x53,0x55,0x56};
     const u8 dispatch_bytes[7]={0x6a,0xff,0x68,0x78,0x02,0x5c,0};
     const u8 damage_bytes[5]={0x56,0x8b,0x74,0x24,0x08};
+    const u8 health_bytes[6]={0x51,0xa0,0x58,0x98,0x6e,0};
     if(n>=sizeof(path)||!readable((void*)0x57b710,7)||!equal((void*)0x57b710,cast_bytes,7)||
        !readable((void*)0x48ecf0,5)||!equal((void*)0x48ecf0,impact_bytes,5)||
        !readable((void*)0x48b0f0,7)||!equal((void*)0x48b0f0,dispatch_bytes,7)||
-       !readable((void*)0x514860,5)||!equal((void*)0x514860,damage_bytes,5))return 0;
+       !readable((void*)0x514860,5)||!equal((void*)0x514860,damage_bytes,5)||
+       !readable((void*)0x5076f0,6)||!equal((void*)0x5076f0,health_bytes,6))return 0;
     spell_original_cast=(TickFn)trampoline(0x57b710,7,0);
     spell_original_impact=(ActionFn)trampoline(0x48ecf0,5,0);
     spell_original_dispatch=(TickFn)trampoline(0x48b0f0,7,0);
     spell_original_damage=(SpellDamageFn)trampoline(0x514860,5,0);
-    if(!spell_original_cast||!spell_original_impact||!spell_original_dispatch||!spell_original_damage)return 0;
-    const u32 sites[4]={0x57b710,0x48ecf0,0x48b0f0,0x514860},lengths[4]={7,5,7,5};
-    const u32 hooks[4]={(u32)&spell_cast,(u32)&spell_impact,(u32)&spell_dispatch,(u32)&spell_damage};
-    u32 old[4],restore;
-    for(u32 i=0;i<4;++i)if(!VirtualProtect((void*)sites[i],lengths[i],0x40,old+i)){
+    spell_original_health=(SpellHealthFn)trampoline(0x5076f0,6,0);
+    if(!spell_original_cast||!spell_original_impact||!spell_original_dispatch||!spell_original_damage||!spell_original_health)return 0;
+    const u32 sites[5]={0x57b710,0x48ecf0,0x48b0f0,0x514860,0x5076f0},lengths[5]={7,5,7,5,6};
+    const u32 hooks[5]={(u32)&spell_cast,(u32)&spell_impact,(u32)&spell_dispatch,(u32)&spell_damage,(u32)&spell_health};
+    u32 old[5],restore;
+    for(u32 i=0;i<5;++i)if(!VirtualProtect((void*)sites[i],lengths[i],0x40,old+i)){
         for(u32 j=0;j<i;++j)VirtualProtect((void*)sites[j],lengths[j],old[j],&restore);
         return 0;
     }
     spell_file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
     if(spell_file==(HANDLE)-1)spell_file=0;
-    const u8 header[16]={'M','N','M','C','A','0','0','2',2,0,0,0,64,0,0,0};u32 wrote=0;
+    const u8 header[16]={'M','N','M','C','A','0','0','3',3,0,0,0,64,0,0,0};u32 wrote=0;
     int ok=spell_file&&WriteFile(spell_file,header,16,&wrote,0)&&wrote==16;
-    if(ok)for(u32 i=0;i<4;++i)jump(sites[i],hooks[i],lengths[i]);
+    if(ok)for(u32 i=0;i<5;++i)jump(sites[i],hooks[i],lengths[i]);
     else if(spell_file){CloseHandle(spell_file);spell_file=0;}
-    for(u32 i=0;i<4;++i){VirtualProtect((void*)sites[i],lengths[i],old[i],&restore);if(ok)FlushInstructionCache(GetCurrentProcess(),(void*)sites[i],lengths[i]);}
+    for(u32 i=0;i<5;++i){VirtualProtect((void*)sites[i],lengths[i],old[i],&restore);if(ok)FlushInstructionCache(GetCurrentProcess(),(void*)sites[i],lengths[i]);}
     return ok;
 }

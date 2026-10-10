@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools'))
-from campaign_spell import HEADER, HEADER_V2, read_spell_rows, validate_spell_observation, validate_spell_cases, player_fireball_damage
+from campaign_spell import HEADER, HEADER_V2, HEADER_V3, read_spell_rows, validate_spell_observation, validate_spell_cases, player_fireball_damage, player_cure_healing
 
 
 class SpellTests(unittest.TestCase):
@@ -70,6 +70,23 @@ class SpellTests(unittest.TestCase):
             p=Path(d)/'trace.bin';p.write_bytes(HEADER_V2+b''.join(struct.pack('<16I',*r) for r in rows))
             self.assertEqual(len(read_spell_rows(p,complete=True)),3)
             p.write_bytes(HEADER+struct.pack('<16I',*rows[-1]))
+            with self.assertRaises(ValueError):read_spell_rows(p,complete=True)
+
+    def test_cure_requires_actual_positive_original_health_and_matching_cast(self):
+        cast=[1,1,400,2000,41,0,0,0,12800,12032,0,1,2,4,6,1]
+        heal=[2,4,400,1999,0,0,0,130,180,1,50,0,41,0x48b5d8,0,0]
+        self.assertEqual(player_cure_healing([cast,heal],0,0),[heal])
+        for field,value in [(1,3),(2,401),(4,3),(5,14),(6,2),(7,0),(8,130),(9,0),(10,0),(12,71),(13,0x48ed24),(14,3),(15,2)]:
+            bad=list(heal);bad[field]=value
+            self.assertEqual(player_cure_healing([cast,bad],0,0),[])
+        for field,value in [(2,401),(3,12000),(4,71),(5,3),(6,14),(7,2),(9,12800),(10,3),(15,0)]:
+            bad=list(cast);bad[field]=value
+            self.assertEqual(player_cure_healing([bad,heal],0,0),[])
+        self.assertEqual(player_cure_healing([heal],0,0),[])
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'trace.bin';body=b''.join(struct.pack('<16I',*r) for r in [cast,heal])
+            p.write_bytes(HEADER_V3+body);self.assertEqual(len(read_spell_rows(p,complete=True)),2)
+            p.write_bytes(HEADER_V2+body)
             with self.assertRaises(ValueError):read_spell_rows(p,complete=True)
 
     def test_refusals_reject_short_missing_funded_or_spending_cases(self):

@@ -22740,6 +22740,7 @@
         "apps/qt-shell/frame_stream.hpp",
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
         "apps/qt-shell/live_command_renderer.cpp",
         "apps/qt-shell/live_command_renderer.hpp",
         "apps/qt-shell/render_control.cpp",
@@ -22869,6 +22870,7 @@
         "tests/native-render-config-test.py",
         "tools/build-menu-observer.py",
         "tools/build-render-bridge.py",
+        "tools/campaign-healing-input.py",
         "tools/campaign-quit-input.py",
         "tools/campaign_movement.py",
         "tools/campaign_spell.py",
@@ -22918,24 +22920,26 @@
         "replacement": "none"
       },
       "validation_dependencies": [
-        "renderer/CMakeLists.txt",
-        "renderer/dib.cpp",
-        "renderer/surface_copy.cpp",
-        "renderer/surface_backend.cpp",
-        "renderer/pixel_rows.cpp",
-        "renderer/commands.cpp",
-        "renderer/commands.hpp",
-        "renderer/command_consumer.cpp",
-        "renderer/command_state.hpp",
-        "renderer/capture.cpp",
-        "renderer/capture.hpp",
-        "apps/qt-shell/main.cpp",
         "apps/qt-shell/CMakeLists.txt",
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "apps/qt-shell/main.cpp",
+        "renderer/CMakeLists.txt",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_copy.cpp",
+        "tools/campaign-healing-input.py",
+        "tools/menu-game-runner.py",
         "tools/native_render_config.py",
-        "tools/prepare-menu-observer.py",
-        "tools/menu-game-runner.py"
+        "tools/prepare-menu-observer.py"
       ]
     },
     {
@@ -22981,15 +22985,17 @@
         "replacement": "none"
       },
       "validation_dependencies": [
-        "tools/encode-cfg.py",
-        "tools/decode-cfg.py",
-        "apps/qt-shell/main.cpp",
         "apps/qt-shell/campaign_smoke_test.hpp",
-        "tools/run-qt-shell.sh",
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "apps/qt-shell/main.cpp",
         "tools/build-menu-observer.py",
         "tools/build-render-bridge.py",
+        "tools/campaign-healing-input.py",
+        "tools/decode-cfg.py",
+        "tools/encode-cfg.py",
         "tools/prepare-shadow-experiment.py",
-        "tools/run-opengl-game.py"
+        "tools/run-opengl-game.py",
+        "tools/run-qt-shell.sh"
       ]
     },
     {
@@ -23033,6 +23039,7 @@
         "apps/qt-shell/frame_stream.hpp",
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
         "apps/qt-shell/live_command_renderer.cpp",
         "apps/qt-shell/live_command_renderer.hpp",
         "apps/qt-shell/live_command_session.cpp",
@@ -23172,6 +23179,7 @@
         "tools/build-render-bridge.py",
         "tools/campaign-combat-input.py",
         "tools/campaign-gameplay-input.py",
+        "tools/campaign-healing-input.py",
         "tools/campaign_gameplay.py",
         "tools/campaign_movement.py",
         "tools/campaign_spell.py",
@@ -23191,7 +23199,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Passive original cast and projectile impact observation",
-      "scope": "Opt-in bounded 64-byte MNMCA002 diagnostics; reader retains V1 cast/impact compatibility. Original cast descriptor/source identity and fixed-point mana before/after; secondary impact target HP; copied thread-scoped dispatch spell/source/owner context and original defended damage target HP/attribution/caller. Four guarded whole-instruction entry trampolines preserve receiver, arguments, opaque returns and LastError. No health/mana/simulation replacement or Boolean-EAX admission claim. Exception-unwind context, complete lineage, formulas and refunds remain pending.",
+      "scope": "Opt-in bounded 64-byte MNMCA003 diagnostics; reader retains V1/V2 cast/impact/damage compatibility. Original cast descriptor/source identity and fixed-point mana before/after; secondary impact target HP; copied thread-scoped dispatch spell/source/owner context and original defended damage target HP/attribution/caller. Five guarded whole-instruction entry trampolines preserve receiver, arguments, opaque returns and LastError. No health/mana/simulation replacement or Boolean-EAX admission claim. Exception-unwind context, complete lineage, formulas and refunds remain pending. V3 additionally observes original four-argument signed-health returns as kind4 with copied dispatch context and actual target HP. Positive Cure proof is separate from negative defended damage; feedback/attribution arguments are forwarded unchanged, never retained.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -23213,6 +23221,11 @@
           "build": "nocd-40209ca7",
           "address": 5326944,
           "scope": "Five-byte whole-instruction entry; thiscall three-DWORD amount/attribution owner/borrowed attribution pointer; forward unchanged and record actual target HP reduction, original caller and copied current effect context. No mitigation formula equivalence."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5273328,
+          "scope": "Six whole entry bytes; thiscall four-DWORD signed delta/owner/borrowed attribution/feedback flag forwarding. Record target before/after HP and copied effect context, preserve opaque return and LastError. No clamp/damage/cleanse formula equivalence."
         }
       ],
       "documents": [
@@ -23231,7 +23244,8 @@
       "evidence": [
         "HOST.native-campaign.spell-cases-passed-20261010",
         "HOST.native-campaign.fireball-portrait-passed-20261010",
-        "HOST.native-campaign.normal-quit-passed-20261010"
+        "HOST.native-campaign.normal-quit-passed-20261010",
+        "HOST.native-campaign.healing-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23250,6 +23264,7 @@
         "apps/qt-shell/frame_stream.hpp",
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
         "apps/qt-shell/live_command_renderer.cpp",
         "apps/qt-shell/live_command_renderer.hpp",
         "apps/qt-shell/live_command_session.cpp",
@@ -23389,6 +23404,7 @@
         "tools/build-render-bridge.py",
         "tools/campaign-combat-input.py",
         "tools/campaign-gameplay-input.py",
+        "tools/campaign-healing-input.py",
         "tools/campaign_gameplay.py",
         "tools/campaign_movement.py",
         "tools/campaign_spell.py",
@@ -23445,6 +23461,7 @@
         "apps/qt-shell/frame_stream.hpp",
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
         "apps/qt-shell/live_command_renderer.cpp",
         "apps/qt-shell/live_command_renderer.hpp",
         "apps/qt-shell/live_command_session.cpp",
@@ -23584,6 +23601,7 @@
         "tools/build-render-bridge.py",
         "tools/campaign-combat-input.py",
         "tools/campaign-gameplay-input.py",
+        "tools/campaign-healing-input.py",
         "tools/campaign_gameplay.py",
         "tools/campaign_movement.py",
         "tools/campaign_spell.py",
@@ -23646,6 +23664,7 @@
         "apps/qt-shell/frame_stream.hpp",
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
         "apps/qt-shell/live_command_renderer.cpp",
         "apps/qt-shell/live_command_renderer.hpp",
         "apps/qt-shell/live_command_session.cpp",
@@ -23785,6 +23804,7 @@
         "tools/build-render-bridge.py",
         "tools/campaign-combat-input.py",
         "tools/campaign-gameplay-input.py",
+        "tools/campaign-healing-input.py",
         "tools/campaign_gameplay.py",
         "tools/campaign_movement.py",
         "tools/campaign_spell.py",
@@ -24052,6 +24072,7 @@
         "apps/qt-shell/frame_stream.hpp",
         "apps/qt-shell/gl_viewport.cpp",
         "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
         "apps/qt-shell/live_command_renderer.cpp",
         "apps/qt-shell/live_command_renderer.hpp",
         "apps/qt-shell/live_command_session.cpp",
@@ -24191,7 +24212,217 @@
         "tools/build-render-bridge.py",
         "tools/campaign-combat-input.py",
         "tools/campaign-gameplay-input.py",
+        "tools/campaign-healing-input.py",
         "tools/campaign-quit-input.py",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_movement.py",
+        "tools/campaign_spell.py",
+        "tools/menu-game-runner.py",
+        "tools/native_render_config.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/profile-render-stream.py",
+        "tools/run-menu-observer.py",
+        "tools/run-qt-shell.sh",
+        "tools/test-native-campaign.py"
+      ]
+    },
+    {
+      "id": "HOST.native-healing-loadout",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native Quick Battle Cure loadout and original positive healing",
+      "scope": "Native Main/Quick Battle/setup/map2/Portmanteau loadout with original-offered Cure41 in Law and Zombie14 in Chaos, configured through ordinary native controls. Physical native viewport orders seek original human-wizard injury and Cure; require identity-valid original Cure caster mana debit and target-positive signed-health return from reviewed Cure caller0x48b5d8, same-thread/source/owner/target/time matching. Native framebuffer plus independent original publication and strict20FPSaverage/10window/2second stall checks. Original simulation/drawing retained; cleanse/refund/clamp formulas, other maps/seeds, modal timing, exception cleanup and full replacement excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5273328,
+          "scope": "Guarded six-byte signed-health entry, thiscall four-DWORD delta/owner/borrowed attribution/feedback flag, epilogue ret16 at0x507c1d. Original Cure caller0x48b5d8; bounded actual positive health observation, not formula equivalence."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-campaign-extended-gameplay.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "tools/campaign-healing-input.py",
+        "tools/campaign_spell.py",
+        "runtime/menu/campaign_spell_observe.h"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/campaign-spell-test.py",
+        "tests/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-campaign.healing-passed-20261010",
+        "HOST.native-campaign.healing-hud-negative-20261010",
+        "HOST.native-campaign.healing-interval-negative-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/frame_stream.cpp",
+        "apps/qt-shell/frame_stream.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "apps/qt-shell/live_battle_menu_controller.cpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/live_spell_menu_controller.cpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/spellbox_widget.cpp",
+        "apps/qt-shell/spellbox_widget.hpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/bridge.c",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/palette_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/selftest.c",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/shadow/win32_min.h",
+        "tests/campaign-movement-test.py",
+        "tests/campaign-spell-test.py",
+        "tests/native-render-config-test.py",
+        "tests/test-native-campaign.py",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/campaign-combat-input.py",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign-healing-input.py",
         "tools/campaign_gameplay.py",
         "tools/campaign_movement.py",
         "tools/campaign_spell.py",
@@ -46718,6 +46949,79 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-campaign.healing-passed-20261010",
+      "kind": "live_observation",
+      "scope": "Fresh declared native Quick Battle map2 original-offered Cure/Zombie loadout, original human injury and Cure277to377 with caster mana debit, independent captures, strict native/paint floors, unchanged sources/manifests and bounded private cleanup. No full battle completion, formulas/cleanse/clamp/refund/hardware/exception/replacement claim.",
+      "record": "research/runtime/native-healing-passed-20261010.json",
+      "sha256": "6941e34de438bd5b049ffdeeae3defbf2f49c05bbc948ec852ed625c945636b8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/healing_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.healing-hud-negative-20261010",
+      "kind": "live_observation",
+      "scope": "Failed initial native Quick Battle Cure case: genuine player Zombie14 mana debit and injured human wizard, but campaign Cure coordinate477575 selected no Cure. Actual Quick Battle Cure icon573575. Failed journey retained, no healing integration claim.",
+      "record": "research/runtime/native-healing-hud-negative-20261010.json",
+      "sha256": "60e566c189f235151182d2456e3c8e841a73b51b9c012a989b166da7d63ddf8e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.healing-interval-negative-20261010",
+      "kind": "live_observation",
+      "scope": "Failed evidence interval: original Cure41 raises human wizard380to400, but helper waits only1second and retries before delayed effect. Retained before_sequence points after first healing; strict validator correctly rejects. No integration pass.",
+      "record": "research/runtime/native-healing-interval-negative-20261010.json",
+      "sha256": "7dbb9ad2696d30222313c9ae3226d1cd26b767c7572d84bd270c296d6f4ecf96",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -53608,6 +53912,23 @@
         "HOST.native-campaign.normal-quit-entry-bound-20261010"
       ],
       "scope": "Public native campaign gameplay, cleared introductory Hermes dialogue, independent spell/combat outcomes when requested, native Mini Quit with original-rendered native command No/Yes confirmation, World resume, native defeat/Continue/Main and original normal Main Quit exit. Strict gameplay rate/image rules retained; original simulation/drawing, saves and modal timing equivalence excluded."
+    },
+    {
+      "id": "native-quick-battle-cure-20261010",
+      "level": "live_observation",
+      "scope": "Native Main/Quick Battle/setup/map2/ordinary offered Cure+Zombie loadout and physical native viewport injury/Cure, positive original signed health/caster debit and strict gameplay rendering floors. Original simulation/drawing retained; no complete Quick Battle, seed/map/formula/cleansing/modal timing/hardware/replacement equivalence.",
+      "behaviors": [
+        "HOST.native-healing-loadout",
+        "HOST.native-campaign-spell-observation"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/campaign-spell-test.py",
+        "tests/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-campaign.healing-passed-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -53936,8 +54257,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-normal-quit-20261010.json",
-    "sha256": "da2a32b711deaa3a1e2617809508c7f344e0595a7b73d75325f6c82774792454"
+    "path": "research/runtime/coverage/source-index-native-healing-20261010.json",
+    "sha256": "0fc5f5c8d105d3792b892af4f79c854b93846c94393b405c254bdd390092b901"
   },
   "claim_bindings_required": true
 }
