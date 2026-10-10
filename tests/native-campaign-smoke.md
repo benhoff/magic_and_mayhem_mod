@@ -197,7 +197,7 @@ attempts with no new living Zombie or mana loss, plus original defended enemy HP
 reduction during a player Fireball71 effect. It retains separate cast/impact/
 damage diagnostics and original owner/identity checks. UI refusal differs from
 internal cast admission. The starting green spell is Fireball, so successful Cure
-healing is a separate pending loadout case. Ordinary retreat orders aim to keep
+healing is validated through the separate Quick Battle loadout below. Ordinary retreat orders aim to keep
 the wizard alive through portrait stress. Wizard death, unexpected World exit,
 busy acquisition beyond its bounded retry and slow rendering fail the journey.
 See [extended gameplay findings](../research/runtime/native-campaign-extended-gameplay.md)
@@ -219,8 +219,8 @@ launcher and native shell must exit0. Confirmation images use the native
 framebuffer and independent original-owned publication. Bounded private cleanup
 is still available after failures, but cannot satisfy the normal Quit outcome.
 The test now waits for late introductory Hermes prompts before non-tutorial spell
-attempts. Initiate tutorial steps, Cure loadouts and modal pause equivalence remain
-separate cases. [Extended research](../research/runtime/native-campaign-extended-gameplay.md)
+attempts. Initiate tutorial steps and modal pause equivalence remain separate cases.
+Cure loadout and positive original healing are validated separately below. [Extended research](../research/runtime/native-campaign-extended-gameplay.md)
 preserves failed readiness/targeting attempts and the fresh Quit pass.
 
 ## Native Cure loadout and healing
@@ -240,3 +240,40 @@ places Zombie at523575 and Cure at573575; the campaign's477575 Fireball coordina
 is not a Cure target. Original simulation and balance remain active. This case
 ends through bounded private cleanup and excludes complete Quick Battle, Cure
 cleansing/clamping/refund formulas, other maps/seeds and native modal widgets.
+
+
+## Final combined workflow and clock policy
+
+```bash
+python3 tools/test-native-campaign.py --require-casting-combat --spell-cases \
+  --normal-quit --difficulty 3 --stress-seconds 60 --portrait-stress-seconds 60 \
+  --software-threads 4 --timeout 600
+python3 tools/test-native-campaign.py --healing-case --stress-seconds 30 --timeout 300
+python3 tools/test-native-campaign.py --menu-cycles 3 --difficulty 1 \
+  --stress-seconds 40 --timeout 420
+```
+
+The native command route uses guarded real WinMM `timeGetTime` uptime instead
+of the original coarse imported `GetTickCount`. It requires pinned instructions,
+import identity and a shared epoch within32ms, preserving original LastError,
+game-speed preference and wait target. The finer clock remains fixed for the
+process lifetime. `--disable-precise-clock` provides the original-clock control.
+The experimental `--enable-pacer-yield` is off by default and has no demonstrated
+portrait speed benefit; Sleep1 was rejected after native history GAP. Clock,
+physics and complete rendering equivalence remain separate from these native
+hosting policies. The standalone actual-clock/forwarding fixture is:
+
+```bash
+python3 tools/test-native-clock.py
+```
+
+The final combined pass retains actual Fireball100to80, Zombie melee and a
+same-enemy finishing hit, blocked casts,25portrait cycles61.296seconds,
+20.0081portrait FPS and face maximum channel error1, then60.431seconds resumed
+camera/rotation/hover/HUD/wheel stress and original normal Quit No/Yes/Main.
+That resumed phase is explicitly `camera_only`; it sends no new ground orders
+into combat. Portrait average has little margin above20FPS. Hardware, long runs,
+full World/animation and simulation replacement remain unvalidated. Before
+registering new execution evidence, generate unique prospective behavior/scenario
+claims with `tools/draft-coverage-claims.py` and pass `--claims` to the test.
+The failed original-clock/yield/overlap/death experiments remain retained.

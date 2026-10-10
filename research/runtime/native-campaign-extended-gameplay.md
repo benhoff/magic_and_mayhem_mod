@@ -29,8 +29,9 @@ The No-CD executable is SHA-256
 `40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168`.
 Original manifests are checked before and after experiments. No immutable file
 is changed. Existing `MNMGP001` creature/melee records retain their wire format.
-The separate opt-in `spell-events.bin` now starts with `MNMCA002`, version2 and
-record size64. The reader also accepts historical V1 (`MNMCA001`) cast/impact rows. Rows contain16 little-endian DWORDs; the first four are sequence,
+The separate opt-in `spell-events.bin` now starts with `MNMCA003`, version3 and
+record size64, adding the signed-health observation documented below. The reader
+also accepts historical V1/V2 (`MNMCA001`/`MNMCA002`) cast/impact/damage rows. Rows contain16 little-endian DWORDs; the first four are sequence,
 kind, original thread ID and Windows millisecond tick. Capacity is65,536 records.
 
 Kind1 forwards thiscall/no-stack-argument cast entry `0x57b710`, guarding whole
@@ -240,3 +241,15 @@ failed report and both manifest invocations. This is headless fixture evidence,
 not a claim of original engine execution under a full disk. Only completed
 owned experiment Wine prefixes were removed to recover temporary space;
 all input media, gameplay traces, images and reports remain retained.
+
+## Fresh Cure with final clock policy
+
+`native-healing-precise-passed-20261010.json` renews the prospective native
+Quick Battle loadout/healing and spell-observer scopes with the final sources.
+The original injured living wizard397to400 health return is linked to Cure41,
+configured signed delta100, reviewed caller0x48b5d8 and actual caster mana debit.
+This observes a selected clamp result; it does not establish a complete clamp,
+cleansing, refund or spell formula. Native41.5934/paint30.6934FPS and worst
+19.0909FPS pass the fixed floors, with zero recovery/fallback, independent
+before/after captures, manifests and unchanged sources. The older277to377
+healing proof stays historical with its original hashes.

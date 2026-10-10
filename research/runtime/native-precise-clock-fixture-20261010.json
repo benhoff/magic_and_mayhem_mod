@@ -1,0 +1,68 @@
+{
+  "success": true,
+  "sources": {
+    "tools/test-native-clock.py": "f60098a5b477f841ca3a2b886fbbae834d03a46e359aee754c26e35720c36262",
+    "tests/campaign-clock-reference.c": "c9665c4185ebd54bf76e309c941d94dcfb951825483084f1aa5f9845b376b1f4",
+    "runtime/render/precise_clock.h": "107c627b0aa1698c6b59b21a4a87d90a090796e999e4bd69b5ef4a70e360845c",
+    "runtime/render/pacer_yield.h": "0d0d05d4144a10561d0987b7d87145ef36c27f219c40f9746ee0eb3a1a31c423",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tools/build-render-bridge.py": "3873455feffcf93af8a253f20de21f75a183068da6128bf58fb4c27577b5510c",
+    "apps/qt-shell/campaign_smoke_test.cpp": "aafa5f3c76d8ee1744bd87857ba51d474dda24b949136121c7c5c16a9f7aa5c3",
+    "apps/qt-shell/campaign_smoke_test.hpp": "aa9fa1eb2317ec9d60971e199f1ad63ddbad454c3d054a898f5caaf7919e282b",
+    "apps/qt-shell/healing_smoke_test.cpp": "48f837caea1cac96b424b25e89ca453532125e2dafc7c8464727a5c599c2637c",
+    "apps/qt-shell/main.cpp": "7d2b5bffaa565e75f903d15882f9a0380196851e309b5d9374b88a1913888f70",
+    "runtime/render/bridge.c": "25a75ceeb2014b028f340c5cb32223e6a5fb27102636452d8cb7aaea42093080",
+    "runtime/render/command_application_stop.h": "c7027ada062b5157e31918bb67a9f497c4e9b0406ac64713e93a8f70e097004c",
+    "runtime/render/command_channel.h": "3c0a2e177987cc499f4375deb662896bd320bacdaadce7d9d6537511027f0ebb",
+    "runtime/render/command_control.h": "876ed2c234ab8068169bc0402f680c454f3fbed226f66c49444f343e32977fda",
+    "runtime/render/command_gate.h": "6f746ad652a52f5ef0ecd7f48438c854cda40e20c6ad0989927addea2234f272",
+    "runtime/render/command_lifecycle.h": "db8dcb65784bc123a463bb672efdf653f0d765cc1858dfb2dc42c88b892e8521",
+    "runtime/render/command_queue.h": "d96f125aa7a712f96d0745a993b48a19820a10470257a629ef0960e29c736877",
+    "runtime/render/command_recovery.h": "6fb515b02faffb12afec48d08cc231675068f091e73307d22997e7a68408684a",
+    "runtime/render/command_scheduler.h": "ef2fc8751a9a2f5a1e67d08a98eb687b333c474f6ee1d5123db725db7893e224",
+    "tests/campaign-pacer-reference.c": "381a77f051a2ee654d8abb30fa2c40171c04b5943aa27ebec2d226219d02fc71",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/campaign-gameplay-input.py": "686962987c366321b45622d4363a9a8873845764a81731b86fc1fbd5d4805ced",
+    "tools/campaign-healing-input.py": "43c467f2395addbd431cb5e7fe2a7b43b9a542caa738ec348156e0aded73accf",
+    "tools/decode-cfg.py": "acf3c809fa12e2227ab1b9aad20119491855b39f3becf558d90229861763e27e",
+    "tools/encode-cfg.py": "e918845eee3ec4ce355a4864bf6b4d9b6e15df79807e0d96a35875033134c77c",
+    "tools/menu-game-runner.py": "71aae007790a575b3988dd8dde4591423cfbb74ad7b9e2766469adccd97edc75",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/run-opengl-game.py": "7e7c002c27946560ee8403da632a764cc89cc6946bada47a0457759457e7fdf9",
+    "tools/run-qt-shell.sh": "614cedac6421b12f28e28b1211f4b59636785fbb35fd5bff29b0bcfdba111417",
+    "tools/test-native-campaign.py": "ab870ab596d72b2e25ec1d1510778ca46ab0dd2d0cb323b2a8d8b61b479da9e9",
+    "tools/test-native-pacer.py": "9ec0047e0eaff1b8de4ecee1df2076635fe870da379c0066a25787ba99137bb2"
+  },
+  "claims": [
+    {
+      "behavior": "HOST.native-precise-uptime-clock",
+      "contract_sha256": "666ae1c071d64f33cbe7c247d1e66ed0e7adf64128dae197143f0cda939ef699",
+      "scenarios": {
+        "native-precise-clock-fixture-20261010": "f91b99995847f6607614963bd36dafc04394e9b6684a9130f7a9c69a8d8a05f5"
+      }
+    }
+  ],
+  "exit_code": 0,
+  "binary_sha256": "65c1e1339fe86ba91f1d65ef3114fb55b6a340e73a8e08a5ec2c78d76ef6a2e4",
+  "checks": "Original entry/exit LastError preserved with absent/real fine clock; original forwarding retained when disabled; natural DWORD wrap and32ms epoch guard;1024 real WinMM/GetTickCount samples",
+  "clock_samples": {
+    "rows": 1024,
+    "deltas": {
+      "coarse": {
+        "0": 956,
+        "16": 59,
+        "17": 8
+      },
+      "fine": {
+        "1": 953,
+        "2": 70
+      }
+    },
+    "epoch_delta_range": [
+      0,
+      16
+    ],
+    "sha256": "82f47a3433dcc3f48f20b3317cc4f7ff6865277f49a82178f0085942407094cb"
+  },
+  "sources_unchanged": true
+}

@@ -3488,3 +3488,32 @@ pacer integration promotion is made. A source-bound mocked public cleanup
 fixture passes after malformed auxiliary JSON, proving exact owned stop/prefix
 and manifest/report continuation only. The committed range0c935ad..2ab21f4
 has33 exact reviewed transitions and zero missing receipt gaps.
+
+### Native precise real uptime clock fixture (2026-10-10)
+
+`HOST.native-precise-uptime-clock` is a separate intentional hosting policy:
+guarded original GetTickCount import reads use actual loaded WinMM timeGetTime,
+with32ms shared-epoch admission and original entry/exit LastError preserved.
+The1024-sample standalone Wine fixture proves1/2ms versus16/17ms host clock
+steps and0..16ms epoch difference; no original game timing equivalence follows.
+Game-speed preference, wait target and original wait instructions are retained.
+Original gameplay/physics, full timers and other scheduling modes remain open.
+The reviewed committed range2ab21f4..e5b4180 has51 exact transitions and zero
+missing receipt gaps. Live portrait/casting/resume/normal Quit is being checked
+separately with prospective source and scope bindings.
+
+The precise-clock combined workflow now passes from native New Game to original
+normal Quit: genuine Fireball100to80, player Zombie melee and same-enemy lethal,
+blocked casts,25stationary portrait cycles61.296sec (56.477interior20.0081FPS,
+face error1),60.431sec resumed camera/HUD/wheel, MiniCancel and QuitNo/Yes/Main.
+It retains8642native frames/6499paints, zero recovery/fallback, manifests and
+stable prospective sources. `HOST.native-precise-uptime-clock` gains scoped/live
+observation support; no timing/physics or replacement equivalence. This result
+has little margin above the20FPS portrait floor and does not imply hardware or
+long-session performance. Cure and generic repeated menu stress remain separate.
+
+Fresh final-source native Quick Battle Cure also passes: original397to400
+health, Cure41 delta100 and actual caster mana debit from the reviewed caller;
+native41.5934/paint30.6934FPS,worst19.0909FPS, zero recovery/fallback and stable
+prospective sources/manifests. The selected clamp is observed without a full
+formula/cleansing/refund claim. Original277to377 evidence stays historical.

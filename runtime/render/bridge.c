@@ -516,6 +516,7 @@ __declspec(dllexport) i32 WIN RenderCreateForTest(CreateDraw original,void* guid
 }
 #endif
 #ifndef MNM_RENDER_SELFTEST
+#define PACER_PRECISE_CLOCK() lock_diagnostic("native_precise_clock",0,1,0x5c5164,0,0,0,0)
 #define PACER_FIRST_YIELD(caller) lock_diagnostic("native_pacer_yield",0,1,caller,0,0,0,0)
 #include "pacer_yield.h"
 #endif

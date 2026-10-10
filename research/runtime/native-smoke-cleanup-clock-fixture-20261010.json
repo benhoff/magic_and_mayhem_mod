@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "scope": "Synthetic mocked process/engine fixture of actual public runner error cleanup; no game, original media, X display or Wine execution",
+  "sources": {
+    "tests/campaign-cleanup-test.py": "9001f291ba0bbd6cd88e1e003209e51cff1bb97f9d22d7de5b8c11b2f5bce654",
+    "tools/test-native-campaign.py": "ab870ab596d72b2e25ec1d1510778ca46ab0dd2d0cb323b2a8d8b61b479da9e9"
+  },
+  "claims": [
+    {
+      "behavior": "HOST.native-smoke-cleanup",
+      "contract_sha256": "d73006a4272a91552d28c5f911d6876965044f52b1ecf81fd952be1c5c82c4ba",
+      "scenarios": {
+        "native-smoke-cleanup-fixture-20261010": "5d2b58fc53e9e391822959325ce9a4d5edcb4abe53369ec04f18d42bcdd119b7"
+      }
+    }
+  ],
+  "owned_stop_order": [
+    103,
+    102,
+    101
+  ],
+  "original_manifest_calls": 2,
+  "private_prefix_kills": 1,
+  "failed_run_report_written": true,
+  "sources_unchanged": true
+}
