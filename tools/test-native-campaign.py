@@ -18,7 +18,7 @@ import subprocess
 import time
 from campaign_gameplay import read_rows, creatures, damage_rows, player_lethal_rows
 from campaign_movement import validate_movement_probes
-from campaign_spell import read_spell_rows, validate_spell_observation
+from campaign_spell import read_spell_rows, validate_spell_observation, validate_spell_cases
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = ['main', 'region', 'campaign-handoff', 'gameplay', 'campaign-menu', 'gameplay-resumed']
@@ -206,6 +206,7 @@ def main():
     parser.add_argument('--difficulty', type=int, choices=range(4), default=0, help='Choose the normal Region Entry difficulty via its native radio (0 Initiate; 1 Apprentice for camera/combat stress)')
     parser.add_argument('--require-casting-combat', action='store_true', help='Require successful native-viewport summon and player-versus-enemy melee damage observation')
     parser.add_argument('--portrait-stress-seconds', type=int, default=0, help='Repeat portrait recentering after verified combat (0 or 10..120)')
+    parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
@@ -215,6 +216,7 @@ def main():
     if args.require_casting_combat:
         if args.difficulty not in (1,2,3):parser.error('Casting/combat requires --difficulty 1, 2 or 3 (other campaign journeys remain separate)')
         if not args.stress_seconds:args.stress_seconds=60
+    if args.spell_cases and not args.require_casting_combat:parser.error('--spell-cases requires casting/combat')
     if not 30 <= args.timeout <= 600:
         parser.error('--timeout must be between 30 and 600')
     if args.portrait_stress_seconds and (not args.require_casting_combat or not 10 <= args.portrait_stress_seconds <= 120):parser.error('Portrait stress requires casting/combat and 10..120 seconds')
@@ -231,6 +233,7 @@ def main():
               'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
+              'spell_cases_required':args.spell_cases,
               'difficulty': args.difficulty, 'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
     if args.claims:
@@ -305,6 +308,7 @@ def main():
             env['MNM_CAMPAIGN_DIFFICULTY'] = str(args.difficulty)
             env['MNM_CAMPAIGN_CASTING_COMBAT'] = '1' if args.require_casting_combat else '0'
             env['MNM_CAMPAIGN_PORTRAIT_SECONDS'] = str(args.portrait_stress_seconds)
+            env['MNM_CAMPAIGN_SPELL_CASES'] = '1' if args.spell_cases else '0'
             env['MNM_CAMPAIGN_STRESS_SECONDS'] = str(args.stress_seconds)
             env['MNM_CAMPAIGN_MENU_CYCLES'] = str(args.menu_cycles)
             env['MNM_CAMPAIGN_TIMEOUT_MS'] = str((args.timeout-5)*1000)
@@ -355,6 +359,8 @@ def main():
             if args.require_casting_combat:
                 report['gameplay']=validate_casting_combat(roots[0],json.loads((out/'input-0.json').read_text()),out)
                 report.update(casting_verified=True,combat_verified=True,movement_verified=report['gameplay']['movement']['verified'])
+                if args.spell_cases:
+                    report['spell_cases']=validate_spell_cases(read_spell_rows(roots[0]/'spell-events.bin',complete=True),read_rows(roots[0]/'gameplay-events.bin',complete=True),json.loads((out/'input-0.json').read_text()))
             if args.portrait_stress_seconds:
                 report['portrait']=validate_portrait_stress(json.loads((out/'input-0.json').read_text()),flow,out,args.portrait_stress_seconds,args.min_fps)
             validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps)

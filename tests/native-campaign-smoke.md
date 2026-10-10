@@ -183,3 +183,22 @@ saves and absence of fallback are required. This is not full-frame or animated
 World equivalence. Simulation and balance remain original. Native staging
 disables legacy draw skipping while preserving the selected game speed and
 original pacing instructions; precise scheduling equivalence remains pending.
+
+## Blocked casts and ranged damage
+
+```bash
+python3 tools/test-native-campaign.py --require-casting-combat --spell-cases \
+  --difficulty 3 --stress-seconds 60 --portrait-stress-seconds 60 \
+  --software-threads 4 --timeout 600
+```
+
+This optional route requires distant invalid-target and insufficient-mana Zombie
+attempts with no new living Zombie or mana loss, plus original defended enemy HP
+reduction during a player Fireball71 effect. It retains separate cast/impact/
+damage diagnostics and original owner/identity checks. UI refusal differs from
+internal cast admission. The starting green spell is Fireball, so successful Cure
+healing is a separate pending loadout case. Ordinary retreat orders aim to keep
+the wizard alive through portrait stress. Wizard death, unexpected World exit,
+busy acquisition beyond its bounded retry and slow rendering fail the journey.
+See [extended gameplay findings](../research/runtime/native-campaign-extended-gameplay.md)
+for failures and the remaining scope.

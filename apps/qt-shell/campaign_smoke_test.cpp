@@ -175,6 +175,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                 });
                 QStringList arguments{QDir::current().filePath(castingCombat&&run->cycle==0?"tools/campaign-combat-input.py":"tools/campaign-gameplay-input.py"),"--rect",QString::number(origin.x()),QString::number(origin.y()),QString::number(qRound(rect.width())),QString::number(qRound(rect.height())),"--seconds",QString::number(stressSeconds),"--output",QFileInfo(path).dir().filePath(QString("input-%1.json").arg(run->cycle))};
                 if(castingCombat&&run->cycle==0)arguments<<"--experiment"<<session.evidenceDirectory()<<"--portrait-stress-seconds"<<QString::number(qEnvironmentVariableIntValue("MNM_CAMPAIGN_PORTRAIT_SECONDS"));
+                if(castingCombat&&run->cycle==0&&qEnvironmentVariableIntValue("MNM_CAMPAIGN_SPELL_CASES")==1)arguments<<"--spell-cases";
                 input->start("python3",arguments);
             }
             return;
