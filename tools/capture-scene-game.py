@@ -18,6 +18,10 @@ from world_refusal import log_refusal
 ROOT=Path(__file__).resolve().parents[1]
 
 
+class CaptureCancelled(Exception):
+    """An interactive window closed before the finite capture completed."""
+
+
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -41,6 +45,7 @@ def main():
     parser.add_argument('--canvas-producers',action='store_true',help='Capture owned menu/loading/font/raster inputs and completed canvases through each sampled World return')
     parser.add_argument('--producer-oracle-mib',type=int,choices=range(1,3073),default=1024,metavar='1..3072',help='Bounded original completion storage in MiB (default: 1024)')
     parser.add_argument('--skip-window-screenshot',action='store_true',help='Skip the diagnostic desktop screenshot; raw completion comparisons remain independent')
+    parser.add_argument('--manual-input',action='store_true',help='Bounded producer/batch session controlled through the original window; closing either window cancels')
     parser.add_argument('--canvas-startup',action='store_true',help='Trace selected creation/lock/bind/clear/copy paths from process startup through first World queue')
     parser.add_argument('--startup-queues',type=int,choices=range(1,257),help='Retain every raw queue in this startup prefix (automatic with canvas/refusal diagnostics)')
     parser.add_argument('--kind8-objects',action='store_true',help='Finite read-only kind8 object/vtable diagnostics')
@@ -60,6 +65,7 @@ def main():
     full_rasters=args.world_raster_queue or args.world_raster_prefix
     if full_rasters and (not args.world_producer_handoff or args.world_producer_bypass or (args.world_raster_queue and args.world_raster_prefix) or full_rasters>args.samples):parser.error('Complete raster queues require handoff, valid sample bounds and a separate bypass mode')
     if args.world_raster_batch and not full_rasters:parser.error('--world-raster-batch requires selected complete raster queues')
+    if args.manual_input and (not args.world_raster_batch or args.samples!=16 or args.world_raster_prefix!=16 or args.magic_items):parser.error('Manual input requires the bounded first16 World batch route with zero-items fixture')
     history=args.world_live in ('history-normal','history-verify')
     verify=args.world_live in ('verify','history-verify')
     if args.canvas_producers:
@@ -205,13 +211,14 @@ def main():
         with (root/'game.log').open('x') as log:
             process=subprocess.Popen([str(ROOT/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',env['WINEPREFIX'],
                 '--runner',str(ROOT/'tools/scene-game-runner.py')],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
-            send(3,1);send(22,4)
-            s=wait(14);rules=list(struct.unpack_from('<13I',s[1],8))
-            rules+= [struct.unpack_from('<I',s[1],60+i*48+12)[0] for i in range(4)]
-            rules[2]=args.magic_items # Zero retains the established no-spell fixture.
-            send(14,6,rules=rules);send(25,9,args.map)
-            send(14,7,rules=rules)
-            if args.magic_items:send(7,12,slots=wait(7)[2])
+            if not args.manual_input:
+                send(3,1);send(22,4)
+                s=wait(14);rules=list(struct.unpack_from('<13I',s[1],8))
+                rules+= [struct.unpack_from('<I',s[1],60+i*48+12)[0] for i in range(4)]
+                rules[2]=args.magic_items # Zero retains the established no-spell fixture.
+                send(14,6,rules=rules);send(25,9,args.map)
+                send(14,7,rules=rules)
+                if args.magic_items:send(7,12,slots=wait(7)[2])
             started_live=time.monotonic();deadline=started_live+(3600 if full_rasters else 300 if args.world_producer_handoff else 60)
             while time.monotonic()<deadline:
                 if args.world_live:
@@ -230,6 +237,7 @@ def main():
                 worlds=sorted((root/'capture').glob('world-*.bin')) if args.world_frames else []
                 world_complete=all(p.stat().st_size>=80 and p.stat().st_size==struct.unpack_from('<I',p.read_bytes(),16)[0] for p in worlds)
                 if args.producer_live and viewer.poll() is not None and viewer.returncode:raise RuntimeError('Native producer viewer failed; inspect '+str(root/'native-producers/live-report.json'))
+                if args.manual_input and viewer.poll()==0 and not (root/'capture/canvas-producers.done').exists():raise CaptureCancelled('Native window closed')
                 producer_complete=not args.producer_live or viewer.poll()==0
                 startup_complete=True
                 if args.startup_queues:
@@ -238,7 +246,15 @@ def main():
                 if len(complete)>=args.samples and startup_complete and producer_complete and (not args.canvas_producers or (root/'capture/canvas-producers.done').exists()) and (not args.world_frames or len(worlds)==args.samples and world_complete):paths=complete;break
                 heartbeat+=1;sequence+=2;struct.pack_into('<I',channel,16,sequence-1)
                 struct.pack_into('<I',channel,24,heartbeat);struct.pack_into('<I',channel,16,sequence)
-                if process.poll() is not None:raise RuntimeError('Original game exited during scene capture')
+                if process.poll() is not None:
+                    if args.manual_input and not list((root/'capture').glob('world-batch-fault-*.bin')):
+                        if viewer.poll() is None:time.sleep(.1)
+                        if viewer.poll() not in (None,0):raise RuntimeError('Native producer viewer refused the interactive stream')
+                        # Producer failure markers distinguish engine refusal from user closure.
+                        marker=root/'capture/canvas-producers.done'
+                        if marker.exists() and (len(marker.read_bytes())!=32 or struct.unpack_from('<I',marker.read_bytes(),20)[0]):raise RuntimeError('Original producer refused the interactive stream')
+                        raise CaptureCancelled('Original window closed')
+                    raise RuntimeError('Original game exited during scene capture')
                 time.sleep(.05)
             else:raise RuntimeError('Original simulation produced no complete bounded scene samples')
             if not args.skip_window_screenshot:
@@ -259,7 +275,7 @@ def main():
         report={'success':True,'live_observation':True,'live_replacement':False,'original_pixels_compared':False,
                 'scope':'Original Single Player battle setup and ordered queue consumer entry. Original simulation/drawing remain active; bounded immutable snapshots, no whole-scene visual equivalence.',
                 'sources':fingerprints,'sources_stable':True,'source_executable_sha256':metadata['source_sha256'],
-                'samples':args.samples,'map_selection':args.map,'magic_items':args.magic_items,'menu_trace':trace,'snapshots':{str(p.relative_to(root)):sha(p) for p in paths},'experiment':str(root)}
+                'samples':args.samples,'map_selection':None if args.manual_input else args.map,'manual_input':args.manual_input,'magic_items':None if args.manual_input else args.magic_items,'menu_trace':trace,'snapshots':{str(p.relative_to(root)):sha(p) for p in paths},'experiment':str(root)}
         if claims:report['claims']=claims['claims']
         report['window_screenshot_requested']=not args.skip_window_screenshot
         if args.canvas_producers:report['producer_oracle_mib']=args.producer_oracle_mib
@@ -376,6 +392,10 @@ def main():
             observed=kind8.collect(root/'capture')
             report['kind8_objects']={'files':{str(p.relative_to(root)):sha(p) for p in sorted((root/'capture').glob('kind8-*.bin'))},'classes':observed['classes'],'rows':sum(q['captured'] for q in observed['records']),'queues':len(observed['records'])}
         if args.word_sprites:report.update(word_sprites_mode=args.word_sprites,word_stats=list(stats),word_directory=metadata['word_directory'],word_scope='Partial direct-word backend entries; full scene pixels and other original drawing are outside the replacement claim')
+    except CaptureCancelled as cancelled:
+        report={'success':False,'cancelled':True,'reason':str(cancelled),'experiment':str(root),
+                'manual_input':True,'sources':fingerprints,'original_pixels_used_as_native_inputs':False,
+                'scope':'Interactive window closure before the bounded producer chain completed; no equivalence or replacement validation asserted'}
     finally:
         if viewer and viewer.poll() is None:
             viewer.terminate()

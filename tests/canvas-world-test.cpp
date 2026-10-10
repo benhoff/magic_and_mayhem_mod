@@ -2,6 +2,8 @@
 #include "resource-fixtures.hpp"
 #include <QGuiApplication>
 #include <QFile>
+#include <QCryptographicHash>
+#include <QOpenGLContext>
 #include <iostream>
 using namespace mnm;
 using namespace resource_test;
@@ -24,17 +26,45 @@ int main(int argc,char **argv)try{
     legacy::CanvasWorld world(renderer,store(root));
     legacy::CanvasProducer enter{};enter.fields[2]=11;enter.fields[3]=7;enter.fields[5]=5;enter.fields[6]=3;enter.fields[14]=1;
     world.begin(enter,producer.read(7));rejected([&]{world.begin(enter,producer.read(7));});
-    producer.apply(raster);world.append(raster);auto native=world.complete(producer.read(7));producer.commitNativeWorld(7,native);
+    producer.apply(raster);world.append(raster);const auto previous=QOpenGLContext::currentContext();
+    auto native=world.complete(producer.read(7));producer.commitNativeWorld(7,native);
+    require(QOpenGLContext::currentContext()==previous,"World completion changed caller GL context");
+    require(world.profile().cacheUploads==1&&world.profile().cacheSurfaces==2&&world.profile().visualChecks==1,"Cold World atlas/binding admission differs");
     require(native.pixels[0]==0x1234&&native.pixels[7]==(r[17]?0xfc00u:0xf800u),"Native startup contents or World pixel lost");
     auto leave=enter;leave.fields[2]=12;world.end(leave);
     // Intervening native HUD update must enter the next retained World frame.
     fill.fields[12]=1;fill.fields[13]=1;fill.fields[14]=0x4321;producer.apply(fill);
     enter.fields[14]=2;world.begin(enter,producer.read(7));producer.apply(raster);world.append(raster);
     native=world.complete(producer.read(7));require(native.pixels[0]==0x4321,"Intervening HUD producer was reset");
+    require(world.profile().cacheUploads==0&&world.profile().visualChecks==0&&world.profile().visualReuses==1,"Warm World repeated upload or visual verification");
     leave.fields[14]=2;world.end(leave);require(world.completedQueues()==2&&world.draws()==2,"Native queue accounting");
     enter.fields[14]=4;rejected([&]{world.begin(enter,producer.read(7));});enter.fields[14]=3;enter.fields[3]=8;rejected([&]{world.begin(enter,producer.read(7));});
     auto malformed=raster;malformed.fields[19]++;rejected([&]{legacy::producerWorldDraw(malformed);});
     malformed=raster;malformed.fields[15]=11;rejected([&]{legacy::producerWorldDraw(malformed);});
+  }
+  {
+    const auto input=store(root);assets::ResourceManager manager(input);
+    legacy::SnapshotResources bindings(input,manager);const assets::ResourceId id{assets::ResourceKind::ui,"revision/body"};
+    bindings.add(id,"body.spr",QCryptographicHash::hash(raw,QCryptographicHash::Sha256).toHex());
+    legacy::SnapshotFrame frame{bool(r[17]),{reinterpret_cast<const char*>(raster.payload.data()),int(r[19])}};
+    bindings.resolve(frame);bindings.resolve(frame);
+    require(bindings.stats().visualChecks==1&&bindings.stats().visualReuses==1,"Resident visual identity was rehashed");
+    manager.unload(id);bindings.resolve(frame);
+    require(bindings.stats().visualChecks==2,"Reload did not recheck visual identity");
+    manager.unload(id);write(root,"body.spr",sprite(false,0x07e0));
+    rejected([&]{bindings.resolve(frame);});rejected([&]{bindings.resolve(frame);});
+    require(bindings.stats().visualChecks==4,"Rejected revision entered visual cache");
+    manager.unload(id);write(root,"body.spr",Bytes(raw.begin(),raw.end()));bindings.resolve(frame);
+    require(bindings.stats().visualChecks==5,"Restored revision was not checked");
+    const auto indexed=sprite(true);auto other=indexed;other[27]=0;other[29]=255;
+    write(root,"indexed.spr",indexed);write(root,"other.spr",other);
+    for(const auto& item:std::vector<std::pair<std::string,Bytes>>{{"indexed.spr",indexed},{"other.spr",other}}){
+      const QByteArray data(reinterpret_cast<const char*>(item.second.data()),int(item.second.size()));
+      bindings.add({assets::ResourceKind::ui,item.first=="indexed.spr"?"indexed":"other"},item.first,QCryptographicHash::hash(data,QCryptographicHash::Sha256).toHex());
+    }
+    legacy::SnapshotFrame ambiguous{true,QByteArray(reinterpret_cast<const char*>(indexed.data()+804),53)};
+    bindings.resolve(ambiguous,true);bindings.resolve(ambiguous,true);
+    rejected([&]{bindings.resolve(ambiguous,false);}); // cached verification cannot waive palette ambiguity
   }
   {
     assets::ResourceManager resources(store(root));const render::Image background{5,3,std::vector<std::uint32_t>(15,0x1234)};
