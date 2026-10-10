@@ -3320,3 +3320,13 @@ DLL staging, native input ownership and versioned channels. Behavior
 simulation/drawing replacement; a live scenario will be linked with its first
 executed result. Live click-through, gameplay stress and
 performance remain pending at this implementation checkpoint.
+
+The first combined live observation is retained as
+`native-campaign-premature-escape-20261009.json`: the initial driver confused
+Region Entry transition presentations with gameplay and sent Escape before
+any completed World tick, opening an unsupported Realm-context Mini instead
+of campaign Mini. The test now waits for independent original World readiness.
+Native viewport initialization and software-Xvfb backend selection are explicit.
+Physical gameplay input, repeated native menu returns and separate native/Qt
+paint throughput checks are implemented; positive live validation remains
+pending. Historical source hashes and statuses are retained.

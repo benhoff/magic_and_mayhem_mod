@@ -22,14 +22,17 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'apps/qt-shell/campaign_smoke_test.cpp', 'apps/qt-shell/campaign_smoke_test.hpp',
            'apps/qt-shell/main.cpp', 'apps/qt-shell/CMakeLists.txt',
            'apps/qt-shell/live_menu_session.cpp', 'apps/qt-shell/menu_bridge.cpp',
-           'tools/test-live-campaign-mini.py']
+           'tools/test-live-campaign-mini.py', 'tools/campaign-gameplay-input.py',
+           'apps/qt-shell/live_menu_session.hpp', 'apps/qt-shell/live_command_session.cpp',
+           'apps/qt-shell/live_command_session.hpp', 'tools/prepare-menu-observer.py',
+           'tools/run-menu-observer.py', 'tools/menu-game-runner.py']
 
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def validate_flow(flow):
+def validate_flow(flow, cycles=1, stress_seconds=0, min_fps=20):
     if flow.get('success') is not True:
         raise ValueError(flow.get('error') or 'Campaign driver did not complete')
     if flow.get('native_command_fallback') is not False:
@@ -37,13 +40,36 @@ def validate_flow(flow):
     if type(flow.get('native_command_frames')) is not int or flow['native_command_frames'] < 6:
         raise ValueError('Insufficient native command presentations')
     steps = flow.get('steps', [])
-    if [s.get('step') for s in steps] != STEPS:
+    expected = STEPS + ['campaign-menu', 'gameplay-resumed']*(cycles-1)
+    if [s.get('step') for s in steps] != expected:
         raise ValueError('Incomplete campaign click-through')
     if any(s.get('screenshot_saved') is not True for s in steps if s['step'] != 'campaign-handoff'):
         raise ValueError('Missing campaign screenshots')
+    if stress_seconds:
+        rates = flow.get('gameplay_rates', [])
+        for cycle in range(cycles+1):
+            samples = [r for r in rates if r.get('cycle') == cycle]
+            seconds = sum(r.get('seconds', 0) for r in samples)
+            if seconds < stress_seconds-2:raise ValueError('Incomplete gameplay performance sample')
+            native_fps = sum(r['native_frames'] for r in samples)/seconds
+            paint_fps = sum(r['painted_frames'] for r in samples)/seconds
+            if min(native_fps, paint_fps) < min_fps or any(min(r['native_fps'], r['paint_fps']) < min_fps/2 or r['seconds'] > 2 for r in samples):
+                raise ValueError(f'Gameplay too slow in cycle {cycle}: native {native_fps:.1f}, paints {paint_fps:.1f} FPS; minimum {min_fps}')
 
 
-def validate_events(experiment):
+def world_ready(experiment):
+    path = experiment / 'events.bin'
+    if not path.exists():return False
+    data = path.read_bytes()
+    if len(data) < 16 or data[:16] != b'MNMMENU1' + struct.pack('<II', 1, 64):return False
+    # A writer may be appending its final record; only inspect complete rows.
+    end = 16 + ((len(data)-16)//64)*64
+    rows = list(struct.iter_unpack('<16I', data[16:end]))
+    ticks = [r for r in rows if r[1] == 12 and r[3] == 2 and r[6] == 1 and r[11] == 0x6cbb78]
+    return len(ticks) >= 3 and len({r[2] for r in ticks}) == 1
+
+
+def validate_events(experiment, cycles=1):
     """Independent engine-side checks; window appearance alone cannot pass."""
     data = (experiment / 'events.bin').read_bytes()
     if data[:16] != b'MNMMENU1' + struct.pack('<II', 1, 64) or (len(data)-16) % 64:
@@ -52,17 +78,17 @@ def validate_events(experiment):
     if len(rows) > 256 or [r[0] for r in rows] != list(range(1, len(rows)+1)):
         raise ValueError('Invalid original callback sequence')
     actions = [(r[3], r[9]) for r in rows if r[1] == 3]
-    if actions != [(3, 0), (18, 0), (17, 4)]:
+    if actions != [(3, 0), (18, 0)] + [(17, 4)]*cycles:
         raise ValueError('Unexpected New Game/Enter/Cancel callback trace: ' + str(actions))
     ticks = [r for r in rows if r[1] == 12 and r[3] == 2 and r[6] == 1 and r[11] == 0x6cbb78]
     cancels = [r for r in rows if r[1] == 3 and r[3] == 17 and r[9] == 4]
     resumes = [r for r in rows if r[1] == 20 and r[11] == 0x6cbb78 and r[0] > cancels[0][0]]
-    if len(ticks) < 3 or not resumes or len({r[2] for r in rows if r[1] in (3, 12, 20)}) != 1:
+    if len(ticks) < 3 or len(resumes)<cycles or len({r[2] for r in rows if r[1] in (3, 12, 20)}) != 1:
         raise ValueError('Missing same-thread original World updates/Cancel resume')
     channel = (experiment / 'channel.bin').read_bytes()
     if channel[:16] != b'MNMMCM12' + struct.pack('<II', 12, 106496) or len(channel) != 106496:
         raise ValueError('Campaign test did not use the ordinary V12 menu protocol')
-    if struct.unpack_from('<I', channel, 36*4)[0] != 3:
+    if struct.unpack_from('<I', channel, 36*4)[0] != 2+cycles:
         raise ValueError('Missing third menu acknowledgement')
     return {'actions': actions, 'world_ticks': len(ticks), 'world_resumes': len(resumes),
             'protocol_version': 12, 'events_sha256': sha(experiment / 'events.bin')}
@@ -92,12 +118,17 @@ def clean_environment(root):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--stress-seconds', type=int, default=0, help='Exercise physical gameplay input per phase (0 or 10..120)')
+    parser.add_argument('--menu-cycles', type=int, choices=range(1,6), default=1, help='Number of native Escape/Mini/Cancel returns')
+    parser.add_argument('--min-fps', type=float, default=20, help='Minimum average native publications and visible Qt paints during stress')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
     if not 30 <= args.timeout <= 600:
         parser.error('--timeout must be between 30 and 600')
+    if args.stress_seconds and not 10 <= args.stress_seconds <= 120:parser.error('--stress-seconds must be 0 or 10..120')
+    if not 1 <= args.min_fps <= 120:parser.error('--min-fps must be 1..120')
     parent = ROOT / 'working/tests/native-campaign'
     parent.mkdir(parents=True, exist_ok=True)
     import tempfile
@@ -107,6 +138,7 @@ def main():
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
               'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
+              'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
     env = clean_environment(out)
     shell = server = None
@@ -153,6 +185,7 @@ def main():
                         number = display.read().strip()
                         if number:
                             env['DISPLAY'] = ':' + number
+                            env['LIBGL_ALWAYS_SOFTWARE'] = '1'
                             break
                         if server.poll() is not None:
                             raise RuntimeError('Private X display exited')
@@ -166,6 +199,8 @@ def main():
             verified = True
             report['stage'] = 'campaign-flow'
             env['MNM_CAMPAIGN_SMOKE_TEST'] = '1'
+            env['MNM_CAMPAIGN_STRESS_SECONDS'] = str(args.stress_seconds)
+            env['MNM_CAMPAIGN_MENU_CYCLES'] = str(args.menu_cycles)
             command = [str(ROOT / 'tools/run-qt-shell.sh'), '--live-menus', '--native-commands',
                        '--live-menu-test', str(out / 'flow.json')]
             report['launch_command'] = command
@@ -175,6 +210,10 @@ def main():
                 report['launch_requested'] = True
                 deadline = time.monotonic() + args.timeout
                 while time.monotonic() < deadline:
+                    lines = (out / 'shell.log').read_text(errors='replace').splitlines()
+                    roots = [Path(line[20:]).resolve() for line in lines if line.startswith('Evidence directory: ')]
+                    if len(roots) == 1 and roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer') and world_ready(roots[0]):
+                        (out / 'flow.json.world-ready').touch(exist_ok=True)
                     if (out / 'flow.json').exists():
                         break
                     if shell.poll() is not None:
@@ -184,7 +223,7 @@ def main():
                     raise RuntimeError('Public campaign flow exceeded its deadline')
             flow = json.loads((out / 'flow.json').read_text())
             report['flow'] = flow
-            validate_flow(flow)
+            validate_flow(flow, args.menu_cycles, args.stress_seconds, args.min_fps)
             for step in flow['steps']:
                 if step['step'] != 'campaign-handoff':
                     shot = Path(step['screenshot']).resolve()
@@ -195,7 +234,8 @@ def main():
             if len(roots) != 1 or not roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer'):
                 raise RuntimeError('Missing unique menu experiment identity')
             report['experiment'] = str(roots[0])
-            report['engine'] = validate_events(roots[0])
+            report['engine'] = validate_events(roots[0], args.menu_cycles)
+            if any(sha(ROOT / p) != h for p,h in report['sources'].items()):raise RuntimeError('Source changed during execution')
             report.update(success=True, status='passed', stage='campaign-complete', flow_completed=True, game_entry_verified=True)
             exit_code = 0
     except (KeyboardInterrupt, OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:

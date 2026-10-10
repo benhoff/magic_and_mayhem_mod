@@ -124029,6 +124029,185 @@
         "evidence": [],
         "reason": "Clean native Qt build and combined-mode offscreen smoke passed; five campaign report checks and three World launcher checks passed. Live run reached Xvfb startup but sandbox denied its display server. Original/live combined gameplay, stress, throughput and pixel completeness pending."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "54613fff02d34e2f31000a771e8fbf192f31b08226b4aecae1454903d2c5fccc",
+          "before_sha256": "b3e7978897c015e8f23215c0692591ee2657c32272676b309baa93cb7fcca9d8",
+          "id": "CP.campaign-defeat-report"
+        },
+        {
+          "after_sha256": "f74c4276ebc4a36739040fb989cdbe6fd6498d77a9d72a4334ae875c93f76c50",
+          "before_sha256": "745f0321c1c94b4326dfd11a3420191310c573d798556547688686a1f171afe7",
+          "id": "CP.campaign-world-handoff-observation"
+        },
+        {
+          "after_sha256": "b5369eea5140da883eea8063be595ed865a6645a47401fe3707adcf67c0e9312",
+          "before_sha256": "90ed9b96834d74630fa6d15912dbc0416128b9b6df83f2ac4d6233056945307c",
+          "id": "CP.region-entry-bridge"
+        },
+        {
+          "after_sha256": "329b590cdeb9c714e223173fad59d9e911b843f3b919f53bc014b0c2149d4f44",
+          "before_sha256": "d288eb59d2b9639c791c72ad4ee5d63d127c4091d4e8a24a128d0088352c63e9",
+          "id": "CP.region-entry-enter"
+        },
+        {
+          "after_sha256": "2e2a314a8ad8cf586b1623eb614201f1596a47f076057ad4c51445f09bdf4a05",
+          "before_sha256": "14aba4c73710d56dbff8da2170ef4e40772879bc5ce5917d22f547649acee611",
+          "id": "HOST.command-input-fallback"
+        },
+        {
+          "after_sha256": "b943b986209b80b1f8f345c991c74037cc9071ac23c7b826a81adb0aef955e3d",
+          "before_sha256": "5b47e48faa81965e42573c7137031fb45d9e1f941e0b7a8331eaa5dbaea46a37",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "506fc22f2e1ab1d3905ec07efecd94c8d4b076cb912121b7483823d431a94c51",
+          "before_sha256": "be559dbf830dc368dc012c1fff8133e3f28750c02fa45e8011422630fc638533",
+          "id": "HOST.native-command-launch"
+        },
+        {
+          "after_sha256": "cc68b3876193927ee80ca346fac10c7a7334f288cb1bc3c5a768e9274944b72f",
+          "before_sha256": "52e22d8b4f534f89c3f76b8b3cd4d7f24d48da5617cfd14b8c90b13ba9deae43",
+          "id": "HOST.native-command-responsiveness"
+        },
+        {
+          "after_sha256": "ca6f84778cf7bab4c290930bf64f0a5fd34c3ccf188557900736a0527b91c8ab",
+          "before_sha256": "093cb2ba67f374a8f87a62e2bc3e9dbd931ac70e90cca4fb5777bf390b443902",
+          "id": "HOST.presentation"
+        },
+        {
+          "after_sha256": "144d81d3de6dfaa189215e3316145fe9ec0d79543772d74926b75414802ac7c7",
+          "before_sha256": "108de3285b6733b2844837d5a241ca1cf8b0bf22938b1c66d4bdafaf77492ada",
+          "id": "HOST.session"
+        },
+        {
+          "after_sha256": "df6db34445893481e8458b491f0801ed9d13e1b6d96079f1baf8d5a9ceecae3f",
+          "before_sha256": "99406dfa8be4bf694bd1e1377dda8b4a3b6f00160f41b3781e54318fbd69f985",
+          "id": "NP.campaign-defeat-policy"
+        },
+        {
+          "after_sha256": "32f088dcd5c91ebf3ffc4c70415de46420a97a95cb73ab6170c974bad8b32033",
+          "before_sha256": "8f63fc9aa1a324273485885d822932160b3219ee66a2e24fb25f86c5afc29a1c",
+          "id": "NP.region-entry-fresh-policy"
+        },
+        {
+          "after_sha256": "7f6c9ed039367f05d8871afb966b315c6704dc2ef1c4cf5b4f2e627363bd0e0c",
+          "before_sha256": "dd2986a9886e946eb1e84dd583a94b4d43e771ea05307187481400e5f1c1df59",
+          "id": "NR.application-shutdown"
+        },
+        {
+          "after_sha256": "40fe84fd183e396568b798e55d8ca28bfa91eae6f71939b915cfc222e0ff6143",
+          "before_sha256": "e5b96319bebb57d8ef75456bf861e29cc2ba054e30eca571b64d20a9129650d3",
+          "id": "NR.command-host-recovery"
+        },
+        {
+          "after_sha256": "c838ce2f80301cc263b0f569a180db004d1903129be1dbd394bd5c7f99dd5f4a",
+          "before_sha256": "1e11fe1f0bcd44cee94506ec67c7c96ffadd8c67148038fc52e93bc7922b4e91",
+          "id": "NR.continuous-producer"
+        },
+        {
+          "after_sha256": "b7ed67664b38d038839f3d4ccc26ed629b780c93915d6b404d310e9c19cb40e0",
+          "before_sha256": "6e061e2ba8e16859a1b57b46f00c6f17039486bda4c0121c0c20390b57bceb7a",
+          "id": "NR.gpu-presentation"
+        },
+        {
+          "after_sha256": "d679172ce1ae83fa35b926038cc6753deba7c1f1ca179e4bfb9783e376170b47",
+          "before_sha256": "77a5369b966485be2b408b007267ce2eb31ce9870719c2e19d860dab276034b3",
+          "id": "NR.observer-lock-avoidance"
+        },
+        {
+          "after_sha256": "315a89b5f08b57b85b32e8fb4b7e79cb2c7bc51aae635e6e9f3a29d9f6942556",
+          "before_sha256": "f3359b735b17bd07ababb0d7270afea5ec70eb19f9d5d796a29acd57f55bd4c0",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7f65c7aa763068128012f58bc1cb5ed5fa92f722b6a3d5388d82575ec19eb2c1",
+          "before_sha256": "6ce9b947c275e58af9b3940c04218e5b2466166f3aaf68ddd2a9313734b6e020",
+          "path": "apps/qt-shell/campaign_smoke_test.cpp"
+        },
+        {
+          "after_sha256": "33ddc9022a5e41d79a5e2c368bf1a39947c6e49b4f1ff9e5834ce2c0147a770c",
+          "before_sha256": "c217e30fe9cf1eed2d2b6de94d68029498afa1feab13cb164ec6471122452aed",
+          "path": "apps/qt-shell/campaign_smoke_test.hpp"
+        },
+        {
+          "after_sha256": "959ea39bf6d05ce01024aa5bf31aca24f1c2ab68a293e9f7bd9d1fa43855cacc",
+          "before_sha256": "a0554409d5d17436fc89383592cf833c77d65c2dd613dc9aa465cd6eac8aa348",
+          "path": "apps/qt-shell/main.cpp"
+        },
+        {
+          "after_sha256": "d6ce7636dec99a500ed7fcd654c063b860e6a63066c994470cdad30dfe83b100",
+          "before_sha256": "40fd83a57f3d0a2449c75c6ad4fe3ae2dcef8c88e7dedff5da4cd9dbb8a7fac5",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "5c320d6a834e7aa4bfc7b514438b4a303c2b5d61b35f8435ad1fab22c85308b4",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/committed-history-native-campaign-integration-20261009.json"
+        },
+        {
+          "after_sha256": "5dcf5b0a34641fe2a775d7470c7ffddaf0869dbe40dab77ade2e0bbc769a4581",
+          "before_sha256": "d9682cdf17cc993375ae22d614c91ff40bc2f6b4714f7049f0f46e00b1a6cb1a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "7499bac0f7236822c23e079d7beaa92b5dc9c79b64f30255ea58a0ae40e76262",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-campaign-readiness-20261009.json"
+        },
+        {
+          "after_sha256": "eac5c0bf4a241f7abc69c32490191698ac837fe714c63039b631644de8ee84ad",
+          "before_sha256": null,
+          "path": "research/runtime/native-campaign-premature-escape-20261009.json"
+        },
+        {
+          "after_sha256": "e1c91675105d830ed73801e43924c6f57fafc8c81c4c4ec2a43df8eac326be35",
+          "before_sha256": "72ca0b8d4bbb2bc3e5d1b8f07e9e68a6971a473564c4ee75d338d883d1d618d2",
+          "path": "research/runtime/native-campaign-rendering.md"
+        },
+        {
+          "after_sha256": "8db3e7914819a201b17537aa59ce7a4e2a920004a16f6ccaf7b224f985bdfe0b",
+          "before_sha256": "ae6a98309b1407ca3a08d58c684ea236831a342802991f4e671e6b97649cb2b6",
+          "path": "tests/native-campaign-smoke.md"
+        },
+        {
+          "after_sha256": "7682b54f856f21ee4665d3796500f64f71758e713e08dc7ac2855ee6c243945e",
+          "before_sha256": "18c30560d5d3096c75e14e23de5b14afd8802ec4d7692751c7176cd7c6c67ab4",
+          "path": "tests/test-native-campaign.py"
+        },
+        {
+          "after_sha256": "00f215adba24f28fa2a45a6468fa4b8c8863d552fe304f9bfe5bd800617495f0",
+          "before_sha256": null,
+          "path": "tools/campaign-gameplay-input.py"
+        },
+        {
+          "after_sha256": "1b84f4ece14e187fdfbc03f374f50294c04af9c7d0e85917b2446a5bf59306bf",
+          "before_sha256": "dbd3eaa31b71d381a4ad72f13c04e041896f0814f7d6e6665fc01445d1005313",
+          "path": "tools/test-native-campaign.py"
+        }
+      ],
+      "id": "native-campaign-world-readiness-stress-20261009",
+      "pending_gaps": [
+        "stale_evidence:33791cf74964d12c8296629dd0da3fc8ec9183b2089085015c1406ef67645d23",
+        "stale_evidence:638d8fb8d062276246d613f1c04350704a9b614d23bd484950ca099a590e17d2",
+        "stale_evidence:688809bb6d808175491ad764989f67631b6e6b60e0724cf8350e78a8bb8b44b8",
+        "stale_evidence:9c7b3088c803440f93c4cafa5d66cc8c29580e92ebb2725ce82c2946d461004d",
+        "stale_evidence:a09fdb4f2242816ee93aa4210c4e148f88141dedca2d776ad940a5d2f552038f",
+        "stale_evidence:e19e79774d1110720b634993ad23ec877544b2e6fc5df07233a7faeabaecc85b",
+        "stale_evidence:eeac38bcc2d999a300e25cf8f754aa4028245f703c7f234134e99d511e9b4aab",
+        "stale_evidence:f80bd5755cd7138e7f6bbe3cec04465a8dcb076a2b0dbbd4741150365e8fab5d",
+        "validation_gaps:7508f3f47796b1eec4f4f159c8e62d0ac1a317123fa97626320ab4652c639dc4"
+      ],
+      "reason": "Preserve the negative early-Escape trace; require independent same-thread initialized World ticks before test gameplay input. Initialize the native GL widget before publication. Add bounded physical camera/HUD/order stress and repeated Mini returns, with separate visible Qt paint/native presentation rates and explicit fail-closed throughput floors. Software Xvfb selection is test backend policy, not engine behavior.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Seven report/readiness/performance guard tests and native campaign Mini/Region controller checks pass. Negative prior live trace and inspected Region Entry screenshot are registered unchanged. Positive revised live click-through is running; gameplay stress, visual completeness and sustained performance remain pending. Original rendering/simulation retained and no current engine equivalence/replacement promoted."
+      }
     }
   ]
 }
