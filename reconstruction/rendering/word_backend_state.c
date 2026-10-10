@@ -12,9 +12,15 @@ static uint32_t word(const uint8_t *p) {
 }
 static int valid_frame(const uint8_t *f,size_t bytes,uint32_t width,uint32_t height) {
     size_t table=40+(size_t)height*8;
-    if(table>bytes||word(f+32)||word(f+36))return 0;
+    if(table>bytes)return 0;
+    size_t plane_end=bytes;
+    for(unsigned i=0;i<2;++i){
+        uint32_t auxiliary=word(f+32+i*4);
+        if(auxiliary&&(auxiliary<table||auxiliary>bytes))return 0;
+        if(auxiliary&&auxiliary<plane_end)plane_end=auxiliary;
+    }
     size_t control=word(f+40),pixel=word(f+44),pixel_base=pixel;
-    if(control<table||pixel<control||pixel>bytes)return 0;
+    if(control<table||pixel<control||pixel>plane_end)return 0;
     for(uint32_t y=0;y<height;++y){
         if(word(f+40+y*8)!=control||word(f+44+y*8)!=pixel)return 0;
         uint32_t x=0,opaque=0;
@@ -22,7 +28,7 @@ static int valid_frame(const uint8_t *f,size_t bytes,uint32_t width,uint32_t hei
             if(control>=pixel_base)return 0;
             uint32_t n=f[control++];
             if(n>width-x||(opaque&&!n))return 0;
-            if(opaque){if(pixel>bytes||n>(bytes-pixel)/2)return 0;pixel+=n*2;}
+            if(opaque){if(pixel>plane_end||n>(plane_end-pixel)/2)return 0;pixel+=n*2;}
             x+=n;opaque=!opaque;
         }
     }

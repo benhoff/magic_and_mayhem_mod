@@ -18,6 +18,13 @@ static HANDLE log_file=(HANDLE)-1;
 /* Separate versioned diagnostics for the clipping shadow, never takeover. */
 static u32 clip_stats[20]={0x574d4e4d,0x31304c43,1,80}; /* MNMWCL01 */
 static HANDLE clip_log=(HANDLE)-1;
+/* MNMWAD01: bounded admission reasons/backend counts, separate from v1 logs. */
+static u32 admission_stats[32]={0x574d4e4d,0x31304441,1,128};
+static HANDLE admission_log=(HANDLE)-1;
+static u32 sampled_hash[8],sampled_backend[8];
+static u32 frame_hash(const u8* frame,u32 length){
+    u32 hash=2166136261u;while(length--){hash^=*frame++;hash*=16777619u;}return hash;
+}
 static u32 get(const void* p){const u8* b=p;return b[0]|(u32)b[1]<<8|(u32)b[2]<<16|(u32)b[3]<<24;}
 static void put(void* p,u32 n){u8* b=p;b[0]=n;b[1]=n>>8;b[2]=n>>16;b[3]=n>>24;}
 static void copy(void* a,const void* b,u32 n){u8* d=a;const u8* s=b;while(n--)*d++=*s++;}
@@ -36,7 +43,8 @@ static void report(void){
     stats[4]=mode;stats[5]=installed;stats[15]=stopped;
     if(log_file!=(HANDLE)-1&&!write_all(log_file,stats,64))++stats[14];
     if(mode==3){clip_stats[4]=installed;clip_stats[15]=stopped;
-        if(clip_log!=(HANDLE)-1&&!write_all(clip_log,clip_stats,80)){++stats[14];++clip_stats[13];}}
+        if(clip_log!=(HANDLE)-1&&!write_all(clip_log,clip_stats,80)){++stats[14];++clip_stats[13];}
+        if(admission_log!=(HANDLE)-1&&!write_all(admission_log,admission_stats,128)){++stats[14];++clip_stats[13];}}
 }
 /* Scratch indices span the original 0x5f1e50..0x5f1e8c workspace. Mirror only
  * bytes written by the admitted unclipped backend; retain all other words. */
@@ -58,39 +66,45 @@ int word_route(u32* registers){
     u32 error=GetLastError(),handled=0;
     u32 backend=get((void*)(registers[3]+4));
     ++stats[6];word_original=backend==0x197086?scalar_trampoline:forward_trampoline;
-    if(mode==3)++clip_stats[5];
+    if(mode==3){++clip_stats[5];++admission_stats[4];}
     if(!__sync_bool_compare_and_swap(&busy,0,1)){++stats[9];++stats[12];
-        if(mode==3){++clip_stats[10];++clip_stats[11];}SetLastError(error);return 0;}
-    u8* allocation=0;u8* before=0;
-    if(stopped)goto fallback;
+        if(mode==3){++clip_stats[10];++clip_stats[11];++admission_stats[13];}SetLastError(error);return 0;}
+    u8* allocation=0;u8* before=0;u32 refusal=5;
+    if(stopped){refusal=14;goto fallback;}
     /* pushal's saved ESP follows the adapter's backend tag and pushfl. */
     u32* arguments=(u32*)(registers[3]+12);u32 frame=arguments[0];i32 ax=arguments[1],ay=arguments[2];
     u32 minimum=mode==3?40:48;
     if(!extent(frame,minimum,0))goto fallback;
     u32 length=get((void*)frame);if(length<minimum||length>4*1024*1024||!extent(frame,length,0))goto fallback;
-    if(mode==3&&(!get((void*)(frame+4))||!get((void*)(frame+8)))){++clip_stats[16];goto fallback;}
+    if(mode==3&&(!get((void*)(frame+4))||!get((void*)(frame+8)))){++clip_stats[16];refusal=6;goto fallback;}
     MnmWordCanvas canvas={(u8*)get((void*)(image_base+0x258174)),0,
         get((void*)(image_base+0x2a49b8)),get((void*)(image_base+0x256618)),get((void*)(image_base+0x2a2dc8))};
+    refusal=7;
     if(!canvas.width||!canvas.height||canvas.width>2048||canvas.height>2048||
         canvas.stride_words<canvas.width||canvas.stride_words>4096)goto fallback;
     canvas.bytes=canvas.stride_words*canvas.height*2;
+    refusal=8;
     if(!extent((u32)canvas.pixels,canvas.bytes,1))goto fallback;
     if(mode==3){
         MnmWordClip clip={(i32)get((void*)(image_base+0x2e0008)),
             (i32)get((void*)(image_base+0x2cbb6c)),(i32)canvas.width,(i32)canvas.height};
         MnmWordClippedDraw clipped;
+        refusal=9;
         if(mnm_word_sprite_clip_admit((void*)frame,length,&canvas,&clip,ax,ay,&clipped))goto fallback;
         u32 old_clip[16];copy(old_clip,(void*)(image_base+0x1f1e50),64);
         MnmWordBackendInput input={(void*)frame,length,frame,(u32)canvas.pixels,canvas.width,
             canvas.height,canvas.stride_words,backend,clip.left,clip.top,ax,ay};
         MnmWordBackendState state;
+        refusal=10;
         if(mnm_word_backend_state(&input,old_clip,&state))goto fallback;
+        refusal=11;
         allocation=HeapAlloc(GetProcessHeap(),0,canvas.bytes*2+68);if(!allocation)goto fallback;
         before=allocation;copy(before,canvas.pixels,canvas.bytes);
         u8* guarded=allocation+canvas.bytes;
         for(u32 i=0;i<canvas.bytes+68;++i)guarded[i]=0xa5;
         u32 offset=32+((u32)canvas.pixels&3);
         MnmWordCanvas trial=canvas;trial.pixels=guarded+offset;copy(trial.pixels,before,canvas.bytes);
+        refusal=12;
         if(mnm_word_sprite_clip_draw((void*)frame,length,&trial,&clip,ax,ay,&clipped))goto fallback;
         int edge=clipped.left<clip.left||clipped.top<clip.top||
             (int64_t)clipped.left+clipped.width>=clip.right||(int64_t)clipped.top+clipped.height>=clip.bottom;
@@ -98,6 +112,11 @@ int word_route(u32* registers){
         typedef u32 (*OriginalClip)(void*,i32,i32);
         u32 returned=((OriginalClip)word_original)((void*)frame,ax,ay);
         ++stats[7];++stats[9];++stats[10];++clip_stats[6];++clip_stats[10];++clip_stats[18];
+        int scalar=backend==0x197086;
+        ++admission_stats[scalar?16:17];
+        if(edge)++admission_stats[scalar?18:19];
+        if(get((void*)(frame+32))||get((void*)(frame+36)))++admission_stats[15];
+        if(edge&&(get((void*)(frame+32))||get((void*)(frame+36))))++admission_stats[20];
         if(edge)++clip_stats[7];else ++clip_stats[8];if(hidden)++clip_stats[9];
         int guard_ok=1;
         for(u32 i=0;i<canvas.bytes+68;++i)
@@ -106,10 +125,21 @@ int word_route(u32* registers){
             !equal(state.words,(void*)(image_base+0x1f1e50),64)){
             ++stats[11];++clip_stats[12];stopped=1;
         }
-        if(edge&&clip_stats[14]<8){
+        /* Retain two distinct clipped and six distinct interior inputs, rather than repeated
+         * small menu/banner requests filling all eight diagnostic slots. */
+        u32 hash=0,duplicate=0;
+        int candidate=(get((void*)(frame+32))||get((void*)(frame+36)))&&clip_stats[14]<8&&
+            (edge?clip_stats[17]<2:clip_stats[14]-clip_stats[17]<6);
+        if(candidate){
+            hash=frame_hash((void*)frame,length);
+            for(u32 i=0;i<clip_stats[14];++i)
+                if(sampled_hash[i]==hash&&sampled_backend[i]==backend)duplicate=1;
+            if(duplicate)++admission_stats[21];
+        }
+        if(candidate&&!duplicate){
             u32 previous=stats[13];
             sample(clip_stats[14]+1,backend,frame,length,&canvas,ax,ay,before,old_clip,(void*)(image_base+0x1f1e50));
-            if(stats[13]>previous){++clip_stats[14];++clip_stats[17];}
+            if(stats[13]>previous){sampled_hash[clip_stats[14]]=hash;sampled_backend[clip_stats[14]]=backend;++clip_stats[14];if(edge)++clip_stats[17];}
             else{++clip_stats[13];stopped=1;}
         }
         arguments[1]=(u32)state.argument_x;arguments[2]=(u32)state.argument_y;handled=1;
@@ -145,7 +175,7 @@ int word_route(u32* registers){
     if(sequence<=8||!(sequence%64)||stopped)report();
     goto done;
 fallback:
-    if(mode==3){++clip_stats[10];++clip_stats[11];}
+    if(mode==3){++clip_stats[10];++clip_stats[11];++admission_stats[refusal];}
     ++stats[9];++stats[12];if(stats[6]<=8||!(stats[6]%64))report();
 done:
     if(allocation)HeapFree(GetProcessHeap(),0,allocation);
@@ -173,6 +203,7 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
     if(reason==0){if(log_file!=(HANDLE)-1){report();CloseHandle(log_file);}
         if(clip_log!=(HANDLE)-1)CloseHandle(clip_log);
+        if(admission_log!=(HANDLE)-1)CloseHandle(admission_log);
         return 1;}
     if(reason!=1)return 1;
     char selection[16];u32 n=GetEnvironmentVariableA("MNM_WORD_SPRITES",selection,sizeof(selection));
@@ -183,6 +214,8 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     char filename[260];path(filename,"stats.bin");log_file=CreateFileA(filename,0x40000000,0,0,1,0x80,0);
     if(log_file==(HANDLE)-1)return 1;
     if(mode==3){path(filename,"clip-stats.bin");clip_log=CreateFileA(filename,0x40000000,0,0,1,0x80,0);
-        if(clip_log==(HANDLE)-1){++stats[14];report();return 1;}}
+        if(clip_log==(HANDLE)-1){++stats[14];report();return 1;}
+        path(filename,"admission-stats.bin");admission_log=CreateFileA(filename,0x40000000,0,0,1,0x80,0);
+        if(admission_log==(HANDLE)-1){++stats[14];report();return 1;}}
     installed=install((u32)GetModuleHandleA(0));report();return 1;
 }

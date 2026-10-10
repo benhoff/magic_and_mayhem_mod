@@ -32,8 +32,18 @@ int main(void) {
     const MnmWordClip clips[]={{0,0,8,8},{2,2,6,6}};
     const int sx[]={1,2,0,1,2,3}, sy[]={0,0,1,1,1,1};
     const uint16_t colours[]={0,0xf800,0x7e0,0x1f,0xffff,0};
-    for (unsigned a=0;a<2;++a) for (unsigned k=0;k<2;++k)
+    for (unsigned plane=0;plane<5;++plane) for (unsigned a=0;a<2;++a) for (unsigned k=0;k<2;++k)
         for (unsigned ix=0;ix<9;++ix) for (unsigned iy=0;iy<8;++iy) {
+            fixture(f);
+            unsigned frame_bytes=73;
+            if (plane) {
+                memset(f+73,0xde,27); frame_bytes=100; put(f,frame_bytes);
+                if (plane==1) put(f+32,76);
+                if (plane==2) put(f+36,76);
+                if (plane==3) { put(f+32,76); put(f+36,88); }
+                if (plane==4) { put(f+32,88); put(f+36,76); }
+            }
+            uint8_t frame_before[200]; memcpy(frame_before,f,200);
             memset(storage,0xa5,sizeof(storage));
             uint8_t *pixels=storage+32+a;
             for (unsigned i=0;i<72;++i) { pixels[i*2]=0x34; pixels[i*2+1]=0x12; }
@@ -47,12 +57,12 @@ int main(void) {
                 }
             }
             MnmWordCanvas c={pixels,144,8,8,9}; MnmWordClippedDraw d,admitted;
-            if (mnm_word_sprite_clip_admit(f,73,&c,&clips[k],xs[ix]-1,ys[iy]+1,&admitted)) return 1;
+            if (mnm_word_sprite_clip_admit(f,frame_bytes,&c,&clips[k],xs[ix]-1,ys[iy]+1,&admitted)) return 1;
             /* Admission must not draw, including visible opaque zero. */
             for (unsigned i=0;i<144;++i) if (pixels[i]!=(i%2?0x12:0x34)) return 2;
-            if (mnm_word_sprite_clip_draw(f,73,&c,&clips[k],xs[ix]-1,ys[iy]+1,&d) ||
+            if (mnm_word_sprite_clip_draw(f,frame_bytes,&c,&clips[k],xs[ix]-1,ys[iy]+1,&d) ||
                 memcmp(storage,expected,sizeof(storage)) || memcmp(&d,&admitted,sizeof(d)) ||
-                d.visible_pixels!=visible || d.opaque_pixels!=6 || d.left!=xs[ix] || d.top!=ys[iy]) return 3;
+                d.visible_pixels!=visible || d.opaque_pixels!=6 || d.left!=xs[ix] || d.top!=ys[iy] || memcmp(f,frame_before,200)) return 3;
             ++placements;
         }
     MnmWordCanvas c={storage+32,144,8,8,9}; MnmWordClip clip={0,0,8,8};
@@ -61,6 +71,12 @@ int main(void) {
     for (unsigned i=0;i<10;++i) {
         fixture(f); put(f+offsets[i],values[i]);
         if (rejection(f,73,&c,&clip,0,1) || rejection(f,73,&c,&clip,-100,1)) return 4;
+    }
+    /* Plane bounds are checked even for hidden sprites and late rows. */
+    const uint32_t plane_bad[]={1,39,55,56,60,61,72,74,UINT32_MAX};
+    for (unsigned field=32;field<=36;field+=4) for (unsigned i=0;i<9;++i) {
+        fixture(f); put(f+field,plane_bad[i]);
+        if (rejection(f,73,&c,&clip,0,1) || rejection(f,73,&c,&clip,-100,1)) return 13;
     }
     fixture(f); f[60]=5; /* Late bad row must not draw the valid first row. */
     if (rejection(f,73,&c,&clip,0,1) || rejection(f,73,&c,&clip,-100,1)) return 5;

@@ -20,6 +20,7 @@ void mnm_word_probe(std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t);
 void _word_enter_scalar(void);
 void _word_enter_forward(void);
 extern std::uint32_t _word_original,mnm_host_original_calls;
+std::uint32_t mnm_host_admission_stat(std::uint32_t);
 void mnm_host_configure(std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t);
 std::uint32_t mnm_host_last_error(void),mnm_host_compared(void),mnm_host_forwarded(void),mnm_host_clipped(void),mnm_host_mismatches(void);
 }
@@ -163,8 +164,9 @@ int main(int argc,char** argv)try{
         canvasGuard=true;for(std::size_t i=0;i<guarded.size();++i)
             if((i<std::size_t(pixels-guarded.data())||i>=std::size_t(pixels-guarded.data())+bytes)&&guarded[i]!=0xa5)canvasGuard=false;
         if(canvasGuard&&!std::memcmp(pixels,b.data()+208+size+bytes,bytes)&&!std::memcmp(frame.data(),b.data()+208,size))nativeMask|=512;
+            const unsigned refusalFields[]={11,5,8,13,14};
             row[65+failure]=nativeMask|(mnm_host_original_calls==1?1024u:0u)|
-                (mnm_host_last_error()==0x7a21&&mnm_host_forwarded()==1&&mnm_host_compared()==0?2048u:0u);
+                (mnm_host_last_error()==0x7a21&&mnm_host_forwarded()==1&&mnm_host_compared()==0&&mnm_host_admission_stat(empty&&(failure==1||failure==3)?6:refusalFields[failure-1])==1?2048u:0u);
         }
         output.write(reinterpret_cast<const char*>(row),sizeof(row));++count;
     }

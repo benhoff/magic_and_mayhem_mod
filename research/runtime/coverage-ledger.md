@@ -3976,3 +3976,27 @@ transitions, including append-only journals, with no unresolved receipt gaps.
 `NR.world-rolling-delivery` has scoped/headless frozen-source evidence for a separate two-slot ordered64-bit source/completion channel, persistent producer/GPU/resource history, bounded packet-local source definitions and a latest exact-byte decoded packet cache. Default and GL3.3 fallback each pass512 queues, all1224 saved-prefix checkpoint hashes and512 native CPU/GPU completions/ordered replies;480 continuation queues are explicitly synthetic, with eight changed-coordinate requests.300 scalar copy cases and16 optimized refusals pass per run; five Debug fixtures include1000 cross-process cycles,27 ownership/metadata refusals and actual producer exit/cancel/fresh-session handling. Native clipped row copies preflight before mutation, snapshot only same-ID sources and bulk-copy opaque rows. Default/fallback continuation medians54.79/57.14ms, maxima102.49/88.50ms and0.19MiB post64 retained growth pass unchanged60/120/300ms/32MiB limits. Cold full bootstrap/World completion298.54/269.73ms passes500ms excluding separately reported saved digest assertion overhead; full verification times remain recorded. An impossible0.001ms64-queue run preserves correct pixels/provenance but fails performance with exit1. See [rolling evidence and boundaries](native-world-rolling.md). This does not connect the original live producer, establish original equivalence, physical presentation/input latency, camera/combat/full-game cadence or hardware readiness. Committed c9f99e8..ae448ba review has15 exact transitions/zero receipt gaps. Older touched source evidence remains historical; original inventory/unresolved flows are retained.
 
 Final-source cold-admission revalidation: `NR.world-prepared-admission.rolling-source-20261010` retains prospective claims and exact frozen/compiler/source/input proofs for four World32 sessions,128 CPU/GPU completions,4896 saved checkpoint hashes,7000 seeded draws and three Debug fixtures. Cold116.67ms median/134.05ms maximum, warm37.80ms median/47.44ms p95/53.94ms maximum and4MiB retained growth pass the unchanged budgets. Earlier cold evidence is preserved with its original fingerprints; no original comparison or live stage is promoted.
+
+### Auxiliary-bearing word clipping admission fix — 2026-10-10
+
+The previous clipped core unnecessarily refused every nonzero auxiliary offset.
+`RS.word-clip-aux-shadow` now bounds main colour reads at the earliest validated
+auxiliary offset and leaves payloads/caller passes untouched. Actual route/entry
+comparison passes 22,048 original cases, including 17,600 auxiliary-bearing
+variants, and 110,240 classified fallback checks. Native policy
+`NR.word-clipping-plane-bounds` passes sanitized 1,440 placements, 79 atomic
+refusals and three empty no-ops.
+
+Fresh Wine startup compares all 13,312 observed requests, including 705 clipped
+and 12,607 interior, with no fallback/mismatch/error/stop/bypass. All use forward
+backend0x596cb8. Eight distinct auxiliary-bearing input frames (two clipped,
+six interior) independently match 1,420,800 canvas WORDs and all workspace words.
+The sampler no longer fills its slots with a repeated menu banner; initial wrong
+dimensional/overstrict clipped-diversity requirements remain retained failures.
+[Scope, results and limitations](word-clip-aux-shadow.md) distinguish current
+main-plane shadow support from indexed/payload effects, live scalar coverage,
+semantic caller attribution, sustained sessions and clipped takeover. Historical
+shared-source evidence keeps its original hashes and requires its own rerun.
+Committed ranges652c01d..c9f99e8 andc9f99e8..d412789 have28+44 exact reviewed file
+transitions, including append-only journals, with no unresolved gaps. Concurrent
+font-rendering work is preserved separately from this reviewed projection.
