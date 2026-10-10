@@ -3819,3 +3819,14 @@ Reviewed first-parent integration8c3da6a..8610a25:347exact file transitions,
 zero unresolved receipt gaps after23retrospective binary artifact receipts.
 These receipts assert provenance, not new execution or a past gate pass.
 Concurrent rendering-accounting edits are excluded from this commit projection.
+
+### Direct-word clipped pixels — 2026-10-10
+
+`RS.word-clipping` records 960 native GPU clipping cases and 1,920 independent
+original-backend executions matching 447,330 complete canvas pixels per path.
+Exact/partial edges, two corners, hidden sprites, signed origins, masks, opaque
+zero, row padding and two alignments pass on software Mesa. The prospective
+source-bound result validates a bounded pixel contract; no runtime hooks or live
+admission were changed. [Research and limitations](word-sprite-clipping.md)
+retain the initial harness failure separately. Clipped scratch/argument state,
+ABI, other clip globals, installed assets and live replacement remain pending.

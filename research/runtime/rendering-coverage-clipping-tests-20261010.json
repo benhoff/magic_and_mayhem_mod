@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "scope": "Sixteen reporting guards including protected directories symlinked outside the checkout. Existing rendering category totals remain scoped; no new original bypass.",
+  "claims": [
+    {
+      "behavior": "TOOL.rendering-coverage",
+      "contract_sha256": "1918a68b1b592b3ff91ea4015d71710e85be6cd568e0e7a0cd8dc7624a7998ed",
+      "scenarios": {}
+    }
+  ],
+  "sources": {
+    "research/runtime/native-surface-operation-matrix.json": "fc8325951f294e3d53f06f6cdb0b4a79eb6624d4206ff3fea267705ce8977840",
+    "research/runtime/rendering-coverage-scope.json": "7c7ddeccbfbc679f063de86616ff8f987324f6ae9e30cb8acbc327c371d36e90",
+    "tests/test-rendering-coverage.py": "9e0fe7beef794d20e38ff5243c98aeafd1b65bd57a87ee115e980e125caeefe3",
+    "tools/coverage_audit.py": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/rendering_coverage.py": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+    "tools/report-rendering-coverage.py": "7c6f221dedc1aa4c8f6eaa6f660acdfaec90e683a1c64fcd2b9472fe577603fb"
+  },
+  "sources_stable": true,
+  "success": true,
+  "returncode": 0,
+  "tests": 16,
+  "stdout": "",
+  "stderr": "................\n----------------------------------------------------------------------\nRan 16 tests in 0.031s\n\nOK\n"
+}

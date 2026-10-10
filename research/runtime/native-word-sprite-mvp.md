@@ -124,3 +124,11 @@ run `run-7_mgbb3s` completes all eight comparisons. No historical hashes were ch
 Assembly register/flag/floating exception-state stress, full Qt session/shutdown,
 loss/recovery, long play and physical-driver tests remain pending beyond the finite
 successful startup/caller-operation evidence.
+
+### Clipped pixel comparison — 2026-10-10
+
+[RS.word-clipping](word-sprite-clipping.md) now validates the existing native GPU
+clipping operation against both selected original backends for 960 synthetic
+placements and 447,330 complete canvas pixels. This is pixel-only proof at zero
+clip globals. Live admission remains fully in-bounds: clipped caller state and
+ABI, auxiliary passes and other backends remain open.

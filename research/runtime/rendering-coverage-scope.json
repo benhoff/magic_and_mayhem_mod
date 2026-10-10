@@ -294,17 +294,23 @@
       "id": "RI.sprites",
       "implementation": [
         "RS.word-route",
-        "NR.scene-service"
+        "NR.scene-service",
+        "RS.word-clipping"
       ],
       "validation": [
         {
           "behavior": "RS.word-route",
           "evidence": "RS.word-route.takeover-20261007",
           "domain": "original_executable"
+        },
+        {
+          "behavior": "RS.word-clipping",
+          "evidence": "RS.word-clipping.complete-deps-20261010",
+          "domain": "original_executable"
         }
       ],
-      "scope": "Two selected in-bounds direct-word backend entries; indexed World is accounted separately.",
-      "remaining": "Clipped/alternate backends, full dispatch and caller side effects remain open.",
+      "scope": "Two selected in-bounds direct-word backend entries plus pixel-only synthetic GPU/original clipping comparison at zero clip globals; indexed World is accounted separately.",
+      "remaining": "Clipped caller state/ABI/live admission, other clip globals and alternate backends, full dispatch and caller side effects remain open.",
       "replacement": [
         {
           "behavior": "RS.word-route",

@@ -91,7 +91,10 @@ entries. Fully in-bounds admitted SPR draws can bypass those original routines;
 clipped and unsupported draws retain their original path. Original caller-side
 auxiliary passes, indexed World sprites and the other frame producers remain
 active. Its bounded shadow/takeover comparisons are scoped primitive evidence,
-not a complete scene or supported-session milestone.
+not a complete scene or supported-session milestone. A separate
+[clipped pixel comparison](../research/runtime/word-sprite-clipping.md) now matches
+960 native GPU placements against both original backends. Clipped caller state
+and ABI remain open, so live admission is unchanged.
 
 The [complete startup World raster queue](../research/runtime/native-world-raster-queue.md)
 and [guarded batch return](../research/runtime/native-world-raster-batch.md)

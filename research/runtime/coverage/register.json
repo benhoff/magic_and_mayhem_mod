@@ -26449,7 +26449,9 @@
       "evidence": [
         "TOOL.rendering-coverage.guards-20261010",
         "TOOL.rendering-coverage.guards-final-20261010",
-        "TOOL.rendering-coverage.world32-guards-20261010"
+        "TOOL.rendering-coverage.world32-guards-20261010",
+        "TOOL.rendering-coverage.clipping-guards-20261010",
+        "TOOL.rendering-coverage.clipping-final-guards-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -26496,6 +26498,184 @@
         "understanding": "scoped",
         "implementation": "partial",
         "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.word-clipping",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Selected direct-word backend clipped pixel output",
+      "scope": "Pixel-only comparison of positive contiguous direct-word frames at zero-origin canvas viewport and zero clip globals: interior/exact edges, partial edges and two corners, fully hidden sprites, signed origins, opaque zero, transparent/mixed/opaque masks, padded destination and two WORD alignments. Native GPU drawClipped uses encoded input and initial canvas only. Workspace/ABI/return flags, nonzero clip globals, auxiliary/empty/malformed/indexed frames, installed-asset corpus and clipped live admission remain excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Bounded clipping/no-op pixel branches only; caller state and full backend semantics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Bounded clipping/no-op pixel branches only; caller state and full backend semantics excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/word-sprite-clipping.md"
+      ],
+      "implementation": [
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp"
+      ],
+      "tests": [
+        "tests/word-clipping-gpu.cpp",
+        "tests/word-sprite-clipping/CMakeLists.txt",
+        "tools/test-word-clipping.py",
+        "tests/word-sprite-reference.cpp",
+        "tools/test-word-sprites.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/animation_inspect_main.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/bmp_inspect_main.cpp",
+        "assets/compare_main.cpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/cursor.cpp",
+        "assets/cursor.hpp",
+        "assets/cursor_inspect_main.cpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/dat_inspect_main.cpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/effect_lighting.cpp",
+        "assets/effect_lighting.hpp",
+        "assets/evt.cpp",
+        "assets/evt.hpp",
+        "assets/evt_inspect_main.cpp",
+        "assets/fp.cpp",
+        "assets/fp.hpp",
+        "assets/fp_inspect_main.cpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/jpeg_inspect_main.cpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/map_inspect_main.cpp",
+        "assets/mps.cpp",
+        "assets/mps.hpp",
+        "assets/mps_inspect_main.cpp",
+        "assets/nod.cpp",
+        "assets/nod.hpp",
+        "assets/nod_inspect_main.cpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/pcx_inspect_main.cpp",
+        "assets/persistence.hpp",
+        "assets/persistence_inspect_main.cpp",
+        "assets/persistence_internal.hpp",
+        "assets/profile.cpp",
+        "assets/profile.hpp",
+        "assets/region_recipe.cpp",
+        "assets/region_recipe.hpp",
+        "assets/region_recipe_inspect_main.cpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sft_inspect_main.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_inspect_main.cpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/tag_inspect_main.cpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "assets/text.cpp",
+        "assets/text.hpp",
+        "assets/text_inspect_main.cpp",
+        "assets/wbt.cpp",
+        "assets/wbt.hpp",
+        "assets/wizard.cpp",
+        "assets/wizard.hpp",
+        "assets/wizard_inspect_main.cpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/commands_main.cpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/CMakeLists.txt",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/minimap/overlays/CMakeLists.txt",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/replay_main.cpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/preview_main.cpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/preview_main.cpp",
+        "renderer/sprites/word-raster/CMakeLists.txt",
+        "renderer/sprites/word_raster.c",
+        "renderer/sprites/word_raster.h",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "protocols/include/mnm/render_stream_v3.h"
+      ],
+      "evidence": [
+        "RS.word-clipping.original-gpu-20261010",
+        "RS.word-clipping.complete-deps-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       }
@@ -50510,6 +50690,166 @@
         }
       ],
       "sha256": "dfa2b56b2b33340fb7db463e3cfd6c254237db5640c8ae57fb7efcb2c25418a8"
+    },
+    {
+      "id": "RS.word-clipping.original-gpu-20261010",
+      "kind": "isolated_original",
+      "scope": "960 zero-origin viewport direct-word clipping cases compared with existing native GPU drawClipped and each of two unmodified original backends; 447330 complete canvas pixels per path. Pixel-only, default clip globals, no live admission or caller-state proof.",
+      "record": "research/runtime/word-sprite-clipping-comparison-20261010.json",
+      "sha256": "91a10f69cccb222eec98fb66751cbed51832352e9cd0551a541b50f8a9fb53a5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/changed_sources",
+          "equals": []
+        },
+        {
+          "pointer": "/gpu_matches",
+          "equals": 960
+        },
+        {
+          "pointer": "/original_matches",
+          "equals": 1920
+        },
+        {
+          "pointer": "/original_failures",
+          "equals": []
+        },
+        {
+          "pointer": "/compared_pixels",
+          "equals": 447330
+        },
+        {
+          "pointer": "/driver/surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TOOL.rendering-coverage.clipping-guards-20261010",
+      "kind": "native_integration",
+      "scope": "Sixteen reporting guards including protected directories symlinked outside the checkout. Existing rendering category totals remain scoped; no new original bypass.",
+      "record": "research/runtime/rendering-coverage-clipping-tests-20261010.json",
+      "sha256": "5ca487871dcda9ca5d37eb87e5815d0118b0ae4ac4069f5e9868b90b6ac9906d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests",
+          "equals": 16
+        }
+      ]
+    },
+    {
+      "id": "RS.word-clipping.complete-deps-20261010",
+      "kind": "isolated_original",
+      "scope": "960 zero-origin viewport direct-word clipping cases compared with existing native GPU drawClipped and each of two unmodified original backends; 447330 complete canvas pixels per path. Pixel-only, default clip globals, no live admission or caller-state proof. Complete project compiler dependency provenance, including render_stream_v3.h; fresh prospective declaration and rerun.",
+      "record": "research/runtime/word-sprite-clipping-complete-deps-20261010.json",
+      "sha256": "6e4c69daac3382b4ca36badca43994577e2c05d8640e5d867a4b9623893b333b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/changed_sources",
+          "equals": []
+        },
+        {
+          "pointer": "/gpu_matches",
+          "equals": 960
+        },
+        {
+          "pointer": "/original_matches",
+          "equals": 1920
+        },
+        {
+          "pointer": "/original_failures",
+          "equals": []
+        },
+        {
+          "pointer": "/compared_pixels",
+          "equals": 447330
+        },
+        {
+          "pointer": "/driver/surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TOOL.rendering-coverage.clipping-final-guards-20261010",
+      "kind": "native_integration",
+      "scope": "Sixteen report guards after final clipped pixel evidence binding; protects symlinked original/Git roots and retains scoped/live distinctions. No engine execution.",
+      "record": "research/runtime/rendering-coverage-clipping-final-tests-20261010.json",
+      "sha256": "d4e600e964c28ce2c4ee4b871b357baea780bca7f5951702bc631e4ffae61b3f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests",
+          "equals": 16
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -58019,8 +58359,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-drawing-families-tested-final-20261010.json",
-    "sha256": "3f28bdb942908caca394550191d689a7160cbea123012584dae53a3d32bdc01a"
+    "path": "research/runtime/coverage/source-index-word-clipping-complete-20261010.json",
+    "sha256": "1cd25d3f5263923af3cacaf8de506203cfb038cbdc2fbd3db2304562abbc5733"
   },
   "claim_bindings_required": true
 }
