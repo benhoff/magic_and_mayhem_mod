@@ -11,6 +11,8 @@
 class LiveMenuSession final : public QObject {
 public:
     explicit LiveMenuSession(QString repository,QObject* parent=nullptr);
+    bool nativeCommandsEnabled=false;
+    std::function<bool(const QString&)> prepareNativePresentation;
     bool campaignPreferencesEnabled=true;
     bool campaignDefeatEnabled=true;
     bool resultMenusEnabled=true; // Compatibility harnesses may explicitly retain V3.

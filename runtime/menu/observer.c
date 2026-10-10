@@ -89,6 +89,7 @@ static u32 THIS result_tick(void* object){
 }
 #include "preferences_display.h"
 #include "campaign_observe.h"
+#include "campaign_gameplay_observe.h"
 #include "campaign_world_observe.h"
 #include "campaign_mini_observe.h"
 #include "region_entry_observe.h"
@@ -125,6 +126,7 @@ static int install(void){
         menu_init();
         if(!install_campaign_observe())menu_retired=1;
         if((campaign_log||menu_version>=8)&&!install_campaign_world_observe())menu_retired=1;
+        if(!install_gameplay_observe())menu_retired=1;
         if((campaign_log||menu_version>=9)&&!install_campaign_mini_observe())menu_retired=1;
         if(campaign_log&&menu_version<7&&!install_campaign_navigation())menu_retired=1;
         if(menu_version>=7){

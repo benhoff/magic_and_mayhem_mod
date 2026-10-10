@@ -1,0 +1,20 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 2K of event 'cpu-clock:u'
+# Event count (approx.): 29484848190
+#
+# Overhead  Shared Object               
+# ........  ............................
+#
+    83.01%  [JIT] tid 903135            
+    11.58%  libgallium-26.2.1-arch1.1.so
+     4.08%  libc.so.6                   
+     0.89%  mnm-qt-shell                
+
+
+#
+# (Tip: To set sampling period of individual events use perf record -e cpu/cpu-cycles,period=100001/,cpu/branches,period=10001/ ...)
+#
