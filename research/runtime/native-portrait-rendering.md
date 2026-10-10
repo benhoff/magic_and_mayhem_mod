@@ -105,3 +105,12 @@ The retained raw [combat trace](native-portrait-passed-20261010.bin) matches the
 executed trace SHA-256. [Native face image](native-portrait-native-20261010.png)
 and [original-owned image](native-portrait-original-20261010.png) preserve the
 independent diagnostic inputs; moving World content is not pixel-equivalent.
+
+## Combined ranged follow-up
+
+[Fresh combined gameplay evidence](native-campaign-fireball-portrait-passed-20261010.json)
+adds player Fireball damage and invalid-target/insufficient-mana UI refusals to
+the same strict native portrait route.22 post-combat cycles over61.48seconds,
+a living126HP wizard after ordinary retreat, independent stable face pixels and
+60seconds resumed input pass. This uses the current V2 observer/capture retry
+sources. Earlier source hashes, failures and CPU profiles remain historical.

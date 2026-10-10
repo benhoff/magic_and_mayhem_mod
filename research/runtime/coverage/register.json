@@ -22719,7 +22719,8 @@
         "HOST.native-campaign.movement-defeat-20261010",
         "HOST.native-campaign.capture-race-20261010",
         "HOST.native-campaign.portrait-defeat-20261010",
-        "HOST.native-campaign.spell-cases-passed-20261010"
+        "HOST.native-campaign.spell-cases-passed-20261010",
+        "HOST.native-campaign.fireball-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22902,7 +22903,8 @@
       "evidence": [
         "NR.presentation-damage.synthetic-20261010",
         "HOST.native-portrait.damage-negative-20261010",
-        "HOST.native-portrait.passed-20261010"
+        "HOST.native-portrait.passed-20261010",
+        "HOST.native-campaign.fireball-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22964,7 +22966,8 @@
         "apps/qt-shell/campaign_smoke_test.cpp"
       ],
       "evidence": [
-        "HOST.native-portrait.passed-20261010"
+        "HOST.native-portrait.passed-20261010",
+        "HOST.native-campaign.fireball-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23005,7 +23008,8 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "HOST.native-campaign.spell-cases-passed-20261010"
+        "HOST.native-campaign.spell-cases-passed-20261010",
+        "HOST.native-campaign.fireball-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23220,7 +23224,8 @@
         "tests/campaign-spell-test.py"
       ],
       "evidence": [
-        "HOST.native-campaign.spell-cases-passed-20261010"
+        "HOST.native-campaign.spell-cases-passed-20261010",
+        "HOST.native-campaign.fireball-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23413,7 +23418,8 @@
       "evidence": [
         "HOST.native-campaign.capture-race-20261010",
         "HOST.native-campaign.portrait-defeat-20261010",
-        "HOST.native-campaign.spell-cases-passed-20261010"
+        "HOST.native-campaign.spell-cases-passed-20261010",
+        "HOST.native-campaign.fireball-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23609,7 +23615,8 @@
         "HOST.native-campaign.spell-cases-negative-1-20261010",
         "HOST.native-campaign.spell-cases-negative-2-20261010",
         "HOST.native-campaign.spell-cases-negative-3-20261010",
-        "HOST.native-campaign.spell-cases-passed-20261010"
+        "HOST.native-campaign.spell-cases-passed-20261010",
+        "HOST.native-campaign.fireball-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -46104,6 +46111,45 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-campaign.fireball-portrait-passed-20261010",
+      "kind": "live_observation",
+      "scope": "Fresh source-stable combined native campaign Fireball damage, two UI refusals, successful Zombie summon/mana debit, measured movement, same-enemy player melee depletion,22 portrait cycles over61seconds with stable face pixel comparison,60second resumed input, no fallback/recovery and unchanged strict FPS/stall floors. Original drawing/simulation retained; other maps, Cure, full lineage, formulas, exception cleanup, hardware and precise pacing equivalence excluded.",
+      "record": "research/runtime/native-campaign-fireball-portrait-passed-20261010.json",
+      "sha256": "a99f1675f79e405325cec0ab119b29da8fd497cabf3436cdab639badf2038999",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/spell_cases/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -52904,7 +52950,8 @@
       ],
       "evidence": [
         "HOST.native-portrait.damage-negative-20261010",
-        "HOST.native-portrait.passed-20261010"
+        "HOST.native-portrait.passed-20261010",
+        "HOST.native-campaign.fireball-portrait-passed-20261010"
       ],
       "scope": "Highest-difficulty native casting and lethal player combat with repeated portrait recentering during the fight, at least60-second post-combat portrait stress, independent stable wizard face pixels within one channel value, native Mini Cancel/resume and unchanged20-FPS averages/10-FPS window floors including diagnostic overhead. Original simulation and drawing remain active. Native staged fixed/adaptive draw skips disabled; selected game-speed setting and original pacing instructions unchanged."
     },
@@ -52964,7 +53011,8 @@
         "HOST.native-campaign.spell-cases-negative-1-20261010",
         "HOST.native-campaign.spell-cases-negative-2-20261010",
         "HOST.native-campaign.spell-cases-negative-3-20261010",
-        "HOST.native-campaign.spell-cases-passed-20261010"
+        "HOST.native-campaign.spell-cases-passed-20261010",
+        "HOST.native-campaign.fireball-portrait-passed-20261010"
       ],
       "scope": "First campaign native invalid-target/insufficient-mana refusals, successful Zombie summon and original player melee enemy depletion, player-sourced Fireball defended enemy damage, ordinary retreat before optional portrait stress, fixed FPS floors and native Mini Cancel/resume. UI refusal differs from internal admission; Cure, formulas, full-World and replacement remain pending."
     }
