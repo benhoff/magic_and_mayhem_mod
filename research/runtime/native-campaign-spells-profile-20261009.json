@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "scope": "Bounded concurrent ten-second cpu-clock profiles at99Hz of only private native shell and original Chaos.exe after independent World readiness during active Apprentice stress. Diagnostic attribution; not hardware-GPU, causal optimization or gameplay outcome proof. No sources edited during the run.",
+  "native_pid": 924919,
+  "original_pid": 926058,
+  "native_dso_percent": {
+    "Mesa_JIT": 80.62,
+    "Gallium": 12.47,
+    "libc": 4.85,
+    "native_shell": 1.59
+  },
+  "original_dso_percent": {
+    "Mesa_JIT": 39.01,
+    "kernel32": 35.78,
+    "Chaos": 14.31,
+    "libc": 4.12,
+    "wined3d": 3.17,
+    "Gallium": 2.15
+  },
+  "lost_samples": 0,
+  "artifacts": {
+    "research/runtime/native-campaign-spells-native-perf-dso-20261009.txt": "12de7f11bee7d5ed637346881805a7851f3e3d6b25d67761d32ac2b1c9610240",
+    "research/runtime/native-campaign-spells-original-perf-dso-20261009.txt": "b8b6849b92934a420c6bedf618f492df428346a3d881b0645ca44ee6f74c7a2f",
+    "research/runtime/native-campaign-spells-original-perf-symbol-20261009.txt": "d39f4a207144f1e8c3f54b18202074814b8178cca8ca67df60393001248ce250",
+    "working/tests/native-campaign/run-3xaz_r9k/native-perf.data": {
+      "sha256": "7101ed7c948cac92ba0869cb3902c4a5e516e0a8684531d75e18abb107703219",
+      "size": 19379292,
+      "retention": "Ignored local raw profile; summarized durable DSO/symbol reports above."
+    },
+    "working/tests/native-campaign/run-3xaz_r9k/original-perf.data": {
+      "sha256": "c6487bd6e650f0949ac1693e88f83a4a074f32eed620b3e506d23c012508c768",
+      "size": 14079540,
+      "retention": "Ignored local raw profile; summarized durable DSO/symbol reports above."
+    }
+  }
+}

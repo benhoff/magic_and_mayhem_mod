@@ -111,3 +111,41 @@ and persistent surfaces. The live performance effect is assessed separately.
 The original manifest verifier now hashes the same 2,927 files in one Python
 process, retaining byte-sorted paths and identical TSV bytes, instead of spawning
 two processes per file. Both experiment sides still verify immutable inputs.
+
+## Final bounded live results
+
+`native-campaign-directcopy-stress-passed-20261009.json` retains the first passing
+20-second, three Mini return stress run: 5,486 native frames/3,334 visible paints,
+zero recoveries/fallback; first phase passed narrowly at a10 FPS minimum window.
+Its source/scope predates the additional spell/creature target attempts.
+
+`native-campaign-spells-stress-passed-20261009.json` is the fresh scope-bound
+result after those additions. Four 40-second physical-input phases and three
+native Mini Cancel/World resumes pass unchanged20 FPS phase-average/10 FPS
+one-second floors. Source fingerprints remained stable; before/after manifests
+verify 2,927 immutable inputs. Native/visible paint rates by phase:
+
+| Phase | Sample seconds | Native FPS | Visible FPS | Worst 1s FPS |
+| --- | ---: | ---: | ---: | ---: |
+| First World | 42.582 | 50.94 | 33.14 | 14.00 |
+| Cancel1 | 42.365 | 54.69 | 33.28 | 23.64 |
+| Cancel2 | 42.446 | 54.68 | 32.77 | 18.12 |
+| Cancel3 | 42.282 | 55.34 | 33.84 | 20.91 |
+
+9,621 native presentations and5,862 visible paints completed without recovery or
+original-window fallback. Engine-side callbacks independently observe New Game,
+Apprentice difficulty, Enter and three Cancel/resume actions on the same thread;
+three initialized World tick completions authorize the start. Native captures
+include changing camera views, selected actor, movement markers, overlapping
+foliage, terrain, river and HUD/minimap. The retained final PNG is diagnostic.
+Mana remained 0/15 in inspected captures; spell/target attempts do not establish
+successful casting, summoning or combat. `movement_verified` remains false.
+
+The paired10-second 99 Hz profiles are retained in
+`native-campaign-spells-profile-20261009.json`: native 80.62% Mesa JIT/12.47% Gallium;
+original 39.01% Mesa JIT/35.78% kernel32/14.31% Chaos. No lost samples. Software
+rendering remains a material cost; the final pass does not establish a causal
+speedup,60 visible FPS or physical-GPU performance. Historical timing failures
+remain negative. Unbounded sessions, other regions, arbitrary menu contexts,
+synchronized pixel comparisons and complete original drawing replacement remain
+separate outstanding milestones.

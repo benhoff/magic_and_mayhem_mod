@@ -1,0 +1,23 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 1K of event 'cpu-clock:u'
+# Event count (approx.): 15949494790
+#
+# Overhead  Symbol                      IPC   [IPC Coverage]
+# ........  ..........................  ....................
+#
+    14.76%  [.] 0x000000000001b48b      -      -            
+    10.26%  [.] 0x000000000001b480      -      -            
+     5.32%  [.] 0x00000000000e3f89      -      -            
+     5.07%  [.] 0x00000000000e3f91      -      -            
+     4.88%  [.] 0x000000000001b483      -      -            
+     4.37%  [.] 0x000000000001b485      -      -            
+     2.15%  [.] 0x00000000001d221e      -      -            
+
+
+#
+# (Tip: To add Node.js USDT(User-Level Statically Defined Tracing): perf buildid-cache --add `which node`)
+#

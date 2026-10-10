@@ -22465,13 +22465,16 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "One-process native menus and command presentation",
-      "scope": "Intentional one-process host policy: hash-checked dual menu/render adapter staging, private Wine prefix, versioned native frame/input/command/recovery channels, original simulation/drawing retained. Supported native Qt menu readiness suspends native gameplay input; original Enter/Cancel handoff restores native viewport focus. Original desktop is lowered while native presentation is selected; existing fallback restores original window. Cold startup first-frame allowance is 120 seconds; recovery remains 10 seconds. Ordered copy scheduling enabled for this explicit combined route. Bounded World-ready camera/rotation/scene-HUD clicks/wheel input and repeated native Mini Cancel test both command and visible Qt paint throughput (20 FPS average, 10 FPS worst one-second window; stalls over two seconds fail). Diagnostic native/original owned-frame captures are unsynchronized and do not assert pixel equivalence; movement/combat semantics, full drawing replacement, arbitrary menu contexts, other maps and hardware/long-duration performance remain outside scope.",
-      "confidence": "provisional",
+      "scope": "Intentional one-process host policy: hash-checked dual menu/render adapter staging, private Wine prefix, versioned native frame/input/command/recovery channels, original simulation/drawing retained. Supported native Qt menu readiness suspends native gameplay input; original Enter/Cancel handoff restores native viewport focus. Original desktop is lowered while native presentation is selected; existing fallback restores original window. Cold startup first-frame allowance is 120 seconds; recovery remains 10 seconds. Ordered copy scheduling enabled for this explicit combined route. Bounded World-ready camera/rotation/scene-HUD clicks, spell/creature selection and target/source-order attempts, wheel input and repeated native Mini Cancel test both command and visible Qt paint throughput (20 FPS average, 10 FPS worst one-second window; stalls over two seconds fail). Diagnostic native/original owned-frame captures are unsynchronized and do not assert pixel equivalence; movement/combat semantics, full drawing replacement, arbitrary menu contexts, other maps and hardware/long-duration performance remain outside scope.",
+      "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-campaign-rendering.md",
         "tests/native-campaign-smoke.md",
-        "research/runtime/coverage/native-campaign-history-review-b70c9e6-6f7d9ab.json"
+        "research/runtime/coverage/native-campaign-history-review-b70c9e6-6f7d9ab.json",
+        "research/runtime/native-campaign-spells-profile-20261009.json",
+        "research/runtime/coverage/native-campaign-history-review-b70c9e6-3fbddc0.json",
+        "research/runtime/coverage/native-campaign-history-profile-receipts-20261009.json"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -22498,13 +22501,16 @@
         "HOST.native-campaign.copy-gap-20261009",
         "HOST.native-campaign.smoke-passed-20261009",
         "HOST.native-campaign.apprentice-stress-slow-20261009",
-        "HOST.native-campaign.fast565-stress-slow-20261009"
+        "HOST.native-campaign.fast565-stress-slow-20261009",
+        "HOST.native-campaign.directcopy-stress-passed-20261009",
+        "HOST.native-campaign.tutorial-stall-20261009",
+        "HOST.native-campaign.spells-stress-passed-20261009"
       ],
       "status": {
-        "understanding": "partial",
-        "implementation": "partial",
+        "understanding": "scoped",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "validation_dependencies": [
@@ -44346,6 +44352,82 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-campaign.directcopy-stress-passed-20261009",
+      "kind": "live_observation",
+      "scope": "Successful public native-menu/render campaign with four 20-second physical gameplay phases and three Mini Cancel/World resumes; 5486 native frames and3334visible paints, zero fallback/recovery. Fixed20FPS phase-average/10FPS one-second floors passed narrowly in first phase; no causal performance-fix, hardware, movement/combat or synchronized pixel-equivalence claim.",
+      "record": "research/runtime/native-campaign-directcopy-stress-passed-20261009.json",
+      "sha256": "e35d6d52000a5163be3d8282b6ac5f4f1258b9398bda37fe3405a6788f733a99",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/engine/world_resumes",
+          "equals": 3
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.tutorial-stall-20261009",
+      "kind": "live_observation",
+      "scope": "Negative exploratory Initiate tutorial run. Input injection completed but Escape did not reach campaign Mini. Its private Wine prefix was deliberately stopped; game-exited error is not a renderer crash. Source stability is not asserted for this intermediate runner. No success, camera/movement or performance-pass claim.",
+      "record": "research/runtime/native-campaign-tutorial-stall-20261009.json",
+      "sha256": "5bdd29455964ef7881eececf97107fae2e529eaff44585b2174928174e24d9e2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.spells-stress-passed-20261009",
+      "kind": "live_observation",
+      "scope": "Successful public Apprentice native-menu/native-command route: four40-second physical-input phases with camera rotation/pans, scene/HUD clicks, spell/creature selections and target/source-order attempts; three Mini Cancel/World resumes,9621native frames/5862visible paints,zero fallback/recovery. Fixed20FPS phase averages/10FPS one-second floors pass. Concurrent ten-second99Hz CPU profiles retained separately. No casting/combat outcome, hardware, synchronized pixel-equivalence or full original drawing replacement claim.",
+      "record": "research/runtime/native-campaign-spells-stress-passed-20261009.json",
+      "sha256": "239f16674a9cca3bad84d53e349b33f3c7d075170d2eae26a472d9167fc5baaf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/engine/world_resumes",
+          "equals": 3
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -51094,9 +51176,12 @@
         "HOST.native-campaign.copy-gap-20261009",
         "HOST.native-campaign.smoke-passed-20261009",
         "HOST.native-campaign.apprentice-stress-slow-20261009",
-        "HOST.native-campaign.fast565-stress-slow-20261009"
+        "HOST.native-campaign.fast565-stress-slow-20261009",
+        "HOST.native-campaign.directcopy-stress-passed-20261009",
+        "HOST.native-campaign.tutorial-stall-20261009",
+        "HOST.native-campaign.spells-stress-passed-20261009"
       ],
-      "scope": "Public Launch/New Game/Region Enter, independent initialized same-thread World readiness, native command/Qt paint presentation, bounded physical camera/rotation/scene/HUD clicks/wheel input and repeated Escape/native Mini/Cancel returns. Diagnostic native/original images and explicit 20 FPS average/10 FPS one-second floors; preserves negative early-Escape/copy-GAP evidence. Original callbacks/World resume independently checked; no pixel equivalence or movement/combat/replacement claim."
+      "scope": "Public Launch/New Game/Region Enter, independent initialized same-thread World readiness, native command/Qt paint presentation, bounded physical camera/rotation/scene/HUD clicks, spell/creature selection and target/source-order attempts, wheel input and repeated Escape/native Mini/Cancel returns. Diagnostic native/original images and explicit 20 FPS average/10 FPS one-second floors; preserves negative early-Escape/copy-GAP evidence. Original callbacks/World resume independently checked; no pixel equivalence or movement/combat/replacement claim."
     }
   ],
   "recovered_ranges": [
@@ -51425,8 +51510,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-campaign-stress-20261009.json",
-    "sha256": "83ddc23e013332fad27786eb9cee7aa2b09dfa0160cc07352d41621ba46630ae"
+    "path": "research/runtime/coverage/source-index-native-campaign-spells-20261009.json",
+    "sha256": "7589a26a2b83a49326f6a20ad99786cc05f78b05a010808308d158547a847615"
   },
   "claim_bindings_required": true
 }
