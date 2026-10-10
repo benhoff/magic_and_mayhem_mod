@@ -12,6 +12,7 @@ import time
 
 from world_channel import create
 from native_world_startup import run_startup
+from native_world_batch import run_batch
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -22,18 +23,25 @@ def main():
     parser.add_argument('--interval', type=int, default=None, help='Original World queues between publication attempts (1..3600)')
     parser.add_argument('--skip-queues', type=int, default=None, help='Original startup queues to skip (0..3600)')
     parser.add_argument('--startup-history', action='store_true', help='Automatically run Quick Battle startup through 16 World queues and compare every completed native canvas')
+    parser.add_argument('--world-batch', action='store_true', help='Opt-in guarded native replacement of the first 16 World queues; manual original-window input unless --startup-history is set')
+    parser.add_argument('--claims', type=Path, help='Prospective execution claims for the bounded batch experiment')
     parser.add_argument('--prefix-template', type=Path, default=ROOT/'working/wineprefix-x86_64')
     args = parser.parse_args()
-    if args.startup_history and (args.interval not in (None,1) or args.skip_queues not in (None,0)):parser.error('Startup history requires --interval 1 --skip-queues 0')
+    producer = args.startup_history or args.world_batch
+    if producer and (args.interval not in (None,1) or args.skip_queues not in (None,0)):parser.error('Producer history requires --interval 1 --skip-queues 0')
+    if args.claims and not args.world_batch:parser.error('--claims requires --world-batch')
     if args.interval is None:args.interval=1 if args.startup_history else 3
     if args.skip_queues is None:args.skip_queues=0 if args.startup_history else 120
     if not os.environ.get('DISPLAY'):parser.error('An X11 display is required')
     if not 1 <= args.interval <= 3600 or not 0 <= args.skip_queues <= 3600:parser.error('Queue bounds exceeded')
-    build = ROOT/('working/build/canvas-producers' if args.startup_history else 'working/build/world-frame')
-    source = ROOT/('compat/legacy/canvas-producers' if args.startup_history else 'compat/legacy')
-    target = 'mnm-canvas-producers-live' if args.startup_history else 'mnm-world-live'
-    subprocess.run(['cmake', '-S', str(source), '-B', str(build), '-DCMAKE_BUILD_TYPE=Debug', *(['-DBUILD_TESTING=OFF'] if args.startup_history else [])], check=True)
+    build = ROOT/('working/build/canvas-producers' if producer else 'working/build/world-frame')
+    source = ROOT/('compat/legacy/canvas-producers' if producer else 'compat/legacy')
+    target = 'mnm-canvas-producers-live' if producer else 'mnm-world-live'
+    subprocess.run(['cmake', '-S', str(source), '-B', str(build), '-DCMAKE_BUILD_TYPE=Debug', *(['-DBUILD_TESTING=OFF'] if producer else [])], check=True)
     subprocess.run(['cmake', '--build', str(build), '--target', target, '-j4'], check=True)
+    if args.world_batch:
+        run_batch(ROOT, build, args.prefix_template, manual=not args.startup_history, claims=args.claims)
+        return
     if args.startup_history:
         run_startup(ROOT,build,args.prefix_template)
         return
