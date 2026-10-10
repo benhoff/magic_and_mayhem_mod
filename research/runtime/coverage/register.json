@@ -27700,6 +27700,665 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.world-rolling-live-handoff",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Guarded original source handoff to ordered native rolling delivery",
+      "scope": "Guarded finite original World32 source producer connected through a native broker and independently mapped ordered rolling consumer. Exact original request identity/extent/entry/source hash/AX validation before publication, anticipated native closure independently verified against actual original checkpoint/return after writeback; retained CPU/GPU history and resources, all completed checkpoint assertions, zero teardown surfaces. Native cold500ms/warm median60ms and request-to-reply warm median120ms excluding measured diagnostic assertions. Separate actual consumer/private-Wine producer death after at least one native World completion with a later original request outstanding; terminal refusal/private cleanup and fresh-session recovery. No unbounded original admission, uncaptured gameplay, original intermediate equivalence or hardware/desktop pacing claim.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-world-rolling-live.md"
+      ],
+      "implementation": [
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "apps/qt-shell/world_rolling_main.cpp"
+      ],
+      "tests": [
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/test-native-world-rolling-live.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/native-world-rolling.cpp",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/resource-fixtures.hpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-scene-game.py",
+        "tools/coverage_claims.py",
+        "tools/export-menu-support.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-opengl-game.py",
+        "tools/scene-game-runner.py",
+        "tools/test-native-world-rolling.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py"
+      ],
+      "validation_domain": "Guarded finite original World32 source producer connected through a native broker and independently mapped ordered rolling consumer. Exact original request identity/extent/entry/source hash/AX validation before publication, anticipated native closure independently verified against actual original checkpoint/return after writeback; retained CPU/GPU history and resources, all completed checkpoint assertions, zero teardown surfaces. Native cold500ms/warm median60ms and request-to-reply warm median120ms excluding measured diagnostic assertions. Separate actual consumer/private-Wine producer death after at least one native World completion with a later original request outstanding; terminal refusal/private cleanup and fresh-session recovery. No unbounded original admission, uncaptured gameplay, original intermediate equivalence or hardware/desktop pacing claim.",
+      "evidence": [
+        "NR.world-rolling-live-handoff.recovery-20261010",
+        "NR.world-rolling-live-handoff.consumer-death-20261010",
+        "NR.world-rolling-live-handoff.producer-death-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.world-rolling-hardware",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native World ordered completion on NVIDIA EGL",
+      "scope": "Fresh frozen optimized native World consumer and independently built NVIDIA EGL plugin; verified hardware vendor with software fallback refused.512 ordered source-only queues,32 saved/1224 checkpoint digests and480 synthetic retained-history continuations/eight moved requests; every CPU/GPU completion/ACK, bounded caches/zero teardown and unchanged60/120/300ms warm,500ms cold,32MiB retained-growth limits. Five Debug fixtures run separately under software Xvfb. No original game launch, desktop/input/scanout cadence or live hardware integration claim.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-world-rolling-hardware.md"
+      ],
+      "implementation": [
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "renderer/canvas_sequence.cpp",
+        "tools/native-render-profile/egl_platform.cpp"
+      ],
+      "tests": [
+        "tools/test-native-world-rolling-hardware.py",
+        "tests/native-world-rolling.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/world_rolling_main.cpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/resource-fixtures.hpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/coverage_claims.py",
+        "tools/native-render-profile/CMakeLists.txt",
+        "tools/native-render-profile/headless.json",
+        "tools/original-manifest.sh",
+        "tools/test-native-world-rolling.py"
+      ],
+      "validation_domain": "Fresh frozen optimized native World consumer and independently built NVIDIA EGL plugin; verified hardware vendor with software fallback refused.512 ordered source-only queues,32 saved/1224 checkpoint digests and480 synthetic retained-history continuations/eight moved requests; every CPU/GPU completion/ACK, bounded caches/zero teardown and unchanged60/120/300ms warm,500ms cold,32MiB retained-growth limits. Five Debug fixtures run separately under software Xvfb. No original game launch, desktop/input/scanout cadence or live hardware integration claim.",
+      "evidence": [
+        "NR.world-rolling-hardware.nvidia-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.world-rolling-handoff-equivalence",
+      "subsystem": "rendering_sprites",
+      "kind": "recovered",
+      "title": "Guarded rolling source handoff original raster and AX equivalence",
+      "scope": "Independent exact-original validation of a successful guarded rolling32-queue live capture. Each actual original entry and low16AX executes over owned native-only reconstructed entry state; every native CPU intermediate and final GPU canvas is compared, and the live rolling replies must match the native replay finals. Original lifetime/destination guard and live return acknowledgement are separately captured; post-writeback original canvases are not sole original equivalence evidence. Scoped observed canonical sources/callers, no unbounded gameplay/replacement, unsupported branches or timing/physics equivalence.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Selected queue caller consumes AX for fallback and stores low16 result; traversal remains original."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5854839,
+          "scope": "Black horizontal refusal returnsAX1, otherwise0; bounded RGB565 destinations."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5851058,
+          "scope": "Indexed-copy admission, exact entry/backend and return-low16 within observed callers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5853722,
+          "scope": "Indexed-copy admission, built-in clipped route and return-low16 within observed callers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5856071,
+          "scope": "Four-byte palette stride indexed-copy admission within observed callers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5857342,
+          "scope": "Four-byte palette stride indexed-copy admission within observed callers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758464,
+          "scope": "Caller-triggered clipped fallback admission and return-low16."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5762192,
+          "scope": "Half-blend admission and RET12 cleanup; bounded observed callers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5763312,
+          "scope": "Three-quarter blend admission and RET12 cleanup; bounded observed callers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5764592,
+          "scope": "Quarter-blend admission and RET12 cleanup; bounded observed callers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5768944,
+          "scope": "Wave admission and RET8 cleanup; original non-drawing lazy table preparation retained."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5858448,
+          "scope": "Destination displacement: horizontal refusalAX1, otherwise0; cdecl caller and effective row table."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5859492,
+          "scope": "Destination displacement: horizontal refusalAX1, otherwise0; cdecl caller and effective row table."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5760320,
+          "scope": "Shadow admission and RET4 cleanup; bounded observed callers."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5761248,
+          "scope": "Wrapper mask/store oflow16AX; remains original traversal."
+        }
+      ],
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-world-rolling-live.md"
+      ],
+      "implementation": [
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "apps/qt-shell/world_rolling_main.cpp"
+      ],
+      "tests": [
+        "tools/test-native-world-rolling-original.py",
+        "tools/test-world-raster-batch.py",
+        "tests/world-raster-batch-reference.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/canvas-producers-test.c",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-startup-call.S",
+        "tests/canvas-world-test.cpp",
+        "tests/native-world-rolling.cpp",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-history-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/world-frame-reference.cpp",
+        "tests/world-producer-bypass-call.S",
+        "tests/world-producer-reference.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-raster-queue-reference.cpp",
+        "tests/world-raster-reference.hpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-scene-game.py",
+        "tools/coverage_claims.py",
+        "tools/export-menu-support.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inspect-startup-queues.py",
+        "tools/inspect-world-raster-batch.py",
+        "tools/inspect-world-raster-callers.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-opengl-game.py",
+        "tools/scene-game-runner.py",
+        "tools/test-canvas-producers.py",
+        "tools/test-native-world-rolling-live.py",
+        "tools/test-native-world-rolling.py",
+        "tools/test-world-producer-handoff.py",
+        "tools/test-world-raster-queue.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py"
+      ],
+      "validation_domain": "Independent exact-original validation of a successful guarded rolling32-queue live capture. Each actual original entry and low16AX executes over owned native-only reconstructed entry state; every native CPU intermediate and final GPU canvas is compared, and the live rolling replies must match the native replay finals. Original lifetime/destination guard and live return acknowledgement are separately captured; post-writeback original canvases are not sole original equivalence evidence. Scoped observed canonical sources/callers, no unbounded gameplay/replacement, unsupported branches or timing/physics equivalence.",
+      "evidence": [
+        "RS.world-rolling-handoff-equivalence.original-20261010",
+        "RS.world-rolling-handoff-equivalence.native-20261010"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -53280,6 +53939,394 @@
           "equals": []
         }
       ]
+    },
+    {
+      "id": "NR.world-rolling-hardware.nvidia-20261010",
+      "kind": "native_integration",
+      "scope": "512 frozen native World queues on verified NVIDIA TITAN RTX EGL,1224 saved checkpoints and480 synthetic continuations/eight changed requests,512 CPU/GPU completions/ACKs, five separately software Debug fixtures. Warm27.55 median/35.49 p95/49.82 max ms, cold251.82ms, retained growth1.5MiB. Same unchanged budgets; no live game/hardware desktop claim.",
+      "record": "research/runtime/native-world-rolling-hardware-nvidia-20261010.json",
+      "sha256": "7cc8cc62dbd807315de6e73b0ecebc6505e7f4c6b423f87f1d97d461c16ce957",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_vendor_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native/driver/vendor",
+          "equals": "NVIDIA Corporation"
+        },
+        {
+          "pointer": "/native/world_queues",
+          "equals": 512
+        },
+        {
+          "pointer": "/native/acknowledgements",
+          "equals": 512
+        },
+        {
+          "pointer": "/native/saved_checkpoint_comparisons",
+          "equals": 1224
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/assertion_enabled_tests_passed",
+          "equals": 5
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.world-rolling-live-handoff.recovery-20261010",
+      "kind": "live_observation",
+      "scope": "Fresh complete32 guarded original returns and1235 completed-canvas assertions,45448 source entry/AX descriptors, retained native CPU/GPU history, zero surface/image fallback teardown; warm34.98ms native and91.99ms delivery excluding measured diagnostics, cold320.56ms. New isolated session after both queue2 peer-death tests.",
+      "record": "research/runtime/native-world-rolling-live-recovery-20261010.json",
+      "sha256": "65a6e5c7e9329db3548549fd5ef9671b54d10ee37c84919665484cce9038a27a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/handoff_fixtures_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/mode",
+          "equals": "complete"
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_producers/queues",
+          "equals": 32
+        },
+        {
+          "pointer": "/completed/native_producers/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_producers/viewport_image_uploads",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/canvas_guard_verified",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.world-rolling-live-handoff.consumer-death-20261010",
+      "kind": "live_observation",
+      "scope": "Actual consumer-death with original queue2 request outstanding after native queue1 completion. Expected terminal refusal, no final success marker, private Wine stopped. Source/input/frozen original manifest proofs stable; no interrupted session continuation claim.",
+      "record": "research/runtime/native-world-rolling-live-consumer-death-20261010.json",
+      "sha256": "daed618568edbb0c81d711e223749b5c58da2f54a2e0e50b73766367f2d94855",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/handoff_fixtures_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/mode",
+          "equals": "consumer-death"
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/fault_injected",
+          "equals": true
+        },
+        {
+          "pointer": "/expected_terminal_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/fault_queue",
+          "equals": 2
+        },
+        {
+          "pointer": "/completed_success_claimed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.world-rolling-live-handoff.producer-death-20261010",
+      "kind": "live_observation",
+      "scope": "Actual producer-death with original queue2 request outstanding after native queue1 completion. Expected terminal refusal, no final success marker, private Wine stopped. Source/input/frozen original manifest proofs stable; no interrupted session continuation claim.",
+      "record": "research/runtime/native-world-rolling-live-producer-death-20261010.json",
+      "sha256": "7f3e2bcbb9658663be5933891a31476e0538c846a455ea49d28657969b23564c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/handoff_fixtures_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/mode",
+          "equals": "producer-death"
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/fault_injected",
+          "equals": true
+        },
+        {
+          "pointer": "/expected_terminal_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/fault_queue",
+          "equals": 2
+        },
+        {
+          "pointer": "/completed_success_claimed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.world-rolling-handoff-equivalence.original-20261010",
+      "kind": "isolated_original",
+      "scope": "Fresh independent mapped original PE32 and frozen native source-only replay over captured rolling32 prefix:45448 exact raster/low16AX comparisons and21815040000 WORDs,1235 checkpoints/557276912 WORDs,32 rolling live replies equal native replay finals, five native fixtures. Original pixels are never native replay inputs; captured canonical sources/callers only.",
+      "record": "research/runtime/native-world-rolling-original-comparison-20261010.json",
+      "sha256": "f6d79ed93cc14a04002a4b76068377d2835eba643bcf7a2b0c64943a3ffcca2b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/success",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/comparison/native_original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/comparison/precise_rasters_equal",
+          "equals": 45448
+        },
+        {
+          "pointer": "/comparison/caller_ax_equal",
+          "equals": 45448
+        },
+        {
+          "pointer": "/comparison/live_final_equal",
+          "equals": 32
+        },
+        {
+          "pointer": "/comparison/completed",
+          "equals": 1235
+        },
+        {
+          "pointer": "/comparison/native_tests_passed",
+          "equals": 5
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/comparison/source_executable_sha256"
+    },
+    {
+      "id": "RS.world-rolling-handoff-equivalence.native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh independent mapped original PE32 and frozen native source-only replay over captured rolling32 prefix:45448 exact raster/low16AX comparisons and21815040000 WORDs,1235 checkpoints/557276912 WORDs,32 rolling live replies equal native replay finals, five native fixtures. Original pixels are never native replay inputs; captured canonical sources/callers only.",
+      "record": "research/runtime/native-world-rolling-original-comparison-20261010.json",
+      "sha256": "f6d79ed93cc14a04002a4b76068377d2835eba643bcf7a2b0c64943a3ffcca2b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/success",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/comparison/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/comparison/native_original_oracles_read",
+          "equals": false
+        },
+        {
+          "pointer": "/comparison/precise_rasters_equal",
+          "equals": 45448
+        },
+        {
+          "pointer": "/comparison/caller_ax_equal",
+          "equals": 45448
+        },
+        {
+          "pointer": "/comparison/live_final_equal",
+          "equals": 32
+        },
+        {
+          "pointer": "/comparison/completed",
+          "equals": 1235
+        },
+        {
+          "pointer": "/comparison/native_tests_passed",
+          "equals": 5
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -60604,6 +61651,58 @@
         "NR.world-rolling-delivery.gl33-20261010",
         "NR.world-rolling-delivery.budget-refusal-20261010"
       ]
+    },
+    {
+      "id": "native-world-rolling-live-handoff-20261010",
+      "subsystem": "native_rendering",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.world-rolling-live-handoff"
+      ],
+      "tests": [
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/test-native-world-rolling-live.py"
+      ],
+      "scope": "Guarded finite original World32 source producer connected through a native broker and independently mapped ordered rolling consumer. Exact original request identity/extent/entry/source hash/AX validation before publication, anticipated native closure independently verified against actual original checkpoint/return after writeback; retained CPU/GPU history and resources, all completed checkpoint assertions, zero teardown surfaces. Native cold500ms/warm median60ms and request-to-reply warm median120ms excluding measured diagnostic assertions. Separate actual consumer/private-Wine producer death after at least one native World completion with a later original request outstanding; terminal refusal/private cleanup and fresh-session recovery. No unbounded original admission, uncaptured gameplay, original intermediate equivalence or hardware/desktop pacing claim.",
+      "evidence": [
+        "NR.world-rolling-live-handoff.recovery-20261010",
+        "NR.world-rolling-live-handoff.consumer-death-20261010",
+        "NR.world-rolling-live-handoff.producer-death-20261010"
+      ]
+    },
+    {
+      "id": "native-world-rolling-hardware-20261010",
+      "subsystem": "native_rendering",
+      "level": "headless",
+      "behaviors": [
+        "NR.world-rolling-hardware"
+      ],
+      "tests": [
+        "tools/test-native-world-rolling-hardware.py",
+        "tests/native-world-rolling.cpp"
+      ],
+      "scope": "Fresh frozen optimized native World consumer and independently built NVIDIA EGL plugin; verified hardware vendor with software fallback refused.512 ordered source-only queues,32 saved/1224 checkpoint digests and480 synthetic retained-history continuations/eight moved requests; every CPU/GPU completion/ACK, bounded caches/zero teardown and unchanged60/120/300ms warm,500ms cold,32MiB retained-growth limits. Five Debug fixtures run separately under software Xvfb. No original game launch, desktop/input/scanout cadence or live hardware integration claim.",
+      "evidence": [
+        "NR.world-rolling-hardware.nvidia-20261010"
+      ]
+    },
+    {
+      "id": "native-world-rolling-original-20261010",
+      "subsystem": "rendering_sprites",
+      "level": "headless",
+      "behaviors": [
+        "RS.world-rolling-handoff-equivalence"
+      ],
+      "tests": [
+        "tools/test-native-world-rolling-original.py",
+        "tools/test-world-raster-batch.py",
+        "tests/world-raster-batch-reference.cpp"
+      ],
+      "scope": "Independent exact-original validation of a successful guarded rolling32-queue live capture. Each actual original entry and low16AX executes over owned native-only reconstructed entry state; every native CPU intermediate and final GPU canvas is compared, and the live rolling replies must match the native replay finals. Original lifetime/destination guard and live return acknowledgement are separately captured; post-writeback original canvases are not sole original equivalence evidence. Scoped observed canonical sources/callers, no unbounded gameplay/replacement, unsupported branches or timing/physics equivalence.",
+      "evidence": [
+        "RS.world-rolling-handoff-equivalence.original-20261010",
+        "RS.world-rolling-handoff-equivalence.native-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -60932,8 +62031,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-rolling-20261010.json",
-    "sha256": "e9f24d07befd8c1ec9369f09a8e7c6b082485b27dcbc3c175ad0759f22b67a44"
+    "path": "research/runtime/coverage/source-index-world-rolling-live-final-20261010.json",
+    "sha256": "fd744077579db2d2812387641ca02aacfd443a652f6981ac38ed7912dcf740a8"
   },
   "claim_bindings_required": true
 }
