@@ -28482,6 +28482,111 @@
         "integration": "live_equivalence",
         "replacement": "none"
       }
+    },
+    {
+      "id": "RS.glyph-backend-state",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Selected glyph integer caller state and exact lazy coverage initialization",
+      "scope": "Pinned No-CD581ec0 RGB565 indexed bounded RLE frames including row padding and opaque auxiliary offsets bounding the main colour stream, byte RGB tint and bounded translated anchors. Independent volatile EAX/ECX/EDX, callee integer/stack guards, RET16 and four argument mutations; final defined ADD ESP40 flags use supplied entry SP with DF preserved. Sentinel0/1 lazy coverage table compares exact integer-times-float1/63-bit constant and retains sentinel; bit-exact64 outputs across24/53/64-bit precision/four rounding modes. Empty/cropped/horizontal-rejected/hidden/native-safe source domains. Original x87 selected state and two-active-slot diagnostics recorded separately, not modeled equivalence. No live bypass, arbitrary FP exception/instruction state, original malformed behavior, text layout/lifecycle or complete ABI claim.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5775040,
+          "scope": "Bounded integer caller/argument and lazy coverage effects, selected original FP observations; no full glyph/exception contract."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881568,
+          "scope": "Referenced x87 truncation/control restoration in selected glyph execution observations only."
+        }
+      ],
+      "documents": [
+        "research/runtime/glyph-backend-state.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h"
+      ],
+      "tests": [
+        "tests/glyph-backend-state-reference.cpp",
+        "tests/glyph-backend-state-probe.S",
+        "tests/glyph-backend-state-test.c",
+        "tools/test-glyph-backend-state.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-font-glyph-raster.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.glyph-backend-state.original-20261010",
+        "RS.glyph-backend-state.host-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "corpus": "Synthetic complete/padded/transparent/empty RLE across geometry branches, cold/initialized table controls and all1205 glyphs from six installed SFTs; selected FP seeds0/1 active, safe diagnostic2 active.",
+        "exclusions": [
+          "x87 status/pointer emulation",
+          "unmasked exceptions or arbitrary FP values",
+          "RGB555 and negative tint",
+          "unsafe original malformed draws",
+          "live glyph/text bypass",
+          "font lifecycle/higher layout"
+        ]
+      }
+    },
+    {
+      "id": "NR.glyph-backend-state-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic bounded glyph state-model admission",
+      "scope": "Intentional state-model preflight: bounded frame/header/table/control/opaque indices including hidden rows, byte tint, initialized/cold sentinel and supported controls, legal clip/translated anchors/address identities. Invalid requests refuse without updating output/table. Original malformed failure equivalence and pixel/FP/live takeover admission excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/glyph-backend-state.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h"
+      ],
+      "tests": [
+        "tests/glyph-backend-state-reference.cpp",
+        "tests/glyph-backend-state-probe.S",
+        "tests/glyph-backend-state-test.c",
+        "tools/test-glyph-backend-state.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-font-glyph-raster.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "NR.glyph-backend-state-admission.host-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "corpus": "Host atomic malformed/index/extent/clip/tint/address/rounding refusals, output/table sentinels and ASan/UBSan; original comparison kept separate.",
+        "exclusions": [
+          "original malformed handling",
+          "pixel operation",
+          "FP/live admission"
+        ]
+      }
     }
   ],
   "evidence": [
@@ -55084,6 +55189,183 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "RS.glyph-backend-state.original-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/glyph-backend-state-comparison-20261010.json",
+      "sha256": "c5d90404ef87dcce91395cff12c52ef4877002a49f58bd21a57625986031fe49",
+      "scope": "Independent bounded glyph EAX/ECX/EDX, four rewritten stack arguments, callee GPRs/RET16/defined return flags/DF and exact64-float cold/initialized table effects. Selected original x87 state observations are not native FP emulation; safe two-active-slot diagnostics outside equivalence. Source/padding/guards, all installed font glyphs and native state atomic refusals. No pixel comparison, live bypass, whole text layout/lifecycle or arbitrary FP/Win32 claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 27974
+        },
+        {
+          "pointer": "/counts/integer_table_guard_matches",
+          "equals": 27974
+        },
+        {
+          "pointer": "/counts/selected_fp_value_control_tag_preserved",
+          "equals": 27966
+        },
+        {
+          "pointer": "/counts/original_x87_status_changed",
+          "equals": 23324
+        },
+        {
+          "pointer": "/counts/cold_table_index63_above_one",
+          "equals": 3495
+        },
+        {
+          "pointer": "/installed_fonts",
+          "equals": 6
+        },
+        {
+          "pointer": "/installed_glyphs",
+          "equals": 1205
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        },
+        {
+          "pointer": "/pe32_undefined",
+          "equals": ""
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/derived_counts/two_active_stack_faults",
+          "equals": 8
+        },
+        {
+          "pointer": "/derived_counts/cold_geometry_skipped_table_regenerations",
+          "equals": 8625
+        },
+        {
+          "pointer": "/derived_counts/zero_height_status4",
+          "equals": 1152
+        },
+        {
+          "pointer": "/derived_counts/two_active_changed_values",
+          "equals": 8
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.glyph-backend-state.host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/glyph-backend-state-comparison-20261010.json",
+      "sha256": "c5d90404ef87dcce91395cff12c52ef4877002a49f58bd21a57625986031fe49",
+      "scope": "Independent bounded glyph EAX/ECX/EDX, four rewritten stack arguments, callee GPRs/RET16/defined return flags/DF and exact64-float cold/initialized table effects. Selected original x87 state observations are not native FP emulation; safe two-active-slot diagnostics outside equivalence. Source/padding/guards, all installed font glyphs and native state atomic refusals. No pixel comparison, live bypass, whole text layout/lifecycle or arbitrary FP/Win32 claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 27974
+        },
+        {
+          "pointer": "/counts/integer_table_guard_matches",
+          "equals": 27974
+        },
+        {
+          "pointer": "/counts/selected_fp_value_control_tag_preserved",
+          "equals": 27966
+        },
+        {
+          "pointer": "/counts/original_x87_status_changed",
+          "equals": 23324
+        },
+        {
+          "pointer": "/counts/cold_table_index63_above_one",
+          "equals": 3495
+        },
+        {
+          "pointer": "/installed_fonts",
+          "equals": 6
+        },
+        {
+          "pointer": "/installed_glyphs",
+          "equals": 1205
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        },
+        {
+          "pointer": "/pe32_undefined",
+          "equals": ""
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/derived_counts/two_active_stack_faults",
+          "equals": 8
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NR.glyph-backend-state-admission.host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/glyph-backend-state-comparison-20261010.json",
+      "sha256": "c5d90404ef87dcce91395cff12c52ef4877002a49f58bd21a57625986031fe49",
+      "scope": "Independent bounded glyph EAX/ECX/EDX, four rewritten stack arguments, callee GPRs/RET16/defined return flags/DF and exact64-float cold/initialized table effects. Selected original x87 state observations are not native FP emulation; safe two-active-slot diagnostics outside equivalence. Source/padding/guards, all installed font glyphs and native state atomic refusals. No pixel comparison, live bypass, whole text layout/lifecycle or arbitrary FP/Win32 claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/pe32_undefined",
+          "equals": ""
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -62524,6 +62806,23 @@
       "evidence": [
         "NR.font-glyph-live-shadow.live-20261010"
       ]
+    },
+    {
+      "id": "glyph-backend-state-host-20261010",
+      "level": "headless",
+      "scope": "Independent integer/stack/coverage model versus unchanged PE32 glyph entry: synthetic geometry/padded/transparent/empty/cold/initialized fixtures,4 rounding x3 precision with0/1 finite active x87 values and all1205 installed glyphs. Callee/stack/source/padding guards; safe2-active-slot observations separate from equivalence. Native state atomic refusal/ASan/UBSan. No live takeover.",
+      "behaviors": [
+        "RS.glyph-backend-state",
+        "NR.glyph-backend-state-admission"
+      ],
+      "evidence": [
+        "RS.glyph-backend-state.original-20261010",
+        "RS.glyph-backend-state.host-20261010",
+        "NR.glyph-backend-state-admission.host-20261010"
+      ],
+      "tests": [
+        "tools/test-glyph-backend-state.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -62861,8 +63160,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-font-byte-20261010.json",
-    "sha256": "1e7ff08813d550936ee6623d0e226fb20efe79a1e9cb127e46bb34e1eb265db2"
+    "path": "research/runtime/coverage/source-index-glyph-backend-state-20261010.json",
+    "sha256": "858c8dc81bba7ad6cd4cd534ca06fd42ed77cbcdb5c4c258a20d59af387fbf6a"
   },
   "claim_bindings_required": true
 }

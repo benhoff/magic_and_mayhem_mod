@@ -1,0 +1,1500 @@
+{
+  "schema": 1,
+  "scope": "Committed-history only. Parent/current exact file and behavior receipts reviewed separately from uncommitted glyph state-model changes. Append-only journal verified without recursive self-hash. No historical gate or fresh-execution assertion.",
+  "range": {
+    "base": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+    "head": "577d293d0c14ddad6e119c33b4ca8693b74150b9"
+  },
+  "files": [
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "a14e7a14edf87d6f1219d2bbc613fa9939ffaeb326b9b69f10f07a16355c57b8",
+      "after_sha256": "8208e2af85264429f4939df7644208a3e6f05ff5b20c2d6123767fef94722806",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/formats/word-clipped-takeover-stats-v1.md",
+      "before_sha256": null,
+      "after_sha256": "2849cfd181feaa5bbc0cb4a5274b9aca6f310e3ad2c731dc90d36516c4dbd23e",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "e3b7c9fac3d32037f2597fef1896b6202daaf0cafdf5bd4a12eaf9f85406fdad",
+      "after_sha256": "41a0bf8a29dfb333ff53c5cd59f23790b733485b631733ae76a4d84ff87eb61e",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "131ddaf59be890aec5a614e905b1a3a7112e23b0f9cf4759a5dec2f2e0df9b8f",
+      "after_sha256": "e358ed05a59e5474e0dbce2e5838fc7c92463a9592dca2ae5f574ef6ac56f1ec",
+      "receipts": [],
+      "classification": "append_only_journal"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "5cc664e42b5ee8e39aac6cf8daf3a7376cf85a859bcd2c61d2a8a8373cb384a9",
+      "after_sha256": "75bd392752aa38ff84c8de003c79597df1ea045f48351b364620abeff75fcbc9",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage/source-index-word-clip-takeover-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7f52676d43f2686c72cf92492438ed03b142adc5579fbe63a27e0bafd392e9c6",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "81bc26e7f82960361d2f171c3f1b87e70a3585b8e6566f067129325d7d796d6e",
+      "after_sha256": "740b9d7bd0b25420d0869fc8a35b451a6e645956959af2ad2548932e1989dfbc",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage/word-clip-takeover-history-d412789-0191a55-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0c6f8ea39f219984e0722aea23f2ab1e6c9f46b0a4350215f79c7557251e57f3",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/word-clip-takeover-capture-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1da03279e45f89699cbfee33015968c5614462f3decfed3aaaeabde945b92696",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/word-clip-takeover-initial-count-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9facad96b9c940f2aa1f29c03bfebd81970e379d6e795ec61e1dd8ef2f1535a4",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/word-clip-takeover-isolated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0ce918cb45f2782a2bc8f7575d033daacbe207fcf1ad4c4a7bae8089a143393c",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/word-clip-takeover-live-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "41b30f313489d569d47b4d264328e67f7b9aa584f85389a81130967249d2d363",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/word-clip-takeover-replay-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "168299eff370b561f63916b728f01b5db3bb3f755c1b48bf7362ad7ce7d2a147",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/word-clip-takeover-shadow-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "5e4a3791e7bd66fe6812fe92415e854ad8ad4233be4d976599775118f7cfa3fa",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/word-clip-takeover.md",
+      "before_sha256": null,
+      "after_sha256": "093a7ba6406745878e95cf3fdda84e4dc92ca5b461cc7f611f1893921e1592d6",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "runtime/scene/word_entry.S",
+      "before_sha256": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+      "after_sha256": "23d72e078069edba6c1beed0dee47b1f3c8c1faf395bf6f36c9c06b92b450beb",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "runtime/scene/word_route.c",
+      "before_sha256": "9b64bc40bed96f4aad19c37528135cf82f4d251d12a44722b668ca06fab4e1bd",
+      "after_sha256": "d0a3ebcaf73d2df6451162dbf7e1aa224612953b4b40514c66cd4ed01acccf55",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tests/word-clip-shadow-host.c",
+      "before_sha256": "891c514d2ce675559073495f1c75e1b5519eeb8a573a68ef6f766b0d1a619e5e",
+      "after_sha256": "379286d5c18de14d4d62d8caacdd328046821b004dc22ef77960837f4211cb90",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tests/word-clip-shadow-reference.cpp",
+      "before_sha256": "55e9390653942a89f7dbff0f70592f96a39338e8c3e64925fd3c2c1703b18957",
+      "after_sha256": "43bfb5fa20af33e48ab3901fde8a001555a349c8300a5bf4e359f8317a3d31af",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tests/word-clip-shadow-replay.cpp",
+      "before_sha256": "b425ffa4bd2d1959836f6c734dc0d5192d31e0b1998d7a0fc85b12adf5ea5999",
+      "after_sha256": "9e2a4830762a8b22e7bf79980c8664cf151dbf6b7fb8ddab0432e80e8c14c9b2",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tools/capture-scene-game.py",
+      "before_sha256": "17922238c1d8bba5df271361a710bc784fbaa709aa60047fb63013801a66a932",
+      "after_sha256": "e90c7d8ae630fbad4ddc4a264bfc343880fd73264346874318aa59dff6081720",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tools/prepare-scene-observer.py",
+      "before_sha256": "bdda217c1c20c1a0ff1f01ef7ca54ee06f21de99b9228f06a66957cc63176407",
+      "after_sha256": "38d49ece49d1eb69d69e3c221d970b004eb4e145c500dec9d8e2277312935479",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tools/render-game-runner.py",
+      "before_sha256": "97193487a39b8a4cfdcf4fe9dd630190663f2bd6c1b9def979c8efb2d6cb2dcc",
+      "after_sha256": "6ff5a8b633117cd9be416f495cacfca10521c09e04792571d5c8d0d3287f8478",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tools/replay-word-clip-shadow.py",
+      "before_sha256": "6c76305009eee307084f528ab0769eaf7e431f2458b68b36e0208ff1e651eb20",
+      "after_sha256": "ccb53d725cee7fa87a9ebbe205cdab9bb11de5518d4c7ded7177884b95f0803a",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tools/run-opengl-game.py",
+      "before_sha256": "775966327b7ffdebcb3b25c21bfe82aec156bcde3ab39ab3157a6314b84b2a1a",
+      "after_sha256": "2831be408592dc9b1b38927f6205e85bad0e14ccaf2caf95bf8bca60824e8b46",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tools/scene-game-runner.py",
+      "before_sha256": "d7dd632b7e08ab76e5dd0e92c70006fa8dd60337b316c867de897660ea5a7a5a",
+      "after_sha256": "cf6bad4dc1cafea2844c66cc1fc61459304a9a0273f5c4eb1aed34697aadb593",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "parent": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tools/test-word-clip-shadow.py",
+      "before_sha256": "e5f472294cae689245644fe5e0a137252c0b018c43ea6fa9902e1e3ef0fe4705",
+      "after_sha256": "db592ff1d1c4749ad897b0dd197f27554c3f9669f15c34cb52f5c010318732af",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "compat/legacy/font_text.cpp",
+      "before_sha256": null,
+      "after_sha256": "eaf712802b4f25c656c2c462f126464ebbf8a8608fad7f4ecfae004e2be72a26",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "compat/legacy/font_text.hpp",
+      "before_sha256": null,
+      "after_sha256": "29a4f4d3405985ec0e75192ba349f7535b1dbe59b960ba0d67e2cefceab06d14",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "8208e2af85264429f4939df7644208a3e6f05ff5b20c2d6123767fef94722806",
+      "after_sha256": "4c643a691ac98380c3f55adbb160793444e8591cadf70201b367e656cb2798f1",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "reconstruction/rendering/font_byte.cpp",
+      "before_sha256": null,
+      "after_sha256": "dd5aa18463d5f3195ac9bfcbc65679f56bf888b127724e61d9c2be2d316da693",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "reconstruction/rendering/font_byte.hpp",
+      "before_sha256": null,
+      "after_sha256": "5120d1f2cd7827d899e6bdafbbd2ec4491dae5352664e70f085d9f10daa87690",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "41a0bf8a29dfb333ff53c5cd59f23790b733485b631733ae76a4d84ff87eb61e",
+      "after_sha256": "bf30dd32171573eba585eebab132b6577cbae30de7431a10e248c02a8c24563c",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "e358ed05a59e5474e0dbce2e5838fc7c92463a9592dca2ae5f574ef6ac56f1ec",
+      "after_sha256": "76611bb97e25e9bd71fba65be6a985af64fca1e318ee3e2862f7d98dab9d65c5",
+      "receipts": [],
+      "classification": "append_only_journal"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage/font-byte-history-0191a55-d6e32e9-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2faba2183bcb2766f8fe4faad6361b89bf08d4fc643dc57f0d9adb98d1b61881",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage/font-byte-history-1fc0b3e-0191a55-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "de76cd939d0a47a67be3bdc49287bf0246ecc24abce82ea1d24587f56a029ffc",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "75bd392752aa38ff84c8de003c79597df1ea045f48351b364620abeff75fcbc9",
+      "after_sha256": "bdb23e6bd1037cb700db970f4ce963898fed7a4bdb7385803cda409f2ed074ee",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage/source-index-font-byte-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1e7ff08813d550936ee6623d0e226fb20efe79a1e9cb127e46bb34e1eb265db2",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage/source-index-font-byte-initial-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1e7ff08813d550936ee6623d0e226fb20efe79a1e9cb127e46bb34e1eb265db2",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "740b9d7bd0b25420d0869fc8a35b451a6e645956959af2ad2548932e1989dfbc",
+      "after_sha256": "6281be1ca7229b8f597171e314ad080afd320f33f714d63532097e17c837bb81",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/font-byte-producer-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0edbaa55fe3e31072368f50b64cd52d0c74c58d5823e8b7c53338207256e0edb",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/font-byte-producer-comparison-range-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2cb7efa0cf63e3c7e24bf99fd4dd3e508332db83444e56b82c74900187766e68",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/font-byte-producer.md",
+      "before_sha256": null,
+      "after_sha256": "619279e70c560561e8f81ff790555bd67d00fb3d6a88c3c7e0c61350b12f7dc2",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/font-glyph-live-shadow-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "116167c630f2acee16ea8a5dfe1026bb5af59c5a2b63dcea8e928b20784c4fb8",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/font-glyph-live-shadow.md",
+      "before_sha256": null,
+      "after_sha256": "f4f72281bfadfc000890aab893e7a1d7f4e17603b9e88a139c4614ccde17ee78",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tests/font-byte-native.cpp",
+      "before_sha256": null,
+      "after_sha256": "94760ba22d660b96af33838c3cff74618ab0937dd6c6fa5fed96b9b45cb3377c",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tests/font-byte-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "b7c0a010f91c8ce4dfec26fd66fdae39dfdc509063640969a230a63486e21a4c",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tests/font-byte-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "56012c240b1c0241de89b943a1cbfc96c8ec7c9c19724ca61f61932cc9a716da",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tests/font-byte/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "af624a033391b84eb6e5c0cf373e0a7bd4c73b2636bc0372477236806feac3e5",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tools/test-font-byte-producer.py",
+      "before_sha256": null,
+      "after_sha256": "433fb63040b46b7851f0bb4bdafa8704c950f1ad5c2411aeb7e91134d79746ee",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "parent": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tools/test-font-glyph-live-shadow.py",
+      "before_sha256": null,
+      "after_sha256": "31a43d1ece2fed9605e506006a8c7b9805d272480b72b941d991f820d73bfe61",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "HOST.native-command-launch",
+      "before_sha256": "c05cb04c6dc5bb0f614640a72365ab22e18f777e320df2be448e43001267f6ec",
+      "after_sha256": "36beebd38f225c7cdda9e1513befb091f67356e052936665df2cbff22a4b235a",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "HOST.native-pacer-yield",
+      "before_sha256": "3b54099aca2a380d4c455f5a9fcc1742d09a2ea2c288629d614946abd97ac278",
+      "after_sha256": "94c0786160cabc4a484aa8993d1fe9c999696d9e180dd8e80f8abb1b079dcab1",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "HOST.native-precise-uptime-clock",
+      "before_sha256": "fd0a37d19ffb8beb98faf39ca2cb7738b857105a8429d243dfbe19ca93c39fdf",
+      "after_sha256": "64173d5f5c61d1c20d9000960768bab44f130313b91a41c36eb6b0a0137ffdc0",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "HOST.native-render-draw-cadence",
+      "before_sha256": "e3ae83e45140dd938e98bc1c2d6d2a022ed4ab724ad0618c753fcbf76ace5860",
+      "after_sha256": "e3b03d374095b3980e41a70791d9b3f215c6b585a7caf282ef444299e4dcada8",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.command-host-recovery",
+      "before_sha256": "a64111861137af83d642c550de666b58c1bda61d963a6807dc60c9281aee5378",
+      "after_sha256": "b075c359939031b69f21bb5b63a8eecd2c80e37d5620d8387e83a126d1bce5f0",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.command-ring-adapter",
+      "before_sha256": "303e89f20778a83dd604962048e33e942cac692a2ee87f29a333a9f1f555a88a",
+      "after_sha256": "06c550eb0b65accd2ecd3edae17ff17d3267f75e88a828f3edee9f18579fd86e",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.continuous-producer",
+      "before_sha256": "f8d0e3b1175acefaa47dc486e5aba7657d4b84404a24e80ecb8f85b40ce64ea2",
+      "after_sha256": "763500c93650a7c57c11a1f29aa8a3b8fb4664faf543ea5a76c7611f7c432373",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.live-command-transport",
+      "before_sha256": "331f4df6a7cf311162a43c6e3a600dc8cf8c385ccc3797f33c398fb28b1114e9",
+      "after_sha256": "f5c217b2b9d504f345e1d2ef3c70e1cfbf15161180f1eb6c9ea20ab1328889d4",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.live-drawing-replacement",
+      "before_sha256": "6c07126c47672e3419d00342008796d2509ddcaeb5f20d23aaa3a9e1ed55717e",
+      "after_sha256": "d23686b488543a8d48e0d32c1c46e099169e46f920de52c8cd47f75fa9b7b01d",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.minimap-input-fixture",
+      "before_sha256": "e3bf71669cf04ce0a7f7d1ae348e41cbe5800f4b23a6ea955bf037b0b4160a88",
+      "after_sha256": "1407650ccdfa2a2cbc95cfdc56d97d136f56e9d09e18abb913eaf6b1b9b3d4e0",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.minimap-interactive-presentation",
+      "before_sha256": "c02df6154d663ae7a6eba9f0622ece254fc6ecc4f31f78d7ced4a5cd3f6f8cee",
+      "after_sha256": "6706d96777cb605dbdd6c905872d40d482352ba3e6ea2da25b590e3ef4fc6319",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.minimap-owned-observation",
+      "before_sha256": "de915ba8a9d4be918dfe7c74308b7ed42b9f21264664b8a344edc8387ab0f392",
+      "after_sha256": "4de8d64e1f6e5dfc0597c92d20070db0907e2072f57cdbb385d31fbce41cecaa",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.offline-render-soak",
+      "before_sha256": "c1cf7382a5e4dd42c0fe660a6c834b0cd1039c754d0a73dd0432dd1ac0f1d5a5",
+      "after_sha256": "25cf0a2ccf4e770e8a58b090ae85830bbdd97054ffd9d9860b32376af2ad3957",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.palette-resources",
+      "before_sha256": "b9acc40e814cb6cecd708aaa7cd152a1c2a0ed9fd5e1926a106ed65e64fac2c6",
+      "after_sha256": "0918a771e89237fbe145caf56b2f7db8e61a9ca2708330fd25642514f06dd65b",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.real-game-command-shadow",
+      "before_sha256": "50802d04ba86eb0188bd27d0b78ed0df6b6e34bc3ca1d89d194e841c4a924c06",
+      "after_sha256": "8bf29ca872badf57168018e347ffd10df5bf458c648993503d1db33d07fd96e7",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.scene-service",
+      "before_sha256": "f30ada819ee4f8b80933c9861e5302c04a9e23ce126b8e522a610302c7d4a730",
+      "after_sha256": "be2faecf0bff5ebace70e2581867b7b44439a499a8356626450412622bebd550",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.scene-snapshot",
+      "before_sha256": "dfdc7110dd5d4ae43d0345197a77f2567377b63c58f4b84fad2a0c10c2c0e22c",
+      "after_sha256": "854d702bc5be9754154a1e74c12f8a627dd60b70600357c37a0862b31e780949",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.surface-fixture-corpus",
+      "before_sha256": "3bd8a60ef984300a7855b86b72d6bd1f9405b413f78396d0e9f95606d22ccb9f",
+      "after_sha256": "d36ae5d3bafa8f5a6ca32eabfe493b7ac77584a91f7592c0ac442d7ec90fcf56",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.word-admission",
+      "before_sha256": "efa7c070e276d426998080cba78679eb194470fb16bd13645425d77fb2e24887",
+      "after_sha256": "30b5001cacadd2c056eb71f5be04dd53bf15b801ac020101d4ae5641d4ce2e28",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.word-clipped-takeover-admission",
+      "before_sha256": null,
+      "after_sha256": "bc8cc6288cba3b16b3d1b24cf77bdff6e2a5ef7b592865fff962fad129f8d2f0",
+      "receipts": [
+        "word-clip-takeover-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.word-clipping-plane-bounds",
+      "before_sha256": "14ffdd5227ba1e3cb13b5949c15ab228608a9d880e65f1b2e22adfd38b2ef25e",
+      "after_sha256": "8903b7f7e7a1816eac55ebb8759e25544060ad41f51efdd3f3f0e97efafa5ad1",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.word-cpu-clipping-admission",
+      "before_sha256": "2ea8841cca1844930fe7646850a69131a8360c8f9ac28c22e46c8ae87661a344",
+      "after_sha256": "2897d787fe563f76d1fa0a0c656061ec2cdccc0601bb5c300eaa14133894a425",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-admission",
+      "before_sha256": "a6bef47de7ac3398fa3166b609e7618cd69bff6a3bf20cba723eae8c0cb4437e",
+      "after_sha256": "c9aff35cf4342c689e101ee464c7da55840cef8693041d896feed963fa33902e",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-batch-extended-prefix",
+      "before_sha256": "21d2fc3be5a1b6eb29b6cde9301b5d9ace6fc25451d9f1e6dfa9102a900592b2",
+      "after_sha256": "e3320fb458c689d0fa4ddcdfd5aef6e6c9dc6b8bd1cb49d6feb2e90d94d287ed",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-batch-profiling",
+      "before_sha256": "19eb61a4d3fe466799c1cc8e209e547845c9cf46bbcb51959a877a23819188b5",
+      "after_sha256": "3b60d79ce454e139418e2d5142e03ca9e18a981d9b242b5b2951ef5841f336bd",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-batch-throughput",
+      "before_sha256": "6b0147e7c5594808a3bb19b2eb0066c17915e471387856dfbd1dde0a90e7bb36",
+      "after_sha256": "570e98220538144397a088dffb076a66e7d09bb35b48dd39230dddd7034cf362",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-channel",
+      "before_sha256": "84b03f53d89b2d5b32cc8c19ea37b1b4fada20b163fc2b26a74b87e968cc4b30",
+      "after_sha256": "d3d4bd4fa008662298482b1abc734f4d6191b180a4e7ce9a3262a5fedec960ae",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-history-channel",
+      "before_sha256": "4fd88daa25c8efbbb8a7fb0007f384fc9c22d9b79a6fdb53f3e1fa0c3b0d3e24",
+      "after_sha256": "8f6ef850841616baf3af9deafa2991552aeab68deed09df520a0a11617ac7373",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-interactive-batch-launcher",
+      "before_sha256": "b74b3323b1ba9623395ce4a2da36b7e22112a67dbd78c877b53bc49d4b8f8950",
+      "after_sha256": "95677a9e75d1c5e35d2b6b82e498605890bebb4b1087e8c6460087366e568c29",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-kind-diagnostic",
+      "before_sha256": "ea0476522fe56ad27a624cfcdf7ad5892593741c1efe99f4ebf97f4f75ffd5ec",
+      "after_sha256": "d6afd9fa6e924de325f3c41db547a0f1252a67e207714b4f78beffa812df99b3",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-live-history",
+      "before_sha256": "9f0044daf55da731117329fffee603475486b592758b2b048f5918e39f7d478c",
+      "after_sha256": "29ad4c97fcbd87256587f214ba7858918fb555c51f26730aa98509e36de78d71",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-live-view",
+      "before_sha256": "1e9f08acd21c40c1bfb6a0895158bed7650a2fadb30708d05f8b6f1a9668edaf",
+      "after_sha256": "d36f1c23958542042c9b352080bac39da067889f7d40b4e7e8e26a6e9e88ddb1",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-producer-handoff",
+      "before_sha256": "fa9988e3c7b4c29226277010d40a1eb8dff1ac89cc0863e2409d11da07301537",
+      "after_sha256": "9372b935243e8968383ff3bf82dd0a8f9cb9c84712a8fb51a36ae8a984a78587",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-raster-batch-transport",
+      "before_sha256": "5d54cacf193da44ad344fde61d7cd091be99416473f1a30f222a168ff29a7e41",
+      "after_sha256": "f2a5e0fda8bb72ef25c511bc164ff4028e684f08a315203a6edfd57bc5c52d5b",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-resource-reuse",
+      "before_sha256": "20c0aae9cadf34098a51f796f707f81d8ac41f3f67391d3c91c954b04164d2e6",
+      "after_sha256": "b93aca1dc7a77e681f4e199dac49d5a7e20838b7a7ddb97f772d1d8ca5ee82c7",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-shadow-refusal",
+      "before_sha256": "47584ce32140b2ab61d11473e94bd4a864b6e04ebf5770b96aa0adb112e5ddfa",
+      "after_sha256": "1b9612b593c215cd8601f0ba483a1bcbd1598572faa66e921bd9577659194b40",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "NR.world-startup-launcher",
+      "before_sha256": "f9772b0b61dafc2a872de21dd0f47f3915cefb46095e3acf5cdc7af69fc2c831",
+      "after_sha256": "6ce06824dd16af5655063089874edad05c8f2713b3972140c72d809ac6baaea3",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RI.copies",
+      "before_sha256": "c06b067372c780a9e9dceb1773ca82909822e4bc2d64573b1ef0f948f692c133",
+      "after_sha256": "bdf511fa08dd48f1c228aed5e8b29f151d945a1c069e200890a07cf75c373492",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RI.effects",
+      "before_sha256": "0a2f599400c3cbdc9e2f9e3c484a15094d4c0382fa8e100977b3508d63b9423f",
+      "after_sha256": "f966d22dd1e84097adf27c7ba91b8ed3da49f9aa851f9e0e00949da7700cf2d0",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RI.fills",
+      "before_sha256": "0e9a89a4c16eda81740341977660255721b26705f99f0b1b30dfbc9ae09fd00b",
+      "after_sha256": "b5e878800d6173bb19a1a89313ddad37c2330ab6582322038ba1ca682e5af420",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RI.gdi-text",
+      "before_sha256": "8e45335de1bcea5f0468294ff8549e15134226bd81e1181278f6b7b5ee676d45",
+      "after_sha256": "7b5c50645d02215fc26b5fc332b4c91ac544bee0f91f20f75acec1a91845dea8",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RI.locked-writes",
+      "before_sha256": "0e197fab3b680ec3445bde379ab8521234dfa2ada302303fa33f27f59d899297",
+      "after_sha256": "330918bf63844a892c1ec4601116d080ceda68b3e7add8a00ceffcf74055c525",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RI.movies",
+      "before_sha256": "3711416629759ffa90c9cb5e4416b45912b90d47bce44a5a83469d27d74b1b31",
+      "after_sha256": "fcedf8f717ad31a5d07e116565b0a7de9ef2e134a9c36752c414d06ed0b7e5ff",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RI.sprites",
+      "before_sha256": "d3bae77d9a61527681aa66ca6496cc5eff2ce4aab9bd2dd70576d08e8ab2282a",
+      "after_sha256": "39b443245a83d9ae9e685cf99b287cb04d60d86144eaabaa0dfcaf17d773113c",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RI.terrain",
+      "before_sha256": "91210b8f0002eac867c4820ced064580c651e2ba89f3d0c82a9fc763bca44e3a",
+      "after_sha256": "02a606f1498811716895d78556807e1427aab86bb1f7ebc1355db8f99cc0642b",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RI.ui",
+      "before_sha256": "d61a99906f03aec13109f67fb9a738c0c35f5357df825ab6b97e4183b4fa3d7e",
+      "after_sha256": "233214a35459deaae535cf6ceae11a9a1b2b3d3b9527ac3b67560abd29c7795d",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.canvas-bind-clip",
+      "before_sha256": "033a5c3ef249c13531b1c42afac03d48f6394275f1b9bad6e5c5d3f723d95f36",
+      "after_sha256": "366e0cc8b3022de14bcad2d62bc80a5711094d1f8c6ad8b1e36bf1ba29e03eb3",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.canvas-create-lock",
+      "before_sha256": "f6f1b63fe2bb5926300a603f277df747882efcf6ca25be58c99cd1ca560ccd1a",
+      "after_sha256": "d0b0064dffa71a553bc6ecf9e848567c090963bc32afda77db06c8425b7eedd9",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.canvas-preworld-reuse",
+      "before_sha256": "a2357bc5459431d4c87b57026a20cc58ef834f5431a9b3918a95c677836854ab",
+      "after_sha256": "4fd9cc5ce1b2a5e971129680319e13fcc5e0b4937b9d9630909c9b2ed52743eb",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.canvas-producer-sequence",
+      "before_sha256": "ee849ca7d1a1f06eed2969cc1954120f0985b1f7b329dddab66b7c8a36fd8edd",
+      "after_sha256": "823b00ecbee257d0ad93d121195dd1ea84969291b0345b53f3c49efb641eb954",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.canvas-startup-clear",
+      "before_sha256": "73f8254188c1103bd433c29c7e7604e011cad32af87609c98991fc4158d28204",
+      "after_sha256": "5a88a90001363009317e6ffd92ba510f31764d3f9ee9b4dc849a482e143e4e33",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.word-backend-state",
+      "before_sha256": "5a2bf484d83fe062cd4489e099555719296ae53d97dae3fd195c95604da22201",
+      "after_sha256": "67bedd3c1aa2056cd746b42a7bab02d86ddad0ecf5472a2f28b720a3ebbd76b3",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.word-clip-aux-shadow",
+      "before_sha256": "481256179e63399392d644b9f97f420ddc287d45e01e162791e7d9ff3a5b1fec",
+      "after_sha256": "e0452548f086f9e994b4b137c1eb0af4859f51b49bd9bbda079e37ab5cd00c33",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.word-clip-shadow",
+      "before_sha256": "1c1fbc7e0b8637a49950f477c2581379e6ed57d567cdf950c7bacaf22e932495",
+      "after_sha256": "5db0deebf662bed964af69472a9294320565ccfbba4fd8259fd0a769f9a8f3c9",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.word-clip-takeover",
+      "before_sha256": null,
+      "after_sha256": "5e43f0e957d2ec6419ba99a96730b323f314a119b2977f0e278fa611ff7dadbb",
+      "receipts": [
+        "word-clip-takeover-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.word-cpu-clipping",
+      "before_sha256": "31565f40536e7c9214597f11446bb214f56794d92557850b1cfe76e1f5f0f644",
+      "after_sha256": "e916c9cbcd8a05a96b6b2aa78e8dffa14882d08574947a04516d96e67d5084ef",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.word-raster",
+      "before_sha256": "883d292f6a325733f62f562510792aa2b1341e84e7ed754727d621e925402718",
+      "after_sha256": "3a6ba3e27d8f462f06ee238dfa208ca3ac821cffb92de94b93e7a17e2927cd4a",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.word-route",
+      "before_sha256": "ebc7d5e03d0cf1ce71fbce6bfc66d86cb78839e6aac68d105b43279789c9e70f",
+      "after_sha256": "97d3130d7ba6e22c77c6dd67d729731fe288e5251691250bee2a59c7010004a8",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-composition",
+      "before_sha256": "3c28116dae4be22d618850445b16a5f19a7d251d03bb45c71a6cf28775f74121",
+      "after_sha256": "7bc88390a59355057f72cb9c7296560840fcb8b091a07b648b39331ac7d6cd6b",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-frame",
+      "before_sha256": "e334dba3ff61bd58446356aa9b510004dcd360deb2c232e6d0053a9d9640bcc8",
+      "after_sha256": "93b3b917ebe58a96ffa9e372d58bf427f4e811f699b4ee77e3d74d91bb577a61",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-initial-state",
+      "before_sha256": "ec1f2cdb49f81e56ed2319095e5ef0fb94d42841e4a0e12b3e36bc0b6573c50a",
+      "after_sha256": "ac921962b507fd5a3b18bb0e933e69c22fd18b48a57842f85f0aba18746c57d5",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-kind8-additive",
+      "before_sha256": "c30891458c25c83fd9fb1096985f15a3bdc129cc98c4cbf83e682747b0f3f8c1",
+      "after_sha256": "cabf72947cd60a4104616a217b2fc0f6acf11244ec300a1ad17747732516a0a2",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-kind8-colour",
+      "before_sha256": "4082b9072f4a5a17e763e3acc345bda1413a76d9b42c04295c9759301cf0ed6e",
+      "after_sha256": "bb1c112edb77979868adba1459ecdbcef623ef299309c0a8226f7c83de618acb",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-kind8-noop",
+      "before_sha256": "5bebd2653d17f06cde4cc2f8bb96da1d22f44c57098d416c7c89c034beda67f3",
+      "after_sha256": "81168d2180f6c0bd02de905893d0d1220b8e216cb3e248b578a2e56f39726efe",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-kind8-virtual",
+      "before_sha256": "06391a451b821a9df1d437a41c64b67aa856de93259f719923bffe8a3eabdcd0",
+      "after_sha256": "ad03aabe61493e6be8f1d7005e375e477c8b123863083eeb6eabda679607e2df",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-producer-bypass",
+      "before_sha256": "cddba32e95fb9e3601eb9accc012e4b0423d30d7d209e8e1166bf90b5c58aa3b",
+      "after_sha256": "7c4af91a2df24ce12799f31d09b1b18932ed15fce8301621a4367f20b3fa9381",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-raster-batch-return",
+      "before_sha256": "5fd8e0553e831a12d80b444d889c55f6795f87c297c4cf94dfe9faf0c7bd4d6f",
+      "after_sha256": "4b515e4418dd4fb10531e1ce27229a3da3623450baf128b8dc0bc0637075b52c",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-raster-queue-replacement",
+      "before_sha256": "6d33bf9f906b35a626f8ec3b7c5fac793fca738ff94b045277b410a3a758a6ed",
+      "after_sha256": "d041fd4997118931568db5e8ebbc3ec4ab5abecc1639f794e9421f63c22e94fc",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-startup-palette",
+      "before_sha256": "bc26ddc75ebfd5b5405c5374383dacbe2b350be09143a06b54de1b935b715a7b",
+      "after_sha256": "7289c15f78f527cfaa378ddba75c0c5578fd56a99a5b01deb2c536a82ea9b920",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-startup-queues",
+      "before_sha256": "d9c0bed28462e01a800603980fd323bb867a1ab3e7b5b8de238aa9dc935028bd",
+      "after_sha256": "d3ca71dc006c4c6973e7005def66b7f31a970bfe97fcd9aa1afa51ccaa953972",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "RS.world-startup-wave",
+      "before_sha256": "65205107ae1700bedc23cd707e7626bc69afb45dc5b0cd0447ff845c0d25e52a",
+      "after_sha256": "1dc0f1f5811a1ba1dd95809786f77cabafb6b77403fd1d2cbb3f43bec6f23b21",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "229ca4ba65fa4df2d25e35afeea94c2e64d79d2ce28a3bcd6a50fff5cd131fe6",
+      "after_sha256": "b2e71aca1013d6e96b1a4ba2705490daa337c151cdea9d6a6aee9a360b5f4587",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "TOOL.drawing-family-regressions",
+      "before_sha256": "e0f6f5b749325080c712c12ae72fcb43f1d20831b5ddf0c052a4bf5c9052734f",
+      "after_sha256": "402606181e1c5f3b432cecadd959b36363be49815d2d285fed36c25e91d5fdb3",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "id": "TOOL.rendering-coverage",
+      "before_sha256": "ac520f8717cf67c5b307a3d8b066c23cbbac99e4dd892763e734bc185c366746",
+      "after_sha256": "232eb160f0eaeb68db6b9f0e5661f2dfc60f6447745cb3755b846bc241d7f512",
+      "receipts": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "HOST.native-command-launch",
+      "before_sha256": "36beebd38f225c7cdda9e1513befb091f67356e052936665df2cbff22a4b235a",
+      "after_sha256": "ef57b9b91f073784370b688f90be8bd2007ec74bc8dbccd72fd93f6f0643d1b4",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.font-byte-producer",
+      "before_sha256": null,
+      "after_sha256": "1811b31cc3a02058c6d9e5e3939a62bd9882a33fb846adf383cf26f709a2e093",
+      "receipts": [
+        "font-byte-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.font-glyph-live-shadow",
+      "before_sha256": null,
+      "after_sha256": "06be5ad0fd1e3cd272a46eefd5d5fc311e43e6d437a57e4e0c20da949255fd00",
+      "receipts": [
+        "font-byte-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.live-command-transport",
+      "before_sha256": "f5c217b2b9d504f345e1d2ef3c70e1cfbf15161180f1eb6c9ea20ab1328889d4",
+      "after_sha256": "0bdf51772e902851c3cdf7891cf0c47faa37c5bf88056d87f4f54d4faf75088b",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.live-drawing-replacement",
+      "before_sha256": "d23686b488543a8d48e0d32c1c46e099169e46f920de52c8cd47f75fa9b7b01d",
+      "after_sha256": "c7e99445c8658dbd0ffc0a6697f307f0e451eca34b45d02421aa4e4ea3c35365",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.real-game-command-shadow",
+      "before_sha256": "8bf29ca872badf57168018e347ffd10df5bf458c648993503d1db33d07fd96e7",
+      "after_sha256": "1913115b1670e77a84e24bf7338ee8da6f3b6d95175ce224194bdfb04bf67ca7",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.scene-service",
+      "before_sha256": "be2faecf0bff5ebace70e2581867b7b44439a499a8356626450412622bebd550",
+      "after_sha256": "c6040a93f421b70e4c227d871723d22602a165b51d1648e166705f8672b28a51",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.scene-snapshot",
+      "before_sha256": "854d702bc5be9754154a1e74c12f8a627dd60b70600357c37a0862b31e780949",
+      "after_sha256": "39883409ca00bb0db7402d73f4e82910978de4161f7665b9245ef1a99e3a9db6",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.surface-fixture-corpus",
+      "before_sha256": "d36ae5d3bafa8f5a6ca32eabfe493b7ac77584a91f7592c0ac442d7ec90fcf56",
+      "after_sha256": "2346fd4a05073efc8d1a93c6b70b71cf458259704aa54df643fbff6e20127e58",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.word-admission",
+      "before_sha256": "30b5001cacadd2c056eb71f5be04dd53bf15b801ac020101d4ae5641d4ce2e28",
+      "after_sha256": "3f586b8ba7d3695dc4394f3adacc7e403394ea7fbe04c121657f71824f4f14f7",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.world-admission",
+      "before_sha256": "c9aff35cf4342c689e101ee464c7da55840cef8693041d896feed963fa33902e",
+      "after_sha256": "609992e78ab2666d9e4e79c5b03d3058cd74966e30cd65e26fcc7f04a20337f0",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.world-channel",
+      "before_sha256": "d3d4bd4fa008662298482b1abc734f4d6191b180a4e7ce9a3262a5fedec960ae",
+      "after_sha256": "29a82f51c96d468dad194e62fae0368b2c9eb55a7d94bc999f68f5dbda34bc9b",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.world-live-view",
+      "before_sha256": "d36f1c23958542042c9b352080bac39da067889f7d40b4e7e8e26a6e9e88ddb1",
+      "after_sha256": "ad35a8bca1d06509c77b830fee2d1845a55ad989e313fe25b18ff90d9a1dac1c",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.copies",
+      "before_sha256": "bdf511fa08dd48f1c228aed5e8b29f151d945a1c069e200890a07cf75c373492",
+      "after_sha256": "8714a758b6848e6c9fddbff430fabd76e11c8c9796f24faf64d5b43c980d9705",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.effects",
+      "before_sha256": "f966d22dd1e84097adf27c7ba91b8ed3da49f9aa851f9e0e00949da7700cf2d0",
+      "after_sha256": "2d579e5da63eff9897a2567c86eddc624f62ded30ae01717ab2455b66801fdad",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.fills",
+      "before_sha256": "b5e878800d6173bb19a1a89313ddad37c2330ab6582322038ba1ca682e5af420",
+      "after_sha256": "ba680f358606149b1864f5a67b5bf33780eb38b10703d08ff2bed2c427a7dbff",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.gdi-text",
+      "before_sha256": "7b5c50645d02215fc26b5fc332b4c91ac544bee0f91f20f75acec1a91845dea8",
+      "after_sha256": "37cd57801432c3c3de4847442ee8a5dafc9108a2be415468178f2f691fc3be79",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.locked-writes",
+      "before_sha256": "330918bf63844a892c1ec4601116d080ceda68b3e7add8a00ceffcf74055c525",
+      "after_sha256": "d1266730a1215a4b58ca9a42397abde106d9491201a8cfdb05b2ce72eb7475e4",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.movies",
+      "before_sha256": "fcedf8f717ad31a5d07e116565b0a7de9ef2e134a9c36752c414d06ed0b7e5ff",
+      "after_sha256": "0115e6c8150e1c64e90123f491d57167677e2767ad2d34c44e611b62b55890eb",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.sprites",
+      "before_sha256": "39b443245a83d9ae9e685cf99b287cb04d60d86144eaabaa0dfcaf17d773113c",
+      "after_sha256": "61bb68edc7925aa9bb2c91293dc3c6079c58bf751ec39adeeee2e7420113127d",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.terrain",
+      "before_sha256": "02a606f1498811716895d78556807e1427aab86bb1f7ebc1355db8f99cc0642b",
+      "after_sha256": "992de713d15393c85bda15ffa47aaf2f141887d4195ac4a619601e779b3280a2",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.ui",
+      "before_sha256": "233214a35459deaae535cf6ceae11a9a1b2b3d3b9527ac3b67560abd29c7795d",
+      "after_sha256": "33c87424a77001027d209383ba1a482c8ba7e31ce56964e84aab665826490997",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RS.font-byte-consumer",
+      "before_sha256": null,
+      "after_sha256": "1a389c1085158efd4dca78ceb5cdfd9295d9eea70508e2bfd44b302d7c960642",
+      "receipts": [
+        "font-byte-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RS.word-raster",
+      "before_sha256": "3a6ba3e27d8f462f06ee238dfa208ca3ac821cffb92de94b93e7a17e2927cd4a",
+      "after_sha256": "84cd18e5f431d37eb004e22faf7dd02ce3958fd477aca0c606ad61e308901ef0",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RS.word-route",
+      "before_sha256": "97d3130d7ba6e22c77c6dd67d729731fe288e5251691250bee2a59c7010004a8",
+      "after_sha256": "de448887e130af13c9987d7b1ae80b25e4dd94645f3432c5ade505938550809d",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RS.world-composition",
+      "before_sha256": "7bc88390a59355057f72cb9c7296560840fcb8b091a07b648b39331ac7d6cd6b",
+      "after_sha256": "8918338b98330af5252fd6eeadb6041a257f6516757899ff267d02e8bb1f52d3",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RS.world-frame",
+      "before_sha256": "93b3b917ebe58a96ffa9e372d58bf427f4e811f699b4ee77e3d74d91bb577a61",
+      "after_sha256": "61754c011335d31fb7e6b66788e98fda7b0e538844d4e389ea251581ae0306cf",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "b2e71aca1013d6e96b1a4ba2705490daa337c151cdea9d6a6aee9a360b5f4587",
+      "after_sha256": "33023ef093ff67402971fab0b03e9d401a2ec6ab651336bc1dae13fb2e7cc4c7",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "TOOL.rendering-coverage",
+      "before_sha256": "232eb160f0eaeb68db6b9f0e5661f2dfc60f6447745cb3755b846bc241d7f512",
+      "after_sha256": "23449a72a285460fc03cf6765dd3d61b0fb2104fa168f1c0e32e2dc63d360793",
+      "receipts": [
+        "font-byte-source-accounting-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "reviewed_transitions": 51,
+  "reviewed_behavior_transitions": 103,
+  "unresolved_count": 0
+}
