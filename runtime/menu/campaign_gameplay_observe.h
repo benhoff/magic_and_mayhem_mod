@@ -50,6 +50,7 @@ static void gameplay_sample(void){
     }
     SetLastError(error);
 }
+#include "campaign_spell_observe.h"
 static int install_gameplay_observe(void){
     char path[2048];u32 n=GetEnvironmentVariableA("MNM_MENU_GAMEPLAY_OBSERVE",path,sizeof(path));
     if(!n)return 1;
@@ -62,6 +63,7 @@ static int install_gameplay_observe(void){
     if(!gameplay_file){VirtualProtect((void*)0x50c0d0,6,old,&restore);return 0;}
     const u8 header[16]={'M','N','M','G','P','0','0','1',1,0,0,0,64,0,0,0};u32 wrote;
     if(!WriteFile(gameplay_file,header,16,&wrote,0)||wrote!=16){CloseHandle(gameplay_file);gameplay_file=0;VirtualProtect((void*)0x50c0d0,6,old,&restore);return 0;}
+    if(!install_spell_observe()){CloseHandle(gameplay_file);gameplay_file=0;VirtualProtect((void*)0x50c0d0,6,old,&restore);return 0;}
     jump(0x50c0d0,(u32)&gameplay_melee,6);VirtualProtect((void*)0x50c0d0,6,old,&restore);
     FlushInstructionCache(GetCurrentProcess(),(void*)0x50c0d0,6);return 1;
 }

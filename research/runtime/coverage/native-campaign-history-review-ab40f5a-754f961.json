@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "scope": "Retrospective committed-history accounting only; no past gate pass or new validation claim.",
+  "range": "ab40f5a..754f961",
+  "transitions": [
+    {
+      "commit": "754f961efe237fba93a01c27fad9f325085599b5",
+      "path": "research/runtime/coverage/native-campaign-history-review-5c086ce-ab40f5a.json",
+      "before_sha256": null,
+      "after_sha256": "fb023624e51cc67b2b6019396df644b8b6917005fd576c72f62d0bd520d3f160",
+      "exact_receipts": [
+        "native-portrait-protocol-history-review-20261010"
+      ]
+    },
+    {
+      "commit": "754f961efe237fba93a01c27fad9f325085599b5",
+      "path": "tests/native-campaign-smoke.md",
+      "before_sha256": "bf0208f651c72481aee03fada1aa94864ff2d8230c7b89ada868e80953fb9300",
+      "after_sha256": "559427081907fd6ffa004fcea3d1df31af2f722bc6f0aa42793912079f8b1f89",
+      "exact_receipts": [
+        "native-portrait-protocol-history-review-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

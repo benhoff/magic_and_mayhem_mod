@@ -1,0 +1,288 @@
+{
+  "schema": 1,
+  "scope": "Unpaired owned native/Wine process CPU attribution during the portrait loop. Sample counts are not elapsed-time speedups or hardware measurements; simulation cadence equivalence is not claimed.",
+  "samples": 6864,
+  "lost_samples": 0,
+  "frequency_hz": 99,
+  "requested_seconds": 20,
+  "sample_time_range": [
+    46632.611363,
+    46652.616819
+  ],
+  "processes": [
+    {
+      "pid": 1669983,
+      "command": [
+        "/tmp/mnm-native-campaign-exercise/working/build/qt-shell/mnm-qt-shell",
+        "--repo",
+        "/tmp/mnm-native-campaign-exercise",
+        "--live-menus",
+        "--native-commands",
+        "--live-menu-test",
+        "/tmp/mnm-native-campaign-exercise/working/tests/native-campaign/run-zovt0tz7/flow.json"
+      ]
+    },
+    {
+      "pid": 1670786,
+      "command": [
+        "C:\\windows\\system32\\explorer.exe",
+        "/desktop=MagicMayhem,800x600",
+        "/tmp/mnm-native-campaign-exercise/working/experiments/menu-observer/run-c4v_u614/game/Chaos.exe"
+      ]
+    },
+    {
+      "pid": 1670826,
+      "command": [
+        "/tmp/mnm-native-campaign-exercise/working/experiments/menu-observer/run-c4v_u614/game/Chaos.exe"
+      ]
+    }
+  ],
+  "dso_samples": [
+    {
+      "dso": "/tmp/perf-1669983.map",
+      "samples": 2559,
+      "percent": 37.28146853146853
+    },
+    {
+      "dso": "/tmp/perf-1670826.map",
+      "samples": 1517,
+      "percent": 22.100815850815852
+    },
+    {
+      "dso": "/usr/lib/wine/i386-windows/kernel32.dll",
+      "samples": 1228,
+      "percent": 17.89044289044289
+    },
+    {
+      "dso": "/usr/lib/libgallium-26.2.1-arch1.1.so",
+      "samples": 508,
+      "percent": 7.400932400932401
+    },
+    {
+      "dso": "/tmp/mnm-native-campaign-exercise/working/experiments/menu-observer/run-c4v_u614/game/Chaos.exe",
+      "samples": 473,
+      "percent": 6.891025641025641
+    },
+    {
+      "dso": "/usr/lib/wine/i386-windows/wined3d.dll",
+      "samples": 181,
+      "percent": 2.636946386946387
+    },
+    {
+      "dso": "/usr/lib/libc.so.6",
+      "samples": 145,
+      "percent": 2.1124708624708624
+    },
+    {
+      "dso": "inlined",
+      "samples": 65,
+      "percent": 0.946969696969697
+    },
+    {
+      "dso": "/usr/lib/wine/i386-windows/dsound.dll",
+      "samples": 48,
+      "percent": 0.6993006993006993
+    },
+    {
+      "dso": "/usr/lib/wine/x86_64-unix/ntdll.so",
+      "samples": 39,
+      "percent": 0.5681818181818182
+    },
+    {
+      "dso": "/usr/lib/wine/i386-windows/ntdll.dll",
+      "samples": 20,
+      "percent": 0.2913752913752914
+    },
+    {
+      "dso": "/usr/lib/wine/x86_64-windows/wow64.dll",
+      "samples": 15,
+      "percent": 0.21853146853146854
+    },
+    {
+      "dso": "/usr/lib/wine/x86_64-windows/wow64cpu.dll",
+      "samples": 14,
+      "percent": 0.20396270396270397
+    },
+    {
+      "dso": "/usr/lib/wine/i386-windows/ucrtbase.dll",
+      "samples": 8,
+      "percent": 0.11655011655011654
+    },
+    {
+      "dso": "/usr/lib/pulseaudio/libpulsecommon-17.0.so",
+      "samples": 8,
+      "percent": 0.11655011655011654
+    },
+    {
+      "dso": "/usr/lib/libQt6Gui.so.6.11.2",
+      "samples": 5,
+      "percent": 0.07284382284382285
+    },
+    {
+      "dso": "/usr/lib/libpulse.so.0.24.3",
+      "samples": 5,
+      "percent": 0.07284382284382285
+    },
+    {
+      "dso": "/usr/lib/wine/x86_64-unix/win32u.so",
+      "samples": 4,
+      "percent": 0.05827505827505827
+    },
+    {
+      "dso": "/usr/lib/wine/x86_64-windows/ntdll.dll",
+      "samples": 4,
+      "percent": 0.05827505827505827
+    },
+    {
+      "dso": "/usr/lib/libQt6Widgets.so.6.11.2",
+      "samples": 3,
+      "percent": 0.043706293706293704
+    },
+    {
+      "dso": "/usr/lib/libGLdispatch.so.0.0.0",
+      "samples": 2,
+      "percent": 0.029137529137529136
+    },
+    {
+      "dso": "/usr/lib/libglib-2.0.so.0.8800.3",
+      "samples": 2,
+      "percent": 0.029137529137529136
+    },
+    {
+      "dso": "[vdso]",
+      "samples": 2,
+      "percent": 0.029137529137529136
+    },
+    {
+      "dso": "/usr/lib/libQt6Core.so.6.11.2",
+      "samples": 2,
+      "percent": 0.029137529137529136
+    },
+    {
+      "dso": "/usr/lib/wine/x86_64-unix/winepulse.so",
+      "samples": 1,
+      "percent": 0.014568764568764568
+    },
+    {
+      "dso": "/usr/lib/wine/i386-windows/kernelbase.dll",
+      "samples": 1,
+      "percent": 0.014568764568764568
+    },
+    {
+      "dso": "/usr/lib/libxcb.so.1.1.0",
+      "samples": 1,
+      "percent": 0.014568764568764568
+    },
+    {
+      "dso": "/usr/lib/wine/x86_64-windows/win32u.dll",
+      "samples": 1,
+      "percent": 0.014568764568764568
+    },
+    {
+      "dso": "/usr/lib/libgcc_s.so.1",
+      "samples": 1,
+      "percent": 0.014568764568764568
+    },
+    {
+      "dso": "/usr/lib/libGLX.so.0.0.0",
+      "samples": 1,
+      "percent": 0.014568764568764568
+    },
+    {
+      "dso": "/usr/lib/wine/i386-windows/opengl32.dll",
+      "samples": 1,
+      "percent": 0.014568764568764568
+    }
+  ],
+  "threads": [
+    {
+      "pid": 1670826,
+      "tid": 1670826,
+      "samples": 1973
+    },
+    {
+      "pid": 1669983,
+      "tid": 1670179,
+      "samples": 738
+    },
+    {
+      "pid": 1669983,
+      "tid": 1670177,
+      "samples": 736
+    },
+    {
+      "pid": 1669983,
+      "tid": 1670176,
+      "samples": 734
+    },
+    {
+      "pid": 1669983,
+      "tid": 1670178,
+      "samples": 731
+    },
+    {
+      "pid": 1670826,
+      "tid": 1670843,
+      "samples": 301
+    },
+    {
+      "pid": 1670826,
+      "tid": 1670844,
+      "samples": 301
+    },
+    {
+      "pid": 1670826,
+      "tid": 1670842,
+      "samples": 301
+    },
+    {
+      "pid": 1670826,
+      "tid": 1670841,
+      "samples": 299
+    },
+    {
+      "pid": 1670826,
+      "tid": 1670856,
+      "samples": 262
+    },
+    {
+      "pid": 1670826,
+      "tid": 1670902,
+      "samples": 229
+    },
+    {
+      "pid": 1669983,
+      "tid": 1669983,
+      "samples": 187
+    },
+    {
+      "pid": 1670826,
+      "tid": 1670840,
+      "samples": 54
+    },
+    {
+      "pid": 1670826,
+      "tid": 1670838,
+      "samples": 11
+    },
+    {
+      "pid": 1670826,
+      "tid": 1670839,
+      "samples": 7
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "working/tests/native-campaign/run-zovt0tz7/portrait-final.perf",
+      "sha256": "5b2567861af856ced92aa3b92b0fcecd204810e3b2465101619b48cabc251866"
+    },
+    {
+      "path": "working/tests/native-campaign/run-zovt0tz7/portrait-final-profile.txt",
+      "sha256": "cfffabd57435e0bedcd166279fef067fa81e2c6a25a8fc03af40c6ac83027d7e"
+    },
+    {
+      "path": "working/tests/native-campaign/run-zovt0tz7/portrait-final-samples.txt",
+      "sha256": "cf10cb7e86387877c1daf3c1cb464a0e4578215bd6531b84d12ef052f164689d"
+    }
+  ]
+}

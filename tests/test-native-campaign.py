@@ -134,7 +134,7 @@ class CombatEvidenceTests(unittest.TestCase):
         rows=[creature(0,0,0,200),creature(1,10,2,0),creature(3,14,0,90),creature(1,14,0,90),
               [0,2,400,200,1,14,0,90,2,10,2,110,0,1,1,0]]
         for index,row in enumerate(rows,1):row[0]=index
-        inputs=dict(player_owner=0,summon=dict(before_sequence=2,after_sequence=3,slot=3,
+        inputs=dict(player_owner=0,wizard_slot=0,summon=dict(before_sequence=2,after_sequence=3,slot=3,
                     before_capture='combat-00-before-summon',after_capture='combat-01-after-summon'),
                     additional_summons=[dict(before_sequence=3,after_sequence=4,slot=1)],captures=[])
         for name,count in [('combat-00-before-summon','0/15'),('combat-01-after-summon','1/15')]:
@@ -147,6 +147,8 @@ class CombatEvidenceTests(unittest.TestCase):
         return rows,inputs
 
     def write_trace(self, root, rows):
+        spell=[1,1,400,100,14,0,0,0,12800,8448,0xffffffff,1,2,4,6,1]
+        (root/'spell-events.bin').write_bytes(b'MNMCA001'+struct.pack('<II',1,64)+struct.pack('<16I',*spell))
         (root/'gameplay-events.bin').write_bytes(b'MNMGP001'+struct.pack('<II',1,64)+b''.join(struct.pack('<16I',*r) for r in rows))
 
     def test_actual_melee_and_summons_including_reused_original_slot(self):

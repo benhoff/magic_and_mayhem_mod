@@ -2,6 +2,7 @@
 #include "live_menu_session.hpp"
 #include "gl_viewport.hpp"
 #include "frame_stream.hpp"
+#include "../../protocols/include/mnm/menu_v11.h"
 #include <QApplication>
 #include <QMainWindow>
 #include <QPushButton>
@@ -29,7 +30,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     const int stressSeconds=qEnvironmentVariableIntValue("MNM_CAMPAIGN_STRESS_SECONDS");
     const int cycles=qMax(1,qEnvironmentVariableIntValue("MNM_CAMPAIGN_MENU_CYCLES"));
     const bool castingCombat=qEnvironmentVariableIntValue("MNM_CAMPAIGN_CASTING_COMBAT")==1;
-    struct Run {std::future<void> captureJob;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;QElapsedTimer sampleClock;QJsonArray rates;int stage=0;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
+    struct Run {std::future<void> captureJob;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
     auto run=std::make_shared<Run>();
     auto finish=[run,path,probe,&app](bool success,const QString& reason){
         if(run->done)return;
@@ -45,6 +46,14 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(!saved)app.exit(1);
     };
     auto snapshot=[run,&window,path,&session](const QString& name){
+        QImage originalImage;
+        if(name=="gameplay"||name=="gameplay-resumed"){
+            FrameStream reference;
+            if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))originalImage=reference.nextFrame();
+            // A busy seqlock is normal. Retry on the next UI poll before
+            // capturing/saving any image or advancing the campaign route.
+            if(originalImage.isNull())return false;
+        }
         window.raise();
         const auto file=QFileInfo(path).dir().filePath(name+QString("-%1.png").arg(run->cycle));
         bool saved=false;if(auto* screen=window.screen())saved=screen->grabWindow(window.winId()).save(file);
@@ -57,13 +66,11 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                 nativeFile=QFileInfo(path).dir().filePath(name+QString("-native-%1.png").arg(run->cycle));
                 nativeSaved=viewport->grabFramebuffer().copy(QRect(qRound(rect.x()*ratio),qRound(rect.y()*ratio),qRound(rect.width()*ratio),qRound(rect.height()*ratio))).scaled(viewport->frameSize(),Qt::IgnoreAspectRatio,Qt::FastTransformation).save(nativeFile);
             }
-            FrameStream reference;
-            if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin"))){
-                originalFile=QFileInfo(path).dir().filePath(name+QString("-original-%1.png").arg(run->cycle));
-                const auto image=reference.nextFrame();originalSaved=!image.isNull()&&image.save(originalFile);
-            }
+            originalFile=QFileInfo(path).dir().filePath(name+QString("-original-%1.png").arg(run->cycle));
+            originalSaved=originalImage.save(originalFile);
         }
         run->steps.append(QJsonObject{{"native_image",nativeFile},{"native_image_saved",nativeSaved},{"original_image",originalFile},{"original_image_saved",originalSaved},{"step",name},{"screenshot",file},{"screenshot_saved",saved}});
+        return true;
     };
     auto click=[&window,finish](const QString& name){
         auto* button=window.findChild<QAbstractButton*>(name);
@@ -78,6 +85,9 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(run->done||!s.ready)return;
         if(run->thread&&run->thread!=s.thread){finish(false,"Menu engine thread changed");return;}
         run->thread=s.thread;
+        if(run->stage>=3&&(s.screen==3||s.screen==MNM_MENU_DEFEAT_SCREEN||s.screen==MNM_MENU_RESULT_SCREEN)){
+            finish(false,QString("Campaign left gameplay unexpectedly (screen %1)").arg(s.screen));return;
+        }
         QString action,step;
         if(run->stage==0&&s.screen==3&&s.ack==0){run->stage=1;step="main";action="mainMenuAction0";}
         else if(run->stage==1&&s.screen==18&&s.ack==1){run->stage=difficulty?10:2;step="region";action=difficulty?QString("regionEntryDifficulty%1").arg(difficulty):QString("regionEntryEnter");}
@@ -111,14 +121,16 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
             if(file.open(QIODevice::ReadOnly)){
                 const auto request=QJsonDocument::fromJson(file.readAll()).object();const auto name=request.value("name").toString();file.close();
                 if(!name.isEmpty()&&name.size()<80&&!name.contains('/')&&!name.contains('\\')&&!name.contains("..")){
+                    FrameStream reference;
+                    QImage originalImage;
+                    if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))originalImage=reference.nextFrame();
+                    if(!originalImage.isNull()){
                     auto* viewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
-                    QImage nativeImage,originalImage;
+                    QImage nativeImage;
                     if(viewport&&viewport->isVisible()){
                         const auto rect=viewport->imageRect();const auto ratio=viewport->devicePixelRatioF();
                         nativeImage=viewport->grabFramebuffer().copy(QRect(qRound(rect.x()*ratio),qRound(rect.y()*ratio),qRound(rect.width()*ratio),qRound(rect.height()*ratio))).scaled(viewport->frameSize(),Qt::IgnoreAspectRatio,Qt::FastTransformation);
                     }
-                    FrameStream reference;
-                    if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))originalImage=reference.nextFrame();
                     // Read back on the GL owner thread, then compress owned
                     // image copies off the event loop. Keep one bounded job.
                     const auto directory=QFileInfo(path).dir();
@@ -128,8 +140,9 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                         QSaveFile result(directory.filePath(name+".json"));
                         if(result.open(QIODevice::WriteOnly)){result.write(QJsonDocument(QJsonObject{{"native_saved",nativeSaved},{"original_saved",originalSaved},{"native_frames",qint64(p.frames)},{"painted_frames",qint64(p.paints)},{"fallback",p.fallback}}).toJson());result.commit();}
                     });
-                }
-                QFile::remove(captureRequest);
+                    QFile::remove(captureRequest);
+                    }
+                }else QFile::remove(captureRequest);
             }
         }
         if(p.fallback){finish(false,"Native rendering fell back to the original window");return;}
@@ -138,6 +151,14 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(run->stage==3&&!QFileInfo::exists(path+".world-ready"))return;
         auto* legacy=window.findChild<QWidget*>("legacyGameContainer");
         if(legacy&&legacy->isVisible()){finish(false,"Gameplay still uses the original Wine viewport");return;}
+        // Include bounded capture retry time in the ordinary rate windows.
+        if(run->sampleClock.isValid()){
+            const auto elapsed=run->sampleClock.elapsed();
+            if(elapsed>=1000){
+                run->rates.append(QJsonObject{{"cycle",run->cycle},{"seconds",double(elapsed)/1000},{"native_frames",qint64(p.frames-run->sampleFrames)},{"painted_frames",qint64(p.paints-run->samplePaints)},{"native_fps",1000.0*(p.frames-run->sampleFrames)/elapsed},{"paint_fps",1000.0*(p.paints-run->samplePaints)/elapsed}});
+                run->sampleClock.restart();run->sampleFrames=p.frames;run->samplePaints=p.paints;
+            }
+        }
         if(stressSeconds&&!run->stressDone){
             if(!run->stressRunning){
                 run->stressRunning=true;run->sampleClock.start();run->sampleFrames=p.frames;run->samplePaints=p.paints;
@@ -156,17 +177,17 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                 if(castingCombat&&run->cycle==0)arguments<<"--experiment"<<session.evidenceDirectory()<<"--portrait-stress-seconds"<<QString::number(qEnvironmentVariableIntValue("MNM_CAMPAIGN_PORTRAIT_SECONDS"));
                 input->start("python3",arguments);
             }
-            const auto elapsed=run->sampleClock.elapsed();
-            if(elapsed>=1000){
-                run->rates.append(QJsonObject{{"cycle",run->cycle},{"seconds",double(elapsed)/1000},{"native_frames",qint64(p.frames-run->sampleFrames)},{"painted_frames",qint64(p.paints-run->samplePaints)},{"native_fps",1000.0*(p.frames-run->sampleFrames)/elapsed},{"paint_fps",1000.0*(p.paints-run->samplePaints)/elapsed}});
-                run->sampleClock.restart();run->sampleFrames=p.frames;run->samplePaints=p.paints;
-            }
             return;
         }
+        if(!snapshot(run->stage==6?"gameplay-resumed":"gameplay")){
+            if(!run->snapshotWait.isValid())run->snapshotWait.start();
+            if(run->snapshotWait.elapsed()>5000)finish(false,"Independent original capture did not become readable");
+            return;
+        }
+        run->snapshotWait.invalidate();run->sampleClock.invalidate();
         if(run->stage==6){
-            snapshot("gameplay-resumed");
             if(run->cycle>=cycles){finish(true,QString());return;}
-        }else snapshot("gameplay");
+        }
         run->stage=4;
         // XTest input traverses the public viewport forwarding path. The runner
         // provides a private X display by default; explicit --display opts out.
