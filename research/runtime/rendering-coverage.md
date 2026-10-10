@@ -117,3 +117,12 @@ Tests guard denominator changes, native-policy/observation distinctions,
 standalone-driver separation, stale/current claims, evidence corruption,
 unlinked proof and unobserved/duplicate raster entries. Current workspace audit
 failures remain separate from the reporter's synthetic correctness checks.
+
+### Clipped pixel follow-up — 2026-10-10
+
+The reviewed sprite row now includes `RS.word-clipping`: 960 synthetic GPU
+placements match both original backends at zero clip globals. This adds bounded
+pixel evidence without increasing the number of families with live bypass.
+The sixteen reporter guards also protect `original/` and `.git/` when those
+directories are symlinked outside an isolated checkout; no input files are
+written by that check. Prior reports retain their recorded source hashes.

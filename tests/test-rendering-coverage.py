@@ -8,6 +8,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from rendering_coverage import ROOT, reconcile, read
@@ -156,6 +157,19 @@ class RenderingCoverageTest(unittest.TestCase):
                       (ROOT / 'original/new-rendering-report.json',), (ROOT / '.git/new-report.json',)):
             with self.subTest(paths=paths), self.assertRaises(ValueError):
                 cli.output_paths(paths)
+
+    def test_symlinked_original_and_git_roots_are_protected(self):
+        checkout = self.root / 'checkout'
+        checkout.mkdir()
+        for name in ('original', '.git'):
+            outside = self.root / ('external-' + name)
+            outside.mkdir()
+            (checkout / name).symlink_to(outside, target_is_directory=True)
+            with patch.object(cli, 'ROOT', checkout):
+                for target in (checkout / name / 'new.json', outside / 'new.json'):
+                    with self.subTest(target=target), self.assertRaises(ValueError):
+                        cli.output_paths((target,))
+        self.assertFalse(any(self.root.rglob('new.json')))
 
     def test_repository_crosswalk_has_exact_denominators_and_linked_evidence(self):
         register = read(ROOT, 'research/runtime/coverage/register.json')
