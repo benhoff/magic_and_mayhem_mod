@@ -57,7 +57,11 @@ def main():
     parser.add_argument('--live-frames',type=int,choices=range(1,257),default=24)
     parser.add_argument('--skip-queues',type=int,default=None,help='Wait this many queue calls before the first sample (World default: 120)')
     parser.add_argument('--interval',type=int,default=1,help='Queue calls between samples')
+    parser.add_argument('--minimap-owned',action='store_true',help='Observe owned four-view minimap inputs in producer journal V2; original drawing stays active')
+    parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
+    if args.minimap_input_fixture and (not args.minimap_owned or args.samples!=16 or args.magic_items):parser.error('Minimap input fixture requires --minimap-owned --samples 16 --magic-items 0')
+    if args.minimap_owned and (not args.canvas_producers or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('--minimap-owned requires original-active --canvas-producers')
     if args.producer_oracle_mib!=1024 and not args.canvas_producers:parser.error('--producer-oracle-mib requires --canvas-producers')
     if args.producer_live and not args.canvas_producers:parser.error('--producer-live requires --canvas-producers')
     if args.world_producer_handoff and not args.producer_live:parser.error('--world-producer-handoff requires --producer-live')
@@ -104,7 +108,7 @@ def main():
     if args.magic_items:
         sources += [*sorted((ROOT/'runtime/menu').glob('*.[chS]')),ROOT/'tools/build-menu-observer.py',
                     *[ROOT/('protocols/include/mnm/menu_v'+str(v)+'.h') for v in (1,2,3)]]
-    if args.canvas_producers:sources += [ROOT/'tools/inspect-canvas-producers.py',ROOT/'protocols/include/mnm/canvas_producers_v1.h']
+    if args.canvas_producers:sources += [ROOT/'tools/inspect-canvas-producers.py',ROOT/'protocols/include/mnm/canvas_producers_v1.h',ROOT/'protocols/include/mnm/canvas_producers_v2.h']
     claims=json.loads(args.claims.read_text()) if args.claims else None
     if claims:
         for source,digest in claims['sources'].items():
@@ -124,7 +128,7 @@ def main():
     fingerprints={str(p.relative_to(ROOT)):sha(p) for p in sources}
     spec=importlib.util.spec_from_file_location('scene_prepare',ROOT/'tools/prepare-scene-observer.py')
     staging=importlib.util.module_from_spec(spec);spec.loader.exec_module(staging)
-    process=None;viewer=None;channel=None;trace=[];report=None;root=None
+    process=None;viewer=None;input_fixture=None;channel=None;trace=[];report=None;root=None
     def stop_original():
         nonlocal process
         if process and process.poll() is None:
@@ -157,6 +161,8 @@ def main():
         if args.world_raster_batch:env['MNM_WORLD_RASTER_BATCH']='1'
         if args.world_lifetime:env['MNM_SCENE_LIFETIME']='1'
         if args.canvas_startup:env['MNM_CANVAS_STARTUP']='1'
+        if args.minimap_owned:env['MNM_MINIMAP_OWNED']='1'
+        if args.minimap_input_fixture:env['MNM_MINIMAP_INPUT_FIXTURE']='1'
         if args.canvas_producers:env.update(MNM_CANVAS_PRODUCERS='1',MNM_CANVAS_ORACLE_MIB=str(args.producer_oracle_mib))
         if args.world_producer_bypass:env['MNM_WORLD_PRODUCER_BYPASS']=str(args.world_producer_bypass)
         if args.startup_queues:env['MNM_STARTUP_QUEUES']=str(args.startup_queues)
@@ -217,6 +223,8 @@ def main():
                 rules+= [struct.unpack_from('<I',s[1],60+i*48+12)[0] for i in range(4)]
                 rules[2]=args.magic_items # Zero retains the established no-spell fixture.
                 send(14,6,rules=rules);send(25,9,args.map)
+                if args.minimap_input_fixture:
+                    input_fixture=subprocess.Popen([str(args.minimap_input_fixture.resolve()),str(root/'capture'),str(root/'minimap-input.json')],env={**os.environ,'QT_QPA_PLATFORM':'xcb'},stdout=(root/'minimap-input.log').open('x'),stderr=subprocess.STDOUT)
                 send(14,7,rules=rules)
                 if args.magic_items:send(7,12,slots=wait(7)[2])
             started_live=time.monotonic();deadline=started_live+(3600 if full_rasters else 300 if args.world_producer_handoff else 60)
@@ -259,6 +267,8 @@ def main():
             else:raise RuntimeError('Original simulation produced no complete bounded scene samples')
             if not args.skip_window_screenshot:
                 subprocess.run(['import','-window','root',str(root/'original-window.png')],env=env,timeout=10,check=True)
+        if input_fixture:
+            if input_fixture.wait(timeout=5):raise RuntimeError('Minimap input schedule failed; inspect '+str(root/'minimap-input.json'))
         # Freeze lifetime diagnostics before recording their final hashes.
         stop_original()
         metadata=json.loads((root/'manifest.json').read_text())
@@ -391,12 +401,18 @@ def main():
             spec=importlib.util.spec_from_file_location('kind8',ROOT/'tools/inspect-kind8.py');kind8=importlib.util.module_from_spec(spec);spec.loader.exec_module(kind8)
             observed=kind8.collect(root/'capture')
             report['kind8_objects']={'files':{str(p.relative_to(root)):sha(p) for p in sorted((root/'capture').glob('kind8-*.bin'))},'classes':observed['classes'],'rows':sum(q['captured'] for q in observed['records']),'queues':len(observed['records'])}
+        if args.minimap_input_fixture:
+            report['minimap_input_fixture']=json.loads((root/'minimap-input.json').read_text())
+            report['minimap_input_fixture']['executable_sha256']=sha(args.minimap_input_fixture)
+            report['minimap_input_fixture']['world_return_pace_ms']=250
         if args.word_sprites:report.update(word_sprites_mode=args.word_sprites,word_stats=list(stats),word_directory=metadata['word_directory'],word_scope='Partial direct-word backend entries; full scene pixels and other original drawing are outside the replacement claim')
     except CaptureCancelled as cancelled:
         report={'success':False,'cancelled':True,'reason':str(cancelled),'experiment':str(root),
                 'manual_input':True,'sources':fingerprints,'original_pixels_used_as_native_inputs':False,
                 'scope':'Interactive window closure before the bounded producer chain completed; no equivalence or replacement validation asserted'}
     finally:
+        if input_fixture and input_fixture.poll() is None:
+            input_fixture.terminate();input_fixture.wait(timeout=5)
         if viewer and viewer.poll() is None:
             viewer.terminate()
             try:viewer.wait(timeout=5)

@@ -22574,6 +22574,452 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.minimap-owned-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned original-active four-view minimap journal and replay",
+      "scope": "Opt-in V2 producer journal copies raw four-view terrain/cell/creature/camera inputs, closed source visibility and selected return/object results. Camera outline entry identity is independent of stored terrain/marker orientation; V2 uses bounded262144-record/512MiB journal storage, separate from completion storage. Native prior auxiliary composition and full destination checkpoints; selected positive-stride creature rows and border-skipped camera corners. Source camera/visibility generation, outer borders, arbitrary row aliases, general caller ABI, actual driver equivalence and live replacement remain excluded. Live evidence supports only observed states, four-view synthetic adapter evidence separately bounded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-minimap-live.md",
+        "research/formats/canvas-producers-v2.md"
+      ],
+      "implementation": [
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_producers.S",
+        "compat/legacy/canvas_producers.cpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp"
+      ],
+      "tests": [
+        "tests/minimap-producer-test.cpp",
+        "tests/canvas-producers-test.c",
+        "tools/test-canvas-producers.py",
+        "tools/test-native-canvas-producers.py",
+        "tools/test-minimap-live.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/animation_inspect_main.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/bmp_inspect_main.cpp",
+        "assets/compare_main.cpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/cursor.cpp",
+        "assets/cursor.hpp",
+        "assets/cursor_inspect_main.cpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/dat_inspect_main.cpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/effect_lighting.cpp",
+        "assets/effect_lighting.hpp",
+        "assets/evt.cpp",
+        "assets/evt.hpp",
+        "assets/evt_inspect_main.cpp",
+        "assets/fp.cpp",
+        "assets/fp.hpp",
+        "assets/fp_inspect_main.cpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/jpeg_inspect_main.cpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/map_inspect_main.cpp",
+        "assets/mps.cpp",
+        "assets/mps.hpp",
+        "assets/mps_inspect_main.cpp",
+        "assets/nod.cpp",
+        "assets/nod.hpp",
+        "assets/nod_inspect_main.cpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/pcx_inspect_main.cpp",
+        "assets/persistence.hpp",
+        "assets/persistence_inspect_main.cpp",
+        "assets/persistence_internal.hpp",
+        "assets/profile.cpp",
+        "assets/profile.hpp",
+        "assets/region_recipe.cpp",
+        "assets/region_recipe.hpp",
+        "assets/region_recipe_inspect_main.cpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sft_inspect_main.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_inspect_main.cpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/tag_inspect_main.cpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "assets/text.cpp",
+        "assets/text.hpp",
+        "assets/text_inspect_main.cpp",
+        "assets/wbt.cpp",
+        "assets/wbt.hpp",
+        "assets/wizard.cpp",
+        "assets/wizard.hpp",
+        "assets/wizard_inspect_main.cpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_producers_main.cpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/blit.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/canvas-panel-native.cpp",
+        "tests/canvas-panel-reference.cpp",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-startup-call.S",
+        "tests/minimap-live-input.cpp",
+        "tests/minimap-live-input/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tests/world-producer-bypass-call.S",
+        "tools/audit-file-apis.py",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inventory-binary.py",
+        "tools/prepare-scene-observer.py",
+        "tools/run-game.sh",
+        "tools/scene-game-runner.py"
+      ],
+      "validation_domain": "Bounded first16 original-active World startup prefix with all available producer checkpoints; four-view/two-format synthetic owned adapter and malformed wire/result/selected-entry refusals, V1/V2 budget separation and distinct stored-orientation/outline-entry fixtures. Only actually observed camera/rotation/fog/flash changes count as live validation; source generation and replacement excluded.",
+      "evidence": [
+        "NR.minimap-owned-observation.startup-20261009",
+        "NR.minimap-owned-observation.motion-20261009"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.minimap-input-fixture",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded isolated minimap rotation/pan input fixture",
+      "scope": "Explicit original-active owned minimap capture only: 250ms nonfinal first16 World-return pacing, unique private-Xvfb mapped800x600 game input child, comma/period taps and arrow holds scheduled by completed World-return journal records. Strict pacing flag refusal before hooks; original input/simulation/camera processing unchanged. Every required actual rotation/center change and native checkpoint compared. Not general input timing, full key dispatch, border/camera generation, driver equivalence or drawing replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-minimap-live.md"
+      ],
+      "implementation": [
+        "tests/minimap-live-input.cpp",
+        "runtime/scene/canvas_producers.c",
+        "tools/capture-scene-game.py"
+      ],
+      "tests": [
+        "tools/test-minimap-live.py",
+        "tools/test-canvas-producers.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/animation_inspect_main.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/bmp_inspect_main.cpp",
+        "assets/compare_main.cpp",
+        "assets/config_loader.cpp",
+        "assets/creature_movement.cpp",
+        "assets/creature_movement.hpp",
+        "assets/cursor.cpp",
+        "assets/cursor.hpp",
+        "assets/cursor_inspect_main.cpp",
+        "assets/dat.cpp",
+        "assets/dat.hpp",
+        "assets/dat_inspect_main.cpp",
+        "assets/effect_animation_catalog.cpp",
+        "assets/effect_animation_catalog.hpp",
+        "assets/effect_lighting.cpp",
+        "assets/effect_lighting.hpp",
+        "assets/evt.cpp",
+        "assets/evt.hpp",
+        "assets/evt_inspect_main.cpp",
+        "assets/fp.cpp",
+        "assets/fp.hpp",
+        "assets/fp_inspect_main.cpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/jpeg_inspect_main.cpp",
+        "assets/map.cpp",
+        "assets/map.hpp",
+        "assets/map_inspect_main.cpp",
+        "assets/mps.cpp",
+        "assets/mps.hpp",
+        "assets/mps_inspect_main.cpp",
+        "assets/nod.cpp",
+        "assets/nod.hpp",
+        "assets/nod_inspect_main.cpp",
+        "assets/packed_container.cpp",
+        "assets/palette_lighting.cpp",
+        "assets/palette_lighting.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/pcx_inspect_main.cpp",
+        "assets/persistence.hpp",
+        "assets/persistence_inspect_main.cpp",
+        "assets/persistence_internal.hpp",
+        "assets/profile.cpp",
+        "assets/profile.hpp",
+        "assets/region_recipe.cpp",
+        "assets/region_recipe.hpp",
+        "assets/region_recipe_inspect_main.cpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/save_loader.cpp",
+        "assets/save_world.cpp",
+        "assets/save_world.hpp",
+        "assets/sft.cpp",
+        "assets/sft.hpp",
+        "assets/sft_inspect_main.cpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_inspect_main.cpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/tag.cpp",
+        "assets/tag.hpp",
+        "assets/tag_inspect_main.cpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "assets/text.cpp",
+        "assets/text.hpp",
+        "assets/text_inspect_main.cpp",
+        "assets/wbt.cpp",
+        "assets/wbt.hpp",
+        "assets/wizard.cpp",
+        "assets/wizard.hpp",
+        "assets/wizard_inspect_main.cpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_producers_main.cpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/canvas-panel-native.cpp",
+        "tests/canvas-panel-reference.cpp",
+        "tests/canvas-producers-test.c",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-startup-call.S",
+        "tests/minimap-live-input.cpp",
+        "tests/minimap-live-input/CMakeLists.txt",
+        "tests/minimap-producer-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/world-producer-bypass-call.S",
+        "tools/audit-file-apis.py",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inventory-binary.py",
+        "tools/prepare-scene-observer.py",
+        "tools/run-game.sh",
+        "tools/scene-game-runner.py",
+        "tools/test-canvas-producers.py",
+        "tools/test-minimap-live.py",
+        "tools/test-native-canvas-producers.py"
+      ],
+      "validation_domain": "Completed World-return records schedule input after rendering, with private focus/pointer centering; first16 map2/zero-items original-active World calls; actual orientations0..3 and at least two source centers required, complete source-only replay checkpoints equal. Strict malformed/empty fixture flag and missing owned opt-in refuse before mutation. No original camera memory writes.",
+      "evidence": [
+        "NR.minimap-owned-observation.motion-20261009"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "INPUT.camera-minimap-orientation-update",
+      "subsystem": "input",
+      "kind": "recovered",
+      "title": "Selected original rotation consumption and minimap invalidation",
+      "scope": "Static No-CD trace: selected outline call table555e08 dispatches to5527a0/552f20/5527a0/552b50 independently of minimap+c5; camera update consumes opposite pending rotation requests, changes orientation modulo4, then minimap setter writes object+c5 and invalidates+8d. Comma/period dispatch trace is documented as an unassigned-function boundary; full key handler, camera-vector generation and live dispatch equivalence unclaimed.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5232132,
+          "scope": "Selected pending rotation consumption branch inside original camera update."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5595952,
+          "scope": "Minimap orientation setter +c5 and invalidation +8d only."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-minimap-live.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [
+        "INPUT.camera-minimap-orientation-update.static-20261009"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -44126,10 +44572,144 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.minimap-owned-observation.startup-20261009",
+      "kind": "live_observation",
+      "scope": "Original-active first16 startup World calls; observed orientation0, center68/6, fog1, flash0/1, RGB565 only. 52 forwarded hooks and all1062 independent native checkpoints equal. No replacement.",
+      "record": "research/runtime/native-minimap-live-startup-20261009.json",
+      "sha256": "9ec359015e5d01beb9b4ba9866e688c5f8527606afbd225113bbb29cd69de184",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/equal",
+          "equals": 1062
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "INPUT.camera-minimap-orientation-update.static-20261009",
+      "kind": "static",
+      "scope": "Selected pinned No-CD camera rotation consumption, minimap setter and outline dispatch bytes, manually interpreted with retained disassembly. Not full keyboard dispatch or execution equivalence.",
+      "record": "research/runtime/native-minimap-camera-input-trace-20261009.json",
+      "sha256": "df881a0dcb7b08063c94c3f71937266d7a4062bf03c0e80fd57d74f604f0bfdd",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original_memory_written",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.minimap-owned-observation.motion-20261009",
+      "kind": "live_observation",
+      "scope": "Bounded first16 original-active map2/zero-items World returns with paced XTest rotation/pan. All four stored orientations, seven observed centers, selected outline entries0/1/2, fog1, flash0/1 and RGB565; 52 forwarded hook/state checks, strict fixture refusals and all1062 source-only native checkpoints exact. No outer border, fourth outline caller, general driver/ABI or replacement claim.",
+      "record": "research/runtime/native-minimap-live-motion-20261009.json",
+      "sha256": "6fc3d2c6fd4107661061496db66876d6606c7cdf66cea8f5929594337db5f513",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/equal",
+          "equals": 1062
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/forwarded_entries",
+          "equals": 52
+        },
+        {
+          "pointer": "/state_preservation",
+          "equals": true
+        },
+        {
+          "pointer": "/signature_refusal_before_mutation",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/motion/same_orientation_pan_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/observed/orientations",
+          "equals": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
     }
   ],
   "classifications": [],
-  "api_bindings": [],
+  "api_bindings": [
+    {
+      "build": "nocd-40209ca7",
+      "iat_va": 6050444,
+      "behaviors": [
+        "INPUT.camera-minimap-orientation-update"
+      ],
+      "scope": "Static selected unassigned key-handler trace at46c070 calls MapVirtualKeyA(VK,0) before comma/period request branches. Conversion only; full handler ownership, dispatch equivalence and other keys remain unresolved."
+    }
+  ],
   "dispatch_tables": [
     {
       "id": "movement-animation-events",
@@ -46636,6 +47216,48 @@
         "address": 5589008,
         "relation": "data",
         "scope": "Fog-enabled four-entry orientation table; companion fog-disabled table at554820."
+      }
+    },
+    {
+      "id": "minimap-camera-outline-call-sites",
+      "document": "research/runtime/native-minimap-live.md",
+      "scope": "Static selected four-slot caller table only; repeats5527a0, no5532f0 call. Original caller-state generation, other call sites and out-of-range branch remain unresolved.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": "out-of-range",
+          "behaviors": []
+        }
+      ],
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5594632,
+        "relation": "data",
+        "scope": "Four raw dispatch slots at555e08, mapped to three direct call sites; not global minimap orientation dispatch equivalence."
       }
     }
   ],
@@ -50870,6 +51492,41 @@
       "evidence": [
         "NR.world-frame-identity-cache.native-20261009"
       ]
+    },
+    {
+      "id": "minimap-owned-live-prefix16-20261009",
+      "title": "Original-active owned minimap inputs through first16 World returns",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.minimap-owned-observation"
+      ],
+      "tests": [
+        "tools/test-minimap-live.py",
+        "tests/minimap-producer-test.cpp",
+        "tools/test-canvas-producers.py",
+        "tools/test-native-canvas-producers.py"
+      ],
+      "evidence": [
+        "NR.minimap-owned-observation.startup-20261009"
+      ],
+      "scope": "All admitted captured source inputs and 16 original-active startup World returns; complete native producer checkpoints independently compared. Actual observed view/center/fog/flash states enumerated. Other live states, borders and native writeback remain excluded."
+    },
+    {
+      "id": "minimap-owned-live-motion16-20261009",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.minimap-owned-observation",
+        "NR.minimap-input-fixture"
+      ],
+      "tests": [
+        "tools/test-minimap-live.py",
+        "tests/minimap-live-input.cpp",
+        "tests/minimap-live-input/CMakeLists.txt"
+      ],
+      "evidence": [
+        "NR.minimap-owned-observation.motion-20261009"
+      ],
+      "scope": "First16 original-active World calls with isolated XTest comma/period rotation and arrow panning scheduled at completed World-return journal records under explicit 250ms World-return fixture pacing. All four actual minimap orientations and more than one source center required; every native completion independently equals original. Excludes unobserved states, outer borders, driver/ABI and replacement."
     }
   ],
   "recovered_ranges": [
@@ -51198,8 +51855,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-frame-identity-cache-committed-20261009.json",
-    "sha256": "ec805593f444ee1958c13d24ea1e0c8c7e6a2caf28c6ccfd96a4f5bf4af5f30d"
+    "path": "research/runtime/coverage/source-index-minimap-live-committed-20261009.json",
+    "sha256": "1f9ad52c2f51751d1ffd7374b6bf34c63f1552511acbfe5bc32cc1b10284afc7"
   },
   "claim_bindings_required": true
 }

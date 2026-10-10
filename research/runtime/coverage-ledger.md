@@ -3341,3 +3341,42 @@ minimap edits and staged work. The history report
 93 committed file transitions across `8dce3ac..60f6b3d` and `60f6b3d..b70c9e6`;
 all have exact receipt chains, separately from current execution. Historical
 reports, hashes and receipts remain unchanged.
+
+### Original-active owned minimap journal (2026-10-09)
+
+`NR.minimap-owned-observation` adds opt-in producer journal V2 with owned raw
+terrain, palette/cell, visibility/creature and camera-corner inputs. Native replay
+uses its own prior auxiliary canvas and checks selected original return/object
+results; no original completion pixels initialize native storage. All52 observer
+entries forward original execution. Synthetic four-view/two-format adapter cases
+and malformed/result refusals are separate from live observation.
+
+The preserved [startup report](native-minimap-live-startup-20261009.json) records
+1062/1062 equal full-canvas checkpoints (474236912 compared pixels), orientation0,
+center68/6, fog1, flash0/1 and RGB565. This historical report predates the optional
+paced motion fixture; its hashes and prospective claims remain unchanged.
+Original manifest verification passed before/after. Original camera/visibility
+generation, outer-border drawing, unsupported row aliases, general driver/caller
+ABI and live drawing replacement remain outstanding. The existing standalone
+recovered minimap behaviors retain separate isolated-original evidence and do not
+acquire blanket live integration status from this native observation policy.
+
+`NR.minimap-input-fixture` separately records private-Xvfb XTest rotation/pan
+controls and explicit250ms World-return pacing. `INPUT.camera-minimap-orientation-update`
+seeds the selected original update/setter trace; complete input dispatch and
+unassigned handler boundaries remain unresolved. See
+[contract and reproduction](native-minimap-live.md) and
+[V2 wire contract](../formats/canvas-producers-v2.md).
+
+The final [motion report](native-minimap-live-motion-20261009.json) passes
+1062/1062 exact checkpoints and474236912 compared pixels with zero mismatches.
+Actual stored views0/1/2/3, seven centers and same-orientation panning are
+observed; fog1, flash0/1, RGB565 and60 creature entries remain explicitly bounded.
+The caller selects outline entries0/2/0/1 for these views, so selected entry
+identity is carried independently. Entry5532f0 has no live call in this trace.
+The24 adapter cases and36 refusal checks pass, with52 forwarded entries and
+five invalid fixture configurations refused before mutation. Both native policies
+now have scoped implementation/live-observation integration; comparison and
+replacement remain `none`. The interactive V2 Qt tail consumer and unobserved
+border/driver/ABI states remain pending. Original manifest verification passes
+before/after; historical reports and source hashes are preserved.

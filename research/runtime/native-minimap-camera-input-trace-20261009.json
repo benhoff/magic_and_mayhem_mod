@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "kind": "static_review",
+  "scope": "Selected pinned No-CD camera rotation consumption, minimap setter and outline dispatch bytes, manually interpreted with retained disassembly. Not full keyboard dispatch or execution equivalence.",
+  "confidence": "partial_static_trace",
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc"
+  },
+  "byte_ranges": [
+    {
+      "address": "0x4fd604",
+      "bytes": "399e210200000f84b20000008b463140250300008079054883c8fc4089463189863d020000895e35c7869900000003000000a180f16d008b15619968008b3d58ef6d0033ed3bc3891550986e00761c395f0474078bcfe8b1b30000a180f16d004581c74b",
+      "interpretation": "Selected branch tests pending request at camera+221; modifies+31 orientation and masks modulo4. Further camera/source-vector state remains outside scope."
+    },
+    {
+      "address": "0x556330",
+      "bytes": "8b442404c7818d000000000000008981c5000000c20400",
+      "interpretation": "Writes minimap+8d=0, assigns argument to+c5, ret4."
+    },
+    {
+      "address": "0x555e08",
+      "bytes": "4e5c5500575c55004e5c5500605c5500",
+      "interpretation": "Four dispatch targets:555c4e,555c57,555c4e,555c60; call5527a0,552f20,5527a0,552b50 respectively."
+    }
+  ],
+  "unresolved": [
+    "Full scan-code handler ownership at46c070 and branches46d348/46d378 remains unassigned in the discovery inventory. Static MapVirtualKeyA/comma/period trace does not recover the full handler.",
+    "Caller dispatch state and stored minimap orientation are separate contracts.",
+    "5532f0 is not called by this table; its other live callers remain unobserved."
+  ],
+  "original_memory_written": false
+}

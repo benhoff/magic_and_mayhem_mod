@@ -9,9 +9,9 @@
 #include <QJsonObject>
 #include <iostream>
 namespace {
-QByteArray read(const QString &name) {
+QByteArray read(const QString &name, qint64 maximum = 128 * 1024 * 1024) {
   QFile f(name);
-  if (!f.open(QIODevice::ReadOnly) || f.size() > 128 * 1024 * 1024)
+  if (!f.open(QIODevice::ReadOnly) || f.size() > maximum)
     throw std::runtime_error("Cannot read bounded native input: " +
                              name.toStdString());
   return f.readAll();
@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
   QJsonArray checkpoints;
   unsigned sequence = 0;
   try {
-    const auto input = read(QString::fromLocal8Bit(argv[1]));
+    const auto input = read(QString::fromLocal8Bit(argv[1]), 512 * 1024 * 1024);
     const auto stream = mnm::legacy::decodeCanvasProducers(bytes(input));
     const auto sourcesPath = QString::fromLocal8Bit(argv[2]);
     const auto document = QJsonDocument::fromJson(read(sourcesPath));

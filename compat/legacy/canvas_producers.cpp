@@ -2,7 +2,7 @@
 #include "../../assets/jpeg.hpp"
 #include "../../assets/pcx.hpp"
 #include "../../renderer/dib.hpp"
-#include "../../protocols/include/mnm/canvas_producers_v1.h"
+#include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include <algorithm>
 #include <cstring>
 #include <stdexcept>
@@ -44,13 +44,16 @@ assets::SpriteFrame frame(const CanvasProducer &c, bool indexed) {
 }
 } // namespace
 void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::uint8_t> &b, bool complete) {
-  if (b.size() < 64 || b.size() > 128 * 1024 * 1024 ||
-      std::memcmp(b.data(), "MNMPRO01", 8))
+  if (b.size() < 64 || b.size() > (!std::memcmp(b.data(), "MNMPRO02", 8) ? 512u : 128u) * 1024 * 1024 ||
+      (std::memcmp(b.data(), "MNMPRO01", 8) && std::memcmp(b.data(), "MNMPRO02", 8)))
     throw std::invalid_argument("Invalid producer envelope");
-  if (word(b, 8) != 1 || word(b, 12) != 64 || word(b, 16) != 0x40209ca7 ||
-      (word(b, 20) != 32768 && word(b, 20) != 65536) || word(b, 24) < 1 ||
+  const bool ownedMinimap = !std::memcmp(b.data(), "MNMPRO02", 8);
+  if (word(b, 8) != (ownedMinimap ? 2u : 1u) || word(b, 12) != 64 || word(b, 16) != 0x40209ca7 ||
+      (word(b, 20) != 32768 && word(b, 20) != 65536 && (!ownedMinimap || (word(b, 20) != 131072 && word(b, 20) != 262144))) || word(b, 24) < 1 ||
       word(b, 24) > 16)
     throw std::invalid_argument("Unsupported producer envelope");
+  if (result.version && result.version != word(b, 8)) throw std::invalid_argument("Producer append changed wire version");
+  result.version = word(b, 8);
   for (unsigned i = 28; i < 64; i += 4)
     if (word(b, i))
       throw std::invalid_argument("Nonzero producer header reserve");
@@ -64,9 +67,9 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
       c.fields[k] = word(b, at + k * 4);
     const auto &r = c.fields;
     if (result.operations.size() >= word(b, 20) ||
-        r[18] > 128 * 1024 * 1024 - 96 || r[0] != 96 + r[18] ||
+        r[18] > (ownedMinimap ? 512u : 128u) * 1024 * 1024 - 96 || r[0] != 96 + r[18] ||
         r[0] > b.size() - at || r[1] != result.operations.size() + 1 ||
-        r[2] < 1 || r[2] > 23 || r[23])
+        r[2] < 1 || r[2] > (ownedMinimap ? 24u : 23u) || r[23])
       throw std::invalid_argument("Invalid producer record");
     c.payload.assign(b.begin() + at + 96, b.begin() + at + r[0]);
     if (r[2] == 8 || r[2] == 9) {
@@ -84,10 +87,17 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
           std::find(c.payload.begin(), c.payload.end() - 1, 0) !=
               c.payload.end() - 1)
         throw std::invalid_argument("Invalid JPEG source name");
+    } else if (r[2] == 24) {
+      if (c.payload.size() < 148 || word(c.payload, 0) > 2 || word(c.payload, 36) > 3 ||
+          word(c.payload, 40) > 1 || word(c.payload, 44) > 1 || word(c.payload, 48) > 1 ||
+          word(c.payload, 68) > 1024 || c.payload.size() != 148 + word(c.payload, 68) * 12 ||
+          (word(c.payload, 0) != 1 && word(c.payload, 68)) ||
+          (word(c.payload, 0) == 2 ? r[17] > 3 : r[17] != 0))
+        throw std::invalid_argument("Invalid owned minimap overlay packet");
     } else if (r[2] == 23) {
       if (r[14] > 16384 || r[18] != r[14] * 12) throw std::invalid_argument("Invalid point requests");
     } else if (r[2] == 22) {
-      if (!r[14] || r[14] > 256 || r[14] % 2 || !r[15] || r[15] > 256 || r[16] || r[17] > 1 || r[18] != r[14] * r[15] * 3)
+      if (!r[14] || r[14] > 256 || r[14] % 2 || !r[15] || r[15] > 256 || r[16] > (ownedMinimap ? 3u : 0u) || (ownedMinimap && r[19] != 0xfffffffeu) || r[17] > 1 || r[18] != r[14] * r[15] * 3)
         throw std::invalid_argument("Invalid closed minimap terrain input");
     } else if (r[2] == 19) {
       if (r[19] < 40 || r[19] > 1064 || r[20] > 2097152 || r[18] != r[19] + r[20])
@@ -225,6 +235,41 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
           "Panel format outside recovered RGB565 scope");
     canvases_.panel(id, rect(c), r[2], r[14], r[15] != 0, r[16] != 0);
     break;
+  case 24: {
+    const auto m = [&](unsigned i) { return word(c.payload, i * 4); };
+    render::MinimapOverlayView v{signedWord(m(1)), signedWord(m(2)), signedWord(m(3)), signedWord(m(4)),
+        signedWord(m(5)), signedWord(m(6)), signedWord(m(7)), signedWord(m(8)), m(9), m(10) != 0};
+    canvases_.minimap(id, int(r[7]), [&](render::MinimapPlane &p) -> std::size_t {
+      if (m(0) == 0) {
+        std::array<std::uint16_t, 9> palette{};
+        for (unsigned i = 0; i < 9; ++i) { if (m(28+i) > 65535) throw std::invalid_argument("Invalid marker palette word"); palette[i] = m(28+i); }
+        const auto offset = render::drawMinimapCellMarker(p, v,
+            {signedWord(m(13)), signedWord(m(14)), m(15), m(16) != 0}, palette, m(12) != 0);
+        if (offset != r[21]) throw std::runtime_error("Minimap cell return offset differs");
+        return offset;
+      }
+      if (m(0) == 1) {
+        std::vector<render::MinimapCreatureMarker> markers;
+        for (unsigned i = 0; i < m(17); ++i) {
+          const auto at = 148 + i * 12; const auto hidden = word(c.payload, at+8);
+          if (hidden > 1) throw std::invalid_argument("Invalid closed creature visibility");
+          markers.push_back({signedWord(word(c.payload, at)), signedWord(word(c.payload, at+4)), hidden != 0});
+        }
+        const auto result = render::drawMinimapCreatureMarkers(p, v, markers, m(11) != 0);
+        if (unsigned(result.gridWidth) != r[19] || unsigned(result.gridHeight) != r[20])
+          throw std::runtime_error("Minimap creature dimension refresh differs");
+        return result.drawn;
+      }
+      v.orientation = r[17]; // Selected outline entry is independent of stored terrain/marker orientation.
+      render::MinimapCameraOutline outline{signedWord(m(18)), signedWord(m(19)), {}, true};
+      for (unsigned i = 0; i < 4; ++i) outline.corners[i] = {signedWord(m(20+i*2)), signedWord(m(21+i*2))};
+      const auto result = render::drawMinimapCameraOutline(p, v, outline);
+      if (result.originX != signedWord(r[19]) || result.originY != signedWord(r[20]))
+        throw std::runtime_error("Minimap camera origin differs");
+      return 0;
+    });
+    break;
+  }
   case 23:
     for (unsigned i = 0; i < r[14]; ++i)
       canvases_.update(id, signedWord(word(c.payload, i * 12)), signedWord(word(c.payload, i * 12 + 4)), {1, 1, {word(c.payload, i * 12 + 8)}});
@@ -237,7 +282,15 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
       if (c.payload[i + 2] > 1 || (!r[17] && c.payload[i + 2])) throw std::invalid_argument("Invalid minimap visibility");
       hidden.push_back(c.payload[i + 2]);
     }
-    canvases_.terrainMap(id, signedWord(r[8]), signedWord(r[9]), int(r[14]), int(r[15]), signedWord(r[10]), signedWord(r[11]), colours, hidden, r[17] ? r[4] : 0);
+    // V2 uses the validated four-orientation service and owned prior auxiliary
+    // composition. V1 retains its historical orientation-zero contract.
+    if (r[19] == 0xfffffffeu) {
+      render::MinimapPlane history{};
+      if (r[17]) { const auto image = canvases_.read(r[4]); history = {image.width, image.height, image.width, {}}; for (auto p : image.pixels) history.words.push_back(std::uint16_t(p)); }
+      render::MinimapTerrain terrain{int(r[14]), int(r[15]), signedWord(r[10]), signedWord(r[11]), signedWord(r[8]), signedWord(r[9]), r[16], colours, hidden};
+      canvases_.minimap(id, int(r[7]), [&](render::MinimapPlane &plane) { render::drawMinimapTerrain(plane, terrain, r[17] ? &history : nullptr); return 0; });
+    } else if (r[16]) throw std::invalid_argument("Minimap invalidation result missing");
+    else canvases_.terrainMap(id, signedWord(r[8]), signedWord(r[9]), int(r[14]), int(r[15]), signedWord(r[10]), signedWord(r[11]), colours, hidden, r[17] ? r[4] : 0);
     break;
   }
   case 21:

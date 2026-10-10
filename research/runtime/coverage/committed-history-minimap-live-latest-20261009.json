@@ -1,0 +1,168 @@
+{
+  "schema": 1,
+  "reviewed_range": "b70c9e639cf3aa08c4bf828a987475f563748746..9c64221b2f89e7c342ee271c5d2eae380bd48481",
+  "scope": "Latest concurrent committed World-cache work reviewed separately from uncommitted minimap edits. Actual Git parent/current file hashes compared to preserved receipts; no new engine validation or historical gate claim.",
+  "transitions": [
+    {
+      "path": "apps/qt-shell/canvas_producer_session.cpp",
+      "before_sha256": "21b0297ca62fc930565a42b148764c68a3913b76a64987b4bdb6477c160b59ac",
+      "after_sha256": "62e14ea0294e9168f57d1b08fb8009527b14bb6aba0162fc18763634fb78d277",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "compat/legacy/canvas_world.cpp",
+      "before_sha256": "1371213cf7635d351dc7ca4761686817d91e8c3977518e133fd1f83fcd9a671a",
+      "after_sha256": "701ecac8fc63e264d07618170c1093534312c859d15e082c64c341bf58d3fb51",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "compat/legacy/canvas_world.hpp",
+      "before_sha256": "431c97d78d6b2adb1e0234642a5906667ad1950d4acd6d727220d720b0be1abd",
+      "after_sha256": "6c0d5e957e6d8a5c8fef42e826ad32d6a579bb80643c573221584cbba2ac4bd3",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "compat/legacy/scene_snapshot.cpp",
+      "before_sha256": "915dc76fa9dc0d4b1bd38ceab6856d2d8ff10e0ef15f55d60cdc02341a40410e",
+      "after_sha256": "80f2c356cf458d995c89bf3e35c6e5539c8906fe23c37d28c15fd379cd14fa18",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "compat/legacy/scene_snapshot.hpp",
+      "before_sha256": "be2ca5753c27a7ebd8d74cee0ba850ebcf7f5a6cc9fbfb2245189ca2b5258062",
+      "after_sha256": "9151090479d58c5c06242a10d61d6cca550784997cdd4a9d4dbd44eb8da8c313",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "compat/legacy/world_resources.cpp",
+      "before_sha256": "2dc321e701cfcad493fe12d8d8f541839b70e11555fb88532e35ca04468eccb3",
+      "after_sha256": "cfbca3efc3a1b258ced01b8bac08496bd4567f124fb4bea490a40c93abfc72cb",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "compat/legacy/world_resources.hpp",
+      "before_sha256": "f04bfffe6b7adbd237509f7e0cacdf97f751ce7dcf96a974467856f8e56caf9e",
+      "after_sha256": "da01617cc0d96f03537e5db41014c32319baf9196496ca17a0d0d482948a0194",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "1d0e24bfc96df290b1e92c7746bbd7018166a881079508c36cdb25ac695de5af",
+      "after_sha256": "99c6d55bab0c6f8efe0f53bf7a28ad44d4327e5cabf0c221f256295235a488d5",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "5b73de09d57f59083a00c34d07a4ab55f8d583de0b99bd64486af156cb592306",
+      "after_sha256": "e139f58c80bdf2bc2cdf675f34ddc0bffac65e05a5469d595f7a6ffcc5f18487",
+      "receipt_chain": [],
+      "review": "Append-only review journal is excluded from its own hash receipts"
+    },
+    {
+      "path": "research/runtime/coverage/committed-history-world-frame-identity-cache-base-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "832c9492ac2bb5bec484634173bc82ebfd4a61ea2218bd56c22328d617fcf422",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "467dc831b3b5478af0c3574098408674c2a9992d7450fbf12afd7d6ad53b37ff",
+      "after_sha256": "f09114f090b7b5dcf91ab244b4cb8ecf81c4e1895b9fc53d8e51f0e6ca8a9057",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "research/runtime/coverage/source-index-world-frame-identity-cache-committed-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "ec805593f444ee1958c13d24ea1e0c8c7e6a2caf28c6ccfd96a4f5bf4af5f30d",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "research/runtime/coverage/summary-world-frame-identity-cache-committed-20261009.md",
+      "before_sha256": null,
+      "after_sha256": "7274bfb741efc54844767f3a779e2e7fa783374289706a0418439bbfd7719013",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "research/runtime/native-world-frame-identity-cache-native-20261009.json",
+      "before_sha256": null,
+      "after_sha256": "380f33ebfba294fba78d5cd2e5ac23812db4925b6673331014578051989daafd",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "research/runtime/native-world-frame-identity-cache.md",
+      "before_sha256": null,
+      "after_sha256": "d66e536c8748a788bf28fd504a4c214f3001c947f1bdad88e3b263b6f23d0f98",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "tests/canvas-world-test.cpp",
+      "before_sha256": "d79cf635e791f750df89551942fc23ddf5e05e517b1ec708f533e857f7e98e00",
+      "after_sha256": "e0bb2c063a8de9d795a0d221f6ea25be5bbb1de764832f578ea9508d58615561",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "tools/test-native-world-batch.py",
+      "before_sha256": "9abeadfffa01d8a6d49f6273f8bf08d921f8ce87e1f2e9cce851e8db7f3fd55c",
+      "after_sha256": "2994d0491c52dc0c767a79a56128d9f8c191e459e9056c5b39a4e942931d23d5",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    },
+    {
+      "path": "tools/test-world-resource-reuse.py",
+      "before_sha256": "2f940626e65dd9d189693665f87f8731880bd3b633cc5ba4df2182cfaf942330",
+      "after_sha256": "faf90abf4b1b19fbeff6d289b67e899420bb1f1f2274785e8a369db00aa3e98f",
+      "receipt_chain": [
+        "world-frame-identity-isolated-source-review-20261009"
+      ],
+      "review": "Exact committed file transition matches preserved receipts"
+    }
+  ],
+  "unresolved_gaps": []
+}

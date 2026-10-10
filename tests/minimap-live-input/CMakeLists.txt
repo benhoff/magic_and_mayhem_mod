@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+project(mnm_minimap_live_input LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Core Gui)
+find_package(X11 REQUIRED)
+add_executable(mnm-minimap-live-input ../minimap-live-input.cpp ../../apps/qt-shell/window_host.cpp)
+target_link_libraries(mnm-minimap-live-input PRIVATE Qt6::Gui X11::X11 X11::Xtst xcb)
+target_compile_options(mnm-minimap-live-input PRIVATE -Wall -Wextra -Werror -pedantic)

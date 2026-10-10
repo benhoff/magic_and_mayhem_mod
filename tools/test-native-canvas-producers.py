@@ -16,6 +16,7 @@ def load(name,path):
  s=importlib.util.spec_from_file_location(name,ROOT/path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 def source_paths():
  names=['renderer/dib.cpp','renderer/dib.hpp','renderer/canvas_sequence.cpp','renderer/canvas_sequence.hpp','renderer/blit.hpp','compat/legacy/canvas_producers.cpp','compat/legacy/canvas_producers.hpp','compat/legacy/canvas_producers_main.cpp','compat/legacy/canvas-producers/CMakeLists.txt','protocols/include/mnm/canvas_producers_v1.h','tests/canvas-sequence-test.cpp','tests/canvas-panel-reference.cpp','tests/canvas-panel-native.cpp','tests/sprite-binary-reference.cpp','tools/test-native-canvas-producers.py','tools/inspect-canvas-producers.py','tools/inventory-binary.py','tools/audit-file-apis.py','assets/CMakeLists.txt','assets/sprite_loader.cpp','assets/sprite_loader.hpp','assets/sprite_frame_decoder.hpp','assets/jpeg.cpp','assets/jpeg.hpp','assets/pcx.cpp','assets/pcx.hpp','assets/asset_file.cpp','assets/asset_file.hpp','assets/path_resolver.cpp','assets/path_resolver.hpp']
+ names += ['renderer/minimap/minimap.cpp','renderer/minimap/minimap.hpp','renderer/minimap/overlays.cpp','renderer/minimap/overlays.hpp','protocols/include/mnm/canvas_producers_v2.h','tests/minimap-producer-test.cpp']
  return {n:sha(ROOT/n) for n in names}
 def resolve(root,name):
  parts=name.replace('\\','/').split('/');p=root
@@ -62,7 +63,7 @@ def main():
    if name in bindings:continue
    asset=resolve(experiment/'game',name);pin(asset);filename=f'source-{len(bindings)+1:04}.asset';shutil.copyfile(asset,nativeInputs/filename);bindings[name]={'file':filename,'sha256':sha(asset)};encoded[name]={'path':str(asset.relative_to(ROOT)),'sha256':sha(asset)}
   binding=nativeInputs/'sources.json';binding.write_text(json.dumps(bindings,indent=2)+'\n');pin(binding)
-  build=out/'build';run('configure',['cmake','-S',sourceRoot/'compat/legacy/canvas-producers','-B',build,'-DCMAKE_BUILD_TYPE=Debug']);run('build',['cmake','--build',build,'--target','mnm-canvas-producers-preview','canvas-sequence-test','-j4']);run('native-tests',['ctest','--test-dir',build,'-R','^native-canvas-sequence$','--output-on-failure'])
+  build=out/'build';run('configure',['cmake','-S',sourceRoot/'compat/legacy/canvas-producers','-B',build,'-DCMAKE_BUILD_TYPE=Debug']);run('build',['cmake','--build',build,'--target','mnm-canvas-producers-preview','canvas-sequence-test','minimap-producer-test','-j4']);run('native-tests',['ctest','--test-dir',build,'-R','^native-(canvas-sequence|minimap-producer)$','--output-on-failure'])
   reference=out/'panel-reference';fixture=out/'panel-native';run('panel-reference-build',['g++','-m32','-std=c++17','-O2','-Wall','-Wextra','-Werror','-no-pie',sourceRoot/'tests/canvas-panel-reference.cpp','-o',reference])
   import shlex
   qt=shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','Qt6Gui']).decode());run('panel-native-build',['c++','-std=c++17','-O2','-Wall','-Wextra','-Werror','-fPIC',sourceRoot/'tests/canvas-panel-native.cpp',sourceRoot/'renderer/canvas_sequence.cpp',*qt,'-o',fixture])
