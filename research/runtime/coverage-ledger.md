@@ -3942,3 +3942,27 @@ validation remain open. See [CPU clipping evidence](word-cpu-clipping.md) and
 `NR.offline-render-soak` now has fresh headless integration evidence:20 complete saved World32 sessions in one renderer,640 CPU/GPU completions,24,480 checkpoint assertions and28,000 seeded adversarial draws. Three assertion-enabled Debug refusal/cache/atlas fixtures pass. Warm native work39.22ms median/72.71ms p95/116.15ms maximum and10.87MiB retained growth pass declared host budgets; every session retires GPU surfaces and scratch storage stays fixed. Cold first-queue preparation remains444.20ms median; no full-game cadence, fresh original comparison, rolling delivery or live replacement claim. See [offline soak scope](native-render-offline-soak.md). The committed range01e160a..0415793 has50 exact reviewed transitions with no gaps.
 
 The offline soak follow-up also passes20 sessions on the GL3.3 framebuffer-copy fallback with a second seed:38.41ms median/71.20ms p95/92.42ms maximum and12.00MiB retained growth. Across both positive runs:1,280 native World completions,48,960 checkpoint comparisons,56,000 seeded mixed draws and40 clean teardowns. A separate intentionally impossible0.001ms budget fails with exit1 despite correct pixels, confirming slow work is rejected. The reviewed0415793..50bec93 range has10 exact transitions and no gaps; source bytes and the first soak census remain unchanged.
+
+### Opt-in live CPU clipping shadow — 2026-10-10
+
+`RS.word-clip-shadow` now connects the CPU core and recovered workspace model to
+the actual opt-in route and production entry. Native draws into a guarded copy;
+original drawing executes once and owns the engine pixels/workspace. Fresh
+isolated execution passes 4,448 selected-state/pixel comparisons, 22,240 forced
+fallback checks and original-once/LastError checks. Empty requests forward.
+
+Software Wine capture with a repeated map-dialog round trip and four World
+observations retains eight clipped menu/banner requests, all on forward backend
+0x596cb8 and one 208×111 asset. Independent original/native replay matches all
+workspace words and 1,920,000 complete canvas WORDs. Live mismatches, errors,
+stopped state and bypasses are zero; 21,607 calls still forward. Live scalar and
+World admission, refusal-class inventory, auxiliary/indexed layouts, broad assets,
+full floating/Win32 behavior and sustained sessions remain open. There is no
+clipped takeover. See [scope and results](word-clip-shadow.md).
+
+Current scoped implementation/comparison/live-equivalence belongs only to the
+new shadow contract. Shared model/build/launcher/capture source changes leave
+older evidence historical and stale; their hashes/statuses are preserved.
+Initial host alignment failure and short/GL-startup captures remain retained
+diagnostics. The committed range 0415793..652c01d has 19 exact reviewed file
+transitions, including append-only journals, with no unresolved receipt gaps.

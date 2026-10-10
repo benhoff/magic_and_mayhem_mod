@@ -15,7 +15,7 @@ for name,key in binaries:
 os.environ.pop('MNM_WORD_DIRECTORY',None)
 os.environ.pop('MNM_WORD_SPRITES',None)
 if metadata.get('word_dll_sha256'):
-    if metadata.get('word_sprites_mode') not in ('shadow','takeover'):raise ValueError('Unsupported word-sprite mode')
+    if metadata.get('word_sprites_mode') not in ('shadow','takeover','clip-shadow'):raise ValueError('Unsupported word-sprite mode')
     directory=Path(metadata['word_directory']).resolve()
     if directory!=root.resolve()/'word-sprites' or any(directory.iterdir()):raise ValueError('Word-sprite capture directory must be fresh')
     os.environ['MNM_WORD_SPRITES']=metadata['word_sprites_mode']

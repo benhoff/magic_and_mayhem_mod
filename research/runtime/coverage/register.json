@@ -27353,6 +27353,90 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "RS.word-clip-shadow",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Opt-in guarded direct-word clipping shadow comparison",
+      "scope": "Two pinned No-CD entries in explicit clip-shadow mode. Positive direct-word contiguous frames within CPU/model bounds draw only into a guarded alignment-preserving copy, then original executes once. Full canvas/padding and all16 workspace words are compared; original engine pixels/workspace remain. Empty/unsupported/inaccessible/resource-failed/busy/stopped requests forward original once. Eight clipped positive samples retained. Actual route/entry tested with host Win32 substitutes for caller state, selected masked floating/flags and LastError, plus bounded live Wine startup and independent original/native sample replay. No clipped bypass or default enablement; unmasked/full-stack/exception FP, real nested reentry, complete Win32/physical-Windows/full-session/shutdown, other backends and general installed assets excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Selected direct-word clipped original pixel/workspace/caller state under bounded shadow admission only; full backend and original malformed handling excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Selected direct-word clipped original pixel/workspace/caller state under bounded shadow admission only; full backend and original malformed handling excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/word-clip-shadow.md",
+        "research/formats/word-clip-shadow-v1.md"
+      ],
+      "implementation": [
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_entry.S",
+        "tools/build-word-sprites.py",
+        "tools/prepare-scene-observer.py",
+        "tools/scene-game-runner.py",
+        "tools/render-game-runner.py",
+        "tools/run-opengl-game.py",
+        "renderer/sprites/word_clipped.c",
+        "renderer/sprites/word_clipped.h",
+        "reconstruction/rendering/word_backend_state.c",
+        "reconstruction/rendering/word_backend_state.h"
+      ],
+      "tests": [
+        "tests/word-clip-shadow-reference.cpp",
+        "tests/word-clip-shadow-host.c",
+        "tests/word-clip-shadow-host.S",
+        "tools/test-word-clip-shadow.py",
+        "tools/capture-scene-game.py",
+        "tools/replay-word-clip-shadow.py",
+        "tests/word-clip-shadow-replay.cpp"
+      ],
+      "validation_dependencies": [
+        "tests/word-backend-probe.S",
+        "tools/test-word-sprites.py",
+        "renderer/sprites/word_raster.c",
+        "renderer/sprites/word_raster.h",
+        "runtime/scene/word_workspace.h",
+        "runtime/shadow/win32_min.h",
+        "renderer/sprites/word-clipped/CMakeLists.txt",
+        "tests/word-clipped-test.c",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.word-clip-shadow.isolated-20261010",
+        "RS.word-clip-shadow.live-20261010",
+        "RS.word-clip-shadow.host-integration-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "synthetic": "4448 deterministic original corpus cases,4400 positive CPU shadow comparisons,48 empty forwards, five forced safe-original refusals per case, exact original-once and LastError checks. All16 workspace/arguments/integer/stack/defined flags/DF, three finite masked x87 values/control/status, XMM/MXCSR and complete canvas/source guards.",
+        "live": "Repeated original map-dialog round trip, then four startup World observations with real Wine extent/install and eight clipped sample replays. Clipped and interior counts separate; zero bypass/mismatch/errors required.",
+        "exclusions": [
+          "clipped takeover",
+          "full-session/shutdown",
+          "real nested reentry",
+          "unmasked/full-stack/exception floating behavior",
+          "complete Win32/physical Windows behavior",
+          "other backends",
+          "auxiliary/indexed/unsafe original malformed inputs",
+          "general installed-asset equivalence"
+        ]
+      }
     }
   ],
   "evidence": [
@@ -52350,6 +52434,202 @@
           "equals": "Latency tail or sustained resident-memory growth exceeds declared budget"
         }
       ]
+    },
+    {
+      "id": "RS.word-clip-shadow.isolated-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/word-clip-shadow-isolated-20261010.json",
+      "sha256": "cce361716a913bf31f027b378eb9adac1caf9f83cbc365042b1bbda32883a001",
+      "scope": "4448 actual production-route/entry comparisons with host Win32 substitutes;4400 shadow comparisons,48 empty forwards,22240 forced refusals. Full selected state, original-once and LastError checks; no real OS/nested-reentry/bypass claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/native_entry_original_matches",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/shadow_compared_positive",
+          "equals": 4400
+        },
+        {
+          "pointer": "/counts/original_forwarded_empty",
+          "equals": 48
+        },
+        {
+          "pointer": "/counts/original_once",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/last_error_preserved",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/forced_refusal_checks",
+          "equals": 22240
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        },
+        {
+          "pointer": "/isolated_original_body_bypasses",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "RS.word-clip-shadow.live-20261010",
+      "kind": "live_equivalence",
+      "record": "research/runtime/word-clip-shadow-live-20261010.json",
+      "sha256": "a0e3794218f3c255a8b5c6b76c66052804313dfd5cf268cb687eda481a6c6b4d",
+      "scope": "Bounded repeated original map-dialog round trip and four World observations. Eight clipped208x111 menu/banner requests on the forward0x596cb8 backend match native shadow and independent original/native replay, all16 workspace words and1920000complete canvas WORDs. No scalar live admission, World native comparison, bypass, complete refusal-class inventory, full-session or installed-asset generality claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/world_observations",
+          "equals": 4
+        },
+        {
+          "pointer": "/sample_count",
+          "equals": 8
+        },
+        {
+          "pointer": "/compared_pixels",
+          "equals": 1920000
+        },
+        {
+          "pointer": "/live_pixels_workspace_match",
+          "equals": true
+        },
+        {
+          "pointer": "/word_stats/8",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/6",
+          "equals": 8
+        },
+        {
+          "pointer": "/word_clip_stats/7",
+          "equals": 8
+        },
+        {
+          "pointer": "/word_clip_stats/11",
+          "equals": 21607
+        },
+        {
+          "pointer": "/word_clip_stats/12",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/13",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/14",
+          "equals": 8
+        },
+        {
+          "pointer": "/word_clip_stats/15",
+          "equals": 0
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ],
+      "equivalence_pointer": "/live_pixels_workspace_match"
+    },
+    {
+      "id": "RS.word-clip-shadow.host-integration-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/word-clip-shadow-isolated-20261010.json",
+      "sha256": "cce361716a913bf31f027b378eb9adac1caf9f83cbc365042b1bbda32883a001",
+      "scope": "Headless production route/entry composition with substituted Win32 APIs, exact original-once/LastError checks and22240 forced original forwards; actual installation/files/nested reentry excluded. Same immutable execution as the separate original-comparison evidence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/native_entry_original_matches",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/shadow_compared_positive",
+          "equals": 4400
+        },
+        {
+          "pointer": "/counts/original_forwarded_empty",
+          "equals": 48
+        },
+        {
+          "pointer": "/counts/original_once",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/last_error_preserved",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/forced_refusal_checks",
+          "equals": 22240
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        },
+        {
+          "pointer": "/isolated_original_body_bypasses",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -59603,6 +59883,36 @@
         "NR.offline-render-soak.gl33-20261010",
         "NR.offline-render-soak.budget-refusal-20261010"
       ]
+    },
+    {
+      "id": "word-clip-shadow-isolated-20261010",
+      "level": "headless",
+      "behaviors": [
+        "RS.word-clip-shadow"
+      ],
+      "tests": [
+        "tools/test-word-clip-shadow.py"
+      ],
+      "scope": "Actual production route/entry with host Win32 substitutes against unchanged original;4448 corpus cases plus22240 forced valid-input refusals, original-once/LastError and selected state/guards. OS permission/file/installation and true reentry excluded.",
+      "evidence": [
+        "RS.word-clip-shadow.isolated-20261010",
+        "RS.word-clip-shadow.host-integration-20261010"
+      ]
+    },
+    {
+      "id": "word-clip-shadow-world-entry-20261010",
+      "level": "live_equivalence",
+      "behaviors": [
+        "RS.word-clip-shadow"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py",
+        "tools/replay-word-clip-shadow.py"
+      ],
+      "scope": "Repeated original map-dialog round trip followed by four World startup observations, real Wine extent/install, separate clipped/interior counters and eight retained clipped samples independently replayed against original/native. No bypass or complete session/FP/physical-Windows claim.",
+      "evidence": [
+        "RS.word-clip-shadow.live-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -59931,8 +60241,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-render-soak-validated-20261010.json",
-    "sha256": "d60be1348bb5830371d8e66be02c97a0d0eaf91164ad678d8ae3b1264b44fb9e"
+    "path": "research/runtime/coverage/source-index-word-clip-shadow-20261010.json",
+    "sha256": "d58c636b2edc2ce3f37a81f9751248dcf4671a8373fa65c574a8077370910c5e"
   },
   "claim_bindings_required": true
 }

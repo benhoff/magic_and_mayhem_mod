@@ -1,6 +1,8 @@
 #include "../shadow/win32_min.h"
 #include "../../renderer/sprites/word_raster.h"
 #include "word_workspace.h"
+#include "../../renderer/sprites/word_clipped.h"
+#include "../../reconstruction/rendering/word_backend_state.h"
 
 /* Single engine-thread backend adapter. Native pixels remain in the engine's
  * borrowed canvas, preserving downstream readback and auxiliary drawing. */
@@ -13,6 +15,9 @@ static volatile u32 busy;
 static char directory[220];
 static u32 stats[16]={0x574d4e4d,0x31304452,1,64}; /* MNMWRD01 */
 static HANDLE log_file=(HANDLE)-1;
+/* Separate versioned diagnostics for the clipping shadow, never takeover. */
+static u32 clip_stats[20]={0x574d4e4d,0x31304c43,1,80}; /* MNMWCL01 */
+static HANDLE clip_log=(HANDLE)-1;
 static u32 get(const void* p){const u8* b=p;return b[0]|(u32)b[1]<<8|(u32)b[2]<<16|(u32)b[3]<<24;}
 static void put(void* p,u32 n){u8* b=p;b[0]=n;b[1]=n>>8;b[2]=n>>16;b[3]=n>>24;}
 static void copy(void* a,const void* b,u32 n){u8* d=a;const u8* s=b;while(n--)*d++=*s++;}
@@ -27,7 +32,12 @@ static int write_all(HANDLE file,const void* p,u32 n){
     const u8* b=p;while(n){u32 wrote=0;if(!WriteFile(file,b,n,&wrote,0)||!wrote||wrote>n)return 0;b+=wrote;n-=wrote;}return 1;
 }
 static void path(char* out,const char* name){u32 n=0;while(directory[n]){out[n]=directory[n];++n;}out[n++]='\\';while(*name)out[n++]=*name++;out[n]=0;}
-static void report(void){stats[4]=mode;stats[5]=installed;stats[15]=stopped;if(log_file!=(HANDLE)-1&&!write_all(log_file,stats,64))++stats[14];}
+static void report(void){
+    stats[4]=mode;stats[5]=installed;stats[15]=stopped;
+    if(log_file!=(HANDLE)-1&&!write_all(log_file,stats,64))++stats[14];
+    if(mode==3){clip_stats[4]=installed;clip_stats[15]=stopped;
+        if(clip_log!=(HANDLE)-1&&!write_all(clip_log,clip_stats,80)){++stats[14];++clip_stats[13];}}
+}
 /* Scratch indices span the original 0x5f1e50..0x5f1e8c workspace. Mirror only
  * bytes written by the admitted unclipped backend; retain all other words. */
 static void sample(u32 sequence,u32 backend,u32 frame,u32 length,const MnmWordCanvas* c,
@@ -48,19 +58,64 @@ int word_route(u32* registers){
     u32 error=GetLastError(),handled=0;
     u32 backend=get((void*)(registers[3]+4));
     ++stats[6];word_original=backend==0x197086?scalar_trampoline:forward_trampoline;
-    if(!__sync_bool_compare_and_swap(&busy,0,1)){++stats[9];++stats[12];SetLastError(error);return 0;}
+    if(mode==3)++clip_stats[5];
+    if(!__sync_bool_compare_and_swap(&busy,0,1)){++stats[9];++stats[12];
+        if(mode==3){++clip_stats[10];++clip_stats[11];}SetLastError(error);return 0;}
     u8* allocation=0;u8* before=0;
     if(stopped)goto fallback;
     /* pushal's saved ESP follows the adapter's backend tag and pushfl. */
     u32* arguments=(u32*)(registers[3]+12);u32 frame=arguments[0];i32 ax=arguments[1],ay=arguments[2];
-    if(!extent(frame,48,0))goto fallback;
-    u32 length=get((void*)frame);if(length<48||length>4*1024*1024||!extent(frame,length,0))goto fallback;
+    u32 minimum=mode==3?40:48;
+    if(!extent(frame,minimum,0))goto fallback;
+    u32 length=get((void*)frame);if(length<minimum||length>4*1024*1024||!extent(frame,length,0))goto fallback;
+    if(mode==3&&(!get((void*)(frame+4))||!get((void*)(frame+8)))){++clip_stats[16];goto fallback;}
     MnmWordCanvas canvas={(u8*)get((void*)(image_base+0x258174)),0,
         get((void*)(image_base+0x2a49b8)),get((void*)(image_base+0x256618)),get((void*)(image_base+0x2a2dc8))};
     if(!canvas.width||!canvas.height||canvas.width>2048||canvas.height>2048||
         canvas.stride_words<canvas.width||canvas.stride_words>4096)goto fallback;
     canvas.bytes=canvas.stride_words*canvas.height*2;
     if(!extent((u32)canvas.pixels,canvas.bytes,1))goto fallback;
+    if(mode==3){
+        MnmWordClip clip={(i32)get((void*)(image_base+0x2e0008)),
+            (i32)get((void*)(image_base+0x2cbb6c)),(i32)canvas.width,(i32)canvas.height};
+        MnmWordClippedDraw clipped;
+        if(mnm_word_sprite_clip_admit((void*)frame,length,&canvas,&clip,ax,ay,&clipped))goto fallback;
+        u32 old_clip[16];copy(old_clip,(void*)(image_base+0x1f1e50),64);
+        MnmWordBackendInput input={(void*)frame,length,frame,(u32)canvas.pixels,canvas.width,
+            canvas.height,canvas.stride_words,backend,clip.left,clip.top,ax,ay};
+        MnmWordBackendState state;
+        if(mnm_word_backend_state(&input,old_clip,&state))goto fallback;
+        allocation=HeapAlloc(GetProcessHeap(),0,canvas.bytes*2+68);if(!allocation)goto fallback;
+        before=allocation;copy(before,canvas.pixels,canvas.bytes);
+        u8* guarded=allocation+canvas.bytes;
+        for(u32 i=0;i<canvas.bytes+68;++i)guarded[i]=0xa5;
+        u32 offset=32+((u32)canvas.pixels&3);
+        MnmWordCanvas trial=canvas;trial.pixels=guarded+offset;copy(trial.pixels,before,canvas.bytes);
+        if(mnm_word_sprite_clip_draw((void*)frame,length,&trial,&clip,ax,ay,&clipped))goto fallback;
+        int edge=clipped.left<clip.left||clipped.top<clip.top||
+            (int64_t)clipped.left+clipped.width>=clip.right||(int64_t)clipped.top+clipped.height>=clip.bottom;
+        int hidden=clipped.source_left==clipped.source_right||clipped.source_top==clipped.source_bottom;
+        typedef u32 (*OriginalClip)(void*,i32,i32);
+        u32 returned=((OriginalClip)word_original)((void*)frame,ax,ay);
+        ++stats[7];++stats[9];++stats[10];++clip_stats[6];++clip_stats[10];++clip_stats[18];
+        if(edge)++clip_stats[7];else ++clip_stats[8];if(hidden)++clip_stats[9];
+        int guard_ok=1;
+        for(u32 i=0;i<canvas.bytes+68;++i)
+            if((i<offset||i>=offset+canvas.bytes)&&guarded[i]!=0xa5)guard_ok=0;
+        if(returned||!guard_ok||!equal(trial.pixels,canvas.pixels,canvas.bytes)||
+            !equal(state.words,(void*)(image_base+0x1f1e50),64)){
+            ++stats[11];++clip_stats[12];stopped=1;
+        }
+        if(edge&&clip_stats[14]<8){
+            u32 previous=stats[13];
+            sample(clip_stats[14]+1,backend,frame,length,&canvas,ax,ay,before,old_clip,(void*)(image_base+0x1f1e50));
+            if(stats[13]>previous){++clip_stats[14];++clip_stats[17];}
+            else{++clip_stats[13];stopped=1;}
+        }
+        arguments[1]=(u32)state.argument_x;arguments[2]=(u32)state.argument_y;handled=1;
+        if(clip_stats[6]<=8||!(clip_stats[6]%64)||stopped)report();
+        goto done;
+    }
     MnmWordDraw draw;
     if(mnm_word_sprite_admit((void*)frame,length,&canvas,ax,ay,&draw)!=MNM_WORD_OK||
         draw.left<(i32)get((void*)(image_base+0x2e0008))||draw.top<(i32)get((void*)(image_base+0x2cbb6c)))goto fallback;
@@ -90,6 +145,7 @@ int word_route(u32* registers){
     if(sequence<=8||!(sequence%64)||stopped)report();
     goto done;
 fallback:
+    if(mode==3){++clip_stats[10];++clip_stats[11];}
     ++stats[9];++stats[12];if(stats[6]<=8||!(stats[6]%64))report();
 done:
     if(allocation)HeapFree(GetProcessHeap(),0,allocation);
@@ -115,13 +171,18 @@ static int install(u32 base){
 __declspec(dllexport) void WordAnchor(void){}
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;
-    if(reason==0){if(log_file!=(HANDLE)-1){report();CloseHandle(log_file);}return 1;}
+    if(reason==0){if(log_file!=(HANDLE)-1){report();CloseHandle(log_file);}
+        if(clip_log!=(HANDLE)-1)CloseHandle(clip_log);
+        return 1;}
     if(reason!=1)return 1;
     char selection[16];u32 n=GetEnvironmentVariableA("MNM_WORD_SPRITES",selection,sizeof(selection));
     if(n==6&&equal(selection,"shadow",6))mode=1;
-    else if(n==8&&equal(selection,"takeover",8))mode=2;else return 1;
+    else if(n==8&&equal(selection,"takeover",8))mode=2;
+    else if(n==11&&equal(selection,"clip-shadow",11))mode=3;else return 1;
     n=GetEnvironmentVariableA("MNM_WORD_DIRECTORY",directory,sizeof(directory));if(!n||n>=sizeof(directory))return 1;
     char filename[260];path(filename,"stats.bin");log_file=CreateFileA(filename,0x40000000,0,0,1,0x80,0);
     if(log_file==(HANDLE)-1)return 1;
+    if(mode==3){path(filename,"clip-stats.bin");clip_log=CreateFileA(filename,0x40000000,0,0,1,0x80,0);
+        if(clip_log==(HANDLE)-1){++stats[14];report();return 1;}}
     installed=install((u32)GetModuleHandleA(0));report();return 1;
 }
