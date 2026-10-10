@@ -71,3 +71,22 @@ Run the fail-closed report checks without Qt, Wine or game media:
 ```sh
 python3 -B tests/test-native-campaign.py
 ```
+
+Gameplay stress and throughput checks:
+
+```sh
+python3 tools/test-native-campaign.py --stress-seconds 20 --menu-cycles 3
+```
+
+The runner independently observes three original initialized World tick returns
+before allowing Escape or other gameplay input. Native Region Entry/loading
+frames cannot authorize gameplay. Stress injects physical XTest camera pans,
+rotations, scene/HUD clicks and wheel events through the native viewport.
+It repeats native Mini Cancel and resumes input after every handoff.
+
+The default performance floor is 20 native completed frames and visible Qt
+paints per second on average in each gameplay phase; one-second samples below
+10 FPS and sampling stalls over two seconds fail. `--min-fps` makes the selected
+floor explicit in the retained report. Private Xvfb runs select software Mesa;
+performance there is scoped to that backend, not physical GPU certification.
+Player movement, combat effects and pixel equivalence need separate evidence.

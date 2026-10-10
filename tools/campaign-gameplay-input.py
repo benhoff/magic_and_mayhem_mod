@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+"""Bounded physical XTest actions against an explicitly supplied native viewport."""
+import argparse
+import ctypes as c
+import json
+import os
+from pathlib import Path
+import time
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--rect', nargs=4, type=int, required=True, metavar=('X', 'Y', 'W', 'H'))
+    parser.add_argument('--seconds', type=int, choices=range(10, 121), required=True)
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    x0, y0, width, height = args.rect
+    if width < 320 or height < 240:
+        parser.error('Native viewport is too small')
+    x = c.CDLL('libX11.so.6'); xt = c.CDLL('libXtst.so.6')
+    x.XOpenDisplay.argtypes = [c.c_char_p]; x.XOpenDisplay.restype = c.c_void_p
+    x.XFlush.argtypes = x.XCloseDisplay.argtypes = [c.c_void_p]
+    x.XKeysymToKeycode.argtypes = [c.c_void_p, c.c_ulong]; x.XKeysymToKeycode.restype = c.c_uint
+    xt.XTestFakeKeyEvent.argtypes = [c.c_void_p, c.c_uint, c.c_int, c.c_ulong]
+    xt.XTestFakeButtonEvent.argtypes = [c.c_void_p, c.c_uint, c.c_int, c.c_ulong]
+    xt.XTestFakeMotionEvent.argtypes = [c.c_void_p, c.c_int, c.c_int, c.c_int, c.c_ulong]
+    display = x.XOpenDisplay(os.environ['DISPLAY'].encode())
+    if not display:raise RuntimeError('No input display')
+    start = time.monotonic(); log = []; held = set()
+    def record(action, **values):log.append(dict(action=action, seconds=time.monotonic()-start, **values))
+    def motion(fx, fy):
+        px, py = x0+int(width*fx), y0+int(height*fy)
+        if not xt.XTestFakeMotionEvent(display, -1, px, py, 0):raise RuntimeError('Motion injection failed')
+        x.XFlush(display); record('motion', x=px, y=py)
+    def button(b):
+        for down in [1, 0]:
+            if not xt.XTestFakeButtonEvent(display, b, down, 0):raise RuntimeError('Button injection failed')
+            x.XFlush(display); time.sleep(.08)
+        record('click', button=b)
+    def key(sym, seconds):
+        code = x.XKeysymToKeycode(display, sym)
+        if not code or not xt.XTestFakeKeyEvent(display, code, 1, 0):raise RuntimeError('Key injection failed')
+        held.add(code); x.XFlush(display); time.sleep(seconds)
+        xt.XTestFakeKeyEvent(display, code, 0, 0); held.remove(code); x.XFlush(display)
+        record('key', keysym=sym, held_seconds=seconds); time.sleep(.1)
+    try:
+        motion(.5, .45); button(1)
+        while time.monotonic()-start < args.seconds:
+            for sym in [0xff53, 0xff54, 0xff51, 0xff52]:key(sym, .45)
+            for sym in [ord('.'), ord('.'), ord('.'), ord('.'), ord(','), ord(',')]:key(sym, .12)
+            for fx, fy, b in [(.46,.44,1),(.58,.49,3),(.65,.35,3),(.48,.6,1)]:
+                motion(fx,fy);button(b);time.sleep(.15)
+            motion(.86,.16);button(1) # HUD/minimap edge interaction
+            motion(.5,.45);button(4);button(5)
+            time.sleep(.5)
+    finally:
+        for code in held:xt.XTestFakeKeyEvent(display,code,0,0)
+        for b in [1,2,3]:xt.XTestFakeButtonEvent(display,b,0,0)
+        x.XFlush(display);x.XCloseDisplay(display)
+        args.output.write_text(json.dumps(dict(success=True, seconds=time.monotonic()-start, actions=log,
+            scope='Physical camera keys, rotation, scene/HUD clicks and wheel input. Movement/combat outcomes require separate observation.'),indent=2)+'\n')
+
+
+if __name__ == '__main__':main()

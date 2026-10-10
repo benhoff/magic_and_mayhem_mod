@@ -22473,9 +22473,12 @@
         "tools/test-native-campaign.py",
         "tests/test-native-campaign.py",
         "apps/qt-shell/campaign_smoke_test.cpp",
-        "apps/qt-shell/campaign_smoke_test.hpp"
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "tools/campaign-gameplay-input.py"
       ],
-      "evidence": [],
+      "evidence": [
+        "HOST.native-campaign.premature-escape-20261009"
+      ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
@@ -43988,6 +43991,28 @@
       "original_hash_pointer": "/source_executable_sha256",
       "equivalence_pointer": "/equivalent_intermediates",
       "bypass_pointer": "/original_work_bypassed"
+    },
+    {
+      "id": "HOST.native-campaign.premature-escape-20261009",
+      "kind": "live_observation",
+      "scope": "Negative combined-route observation: old driver sent Escape after native Region Entry transition frames, before any completed original World tick. Original Realm-context Mini opened; campaign Mini route not reached. Interrupted bounded session; no gameplay success, equivalence or replacement claim.",
+      "record": "research/runtime/native-campaign-premature-escape-20261009.json",
+      "sha256": "eac5c0bf4a241f7abc69c32490191698ac837fe714c63039b631644de8ee84ad",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/observations/world_completed_ticks",
+          "equals": 0
+        },
+        {
+          "pointer": "/observations/native_gameplay_screenshot_was_region_entry",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -50717,6 +50742,24 @@
       "evidence": [
         "NR.world-resource-reuse.live-20261009"
       ]
+    },
+    {
+      "id": "native-campaign-combined-session-20261009",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.native-campaign-session"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "tools/campaign-gameplay-input.py"
+      ],
+      "evidence": [
+        "HOST.native-campaign.premature-escape-20261009"
+      ],
+      "scope": "Public native menu/New Game/Region Enter/native command presentation attempt. Negative first result sends Escape before World initialization; positive end-to-end and gameplay stress remain pending. Original callbacks/ticks independent of rendering counters."
     }
   ],
   "recovered_ranges": [
@@ -51045,8 +51088,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-campaign-combined-20261009.json",
-    "sha256": "8609fd0e5352a8468f756bc2d800600ddf05c02263ab1f3b967d79a54d325e36"
+    "path": "research/runtime/coverage/source-index-native-campaign-readiness-20261009.json",
+    "sha256": "7499bac0f7236822c23e079d7beaa92b5dc9c79b64f30255ea58a0ae40e76262"
   },
   "claim_bindings_required": true
 }

@@ -73,6 +73,27 @@ class EvidenceTests(unittest.TestCase):
                 with self.subTest(kind=kind), self.assertRaises(ValueError):
                     smoke.validate_events(root)
 
+    def test_startup_frames_do_not_authorize_gameplay(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);rows=self.events(root)
+            self.write_events(root,[r for r in rows if r[1]!=12])
+            self.assertFalse(smoke.world_ready(root))
+            self.write_events(root,rows)
+            self.assertTrue(smoke.world_ready(root))
+            rows[3][2]=401;self.write_events(root,rows)
+            self.assertFalse(smoke.world_ready(root))
+
+    def test_slow_or_missing_paints_fail_gameplay(self):
+        flow=self.flow()
+        flow['gameplay_rates']=[dict(cycle=c,seconds=1,native_frames=30,painted_frames=30,native_fps=30,paint_fps=30) for c in [0,1] for _ in range(10)]
+        smoke.validate_flow(flow,stress_seconds=10)
+        for field,value in [('painted_frames',1),('native_frames',1),('seconds',3)]:
+            slow=copy.deepcopy(flow)
+            for row in slow['gameplay_rates']:row[field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):smoke.validate_flow(slow,stress_seconds=10)
+        flow['gameplay_rates']=[]
+        with self.assertRaises(ValueError):smoke.validate_flow(flow,stress_seconds=10)
+
     def test_protocol_downgrade_cannot_pass(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory); rows = self.events(root); self.write_events(root, rows)

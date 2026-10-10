@@ -63,9 +63,9 @@
 #include "campaign_smoke_test.hpp"
 
 class Shell final:public QMainWindow {
-    quint64 nativeCommandFrames_=0;
+    quint64 nativeCommandFrames_=0,nativePaintedFrames_=0;
 public:
-    CampaignPresentationProbe campaignPresentation() const{return {nativeCommandFrames_,commands_&&commands_->state()==LiveCommandSession::State::Active,nativeFallback_};}
+    CampaignPresentationProbe campaignPresentation() const{return {nativeCommandFrames_,commands_&&commands_->state()==LiveCommandSession::State::Active,nativeFallback_,nativePaintedFrames_,commands_?commands_->recoveries():0,commands_?commands_->error():QString()};}
     void showPresentation(){if(presentation_)presentation_->show();else show();}
     explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false,PresentationOptions presentation={}):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
         setWindowTitle("Magic & Mayhem Workshop");resize(1100,850);
@@ -138,7 +138,7 @@ public:
                 statusBar()->showMessage(state.ready?(state.screen==7?QString("Spell selection connected. Edits apply on Start battle. Time remaining: %1").arg(state.spells.seconds<0?QString("expired"):QString::number(state.spells.seconds)):state.screen==14?"Battle setup connected. Edits apply when opening Map, changing a player or starting.":"Native menu connected to the engine. Other actions are available through Use original menus."):"Waiting for the engine menu transition…");
             };
         }
-        if(opengl_){gl_=new GlViewport(viewport_);layout_->addWidget(gl_);gl_->hide();input_=std::make_unique<InputForwarder>(*gl_,host_);}
+        if(opengl_){gl_=new GlViewport(viewport_);gl_->setObjectName("nativeGameViewport");connect(gl_,&QOpenGLWidget::frameSwapped,this,[this]{if(commands_&&commands_->state()==LiveCommandSession::State::Active&&gl_->isVisible()&&(!menuStack_||menuStack_->currentWidget()==viewport_))++nativePaintedFrames_;});layout_->addWidget(gl_);gl_->hide();input_=std::make_unique<InputForwarder>(*gl_,host_);}
         auto* toolbar=addToolBar("Game");toolbar->setMovable(false);
         launch_=new QPushButton("Launch game",this);launch_->setObjectName("launchGame");toolbar->addWidget(launch_);
         check_=new QPushButton("Check installation",this);toolbar->addWidget(check_);
@@ -268,6 +268,7 @@ private:
                 arguments.append({"--command-channel",commandPath});
                 if(continuous){input_->suspend(true);arguments.append({"--render-control",commandPath+".control"});}
             }
+        if(nativeCommands_)gl_->show();
         return true;
     }
     void start(bool check){
