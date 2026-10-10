@@ -22639,6 +22639,7 @@
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
         "runtime/render/recovery_race_selftest.h",
         "runtime/render/recovery_selftest.h",
         "runtime/render/resource_selftest.h",
@@ -22647,12 +22648,15 @@
         "runtime/render/surface_history.h",
         "runtime/render/working_set_selftest.h",
         "runtime/shadow/win32_min.h",
+        "tests/campaign-clock-reference.c",
         "tools/build-menu-observer.py",
         "tools/build-render-bridge.py",
+        "tools/campaign-gameplay-input.py",
         "tools/campaign-healing-input.py",
         "tools/original-manifest.sh",
         "tools/prepare-shadow-experiment.py",
-        "tools/profile-render-stream.py"
+        "tools/profile-render-stream.py",
+        "tools/test-native-clock.py"
       ]
     },
     {
@@ -22726,7 +22730,8 @@
         "HOST.native-campaign.fireball-portrait-passed-20261010",
         "HOST.native-campaign.adept-dialogue-negative-20261010",
         "HOST.native-campaign.normal-quit-passed-20261010",
-        "HOST.native-campaign.adept-party-defeat-20261010"
+        "HOST.native-campaign.adept-party-defeat-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22861,6 +22866,7 @@
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
         "runtime/render/recovery_race_selftest.h",
         "runtime/render/recovery_selftest.h",
         "runtime/render/resource_selftest.h",
@@ -22869,11 +22875,13 @@
         "runtime/render/surface_history.h",
         "runtime/render/working_set_selftest.h",
         "runtime/shadow/win32_min.h",
+        "tests/campaign-clock-reference.c",
         "tests/campaign-movement-test.py",
         "tests/campaign-spell-test.py",
         "tests/native-render-config-test.py",
         "tools/build-menu-observer.py",
         "tools/build-render-bridge.py",
+        "tools/campaign-gameplay-input.py",
         "tools/campaign-healing-input.py",
         "tools/campaign-quit-input.py",
         "tools/campaign_movement.py",
@@ -22881,7 +22889,8 @@
         "tools/native_render_config.py",
         "tools/original-manifest.sh",
         "tools/prepare-shadow-experiment.py",
-        "tools/profile-render-stream.py"
+        "tools/profile-render-stream.py",
+        "tools/test-native-clock.py"
       ]
     },
     {
@@ -22917,7 +22926,8 @@
         "HOST.native-campaign.fireball-portrait-passed-20261010",
         "HOST.native-campaign.final-portrait-slow-20261010",
         "HOST.native-campaign.final-portrait-profiled-slow-20261010",
-        "HOST.native-pacer.sleep0-slow-20261010"
+        "HOST.native-pacer.sleep0-slow-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22944,10 +22954,14 @@
         "renderer/surface_backend.cpp",
         "renderer/surface_copy.cpp",
         "runtime/render/pacer_yield.h",
+        "runtime/render/precise_clock.h",
+        "tests/campaign-clock-reference.c",
+        "tools/campaign-gameplay-input.py",
         "tools/campaign-healing-input.py",
         "tools/menu-game-runner.py",
         "tools/native_render_config.py",
-        "tools/prepare-menu-observer.py"
+        "tools/prepare-menu-observer.py",
+        "tools/test-native-clock.py"
       ]
     },
     {
@@ -22983,7 +22997,8 @@
       ],
       "evidence": [
         "HOST.native-portrait.passed-20261010",
-        "HOST.native-campaign.fireball-portrait-passed-20261010"
+        "HOST.native-campaign.fireball-portrait-passed-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22997,14 +23012,18 @@
         "apps/qt-shell/healing_smoke_test.cpp",
         "apps/qt-shell/main.cpp",
         "runtime/render/pacer_yield.h",
+        "runtime/render/precise_clock.h",
+        "tests/campaign-clock-reference.c",
         "tools/build-menu-observer.py",
         "tools/build-render-bridge.py",
+        "tools/campaign-gameplay-input.py",
         "tools/campaign-healing-input.py",
         "tools/decode-cfg.py",
         "tools/encode-cfg.py",
         "tools/prepare-shadow-experiment.py",
         "tools/run-opengl-game.py",
-        "tools/run-qt-shell.sh"
+        "tools/run-qt-shell.sh",
+        "tools/test-native-clock.py"
       ]
     },
     {
@@ -23029,7 +23048,8 @@
       "evidence": [
         "HOST.native-campaign.spell-cases-passed-20261010",
         "HOST.native-campaign.fireball-portrait-passed-20261010",
-        "HOST.native-campaign.normal-quit-passed-20261010"
+        "HOST.native-campaign.normal-quit-passed-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23173,6 +23193,7 @@
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
         "runtime/render/recovery_race_selftest.h",
         "runtime/render/recovery_selftest.h",
         "runtime/render/resource_selftest.h",
@@ -23181,6 +23202,7 @@
         "runtime/render/surface_history.h",
         "runtime/render/working_set_selftest.h",
         "runtime/shadow/win32_min.h",
+        "tests/campaign-clock-reference.c",
         "tests/campaign-movement-test.py",
         "tests/campaign-spell-test.py",
         "tests/native-render-config-test.py",
@@ -23201,7 +23223,8 @@
         "tools/profile-render-stream.py",
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "tools/test-native-clock.py"
       ]
     },
     {
@@ -23255,7 +23278,9 @@
         "HOST.native-campaign.spell-cases-passed-20261010",
         "HOST.native-campaign.fireball-portrait-passed-20261010",
         "HOST.native-campaign.normal-quit-passed-20261010",
-        "HOST.native-campaign.healing-passed-20261010"
+        "HOST.native-campaign.healing-passed-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010",
+        "HOST.native-campaign.healing-precise-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23399,6 +23424,7 @@
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
         "runtime/render/recovery_race_selftest.h",
         "runtime/render/recovery_selftest.h",
         "runtime/render/resource_selftest.h",
@@ -23407,6 +23433,7 @@
         "runtime/render/surface_history.h",
         "runtime/render/working_set_selftest.h",
         "runtime/shadow/win32_min.h",
+        "tests/campaign-clock-reference.c",
         "tests/campaign-movement-test.py",
         "tests/campaign-spell-test.py",
         "tests/native-render-config-test.py",
@@ -23427,7 +23454,8 @@
         "tools/profile-render-stream.py",
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "tools/test-native-clock.py"
       ]
     },
     {
@@ -23453,7 +23481,8 @@
         "HOST.native-campaign.portrait-defeat-20261010",
         "HOST.native-campaign.spell-cases-passed-20261010",
         "HOST.native-campaign.fireball-portrait-passed-20261010",
-        "HOST.native-campaign.normal-quit-passed-20261010"
+        "HOST.native-campaign.normal-quit-passed-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23597,6 +23626,7 @@
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
         "runtime/render/recovery_race_selftest.h",
         "runtime/render/recovery_selftest.h",
         "runtime/render/resource_selftest.h",
@@ -23605,6 +23635,7 @@
         "runtime/render/surface_history.h",
         "runtime/render/working_set_selftest.h",
         "runtime/shadow/win32_min.h",
+        "tests/campaign-clock-reference.c",
         "tests/campaign-movement-test.py",
         "tests/campaign-spell-test.py",
         "tests/native-render-config-test.py",
@@ -23625,7 +23656,8 @@
         "tools/profile-render-stream.py",
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "tools/test-native-clock.py"
       ]
     },
     {
@@ -23657,7 +23689,8 @@
         "HOST.native-campaign.adept-dialogue-negative-20261010",
         "HOST.native-campaign.adept-ranged-negative-20261010",
         "HOST.native-campaign.normal-quit-passed-20261010",
-        "HOST.native-campaign.adept-party-defeat-20261010"
+        "HOST.native-campaign.adept-party-defeat-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23801,6 +23834,7 @@
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
         "runtime/render/recovery_race_selftest.h",
         "runtime/render/recovery_selftest.h",
         "runtime/render/resource_selftest.h",
@@ -23809,6 +23843,7 @@
         "runtime/render/surface_history.h",
         "runtime/render/working_set_selftest.h",
         "runtime/shadow/win32_min.h",
+        "tests/campaign-clock-reference.c",
         "tests/campaign-movement-test.py",
         "tests/campaign-spell-test.py",
         "tests/native-render-config-test.py",
@@ -23829,7 +23864,8 @@
         "tools/profile-render-stream.py",
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "tools/test-native-clock.py"
       ]
     },
     {
@@ -24066,7 +24102,8 @@
       ],
       "evidence": [
         "HOST.native-campaign.normal-quit-passed-20261010",
-        "HOST.native-campaign.normal-quit-entry-bound-20261010"
+        "HOST.native-campaign.normal-quit-entry-bound-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -24210,6 +24247,7 @@
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
         "runtime/render/recovery_race_selftest.h",
         "runtime/render/recovery_selftest.h",
         "runtime/render/resource_selftest.h",
@@ -24218,6 +24256,7 @@
         "runtime/render/surface_history.h",
         "runtime/render/working_set_selftest.h",
         "runtime/shadow/win32_min.h",
+        "tests/campaign-clock-reference.c",
         "tests/campaign-movement-test.py",
         "tests/campaign-spell-test.py",
         "tests/native-render-config-test.py",
@@ -24239,7 +24278,8 @@
         "tools/profile-render-stream.py",
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "tools/test-native-clock.py"
       ]
     },
     {
@@ -24273,7 +24313,8 @@
       "evidence": [
         "HOST.native-campaign.healing-passed-20261010",
         "HOST.native-campaign.healing-hud-negative-20261010",
-        "HOST.native-campaign.healing-interval-negative-20261010"
+        "HOST.native-campaign.healing-interval-negative-20261010",
+        "HOST.native-campaign.healing-precise-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -24421,6 +24462,7 @@
         "runtime/render/palette_history.h",
         "runtime/render/palette_selftest.h",
         "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
         "runtime/render/recovery_race_selftest.h",
         "runtime/render/recovery_selftest.h",
         "runtime/render/resource_selftest.h",
@@ -24429,6 +24471,7 @@
         "runtime/render/surface_history.h",
         "runtime/render/working_set_selftest.h",
         "runtime/shadow/win32_min.h",
+        "tests/campaign-clock-reference.c",
         "tests/campaign-movement-test.py",
         "tests/campaign-spell-test.py",
         "tests/native-render-config-test.py",
@@ -24449,7 +24492,8 @@
         "tools/profile-render-stream.py",
         "tools/run-menu-observer.py",
         "tools/run-qt-shell.sh",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "tools/test-native-clock.py"
       ]
     },
     {
@@ -24457,7 +24501,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Scoped cooperative yield in original native-session frame wait",
-      "scope": "Intentional native hosting policy: guard pinned original pacing import load and whole busy-loop bytes plus loaded GetTickCount import identity; yield Sleep0 only for original busy-loop returnPC0x4e3f8b in configured live native command session, then forward original GetTickCount with entry LastError preserved. Other call sites, clock epoch/return bits, game speed, frame limit, wait target and pacing instructions remain original. Disable yield on closed/refused/failed/stopping native command lifecycle flags. Bounded synthetic guard/return/LastError/policy checks and prospective gameplay/portrait rates; no precise scheduling/physics/timing equivalence or native simulation replacement.",
+      "scope": "Intentional native hosting policy: guard pinned original pacing import load and whole busy-loop bytes plus loaded GetTickCount import identity; yield Sleep0 only for original busy-loop returnPC0x4e3f8b in configured live native command session, then forward original GetTickCount with entry LastError preserved. Other call sites, clock epoch/return bits, game speed, frame limit, wait target and pacing instructions remain original. Disable yield on closed/refused/failed/stopping native command lifecycle flags. Bounded synthetic guard/return/LastError/policy checks and prospective gameplay/portrait rates; no precise scheduling/physics/timing equivalence or native simulation replacement. Original clock forwarding scope requires the separate precise uptime policy to be disabled; combining both changes the clock intentionally under HOST.native-precise-uptime-clock.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -24511,6 +24555,7 @@
         "runtime/render/command_recovery.h",
         "runtime/render/command_scheduler.h",
         "runtime/render/pacer_yield.h",
+        "runtime/render/precise_clock.h",
         "runtime/shadow/win32_min.h",
         "tests/campaign-pacer-reference.c",
         "tools/build-menu-observer.py",
@@ -24546,7 +24591,8 @@
       "evidence": [
         "HOST.native-smoke.cleanup-fixture-20261010",
         "HOST.native-smoke.cleanup-fixture-v4-20261010",
-        "HOST.native-smoke.cleanup-fixture-v5-20261010"
+        "HOST.native-smoke.cleanup-fixture-v5-20261010",
+        "HOST.native-smoke.cleanup-clock-fixture-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -24555,6 +24601,81 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "HOST.native-precise-uptime-clock",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Real higher-resolution uptime clock for native-hosted original wait",
+      "scope": "Intentional native hosting clock policy: only native command sessions, pinned GetTickCount import and original busy-wait bytes admitted. Replace uptime reads through that original import with loaded WinMM timeGetTime real milliseconds after requiring shared epoch within32ms; original clock is still called to preserve entry/exit LastError. Forward real DWORD clock with natural wrap; no fabricated timestamp, game-speed preference or wait-target change. Synthetic forwarding/epoch guards and actual standalone Wine clock sampling, then bounded live casting/healing/portrait/menu workflows. Full original timing/physics/scheduling equivalence and native simulation replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5127744,
+          "scope": "Original no-skip frame target at0x6dbe95 and GetTickCount busy wait0x4e3f89..0x4e3f93; this policy preserves instructions/target and cooperatively yields only at returned callPC0x4e3f8b."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-portrait-rendering.md",
+        "research/runtime/world-tick-loop.md",
+        "research/runtime/native-portrait-cpu-profile-20261010.json"
+      ],
+      "implementation": [
+        "runtime/render/precise_clock.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/bridge.c",
+        "tools/menu-game-runner.py"
+      ],
+      "tests": [
+        "tests/campaign-clock-reference.c",
+        "tools/test-native-clock.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-precise-clock.fixture-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/healing_smoke_test.cpp",
+        "apps/qt-shell/main.cpp",
+        "runtime/render/bridge.c",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/precise_clock.h",
+        "runtime/shadow/win32_min.h",
+        "tests/campaign-clock-reference.c",
+        "tests/campaign-pacer-reference.c",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign-healing-input.py",
+        "tools/decode-cfg.py",
+        "tools/encode-cfg.py",
+        "tools/menu-game-runner.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-opengl-game.py",
+        "tools/run-qt-shell.sh",
+        "tools/test-native-campaign.py",
+        "tools/test-native-clock.py",
+        "tools/test-native-pacer.py"
+      ]
     }
   ],
   "evidence": [
@@ -47339,6 +47460,114 @@
         }
       ],
       "scope": "Source-bound synthetic fixture only; no original runtime or complete gameplay equivalence."
+    },
+    {
+      "id": "HOST.native-precise-clock.fixture-20261010",
+      "kind": "native_integration",
+      "scope": "Synthetic forwarding/epoch/wrap guards and1024 standalone real Wine clock samples; no original game execution or timing equivalence.",
+      "record": "research/runtime/native-precise-clock-fixture-20261010.json",
+      "sha256": "0c4476ef03fe610cb57153dbff732ff6df56fa00e717c4e1e52e38d4087b55bc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.precise-portrait-passed-20261010",
+      "kind": "live_observation",
+      "scope": "Passed whole bounded native menu/command casting, Fireball100to80, player Zombie melee and same-enemy lethal, blocked targets/mana,25stationary portrait cycles61.296sec (56.477interior20.0081native/paint FPS,maxfaceerror1),60.431sec resumed camera/HUD/wheel, MiniCancel/normalQuitNoYes/Main launcher0. Original simulation/drawing retained; real high-resolution clock is an intentional native policy, no original timing/physics/hardware equivalence.",
+      "record": "research/runtime/native-precise-portrait-passed-20261010.json",
+      "sha256": "7656219fb8e0c3f3f48c9284a38df7e6268dbfd453da06344c73d4a38cf3eec0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_precise_clock/enabled",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-smoke.cleanup-clock-fixture-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-smoke-cleanup-clock-fixture-20261010.json",
+      "sha256": "fb2559aa63a5870426023d1f5b7410fe1cfb7ef7b90c8b53149db71e46547ba2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ],
+      "scope": "Source-bound synthetic fixture only; no original runtime or complete gameplay equivalence."
+    },
+    {
+      "id": "HOST.native-campaign.healing-precise-passed-20261010",
+      "kind": "live_observation",
+      "scope": "Fresh final-source native Quick Battle offered Cure/Zombie loadout, living injured original human wizard397to400 with Cure signed delta100 and matching mana debit, real precise clock enabled,41.5934native/30.6934paint FPS,worst19.0909,zero recovery/fallback, manifests/source stability. Actual selected clamp observation only, no formula/cleansing/refund/timing/full battle or replacement equivalence.",
+      "record": "research/runtime/native-healing-precise-passed-20261010.json",
+      "sha256": "fcf38a3667a5694fdbd0741433477e2d626ac8c6e6cb5f0bce89e1e05da04ca9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/healing/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/native_precise_clock/enabled",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -54140,7 +54369,8 @@
       "evidence": [
         "HOST.native-portrait.damage-negative-20261010",
         "HOST.native-portrait.passed-20261010",
-        "HOST.native-campaign.fireball-portrait-passed-20261010"
+        "HOST.native-campaign.fireball-portrait-passed-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010"
       ],
       "scope": "Highest-difficulty native casting and lethal player combat with repeated portrait recentering during the fight, at least60-second post-combat portrait stress, independent stable wizard face pixels within one channel value, native Mini Cancel/resume and unchanged20-FPS averages/10-FPS window floors including diagnostic overhead. Original simulation and drawing remain active. Native staged fixed/adaptive draw skips disabled; selected game-speed setting and original pacing instructions unchanged."
     },
@@ -54202,7 +54432,8 @@
         "HOST.native-campaign.spell-cases-negative-3-20261010",
         "HOST.native-campaign.spell-cases-passed-20261010",
         "HOST.native-campaign.fireball-portrait-passed-20261010",
-        "HOST.native-campaign.normal-quit-passed-20261010"
+        "HOST.native-campaign.normal-quit-passed-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010"
       ],
       "scope": "First campaign native invalid-target/insufficient-mana refusals, successful Zombie summon and original player melee enemy depletion, player-sourced Fireball defended enemy damage, ordinary retreat before optional portrait stress, fixed FPS floors and native Mini Cancel/resume. UI refusal differs from internal admission; Cure, formulas, full-World and replacement remain pending."
     },
@@ -54226,7 +54457,8 @@
         "HOST.native-campaign.late-dialogue-negative-20261010",
         "HOST.native-campaign.adept-ranged-negative-20261010",
         "HOST.native-campaign.normal-quit-passed-20261010",
-        "HOST.native-campaign.normal-quit-entry-bound-20261010"
+        "HOST.native-campaign.normal-quit-entry-bound-20261010",
+        "HOST.native-campaign.precise-portrait-passed-20261010"
       ],
       "scope": "Public native campaign gameplay, cleared introductory Hermes dialogue, independent spell/combat outcomes when requested, native Mini Quit with original-rendered native command No/Yes confirmation, World resume, native defeat/Continue/Main and original normal Main Quit exit. Strict gameplay rate/image rules retained; original simulation/drawing, saves and modal timing equivalence excluded."
     },
@@ -54244,7 +54476,8 @@
         "tests/test-native-campaign.py"
       ],
       "evidence": [
-        "HOST.native-campaign.healing-passed-20261010"
+        "HOST.native-campaign.healing-passed-20261010",
+        "HOST.native-campaign.healing-precise-passed-20261010"
       ]
     },
     {
@@ -54276,7 +54509,37 @@
       "evidence": [
         "HOST.native-smoke.cleanup-fixture-20261010",
         "HOST.native-smoke.cleanup-fixture-v4-20261010",
-        "HOST.native-smoke.cleanup-fixture-v5-20261010"
+        "HOST.native-smoke.cleanup-fixture-v5-20261010",
+        "HOST.native-smoke.cleanup-clock-fixture-20261010"
+      ]
+    },
+    {
+      "id": "native-precise-clock-fixture-20261010",
+      "level": "headless",
+      "scope": "Synthetic real-clock forwarding, LastError and wrap/epoch guards plus1024 real owned Wine uptime samples; no original execution.",
+      "behaviors": [
+        "HOST.native-precise-uptime-clock"
+      ],
+      "tests": [
+        "tests/campaign-clock-reference.c",
+        "tools/test-native-clock.py"
+      ],
+      "evidence": [
+        "HOST.native-precise-clock.fixture-20261010"
+      ]
+    },
+    {
+      "id": "native-precise-clock-portrait-session-20261010",
+      "level": "live_observation",
+      "scope": "Native menu original casting/combat/blocked spells with60seconds stationary portrait and60seconds resumed camera/HUD stress then original Quit No/Yes/Main. Real high-resolution uptime, original game speed/wait target retained; strict20average/10window/two-second floors, no fallback/recovery. Original physics/timing and full drawing/simulation replacement excluded.",
+      "behaviors": [
+        "HOST.native-precise-uptime-clock"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-campaign.precise-portrait-passed-20261010"
       ]
     }
   ],
@@ -54606,8 +54869,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-wait-findings-20261010.json",
-    "sha256": "5bd95abe0c2474855e04b02eced81250675264de1bb230fb74c280f378a6fedc"
+    "path": "research/runtime/coverage/source-index-native-precise-clock-reviewed-20261010.json",
+    "sha256": "69769c2914c2375b832073e0a18dd767c06eff34cf0150436745a30ce741ee23"
   },
   "claim_bindings_required": true
 }

@@ -31,7 +31,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'apps/qt-shell/live_command_session.hpp', 'tools/prepare-menu-observer.py',
            'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py']
-SOURCES += ['runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
+SOURCES += ['runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 
 
 def validate_portrait_stress(inputs, flow, capture_root, seconds, min_fps=20):
@@ -286,6 +286,7 @@ def main():
     parser.add_argument('--difficulty', type=int, choices=range(4), default=0, help='Choose the normal Region Entry difficulty via its native radio (0 Initiate; 1 Apprentice for camera/combat stress)')
     parser.add_argument('--require-casting-combat', action='store_true', help='Require successful native-viewport summon and player-versus-enemy melee damage observation')
     parser.add_argument('--portrait-stress-seconds', type=int, default=0, help='Repeat portrait recentering after verified combat (0 or 10..120)')
+    parser.add_argument('--disable-precise-clock',action='store_true',help='Diagnostic control: retain original coarse GetTickCount uptime')
     pacer=parser.add_mutually_exclusive_group()
     pacer.add_argument('--enable-pacer-yield',dest='pacer_yield',action='store_true',help='Experimental opt-in cooperative Sleep0 wait; has no demonstrated portrait performance benefit')
     pacer.add_argument('--disable-pacer-yield',dest='pacer_yield',action='store_false')
@@ -396,6 +397,7 @@ def main():
             env['MNM_CAMPAIGN_SMOKE_TEST'] = '1'
             env['MNM_CAMPAIGN_DIFFICULTY'] = str(args.difficulty)
             env['MNM_CAMPAIGN_CASTING_COMBAT'] = '1' if args.require_casting_combat or args.healing_case else '0'
+            env['MNM_CAMPAIGN_PRECISE_CLOCK']='0' if args.disable_precise_clock else '1'
             env['MNM_CAMPAIGN_PACER_YIELD']='1' if args.pacer_yield else '0'
             env['MNM_NATIVE_HEALING']='1' if args.healing_case else '0'
             env['MNM_CAMPAIGN_PORTRAIT_SECONDS'] = str(args.portrait_stress_seconds)
@@ -445,6 +447,10 @@ def main():
             if len(roots) != 1 or not roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer'):
                 raise RuntimeError('Missing unique menu experiment identity')
             report['experiment'] = str(roots[0])
+            report['native_precise_clock']={'enabled':not args.disable_precise_clock,'scope':'Real loaded WinMM timeGetTime uptime in guarded original clock import; game speed and wait target unchanged; full timing/physics equivalence excluded'}
+            if not args.disable_precise_clock:
+                log=roots[0]/'lock-capture/lifecycle.log'
+                if not log.exists() or 'native_precise_clock ' not in log.read_text():raise ValueError('Native precise uptime clock was not admitted')
             report['native_pacer_yield']={'enabled':args.pacer_yield,'scope':'Guarded original wait call0x4e3f8b Sleep0 then original clock forwarding; original game speed/frame target retained; timing equivalence excluded'}
             if args.pacer_yield:
                 log=roots[0]/'lock-capture/lifecycle.log'

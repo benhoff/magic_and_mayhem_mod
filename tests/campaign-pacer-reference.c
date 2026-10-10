@@ -14,6 +14,7 @@ void start(void){
     for(u32 i=0;i<6;++i){load[i]^=1;if(pacer_entry_matches(load,loop,0x1234,0x1234,0x400000))ExitProcess(2);load[i]^=1;}
     for(u32 i=0;i<12;++i){loop[i]^=1;if(pacer_entry_matches(load,loop,0x1234,0x1234,0x400000))ExitProcess(3);loop[i]^=1;}
     if(pacer_entry_matches(load,loop,0x1235,0x1234,0x400000)||pacer_entry_matches(load,loop,0,0,0x400000)||pacer_entry_matches(load,loop,0x1234,0x1234,0x410000))ExitProcess(4);
+    if(!precise_clock_epoch_matches(0,0))ExitProcess(7);
     pacer_original_tick=test_tick;
     for(u32 mode=0;mode<4;++mode){pacer_enabled=mode!=0;SetLastError(0x77);
         u32 result=pacer_read(mode==2?0x4e3f7f:0x4e3f8b,mode!=1);

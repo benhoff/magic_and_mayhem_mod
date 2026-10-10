@@ -48,6 +48,7 @@ if os.environ.get('MNM_MENU_NATIVE_RENDER')=='1':
     paths={'MNM_RENDER_STREAM':'render-frame.bin','MNM_RENDER_INPUT':'render-input.bin','MNM_RENDER_COMMAND_CHANNEL':'render-commands.bin','MNM_RENDER_CONTROL':'render-commands.bin.control','MNM_RENDER_LOCK_CAPTURE_DIR':'lock-capture','MNM_RENDER_FAILURE_LOG':'surface-failures.log'}
     for key,name in paths.items():os.environ[key]='Z:'+str(root/name).replace('/','\\')
     if os.environ.get('MNM_CAMPAIGN_PACER_YIELD','0')=='1':os.environ['MNM_RENDER_PACER_YIELD']='1'
+    if os.environ.get('MNM_CAMPAIGN_PRECISE_CLOCK','1')=='1':os.environ['MNM_RENDER_PRECISE_CLOCK']='1'
     os.environ.update(MNM_RENDER_CONTINUOUS='1',MNM_RENDER_PALETTE_RESOURCES='1',MNM_RENDER_OWNED_SESSION='1',MNM_RENDER_NO_READBACK='1',MNM_RENDER_ORDERED_COPIES='1')
 os.chdir(game)
 os.execvp('wine',['wine','explorer','/desktop=MagicMayhem,800x600',str(game/'Chaos.exe'),*sys.argv[2:]])

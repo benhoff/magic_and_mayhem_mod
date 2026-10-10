@@ -27,7 +27,7 @@ def main():
         build=root/'working/build/qt-shell';build.mkdir(parents=True);(build/'mnm-qt-shell').write_bytes(b'fake binary');(build/'CMakeCache.txt').write_text('CMAKE_BUILD_TYPE:STRING=Release\n')
         experiment=root/'working/experiments/menu-observer/owned';experiment.mkdir(parents=True);(experiment/'render-frame.bin').write_bytes(b'fake engine')
         (experiment/'manifest.json').write_text(json.dumps(dict(native_draw_cadence=dict(settings=dict(SkipFrameEvery=0,SkipXFrames=0,MaxSkipXFrames=0)))))
-        (experiment/'lock-capture').mkdir();(experiment/'lock-capture/lifecycle.log').write_text('native_pacer_yield owned fake observation\n')
+        (experiment/'lock-capture').mkdir();(experiment/'lock-capture/lifecycle.log').write_text('native_pacer_yield owned fake observation\nnative_precise_clock owned fake observation\n')
         stops=[];runs=[];prefixes=[]
         class Process:
             def __init__(self,pid):self.pid=pid;self.returncode=None

@@ -173,3 +173,60 @@ Redcap is above the wizard and none of the original five bounded aim points
 produce a Fireball cast. Higher points are added, retaining the two actual-cast
 limit; the subsequent failed portrait run observes the required original
 Fireball damage. No health, mana, position or AI values are written.
+
+## Real higher-resolution uptime policy
+
+The rejected yields led to a separate real-clock probe. In1024 standalone
+Wine11.16 samples separated by Sleep1, original GetTickCount advances67 times
+in16/17ms steps; loaded WinMM timeGetTime advances1023 times in1/2ms steps.
+Its measured uptime stays0..16ms ahead of the coarse clock. Synthetic tests
+also cover DWORD wrap, both32ms admission boundaries, disabled forwarding,
+and preservation of original entry/exit LastError. The raw four-DWORD records
+and source-bound report are retained in `native-precise-clock-fixture-20261010*`.
+This is standalone host evidence, independent of original game execution.
+
+The native command route now requests a guarded real WinMM uptime clock.
+The original import identity, six-byte load and complete12-byte wait loop must
+match; loaded timeGetTime and a shared uptime epoch within32ms are required.
+Calls through that original import still invoke original GetTickCount to retain
+its error-state contract, then return actual timeGetTime milliseconds. Values
+are never fabricated, offset, scaled or frozen; natural DWORD wrap remains.
+The original wait instructions/target and selected game-speed preference stay
+unchanged. The finer clock stays fixed for the admitted process lifetime, even
+when native rendering closes, so shutdown never switches between clock epochs.
+Full original timer, animation, physics and threading equivalence remains open.
+`--disable-precise-clock` retains the original coarse clock for diagnostic runs.
+The separate Sleep0 policy remains opt-in and is not required for this clock.
+
+The resumed phase after successful combat now uses camera keys, rotation,
+scene hover, HUD selection and wheel input for60seconds without additional
+random ground orders. The first phase retains real summon/ranged/melee/blocked
+casts and ordinary movement. This isolates presentation stress from the
+previous low-health wizard being ordered back into combat; the report marks
+`camera_only` explicitly. A natural defeat remains a distinct unvalidated
+menu branch, and any premature native Main/Defeat/Result remains a failure.
+Live workflow results are recorded separately below when available.
+
+## Executed precise-clock combined workflow
+
+`native-precise-portrait-passed-20261010.json` prospectively binds the current
+clock/renderer/menu/input/test sources. Native menu entry and original World
+readiness pass, followed by two ordinary Zombie summons, real Fireball100to80,
+seven observed player-Zombie melee HP losses and the wizard's finishing hit on
+the same enemy. Invalid target and insufficient-mana cases spend no mana/create
+no Zombie. Twenty-five stationary portrait recenter cycles span61.296seconds;
+56.477interior seconds measure20.0081native and painted FPS, worst19.8413FPS,
+and stable face maximum channel error1 against independent original pixels.
+The average has little margin above the fixed20FPS floor; this is a bounded
+software-Mesa observation, not a hardware or long-session throughput guarantee.
+
+Resumed camera/HUD/wheel stress spans60.431seconds, then native Mini Quit with
+original No, resumed World, Yes, native defeat Continue and native Main Quit
+ends the launcher normally at0. Whole initial/resumed native rates are30.959/
+57.701FPS and painted rates25.959/37.885FPS. All unchanged20average/10window/
+2second stall gates pass, with8642native frames,6499paints, zero recovery and
+no fallback. Both immutable manifests pass and declared sources stay unchanged.
+This renews only the stated scenarios; Cure and generic repeated Mini Cancel
+are independently checked. Original timing/physics, natural defeat, full surface
+history, complete GDI/drawing/simulation replacement and other hardware remain
+outside the result. Earlier negative reports and their hashes remain intact.
