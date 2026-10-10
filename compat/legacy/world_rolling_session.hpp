@@ -9,6 +9,7 @@ public:
   render::Image consume(std::uint64_t sequence,const std::vector<std::uint8_t>&,
     const std::function<void(const CanvasProducer&,const render::Image&)>& checkpoint={},
     const std::function<void(const CanvasProducer&,const render::Image&)>& entry={});
+  render::GpuFrame presentGpu(){if(failed_||!completed_)throw std::logic_error("Rolling GPU presentation before completion");return world_.presentGpu();}
   const CanvasWorld::Profile& profile() const {return world_.profile();}
   CanvasFrameCacheStats producerCacheStats() const {return producer_.frameCacheStats();}
   std::uint64_t completed() const {return completed_;}

@@ -36,6 +36,7 @@ def main():
     parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow','clip-takeover'],help='Observe the explicit partial direct-word raster experiment')
     parser.add_argument('--world-frames',action='store_true',help='Capture complete effective raster inputs and separate original output oracles')
     parser.add_argument('--world-lifetime',action='store_true',help='Bounded diagnostic canvas identity/initial-content observations from first queue call')
+    parser.add_argument('--continuous-queues',type=int,default=None,help='Explicit guarded two-block producer test cap (1..4096); no diagnostic journal/oracles')
     parser.add_argument('--producer-live',type=Path,help='Native Qt closed-producer consumer executable, starts before original launch')
     parser.add_argument('--world-producer-handoff',action='store_true',help='Use reconstructed producer history in native GPU World drawing')
     parser.add_argument('--world-raster-queue',type=int,choices=range(1,17),help='Replace every admitted raster in this selected World queue')
@@ -60,6 +61,7 @@ def main():
     parser.add_argument('--minimap-owned',action='store_true',help='Observe owned four-view minimap inputs in producer journal V2; original drawing stays active')
     parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
+    if args.continuous_queues is not None and (not 1<=args.continuous_queues<=4096 or not args.world_raster_batch or args.samples!=32 or args.world_raster_prefix!=32 or args.manual_input):parser.error('Continuous queues require isolated guarded prefix32 setup and cap1..4096')
     if args.minimap_input_fixture and (not args.minimap_owned or args.samples!=16 or args.magic_items):parser.error('Minimap input fixture requires --minimap-owned --samples 16 --magic-items 0')
     if args.minimap_owned and (not args.canvas_producers or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('--minimap-owned requires original-active --canvas-producers')
     if args.producer_oracle_mib!=1024 and not args.canvas_producers:parser.error('--producer-oracle-mib requires --canvas-producers')
@@ -147,7 +149,13 @@ def main():
             (root/'capture-policy.json').write_text(json.dumps(policy,indent=2)+'\n')
         if args.producer_live:
             viewer_log=(root/'native-producers.log').open('x')
-            viewer=subprocess.Popen([str(args.producer_live.resolve()),str(root/'capture/canvas-producers.bin'),str(root/'game'),str(root/'native-producers'),*(['--world-handoff'] if args.world_producer_handoff else []),*(['--world-batch'] if args.world_raster_batch else [])],env={**os.environ,'QT_QPA_PLATFORM':'xcb','LIBGL_ALWAYS_SOFTWARE':'1'},stdout=viewer_log,stderr=subprocess.STDOUT)
+            viewer=subprocess.Popen([str(args.producer_live.resolve()),str(root/'capture/canvas-producers.bin'),str(root/'game'),str(root/'native-producers'),*([str(args.continuous_queues)] if args.continuous_queues is not None else [*(['--world-handoff'] if args.world_producer_handoff else []),*(['--world-batch'] if args.world_raster_batch else [])])],env={**os.environ,'QT_QPA_PLATFORM':'xcb','LIBGL_ALWAYS_SOFTWARE':'1'},stdout=viewer_log,stderr=subprocess.STDOUT)
+        if args.continuous_queues is not None:
+            ready=root/'native-producers/ready';until=time.monotonic()+60
+            while not ready.exists():
+                if viewer.poll() is not None or time.monotonic()>until:raise RuntimeError('Continuous native initialization failed')
+                time.sleep(.02)
+            metadata=json.loads((root/'manifest.json').read_text());metadata['world_continuous']=str(root/'world-continuous.bin');metadata['continuous_queues']=args.continuous_queues;(root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
         if args.world_live:
             create(root/'world-channel.bin',verify,args.live_frames if history else 0)
             viewer_log=(root/'native-world.log').open('x')
@@ -230,6 +238,14 @@ def main():
                 if args.magic_items:send(7,12,slots=wait(7)[2])
             started_live=time.monotonic();deadline=started_live+(3600 if full_rasters else 300 if args.world_producer_handoff else 60)
             while time.monotonic()<deadline:
+                if args.continuous_queues is not None:
+                    if viewer.poll() is not None:
+                        if viewer.returncode:raise RuntimeError('Native continuous viewer failed; inspect '+str(root/'native-producers/live-report.json'))
+                        paths=sorted((root/'capture').glob('scene-*.bin'));worlds=[];break
+                    if process.poll() is not None:raise RuntimeError('Original game exited during continuous source delivery')
+                    if time.monotonic()>started_live+600:raise RuntimeError('Continuous original queues timed out')
+                    heartbeat+=1;sequence+=2;struct.pack_into('<I',channel,16,sequence-1);struct.pack_into('<I',channel,24,heartbeat);struct.pack_into('<I',channel,16,sequence)
+                    time.sleep(.02);continue
                 if args.world_live:
                     if viewer.poll() is not None:
                         if viewer.returncode:raise RuntimeError('Native World viewer failed; inspect '+str(root/'native-world.json'))
@@ -353,7 +369,12 @@ def main():
                     refusals.append(refusal)
             report.update(world_frames={str(p.relative_to(root)):sha(p) for p in sorted((root/'capture').glob('world-*'))},skip_queues=args.skip_queues,queue_interval=args.interval)
             if args.observe_world_refusals:report.update(world_refusals=refusals,complete_native_admission=not refusals)
-        if args.canvas_producers:
+        if args.continuous_queues is not None:
+            native=json.loads((root/'native-producers/live-report.json').read_text())
+            if not native['success'] or int(native['original_returns'])!=args.continuous_queues or int(native['native_completions'])!=args.continuous_queues or native['remaining_surfaces'] or native['image_uploads']:raise RuntimeError('Incomplete original/native continuous acknowledgements')
+            if list((root/'capture').glob('producer-oracle-*')) or (root/'capture/canvas-producers.bin').exists() or list((root/'capture').glob('world-batch-*.request')):raise RuntimeError('Continuous path emitted accumulating diagnostics')
+            report.update(native_continuous=native,original_pixels_used_as_native_inputs=False,original_work_bypassed=True,continuous_queues=args.continuous_queues,scope='Actual guarded original producer queues through fixed two-slot owned sources and native CPU/GPU rendering, with original writeback/return acknowledgement; native final CPU/GPU assertions, independent original equivalence remains separate.')
+        if args.canvas_producers and args.continuous_queues is None:
             spec=importlib.util.spec_from_file_location('producer_inspector',ROOT/'tools/inspect-canvas-producers.py')
             inspector=importlib.util.module_from_spec(spec);spec.loader.exec_module(inspector)
             report['canvas_producers']=inspector.analyze(root/'capture')

@@ -135,3 +135,8 @@ void CanvasWorld::end(const CanvasProducer &c){
   active_=false;
 }
 }
+
+mnm::render::GpuFrame mnm::legacy::CanvasWorld::presentGpu(){
+ if(active_||!checked_||!scene_)throw std::logic_error("World GPU presentation before completion");
+ return scene_->presentGpu();
+}
