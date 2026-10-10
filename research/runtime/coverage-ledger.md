@@ -4018,3 +4018,33 @@ shared-source evidence keeps its original hashes and requires its own rerun.
 Committed ranges652c01d..c9f99e8 andc9f99e8..d412789 have28+44 exact reviewed file
 transitions, including append-only journals, with no unresolved gaps. Concurrent
 font-rendering work is preserved separately from this reviewed projection.
+
+
+### Guarded clipped direct-word takeover — 2026-10-10
+
+`RS.word-clip-takeover` adds explicit `clip-takeover` mode4. It commits guarded
+native main-plane pixels and recovered workspace to the original canvas, with
+conservative caller x87 admission; empty/refused calls tail-forward original.
+`NR.word-clipped-takeover-admission` keeps this safety policy separate.
+
+Fresh actual-entry tests match22,048 cases:22,000 positive native body-zero
+calls(17,600 auxiliary-bearing),48 empty original-once forwards and110,240
+classified forced refusals.22,000 unmasked and2,240 occupied push-slot hidden
+fixtures preserve original-once selected state/LastError. Four rounding modes
+across24/53/64-bit precision and ASan/UBSan core boundaries pass. Mode3 regression
+also passes22,048 original matches and110,240 classified refusals.
+
+Four Wine World startup observations report13,312 native bypasses,705 clipped,
+zero original forwards/comparisons/refusals/error/stop. Observed backend is only
+forward0x596cb8 with53-bit x87 precision. Eight distinct auxiliary-bearing captures
+(two clipped,six interior) independently match unchanged-original/native replay:
+1,420,800 completecanvas WORDs andall16 workspace words. Equivalence covers the
+retained cohort; counters alone do not compareall13,312 commits. Auxiliary caller
+passes and other drawing remain original; no fullscene/session/performance claim.
+
+[Scope and evidence](word-clip-takeover.md) retain the initial count-only failure,
+source-bound fresh executions and42 file/94 behavior committed-history transitions
+acrossd412789..0191a55 withzero gaps. Older wider/shared contracts remain historical
+where source edits invalidate current evidence. Original font/text consumer live
+integration, indexed/auxiliary effects, more active battle/camera coverage and
+sustained delivery/recovery remain outstanding.

@@ -27868,7 +27868,8 @@
       "evidence": [
         "RS.word-clip-aux-shadow.original-20261010",
         "RS.word-clip-aux-shadow.host-20261010",
-        "RS.word-clip-aux-shadow.live-20261010"
+        "RS.word-clip-aux-shadow.live-20261010",
+        "RS.word-clip-aux-shadow.takeover-regression-original-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -27953,6 +27954,201 @@
           "original malformed acceptance",
           "payload effects",
           "live takeover"
+        ]
+      }
+    },
+    {
+      "id": "RS.word-clip-takeover",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Guarded opt-in native clipped main-word backend takeover",
+      "scope": "Bounded contiguous direct-word inputs with absent/first/second/both/reversed opaque auxiliary offsets at two pinned No-CD backends. Actual production route/entry commits guarded native full canvas and recovered16-word workspace while bypassing original body. Masked supported24/53/64-bit x87 precision and free next physical push slot; selected integer/defined flags/stack/x87 finite values/sticky status/XMM/MXCSR/LastError preserved. Empty or refused requests execute original once. Synthetic corpus22000 positives/48 empty andfive forced refusals; unmasked IE exact finite and occupied push-slot masked vertically hidden original comparisons. Finite Wine four World startup observations with actual bypass/backend/clipped counts and eight distinct auxiliary-bearing input pairs(two clipped,six interior), independent original/native replay. Other backends,indexed/source-padded/auxiliary payload effects,unsafe original malformed handling,complete FP fault/pointer/Win32/nested-reentry/physical-Windows/full-session/performance/all-assets equivalence excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Selected direct-word clipped original pixel/workspace/caller state under bounded shadow admission only; full backend and original malformed handling excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Selected direct-word clipped original pixel/workspace/caller state under bounded shadow admission only; full backend and original malformed handling excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/word-clip-takeover.md",
+        "research/formats/word-clipped-takeover-stats-v1.md"
+      ],
+      "implementation": [
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_entry.S",
+        "tools/build-word-sprites.py",
+        "tools/prepare-scene-observer.py",
+        "tools/scene-game-runner.py",
+        "tools/render-game-runner.py",
+        "tools/run-opengl-game.py",
+        "renderer/sprites/word_clipped.c",
+        "renderer/sprites/word_clipped.h",
+        "reconstruction/rendering/word_backend_state.c",
+        "reconstruction/rendering/word_backend_state.h"
+      ],
+      "tests": [
+        "tests/word-clip-shadow-reference.cpp",
+        "tests/word-clip-shadow-host.c",
+        "tests/word-clip-shadow-host.S",
+        "tools/test-word-clip-shadow.py",
+        "tools/capture-scene-game.py",
+        "tools/replay-word-clip-shadow.py",
+        "tests/word-clip-shadow-replay.cpp"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "renderer/sprites/word-clipped/CMakeLists.txt",
+        "renderer/sprites/word_raster.c",
+        "renderer/sprites/word_raster.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/word-backend-probe.S",
+        "tests/word-clipped-test.c",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh",
+        "tools/test-word-sprites.py",
+        "tools/world_channel.py"
+      ],
+      "evidence": [
+        "RS.word-clip-takeover.original-20261010",
+        "RS.word-clip-takeover.host-20261010",
+        "RS.word-clip-takeover.live-20261010",
+        "RS.word-clip-takeover.replacement-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "scoped_live"
+      },
+      "validation_domain": {
+        "synthetic": "22048 actual-entry comparisons;22000 native original-body-zero positives including17600 auxiliary variants;48 empty original-once;110240 classified forced refusals. Four rounding modes across24/53/64-bit precision. Unmasked IE original-once on22000 exact finite positives; occupied push-slot original-once on2240 vertically hidden positives.",
+        "live": "Four World startup observations, native/clipped bypass counts, zero original comparison count, eight distinct auxiliary-bearing pairs(two clipped,six interior) with at leastfour encoded frame hashes and independent unchanged-original/native replay. Live scalar and broader semantic caller support depend on actual counters.",
+        "exclusions": [
+          "indexed/source-padded inputs",
+          "auxiliary payload effects",
+          "FP faults/instruction pointers/reserved precision",
+          "actual nested reentry and real Windows",
+          "full-session/all-assets/performance"
+        ]
+      }
+    },
+    {
+      "id": "NR.word-clipped-takeover-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Atomic guarded clipped takeover and conservative x87 admission",
+      "scope": "Intentional native admission policy: guarded trial result precedes canvas/workspace commit; masked exceptions,supported precision and empty next physical x87 push slot required, caller FXSAVE governs guards. Refusals/empty tail-forward unchanged original once. Host fault injection checks allocation/read/write extent,busy/stopped and FP guards; no original malformed acceptance,fault delivery or real nested-reentry claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/word-clip-takeover.md",
+        "research/formats/word-clipped-takeover-stats-v1.md"
+      ],
+      "implementation": [
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_entry.S",
+        "tools/build-word-sprites.py",
+        "tools/prepare-scene-observer.py",
+        "tools/scene-game-runner.py",
+        "tools/render-game-runner.py",
+        "tools/run-opengl-game.py",
+        "renderer/sprites/word_clipped.c",
+        "renderer/sprites/word_clipped.h",
+        "reconstruction/rendering/word_backend_state.c",
+        "reconstruction/rendering/word_backend_state.h"
+      ],
+      "tests": [
+        "tests/word-clip-shadow-reference.cpp",
+        "tests/word-clip-shadow-host.c",
+        "tests/word-clip-shadow-host.S",
+        "tools/test-word-clip-shadow.py",
+        "tools/capture-scene-game.py",
+        "tools/replay-word-clip-shadow.py",
+        "tests/word-clip-shadow-replay.cpp"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "renderer/sprites/word-clipped/CMakeLists.txt",
+        "renderer/sprites/word_raster.c",
+        "renderer/sprites/word_raster.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/word-backend-probe.S",
+        "tests/word-clipped-test.c",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh",
+        "tools/test-word-sprites.py",
+        "tools/world_channel.py"
+      ],
+      "evidence": [
+        "NR.word-clipped-takeover-admission.host-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "synthetic": "22048 route fixtures,110240 five-way forced refusals,22000 unmasked IE forwards,2240 occupied push-slot hidden forwards and ASan/UBSan core boundary tests.",
+        "exclusions": [
+          "real Win32 errors/nested reentry",
+          "FP fault delivery",
+          "original malformed acceptance"
         ]
       }
     }
@@ -53856,6 +54052,385 @@
         }
       ],
       "equivalence_pointer": "/live_pixels_workspace_match"
+    },
+    {
+      "id": "RS.word-clip-takeover.original-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/word-clip-takeover-isolated-20261010.json",
+      "sha256": "0ce918cb45f2782a2bc8f7575d033daacbe207fcf1ad4c4a7bae8089a143393c",
+      "scope": "Actual production guarded clipped takeover route/entry versus unchanged original:22000 positive native bypasses,17600 auxiliary-bearing,48 empty forwards and110240 classified forced refusals. Four rounding modes across24/53/64-bit precision controls; selected x87 stack/status, XMM/MXCSR, integer/argument/workspace/pixels/guards/source, LastError and exact original-body counters. Unmasked IE forwarded on exact finite arithmetic; occupied push-slot forwarded on masked vertically hidden positive fixtures. Real Win32 permissions/nested-reentry, fault delivery, other backends, indexed/auxiliary payload interpretation/full-session excluded.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 22048
+        },
+        {
+          "pointer": "/counts/native_entry_original_matches",
+          "equals": 22048
+        },
+        {
+          "pointer": "/counts/original_body_zero_positive",
+          "equals": 22000
+        },
+        {
+          "pointer": "/counts/forced_refusal_checks",
+          "equals": 110240
+        },
+        {
+          "pointer": "/counts/unmasked_guard_matches",
+          "equals": 22000
+        },
+        {
+          "pointer": "/counts/occupied_push_guard_matches",
+          "equals": 2240
+        },
+        {
+          "pointer": "/counts/original_forwarded_empty",
+          "equals": 48
+        },
+        {
+          "pointer": "/counts/last_error_preserved",
+          "equals": 22048
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.word-clip-takeover.host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/word-clip-takeover-isolated-20261010.json",
+      "sha256": "0ce918cb45f2782a2bc8f7575d033daacbe207fcf1ad4c4a7bae8089a143393c",
+      "scope": "Actual production guarded clipped takeover route/entry versus unchanged original:22000 positive native bypasses,17600 auxiliary-bearing,48 empty forwards and110240 classified forced refusals. Four rounding modes across24/53/64-bit precision controls; selected x87 stack/status, XMM/MXCSR, integer/argument/workspace/pixels/guards/source, LastError and exact original-body counters. Unmasked IE forwarded on exact finite arithmetic; occupied push-slot forwarded on masked vertically hidden positive fixtures. Real Win32 permissions/nested-reentry, fault delivery, other backends, indexed/auxiliary payload interpretation/full-session excluded.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/host_ctest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/original_body_zero_positive",
+          "equals": 22000
+        },
+        {
+          "pointer": "/counts/forced_refusal_checks",
+          "equals": 110240
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NR.word-clipped-takeover-admission.host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/word-clip-takeover-isolated-20261010.json",
+      "sha256": "0ce918cb45f2782a2bc8f7575d033daacbe207fcf1ad4c4a7bae8089a143393c",
+      "scope": "Guarded main-word takeover native policy and classified refusals/FP guards under host Win32 substitutes; ASan/UBSan core preflight boundary corpus.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/host_ctest_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/forced_refusal_checks",
+          "equals": 110240
+        },
+        {
+          "pointer": "/counts/unmasked_guard_matches",
+          "equals": 22000
+        },
+        {
+          "pointer": "/counts/occupied_push_guard_matches",
+          "equals": 2240
+        }
+      ]
+    },
+    {
+      "id": "RS.word-clip-takeover.live-20261010",
+      "kind": "live_equivalence",
+      "record": "research/runtime/word-clip-takeover-live-20261010.json",
+      "sha256": "41b30f313489d569d47b4d264328e67f7b9aa584f85389a81130967249d2d363",
+      "scope": "Finite opt-in guarded clipped main-word native takeover at No-CD forward0x596cb8, throughfour World startup observations.13312 reported native commits,705 clipped,zero original forwards/comparisons/refusals/error/stop; auxiliary caller work and other drawing remain original. All native calls observed use53-bit masked x87 precision andforward backend; live scalar notexercised. Eight distinct auxiliary-bearing captured pairs(two clipped,six interior) independently match unchanged original/native fullcanvas1420800 WORDs andall16 workspace words. Equivalence is scoped to theseeight inputs, notall reported bypasses or complete scene/session. Host22000 native positives andclassified guard/fallback evidence registered separately. No indexed,payload effects,all-assets,completeFP/Win32/faultdelivery/nested-reentry/physicalWindows/performance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/world_observations",
+          "equals": 4
+        },
+        {
+          "pointer": "/sample_count",
+          "equals": 8
+        },
+        {
+          "pointer": "/distinct_frames",
+          "equals": 8
+        },
+        {
+          "pointer": "/clipped_sample_count",
+          "equals": 2
+        },
+        {
+          "pointer": "/compared_pixels",
+          "equals": 1420800
+        },
+        {
+          "pointer": "/live_pixels_workspace_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": true
+        },
+        {
+          "pointer": "/word_stats/8",
+          "equals": 13312
+        },
+        {
+          "pointer": "/word_stats/9",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_stats/10",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/7",
+          "equals": 705
+        },
+        {
+          "pointer": "/word_clip_stats/11",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/12",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/13",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/15",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/18",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_admission_stats/16",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_admission_stats/17",
+          "equals": 13312
+        },
+        {
+          "pointer": "/word_admission_stats/25",
+          "equals": 13312
+        }
+      ],
+      "equivalence_pointer": "/live_pixels_workspace_match",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.word-clip-takeover.replacement-20261010",
+      "kind": "live_replacement",
+      "record": "research/runtime/word-clip-takeover-live-20261010.json",
+      "sha256": "41b30f313489d569d47b4d264328e67f7b9aa584f85389a81130967249d2d363",
+      "scope": "Finite opt-in guarded clipped main-word native takeover at No-CD forward0x596cb8, throughfour World startup observations.13312 reported native commits,705 clipped,zero original forwards/comparisons/refusals/error/stop; auxiliary caller work and other drawing remain original. All native calls observed use53-bit masked x87 precision andforward backend; live scalar notexercised. Eight distinct auxiliary-bearing captured pairs(two clipped,six interior) independently match unchanged original/native fullcanvas1420800 WORDs andall16 workspace words. Equivalence is scoped to theseeight inputs, notall reported bypasses or complete scene/session. Host22000 native positives andclassified guard/fallback evidence registered separately. No indexed,payload effects,all-assets,completeFP/Win32/faultdelivery/nested-reentry/physicalWindows/performance claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/world_observations",
+          "equals": 4
+        },
+        {
+          "pointer": "/sample_count",
+          "equals": 8
+        },
+        {
+          "pointer": "/distinct_frames",
+          "equals": 8
+        },
+        {
+          "pointer": "/clipped_sample_count",
+          "equals": 2
+        },
+        {
+          "pointer": "/compared_pixels",
+          "equals": 1420800
+        },
+        {
+          "pointer": "/live_pixels_workspace_match",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": true
+        },
+        {
+          "pointer": "/word_stats/8",
+          "equals": 13312
+        },
+        {
+          "pointer": "/word_stats/9",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_stats/10",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/7",
+          "equals": 705
+        },
+        {
+          "pointer": "/word_clip_stats/11",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/12",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/13",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/15",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_clip_stats/18",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_admission_stats/16",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_admission_stats/17",
+          "equals": 13312
+        },
+        {
+          "pointer": "/word_admission_stats/25",
+          "equals": 13312
+        }
+      ],
+      "equivalence_pointer": "/live_pixels_workspace_match",
+      "bypass_pointer": "/original_work_bypassed",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.word-clip-aux-shadow.takeover-regression-original-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/word-clip-takeover-shadow-regression-20261010.json",
+      "sha256": "5e4a3791e7bd66fe6812fe92415e854ad8ad4233be4d976599775118f7cfa3fa",
+      "scope": "Fresh unchanged mode3 production entry/route regression:22048 original comparisons,22000 shadows/17600 auxiliary positives,48 empty forwards,110240 original-once classified failures; no fresh live-shadow claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 22048
+        },
+        {
+          "pointer": "/counts/native_entry_original_matches",
+          "equals": 22048
+        },
+        {
+          "pointer": "/counts/original_once",
+          "equals": 22048
+        },
+        {
+          "pointer": "/counts/forced_refusal_checks",
+          "equals": 110240
+        },
+        {
+          "pointer": "/isolated_original_body_bypasses",
+          "equals": 0
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -61208,7 +61783,8 @@
       "evidence": [
         "RS.word-clip-aux-shadow.original-20261010",
         "RS.word-clip-aux-shadow.host-20261010",
-        "NR.word-clipping-plane-bounds.host-20261010"
+        "NR.word-clipping-plane-bounds.host-20261010",
+        "RS.word-clip-aux-shadow.takeover-regression-original-20261010"
       ],
       "tests": [
         "tools/test-word-clip-shadow.py"
@@ -61223,6 +61799,39 @@
       ],
       "evidence": [
         "RS.word-clip-aux-shadow.live-20261010"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py",
+        "tools/replay-word-clip-shadow.py"
+      ]
+    },
+    {
+      "id": "word-clip-takeover-host-20261010",
+      "level": "headless",
+      "scope": "Actual mode4 production route/entry:22048 original comparisons with22000 original-body-zero native positives and48 empty forwards;110240 classified original-once failures plus22000 unmasked IE/2240 occupied push-slot hidden guards. Selected caller-state and ASan/UBSan preflight boundaries;host Win32 substitutes.",
+      "behaviors": [
+        "RS.word-clip-takeover",
+        "NR.word-clipped-takeover-admission"
+      ],
+      "evidence": [
+        "RS.word-clip-takeover.original-20261010",
+        "RS.word-clip-takeover.host-20261010",
+        "NR.word-clipped-takeover-admission.host-20261010"
+      ],
+      "tests": [
+        "tools/test-word-clip-shadow.py"
+      ]
+    },
+    {
+      "id": "word-clip-takeover-live-20261010",
+      "level": "live_equivalence",
+      "scope": "Four World startup observations with actual mode4 native/clipped bypass counts,no original comparison credit,eight distinct auxiliary-bearing input pairs(two clipped,six interior),at leastfour frame hashes and independent original/native completecanvas/workspace replay. Actual backend counts delimit live scope;full-session excluded.",
+      "behaviors": [
+        "RS.word-clip-takeover"
+      ],
+      "evidence": [
+        "RS.word-clip-takeover.live-20261010",
+        "RS.word-clip-takeover.replacement-20261010"
       ],
       "tests": [
         "tools/capture-scene-game.py",
@@ -61556,8 +62165,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-font-glyph-20261010.json",
-    "sha256": "a6778d2f95ec8879b7edbdaabf896e6a455b8beccdf0bae3875c3e42b2d79a77"
+    "path": "research/runtime/coverage/source-index-word-clip-takeover-20261010.json",
+    "sha256": "7f52676d43f2686c72cf92492438ed03b142adc5579fbe63a27e0bafd392e9c6"
   },
   "claim_bindings_required": true
 }

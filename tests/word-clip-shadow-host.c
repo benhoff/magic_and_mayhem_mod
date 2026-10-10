@@ -12,7 +12,7 @@ u32 mnm_host_original_calls;
 extern void mnm_host_original_scalar(void),mnm_host_original_forward(void);
 void host_unused_scalar(void){}
 void host_unused_forward(void){}
-void mnm_host_configure(u32 frame,u32 length,u32 canvas,u32 bytes,u32 failure){
+void mnm_host_configure(u32 frame,u32 length,u32 canvas,u32 bytes,u32 failure,u32 selection){
     const u32 initial[16]={0x574d4e4d,0x31304452,1,64};
     const u32 initial_clip[20]={0x574d4e4d,0x31304c43,1,80};
     for(u32 i=0;i<16;++i)stats[i]=initial[i];
@@ -20,7 +20,7 @@ void mnm_host_configure(u32 frame,u32 length,u32 canvas,u32 bytes,u32 failure){
     for(u32 i=0;i<32;++i)admission_stats[i]=i==0?0x574d4e4d:i==1?0x31304441:i==2?1:i==3?128:0;
     for(u32 i=0;i<8;++i){sampled_hash[i]=0;sampled_backend[i]=0;}
     admission_log=(HANDLE)4;
-    image_base=0x400000;mode=3;installed=1;stopped=failure==5;busy=failure==4;
+    image_base=0x400000;mode=selection;installed=1;stopped=failure==5;busy=failure==4;
     scalar_trampoline=(u32)&mnm_host_original_scalar;forward_trampoline=(u32)&mnm_host_original_forward;
     host_error=0x7a21;host_fail=failure;host_frame=frame;host_length=length;
     host_canvas=canvas;host_bytes=bytes;mnm_host_original_calls=0;
@@ -32,7 +32,8 @@ u32 mnm_host_forwarded(void){return clip_stats[11];}
 u32 mnm_host_clipped(void){return clip_stats[7];}
 u32 mnm_host_admission_stat(u32 index){return index<32?admission_stats[index]:0;}
 u32 mnm_host_mismatches(void){return clip_stats[12];}
-int _word_route(u32* registers){return word_route(registers);}
+u32 mnm_host_bypassed(void){return stats[8];}
+int _word_route(u32* registers,const u8* fx){return word_route(registers,fx);}
 u32 WIN GetLastError(void){return host_error;}
 void WIN SetLastError(u32 n){host_error=n;}
 u32 WIN VirtualQuery(const void* p,void* result,u32 size){

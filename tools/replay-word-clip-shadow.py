@@ -45,9 +45,9 @@ def main():
                 if p.startswith(str(ROOT)+'/'):compiled.add(str(Path(p).resolve().relative_to(ROOT)))
         assert compiled<=sources.keys(),sorted(compiled-sources.keys())
         report['compiled_project_sources']=sorted(compiled)
-        records=[];paths=sorted(directory.glob('word-*.bin'));assert len(paths)==8
+        capture_modes=set();records=[];paths=sorted(directory.glob('word-*.bin'));assert len(paths)==8
         for index,path in enumerate(paths):
-            b=path.read_bytes();frame,canvas,size,bytes_=struct.unpack_from('<4I',b,24)
+            b=path.read_bytes();capture_modes.add(struct.unpack_from('<I',b,16)[0]);frame,canvas,size,bytes_=struct.unpack_from('<4I',b,24)
             expected_workspace=list(struct.unpack_from('<16I',b,144))
             expected_workspace[7]=(expected_workspace[7]-frame)&0xffffffff
             expected_workspace[10]=(expected_workspace[10]-frame)&0xffffffff
@@ -61,6 +61,9 @@ def main():
             right,bottom=struct.unpack_from('<II',b,40);left,top=struct.unpack_from('<ii',b,64)
             clipped=ax-ox<left or ay-oy<top or ax-ox+fw>=right or ay-oy+fh>=bottom
             records.append(dict(clipped=clipped,frame_sha256=hashlib.sha256(b[208:208+size]).hexdigest(),backend=hex(struct.unpack_from('<I',b,60)[0]+0x400000),auxiliary_offsets=list(struct.unpack_from('<II',b,240)),width=struct.unpack_from('<I',b,212)[0],height=struct.unpack_from('<I',b,216)[0],sample=str(path.relative_to(ROOT)),sha256=sha(path),pixels=bytes_//2,pixels_match=True,workspace_match=True,canvas_alignment=canvas&3))
+        assert len(capture_modes)==1 and capture_modes <= {3,4}
+        report['capture_mode']=next(iter(capture_modes))
+        report['scope']='Eight diverse mode3 shadow or mode4 native bypass samples independently replayed against unchanged original and native CPU/state composition. Complete canvas, guards, source and all16 workspace words; frame-pointer writes normalized. Replay alone does not establish live bypass or full-session equivalence.'
         assert len({r['frame_sha256'] for r in records})>=4 and sum(r['clipped'] for r in records)==2
         report.update(success=True,clipped_sample_count=sum(r['clipped'] for r in records),distinct_frames=len({r['frame_sha256'] for r in records}),samples=records,sample_count=len(records),compared_pixels=sum(r['pixels'] for r in records),binary_sha256=sha(binary),original_pixels_match=True,native_pixels_match=True,workspace_match=True)
     except Exception as error:report['error']=str(error)

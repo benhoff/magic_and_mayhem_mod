@@ -15,7 +15,8 @@ static volatile u32 busy;
 static char directory[220];
 static u32 stats[16]={0x574d4e4d,0x31304452,1,64}; /* MNMWRD01 */
 static HANDLE log_file=(HANDLE)-1;
-/* Separate versioned diagnostics for the clipping shadow, never takeover. */
+/* Mode3 uses MNMWCL01/MNMWAD01. Mode4 uses MNMWTK01/MNMWAT01:
+ * accepted counts describe native bypasses, never original comparisons. */
 static u32 clip_stats[20]={0x574d4e4d,0x31304c43,1,80}; /* MNMWCL01 */
 static HANDLE clip_log=(HANDLE)-1;
 /* MNMWAD01: bounded admission reasons/backend counts, separate from v1 logs. */
@@ -42,7 +43,7 @@ static void path(char* out,const char* name){u32 n=0;while(directory[n]){out[n]=
 static void report(void){
     stats[4]=mode;stats[5]=installed;stats[15]=stopped;
     if(log_file!=(HANDLE)-1&&!write_all(log_file,stats,64))++stats[14];
-    if(mode==3){clip_stats[4]=installed;clip_stats[15]=stopped;
+    if(mode>=3){clip_stats[4]=installed;clip_stats[15]=stopped;
         if(clip_log!=(HANDLE)-1&&!write_all(clip_log,clip_stats,80)){++stats[14];++clip_stats[13];}
         if(admission_log!=(HANDLE)-1&&!write_all(admission_log,admission_stats,128)){++stats[14];++clip_stats[13];}}
 }
@@ -62,21 +63,21 @@ static void sample(u32 sequence,u32 backend,u32 frame,u32 length,const MnmWordCa
     if(f!=(HANDLE)-1&&!CloseHandle(f))ok=0;
     if(!ok)++stats[14];else ++stats[13];
 }
-int word_route(u32* registers){
+int word_route(u32* registers,const u8* caller_fx){
     u32 error=GetLastError(),handled=0;
     u32 backend=get((void*)(registers[3]+4));
     ++stats[6];word_original=backend==0x197086?scalar_trampoline:forward_trampoline;
-    if(mode==3){++clip_stats[5];++admission_stats[4];}
+    if(mode>=3){++clip_stats[5];++admission_stats[4];}
     if(!__sync_bool_compare_and_swap(&busy,0,1)){++stats[9];++stats[12];
-        if(mode==3){++clip_stats[10];++clip_stats[11];++admission_stats[13];}SetLastError(error);return 0;}
+        if(mode>=3){++clip_stats[10];++clip_stats[11];++admission_stats[13];}SetLastError(error);return 0;}
     u8* allocation=0;u8* before=0;u32 refusal=5;
     if(stopped){refusal=14;goto fallback;}
     /* pushal's saved ESP follows the adapter's backend tag and pushfl. */
     u32* arguments=(u32*)(registers[3]+12);u32 frame=arguments[0];i32 ax=arguments[1],ay=arguments[2];
-    u32 minimum=mode==3?40:48;
+    u32 minimum=mode>=3?40:48;
     if(!extent(frame,minimum,0))goto fallback;
     u32 length=get((void*)frame);if(length<minimum||length>4*1024*1024||!extent(frame,length,0))goto fallback;
-    if(mode==3&&(!get((void*)(frame+4))||!get((void*)(frame+8)))){++clip_stats[16];refusal=6;goto fallback;}
+    if(mode>=3&&(!get((void*)(frame+4))||!get((void*)(frame+8)))){++clip_stats[16];refusal=6;goto fallback;}
     MnmWordCanvas canvas={(u8*)get((void*)(image_base+0x258174)),0,
         get((void*)(image_base+0x2a49b8)),get((void*)(image_base+0x256618)),get((void*)(image_base+0x2a2dc8))};
     refusal=7;
@@ -85,7 +86,16 @@ int word_route(u32* registers){
     canvas.bytes=canvas.stride_words*canvas.height*2;
     refusal=8;
     if(!extent((u32)canvas.pixels,canvas.bytes,1))goto fallback;
-    if(mode==3){
+    if(mode>=3){
+        /* Native policy: original FILD needs its next physical stack slot free.
+         * Forward unmasked exception controls and occupied push slots unchanged. */
+        if(mode==4){
+            refusal=22;
+            if(!caller_fx||(caller_fx[0]&63)!=63||(caller_fx[1]&3)==1)goto fallback;
+            refusal=23;
+            u32 top=(caller_fx[3]>>3)&7;
+            if(caller_fx[4]&(1u<<((top+7)&7)))goto fallback;
+        }
         MnmWordClip clip={(i32)get((void*)(image_base+0x2e0008)),
             (i32)get((void*)(image_base+0x2cbb6c)),(i32)canvas.width,(i32)canvas.height};
         MnmWordClippedDraw clipped;
@@ -110,17 +120,32 @@ int word_route(u32* registers){
             (int64_t)clipped.left+clipped.width>=clip.right||(int64_t)clipped.top+clipped.height>=clip.bottom;
         int hidden=clipped.source_left==clipped.source_right||clipped.source_top==clipped.source_bottom;
         typedef u32 (*OriginalClip)(void*,i32,i32);
-        u32 returned=((OriginalClip)word_original)((void*)frame,ax,ay);
-        ++stats[7];++stats[9];++stats[10];++clip_stats[6];++clip_stats[10];++clip_stats[18];
+        int guard_ok=1;
+        for(u32 i=0;i<canvas.bytes+68;++i)
+            if((i<offset||i>=offset+canvas.bytes)&&guarded[i]!=0xa5)guard_ok=0;
+        if(mode==4&&!guard_ok)goto fallback;
+        u32 returned=0;
+        if(mode==4){
+            /* Commit only a fully preflighted and guarded result. Original callers
+             * retain their canvas identity and subsequent auxiliary-plane work. */
+            copy(canvas.pixels,trial.pixels,canvas.bytes);
+            copy((void*)(image_base+0x1f1e50),state.words,64);
+            ++stats[8];
+            u32 precision=(caller_fx[1]>>0)&3;
+            if(precision==0)++admission_stats[24];
+            else if(precision==2)++admission_stats[25];
+            else if(precision==3)++admission_stats[26];
+        }else{
+            returned=((OriginalClip)word_original)((void*)frame,ax,ay);
+            ++stats[9];++stats[10];++clip_stats[10];++clip_stats[18];
+        }
+        ++stats[7];++clip_stats[6];
         int scalar=backend==0x197086;
         ++admission_stats[scalar?16:17];
         if(edge)++admission_stats[scalar?18:19];
         if(get((void*)(frame+32))||get((void*)(frame+36)))++admission_stats[15];
         if(edge&&(get((void*)(frame+32))||get((void*)(frame+36))))++admission_stats[20];
         if(edge)++clip_stats[7];else ++clip_stats[8];if(hidden)++clip_stats[9];
-        int guard_ok=1;
-        for(u32 i=0;i<canvas.bytes+68;++i)
-            if((i<offset||i>=offset+canvas.bytes)&&guarded[i]!=0xa5)guard_ok=0;
         if(returned||!guard_ok||!equal(trial.pixels,canvas.pixels,canvas.bytes)||
             !equal(state.words,(void*)(image_base+0x1f1e50),64)){
             ++stats[11];++clip_stats[12];stopped=1;
@@ -175,7 +200,7 @@ int word_route(u32* registers){
     if(sequence<=8||!(sequence%64)||stopped)report();
     goto done;
 fallback:
-    if(mode==3){++clip_stats[10];++clip_stats[11];++admission_stats[refusal];}
+    if(mode>=3){++clip_stats[10];++clip_stats[11];++admission_stats[refusal];}
     ++stats[9];++stats[12];if(stats[6]<=8||!(stats[6]%64))report();
 done:
     if(allocation)HeapFree(GetProcessHeap(),0,allocation);
@@ -209,11 +234,13 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     char selection[16];u32 n=GetEnvironmentVariableA("MNM_WORD_SPRITES",selection,sizeof(selection));
     if(n==6&&equal(selection,"shadow",6))mode=1;
     else if(n==8&&equal(selection,"takeover",8))mode=2;
-    else if(n==11&&equal(selection,"clip-shadow",11))mode=3;else return 1;
+    else if(n==11&&equal(selection,"clip-shadow",11))mode=3;
+    else if(n==13&&equal(selection,"clip-takeover",13))mode=4;else return 1;
+    if(mode==4){clip_stats[1]=0x31304b54;admission_stats[1]=0x31305441;}
     n=GetEnvironmentVariableA("MNM_WORD_DIRECTORY",directory,sizeof(directory));if(!n||n>=sizeof(directory))return 1;
     char filename[260];path(filename,"stats.bin");log_file=CreateFileA(filename,0x40000000,0,0,1,0x80,0);
     if(log_file==(HANDLE)-1)return 1;
-    if(mode==3){path(filename,"clip-stats.bin");clip_log=CreateFileA(filename,0x40000000,0,0,1,0x80,0);
+    if(mode>=3){path(filename,"clip-stats.bin");clip_log=CreateFileA(filename,0x40000000,0,0,1,0x80,0);
         if(clip_log==(HANDLE)-1){++stats[14];report();return 1;}
         path(filename,"admission-stats.bin");admission_log=CreateFileA(filename,0x40000000,0,0,1,0x80,0);
         if(admission_log==(HANDLE)-1){++stats[14];report();return 1;}}

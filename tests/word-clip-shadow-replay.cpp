@@ -23,14 +23,15 @@ static void map(const Bytes& b){
     for(unsigned i=0;i<count;++i){auto at=table+i*40,n=word(b,at+16),raw=word(b,at+20),rva=word(b,at+12);
         if(raw>b.size()||n>b.size()-raw||rva>length||n>length-rva)throw std::runtime_error("section extent");
         std::memcpy(m+rva,b.data()+raw,n);}
-    if(*reinterpret_cast<std::uint8_t*>(0x597086)!=0x55||*reinterpret_cast<std::uint8_t*>(0x596cb8)!=0x55)throw std::runtime_error("backend entry");
+    const std::uint8_t signature[]={0x55,0x8b,0xec,0x56,0x57,0x53};
+    for(auto address:{0x596cb8,0x597086})if(std::memcmp(reinterpret_cast<void*>(address),signature,6))throw std::runtime_error("backend entry");
 }
 int main(int argc,char** argv)try{
     if(argc!=5)throw std::runtime_error("PE sample output original|native");
     auto b=read(argv[2]);
     if(b.size()<208||std::memcmp(b.data(),"MNMWRC01",8)||word(b,8)!=1||word(b,12)!=b.size())throw std::runtime_error("sample header");
     auto size=word(b,32),bytes=word(b,36),width=word(b,40),height=word(b,44),stride=word(b,48),backend=word(b,60);
-    if(word(b,16)!=3||word(b,72)||word(b,76)||size<48||size>4*1024*1024||!bytes||bytes>16*1024*1024||b.size()!=208+size+bytes*2||
+    if((word(b,16)!=3&&word(b,16)!=4)||word(b,72)||word(b,76)||size<48||size>4*1024*1024||!bytes||bytes>16*1024*1024||b.size()!=208+size+bytes*2||
        !width||!height||width>2048||height>2048||stride<width||stride>4096||bytes!=stride*height*2||
        (backend!=0x197086&&backend!=0x196cb8))throw std::runtime_error("sample bounds");
     auto* frame=static_cast<std::uint8_t*>(mmap(nullptr,size,3,MAP_PRIVATE|MAP_ANONYMOUS,-1,0));

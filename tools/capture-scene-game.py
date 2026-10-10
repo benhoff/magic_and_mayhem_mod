@@ -33,7 +33,7 @@ def main():
     parser.add_argument('--samples',type=int,choices=[*range(1,17),32],default=4)
     parser.add_argument('--map',type=int,choices=range(1,129),default=2)
     parser.add_argument('--magic-items',type=int,choices=range(22),default=0,help='Original Quick Battle item count; nonzero accepts its initial spell assignments through the existing V3 bridge')
-    parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow'],help='Observe the explicit partial direct-word raster experiment')
+    parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow','clip-takeover'],help='Observe the explicit partial direct-word raster experiment')
     parser.add_argument('--world-frames',action='store_true',help='Capture complete effective raster inputs and separate original output oracles')
     parser.add_argument('--world-lifetime',action='store_true',help='Bounded diagnostic canvas identity/initial-content observations from first queue call')
     parser.add_argument('--producer-live',type=Path,help='Native Qt closed-producer consumer executable, starts before original launch')
@@ -282,16 +282,16 @@ def main():
             stats=struct.unpack_from('<16I',raw,len(raw)-64)
             if not stats[5] or not stats[7] or stats[11] or stats[14] or stats[15]:raise RuntimeError('Word-sprite route failed: '+str(stats))
             if args.word_sprites=='takeover' and (not stats[8] or stats[13]!=8):raise RuntimeError('No complete takeover samples')
-            if args.word_sprites=='clip-shadow':
+            if args.word_sprites in ('clip-shadow','clip-takeover'):
                 raw_clip=(root/'word-sprites/clip-stats.bin').read_bytes()
                 if not raw_clip or len(raw_clip)%80:raise RuntimeError('Incomplete clipping shadow statistics')
                 clip_stats=struct.unpack_from('<20I',raw_clip,len(raw_clip)-80)
-                if clip_stats[:5]!=(0x574d4e4d,0x31304c43,1,80,1) or not clip_stats[7] or clip_stats[12] or clip_stats[13] or clip_stats[15] or stats[8] or clip_stats[14]!=8:
+                if clip_stats[:5]!=(0x574d4e4d,0x31304c43 if args.word_sprites=='clip-shadow' else 0x31304b54,1,80,1) or not clip_stats[7] or clip_stats[12] or clip_stats[13] or clip_stats[15] or (stats[8] if args.word_sprites=='clip-shadow' else not stats[8] or stats[10] or clip_stats[18]) or clip_stats[14]!=8:
                     raise RuntimeError('Clipping shadow failed or no eight clipped samples: '+str(clip_stats))
                 raw_admission=(root/'word-sprites/admission-stats.bin').read_bytes()
                 if not raw_admission or len(raw_admission)%128:raise RuntimeError('Incomplete word admission statistics')
                 admission_stats=struct.unpack_from('<32I',raw_admission,len(raw_admission)-128)
-                if admission_stats[:4]!=(0x574d4e4d,0x31304441,1,128) or not admission_stats[15] or not admission_stats[20]:raise RuntimeError('No auxiliary clipped shadow coverage')
+                if admission_stats[:4]!=(0x574d4e4d,0x31304441 if args.word_sprites=='clip-shadow' else 0x31305441,1,128) or not admission_stats[15] or not admission_stats[20]:raise RuntimeError('No auxiliary clipped shadow coverage')
                 sample_frames=[];clipped_samples=0
                 for sample_path in sorted((root/'word-sprites').glob('word-*.bin')):
                     captured=sample_path.read_bytes();frame_bytes=struct.unpack_from('<I',captured,32)[0]
@@ -426,7 +426,7 @@ def main():
             report['minimap_input_fixture']=json.loads((root/'minimap-input.json').read_text())
             report['minimap_input_fixture']['executable_sha256']=sha(args.minimap_input_fixture)
             report['minimap_input_fixture']['world_return_pace_ms']=250
-        if args.word_sprites=='clip-shadow':report.update(word_admission_stats=list(admission_stats),word_admission_stats_sha256=sha(root/'word-sprites/admission-stats.bin'),distinct_word_frames=len(set(sample_frames)),word_clipped_sample_count=clipped_samples,word_clip_stats=list(clip_stats),word_clip_stats_sha256=sha(root/'word-sprites/clip-stats.bin'),word_clipped_samples={str(p.relative_to(root)):sha(p) for p in sorted((root/'word-sprites').glob('word-*.bin'))})
+        if args.word_sprites in ('clip-shadow','clip-takeover'):report.update(word_admission_stats=list(admission_stats),word_admission_stats_sha256=sha(root/'word-sprites/admission-stats.bin'),distinct_word_frames=len(set(sample_frames)),word_clipped_sample_count=clipped_samples,word_clip_stats=list(clip_stats),word_clip_stats_sha256=sha(root/'word-sprites/clip-stats.bin'),word_clipped_samples={str(p.relative_to(root)):sha(p) for p in sorted((root/'word-sprites').glob('word-*.bin'))})
         if args.word_sprites:report.update(word_sprites_mode=args.word_sprites,word_stats=list(stats),word_directory=metadata['word_directory'],word_scope='Partial direct-word backend entries; full scene pixels and other original drawing are outside the replacement claim')
     except CaptureCancelled as cancelled:
         report={'success':False,'cancelled':True,'reason':str(cancelled),'experiment':str(root),
