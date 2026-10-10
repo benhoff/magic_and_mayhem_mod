@@ -86,8 +86,14 @@ BoundFrame SnapshotResources::resolve(const SnapshotFrame& frame,bool ownedColou
         throw std::out_of_range("Ambiguous observed frame with different native palette pixels");
     const auto& choice=candidates.front();const auto& owned=resources_.load(choice.binding.resource);
     const auto& sprite=std::get<assets::Sprite>(owned.image);
-    if(choice.binding.frame>=sprite.frames.size()||spriteVisualIdentity(sprite,sprite.frames[choice.binding.frame])!=choice.visual)
-        throw std::out_of_range("Native resource changed since pinned identity indexing");
+    if(choice.checkedRevision!=owned.revision){
+        ++stats_.visualChecks;
+        if(choice.binding.frame>=sprite.frames.size()||spriteVisualIdentity(sprite,sprite.frames[choice.binding.frame])!=choice.visual)
+            throw std::out_of_range("Native resource changed since pinned identity indexing");
+        // Manager resources are immutable while resident. Every reload/adoption
+        // gets a fresh revision; failed checks never publish that revision.
+        choice.checkedRevision=owned.revision;
+    }else ++stats_.visualReuses;
     return choice.binding; // Exact visual aliases use manifest order/lowest frame.
 }
 SnapshotDisplay snapshotDisplay(const SceneSnapshot& snapshot,const SnapshotResources& resources,bool supportedOnly){

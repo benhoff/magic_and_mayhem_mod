@@ -1,0 +1,176 @@
+--- a/apps/qt-shell/canvas_producer_session.cpp
++++ b/apps/qt-shell/canvas_producer_session.cpp
+@@ -127,7 +127,6 @@
+             const auto &p=world_->profile();
+             auto frame=worldFrames_.last().toObject();
+             frame["profile"]=QJsonObject{{"consumer_entry_to_return_ms",double(queueClock_.nsecsElapsed())/1e6},{"cpu_composition_ms",queueCpuMs_},{"checkpoint_diagnostics_ms",queueCheckpointMs_},{"history_adopt_ms",p.adoptMs},{"resource_prepare_ms",p.prepareMs},{"gpu_submit_ms",p.submitMs},{"gpu_readback_ms",p.readbackMs},{"gpu_compare_ms",p.compareMs},{"batch_validation_ms",batchValidationMs_},{"batch_publish_ms",batchPublishMs_},{"visible_draws",int(p.visibleDraws)}};
+-            frame["reuse"]=QJsonObject{{"visual_checks",double(p.visualChecks)},{"visual_reuses",double(p.visualReuses)},{"cache_uploads",double(p.cacheUploads)},{"cache_hits",double(p.cacheHits)},{"cache_evictions",double(p.cacheEvictions)},{"cache_frames",double(p.cacheFrames)},{"cache_surfaces",double(p.cacheSurfaces)}};
+             world_->end(c);proof(c,3,nullptr);frame["gpu_world_equal"]=true;frame["return_sequence"]=int(r[1]);worldFrames_.replace(worldFrames_.size()-1,frame);
+           }
+           else if(r[2]!=4&&r[2]!=10)throw std::runtime_error("Unadmitted write inside native World handoff");
+--- a/compat/legacy/canvas_world.cpp
++++ b/compat/legacy/canvas_world.cpp
+@@ -47,10 +47,7 @@
+   if(active_||r[2]!=MNM_PRODUCER_QUEUE_ENTRY||r[14]!=completed_+1||!r[3]||
+      (canvas_&&canvas_!=r[3])||native.width!=int(r[5])||native.height!=int(r[6]))
+     throw std::invalid_argument("Native producer/World handoff identity or sequence gap");
+-  if(!scene_){
+-    render::SceneLimits limits;limits.cache.indexedAtlas=true;
+-    scene_=std::make_unique<render::SceneRenderer>(renderer_,resources_,native,limits);
+-  }
++  if(!scene_)scene_=std::make_unique<render::SceneRenderer>(renderer_,resources_,native);
+   scene_->adoptNativeCanvas(native);
+   pending_={r[14],r[5],r[6],r[5],{}};
+   queue_=r[14];canvas_=r[3];queueDraws_=0;checked_=false;active_=true;
+@@ -73,26 +70,13 @@
+ render::Image CanvasWorld::complete(const render::Image &reference){
+   if(!active_)throw std::runtime_error("No native producer/World queue to complete");
+   if(!pending_.draws.empty()){
+-    const auto bindingsBefore=bindings_.bindingStats();const auto cacheBefore=scene_->cacheStats();
+     auto started=Clock::now();
+     const auto draws=bindings_.display(pending_);
+-    const auto bindingsAfter=bindings_.bindingStats();
+-    profile_.visualChecks+=bindingsAfter.visualChecks-bindingsBefore.visualChecks;
+-    profile_.visualReuses+=bindingsAfter.visualReuses-bindingsBefore.visualReuses;
+     profile_.prepareMs+=milliseconds(started);started=Clock::now();
+-    // This bounded completion already runs synchronously. Keep the private GL
+-    // context for the whole queue; drawNext's nested batches retain draw order.
+-    renderer_.batch([&]{
+-      scene_->beginFrame(draws,render::SceneStart::retainedCanvas);
+-      while(!scene_->drawNext(32)){}
+-    });
++    scene_->beginFrame(draws,render::SceneStart::retainedCanvas);
++    while(!scene_->drawNext(32)){}
+     pending_.draws.clear();
+     profile_.submitMs+=milliseconds(started);
+-    const auto cacheAfter=scene_->cacheStats();
+-    profile_.cacheUploads+=cacheAfter.uploads-cacheBefore.uploads;
+-    profile_.cacheHits+=cacheAfter.hits-cacheBefore.hits;
+-    profile_.cacheEvictions+=cacheAfter.evictions-cacheBefore.evictions;
+-    profile_.cacheFrames=cacheAfter.frames;profile_.cacheSurfaces=cacheAfter.surfaces;
+   }
+   auto started=Clock::now();
+   auto native=scene_->read();
+--- a/compat/legacy/canvas_world.hpp
++++ b/compat/legacy/canvas_world.hpp
+@@ -12,8 +12,6 @@
+   struct Profile {
+     double adoptMs=0, prepareMs=0, submitMs=0, readbackMs=0, compareMs=0;
+     unsigned visibleDraws=0;
+-    std::uint64_t visualChecks=0,visualReuses=0,cacheUploads=0,cacheHits=0,cacheEvictions=0;
+-    std::size_t cacheFrames=0,cacheSurfaces=0;
+   };
+   CanvasWorld(render::GlBlitter &, const assets::AssetStore &);
+   void begin(const CanvasProducer &, const render::Image &nativeHistory);
+--- a/compat/legacy/scene_snapshot.cpp
++++ b/compat/legacy/scene_snapshot.cpp
+@@ -86,14 +86,8 @@
+         throw std::out_of_range("Ambiguous observed frame with different native palette pixels");
+     const auto& choice=candidates.front();const auto& owned=resources_.load(choice.binding.resource);
+     const auto& sprite=std::get<assets::Sprite>(owned.image);
+-    if(choice.checkedRevision!=owned.revision){
+-        ++stats_.visualChecks;
+-        if(choice.binding.frame>=sprite.frames.size()||spriteVisualIdentity(sprite,sprite.frames[choice.binding.frame])!=choice.visual)
+-            throw std::out_of_range("Native resource changed since pinned identity indexing");
+-        // Manager resources are immutable while resident. Every reload/adoption
+-        // gets a fresh revision; failed checks never publish that revision.
+-        choice.checkedRevision=owned.revision;
+-    }else ++stats_.visualReuses;
++    if(choice.binding.frame>=sprite.frames.size()||spriteVisualIdentity(sprite,sprite.frames[choice.binding.frame])!=choice.visual)
++        throw std::out_of_range("Native resource changed since pinned identity indexing");
+     return choice.binding; // Exact visual aliases use manifest order/lowest frame.
+ }
+ SnapshotDisplay snapshotDisplay(const SceneSnapshot& snapshot,const SnapshotResources& resources,bool supportedOnly){
+--- a/compat/legacy/scene_snapshot.hpp
++++ b/compat/legacy/scene_snapshot.hpp
+@@ -19,21 +19,18 @@
+ QByteArray frameIdentity(const QByteArray&,bool indexed);
+ QByteArray spriteVisualIdentity(const assets::Sprite&,const assets::SpriteFrame&);
+ struct BoundFrame { assets::ResourceId resource; std::size_t frame=0; };
+-struct SnapshotBindingStats { std::uint64_t visualChecks=0,visualReuses=0; };
+ // Explicit pinned candidate files. Original pointers never become ResourceIds.
+ class SnapshotResources final {
+ public:
+     SnapshotResources(const assets::AssetStore&,assets::ResourceManager&);
+     void add(const assets::ResourceId&,const std::string& sprite,const QByteArray& expectedSha256);
+     BoundFrame resolve(const SnapshotFrame&,bool ownedColours=false) const;
+-    SnapshotBindingStats stats() const { return stats_; }
+ private:
+-    struct Candidate {BoundFrame binding;QByteArray visual;mutable std::uint64_t checkedRevision=0;};
++    struct Candidate {BoundFrame binding;QByteArray visual;};
+     const assets::AssetStore& store_;
+     assets::ResourceManager& resources_;
+     std::map<QByteArray,std::vector<Candidate>> index_;
+     std::size_t files_=0,frames_=0;
+-    mutable SnapshotBindingStats stats_;
+ };
+ struct SnapshotDisplay {
+     struct Gap {std::size_t record;std::int32_t kind;std::uint32_t token;std::string reason;};
+--- a/compat/legacy/world_resources.hpp
++++ b/compat/legacy/world_resources.hpp
+@@ -17,7 +17,6 @@
+ public:
+     WorldResources(const assets::AssetStore&,assets::ResourceManager&);
+     std::vector<render::SceneDraw> display(const WorldFrame&);
+-    SnapshotBindingStats bindingStats() const { return bindings_.stats(); }
+ private:
+     WorldCatalogue catalogue_;
+     std::set<assets::ResourceId> bound_;
+--- a/tests/canvas-world-test.cpp
++++ b/tests/canvas-world-test.cpp
+@@ -2,8 +2,6 @@
+ #include "resource-fixtures.hpp"
+ #include <QGuiApplication>
+ #include <QFile>
+-#include <QCryptographicHash>
+-#include <QOpenGLContext>
+ #include <iostream>
+ using namespace mnm;
+ using namespace resource_test;
+@@ -26,45 +24,17 @@
+     legacy::CanvasWorld world(renderer,store(root));
+     legacy::CanvasProducer enter{};enter.fields[2]=11;enter.fields[3]=7;enter.fields[5]=5;enter.fields[6]=3;enter.fields[14]=1;
+     world.begin(enter,producer.read(7));rejected([&]{world.begin(enter,producer.read(7));});
+-    producer.apply(raster);world.append(raster);const auto previous=QOpenGLContext::currentContext();
+-    auto native=world.complete(producer.read(7));producer.commitNativeWorld(7,native);
+-    require(QOpenGLContext::currentContext()==previous,"World completion changed caller GL context");
+-    require(world.profile().cacheUploads==1&&world.profile().cacheSurfaces==2&&world.profile().visualChecks==1,"Cold World atlas/binding admission differs");
++    producer.apply(raster);world.append(raster);auto native=world.complete(producer.read(7));producer.commitNativeWorld(7,native);
+     require(native.pixels[0]==0x1234&&native.pixels[7]==(r[17]?0xfc00u:0xf800u),"Native startup contents or World pixel lost");
+     auto leave=enter;leave.fields[2]=12;world.end(leave);
+     // Intervening native HUD update must enter the next retained World frame.
+     fill.fields[12]=1;fill.fields[13]=1;fill.fields[14]=0x4321;producer.apply(fill);
+     enter.fields[14]=2;world.begin(enter,producer.read(7));producer.apply(raster);world.append(raster);
+     native=world.complete(producer.read(7));require(native.pixels[0]==0x4321,"Intervening HUD producer was reset");
+-    require(world.profile().cacheUploads==0&&world.profile().visualChecks==0&&world.profile().visualReuses==1,"Warm World repeated upload or visual verification");
+     leave.fields[14]=2;world.end(leave);require(world.completedQueues()==2&&world.draws()==2,"Native queue accounting");
+     enter.fields[14]=4;rejected([&]{world.begin(enter,producer.read(7));});enter.fields[14]=3;enter.fields[3]=8;rejected([&]{world.begin(enter,producer.read(7));});
+     auto malformed=raster;malformed.fields[19]++;rejected([&]{legacy::producerWorldDraw(malformed);});
+     malformed=raster;malformed.fields[15]=11;rejected([&]{legacy::producerWorldDraw(malformed);});
+-  }
+-  {
+-    const auto input=store(root);assets::ResourceManager manager(input);
+-    legacy::SnapshotResources bindings(input,manager);const assets::ResourceId id{assets::ResourceKind::ui,"revision/body"};
+-    bindings.add(id,"body.spr",QCryptographicHash::hash(raw,QCryptographicHash::Sha256).toHex());
+-    legacy::SnapshotFrame frame{bool(r[17]),{reinterpret_cast<const char*>(raster.payload.data()),int(r[19])}};
+-    bindings.resolve(frame);bindings.resolve(frame);
+-    require(bindings.stats().visualChecks==1&&bindings.stats().visualReuses==1,"Resident visual identity was rehashed");
+-    manager.unload(id);bindings.resolve(frame);
+-    require(bindings.stats().visualChecks==2,"Reload did not recheck visual identity");
+-    manager.unload(id);write(root,"body.spr",sprite(false,0x07e0));
+-    rejected([&]{bindings.resolve(frame);});rejected([&]{bindings.resolve(frame);});
+-    require(bindings.stats().visualChecks==4,"Rejected revision entered visual cache");
+-    manager.unload(id);write(root,"body.spr",Bytes(raw.begin(),raw.end()));bindings.resolve(frame);
+-    require(bindings.stats().visualChecks==5,"Restored revision was not checked");
+-    const auto indexed=sprite(true);auto other=indexed;other[27]=0;other[29]=255;
+-    write(root,"indexed.spr",indexed);write(root,"other.spr",other);
+-    for(const auto& item:std::vector<std::pair<std::string,Bytes>>{{"indexed.spr",indexed},{"other.spr",other}}){
+-      const QByteArray data(reinterpret_cast<const char*>(item.second.data()),int(item.second.size()));
+-      bindings.add({assets::ResourceKind::ui,item.first=="indexed.spr"?"indexed":"other"},item.first,QCryptographicHash::hash(data,QCryptographicHash::Sha256).toHex());
+-    }
+-    legacy::SnapshotFrame ambiguous{true,QByteArray(reinterpret_cast<const char*>(indexed.data()+804),53)};
+-    bindings.resolve(ambiguous,true);bindings.resolve(ambiguous,true);
+-    rejected([&]{bindings.resolve(ambiguous,false);}); // cached verification cannot waive palette ambiguity
+   }
+   {
+     assets::ResourceManager resources(store(root));const render::Image background{5,3,std::vector<std::uint32_t>(15,0x1234)};

@@ -1,0 +1,396 @@
+{
+  "scope": "Committed-history accounting for minimap commit landed during World resource-reuse work. Inspect exact parent/current source transitions, receipt chains, behavior/evidence links and retained gaps without executing historical code. No past gate pass or renewed execution is asserted; current uncommitted World rendering validation remains separate.",
+  "reviewed_range": "e25290c4a20060a1497a36b5a75483c0405ff5b4..8dce3ac8602ce3bfd5b5e2241ee5264353516363",
+  "raw_committed_files": [
+    {
+      "path": "renderer/minimap/CMakeLists.txt",
+      "parent_sha256": null,
+      "commit_sha256": "a19ca3f37d4aff8e14715cf6208fa5904bf77a3aaae6996c394fcf3e24affe5c",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-terrain-pixels-recorded-20261009"
+      ]
+    },
+    {
+      "path": "renderer/minimap/minimap.cpp",
+      "parent_sha256": null,
+      "commit_sha256": "1f340ea7d1a0307660e8d262dbe1580a3d0ccadfaa6e6e156b2e94b8652f5857",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-terrain-pixels-recorded-20261009"
+      ]
+    },
+    {
+      "path": "renderer/minimap/minimap.hpp",
+      "parent_sha256": null,
+      "commit_sha256": "74970c73a9eff06a2c2fd015b47e38fce5229c712250f11fe5c9dea1dbd5f470",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-terrain-pixels-recorded-20261009"
+      ]
+    },
+    {
+      "path": "renderer/minimap/overlays.cpp",
+      "parent_sha256": null,
+      "commit_sha256": "d1d5b6bdc8d3b6bb156aeac0055257450e35e12069567c03befce1f415b4e3c8",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-original-comparison-range-20261009"
+      ]
+    },
+    {
+      "path": "renderer/minimap/overlays.hpp",
+      "parent_sha256": null,
+      "commit_sha256": "93e97d2697085e12e68fd8e7a7fe25a6634a3ff9cf80ca31d31c2f834b41acba",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-original-comparison-range-20261009"
+      ]
+    },
+    {
+      "path": "renderer/minimap/overlays/CMakeLists.txt",
+      "parent_sha256": null,
+      "commit_sha256": "a279dbbbb259d43c1a569f5f937a5f0dbebe47baa2acedb4bdcb27e498e66bc3",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-original-comparison-range-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "parent_sha256": "d53c2b47b87ce7c88387c9ba40ea0ea6802485611259c5ca478228919f9698d2",
+      "commit_sha256": "cc0f2064c0058c7a545708da0fb2a81de103d026df53543eab086238d340a1fc",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-owned-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/change-reviews.json",
+      "parent_sha256": "fdc689b5cd337ba79efafa39e76488113e571e9436aaf8574e57b31889b3e7ea",
+      "commit_sha256": "671d1a53f3f2e87773589a7f50737a36ffa3abcaf2c0a3a0f77b0c1fadce4f62",
+      "classification": "append-only journal, excluded from self fingerprints",
+      "receipt_chain": []
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "parent_sha256": "b4c1801728a6e577c0b7f1c5eac025168af58acce6fe94525a09f42f9f80a7af",
+      "commit_sha256": "5e9ae71568da4e104c8c35e7ef020aac95f8a650662fed71aa8c58c2dea67cfe",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-owned-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-minimap-overlays-owned-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "db9534d8f41c975d3232bc70a6145a915fdb2524358cf2f9c953a53419b12da4",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-owned-index-review-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-minimap-terrain-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "9562959ef30f683174afa52b6e679e64e27eb12b6dfc1d7224dca6a129d8dbdd",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-terrain-index-ledger-pending-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-minimap-overlays-comparison-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "7e38fa1c268f41cbfb17914a01940af258a7050a5c94aceb765eca4f5608ad5c",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-original-comparison-range-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-minimap-overlays-comparison-range-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "f2dc746c08c35ebddaa80f3dc93486ff878390496239fabbf4c410323003c3a3",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-original-comparison-range-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-minimap-overlays.md",
+      "parent_sha256": null,
+      "commit_sha256": "25332dbb22f21cf94f0624932eb09f56a04927425df93501866aa79a2dc17c7e",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-original-comparison-range-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-minimap-terrain-comparison-20261009.json",
+      "parent_sha256": null,
+      "commit_sha256": "935f7560e95bdc4dbf5b69bd64db13f5d35c56cebf739ff6e9a30713badcc1b6",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-terrain-pixels-recorded-20261009"
+      ]
+    },
+    {
+      "path": "research/runtime/native-minimap-terrain.md",
+      "parent_sha256": null,
+      "commit_sha256": "2ec35eba640eab50e8ce384a2698a914fff0e46de8a6dba07be69dab5fbf47d6",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-terrain-pixels-recorded-20261009"
+      ]
+    },
+    {
+      "path": "tests/minimap-fixture.hpp",
+      "parent_sha256": null,
+      "commit_sha256": "e11aa3b101de106b35c8d79645a752adb9da935985c54165c46524639635f006",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-terrain-pixels-recorded-20261009"
+      ]
+    },
+    {
+      "path": "tests/minimap-native.cpp",
+      "parent_sha256": null,
+      "commit_sha256": "8dec01168a31bf05c08f1d4b2d523dcfb8671791bd7cc362251bf8cc57679b88",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-terrain-pixels-recorded-20261009"
+      ]
+    },
+    {
+      "path": "tests/minimap-original.cpp",
+      "parent_sha256": null,
+      "commit_sha256": "c3ca91fe2882abda53966645af6ed775c6e9c18f943285212195a800a2e6125b",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-terrain-pixels-recorded-20261009"
+      ]
+    },
+    {
+      "path": "tests/minimap-overlays-fixture.hpp",
+      "parent_sha256": null,
+      "commit_sha256": "3da127d9bf263af61fe49c7307cb47945ed460a535207ce0036fdc1eff24ae46",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-original-comparison-range-20261009"
+      ]
+    },
+    {
+      "path": "tests/minimap-overlays-native.cpp",
+      "parent_sha256": null,
+      "commit_sha256": "fc6d945e0965644655f90cae2e4319bf05d907254686b5ba4f66b28ca81e07d0",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-original-comparison-range-20261009"
+      ]
+    },
+    {
+      "path": "tests/minimap-overlays-original.cpp",
+      "parent_sha256": null,
+      "commit_sha256": "417b06b9b35fa09db44e17b9a04f3035a74091edaf0009cc2daca512692ee31f",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-original-comparison-range-20261009"
+      ]
+    },
+    {
+      "path": "tools/test-minimap-overlays.py",
+      "parent_sha256": null,
+      "commit_sha256": "7c0cdaffea98d12f1fb2f647c804624486597910dc7b9cf6bcbd20a2671f3307",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-overlays-original-comparison-range-20261009"
+      ]
+    },
+    {
+      "path": "tools/test-minimap-terrain.py",
+      "parent_sha256": null,
+      "commit_sha256": "1e00608a746cb1b89ad74242a1ae843e29477c721bde46e08667c17081ef4a81",
+      "classification": "exact committed source transition accounted by recorded receipt chain",
+      "receipt_chain": [
+        "minimap-terrain-pixels-recorded-20261009"
+      ]
+    }
+  ],
+  "changed_behaviors": [
+    "NR.canvas-producer-replay",
+    "NR.sprites",
+    "NR.world-admission",
+    "NR.world-live-history",
+    "NR.world-producer-handoff",
+    "NR.world-raster-batch-transport",
+    "NR.world-startup-launcher",
+    "NR.world-startup-sequence",
+    "RS.minimap-camera-corners",
+    "RS.minimap-cell-marker",
+    "RS.minimap-creature-markers",
+    "RS.minimap-terrain-raster",
+    "RS.world-composition",
+    "RS.world-frame",
+    "RS.world-kind8-additive",
+    "RS.world-kind8-colour",
+    "RS.world-kind8-noop",
+    "RS.world-producer-bypass",
+    "RS.world-raster-batch-return",
+    "RS.world-raster-queue-replacement",
+    "TOOL.coverage-accounting"
+  ],
+  "new_pending_gaps": {
+    "behavior_anchors_outside_discovered_functions:552d75a1d1918aaaeca43bdf1d44b2313f64e62b23a8142c43b1173b8a522552": {
+      "kind": "behavior_anchors_outside_discovered_functions",
+      "identity": {
+        "behavior": "RS.minimap-camera-corners",
+        "build": "nocd-40209ca7",
+        "address": 5583600,
+        "recovered_range": "minimap-outline-view3-5532f0"
+      }
+    },
+    "behaviors_without_scenarios:45f7617b9a6305c927fa9eb566ecb590ad7c81447715f5a5c0bd6151150c3316": {
+      "kind": "behaviors_without_scenarios",
+      "identity": "RS.minimap-creature-markers"
+    },
+    "behaviors_without_scenarios:892bfbe2170a2afeec1bc33897e6ce98d9d7dbc43ca34d5f92f6cf23f3bd7951": {
+      "kind": "behaviors_without_scenarios",
+      "identity": "RS.minimap-terrain-raster"
+    },
+    "behaviors_without_scenarios:a260f5fcdd570c97727a728be73ee1df76a5b6ec8064a1325e6d9717da0fca06": {
+      "kind": "behaviors_without_scenarios",
+      "identity": "RS.minimap-camera-corners"
+    },
+    "behaviors_without_scenarios:aec72f4ad96aaf6b89a069362f9c0d80e638f6440189dccb7685f047516d97b0": {
+      "kind": "behaviors_without_scenarios",
+      "identity": "RS.minimap-cell-marker"
+    },
+    "retired_execution_claims:000e0452489fef8008c8cf7521318d72e0bef4c6aa0e676395dcbbdc10e661a8": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-creature-markers.comparison-20261009",
+        "behavior": "RS.minimap-camera-corners",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:1d38f2ca7da9b17bb001aa13fdc9d196cf3e11e926ec4158fd28eb65ffbdbfef": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-camera-corners.comparison-20261009",
+        "behavior": "RS.minimap-creature-markers",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:3c51dd599efd7b519c878c213656b12082c78babfc8d170269a01f823d14a5a7": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-camera-corners.comparison-range-20261009",
+        "behavior": "RS.minimap-cell-marker",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:767201c9708c4c43ebaefc34d717b16295a8eca988857d93c006132bb4bc6b91": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-cell-marker.comparison-range-20261009",
+        "behavior": "RS.minimap-camera-corners",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:842df0a36d5074e5f953a962c946873fadd8bc2a534b3c4983ba51ed31297adc": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-cell-marker.comparison-20261009",
+        "behavior": "RS.minimap-creature-markers",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:baafbd3074b8175a5d7d6c23f99daaf521b1eb7f79047cb16bb6d5ed482a24b0": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-camera-corners.comparison-range-20261009",
+        "behavior": "RS.minimap-creature-markers",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:bf3d6746ee2ab3c90c882c394911e4ee89b05c12e02b4e537fd034eae2ee54d3": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-creature-markers.comparison-range-20261009",
+        "behavior": "RS.minimap-camera-corners",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:d703103322d2bd0dde8fc46512c6d56e09af5c522bcfc12ba7889f71ffd67325": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-creature-markers.comparison-20261009",
+        "behavior": "RS.minimap-cell-marker",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:e600cea57b8aa49a25290ac0203b58234acfc3020b92e936c19f711a040a5109": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-cell-marker.comparison-range-20261009",
+        "behavior": "RS.minimap-creature-markers",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:f08d7f756238cf04593cc91efdd737955767766b41c6e425c698397120e887f4": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-creature-markers.comparison-range-20261009",
+        "behavior": "RS.minimap-cell-marker",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:f2d74bc580f99a33251d3b54e46153e4236b8043a5961601d9db7bafdc5f38ea": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-camera-corners.comparison-20261009",
+        "behavior": "RS.minimap-cell-marker",
+        "reason": "link_removed"
+      }
+    },
+    "retired_execution_claims:fde311b179f5636dd171c554a24840afd506f1e6930d331fcc64525d3974d4fd": {
+      "kind": "retired_execution_claims",
+      "identity": {
+        "evidence": "RS.minimap-cell-marker.comparison-20261009",
+        "behavior": "RS.minimap-camera-corners",
+        "reason": "link_removed"
+      }
+    },
+    "stale_evidence:66a3c965f2880a7e743750b626a2b9d319ad019c1f46474efb449906a15dc4c0": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.minimap-creature-markers.comparison-20261009",
+        "source": "tools/test-minimap-overlays.py"
+      }
+    },
+    "stale_evidence:6b02d75c58d57d866b4ba51190079e56c443593aaf151eb0c07f96d58f766481": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.minimap-cell-marker.comparison-20261009",
+        "source": "tools/test-minimap-overlays.py"
+      }
+    },
+    "stale_evidence:96824329fde597a21f1e06401735e819619316d4e53bab120f458fe7796f2f24": {
+      "kind": "stale_evidence",
+      "identity": {
+        "id": "RS.minimap-camera-corners.comparison-20261009",
+        "source": "tools/test-minimap-overlays.py"
+      }
+    },
+    "unmapped_dispatch_entries:d75e2334a072a32ec368b0e2cb0b97b923961d761e76892c3c513b1f4a51ae82": {
+      "kind": "unmapped_dispatch_entries",
+      "identity": {
+        "table": "minimap-terrain-orientations",
+        "value": "out-of-range"
+      }
+    }
+  },
+  "missing_transitions": [],
+  "unresolved_gaps": []
+}

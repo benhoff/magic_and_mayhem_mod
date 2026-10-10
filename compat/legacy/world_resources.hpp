@@ -17,6 +17,7 @@ class WorldResources final {
 public:
     WorldResources(const assets::AssetStore&,assets::ResourceManager&);
     std::vector<render::SceneDraw> display(const WorldFrame&);
+    SnapshotBindingStats bindingStats() const { return bindings_.stats(); }
 private:
     WorldCatalogue catalogue_;
     std::set<assets::ResourceId> bound_;

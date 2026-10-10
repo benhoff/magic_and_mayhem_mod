@@ -51,4 +51,7 @@ private:
   bool stopped_ = false;
   QElapsedTimer clock_;
   QTimer timer_;
+  QElapsedTimer queueClock_;
+  double ingestMs_=0,cpuMs_=0,checkpointMs_=0;
+  double queueCpuMs_=0,queueCheckpointMs_=0,batchValidationMs_=0,batchPublishMs_=0;
 };
