@@ -43,6 +43,10 @@ int main(int argc,char **argv)try{
     enter.fields[14]=4;rejected([&]{world.begin(enter,producer.read(7));});enter.fields[14]=3;enter.fields[3]=8;rejected([&]{world.begin(enter,producer.read(7));});
     auto malformed=raster;malformed.fields[19]++;rejected([&]{legacy::producerWorldDraw(malformed);});
     malformed=raster;malformed.fields[15]=11;rejected([&]{legacy::producerWorldDraw(malformed);});
+    malformed=raster;malformed.payload.resize(39);malformed.fields[19]=39;rejected([&]{legacy::producerWorldDraw(malformed);});
+    malformed=raster;malformed.fields[19]=1048577;rejected([&]{legacy::producerWorldDraw(malformed);});
+    malformed=raster;malformed.payload[0]^=1;rejected([&]{legacy::producerWorldDraw(malformed);});
+    malformed=raster;malformed.payload[28]=1;rejected([&]{legacy::producerWorldDraw(malformed);});
   }
   {
     legacy::SnapshotFrame frame{false,QByteArray(reinterpret_cast<const char*>(raster.payload.data()),int(r[19]))};

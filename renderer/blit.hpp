@@ -62,6 +62,8 @@ struct RenderStats {
     std::uint64_t uploads=0,copies=0,paletteUpdates=0,nativeReadbacks=0,presentations=0;
     std::uint64_t rgbaReadbacks=0,gpuPresentations=0;
     std::uint64_t presentationPixels=0;
+    std::uint64_t scratchAllocations=0,scratchPixels=0,snapshotPixels=0;
+    std::uint64_t copyBatches=0,maxCopyBatch=0;
     std::size_t surfaces=0,pixels=0;
 };
 

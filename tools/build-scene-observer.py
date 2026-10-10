@@ -34,7 +34,7 @@ def build(selftest=False):
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no',
                     '/timestamp:0',f'/out:{dll}',*[str(output/(name+'.obj')) for name in names],str(output/'kernel32.lib')],check=True)
     paths = [*sorted((ROOT/'runtime/scene').glob('*.[chS]')),ROOT/'runtime/shadow/win32_min.h',
-             ROOT/'protocols/include/mnm/scene_snapshot_v1.h',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',ROOT/'protocols/include/mnm/world_channel_v2.h',ROOT/'protocols/include/mnm/canvas_producers_v1.h',ROOT/'protocols/include/mnm/canvas_producers_v2.h',Path(__file__).resolve()]
+             ROOT/'protocols/include/mnm/scene_snapshot_v1.h',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',ROOT/'protocols/include/mnm/world_channel_v2.h',ROOT/'protocols/include/mnm/canvas_producers_v1.h',ROOT/'protocols/include/mnm/canvas_producers_v2.h',ROOT/'protocols/include/mnm/canvas_producers_v3.h',Path(__file__).resolve()]
     (output/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
         'sources':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}},indent=2)+'\n')
     if selftest:

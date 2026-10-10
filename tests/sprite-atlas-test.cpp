@@ -2,6 +2,7 @@
 #include "sprite_atlas.hpp"
 #include "scene_renderer.hpp"
 #include "resource-fixtures.hpp"
+#include "../renderer/known_pixels.hpp"
 #include <QGuiApplication>
 #include <chrono>
 #include <iostream>
@@ -10,6 +11,17 @@ using namespace resource_test;
 using namespace render;
 using namespace assets;
 int main(int argc,char** argv)try{
+    {
+        KnownPixels validity(1024,2);validity.invalidate();
+        validity.define({0,0,8,1});validity.define({9,0,16,1});
+        require(validity.known({1,0,7,1})&&!validity.known({0,0,16,1}),"Validity proofs admitted an undefined hole");
+        // Exceed the bounded rectangle cache: forgotten proofs must fall back
+        // to the authoritative map, and invalidation must retire every proof.
+        for(int x=0;x<1024;x+=2)validity.define({x,1,x+1,2});
+        require(validity.known({0,0,8,1})&&validity.known({1022,1,1023,2})&&!validity.known({0,1,2,2}),"Validity proof eviction changed known pixels");
+        validity.invalidate();require(!validity.known({1,0,7,1}),"Invalidation retained a stale validity proof");
+        validity.define({0,0,1024,2});require(validity.known({0,0,1024,2}),"Full definition lost known pixels");
+    }
     QGuiApplication app(argc,argv);QTemporaryDir directory;const auto root=std::filesystem::path(directory.path().toStdString());populate(root);
     ResourceManager resources(store(root));const ResourceId indexed{ResourceKind::ui,"indexed"},wordId{ResourceKind::ui,"word"};
     resources.bind(indexed,spr("indexed.spr"));resources.bind(wordId,spr());resources.load(indexed);resources.load(wordId);
@@ -109,6 +121,54 @@ int main(int argc,char** argv)try{
         const auto uploads=scene.cacheStats().uploads;palette[1]=0x07e0;scene.beginFrame({{indexed,0,2,0,true,true,palette}});
         require(scene.drawNext(budget)&&!scene.uploadNeed()&&scene.cacheStats().uploads==uploads,"Changed palette requested new worker/upload");
         require(scene.read().pixels[34]==0x07e0,"Warm palette draw differs");
+    }
+    {
+        // Independent scalar oracle: scratch grows, is reused at new origins,
+        // and overlapping draws see the immediately preceding destination.
+        Image source{3,2,{0xffff,0x1234,0x07e0,0xf800,0x001f,0x8765}},coverage{3,2,{1,0,1,0,1,1}};
+        auto pixels=renderer.create(source,spriteFormat),mask=renderer.create(coverage,{8,{}});
+        Image oracle=background;for(unsigned i=0;i<oracle.pixels.size();++i)oracle.pixels[i]=(i*1031u)&65535u;
+        renderer.update(actual,0,0,oracle);const auto before=renderer.stats();std::uint64_t warmedAllocations=0;
+        for(unsigned pass=0;pass<3;++pass)for(auto mode:{CompositeMode::half,CompositeMode::quarterSource,CompositeMode::displace,CompositeMode::quarterDestination}){
+            SpriteComposite operation;operation.mode=mode;operation.rowPeriod=3;operation.rowOffsets={0,16,7};
+            const int x=2+int(pass)*2,y=3+int(pass);const auto previous=oracle.pixels;
+            for(int sy=0;sy<2;++sy)for(int sx=1;sx<3;++sx){if(!coverage.pixels[sy*3+sx])continue;
+                auto& d=oracle.pixels[(y+sy)*32+x+sx-1];const auto v=source.pixels[sy*3+sx];
+                if(mode==CompositeMode::half)d=((v>>1)&0x7bef)+((d>>1)&0x7bef);
+                else if(mode==CompositeMode::quarterSource){const auto half=(d>>1)&0x7bef;d=half+((half>>1)&0x7bef)+((v>>2)&0x39e7);}
+                else if(mode==CompositeMode::quarterDestination){const auto half=(v>>1)&0x7bef;d=half+((half>>1)&0x7bef)+((d>>2)&0x39e7);}
+                else d=previous[(y+sy)*32+x+sx-1+operation.rowOffsets[(y+sy)%3]];
+            }
+            renderer.composite(pixels,actual,{1,0,3,2},x,y,mask,operation);
+            require(renderer.read(actual).pixels==oracle.pixels,"Reused regional scratch differs from ordered scalar oracle");
+            const Rect rect{x+1,y, x+3,y+3};const std::array<std::uint16_t,3> add{65535,3,5};
+            for(int row=rect.top;row<rect.bottom;++row)for(int col=rect.left;col<rect.right;++col){auto& d=oracle.pixels[row*32+col];d=(std::min(((d>>11)+add[0])&65535u,31u)<<11)|(std::min((((d>>5)&63)+add[1])&65535u,63u)<<5)|std::min(((d&31)+add[2])&65535u,31u);}
+            renderer.additiveRect(actual,rect,add);require(renderer.read(actual).pixels==oracle.pixels,"Additive scratch origin or ordered destination differs");
+            if(pass==0)warmedAllocations=renderer.stats().scratchAllocations;else require(renderer.stats().scratchAllocations==warmedAllocations,"Warm scratch allocated again");
+        }
+        const auto after=renderer.stats();require(after.scratchAllocations==warmedAllocations&&after.snapshotPixels-before.snapshotPixels<1000&&after.scratchPixels<=2048u*2048u,"Scratch reuse or regional copy bound differs");
+        auto undefined=renderer.allocate(32,12,spriteFormat);SpriteComposite half;half.mode=CompositeMode::half;
+        rejected([&]{renderer.composite(pixels,undefined,{1,0,3,2},2,3,mask,half);});renderer.destroy(undefined);renderer.destroy(mask);renderer.destroy(pixels);
+    }
+    {
+        Image source{3,2,{1,2,3,4,5,6}},maskPixels{3,2,{1,0,1,1,1,0}},oracle=background;
+        auto src=renderer.create(source,spriteFormat),mask=renderer.create(maskPixels,{8,{}});renderer.update(actual,0,0,oracle);
+        SpriteColourTable palette{};for(unsigned i=0;i<256;++i)palette[i]=std::uint16_t(i*131);
+        auto copyOracle=[&](int x,int y){for(int row=0;row<2;++row)for(int col=0;col<3;++col)if(maskPixels.pixels[row*3+col])oracle.pixels[(y+row)*32+x+col]=palette[source.pixels[row*3+col]];};
+        const auto before=renderer.stats();
+        renderer.batch([&]{
+            for(unsigned i=0;i<1100;++i){const int x=int(i%4)+3,y=int(i%3)+2;copyOracle(x,y);renderer.composite(src,actual,{0,0,3,2},x,y,mask,{},&palette);}
+            // Mutating a queued source must flush the old pixels first.
+            for(unsigned i=0;i<129;++i){palette[1]=std::uint16_t(i*503);copyOracle(10,5);renderer.composite(src,actual,{0,0,3,2},10,5,mask,{},&palette);}
+            source.pixels[0]=7;renderer.update(src,0,0,source);copyOracle(11,4);renderer.composite(src,actual,{0,0,3,2},11,4,mask,{},&palette);
+            palette[7]=0xf800;copyOracle(11,4);renderer.composite(src,actual,{0,0,3,2},11,4,mask,{},&palette);
+            require(renderer.read(actual).pixels==oracle.pixels,"Pending instance read or source/palette mutation changed order");
+            renderer.batch([&]{copyOracle(14,6);renderer.composite(src,actual,{0,0,3,2},14,6,mask,{},&palette);});
+            // Storage destruction observes pending copies before releasing names.
+            renderer.destroy(src);renderer.destroy(mask);
+        });
+        require(renderer.read(actual).pixels==oracle.pixels,"Overlapping instanced copies or nested destruction differ");
+        const auto after=renderer.stats();require(after.maxCopyBatch==512&&after.copyBatches-before.copyBatches<12,"Consecutive opaque rectangles were not bounded and batched");
     }
     // External renderer handles are still an admission limit, even with free pixels.
     {std::vector<SurfaceId> external;for(unsigned i=0;i<61;++i)external.push_back(renderer.create({1,1,{0}},spriteFormat));

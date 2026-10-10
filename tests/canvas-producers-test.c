@@ -111,6 +111,15 @@ static void batch_fixture(void){
  if(bypass_completed!=completed||get((void*)0x700804)!=counter+1)ExitProcess(112);
  batch_enabled=0;raster_first=raster_last=0;HeapFree(GetProcessHeap(),0,pixels);
 }
+static void journal_fixture(void){
+ HANDLE saved_file=file;u32 saved_limit=limit,saved_stop=stopped;limit=32;stopped=0;
+ char name[260];path(name,"journal-buffer-",1,".bin");file=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(file==(HANDLE)-1)ExitProcess(124);
+ u8* pattern=HeapAlloc(producer_heap(),0,65549);if(!pattern)ExitProcess(125);for(u32 i=0;i<65549;++i)pattern[i]=(u8)(i*17);
+ if(!journal_write(pattern,7)||journal_used!=7||GetFileSize(file,0)!=0||!journal_write(pattern+7,65542)||journal_used!=13||GetFileSize(file,0)!=65536||!journal_flush()||journal_used||GetFileSize(file,0)!=65549)ExitProcess(126);
+ CloseHandle(file);file=CreateFileA(name,0x80000000,1,0,3,0x80,0);u8* readback=HeapAlloc(producer_heap(),0,65549);if(!readback||!bypass_read(file,readback,65549)||!bypass_equal(pattern,readback,65549))ExitProcess(127);CloseHandle(file);
+ file=(HANDLE)-1;if(!journal_write(pattern,7)||journal_flush()||!journal_failed||!stopped||journal_write(pattern,1))ExitProcess(128);
+ journal_used=journal_failed=0;file=saved_file;limit=saved_limit;stopped=saved_stop;HeapFree(producer_heap(),0,pattern);HeapFree(producer_heap(),0,readback);
+}
 static void tail(u8* p,u32 tag){
  const u8* bytes=0;u32 n=0;
  static const u8 release[]={0x5f,0x5e,0x5b},lock[]={0x83,0xc4,8,0xb8,0,0,0x70,0},fill[]={0x5e,0x83,0xc4,0x6c},copies[]={0x5d,0x5b,0x83,0xc4,0x30},jpeg[]={0x5f,0x5e},font[]={0x83,0xc4,0x28},slow[]={0x5d,0x5b,0x83,0xc4,0x14},normal[]={0x5b,0x5f,0x5e,0x5d},clipped[]={0x83,0xc4,0x18,0x5d},half[]={0x5e,0x5d,0x5b,0x83,0xc4,0x1c},quarter[]={0x5e,0x5d,0x5b,0x83,0xc4,0x24},wave[]={0x83,0xc4,0x20},shadow[]={0x83,0xc4,0x18};
@@ -137,6 +146,7 @@ void start(void){
  raster_fixture();
  oracle_budget_fixture();
  batch_fixture();
+ journal_fixture();
  canvas_producers_close();
  for(u32 i=0;i<HOOKS;++i)canvas_test_call(hooks[i].address,i==3?0x700000:0x700100,4,hooks[i].pop,after);
  ExitProcess(0);

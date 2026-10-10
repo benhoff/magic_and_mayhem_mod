@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import statistics
 import subprocess
 import tempfile
 import time
@@ -64,7 +65,7 @@ def main():
     register=json.loads((ROOT/'research/runtime/coverage/register.json').read_text())
     ids=['NR.world-interactive-batch-launcher','NR.world-batch-profiling']
     scenario_id='world-raster-batch-prefix32-20261010' if a.queues==32 else 'world-batch-public-'+a.mode+'-20261009'
-    if a.queues==32:ids+=['NR.world-batch-extended-prefix','NR.world-cpu-composition-reuse']
+    if a.queues==32:ids+=['NR.world-batch-extended-prefix','NR.world-cpu-composition-reuse','NR.world-batch-throughput']
     scenario=next(s for s in register['scenarios'] if s['id']==scenario_id)
     if a.mode=='complete':ids+=['RS.world-raster-batch-return','NR.world-raster-batch-transport','NR.world-resource-reuse']
     selected=[b for b in register['behaviors'] if b['id'] in ids]
@@ -85,9 +86,12 @@ def main():
     if a.mode=='complete':command.append('--startup-history')
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
     env.update(QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1')
+    # Keep software-GPU scheduling reproducible on the measured host; preserve
+    # an explicit caller setting so worker-count regressions can be exercised.
+    env.setdefault('LP_NUM_THREADS','8')
     with (run/'launcher.log').open('x') as log:
         process=subprocess.Popen(command,env=env,stdout=log,stderr=subprocess.STDOUT)
-        experiment=None;closed=False;deadline=time.monotonic()+600
+        experiment=None;result=None;closed=False;deadline=time.monotonic()+600
         try:
             while process.poll() is None:
                 rows=[l for l in (run/'launcher.log').read_text().splitlines() if l.startswith('Native World batch session: ')]
@@ -115,11 +119,24 @@ def main():
                 assert sum(f['reuse']['visual_reuses'] for f in n['world_frames'])>0
                 assert sum(f['reuse']['cache_hits'] for f in n['world_frames'])>0
                 assert all(c['mismatches']==0 for c in result['producer_comparison'])
+                if a.queues==32:
+                    warm=[f['profile'] for f in n['world_frames'][1:]]
+                    native=statistics.median(sum(f[k] for k in ('cpu_composition_ms','history_adopt_ms','resource_prepare_ms','gpu_submit_ms','gpu_readback_ms','gpu_compare_ms')) for f in warm)
+                    diagnostic=statistics.median(f['consumer_entry_to_return_ms'] for f in warm)
+                    result['performance_budget']=dict(native_work_warm_median_ms=native,native_work_limit_ms=50,diagnostic_queue_warm_median_ms=diagnostic,diagnostic_queue_limit_ms=100,passed=native<=50 and diagnostic<=100)
+                    assert result['performance_budget']['passed'], 'Guarded native renderer exceeded its declared warm performance budget'
             assert all(hashlib.sha256((ROOT/n).read_bytes()).hexdigest()==h for n,h in sources.items())
             report=dict(success=True,mode=a.mode,experiment=str(experiment),sources=sources,claims=claims,sources_stable=True,
+                        software_mesa_threads=env['LP_NUM_THREADS'],
                         original_manifest_verified_before_after=result['original_manifest_verified_before_after'],
                         source_executable_sha256=json.loads((experiment/'manifest.json').read_text())['source_sha256'],completed=result)
             (run/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(run/'report.json',flush=True)
+        except Exception as error:
+            report=dict(success=False,error=str(error),mode=a.mode,experiment=str(experiment),sources=sources,claims=claims,
+                        software_mesa_threads=env['LP_NUM_THREADS'],
+                        sources_stable=all(hashlib.sha256((ROOT/n).read_bytes()).hexdigest()==h for n,h in sources.items()),completed=result)
+            (run/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(run/'report.json',flush=True)
+            raise
         finally:
             if process.poll() is None:
                 process.send_signal(signal.SIGINT)

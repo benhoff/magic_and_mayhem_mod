@@ -17,6 +17,10 @@
 namespace {
 using ProfileClock=std::chrono::steady_clock;
 double elapsedMs(ProfileClock::time_point start){return std::chrono::duration<double,std::milli>(ProfileClock::now()-start).count();}
+QByteArray rgb565(const mnm::render::Image& image){
+  QByteArray result(qsizetype(image.pixels.size()*2),Qt::Uninitialized);auto* p=result.data();
+  for(auto pixel:image.pixels){*p++=char(pixel);*p++=char(pixel>>8);}return result;
+}
 QByteArray read(const QString &path, qint64 limit = 128 * 1024 * 1024) {
   QFile f(path);
   if (!f.open(QIODevice::ReadOnly) || f.size() > limit)
@@ -97,10 +101,10 @@ void CanvasProducerSession::tick() {
       ingestMs_+=elapsedMs(ingestStarted);
     }
 
-    unsigned budget = 256;
+    unsigned budget = (worldBatch_ || pending_.version==3) ? 4096 : 256;
     while (applied_ < pending_.operations.size() && budget--) {
       const auto &c = pending_.operations[applied_]; const auto &r = c.fields;
-      if(world_&&world_->active()&&r[2]==9&&!worldBatch_){
+      if(world_&&world_->active()&&r[2]==9&&!worldBatch_&&!done){
         const auto ordinal=unsigned(bypasses_.size())+1;
         const auto directory=QFileInfo(input_).dir();
         if(QFileInfo(directory.filePath(QString("world-raster-%1.request").arg(ordinal,6,10,QChar('0')))).size()==64)fullRasters_=true;
@@ -120,8 +124,7 @@ void CanvasProducerSession::tick() {
           queueClock_.start();queueCpuMs_=queueCheckpointMs_=batchValidationMs_=batchPublishMs_=0;
           const auto native=replay_.read(r[3]);world_->begin(c,native);
           batchStart_=applied_+1;batchReplied_=false;proof(c,1,&native);
-          QByteArray entry;entry.reserve(native.pixels.size()*2);
-          for(auto p:native.pixels){entry.append(char(p));entry.append(char(p>>8));}
+          const auto entry=rgb565(native);
           const auto name=QString("world-entry-%1.565").arg(r[14],4,10,QChar('0'));
           save(QDir(output_).filePath(name),entry);
           worldFrames_.append(QJsonObject{{"queue",int(r[14])},{"canvas",int(r[3])},{"entry",name},{"entry_sha256",QString::fromLatin1(QCryptographicHash::hash(entry,QCryptographicHash::Sha256).toHex())},{"native_history_nonzero_pixels",double(std::count_if(native.pixels.begin(),native.pixels.end(),[](auto p){return p!=0;}))}});
@@ -133,7 +136,7 @@ void CanvasProducerSession::tick() {
             if(worldBatch_&&r[20]&&!batchReplied_)throw std::runtime_error("World returned without batch completion");
             const auto &p=world_->profile();
             auto frame=worldFrames_.last().toObject();
-            frame["profile"]=QJsonObject{{"consumer_entry_to_return_ms",double(queueClock_.nsecsElapsed())/1e6},{"cpu_composition_ms",queueCpuMs_},{"checkpoint_diagnostics_ms",queueCheckpointMs_},{"history_adopt_ms",p.adoptMs},{"resource_prepare_ms",p.prepareMs},{"gpu_submit_ms",p.submitMs},{"gpu_readback_ms",p.readbackMs},{"gpu_compare_ms",p.compareMs},{"batch_validation_ms",batchValidationMs_},{"batch_publish_ms",batchPublishMs_},{"visible_draws",int(p.visibleDraws)}};
+            frame["profile"]=QJsonObject{{"consumer_entry_to_return_ms",double(queueClock_.nsecsElapsed())/1e6},{"cpu_composition_ms",queueCpuMs_},{"checkpoint_diagnostics_ms",queueCheckpointMs_},{"history_adopt_ms",p.adoptMs},{"resource_prepare_ms",p.prepareMs},{"gpu_submit_ms",p.submitMs},{"gpu_readback_ms",p.readbackMs},{"gpu_compare_ms",p.compareMs},{"batch_validation_ms",batchValidationMs_},{"batch_publish_ms",batchPublishMs_},{"visible_draws",int(p.visibleDraws)},{"gpu_copy_batches",double(p.copyBatches)},{"gpu_snapshot_pixels",double(p.snapshotPixels)},{"gpu_scratch_allocations",double(p.scratchAllocations)}};
             frame["reuse"]=QJsonObject{{"visual_checks",double(p.visualChecks)},{"visual_reuses",double(p.visualReuses)},{"cache_uploads",double(p.cacheUploads)},{"cache_hits",double(p.cacheHits)},{"cache_evictions",double(p.cacheEvictions)},{"cache_frames",double(p.cacheFrames)},{"cache_surfaces",double(p.cacheSurfaces)}};
             frame["identities"]=QJsonObject{{"hashes",double(p.identityHashes)},{"hits",double(p.identityHits)},{"evictions",double(p.identityEvictions)},{"bypasses",double(p.identityBypasses)},{"frames",double(p.identityFrames)},{"bytes",double(p.identityBytes)}};
             world_->end(c);proof(c,3,nullptr);frame["gpu_world_equal"]=true;frame["return_sequence"]=int(r[1]);worldFrames_.replace(worldFrames_.size()-1,frame);
@@ -154,8 +157,7 @@ void CanvasProducerSession::tick() {
         if (image.width != int(r[5]) || image.height != int(r[6])) throw std::runtime_error("Native completion extent changed");
         const auto surface = surfaces_.at(r[3]); renderer_->update(surface, 0, 0, image);
         if (renderer_->read(surface).pixels != image.pixels) throw std::runtime_error("Native GPU mirror differs");
-        QByteArray pixels; pixels.reserve(image.pixels.size()*2);
-        for (auto p : image.pixels) { pixels.append(char(p)); pixels.append(char(p >> 8)); }
+        const auto pixels=rgb565(image);
         const auto name = QString("native-%1.565").arg(r[14], 4, 10, QChar('0'));
         save(QDir(output_).filePath(name), pixels);
         if (image.width == 800 && image.height == 600) { viewport_.setGpuFrame(renderer_->presentGpu(surface)); ++presentations_; }
@@ -164,9 +166,9 @@ void CanvasProducerSession::tick() {
         if(world_&&world_->active())queueCheckpointMs_+=checkpointElapsed;
       }
       ++applied_;
-      if(!worldBatch_)bypassReply();
+      if(!worldBatch_&&!done)bypassReply();
     }
-    if(worldBatch_)batchReply();else bypassReply();
+    if(worldBatch_)batchReply();else if(!done)bypassReply();
     if (done && applied_ == pending_.operations.size()) {
       // Re-read complete input on the next tick if it grew during this batch.
       if (read(input_,pending_.version==2?MNM_PRODUCER_V2_MAX_BYTES:128u*1024u*1024u) != accepted_) return;
@@ -206,7 +208,7 @@ void CanvasProducerSession::batchReply(){
   auto started=ProfileClock::now();
   for(auto i=batchStart_;i<applied_;++i){const auto& c=pending_.operations.at(i);if(c.fields[2]==9)rasters.push_back(&c);else if(c.fields[2]!=4&&c.fields[2]!=MNM_PRODUCER_PAYLOAD_SOURCE)throw std::runtime_error("Unadmitted producer before World batch completion");}
   const auto nativeReference=replay_.read(world_->canvas());
-  const auto plan=mnm::legacy::validateWorldRasterBatch({request.begin(),request.end()},unsigned(batches_.size())+1,world_->queue(),unsigned(applied_),world_->canvas(),nativeReference.width,nativeReference.height,unsigned(bypasses_.size()),rasters);
+  const auto plan=mnm::legacy::validateWorldRasterBatch({request.begin(),request.end()},unsigned(batches_.size())+1,world_->queue(),unsigned(applied_),world_->canvas(),nativeReference.width,nativeReference.height,unsigned(batchRasterLogs_.size()),rasters);
   batchValidationMs_+=elapsedMs(started);
   const auto native=world_->complete(nativeReference);started=ProfileClock::now();replay_.commitNativeWorld(world_->canvas(),native);
   const std::vector<std::uint16_t> words(native.pixels.begin(),native.pixels.end());
@@ -214,7 +216,7 @@ void CanvasProducerSession::batchReply(){
   const auto temporary=directory.filePath(base+".reply.tmp"),published=directory.filePath(base+".reply");
   save(temporary,{reinterpret_cast<const char*>(reply.data()),qsizetype(reply.size())});if(!QFile::rename(temporary,published))throw std::runtime_error("Cannot atomically publish World batch completion");
   QJsonArray sequences;
-  for(const auto& d:plan.descriptors){sequences.append(int(d[0]));bypasses_.append(QJsonObject{{"queue",int(world_->queue())},{"sequence",int(d[0])},{"original_entry",double(d[1])},{"return_ax",int(d[2])},{"source_checksum",double(d[3])}});}
+  for(const auto& d:plan.descriptors){sequences.append(int(d[0]));batchRasterLogs_.push_back({world_->queue(),d[0],d[1],d[2],d[3]});}
   batches_.append(QJsonObject{{"queue",int(world_->queue())},{"ordinal",int(plan.header[4])},{"sequence",int(sequence)},{"canvas",int(world_->canvas())},{"rasters",int(plan.header[14])},{"cumulative_rasters",int(plan.header[15])},{"wire_base",base},{"guarded",true},{"sequences",sequences},{"pixels",double(native.pixels.size())},{"reply_sha256",QString::fromLatin1(QCryptographicHash::hash({reinterpret_cast<const char*>(reply.data()),qsizetype(reply.size())},QCryptographicHash::Sha256).toHex())}});
   batchPublishMs_+=elapsedMs(started);
   batchReplied_=true;
@@ -262,6 +264,7 @@ void CanvasProducerSession::bypassReply(){
 }
 void CanvasProducerSession::finish(const QString &error) {
   stopped_ = true; timer_.stop();
+  for(const auto& r:batchRasterLogs_)bypasses_.append(QJsonObject{{"queue",int(r[0])},{"sequence",int(r[1])},{"original_entry",double(r[2])},{"return_ax",int(r[3])},{"source_checksum",double(r[4])}});
   QJsonObject report{{"success", error.isEmpty()}, {"error", error}, {"records", int(applied_)}, {"queues", int(queues_)}, {"presentations", int(presentations_)}, {"checkpoints", checkpoints_}, {"encoded_source_sha256", sourceHashes_}, {"input_sha256", QString::fromLatin1(QCryptographicHash::hash(accepted_, QCryptographicHash::Sha256).toHex())}, {"original_pixels_used_as_native_inputs", false}, {"original_oracles_read", false}, {"live_replacement", false}, {"gpu_policy", "Owned native CPU composition mirrored to retained GPU surfaces at completion"}, {"viewport_image_uploads", double(viewport_.imageUploads())}};
   viewport_.setGpuFrame({});
   report["complete_raster_queues"]=fullRasters_;report["native_bypass_replies"]=bypasses_;report["native_bypass_count"]=bypasses_.size();
