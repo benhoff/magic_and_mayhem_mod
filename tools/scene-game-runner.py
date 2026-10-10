@@ -30,6 +30,15 @@ if metadata.get('word_dll_sha256'):
     if metadata.get('word_sprites_mode') not in ('shadow','takeover','clip-shadow','clip-takeover') or directory!=root/'word-sprites' or any(directory.iterdir()):raise ValueError('Invalid word-sprite experiment')
     os.environ['MNM_WORD_SPRITES']=metadata['word_sprites_mode']
     os.environ['MNM_WORD_DIRECTORY']='Z:'+str(directory).replace('/','\\')
+os.environ.pop('MNM_WORLD_CONTINUOUS',None)
+if metadata.get('world_continuous'):
+    channel=Path(metadata['world_continuous']).resolve()
+    if channel!=root/'world-continuous.bin' or not channel.is_file() or not 1<=metadata.get('continuous_queues',0)<=4096:raise ValueError('Invalid continuous producer session')
+    import struct
+    with channel.open('rb') as f:header=f.read(128)
+    if len(header)!=128 or header[:8]!=b'MNMCON01' or struct.unpack_from('<II',header,8)!=(1,128) or struct.unpack_from('<4I',header,32)!=(1,0,0,0) or struct.unpack_from('<Q',header,48)[0]!=metadata['continuous_queues']:raise ValueError('Stale or mismatched continuous session')
+    if channel.stat().st_size!=struct.unpack_from('<I',header,16)[0]:raise ValueError('Continuous session extent')
+    os.environ['MNM_WORLD_CONTINUOUS']='Z:'+str(channel).replace('/','\\')
 if any((root/'capture').iterdir()):
     raise ValueError('Stage a fresh scene observation directory')
 os.environ['MNM_SCENE_DIR']='Z:'+str(root/'capture').replace('/','\\')

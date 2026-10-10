@@ -4093,3 +4093,21 @@ The committed font/auxiliary-clipping branch and guarded rolling branch are reco
 Fresh combined-source evidence validates53,405 original raster/low16AX results and25,634,400,000 WORDs,1,235 checkpoints/557,276,912 WORDs and32 live-native reply finals, with five Debug fixtures. Original pixels remain outside native inputs. NVIDIA512 replay passes warm29.399median/43.525p95/64.519maxms, cold224.723ms andzero retained growth. Both actual peer-death tests refuse queue2 and stop private Wine. Passing complete32 before faults measures native53.660ms/delivery113.516ms/cold298.186ms; a later recovery passes pixels but fails unchanged delivery120ms at146.423ms. This performance failure remains explicit pending readiness. Disposable checkpoint observations now use checked close and atomic no-replace rename; protocol replies/reports retain durable publication. A40-image publication probe measured579ms QSaveFile versus42ms close/rename and40 fdatasync calls, without claiming whole-path pacing. The two committed branch ranges have124 exact receipt transitions andzero gaps. Continuous original delivery and normal full-path latency remain separate next milestones.
 
 A fresh isolated post-fault recovery then passed32 original returns withnative46.349ms/delivery117.736ms/cold303.947ms on unchangedlimits. The146.423ms failure remains preserved; the narrow delivery margin is a normal-path performance concern, not erased by this passing result.
+
+## Fixed-block continuous original producer (2026-10-10)
+
+The explicit continuous adapter uses a35,869,312-byte two-slot mapped protocol,
+source-owned localV3 blocks with64-bit session generation and real original
+checkpoint/return acknowledgement before reuse. Original destination remains
+NOACCESS until the validated reply; CPU/GPU history persists and Qt presents
+the retained GPU canvas directly. Normal diagnostic images/journal/reply files
+are absent. A source-bound64-queue probe passes99,809 rasters,64 native/original
+completions and64 Qtpaints,zero fallback/remaining surfaces. The initial probe
+correctly refused a concurrently reordered startup journal; continuous emission
+now serializes source definitions/references and sequence/byte allocation.
+The4096-queue/death/recovery milestone is still pending, as is normal whole-path
+pacing: late probe queues take93..98ms through capture and native writeback,
+which is too slow for the intended20Hz target. Independent original equivalence
+beyond the separately compared32 prefix remains open. Source changes leave
+prior finite integration proof historical;45 merge first-parent/current exact
+receipt transitions havezero gaps.
