@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "success": false,
+  "status": "blocked",
+  "stage": "combined-mode-admission",
+  "required_mode": [
+    "native-menus",
+    "native-command-presentation"
+  ],
+  "launch_requested": false,
+  "game_entry_verified": false,
+  "flow_completed": false,
+  "movement_verified": false,
+  "complete_drawing_replacement": false,
+  "cleanup": "bounded private-session termination",
+  "sources": {
+    "tools/test-native-campaign.py": "dbd3eaa31b71d381a4ad72f13c04e041896f0814f7d6e6665fc01445d1005313",
+    "tools/run-qt-shell.sh": "9502727ade3a2ee7ac882d9b039a9416f39ab3cf5ee0a56a17c31bfc5958a9b5",
+    "apps/qt-shell/campaign_smoke_test.cpp": "6ce9b947c275e58af9b3940c04218e5b2466166f3aaf68ddd2a9313734b6e020",
+    "apps/qt-shell/campaign_smoke_test.hpp": "c217e30fe9cf1eed2d2b6de94d68029498afa1feab13cb164ec6471122452aed",
+    "apps/qt-shell/main.cpp": "57802c759217ff2dbad0f088350325dd747b4cf432aedf63fc52b3be884c1b54",
+    "apps/qt-shell/CMakeLists.txt": "3ae9d1f7f28ca570b17be9f5ccd83b84e4c9ba083d7bfb887b6b060b94d4e84f",
+    "apps/qt-shell/live_menu_session.cpp": "25ccbbd8f260523a060dc04455e82421ea439528ef6f64e0e894a02d5cbe2a2c",
+    "apps/qt-shell/menu_bridge.cpp": "9b602044b8bbab97739e1273f49e80cdd2aeba25c50f7ee2c40d34808dc575ea",
+    "tools/test-live-campaign-mini.py": "886050526ad714e82965cbaedcf9e834d7202c2e5ffa5016794177a6697459ee",
+    "tests/test-native-campaign.py": "18c30560d5d3096c75e14e23de5b14afd8802ec4d7692751c7176cd7c6c67ab4"
+  },
+  "shell_sha256": "677c55ad6fc28c7ebcc2dbf5762aefb6786433f836b5ad7985aaf4e827117ad1",
+  "mode_probe": {
+    "command": [
+      "/home/hoff/swdev/magic_and_mayhem_mod/working/build/qt-shell/mnm-qt-shell",
+      "--repo",
+      "/home/hoff/swdev/magic_and_mayhem_mod",
+      "--live-menus",
+      "--native-commands",
+      "--smoke-test"
+    ],
+    "exit_code": 2
+  },
+  "error": "Public shell rejects native menus + native commands (exit 2).",
+  "unit_checks": {
+    "exit_code": 0,
+    "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.008s\n\nOK\n"
+  },
+  "evidence_scope": "Actual public-shell combined-option rejection plus synthetic report validators only. Campaign clicks, GPU presentation, actual game input/movement and combined live integration remain unexecuted. This failed admission is not a status promotion.",
+  "artifacts": {
+    "build.log": "a888781d6084893a3fa0f7eb13274325e42e2638dd75baa0032a105c0d811e2f",
+    "report.json": "a4be6f53cc7b343bc9d151930071e2daf2560eb23c549c65fd735530d3bcf328",
+    "mode-probe.log": "b81b90e555b90f3651552b1477bdd6a209e8a973b1adaea1aafe26e653c99609"
+  }
+}

@@ -6,6 +6,19 @@ remaining dependencies and complete launcher-mode criteria. This ledger and the
 coverage register retain achieved milestones and their evidence. Current default
 launches retain original drawing through native capture/replay presentation.
 
+## Public native campaign test — 2026-10-09
+
+The [campaign smoke test](../../tests/native-campaign-smoke.md) makes the requested
+native-menu plus native-command campaign flow an explicit failing integration
+check under `HOST.native-command-launch`. It uses the public launcher and ordinary
+menu features, with semantic Qt clicks, independent engine observations and native
+completed-frame counters. The current shell rejects the combined flags before game
+launch ([recorded admission failure](native-campaign-smoke-admission-20261009.json));
+automation is compiled but the actual campaign sequence remains pending.
+This adds no menu/rendering integration, startup-race fix, movement validation or
+complete drawing replacement. Source-only instrumentation leaves historical
+shared-shell evidence at its original hashes; it does not renew those claims.
+
 ## Native World live startup history — 2026-10-08
 
 `NR.world-history-channel` and `NR.world-live-history` connect the async CPU/GPU

@@ -60,9 +60,12 @@
 #include <QWindow>
 #include <cstdio>
 #include <exception>
+#include "campaign_smoke_test.hpp"
 
 class Shell final:public QMainWindow {
+    quint64 nativeCommandFrames_=0;
 public:
+    CampaignPresentationProbe campaignPresentation() const{return {nativeCommandFrames_,commands_&&commands_->state()==LiveCommandSession::State::Active,nativeFallback_};}
     void showPresentation(){if(presentation_)presentation_->show();else show();}
     explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false,PresentationOptions presentation={}):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
         setWindowTitle("Magic & Mayhem Workshop");resize(1100,850);
@@ -297,7 +300,7 @@ private:
             if(nativeCommands_){
                 commands_=std::make_unique<LiveCommandSession>(*gl_);
                 commands_->stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
-                commands_->framePresented=[this]{input_->suspend(media_ && media_->movieActive());placeholder_->hide();gl_->show();statusBar()->showMessage("Native command presentation active. Original rendering retained.");};
+                commands_->framePresented=[this]{++nativeCommandFrames_;input_->suspend(media_ && media_->movieActive());placeholder_->hide();gl_->show();statusBar()->showMessage("Native command presentation active. Original rendering retained.");};
                 if(!commands_->create(path+".commands",(QRandomGenerator::global()->generate()&0x7fffffffu)|1u,continuous?2:1)){const auto error=commands_->error();finished();statusBar()->showMessage(error);return;}
                 arguments.append({"--command-channel",path+".commands"});
                 if(continuous){input_->suspend(true);arguments.append({"--render-control",path+".commands.control"});}
@@ -655,7 +658,10 @@ int main(int argc,char** argv){
     const bool nativeCommands=parser.isSet("native-commands") || (renderer=="opengl" && !parser.isSet("embedding-test") && !parser.isSet("frame-readback") && !captureDiagnostic);
     const bool captureLocks=parser.isSet("capture-locks") || nativeCommands || parser.isSet("frame-readback");
     Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,parser.isSet("native-media"),parser.isSet("native-voices"),parser.isSet("live-menus"),nativeCommands,presentation);shell.showPresentation();
-    if(parser.isSet("live-menu-test"))installLiveMenuTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"));
+    if(parser.isSet("live-menu-test")){
+        if(qEnvironmentVariableIsSet("MNM_CAMPAIGN_SMOKE_TEST"))installCampaignSmokeTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"),[&shell]{return shell.campaignPresentation();});
+        else installLiveMenuTest(app,shell,*shell.liveMenuSession(),parser.value("live-menu-test"));
+    }
     if(parser.isSet("smoke-test"))QTimer::singleShot(100,&app,&QCoreApplication::quit);
     if(parser.isSet("embedding-test")){
         if(!shell.host().available())return 2;

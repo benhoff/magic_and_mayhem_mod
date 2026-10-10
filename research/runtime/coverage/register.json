@@ -16082,20 +16082,25 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Continuous native command application launch default",
-      "scope": "Ordinary Qt OpenGL game launches select native command presentation by default, with continuous v2 and matching child environment/control channel. Explicit frame-readback selects the original-renderer mirror; conflicting explicit choices refuse. Draw/history/lock/no-readback diagnostics retain their prior paths unless native commands are explicitly selected; embedding/live menus retain Wine presentation. Explicit environment0 retains bounded diagnostics. Synthetic actual-shell visible startup/streaming beyond4096 commands in normal/fullscreen/fractional-DPI windows; historical bounded black startup captures inspected independently. User-desktop GPU selection, original-game retry, movies, sustained gameplay and native replacement remain pending. Capture ownership/history refusal and ordered drawing policy remain separate. Both ordinary native-command and explicit frame-copy presentation imply application-held capture, disabling observer DirectDraw locks; six fresh synthetic actual-shell launch cases validate mode selection and retained pixels. No all-duration driver claim.",
+      "scope": "Ordinary Qt OpenGL game launches select native command presentation by default, with continuous v2 and matching child environment/control channel. Explicit frame-readback selects the original-renderer mirror; conflicting explicit choices refuse. Draw/history/lock/no-readback diagnostics retain their prior paths unless native commands are explicitly selected; embedding/live menus retain Wine presentation. Explicit environment0 retains bounded diagnostics. Synthetic actual-shell visible startup/streaming beyond4096 commands in normal/fullscreen/fractional-DPI windows; historical bounded black startup captures inspected independently. User-desktop GPU selection, original-game retry, movies, sustained gameplay and native replacement remain pending. Capture ownership/history refusal and ordered drawing policy remain separate. Both ordinary native-command and explicit frame-copy presentation imply application-held capture, disabling observer DirectDraw locks; six fresh synthetic actual-shell launch cases validate mode selection and retained pixels. No all-duration driver claim. Public native campaign smoke requires live menus and native command presentation together; current CLI rejection is an explicit integration blocker. New Game/Enter/gameplay/Escape/Mini/Cancel automation preserves ordinary menu feature flags and requires native completed-frame callbacks plus independent original menu/World observations; live execution, movement and combined-route integration remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
         "research/runtime/native-command-launch.md",
         "apps/qt-shell/README.md",
         "research/runtime/render-surface-contention.md",
-        "docs/live-drawing-replacement.md"
+        "docs/live-drawing-replacement.md",
+        "tests/native-campaign-smoke.md"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp"
       ],
       "tests": [
-        "tools/test-native-command-launch.py"
+        "tools/test-native-command-launch.py",
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp"
       ],
       "evidence": [
         "HOST.native-command-default.synthetic-20261006",
@@ -16103,7 +16108,8 @@
         "HOST.fullscreen-native-commit.native-20261007",
         "HOST.fullscreen-native-commit.final-native-20261007",
         "HOST.native-render-selection-default.synthetic-20261007",
-        "HOST.surface-safe-launch.synthetic-20261007"
+        "HOST.surface-safe-launch.synthetic-20261007",
+        "HOST.native-campaign.admission-20261009"
       ],
       "status": {
         "understanding": "scoped",
@@ -42716,6 +42722,40 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "HOST.native-campaign.admission-20261009",
+      "kind": "native_integration",
+      "scope": "Actual public-shell combined-option rejection plus synthetic report validators only. Campaign clicks, GPU presentation, actual game input/movement and combined live integration remain unexecuted. This failed admission is not a status promotion.",
+      "record": "research/runtime/native-campaign-smoke-admission-20261009.json",
+      "sha256": "246cf2779cc12f456ce35a1899b62be33a62455d0c985292a4796fd6591f02e7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/status",
+          "equals": "blocked"
+        },
+        {
+          "pointer": "/stage",
+          "equals": "combined-mode-admission"
+        },
+        {
+          "pointer": "/mode_probe/exit_code",
+          "equals": 2
+        },
+        {
+          "pointer": "/launch_requested",
+          "equals": false
+        },
+        {
+          "pointer": "/unit_checks/exit_code",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -49364,6 +49404,22 @@
       "evidence": [
         "RS.canvas-producers.oracle-budget-20261008"
       ]
+    },
+    {
+      "id": "hosting.native-campaign-public-flow",
+      "level": "headless",
+      "scope": "Headless combined-route admission gate for the requested public native-menu/native-command campaign flow. Actual shell rejects both flags before game launch; automation for New Game/Enter/gameplay/Escape/Mini/Cancel is compiled but live execution, movement, pixel equivalence and complete drawing replacement remain pending. Original-window fallback cannot satisfy the test.",
+      "behaviors": [
+        "HOST.native-command-launch"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py",
+        "apps/qt-shell/campaign_smoke_test.cpp"
+      ],
+      "evidence": [
+        "HOST.native-campaign.admission-20261009"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -49692,8 +49748,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-minimap-overlays-owned-20261009.json",
-    "sha256": "db9534d8f41c975d3232bc70a6145a915fdb2524358cf2f9c953a53419b12da4"
+    "path": "research/runtime/coverage/source-index-native-campaign-smoke-20261009.json",
+    "sha256": "e36c5168690af76fcccb360fcf9c066d05024359e5e9190b7c97acd3e2f84e3f"
   },
   "claim_bindings_required": true
 }
