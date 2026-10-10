@@ -27122,6 +27122,235 @@
         "runtime/scene/word_entry.S",
         "tools/original-manifest.sh"
       ]
+    },
+    {
+      "id": "NR.offline-render-soak",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Offline retained-renderer soak and adversarial pixel admission",
+      "scope": "Intentional offline policy: repeated closed owned32-queue sessions in one renderer, all checkpoint identities/digests and CPU/GPU completions, teardown/resource bounds, seeded scalar RGB565 mixed ordering/palette/source mutation/clipping/additive/displacement checks, malformed admission and host-specific latency-tail/resident-growth budgets. No rolling protocol, fresh original comparison, live replacement, full-game cadence or peak-memory claim.",
+      "original": [],
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-render-offline-soak.md"
+      ],
+      "implementation": [
+        "tests/native-render-soak.cpp",
+        "tests/native-render-soak/CMakeLists.txt",
+        "tools/test-native-render-soak.py"
+      ],
+      "tests": [
+        "tests/native-render-soak.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tools/test-native-render-soak.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/canvas-producers-test.c",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-startup-call.S",
+        "tests/canvas-world-test.cpp",
+        "tests/extended-world-producer-test.py",
+        "tests/minimap-producer-test.cpp",
+        "tests/native-render-soak/CMakeLists.txt",
+        "tests/native-world-batch-test.py",
+        "tests/resource-fixtures.hpp",
+        "tests/scene-history-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "tests/world-frame-reference.cpp",
+        "tests/world-producer-bypass-call.S",
+        "tests/world-producer-reference.cpp",
+        "tests/world-raster-batch-reference.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-raster-queue-reference.cpp",
+        "tests/world-raster-reference.hpp",
+        "tools/build-menu-observer.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-scene-game.py",
+        "tools/compare-world-cpu-original.py",
+        "tools/coverage_claims.py",
+        "tools/export-menu-support.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/inspect-startup-queues.py",
+        "tools/inspect-world-raster-batch.py",
+        "tools/inspect-world-raster-callers.py",
+        "tools/native_world_batch.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-native-world.py",
+        "tools/run-opengl-game.py",
+        "tools/scene-game-runner.py",
+        "tools/test-canvas-producers.py",
+        "tools/test-native-world-batch.py",
+        "tools/test-world-producer-handoff.py",
+        "tools/test-world-raster-batch.py",
+        "tools/test-world-raster-queue.py",
+        "tools/test-world-resource-reuse.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py"
+      ],
+      "validation_domain": "Pinned saved owned V3 World32 corpus with no oracle pixel inputs; retained GlBlitter across finite session resets and seeded mixed native operations. Default20 sessions/40 rounds, median50ms/p95100ms/max250ms warm native work and32MiB growth. Software Mesa default8 workers; GL3.3 fallback separately selectable. CPU/GPU World final parity plus saved checkpoint assertions; original code and live producer are not executed.",
+      "evidence": [
+        "NR.offline-render-soak.default-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -51926,6 +52155,69 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.offline-render-soak.default-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh frozen optimized offline retained-renderer20-session World32 replay:640 CPU/GPU World completions,24480 exact checkpoint hashes,28000 seeded ordered draws,360 scalar pixel comparisons,120 runtime refusals and16 malformed envelopes; three Debug regression fixtures. Eight software Mesa workers; warm median39.22/p9572.71/max116.15ms, retained growth10.87MiB, all configured budgets pass. No live execution or new original comparison.",
+      "record": "research/runtime/native-render-offline-soak-default-20261010.json",
+      "sha256": "66933f4cdd6af2989ec8850a60af20d98446079ffebaf59bc07ebbaa3d0c7244",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/totals/world_queues",
+          "equals": 640
+        },
+        {
+          "pointer": "/totals/checkpoint_comparisons",
+          "equals": 24480
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/assertion_enabled_tests_passed",
+          "equals": 3
+        },
+        {
+          "pointer": "/compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        },
+        {
+          "pointer": "/debug_compiled_dependency_review/undeclared_dependencies",
+          "equals": []
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -59161,6 +59453,22 @@
       "evidence": [
         "NR.word-cpu-clipping-admission.sanitized-host-20261010"
       ]
+    },
+    {
+      "id": "native-render-offline-soak-20261010",
+      "subsystem": "native_rendering",
+      "level": "headless",
+      "behaviors": [
+        "NR.offline-render-soak"
+      ],
+      "tests": [
+        "tools/test-native-render-soak.py",
+        "tests/native-render-soak.cpp"
+      ],
+      "scope": "Offline source-only replay of complete saved World32 sessions with persistent renderer lifetime, exact checkpoint digest assertions and native CPU/GPU completion parity; seeded scalar adversarial draws, Debug refusal/eviction fixtures, software Mesa8-worker warm median/p95/max and post-warm teardown memory-growth limits. No rolling delivery, independent original execution or live-game cadence claim.",
+      "evidence": [
+        "NR.offline-render-soak.default-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -59489,8 +59797,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-word-cpu-20261010.json",
-    "sha256": "fe02d305a1e0cdcc2aac6f20c5f453527852bf99a015a745316cfb0c1c67e8ba"
+    "path": "research/runtime/coverage/source-index-native-render-soak-validated-20261010.json",
+    "sha256": "d60be1348bb5830371d8e66be02c97a0d0eaf91164ad678d8ae3b1264b44fb9e"
   },
   "claim_bindings_required": true
 }
