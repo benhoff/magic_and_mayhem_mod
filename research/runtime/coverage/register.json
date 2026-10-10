@@ -21107,7 +21107,8 @@
         "RS.world-raster-batch.prefix16-comparison-v7-20261008",
         "RS.world-raster-batch.prefix16-replacement-v7-20261008",
         "RS.world-raster-batch.instrumented-replacement-20261009",
-        "RS.world-raster-batch.resource-reuse-replacement-20261009"
+        "RS.world-raster-batch.resource-reuse-replacement-20261009",
+        "RS.world-raster-batch.identity-cache-replacement-20261009"
       ],
       "status": {
         "understanding": "partial",
@@ -21372,7 +21373,8 @@
         "RS.world-raster-batch.prefix16-comparison-v7-20261008",
         "RS.world-raster-batch.prefix16-replacement-v7-20261008",
         "RS.world-raster-batch.instrumented-replacement-20261009",
-        "RS.world-raster-batch.resource-reuse-replacement-20261009"
+        "RS.world-raster-batch.resource-reuse-replacement-20261009",
+        "RS.world-raster-batch.identity-cache-replacement-20261009"
       ],
       "status": {
         "understanding": "partial",
@@ -22009,7 +22011,8 @@
       "evidence": [
         "NR.world-interactive-batch.complete-20261009",
         "NR.world-interactive-batch.cancel-20261009",
-        "NR.world-resource-reuse.live-20261009"
+        "NR.world-resource-reuse.live-20261009",
+        "NR.world-frame-identity-cache.live-20261009"
       ],
       "status": {
         "understanding": "scoped",
@@ -22220,7 +22223,8 @@
       "validation_domain": "Pinned800x600 RGB565 first16 Quick Battle map2/zero-items automatic startup completion; manual native-window close before queue1 as an independent live cancellation scenario. General manual menu journeys and original-window cancellation unvalidated.",
       "evidence": [
         "NR.world-interactive-batch.complete-20261009",
-        "NR.world-resource-reuse.live-20261009"
+        "NR.world-resource-reuse.live-20261009",
+        "NR.world-frame-identity-cache.live-20261009"
       ],
       "status": {
         "understanding": "scoped",
@@ -22437,7 +22441,9 @@
       "validation_domain": "Synthetic cold/warm upload reuse, changed/restored resource revision rejection, failed-revision retry, owned-colour/ambiguous embedded palette and GL context restoration; frozen owned-source first16 map2/zero-items startup replay baseline versus optimized with all checkpoints compared; separate guarded public first16 live completion and precise-original intermediate/AX comparison. Timing is Debug software-OpenGL diagnostic native consumer, excludes original simulation and pre-entry work.",
       "evidence": [
         "NR.world-resource-reuse.replay-20261009",
-        "NR.world-resource-reuse.live-20261009"
+        "NR.world-resource-reuse.live-20261009",
+        "NR.world-frame-identity-cache.live-20261009",
+        "NR.world-frame-identity-cache.replay-20261009"
       ],
       "status": {
         "understanding": "scoped",
@@ -22513,6 +22519,7 @@
         "compat/legacy/world_resources.cpp",
         "compat/legacy/world_resources.hpp",
         "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
         "protocols/include/mnm/render_stream_v3.h",
         "protocols/include/mnm/scene_snapshot_v1.h",
         "protocols/include/mnm/world_frame_v1.h",
@@ -22533,6 +22540,10 @@
         "renderer/dib.cpp",
         "renderer/dib.hpp",
         "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
         "renderer/pixel_rows.cpp",
         "renderer/pixel_rows.hpp",
         "renderer/resources/CMakeLists.txt",
@@ -22565,7 +22576,9 @@
       ],
       "validation_domain": "Current headless native consumer: synthetic owned/fromRawData mutation, indexed-tag separation, invalid extents, count/allocation capacity limits, LRU eviction, oversized bypass, token lifetime, primitive order, unmapped retry, reload/adoption and palette ambiguity; same-owned default V1 first16 map2/zero-items replay versus prechange atlas/revision-reuse binary with every checkpoint and identity counter checked. Dependency scope is the actual compiled native consumer/test closure, CMake configurations, replay declaration/manifest tools with a closed owned-input fixture: prepared-input mode verifies the original captured stream/done and every owned asset against an immutable previous input manifest, does not execute the mutable capture decoder, and never reads original pixel oracles. Public launcher hook lifetime and original replacement equivalence are separate historical evidence until refreshed against their complete pipeline; headless support does not validate minimap V2 branches, original simulation, unbounded gameplay or hardware-general latency.",
       "evidence": [
-        "NR.world-frame-identity-cache.native-20261009"
+        "NR.world-frame-identity-cache.native-20261009",
+        "NR.world-frame-identity-cache.live-20261009",
+        "NR.world-frame-identity-cache.replay-20261009"
       ],
       "status": {
         "understanding": "scoped",
@@ -44966,11 +44979,60 @@
       "bypass_pointer": "/original_work_bypassed"
     },
     {
-      "id": "NR.world-frame-identity-cache.native-20261009",
+      "id": "NR.world-frame-identity-cache.live-20261009",
+      "kind": "live_observation",
+      "scope": "Current bounded frame-identity native World public automatic map2/zero-items first16 guarded batch completion and resource/atlas reuse counters. All native CPU/GPU final canvases and captured checkpoints equal; original comparison is separate. Debug/software GL native consumer timings exclude original simulation and pre-entry work; no unbounded gameplay or hardware-general frame rate claim.",
+      "record": "research/runtime/native-world-frame-identity-cache-live-20261009.json",
+      "sha256": "6ceaa61770ef5dee4d3b713b4a78e1e31faf72a240064d51e5f60d8b6808d401",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/queues",
+          "equals": 16
+        },
+        {
+          "pointer": "/world_readbacks",
+          "equals": 16
+        },
+        {
+          "pointer": "/native_canvas_writebacks",
+          "equals": 16
+        },
+        {
+          "pointer": "/canvas_guard_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/checkpoints_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "NR.world-frame-identity-cache.replay-20261009",
       "kind": "native_integration",
       "scope": "Same frozen owned-source first16 map2/zero-items corpus through prechange and bounded frame-identity consumers, all native checkpoints equal; identity warm reuse/capacity counters and focused ownership/mutation/eviction/bypass/invalid/primitive/reload/adoption/palette tests. No original oracle input, live/original equivalence or hardware-general latency claim.",
-      "record": "research/runtime/native-world-frame-identity-cache-native-20261009.json",
-      "sha256": "380f33ebfba294fba78d5cd2e5ac23812db4925b6673331014578051989daafd",
+      "record": "research/runtime/native-world-frame-identity-cache-replay-20261009.json",
+      "sha256": "839280779b84ea7a202b78d56b432ae174bbdd5a8552f3007212a1e291aca4b4",
       "sources_pointer": "/sources",
       "claims_pointer": "/claims",
       "assertions": [
@@ -45011,6 +45073,65 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "RS.world-raster-batch.identity-cache-replacement-20261009",
+      "kind": "live_replacement",
+      "scope": "Current owned-byte identity-reusing native World, pinned800x600 RGB565 Quick Battle map2/zero-items startup queues1..16. Source-only CPU/GPU replay independently compared with every precise original intermediate and low16AX,16 final canvases and all checkpoints. Captured guard/writebacks separately bind live suppression. Original simulation, outside-World drawing and lazy wave preparation retained. No all-caller/global/gameplay or hardware latency claim.",
+      "record": "research/runtime/native-world-frame-identity-cache-original-20261009.json",
+      "sha256": "e46773897e6b8a410d78a7202525dc09f9fae56eb86b19e9262dfb5ca0b875d4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/canvas_guard_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/equivalent_intermediates",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": true
+        },
+        {
+          "pointer": "/precise_rasters_equal",
+          "equals": 26146
+        },
+        {
+          "pointer": "/caller_ax_equal",
+          "equals": 26146
+        },
+        {
+          "pointer": "/native_canvas_writebacks",
+          "equals": 16
+        },
+        {
+          "pointer": "/native_world_readbacks",
+          "equals": 16
+        },
+        {
+          "pointer": "/live_final_equal",
+          "equals": 16
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "equivalence_pointer": "/equivalent_intermediates",
+      "bypass_pointer": "/original_work_bypassed"
     },
     {
       "id": "NR.minimap-owned-observation.startup-20261009",
@@ -45068,6 +45189,53 @@
         {
           "pointer": "/original_memory_written",
           "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.world-frame-identity-cache.native-20261009",
+      "kind": "native_integration",
+      "scope": "Same frozen owned-source first16 map2/zero-items corpus through prechange and bounded frame-identity consumers, all native checkpoints equal; identity warm reuse/capacity counters and focused ownership/mutation/eviction/bypass/invalid/primitive/reload/adoption/palette tests. No original oracle input, live/original equivalence or hardware-general latency claim.",
+      "record": "research/runtime/native-world-frame-identity-cache-native-20261009.json",
+      "sha256": "380f33ebfba294fba78d5cd2e5ac23812db4925b6673331014578051989daafd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/checkpoints_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/completed",
+          "equals": 1058
+        },
+        {
+          "pointer": "/native_tests_passed",
+          "equals": 5
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
         }
       ]
     },
@@ -51970,7 +52138,8 @@
         "RS.world-raster-batch.prefix16-comparison-v7-20261008",
         "RS.world-raster-batch.prefix16-replacement-v7-20261008",
         "RS.world-raster-batch.instrumented-replacement-20261009",
-        "RS.world-raster-batch.resource-reuse-replacement-20261009"
+        "RS.world-raster-batch.resource-reuse-replacement-20261009",
+        "RS.world-raster-batch.identity-cache-replacement-20261009"
       ]
     },
     {
@@ -52054,7 +52223,8 @@
       ],
       "evidence": [
         "NR.world-interactive-batch.complete-20261009",
-        "NR.world-resource-reuse.live-20261009"
+        "NR.world-resource-reuse.live-20261009",
+        "NR.world-frame-identity-cache.live-20261009"
       ]
     },
     {
@@ -52098,7 +52268,8 @@
         "tools/test-native-world-batch.py"
       ],
       "evidence": [
-        "NR.world-resource-reuse.live-20261009"
+        "NR.world-resource-reuse.live-20261009",
+        "NR.world-frame-identity-cache.live-20261009"
       ]
     },
     {
@@ -52113,7 +52284,22 @@
         "tests/canvas-world-test.cpp"
       ],
       "evidence": [
-        "NR.world-frame-identity-cache.native-20261009"
+        "NR.world-frame-identity-cache.native-20261009",
+        "NR.world-frame-identity-cache.replay-20261009"
+      ]
+    },
+    {
+      "id": "world-frame-identity-cache-live-20261009",
+      "scope": "Public automatic map2/zero-items first16 guarded World completion with source-only history, matching checkpoints, resource/atlas/identity reuse counters and one native canvas writeback per queue. Original raster/low16AX comparison remains separately bound; no manual, all-map, unbounded or hardware-general timing claim.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.world-frame-identity-cache"
+      ],
+      "tests": [
+        "tools/test-native-world-batch.py"
+      ],
+      "evidence": [
+        "NR.world-frame-identity-cache.live-20261009"
       ]
     },
     {
@@ -52509,8 +52695,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-cpu-composition-20261010.json",
-    "sha256": "19e84b0ea6bcdc517de5e4576cab303f5dd92f5962d16a2410ed1f32a7f3359c"
+    "path": "research/runtime/coverage/source-index-existing-work-reviewed-20261010.json",
+    "sha256": "6d631f5dba3d32791814a6db42c4f8fd406b8f724549cb617a77826cb7d59bc1"
   },
   "claim_bindings_required": true
 }
