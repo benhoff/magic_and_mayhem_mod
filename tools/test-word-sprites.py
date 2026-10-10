@@ -14,6 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 SOURCES=['renderer/sprites/word_raster.h','renderer/sprites/word_raster.c',
          'runtime/scene/word_route.c','runtime/scene/word_entry.S',
+         'runtime/scene/word_workspace.h',
          'runtime/shadow/win32_min.h','tests/word-sprite-reference.cpp',
          'renderer/sprites/word-raster/CMakeLists.txt','tests/word-raster-test.c',
          'tools/build-word-sprites.py','tools/test-word-sprites.py']

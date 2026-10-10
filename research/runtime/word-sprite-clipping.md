@@ -61,3 +61,11 @@ check every compiled project input against the recorded source map. The newest
 result supports current scoped comparison; the earlier run stays historical.
 Intermediate indexing snapshots remain under `working/tests/`; only the final
 reviewed census is admitted to the durable register.
+
+### Caller-state follow-up
+
+[RS.word-backend-state](word-backend-state.md) recovers and tests clipped
+workspace/argument effects and original ABI in 4,448 fixtures, plus production
+entry assembly with a host admission stand-in. It fixes two existing unclipped
+compatibility issues. Clipped requests still forward to original drawing; native
+CPU clipping and full Win32 hook/exception behavior remain separate milestones.

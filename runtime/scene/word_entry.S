@@ -19,6 +19,10 @@ word_common:
     addl $4, %esp
     testl %eax, %eax
     jz word_forward
+    /* Every admitted positive frame executes original FILD/FIMUL/FISTP.
+     * Their exact bounded integer product clears C1 while retaining the
+     * masked sticky flags and active stack values. */
+    andw $0xfdff, 2(%esp)
     fxrstor (%esp)
     movl %ebx, %esp
     popal

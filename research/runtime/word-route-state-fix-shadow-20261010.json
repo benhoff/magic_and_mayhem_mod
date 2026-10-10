@@ -1,0 +1,133 @@
+{
+  "success": true,
+  "live_observation": true,
+  "live_replacement": false,
+  "original_pixels_compared": false,
+  "scope": "Original Single Player battle setup and ordered queue consumer entry. Original simulation/drawing remain active; bounded immutable snapshots, no whole-scene visual equivalence.",
+  "sources": {
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+    "protocols/include/mnm/world_channel_v2.h": "7950078b61ef26403a9661981c5dd4ae9553bc582c232c8782f0f1b7ce1504f4",
+    "protocols/include/mnm/world_frame_v1.h": "b9b2f78c8e5b513232f803d2a0ec6643626974a8909db18611e87262a22f83b5",
+    "runtime/scene/canvas_producers.S": "9acf79e06ded8251084acbd6050d7c62135240b645405892876ae58addd3e7ee",
+    "runtime/scene/canvas_producers.c": "23c5b78b576bf78f423dc905fd199612c0e70203f982aaecb443a3f12dacf584",
+    "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+    "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/kind8_observer.c": "2446b756aa890f91a87fa4ae2d7a434c9f247c43b0ff7fabad994c75fa1f6563",
+    "runtime/scene/observer.c": "38e4f6fe21217a205a6c7f77b3381773d6eff8e33ce53b9e916d951f4587fd0a",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "runtime/scene/startup_queue.c": "466d66d8343dbaac7e196129cca7ff0d6a2e8cb60a2c9faed1bb75ee7c96d6a5",
+    "runtime/scene/word_entry.S": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+    "runtime/scene/word_route.c": "0e364ed82223cc79267e10771b402479ec5d37aac8bbe9b6c03353955dc7e772",
+    "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+    "runtime/scene/world_entry.S": "48ce2eeaaa4ec8446e7b8804aefb0fa561a8f872a00f41e1e8b32c7500256cf1",
+    "runtime/scene/world_kinds.h": "dad1ab93f175db036c7b53fb3ee8f4f65259d016ae2ba3627a133e2685f87e4b",
+    "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+    "runtime/scene/world_producer_bypass.c": "98eec5d46516454ad224fe760922231d7b5c345ef5336422c8aedae30ef13e57",
+    "runtime/scene/world_raster_batch.c": "e53cf0826f8452525b0a1d53437ec2b95eb640dca93fa1cdaf11f270b709e7f5",
+    "runtime/scene/world_raster_callers.h": "d2a2c29e4ff60c213bd8fc2e4a2a12f0f3a5b6de7c8e1a1038da3a94b571daf7",
+    "runtime/scene/world_stream.c": "0f55cc0856779977a4b4c9a7795e4b5622fa6c16f00db06cc631fd0e12a48a60",
+    "runtime/scene/world_stream_selftest.c": "2828bc32ae8e1ff3a3675fd11d863d8d73729d07e12f48dc1b173c8b57d6ef29",
+    "runtime/scene/world_trace.c": "a2a40f336e007898f3bf44c60a25efda1b18d8466bdd69460bafa727cc752f4d",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/word-backend-probe.S": "113851c9b6af2e3b7e9fc5e604bce8b321b1218ff708b1fef1ce2c96678bbe24",
+    "tests/word-backend-state-reference.cpp": "33b1ecc3fc04678375679f56c59e2222f8d7124f42bc5820d95711ae1777ed7e",
+    "tests/word-sprite-reference.cpp": "cfecefe2101e2de029e4bd1f56f70444f4308428ab3a9e80273c44c7dda1fc21",
+    "tools/build-scene-observer.py": "0eafa12efc0b87696d8b21f5aefd3c041434acf2210c20e8ee0687886534ed7f",
+    "tools/build-word-sprites.py": "deb5ad545dfc79aab3a7d267f65c2a0091bcd9694728697e65ecaf750b1183f0",
+    "tools/capture-scene-game.py": "d54c555e455a89e418b8bb9b6b100acd2e02015799423915781a3d9b27c2b0b8",
+    "tools/prepare-scene-observer.py": "cfa93d0ed820d288bffb6b2af5f73ebe02d215471f65b6fdb4fe825d5ff4cead",
+    "tools/render-game-runner.py": "3ebd48598261a7dbd2afba7ef94403f02d55f2c838a5e3f61ee9f23bea8ab553",
+    "tools/run-opengl-game.py": "7e7c002c27946560ee8403da632a764cc89cc6946bada47a0457759457e7fdf9",
+    "tools/scene-game-runner.py": "74176c9d773c647bc0f5a410bb44f917a6073dd968d4cdb659b1e3949627f932",
+    "tools/test-word-backend-state.py": "38f0bcb56a44bef46e907646f3b2ef01155480acad6454f09f22cfd767dc7e5c",
+    "tools/test-word-sprites.py": "f16742eb6423499a035ea00c9d7fb0c4c366627cc6e7b515d82fafb6dd27bcfe",
+    "tools/world_channel.py": "7a29c9710c7552a399b9ae6424505402f605785adb5dc53aae2d595a1d064db0",
+    "renderer/sprites/word_raster.h": "4f57346a53e07a2a83fb90d0183036f3a45fd34994af5d2706b9b1b7de1d0143",
+    "renderer/sprites/word_raster.c": "85d3a5c4c6436de73c3f8aa81efab198248c3eb8b9bbb37e1037769f4c2dec42"
+  },
+  "sources_stable": true,
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "samples": 4,
+  "map_selection": 2,
+  "manual_input": false,
+  "magic_items": 0,
+  "menu_trace": [
+    {
+      "screen": 3,
+      "action": 1,
+      "argument": 0,
+      "ack": 1,
+      "status": 1
+    },
+    {
+      "screen": 22,
+      "action": 4,
+      "argument": 0,
+      "ack": 2,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 6,
+      "argument": 0,
+      "ack": 3,
+      "status": 1
+    },
+    {
+      "screen": 25,
+      "action": 9,
+      "argument": 2,
+      "ack": 4,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 7,
+      "argument": 0,
+      "ack": 5,
+      "status": 1
+    }
+  ],
+  "snapshots": {
+    "capture/scene-0001.bin": "f9dedf555884a778e8f65eec97ad5498411afb82a8bd2a2273f95c277fedf334",
+    "capture/scene-0002.bin": "591e2bef38eafafcfd3725768e716054b5d5b4b22a63d2ce1a294775279c3246",
+    "capture/scene-0003.bin": "2762d42cb63a236d3313c048344e16a08aed15a17a9b11b2e281c3fc26b9b134",
+    "capture/scene-0004.bin": "31fab2af8be665f7712379b549dd2c0661d871527db8c33923a23458a9502ff2"
+  },
+  "experiment": "/tmp/word-state-reviewed-20261010/working/experiments/scene-observer/run-lslm3ile",
+  "claims": [
+    {
+      "behavior": "RS.word-route",
+      "contract_sha256": "b31ca0d5a6c5b28904ca5b32baef2f6484d8e35e63b47833aeef3bb1160f2cb8",
+      "scenarios": {
+        "word-workspace-fix-world-entry-20261010": "cdc60687a6126a9d9f1e5c2e7a3adcc6d685a8e635ec04cc41ced17132b2260b"
+      }
+    }
+  ],
+  "window_screenshot_requested": true,
+  "startup_replay": false,
+  "word_sprites_mode": "shadow",
+  "word_stats": [
+    1464684109,
+    825246802,
+    1,
+    64,
+    1,
+    1,
+    13568,
+    12625,
+    0,
+    13568,
+    12625,
+    0,
+    943,
+    0,
+    0,
+    0
+  ],
+  "word_directory": "/tmp/word-state-reviewed-20261010/working/experiments/scene-observer/run-lslm3ile/word-sprites",
+  "word_scope": "Partial direct-word backend entries; full scene pixels and other original drawing are outside the replacement claim",
+  "original_manifest_verified_before_after": true
+}

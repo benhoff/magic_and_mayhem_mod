@@ -132,3 +132,13 @@ clipping operation against both selected original backends for 960 synthetic
 placements and 447,330 complete canvas pixels. This is pixel-only proof at zero
 clip globals. Live admission remains fully in-bounds: clipped caller state and
 ABI, auxiliary passes and other backends remain open.
+
+### Caller-state recovery and compatibility correction — 2026-10-10
+
+[Recovered backend state](word-backend-state.md) now compares 4,448 original
+workspace/argument/ABI fixtures and the production entry assembly. It corrects
+scalar trailing-transparent workspace9 and admitted x87 C1 restoration. Fresh
+shadow/takeover startup checks retain strict in-bounds admission, with eight
+independent full-canvas/workspace matches. Clipped native pixels, full Win32
+exception/reentry behavior and sustained sessions remain open. Older source
+fingerprints and source-split evidence remain historical.

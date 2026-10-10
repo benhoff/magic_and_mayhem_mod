@@ -9,6 +9,7 @@ import subprocess
 ROOT=Path(__file__).resolve().parents[1]
 SOURCES=['renderer/sprites/word_raster.h','renderer/sprites/word_raster.c',
          'runtime/scene/word_route.c','runtime/scene/word_entry.S',
+         'runtime/scene/word_workspace.h',
          'runtime/shadow/win32_min.h','tools/build-word-sprites.py']
 
 def build():
