@@ -43,9 +43,28 @@ envelopes and three assertion-enabled Debug fixtures. Warm native work is
 39.22ms median,72.71ms p95 and116.15ms maximum; post-warm resident growth is
 10.87MiB and plateaus at327.6MiB. Surface teardown and scratch storage are stable.
 Cold first queues measure444.20ms median and471.27ms maximum, separately from
-warm latency. GL3.3 fallback and deliberate budget refusal are next checks.
+warm latency. The [GL3.3 fallback result](native-render-offline-soak-gl33-20261010.json) repeats
+all20 sessions with independent seed20261011 and the same verified binaries:
+38.41ms median,71.20ms p95,92.42ms maximum and12.00MiB retained growth. All pixel,
+resource and Debug fixture checks pass. The [intentional budget refusal](native-render-offline-soak-budget-refusal-20261010.json)
+sets median/p95/max to0.001ms: all128 native World completions and4,896 checkpoint
+assertions pass, but the tool records performance failure and exits1. It preserves
+source/input/manifest verification and the negative report rather than presenting
+correct pixels as a performance success.
 
 The committed-history review for01e160a..0415793 inspected50 file transitions,
 matched each parent's and commit's SHA-256 to existing exact receipts, and found
 no unresolved gaps. The review journal itself is excluded from its recursive
 accounting. This review establishes accounting, not retrospective test execution.
+
+A second committed-history review covers0415793..50bec93:10 exact transitions,
+zero unresolved receipts. No source changes were required after the first soak
+commit; its source census remains current.
+
+```sh
+python3 tools/test-native-render-soak.py --corpus working/tests/world-resource-reuse/run-vkde03ok
+# Substitute the successful run path emitted above. All source/binary/compiler
+# fingerprints must match before a prepared build is admitted.
+python3 tools/test-native-render-soak.py --corpus working/tests/world-resource-reuse/run-vkde03ok \
+  --prepared working/tests/native-render-soak/run-qr0qe317 --gl33 --seed 20261011
+```
