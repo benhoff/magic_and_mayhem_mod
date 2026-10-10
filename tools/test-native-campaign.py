@@ -31,7 +31,7 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
            'apps/qt-shell/live_command_session.hpp', 'tools/prepare-menu-observer.py',
            'tools/run-menu-observer.py', 'tools/menu-game-runner.py', 'tools/profile-render-stream.py',
            'runtime/menu/campaign_gameplay_observe.h', 'tools/campaign_gameplay.py', 'tools/campaign-combat-input.py']
-SOURCES += ['tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
+SOURCES += ['tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 
 
 def validate_portrait_stress(inputs, flow, capture_root, seconds, min_fps=20):
@@ -68,6 +68,25 @@ def validate_portrait_stress(inputs, flow, capture_root, seconds, min_fps=20):
     return dict(cycles=len(cycles),seconds=duration,native_fps=native,paint_fps=paints,worst_window_fps=worst,
                 portrait_region=[716,507,759,538],maximum_channel_error=maximum,
                 scope='Unsynchronized stable wizard face region only; full World and animation equivalence remain pending')
+
+
+
+def validate_dialogue_readiness(inputs, capture_root):
+    checks=inputs.get('dialogue_checks',[])
+    if not 1<=len(checks)<=12 or set(checks[-1]['visible'])!={'native','original'} or any(checks[-1]['visible'].values()):
+        raise ValueError('Missing independently cleared introductory dialogue')
+    captures={c['name']:c for c in inputs['captures']}
+    for item in checks:
+        if set(item['texts'])!={'native','original'} or item['visible']!={r:'hermes' in item['texts'][r].lower() for r in ('native','original')}:
+            raise ValueError('Dialogue classification differs from retained OCR')
+        if item['capture'] not in captures:raise ValueError('Missing dialogue capture')
+    for cap in inputs['captures']:
+        if not re.fullmatch(r'combat-\d{2}-[a-z0-9-]+',cap['name']) or cap['metadata']['fallback'] or not all(cap['metadata'][r+'_saved'] for r in ('native','original')):
+            raise ValueError('Invalid independent gameplay diagnostic capture')
+        for route in ('native','original'):
+            if sha(capture_root/(cap['name']+'-'+route+'.png'))!=cap['image_sha256'][route]:raise ValueError('Gameplay diagnostic image changed after capture')
+    return dict(verified=True,checks=len(checks),dismissed=sum(all(i['visible'].values()) for i in checks),
+                scope='Bounded introductory Hermes heading OCR from independent native/original images; other dialogue speakers/layouts and internal tutorial admission excluded')
 
 
 def validate_casting_combat(experiment, inputs, capture_root):
@@ -113,7 +132,7 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def validate_flow(flow, cycles=1, stress_seconds=0, min_fps=20):
+def validate_flow(flow, cycles=1, stress_seconds=0, min_fps=20, normal_quit=False):
     if flow.get('success') is not True:
         raise ValueError(flow.get('error') or 'Campaign driver did not complete')
     if flow.get('native_command_fallback') is not False:
@@ -122,6 +141,9 @@ def validate_flow(flow, cycles=1, stress_seconds=0, min_fps=20):
         raise ValueError('Insufficient native command presentations')
     steps = flow.get('steps', [])
     expected = STEPS + ['campaign-menu', 'gameplay-resumed']*(cycles-1)
+    if normal_quit:
+        expected += ['campaign-quit-menu','quit-no-resumed','campaign-quit-menu','campaign-defeat','quit-main']
+        if flow.get('normal_quit') is not True:raise ValueError('Missing normal original game Quit')
     if [s.get('step') for s in steps] != expected:
         raise ValueError('Incomplete campaign click-through')
     if any(s.get('screenshot_saved') is not True for s in steps if s['step'] != 'campaign-handoff'):
@@ -150,7 +172,7 @@ def world_ready(experiment):
     return len(ticks) >= 3 and len({r[2] for r in ticks}) == 1
 
 
-def validate_events(experiment, cycles=1, difficulty=0):
+def validate_events(experiment, cycles=1, difficulty=0, normal_quit=False):
     """Independent engine-side checks; window appearance alone cannot pass."""
     data = (experiment / 'events.bin').read_bytes()
     if data[:16] != b'MNMMENU1' + struct.pack('<II', 1, 64) or (len(data)-16) % 64:
@@ -160,6 +182,7 @@ def validate_events(experiment, cycles=1, difficulty=0):
         raise ValueError('Invalid original callback sequence')
     actions = [(r[3], r[9]) for r in rows if r[1] == 3]
     expected=[(3, 0)] + ([(18,65536+difficulty)] if difficulty else []) + [(18,0)] + [(17,4)]*cycles
+    if normal_quit:expected += [(17,3),(17,3),(6,21),(3,4)]
     if actions != expected:
         raise ValueError('Unexpected New Game/Enter/Cancel callback trace: ' + str(actions))
     ticks = [r for r in rows if r[1] == 12 and r[3] == 2 and r[6] == 1 and r[11] == 0x6cbb78]
@@ -170,8 +193,15 @@ def validate_events(experiment, cycles=1, difficulty=0):
     channel = (experiment / 'channel.bin').read_bytes()
     if channel[:16] != b'MNMMCM12' + struct.pack('<II', 12, 106496) or len(channel) != 106496:
         raise ValueError('Campaign test did not use the ordinary V12 menu protocol')
-    if struct.unpack_from('<I', channel, 36*4)[0] != 2+cycles+bool(difficulty):
+    if struct.unpack_from('<I', channel, 36*4)[0] != 2+cycles+bool(difficulty)+(4 if normal_quit else 0):
         raise ValueError('Missing third menu acknowledgement')
+    if normal_quit:
+        answers=[r for r in rows if r[1]==22]
+        quits=[r for r in rows if r[1]==3 and r[3]==17 and r[9]==3]
+        if len(answers)!=2 or any(q[4]!=0x6a5088 for q in quits) or [r[9] for r in answers]!=[1,0] or any(r[4]!=0x6a5088 or r[2]!=ticks[0][2] or r[0]<=q[0] for r,q in zip(answers,quits)):
+            raise ValueError('Missing original No/Yes campaign Quit answers')
+        if not any(r[1]==20 and answers[0][0]<r[0]<quits[1][0] and r[11]==0x6cbb78 and r[2]==answers[0][2] for r in rows):
+            raise ValueError('Original No did not resume World before repeated Quit')
     return {'actions': actions, 'world_ticks': len(ticks), 'world_resumes': len(resumes),
             'protocol_version': 12, 'events_sha256': sha(experiment / 'events.bin')}
 
@@ -206,6 +236,7 @@ def main():
     parser.add_argument('--difficulty', type=int, choices=range(4), default=0, help='Choose the normal Region Entry difficulty via its native radio (0 Initiate; 1 Apprentice for camera/combat stress)')
     parser.add_argument('--require-casting-combat', action='store_true', help='Require successful native-viewport summon and player-versus-enemy melee damage observation')
     parser.add_argument('--portrait-stress-seconds', type=int, default=0, help='Repeat portrait recentering after verified combat (0 or 10..120)')
+    parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
@@ -233,7 +264,7 @@ def main():
               'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
-              'spell_cases_required':args.spell_cases,
+              'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
               'difficulty': args.difficulty, 'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
     if args.claims:
@@ -308,6 +339,7 @@ def main():
             env['MNM_CAMPAIGN_DIFFICULTY'] = str(args.difficulty)
             env['MNM_CAMPAIGN_CASTING_COMBAT'] = '1' if args.require_casting_combat else '0'
             env['MNM_CAMPAIGN_PORTRAIT_SECONDS'] = str(args.portrait_stress_seconds)
+            env['MNM_CAMPAIGN_NORMAL_QUIT']='1' if args.normal_quit else '0'
             env['MNM_CAMPAIGN_SPELL_CASES'] = '1' if args.spell_cases else '0'
             env['MNM_CAMPAIGN_STRESS_SECONDS'] = str(args.stress_seconds)
             env['MNM_CAMPAIGN_MENU_CYCLES'] = str(args.menu_cycles)
@@ -336,7 +368,7 @@ def main():
                     raise RuntimeError('Public campaign flow exceeded its deadline')
             flow = json.loads((out / 'flow.json').read_text())
             report['flow'] = flow
-            validate_flow(flow, args.menu_cycles)
+            validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
             if args.stress_seconds:
                 for cycle in range(args.menu_cycles+1):
                     inputs=json.loads((out/f'input-{cycle}.json').read_text())
@@ -355,15 +387,28 @@ def main():
             report['experiment'] = str(roots[0])
             report['native_draw_cadence']=json.loads((roots[0]/'manifest.json').read_text())['native_draw_cadence']
             if report['native_draw_cadence']['settings']!={'SkipFrameEvery':0,'SkipXFrames':0,'MaxSkipXFrames':0}:raise RuntimeError('Native draw skipping remained enabled')
-            report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty)
+            report['engine'] = validate_events(roots[0], args.menu_cycles, args.difficulty,args.normal_quit)
+            if args.normal_quit:
+                for n in (0,1):
+                    q=json.loads((out/f'quit-input-{n}.json').read_text())
+                    if not q['success'] or q['answer']!=('no' if n==0 else 'yes'):raise ValueError('Incomplete native Quit confirmation input')
+                    cap=q['capture']
+                    if cap['metadata']['fallback'] or not all(cap['metadata'][r+'_saved'] for r in ('native','original')):raise ValueError('Missing independent Quit image')
+                    for route in ('native','original'):
+                        if sha(out/(cap['name']+'-'+route+'.png'))!=cap['image_sha256'][route]:raise ValueError('Quit capture changed after input')
+                if 'Original game Quit accepted;' not in (out/'shell.log').read_text() or 'Menu launcher exited with status 0.' not in (out/'shell.log').read_text():raise ValueError('Original normal Quit launcher did not exit successfully')
+                shell.wait(timeout=15)
+                if shell.returncode!=0:raise ValueError('Native shell did not exit normally after original Quit')
+                report['normal_quit_verified']=True
             if args.require_casting_combat:
+                report['dialogue']=validate_dialogue_readiness(json.loads((out/'input-0.json').read_text()),out)
                 report['gameplay']=validate_casting_combat(roots[0],json.loads((out/'input-0.json').read_text()),out)
                 report.update(casting_verified=True,combat_verified=True,movement_verified=report['gameplay']['movement']['verified'])
                 if args.spell_cases:
                     report['spell_cases']=validate_spell_cases(read_spell_rows(roots[0]/'spell-events.bin',complete=True),read_rows(roots[0]/'gameplay-events.bin',complete=True),json.loads((out/'input-0.json').read_text()))
             if args.portrait_stress_seconds:
                 report['portrait']=validate_portrait_stress(json.loads((out/'input-0.json').read_text()),flow,out,args.portrait_stress_seconds,args.min_fps)
-            validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps)
+            validate_flow(flow,args.menu_cycles,args.stress_seconds,args.min_fps,args.normal_quit)
             if any(sha(ROOT / p) != h for p,h in report['sources'].items()):raise RuntimeError('Source changed during execution')
             report.update(success=True, status='passed', stage='campaign-complete', flow_completed=True, game_entry_verified=True)
             exit_code = 0

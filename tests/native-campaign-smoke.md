@@ -202,3 +202,23 @@ the wizard alive through portrait stress. Wizard death, unexpected World exit,
 busy acquisition beyond its bounded retry and slow rendering fail the journey.
 See [extended gameplay findings](../research/runtime/native-campaign-extended-gameplay.md)
 for failures and the remaining scope.
+
+## Normal Quit after gameplay
+
+```bash
+python3 tools/test-native-campaign.py --require-casting-combat --spell-cases \
+  --normal-quit --difficulty 3 --stress-seconds 20 --software-threads 4 \
+  --timeout 480
+```
+
+This route completes ordinary Mini Cancel/resume, then native Mini Quit. The
+original confirmation remains rendered through native commands. Physical No
+requires an observed original answer and World resume; repeated Yes requires the
+native defeat report, Continue, fresh native Main and Main Quit. Both original
+launcher and native shell must exit0. Confirmation images use the native
+framebuffer and independent original-owned publication. Bounded private cleanup
+is still available after failures, but cannot satisfy the normal Quit outcome.
+The test now waits for late introductory Hermes prompts before non-tutorial spell
+attempts. Initiate tutorial steps, Cure loadouts and modal pause equivalence remain
+separate cases. [Extended research](../research/runtime/native-campaign-extended-gameplay.md)
+preserves failed readiness/targeting attempts and the fresh Quit pass.

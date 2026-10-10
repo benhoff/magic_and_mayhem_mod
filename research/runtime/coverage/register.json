@@ -22720,7 +22720,10 @@
         "HOST.native-campaign.capture-race-20261010",
         "HOST.native-campaign.portrait-defeat-20261010",
         "HOST.native-campaign.spell-cases-passed-20261010",
-        "HOST.native-campaign.fireball-portrait-passed-20261010"
+        "HOST.native-campaign.fireball-portrait-passed-20261010",
+        "HOST.native-campaign.adept-dialogue-negative-20261010",
+        "HOST.native-campaign.normal-quit-passed-20261010",
+        "HOST.native-campaign.adept-party-defeat-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -22866,6 +22869,7 @@
         "tests/native-render-config-test.py",
         "tools/build-menu-observer.py",
         "tools/build-render-bridge.py",
+        "tools/campaign-quit-input.py",
         "tools/campaign_movement.py",
         "tools/campaign_spell.py",
         "tools/native_render_config.py",
@@ -23009,7 +23013,8 @@
       ],
       "evidence": [
         "HOST.native-campaign.spell-cases-passed-20261010",
-        "HOST.native-campaign.fireball-portrait-passed-20261010"
+        "HOST.native-campaign.fireball-portrait-passed-20261010",
+        "HOST.native-campaign.normal-quit-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23225,7 +23230,8 @@
       ],
       "evidence": [
         "HOST.native-campaign.spell-cases-passed-20261010",
-        "HOST.native-campaign.fireball-portrait-passed-20261010"
+        "HOST.native-campaign.fireball-portrait-passed-20261010",
+        "HOST.native-campaign.normal-quit-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23419,7 +23425,8 @@
         "HOST.native-campaign.capture-race-20261010",
         "HOST.native-campaign.portrait-defeat-20261010",
         "HOST.native-campaign.spell-cases-passed-20261010",
-        "HOST.native-campaign.fireball-portrait-passed-20261010"
+        "HOST.native-campaign.fireball-portrait-passed-20261010",
+        "HOST.native-campaign.normal-quit-passed-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23596,7 +23603,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Native blocked casts and player Fireball damage",
-      "scope": "First campaign physical invalid-target Zombie attempt and insufficient-mana attempt after normal Zombie/Fireball costs; no newly living Zombie or observed mana loss in bounded same-identity caster intervals. Original defended enemy HP reduction inside a player-sourced Fireball71 dispatch, matching damage attribution owner. Ordinary return-ground orders before optional portrait stress. Pre-ingress UI refusal remains distinct from internal admission. Cure41 is absent from the starting loadout and healing remains pending; refunds, mitigation formulas, full animation equivalence, other maps and simulation/drawing replacement are excluded.",
+      "scope": "First campaign physical invalid-target Zombie attempt and insufficient-mana attempt after normal Zombie/Fireball costs; no newly living Zombie or observed mana loss in bounded same-identity caster intervals. Original defended enemy HP reduction inside a player-sourced Fireball71 dispatch, matching damage attribution owner. Ordinary return-ground orders before optional portrait stress. Pre-ingress UI refusal remains distinct from internal admission. Cure41 is absent from the starting loadout and healing remains pending; refunds, mitigation formulas, full animation equivalence, other maps and simulation/drawing replacement are excluded. Fireball evidence additionally requires a same-thread player Wizard71 cast with identity-valid mana debit within10seconds and a reviewed direct impact/dispatch damage caller (0x48ed24/0x48b4e2); stale context or arbitrary health loss cannot establish the bounded hit.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -23616,7 +23623,11 @@
         "HOST.native-campaign.spell-cases-negative-2-20261010",
         "HOST.native-campaign.spell-cases-negative-3-20261010",
         "HOST.native-campaign.spell-cases-passed-20261010",
-        "HOST.native-campaign.fireball-portrait-passed-20261010"
+        "HOST.native-campaign.fireball-portrait-passed-20261010",
+        "HOST.native-campaign.adept-dialogue-negative-20261010",
+        "HOST.native-campaign.adept-ranged-negative-20261010",
+        "HOST.native-campaign.normal-quit-passed-20261010",
+        "HOST.native-campaign.adept-party-defeat-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -23774,6 +23785,413 @@
         "tools/build-render-bridge.py",
         "tools/campaign-combat-input.py",
         "tools/campaign-gameplay-input.py",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_movement.py",
+        "tools/campaign_spell.py",
+        "tools/menu-game-runner.py",
+        "tools/native_render_config.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/profile-render-stream.py",
+        "tools/run-menu-observer.py",
+        "tools/run-qt-shell.sh",
+        "tools/test-native-campaign.py"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-dialogue-readiness",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native campaign introductory dialogue readiness",
+      "scope": "Bounded native physical dismiss clicks and independent native/original Hermes heading OCR before non-tutorial gameplay spell attempts; images/hashes retained. Acknowledges dialogue consumption instead of inferring input failure from absent cast. Other speaker layouts, exact tutorial branches and internal UI admission remain pending. Up to12checks retain two consecutive quiet samples after a12second introductory observation interval; one early blank cannot establish sustained readiness.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/native-campaign-extended-gameplay.md"
+      ],
+      "implementation": [
+        "tools/campaign-combat-input.py"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-campaign.late-dialogue-negative-20261010",
+        "HOST.native-campaign.adept-ranged-negative-20261010",
+        "HOST.native-campaign.normal-quit-passed-20261010",
+        "HOST.native-campaign.adept-party-defeat-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/frame_stream.cpp",
+        "apps/qt-shell/frame_stream.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/bridge.c",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/palette_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/selftest.c",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/shadow/win32_min.h",
+        "tests/campaign-movement-test.py",
+        "tests/campaign-spell-test.py",
+        "tests/native-render-config-test.py",
+        "tests/test-native-campaign.py",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/campaign-combat-input.py",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign-quit-input.py",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_movement.py",
+        "tools/campaign_spell.py",
+        "tools/menu-game-runner.py",
+        "tools/native_render_config.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/profile-render-stream.py",
+        "tools/run-menu-observer.py",
+        "tools/run-qt-shell.sh",
+        "tools/test-native-campaign.py"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-normal-quit",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Native presentation campaign normal Quit journey",
+      "scope": "After native campaign gameplay and Mini Cancel/resume, native Mini Quit sends original confirmation; physical native viewport No verifies original answer/World resume, then Yes verifies original answer/native defeat report/Continue/Main and normal original Main Quit process exit. Original-rendered confirmation remains inside native command presentation; native confirmation widget, saves, timer pause equivalence and forced exits excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4924656,
+          "scope": "Existing guarded campaign confirmation callback observation, No argument1/Yes argument0 on receiver0x6a5088; unchanged original forwarding.",
+          "recovered_range": "campaign-mini-quit-entry-4b24f0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4671392,
+          "scope": "Existing admitted native campaign defeat Continue forwards original local argument21, not0; no report/Realm simulation replacement."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4879808,
+          "scope": "Original Main local Quit argument4 via existing guarded callback; normal launcher exit checked separately.",
+          "recovered_range": "campaign-entry-4a75c0"
+        }
+      ],
+      "documents": [
+        "research/runtime/native-campaign-extended-gameplay.md"
+      ],
+      "implementation": [
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "tools/campaign-quit-input.py"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-campaign.normal-quit-passed-20261010",
+        "HOST.native-campaign.normal-quit-entry-bound-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "apps/qt-shell/campaign_smoke_test.hpp",
+        "apps/qt-shell/command_channel.cpp",
+        "apps/qt-shell/command_channel.hpp",
+        "apps/qt-shell/frame_stream.cpp",
+        "apps/qt-shell/frame_stream.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/render_control.cpp",
+        "apps/qt-shell/render_control.hpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/bridge.c",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/palette_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/selftest.c",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/shadow/win32_min.h",
+        "tests/campaign-movement-test.py",
+        "tests/campaign-spell-test.py",
+        "tests/native-render-config-test.py",
+        "tests/test-native-campaign.py",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/campaign-combat-input.py",
+        "tools/campaign-gameplay-input.py",
+        "tools/campaign-quit-input.py",
         "tools/campaign_gameplay.py",
         "tools/campaign_movement.py",
         "tools/campaign_spell.py",
@@ -46150,6 +46568,156 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-campaign.adept-dialogue-negative-20261010",
+      "kind": "live_observation",
+      "scope": "Negative Adept route: Hermes Place of Power dialogue consumes gameplay clicks, no original player summon/cost. Native and original images agree; preserved source-stable failed journey without an input or renderer failure equivalence claim.",
+      "record": "research/runtime/native-campaign-adept-dialogue-negative-20261010.json",
+      "sha256": "e0ea6462bc0d4aed69ad0abf4cfc23ccc4f55779afcda9be9034fbba384fd484",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.late-dialogue-negative-20261010",
+      "kind": "live_observation",
+      "scope": "Negative single-blank dialogue readiness: initial native/original heading OCR is blank but later original EVENT3/4/8 at difficulty<=2 starts Hermes dialogue, consuming attempted summon. No overall pass or current readiness validation; source-bound historical failure retained.",
+      "record": "research/runtime/native-campaign-late-dialogue-negative-20261010.json",
+      "sha256": "66eec581354782ad782d9101e50652b70372e79d1f0558f6892f36117ed53f8b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.adept-ranged-negative-20261010",
+      "kind": "live_observation",
+      "scope": "Negative Adept targeting: delayed introductory dialogue is cleared and original Zombie summon succeeds; measured movement reaches enemy, but fixed center Fireball attempts have no player cast/damage. Enemy body lies off the guessed center and scene reselection may select another actor. Historical failed journey, no recovered cause or complete ranged/quit validation.",
+      "record": "research/runtime/native-campaign-adept-ranged-negative-20261010.json",
+      "sha256": "5d1a28c8f5da96ea149cd81c6b9373ce6f6f3469b2dbbcef3d5a8ec3cf27b230",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.normal-quit-passed-20261010",
+      "kind": "live_observation",
+      "scope": "Fresh source-stable public native campaign caster mana debit, ranged/melee same-enemy outcome, two UI refusals, measured movement and native Mini Cancel/resume, followed by native Mini Quit/original-rendered native No and observed World resume, repeated Quit/Yes/native defeat Continue21/Main/Main Quit4. Launcher and native shell exit0; bounded introductory quiet readiness and strict gameplay rate floors pass. No modal timer equivalence/native confirmation widget/save/full replacement claim.",
+      "record": "research/runtime/native-campaign-normal-quit-passed-20261010.json",
+      "sha256": "8ad16e260bcd74a4c04e7c3d06fbf86f5c73bb1620e95529b1bc95652651268b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/spell_cases/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/dialogue/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.adept-party-defeat-20261010",
+      "kind": "live_observation",
+      "scope": "Source-stable negative Adept route: native dialogue clearance, summon, two independent movement vectors, player Fireball110 to90 and player Zombie melee succeed; original enemy wave kills the wizard before required same-enemy lethal melee completion. Failed journey; no current complete combat/quit validation or rendering failure equivalence.",
+      "record": "research/runtime/native-campaign-adept-party-defeat-20261010.json",
+      "sha256": "d6f04e2d07e57073ae577ce3a468499abd7f594970faf4ec007aaa1a6b4926ef",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign.normal-quit-entry-bound-20261010",
+      "kind": "live_observation",
+      "scope": "Fresh source/scope-bound native presentation normal Quit with explicit existing recovered entry-range links. Native Mini Cancel/resume, Quit No/original World resume, repeated Yes/native defeat Continue21/Main/Main Quit4, original launcher and shell exit0, independent confirmation images and strict gameplay rate floors. No casting/portrait/timer/formula/native modal widget/replacement claim.",
+      "record": "research/runtime/native-campaign-normal-quit-entry-bound-20261010.json",
+      "sha256": "122300b3457b37019a06cca9a94693f4a65259c929036604f048041cc97cdd52",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -53012,9 +53580,34 @@
         "HOST.native-campaign.spell-cases-negative-2-20261010",
         "HOST.native-campaign.spell-cases-negative-3-20261010",
         "HOST.native-campaign.spell-cases-passed-20261010",
-        "HOST.native-campaign.fireball-portrait-passed-20261010"
+        "HOST.native-campaign.fireball-portrait-passed-20261010",
+        "HOST.native-campaign.normal-quit-passed-20261010"
       ],
       "scope": "First campaign native invalid-target/insufficient-mana refusals, successful Zombie summon and original player melee enemy depletion, player-sourced Fireball defended enemy damage, ordinary retreat before optional portrait stress, fixed FPS floors and native Mini Cancel/resume. UI refusal differs from internal admission; Cure, formulas, full-World and replacement remain pending."
+    },
+    {
+      "id": "native-campaign-normal-quit-20261010",
+      "level": "live_observation",
+      "behaviors": [
+        "HOST.native-campaign-casting-combat",
+        "HOST.native-campaign-dialogue-readiness",
+        "HOST.native-campaign-normal-quit",
+        "HOST.native-campaign-spell-cases",
+        "HOST.native-campaign-spell-observation",
+        "HOST.native-campaign-movement-probes",
+        "HOST.native-campaign-capture-retry"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py",
+        "tests/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-campaign.late-dialogue-negative-20261010",
+        "HOST.native-campaign.adept-ranged-negative-20261010",
+        "HOST.native-campaign.normal-quit-passed-20261010",
+        "HOST.native-campaign.normal-quit-entry-bound-20261010"
+      ],
+      "scope": "Public native campaign gameplay, cleared introductory Hermes dialogue, independent spell/combat outcomes when requested, native Mini Quit with original-rendered native command No/Yes confirmation, World resume, native defeat/Continue/Main and original normal Main Quit exit. Strict gameplay rate/image rules retained; original simulation/drawing, saves and modal timing equivalence excluded."
     }
   ],
   "recovered_ranges": [
@@ -53343,8 +53936,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-spell-cases-20261010.json",
-    "sha256": "887eb90b20df237c295348216478418048923e0eae6dcdc9e6609850a875ff22"
+    "path": "research/runtime/coverage/source-index-native-normal-quit-20261010.json",
+    "sha256": "da2a32b711deaa3a1e2617809508c7f344e0595a7b73d75325f6c82774792454"
   },
   "claim_bindings_required": true
 }

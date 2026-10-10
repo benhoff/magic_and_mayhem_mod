@@ -98,6 +98,43 @@ class EvidenceTests(unittest.TestCase):
                 with self.subTest(kind=kind), self.assertRaises(ValueError):
                     smoke.validate_events(root)
 
+    def test_normal_quit_requires_no_resume_yes_and_final_ack(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);rows=self.events(root)
+            def event(kind,screen,arg=0):
+                r=[0]*16;r[0]=len(rows)+1;r[1]=kind;r[2]=400;r[3]=screen;r[4]=0x6a5088;r[6]=1;r[9]=arg;r[11]=0x6cbb78;rows.append(r)
+            event(3,17,3);event(22,17,1);event(20,2);event(3,17,3);event(22,17,0);event(3,6,21);event(3,3,4)
+            ch=bytearray((root/'channel.bin').read_bytes());struct.pack_into('<I',ch,36*4,7);(root/'channel.bin').write_bytes(ch)
+            self.write_events(root,rows);smoke.validate_events(root,normal_quit=True)
+            for index,field,value in [(8,9,0),(9,1,4),(11,2,401),(11,4,99)]:
+                bad=copy.deepcopy(rows);bad[index-1][field]=value;self.write_events(root,bad)
+                with self.assertRaises(ValueError):smoke.validate_events(root,normal_quit=True)
+            self.write_events(root,rows);struct.pack_into('<I',ch,36*4,6);(root/'channel.bin').write_bytes(ch)
+            with self.assertRaises(ValueError):smoke.validate_events(root,normal_quit=True)
+
+    def test_normal_quit_flow_cannot_pass_bounded_termination(self):
+        flow=self.flow()
+        with self.assertRaises(ValueError):smoke.validate_flow(flow,normal_quit=True)
+        flow['steps'] += [{'step':s,'screenshot_saved':True} for s in ['campaign-quit-menu','quit-no-resumed','campaign-quit-menu','campaign-defeat','quit-main']]
+        with self.assertRaises(ValueError):smoke.validate_flow(flow,normal_quit=True)
+        flow['normal_quit']=True;smoke.validate_flow(flow,normal_quit=True)
+
+    def test_dialogue_readiness_checks_both_views_and_capture_hashes(self):
+        import hashlib
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);name='combat-00-dialogue-check-0';data=b'owned fixture image'
+            for r in ('native','original'):(root/(name+'-'+r+'.png')).write_bytes(data)
+            inp=dict(dialogue_checks=[dict(capture=name,texts=dict(native='',original=''),visible=dict(native=False,original=False))],
+                     captures=[dict(name=name,metadata=dict(native_saved=True,original_saved=True,fallback=False),image_sha256={r:hashlib.sha256(data).hexdigest() for r in ('native','original')})])
+            self.assertTrue(smoke.validate_dialogue_readiness(inp,root)['verified'])
+            for change in ('missing','visible','classification','image'):
+                bad=copy.deepcopy(inp)
+                if change=='missing':bad['dialogue_checks']=[]
+                elif change=='visible':bad['dialogue_checks'][0]['visible']['original']=True
+                elif change=='classification':bad['dialogue_checks'][0]['texts']['native']='Hermes'
+                else:bad['captures'][0]['image_sha256']['native']='0'*64
+                with self.assertRaises(ValueError):smoke.validate_dialogue_readiness(bad,root)
+
     def test_startup_frames_do_not_authorize_gameplay(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);rows=self.events(root)
