@@ -17,6 +17,17 @@ struct SceneSnapshot {
 };
 SceneSnapshot decodeSceneSnapshot(const QByteArray&);
 QByteArray frameIdentity(const QByteArray&,bool indexed);
+// A closed identity can only be constructed by validating/hashing input bytes.
+// Callers cannot attach an arbitrary digest to mutable frame storage.
+class SnapshotFrameIdentity final {
+public:
+    explicit SnapshotFrameIdentity(const SnapshotFrame&);
+    bool indexed() const { return indexed_; }
+    const QByteArray& digest() const { return digest_; }
+private:
+    bool indexed_;
+    QByteArray digest_;
+};
 QByteArray spriteVisualIdentity(const assets::Sprite&,const assets::SpriteFrame&);
 struct BoundFrame { assets::ResourceId resource; std::size_t frame=0; };
 struct SnapshotBindingStats { std::uint64_t visualChecks=0,visualReuses=0; };
@@ -26,6 +37,7 @@ public:
     SnapshotResources(const assets::AssetStore&,assets::ResourceManager&);
     void add(const assets::ResourceId&,const std::string& sprite,const QByteArray& expectedSha256);
     BoundFrame resolve(const SnapshotFrame&,bool ownedColours=false) const;
+    BoundFrame resolve(const SnapshotFrameIdentity&,bool ownedColours=false) const;
     SnapshotBindingStats stats() const { return stats_; }
 private:
     struct Candidate {BoundFrame binding;QByteArray visual;mutable std::uint64_t checkedRevision=0;};

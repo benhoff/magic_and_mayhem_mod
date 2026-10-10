@@ -3310,3 +3310,34 @@ and separate live-observation support. Historical evidence and the explicit
 manual/all-map/unbounded boundaries remain intact. The newly landed minimap commit
 was reviewed separately over `e25290c..8dce3ac`; all24 committed file transitions
 have exact receipt chains. Its accounting review does not assert new execution.
+
+
+## Bounded World frame identity cache (2026-10-09)
+
+`NR.world-frame-identity-cache` shares closed validated normalized identities
+between catalogue lookup and binding. Exact indexed-tag/owned-byte keys use a
+4,096-entry/16 MiB encoded-capacity LRU; object/map/list/token overhead is additional.
+Borrowed storage is copied, invalid input cannot enter, oversized valid frames
+bypass caching, token values survive eviction and primitives retain order.
+Resource loading, palette ambiguity and revision visual checks remain mandatory.
+
+The [native replay](native-world-frame-identity-cache-native-20261009.json) passes
+five native tests and all 1,058 same-owned-input checkpoints versus the
+prechange consumer. Warm Debug/software GL preparation falls from 116.365 ms
+to 7.185 ms; the final queue uses 1,154 hits and zero hashes. Resident
+encoded capacity is 516,720 bytes across 274 identities. Synthetic
+mutation, bounds, eviction, bypass, malformed, unmapped, reload/adoption and palette
+checks pass independently. Every compiled consumer dependency is declared and
+matches the frozen build/current source; fixture stream/done and asset hashes are
+verified independently of capture decoder changes. Original manifests pass
+before/after. Native policies retain original comparison/replacement `none`;
+this result supports scoped implementation and headless integration. Full public
+hook lifetime and precise original replacement equivalence remain separate
+current-validation boundaries. No gameplay or hardware-general performance claim.
+
+Work was validated in an isolated checkout based on `b70c9e6`, excluding concurrent
+minimap edits and staged work. The history report
+`coverage/committed-history-world-frame-identity-cache-base-20261009.json` reviews
+93 committed file transitions across `8dce3ac..60f6b3d` and `60f6b3d..b70c9e6`;
+all have exact receipt chains, separately from current execution. Historical
+reports, hashes and receipts remain unchanged.

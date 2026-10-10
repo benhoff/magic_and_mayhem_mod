@@ -8,6 +8,30 @@ namespace mnm::legacy {
 namespace {
 quint32 get(const QByteArray& b,qsizetype at){if(at<0||at>b.size()-4)throw std::runtime_error("Native SPR catalogue extent");const auto* p=reinterpret_cast<const unsigned char*>(b.constData()+at);return p[0]|quint32(p[1])<<8|quint32(p[2])<<16|quint32(p[3])<<24;}
 }
+WorldIdentityCache::WorldIdentityCache(WorldIdentityLimits limits):limits_(limits){
+    if(!limits.frames||limits.frames>4096||!limits.bytes||limits.bytes>16*1024*1024)
+        throw std::invalid_argument("World identity cache limits outside bounds");
+}
+SnapshotFrameIdentity WorldIdentityCache::identity(const SnapshotFrame& frame){
+    const auto found=index_.find({frame.indexed,frame.encoded});
+    if(found!=index_.end()){
+        ++stats_.hits;lru_.splice(lru_.end(),lru_,found->second);return found->second->identity;
+    }
+    SnapshotFrameIdentity identity(frame);++stats_.hashes;
+    // Always copy fromRawData/borrowed storage too; QByteArray assignment alone
+    // may retain a caller's external buffer after that caller changes/frees it.
+    QByteArray bytes(frame.encoded.constData(),frame.encoded.size());
+    const auto size=std::size_t(bytes.capacity());
+    if(size>limits_.bytes){++stats_.bypasses;return identity;}
+    while(stats_.frames>=limits_.frames||size>limits_.bytes-stats_.bytes){
+        auto oldest=lru_.begin();index_.erase(oldest->key);stats_.bytes-=oldest->bytes;
+        --stats_.frames;++stats_.evictions;lru_.erase(oldest);
+    }
+    lru_.push_back({{frame.indexed,std::move(bytes)},identity,size});
+    try{index_.emplace(lru_.back().key,std::prev(lru_.end()));}
+    catch(...){lru_.pop_back();throw;}
+    ++stats_.frames;stats_.bytes+=size;return identity;
+}
 WorldCatalogue::WorldCatalogue(const assets::AssetStore& store,const std::function<void()>& checkpoint){
     std::vector<std::filesystem::path> paths;
     for(const auto& entry:std::filesystem::recursive_directory_iterator(store.root())){
@@ -41,15 +65,28 @@ WorldCatalogue::WorldCatalogue(const assets::AssetStore& store,const std::functi
     }
 }
 std::vector<WorldAssetFile> WorldCatalogue::needed(const WorldFrame& frame) const{
+    std::vector<SnapshotFrameIdentity> identities;identities.reserve(frame.draws.size());
+    for(const auto& draw:frame.draws)if(!draw.additive&&!draw.colourRectangle)identities.emplace_back(draw.frame);
+    return needed(identities);
+}
+std::vector<WorldAssetFile> WorldCatalogue::needed(const std::vector<SnapshotFrameIdentity>& identities) const{
     std::set<std::size_t> needed;
-    for(const auto& draw:frame.draws){if((draw.additive||draw.colourRectangle))continue;const auto it=index_.find(frameIdentity(draw.frame.encoded,draw.frame.indexed));
+    for(const auto& identity:identities){const auto it=index_.find(identity.digest());
         if(it==index_.end())throw std::runtime_error("Unmapped complete native World frame");
         needed.insert(it->second);}
     std::vector<WorldAssetFile> result;for(auto i:needed)result.push_back(files_[i]);return result;
 }
 WorldResources::WorldResources(const assets::AssetStore& store,assets::ResourceManager& resources):catalogue_(store),bindings_(store,resources){}
 std::vector<render::SceneDraw> WorldResources::display(const WorldFrame& frame){
-    for(const auto& f:catalogue_.needed(frame))if(!bound_.count(f.id)){bindings_.add(f.id,f.path,f.sha);bound_.insert(f.id);}
-    return worldDisplay(frame,bindings_);
+    std::vector<SnapshotFrameIdentity> identities;identities.reserve(frame.draws.size());
+    for(const auto& draw:frame.draws)if(!draw.additive&&!draw.colourRectangle)identities.push_back(identities_.identity(draw.frame));
+    for(const auto& f:catalogue_.needed(identities))if(!bound_.count(f.id)){bindings_.add(f.id,f.path,f.sha);bound_.insert(f.id);}
+    std::vector<render::SceneDraw> draws;draws.reserve(frame.draws.size());std::size_t i=0;
+    for(const auto& draw:frame.draws){
+        if(draw.additive||draw.colourRectangle){draws.push_back(worldPrimitiveDraw(draw));continue;}
+        const auto bound=bindings_.resolve(identities.at(i++),true);
+        draws.push_back({bound.resource,bound.frame,draw.x,draw.y,true,true,draw.colours,draw.clip,draw.composite});
+    }
+    return draws;
 }
 }

@@ -104,6 +104,8 @@ def main():
                 for f in n['world_frames']:
                     assert f['profile']['visible_draws']>0
                     assert all(v>=0 for v in f['profile'].values())
+                assert sum(f['identities']['hits'] for f in n['world_frames'])>0
+                assert all(f['identities']['frames']<=4096 and f['identities']['bytes']<=16*1024*1024 for f in n['world_frames'])
                 assert sum(f['reuse']['visual_reuses'] for f in n['world_frames'])>0
                 assert sum(f['reuse']['cache_hits'] for f in n['world_frames'])>0
                 assert all(c['mismatches']==0 for c in result['producer_comparison'])

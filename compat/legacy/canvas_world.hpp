@@ -14,6 +14,8 @@ public:
     unsigned visibleDraws=0;
     std::uint64_t visualChecks=0,visualReuses=0,cacheUploads=0,cacheHits=0,cacheEvictions=0;
     std::size_t cacheFrames=0,cacheSurfaces=0;
+    std::uint64_t identityHashes=0,identityHits=0,identityEvictions=0,identityBypasses=0;
+    std::size_t identityFrames=0,identityBytes=0;
   };
   CanvasWorld(render::GlBlitter &, const assets::AssetStore &);
   void begin(const CanvasProducer &, const render::Image &nativeHistory);
