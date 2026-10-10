@@ -13,7 +13,8 @@ public:
   void create(std::uint32_t, int width, int height);
   void terrainMap(std::uint32_t id, int x, int y, int width, int height, int centerX, int centerY, const std::vector<std::uint16_t> &colours, const std::vector<unsigned char> &hidden = {}, std::uint32_t previous = 0);
   std::size_t minimap(std::uint32_t, int stride, const std::function<std::size_t(MinimapPlane &)> &);
-  void fade(std::uint32_t id);
+  void fade(std::uint32_t id, unsigned stride = 0,
+            std::optional<std::size_t> physicalWords = {}, std::uint16_t mask = 0x7bef);
   void release(std::uint32_t);
   void panel(std::uint32_t, Rect, unsigned mode, unsigned percent = 0,
              bool pressed = false, bool reverse = true);

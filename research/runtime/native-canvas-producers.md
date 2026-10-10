@@ -63,7 +63,7 @@ storage. Native admission also limits dimensions and retained pixel capacity.
 No extra original Lock is introduced to sample a destination: checkpoints use
 successful original lock pointers and known dirty generations. Primary/front
 buffer driver presentation, unsampled/unlocked outputs, allocation/restore/error
-paths, format changes, odd/padded fade rows, minimap rotations, stretched copies
+paths, format changes, minimap rotations, stretched copies
 and unknown producers remain gaps. RGB-add545c10, in-memory DIB58d240,
 positioned BMP58d280 and clipped-word589c90 were instrumented but not observed
 in this scenario; their instrumentation does not establish pixel equivalence.
@@ -100,3 +100,19 @@ input stream, then independently compares every tight565 oracle. Historical
 negative captures and their exact source/output fingerprints remain preserved;
 budget failures, incomplete streams, missing producers and source drift never
 become passing evidence by editing old hashes.
+
+## 2026-10-10 producer extension
+
+The historical 16-return run above retains its original source fingerprints.
+The current increment separately validates [higher text layout](font-line-layout.md),
+[source DIB/BMP cropping](native-canvas-image-production.md), and
+[odd/padded RGB565/RGB555 physical fade spans](canvas-fade-span.md). Fade projection
+uses the original contiguous span rather than a per-row odd-tail rule. A fresh
+four-return original-active live shadow checks the shared native canvas pipeline;
+it does not refresh the historical 16-return evidence or suppress original text,
+image, HUD, cursor or panel bodies. Broader live callers and original wrapper/DC
+failure/lifetime remain pending.
+
+The [final current-source shadow](native-canvas-producers-final-shadow-20261010.json)
+passes 954 completed checkpoints/422875312 pixels,
+2002 glyph calls, zero differences and exact GPU mirrors.

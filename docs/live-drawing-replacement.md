@@ -164,9 +164,10 @@ effective draw order/clips and complete original batch output for finite
 comparison. The continuous World shadow viewer supplies bounded immutable publication,
 backpressure and Qt GPU presentation. Source-only startup/HUD reconstruction and
 bounded complete raster-body suppression now support selected queues1..32.
-The current work priority is completing the other pixel producers, starting
-with exact text pixels and continuing through source images, HUD/minimap/cursor
-composition and remaining CPU writers. World delivery beyond queue32 remains
+The selected other-producer increment now implements exact higher text layout,
+source-image cropping, odd/padded fades and full native movie frame production.
+Current work priority is live admission/suppression for those contracts, broader
+HUD/minimap/cursor journeys and attribution of remaining CPU writers. World delivery beyond queue32 remains
 a separate pending integration milestone. Extend the DRAW-02 corpus with camera
 actions and active battles while classifying additional draw kinds and required
 consumer side effects before complete scene takeover.
@@ -180,11 +181,11 @@ previews and captured-destination uploads cannot satisfy the bypass step.
 
 | Order | Producer work | Concrete completion boundary |
 | --- | --- | --- |
-| 1 | SFT tinted glyph raster and original text consumers | Dedicated [glyph pixels](../research/runtime/font-glyph-raster.md) and [byte spacing/cursor chains](../research/runtime/font-byte-producer.md) match original code; the [bounded live glyph shadow](../research/runtime/font-glyph-live-shadow.md) matches source-only completed canvases. The [guarded glyph entry/kernel](../research/runtime/glyph-backend.md) now matches28,142 isolated executions, including native x87 effects and RET16. Process-memory/lifetime admission and bounded live bypass/replay remain pending. Higher string layout and state reset/lifecycle remain separate. |
-| 2 | BMP/DIB/PCX/JPEG source image writers and panel/fade operations | Exercise the memory-DIB and positioned-image branches beyond startup, preserve source cropping, padded rows and caller/DC lifetime, and admit native output without original GDI destination pixels. |
+| 1 | SFT tinted glyph raster and original text consumers | Dedicated [glyph pixels](../research/runtime/font-glyph-raster.md) and [byte spacing/cursor chains](../research/runtime/font-byte-producer.md) match original code; the [bounded live glyph shadow](../research/runtime/font-glyph-live-shadow.md) matches source-only completed canvases. The [guarded glyph entry/kernel](../research/runtime/glyph-backend.md) now matches28,142 isolated executions, including native x87 effects and RET16. Process-memory/lifetime admission and bounded live bypass/replay remain pending. [Higher rectangle/height-limited layout and measurement](../research/runtime/font-line-layout.md) now match 16,480 isolated cases, including full line/cursor state and 135,004,160 words. Font allocation/lifetime, arbitrary machine state and live higher-text bypass remain separate. |
+| 2 | BMP/DIB/PCX/JPEG source image writers and panel/fade operations | [Memory-DIB and positioned BMP](../research/runtime/native-canvas-image-production.md) now pass 288 source-only cases against frozen independent DC pixels/placement oracles. [Odd/padded RGB565/RGB555 fades](../research/runtime/canvas-fade-span.md) match 972 unchanged-original fixtures. Caller/DC lifetime, original wrapper ABI/failures and live producer suppression remain pending. |
 | 3 | HUD, tooltips, minimap and cursor | Attribute active callers and compose complete output from owned state/resources. Existing minimap four-view comparisons and native cursor/menu assets are foundations; validate live updates, hotspots, picking and producer suppression. |
 | 4 | Remaining Lock/Unlock writers and alternate dispatch | Attribute unclassified writes and effect-to-pixel routes; recover their inputs, destination dependence and required side effects. Keep unknown routes visible and outside replacement admission. |
-| 5 | Enabled movies and screen transitions | Validate owned native decoding/presentation, completion/cancellation and return to menus/World while replacement owns the screen. |
+| 5 | Enabled movies and screen transitions | [Owned movie production](../research/runtime/native-movie-frame-production.md) now compares every pixel of 3,868 frames, including completion/cancellation. [Enabled intro startup](../research/runtime/native-enabled-movie-startup.md) completes both movies natively and resumes original frame publication. Active World return and full native screen ownership remain pending. |
 
 Each completed pixel contract retains its own scope and evidence. Wider live
 takeover needs new evidence after shared producer or renderer sources change;

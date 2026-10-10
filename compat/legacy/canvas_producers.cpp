@@ -2,6 +2,7 @@
 #include "../../assets/jpeg.hpp"
 #include "../../assets/pcx.hpp"
 #include "../../renderer/dib.hpp"
+#include "../../reconstruction/rendering/fade_span.hpp"
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include <algorithm>
@@ -42,6 +43,22 @@ assets::SpriteFrame decodeFrame(const CanvasProducer &c, bool indexed) {
   if (auto *error = std::get_if<assets::SpriteError>(&decoded))
     throw std::invalid_argument("Producer frame refused: " + error->detail);
   return std::move(std::get<assets::Sprite>(decoded).frames.at(0));
+}
+void placeDib(render::CanvasSequence &canvas, const CanvasProducer &c, render::Image image,
+              int x, int y) {
+  for (auto &rgb : image.pixels)
+    rgb = ((rgb >> 19) & 31) << 11 | ((rgb >> 10) & 63) << 5 | ((rgb >> 3) & 31);
+  const auto &r=c.fields;
+  const int left=std::max(0,x),top=std::max(0,y);
+  const int right=int(std::min<std::int64_t>(r[5],std::int64_t(x)+image.width));
+  const int bottom=int(std::min<std::int64_t>(r[6],std::int64_t(y)+image.height));
+  if(right<=left || bottom<=top)return;
+  render::Image cropped{right-left,bottom-top,{}};
+  cropped.pixels.reserve(std::size_t(cropped.width)*cropped.height);
+  for(int row=top;row<bottom;++row)
+    for(int col=left;col<right;++col)
+      cropped.pixels.push_back(image.pixels.at(std::size_t(row-y)*image.width+col-x));
+  canvas.update(r[3],left,top,cropped);
 }
 } // namespace
 CanvasFrameCache::CanvasFrameCache(CanvasFrameCacheLimits limits) : limits_(limits) {
@@ -352,8 +369,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     break;
   }
   case 21:
-    if (r[14] || r[7] != r[5]) throw std::invalid_argument("Fade requires packed RGB565 rows");
-    canvases_.fade(id);
+    canvases_.fade(id,r[7],reconstruction::rendering::fadeWordCount(r[5],r[6],r[7]),r[14] ? 0x7def : 0x7bef);
     break;
   case 20: {
     if (r[14]) throw std::invalid_argument("BMP requires RGB565 destination");
@@ -373,20 +389,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     dib.palette.assign(raw.begin() + 54, raw.begin() + 54 + palette);
     dib.pixels.assign(raw.begin() + offset, raw.end());
     dib.usage = bits == 24 ? 1 : 0;
-    auto image = render::decodeDibRgb(dib);
-    for (auto &rgb : image.pixels)
-      rgb = ((rgb >> 19) & 31) << 11 | ((rgb >> 10) & 63) << 5 | ((rgb >> 3) & 31);
-    const int x = signedWord(r[8]), y = signedWord(r[9]);
-    const int left = std::max(0, x), top = std::max(0, y);
-    const int right = int(std::min<std::int64_t>(r[5], std::int64_t(x) + image.width));
-    const int bottom = int(std::min<std::int64_t>(r[6], std::int64_t(y) + image.height));
-    if (right > left && bottom > top) {
-      render::Image cropped{right - left, bottom - top, {}};
-      for (int row = top; row < bottom; ++row)
-        for (int col = left; col < right; ++col)
-          cropped.pixels.push_back(image.pixels.at(std::size_t(row - y) * image.width + col - x));
-      canvases_.update(id, left, top, cropped);
-    }
+    placeDib(canvases_,c,render::decodeDibRgb(dib),signedWord(r[8]),signedWord(r[9]));
     break;
   }
   case 19: {
@@ -395,10 +398,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     dib.palette.assign(c.bytes().begin() + 40, c.bytes().begin() + r[19]);
     dib.pixels.assign(c.bytes().begin() + r[19], c.bytes().end());
     dib.usage = r[14];
-    auto image = render::decodeDibRgb(dib);
-    for (auto &rgb : image.pixels)
-      rgb = ((rgb >> 19) & 31) << 11 | ((rgb >> 10) & 63) << 5 | ((rgb >> 3) & 31);
-    canvases_.update(id, 0, 0, image);
+    placeDib(canvases_,c,render::decodeDibRgb(dib),0,0);
     break;
   }
   case 18: {
