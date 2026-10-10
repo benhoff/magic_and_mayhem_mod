@@ -17759,7 +17759,8 @@
         "research/runtime/native-word-sprite-mvp.md",
         "research/formats/word-sprite-samples-v1.md",
         "docs/live-drawing-replacement.md",
-        "research/runtime/coverage/committed-history-world-refusal-20261008.json"
+        "research/runtime/coverage/committed-history-world-refusal-20261008.json",
+        "research/runtime/word-backend-state.md"
       ],
       "implementation": [
         "runtime/scene/word_route.c",
@@ -17768,17 +17769,23 @@
         "tools/run-opengl-game.py",
         "tools/render-game-runner.py",
         "tools/prepare-scene-observer.py",
-        "tools/scene-game-runner.py"
+        "tools/scene-game-runner.py",
+        "runtime/scene/word_workspace.h"
       ],
       "tests": [
         "tools/capture-scene-game.py",
         "tools/test-word-sprites.py",
-        "tests/word-sprite-reference.cpp"
+        "tests/word-sprite-reference.cpp",
+        "tests/word-backend-state-reference.cpp",
+        "tests/word-backend-probe.S",
+        "tools/test-word-backend-state.py"
       ],
       "evidence": [
         "RS.word-route.shadow-20261007",
         "RS.word-route.takeover-20261007",
-        "RS.word-route.launch-staging-20261007"
+        "RS.word-route.launch-staging-20261007",
+        "RS.word-route.state-fix-shadow-20261010",
+        "RS.word-route.state-fix-takeover-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -26933,6 +26940,76 @@
         "comparison": "none",
         "integration": "live_equivalence",
         "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.word-backend-state",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Selected direct-word backend workspace and caller-state contract",
+      "scope": "Two pinned direct-word backends; bounded contiguous positive synthetic frames plus zero dimensions. All sixteen workspace words, cdecl argument mutations, preserved integer registers/ESP and stack guards, defined XOR-zero flags and preserved DF, masked x87 control/status/three active values, XMM0..7 and MXCSR. Zero and selected nonzero clip-left/top, exact/partial edges, four corners, hidden/oversized frames, signed origins, masks and WORD alignments. Actual native helper compared only under existing strict unclipped admission. Excludes x87 instruction/data pointers/opcode/unused slots, undefined AF, unmasked exceptions, other backends, malformed original acceptance, auxiliary/indexed execution, concurrency and live hook ABI/replacement. Isolated production entry assembly plus actual native raster/workspace code are compared against original caller state for admitted cases and original forwarding, using a host-only admission stand-in; Win32 access checks, LastError, busy/logging and live process integration remain unvalidated.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5860536,
+          "scope": "Selected workspace/argument mutation, integer return ABI and bounded masked floating state; complete floating history, other backends and live hook mechanics excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5861510,
+          "scope": "Selected workspace/argument mutation, integer return ABI and bounded masked floating state; complete floating history, other backends and live hook mechanics excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/word-backend-state.md",
+        "research/formats/word-backend-state-fixtures-v1.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/word_backend_state.c",
+        "reconstruction/rendering/word_backend_state.h",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/word_entry.S"
+      ],
+      "tests": [
+        "tests/word-backend-state-reference.cpp",
+        "tests/word-backend-probe.S",
+        "tools/test-word-backend-state.py"
+      ],
+      "validation_dependencies": [
+        "tools/test-word-sprites.py",
+        "renderer/sprites/word_raster.c",
+        "renderer/sprites/word_raster.h",
+        "runtime/scene/word_route.c",
+        "runtime/shadow/win32_min.h",
+        "tools/build-word-sprites.py",
+        "tools/build-shadow-bridge.py",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.word-backend-state.original-entry-20261010",
+        "RS.word-backend-state.final-original-entry-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "inputs": "Generated corpus in tools/test-word-backend-state.py:64 deterministic positive direct-word frames plus12 empty-dimension templates, both backends, zero/(2,2) clip origins and selected oversized canvases.",
+        "floating": "Four masked x87 rounding/EFLAGS seeds, optional C1 plus IE/PE sticky status, three finite active x87 values; seeded XMM0..7/MXCSR.",
+        "exclusions": [
+          "unmasked exceptions",
+          "full x87 stack",
+          "NaN/denormal/infinite inputs",
+          "undefined AF and inactive x87 slots",
+          "floating instruction/data pointers/opcode",
+          "Win32 access/LastError/reentry stress",
+          "clipped native raster admission",
+          "other backends and original malformed handling"
+        ]
       }
     }
   ],
@@ -51376,6 +51453,249 @@
           "equals": []
         }
       ]
+    },
+    {
+      "id": "RS.word-backend-state.original-entry-20261010",
+      "kind": "isolated_original",
+      "scope": "4448 original workspace/argument/register/stack/flags/masked-floating-state cases and production entry assembly comparisons, using a host-only admission stand-in; 768 actual native workspace matches, 120 original cases refuting previous scalar zeroing. No clipped native admission or Win32 entry-hook/LastError/unmasked-exception validation.",
+      "record": "research/runtime/word-backend-state-comparison-20261010.json",
+      "sha256": "b482183bb8aa65bf2c7f943519385e0c77bff9472c4f1e05454c83ef8cd4c0f2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/changed_sources",
+          "equals": []
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/model_original_matches",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/native_entry_original_matches",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/native_workspace_cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/counts/native_workspace_matches",
+          "equals": 768
+        },
+        {
+          "pointer": "/counts/confirmed_old_zero_workspace_errors",
+          "equals": 120
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.word-route.state-fix-shadow-20261010",
+      "kind": "live_equivalence",
+      "scope": "Fresh bounded startup shadow run:12625 admitted native/original pixel and complete workspace comparisons;943 original fallbacks, zero mismatches/errors. Existing strict unclipped route only; no bypass or sustained-session/Win32 ABI exception stress claim.",
+      "record": "research/runtime/word-route-state-fix-shadow-20261010.json",
+      "sha256": "616846b0e7b8182960c3b7ac0e81d3fb9c76578085cfccfb576e6cb7a96f5147",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "equivalence_pointer": "/success",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/word_sprites_mode",
+          "equals": "shadow"
+        },
+        {
+          "pointer": "/samples",
+          "equals": 4
+        },
+        {
+          "pointer": "/word_stats/7",
+          "equals": 12625
+        },
+        {
+          "pointer": "/word_stats/8",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_stats/10",
+          "equals": 12625
+        },
+        {
+          "pointer": "/word_stats/11",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_stats/14",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_stats/15",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "RS.word-route.state-fix-takeover-20261010",
+      "kind": "live_replacement",
+      "scope": "Corrected existing strict in-bounds direct-word route through four startup World observations.12608 admitted body bypasses,705 original fallbacks. Eight complete takeover canvases and workspace independently match unmodified original execution. Original simulation and other drawing remain; clipping admission, full Win32 ABI exception/reentry/LastError stress and sustained sessions excluded.",
+      "record": "research/runtime/word-route-state-fix-takeover-20261010.json",
+      "sha256": "f471be2cda7251cccfc635bae43ea460aadc54729880f4ccfabf9f9ed489c073",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/live_original_pixels_match",
+      "bypass_pointer": "/original_work_bypassed",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": true
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": true
+        },
+        {
+          "pointer": "/workspace_match",
+          "equals": true
+        },
+        {
+          "pointer": "/word_stats/8",
+          "equals": 12608
+        },
+        {
+          "pointer": "/word_stats/9",
+          "equals": 705
+        },
+        {
+          "pointer": "/word_stats/11",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_stats/13",
+          "equals": 8
+        },
+        {
+          "pointer": "/word_stats/14",
+          "equals": 0
+        },
+        {
+          "pointer": "/word_stats/15",
+          "equals": 0
+        },
+        {
+          "pointer": "/comparison/synthetic_original_matches",
+          "equals": 256
+        },
+        {
+          "pointer": "/comparison/native_refusals",
+          "equals": 647
+        }
+      ]
+    },
+    {
+      "id": "RS.word-backend-state.final-original-entry-20261010",
+      "kind": "isolated_original",
+      "scope": "4448 original workspace/argument/register/stack/flags/masked-floating-state cases and production entry assembly comparisons, using a host-only admission stand-in; 768 actual native workspace matches, 120 original cases refuting previous scalar zeroing. No clipped native admission or Win32 entry-hook/LastError/unmasked-exception validation. Final prospectively declared fixture-format and finite masked-state validation domain.",
+      "record": "research/runtime/word-backend-state-final-comparison-20261010.json",
+      "sha256": "1b1a70b5d692023eded52bb244e4c6dd759928beb88eec973026338886223734",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/changed_sources",
+          "equals": []
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/model_original_matches",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/native_entry_original_matches",
+          "equals": 4448
+        },
+        {
+          "pointer": "/counts/native_workspace_cases",
+          "equals": 768
+        },
+        {
+          "pointer": "/counts/native_workspace_matches",
+          "equals": 768
+        },
+        {
+          "pointer": "/counts/confirmed_old_zero_workspace_errors",
+          "equals": 120
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        },
+        {
+          "pointer": "/live_replacement",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -58580,6 +58900,22 @@
       "evidence": [
         "NR.world-throughput.benchmark-20261010"
       ]
+    },
+    {
+      "id": "word-workspace-fix-world-entry-20261010",
+      "scope": "Separate fresh shadow and takeover runs through four startup World observations using unchanged strict direct-word admission. Pixel/workspace checks and counters validate only the selected raster route; other drawing and simulation stay original. Eight takeover canvases are independently replayed. Isolated ABI stress is separate; full sessions, clipping bypass and unmasked floating exceptions remain excluded.",
+      "level": "live_equivalence",
+      "behaviors": [
+        "RS.word-route"
+      ],
+      "evidence": [
+        "RS.word-route.state-fix-shadow-20261010",
+        "RS.word-route.state-fix-takeover-20261010"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py",
+        "tools/test-word-sprites.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -58908,8 +59244,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-world-throughput-20261010.json",
-    "sha256": "00d09ac59e5e63064d027fe932bbe9192e30db9930f42531a8882cb2ad7a408d"
+    "path": "research/runtime/coverage/source-index-word-state-20261010.json",
+    "sha256": "bbdc4aa7ef811ade623008caed6da25497e97c97f621b520b801d6a8b6eb4f4f"
   },
   "claim_bindings_required": true
 }

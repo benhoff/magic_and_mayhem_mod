@@ -1,5 +1,6 @@
 #include "../shadow/win32_min.h"
 #include "../../renderer/sprites/word_raster.h"
+#include "word_workspace.h"
 
 /* Single engine-thread backend adapter. Native pixels remain in the engine's
  * borrowed canvas, preserving downstream readback and auxiliary drawing. */
@@ -29,14 +30,6 @@ static void path(char* out,const char* name){u32 n=0;while(directory[n]){out[n]=
 static void report(void){stats[4]=mode;stats[5]=installed;stats[15]=stopped;if(log_file!=(HANDLE)-1&&!write_all(log_file,stats,64))++stats[14];}
 /* Scratch indices span the original 0x5f1e50..0x5f1e8c workspace. Mirror only
  * bytes written by the admitted unclipped backend; retain all other words. */
-static void scratch(u32* s,const MnmWordDraw* d,u32 frame,u32 destination,u32 stride,u32 backend){
-    s[0]=0;s[1]=d->height;s[2]=(stride-d->width)*2;s[5]=d->width;
-    s[6]=(u32)d->top*stride;s[7]=frame+40;s[8]=0;s[9]=0;s[10]=frame;
-    if(backend==0x197086&&d->last_run){
-        u32 at=destination+((d->top+d->last_run_y)*stride+d->left+d->last_run_x)*2;
-        s[11]=d->last_run-((at&2)!=0);
-    }
-}
 static void sample(u32 sequence,u32 backend,u32 frame,u32 length,const MnmWordCanvas* c,
                    i32 ax,i32 ay,const void* before,const u32* old,const u32* after){
     char name[]="word-0000.bin",filename[260];
@@ -72,7 +65,7 @@ int word_route(u32* registers){
     if(mnm_word_sprite_admit((void*)frame,length,&canvas,ax,ay,&draw)!=MNM_WORD_OK||
         draw.left<(i32)get((void*)(image_base+0x2e0008))||draw.top<(i32)get((void*)(image_base+0x2cbb6c)))goto fallback;
     u32 old[16],predicted[16];copy(old,(void*)(image_base+0x1f1e50),64);copy(predicted,old,64);
-    scratch(predicted,&draw,frame,(u32)canvas.pixels,canvas.stride_words,backend);
+    mnm_word_unclipped_workspace(predicted,&draw,frame,(u32)canvas.pixels,canvas.stride_words,backend);
     u32 sequence=stats[7]+1;
     if(mode==1||sequence<=8){
         allocation=HeapAlloc(GetProcessHeap(),0,canvas.bytes+4);if(!allocation)goto fallback;

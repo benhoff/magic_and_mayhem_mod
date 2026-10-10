@@ -3898,3 +3898,21 @@ remain enforced. Full simulation cadence, rolling native World, sustained
 interactive gameplay and hardware validation remain outstanding. These are
 separate from the original-raster-active campaign smoke and from the diagnostic
 capture ceiling. Reviewed f60b55c..01e160a:29 exact transitions, zero receipt gaps.
+
+### Direct-word caller state and compatibility — 2026-10-10
+
+`RS.word-backend-state` adds 4,448 independent original/model and production-entry
+comparisons for complete workspace, argument mutation, integer/stack/defined
+flags and selected masked floating state. All pass; the actual native workspace
+helper matches 768 admitted cases. Original comparison refutes the old scalar
+workspace9 zeroing in 120 cases. The existing route now preserves its trailing
+transparent count and clears admitted x87 C1 as original execution does.
+
+`RS.word-route` retains strict unclipped admission. Fresh shadow compares 12,625
+admitted calls without mismatches; fresh takeover bypasses 12,608 calls while
+705 unsupported requests execute original bodies. Eight retained canvases /
+1,070,400 complete pixels and workspace match independent original execution.
+[Research, fixture scope and exclusions](word-backend-state.md) keep model safety
+policy, host entry testing and finite live proof separate. Clipped native raster
+admission, unmasked floating exceptions, Win32 LastError/reentry stress and
+long-session/physical-driver coverage remain pending.

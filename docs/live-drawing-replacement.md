@@ -93,8 +93,11 @@ auxiliary passes, indexed World sprites and the other frame producers remain
 active. Its bounded shadow/takeover comparisons are scoped primitive evidence,
 not a complete scene or supported-session milestone. A separate
 [clipped pixel comparison](../research/runtime/word-sprite-clipping.md) now matches
-960 native GPU placements against both original backends. Clipped caller state
-and ABI remain open, so live admission is unchanged.
+960 native GPU placements against both original backends. [Clipped caller-state recovery](../research/runtime/word-backend-state.md) now
+compares complete workspace/arguments and selected original ABI in 4,448 fixtures.
+It fixes existing unclipped workspace/C1 compatibility and validates a fresh
+finite startup takeover. Clipped native raster admission and full Win32 exception
+behavior remain open, so live admission is unchanged.
 
 The [complete startup World raster queue](../research/runtime/native-world-raster-queue.md)
 and [guarded batch return](../research/runtime/native-world-raster-batch.md)
