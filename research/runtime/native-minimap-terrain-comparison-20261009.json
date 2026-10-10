@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "sources": {
+    "renderer/minimap/minimap.hpp": "74970c73a9eff06a2c2fd015b47e38fce5229c712250f11fe5c9dea1dbd5f470",
+    "renderer/minimap/minimap.cpp": "1f340ea7d1a0307660e8d262dbe1580a3d0ccadfaa6e6e156b2e94b8652f5857",
+    "renderer/minimap/CMakeLists.txt": "a19ca3f37d4aff8e14715cf6208fa5904bf77a3aaae6996c394fcf3e24affe5c",
+    "tests/minimap-fixture.hpp": "e11aa3b101de106b35c8d79645a752adb9da935985c54165c46524639635f006",
+    "tests/minimap-native.cpp": "8dec01168a31bf05c08f1d4b2d523dcfb8671791bd7cc362251bf8cc57679b88",
+    "tests/minimap-original.cpp": "c3ca91fe2882abda53966645af6ed775c6e9c18f943285212195a800a2e6125b",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-minimap-terrain.py": "1e00608a746cb1b89ad74242a1ae843e29477c721bde46e08667c17081ef4a81",
+    "tools/original-manifest.sh": "374c68532b6dc09b797396cb19ae2e753eecc1375ab393d323d0edf8d8c0f564"
+  },
+  "claims": [
+    {
+      "behavior": "RS.minimap-terrain-raster",
+      "contract_sha256": "61210d8f3964e57112af0e76b0448c604fe22e696c38f5698540a820ad701838",
+      "scenarios": {}
+    }
+  ],
+  "scope": "Owned RGB565 terrain placement in four orientations; bounded centres, even widths, fog retained from owned auxiliary history, positive padded rows. Isolated original raster/side-effect comparison; no live hook, driver, marker or gameplay equivalence.",
+  "original_pixels_used_as_native_inputs": false,
+  "original_work_bypassed": false,
+  "cases": 1360,
+  "equal": 1360,
+  "words_compared": 35486800,
+  "orientations": 4,
+  "atomic_refusals": 15,
+  "original_auxiliary_and_source_unchanged": true,
+  "original_object_only_ff_invalidated": true,
+  "original_unlocks_per_case": 1,
+  "sanitizer_passed": true,
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "inputs": {
+    "cases.txt": "2b8ea4bb365d870072e05cfe23bab9a35b561b3bcd437beac17a93af87f51c59"
+  },
+  "outputs": {
+    "original.565": "3dea7559606c787dd33a242d72d16849a965690a0d60d38e40bd12c984bd907f",
+    "native.565": "3dea7559606c787dd33a242d72d16849a965690a0d60d38e40bd12c984bd907f",
+    "sanitized.565": "3dea7559606c787dd33a242d72d16849a965690a0d60d38e40bd12c984bd907f",
+    "comparisons.json": "532b785ff16ebda22d517a7c065aea4c4f3ab1a91086306cf8ac6681a75e44ca"
+  },
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true
+}

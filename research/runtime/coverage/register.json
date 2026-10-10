@@ -21582,6 +21582,216 @@
         "integration": "live_observation",
         "replacement": "none"
       }
+    },
+    {
+      "id": "RS.minimap-terrain-raster",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Owned four-orientation RGB565 minimap terrain raster",
+      "scope": "Selected pixel portion of No-CD553a40: four orientation dispatch branches, even2..256 grid widths,1..256 heights within owned destination/history extents, in-grid source centres, descriptor RGB565 colours and signed-state-derived boolean visibility. Hidden cells consume separate owned auxiliary history. Positive padded destination/history word rows; complete allocations compared. Native atomic bounds/closed-input refusals are explicit safety policy. Original object+ff invalidation and auxiliary Lock/Unlock are observed by private adapters but not implemented by this pixel library; actual driver/error semantics, odd widths, partial clipping, markers/outline geometry, live wire integration and original drawing bypass remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5585472,
+          "scope": "Terrain placement, source wrapping and hidden auxiliary reads in four branches; synthetic auxiliary Lock/Unlock adapters exclude driver behavior."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5589008,
+          "relation": "data",
+          "scope": "Four fog-enabled orientation dispatch entries."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5589024,
+          "relation": "data",
+          "scope": "Four fog-disabled orientation dispatch entries."
+        }
+      ],
+      "documents": [
+        "research/runtime/native-minimap-terrain.md"
+      ],
+      "implementation": [
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp"
+      ],
+      "tests": [
+        "tests/minimap-native.cpp",
+        "tests/minimap-original.cpp",
+        "tests/minimap-fixture.hpp",
+        "tools/test-minimap-terrain.py"
+      ],
+      "validation_dependencies": [
+        "renderer/minimap/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh"
+      ],
+      "validation_domain": "Isolated bounded source-only four-orientation terrain comparison; exhaustive centres for grids2x1/2x2/4x3/4x4/6x5, boundary centres for8x8/16x3/16x16/32x17/64x64/128x127/256x256. Four fog configurations, independent owned source/history patterns and padded rows;15 native atomic refusals. Excludes real driver locks, live replacement, markers, gameplay visibility generation and arbitrary grid/centre/clip admission.",
+      "evidence": [
+        "RS.minimap-terrain-raster.comparison-20261009"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "implementation": [
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp"
+      ],
+      "tests": [
+        "tests/minimap-overlays-native.cpp",
+        "tests/minimap-overlays-original.cpp",
+        "tests/minimap-overlays-fixture.hpp",
+        "tools/test-minimap-overlays.py"
+      ],
+      "validation_dependencies": [
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.minimap-cell-marker.comparison-20261009",
+        "RS.minimap-cell-marker.comparison-range-20261009"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "RS.minimap-cell-marker",
+      "title": "Owned four-view minimap cell marker pixels and return offset",
+      "scope": "Selected No-CD5536c0 four-view source wrapping/rotation with independently owned grid counts, in-grid centres, rotation extents/origins and nine palette words. Ordinary2x2 and emphasis-and-flash8word ring; normalized EAX destination pointer preserved as owned word offset. Source coordinates bounded[-4096,4096], positive padded destination rows; RGB565/RGB555 raw palette words. Native atomic admission/refusals are safety policy. Palette construction, unknown callers/indices, full machine state, live protocol and original bypass remain pending.",
+      "validation_domain": "3744cell cases including exhaustive3x2 source/centre combinations and selected3x2/4x3/8x5/16x24/31x17/64x32 boundary centres, negative/far coordinates, nine palette slots and four emphasis/flash combinations. All four views and both word formats; complete pixel allocations and normalized return offsets.16shared atomic refusals. No live integration/replacement.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5584576,
+          "scope": "Selected No-CD5536c0 four-view source wrapping/rotation with independently owned grid counts, in-grid centres, rotation extents/origins and nine palette words. Ordinary2x2 and emphasis-and-flash8word ring; normalized EAX destination pointer preserved as owned word offset. Source coordinates bounded[-4096,4096], positive padded destination rows; RGB565/RGB555 raw palette words. Native atomic admission/refusals are safety policy. Palette construction, unknown callers/indices, full machine state, live protocol and original bypass remain pending."
+        }
+      ]
+    },
+    {
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "implementation": [
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp"
+      ],
+      "tests": [
+        "tests/minimap-overlays-native.cpp",
+        "tests/minimap-overlays-original.cpp",
+        "tests/minimap-overlays-fixture.hpp",
+        "tools/test-minimap-overlays.py"
+      ],
+      "validation_dependencies": [
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.minimap-creature-markers.comparison-20261009",
+        "RS.minimap-creature-markers.comparison-range-20261009"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "RS.minimap-creature-markers",
+      "title": "Owned four-view minimap creature pixels and grid refresh",
+      "scope": "Selected No-CD553850 visible13word creature markers and refreshed object grid fields. In-grid source cells, closed source-derived hidden decisions, fog gating and four-view projection using owned independent rotation extents/origins; RGB565fc00/RGB5557e00. Empty/all-hidden lists also return required dimension refresh to a future adapter. Positive owned word rows replace original row-pointer table; native list/bounds refusals are safety policy. Simulation visibility/table lifetime, arbitrary row-pointer aliases, caller ABI/machine state, live integration and bypass remain pending.",
+      "validation_domain": "768creature cases in3x2/4x3/8x5/16x24/31x17/64x32 grids, boundary centres, four views/two formats, empty/visible/hidden/mixed/duplicate lists and fog on/off. Original source lookup resolves generated signed state bytes through actual global row/layer tables; native receives closed visibility. Complete output allocations and grid dimension refresh compare;16shared refusals. No live integration/replacement.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5584976,
+          "scope": "Selected No-CD553850 visible13word creature markers and refreshed object grid fields. In-grid source cells, closed source-derived hidden decisions, fog gating and four-view projection using owned independent rotation extents/origins; RGB565fc00/RGB5557e00. Empty/all-hidden lists also return required dimension refresh to a future adapter. Positive owned word rows replace original row-pointer table; native list/bounds refusals are safety policy. Simulation visibility/table lifetime, arbitrary row-pointer aliases, caller ABI/machine state, live integration and bypass remain pending."
+        }
+      ]
+    },
+    {
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "implementation": [
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp"
+      ],
+      "tests": [
+        "tests/minimap-overlays-native.cpp",
+        "tests/minimap-overlays-original.cpp",
+        "tests/minimap-overlays-fixture.hpp",
+        "tools/test-minimap-overlays.py"
+      ],
+      "validation_dependencies": [
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays/CMakeLists.txt",
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.minimap-camera-corners.comparison-20261009",
+        "RS.minimap-camera-corners.comparison-range-20261009"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "RS.minimap-camera-corners",
+      "title": "Owned selected four-entry minimap camera corner outlines",
+      "scope": "Selected corner loops in four No-CD outline entries. Original terrain is an explicit signature-checked private no-op adapter; object6207nonzero skips outer border and6119zero excludes subsequent markers. Owned independent rotation extents, source corner direction pairs(+/-1), viewport sizes and selected origin retention/rewrite produce32writes with repeated anchors and RGB5650400/RGB5550200. Native returns origin updates for a future adapter; bounds/unsupported outer-border refusals are safety policy. Direction-vector/camera generation, border/terrain/marker-list composition, actual driver/callers, live protocol and bypass remain pending.",
+      "validation_domain": "240camera cases:16x16/16x24/31x17/32x64/64x32/128x127 extents; four original entry paths, both formats, viewport0x0/127x63/128x64/255x127/640x256 and rotated direction ordering. Complete allocations and original origin mutation compare;16shared atomic refusals. Outer border, nonempty subsequent markers and live integration/replacement excluded.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5580704,
+          "scope": "Selected corner loops in four No-CD outline entries. Original terrain is an explicit signature-checked private no-op adapter; object6207nonzero skips outer border and6119zero excludes subsequent markers. Owned independent rotation extents, source corner direction pairs(+/-1), viewport sizes and selected origin retention/rewrite produce32writes with repeated anchors and RGB5650400/RGB5550200. Native returns origin updates for a future adapter; bounds/unsupported outer-border refusals are safety policy. Direction-vector/camera generation, border/terrain/marker-list composition, actual driver/callers, live protocol and bypass remain pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5581648,
+          "scope": "Selected corner loops in four No-CD outline entries. Original terrain is an explicit signature-checked private no-op adapter; object6207nonzero skips outer border and6119zero excludes subsequent markers. Owned independent rotation extents, source corner direction pairs(+/-1), viewport sizes and selected origin retention/rewrite produce32writes with repeated anchors and RGB5650400/RGB5550200. Native returns origin updates for a future adapter; bounds/unsupported outer-border refusals are safety policy. Direction-vector/camera generation, border/terrain/marker-list composition, actual driver/callers, live protocol and bypass remain pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5582624,
+          "scope": "Selected corner loops in four No-CD outline entries. Original terrain is an explicit signature-checked private no-op adapter; object6207nonzero skips outer border and6119zero excludes subsequent markers. Owned independent rotation extents, source corner direction pairs(+/-1), viewport sizes and selected origin retention/rewrite produce32writes with repeated anchors and RGB5650400/RGB5550200. Native returns origin updates for a future adapter; bounds/unsupported outer-border refusals are safety policy. Direction-vector/camera generation, border/terrain/marker-list composition, actual driver/callers, live protocol and bypass remain pending."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5583600,
+          "scope": "Selected corner loops in four No-CD outline entries. Original terrain is an explicit signature-checked private no-op adapter; object6207nonzero skips outer border and6119zero excludes subsequent markers. Owned independent rotation extents, source corner direction pairs(+/-1), viewport sizes and selected origin retention/rewrite produce32writes with repeated anchors and RGB5650400/RGB5550200. Native returns origin updates for a future adapter; bounds/unsupported outer-border refusals are safety policy. Direction-vector/camera generation, border/terrain/marker-list composition, actual driver/callers, live protocol and bypass remain pending.",
+          "recovered_range": "minimap-outline-view3-5532f0"
+        }
+      ]
     }
   ],
   "evidence": [
@@ -41979,6 +42189,533 @@
           "equals": 23480
         }
       ]
+    },
+    {
+      "id": "RS.minimap-terrain-raster.comparison-20261009",
+      "kind": "isolated_original",
+      "scope": "Owned RGB565 terrain placement in four orientations; bounded centres, even widths, fog retained from owned auxiliary history, positive padded rows. Isolated original raster/side-effect comparison; no live hook, driver, marker or gameplay equivalence.",
+      "record": "research/runtime/native-minimap-terrain-comparison-20261009.json",
+      "sha256": "935f7560e95bdc4dbf5b69bd64db13f5d35c56cebf739ff6e9a30713badcc1b6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 1360
+        },
+        {
+          "pointer": "/equal",
+          "equals": 1360
+        },
+        {
+          "pointer": "/orientations",
+          "equals": 4
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 35486800
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 15
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_object_only_ff_invalidated",
+          "equals": true
+        },
+        {
+          "pointer": "/original_auxiliary_and_source_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_unlocks_per_case",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-cell-marker.comparison-20261009",
+      "kind": "isolated_original",
+      "scope": "Selected No-CD5536c0 four-view source wrapping/rotation with independently owned grid counts, in-grid centres, rotation extents/origins and nine palette words. Ordinary2x2 and emphasis-and-flash8word ring; normalized EAX destination pointer preserved as owned word offset. Source coordinates bounded[-4096,4096], positive padded destination rows; RGB565/RGB555 raw palette words. Native atomic admission/refusals are safety policy. Palette construction, unknown callers/indices, full machine state, live protocol and original bypass remain pending.",
+      "record": "research/runtime/native-minimap-overlays-comparison-20261009.json",
+      "sha256": "7e38fa1c268f41cbfb17914a01940af258a7050a5c94aceb765eca4f5608ad5c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 4752
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4752
+        },
+        {
+          "pointer": "/cases_by_kind/0",
+          "equals": 3744
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 53312088
+        },
+        {
+          "pointer": "/results_compared",
+          "equals": 4752
+        },
+        {
+          "pointer": "/orientations",
+          "equals": 4
+        },
+        {
+          "pointer": "/formats",
+          "equals": 2
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/original_source_storage_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_object_mutations_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-creature-markers.comparison-20261009",
+      "kind": "isolated_original",
+      "scope": "Selected No-CD553850 visible13word creature markers and refreshed object grid fields. In-grid source cells, closed source-derived hidden decisions, fog gating and four-view projection using owned independent rotation extents/origins; RGB565fc00/RGB5557e00. Empty/all-hidden lists also return required dimension refresh to a future adapter. Positive owned word rows replace original row-pointer table; native list/bounds refusals are safety policy. Simulation visibility/table lifetime, arbitrary row-pointer aliases, caller ABI/machine state, live integration and bypass remain pending.",
+      "record": "research/runtime/native-minimap-overlays-comparison-20261009.json",
+      "sha256": "7e38fa1c268f41cbfb17914a01940af258a7050a5c94aceb765eca4f5608ad5c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 4752
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4752
+        },
+        {
+          "pointer": "/cases_by_kind/1",
+          "equals": 768
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 53312088
+        },
+        {
+          "pointer": "/results_compared",
+          "equals": 4752
+        },
+        {
+          "pointer": "/orientations",
+          "equals": 4
+        },
+        {
+          "pointer": "/formats",
+          "equals": 2
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/original_source_storage_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_object_mutations_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-camera-corners.comparison-20261009",
+      "kind": "isolated_original",
+      "scope": "Selected corner loops in four No-CD outline entries. Original terrain is an explicit signature-checked private no-op adapter; object6207nonzero skips outer border and6119zero excludes subsequent markers. Owned independent rotation extents, source corner direction pairs(+/-1), viewport sizes and selected origin retention/rewrite produce32writes with repeated anchors and RGB5650400/RGB5550200. Native returns origin updates for a future adapter; bounds/unsupported outer-border refusals are safety policy. Direction-vector/camera generation, border/terrain/marker-list composition, actual driver/callers, live protocol and bypass remain pending.",
+      "record": "research/runtime/native-minimap-overlays-comparison-20261009.json",
+      "sha256": "7e38fa1c268f41cbfb17914a01940af258a7050a5c94aceb765eca4f5608ad5c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 4752
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4752
+        },
+        {
+          "pointer": "/cases_by_kind/2",
+          "equals": 240
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 53312088
+        },
+        {
+          "pointer": "/results_compared",
+          "equals": 4752
+        },
+        {
+          "pointer": "/orientations",
+          "equals": 4
+        },
+        {
+          "pointer": "/formats",
+          "equals": 2
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/original_source_storage_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_object_mutations_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-camera-corners.comparison-range-20261009",
+      "kind": "isolated_original",
+      "scope": "Selected corner loops in four No-CD outline entries. Original terrain is an explicit signature-checked private no-op adapter; object6207nonzero skips outer border and6119zero excludes subsequent markers. Owned independent rotation extents, source corner direction pairs(+/-1), viewport sizes and selected origin retention/rewrite produce32writes with repeated anchors and RGB5650400/RGB5550200. Native returns origin updates for a future adapter; bounds/unsupported outer-border refusals are safety policy. Direction-vector/camera generation, border/terrain/marker-list composition, actual driver/callers, live protocol and bypass remain pending.",
+      "record": "research/runtime/native-minimap-overlays-comparison-range-20261009.json",
+      "sha256": "f2dc746c08c35ebddaa80f3dc93486ff878390496239fabbf4c410323003c3a3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 4752
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4752
+        },
+        {
+          "pointer": "/cases_by_kind/2",
+          "equals": 240
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 53312088
+        },
+        {
+          "pointer": "/results_compared",
+          "equals": 4752
+        },
+        {
+          "pointer": "/orientations",
+          "equals": 4
+        },
+        {
+          "pointer": "/formats",
+          "equals": 2
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/original_source_storage_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_object_mutations_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-cell-marker.comparison-range-20261009",
+      "kind": "isolated_original",
+      "scope": "Selected No-CD5536c0 four-view source wrapping/rotation with independently owned grid counts, in-grid centres, rotation extents/origins and nine palette words. Ordinary2x2 and emphasis-and-flash8word ring; normalized EAX destination pointer preserved as owned word offset. Source coordinates bounded[-4096,4096], positive padded destination rows; RGB565/RGB555 raw palette words. Native atomic admission/refusals are safety policy. Palette construction, unknown callers/indices, full machine state, live protocol and original bypass remain pending.",
+      "record": "research/runtime/native-minimap-overlays-comparison-range-20261009.json",
+      "sha256": "f2dc746c08c35ebddaa80f3dc93486ff878390496239fabbf4c410323003c3a3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 4752
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4752
+        },
+        {
+          "pointer": "/cases_by_kind/0",
+          "equals": 3744
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 53312088
+        },
+        {
+          "pointer": "/results_compared",
+          "equals": 4752
+        },
+        {
+          "pointer": "/orientations",
+          "equals": 4
+        },
+        {
+          "pointer": "/formats",
+          "equals": 2
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/original_source_storage_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_object_mutations_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-creature-markers.comparison-range-20261009",
+      "kind": "isolated_original",
+      "scope": "Selected No-CD553850 visible13word creature markers and refreshed object grid fields. In-grid source cells, closed source-derived hidden decisions, fog gating and four-view projection using owned independent rotation extents/origins; RGB565fc00/RGB5557e00. Empty/all-hidden lists also return required dimension refresh to a future adapter. Positive owned word rows replace original row-pointer table; native list/bounds refusals are safety policy. Simulation visibility/table lifetime, arbitrary row-pointer aliases, caller ABI/machine state, live integration and bypass remain pending.",
+      "record": "research/runtime/native-minimap-overlays-comparison-range-20261009.json",
+      "sha256": "f2dc746c08c35ebddaa80f3dc93486ff878390496239fabbf4c410323003c3a3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 4752
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4752
+        },
+        {
+          "pointer": "/cases_by_kind/1",
+          "equals": 768
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 53312088
+        },
+        {
+          "pointer": "/results_compared",
+          "equals": 4752
+        },
+        {
+          "pointer": "/orientations",
+          "equals": 4
+        },
+        {
+          "pointer": "/formats",
+          "equals": 2
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 16
+        },
+        {
+          "pointer": "/original_source_storage_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_object_mutations_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -44448,6 +45185,48 @@
           "behaviors": []
         }
       ]
+    },
+    {
+      "id": "minimap-terrain-orientations",
+      "document": "research/runtime/native-minimap-terrain.md",
+      "scope": "Four fog orientation entries; companion non-fog table554820; pixel branch classification only, driver/caller semantics pending.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": "out-of-range",
+          "behaviors": []
+        }
+      ],
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5589008,
+        "relation": "data",
+        "scope": "Fog-enabled four-entry orientation table; companion fog-disabled table at554820."
+      }
     }
   ],
   "scenarios": [
@@ -48794,6 +49573,15 @@
       "document": "research/runtime/native-world-kind8.md",
       "evidence": "RS.world-kind8.original-20261008",
       "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "minimap-outline-view3-5532f0",
+      "build": "nocd-40209ca7",
+      "start": 5583600,
+      "end": 5584572,
+      "document": "research/runtime/native-minimap-overlays.md",
+      "evidence": "RS.minimap-camera-corners.comparison-range-20261009",
+      "anchors_pointer": "/original_entry_anchors"
     }
   ],
   "register_imports": [
@@ -48904,8 +49692,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-world-launcher-portability-20261008.json",
-    "sha256": "a4aaf56e82bc668f493259e11e96d61a184da94a1a5e8636b4c2e10bff08ad6f"
+    "path": "research/runtime/coverage/source-index-minimap-overlays-owned-20261009.json",
+    "sha256": "db9534d8f41c975d3232bc70a6145a915fdb2524358cf2f9c953a53419b12da4"
   },
   "claim_bindings_required": true
 }

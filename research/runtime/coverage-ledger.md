@@ -3107,3 +3107,75 @@ pilot metadata. Earlier failed audit reports remain historical. This launcher
 comparison does not validate that separate batch replacement. Exact source
 census and review receipts accompany the launcher changes; no staged files
 or original artifacts are altered.
+
+
+## Independent four-orientation minimap terrain — 2026-10-09
+
+`RS.minimap-terrain-raster` adds the standalone Qt-independent
+`renderer/minimap` owned RGB565 pixel writer. Four orientation branches, wrapped
+in-grid centres, source colours and retained auxiliary fog pixels match the
+actual pinned original553a40 routine across1,360cases/35,486,800destination
+words, including untouched pixels and positive padded rows. Normal and
+ASan/UBSan output is identical;15native atomic refusals pass. Original private
+fixtures check object+ff=-2 as its only object mutation, one auxiliary unlock,
+and unchanged source descriptors/auxiliary storage. All declared sources stay
+stable and2,927original files verify before/after.
+
+Understanding/implementation/original comparison are scoped to this pixel
+contract; integration/replacement remain none. The native service does not
+implement original Lock/Unlock or object invalidation, and the live producer
+wire still admits orientation0. Odd widths, unnormalized centres, negative
+pitch, partial clipping, actual driver/error paths, marker/camera-outline
+generation, changing HUD/tooltip inputs and drawing suppression remain pending.
+No launcher or batching implementation changes are part of this increment.
+See [contract and reproduction](native-minimap-terrain.md) and
+[immutable comparison](native-minimap-terrain-comparison-20261009.json).
+
+The reviewed committed-history range remains `b4d5007..e25290c`, with no new
+commits since the retained batch-v7 report. Independent interactive batch and
+profiling workspace changes are outside this minimap execution declaration;
+their uncompleted coverage metadata is reported separately by the whole-tree
+audit/gate. Census refresh records current links only, not validation of that
+concurrent work. Historical evidence fingerprints are preserved.
+
+
+### 2026-10-09 — bounded interactive batch launcher and consumer timings
+
+The opt-in public `--world-batch` route now stages source-only menu/HUD producer
+history from process startup, leaves menus and battle input in the original
+window, replaces only the first sixteen guarded World queues, and ends the
+isolated session at that bound. `--startup-history` selects the automatic map2,
+zero-items route separately. Window closure before completion is cancellation,
+not successful validation. Default World-channel shadow and finite startup shadow
+routes remain available. Full manual menu journeys, original-window cancellation
+and unbounded gameplay remain pending boundaries.
+
+Two prospective-source-bound automatic runs completed sixteen batches and all
+checkpoint comparisons. Debug/software-OpenGL measurements show warm resource
+preparation medians276–349ms, host GPU submission260–298ms, CPU reference
+composition140–175ms and World readback1.27–1.30ms. Session checkpoint diagnostics
+cost11.08–11.47seconds across menus/loading/startup. These are native consumer
+measurements, not original simulation or hardware-general frame latency.
+See [interactive batch scope and measurements](native-world-interactive-batch.md).
+Independent exact-original intermediate/AX revalidation and real native-window
+cancellation are separate evidence steps; old batch/startup evidence is retained
+with its recorded hashes and does not become current merely through these edits.
+
+### Native minimap overlays: bounded original comparison (2026-10-09)
+
+Owned Qt-independent cell/creature markers and selected camera-corner outlines
+now have separate behavior IDs (`RS.minimap-cell-marker`,
+`RS.minimap-creature-markers`, `RS.minimap-camera-corners`) and source/scope-bound
+isolated-original evidence. [Overlay contract and evidence](native-minimap-overlays.md)
+records all four rotations and RGB565/RGB555: 4,752 cases and 53,312,088 complete
+destination words match normal and sanitized native executions, including cell
+return offsets, creature dimension refresh and camera origin changes. Flash
+rings, fog gates, overlapping lists and viewport division boundaries are covered;
+16 atomic refusals pass and immutable original files verify before/after.
+
+This is an offline foundation. No live integration or original drawing bypass
+is claimed. Camera outer borders, subsequent nonempty marker-list composition,
+source camera directions/visibility, driver locks and general caller machine
+state remain pending. Terrain validation remains separate and its historical
+source fingerprints are preserved. Next integration must transport owned inputs
+and apply the observed object/result effects before considering replacement.

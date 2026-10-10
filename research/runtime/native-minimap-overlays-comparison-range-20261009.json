@@ -1,0 +1,65 @@
+{
+  "success": true,
+  "sources": {
+    "renderer/minimap/minimap.hpp": "74970c73a9eff06a2c2fd015b47e38fce5229c712250f11fe5c9dea1dbd5f470",
+    "renderer/minimap/overlays.hpp": "93e97d2697085e12e68fd8e7a7fe25a6634a3ff9cf80ca31d31c2f834b41acba",
+    "renderer/minimap/overlays.cpp": "d1d5b6bdc8d3b6bb156aeac0055257450e35e12069567c03befce1f415b4e3c8",
+    "renderer/minimap/overlays/CMakeLists.txt": "a279dbbbb259d43c1a569f5f937a5f0dbebe47baa2acedb4bdcb27e498e66bc3",
+    "tests/minimap-overlays-fixture.hpp": "3da127d9bf263af61fe49c7307cb47945ed460a535207ce0036fdc1eff24ae46",
+    "tests/minimap-overlays-native.cpp": "fc6d945e0965644655f90cae2e4319bf05d907254686b5ba4f66b28ca81e07d0",
+    "tests/minimap-overlays-original.cpp": "417b06b9b35fa09db44e17b9a04f3035a74091edaf0009cc2daca512692ee31f",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-minimap-overlays.py": "7c0cdaffea98d12f1fb2f647c804624486597910dc7b9cf6bcbd20a2671f3307",
+    "tools/original-manifest.sh": "374c68532b6dc09b797396cb19ae2e753eecc1375ab393d323d0edf8d8c0f564"
+  },
+  "claims": [
+    {
+      "behavior": "RS.minimap-cell-marker",
+      "contract_sha256": "929e45796c64d548a984f48eafdccdda210ddbeb9a696cac7739bdc04a5403fe",
+      "scenarios": {}
+    },
+    {
+      "behavior": "RS.minimap-creature-markers",
+      "contract_sha256": "fb4cc4392c8e823d2508f674cf175e30eebab84ef62c519373bd6fcd02eec9d2",
+      "scenarios": {}
+    },
+    {
+      "behavior": "RS.minimap-camera-corners",
+      "contract_sha256": "ef2460a251170c9e73161190a95ae8ba545a85c7523fe371c7b199d0f04a0dbf",
+      "scenarios": {}
+    }
+  ],
+  "scope": "Four-view owned RGB565/RGB555 cell and creature markers plus selected camera-corner outlines. Independent source-only private PE32 comparison includes cell EAX destination offsets and creature dimension/camera origin results. Outline terrain is a byte-checked private no-op adapter; outer border and subsequent marker list are excluded. No live hook, simulation visibility/corner-vector generation, driver or drawing bypass claim.",
+  "original_pixels_used_as_native_inputs": false,
+  "original_work_bypassed": false,
+  "cases": 4752,
+  "equal": 4752,
+  "words_compared": 53312088,
+  "cases_by_kind": {
+    "0": 3744,
+    "1": 768,
+    "2": 240
+  },
+  "results_compared": 4752,
+  "orientations": 4,
+  "formats": 2,
+  "atomic_refusals": 16,
+  "original_source_storage_unchanged": true,
+  "original_object_mutations_checked": true,
+  "sanitizer_passed": true,
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "original_entry_anchors": {
+    "0x5532f0": "83ec28535556"
+  },
+  "inputs": {
+    "cases.txt": "9745242210e719ff48c84f08dbad683fd075977eafe1e5db1129314ae21ee6fe"
+  },
+  "outputs": {
+    "original.words": "b3f1ac0c490421de5d7f54e4eb1d8e7066b2e87e6b188c5d220f34c2c59bb316",
+    "native.words": "b3f1ac0c490421de5d7f54e4eb1d8e7066b2e87e6b188c5d220f34c2c59bb316",
+    "sanitized.words": "b3f1ac0c490421de5d7f54e4eb1d8e7066b2e87e6b188c5d220f34c2c59bb316",
+    "comparisons.json": "c9785cd1174bc88c8b9b00ff88aca662aec407bebe16989264b0de6ffdd43344"
+  },
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true
+}
