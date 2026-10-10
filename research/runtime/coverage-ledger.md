@@ -1,5 +1,39 @@
 # Engine modernization coverage ledger
 
+## Drawing-family regression follow-up — 2026-10-10
+
+The [reproducible family runner and results](drawing-family-validation.md) execute
+selected checks across all nine inventoried families:16 renderer CTests,
+10 PE32 drawing/recovery cases with40 complete frame comparisons,
+15,204 terrain-submission cases,29,120 effect ANI states, native menu/media
+fixtures and a fresh direct-word startup takeover with15,104 bypassed draws.
+Eight retained takeover canvases/workspaces independently match original code.
+The broad suite's stale sprite presentation expectation is retained as a
+negative result; correcting it to the already independently measured RGB565
+bit-replication policy yields91 exact original/native/presentation samples,
+plus passing sprite guards and exhaustive normal/high-DPI presentation checks.
+The executions retain distinct source versions; no old report hash is refreshed.
+The reporter also incorporates the now-committed finite World queues1..32 proof.
+Effects-to-pixel attribution, active GDI/text, unidentified CPU writers, enabled
+movies/World return and full sustained replacement remain open. Engine statuses
+and the2/9 drawing-family bypass count are not promoted by these regressions.
+
+## Rendering binary/API support accounting — 2026-10-10
+
+The [reviewed crosswalk and reproducible reporter](rendering-coverage.md)
+reconcile twelve required surface-operation categories, four conditional backlog
+categories and nine inventoried drawing families with scoped native code and
+selected immutable original/driver comparison and bypass evidence. Historical
+subset support is reported separately from source/scope/scenario-bound current
+validation; categories share implementations and are not completed categories
+or effort weights. The first three selected World executions retain individual
+10/13,10/13 and9/13 exercised-entry counts and queues1..16 scope. The later
+independently compared queues1..32 execution is now separately selected. No old hashes,
+engine statuses or replacement scope are promoted by this accounting change.
+The initial in-progress queue32 scenario/census limitations suppressed current
+readiness; subsequent immutable queue32 records reconcile those particular gaps. Full supported-session
+and launcher gates remain under the authoritative replacement plan.
+
 ## Native gameplay follow-up checkpoint — 2026-10-10
 
 [Extended gameplay research](native-campaign-extended-gameplay.md) preserves

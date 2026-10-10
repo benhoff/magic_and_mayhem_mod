@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "scope": "Synthetic rendering reporter correctness only: scoped category support, immutable proof verification, explicit domains, current versus historical claims, denominators and safe output boundaries. No new original execution, driver or engine comparison, UI browser run or drawing bypass.",
+  "claims": [
+    {
+      "behavior": "TOOL.rendering-coverage",
+      "contract_sha256": "1918a68b1b592b3ff91ea4015d71710e85be6cd568e0e7a0cd8dc7624a7998ed",
+      "scenarios": {}
+    }
+  ],
+  "sources": {
+    "research/runtime/native-surface-operation-matrix.json": "fc8325951f294e3d53f06f6cdb0b4a79eb6624d4206ff3fea267705ce8977840",
+    "research/runtime/rendering-coverage-scope.json": "e124d12391a954919c00693483e885df447be51fa6e43c7c998d9a5ebaaa0dee",
+    "tests/test-rendering-coverage.py": "a8c2cd488ae6116e4f4459e9176445aa276caae478d2c53c4af21766beba70e2",
+    "tools/coverage_audit.py": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/rendering_coverage.py": "06719f39913bea2c9696fb09ce1b63b3eb80ee8b572d4144a1c46cc86f323542",
+    "tools/report-rendering-coverage.py": "3c37a7561f529b080957399755bc9eeed59783f2ff06a8c2b7abba7e5f7d2dfd"
+  },
+  "sources_stable": true,
+  "success": true,
+  "returncode": 0,
+  "tests": 14,
+  "stdout": "",
+  "stderr": "..............\n----------------------------------------------------------------------\nRan 14 tests in 0.021s\n\nOK\n"
+}

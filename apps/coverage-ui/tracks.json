@@ -456,6 +456,44 @@
           ]
         },
         {
+          "id": "world-raster-takeover",
+          "title": "Replace complete admitted startup World raster queues",
+          "scope": "Actual original-body suppression and independent exact-entry pixel/AX comparisons within startup queues1..32; original traversal and outside-World producers remain active.",
+          "remaining": "Reduce delivery cost and extend beyond queue32, with all unknown callers, clips and side effects retained as gaps.",
+          "requirements": [
+            {
+              "behaviors": [
+                "RS.world-raster-queue-replacement"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": "live_equivalence",
+                "replacement": "scoped_live"
+              }
+            }
+          ]
+        },
+        {
+          "id": "world-batch-takeover",
+          "title": "Replace guarded startup World raster batches",
+          "scope": "Mandatory original destination-access guard and one native final writeback per admitted startup World queue; independent original intermediate/AX comparison. This is bounded raster suppression, not complete drawing replacement.",
+          "remaining": "Extend continuous active gameplay, outside-World producer suppression, transitions and current-source independent comparisons.",
+          "requirements": [
+            {
+              "behaviors": [
+                "RS.world-raster-batch-return"
+              ],
+              "status": {
+                "implementation": "scoped",
+                "comparison": "recorded",
+                "integration": "live_equivalence",
+                "replacement": "scoped_live"
+              }
+            }
+          ]
+        },
+        {
           "id": "world-initialization",
           "title": "Own the original World initialization contract",
           "scope": "Recover canvas allocation, generation, clearing/reuse and upstream producers. Selected retained-state observations do not complete this contract.",
@@ -547,20 +585,20 @@
         }
       ],
       "focus": {
-        "boundary": "Native World rendering and continuous shadow presentation have bounded evidence. Original drawing remains active in the World viewer. Selected unclipped direct-word sprite routes have scoped bypass proof; complete live drawing replacement remains outstanding.",
-        "next_title": "Recover the initial World canvas and its producers",
-        "next_task": "Trace allocation, clearing, reuse and upstream writes before the first World consumer. Establish owned native initialization and complete intervening history, then compare live output independently across camera actions and active battles.",
+        "boundary": "Native surface/resource/presentation foundations and selected direct-word bypass exist. Independent scalar/guarded World raster-body proofs include source-only startup queues1..32. Software-Mesa delivery remains too slow for real-time continuous play. Original traversal and outside-World producers remain active; complete live drawing replacement is outstanding.",
+        "next_title": "Reduce delivery cost and extend beyond queue32",
+        "next_task": "Renew independent original raster comparison for current sources, extend guarded takeover into active gameplay and classify outside-World UI/GDI/CPU producers. Retain initialization, ownership, clips and side-effect gaps. Consult the binary/API crosswalk for category support; dashboard milestones are not effort weights.",
         "next_behaviors": [
+          "RS.world-raster-queue-replacement",
+          "RS.world-raster-batch-return",
           "RS.world-initial-state",
-          "RS.world-frame",
-          "NR.scene-history",
-          "NR.world-shadow-refusal"
+          "NR.live-drawing-replacement"
         ],
         "documents": [
           "docs/live-drawing-replacement.md",
-          "research/runtime/native-world-live-background-gap.md",
-          "research/runtime/native-world-canvas-history.md",
-          "research/runtime/native-world-shadow-refusal.md"
+          "research/runtime/rendering-coverage.md",
+          "research/runtime/native-world-raster-queue.md",
+          "research/runtime/native-world-raster-batch.md"
         ]
       }
     },

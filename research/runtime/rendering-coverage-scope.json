@@ -1,0 +1,434 @@
+{
+  "schema": 1,
+  "build": "nocd-40209ca7",
+  "review_date": "2026-10-10",
+  "scope": "Reviewed No-CD rendering crosswalk: all twelve required surface categories and nine inventoried drawing families, plus bounded World raster-entry executions. Counts indicate categories with some scoped support, not complete category coverage or effort. Simulation/traversal remains independent.",
+  "documents": [
+    "research/runtime/render-drawing-inventory.md",
+    "research/runtime/native-surface-operation-matrix.json",
+    "docs/live-drawing-replacement.md",
+    "research/runtime/native-world-raster-queue.md",
+    "research/runtime/native-world-raster-batch.md"
+  ],
+  "surface_operations": [
+    {
+      "id": "SURF.format.rgb565",
+      "implementation": [
+        "NR.surface-backend.formats-pitch"
+      ],
+      "validation": [
+        {
+          "behavior": "RE.surface-copy.rgb565-bltfast",
+          "evidence": "ORIGINAL.surface-copy.rgb565-bltfast-clipping-stream-20261006",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Native RGB565 and selected installed copy outputs/presentation conversion.",
+      "remaining": "Other callers, transitions and driver/display scenarios remain unverified.",
+      "replacement": []
+    },
+    {
+      "id": "SURF.format.other",
+      "implementation": [
+        "NR.surface-backend.formats-pitch"
+      ],
+      "validation": [
+        {
+          "behavior": "NR.surface-backend.formats-pitch",
+          "evidence": "NR.surface-backend.formats-pitch.replay-20261006",
+          "domain": "standalone_driver"
+        }
+      ],
+      "scope": "Five canonical formats and bounded signed-row imports matched to standalone driver outputs.",
+      "remaining": "Gameplay format reachability, arbitrary masks/conversion and live integration remain unverified.",
+      "replacement": []
+    },
+    {
+      "id": "SURF.copy.opaque",
+      "implementation": [
+        "NR.surface-backend.owned"
+      ],
+      "validation": [
+        {
+          "behavior": "RE.surface-copy.rgb565-bltfast",
+          "evidence": "ORIGINAL.surface-copy.rgb565-bltfast-clipping-stream-20261006",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Retained original RGB565 BltFast rectangles; additional owned same-format driver fixtures.",
+      "remaining": "All original wrappers/callers and native-only live dispatch remain open.",
+      "replacement": []
+    },
+    {
+      "id": "SURF.key.exact_source",
+      "implementation": [
+        "NR.surface-backend.owned"
+      ],
+      "validation": [
+        {
+          "behavior": "RE.surface-copy.rgb565-keyed",
+          "evidence": "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Selected original keyed wrapper, native error/overlap compositions.",
+      "remaining": "All wrappers, formats/clips and native-only live dispatch remain open.",
+      "replacement": []
+    },
+    {
+      "id": "SURF.palette",
+      "implementation": [
+        "NR.surface-backend.ownership-recovery",
+        "NR.palette-resources"
+      ],
+      "validation": [
+        {
+          "behavior": "NR.surface-backend.ownership-recovery",
+          "evidence": "NR.surface-backend.ownership-recovery.final-20261006",
+          "domain": "standalone_driver"
+        }
+      ],
+      "scope": "Selected shared palette/alias ownership and standalone flip/palette state.",
+      "remaining": "Flags, logical palettes and full native-only live palette lifecycle remain open.",
+      "replacement": []
+    },
+    {
+      "id": "SURF.clip.rectangles",
+      "implementation": [
+        "NR.surface-copy.clipping"
+      ],
+      "validation": [
+        {
+          "behavior": "NR.surface-copy.clipping",
+          "evidence": "NR.surface-copy.clipping.backend-20261006",
+          "domain": "standalone_driver"
+        }
+      ],
+      "scope": "Bounded RGB565 Wine Surface2 bounds, precedence and partial writes reproduced natively.",
+      "remaining": "Live clipper observation, retry and remaining formats/key combinations remain open.",
+      "replacement": []
+    },
+    {
+      "id": "SURF.clip.regions",
+      "implementation": [
+        "NR.surface-copy.clipping"
+      ],
+      "validation": [
+        {
+          "behavior": "NR.surface-copy.clipping",
+          "evidence": "NR.surface-copy.clipping.backend-20261006",
+          "domain": "standalone_driver"
+        }
+      ],
+      "scope": "Explicit bounded destination clip-region fixture shapes and changes.",
+      "remaining": "Reachable original game region shapes and native-only live dispatch remain open.",
+      "replacement": []
+    },
+    {
+      "id": "SURF.fill",
+      "implementation": [
+        "NR.surface-backend.owned"
+      ],
+      "validation": [
+        {
+          "behavior": "RE.surface-fill.rgb565",
+          "evidence": "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Selected original fill arguments/results and native owned error compositions.",
+      "remaining": "Other fill wrapper, physical loss/retry and native-only live fills remain open.",
+      "replacement": []
+    },
+    {
+      "id": "SURF.copy.self_overlap",
+      "implementation": [
+        "NR.surface-backend.owned"
+      ],
+      "validation": [
+        {
+          "behavior": "RE.surface-copy.rgb565-overlap",
+          "evidence": "ORIGINAL.surface-copy.rgb565-overlap.native-20261006",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Bounded same-ID opaque RGB565 overlap and alias outputs.",
+      "remaining": "Other formats and live alias/borrowed/mixed-key combinations remain open.",
+      "replacement": []
+    },
+    {
+      "id": "SURF.restore",
+      "implementation": [
+        "NR.surface-backend.ownership-recovery",
+        "NR.surface-reload.bitmap-dc"
+      ],
+      "validation": [
+        {
+          "behavior": "RE.surface-copy.restore-retry",
+          "evidence": "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Original scripted retry scheduling and selected supplied bitmap/native reload compositions.",
+      "remaining": "Actual game/driver lost-draw, remaining reload bodies and full native-only recovery remain open.",
+      "replacement": []
+    },
+    {
+      "id": "SURF.lifetime_updates",
+      "implementation": [
+        "NR.surface-access",
+        "NR.surface-backend.ownership-recovery"
+      ],
+      "validation": [
+        {
+          "behavior": "NR.surface-backend.ownership-recovery",
+          "evidence": "NR.surface-backend.ownership-recovery.final-20261006",
+          "domain": "standalone_driver"
+        }
+      ],
+      "scope": "Owned access leases/alias attachments and explicit validity with standalone sequences.",
+      "remaining": "Complete original producer/CPU-write lifecycle and live recovery remain open.",
+      "replacement": []
+    },
+    {
+      "id": "SURF.flip",
+      "implementation": [
+        "NR.surface-backend.ownership-recovery"
+      ],
+      "validation": [
+        {
+          "behavior": "NR.surface-backend.ownership-recovery",
+          "evidence": "NR.surface-backend.ownership-recovery.final-20261006",
+          "domain": "standalone_driver"
+        }
+      ],
+      "scope": "Two-buffer native storage/validity/lease swaps matched to eleven standalone primary flips.",
+      "remaining": "Native-only live presentation, uncaptured interleavings and longer chains remain open.",
+      "replacement": []
+    }
+  ],
+  "drawing_routes": [
+    {
+      "id": "RI.copies",
+      "implementation": [
+        "NR.surface-backend.owned"
+      ],
+      "validation": [
+        {
+          "behavior": "RE.surface-copy.rgb565-bltfast",
+          "evidence": "ORIGINAL.surface-copy.rgb565-bltfast-clipping-stream-20261006",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Native same-format surface-copy subset.",
+      "remaining": "Complete caller attribution and original copy suppression remain open.",
+      "replacement": []
+    },
+    {
+      "id": "RI.fills",
+      "implementation": [
+        "NR.surface-backend.owned"
+      ],
+      "validation": [
+        {
+          "behavior": "RE.surface-fill.rgb565",
+          "evidence": "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Native owned fill subset.",
+      "remaining": "All callers/retry branches and original fill suppression remain open.",
+      "replacement": []
+    },
+    {
+      "id": "RI.locked-writes",
+      "implementation": [
+        "RS.word-raster",
+        "NR.surface-access"
+      ],
+      "validation": [
+        {
+          "behavior": "RS.word-raster",
+          "evidence": "RS.word-raster.original-20261007",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Selected CPU sprite raster producer and compatible owned lock storage only.",
+      "remaining": "Unclassified Lock writers, JPEG destination writer and other producers remain open.",
+      "replacement": []
+    },
+    {
+      "id": "RI.gdi-text",
+      "implementation": [
+        "NR.surface-reload.bitmap-dc"
+      ],
+      "validation": [
+        {
+          "behavior": "RE.surface-reload.cursor-sentinel",
+          "evidence": "ORIGINAL.surface-reload.cursor-sentinel.native-20261006",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Supplied cursor bitmap/reloader compositions only; SFT glyphs are a separate sprite route.",
+      "remaining": "Active GDI producers, original text layout and native GDI suppression remain open.",
+      "replacement": []
+    },
+    {
+      "id": "RI.terrain",
+      "implementation": [
+        "NR.scene-service",
+        "RE.terrain_submission"
+      ],
+      "validation": [
+        {
+          "behavior": "RE.terrain_submission",
+          "evidence": "ORIGINAL.terrain-submission",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Selected ordinary terrain submission/native scenes; World raster bypass is separate below.",
+      "remaining": "Traversal/submission remains original; complete water/overlay/picking/visibility routes remain open.",
+      "replacement": []
+    },
+    {
+      "id": "RI.sprites",
+      "implementation": [
+        "RS.word-route",
+        "NR.scene-service"
+      ],
+      "validation": [
+        {
+          "behavior": "RS.word-route",
+          "evidence": "RS.word-route.takeover-20261007",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Two selected in-bounds direct-word backend entries; indexed World is accounted separately.",
+      "remaining": "Clipped/alternate backends, full dispatch and caller side effects remain open.",
+      "replacement": [
+        {
+          "behavior": "RS.word-route",
+          "evidence": "RS.word-route.takeover-20261007"
+        }
+      ]
+    },
+    {
+      "id": "RI.effects",
+      "implementation": [],
+      "validation": [],
+      "scope": "Offline effect state/light/animation foundations do not establish the complete effect-to-pixel route.",
+      "remaining": "Effect-to-raster attribution and full visual admission/ordering remain unresolved.",
+      "replacement": []
+    },
+    {
+      "id": "RI.ui",
+      "implementation": [
+        "RS.word-route",
+        "NR.scene-service"
+      ],
+      "validation": [
+        {
+          "behavior": "RS.word-route",
+          "evidence": "RS.word-route.takeover-20261007",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Selected direct-word UI sprite bodies only; Qt widgets/capture replay are separate.",
+      "remaining": "HUD/minimap/tooltips/fonts/cursor composition and all UI producer suppression remain open.",
+      "replacement": [
+        {
+          "behavior": "RS.word-route",
+          "evidence": "RS.word-route.takeover-20261007"
+        }
+      ]
+    },
+    {
+      "id": "RI.movies",
+      "implementation": [
+        "HOST.media"
+      ],
+      "validation": [],
+      "scope": "Partial native media plumbing with static register support.",
+      "remaining": "Enabled movies, placement/errors and graphics ownership on World return remain open.",
+      "replacement": []
+    }
+  ],
+  "world_takeovers": [
+    {
+      "behavior": "RS.world-raster-queue-replacement",
+      "evidence": "RS.world-raster-queue.prefix16-boundary-replacement-20261008",
+      "admitted_entries": [
+        "0x595677",
+        "0x5947b2",
+        "0x59521a",
+        "0x595b47",
+        "0x59603e",
+        "0x57de00",
+        "0x57ec90",
+        "0x57f0f0",
+        "0x57f5f0",
+        "0x5806f0",
+        "0x596490",
+        "0x5968a4",
+        "0x57e540"
+      ]
+    },
+    {
+      "behavior": "RS.world-raster-batch-return",
+      "evidence": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+      "admitted_entries": [
+        "0x595677",
+        "0x5947b2",
+        "0x59521a",
+        "0x595b47",
+        "0x59603e",
+        "0x57de00",
+        "0x57ec90",
+        "0x57f0f0",
+        "0x57f5f0",
+        "0x5806f0",
+        "0x596490",
+        "0x5968a4",
+        "0x57e540"
+      ]
+    },
+    {
+      "behavior": "RS.world-raster-batch-return",
+      "evidence": "RS.world-raster-batch.identity-cache-replacement-20261009",
+      "admitted_entries": [
+        "0x595677",
+        "0x5947b2",
+        "0x59521a",
+        "0x595b47",
+        "0x59603e",
+        "0x57de00",
+        "0x57ec90",
+        "0x57f0f0",
+        "0x57f5f0",
+        "0x5806f0",
+        "0x596490",
+        "0x5968a4",
+        "0x57e540"
+      ]
+    },
+    {
+      "behavior": "RS.world-raster-batch-return",
+      "evidence": "NR.world32.replacement-20261010",
+      "admitted_entries": [
+        "0x595677",
+        "0x5947b2",
+        "0x59521a",
+        "0x595b47",
+        "0x59603e",
+        "0x57de00",
+        "0x57ec90",
+        "0x57f0f0",
+        "0x57f5f0",
+        "0x5806f0",
+        "0x596490",
+        "0x5968a4",
+        "0x57e540"
+      ]
+    }
+  ]
+}

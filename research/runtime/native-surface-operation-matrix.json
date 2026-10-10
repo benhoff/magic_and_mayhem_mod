@@ -633,5 +633,11 @@
       "original_fixture_ids": [],
       "remaining_gap": "Keep as explicit discovery backlog; promote to required only with caller/descriptor evidence or an explicit scope decision."
     }
-  ]
+  ],
+  "coverage_reconciliation": {
+    "scope": "Reviewed category subset support only; existing per-operation gaps and historical fixtures remain authoritative.",
+    "crosswalk": "research/runtime/rendering-coverage-scope.json",
+    "reporter": "tools/report-rendering-coverage.py",
+    "documentation": "research/runtime/rendering-coverage.md"
+  }
 }

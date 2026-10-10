@@ -1,6 +1,6 @@
 # Complete live drawing replacement
 
-Reviewed 2026-10-07. **Complete live drawing replacement is not available.**
+Reviewed 2026-10-10. **Complete live drawing replacement is not available.**
 `./tools/run-qt-shell.sh` selects native capture/replay presentation while the
 original game continues its simulation and drawing. No current launcher flag
 enables complete drawing replacement.
@@ -13,6 +13,13 @@ behavior links and independent validation statuses; the
 milestones. Subsystem research owns build-specific facts and evidence. Update
 this plan when those results change the replacement scope or next step; retain
 historical evidence at its recorded hashes.
+
+The [binary/API coverage reconciliation](../research/runtime/rendering-coverage.md)
+and `python3 tools/report-rendering-coverage.py` report scoped implementation,
+independent original/driver comparison and actual bypass against reviewed
+denominators. Categories with some support are not complete categories. No
+overall effort/completion percentage is inferred. The newer World queue/batch
+proofs below supersede the older next-step prose for their bounded scopes only.
 
 ## Meaning of complete replacement
 
@@ -86,6 +93,18 @@ auxiliary passes, indexed World sprites and the other frame producers remain
 active. Its bounded shadow/takeover comparisons are scoped primitive evidence,
 not a complete scene or supported-session milestone.
 
+The [complete startup World raster queue](../research/runtime/native-world-raster-queue.md)
+and [guarded batch return](../research/runtime/native-world-raster-batch.md)
+now have actual original-body suppression and independent comparisons across
+queues1..16. Ten of thirteen admitted entries are exercised in the scalar and
+initial batch proofs. A later identity-cache batch exercises nine. Each run
+retains its source fingerprints. The newer owned-source batch extends the
+independent comparison to queues1..32: 63,124 precise raster canvases and AX
+results, 1,224 completed checkpoints and 32 live finals match original execution.
+Ten admitted entries are exercised. Its software-Mesa median queue time of
+223.83 ms leaves real-time continuous delivery unvalidated. Longer gameplay,
+outside-World producers and complete consumer side effects remain open.
+
 | Area | Current boundary | Work required for complete replacement |
 | --- | --- | --- |
 | Copies and fills | Native operations and selected original/driver comparisons exist; live hooks still call original drawing. | Route admitted operations directly to native storage, preserving clipping, keys, flags, partial writes and caller-visible results. |
@@ -124,7 +143,7 @@ research's historical milestone numbers retain their local meaning.
 | DRAW-02 Independent comparison | Original-output corpus for surfaces and complete scenes, with frame/input identities. | Full World consumer inputs and independent whole-canvas comparisons added; broader session corpus remains open. | Native output is compared with independent original output for the selected scenario; oracle pixels never drive native rendering. |
 | DRAW-03 Native scene completeness | Asset-backed rendering for the admitted draw kinds, backgrounds, shading and UI. | Six raster modes, actual colours, clips and strict complete World resource binding implemented. Whole-consumer side effects and later HUD/window output remain open. | The declared scene is complete, including required side effects; diagnostic backgrounds, omitted draws and unshaded approximations cannot pass baseline comparison. |
 | DRAW-04 Continuous scene delivery | Versioned live drawing inputs from original simulation to native services. | Owned World two-slot delivery and GPU shadow presentation exist; original initialization and complete intervening history remain open. | Complete frame admission, identity/lifetime, backpressure and transitions pass without sourcing dynamic frames from original raster output. |
-| DRAW-05 Scoped live takeover | Bypass original drawing for one validated route or complete scene, with explicit mode identity. | Direct-word sprite backend MVP has bounded shadow/takeover execution; complete-scene takeover remains outstanding. | Independent live comparison and counters prove the selected original work was skipped; caller-visible behavior, readbacks and cleanup pass. |
+| DRAW-05 Scoped live takeover | Bypass original drawing for one validated route or complete scene, with explicit mode identity. | Direct-word sprite MVP and complete admitted raster-body suppression across startup World queues1..32 have bounded independent takeover proof. Whole-session and complete consumer takeover remain outstanding. | Independent live comparison and counters prove the selected original work was skipped; caller-visible behavior, readbacks and cleanup pass. |
 | DRAW-06 Supported session coverage | Expand takeover to every required drawing route and scenario. | Outstanding. | Full-session corpus, failure/recovery and supported physical-driver checks pass; every fallback or unsupported route is reported as a separate outcome. |
 | DRAW-07 Complete launcher mode | Expose a capability-checked complete-replacement option. | Unavailable. | All completion criteria below pass for the declared build/scenario scope, and the register records the appropriate replacement evidence. |
 
@@ -132,9 +151,11 @@ The initial implementation path is `runtime/scene/`, `compat/legacy/` and
 `renderer/scenes/`. The owned World frame increment supplies actual colours,
 effective draw order/clips and complete original batch output for finite
 comparison. The continuous World shadow viewer supplies bounded immutable publication,
-backpressure and Qt GPU presentation. Next recover startup canvas producers,
-clear/reuse ownership and the lazy displacement/unadmitted startup routes, then
-deliver complete native history across unpublished queues. Extend the DRAW-02
+backpressure and Qt GPU presentation. Source-only startup/HUD reconstruction and
+bounded complete raster-body suppression now support selected queues1..32.
+Next reduce measured delivery cost and extend guarded
+replacement beyond queue32 while classifying outside-World producers and
+remaining initialization, displacement/clipping and ownership routes. Extend the DRAW-02
 corpus with camera actions and active battles while classifying additional
 draw kinds and required consumer side effects before complete scene takeover.
 
