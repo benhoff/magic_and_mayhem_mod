@@ -4073,3 +4073,32 @@ acrossd412789..0191a55 withzero gaps. Older wider/shared contracts remain histor
 where source edits invalidate current evidence. Original font/text consumer live
 integration, indexed/auxiliary effects, more active battle/camera coverage and
 sustained delivery/recovery remain outstanding.
+
+
+### Glyph backend caller state and cold coverage — 2026-10-10
+
+`RS.glyph-backend-state` compares an independent integer, argument and coverage
+model with unchanged `0x581ec0`: 27,974 matches, all 1,205 glyphs in six installed
+fonts, 20,736 synthetic configurations and eight separate two-active-slot
+diagnostics. Callee registers, RET16, defined ADD ESP40 flags, DF, source,
+padding, XMM and MXCSR checks pass. Original zero/one finite active x87 values,
+control words, tags and TOP remain intact in 27,966 cases.
+`NR.glyph-backend-state-admission` records 16 atomic refusals under ASan/UBSan
+and a freestanding PE32 model with no undefined helpers. Malformed native
+requests are not executed by original code.
+
+Cold coverage preparation multiplies by float constant `0x3c820821`, precedes
+geometric skip and leaves the sentinel zero. Tint arguments mutate on rejected
+geometry, Y becomes row-end/final-run state, and AX-only early returns retain
+upper EAX. Original x87 status changes in 23,324 executions. Upward cold rounding
+exceeds unit coverage at index63 in 3,495 cases; all eight selected two-active-slot
+draws fault and change active values. These observations constrain the next glyph
+entry, epilogue and FP admission. No live bypass or complete FP/Win32 equivalence
+is claimed.
+
+[Scope, results and limitations](glyph-backend-state.md) preserve unsuccessful
+versions and the final prospectively declared execution. Committed history
+`0191a55..577d293` has 51 file and 103 behavior transitions with zero receipt gaps.
+Existing glyph pixels, byte production and live shadow evidence retain their
+separate scopes. Higher text layout/reset/lifecycle and wider replacement remain
+open.
