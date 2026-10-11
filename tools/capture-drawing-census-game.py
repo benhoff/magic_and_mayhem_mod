@@ -25,7 +25,7 @@ from campaign_gameplay import read_rows, creatures
 from campaign_spell import read_spell_rows
 
 
-from drawing_api_cohorts import cohort, require_bindings
+from drawing_api_cohorts import cohort, require_bindings, call_role
 
 
 def capture(root, template, journey, claims=None):
@@ -62,6 +62,7 @@ def capture(root, template, journey, claims=None):
               'gameplay_observation_enabled': manifest.get('gameplay_observation_enabled', False)}
     report['api_observation_enabled'] = manifest.get('api_observation_enabled', False)
     report['cohort']=selected
+    report['call_boundary_role']=call_role(manifest)
     server = process = display = channel = control = log = None
     subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
     try:
@@ -396,6 +397,7 @@ def capture(root, template, journey, claims=None):
             report['core_physical_caller_review']={'scope':'Exact per-run relocated E8 and named leave identities only; logical tail flow/original owners remain pending.','callers':[{'physical_caller':pc,'classification':core_physical(pc,report['core_bindings'])} for pc in core_callers]}
         if report['api_observation_enabled']:
             api_manifest = json.loads((root / 'api-build.json').read_text())
+            if api_manifest.get('call_boundary_role','graphics_api')!=report['call_boundary_role']:raise RuntimeError('CALL target observer role differs from prepared cohort')
             if api_manifest.get('cohort','core_api')!=selected:raise RuntimeError('API manifest observation cohort mismatch')
             if api_manifest.get('synthetic_fixture',False):raise RuntimeError('Original journey cannot use synthetic API namespace')
             bindings = api_bindings(root / 'capture/api-bindings.bin', api_manifest)

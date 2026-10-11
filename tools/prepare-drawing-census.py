@@ -10,7 +10,7 @@ import struct
 import subprocess
 import tempfile
 from drawing_census import ROOT, BUILD_SHA256
-from drawing_api_cohorts import cohort
+from drawing_api_cohorts import cohort, call_role
 
 
 def load(name, path):
@@ -22,14 +22,16 @@ def load(name, path):
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def prepare(source, movies=False, menu_only=False, gameplay=False, api=False, api_only=False):
+def prepare(source, movies=False, menu_only=False, gameplay=False, api=False, api_only=False, cpu=False):
+    if cpu and (api or api_only or menu_only): raise ValueError("CPU target observation requires its own original-active core cohort")
+    api=api or cpu
     if api and menu_only: raise ValueError('API observation requires the original-active core census cohort')
     selected=cohort({'api_observation_enabled':api,'call_census_enabled':not(menu_only or api_only),'api_only':api_only})
     source = source.resolve(); raw = (source / 'Chaos.exe').read_bytes()
     if hashlib.sha256(raw).hexdigest() != BUILD_SHA256: raise ValueError('Unsupported source executable')
     census = load('drawing_build', 'tools/build-drawing-census.py').build(source / 'Chaos.exe')
     menu = load('drawing_menu', 'tools/build-menu-observer.py').build()
-    api_dll = load('drawing_api_build', 'tools/build-drawing-api-census.py').build(source / 'Chaos.exe', selected) if api else None
+    api_dll = load('drawing_api_build', 'tools/build-drawing-cpu-census.py' if cpu else 'tools/build-drawing-api-census.py').build(source / 'Chaos.exe', selected) if api else None
     parent = ROOT / 'working/experiments/drawing-census'; parent.mkdir(parents=True, exist_ok=True)
     root = Path(tempfile.mkdtemp(prefix='run-', dir=parent)); game = root / 'game'
     load('drawing_isolation', 'tools/prepare-scene-observer.py').copy_installation(source, game)
@@ -72,7 +74,9 @@ def prepare(source, movies=False, menu_only=False, gameplay=False, api=False, ap
                 'api_only':api_only,'cohort':selected,
                 'gameplay_observation_enabled': gameplay,
                 'api_observation_enabled': api,
+                'call_boundary_role':'cpu_backend_dispatch' if cpu else 'graphics_api' if api else 'none',
                 'scope': 'Original-active signature-pinned drawing call metadata; no native rendering or gameplay changes.'}
+    call_role(manifest)
     (root / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     if sha(source / 'Chaos.exe') != BUILD_SHA256: raise ValueError('Original source executable changed')
     return root
@@ -85,7 +89,8 @@ if __name__ == '__main__':
     parser.add_argument('--gameplay-observation', action='store_true', help='Enable existing passive original creature/spell hooks in the disposable game')
     parser.add_argument('--api-observation', action='store_true', help='Enable separate original CALL before/after API journal and exact per-run bindings')
     parser.add_argument('--api-only',action='store_true',help='Separate full API cohort; original drawing entries remain unpatched and core census is absent')
+    parser.add_argument('--cpu-observation',action='store_true',help='Separate128site raster-global/CRT target observer beside original-active core; excludes the graphics API cohort')
     args = parser.parse_args()
     subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
-    try: print(prepare(args.source_game, args.movies, args.menu_only, args.gameplay_observation, args.api_observation or args.api_only, args.api_only), flush=True)
+    try: print(prepare(args.source_game, args.movies, args.menu_only, args.gameplay_observation, args.api_observation or args.api_only, args.api_only, args.cpu_observation), flush=True)
     finally: subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
