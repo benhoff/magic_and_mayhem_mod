@@ -4753,3 +4753,18 @@ external API/lifetime and14scenario/four dispatch closure remain pending; recove
 implementation/comparison/integration/replacement statuses staynone. History
 c43bfde..0b40de2 has11file/21behavior exact receipts with no missing versions.
 See [client-state scope](draw01-inventory.md).
+
+
+DRAW-01 all-kinds consumer client state (2026-10-11):984960unique unchanged-original
+consumer cells pass across kinds-2..35, direct-marker/ordinary-offset, four raw
+returns, Video0/1, empty/one/two rows, signed first spans/changed prior metadata,
+480/600clip branches and optional cleanup.93exact CALL return PCs,1271936clip/
+544000wave/492480cleanup calls are retained as offline counts. Raw559379392byte
+output and16054745byte gzip decode to the sameSHA524f76b1099db750656eaa8494a2fca2d3fef3224bd602fafe999ad9125584de.
+Original/source hashes are stable; the earlier58320cells remain historical without
+refresh. All numeric/default table entries now link the selected client-state
+contract, but actual helper effects, indexed/-127 changed-prior variants, pixels/
+objects/lifetime and14scenario/four dispatch closure remain pending. Recovered
+native implementation/comparison/integration/replacement remainnone. History
+0b40de2..23bd1c0 has14file/85behavior exact receipts and no missing versions.
+See [full scoped evidence](draw01-inventory.md).

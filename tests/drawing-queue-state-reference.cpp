@@ -48,10 +48,10 @@ int main(int argc,char** argv)try{
     using Consumer=void (__attribute__((thiscall)) *)(void*);
     unsigned cases=0;
     for(unsigned video:{0u,1u})for(unsigned count:{0u,1u,2u})for(unsigned post:{0u,1u})
-    for(unsigned kind:{9u,15u,35u})for(int y:{-20,-12,0,1,100,468,480,588,600})
+    for(int kind=-2;kind<=35;++kind)for(int y:{-20,-12,0,1,100,468,480,588,600})
     for(std::uint16_t first:{std::uint16_t(0x8ad0),std::uint16_t(-13),std::uint16_t(-12),std::uint16_t(-11),std::uint16_t(0),std::uint16_t(5)})
     for(std::uint16_t prior:{std::uint16_t(0x8ad0),std::uint16_t(0),std::uint16_t(1),std::uint16_t(0x1234),std::uint16_t(0xffff)})
-    for(unsigned height_flag:{0u,1u})for(unsigned value:{0u,0x12345678u,0xffffffffu}){
+    for(unsigned height_flag:{0u,1u})for(unsigned value:{0u,1u,0x12345678u,0xffffffffu}){
         std::array<std::uint32_t,18> rows{};
         for(unsigned i=0;i<2;++i){auto* row=rows.data()+i*9;
             row[1]=state_pointer(object);row[2]=120+i;row[3]=std::uint32_t(y+int(i)*3);
@@ -71,7 +71,8 @@ int main(int argc,char** argv)try{
         for(unsigned i=0;i<2;++i){auto expected=original_rows;
             if(i<count){
                 if(video&&prior!=0x8ad0)expected[i*9+3]=std::uint32_t(y+int(i)*3-int(std::int16_t(prior))+16);
-                const auto metadata=kind==35?prior:kind==9?0:std::uint16_t(value);
+                const bool defaulted=kind<0||kind>34||(!video&&(kind==7||kind==32));
+                const auto metadata=defaulted?prior:kind==9?0:std::uint16_t(value);
                 expected[i*9+7]=first|(std::uint32_t(metadata)<<16);
             }
             state_check(std::equal(rows.begin()+i*9,rows.begin()+(i+1)*9,expected.begin()+i*9),
@@ -95,16 +96,19 @@ int main(int argc,char** argv)try{
             state_check(call.return_pc==0x500337||call.return_pc==0x500388,"Opening clip exact original caller");
             ++actual_openings;state_check(call.edx==3+pitch&&call.args[0]==799+pitch*2,"Opening clip pitch/address arguments");}
         state_check(actual_openings==opening_clips,"Strict clip opening boundary policy");
-        unsigned expected_waves=kind==15?count:0;
+        const bool wave_kind=kind>=15&&kind<=30;
+        unsigned expected_waves=wave_kind?count:0;
         unsigned expected_restores=0,expected_auxiliary_clips=0;std::vector<unsigned> auxiliary_tops;
         if(video)for(unsigned i=0;i<count;++i){const int endpoint=y+int(i)*3+12+int(std::int16_t(first));
             const bool auxiliary=first!=0x8ad0&&endpoint<int(height_flag?600:480)&&endpoint<600;
-            if(kind==15&&auxiliary)++expected_waves;
+            if(wave_kind&&auxiliary)++expected_waves;
             if(auxiliary){++expected_auxiliary_clips;auxiliary_tops.push_back(std::max(endpoint,0));}
             if(first!=0x8ad0||prior!=0x8ad0)++expected_restores;
         }
         const auto waves=std::count_if(state_calls.begin(),state_calls.end(),[](const auto& c){return c.tag==0x5806f0;});
         state_check(waves==int(expected_waves),"Auxiliary dispatch strict480/600 boundary policy");
+        for(const auto& call:state_calls)if(call.tag==0x5806f0)
+            state_check(call.args[1]==unsigned(kind-14),"All wave-kind literal amplitudes");
         unsigned restores=0,auxiliary_clips=0;
         for(const auto& call:state_calls)if(call.tag==0x57dc60&&call.args[1]==600){
             state_check(call.edx==3&&call.args[0]==799+pitch*2,"Auxiliary/restored clip arguments");
@@ -129,5 +133,5 @@ int main(int argc,char** argv)try{
             std::cout<<"]}";
         }std::cout<<"]}\n";++cases;
     }
-    state_check(cases==58320,"Case count");return 0;
+    state_check(cases==984960,"Case count");return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
