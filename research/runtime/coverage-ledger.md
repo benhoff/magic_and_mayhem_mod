@@ -4426,3 +4426,16 @@ policy without claiming new original observations, rendering parity or takeover.
 The initial suite pins the existing component and startup-scene catalogs. Complete
 presented sessions and operation/failure acquisition remain pending. See
 [full session comparison](draw02-full-session.md).
+
+### 2026-10-10: DRAW-02 full retained sixteen-queue comparison sequence
+
+The portable corpus now preserves all46,647 contiguous producer records,
+16World queues,16encoded source assets and1,062independent original checkpoints,
+covering474,236,912RGB565 pixels. Lossless bounded chunks and same-canvas oracle
+deltas preserve exact historical hashes while keeping portable storage bounded.
+Native replay receives only owned producer/source inputs; full output planes and
+completion identities are compared externally. A first full native replay matches
+all checkpoints with zero mismatches; final source-bound delta replay is recorded
+separately. Historical one-raster bypass provenance remains explicit. This does
+not establish presented frame/action continuity, new original execution, caller
+or driver failure behavior or any complete session journey.
