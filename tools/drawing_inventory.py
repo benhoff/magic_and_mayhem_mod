@@ -107,11 +107,30 @@ def project(record, definition):
             entry, hits = address(row['entry']), count(row['count'])
             if observed_phase == phase: counts[entry] += hits
         return sorted(counts.items())
+    if kind == 'api_site_rows':
+        phase = definition['phase']
+        if type(phase) is not int or not 0 <= phase <= 14 or definition['selector'] != 'api_site' or not isinstance(data, list):
+            raise ValueError('Invalid API site phase/projection')
+        counts = Counter()
+        for row in data:
+            observed_phase = row['phase']
+            if type(observed_phase) is not int or not 0 <= observed_phase <= 14:
+                raise ValueError('Invalid recorded API phase')
+            site, hits = address(row['site']), count(row['count'])
+            # Validate excluded phases too. A diagnostic target is not a type,
+            # function owner or interface lifetime proof.
+            for key in ('target_slot', 'target_value'):
+                address(row[key])
+            if type(row['target_state']) is not int or row['target_state'] not in {1, 2, 3, 4}:
+                raise ValueError('Invalid recorded API target state')
+            if observed_phase == phase:
+                counts[site] += hits
+        return sorted(counts.items())
     raise ValueError('Unreviewed activity projection: ' + kind)
 
 
 def selector_key(kind, identity):
-    if kind == 'entry':
+    if kind in {'entry', 'api_site'}:
         return kind, address(identity)
     if kind == 'draw_kind':
         value = int(identity, 0) if isinstance(identity, str) else identity
@@ -156,6 +175,35 @@ def reconcile(root, catalog, register):
     if static['source_sha256'] != build['source_sha256']:
         raise ValueError('Static inventory build mismatch')
     returns = caller_returns(static)
+    api_sites = {}
+    for source in catalog.get('api_site_sources', []):
+        ev = evidence[source['evidence']]
+        if ev['kind'] != 'static':
+            raise ValueError('API site census requires static evidence')
+        record = evidence_record(root, ev, builds)
+        if type(record['schema']) is not int or record['schema'] != 1 or record['source_sha256'] != build['source_sha256'] or record['input_unchanged'] is not True:
+            raise ValueError('API site census build/schema/input mismatch')
+        from drawing_api_sites import call_mode
+        seen = set()
+        for row in record['calls']:
+            site = address(row['site'])
+            if site in seen:
+                raise ValueError('Duplicate static API CALL site')
+            seen.add(site)
+            raw = bytes.fromhex(row['bytes'])
+            if not raw or address(row['return_pc']) != site + len(raw):
+                raise ValueError('API CALL return PC/extent mismatch')
+            mode = call_mode({'address': site, 'mnemonic': 'call', 'bytes': row['bytes'], 'operand': row['operand']})
+            if mode['kind'] == 'unresolved_indirect' or mode != row['target_mode']:
+                raise ValueError('API CALL target mode differs from exact bytes')
+            imported = row.get('exact_import')
+            if imported and (mode['kind'] != 'absolute_memory' or address(imported['iat_va']) != mode['address']):
+                raise ValueError('API import differs from exact CALL slot')
+            for owner in row['discovered_owners']:
+                address(owner)
+            if site in api_sites and api_sites[site] != row:
+                raise ValueError('Conflicting static API CALL site')
+            api_sites[site] = row
     windows = {}
     selectors = {}
     binary = None
@@ -172,6 +220,10 @@ def reconcile(root, catalog, register):
             raise ValueError('Route lacks side effects or support rationale')
         if not route['documents']:
             raise ValueError('Route lacks research')
+        if 'api_site' in route:
+            point = address(route['api_site'])
+            if 'entry' in route or route.get('selectors') != [{'kind': 'api_site', 'identity': point}] or point not in api_sites:
+                raise ValueError('API site needs an exact static CALL route, separate from function entries')
         for path in route['documents']:
             target = (root / path).resolve()
             if Path(path).is_absolute() or '..' in Path(path).parts or not target.is_relative_to(root.resolve()) or not target.is_file() or path.split('/')[0] in {'original', 'working', '.git'}:
@@ -200,17 +252,27 @@ def reconcile(root, catalog, register):
             key = selector_key(selector['kind'], selector['identity'])
             if selector['kind'] == 'entry' and 'entry' in route and key[1] != address(route['entry']):
                 raise ValueError('Entry selector disagrees with original route')
+            if selector['kind'] == 'api_site':
+                if 'entry' in route or 'api_site' not in route or key[1] != address(route['api_site']) or key[1] not in api_sites:
+                    raise ValueError('API site needs an exact static CALL route, separate from function entries')
             if key in selectors:
                 raise ValueError('Ambiguous route selector')
             selectors[key] = route['id']
     if windows.keys() != static['ranges'].keys():
         raise ValueError('Static window census changed; classify every window')
+    for site in api_sites:
+        if selector_key('api_site', site) not in selectors:
+            raise ValueError('Static API CALL lacks reviewed route: ' + hex(site))
     activities = []
     unaccounted = []
     for source in sources.values():
         for projection in source['projections']:
             if projection['activity'] not in {'live_original_active', 'live_takeover', 'live_observation'}:
                 raise ValueError('Unreviewed activity classification')
+            if projection['selector'] == 'api_site':
+                api = records[source['id']].get('api', {})
+                if api.get('journal_integrity') is not True or api.get('original_sha256') != build['source_sha256']:
+                    raise ValueError('API activity needs an intact build-bound journal')
             for identity, hits in project(records[source['id']], projection):
                 key = selector_key(projection['selector'], identity)
                 route = selectors.get(key)
@@ -330,6 +392,7 @@ def reconcile(root, catalog, register):
             'activities': activities, 'scenarios': scenario_rows, 'unaccounted': unaccounted,
             'static_callers': static['callers'], 'static_caller_returns': {hex(k): v for k, v in returns.items()},
             'static_indirect_calls': indirect, 'static_computed_jumps': jumps, 'dispatch_tables': tables,
+            'static_api_sites': list(api_sites.values()),
             'hook_entries': hooks, 'additional_hook_entries': additional_hooks,
             'metadata_hook_entries': metadata_hooks, 'metadata_hook_refusals': metadata_refusals,
             'completion_blockers': blockers, 'draw01_complete': not blockers,
@@ -337,6 +400,8 @@ def reconcile(root, catalog, register):
                        'additional_interior_hooks': len(additional_hooks),
                        'metadata_instrumented_entries': len({row['entry'] for row in metadata_hooks}),
                        'metadata_refused_entries': len({row['entry'] for row in metadata_refusals}),
+                       'api_registered_sites': len(api_sites),
+                       'api_observed_sites': len({a['identity'] for a in activities if a['selector'] == 'api_site' and a['count']}),
                        'required_scenarios': sum(s['required'] for s in scenario_rows), 'unaccounted': len(unaccounted)},
             'limitations': ['Activity counters belong to individual bounded cohorts; do not sum them into runtime frequencies.',
                             'Aggregate operations do not identify every wrapper entry or caller.',

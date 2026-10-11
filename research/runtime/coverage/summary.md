@@ -7,8 +7,8 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 576 |
-| evidence | 985 |
-| scenarios | 301 |
+| evidence | 986 |
+| scenarios | 302 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
 | incomplete dispatch tables | 22 |
@@ -26,9 +26,9 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 169 |
 | behaviors without comparison | 474 |
 | behaviors without tests | 1 |
-| stale evidence | 767 |
+| stale evidence | 775 |
 | behavior anchors outside discovered functions | 46 |
-| validation gaps | 713 |
+| validation gaps | 717 |
 | retired execution claims | 376 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
@@ -46,7 +46,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Current scope-bound validation | Counts |
 | --- | --- |
-| implementation | none: 169; pending: 384; current: 23 |
+| implementation | none: 169; pending: 388; current: 19 |
 | comparison | none: 474; pending: 97; current: 5 |
 | integration | none: 337; pending: 227; current: 12 |
 | replacement | none: 570; pending: 5; current: 1 |
@@ -1489,7 +1489,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **DRAW.census.caller-source-abi-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tests/drawing-census-abi.c`, `tests/test-drawing-census-trace.py`, `tests/test-drawing-inventory.py`, `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_census.py`, `tools/drawing_inventory.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
 - **DRAW.census.phase-abi-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tests/drawing-census-abi.c`, `tests/test-drawing-census-trace.py`, `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_census.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
 - **DRAW.census.campaign-observation-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tests/drawing-census-abi.c`, `tests/test-drawing-census-trace.py`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_census.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
-- **TOOL.drawing-inventory.phase-guards-20261010**: `research/runtime/drawing-inventory.json`, `tools/drawing_census.py`
+- **TOOL.drawing-inventory.phase-guards-20261010**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-inventory.py`, `tools/drawing_census.py`, `tools/drawing_inventory.py`
 - **DRAW.census.enabled-movie-requests-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tests/drawing-census-abi.c`, `tests/test-drawing-census-trace.py`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_census.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
 - **DRAW.census.save-load-fault-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tests/drawing-census-abi.c`, `tests/test-drawing-census-trace.py`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_census.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
 - **DRAW.census.save-load-menu-only-fault-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_census.py`, `tools/prepare-drawing-census.py`
@@ -1504,43 +1504,51 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **TOOL.drawing-movie.fixture-bindings-20261010**: `tools/drawing_census.py`
 - **DRAW.census.movie-sites-observation-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
 - **DRAW.census.movie-sites-accounted-observation-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
-- **DRAW.census.movie-site-guards-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
+- **DRAW.census.movie-site-guards-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tests/test-drawing-inventory.py`, `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_inventory.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
 - **DRAW.census.quick-battle-transition-fault-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
 - **DRAW.census.quick-battle-observation-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
 - **DRAW.census.quick-battle-accounted-observation-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
-- **DRAW.census.quick-battle-guards-20261010**: `research/runtime/drawing-inventory.json`
-- **DRAW.census.quick-battle-scenario-guards-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
-- **DRAW.census.campaign-effects-observation-20261011**: `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
-- **DRAW.census.campaign-effects-guards-20261011**: `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
-- **DRAW.graphics-api-sites.static-20261011**: `tools/drawing_api_sites.py`, `tools/export-drawing-api-sites.py`
-- **DRAW.graphics-api-sites.guards-20261011**: `tests/test-drawing-api-sites.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-sites.py`
-- **DRAW.api-splices.static-20261011**: `tools/build-drawing-census.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
-- **DRAW.api-journal.guards-20261011**: `tests/test-drawing-api-journal.py`, `tools/build-drawing-census.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
+- **DRAW.census.quick-battle-guards-20261010**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-inventory.py`, `tools/drawing_inventory.py`
+- **DRAW.census.quick-battle-scenario-guards-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tests/test-drawing-inventory.py`, `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_inventory.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
+- **DRAW.census.campaign-effects-observation-20261011**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
+- **DRAW.census.campaign-effects-guards-20261011**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tests/test-drawing-inventory.py`, `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_inventory.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
+- **DRAW.graphics-api-sites.static-20261011**: `research/runtime/drawing-inventory.json`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-sites.py`
+- **DRAW.graphics-api-sites.guards-20261011**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-api-sites.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-sites.py`
+- **DRAW.api-splices.static-20261011**: `research/runtime/drawing-inventory.json`, `tools/build-drawing-census.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
+- **DRAW.api-journal.guards-20261011**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-api-journal.py`, `tools/build-drawing-census.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
 - **DRAW.api-observer.build-20261011**: `runtime/drawing-api-census/observer.c`, `tools/build-drawing-api-census.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`
 - **DRAW.api-observer.synthetic-abi-20261011**: `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tools/build-drawing-api-census.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/test-drawing-api-census-abi.py`
 - **DRAW.api-bindings.guards-20261011**: `runtime/drawing-api-census/observer.c`, `tests/test-drawing-api-bindings.py`, `tools/drawing_api_bindings.py`, `tools/drawing_api_journal.py`
 - **DRAW.api-observer.bindings-abi-20261011**: `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tests/test-drawing-api-bindings.py`, `tools/build-drawing-api-census.py`, `tools/drawing_api_bindings.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/test-drawing-api-census-abi.py`
-- **DRAW.census.named-export-abi-20261011**: `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
+- **DRAW.census.named-export-abi-20261011**: `research/runtime/drawing-inventory.json`, `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
 - **DRAW.api-observer.bindings-build-20261011**: `runtime/drawing-api-census/observer.c`, `tools/build-drawing-api-census.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`
-- **DRAW.api-menu.observation-20261011**: `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tests/test-drawing-api-bindings.py`, `tools/build-drawing-api-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_api_bindings.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-api-census-abi.py`
-- **DRAW.census.export-checked-abi-20261011**: `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`
-- **DRAW.api-splices.export-checked-static-20261011**: `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
-- **DRAW.api-breakpoint.guards-20261011**: `runtime/drawing-api-census/observer.c`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
+- **DRAW.api-menu.observation-20261011**: `research/runtime/drawing-inventory.json`, `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tests/test-drawing-api-bindings.py`, `tools/build-drawing-api-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_api_bindings.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-api-census-abi.py`
+- **DRAW.census.export-checked-abi-20261011**: `research/runtime/drawing-inventory.json`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`
+- **DRAW.api-splices.export-checked-static-20261011**: `research/runtime/drawing-inventory.json`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
+- **DRAW.api-breakpoint.guards-20261011**: `research/runtime/drawing-inventory.json`, `runtime/drawing-api-census/observer.c`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
 - **DRAW.api-breakpoint.abi-20261011**: `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tools/build-drawing-api-census.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/test-drawing-api-census-abi.py`
-- **DRAW.api-breakpoint.static-20261011**: `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
-- **DRAW.api-breakpoint.menu-20261011**: `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tools/build-drawing-api-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-api-census-abi.py`
-- **DRAW.api-cohort.core-static-20261011**: `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
-- **DRAW.api-cohort.only-static-20261011**: `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
-- **DRAW.api-only.movies-20261011**: `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tools/build-drawing-api-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/test-drawing-api-census-abi.py`
-- **DRAW.api-v2.guards-20261011**: `tools/drawing_api_contracts.py`, `tools/drawing_api_details.py`, `tools/drawing_api_sites.py`
+- **DRAW.api-breakpoint.static-20261011**: `research/runtime/drawing-inventory.json`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
+- **DRAW.api-breakpoint.menu-20261011**: `research/runtime/drawing-inventory.json`, `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tools/build-drawing-api-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-api-census-abi.py`
+- **DRAW.api-cohort.core-static-20261011**: `research/runtime/drawing-inventory.json`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
+- **DRAW.api-cohort.only-static-20261011**: `research/runtime/drawing-inventory.json`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/export-drawing-api-splices.py`
+- **DRAW.api-only.movies-20261011**: `research/runtime/drawing-inventory.json`, `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tools/build-drawing-api-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing_api_journal.py`, `tools/drawing_api_sites.py`, `tools/test-drawing-api-census-abi.py`
+- **DRAW.api-v2.guards-20261011**: `research/runtime/drawing-inventory.json`, `tools/drawing_api_contracts.py`, `tools/drawing_api_details.py`, `tools/drawing_api_sites.py`
 - **DRAW.api-v2.abi-20261011**: `tools/build-drawing-api-census.py`, `tools/drawing_api_contracts.py`, `tools/drawing_api_details.py`, `tools/drawing_api_sites.py`
-- **DRAW.api-v2.movies-20261011**: `tools/build-drawing-api-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing_api_contracts.py`, `tools/drawing_api_details.py`, `tools/drawing_api_sites.py`
-- **DRAW.api-v2.core-static-20261011**: `tools/drawing_api_sites.py`
-- **DRAW.api-v2.only-static-20261011**: `tools/drawing_api_sites.py`
-- **DRAW.surface-api.guards-20261011**: `tests/test-drawing-api-resources.py`, `tools/drawing_api_resources.py`, `tools/drawing_api_sites.py`
+- **DRAW.api-v2.movies-20261011**: `research/runtime/drawing-inventory.json`, `tools/build-drawing-api-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing_api_contracts.py`, `tools/drawing_api_details.py`, `tools/drawing_api_sites.py`
+- **DRAW.api-v2.core-static-20261011**: `research/runtime/drawing-inventory.json`, `tools/drawing_api_sites.py`
+- **DRAW.api-v2.only-static-20261011**: `research/runtime/drawing-inventory.json`, `tools/drawing_api_sites.py`
+- **DRAW.surface-api.guards-20261011**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-api-resources.py`, `tools/drawing_api_resources.py`, `tools/drawing_api_sites.py`
 - **DRAW.surface-api.abi-20261011**: `tests/test-drawing-api-resources.py`, `tools/build-drawing-api-census.py`, `tools/drawing_api_resources.py`, `tools/drawing_api_sites.py`
-- **DRAW.surface-api.movies-20261011**: `tests/test-drawing-api-resources.py`, `tools/build-drawing-api-census.py`, `tools/drawing_api_resources.py`, `tools/drawing_api_sites.py`
+- **DRAW.surface-api.movies-20261011**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-api-resources.py`, `tools/build-drawing-api-census.py`, `tools/drawing_api_resources.py`, `tools/drawing_api_sites.py`
 - **DRAW.surface-api.final-abi-20261011**: `tests/test-drawing-api-resources.py`, `tools/build-drawing-api-census.py`, `tools/drawing_api_resources.py`, `tools/drawing_api_sites.py`
+- **DRAW.api-virtual.boundaries-static-20261011**: `research/runtime/drawing-inventory.json`
+- **DRAW.api-virtual.only-static-20261011**: `research/runtime/drawing-inventory.json`
+- **DRAW.api-virtual.core-static-20261011**: `research/runtime/drawing-inventory.json`
+- **DRAW.api-virtual.guards-20261011**: `research/runtime/drawing-inventory.json`
+- **DRAW.api-virtual.movies-20261011**: `research/runtime/drawing-inventory.json`
+- **DRAW.api-expanded.save-load-20261011**: `research/runtime/drawing-inventory.json`
+- **DRAW.api-expanded.quick-battle-20261011**: `research/runtime/drawing-inventory.json`
+- **DRAW.api-expanded.effects-20261011**: `research/runtime/drawing-inventory.json`
 
 ## Checklist gaps
 

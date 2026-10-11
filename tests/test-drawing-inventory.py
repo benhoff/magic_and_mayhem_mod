@@ -135,6 +135,97 @@ class DrawingInventoryTest(unittest.TestCase):
             'pointer': '/hooks', 'refused_pointer': '/refusals'}]
         self.write_record('live', self.record)
 
+    def api(self):
+        site = 0x401008
+        self.api_record = {'schema': 1, 'source_sha256': self.original, 'input_unchanged': True,
+            'calls': [{'site': site, 'return_pc': site + 6, 'bytes': 'ff9180000000',
+                       'operand': 'DWORD PTR [ecx+0x80]',
+                       'target_mode': {'kind': 'register_memory', 'register': 'ecx', 'displacement': 128},
+                       'discovered_owners': [], 'exact_import': None}]}
+        self.register['evidence'].append({'id': 'api-static', 'record': 'api-static.json', 'kind': 'static',
+            'assertions': [{'pointer': '/input_unchanged', 'equals': True}]})
+        self.write_record('api-static', self.api_record)
+        self.catalog['api_site_sources'] = [{'evidence': 'api-static'}]
+        route = copy.deepcopy(self.catalog['routes'][0]); route.pop('entry')
+        route.update(id='api', api_site=site, classification='unresolved', static_windows=[],
+                     selectors=[{'kind': 'api_site', 'identity': site}])
+        self.catalog['routes'].append(route)
+        self.record['api'] = {'journal_integrity': True, 'original_sha256': self.original,
+            'targets': [{'phase': 3, 'site': site, 'target_state': 2, 'target_slot': 0x801080,
+                         'target_value': 0x900000, 'count': 4},
+                        {'phase': 3, 'site': site, 'target_state': 2, 'target_slot': 0x802080,
+                         'target_value': 0x900000, 'count': 2},
+                        {'phase': 5, 'site': site, 'target_state': 2, 'target_slot': 0x803080,
+                         'target_value': 0x900000, 'count': 8}]}
+        self.catalog['observations'][0]['projections'] = [
+            {'kind': 'api_site_rows', 'pointer': '/api/targets', 'phase': 3,
+             'selector': 'api_site', 'activity': 'live_original_active'}]
+        self.write_record('live', self.record)
+
+    def test_api_sites_are_exact_CALLs_separate_from_entries_and_owners(self):
+        self.api(); r = self.report()
+        self.assertEqual([(a['identity'], a['count']) for a in r['activities']], [(0x401008, 6)])
+        self.assertEqual(r['static_api_sites'][0]['discovered_owners'], [])
+        self.assertEqual(r['static_api_sites'][0]['target_mode']['displacement'], 128)
+        self.assertEqual(r['counts']['api_registered_sites'], 1)
+        self.assertEqual(r['counts']['api_observed_sites'], 1)
+        self.assertFalse(r['draw01_complete'])
+        self.assertEqual(r['counts']['instrumented_entries'], 1)
+
+    def test_api_unknown_site_is_not_nearest_entry_or_dropped(self):
+        self.api(); self.record['api']['targets'][0]['site'] += 1; self.write_record('live', self.record)
+        self.assertEqual(self.report()['unaccounted'][0]['identity'], 0x401009)
+
+    def test_api_static_site_build_bytes_return_mode_and_duplicates_refuse(self):
+        self.api(); original = copy.deepcopy(self.api_record)
+        for field, value in [('source_sha256', 'wrong'), ('schema', True), ('schema', 2)]:
+            self.api_record = copy.deepcopy(original); self.api_record[field] = value
+            self.write_record('api-static', self.api_record)
+            with self.subTest(field=field, value=value), self.assertRaises(ValueError): self.report()
+        for field, value in [('return_pc', 0x40100f), ('bytes', '909090909090'),
+                             ('target_mode', {'kind': 'register_memory', 'register': 'edx', 'displacement': 128}),
+                             ('discovered_owners', [True])]:
+            self.api_record = copy.deepcopy(original); self.api_record['calls'][0][field] = value
+            self.write_record('api-static', self.api_record)
+            with self.subTest(field=field), self.assertRaises(ValueError): self.report()
+        self.api_record = copy.deepcopy(original); self.api_record['calls'] *= 2
+        self.write_record('api-static', self.api_record)
+        with self.assertRaisesRegex(ValueError, 'Duplicate'): self.report()
+
+    def test_api_import_slot_and_static_evidence_kind_refuse(self):
+        self.api(); self.api_record['calls'][0]['exact_import'] = {'iat_va': 0x801080}
+        self.write_record('api-static', self.api_record)
+        with self.assertRaisesRegex(ValueError, 'import'): self.report()
+        self.api_record['calls'][0]['exact_import'] = None; self.write_record('api-static', self.api_record)
+        next(e for e in self.register['evidence'] if e['id'] == 'api-static')['kind'] = 'live_observation'
+        with self.assertRaisesRegex(ValueError, 'static evidence'): self.report()
+
+    def test_api_static_census_needs_every_exact_route(self):
+        self.api(); self.catalog['routes'].pop()
+        with self.assertRaisesRegex(ValueError, 'lacks reviewed route'): self.report()
+
+    def test_api_routes_cannot_be_function_entries_or_unbound_points(self):
+        self.api(); route = self.catalog['routes'][-1]
+        route['entry'] = route['api_site']
+        with self.assertRaisesRegex(ValueError, 'separate from function'): self.report()
+        route.pop('entry'); route['api_site'] += 1
+        with self.assertRaisesRegex(ValueError, 'exact static CALL route'): self.report()
+
+    def test_api_projection_validates_malformed_excluded_rows(self):
+        self.api(); row = self.record['api']['targets'][2]
+        for field, value in [('phase', True), ('phase', 15), ('site', False), ('count', -1),
+                             ('target_state', True), ('target_state', 0), ('target_value', -1), ('target_slot', False)]:
+            before = row[field]; row[field] = value; self.write_record('live', self.record)
+            with self.subTest(field=field), self.assertRaises(ValueError): self.report()
+            row[field] = before
+
+    def test_api_projection_requires_build_bound_integrity_even_empty(self):
+        self.api(); self.record['api']['targets'] = []
+        for field, value in [('journal_integrity', False), ('original_sha256', 'wrong')]:
+            before = self.record['api'][field]; self.record['api'][field] = value; self.write_record('live', self.record)
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'intact build-bound'): self.report()
+            self.record['api'][field] = before
+
     def test_metadata_hooks_are_recorded_instrumentation_not_activity(self):
         self.metadata_hooks(); r = self.report()
         self.assertEqual(r['counts']['metadata_instrumented_entries'], 1)
