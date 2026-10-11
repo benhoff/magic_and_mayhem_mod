@@ -126,3 +126,21 @@ destination/extent transition comparison and recovery remain pending. It adds no
 continuous transport or original-body suppression. Complete DRAW-03 requires
 the full journeys above with independent pixels and required side effects;
 a passing startup-prefix comparison cannot satisfy that claim.
+
+
+## Integration with the complete DRAW-02 startup corpus
+
+The committed DRAW-02 increments faa862a and e4ff085 are integrated into the
+isolated native branch, preserving their complete1062-checkpoint source/oracle
+corpus,14journey/21operation acceptance policy, historical results and append-only
+receipts. The full-sequence adapter now strips observed raster EAX before using
+the stricter native runner. Stored capture bytes and original hashes stay unchanged.
+Its pixel comparison spans all16queues and46,647records; it does not compare full
+original return-state history across the capture's recorded native bypass. The
+separate17-frame result comparison retains its original-active cutoff.
+
+The current original collector still lacks physical publication and complete
+session action identities. Full presented Quick Battle/campaign journeys require
+new collector contracts and observed captures; startup composition cannot close
+those gates. The other contributor's uncommitted session tools remain in their
+own worktree.

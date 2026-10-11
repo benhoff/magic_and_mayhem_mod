@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "scope": "Committed exact parent/current file and behavior hashes reviewed with current accounting code. Uncommitted work excluded. Does not assert a historical gate pass or new execution.",
+  "range": {
+    "base": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+    "head": "faa862a3f7b6ca5c626f919aacc30995a8313090"
+  },
+  "changes": {
+    "files": [
+      {
+        "path": "research/formats/drawing-journey-suite.md",
+        "before_sha256": null,
+        "after_sha256": "5f4b8551e699dd56bb7ab7490af3ea1c4a638b3131765e4c7ff7d3102d2b5094",
+        "behaviors": [
+          "TOOL.drawing-journeys"
+        ],
+        "role": "research",
+        "change": "added"
+      },
+      {
+        "path": "research/runtime/coverage-ledger.md",
+        "before_sha256": "63221e3572d93c801ef6e587045c1f08b4ea3a908987af36e08d9bc88c52a601",
+        "after_sha256": "7edde8f97bd6c32d63bd8880409d8b4e6f611f7156173d4cf2d32c1f8b28dd95",
+        "behaviors": [
+          "TOOL.coverage-accounting"
+        ],
+        "role": "research",
+        "change": "modified"
+      },
+      {
+        "path": "research/runtime/coverage/draw02-journeys-history-20261010.json",
+        "before_sha256": null,
+        "after_sha256": "ad694f74a6bac26885311f39ccd0d066f3dca9376d62c527cd72629639e236e4",
+        "behaviors": [],
+        "role": "research",
+        "change": "added"
+      },
+      {
+        "path": "research/runtime/coverage/register.json",
+        "before_sha256": "602db6c9d1a84fd3b6a9a77268a4fa9c2d3fc9d6b8d5d62a76d36efecccd6c1a",
+        "after_sha256": "dd3df1f05e40f4de8db8ffd6b04cd7216122b604cb62446bcc33430720c4d957",
+        "behaviors": [],
+        "role": "research",
+        "change": "modified"
+      },
+      {
+        "path": "research/runtime/coverage/source-index-draw02-journeys-20261010.json",
+        "before_sha256": null,
+        "after_sha256": "7481d40aa015e0e0ae818e57d47727fb20f92281230830dd3853327a8e5d0714",
+        "behaviors": [],
+        "role": "research",
+        "change": "added"
+      },
+      {
+        "path": "research/runtime/coverage/summary.md",
+        "before_sha256": "6dedb5b83ed9e775b9db288f7878809418b0558b8ae04fd3282c96e44e4fb7b1",
+        "after_sha256": "c394bbd55c7614058ca0cf13e1837b2ebac038be9c552733233c4cbe13b6cf2b",
+        "behaviors": [],
+        "role": "research",
+        "change": "modified"
+      },
+      {
+        "path": "research/runtime/draw02-full-session.md",
+        "before_sha256": null,
+        "after_sha256": "34a6bddf6205d64897d864f66d39e326ded92af993da36d1f928f0dff7f170ec",
+        "behaviors": [
+          "TOOL.drawing-journeys"
+        ],
+        "role": "research",
+        "change": "added"
+      },
+      {
+        "path": "tests/fixtures/drawing-journeys/suite.json",
+        "before_sha256": null,
+        "after_sha256": "b1140c97782a900da04bd4524c0d312a6a99f8a5fddd7e90858e911a92f1e5db",
+        "behaviors": [
+          "TOOL.drawing-journeys"
+        ],
+        "role": "test",
+        "change": "added"
+      },
+      {
+        "path": "tests/fixtures/drawing-scene/scene.json",
+        "before_sha256": "795a812754dee653edbe1b4b9213b3d24698103c6ac5cdb3ebb6db9b982d0516",
+        "after_sha256": "795a812754dee653edbe1b4b9213b3d24698103c6ac5cdb3ebb6db9b982d0516",
+        "behaviors": [
+          "NR.drawing-scene",
+          "TOOL.drawing-journeys"
+        ],
+        "role": "test",
+        "change": "links_changed"
+      },
+      {
+        "path": "tests/fixtures/drawing/corpus.json",
+        "before_sha256": "d0beaf2701aa5b8c55ec446a2fc13349c82e3fed87cca7a6a995584d14bf33cb",
+        "after_sha256": "d0beaf2701aa5b8c55ec446a2fc13349c82e3fed87cca7a6a995584d14bf33cb",
+        "behaviors": [
+          "NR.drawing-comparison-corpus",
+          "TOOL.drawing-journeys"
+        ],
+        "role": "test",
+        "change": "links_changed"
+      },
+      {
+        "path": "tests/test-drawing-journeys.py",
+        "before_sha256": null,
+        "after_sha256": "6c02217d5c26cf2013c501c0f414c7be4f2b3ae42057064130079f65c262e09d",
+        "behaviors": [
+          "TOOL.drawing-journeys"
+        ],
+        "role": "test",
+        "change": "added"
+      },
+      {
+        "path": "tools/drawing_corpus.py",
+        "before_sha256": "79703261fa72cb7b30bd8ba4dbdfa68b4f3c268748a2622a1a10b0af51d8384e",
+        "after_sha256": "79703261fa72cb7b30bd8ba4dbdfa68b4f3c268748a2622a1a10b0af51d8384e",
+        "behaviors": [
+          "NR.drawing-comparison-corpus",
+          "NR.drawing-scene",
+          "TOOL.drawing-journeys"
+        ],
+        "role": "tool",
+        "change": "links_changed"
+      },
+      {
+        "path": "tools/drawing_journeys.py",
+        "before_sha256": null,
+        "after_sha256": "e741e2cfafa8ee8cb849b9483d75e0b421842f120a564dde4a0de8dc5b210016",
+        "behaviors": [
+          "TOOL.drawing-journeys"
+        ],
+        "role": "tool",
+        "change": "added"
+      }
+    ],
+    "behaviors": [
+      {
+        "id": "NR.drawing-comparison-corpus",
+        "before_sha256": "24ffb2e66397caaabb02424a408bd9b5c5a3cd480594caa378a1cb904a3ead1c",
+        "after_sha256": "24ffb2e66397caaabb02424a408bd9b5c5a3cd480594caa378a1cb904a3ead1c"
+      },
+      {
+        "id": "NR.drawing-scene",
+        "before_sha256": "09bbc82a05bb8cadc185751e4911f625cb47e8687ea63832ad09111782e89692",
+        "after_sha256": "09bbc82a05bb8cadc185751e4911f625cb47e8687ea63832ad09111782e89692"
+      },
+      {
+        "id": "TOOL.coverage-accounting",
+        "before_sha256": "f0bd29c9894f59bae13a0c7e21e3d05e657488dcd46ca71902150b022bc2ef47",
+        "after_sha256": "b2a5c4257d4595bf2e265cd635607e7d8b3d8c4a3c3a3b41721012698044390a"
+      },
+      {
+        "id": "TOOL.drawing-journeys",
+        "before_sha256": null,
+        "after_sha256": "f11db3acb49a5c02ae3f229b003a4bd237df70e7755e58da0f9d0d37821ff304"
+      }
+    ],
+    "new_gaps": {
+      "behaviors_without_comparison:2bd82a6506762b7d6e3669442491f8f1ae966e5deafe16a2daae92da9f482f07": {
+        "kind": "behaviors_without_comparison",
+        "identity": "TOOL.drawing-journeys"
+      },
+      "behaviors_without_scenarios:2bd82a6506762b7d6e3669442491f8f1ae966e5deafe16a2daae92da9f482f07": {
+        "kind": "behaviors_without_scenarios",
+        "identity": "TOOL.drawing-journeys"
+      },
+      "validation_gaps:be98f07c4a632cec6ecdb5a628f357f41a3d3dcb1db0ca0f129235f44045472f": {
+        "kind": "validation_gaps",
+        "identity": {
+          "behavior": "TOOL.drawing-journeys",
+          "stage": "implementation",
+          "limitations": [
+            "no_execution"
+          ]
+        }
+      }
+    }
+  },
+  "receipt_chains": {},
+  "errors": [],
+  "warnings": [
+    "Recorded evidence fingerprints older source; historical claims are retained, current validation is not implied.",
+    "Pinned recovered code exists outside Ghidra function bodies; explicit range links preserve this discovery gap.",
+    "Historical stages are retained; current validation requires exact execution claims, complete provenance and matching scenarios."
+  ]
+}

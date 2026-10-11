@@ -4488,3 +4488,51 @@ immutable evidence is `NR.drawing-raster-results.native-20261010`, alongside
 `NR.drawing-scene.raster-results-native-20261010` and
 `NR.drawing-journey.raster-results-native-20261010`. Historical fingerprints
 remain unchanged; full DRAW-03 remains pending.
+
+### 2026-10-10: DRAW-02 full session acceptance denominator
+
+The isolated DRAW-02 branch adds explicit gates for all fourteen drawing journeys
+and twenty-one operation/failure contracts. Reference acquisition and native
+parity are separate axes. Only contiguous, action-bound, independently captured
+presented frames can close journey gates; operation/World/pre-display composition
+passes remain bounded comparisons. Synthetic accounting guards exercise this
+policy without claiming new original observations, rendering parity or takeover.
+The initial suite pins the existing component and startup-scene catalogs. Complete
+presented sessions and operation/failure acquisition remain pending. See
+[full session comparison](draw02-full-session.md).
+
+### 2026-10-10: DRAW-02 full retained sixteen-queue comparison sequence
+
+The portable corpus now preserves all46,647 contiguous producer records,
+16World queues,16encoded source assets and1,062independent original checkpoints,
+covering474,236,912RGB565 pixels. Lossless bounded chunks and same-canvas oracle
+deltas preserve exact historical hashes while keeping portable storage bounded.
+Native replay receives only owned producer/source inputs; full output planes and
+completion identities are compared externally. A first full native replay matches
+all checkpoints with zero mismatches; final source-bound delta replay is recorded
+separately. Historical one-raster bypass provenance remains explicit. This does
+not establish presented frame/action continuity, new original execution, caller
+or driver failure behavior or any complete session journey.
+
+
+## DRAW-03 integration of the complete DRAW-02 startup corpus (2026-10-10)
+
+Committed DRAW-02 acceptance and1062-plane retention increments are merged into
+`draw03-journeys`, preserving both branches' findings, independent stage statuses,
+immutable results and append-only receipts. Native transport strips only observed
+raster EAX fields; stored producer bytes and original hashes stay unchanged.
+Full retained history receives pixel comparison without a return-state comparison
+across its recorded original-body suppression. The17-frame original-active
+return-state prefix remains a separate validation domain. Full presented journeys
+still require new original collector/publication/action contracts.
+
+Exact committed parent/current receipt reviews are retained for3b6785a..faa862a,
+faa862a..e4ff085 andfb79078..6208fcc. Imported historical validation remains
+historical; the merge does not assert a past gate pass or new original execution.
+
+Fresh integrated native execution matches all1,062 checkpoints and474,236,912
+RGB565 pixels with zero differences and no remaining native surfaces. New
+immutable evidence is `NR.drawing-sequence.draw03-native-20261010`; ten sequence
+guards and eight acceptance guards pass. Original raster returns remain external
+and the full sequence makes no state-parity claim across historical suppression.
+The original-active17-frame result comparison remains separate.

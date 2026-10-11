@@ -1,0 +1,393 @@
+{
+  "schema": 1,
+  "scope": "Retrospective parent/current receipt check; not a past gate pass or new behavior validation. Review-journal self-reference excluded.",
+  "range": "f60ec65..3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+  "files": [
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": ".github/workflows/re-coverage.yml",
+      "before_sha256": "6686f15e0c65a62bf147dd02ee8b6a7f1ee80a6e2b151ab2ad9b7655a48409ac",
+      "after_sha256": "56eb2ec03f19b16eae13d1cdb57c574e97a30528f80f275b70d5f5234092b0e8",
+      "exact_receipts": [
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "compat/legacy/drawing-scene/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "6b8e2b4ce1d0529dfcf90bc7d82da30dd8fddddfbff7fc3d2e4768733249ce55",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "compat/legacy/drawing_scene.cpp",
+      "before_sha256": null,
+      "after_sha256": "87e301a30c863723211e7fffadd09bb630e6fc5c7ed1b77accf2fb80266cbbd6",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "compat/legacy/drawing_scene.hpp",
+      "before_sha256": null,
+      "after_sha256": "ac3e096f68d9825f4f67bebea89802470f61b086fa9ac3766ee65785c4f1f900",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "compat/legacy/drawing_scene_main.cpp",
+      "before_sha256": null,
+      "after_sha256": "ceb5d2b3e4230213f5722be30c00c9be7c06687dffc6c05d6c311d542c4494fa",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "860ebc8632150815eddb198a9eb606363a11ba19e5804a300703072104f9fcff",
+      "after_sha256": "db040903b3b2c9b55cd854e149f2a120791237c4616b09da380bb70514afc2b6",
+      "exact_receipts": [
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "research/formats/drawing-scene-corpus.md",
+      "before_sha256": null,
+      "after_sha256": "0fb74931c43b75c38cb6c69acb98e65caf969fd59fcec67e99785d68bacedf0f",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "16d568bd99c1e18fb456fe57b9189f5ce40881f39cb198799f55e6ffbb52eed2",
+      "after_sha256": "63221e3572d93c801ef6e587045c1f08b4ea3a908987af36e08d9bc88c52a601",
+      "exact_receipts": [
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "research/runtime/coverage/draw03-history-48ca294-98b4524-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "435be43cd244863ccd7e704a4162f043544fa374b56c7dcd38ecef4207c5ee3a",
+      "exact_receipts": [
+        "draw03-shared-accounting-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "research/runtime/coverage/draw03-history-98b4524-f60ec65-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7ec04af4fbf0f371976491acbad56d41102c025370b7ab6ebe66f43991c7a2a3",
+      "exact_receipts": [
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "1cc8b95efda9e11d17624d47f6fc7f697eb6ea68b94c35132a2dd3c93ac3ee33",
+      "after_sha256": "602db6c9d1a84fd3b6a9a77268a4fa9c2d3fc9d6b8d5d62a76d36efecccd6c1a",
+      "exact_receipts": [
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "research/runtime/coverage/source-index-draw03-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f7947c4a15c4a443df6a40b5166b9988df35905a4584a1110fa2a748023412ad",
+      "exact_receipts": [
+        "draw03-shared-accounting-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "research/runtime/coverage/source-index-draw03-reviewed-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "96bee8f3545127cd1cb3ba9e373885af17fb8e6d44adfa3b2f0f40c3d8b315b8",
+      "exact_receipts": [
+        "draw03-shared-accounting-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "de4e561ed40cbde576750c32d3a03aaa92c4600c10c757e98000fdccd9d8aed8",
+      "after_sha256": "6dedb5b83ed9e775b9db288f7878809418b0558b8ae04fd3282c96e44e4fb7b1",
+      "exact_receipts": [
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "research/runtime/draw03-native-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "356477d94ee2d416088d6d7ae1a7f14f2db3804fe4d49e526a17a0d71db9eaca",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "research/runtime/draw03-native-comparison-reviewed-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "be7b9b15576e23f6d74648bf786ea83717ce7a0ad8d72d5a8f23efc146de85f1",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "research/runtime/draw03-native-scene.md",
+      "before_sha256": null,
+      "after_sha256": "b519503d1d81199b57567e5a64bde49889535355c1f53add134393fc3b1d1e82",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/drawing-scene-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "05702db375d80bb536d357490ca0a3b593cf234970b6b898fe85c75dd03e4639",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-001.gz",
+      "before_sha256": null,
+      "after_sha256": "db2d79c571cbed0e9f413ff397ca64885310651c7290ac01e6611e311c964b9c",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-002.gz",
+      "before_sha256": null,
+      "after_sha256": "db0629fc3504a5af6d4c9bd1cc0fab44fd9692bd5498a5409538ce84a7cfd0df",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-003.gz",
+      "before_sha256": null,
+      "after_sha256": "f918e3053e67b69bb179cf0e674d61ca9d1da9e720a5f5b90e60f3e640c4e664",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-004.gz",
+      "before_sha256": null,
+      "after_sha256": "c168058942aaff86a79bcd303a503ca0a7e281d4281cde5ad2c505af95a1c174",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-005.gz",
+      "before_sha256": null,
+      "after_sha256": "af79621694a5de3f48ed62f1702505cebd3f444b1cbab08e4411ae28056188ae",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-006.gz",
+      "before_sha256": null,
+      "after_sha256": "c3c8630100fa142216a158a6a2b92d4282fae54d9928bd4c84e8425018fbb9d5",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-007.gz",
+      "before_sha256": null,
+      "after_sha256": "d69771ea3ecd8d99c7f57c75aab5abaade4ebf85b758fd890ded68bddeb7d5a3",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-008.gz",
+      "before_sha256": null,
+      "after_sha256": "e06be35ab0362fc13b6d62642546211ac9c97f8b18522841a2e20423dbec0e05",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-009.gz",
+      "before_sha256": null,
+      "after_sha256": "09aef98a04090e289d0328d5c0b7ff540b9b4c76aa889679b566dd4f20708d6f",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-010.gz",
+      "before_sha256": null,
+      "after_sha256": "468e24da9751bdcf013a4b53456b1f46313463a7f767185407cc784971478781",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-011.gz",
+      "before_sha256": null,
+      "after_sha256": "a6c28f8d17f56d31a2166709d850d80ff2d89ecab20c186655192ef039b0d437",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-012.gz",
+      "before_sha256": null,
+      "after_sha256": "e40767219732364a56c0103707aba8dc47cfdf08d74413ad3abffd917561794e",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-013.gz",
+      "before_sha256": null,
+      "after_sha256": "58d74afc3da642abbb269af4252fe6cfb7d590ad0802b4fa2aea42ee4f79c6fe",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-014.gz",
+      "before_sha256": null,
+      "after_sha256": "0f68b51fc00eec31ca094dc0e6cf2ad9a46a747d3fa0066b77347e5384e9cfa8",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-015.gz",
+      "before_sha256": null,
+      "after_sha256": "1a1c1cf53949173c2ebf34395520866332b1e000cfbb97ccbc80b3649fe76c3a",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/asset-016.gz",
+      "before_sha256": null,
+      "after_sha256": "9ba428f86c5d550e23b3c74f6599e946ee47f1aeadeba70df39496875001bd3a",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/oracle-0908.gz",
+      "before_sha256": null,
+      "after_sha256": "2312fd7407f9db26f2237c8b59533ef727e678ee9a350d5ae9d3cbc7ecbfa8cc",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/oracle-0915.gz",
+      "before_sha256": null,
+      "after_sha256": "a29e5aba9696a4cb18c401c510feb772cabc27a36749a63040e8e50e3ec16339",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/oracle-0916.gz",
+      "before_sha256": null,
+      "after_sha256": "7170980ec55e29cdb55e1eff0167bac9a079d93828f8426d99631e509a271ef0",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/oracle-0918.gz",
+      "before_sha256": null,
+      "after_sha256": "e5bf012a3edcad2d40c9ca3c05a58cf15697c2f60603f27c5996f4a4fb2c8d9c",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/oracle-0919.gz",
+      "before_sha256": null,
+      "after_sha256": "c6b044814485459a4d4b1c42ffe802b86d81f247e933a1ef37ec10d21de7009a",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/oracle-0920.gz",
+      "before_sha256": null,
+      "after_sha256": "d6bfbd3da1be6d55ab3ccc95f68efa9ab36f6d0b6bba54d6ade7712ab6daf6e0",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/scene.json",
+      "before_sha256": null,
+      "after_sha256": "795a812754dee653edbe1b4b9213b3d24698103c6ac5cdb3ebb6db9b982d0516",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/fixtures/drawing-scene/startup-input.gz",
+      "before_sha256": null,
+      "after_sha256": "833d6fed42eb0e008e35f9c90c74df59ed0466831adc3f8af2cc5fb390263d85",
+      "exact_receipts": []
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tests/test-drawing-scene.py",
+      "before_sha256": null,
+      "after_sha256": "0d4d5a27d7d085700328716732b588343f8fc91739ed37311f7f1d0599c7edc5",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tools/check-drawing-scene.py",
+      "before_sha256": null,
+      "after_sha256": "74857c5c72a89129d660818bbbe2c1e725a2c55dfa3fc4488cee0f2601aa24fc",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tools/drawing_scene_corpus.py",
+      "before_sha256": null,
+      "after_sha256": "8e554cb44c8e5b2cd11be7a116861acb44b93e22ac0a0bd93e5000cd51bdb617",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    },
+    {
+      "commit": "3b6785ab5f7381c08e682e549fe31a10a2cef60c",
+      "path": "tools/retain-drawing-scene.py",
+      "before_sha256": null,
+      "after_sha256": "1beedae9eb6b503fb678408b479d84289e832fd3ca7af69395a491dcc701c90b",
+      "exact_receipts": [
+        "draw03-native-scene-execution-20261010",
+        "draw03-existing-work-after-f60ec65-20261010"
+      ]
+    }
+  ],
+  "unresolved": []
+}
