@@ -402,3 +402,54 @@ external ownership/refcounts, all memory writers/pixels, failures/recovery or th
 14 scenario and four dispatch closure obligations. The committed range
 2a1885c..910e3f7 has26 exact file and13 behavior receipts with zero missing
 intermediate versions; this is retrospective accounting, not new validation.
+
+
+## Expanded original gameplay, save/load and results cohorts, 2026-10-11
+
+The unchanged380site API-only observer now has separately declared original
+campaign/save-load, Quick Battle and physical summon/effect cohorts. Each uses a
+fresh private installation/prefix/display and original rules and bodies. Each
+closes without journal loss/open calls/IO or unreadable diagnostic stack/target,
+keeps sources/binaries/build metadata stable, and exits normally with core absent.
+Independent cohort totals describe each run, not combined runtime frequencies.
+
+| Original cohort | API pairs / sites | Query aliases | Closed CPU / DC intervals | Candidate Unlock calls |
+| --- | --- | --- | --- | --- |
+| `run-4qxfz709`, campaign/save-load | 33,476 / 74 | 128 | 8,385 / 123 | 8,356 |
+| `run-6vqq61md`, Quick Battle/results | 20,006 / 61 | 73 | 5,284 / 5 | 5,261 |
+| `run-bs6fnbfw`, campaign summon/effects | 29,851 / 75 | 115 | 7,232 / 81 | 7,211 |
+
+Every interval in these reports is a closed client interval; each has zero resource
+gaps and terminal open intervals. Creation/query outputs and Releases remain
+run-local observations. Exact journal/binding/raw gameplay/spell files, binaries,
+screenshots, logs and metadata remain retained after stopped disposable copies are
+removed. No new fixture is asserted: source unchanged since the preceding91guard/
+26body verification, and fresh original claims bind the actual source versions.
+
+Original Save creates353420bytes at `Save/draw01.sav`, SHA-256
+`2ba05e42437c3a81117dbda7ff490d78f2ef3eb447a6f1b52c8370f0bd29adc5`.
+The fixture selects that actual original list row, loads it and reaches World/Mini.
+The after-load World screenshot was reviewed; the phase12 checkpoint itself shows
+the loading screen. The save artifact is retained independently. Quick Battle's
+original Game Over image was reviewed; original Continue returns to World, a second
+Escape reaches results and Quit returns through Quick/Main to shutdown. This is the
+selected original map/rules cohort, not every battle configuration or victory path.
+
+The physical summon result samples wizard0's original pool and later observes a
+new owned living type14Zombie at slot4, health90, with a reviewed rendered spell/
+creature image. Native fixtures do not synthesize this result. The original sampled
+pool/spell traces do not have a full-tick loss/terminal contract, and neither they
+nor phase labels prove complete effect-to-pixel causality or all creature lifetimes.
+
+The movie/save/results/effects site union observes101of380admitted CALL sites,
+leaving279unexecuted sites; this identity union is not a frequency sum. Thirty-six CPU
+closing sites are observed. Full candidate/type/static writer scope, alternate/
+failed acquisitions and recovery, semantic caller ownership, all14scenario reviews
+and four dispatch gates remain pending. These new journals do not replace old
+fingerprints or their limitations.
+
+Evidence: [original save/load](drawing-api-expanded-save-load-20261011.json),
+[original Quick Battle](drawing-api-expanded-quick-battle-20261011.json), and
+[original effects](drawing-api-expanded-effects-20261011.json). Committed-history
+review910e3f7..002633e finds18exact file and12behavior receipt matches, no missing
+intermediate versions, and asserts neither a past gate pass nor new validation.

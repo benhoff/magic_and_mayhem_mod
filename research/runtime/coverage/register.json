@@ -31255,7 +31255,10 @@
         "DRAW.api-only.movies-20261011",
         "DRAW.api-v2.movies-20261011",
         "DRAW.surface-api.movies-20261011",
-        "DRAW.api-virtual.movies-20261011"
+        "DRAW.api-virtual.movies-20261011",
+        "DRAW.api-expanded.save-load-20261011",
+        "DRAW.api-expanded.quick-battle-20261011",
+        "DRAW.api-expanded.effects-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31639,7 +31642,10 @@
         "DRAW.api-virtual.only-static-20261011",
         "DRAW.api-virtual.core-static-20261011",
         "DRAW.api-virtual.abi-20261011",
-        "DRAW.api-virtual.movies-20261011"
+        "DRAW.api-virtual.movies-20261011",
+        "DRAW.api-expanded.save-load-20261011",
+        "DRAW.api-expanded.quick-battle-20261011",
+        "DRAW.api-expanded.effects-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31695,7 +31701,10 @@
         "DRAW.surface-api.final-abi-20261011",
         "DRAW.api-virtual.guards-20261011",
         "DRAW.api-virtual.abi-20261011",
-        "DRAW.api-virtual.movies-20261011"
+        "DRAW.api-virtual.movies-20261011",
+        "DRAW.api-expanded.save-load-20261011",
+        "DRAW.api-expanded.quick-battle-20261011",
+        "DRAW.api-expanded.effects-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31816,7 +31825,10 @@
         "DRAW.api-only.movies-20261011",
         "DRAW.api-v2.movies-20261011",
         "DRAW.surface-api.movies-20261011",
-        "DRAW.api-virtual.movies-20261011"
+        "DRAW.api-virtual.movies-20261011",
+        "DRAW.api-expanded.save-load-20261011",
+        "DRAW.api-expanded.quick-battle-20261011",
+        "DRAW.api-expanded.effects-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31849,7 +31861,10 @@
         "DRAW.api-only.movies-20261011",
         "DRAW.api-v2.movies-20261011",
         "DRAW.surface-api.movies-20261011",
-        "DRAW.api-virtual.movies-20261011"
+        "DRAW.api-virtual.movies-20261011",
+        "DRAW.api-expanded.save-load-20261011",
+        "DRAW.api-expanded.quick-battle-20261011",
+        "DRAW.api-expanded.effects-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31902,7 +31917,10 @@
         "DRAW.surface-api.final-abi-20261011",
         "DRAW.api-virtual.guards-20261011",
         "DRAW.api-virtual.abi-20261011",
-        "DRAW.api-virtual.movies-20261011"
+        "DRAW.api-virtual.movies-20261011",
+        "DRAW.api-expanded.save-load-20261011",
+        "DRAW.api-expanded.quick-battle-20261011",
+        "DRAW.api-expanded.effects-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31946,7 +31964,10 @@
         "DRAW.surface-api.guards-20261011",
         "DRAW.surface-api.movies-20261011",
         "DRAW.api-virtual.guards-20261011",
-        "DRAW.api-virtual.movies-20261011"
+        "DRAW.api-virtual.movies-20261011",
+        "DRAW.api-expanded.save-load-20261011",
+        "DRAW.api-expanded.quick-battle-20261011",
+        "DRAW.api-expanded.effects-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -62957,6 +62978,159 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "DRAW.api-expanded.save-load-20261011",
+      "kind": "live_observation",
+      "scope": "Original campaign/save/load/return bounded380site API-only cohort and successful selected client interval accounting. No full writer/caller/external lifetime/scenario/dispatch closure.",
+      "record": "research/runtime/drawing-api-expanded-save-load-20261011.json",
+      "sha256": "19be3fb608f453b1c40e10739cf94ff076a7214fbd008f6539482f7e67a7158f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/metadata_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/api/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/api_resources/gaps",
+          "equals": []
+        },
+        {
+          "pointer": "/api_resources/open_intervals",
+          "equals": []
+        },
+        {
+          "pointer": "/api_bindings/core_leave",
+          "equals": 0
+        },
+        {
+          "pointer": "/call_census_enabled",
+          "equals": false
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW.api-expanded.quick-battle-20261011",
+      "kind": "live_observation",
+      "scope": "Original quick-battle bounded380site API-only cohort and successful selected client interval accounting. No full writer/caller/external lifetime/scenario/dispatch closure.",
+      "record": "research/runtime/drawing-api-expanded-quick-battle-20261011.json",
+      "sha256": "9c9725f0370f8fe2b1e2769c8d9799c170c1c2b8356ad80a80deb39fc30fa23b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/metadata_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/api/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/api_resources/gaps",
+          "equals": []
+        },
+        {
+          "pointer": "/api_resources/open_intervals",
+          "equals": []
+        },
+        {
+          "pointer": "/api_bindings/core_leave",
+          "equals": 0
+        },
+        {
+          "pointer": "/call_census_enabled",
+          "equals": false
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW.api-expanded.effects-20261011",
+      "kind": "live_observation",
+      "scope": "Original effects bounded380site API-only cohort and successful selected client interval accounting. No full writer/caller/external lifetime/scenario/dispatch closure.",
+      "record": "research/runtime/drawing-api-expanded-effects-20261011.json",
+      "sha256": "e9432a4965dcbfa904966f28a7276696831c0a514bd326f493bb5299dcf1a689",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/metadata_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/api/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/api_resources/gaps",
+          "equals": []
+        },
+        {
+          "pointer": "/api_resources/open_intervals",
+          "equals": []
+        },
+        {
+          "pointer": "/api_bindings/core_leave",
+          "equals": 0
+        },
+        {
+          "pointer": "/call_census_enabled",
+          "equals": false
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -71742,6 +71916,66 @@
       "evidence": [
         "DRAW.api-virtual.abi-20261011"
       ]
+    },
+    {
+      "id": "original-drawing-api-expanded-save-load-20261011",
+      "level": "live_observation",
+      "scope": "Original campaign entry, active world, camera/HUD/cursor inputs, original save creation/list-selected load, saved-map return, Mini/preferences and normal shutdown. Separate380site API-only observation and run-local client creation/query/vtable/cleanup/borrow accounting. Inputs and intact journals do not establish all writers, semantic effects, external lifetime,14scenario/four dispatch or replacement closure.",
+      "behaviors": [
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-cohorts",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.api-expanded.save-load-20261011"
+      ]
+    },
+    {
+      "id": "original-drawing-api-expanded-quick-battle-20261011",
+      "level": "live_observation",
+      "scope": "Original Quick Battle offered map/rules, active world/camera/HUD/cursor inputs, Escape results, Continue World return, second results/Quit and shutdown. Separate380site API-only observation and run-local client creation/query/vtable/cleanup/borrow accounting. Inputs and intact journals do not establish all writers, semantic effects, external lifetime,14scenario/four dispatch or replacement closure.",
+      "behaviors": [
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-cohorts",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.api-expanded.quick-battle-20261011"
+      ]
+    },
+    {
+      "id": "original-drawing-api-expanded-effects-20261011",
+      "level": "live_observation",
+      "scope": "Original campaign physical summon with passive original pool/spell observations, active creature/effect/camera/HUD/cursor inputs, Mini/preferences and shutdown. Separate380site API-only observation and run-local client creation/query/vtable/cleanup/borrow accounting. Inputs and intact journals do not establish all writers, semantic effects, external lifetime,14scenario/four dispatch or replacement closure.",
+      "behaviors": [
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-cohorts",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.api-expanded.effects-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -72079,7 +72313,7 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-api-virtual-20261011.json",
+    "path": "research/runtime/coverage/source-index-draw01-api-expanded-gameplay-20261011.json",
     "sha256": "1008b009576703645ed10e8a63a125d0c5e9a20c62d8e07f17d83fce183d803d"
   },
   "claim_bindings_required": true

@@ -1,0 +1,375 @@
+{
+  "schema": 1,
+  "reviewed_commit_range": "910e3f73eb87dc3dbb5d21dc7cb9890827d0265f..002633ea32c1ade7a11d04a058cae8a83409badd",
+  "scope": "Committed history only; exact parent/current hashes, affected behavior links and contract receipts reviewed separately from current uncommitted work. No retrospective gate pass or new validation.",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "ee9db0c99f0472015576983dafa634ef3437ad64849a04489320285054985888",
+      "after_sha256": "f6342ab9d9f37a14f4d3fd5548836dfb8b451dfce22b29d0459825ebde3141ab",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-2a1885c-910e3f7-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5bcc69b766177f5af179b0c79bf68bfd8ae71ae9d934b800205610bbdd0be9f0",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "0c07f4600b354294e56c165b2d6926afb5696e093336aa14e5ffed42e16bce55",
+      "after_sha256": "bdede883c03451407973d16b1049c405f1939c0d32c244398543d5be4749d13c",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-api-virtual-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1008b009576703645ed10e8a63a125d0c5e9a20c62d8e07f17d83fce183d803d",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "1271c92b6c9992aa19545412c3659631035d0cc06282dcd3cf41c3ecdb8d4a7e",
+      "after_sha256": "a5147d82b5f624c7bf92b175079ed0eeece4285f8ecb1e0f4f7343676fdbb915",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-graphics-api-boundaries.md",
+      "before_sha256": "830ba44994194a4e6cea1c4978e772a9a93b8f1b9a51f8b309fa0097f51aad9f",
+      "after_sha256": "afc000eac32fa601bd2c8fe06d03afc44d2e366e746c540535a3626b19adcc5c",
+      "behaviors": [
+        "DRAW.graphics-api-boundaries",
+        "DRAW.graphics-api-surface-client-layouts",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-cohorts",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-virtual-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "827a27699114feff2c154e6cf4a9127e660f114bc9e60e7feed8e8cab9e6d413",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-virtual-candidates-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "bdfb0e01bd250ba885c748159c0c9f3f5f21628324be12b0515dcb2e43d41ef1",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-virtual-core-splices-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9314a6621ef6172c3fade2bf3954e8d3a9f7ea758fe934b1d5582b57c03879ba",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-virtual-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6ab78f10063652c7d9de21205f55c4ff79519c571cad20375a529290d76fbd18",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-virtual-movies-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5160e1d03868e37c72e1349f4719b109f9388282e5ba89d4bf95b2719da99eb2",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-virtual-only-splices-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "09c2f679e68fd74a5248e60d1a8e6ec8cc8945139e30e08b500926d5c19d34c8",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "path": "tests/test-drawing-api-resources.py",
+      "before_sha256": "a7a6f381cf9b815f22677fc464ce0503c243cecd0e9e6100bae3be39487e7ab2",
+      "after_sha256": "a42fd314f84f8405d0aaf79fb4b76aec6470f0a3219775b5f157e004360ac08d",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "DRAW.graphics-api-surface-client-layouts",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources"
+      ],
+      "role": "test",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "path": "tests/test-drawing-api-sites.py",
+      "before_sha256": "2fe03404be9a2b5d9506db1d0d5d6c7a7654445ca7a2872d5c05eec01559fcb2",
+      "after_sha256": "80542dce074566c59ff5750f70f4cdea5b06502016d51cdb14ee0fb070dc3983",
+      "behaviors": [
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "test",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "path": "tools/build-drawing-api-census.py",
+      "before_sha256": "339a185832e502d4e53ae5ef4ebec3c22e820c89a39486e8124f061edeec063c",
+      "after_sha256": "cb9057b9ad7f94c824f873eacc1551106ad2ed1043af63758a97ddc821071619",
+      "behaviors": [
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_resources.py",
+      "before_sha256": "c6a51caf64242f7a340bb8b05cc467fe6eaafea2a43da0f4e4d4ec5a5699d9b4",
+      "after_sha256": "ef36288e39cc2a7c10b2a7cd5b9d08c411f99457970aadefdda7b46e0a89e5a2",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_sites.py",
+      "before_sha256": "5cab6d71de315872411a87aa3457f08069ebeed71f8f52efdbee6127ccd7b801",
+      "after_sha256": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "path": "tools/export-drawing-api-sites.py",
+      "before_sha256": "2cc8ad0448c48880f9ccbc975336416f108b7202cfcb8b56d99aedb6085f0342",
+      "after_sha256": "954700524914c22d70f666e40eb819dcb9c58adc1c6f10a2cbe911d2955aa30c",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "f7be6e83966b57d067829d273c71b036c9a490458a1a2242020abcaa20956f14",
+      "after_sha256": "576abbc1fd013dcaf09f7b95d4d55d32f12ff7b269dd2c81fe943a718d0ddad8",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-boundaries",
+      "before_sha256": "7b90af057c8ac34174991f5fec74cb9e8547338cdf88874eea0abe035ac8e77d",
+      "after_sha256": "51ff039aa3b37eaa63d4e410ffb3557b48b32d460b3ad3e668b9d298a5ccccd6",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-surface-client-layouts",
+      "before_sha256": "c1fccb88477e28024845f896805ecdec0d3d82595241f1a3ca1fc40a49bb2eff",
+      "after_sha256": "f65492ebf9dd883171be83b0d988ac92a94908dcfb01c83c65c2d11fc719d6f3",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "407f73b8fd7b9162332ae2a6ad00ec32b9366a58f7f914413033aaad8a30e482",
+      "after_sha256": "f036376111564e19454476dc417498191b3087b37c56e519ed16d95da395aad4",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-bindings",
+      "before_sha256": "8453a5dc572e0b185edec48113f7a35cd2989b4adb6a5305c9c1fed8a5666967",
+      "after_sha256": "3a1f448ac3c5fbb56f48373839db4c2884f43ae979095c24892f94ab95bdb30b",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-cohorts",
+      "before_sha256": "d4d3adbb5cbd1cb7be1f4da0d13443165265dab0172aba95b273865adb17d7ee",
+      "after_sha256": "de8d61397147d71a64e60e8c33abf1fb746d619f17e33bfc3860798beae2fe5b",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-details",
+      "before_sha256": "16f0b6ddbad1e14ff7c50ce27ba0f210e45d181f45b556786858e7182d406bcf",
+      "after_sha256": "312a610bdf9afaa8e91f00ea01fd62ec3976e93eebb27b92d0063af0b0aaa438",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journal",
+      "before_sha256": "ecb039555c355caf68ece033520fdf4731f245c01af778557525100cfbca7cd1",
+      "after_sha256": "7f02b33d7a770c7eaaaa6bd23b2cf9bcdd920d0cd7df31544a170bbe6a279963",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journey",
+      "before_sha256": "7fd82c197f7b1dff31170fa2fb8e89397638dd3fda1aa734ecc8f694a1951266",
+      "after_sha256": "ddb444cfcabe6867597fabce7b4497cb7ed1ca7a75cef4725f2a41249db9828c",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-observer",
+      "before_sha256": "557e2d3aee94485be348ee5441435c01fc22fedf18c81bc1d9e317006bd0a9f5",
+      "after_sha256": "38573299e8cbdba6cc431483991da97eb9020622716e958f2fc58d23d8c7d8e7",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-resources",
+      "before_sha256": "92a33e997d8b7ae57bea76ea019b7166c29ba7066058dd3a0470996bb2bd478e",
+      "after_sha256": "0918fabe269a21bc7d86a469cf228a04e1e8db58576748532715cdba7de07708",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-sites",
+      "before_sha256": "188e42094f66e6fa00bca6927462a3f1b9ded6616ba5c84761a19dc868d4a20b",
+      "after_sha256": "ce0290b2f032d9b7deda9e2adda9f289da2b78aaed42add97c5b4155ab5f729b",
+      "exact_receipts": [
+        "draw01-api-virtual-exact-accounting-20261011",
+        "draw01-api-virtual-native-validation-20261011"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "counts": {
+    "files": 18,
+    "behaviors": 12,
+    "missing_exact_receipts": 0
+  }
+}
