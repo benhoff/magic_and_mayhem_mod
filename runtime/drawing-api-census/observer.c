@@ -3,6 +3,7 @@
 #include "../shadow/win32_min.h"
 #include "exception_i386.h"
 #include "../../protocols/include/mnm/drawing_api_journal_v1.h"
+#include "../../protocols/include/mnm/drawing_api_journal_v2.h"
 #include "../../protocols/include/mnm/drawing_api_bindings_v1.h"
 #include "../../protocols/include/mnm/drawing_census_v1.h"
 API u32 WIN GetCurrentThreadId(void);
@@ -14,7 +15,8 @@ API int WIN UnmapViewOfFile(const void*);
 API void* WIN GetProcAddress(HANDLE,const char*);
 #include "api-hooks.inc"
 u32 api_trampolines[API_HOOKS],api_remainders[API_HOOKS];
-static struct ApiFrame {u32 live,tag,id,phase,thread,sp,state,slot,target;} frames[2048];
+static struct ApiFrame {u32 live,tag,id,phase,thread,sp,state,slot,target;
+ u32 arguments_read,args[16],receiver,vtable,candidate;} frames[2048];
 static HANDLE journal;
 static const volatile u32* control;
 static volatile u32 mutex;
@@ -23,7 +25,7 @@ static u32 module_base;
 static void* exception_handler;
 static u8 buffer[65536];
 static void copy(void* d,const void* s,u32 n){u8* a=d;const u8* b=s;while(n--)*a++=*b++;}
-static void zero(void* d,u32 n){u8* a=d;while(n--)*a++=0;}
+static void zero(void* d,u32 n){volatile u8* a=d;while(n--)*a++=0;}
 static int same(const void* a,const void* b,u32 n){const u8* x=a;const u8* y=b;while(n--)if(*x++!=*y++)return 0;return 1;}
 static int readable(u32 p,u32 n){u32 end=p+n;if(!p||end<p)return 0;while(p<end){u32 m[7];if(VirtualQuery((void*)p,m,28)!=28||m[4]!=0x1000||(m[5]&0x101)||!(m[5]&0xee))return 0;u32 next=m[0]+m[3];if(next<=p)return 0;p=next<end?next:end;}return 1;}
 static void lock(void){while(__sync_lock_test_and_set(&mutex,1))Sleep(0);}
@@ -44,13 +46,37 @@ static void target(struct ApiFrame* f,u32* regs){
   if(readable(f->slot,4)){f->state=MNM_DRAW_API_SLOT_READ;f->target=*(u32*)f->slot;}
   else f->state=MNM_DRAW_API_SLOT_UNREADABLE;}
 }
+static void arguments(struct ApiFrame* f,u32* regs){
+ const struct ApiHook* h=api_hooks+f->tag;u32 count=h->formal_words==0xffffffffu?16:h->formal_words;
+ if(readable((u32)(regs+9),count*4)){f->arguments_read=1;copy(f->args,regs+9,count*4);}
+ /* A pointer equality observation, not an inferred COM/interface identity.
+  * Receiver/vtable are saved before the CALL and never read after Release. */
+ if(f->arguments_read&&count&&h->mode==2&&readable(f->args[0],4)){
+  u32 table=*(u32*)f->args[0];if(table&&table+h->operand==f->slot){f->receiver=f->args[0];f->vtable=table;f->candidate=1;}
+ }
+}
+static void snapshots(u32* row,const struct ApiFrame* f,u32 event){
+ const struct ApiHook* h=api_hooks+f->tag;
+ for(u32 i=0;i<h->snapshot_count;++i){const struct ApiSnapshot* plan=h->snapshots+i;u32* out=row+56+i*36;
+  if(!(plan->events&event))continue;
+  out[1]=plan->bytes;
+  if(!f->arguments_read){out[2]=4;continue;}
+  out[0]=f->args[plan->argument];
+  if(!out[0])out[2]=2;
+  else if(!readable(out[0],plan->bytes))out[2]=3;
+  else{out[2]=1;out[3]=plan->bytes;copy(out+4,(void*)out[0],plan->bytes);}
+ }
+}
 static void emit(u32 event,const struct ApiFrame* f,u32* regs,u32 error){
- if(io_failed||sequence>=MNM_DRAW_API_MAX_RECORDS){++lost;return;}
- u32 row[32]={0};row[0]=++sequence;row[1]=event;row[2]=f->id;row[3]=f->tag;row[4]=f->phase;row[5]=f->thread;row[6]=api_hooks[f->tag].address;row[7]=(u32)(regs+9);
+ if(io_failed||sequence>=MNM_DRAW_API_V2_MAX_RECORDS){++lost;return;}
+ u32 row[200];zero(row,sizeof(row));row[0]=++sequence;row[1]=event;row[2]=f->id;row[3]=f->tag;row[4]=f->phase;row[5]=f->thread;row[6]=api_hooks[f->tag].address;row[7]=(u32)(regs+9);
  row[8]=regs[6];row[9]=regs[5];row[10]=regs[7];row[11]=regs[8];row[12]=error;row[13]=GetTickCount();row[14]=f->state;row[15]=f->slot;row[16]=f->target;
  if(event==MNM_DRAW_API_BEFORE&&readable((u32)(regs+9),32)){row[17]=1;copy(row+18,regs+9,32);}
  row[26]=active;row[27]=f->sp;row[28]=regs[4];row[29]=regs[2];row[30]=regs[1];row[31]=regs[0];
- if(used+128>sizeof(buffer))flush();if(!io_failed){copy(buffer+used,row,128);used+=128;}
+ const struct ApiHook* h=api_hooks+f->tag;row[32]=h->formal_words;row[33]=h->formal_words==0xffffffffu?16:h->formal_words;row[35]=h->snapshot_count;
+ if(event==MNM_DRAW_API_BEFORE&&f->arguments_read){row[34]=1;copy(row+36,f->args,row[33]*4);}
+ row[52]=f->receiver;row[53]=f->vtable;row[54]=f->candidate;snapshots(row,f,event);
+ if(used+800>sizeof(buffer))flush();if(!io_failed){copy(buffer+used,row,800);used+=800;}
 }
 void api_observe(u32* regs,u32 tag,u32 event){
  u32 error=GetLastError(),thread=GetCurrentThreadId();lock();
@@ -60,7 +86,7 @@ void api_observe(u32* regs,u32 tag,u32 event){
  if(tag>=API_HOOKS||(event!=1&&event!=2)){++lost;unlock();SetLastError(error);return;}
  if(event==MNM_DRAW_API_BEFORE){
   u32 value=phase();if(lost){unlock();SetLastError(error);return;}
-  for(u32 i=0;i<2048;++i)if(!frames[i].live){struct ApiFrame f={1,tag,++serial,value,thread,(u32)(regs+9),0,0,0};target(&f,regs);frames[i]=f;++active;emit(event,&f,regs,error);unlock();SetLastError(error);return;}
+  for(u32 i=0;i<2048;++i)if(!frames[i].live){struct ApiFrame f={0};f.live=1;f.tag=tag;f.id=++serial;f.phase=value;f.thread=thread;f.sp=(u32)(regs+9);target(&f,regs);arguments(&f,regs);frames[i]=f;++active;emit(event,&f,regs,error);unlock();SetLastError(error);return;}
   ++lost;
  }else{
   u32 match=2048;for(u32 i=0;i<2048;++i)if(frames[i].live&&frames[i].thread==thread&&(match==2048||frames[i].id>frames[match].id))match=i;
@@ -130,7 +156,7 @@ static int install(void){
  for(u32 i=0;i<API_HOOKS;++i)if(api_hooks[i].patch_bytes==1){exception_handler=AddVectoredExceptionHandler(1,api_exception);if(!exception_handler)return 0;break;}
  if(!write_bindings(directory))return 0;
  if(!path(name,directory,"\\api-calls.bin"))return 0;journal=CreateFileA(name,0x40000000,1,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}
- u32 header[16]={0};copy(header,MNM_DRAW_API_MAGIC,8);header[2]=1;header[3]=64;header[4]=128;header[5]=(u32)GetModuleHandleA(0);header[6]=API_HOOKS;header[7]=MNM_DRAW_API_MAX_RECORDS;copy(header+8,original_sha256,32);if(!write(header,64))return 0;
+ u32 header[16]={0};copy(header,MNM_DRAW_API_V2_MAGIC,8);header[2]=2;header[3]=64;header[4]=MNM_DRAW_API_V2_RECORD;header[5]=(u32)GetModuleHandleA(0);header[6]=API_HOOKS;header[7]=MNM_DRAW_API_V2_MAX_RECORDS;copy(header+8,original_sha256,32);if(!write(header,64))return 0;
  for(u32 i=0;i<API_HOOKS;++i)if(!patch_hook(i))return 0;
  installed=1;return 1;
 }
@@ -140,6 +166,6 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
  if(journal&&!installed){CloseHandle(journal);journal=0;}
  if(journal){/* Busy process detach cannot create a valid terminal. */
   if(__sync_lock_test_and_set(&mutex,1)){CloseHandle(journal);journal=0;return 1;}
-  flush();u32 end[16]={0};copy(end,MNM_DRAW_API_END,8);end[2]=1;end[3]=sequence;end[4]=serial;end[5]=lost;end[6]=active;end[7]=io_failed;if(!io_failed)write(end,64);CloseHandle(journal);journal=0;unlock();}
+  flush();u32 end[16]={0};copy(end,MNM_DRAW_API_END,8);end[2]=2;end[3]=sequence;end[4]=serial;end[5]=lost;end[6]=active;end[7]=io_failed;if(!io_failed)write(end,64);CloseHandle(journal);journal=0;unlock();}
  if(control){UnmapViewOfFile((const void*)control);control=0;}return 1;
 }

@@ -16,6 +16,7 @@ import subprocess
 import time
 from drawing_census import ROOT, trace
 from drawing_api_journal import trace as api_trace
+from drawing_api_details import trace as api_detail_trace
 from drawing_api_bindings import decode as api_bindings, physical as api_physical
 from campaign_gameplay import read_rows, creatures
 from campaign_spell import read_spell_rows
@@ -28,6 +29,9 @@ def capture(root, template, journey, claims=None):
     root = root.resolve()
     if (root / 'journey.json').exists(): raise ValueError('Attempt already recorded; prepare a fresh experiment')
     manifest = json.loads((root / 'manifest.json').read_text())
+    metadata_paths=['manifest.json','census-build.json','menu-build.json']
+    if manifest.get('api_observation_enabled',False):metadata_paths.append('api-build.json')
+    frozen_metadata={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in metadata_paths}
     selected=cohort(manifest)
     if journey == 'movies' and not manifest['movies_enabled']:
         raise ValueError('Movie journey requires explicitly enabled disposable preferences')
@@ -40,7 +44,7 @@ def capture(root, template, journey, claims=None):
     source_paths = ['tools/capture-drawing-census-game.py', 'tools/drawing_census.py', 'tools/drawing-census-game-runner.py',
                     'tools/campaign_gameplay.py', 'tools/campaign_spell.py']
     source_paths += ['tools/drawing_api_cohorts.py']
-    if manifest.get('api_observation_enabled', False): source_paths += ['tools/drawing_api_journal.py', 'tools/drawing_api_bindings.py']
+    if manifest.get('api_observation_enabled', False): source_paths += ['tools/drawing_api_journal.py', 'tools/drawing_api_pairs.py', 'tools/drawing_api_details.py', 'tools/drawing_api_contracts.py', 'tools/drawing_api_bindings.py']
     frozen_sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in source_paths}
     if declaration: frozen_sources.update(declaration['sources'])
     prefix = root / 'wineprefix'
@@ -382,8 +386,9 @@ def capture(root, template, journey, claims=None):
         if report['api_observation_enabled']:
             api_manifest = json.loads((root / 'api-build.json').read_text())
             if api_manifest.get('cohort','core_api')!=selected:raise RuntimeError('API manifest observation cohort mismatch')
+            if api_manifest.get('synthetic_fixture',False):raise RuntimeError('Original journey cannot use synthetic API namespace')
             bindings = api_bindings(root / 'capture/api-bindings.bin', api_manifest)
-            api = api_trace(root / 'capture/api-calls.bin', api_manifest)
+            api = (api_detail_trace if api_manifest.get('journal_version')==2 else api_trace)(root / 'capture/api-calls.bin', api_manifest)
             if not api['paired_calls']: raise RuntimeError('No selected original API CALL was observed')
             require_bindings(bindings,selected)
             (root / 'decoded-api-bindings.json').write_text(json.dumps(bindings, indent=2) + '\n')
@@ -427,9 +432,11 @@ def capture(root, template, journey, claims=None):
         report['inputs_unchanged'] = all(hashlib.sha256((root / 'game' / name).read_bytes()).hexdigest() == digest
                                         for name, digest in manifest['binaries'].items())
         report['sources'] = frozen_sources
+        report['metadata_sources']=frozen_metadata
+        report['metadata_inputs_unchanged']=all(hashlib.sha256((root/p).read_bytes()).hexdigest()==digest for p,digest in frozen_metadata.items())
         report['sources_stable'] = all(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == digest for p, digest in frozen_sources.items())
         if declaration: report['claims'] = declaration['claims']
-        if not report['sources_stable'] or not report['inputs_unchanged']: report['success'] = False
+        if not report['sources_stable'] or not report['inputs_unchanged'] or not report['metadata_inputs_unchanged']: report['success'] = False
         (root / 'journey.json').write_text(json.dumps(report, indent=2) + '\n')
         subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
     return report

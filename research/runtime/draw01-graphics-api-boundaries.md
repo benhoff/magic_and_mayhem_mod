@@ -258,3 +258,56 @@ execution of every admitted site. The retained final Main screenshot was viewed.
 Evidence: `drawing-api-only-movies-20261011.json`, separate static cohort plans,
 and `drawing-api-cohort-guards-20261011.json`. The original CALL catalog, fourteen
 scenario closures and four dispatch obligations remain independently open.
+
+## Reviewed argument layouts and bounded raw outputs, 2026-10-11
+
+V2 is a separate 800-byte wire record with a one-million-record budget; V1
+remains decodable with its original layout. Exact import identities and reviewed
+movie CALL signatures select formal layouts of at most sixteen PE32 stack words.
+Unknown sites retain sixteen diagnostic words and an explicit unknown formal
+count. Observed cleanup must match a reviewed stdcall layout. The 13-argument
+StretchDIBits call now retains every argument rather than just eight words.
+
+At most four fixed buffers, each bounded to 128 bytes, have explicit before/after
+plans. The original pointer is saved before the call; after capture never rereads
+a cleaned stack. Null, unreadable and unavailable pointers remain separate states
+with zero payload. These are raw bytes, including on failure, rather than a claim
+that an output is valid. Movie GUIDs, output-pointer slots, GetSurface's rectangle,
+selected GDI structs and bitmap-header prefixes are admitted. Variable pixel,
+palette, string and UTF buffers remain pending.
+
+A register-memory call can record a candidate receiver only when its readable
+first stack argument's first word plus the exact displacement equals the observed
+callee slot. This is a byte equality, not an interface/type or ownership proof.
+The candidate is cached before the call and repeated afterward; Release plans
+have no snapshots and perform no object reads after returning. Concurrent object
+mutation, external implementation lifetime and broad memory-read transparency
+remain unproved.
+
+The 55 decoder/layout/binding guards pass. Twenty-six real PE32 bodies cover both
+patch modes, selected callee-entry and final machine state, full 52-byte cleanup,
+before/after changed output bytes, null/unreadable pointers and a receiver page
+made inaccessible inside the callee. The native writer's actual closed V2 journal
+round-trips through the strict decoder. Failed fixture attempts are retained;
+the diagnostic run showed a test baseline from a different caller frame, so the
+passing successor obtains a fresh baseline within the same frame. Historical
+reports are unchanged.
+
+Original enabled-movie run `run-xix7fqds` closes 4,621 pairs at 53 sites with zero
+loss/open/IO/unreadable diagnostic stack/target, stable source and experiment
+metadata, core module absent and exit0. Movie setup returns zero, initial Updates
+return 00040003, and cleanup executes. Snapshots include concrete GUID bytes,
+created interface output slots and the returned [0,0,100,100] surface rectangle.
+The reviewed final screenshot shows the rendered Main menu. Pointer values are
+run-local; they do not establish interface lifetimes or future address stability.
+The first startup StretchDIBits has all thirteen arguments and 52-byte cleanup.
+This result does not close full playback, Blt success, arbitrary failure/recovery,
+global writers, fourteen scenario reviews or four dispatch obligations.
+
+Evidence: `drawing-api-v2-guards-20261011.json`,
+`drawing-api-v2-abi-20261011.json`, `drawing-api-v2-movies-20261011.json`,
+`drawing-api-v2-fixture-attempts-20261011.json` and the separately frozen V2
+core/API and API-only static plans. Capture also freezes staged build metadata;
+a changed manifest invalidates success. The common pair validator retains V1
+rules; the two prior closed V1 menu/movie journals were re-decoded with identical
+JSON projections. This offline parity check supplies no new original execution.

@@ -239592,6 +239592,425 @@
           "DRAW.api-only.movies-20261011"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "33f1505f42b0423a65342d8f18c5a0a06f85730b5f9f29c994435affad9238b7",
+          "before_sha256": "33f1505f42b0423a65342d8f18c5a0a06f85730b5f9f29c994435affad9238b7",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "50f9941e868072ce787796876af67094e8ef86e905266a9a42b889f351bea75c",
+          "before_sha256": "e419edb8e39d0c3b8c31d7faba6b43026d1799a5241000f6d95c9e5c40664686",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "b7abdc69b21b3b6e7d59982acf5df3d8590f382f9d386ebf0e0d158e23226109",
+          "before_sha256": "b7b066877616fa3ce15f3c2887a516aa3bf901c1375afd537318d5f9a4a2d049",
+          "id": "DRAW.graphics-api-boundaries"
+        },
+        {
+          "after_sha256": "831e91ff684fc8aa68db266e267ce3113aa449a4ab924a55c1a273c3887b66de",
+          "before_sha256": "831e91ff684fc8aa68db266e267ce3113aa449a4ab924a55c1a273c3887b66de",
+          "id": "DRAW.queue-dispatch"
+        },
+        {
+          "after_sha256": "e6539f050f7dfb07d8b25e2f47045d70064cc6deb48dfe082e4aa8fc55a0ef9c",
+          "before_sha256": "e6539f050f7dfb07d8b25e2f47045d70064cc6deb48dfe082e4aa8fc55a0ef9c",
+          "id": "DRAW.world-kind-16"
+        },
+        {
+          "after_sha256": "c3e2b50aadc7e18ea3868bf69e93980faa3421f5a8f5da3e78c5aca53cc739ac",
+          "before_sha256": "c3e2b50aadc7e18ea3868bf69e93980faa3421f5a8f5da3e78c5aca53cc739ac",
+          "id": "DRAW.world-kind-17"
+        },
+        {
+          "after_sha256": "5946bedb79dd4daf37d885b08ac6e74238b2f824cadcf1cb3866d521faf31e82",
+          "before_sha256": "5946bedb79dd4daf37d885b08ac6e74238b2f824cadcf1cb3866d521faf31e82",
+          "id": "DRAW.world-kind-20"
+        },
+        {
+          "after_sha256": "35fa6bc3eb12b54f391ba13dc2504617fbd9270d84380f4aa4e985043683f406",
+          "before_sha256": "d2165bb76b1172d73abdd0e1f1e0d5487421578c4160dbf12d14168a4403cc74",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "a02c5d58ac3cb035acaf1b9eaa3d28297b38ebd91ef92833610b578680117d81",
+          "before_sha256": "79cc85c5e1c50105853b34482f89a4d8754116dc8d5199688abbd72119a7f283",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "533ab689645ba5fd74d53679418bd4f7c7f8720dc1a5f578f128332fcdfcbad2",
+          "before_sha256": "039294b4a1aa22039d704c579f48ff230598835af4702777e95ea3b3e574d77d",
+          "id": "TOOL.drawing-api-bindings"
+        },
+        {
+          "after_sha256": "8c48483a5642a976815b311b51918454cdeb08980db322f34c5ca82abc265d0b",
+          "before_sha256": "c04fd7aa87e708349a359ee9d05a24eda9b91487bba2c256f38199cb64aeeaa8",
+          "id": "TOOL.drawing-api-cohorts"
+        },
+        {
+          "after_sha256": "2b5fbdd0ef82cde395e71096b1bdd812a6dfeff157a13e11f04df306c279eb30",
+          "before_sha256": null,
+          "id": "TOOL.drawing-api-details"
+        },
+        {
+          "after_sha256": "04dc5329d3160ae9d7f570f06a2fbab1e2f8e2dd69ef2231a016da1d97dd5d5b",
+          "before_sha256": "c9b090549573817d9696d3765b981e6238de854fe3bea4db906c42c3e8be7781",
+          "id": "TOOL.drawing-api-journal"
+        },
+        {
+          "after_sha256": "79ccd74414892ffab745368a25c2905efe42015c0a4dc109cde62f3972bd612d",
+          "before_sha256": "c7a0d7121394ee70280159b15dd8a147d2a7271e6a9caa8a46b50c288dce9414",
+          "id": "TOOL.drawing-api-journey"
+        },
+        {
+          "after_sha256": "cae2a3dd8bee0aecd42e8ab52f735de9558d4c95a5dfdcf2f90ae42bc63e210a",
+          "before_sha256": "a5476752bacaa9c29b52a70112a40040857b1866351d74ee9eed5ff632d35ee3",
+          "id": "TOOL.drawing-api-observer"
+        },
+        {
+          "after_sha256": "998718296d32bfb3669948317a975b112bb9f2d047f429b96965bd18e6d9fa9f",
+          "before_sha256": "27cbf4799253d212d81c79f337f35af5b26a4eaefc2a2fb977f3e4dfb220db90",
+          "id": "TOOL.drawing-api-sites"
+        },
+        {
+          "after_sha256": "a1026de6a153751cfea8b9b8c73fa332a79338586cbc94ee4d1a487892ea3977",
+          "before_sha256": "a1026de6a153751cfea8b9b8c73fa332a79338586cbc94ee4d1a487892ea3977",
+          "id": "TOOL.drawing-census"
+        },
+        {
+          "after_sha256": "621edaa9aefeff7b91bc2c3244d4c577cd8609e810b38938e9b318e6e3f50871",
+          "before_sha256": "621edaa9aefeff7b91bc2c3244d4c577cd8609e810b38938e9b318e6e3f50871",
+          "id": "TOOL.drawing-dispatch-slices"
+        },
+        {
+          "after_sha256": "4a3a798819b39ba770f4293772637ba0185a6ca2632e17e4eb924090572168c6",
+          "before_sha256": "4a3a798819b39ba770f4293772637ba0185a6ca2632e17e4eb924090572168c6",
+          "id": "TOOL.drawing-inventory"
+        },
+        {
+          "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+          "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+          "id": "TOOL.drawing-movie-reference"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+          "before_sha256": null,
+          "path": "protocols/include/mnm/drawing_api_journal_v2.h"
+        },
+        {
+          "after_sha256": "cb513bc07bf951e7f091208094f23d8cc9fd1ac57d9e38d398bf8d77491304f9",
+          "before_sha256": "8471cf228fb8c0e6bf231b4f8cf963502960b35bc2432d2034e673d60d1c65fa",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "f3b0b165a0db60783bb6a22cccf4769fa047bd9ad30e2dc02066f64a92ee8fc5",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw01-history-defa681-a69697f-20261011.json"
+        },
+        {
+          "after_sha256": "d2403b78b55d5e7b2734ca53f6f62bd3c0b937e96849766ae76738552c82cd37",
+          "before_sha256": "757ae66003cbb0e1503776b124d90ce1864f6e08f9e1388cc6e17ff93485b04f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "f14dbb2557fe6a37ae0bd097b3d6d85498fd5e52d3bb031df7e93cc747ecaa9f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw01-api-v2-20261011.json"
+        },
+        {
+          "after_sha256": "fe45cadaedecbfd5b8b487ea38979e6e1d52c8f0015e6c50edff17085f8415bd",
+          "before_sha256": "658d6cd5930cedb5b8a75e352aaa0949a0299148bdcb22933188cb2abb6e1e47",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "f76b9cf7f63c41ff6e7e2bb0b92c3b786a5c97451d318f683b5f25b6ec64b0db",
+          "before_sha256": "cec9a8a8ac123b70dd5e79c849b0a8d01fa889089d06d48682e8e3b7c5e96d11",
+          "path": "research/runtime/draw01-graphics-api-boundaries.md"
+        },
+        {
+          "after_sha256": "0238efb2e0397f88afa5b9c931434b8b88c51520fb155e8817f2b313b44a17ad",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-v2-abi-20261011.json"
+        },
+        {
+          "after_sha256": "16cb948e61e4f9eed276cc00a962e700a82279ab6c6da73722ea14128174adfe",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-v2-core-plan-static-20261011.json"
+        },
+        {
+          "after_sha256": "3c56fb9250661d3e638378bdb4a2f2e98fe9921ab77772d4f984332e04267ba6",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-v2-fixture-attempts-20261011.json"
+        },
+        {
+          "after_sha256": "56d6ed16ce5f303248076f7dd13e5ecc2fac5fb2a619ceaa0c50278c75f87283",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-v2-guards-20261011.json"
+        },
+        {
+          "after_sha256": "8a9ba29e601a369c91a3cfd9e828107f37a3b9a0baca398f859c42dd0dc617ac",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-v2-movies-20261011.json"
+        },
+        {
+          "after_sha256": "8788e8e66d34f1afe93986466b3e2200418e1dc342e1b753d7cc32b52488b1ea",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-v2-only-plan-static-20261011.json"
+        },
+        {
+          "after_sha256": "1e684458322b7c930eeccc5341eeca375cf8fe3225f96215cba8f113f1704358",
+          "before_sha256": "16806fb77aac5cbc23855d1cb130cee6661c29e9859b0ee8063cb7f80eb719fb",
+          "path": "runtime/drawing-api-census/observer.c"
+        },
+        {
+          "after_sha256": "b70a9c7e87d3eba656d258373f588507eb94022dfef313d1e0e039a245eac3f5",
+          "before_sha256": "91b45313c80cd1f6c6ec17c20ce588c6de694aa533f6087c96e149e2e3e0fde5",
+          "path": "tests/drawing-api-census-abi.c"
+        },
+        {
+          "after_sha256": "703373a9d236a04a841e685496c03af7a50b1e5db4286a6f469f40dc6a047b55",
+          "before_sha256": null,
+          "path": "tests/drawing-api-detail-call.S"
+        },
+        {
+          "after_sha256": "9a2a69a81f41890adeb67f0abf7ffbc25ae194b51b6780260c74c1595e8c7d91",
+          "before_sha256": "9a2a69a81f41890adeb67f0abf7ffbc25ae194b51b6780260c74c1595e8c7d91",
+          "path": "tests/drawing-movie-reference.cpp"
+        },
+        {
+          "after_sha256": "2b898fe1c3b4f4dcbd32519afe1348cac7baa9ac6e14c4983421adf61e2c126f",
+          "before_sha256": null,
+          "path": "tests/test-drawing-api-contracts.py"
+        },
+        {
+          "after_sha256": "b5a381cc3ae3458eb3f4dedada07d5756dc98a2f5480004be950ff31146a9f31",
+          "before_sha256": null,
+          "path": "tests/test-drawing-api-details.py"
+        },
+        {
+          "after_sha256": "e8152392bca7fdc88ebe96050a8b3f94968c3ac1d7aa75ed7fc6b88e8bbf4b3e",
+          "before_sha256": "d2fba1e98dbaf5fa5777199107c99aa1ad9aca6ff890f54cbede91dc0b3600ff",
+          "path": "tools/build-drawing-api-census.py"
+        },
+        {
+          "after_sha256": "c6a6697c7d620c050f62c8e51a1f48cf6620ab239548f682000662b7d3b340e0",
+          "before_sha256": "251b21683bf17327d8be889c2cb637e063feba058509704faa4f0dc099fd4f09",
+          "path": "tools/capture-drawing-census-game.py"
+        },
+        {
+          "after_sha256": "701bf7669533eece517d19f68be7e52a3733e2cba7279a13a2b694efa7b1ed53",
+          "before_sha256": null,
+          "path": "tools/drawing_api_contracts.py"
+        },
+        {
+          "after_sha256": "e58d042b34634ac0fc508e7dc3045c598d8a4bdd9a45a414b8485aebfdf0931f",
+          "before_sha256": null,
+          "path": "tools/drawing_api_details.py"
+        },
+        {
+          "after_sha256": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+          "before_sha256": "d17ecbc7bdc69e71d66acb6c45d39cf93991db662a399afdb998f9ef6603cc97",
+          "path": "tools/drawing_api_journal.py"
+        },
+        {
+          "after_sha256": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+          "before_sha256": null,
+          "path": "tools/drawing_api_pairs.py"
+        },
+        {
+          "after_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+          "before_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+          "path": "tools/drawing_census.py"
+        },
+        {
+          "after_sha256": "1a5e5a2b9df06a5a6fc91c2e610961fbfd05058d24d95c7f993220507460a317",
+          "before_sha256": "b9ac94eff2d850557256002f9adf2af87e9c105617aa95f17b03d61872a39b60",
+          "path": "tools/export-drawing-api-splices.py"
+        },
+        {
+          "after_sha256": "f0d346612279c0a869d83ed0fa77419c7b38b3ac99b8571954765efd291a64ae",
+          "before_sha256": "ea3f03a67d17edb493fd488230bd9999b330be0ed329b8c6e2899502eeb80fac",
+          "path": "tools/test-drawing-api-census-abi.py"
+        }
+      ],
+      "id": "draw01-api-v2-exact-accounting-20261011",
+      "pending_gaps": [
+        "behaviors_without_comparison:55dc6c9c516314dd8c9ddda62c7a8610cc18d3407ec8e65fea736bf4e05491f3",
+        "stale_evidence:021fd2645bed4ea5bc916e806668b97c4463ece40cf02822ebc3e32e95066a55",
+        "stale_evidence:0243117711913b87542fbf01155c50a1d58bf9c5bbe90a5e86748707fda1804a",
+        "stale_evidence:03600cb4ca06682252141d34e12f0748d2d524137dacc0f8d52f843e8d7cfbbe",
+        "stale_evidence:2ae7f8840d2659b14168f5b06c6dccc12f108d2587f594c4b26456c598155b09",
+        "stale_evidence:539c26aa046accc61734737f981235be0b5fa5bfbf594a3446477086b06584ed",
+        "stale_evidence:62cd1f4ee1ff03e522d24842be288170aca1d43bbc1fe772a6b296b59084bd0a",
+        "stale_evidence:6979c3e03d8109990c8cd49c49e657fcd969f267b684fccfb3af85702d965dcb",
+        "stale_evidence:6dd98ed14ccd3803f13ba636a7ba6a9b206c211e1b3804fb63206d4a8364e1f1",
+        "stale_evidence:76b82fc7c09f1c08e1e41440b10562d5c555378a55f76522b64fcc6658391347",
+        "stale_evidence:77bfa0bd87bc6e4390be7cfb5b2ba7f8d5be0716557db72c371f8df2a803a318",
+        "stale_evidence:7a32717580d2bbaa9463e07a355c66fcee6f2f2261564a31b0f86d91f8f7a30b",
+        "stale_evidence:8508c76d73df7ab78f1c644bc31fa7c86f3d9fc592dc45100b0e86669ecc9da1",
+        "stale_evidence:8cc8ea664ca685309ee15bbaddd0cfb3c15fbedc4d91c994e9214b333745a77f",
+        "stale_evidence:95dbb1ba2d36f2dd148283b4bfa3b47bfc6de80222c5eb92f6047572d6da690f",
+        "stale_evidence:a52d7ee375cc4f89aa8c417308cbe0363dc54082e7617dfc26592d98b3e1ab89",
+        "stale_evidence:a570542238620e731339362fba07fb78c09ef97484156a19452064d6db666ee3",
+        "stale_evidence:aba21fac968715eb7cecedd241a0a1a959f1bb9401c89e4d2f25b099bd99d8cb",
+        "stale_evidence:bded3818267dbacc0b7c847b5ee1019f4b35fb2f0117565dc073a8af3eac3129",
+        "stale_evidence:e442dc0a7aa09486b60ed0b7c0e815395d468601ec4c7d00354bd29793bdaaaf",
+        "stale_evidence:f7cd2a1121c6ec21d7760a10ff93942d020f251199b67b04d52a73e7839c38fa",
+        "stale_evidence:f883beb741acabd4c694ea5b4296701f115dba178753adee2aa58aec7799b02b"
+      ],
+      "reason": "Review all V2 protocol/observer, strict pair/detail decoder, exact movie/import layout, ABI fixture and capture metadata changes, independent frozen static plans, new source census, preserved failed attempts and defa681..a69697f exact history. No historical hashes, discovery boundaries or scenario closure promotions.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh55guards,26synthetic PE32 bodies and original4621pair movie cohort are recorded separately only for declared native policies. Semantic API/interface ownership, complete writers/pixels/borrowings/failure recovery and14scenario/four dispatch closure remain pending. Source edits leave prior proof historical; new staleness is explicitly retained."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "50f9941e868072ce787796876af67094e8ef86e905266a9a42b889f351bea75c",
+          "before_sha256": "e419edb8e39d0c3b8c31d7faba6b43026d1799a5241000f6d95c9e5c40664686",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "533ab689645ba5fd74d53679418bd4f7c7f8720dc1a5f578f128332fcdfcbad2",
+          "before_sha256": "039294b4a1aa22039d704c579f48ff230598835af4702777e95ea3b3e574d77d",
+          "id": "TOOL.drawing-api-bindings"
+        },
+        {
+          "after_sha256": "8c48483a5642a976815b311b51918454cdeb08980db322f34c5ca82abc265d0b",
+          "before_sha256": "c04fd7aa87e708349a359ee9d05a24eda9b91487bba2c256f38199cb64aeeaa8",
+          "id": "TOOL.drawing-api-cohorts"
+        },
+        {
+          "after_sha256": "2b5fbdd0ef82cde395e71096b1bdd812a6dfeff157a13e11f04df306c279eb30",
+          "before_sha256": null,
+          "id": "TOOL.drawing-api-details"
+        },
+        {
+          "after_sha256": "04dc5329d3160ae9d7f570f06a2fbab1e2f8e2dd69ef2231a016da1d97dd5d5b",
+          "before_sha256": "c9b090549573817d9696d3765b981e6238de854fe3bea4db906c42c3e8be7781",
+          "id": "TOOL.drawing-api-journal"
+        },
+        {
+          "after_sha256": "79ccd74414892ffab745368a25c2905efe42015c0a4dc109cde62f3972bd612d",
+          "before_sha256": "c7a0d7121394ee70280159b15dd8a147d2a7271e6a9caa8a46b50c288dce9414",
+          "id": "TOOL.drawing-api-journey"
+        },
+        {
+          "after_sha256": "cae2a3dd8bee0aecd42e8ab52f735de9558d4c95a5dfdcf2f90ae42bc63e210a",
+          "before_sha256": "a5476752bacaa9c29b52a70112a40040857b1866351d74ee9eed5ff632d35ee3",
+          "id": "TOOL.drawing-api-observer"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+          "before_sha256": null,
+          "path": "protocols/include/mnm/drawing_api_journal_v2.h"
+        },
+        {
+          "after_sha256": "16cb948e61e4f9eed276cc00a962e700a82279ab6c6da73722ea14128174adfe",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-v2-core-plan-static-20261011.json"
+        },
+        {
+          "after_sha256": "8788e8e66d34f1afe93986466b3e2200418e1dc342e1b753d7cc32b52488b1ea",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-v2-only-plan-static-20261011.json"
+        },
+        {
+          "after_sha256": "1e684458322b7c930eeccc5341eeca375cf8fe3225f96215cba8f113f1704358",
+          "before_sha256": "16806fb77aac5cbc23855d1cb130cee6661c29e9859b0ee8063cb7f80eb719fb",
+          "path": "runtime/drawing-api-census/observer.c"
+        },
+        {
+          "after_sha256": "b70a9c7e87d3eba656d258373f588507eb94022dfef313d1e0e039a245eac3f5",
+          "before_sha256": "91b45313c80cd1f6c6ec17c20ce588c6de694aa533f6087c96e149e2e3e0fde5",
+          "path": "tests/drawing-api-census-abi.c"
+        },
+        {
+          "after_sha256": "703373a9d236a04a841e685496c03af7a50b1e5db4286a6f469f40dc6a047b55",
+          "before_sha256": null,
+          "path": "tests/drawing-api-detail-call.S"
+        },
+        {
+          "after_sha256": "9a2a69a81f41890adeb67f0abf7ffbc25ae194b51b6780260c74c1595e8c7d91",
+          "before_sha256": "9a2a69a81f41890adeb67f0abf7ffbc25ae194b51b6780260c74c1595e8c7d91",
+          "path": "tests/drawing-movie-reference.cpp"
+        },
+        {
+          "after_sha256": "2b898fe1c3b4f4dcbd32519afe1348cac7baa9ac6e14c4983421adf61e2c126f",
+          "before_sha256": null,
+          "path": "tests/test-drawing-api-contracts.py"
+        },
+        {
+          "after_sha256": "b5a381cc3ae3458eb3f4dedada07d5756dc98a2f5480004be950ff31146a9f31",
+          "before_sha256": null,
+          "path": "tests/test-drawing-api-details.py"
+        },
+        {
+          "after_sha256": "e8152392bca7fdc88ebe96050a8b3f94968c3ac1d7aa75ed7fc6b88e8bbf4b3e",
+          "before_sha256": "d2fba1e98dbaf5fa5777199107c99aa1ad9aca6ff890f54cbede91dc0b3600ff",
+          "path": "tools/build-drawing-api-census.py"
+        },
+        {
+          "after_sha256": "c6a6697c7d620c050f62c8e51a1f48cf6620ab239548f682000662b7d3b340e0",
+          "before_sha256": "251b21683bf17327d8be889c2cb637e063feba058509704faa4f0dc099fd4f09",
+          "path": "tools/capture-drawing-census-game.py"
+        },
+        {
+          "after_sha256": "701bf7669533eece517d19f68be7e52a3733e2cba7279a13a2b694efa7b1ed53",
+          "before_sha256": null,
+          "path": "tools/drawing_api_contracts.py"
+        },
+        {
+          "after_sha256": "e58d042b34634ac0fc508e7dc3045c598d8a4bdd9a45a414b8485aebfdf0931f",
+          "before_sha256": null,
+          "path": "tools/drawing_api_details.py"
+        },
+        {
+          "after_sha256": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+          "before_sha256": "d17ecbc7bdc69e71d66acb6c45d39cf93991db662a399afdb998f9ef6603cc97",
+          "path": "tools/drawing_api_journal.py"
+        },
+        {
+          "after_sha256": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+          "before_sha256": null,
+          "path": "tools/drawing_api_pairs.py"
+        },
+        {
+          "after_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+          "before_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+          "path": "tools/drawing_census.py"
+        },
+        {
+          "after_sha256": "1a5e5a2b9df06a5a6fc91c2e610961fbfd05058d24d95c7f993220507460a317",
+          "before_sha256": "b9ac94eff2d850557256002f9adf2af87e9c105617aa95f17b03d61872a39b60",
+          "path": "tools/export-drawing-api-splices.py"
+        },
+        {
+          "after_sha256": "f0d346612279c0a869d83ed0fa77419c7b38b3ac99b8571954765efd291a64ae",
+          "before_sha256": "ea3f03a67d17edb493fd488230bd9999b330be0ed329b8c6e2899502eeb80fac",
+          "path": "tools/test-drawing-api-census-abi.py"
+        }
+      ],
+      "id": "draw01-api-v2-native-validation-20261011",
+      "pending_gaps": [],
+      "reason": "Fresh prospectively declared strict decoder/layout/binding guards, native26body forwarding/writer roundtrip and original movie-enabled314site API-only cohort execution. Validation is bounded to declared native diagnostic/tool contracts; no recovered type/lifetime/graphics completeness status.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Stable input hashes and exact prospective claims in55passing native guards,26actual PE32 fixture bodies including52byte cleanup/callee-entry state/raw outputs/NOACCESS candidate and original normal exit0 with4621closedV2pairs, core absent, stable metadata and final original Main screenshot viewed. Independent kinds/scope preserved.",
+        "evidence": [
+          "DRAW.api-v2.guards-20261011",
+          "DRAW.api-v2.abi-20261011",
+          "DRAW.api-v2.movies-20261011"
+        ]
+      }
     }
   ],
   "schema": 1

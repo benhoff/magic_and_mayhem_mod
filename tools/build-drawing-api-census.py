@@ -8,11 +8,12 @@ from pathlib import Path
 import subprocess
 from drawing_census import ROOT, BUILD_SHA256
 from drawing_api_journal import trampoline
+from drawing_api_contracts import contract
 
-STRUCT='struct ApiHook {u32 address,length,code_length,rest,reloc_count,after_offset,mode,reg,operand;u8 signature[20],code[64];u32 reloc[8];void(*before)(void);void(*after)(void);u32 patch_bytes;};'
+STRUCT='struct ApiSnapshot {u32 argument,bytes,events;};struct ApiHook {u32 address,length,code_length,rest,reloc_count,after_offset,mode,reg,operand;u8 signature[20],code[64];u32 reloc[8];void(*before)(void);void(*after)(void);u32 patch_bytes,formal_words,snapshot_count;struct ApiSnapshot snapshots[4];};'
 REGISTERS={'edi':0,'esi':1,'ebp':2,'ebx':4,'edx':5,'ecx':6,'eax':7,'esp':9}
-PLANS={'core_api':('research/runtime/drawing-api-core-cohort-static-20261011.json','9ac31ecfb21aeadcfd1aec1acaf6a3a699407d105f183d8c4d21ddd8f32dcad2'),
-       'api_only':('research/runtime/drawing-api-only-cohort-static-20261011.json','c113e403a33880d6a0e30a3126f55ef9956f9dbd64653635706522e239714c54')}
+PLANS={'core_api':('research/runtime/drawing-api-v2-core-plan-static-20261011.json','16cb948e61e4f9eed276cc00a962e700a82279ab6c6da73722ea14128174adfe'),
+       'api_only':('research/runtime/drawing-api-v2-only-plan-static-20261011.json','8788e8e66d34f1afe93986466b3e2200418e1dc342e1b753d7cc32b52488b1ea')}
 
 
 def load(name, path):
@@ -38,7 +39,7 @@ def generated(item):
 def build(executable, selected='core_api'):
     if selected not in PLANS:raise ValueError('Unsupported API cohort')
     relative_plan,expected_sha256=PLANS[selected];plan_path=ROOT/relative_plan
-    paths=['tools/build-drawing-api-census.py','runtime/drawing-api-census/observer.c','runtime/drawing-api-census/entry.S','runtime/drawing-api-census/exception_i386.h','runtime/shadow/win32_min.h','protocols/include/mnm/drawing_api_journal_v1.h','protocols/include/mnm/drawing_api_bindings_v1.h','protocols/include/mnm/drawing_census_v1.h','tools/drawing_api_journal.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-shadow-bridge.py','tools/export-menu-support.py',relative_plan]
+    paths=['tools/build-drawing-api-census.py','runtime/drawing-api-census/observer.c','runtime/drawing-api-census/entry.S','runtime/drawing-api-census/exception_i386.h','runtime/shadow/win32_min.h','protocols/include/mnm/drawing_api_journal_v1.h','protocols/include/mnm/drawing_api_journal_v2.h','tools/drawing_api_contracts.py','protocols/include/mnm/drawing_api_bindings_v1.h','protocols/include/mnm/drawing_census_v1.h','tools/drawing_api_journal.py','tools/drawing_api_pairs.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-shadow-bridge.py','tools/export-menu-support.py',relative_plan]
     sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     plan_raw=plan_path.read_bytes()
     if hashlib.sha256(plan_raw).hexdigest()!=expected_sha256:raise ValueError('Approved immutable API splice plan hash mismatch')
@@ -60,7 +61,7 @@ def build(executable, selected='core_api'):
     for item in hooks:header += [f'extern void api_before_{item["tag"]}(void);',f'extern void api_after_{item["tag"]}(void);']
     header.append('static const struct ApiHook api_hooks[API_HOOKS]={')
     for item in hooks:
-        g=generated(item);header.append('{%d,%d,%d,%d,%d,%d,%d,%d,%d,{%s},{%s},{%s},api_before_%d,api_after_%d,%d},'% (item['site'],item['length'],len(g['code']),g['rest'],len(g['relocations']),g['after_offset'],g['mode'],g['register'],g['operand'],','.join(str(v) for v in bytes.fromhex(item['signature'])),','.join(str(v) for v in g['code']),','.join(str(v) for v in g['relocations']),item['tag'],item['tag'],item.get('patch_bytes',item['length'])))
+        g=generated(item);detail=contract(item);item['details']=detail;slots=','.join('{%d,%d,%d}'%(r['argument'],r['bytes'],r['events']) for r in detail['snapshots']) or '{0,0,0}';header.append('{%d,%d,%d,%d,%d,%d,%d,%d,%d,{%s},{%s},{%s},api_before_%d,api_after_%d,%d,%d,%d,{%s}},'% (item['site'],item['length'],len(g['code']),g['rest'],len(g['relocations']),g['after_offset'],g['mode'],g['register'],g['operand'],','.join(str(v) for v in bytes.fromhex(item['signature'])),','.join(str(v) for v in g['code']),','.join(str(v) for v in g['relocations']),item['tag'],item['tag'],item.get('patch_bytes',item['length']),detail['formal_words'],len(detail['snapshots']),slots))
     header.append('};');(output/'api-hooks.inc').write_text('\n'.join(header)+'\n')
     (output/'entry.S').write_text((ROOT/'runtime/drawing-api-census/entry.S').read_text()+'\n'+'\n'.join(f'api_pair {r["tag"]}' for r in hooks)+'\n')
     objects=[]
@@ -68,7 +69,7 @@ def build(executable, selected='core_api'):
         obj=output/(name+'.obj');objects.append(str(obj));subprocess.run(['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I',str(output),'-c',str(source),'-o',str(obj)],check=True)
     dll=output/'MnmDrawingApiCensus.dll';subprocess.run(['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(dll),*objects,str(output/'kernel32.lib')],check=True)
     if hashlib.sha256(executable.read_bytes()).hexdigest()!=BUILD_SHA256 or sources!={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}:raise ValueError('Original/API build inputs changed')
-    report={'schema':1,'cohort':selected,'original_sha256':BUILD_SHA256,'sources':sources,'sources_stable':True,'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'hooks':hooks,'refused':plan['refused'],'scope':f'Compiled separate observer for{len(hooks)} exact original CALL sites in{selected}cohort. No original API execution, universal ABI/transparency/timing, output/resource lifetime or DRAW-01 closure.'}
+    report={'schema':1,'journal_version':2,'cohort':selected,'original_sha256':BUILD_SHA256,'sources':sources,'sources_stable':True,'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'hooks':hooks,'refused':plan['refused'],'scope':f'Compiled separate observer for{len(hooks)} exact original CALL sites in{selected}cohort. No original API execution, universal ABI/transparency/timing, output/resource lifetime or DRAW-01 closure.'}
     (output/'manifest.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'dll':str(dll),'hooks':len(hooks),'refused':len(plan['refused'])}));return dll
 
 

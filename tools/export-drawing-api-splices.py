@@ -17,7 +17,7 @@ def load(name, relative):
 
 
 def export(executable, boundaries, api_only=False):
-    paths=['tools/export-drawing-api-splices.py','tools/drawing_api_journal.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-drawing-census.py','tools/export-menu-support.py','runtime/scene/canvas_producers.c','research/runtime/drawing-inventory.json','research/runtime/coverage/binary-nocd.json',str(boundaries.relative_to(ROOT))]
+    paths=['tools/export-drawing-api-splices.py','tools/drawing_api_journal.py','tools/drawing_api_pairs.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-drawing-census.py','tools/export-menu-support.py','runtime/scene/canvas_producers.c','research/runtime/drawing-inventory.json','research/runtime/coverage/binary-nocd.json',str(boundaries.relative_to(ROOT))]
     sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     raw=executable.read_bytes()
     if hashlib.sha256(raw).hexdigest()!=BUILD_SHA256:raise ValueError('Unsupported original executable')

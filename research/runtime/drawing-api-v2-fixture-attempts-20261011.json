@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "scope": "Preserved failed fixture attempts, not passing validation. Successor run captures its own same-frame failure baseline. No historical result hashes refreshed.",
+  "attempts": [
+    {
+      "run": "working/tests/drawing-api-census-abi/run-372y2baf",
+      "success": false,
+      "reason": "unused candidate scratch declaration; no execution",
+      "artifacts": {
+        "api-hooks.inc": "344c5092db88ef46c5da83d00b12e58fa25523698d32475c859e5c8f48bd4ecc",
+        "compile0.log": "138f9f8649dcc1d3d5ce921e03651cbbc5fae1aa8f964ce8840b08eba9343e9c",
+        "entry.S": "7a41d4c79a9487a5fae879f2629c0a542595be2a062ea048006fac8a47982168",
+        "imports.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernel32.def": "1ec0fb0fa7c4e05a9aa999117ad4118cfa070b3c168b5b8c56a13447112244ee",
+        "kernel32.lib": "3021aeb8a00f29eff5786b12254408121ade093ea16105d110d3556520e2bf86"
+      }
+    },
+    {
+      "run": "working/tests/drawing-api-census-abi/run-pw26uro6",
+      "success": false,
+      "reason": "missing assembly-only scratch symbol and freestanding memset; no execution",
+      "artifacts": {
+        "api-hooks.inc": "344c5092db88ef46c5da83d00b12e58fa25523698d32475c859e5c8f48bd4ecc",
+        "compile0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "entry.S": "7a41d4c79a9487a5fae879f2629c0a542595be2a062ea048006fac8a47982168",
+        "imports.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernel32.def": "1ec0fb0fa7c4e05a9aa999117ad4118cfa070b3c168b5b8c56a13447112244ee",
+        "kernel32.lib": "3021aeb8a00f29eff5786b12254408121ade093ea16105d110d3556520e2bf86",
+        "link.log": "6e41c1436b7784210ab33617dee03df6814bec738caad7f21a47ea773f1165b8",
+        "part0.obj": "4f23df16569b2790cb0df9e99a8bbddeb63cbaff7af98289a05cbe324d93d9d9",
+        "part1.obj": "6722b3f57e136339b7df4edaea335300f82a831771204c52af350e627ff261fa",
+        "part2.obj": "3d29c43882b7e78386840470e7b7a401a77fd2749b25d687de4eb69baa9a6e20"
+      }
+    },
+    {
+      "run": "working/tests/drawing-api-census-abi/run-l_y_67ar",
+      "success": false,
+      "reason": "fixture baseline compared EBP/ESP from different caller frames; native exit20",
+      "artifacts": {
+        "api-hooks.inc": "344c5092db88ef46c5da83d00b12e58fa25523698d32475c859e5c8f48bd4ecc",
+        "compile0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "entry.S": "7a41d4c79a9487a5fae879f2629c0a542595be2a062ea048006fac8a47982168",
+        "fixture.exe": "ccaa8c08bdb79ca1e7393b89bdc93445e713e16a7a9108116f3afccc98a03ab6",
+        "fixture.lib": "f354c754932319c91bdd2f314c087982d8e6adafd95482f2f6d15d4e18b0cf5e",
+        "forwarding.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "imports.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernel32.def": "1ec0fb0fa7c4e05a9aa999117ad4118cfa070b3c168b5b8c56a13447112244ee",
+        "kernel32.lib": "3021aeb8a00f29eff5786b12254408121ade093ea16105d110d3556520e2bf86",
+        "link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "part0.obj": "cd1a13bcbb863c299b8a517e2ddd1416851b7ac51214483430dae3b5ce9948bd",
+        "part1.obj": "6722b3f57e136339b7df4edaea335300f82a831771204c52af350e627ff261fa",
+        "part2.obj": "3d29c43882b7e78386840470e7b7a401a77fd2749b25d687de4eb69baa9a6e20",
+        "prefix-copy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stop-prefix.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stopped-prefix-cleanup.json": "34a650dd63f7884c3dba5ab4c17c59110ce1130d72d17edcc0cda09a44c90f97"
+      }
+    },
+    {
+      "run": "working/tests/drawing-api-census-abi/run-7zoibslu",
+      "success": false,
+      "reason": "diagnostic confirms only EBP/ESP mismatch in failure tests across caller frames; native exit20",
+      "artifacts": {
+        "api-hooks.inc": "344c5092db88ef46c5da83d00b12e58fa25523698d32475c859e5c8f48bd4ecc",
+        "compile0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "entry.S": "7a41d4c79a9487a5fae879f2629c0a542595be2a062ea048006fac8a47982168",
+        "fixture.exe": "707fea7b0379d47cf4534bbc53b5a3391661b2de61c1494ad4342156e58a9f03",
+        "fixture.lib": "f354c754932319c91bdd2f314c087982d8e6adafd95482f2f6d15d4e18b0cf5e",
+        "forwarding.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "imports.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kernel32.def": "1ec0fb0fa7c4e05a9aa999117ad4118cfa070b3c168b5b8c56a13447112244ee",
+        "kernel32.lib": "3021aeb8a00f29eff5786b12254408121ade093ea16105d110d3556520e2bf86",
+        "link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "part0.obj": "bc2df09148e60932575851b8ad6b7e4c66d31c0a19b7846787b1dccbed6f1c6c",
+        "part1.obj": "6722b3f57e136339b7df4edaea335300f82a831771204c52af350e627ff261fa",
+        "part2.obj": "3d29c43882b7e78386840470e7b7a401a77fd2749b25d687de4eb69baa9a6e20",
+        "prefix-copy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "state-mismatch.bin": "eab82f92ace64cd8790e2fe2d5bf01abb379c5249d1cedc84057b4a071100c4e",
+        "stop-prefix.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stopped-prefix-cleanup.json": "840310a8d99fd6940c0ad69106d8d74939f06d68b40f05a548f7615fbf6d290d"
+      }
+    }
+  ]
+}
