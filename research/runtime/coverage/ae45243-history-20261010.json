@@ -1,0 +1,407 @@
+{
+  "scope": "Exact committed parent/current SHA256 receipt review; no retrospective gate or execution claim.",
+  "range": "ae45243^1..ae45243",
+  "files": [
+    {
+      "path": "apps/qt-shell/world_continuous_main.cpp",
+      "before_sha256": "59549f4266ada62b8f28a9f8383b19dda9ab4188d4d86cdc770b2c63f5ff6c12",
+      "after_sha256": "dbbdcf1d9bab69217e4196cfbb73b78f713bd3080bf95194d18c738b12b36b0d",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "compat/legacy/canvas_producers.cpp",
+      "before_sha256": "22952f0bd106289f15814cf1ee1bfa0548c564aca6c76e5b9910dfe6017cfe25",
+      "after_sha256": "5ccc4f7787608ec3d069f0e41617689c63543ad71d2106291a5f7fb9fb0a236f",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "compat/legacy/canvas_producers.hpp",
+      "before_sha256": "85ea74874480bc651770bef05db186b65cb04f0ef995693dda1bcb8e676e2ea3",
+      "after_sha256": "cb0dcdeab15b5bd00db44aadd339eaaf28fbbb24433248d38d691c8e1d2e397e",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "compat/legacy/world-rolling/CMakeLists.txt",
+      "before_sha256": "6e9b43010486863e816cee06ab67969485187191f35eca542d1b1c30b4b2a14e",
+      "after_sha256": "7b46b1be9e701b77e44da52e5e2cfaa73e83a08668528df2073af16ef3ffabeb",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "compat/legacy/world_continuous.cpp",
+      "before_sha256": "665572bd329910072aba6f0a3b82d7b3f915063ccdbd5765fbd3a884bdaa71cf",
+      "after_sha256": "503e1498af48a1ffc94d160406e48d5aacba064c59c531c23262cf78079fcaa2",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "compat/legacy/world_continuous.hpp",
+      "before_sha256": "0f0c1241773ac4d73cf13e4db880f3168be3fa96a01aeec2ff48c7e6cafa5834",
+      "after_sha256": "cf3ceb7b502d490fe84b743e76835437d1cac88c548554e01da7c92c347239ba",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "compat/legacy/world_rolling_handoff.cpp",
+      "before_sha256": "f70cf762e0458e9470d40ec97b05185908f252ad592f55d2bcf8bc0deecdd1da",
+      "after_sha256": "e3493978fbbc8425db770c0462c7f42553ec757ce8301fa1d8f86a4fa8455a33",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "compat/legacy/world_rolling_handoff.hpp",
+      "before_sha256": "d45df6e66b023d9227a4f5012f6a7ce3918994b9999c557dac87820e6772b2c5",
+      "after_sha256": "f3f6ebfad9c166dacc2a270393305fe786d932b410fc51b118cf1b7d8ffe47a4",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "compat/legacy/world_rolling_session.cpp",
+      "before_sha256": "8268a9baf00c3367c729965afd26fc761cb86e2237607c9b00febe92c89681ab",
+      "after_sha256": "4d90b6909393468292009e641d6673dcbc4c4fa3cfcaf9ca8c6a374fb0917920",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "protocols/include/mnm/world_continuous_v4.h",
+      "before_sha256": null,
+      "after_sha256": "35d8b7d03a370adad0a8583908047d11b95f7203d36c42dcff2946f0d8e824cd",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "renderer/blit.cpp",
+      "before_sha256": "9f4563db24f569a0922e6f2ff9682a1e7e0bd3934b5171936eb0536ec021a612",
+      "after_sha256": "dfcf6cb7f3b62ad6b175df4a9a84635e4f0418bac2f00cda5078305f3b064a12",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "renderer/blit.hpp",
+      "before_sha256": "4abf821da5214e469c8305ff713c3099535495270095fc882b93709b6e60c068",
+      "after_sha256": "5e2d0b4118837b657b09d85a35816c6474743422d68104cca04d0e774a271a78",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "renderer/canvas_mirror.hpp",
+      "before_sha256": "8f4d10557120653144ebd766c2d8b4b55030f1c3d05994e6ea515a88323781ad",
+      "after_sha256": "336477b63af76e1ca848933af15809a1725c4c845ed39a19dbe019886ce3032a",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "93b7ee3c5619d88d92d3ff1edf14f53b6da8ffe6a28607354bd19ab6aca92705",
+      "after_sha256": "919fbd545ad93b4dd365c0cde1209fe369fb816394d28ae3752ad3b9ed3bdb6c",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "renderer/gpu_canvas_mirror.cpp",
+      "before_sha256": "d3a404a0903d87f48adc16b25f602bb5bac3fe14a88b09fc7b77fd4e5b27c7f0",
+      "after_sha256": "ac410ac561ec2664f9369694e6653e34b45f1d822f2a644a8f55244827149c8e",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "renderer/gpu_canvas_mirror.hpp",
+      "before_sha256": "8f4c9cdaddb89122849e1c8530caab53bf273dbfc37eb51e5ac71e55210f6289",
+      "after_sha256": "6ba4d5cf8e6c4832065a180b54297fe7b33515adcf87aa217660db893066d90f",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "6574eca8f53918aedeeab04eb2aebc4908c46169b03790d5ab1ba5bd7b63c082",
+      "after_sha256": "1a57d0cffd7725dbd97bbd85227de876a36940ba784e535683c08110e5fb2bf6",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/gpu-ownership-597005a-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bc4f51ca07cd9709f0cef99c2409df80f578040b8528180941eee481997c3ec9",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "9dc48a166428258252f7e00540ce625b1f73082afa110111e75f275c6b529804",
+      "after_sha256": "356aea6d0f3bdff4db9e58f440d17f44cf37322c39a1924b99e9475984e8d015",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-gpu-ack-factory-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a6df331fec5c59e5e369d56dab78f92004451effef06b95b532458f7e5d7836a",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "86b85d63f908332421dd7b1e4c856deee157acce97c3a18bb632a6f54a2b1d99",
+      "after_sha256": "2963285ccbe8785e4ac4f133d3885dedb5de549e8e880fcd75d31295aa0f4cc9",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-busy-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a1308925be16a4ee247a1ca33a26cab19802504b33834d4f179c59778ead51e1",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-caller-mismatch-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b5cb69e56e863198ba71d4eaf7e27e23d83a411b6720dc4f36b410f9fead3e3e",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-factory-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bb97925b5ac8d492c3f680c924d082c175bf9ff8bc50bea841b11dac2a68d287",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-factory-pass-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0b7d3c9ef59a5a947cdf9e6ff0be205276ccf4c50a00778c359875a125cefa0d",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-null-output-fault-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ed77030d00dd91b6905a869fc51f9ed4eb17dd33a62ce6f7f4caead135e853ea",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-ack-batched-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "30eaef4037a139455a0d54d6f67a5fbb6eb13514574d3f9a8a34e11471161c35",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-ack-consumer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "723ed2e81ec4cbc83ce4c0a0d0ffb5d50a299293575c5c5e9e915a1c58a175db",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-ack-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2a7446029d3d64c5cccf63dce42dbdd04ed896c8033b9b7338d6b5ab60c1a4f8",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-ack-launch-control-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0c38a0365aa4a66c431a23c08125b7a518ede2d046fa5b0d7dec0b83a25dc6e1",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-ack-masked-128-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "52de3d0c93d83a4b720bf72836b06ca9952971083b9212efd67c65746008fb46",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-ack-masked-4096-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "94985747e81a4b88d5f242a7682fcefd084699cba0aca92fa2b837eb05544f63",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-ack-producer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2196ec9bea5de30360b398eab8b042a3513a8550df8b855324aa956d656fa673",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-ack-recovery-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e08c9ee1d21deb321e79a5526e3c96b02bc2599f3fcd4a0c5085341eb8ef04b2",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-ack-unbatched-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "5dffb662cf36cd8e1436cfb02fa0fda6b04de773b5f0882e0e2f18c20437b39c",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-ack-undeclared-control-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "fba9f4c412ca43e2a9129eaecf9722205a98b1d7e8015ce7e7aa03c0f9d17031",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-frame-masked-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8c614af52f3e4666e583b9d79784549274b3c4676073c365a7a16be90b319f79",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-frame-ownership.md",
+      "before_sha256": "e90687e03a9ba9c9be59ccdb5fec8fc24290656e0e452bc69ee367f21205fc56",
+      "after_sha256": "5199bf80c9c9f483bd1fc34d02b1e9ee6ec60cbdaa5dc57601a6b027b21cdccb",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "research/runtime/native-world-continuous.md",
+      "before_sha256": "215f9a9047fd61f65dc8fb0543f6813f512a94bb874b5bb8aade35c8b8c4b06f",
+      "after_sha256": "27c11e21bcd01cff23e3ae6ff4107a1473c45bd32990c60a1452e55d79bb59c8",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "runtime/native-draw/factory.c",
+      "before_sha256": null,
+      "after_sha256": "77a734ee0c7f5591b122d30ca26ca2e9399796aaabcec8103c867dcd82401cc6",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "runtime/scene/canvas_producers.c",
+      "before_sha256": "65007a157eccc0c4a2b16b59189a6cac0141f63f78e4db4c196a24cad36f2595",
+      "after_sha256": "1dd142d35efd3c990208b4eff9769fff18f26c4016f5689967add5f93d8d7295",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "runtime/scene/world_continuous.c",
+      "before_sha256": "eafe7cf32b60afc1b9937361ef66ea8efd3983827a68d991f6dcf8b8ce9804d3",
+      "after_sha256": "c632ab978072a50e40ce1e3cce279d301436a0937638baadf4c3f6a787ad8b2c",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "tests/native-draw-factory-probe.c",
+      "before_sha256": null,
+      "after_sha256": "32e4749cf8115197d6676e206281d5d12d40cda75835cb93a02591ac3b1cd85c",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "tests/world-gpu-ack-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "ba0dcd7033569dbf16dec108b58251251c073f1e59973774229c1b1806ee170e",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "tests/world-gpu-resident-test.cpp",
+      "before_sha256": "770bb4042c898d81ec6aead61b459f66672d85b171a74f790f7e30b5ba1ad732",
+      "after_sha256": "60b07d8772c2e908162b268936f140c86a5df85134a3118308d9b1c8a9756031",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "tools/build-scene-observer.py",
+      "before_sha256": "0d40e2172537e98f42273a1f2672998cfecfdf2b4c3106fbbb36c727c6c4918c",
+      "after_sha256": "5a86f880650e30793aa32a11dfa0c69222bb925685efa215e10c5e5b98dfc271",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "tools/capture-scene-game.py",
+      "before_sha256": "859dcc72bdc99fc9934566e5a382db4ba9e94797001042806fbc936d1dd71b19",
+      "after_sha256": "0f5fc625d38d5afe5f9d0c2a847ea4c3272fb7642bbf30337bbadc318a47f24d",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "tools/scene-game-runner.py",
+      "before_sha256": "e3ac21db68e904260df01df80c85304618fa865d1d8542df7cd55cbe51367352",
+      "after_sha256": "11432a7ec4c0cae8dce57dc5772be270f8fafb8ab26f2afc2a42517ae7a91bba",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "tools/test-native-draw-factory.py",
+      "before_sha256": null,
+      "after_sha256": "0d70b8a48529e835dbd01718a1ab1aa2dd7aad4db99c3af690620a050b41e288",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    },
+    {
+      "path": "tools/test-native-world-continuous.py",
+      "before_sha256": "0ffd5596152c607c9135abcc1fcf44dc8b1f15ea54c314e03922c5ad3e44e242",
+      "after_sha256": "9527f669784d4ce3e9ccf5df131ca462270cbacbfd516b7ca7aef5621ddaae0a",
+      "receipts": [
+        "change-63a3ea26646e1335"
+      ]
+    }
+  ],
+  "missing": []
+}

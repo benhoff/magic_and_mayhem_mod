@@ -1,0 +1,38 @@
+{
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sections": [
+    {
+      "name": ".text",
+      "rva": 4096,
+      "size": 1851392,
+      "sha256": "23610c68f0846eb36a9ccfb8caa3b2e93525223c9fea549326eb880c50d6736b"
+    },
+    {
+      "name": ".rdata",
+      "rva": 1855488,
+      "size": 77824,
+      "sha256": "e6af6aaff1a8ec744d8553bf5ee5c1d8a7ff45c7c70aa6dd3d2057f5ffd80bd0"
+    },
+    {
+      "name": ".data",
+      "rva": 1933312,
+      "size": 118784,
+      "sha256": "7877ebaf42e9abb8422ec8683dc9cd39865a5bba05fb67dcfef43da5fbcafaf3"
+    },
+    {
+      "name": ".rsrc",
+      "rva": 3129344,
+      "size": 24576,
+      "sha256": "e0ea12dcf6e9ef2547fc1dd8b3b0858923a93524bded1cc9c750b8861be8b28a"
+    }
+  ],
+  "ddraw": {
+    "index": 3,
+    "descriptor": "3c611d0000000000000000003c661d0010501c00",
+    "symbols": [
+      "DirectDrawEnumerateA",
+      "DirectDrawCreate"
+    ],
+    "lookup_bytes": "24661d0010661d0000000000"
+  }
+}

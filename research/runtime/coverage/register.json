@@ -31738,18 +31738,33 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native graphics compatibility and real DirectDraw retirement",
-      "scope": "Pending replacement of supported pinned-build graphics factory, surface, lock/copy/palette/DC/lifecycle services and presentation. Real DirectDraw backend must be disabled during final supported-scenario execution, independent native frame and caller/side-effect comparisons must pass, and all unknown routes must be refused explicitly. Existing forwarded original DirectDraw observation and faster native rendering do not establish retirement.",
-      "original": [],
+      "scope": "Pending replacement of supported pinned-build graphics factory, surface, lock/copy/palette/DC/lifecycle services and presentation. Real DirectDraw backend must be disabled during final supported-scenario execution, independent native frame and caller/side-effect comparisons must pass, and all unknown routes must be refused explicitly. Existing forwarded original DirectDraw observation and faster native rendering do not establish retirement. The isolated compatibility slice admits DirectDraw4 identity and explicit owned offscreen RGB565 Surface1/2/4 storage, lock/unlock, keys, copy/fill/self overlap and lifecycle; logical mode policy is separate from recovered driver behavior. Primary/flip/DC/palette and game integration remain pending. Selected native refusal and no-partial-mutation policies plus512-surface capacity are tested separately from independent original caller comparisons.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810608,
+          "scope": "Static pinned fullscreen/windowed startup Draw1 factory, Draw2/4 QueryInterface, cooperative/mode/clipper calls and cleanup only; no whole device semantics or live replacement."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811600,
+          "scope": "Static surface creation wrapper calls Draw2 slot6, then interface query; optional later slot37 and failure cleanup unresolved. Isolated native storage is separately validated against Wine, not whole original wrapper."
+        }
+      ],
       "confidence": "provisional",
       "documents": [
-        "research/runtime/native-gpu-frame-ownership.md"
+        "research/runtime/native-gpu-frame-ownership.md",
+        "research/runtime/native-draw-device-surfaces.md"
       ],
       "implementation": [
-        "runtime/native-draw/factory.c"
+        "runtime/native-draw/factory.c",
+        "runtime/native-draw/surfaces.h"
       ],
       "tests": [
         "tests/native-draw-factory-probe.c",
-        "tools/test-native-draw-factory.py"
+        "tools/test-native-draw-factory.py",
+        "tests/native-draw-surface-probe.c",
+        "tools/test-native-draw-surfaces.py"
       ],
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
@@ -31757,7 +31772,8 @@
       ],
       "validation_domain": "Selected bounded startup World/HUD history. Unknown CPU-dependent history reads must refuse; no historical source/pixel proof is reused for this new ownership policy.",
       "evidence": [
-        "NR.directdraw-retirement.factory-isolated-20261010"
+        "NR.directdraw-retirement.factory-isolated-20261010",
+        "NR.directdraw-retirement.surfaces-isolated-20261010"
       ],
       "status": {
         "understanding": "partial",
@@ -32024,6 +32040,44 @@
         "implementation": "partial",
         "comparison": "none",
         "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.directdraw-import-retirement",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Guarded pinned graphics import redirection",
+      "scope": "Offline pinned NoCD PE32 import retirement preparation: preserve all original section bytes and original lookup/IAT addresses, redirect the selected graphics DLL descriptor to MnmDraw.dll and add its NativeDrawAnchor import. Support existing menu/scene/render import composition; reject changed original sections, descriptor/lookup mutations and duplicate staging. This establishes no loaded-module, game, device service, native pixel or DirectDraw backend retirement claim.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5862746,
+          "scope": "Pinned DirectDrawCreate import thunk and original graphics import descriptor/lookup/IAT bytes; static import rewrite only."
+        }
+      ],
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/native-draw-device-surfaces.md"
+      ],
+      "implementation": [
+        "tools/prepare-native-draw.py"
+      ],
+      "tests": [
+        "tools/test-native-draw-import.py"
+      ],
+      "validation_dependencies": [
+        "tools/prepare-shadow-experiment.py"
+      ],
+      "validation_domain": "Four offline pinned executable import compositions and six byte mutation guards; no original engine execution.",
+      "evidence": [
+        "NR.directdraw-import-retirement.offline-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -62271,6 +62325,96 @@
           "equals": 2176
         }
       ]
+    },
+    {
+      "id": "NR.directdraw-retirement.surfaces-isolated-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-surfaces-pass-20261010.json",
+      "sha256": "ebd40d2ee9a255b8f33947b473a1949468a6d676792934f54e3cb631935aa2ef",
+      "scope": "64 unchanged caller cases using DirectDraw1/4 and Surface1/2/4, odd-pitch system-memory RGB565, key/copy/fill/overlap and full native words against real Wine DirectDraw. Native run disables ddraw and checks no module loads; device modes are logical native policies. Primary/flip/DC/palette services, real game integration and GPU history read dependencies remain pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_directdraw_imports",
+          "equals": false
+        },
+        {
+          "pointer": "/native_remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_devices",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_words",
+          "equals": 37440
+        },
+        {
+          "pointer": "/caller_words",
+          "equals": 2048
+        },
+        {
+          "pointer": "/native_policy/refusals",
+          "equals": 8
+        },
+        {
+          "pointer": "/native_policy/surface_capacity",
+          "equals": 512
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-import-retirement.offline-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-import-pass-20261010.json",
+      "sha256": "d2ce71dcdb70f0b15cdff494b8d5d5e7247809e0ac6b26091112251f779311a6",
+      "scope": "Offline guarded pinned PE32 import redirection only. Four staging compositions preserve all original section and IAT bytes, change the graphics descriptor name to native and add the anchor. Six mutations and duplicate staging refuse. No executable instructions or loader/game integration are executed.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mutation_refusals",
+          "equals": 6
+        },
+        {
+          "pointer": "/duplicate_refusals",
+          "equals": 4
+        },
+        {
+          "pointer": "/real_game_directdraw_retired",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -70044,6 +70188,35 @@
       "evidence": [
         "NR.directdraw-retirement.factory-isolated-20261010"
       ]
+    },
+    {
+      "id": "native-draw-surfaces-20261010",
+      "level": "headless",
+      "scope": "64 unchanged isolated DirectDraw1/4 and Surface1/2/4 caller cases against Wine DirectDraw: explicit odd-pitch RGB565 system-memory surfaces, opaque/keyed/fast/fill/self-overlap pixels, interface identity/refcounts and teardown. Native ddraw disabled/module absent. No primary or original-game retirement claim. Eight native-only refusal cases leave117 words unchanged;512 simultaneous tiny surfaces enforce the capacity and release all owners. These policies are not original-error equivalence.",
+      "behaviors": [
+        "NR.directdraw-retirement"
+      ],
+      "tests": [
+        "tests/native-draw-surface-probe.c",
+        "tools/test-native-draw-surfaces.py"
+      ],
+      "evidence": [
+        "NR.directdraw-retirement.surfaces-isolated-20261010"
+      ]
+    },
+    {
+      "id": "native-draw-import-20261010",
+      "level": "headless",
+      "scope": "Offline pinned NoCD graphics import rewrite for four existing staging compositions; all original section/IAT bytes preserved, original graphics DLL import absent, six mutations and four duplicate staging refusals. No Wine or executable execution.",
+      "behaviors": [
+        "NR.directdraw-import-retirement"
+      ],
+      "tests": [
+        "tools/test-native-draw-import.py"
+      ],
+      "evidence": [
+        "NR.directdraw-import-retirement.offline-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -70381,8 +70554,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-gpu-ack-factory-20261010.json",
-    "sha256": "a6df331fec5c59e5e369d56dab78f92004451effef06b95b532458f7e5d7836a"
+    "path": "research/runtime/coverage/source-index-native-draw-surfaces-20261010.json",
+    "sha256": "e2cb468d06dd76daba191691a1bd95336ac290a85445af8acf1772c7ff5d8fdc"
   },
   "claim_bindings_required": true
 }

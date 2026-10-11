@@ -4268,3 +4268,24 @@ Fresh shared image, fade and font regressions pass after canvas mirroring. Glyph
 Performance remains failed:16.1786FPS,44ms median/58ms p95/664ms maximum original World duration in the long run. Neither19FPS nor60FPS is promoted. Original DirectDraw and outside-World original drawing remain active; the original CPU World canvas is stale after a resident ACK, so arbitrary original pixel reads/picking and whole-session gameplay are separate unproved boundaries. The launcher now admits only the exact selected V3 or V4 immutable envelope and mode. All failure/partial performance reports remain in the experiment-history catalog. The committed597005a first-parent range has174 exact file transitions with matching receipts; its journal is preserved without retrospective test assertions.
 
 The first isolated native PE32 factory proof now passes128 lifetimes/2,176 selected caller words against real Wine DirectDraw with per-interface reference counts and canonical IUnknown identity. The native probe has ddraw disabled, no module loaded, no DirectDraw imports and zero retained factory owners. A null output pointer faults the original Wine factory and is excluded from the common valid-caller corpus; native safe refusal is a separate policy. Native preserves incoming LastError, while this Wine/Xvfb reference exposes1400; that difference is recorded explicitly, not treated as equivalence. Surface methods currently refuse terminally and the factory is not installed in the game. Full real-game DirectDraw retirement remains pending.
+
+## Native DirectDraw retirement preparation —2026-10-10
+
+The native PE32 graphics slice now admits Draw4 and owned offscreen RGB565
+Surface1/2/4 services. The current isolated64-case comparison matches2,048
+caller words and37,440 full pixel words against Wine11.16, with ddraw disabled
+and absent in the native probe. Eight native refusal policies preserve117 words;
+512 simultaneous tiny surfaces enforce the capacity and release all owners.
+Observed eight-byte pitch and per-interface reference counts correct retained
+initial mismatches. This does not execute original game instructions or retire
+its backend. Primary/flip/clipper/DC/palette, native GPU history CPU dependencies,
+actual original-game loaded-module refusal and public gameplay remain pending.
+
+The separate offline import preparation passes four pinned PE32 staging
+compositions, six original-byte mutation guards and four duplicate staging
+refusals. Original sections and graphics IAT bytes/addresses remain unchanged;
+only copied import metadata selects MnmDraw.dll and its anchor. No loaded-module
+or live replacement status follows from this offline preparation. Original
+artifact manifests pass before/after all artifact-consuming checks. The prior
+native GPU4096-frame delivery remains16.18FPS and fails19FPS; no performance
+status is promoted by isolated storage or import preparation.

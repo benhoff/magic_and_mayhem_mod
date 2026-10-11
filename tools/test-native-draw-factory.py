@@ -38,7 +38,7 @@ def main():
         driver=out/'wineprefix/drive_c/windows/syswow64/ddraw.dll'
         if driver.exists():inputs[str(driver)]=sha(driver)
         report['wine_version']=subprocess.check_output(['wine','--version'],text=True).strip()
-        imports={'GetModuleHandleA':4,'VirtualQuery':12,'GetProcessHeap':0,'HeapAlloc':12,'HeapFree':12,'GetLastError':0,'SetLastError':4,'GetEnvironmentVariableA':12,'LoadLibraryA':4,'GetProcAddress':8,'CreateFileA':28,'WriteFile':20,'CloseHandle':4,'ExitProcess':4}
+        imports={'VirtualAlloc':16,'VirtualFree':12,'GetModuleHandleA':4,'VirtualQuery':12,'GetProcessHeap':0,'HeapAlloc':12,'HeapFree':12,'GetLastError':0,'SetLastError':4,'GetEnvironmentVariableA':12,'LoadLibraryA':4,'GetProcAddress':8,'CreateFileA':28,'WriteFile':20,'CloseHandle':4,'ExitProcess':4}
         definition=out/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{v}\n' for n,v in imports.items()))
         run('imports',['llvm-dlltool','-m','i386','--kill-at','-d',definition,'-l',out/'kernel32.lib'])
         flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror']

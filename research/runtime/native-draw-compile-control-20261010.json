@@ -1,0 +1,32 @@
+{
+  "success": false,
+  "sources": {
+    "runtime/native-draw/factory.c": "34b962e4a97d8a93f65c21e2abf9aa54951c299c9e355e34a29710fdc62848cb",
+    "runtime/native-draw/surfaces.h": "e26045fe224d2edcce1f5c73bd7dce1afe55785cc59b10c1d7f8b0a1920a75ae",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/native-draw-factory-probe.c": "32e4749cf8115197d6676e206281d5d12d40cda75835cb93a02591ac3b1cd85c",
+    "tests/native-draw-surface-probe.c": "524e2132ca084143333a0bdefeae5e02086cb1f0b52f375583c0fdba3fe0c13d",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/test-native-draw-factory.py": "0d70b8a48529e835dbd01718a1ab1aa2dd7aad4db99c3af690620a050b41e288",
+    "tools/test-native-draw-surfaces.py": "2df754377418533d413c569b640b08d8c1b30d50958f3be336b92cf826e6f794"
+  },
+  "claims": [
+    {
+      "behavior": "NR.directdraw-retirement",
+      "contract_sha256": "00ccd10030aeda20ff57fe4d55ca9437a41f8ac9a030ee064797c475b8dd2f7c",
+      "scenarios": {
+        "native-draw-surfaces-20261010": "a3e8957c90b652e69531f360597a76ceb80be945e51937c8f49b9d6519cf1cbf"
+      }
+    }
+  ],
+  "scope": "64 unchanged caller cases using DirectDraw1/4 and Surface1/2/4, odd-pitch system-memory RGB565, key/copy/fill/overlap and full native words against real Wine DirectDraw. Native run disables ddraw and checks no module loads; device modes are logical native policies. Primary/flip/DC/palette services, real game integration and GPU history read dependencies remain pending.",
+  "real_game_directdraw_retired": false,
+  "wine_version": "wine-11.16",
+  "error": "Command '['clang', '--target=i686-pc-windows-msvc', '-O2', '-ffreestanding', '-fno-builtin', '-fno-stack-protector', '-mno-sse', '-mno-mmx', '-Wall', '-Wextra', '-Werror', '-MD', '-MF', '/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-surfaces/run-aza8djl7/probe.d', '-c', '/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/tests/native-draw-surfaces-probe.c', '-o', '/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-surfaces/run-aza8djl7/probe.obj']' returned non-zero exit status 1.",
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true,
+  "inputs": {
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-surfaces/run-aza8djl7/wineprefix/drive_c/windows/syswow64/ddraw.dll": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28"
+  },
+  "inputs_stable": true
+}
