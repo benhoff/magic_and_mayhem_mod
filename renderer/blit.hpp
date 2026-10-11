@@ -127,6 +127,8 @@ public:
     // Masks use source coordinates, retain destination pixels and do not read back.
     // Exchange native storage only; palettes and handles retain their identity.
     void swapContents(SurfaceId first,SurfaceId second);
+    // Same-size RGB565 lease import in a sharing context. No CPU pixel return.
+    void importGpu565(SurfaceId destination,const GpuFrame& frame);
     void setPalette(SurfaceId surface,unsigned first,const std::vector<Rgb>& colors);
     Image read(SurfaceId surface);
     QImage present(SurfaceId surface);

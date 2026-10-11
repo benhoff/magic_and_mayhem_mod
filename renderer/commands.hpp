@@ -41,6 +41,7 @@ struct CommandResult {
     unsigned surfaceCopies=0,surfaceCopyFailures=0,resultChecks=0,skippedResultChecks=0,lastCopySequence=0;
     SurfaceCopyResult lastCopy;
     std::size_t liveSurfaces=0,livePixels=0,livePalettes=0;
+    std::uint64_t residentWorldImports=0;
     RenderStats stats;
     Driver driver;
 };
@@ -51,6 +52,7 @@ struct CommandConsumerOptions {
     // Explicit offline export mode; ordinary GPU execution never reads PRESENT.
     bool exportImages=false;
     CommandStreamMode stream=CommandStreamMode::Bounded;
+    std::function<GpuFrame(std::uint64_t,std::uint64_t)> residentWorld={};
 };
 // GUI-thread session. Renderer must outlive consumer; GPU leases may outlive both.
 // Batches commit command by command, never transactionally. An execution or

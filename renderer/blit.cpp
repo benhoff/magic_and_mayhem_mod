@@ -125,6 +125,13 @@ void main(){
     else if(mode==4){uint halfway=(s>>1u)&m;nativePixel=halfway+((halfway>>1u)&m)+((d>>2u)&(m>>1u)&m);}
     else nativePixel=texelFetch(oldPixels,destination-oldOrigin+ivec2(rowOffsets[destination.y%rowPeriod],0),0).r;
 })";
+constexpr auto importSource=R"(#version 330 core
+uniform usampler2D rgbaPixels;
+layout(location=0) out uint nativePixel;
+void main(){
+    uvec3 c=texelFetch(rgbaPixels,ivec2(gl_FragCoord.xy),0).rgb;
+    nativePixel=((c.r>>3u)<<11u)|((c.g>>2u)<<5u)|(c.b>>3u);
+})";
 constexpr auto presentationSource=R"(#version 330 core
 uniform usampler2D nativePixels;
 uniform usampler2D palette;
@@ -172,6 +179,7 @@ struct GpuFrame::Data {
     std::shared_ptr<GlBlitter::Impl> owner;
     GLuint texture=0;
     QSize dimensions;
+    PixelFormat format;
     QPointer<QOpenGLContext> consumer;
     GLsync produced=nullptr,consumed=nullptr;
     ~Data();
@@ -183,7 +191,7 @@ struct GlBlitter::Impl {
     QOpenGLFunctions_3_3_Core gl;
     using CopyImage=void(QOPENGLF_APIENTRYP)(GLuint,GLenum,GLint,GLint,GLint,GLint,GLuint,GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei);
     CopyImage copyImage=nullptr;
-    std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing,copying;
+    std::unique_ptr<QOpenGLShaderProgram> program,presentation,compositing,copying,importing;
     GLuint vao=0,fbo=0,scratch=0,copyBuffer=0,paletteBank=0;
     int scratchWidth=0,scratchHeight=0;
     GLuint attached=0,boundProgram=0;
@@ -235,7 +243,7 @@ struct GlBlitter::Impl {
                 throw std::runtime_error(result->log().toStdString());
             return result;
         };
-        program=shader(fragmentSource);presentation=shader(presentationSource);compositing=shader(compositeSource);
+        program=shader(fragmentSource);presentation=shader(presentationSource);compositing=shader(compositeSource);importing=shader(importSource);
         std::string instanceFragment=fragmentSource;
         for(const char* name:{"sourceOrigin","destinationOrigin"}){const auto uniform=std::string("uniform ivec2 ")+name+";";instanceFragment.replace(instanceFragment.find(uniform),uniform.size(),std::string("flat in ivec2 ")+name+";");}
         const std::string paletteUniform="uniform uint spritePalette[256];";
@@ -440,7 +448,7 @@ struct GlBlitter::Impl {
     ~Impl(){
         if(context.isValid() && surface.isValid()){
             try {Current current(context,&surface);for(auto& pair:surfaces)release(pair.second);
-                deleteTextures(1,&scratch);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);copying.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
+                deleteTextures(1,&scratch);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);copying.reset();importing.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
             catch(const std::exception&){}
         }
     }
@@ -792,7 +800,7 @@ GpuFrame GlBlitter::presentGpu(SurfaceId id){
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,&p.surface);auto& g=p.gl;
     auto frame=s.gpu.lock();
     if(!frame){
-        frame=std::make_shared<GpuFrame::Data>();frame->owner=impl_;frame->dimensions={s.width,s.height};
+        frame=std::make_shared<GpuFrame::Data>();frame->owner=impl_;frame->dimensions={s.width,s.height};frame->format=s.format;
         g.glActiveTexture(GL_TEXTURE0);
         frame->texture=p.texture(GL_RGBA8UI,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,s.width,s.height,nullptr);
         s.gpu=frame;
@@ -805,6 +813,21 @@ GpuFrame GlBlitter::presentGpu(SurfaceId id){
     if(!frame->produced)throw std::runtime_error("Cannot fence GPU presentation");
     g.glFlush();p.check();++p.counters.presentations;++p.counters.gpuPresentations;
     return GpuFrame(std::move(frame));
+}
+void GlBlitter::importGpu565(SurfaceId id,const GpuFrame& frame){
+    auto& p=*impl_;p.thread();auto& s=p.get(id);
+    const PixelFormat f{16,{0xf800,0x7e0,31}};
+    if(!frame.data_ || s.format.bits!=f.bits || s.format.masks!=f.masks ||
+       frame.data_->format.bits!=f.bits || frame.data_->format.masks!=f.masks ||
+       frame.size()!=QSize(s.width,s.height))throw std::runtime_error("Resident GPU import format/extent");
+    p.flushCopies();Current current(p.context,&p.surface);auto& g=p.gl;
+    const auto texture=frame.textureForCurrentContext();
+    p.attach(s.native,s.width,s.height);p.setScissor(false);p.useProgram(p.importing->programId());
+    g.glActiveTexture(GL_TEXTURE0);g.glBindTexture(GL_TEXTURE_2D,texture);
+    g.glUniform1i(p.importing->uniformLocation("rgbaPixels"),0);
+    g.glBindVertexArray(p.vao);g.glDrawArrays(GL_TRIANGLES,0,3);p.check();
+    frame.samplingComplete();s.validity.define({0,0,s.width,s.height});
+    p.damage(s,{0,0,s.width,s.height});++p.counters.copies;
 }
 Image GlBlitter::draw(const Blit& c){
     validate(c);

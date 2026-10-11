@@ -5222,3 +5222,15 @@ links; this indexing reconciliation adds no engine validation or status promotio
 ### Final concurrent master integration (2026-10-11)
 
 Both histories and exact receipts are retained, including the concurrent working-retention race fix and DRAW-02 strict record-kind/input/API work. The new `native-master-final-draw02-original-pass-20261011.json` refreshes metadata-only original-active Quick Battle acquisition against the imported launcher helpers: strict no-loss/no-gap journal, sustained gameplay, original results Continue/Quit and return to fresh Main pass with original section/manifests/source guards. This is isolated Xvfb/software GL observation, separate from the TITAN performance proofs; native pixel parity, complete picking/tooltip/pause/combat outcomes and full readback interference remain pending. Pre-admission environment failures (missing display and copied general-prefix WOW64 initialization,diagnosed by bounded loader trace) are retained separately; neither is admitted as success.
+
+### Public resident World composition,2026-10-11,first milestone
+
+`NR.public-resident-world` seeds the ordered pointer-free V4 World reference
+and same-size RGB565 GPU import. The exhaustive shared-context fixture passes
+with zero ordinary import/World readbacks and ordered HUD/copy checks; existing
+incremental command-consumer fixture passes. Report:
+`public-resident-import-fixture-20261011.json`. Implementation remains partial;
+public producer binding, CPU baseline separation, native menu transitions,
+casting/combat and live performance are explicitly pending. No original
+comparison or replacement status is promoted. Historical renderer evidence
+is retained with its previous source hashes and may be stale for these edits.
