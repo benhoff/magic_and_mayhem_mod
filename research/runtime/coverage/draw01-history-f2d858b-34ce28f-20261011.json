@@ -1,0 +1,815 @@
+{
+  "schema": 1,
+  "reviewed_commit_range": "f2d858b1d8351ba475cb022e24b632cd95bef687..34ce28f4445776e20773cde755ea6503834a6e4f",
+  "scope": "Committed history only; exact parent/current receipts separate from uncommitted API observer runtime/ABI increment. No retrospective gate pass or new validation.",
+  "files": [
+    {
+      "path": "protocols/include/mnm/drawing_api_journal_v1.h",
+      "before_sha256": null,
+      "after_sha256": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+      "behaviors": [
+        "TOOL.drawing-api-journal"
+      ],
+      "role": "protocol",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-journal-native-guards-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "dbf839f9fd99d561b4f20ddd9f17d0809025cacdfa8d8abd5cc0d8b1be9f0f8b",
+      "after_sha256": "ded819e056f7f454de27e538497b478f8b82489a94cbe45a56f6ebd921ff6b9f",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-e4be448-f2d858b-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5e3da429cdfe89e7a666e35c6ebba6707e4d5f4b03233ca92e6f7677da42ea23",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "53281814b972ccb42485a53ce768ab24822d05580f63bcf931d2391b3fb9eb29",
+      "after_sha256": "5d84805087f90b1510ec399c4603ccbf5624b0faa9c8f13b1bd3f745bfaa9eb4",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-api-journal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5e430153616b98c1e38d0dea54d019a8d776d815715fa7b366193e4348bb5e0d",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "76e8d8aeffad3d63efa0e517aa15fe85c0b73a0092259417b25b18f37392c549",
+      "after_sha256": "6365a63c8be1fbdb6541d21c298c1eb72ffe67d0265da1d93e2e9461f49dfcea",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-graphics-api-boundaries.md",
+      "before_sha256": "c211139141fa9d3d388002d781d373f695a6e89ac1de9bda12cd5e4c7c3f8971",
+      "after_sha256": "cf54c7fabc93d199d8cbe0bc31b63189f9ee01771f33fc6aac90fcf68e848fc9",
+      "behaviors": [
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-journal-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "55b7256a3725c37560c6b485a2623b8606691a3f3f94df1856869a5e23665d2c",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-splices-accounted-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2d4de7bb63316866d656a44f3a80b82123c76d82a1836aebe11f2fed23af0da6",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-splices-source-mutation-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "188214ec0e9cf4d124130e5b85ff0631ce4bc1b9b1f390cf9114c44af81c1a49",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-splices-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "45220fe273467f2ebe94a1e02710e9e3e019f642b006c1d53668a26e1c6aedf3",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "runtime/scene/canvas_producers.c",
+      "before_sha256": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+      "after_sha256": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "NR.font-glyph-live-shadow",
+        "NR.glyph-default-launch",
+        "NR.glyph-live-admission",
+        "NR.minimap-input-fixture",
+        "NR.minimap-interactive-presentation",
+        "NR.minimap-owned-observation",
+        "NR.offline-render-soak",
+        "NR.word-clipped-takeover-admission",
+        "NR.world-batch-extended-prefix",
+        "NR.world-batch-profiling",
+        "NR.world-batch-throughput",
+        "NR.world-history-channel",
+        "NR.world-interactive-batch-launcher",
+        "NR.world-live-history",
+        "NR.world-producer-handoff",
+        "NR.world-raster-batch-transport",
+        "NR.world-resource-reuse",
+        "NR.world-startup-launcher",
+        "RI.movies",
+        "RS.canvas-producer-sequence",
+        "RS.glyph-live-route",
+        "RS.word-clip-takeover",
+        "RS.world-producer-bypass",
+        "RS.world-raster-batch-return",
+        "RS.world-raster-queue-replacement",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "code",
+      "change": "links_changed",
+      "exact_receipts": [
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tests/test-drawing-api-journal.py",
+      "before_sha256": null,
+      "after_sha256": "491ddd0917cc93ff98d229baf8d2abb5dd87e5ee4e8dee280fc800145f5577d3",
+      "behaviors": [
+        "TOOL.drawing-api-journal"
+      ],
+      "role": "test",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-journal-native-guards-20261011"
+      ]
+    },
+    {
+      "path": "tools/build-drawing-census.py",
+      "before_sha256": "ec645e78705cdf4aa74755760cc6dbd98c10135b0342ce91f903f87f31e07675",
+      "after_sha256": "ec645e78705cdf4aa74755760cc6dbd98c10135b0342ce91f903f87f31e07675",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "RI.movies",
+        "TOOL.drawing-api-journal"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_journal.py",
+      "before_sha256": null,
+      "after_sha256": "c82406744325c3c4cee46d73bf278b330de20d91ed88e46756c02160bd5c8023",
+      "behaviors": [
+        "TOOL.drawing-api-journal"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-journal-native-guards-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_sites.py",
+      "before_sha256": "5cab6d71de315872411a87aa3457f08069ebeed71f8f52efdbee6127ccd7b801",
+      "after_sha256": "5cab6d71de315872411a87aa3457f08069ebeed71f8f52efdbee6127ccd7b801",
+      "behaviors": [
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_census.py",
+      "before_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "after_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.graphics-api-boundaries",
+        "DRAW.queue-dispatch",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "RI.movies",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-sites",
+        "TOOL.drawing-census",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory",
+        "TOOL.drawing-movie-reference"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/export-drawing-api-splices.py",
+      "before_sha256": null,
+      "after_sha256": "fb5e26cc1772a70d7423b7a8a440168c7afc4559d6ca0a843c77b2fd7348c002",
+      "behaviors": [
+        "TOOL.drawing-api-journal"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-journal-native-guards-20261011"
+      ]
+    },
+    {
+      "path": "tools/export-menu-support.py",
+      "before_sha256": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+      "after_sha256": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "NR.font-glyph-live-shadow",
+        "NR.glyph-default-launch",
+        "NR.glyph-live-admission",
+        "NR.minimap-input-fixture",
+        "NR.minimap-interactive-presentation",
+        "NR.minimap-owned-observation",
+        "NR.offline-render-soak",
+        "NR.world-batch-extended-prefix",
+        "NR.world-batch-profiling",
+        "NR.world-batch-throughput",
+        "NR.world-interactive-batch-launcher",
+        "NR.world-resource-reuse",
+        "NR.world-startup-launcher",
+        "RI.movies",
+        "RS.glyph-live-route",
+        "TOOL.drawing-api-journal"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "world-startup-launcher-accounting-20261008",
+        "world-raster-batch-v7-dependencies-pending-20261008",
+        "world-interactive-batch-source-and-index-review-20261009",
+        "world-resource-reuse-source-and-index-review-20261009",
+        "REVIEW.history-merge-20261009-1",
+        "minimap-live-source-and-accounting-20261009",
+        "minimap-interactive-source-accounting-20261010",
+        "native-world32-source-reuse-20261010",
+        "native-world32-source-reuse-validated-20261010",
+        "native-world-throughput-source-policy-20261010",
+        "native-world-throughput-headless-validated-20261010",
+        "native-render-offline-soak-accounting-20261010",
+        "font-byte-source-accounting-20261010",
+        "glyph-live-source-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "3ed1b8069f85b2df21d5f1bb4a3df0e0b49bd9ee5be6138fd22905e7e1b8c9c2",
+      "after_sha256": "3ed1b8069f85b2df21d5f1bb4a3df0e0b49bd9ee5be6138fd22905e7e1b8c9c2",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "38e8449c3e9f4e2d3ad9b777a8e314d98f1c33257d97f7396003bb8158b1a6b9",
+      "after_sha256": "38e8449c3e9f4e2d3ad9b777a8e314d98f1c33257d97f7396003bb8158b1a6b9",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-boundaries",
+      "before_sha256": "0142623f0fda3753664da6aa4d09a001c2559e37384895f6a3430d81edbbb4e5",
+      "after_sha256": "4ef97c65d1162865b3f605e7a25edee10c6f6442983bf74df32c9af1ee3f5a14",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-dispatch",
+      "before_sha256": "831e91ff684fc8aa68db266e267ce3113aa449a4ab924a55c1a273c3887b66de",
+      "after_sha256": "831e91ff684fc8aa68db266e267ce3113aa449a4ab924a55c1a273c3887b66de",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "before_sha256": "e6539f050f7dfb07d8b25e2f47045d70064cc6deb48dfe082e4aa8fc55a0ef9c",
+      "after_sha256": "e6539f050f7dfb07d8b25e2f47045d70064cc6deb48dfe082e4aa8fc55a0ef9c",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "before_sha256": "c3e2b50aadc7e18ea3868bf69e93980faa3421f5a8f5da3e78c5aca53cc739ac",
+      "after_sha256": "c3e2b50aadc7e18ea3868bf69e93980faa3421f5a8f5da3e78c5aca53cc739ac",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "before_sha256": "5946bedb79dd4daf37d885b08ac6e74238b2f824cadcf1cb3866d521faf31e82",
+      "after_sha256": "5946bedb79dd4daf37d885b08ac6e74238b2f824cadcf1cb3866d521faf31e82",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.font-glyph-live-shadow",
+      "before_sha256": "eb867dd54d8eb648b10933d44f641e008e87fb0a654cd1df1e43dc297a30fda5",
+      "after_sha256": "eb867dd54d8eb648b10933d44f641e008e87fb0a654cd1df1e43dc297a30fda5",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.glyph-default-launch",
+      "before_sha256": "d59ed462f6f6962ca50f7e6be32473be1225591c631dfdd4a4df6f4ad3afec50",
+      "after_sha256": "d59ed462f6f6962ca50f7e6be32473be1225591c631dfdd4a4df6f4ad3afec50",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.glyph-live-admission",
+      "before_sha256": "b584a493170cfe958a15bd8705e6cf04bb39b0ffd1f8c9065cb5ef1c96c380a2",
+      "after_sha256": "b584a493170cfe958a15bd8705e6cf04bb39b0ffd1f8c9065cb5ef1c96c380a2",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.minimap-input-fixture",
+      "before_sha256": "a406dad59cabdba9bdfbcdb641e317c01aa3e6c4f5605a53166c1ebd4519a3d4",
+      "after_sha256": "a406dad59cabdba9bdfbcdb641e317c01aa3e6c4f5605a53166c1ebd4519a3d4",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.minimap-interactive-presentation",
+      "before_sha256": "99610c280c8a32b091d779606b4d976b9f601abf58d5337b6c065347fc5d9b43",
+      "after_sha256": "99610c280c8a32b091d779606b4d976b9f601abf58d5337b6c065347fc5d9b43",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.minimap-owned-observation",
+      "before_sha256": "dcfef878fcc25178065483b9075b6c37e7a009cc137d810c6e691d1130df2c24",
+      "after_sha256": "dcfef878fcc25178065483b9075b6c37e7a009cc137d810c6e691d1130df2c24",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.offline-render-soak",
+      "before_sha256": "ec43a5131c0da06edb7466d7dd77765921aa090beafdc53c7469c4115fca2d31",
+      "after_sha256": "ec43a5131c0da06edb7466d7dd77765921aa090beafdc53c7469c4115fca2d31",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.word-clipped-takeover-admission",
+      "before_sha256": "d173e907229c3c92f7a33663417aa5dd31fd8dc1a8bbeefde707fb55ad6e9463",
+      "after_sha256": "d173e907229c3c92f7a33663417aa5dd31fd8dc1a8bbeefde707fb55ad6e9463",
+      "exact_receipts": [
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-batch-extended-prefix",
+      "before_sha256": "397277517bcb3a9afc6500bcb725bb8ae8f45cff964d464f03bd695edf3495a0",
+      "after_sha256": "397277517bcb3a9afc6500bcb725bb8ae8f45cff964d464f03bd695edf3495a0",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-batch-profiling",
+      "before_sha256": "c6e600fcf9eae4bf935e1c5b60a77747b9151183b6aa0fbf3f0c7b0fcc80f192",
+      "after_sha256": "c6e600fcf9eae4bf935e1c5b60a77747b9151183b6aa0fbf3f0c7b0fcc80f192",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-batch-throughput",
+      "before_sha256": "319d76d3cd16f0986280725a7acfc2660e406a5693234d5972dd249ef26426ac",
+      "after_sha256": "319d76d3cd16f0986280725a7acfc2660e406a5693234d5972dd249ef26426ac",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-history-channel",
+      "before_sha256": "03902eb95bf11c05ff925971c1e93fa3a989266c80bba57186422a270727aaca",
+      "after_sha256": "03902eb95bf11c05ff925971c1e93fa3a989266c80bba57186422a270727aaca",
+      "exact_receipts": [
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-interactive-batch-launcher",
+      "before_sha256": "1186572adabf02e6e49546fe50d2a7d6a07e10df0047155679c7edfac03914db",
+      "after_sha256": "1186572adabf02e6e49546fe50d2a7d6a07e10df0047155679c7edfac03914db",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-live-history",
+      "before_sha256": "ce2eb3a7168786265002d8085ec32e101c6d04595b5251f88c090cf5daf8f9b1",
+      "after_sha256": "ce2eb3a7168786265002d8085ec32e101c6d04595b5251f88c090cf5daf8f9b1",
+      "exact_receipts": [
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-producer-handoff",
+      "before_sha256": "30a6bd6755f7bad29cb59c06e3798bb4898941b8776a7bb99c52d458ab24361b",
+      "after_sha256": "30a6bd6755f7bad29cb59c06e3798bb4898941b8776a7bb99c52d458ab24361b",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-raster-batch-transport",
+      "before_sha256": "4bae9cfc725930a4311b1b68972af84f520a5625a17212ab815e27d57b8d3c29",
+      "after_sha256": "4bae9cfc725930a4311b1b68972af84f520a5625a17212ab815e27d57b8d3c29",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-resource-reuse",
+      "before_sha256": "b98dd24bb43ad62c1fe876236907e898517183f94039d9f0f2f0910c9643641e",
+      "after_sha256": "b98dd24bb43ad62c1fe876236907e898517183f94039d9f0f2f0910c9643641e",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-startup-launcher",
+      "before_sha256": "5959bb99b6738584b68aa68c6b3e394b0e7c2f31fbe1a2be597766e8342c6406",
+      "after_sha256": "5959bb99b6738584b68aa68c6b3e394b0e7c2f31fbe1a2be597766e8342c6406",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RI.movies",
+      "before_sha256": "5a5855e686867ba02ea0052391c7a9ab82178ed1dd51d7cf63d3736c1aa88777",
+      "after_sha256": "5a5855e686867ba02ea0052391c7a9ab82178ed1dd51d7cf63d3736c1aa88777",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.canvas-producer-sequence",
+      "before_sha256": "271eb8360926c072765ddd0ab3783ac709006d4d2a8aeb5a785a312170589db9",
+      "after_sha256": "271eb8360926c072765ddd0ab3783ac709006d4d2a8aeb5a785a312170589db9",
+      "exact_receipts": [
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.glyph-live-route",
+      "before_sha256": "cf8d78a7083fe1b2d5aa10a182ca31d1b0c8cd3e5e023e1c795b18d930aa0ec2",
+      "after_sha256": "cf8d78a7083fe1b2d5aa10a182ca31d1b0c8cd3e5e023e1c795b18d930aa0ec2",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.word-clip-takeover",
+      "before_sha256": "c7d88ce3b7283d9ba9efcfebf4567c6c4f069fcca8bbd96467521090722d03b9",
+      "after_sha256": "c7d88ce3b7283d9ba9efcfebf4567c6c4f069fcca8bbd96467521090722d03b9",
+      "exact_receipts": [
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.world-producer-bypass",
+      "before_sha256": "47dccfab6b0ce4dd7747c69ce5d924e2771f64352c11035e104a251321c24558",
+      "after_sha256": "47dccfab6b0ce4dd7747c69ce5d924e2771f64352c11035e104a251321c24558",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.world-raster-batch-return",
+      "before_sha256": "71a50dd75c3caf7b81f0354bc86b997f1f2d1164eeebfe7bcb174236022c3cc3",
+      "after_sha256": "71a50dd75c3caf7b81f0354bc86b997f1f2d1164eeebfe7bcb174236022c3cc3",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.world-raster-queue-replacement",
+      "before_sha256": "596123a6130877699ab8a0c3f90e55521a4af2811d28338563fa264c6a7e2cfb",
+      "after_sha256": "596123a6130877699ab8a0c3f90e55521a4af2811d28338563fa264c6a7e2cfb",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "62eaaf2501f54f296803fe8efc0bcaf7416a066b3798745dc3995de32415a5b0",
+      "after_sha256": "67235fff69975f87faf9d2a440599c63bc0868ebca5fed6ad9532c8f95decefa",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journal",
+      "before_sha256": null,
+      "after_sha256": "34e8b2a01a21feb2796445e3a6ad6035753fca3f56cf1073e7c6bcadaa562cd1",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-journal-native-guards-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-sites",
+      "before_sha256": "37a55be6af7ae651f892e05d2969e1d7e155476625ea016be48e02a616bad8b8",
+      "after_sha256": "84d3104de17a0d53492980234e142ffee3ec1e3108c85fb082b5763953154ee5",
+      "exact_receipts": [
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-census",
+      "before_sha256": "a1026de6a153751cfea8b9b8c73fa332a79338586cbc94ee4d1a487892ea3977",
+      "after_sha256": "a1026de6a153751cfea8b9b8c73fa332a79338586cbc94ee4d1a487892ea3977",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-dispatch-slices",
+      "before_sha256": "621edaa9aefeff7b91bc2c3244d4c577cd8609e810b38938e9b318e6e3f50871",
+      "after_sha256": "621edaa9aefeff7b91bc2c3244d4c577cd8609e810b38938e9b318e6e3f50871",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "before_sha256": "4a3a798819b39ba770f4293772637ba0185a6ca2632e17e4eb924090572168c6",
+      "after_sha256": "4a3a798819b39ba770f4293772637ba0185a6ca2632e17e4eb924090572168c6",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-movie-reference",
+      "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011"
+      ]
+    }
+  ],
+  "missing_exact_receipts": [],
+  "unresolved_gaps": [],
+  "counts": {
+    "files": 19,
+    "behaviors": 39,
+    "missing": 0
+  }
+}

@@ -90,3 +90,34 @@ a guard edit occurred during that process, so its end-of-run hashes cannot
 establish the loaded planner version. It is not registered as current evidence.
 The fresh plan freezes and rechecks its inputs. Committed historye4be448..f2d858b
 has12exact file/14behavior receipt matches, without missing versions.
+
+## Separate forwarding observer and synthetic ABI — 2026-10-11
+
+The [built PE32 observer](drawing-api-observer-build-20261011.json) contains
+250 exact original signatures and retains the64refusals. Every site is checked
+before any patch; startup refuses protection/allocation/cache-flush failures.
+An incomplete installation emits no terminal marker. The separate opt-in DLL
+uses the existing read-only phase control and writes `api-calls.bin`; normal
+process detach closes its independent journal. Busy detach, dynamic unload,
+arbitrary caller-PC-sensitive behavior and timing equivalence are unsupported.
+It executes no graphics, GDI or COM calls itself.
+
+[The first synthetic ABI fixture](drawing-api-observer-synthetic-abi-20261011.json)
+passes10bodies using absolute-memory/register/register-memory/rel32 calls and
+0/4/8/12/16/20/24-byte callee cleanup. It exercises actual dynamic splices and
+BEFORE/AFTER stubs, including a copied short conditional branch. The selected
+register/flag/x87/SSE snapshots and LastError match baseline; each body executes
+once, the pre-CALL stack begins with the actual argument, target values match,
+and post-CALL ESP reports the actual cleanup. The chosen negative EAX result
+is retained without assigning it an original API meaning.
+
+Frame exhaustion, persistently invalid phase, record cap and IO-failure
+bookkeeping states preserve the fixed original continuation and synthetic
+results. Nested bookkeeping requires the latest frame on the same thread;
+a mismatched older tag records loss instead of assigning a false pair. These
+fixtures test selected synthetic bodies, not the250original bodies, complete
+installation/shutdown, arbitrary machine contexts or original resource/output
+lifetimes. Their original-renderer and original-splice-manifest execution flags
+are explicitly false. The stopped fixture prefix was removed after preserving
+binaries, generated hooks, logs and hash-bound report. Actual original API
+journals and the64refused-site observer boundaries remain pending.
