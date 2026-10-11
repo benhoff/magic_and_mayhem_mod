@@ -1,0 +1,395 @@
+{
+  "schema": 1,
+  "reviewed_commit_range": "487842763f5e1b3d499f5c082a4d145a2a4c98a0..92295c9cced41a837d8fdc6443b78d66b317971a",
+  "scope": "Committed history only; exact parent/current receipt audit separate from uncommitted campaign effects work. No retrospective gate pass or new validation.",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "0fb0bd55ff79246cc904c569001aaed8fdd7b2fc15cdf188352d8c4dfc8d08b9",
+      "after_sha256": "813245f2dc7c4c762d23d0ece3b4363e52ffd30370bc08c9133e8fbf72d9dbbe",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-42801df-4878427-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e7bbf78e00b14a5cc93052220075568954c3604e14c587aea594fdc0c039ddaa",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "5fda5c1a1dd1a235fa214d1aef7834cd7771a20ef3b348b4bed7b279867c386c",
+      "after_sha256": "97b951a7b397df4df3be1958869936036efb9d45d8fff3e5beea9015df5bb1d2",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-quick-battle-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "07c5f612fdbba5d1f80db97a3d8fe14a4b7ca22383df8300a9a2527f8ece0625",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "be173a34400c3189604c43dbb86d3733bd7bb1a3b1e5858a4fcf8a0c726497e5",
+      "after_sha256": "4d919e5ad76c41bb881ecc9b73c5f7005a14813d8ec2732ec5d98f8fd90952fd",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-inventory.md",
+      "before_sha256": "fb727ef29d1fa1666dbdc3eded8fed581c4a05d645c51105dc6c1f457c6426f8",
+      "after_sha256": "d175de7cfefbe831a5db2a3204a5168e75ac8b188c06d74c56434efd61b5ee23",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.queue-dispatch",
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-census",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-quick-battle-accounted-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7a75af418371f1c31e0bff3a12690cce79fa5c4b0a69192d55a00eae6f4bc4bf",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-quick-battle-guards-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d34f96d46b5af238d157c9c32ce826bc97477eb0be3803dfaa5baf0759f44b1a",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-quick-battle-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "478e46726c2d5ff54da99814f846ca987d970f002f94ab874bced5436edff8f0",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-quick-battle-scenario-guards-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "237362bc8eeafd61ee7b3531da6ebc458e1641245947139624a924602665ea13",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-quick-battle-transition-fault-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "628bf171c4675d3b50619e13d84ba08ccdd38b5ed77fb1195c4fb4f93172a4cb",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-inventory.json",
+      "before_sha256": "ecd26889ad0c4b52a12a6fa888f32f3e292481fc5c12ac3e18c6931bd326bb1f",
+      "after_sha256": "b5221df2370fc6e99498773ff8e07b26d9f0f95fa15ca9e5444c8ef31601eb1a",
+      "behaviors": [
+        "DRAW.queue-dispatch",
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/mini-menu-engine-bridge.md",
+      "before_sha256": "72b15694d371f6a8eb7c8da4502fe75d179a46086bc8685c7375c70a95a1a2bc",
+      "after_sha256": "72b15694d371f6a8eb7c8da4502fe75d179a46086bc8685c7375c70a95a1a2bc",
+      "behaviors": [
+        "BR.mini",
+        "DRAW.census.journey-driver"
+      ],
+      "role": "research",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/quick-battle-results-engine-bridge.md",
+      "before_sha256": "7a4838803c3bccc1a0a6627eb12d0c014528b53eb0e8b03d9529de1e73683c1a",
+      "after_sha256": "7a4838803c3bccc1a0a6627eb12d0c014528b53eb0e8b03d9529de1e73683c1a",
+      "behaviors": [
+        "BR.result",
+        "DRAW.census.journey-driver"
+      ],
+      "role": "research",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "path": "tools/capture-drawing-census-game.py",
+      "before_sha256": "e530d0434595506f6526d4b941580448c2b2dfb64ed72d9c608a5ebd598fb852",
+      "after_sha256": "e43a60b9c6a439d1215ff8cb638ea8687690506957dc483535274c34ac9db187",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "RI.movies"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "BR.mini",
+      "before_sha256": "d1a1cba7dc6768a89e31abc380f422cd64d77727503b656c1ea31a7242aa51b4",
+      "after_sha256": "d1a1cba7dc6768a89e31abc380f422cd64d77727503b656c1ea31a7242aa51b4",
+      "exact_receipts": [
+        "native-extended-gameplay-observation-checkpoint-20261010",
+        "native-fireball-refusal-gameplay-review-20261010",
+        "native-dialogue-normal-quit-review-20261010",
+        "native-healing-review-20261010",
+        "native-crowded-foundation-20261010",
+        "native-world32-source-reuse-20261010",
+        "native-world-throughput-source-policy-20261010",
+        "native-render-offline-soak-accounting-20261010",
+        "font-byte-source-accounting-20261010",
+        "pixel-producers-source-accounting-20261010",
+        "glyph-live-source-accounting-20261010",
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "BR.result",
+      "before_sha256": "8a38961089c560756092f6fcdfcc4d601358b80879b3da0b37548e4efadd20f4",
+      "after_sha256": "8a38961089c560756092f6fcdfcc4d601358b80879b3da0b37548e4efadd20f4",
+      "exact_receipts": [
+        "native-extended-gameplay-observation-checkpoint-20261010",
+        "native-fireball-refusal-gameplay-review-20261010",
+        "native-dialogue-normal-quit-review-20261010",
+        "native-healing-review-20261010",
+        "native-crowded-foundation-20261010",
+        "native-world32-source-reuse-20261010",
+        "native-world-throughput-source-policy-20261010",
+        "native-render-offline-soak-accounting-20261010",
+        "font-byte-source-accounting-20261010",
+        "pixel-producers-source-accounting-20261010",
+        "glyph-live-source-accounting-20261010",
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "6690a1dee665cb4e25ab091e946a01f02830f11df9a5c2f5e0f3ed853a1aaf6b",
+      "after_sha256": "f14c23fcc474fec2bb391a53121ce342d45f41efb70a99d60c390044104cfb02",
+      "exact_receipts": [
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "971a8c3dcfbb75b2acff1fc656f74febc2618946cc4697e8685552383f4980ec",
+      "after_sha256": "ccb441110f63301aeb56f747928535daef5bdb092d5d978c567c6129363a39b2",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.queue-dispatch",
+      "before_sha256": "8c332bd83ec4c61af4bd33c2e8917fe0460c0a5977fc406201d0955dc7c5715f",
+      "after_sha256": "9e1acbb79beeee09bb013192f607516f41f4cad09d2bf2ce7e16de5df001d480",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.surface-hosting",
+      "before_sha256": "db51b0e2ee3062f4769a2ee0e2214f005df4d7325e56d4f2793e42c9f82135be",
+      "after_sha256": "dc571119aaad8eb840c9c08acbae26d14fb92031294f849aa3fe36c10a8607dc",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.unassigned-word-window",
+      "before_sha256": "fe895a2683c4e79501dd675dbc523792be85897c054a7a568bf7691e5b5a72c5",
+      "after_sha256": "5cc9a276a63ff924ae52b60419ebad2f6318f9a1d8f53e19ad686b75517910ce",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.unattributed-caller",
+      "before_sha256": "bc53ad8f59d588dfd226ff71c45622ae15c20767fb64d9d572902b66c97da172",
+      "after_sha256": "5a373492df42c6e8d19cb7d62d301a42eae9f38a049d7461681054792851386b",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "before_sha256": "cfcb24d9003ddd712ca0cc1ea15bb03927ec4db11489f9adce7ebc8185a2c9f7",
+      "after_sha256": "f7b1c41779a4a605b6abe3b9326153a0fdf1a1bd6fcff370b9fd3a7fc61326e6",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "before_sha256": "e6e09d7f5af2e2c1ab4746eecc6ffdf5a6467b19eed036c4438ed8fbb69856b9",
+      "after_sha256": "ba905fa80d4008ba343d09167234c19a422a415e9f9cd3fabe82bd73a4a934dc",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "before_sha256": "062c07d9c631db37537b6854d7f5ec05d2b6e67e43b3a9e806ffe57e2fc2dee0",
+      "after_sha256": "b65efece0248a8c53445a6b59da0d7cffd4f66cb02df1226f9d048093ef726fd",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "RI.movies",
+      "before_sha256": "26f07c50ff5a7ce57ccc1487c3c94ea0a3764381c52100eabbb79a35cf6b559e",
+      "after_sha256": "971bcebb7efa239b18c6d43d78433d431ad8a84804ea1a7be94b77e4f9c01b4a",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "21c88077242a488b69cfde5e3d581c7a1435f3a01871680db4b32fc08a3e3dfc",
+      "after_sha256": "76793f3d59bf6a200039742ed662b9ad8a21c5987c162d7704fbb735411b7c2e",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-census",
+      "before_sha256": "0bdc26ec441994c0cac431477ae2e496f37d0015751e692e282f4695a933a128",
+      "after_sha256": "e6f943426f365d97df718b01cb76f9c37211f6fdd532a0068c214057b0b78540",
+      "exact_receipts": [
+        "draw01-quick-battle-final-scenario-accounting-20261010",
+        "draw01-quick-battle-scenario-tool-validation-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-dispatch-slices",
+      "before_sha256": "0b2058207e4baddfaec3d904115d88c0db2acfab6596183480c93fdcd2f9048b",
+      "after_sha256": "1612f977fbd97e1dd74d6c253bc5359df7e89c71ddf3f8ab47ead69b70826816",
+      "exact_receipts": [
+        "draw01-original-quick-battle-accounting-20261010",
+        "draw01-quick-battle-final-scenario-accounting-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "before_sha256": "1074b8f085cb361faa58669e06fc1dda3543197a900e8c11caff9e6c276028f7",
+      "after_sha256": "94c892ca3584c7f3ba2c99e9736968730848bb6ba2fa648d9f740c3b6acada77",
+      "exact_receipts": [
+        "draw01-quick-battle-final-scenario-accounting-20261010",
+        "draw01-quick-battle-scenario-tool-validation-20261010"
+      ]
+    }
+  ],
+  "unresolved": []
+}

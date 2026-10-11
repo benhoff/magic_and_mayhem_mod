@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "Unchanged original4d8ab0 render-postlude,57dc20frame/57dc60clip/57dc90getter and decimal formatter instructions with owned synthetic object/arrays. Canvas fill/Lock, font body and Surface Unlock are explicit synthetic bindings; client disabled/not-ready/null-Lock exits, prefix/signed decimal text, viewport/row alignment, metadata/real global stores and ignored failure results are checked. No actual pixels/font/canvas/COM/driver behavior, global ownership or live/scenario/full dispatch closure.",
+  "sources": {
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "tests/drawing-postlude-reference.cpp": "4bc4276cbab6b1db72d09f2975509c6dc5e78c1eaa627e44b8a3618b0b33c0e3",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/test-drawing-postlude.py": "ca3cfa3f4ab07c7285419e0048f27ac34196597edadc7cd6fda8546140334376"
+  },
+  "claims": [
+    {
+      "behavior": "DRAW.queue-render-postlude",
+      "contract_sha256": "488612653c49b1eccc677733b4091574620421cf359798f656dbbffbfe065cfc",
+      "scenarios": {
+        "original-drawing-render-postlude-client-20261011": "c2e9259830658908f7e741872efdecbe62e6eedb4af9174c736a18b8dbc46f35"
+      }
+    }
+  ],
+  "sources_stable": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "original_instructions_unchanged": true,
+  "original_cases": 12288,
+  "calls_by_tag": {
+    "0x58bac0": 3072,
+    "0x58b660": 3072,
+    "0x4a5ce0": 1536,
+    "0x80000080": 1536
+  },
+  "drawn_text_hex": [
+    "53707269746573207072696e7465643a202d31",
+    "53707269746573207072696e7465643a202d32313437343833363438",
+    "53707269746573207072696e7465643a2030",
+    "53707269746573207072696e7465643a2031",
+    "53707269746573207072696e7465643a2031323334",
+    "53707269746573207072696e7465643a2032313437343833363437"
+  ],
+  "original_return_contracts": [
+    {
+      "address": 5081776,
+      "pop": 12,
+      "returns": [
+        {
+          "address": 5082282,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        }
+      ]
+    },
+    {
+      "address": 5814976,
+      "pop": 8,
+      "returns": [
+        {
+          "address": 5815154,
+          "bytes": "c20800",
+          "mnemonic": "ret",
+          "operand": "0x8"
+        },
+        {
+          "address": 5815172,
+          "bytes": "c20800",
+          "mnemonic": "ret",
+          "operand": "0x8"
+        }
+      ]
+    },
+    {
+      "address": 5813856,
+      "pop": 0,
+      "returns": [
+        {
+          "address": 5813903,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        },
+        {
+          "address": 5814292,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        }
+      ]
+    },
+    {
+      "address": 4873440,
+      "pop": 28,
+      "returns": [
+        {
+          "address": 4873537,
+          "bytes": "c21c00",
+          "mnemonic": "ret",
+          "operand": "0x1c"
+        },
+        {
+          "address": 4874629,
+          "bytes": "c21c00",
+          "mnemonic": "ret",
+          "operand": "0x1c"
+        }
+      ]
+    },
+    {
+      "address": 5757984,
+      "pop": 4,
+      "returns": [
+        {
+          "address": 5758005,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        }
+      ]
+    },
+    {
+      "address": 5758048,
+      "pop": 8,
+      "returns": [
+        {
+          "address": 5758079,
+          "bytes": "c20800",
+          "mnemonic": "ret",
+          "operand": "0x8"
+        }
+      ]
+    },
+    {
+      "address": 5758096,
+      "pop": 0,
+      "returns": [
+        {
+          "address": 5758129,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        }
+      ]
+    },
+    {
+      "address": 5889583,
+      "pop": 0,
+      "returns": [
+        {
+          "address": 5889627,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "working/tests/drawing-postlude/run-l9z7bm64/cases.jsonl": {
+      "sha256": "08cec7bf898b1d0102da64f63b37ede0199cac022f873251f5b20922d3917487",
+      "bytes": 2408960
+    },
+    "working/tests/drawing-postlude/run-l9z7bm64/reference": {
+      "sha256": "c81ffacf21071b65ca768424f3e34fe5bb93879afd5f5a37f9ef9f1029298e6e",
+      "bytes": 45464
+    },
+    "working/tests/drawing-postlude/run-l9z7bm64/build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-postlude/run-l9z7bm64/execution.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-postlude/run-l9z7bm64/execution-status.json": {
+      "sha256": "e8f8c5c55c76bdfdf2e28f794dc26bf41579bf73cb32b509806122e26591cd8f",
+      "bytes": 23
+    }
+  }
+}

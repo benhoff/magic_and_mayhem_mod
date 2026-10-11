@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "Unchanged original58b660 Lock wrapper client only: owned mock interfaces,13824unique selected result/callback/key/teardown/early-Unlock cells, descriptor zeroing/size and pitch/pointer writes, absent surface, exact lost code, Restore result retained separately from retryLock result, low16 key, zero/callback/sentinel endpoints, ordered teardown globals and DestroyWindow, optional auxiliary Unlock. External API/key/release/display/UI/sentinel bodies are scripted; list is empty. No real COM/driver recovery, actual pixels/font/asset reload, populated destructor list, reentrancy/null mutation, native equivalence or full scenario/dispatch completion.",
+  "sources": {
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "tests/drawing-lock-recovery-reference.cpp": "e875258691d7ab96ba3f5ea61f28d733e78598e516ae71ae8f79167da5282780",
+    "tests/surface-retry-reference.cpp": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/test-drawing-lock-recovery.py": "271774b6fb3af91c2bade3d3e70ebaf3fc540e8dfd17c29ea4486b8e6f2f9907"
+  },
+  "claims": [
+    {
+      "behavior": "DRAW.canvas-lock-recovery",
+      "contract_sha256": "25c51bc3375076e49061d36b594bdefd4139821b7c0ed2a6b3cf3898a37f3679",
+      "scenarios": {
+        "original-drawing-lock-recovery-client-20261011": "eabe311be74bb94be23b417af6f5cb2d8fe4e3d70d3b5e2c8dda1aad795a7e44"
+      }
+    }
+  ],
+  "sources_stable": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "original_wrapper_instructions_unchanged": true,
+  "original_cases": 13824,
+  "unique_matrix_cells": 13824,
+  "matrix_axes": {
+    "present": [
+      0,
+      1
+    ],
+    "initial": [
+      0,
+      1,
+      2147500037,
+      2289435074
+    ],
+    "restored": [
+      0,
+      1,
+      2147500037
+    ],
+    "retry": [
+      0,
+      1,
+      2147500037,
+      2289435074
+    ],
+    "pointer": [
+      0,
+      1
+    ],
+    "colour": [
+      0,
+      1
+    ],
+    "reload": [
+      0,
+      1,
+      2
+    ],
+    "teardown": [
+      0,
+      1,
+      2
+    ],
+    "release_early": [
+      0,
+      1
+    ],
+    "key_result": [
+      0,
+      2147500037
+    ]
+  },
+  "calls_by_tag": {
+    "25": 8640,
+    "102": 6912,
+    "32": 3456,
+    "103": 4608,
+    "2": 10752,
+    "19": 1536,
+    "27": 1728,
+    "100": 192,
+    "101": 192,
+    "29": 288
+  },
+  "stored_result_differs_from_retry_result": 1296,
+  "nonnull_return_with_nonzero_stored_result": 2304,
+  "original_return_contracts": [
+    {
+      "address": 5813856,
+      "pop": 0,
+      "returns": [
+        {
+          "address": 5813903,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        },
+        {
+          "address": 5814292,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        }
+      ]
+    },
+    {
+      "address": 4738048,
+      "pop": 4,
+      "returns": [
+        {
+          "address": 4738208,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 4738248,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 4738288,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 4738328,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 4738388,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 4738428,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 4738468,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 4738658,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 4738968,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 4739540,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 4740150,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 4740691,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        }
+      ]
+    },
+    {
+      "address": 4861840,
+      "pop": 0,
+      "returns": [
+        {
+          "address": 4861857,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        }
+      ]
+    }
+  ],
+  "destroy_window_import": {
+    "dll": "USER32.dll",
+    "name": "DestroyWindow",
+    "ordinal": null,
+    "iat_va": 6050312
+  },
+  "artifacts": {
+    "working/tests/drawing-lock-recovery/run-sbyo0ljg/cases.jsonl": {
+      "sha256": "ff203503026f3fbac16872af6a61080e34c590d9f5a8845f14fab94a5e332d7c",
+      "bytes": 3153888
+    },
+    "working/tests/drawing-lock-recovery/run-sbyo0ljg/reference": {
+      "sha256": "f37a541fbe9907f24880c9d00c835e946b0d52b5e9be97b7f20868cf3390818b",
+      "bytes": 41340
+    },
+    "working/tests/drawing-lock-recovery/run-sbyo0ljg/build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-lock-recovery/run-sbyo0ljg/execution.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-lock-recovery/run-sbyo0ljg/execution-status.json": {
+      "sha256": "e8f8c5c55c76bdfdf2e28f794dc26bf41579bf73cb32b509806122e26591cd8f",
+      "bytes": 23
+    }
+  }
+}

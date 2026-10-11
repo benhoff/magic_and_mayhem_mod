@@ -1,0 +1,211 @@
+{
+  "schema": 1,
+  "integrity": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "matched_wrapper_tail_pairs": 4,
+  "counts": [
+    {
+      "original_cpu_call_site": 5888394,
+      "original_call_return": 5888396,
+      "physical_call_return": 38797314,
+      "observed_wrapper_target": 4861696,
+      "reviewed_tail_target": 5813216,
+      "fixed_receiver": 6561736,
+      "one_shot_bit": 1,
+      "count": 1,
+      "proof_samples": [
+        {
+          "thread": 392,
+          "cpu_call_id": 24983,
+          "core_call_id": 42008,
+          "cpu_before_sequence": 49965,
+          "core_entry_sequence": 84015,
+          "core_return_sequence": 84016,
+          "cpu_after_sequence": 49966,
+          "original_return_slot": 2293412,
+          "cpu_before_eax": 4861696,
+          "core_entry_eax": 4861697,
+          "core_entry_ecx": 6561736
+        }
+      ],
+      "initial_flag_byte_observed": false
+    },
+    {
+      "original_cpu_call_site": 5888394,
+      "original_call_return": 5888396,
+      "physical_call_return": 38797314,
+      "observed_wrapper_target": 4861808,
+      "reviewed_tail_target": 5813216,
+      "fixed_receiver": 6561792,
+      "one_shot_bit": 2,
+      "count": 1,
+      "proof_samples": [
+        {
+          "thread": 392,
+          "cpu_call_id": 24982,
+          "core_call_id": 42007,
+          "cpu_before_sequence": 49963,
+          "core_entry_sequence": 84013,
+          "core_return_sequence": 84014,
+          "cpu_after_sequence": 49964,
+          "original_return_slot": 2293412,
+          "cpu_before_eax": 4861808,
+          "core_entry_eax": 4861698,
+          "core_entry_ecx": 6561792
+        }
+      ],
+      "initial_flag_byte_observed": false
+    },
+    {
+      "original_cpu_call_site": 5888394,
+      "original_call_return": 5888396,
+      "physical_call_return": 38797314,
+      "observed_wrapper_target": 4971696,
+      "reviewed_tail_target": 5813216,
+      "fixed_receiver": 6967264,
+      "one_shot_bit": 0,
+      "count": 1,
+      "proof_samples": [
+        {
+          "thread": 392,
+          "cpu_call_id": 24976,
+          "core_call_id": 42006,
+          "cpu_before_sequence": 49951,
+          "core_entry_sequence": 84011,
+          "core_return_sequence": 84012,
+          "cpu_after_sequence": 49952,
+          "original_return_slot": 2293412,
+          "cpu_before_eax": 4971696,
+          "core_entry_eax": 4971696,
+          "core_entry_ecx": 6967264
+        }
+      ],
+      "initial_flag_byte_observed": false
+    },
+    {
+      "original_cpu_call_site": 5888394,
+      "original_call_return": 5888396,
+      "physical_call_return": 38797314,
+      "observed_wrapper_target": 4971792,
+      "reviewed_tail_target": 5813216,
+      "fixed_receiver": 6965728,
+      "one_shot_bit": 0,
+      "count": 1,
+      "proof_samples": [
+        {
+          "thread": 392,
+          "cpu_call_id": 24975,
+          "core_call_id": 42005,
+          "cpu_before_sequence": 49949,
+          "core_entry_sequence": 84009,
+          "core_return_sequence": 84010,
+          "cpu_after_sequence": 49950,
+          "original_return_slot": 2293412,
+          "cpu_before_eax": 4971792,
+          "core_entry_eax": 4971792,
+          "core_entry_ecx": 6965728
+        }
+      ],
+      "initial_flag_byte_observed": false
+    }
+  ],
+  "gaps": [],
+  "direct_cpu_core_pairs": 24825,
+  "pending_cpu_pairs": 242,
+  "caller_attribution_complete": false,
+  "draw01_complete": false,
+  "scope": "Current native replay of independently closed CPU/core journals: exact CRT return/thread/stack and complete ordered wrapper groups with reviewed unchanged original fixed-receiver/bit/tail bytes, exact GPR/error/diagnostic effects and identical callee/CPU return state. The initial one-shot byte is not observed; no shared sequence, atomic read, callback registration, outer cleanup root flow, physical lifetime/pixels, complete callers/writers or scenario/dispatch closure is asserted.",
+  "sources": {
+    "protocols/include/mnm/drawing_api_bindings_v1.h": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+    "protocols/include/mnm/drawing_api_journal_v2.h": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+    "protocols/include/mnm/drawing_census_bindings_v1.h": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-callers-movie-sites-20261010.json": "9bee999ddfbf3159c992399abd6d6308ffae0207c3536bed46ace94d17b18ac3",
+    "research/runtime/drawing-canvas-release-original-range-20261011.json": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+    "tests/test-drawing-terminal-crosswalk.py": "3658bfb50caf60c52ba7eddeb1ab1b19a9209baab0be0409b1c2602184fb724b",
+    "tools/drawing_api_bindings.py": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+    "tools/drawing_api_cohorts.py": "5b7c865d68fff9986ec66410bbb77daae9d7d98edcaf0da92a82d56e4be70196",
+    "tools/drawing_api_contracts.py": "d3df6ef14428054ae83d803345db5ce26f2b42ee1d46aa28ddc07f4a1bd23664",
+    "tools/drawing_api_details.py": "0e77554ce71fcc66049c3f06326356325765acb99e2cb0fafce711cc4a380169",
+    "tools/drawing_api_journal.py": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+    "tools/drawing_api_pairs.py": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+    "tools/drawing_api_sites.py": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_census_bindings.py": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+    "tools/drawing_census_callers.py": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52",
+    "tools/drawing_cpu_crosswalk.py": "2ad32ceee0b64f8f5d20f29069a023db3d1c08d275be870f86c5962405900d08",
+    "tools/drawing_cpu_sites.py": "3e480307240f93eabc190b63f04cdb3b4f8ccfdbcc851edf357a5bd5bc946178",
+    "tools/drawing_terminal_crosswalk.py": "4177f22bbd5bfe9e60a390062166e6bdf2e69315e1c7bab5a085028a7ae4562b",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/review-drawing-terminal-crosswalk.py": "c2c5079a986c99094cb18bc3dcc0b763b11ad968fa8fb5dccd565b9e2f41dbaf"
+  },
+  "sources_stable": true,
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-terminal-crosswalk",
+      "contract_sha256": "7886700b40865060079476cb2784b4c928a50b3876addcd97370858d39caa762",
+      "scenarios": {
+        "drawing-terminal-crosswalk-guards-20261011": "09ee253626a7afe6aacc4f8e0e1f1664756be4d385b0f54f69c6dc3423ce2bb5",
+        "drawing-terminal-crosswalk-original-replay-20261011": "c337d6881ecb0c11b4d2afab8d391695c5ce188db3a5a96d08027ef6124d743a"
+      }
+    }
+  ],
+  "artifacts": {
+    "working/experiments/drawing-census/run-0q3q92uc/capture/census.bin": {
+      "sha256": "00bb611ed8ff6a4133330105f47b1bbf1d99683ccd5588adde8bb78932e3523d",
+      "bytes": 10754176
+    },
+    "working/experiments/drawing-census/run-0q3q92uc/capture/core-bindings.bin": {
+      "sha256": "841d3444aa4cabbb7f5c5c666887ce016b96f771e61b608dae2102f7dffbb8c7",
+      "bytes": 8160
+    },
+    "working/experiments/drawing-census/run-0q3q92uc/capture/api-calls.bin": {
+      "sha256": "5ba1a60efaf08a75e7a1472883a4f81b4c221538656591e302f8793e81522875",
+      "bytes": 40113728
+    },
+    "working/experiments/drawing-census/run-0q3q92uc/capture/api-bindings.bin": {
+      "sha256": "8014d864ea62d8f58e429e97934112c6a21460ebd33bda4957adcfaf50fecadb",
+      "bytes": 6336
+    },
+    "working/experiments/drawing-census/run-0q3q92uc/census-build.json": {
+      "sha256": "a9285f3be8680a03e4b0c090f2fccb10b047b3bb19921c83dae2a5bcb6302f5a",
+      "bytes": 19350
+    },
+    "working/experiments/drawing-census/run-0q3q92uc/api-build.json": {
+      "sha256": "f116f316c5910422768874ef4852e40a38e6eebe0912916310871ee871c7ea17",
+      "bytes": 119457
+    },
+    "working/experiments/drawing-census/run-0q3q92uc/manifest.json": {
+      "sha256": "c921bcf7831e9d26f6a5b08120eb021b93f17b74abf169f716cb701d9c22e19d",
+      "bytes": 1454
+    },
+    "working/experiments/drawing-census/run-0q3q92uc/journey.json": {
+      "sha256": "29450653c762fbab53fa5e1a650b111d5128c51613c6ac3c4d9fd6d850bcf65c",
+      "bytes": 312776
+    },
+    "working/experiments/drawing-census/run-0q3q92uc/staged-binary-artifacts/Chaos.exe": {
+      "sha256": "e14c0e8a1082b875280043267097b8a0423fc2fcad2ada9e9c371ccb75d6f44a",
+      "bytes": 2093056
+    },
+    "research/runtime/drawing-canvas-release-original-range-20261011.json": {
+      "sha256": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+      "bytes": 22609
+    },
+    "working/tests/draw01-terminal-crosswalk-claims-20261011.json": {
+      "sha256": "9c38792875f804ec63517f61e073b631d6571bb88bbae30c6e8a00bc757d6dcd",
+      "bytes": 3216
+    },
+    "research/runtime/drawing-callers-movie-sites-20261010.json": {
+      "sha256": "9bee999ddfbf3159c992399abd6d6308ffae0207c3536bed46ace94d17b18ac3",
+      "bytes": 157579
+    },
+    "research/runtime/coverage/binary-nocd.json": {
+      "sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+      "bytes": 4880221
+    }
+  },
+  "original_execution_repeated": false,
+  "initial_flag_byte_observed": false,
+  "original_execution_provenance": "research/runtime/drawing-cpu-observer-original-menu-20261011.json"
+}

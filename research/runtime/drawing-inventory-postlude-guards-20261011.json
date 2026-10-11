@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "Current native offline route guards after queue render-postlude classification correction. Original reports/source hashes remain historical; no new original execution, COM/owner/all-writer/scenario closure.",
+  "sources": {
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-api-expanded-effects-20261011.json": "e9432a4965dcbfa904966f28a7276696831c0a514bd326f493bb5299dcf1a689",
+    "research/runtime/drawing-api-expanded-quick-battle-20261011.json": "9c9725f0370f8fe2b1e2769c8d9799c170c1c2b8356ad80a80deb39fc30fa23b",
+    "research/runtime/drawing-api-expanded-save-load-20261011.json": "19be3fb608f453b1c40e10739cf94ff076a7214fbd008f6539482f7e67a7158f",
+    "research/runtime/drawing-api-virtual-candidates-static-20261011.json": "bdfb0e01bd250ba885c748159c0c9f3f5f21628324be12b0515dcb2e43d41ef1",
+    "research/runtime/drawing-api-virtual-movies-20261011.json": "5160e1d03868e37c72e1349f4719b109f9388282e5ba89d4bf95b2719da99eb2",
+    "research/runtime/drawing-callers-dispatch-expanded-20261010.json": "e59d85a6d0ef4ea1f3af29724a10a5e7f7f8ce0e3a544e4dfcac256bf6b535d3",
+    "research/runtime/drawing-callers-expanded-20261010.json": "c0d173ff5c726fcd22ebd47e9d423f421842cd3cc2fe3c06e836e2af3a6c0bba",
+    "research/runtime/drawing-census-campaign-observation-20261010.json": "780cb390236f0973ab3717fe381321dfd1e3fc9de6671fbb8382415ad5489a41",
+    "research/runtime/drawing-inventory.json": "04ff7a1e7eb44e5e706dca388b3dd39da218a3e61c4f91853b8acbf864a309cb",
+    "research/runtime/fade-writer-live-comparison-20261010.json": "328af98fcf9fc0ceae485b7e049f266df3aa551ae5adcff423e568798ba7b8d4",
+    "research/runtime/glyph-live-comparison-20261010.json": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+    "research/runtime/native-canvas-producers-final-shadow-20261010.json": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+    "research/runtime/native-canvas-producers-live-20261008.json": "f725d774af13ca489b4483cecc03fb3056198eb2acd3876b5c8a738777c20c8a",
+    "research/runtime/native-enabled-movie-startup-20261010.json": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+    "research/runtime/native-minimap-interactive-20261010.json": "ee972c4154eb1b96db98207f738c56c9c4e6f7987573492f72330b30494dd3f0",
+    "research/runtime/native-world-raster-batch-prefix16-replacement-v7-20261008.json": "a719e427ef2f6c61617511d647f6789eee3181572835b9ad8ef16381135d2204",
+    "research/runtime/render-path-inventory-static-final.json": "01d30a9574fef5a02d0195ae354e6ca1e1f600cff5c33079788f6f778762777a",
+    "runtime/canvas-writers/bridge.c": "0d4d243f016509767bdc6d89381a57d4b7c75cc1fda7996b0b828f2025044c45",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "tests/test-drawing-inventory.py": "107ba32c690ed53eb1d9cd85ed33aea6689c7dc6e28dc93a78578f6c15908299",
+    "tools/coverage_audit.py": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/drawing_api_sites.py": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_inventory.py": "9a87e5e24ebd7bd00212712f174d7bad4c15f3fa547b9d2e19c4c85146e04ee1",
+    "tools/rendering_coverage.py": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+    "tools/report-drawing-inventory.py": "f227bc6f4c2665e65a8be76d0feb093f131f232e849ed891642076cb38ba081c"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-inventory",
+      "contract_sha256": "9ceb22ddcf18dd661169c6de285206f1520f3506989263881be6408c55c5ccc2",
+      "scenarios": {
+        "drawing-inventory-postlude-guards-20261011": "54689f2041574d1961e3e39f6e1a865aae4cb67b49d284dbb588da6478cce2c6"
+      }
+    }
+  ],
+  "sources_stable": true,
+  "guards": 45,
+  "native_accounted_check_exit": 0,
+  "strict_completion_check_exit": 1,
+  "draw01_complete": false,
+  "completion_blockers": 18,
+  "api_registered_sites": 380,
+  "api_observed_sites": 101,
+  "required_scenarios": 14,
+  "unaccounted": [],
+  "original_renderer_executed": false,
+  "artifacts": {
+    "working/tests/draw01-postlude-inventory-guards-20261011.log": {
+      "sha256": "49e5ad1441454d699ee1818221b5c39c69e5e5bf1f26c748164e092dff2abaec",
+      "bytes": 144
+    },
+    "working/tests/draw01-postlude-accounted-20261011.json": {
+      "sha256": "47e28c2d760b3ae17ed8dcf465318d25bc311fd29e78bd3d831ec3f94b0c2686",
+      "bytes": 1985684
+    },
+    "working/tests/draw01-postlude-complete-20261011.log": {
+      "sha256": "0c8667f8afc2e4a1035614f01b615a90d92503e2cba40bb066074bb21c4c75d7",
+      "bytes": 7715
+    }
+  }
+}

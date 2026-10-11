@@ -1,0 +1,449 @@
+{
+  "schema": 1,
+  "reviewed_commit_range": "92295c9cced41a837d8fdc6443b78d66b317971a..e4be4488f357e3d8281bd09273cdcc2d8077a27a",
+  "scope": "Committed history only; exact parent/current receipt audit separate from uncommitted graphics API boundary work. No retrospective gate pass or new validation.",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "813245f2dc7c4c762d23d0ece3b4363e52ffd30370bc08c9133e8fbf72d9dbbe",
+      "after_sha256": "cc2768fc6a791ff089807862c1b7e6f470c5f09f9d607dec9caae77c692964fa",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-4878427-92295c9-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "57ae930fa59eaf27af0d666cadb06553d2aa4573ac7550743d80306a23481251",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "97b951a7b397df4df3be1958869936036efb9d45d8fff3e5beea9015df5bb1d2",
+      "after_sha256": "048d6cdb9e7b231219859a82e1e13a2e70dc1c156b35bbcfec646c3b8de79e11",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-campaign-effects-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "47fc22f4bb1dd102d36e9363a307e8083a3048501f90892f310cc311b6fdf25b",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "4d919e5ad76c41bb881ecc9b73c5f7005a14813d8ec2732ec5d98f8fd90952fd",
+      "after_sha256": "d49979a259f56200493f3af3723a6edfb32eb5462fe676e263ccc9802efd560c",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-inventory.md",
+      "before_sha256": "d175de7cfefbe831a5db2a3204a5168e75ac8b188c06d74c56434efd61b5ee23",
+      "after_sha256": "4e3c32b7c1ac6c68596f0f94aa81a7edf185f5850edec16be461ad7f1b9ae8e1",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.queue-dispatch",
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-census",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-campaign-effects-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "aff29a9f4a6ff1c4d86f0fe9b92d71790a2782491d9111e300ac95d47131e62b",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-campaign-effects-observation-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4e38873606dafe392f66df158f6cfd3d0400bde1b2f5c6bd29c4132b65a9ab31",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-inventory.json",
+      "before_sha256": "b5221df2370fc6e99498773ff8e07b26d9f0f95fa15ca9e5444c8ef31601eb1a",
+      "after_sha256": "2da4a44180c3df90c5c6b09a9b5e99aa0eab6660e444cc1691c1d522fb022159",
+      "behaviors": [
+        "DRAW.queue-dispatch",
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/campaign_gameplay.py",
+      "before_sha256": "5ad52f29bef23bc1a90a5a8caf653a7f0d63c8a8e3f0a67790cfbe90721bc329",
+      "after_sha256": "5ad52f29bef23bc1a90a5a8caf653a7f0d63c8a8e3f0a67790cfbe90721bc329",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "HOST.native-campaign-capture-retry",
+        "HOST.native-campaign-casting-combat",
+        "HOST.native-campaign-dialogue-readiness",
+        "HOST.native-campaign-movement-probes",
+        "HOST.native-campaign-normal-quit",
+        "HOST.native-campaign-spell-cases",
+        "HOST.native-campaign-spell-observation",
+        "HOST.native-crowded-battle-stress",
+        "HOST.native-healing-loadout"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "native-extended-gameplay-observation-checkpoint-20261010",
+        "native-fireball-refusal-gameplay-review-20261010",
+        "native-dialogue-normal-quit-review-20261010",
+        "native-healing-review-20261010",
+        "native-healing-recorded-20261010",
+        "native-crowded-foundation-20261010",
+        "native-crowded-foundation-20261010-recorded",
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/campaign_spell.py",
+      "before_sha256": "be487d2172f2bad1ef80b4057c6f711af47f7adc0175e6f5b969b4a574de6b84",
+      "after_sha256": "be487d2172f2bad1ef80b4057c6f711af47f7adc0175e6f5b969b4a574de6b84",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "HOST.native-campaign-capture-retry",
+        "HOST.native-campaign-casting-combat",
+        "HOST.native-campaign-dialogue-readiness",
+        "HOST.native-campaign-movement-probes",
+        "HOST.native-campaign-normal-quit",
+        "HOST.native-campaign-spell-cases",
+        "HOST.native-campaign-spell-observation",
+        "HOST.native-crowded-battle-stress",
+        "HOST.native-healing-loadout"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "native-crowded-foundation-20261010",
+        "native-crowded-foundation-20261010-recorded",
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/capture-drawing-census-game.py",
+      "before_sha256": "e43a60b9c6a439d1215ff8cb638ea8687690506957dc483535274c34ac9db187",
+      "after_sha256": "fdb529d496f622f2793edfd8b6e8be7578d349e42ad49508684dc1d4658f9f7c",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "RI.movies"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing-census-game-runner.py",
+      "before_sha256": "626722d4bdf62ec4767cd18e65e1feb080de4768b1ea2098bdb6c4ef7e0fdd76",
+      "after_sha256": "47703d7a9c7e1ab5a54da9d15ccfa049179a3d0a7e7966e63f4d65cad1ddab6e",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "RI.movies"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/prepare-drawing-census.py",
+      "before_sha256": "c01369e1876576d5c25c250644045ef735c28de2cd9fa81665bb526184605e35",
+      "after_sha256": "d9f6980aff448c0c51991d2f0d61fc99dc46972a6509cc2da8984bb54194fad1",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "RI.movies"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "f14c23fcc474fec2bb391a53121ce342d45f41efb70a99d60c390044104cfb02",
+      "after_sha256": "3ed1b8069f85b2df21d5f1bb4a3df0e0b49bd9ee5be6138fd22905e7e1b8c9c2",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "ccb441110f63301aeb56f747928535daef5bdb092d5d978c567c6129363a39b2",
+      "after_sha256": "38e8449c3e9f4e2d3ad9b777a8e314d98f1c33257d97f7396003bb8158b1a6b9",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-dispatch",
+      "before_sha256": "9e1acbb79beeee09bb013192f607516f41f4cad09d2bf2ce7e16de5df001d480",
+      "after_sha256": "831e91ff684fc8aa68db266e267ce3113aa449a4ab924a55c1a273c3887b66de",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.surface-hosting",
+      "before_sha256": "dc571119aaad8eb840c9c08acbae26d14fb92031294f849aa3fe36c10a8607dc",
+      "after_sha256": "8b6721445f033384382bb8a0513e491446ef65071e579f9108ae380269448ab6",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.unassigned-word-window",
+      "before_sha256": "5cc9a276a63ff924ae52b60419ebad2f6318f9a1d8f53e19ad686b75517910ce",
+      "after_sha256": "67777c4b89a53bd0a717c9f628f9f05b4be571a87a1b5812b97720ca3a49a489",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.unattributed-caller",
+      "before_sha256": "5a373492df42c6e8d19cb7d62d301a42eae9f38a049d7461681054792851386b",
+      "after_sha256": "4144cf165d6e909e99ce6961719a92b978c82bdae28bbe88797310e5e87bc05a",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "before_sha256": "f7b1c41779a4a605b6abe3b9326153a0fdf1a1bd6fcff370b9fd3a7fc61326e6",
+      "after_sha256": "e6539f050f7dfb07d8b25e2f47045d70064cc6deb48dfe082e4aa8fc55a0ef9c",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "before_sha256": "ba905fa80d4008ba343d09167234c19a422a415e9f9cd3fabe82bd73a4a934dc",
+      "after_sha256": "c3e2b50aadc7e18ea3868bf69e93980faa3421f5a8f5da3e78c5aca53cc739ac",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "before_sha256": "b65efece0248a8c53445a6b59da0d7cffd4f66cb02df1226f9d048093ef726fd",
+      "after_sha256": "5946bedb79dd4daf37d885b08ac6e74238b2f824cadcf1cb3866d521faf31e82",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-capture-retry",
+      "before_sha256": "18799ed90a673208b36ed2ca3f21d8d888b57205caec15ed1d41e5a533a001df",
+      "after_sha256": "18799ed90a673208b36ed2ca3f21d8d888b57205caec15ed1d41e5a533a001df",
+      "exact_receipts": [
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-casting-combat",
+      "before_sha256": "fe7cb065453566c6ae695585cd765edab73ac59dddb3f998bca4b439cc307e5d",
+      "after_sha256": "fe7cb065453566c6ae695585cd765edab73ac59dddb3f998bca4b439cc307e5d",
+      "exact_receipts": [
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-dialogue-readiness",
+      "before_sha256": "3929f1278ebdfd7213f45117550dff4f0b43a2b31d021ea04dd14eccf4e5f3d1",
+      "after_sha256": "3929f1278ebdfd7213f45117550dff4f0b43a2b31d021ea04dd14eccf4e5f3d1",
+      "exact_receipts": [
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-movement-probes",
+      "before_sha256": "a3dec1dfe0f15b124368a956faf5e3fb5ea8c6870c7613cd17f4c59d5055ea6b",
+      "after_sha256": "a3dec1dfe0f15b124368a956faf5e3fb5ea8c6870c7613cd17f4c59d5055ea6b",
+      "exact_receipts": [
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-normal-quit",
+      "before_sha256": "45e5082685046e0e6d72e814a72eb592c95cee2feb0a3d5103864878bb487e12",
+      "after_sha256": "45e5082685046e0e6d72e814a72eb592c95cee2feb0a3d5103864878bb487e12",
+      "exact_receipts": [
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-spell-cases",
+      "before_sha256": "d3118d4e584704f58c82ad36a43bbd66d1c229b3a391d330f46d9fe89a0188de",
+      "after_sha256": "d3118d4e584704f58c82ad36a43bbd66d1c229b3a391d330f46d9fe89a0188de",
+      "exact_receipts": [
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-spell-observation",
+      "before_sha256": "c140059165a5c3cad7e9b736607363d88b8035faa7727a3dea1323698bf782ef",
+      "after_sha256": "c140059165a5c3cad7e9b736607363d88b8035faa7727a3dea1323698bf782ef",
+      "exact_receipts": [
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "HOST.native-crowded-battle-stress",
+      "before_sha256": "825a67c2705ad375df636e86250ee3213166d4a85405c5f56dc3139331d0b418",
+      "after_sha256": "825a67c2705ad375df636e86250ee3213166d4a85405c5f56dc3139331d0b418",
+      "exact_receipts": [
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "HOST.native-healing-loadout",
+      "before_sha256": "560818d0e6b94dcf6ba990a0be1188af9f93a25bdcef4deca53e2300e3cacb52",
+      "after_sha256": "560818d0e6b94dcf6ba990a0be1188af9f93a25bdcef4deca53e2300e3cacb52",
+      "exact_receipts": [
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RI.movies",
+      "before_sha256": "971bcebb7efa239b18c6d43d78433d431ad8a84804ea1a7be94b77e4f9c01b4a",
+      "after_sha256": "5a5855e686867ba02ea0052391c7a9ab82178ed1dd51d7cf63d3736c1aa88777",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "76793f3d59bf6a200039742ed662b9ad8a21c5987c162d7704fbb735411b7c2e",
+      "after_sha256": "2a0fa2a8f55dde90841abad82c5c8477fce45866725fb02341c16f934c8e7b16",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-census",
+      "before_sha256": "e6f943426f365d97df718b01cb76f9c37211f6fdd532a0068c214057b0b78540",
+      "after_sha256": "a1026de6a153751cfea8b9b8c73fa332a79338586cbc94ee4d1a487892ea3977",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011",
+        "draw01-campaign-effects-tool-guards-recorded-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-dispatch-slices",
+      "before_sha256": "1612f977fbd97e1dd74d6c253bc5359df7e89c71ddf3f8ab47ead69b70826816",
+      "after_sha256": "621edaa9aefeff7b91bc2c3244d4c577cd8609e810b38938e9b318e6e3f50871",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "before_sha256": "94c892ca3584c7f3ba2c99e9736968730848bb6ba2fa648d9f740c3b6acada77",
+      "after_sha256": "4a3a798819b39ba770f4293772637ba0185a6ca2632e17e4eb924090572168c6",
+      "exact_receipts": [
+        "draw01-original-campaign-effects-accounting-20261011",
+        "draw01-campaign-effects-tool-guards-recorded-20261011"
+      ]
+    }
+  ],
+  "missing_exact_receipts": [],
+  "unresolved_gaps": [],
+  "counts": {
+    "files": 14,
+    "behaviors": 23,
+    "missing": 0
+  }
+}

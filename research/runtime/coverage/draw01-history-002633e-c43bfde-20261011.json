@@ -1,0 +1,230 @@
+{
+  "schema": 1,
+  "reviewed_commit_range": "002633ea32c1ade7a11d04a058cae8a83409badd..c43bfdef2666545b58b33fb5a3d0ec05cc404a5c",
+  "scope": "Committed history only; exact parent/current hashes, affected behavior links and contract receipts reviewed separately from current uncommitted work. No retrospective gate pass or new validation.",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f6342ab9d9f37a14f4d3fd5548836dfb8b451dfce22b29d0459825ebde3141ab",
+      "after_sha256": "4f515737d7604d4eabb2c259b76f4d9a56053779a33845df018f810c7b19b0a8",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-910e3f7-002633e-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c404cff676ed78757bdad084758a96895b558b1eacb5a536c3f23948951d76cb",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "bdede883c03451407973d16b1049c405f1939c0d32c244398543d5be4749d13c",
+      "after_sha256": "68b6795aa58e1cbba596a0e045d7291fa86995f9788ad71fae12066b5deadd89",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-api-expanded-gameplay-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1008b009576703645ed10e8a63a125d0c5e9a20c62d8e07f17d83fce183d803d",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "a5147d82b5f624c7bf92b175079ed0eeece4285f8ecb1e0f4f7343676fdbb915",
+      "after_sha256": "25b76a5ce78723a44b6e3577ad818ee7bba4be2f8471e966378d071ed0d544c4",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-graphics-api-boundaries.md",
+      "before_sha256": "afc000eac32fa601bd2c8fe06d03afc44d2e366e746c540535a3626b19adcc5c",
+      "after_sha256": "d3d6cc658b3b42fb623f54a4c6c982e35fbfa5875f1e2358180771c22546f9d9",
+      "behaviors": [
+        "DRAW.graphics-api-boundaries",
+        "DRAW.graphics-api-surface-client-layouts",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-cohorts",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-expanded-effects-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e9432a4965dcbfa904966f28a7276696831c0a514bd326f493bb5299dcf1a689",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-expanded-quick-battle-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9c9725f0370f8fe2b1e2769c8d9799c170c1c2b8356ad80a80deb39fc30fa23b",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-expanded-save-load-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "19be3fb608f453b1c40e10739cf94ff076a7214fbd008f6539482f7e67a7158f",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "576abbc1fd013dcaf09f7b95d4d55d32f12ff7b269dd2c81fe943a718d0ddad8",
+      "after_sha256": "70d14a7ee2683af2d160bdaebf39eb481f86eca816792699c47f0b1a5700a3e2",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011",
+        "draw01-api-expanded-gameplay-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-boundaries",
+      "before_sha256": "51ff039aa3b37eaa63d4e410ffb3557b48b32d460b3ad3e668b9d298a5ccccd6",
+      "after_sha256": "ced60fd800541cf02ae328fb4d10e6c80e7c484dabca69258835cff44982585e",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-surface-client-layouts",
+      "before_sha256": "f65492ebf9dd883171be83b0d988ac92a94908dcfb01c83c65c2d11fc719d6f3",
+      "after_sha256": "c4364fd4597c888c6c203db3f7402363726399caf0b586fef0f1bb2dc820c804",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "f036376111564e19454476dc417498191b3087b37c56e519ed16d95da395aad4",
+      "after_sha256": "62486565357ca78255a186c2b9004f454a5af354cbf33cd9e9b3499f45ef582b",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-bindings",
+      "before_sha256": "3a1f448ac3c5fbb56f48373839db4c2884f43ae979095c24892f94ab95bdb30b",
+      "after_sha256": "c6215a2e97cb0de7d5eb59fafbe25c122317fbbeb36fedaedf944ba83ec28b67",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011",
+        "draw01-api-expanded-gameplay-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-cohorts",
+      "before_sha256": "de8d61397147d71a64e60e8c33abf1fb746d619f17e33bfc3860798beae2fe5b",
+      "after_sha256": "86e1031ebe62b8c35ab20506ee6675449276e9b84e9260c679930732eeef5559",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011",
+        "draw01-api-expanded-gameplay-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-details",
+      "before_sha256": "312a610bdf9afaa8e91f00ea01fd62ec3976e93eebb27b92d0063af0b0aaa438",
+      "after_sha256": "d52fda3664471678a12c9c8c9897da8b17cb02b660131426eb460cbe418ab940",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011",
+        "draw01-api-expanded-gameplay-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journal",
+      "before_sha256": "7f02b33d7a770c7eaaaa6bd23b2cf9bcdd920d0cd7df31544a170bbe6a279963",
+      "after_sha256": "efe515b7ddef8455addf840e90d2bd94f5249a34291398e8c92a3aab361db1b5",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journey",
+      "before_sha256": "ddb444cfcabe6867597fabce7b4497cb7ed1ca7a75cef4725f2a41249db9828c",
+      "after_sha256": "5b4a2eb02eb3f5a57b393dfd643e57f8a60daf4943bd41310a35309c7b50acfd",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011",
+        "draw01-api-expanded-gameplay-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-observer",
+      "before_sha256": "38573299e8cbdba6cc431483991da97eb9020622716e958f2fc58d23d8c7d8e7",
+      "after_sha256": "1696cc7b941fa04d534d6024558e58fba732c21dcb3293d2f6d4250810cba315",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011",
+        "draw01-api-expanded-gameplay-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-resources",
+      "before_sha256": "0918fabe269a21bc7d86a469cf228a04e1e8db58576748532715cdba7de07708",
+      "after_sha256": "e22bba599033f9ef0865bb16b80283b35686a96faca64cee8a2e750c1bd3ca26",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011",
+        "draw01-api-expanded-gameplay-native-validation-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-sites",
+      "before_sha256": "ce0290b2f032d9b7deda9e2adda9f289da2b78aaed42add97c5b4155ab5f729b",
+      "after_sha256": "c023f3612a81aec0e5013dcb2e28acba5cc82cc27fce0ec60967a08ab6cb5b4b",
+      "exact_receipts": [
+        "draw01-api-expanded-gameplay-exact-accounting-20261011"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "counts": {
+    "files": 9,
+    "behaviors": 12,
+    "missing_exact_receipts": 0
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "scope": "Synthetic strict V1/V2 decoding, exact argument layouts and binding guards. No original/API/graphics/semantic ownership proof.",
+  "success": true,
+  "sources": {
+    "protocols/include/mnm/drawing_api_bindings_v1.h": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+    "protocols/include/mnm/drawing_api_journal_v1.h": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+    "protocols/include/mnm/drawing_api_journal_v2.h": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/draw01-movie-contract.md": "3376a28c6a20ec2d895567c15a03395f69bf1f1108c547599cd37206f13929f6",
+    "research/runtime/drawing-api-sites-expanded-static-20261011.json": "1484165cd3535efe629a0243285bf798c2afcc01b76d7e131c8944a10e8cb73b",
+    "research/runtime/drawing-inventory.json": "2da4a44180c3df90c5c6b09a9b5e99aa0eab6660e444cc1691c1d522fb022159",
+    "runtime/drawing-api-census/entry.S": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+    "runtime/drawing-api-census/exception_i386.h": "74f1351bf921e9bc3c5991df046f12210113106009246cb5aa354b28ea7d7a93",
+    "runtime/drawing-api-census/observer.c": "1e684458322b7c930eeccc5341eeca375cf8fe3225f96215cba8f113f1704358",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/drawing-movie-reference.cpp": "9a2a69a81f41890adeb67f0abf7ffbc25ae194b51b6780260c74c1595e8c7d91",
+    "tests/test-drawing-api-bindings.py": "c348778917c239d51c8a35e03cea792e5b701b3847613241c41ad5a21fb73187",
+    "tests/test-drawing-api-contracts.py": "2b898fe1c3b4f4dcbd32519afe1348cac7baa9ac6e14c4983421adf61e2c126f",
+    "tests/test-drawing-api-details.py": "b5a381cc3ae3458eb3f4dedada07d5756dc98a2f5480004be950ff31146a9f31",
+    "tests/test-drawing-api-journal.py": "7db0b1f406070ebe1c46d2c4488c3fcbf010a99d192c933993e42b75954c725c",
+    "tools/build-drawing-census.py": "ff40906610d1f2527cacb5103d7655dd12c76c519d862d7d310b28d50ea5acfa",
+    "tools/drawing_api_bindings.py": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+    "tools/drawing_api_contracts.py": "701bf7669533eece517d19f68be7e52a3733e2cba7279a13a2b694efa7b1ed53",
+    "tools/drawing_api_details.py": "e58d042b34634ac0fc508e7dc3045c598d8a4bdd9a45a414b8485aebfdf0931f",
+    "tools/drawing_api_journal.py": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+    "tools/drawing_api_pairs.py": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+    "tools/drawing_api_sites.py": "5cab6d71de315872411a87aa3457f08069ebeed71f8f52efdbee6127ccd7b801",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/export-drawing-api-splices.py": "1a5e5a2b9df06a5a6fc91c2e610961fbfd05058d24d95c7f993220507460a317",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-api-details",
+      "contract_sha256": "d1e41725ef03e376dd67ddbe614fd291c6eb3da679a5fb9f60c0ae4883771d01",
+      "scenarios": {
+        "drawing-api-v2-guards-20261011": "78cd32c9ee8780364d76204369806d9b3a3d3bb9f61e4994a06129bf7db648d0"
+      }
+    },
+    {
+      "behavior": "TOOL.drawing-api-journal",
+      "contract_sha256": "5beded52c396dd924140733fcec6e83679b283e4bdb08f09c12869405b0f64b7",
+      "scenarios": {
+        "drawing-api-v2-guards-20261011": "78cd32c9ee8780364d76204369806d9b3a3d3bb9f61e4994a06129bf7db648d0"
+      }
+    },
+    {
+      "behavior": "TOOL.drawing-api-bindings",
+      "contract_sha256": "ea1789816f7504a393fd8b14a24766cc5a4cb27eee591bfc6f8b7b5b7097aa01",
+      "scenarios": {
+        "drawing-api-v2-guards-20261011": "78cd32c9ee8780364d76204369806d9b3a3d3bb9f61e4994a06129bf7db648d0"
+      }
+    }
+  ],
+  "sources_stable": true,
+  "total_cases": 55,
+  "tests": [
+    {
+      "test": "tests/test-drawing-api-contracts.py",
+      "cases": 7,
+      "exit": 0,
+      "log": "working/tests/test-drawing-api-contracts-v2-20261011.log",
+      "sha256": "83166b089fbcb82fac63f22522fa6ae99bb5e46368cd35d756277fd463dd6346"
+    },
+    {
+      "test": "tests/test-drawing-api-details.py",
+      "cases": 10,
+      "exit": 0,
+      "log": "working/tests/test-drawing-api-details-v2-20261011.log",
+      "sha256": "b3422b145032ac3a56ce40c0e8bbe6f04030fe26a1ce1f5388afec7a5b7cbee0"
+    },
+    {
+      "test": "tests/test-drawing-api-journal.py",
+      "cases": 25,
+      "exit": 0,
+      "log": "working/tests/test-drawing-api-journal-v2-20261011.log",
+      "sha256": "712619bd0527b39dc96e85c3e6ab4d1551f5a576e1012bc19220810868c726f8"
+    },
+    {
+      "test": "tests/test-drawing-api-bindings.py",
+      "cases": 13,
+      "exit": 0,
+      "log": "working/tests/test-drawing-api-bindings-v2-20261011.log",
+      "sha256": "acfb09536560388410092c5cee079b9ee896afa337322fef4582c0abab99ae18"
+    }
+  ]
+}

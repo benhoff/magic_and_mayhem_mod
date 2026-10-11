@@ -1,0 +1,274 @@
+{
+  "schema": 1,
+  "scope": "Committed18d24f6..f240927 exact receipt review only; no retrospective gate assertion or fresh rendering validation. Current metadata projection/movie changes excluded.",
+  "from": "18d24f6cacdf86bde4f9725d65074cb6a6534c50",
+  "to": "f2409274fca1b824108108a31013108315eb0bae",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "1913bf791cdffab49c7668a142f14ec496c9b7c7ccaa6c0dcc6d34e30b863039",
+      "after_sha256": "c425796892ab524155e2b3e07f1b530e8ecd99000a6a54e61925c0e9afd0143b",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-4d28021-18d24f6-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2dad4fea56a74b07efc2bf67b0e46a898eea353b04494d8b432cd3a0aea3e421",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "f9317b89c0f8a17a29124e25d24ceb6a8921189e1042e8b14ae9378ebb7f0024",
+      "after_sha256": "9674c3cdfc91457668aaedfcb49c9b4f5da629be2c68a894995b0fd04d0d62f3",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-campaign-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "21a8eb6aca89ebf3084dd50be2b052ecb58fd743104feef2034e8cf4170e5fef",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "10e570dd1d89af6296378644dc8755b1b784daefbe3bd003d08364656e5acdc1",
+      "after_sha256": "71f72770ce2297447fafe2e5308e2e99b080dad63f787df65a7955162ebac6db",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-inventory.md",
+      "before_sha256": "947a3f4afcc7cb948edbb38e3e577f683ac4c5073b5ddecee2762a4a795e4ea7",
+      "after_sha256": "3fc592bac5927f87ae35b5aebc5912a34a3d1ee2c11133e949debcb2d0020c89",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.queue-dispatch",
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-census",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-campaign-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "780cb390236f0973ab3717fe381321dfd1e3fc9de6671fbb8382415ad5489a41",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-phase-abi-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2a19dbe9d6148bd561c660a3166620b57dd8c1709b9d217417042c9115abe064",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "path": "runtime/drawing-census/observer.c",
+      "before_sha256": "95a308c446fb7bec135dc77f148c1fb7428d50e8aeb74d0512952f28be061319",
+      "after_sha256": "b5069b9b69ed6ff53e0aedaef1aa04970e94d5172a551389bd2fa29cc1b0bf0a",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver"
+      ],
+      "role": "code",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "path": "tests/drawing-census-abi.c",
+      "before_sha256": "f030c299dafae0064399501e4e2a52dbdaabc49872aaa097408673cb5dcb892b",
+      "after_sha256": "a4aaa7c2933110b1f140b37716d92cfc5c64acb87eb3bd007211f4cef8475848",
+      "behaviors": [
+        "DRAW.census.call-journal"
+      ],
+      "role": "test",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "path": "tools/capture-drawing-census-game.py",
+      "before_sha256": "da09b23b5760ade53b49195b99afc03b6d74242ad93af6512350e1e1becce6b1",
+      "after_sha256": "285fd80236ff7f7caa6c0969ad35c61c1fd53ec8f2ceb4ea97cea6ff02c2d70a",
+      "behaviors": [
+        "DRAW.census.journey-driver"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "path": "tools/test-drawing-census-abi.py",
+      "before_sha256": "6fd3859b3b48b965a764bee29219092b3dd1a59c29b13c4b1886c665f6bcf7c5",
+      "after_sha256": "e857fd8ea079fb2d78527b0614cea62d3ecb42339cdff5d98a3441d60f49bc37",
+      "behaviors": [
+        "DRAW.census.call-journal"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "85ad6f276cb854bc9eda9e496aa2950f58e7c01a64fe32a0aefaa703724cc058",
+      "after_sha256": "3ff53224259bb2a151732f782cb6fc595c52071abdf0a5532ccadfe0bea9cf4f",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010",
+        "draw01-campaign-phase-bounded-validation-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "2e031dbac634e4fe542d76a58729a0becaada3bdd48e3cdda468628e76f964e3",
+      "after_sha256": "967f5eba2eeb2125ccc90a0b8808c9d1bc5d05949647a995ad0958fc1f6c1b9b",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010",
+        "draw01-campaign-phase-bounded-validation-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.queue-dispatch",
+      "before_sha256": "657455ba22c129a6ce1a3b9d3d04f4544386ca457ff4eeb40d237c82bf7ec83a",
+      "after_sha256": "f6f11dc04a6880eaa7465f8837b1998684d7e93dc14127489148ba6930a31295",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.surface-hosting",
+      "before_sha256": "c195c2f8183c5119784e0ce020832e071cc87a750b79bbea33d4fe655067462b",
+      "after_sha256": "81cf2efdd6b0ce96e073f7d07d635cf2a9050d2d05551b3bfaee28a31b4e08c7",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.unassigned-word-window",
+      "before_sha256": "10fbf4525d1e47ee98d3ad77255a6363351e9152e300c32e3f641dcfacba8fa7",
+      "after_sha256": "18d4e6aedab01901d231335170d6324607b31447f79d892593f63fcdaad05276",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.unattributed-caller",
+      "before_sha256": "d8bd1e49f5029865577a8d7e5c2ac192e5399d9491124cf658b5e0a2507a6173",
+      "after_sha256": "540e350c4c0b411761874d44269f5d569577808ef70cc108410b0c4f5b009df5",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "before_sha256": "701d44e6abd925d91ec6bbd93cc0a8b53d692e81bb187f974764266eea915fbc",
+      "after_sha256": "aafb9d112f376c050f50077c494266b8d4aec4462e044e1dc1ea49ae50323152",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "before_sha256": "b98b70368e34a8534768e1aacf48280c003e327f98268831f369fd31178adf03",
+      "after_sha256": "a98683871daa7ede97acfd9281dc3179014aa051c132380d4927bd2390a6767a",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "before_sha256": "ef75f15d0a6f40de03a627584e0cb972d6b4c1eb67950d9d88ce0e2605b7103b",
+      "after_sha256": "5d718b2236620a6d0ee8f128a50c4946de14b6d11c0f51873f83c9221fa488c2",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "b66c5644aac0d85cd740d2f0d715ac159b194c8e4d37f1204fe09b628bc9a78c",
+      "after_sha256": "9fa56d17af2b58e9d5863feb1d707759f735205a7cef9f7603e7fd52ed68b22f",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-census",
+      "before_sha256": "8947ba9403c27c58dbb6ee927c2747e81fa96fd99ff09be8bb645fbfd61c538e",
+      "after_sha256": "772f51e4d487b5243e41c4a544b8a51517414ebfbcb739bc159bdb2bad24d8b5",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-dispatch-slices",
+      "before_sha256": "7121ae48b7c6a71a935589472a5c57bc782d69d835842c086a1b6bbc590c3baf",
+      "after_sha256": "9a9d9735601e12b60dce7c7a4aa3bfd622647190048cbe0e6fdff0e1e2121bf3",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "before_sha256": "792a2b8870f73f9c16ca8d2fb0bf93af3229fc20acb631d84517da87da4fc3bc",
+      "after_sha256": "ffaa21de1f07b70805b1a1f6177cdc0938f6481de2319e7c4021b86998024dda",
+      "exact_receipts": [
+        "draw01-bounded-campaign-and-phase-reader-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "review_journal_append_only": true
+}

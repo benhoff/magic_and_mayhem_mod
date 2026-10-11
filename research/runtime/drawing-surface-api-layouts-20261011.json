@@ -1,0 +1,2001 @@
+{
+  "schema": 1,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "scope": "Reviewed exact CALL layouts from original receiver/global/stack data flow, existing recovered Surface2 wrapper evidence and primary PE32 SDK prototypes. Not offset-only or universal dynamic type inference, new original execution, semantic buffer validity or closure.",
+  "confidence": "high for stated exact client layouts; dynamic interface implementations and full lifetime remain pending",
+  "review_artifact": "working/tests/draw01-surface-api-static-review-20261011.asm",
+  "review_sha256": "486c7e79aa8d1d7de82d648ed5a9456ab2283a2f497348f7f3592631cf763c44",
+  "sdk": {
+    "path": "/usr/include/wine/windows/ddraw.h",
+    "sha256": "6720270896c1d45a38ae13660c5f5ad96c8853639650a7fe28e47adc3ad69534",
+    "sections": [
+      "IDirectDraw2",
+      "IDirectDrawSurface2",
+      "IDirectDrawClipper",
+      "DDSURFACEDESC"
+    ]
+  },
+  "references": [
+    "research/runtime/native-surface-formats-pitch.md",
+    "research/runtime/original-surface-retry.md",
+    "https://learn.microsoft.com/en-us/windows/win32/api/ddraw/ns-ddraw-ddsurfacedesc"
+  ],
+  "contracts": [
+    {
+      "site": 5810658,
+      "call_bytes": "ff5150",
+      "interface": "IDirectDraw",
+      "method": "SetCooperativeLevel",
+      "formal_words": 3,
+      "snapshots": [],
+      "receiver_evidence": "This is original DirectDrawCreate output global6f98c4, with explicit HWND/flags."
+    },
+    {
+      "site": 5810694,
+      "call_bytes": "ff12",
+      "interface": "IUnknown",
+      "method": "QueryInterface",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "IID input"
+        },
+        {
+          "argument": 2,
+          "bytes": 4,
+          "events": 2,
+          "name": "interface pointer output"
+        }
+      ],
+      "receiver_evidence": "Exact setup/global or CreateSurface output pointer with explicit IID and destination slot; reload callbacks excluded."
+    },
+    {
+      "site": 5810729,
+      "call_bytes": "ff11",
+      "interface": "IUnknown",
+      "method": "QueryInterface",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "IID input"
+        },
+        {
+          "argument": 2,
+          "bytes": 4,
+          "events": 2,
+          "name": "interface pointer output"
+        }
+      ],
+      "receiver_evidence": "Exact setup/global or CreateSurface output pointer with explicit IID and destination slot; reload callbacks excluded."
+    },
+    {
+      "site": 5810769,
+      "call_bytes": "ff5254",
+      "interface": "IDirectDraw2",
+      "method": "SetDisplayMode",
+      "formal_words": 6,
+      "snapshots": [],
+      "receiver_evidence": "Global6f98c8 is QueryInterface output with IID at5c7960, width/height/depth/refresh/flags explicit."
+    },
+    {
+      "site": 5810883,
+      "call_bytes": "ff5150",
+      "interface": "IDirectDraw",
+      "method": "SetCooperativeLevel",
+      "formal_words": 3,
+      "snapshots": [],
+      "receiver_evidence": "This is original DirectDrawCreate output global6f98c4, with explicit HWND/flags."
+    },
+    {
+      "site": 5810919,
+      "call_bytes": "ff12",
+      "interface": "IUnknown",
+      "method": "QueryInterface",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "IID input"
+        },
+        {
+          "argument": 2,
+          "bytes": 4,
+          "events": 2,
+          "name": "interface pointer output"
+        }
+      ],
+      "receiver_evidence": "Exact setup/global or CreateSurface output pointer with explicit IID and destination slot; reload callbacks excluded."
+    },
+    {
+      "site": 5810954,
+      "call_bytes": "ff11",
+      "interface": "IUnknown",
+      "method": "QueryInterface",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "IID input"
+        },
+        {
+          "argument": 2,
+          "bytes": 4,
+          "events": 2,
+          "name": "interface pointer output"
+        }
+      ],
+      "receiver_evidence": "Exact setup/global or CreateSurface output pointer with explicit IID and destination slot; reload callbacks excluded."
+    },
+    {
+      "site": 5811005,
+      "call_bytes": "ff5210",
+      "interface": "IDirectDraw2",
+      "method": "CreateClipper",
+      "formal_words": 4,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 4,
+          "events": 2,
+          "name": "clipper pointer output"
+        }
+      ],
+      "receiver_evidence": "Global6f98c8; clipper result global6f98d0."
+    },
+    {
+      "site": 5811033,
+      "call_bytes": "ff5120",
+      "interface": "IDirectDrawClipper",
+      "method": "SetHWnd",
+      "formal_words": 3,
+      "snapshots": [],
+      "receiver_evidence": "Global6f98d0 comes from CreateClipper at58ab3d."
+    },
+    {
+      "site": 5811101,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811127,
+      "call_bytes": "ff514c",
+      "interface": "IDirectDraw2",
+      "method": "RestoreDisplayMode",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Global6f98c8; paired setup/failure cleanup, no surface receiver."
+    },
+    {
+      "site": 5811144,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811155,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811166,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811281,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811307,
+      "call_bytes": "ff524c",
+      "interface": "IDirectDraw2",
+      "method": "RestoreDisplayMode",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Global6f98c8; paired setup/failure cleanup, no surface receiver."
+    },
+    {
+      "site": 5811324,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811335,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811346,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811650,
+      "call_bytes": "ff5118",
+      "interface": "IDirectDraw2",
+      "method": "CreateSurface",
+      "formal_words": 4,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 108,
+          "events": 1,
+          "name": "DDSURFACEDESC input"
+        },
+        {
+          "argument": 2,
+          "bytes": 4,
+          "events": 2,
+          "name": "surface pointer output"
+        }
+      ],
+      "receiver_evidence": "Global6f98c8; descriptor supplied, output canvas+4; then QueryInterface stores canvas+8."
+    },
+    {
+      "site": 5811683,
+      "call_bytes": "ff11",
+      "interface": "IUnknown",
+      "method": "QueryInterface",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "IID input"
+        },
+        {
+          "argument": 2,
+          "bytes": 4,
+          "events": 2,
+          "name": "interface pointer output"
+        }
+      ],
+      "receiver_evidence": "Exact setup/global or CreateSurface output pointer with explicit IID and destination slot; reload callbacks excluded."
+    },
+    {
+      "site": 5811763,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811789,
+      "call_bytes": "ff514c",
+      "interface": "IDirectDraw2",
+      "method": "RestoreDisplayMode",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Global6f98c8; paired setup/failure cleanup, no surface receiver."
+    },
+    {
+      "site": 5811806,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811817,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811828,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5811882,
+      "call_bytes": "ff9194000000",
+      "interface": "IDirectDrawSurface2",
+      "method": "PageLock",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5811908,
+      "call_bytes": "ff526c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5811950,
+      "call_bytes": "ff5174",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5812046,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5812072,
+      "call_bytes": "ff524c",
+      "interface": "IDirectDraw2",
+      "method": "RestoreDisplayMode",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Global6f98c8; paired setup/failure cleanup, no surface receiver."
+    },
+    {
+      "site": 5812089,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5812100,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5812111,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5812273,
+      "call_bytes": "ff5114",
+      "interface": "IDirectDraw2",
+      "method": "CreatePalette",
+      "formal_words": 5,
+      "snapshots": [
+        {
+          "argument": 3,
+          "bytes": 4,
+          "events": 2,
+          "name": "palette pointer output"
+        }
+      ],
+      "receiver_evidence": "Global6f98c8; caller256entry color table pending variable buffer capture; output canvas+0c."
+    },
+    {
+      "site": 5812341,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5812367,
+      "call_bytes": "ff524c",
+      "interface": "IDirectDraw2",
+      "method": "RestoreDisplayMode",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Global6f98c8; paired setup/failure cleanup, no surface receiver."
+    },
+    {
+      "site": 5812384,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5812395,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5812406,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5812455,
+      "call_bytes": "ff517c",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetPalette",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5812486,
+      "call_bytes": "ff5170",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetClipper",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5812511,
+      "call_bytes": "ff5158",
+      "interface": "IDirectDrawSurface2",
+      "method": "GetSurfaceDesc",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 108,
+          "events": 3,
+          "name": "DDSURFACEDESC input/output"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5812591,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5812617,
+      "call_bytes": "ff514c",
+      "interface": "IDirectDraw2",
+      "method": "RestoreDisplayMode",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Global6f98c8; paired setup/failure cleanup, no surface receiver."
+    },
+    {
+      "site": 5812634,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5812645,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5812656,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5813248,
+      "call_bytes": "ff9198000000",
+      "interface": "IDirectDrawSurface2",
+      "method": "PageUnlock",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5813261,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5813283,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5813308,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5813917,
+      "call_bytes": "ff5164",
+      "interface": "IDirectDrawSurface2",
+      "method": "Lock",
+      "formal_words": 5,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "RECT input"
+        },
+        {
+          "argument": 2,
+          "bytes": 108,
+          "events": 3,
+          "name": "DDSURFACEDESC input/output"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5813974,
+      "call_bytes": "ff516c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5814018,
+      "call_bytes": "ff5274",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5814069,
+      "call_bytes": "ff5164",
+      "interface": "IDirectDrawSurface2",
+      "method": "Lock",
+      "formal_words": 5,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "RECT input"
+        },
+        {
+          "argument": 2,
+          "bytes": 108,
+          "events": 3,
+          "name": "DDSURFACEDESC input/output"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5814141,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5814167,
+      "call_bytes": "ff514c",
+      "interface": "IDirectDraw2",
+      "method": "RestoreDisplayMode",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Global6f98c8; paired setup/failure cleanup, no surface receiver."
+    },
+    {
+      "site": 5814184,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5814195,
+      "call_bytes": "ff5108",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5814206,
+      "call_bytes": "ff5208",
+      "interface": "IUnknown",
+      "method": "Release",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Exact setup globals or canvas surface/palette/creation interfaces; explicit stack This and offset8. No released-object buffer snapshot."
+    },
+    {
+      "site": 5814278,
+      "call_bytes": "ff9280000000",
+      "interface": "IDirectDrawSurface2",
+      "method": "Unlock",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5815050,
+      "call_bytes": "ff5114",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5815088,
+      "call_bytes": "ff516c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5815131,
+      "call_bytes": "ff5274",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5815383,
+      "call_bytes": "ff5114",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5815428,
+      "call_bytes": "ff516c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5815473,
+      "call_bytes": "ff5274",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5815538,
+      "call_bytes": "ff5114",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5816269,
+      "call_bytes": "ff5110",
+      "interface": "IDirectDrawClipper",
+      "method": "GetHWnd",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HWND output"
+        }
+      ],
+      "receiver_evidence": "Global6f98d0 CreateClipper output; HWND is then passed to ClientToScreen."
+    },
+    {
+      "site": 5816378,
+      "call_bytes": "ff5214",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5816410,
+      "call_bytes": "ff521c",
+      "interface": "IDirectDrawSurface2",
+      "method": "BltFast",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 4,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5816452,
+      "call_bytes": "ff526c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5816494,
+      "call_bytes": "ff5174",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5816537,
+      "call_bytes": "ff516c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5816583,
+      "call_bytes": "ff5274",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5816769,
+      "call_bytes": "ff5110",
+      "interface": "IDirectDrawClipper",
+      "method": "GetHWnd",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HWND output"
+        }
+      ],
+      "receiver_evidence": "Global6f98d0 CreateClipper output; HWND is then passed to ClientToScreen."
+    },
+    {
+      "site": 5816889,
+      "call_bytes": "ff5214",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5816914,
+      "call_bytes": "ff5214",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5816950,
+      "call_bytes": "ff521c",
+      "interface": "IDirectDrawSurface2",
+      "method": "BltFast",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 4,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5816996,
+      "call_bytes": "ff526c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5817039,
+      "call_bytes": "ff5174",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5817083,
+      "call_bytes": "ff516c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5817130,
+      "call_bytes": "ff5274",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5817312,
+      "call_bytes": "ff5110",
+      "interface": "IDirectDrawClipper",
+      "method": "GetHWnd",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HWND output"
+        }
+      ],
+      "receiver_evidence": "Global6f98d0 CreateClipper output; HWND is then passed to ClientToScreen."
+    },
+    {
+      "site": 5817425,
+      "call_bytes": "ff5214",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5817477,
+      "call_bytes": "ff521c",
+      "interface": "IDirectDrawSurface2",
+      "method": "BltFast",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 4,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5817631,
+      "call_bytes": "ff5110",
+      "interface": "IDirectDrawClipper",
+      "method": "GetHWnd",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HWND output"
+        }
+      ],
+      "receiver_evidence": "Global6f98d0 CreateClipper output; HWND is then passed to ClientToScreen."
+    },
+    {
+      "site": 5817751,
+      "call_bytes": "ff5214",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5817787,
+      "call_bytes": "ff521c",
+      "interface": "IDirectDrawSurface2",
+      "method": "BltFast",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 4,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5817829,
+      "call_bytes": "ff526c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5817872,
+      "call_bytes": "ff5174",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5817916,
+      "call_bytes": "ff516c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5817963,
+      "call_bytes": "ff5274",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5818083,
+      "call_bytes": "ff5110",
+      "interface": "IDirectDrawClipper",
+      "method": "GetHWnd",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HWND output"
+        }
+      ],
+      "receiver_evidence": "Global6f98d0 CreateClipper output; HWND is then passed to ClientToScreen."
+    },
+    {
+      "site": 5818285,
+      "call_bytes": "ff5214",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5818313,
+      "call_bytes": "ff526c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5818356,
+      "call_bytes": "ff5174",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5818400,
+      "call_bytes": "ff516c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5818447,
+      "call_bytes": "ff5274",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5818637,
+      "call_bytes": "ff5110",
+      "interface": "IDirectDrawClipper",
+      "method": "GetHWnd",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HWND output"
+        }
+      ],
+      "receiver_evidence": "Global6f98d0 CreateClipper output; HWND is then passed to ClientToScreen."
+    },
+    {
+      "site": 5818760,
+      "call_bytes": "ff5214",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5818796,
+      "call_bytes": "ff521c",
+      "interface": "IDirectDrawSurface2",
+      "method": "BltFast",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 4,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5818838,
+      "call_bytes": "ff526c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5818881,
+      "call_bytes": "ff5174",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5818925,
+      "call_bytes": "ff516c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5818972,
+      "call_bytes": "ff5274",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5819138,
+      "call_bytes": "ff5210",
+      "interface": "IDirectDrawClipper",
+      "method": "GetHWnd",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HWND output"
+        }
+      ],
+      "receiver_evidence": "Global6f98d0 CreateClipper output; HWND is then passed to ClientToScreen."
+    },
+    {
+      "site": 5819259,
+      "call_bytes": "ff5114",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5819311,
+      "call_bytes": "ff511c",
+      "interface": "IDirectDrawSurface2",
+      "method": "BltFast",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 4,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5819393,
+      "call_bytes": "ff5110",
+      "interface": "IDirectDrawClipper",
+      "method": "GetHWnd",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HWND output"
+        }
+      ],
+      "receiver_evidence": "Global6f98d0 CreateClipper output; HWND is then passed to ClientToScreen."
+    },
+    {
+      "site": 5819488,
+      "call_bytes": "ff5214",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5819530,
+      "call_bytes": "ff526c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5819573,
+      "call_bytes": "ff5174",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5819617,
+      "call_bytes": "ff516c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5819664,
+      "call_bytes": "ff5274",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5819836,
+      "call_bytes": "ff5110",
+      "interface": "IDirectDrawClipper",
+      "method": "GetHWnd",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HWND output"
+        }
+      ],
+      "receiver_evidence": "Global6f98d0 CreateClipper output; HWND is then passed to ClientToScreen."
+    },
+    {
+      "site": 5819943,
+      "call_bytes": "ff5214",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5819962,
+      "call_bytes": "ff521c",
+      "interface": "IDirectDrawSurface2",
+      "method": "BltFast",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 4,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5819986,
+      "call_bytes": "ff526c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5820029,
+      "call_bytes": "ff5174",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5820073,
+      "call_bytes": "ff516c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5820120,
+      "call_bytes": "ff5274",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5820300,
+      "call_bytes": "ff5110",
+      "interface": "IDirectDrawClipper",
+      "method": "GetHWnd",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HWND output"
+        }
+      ],
+      "receiver_evidence": "Global6f98d0 CreateClipper output; HWND is then passed to ClientToScreen."
+    },
+    {
+      "site": 5820404,
+      "call_bytes": "ff5214",
+      "interface": "IDirectDrawSurface2",
+      "method": "Blt",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 16,
+          "events": 1,
+          "name": "destination RECT input"
+        },
+        {
+          "argument": 3,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        },
+        {
+          "argument": 5,
+          "bytes": 100,
+          "events": 1,
+          "name": "DDBLTFX input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5820421,
+      "call_bytes": "ff521c",
+      "interface": "IDirectDrawSurface2",
+      "method": "BltFast",
+      "formal_words": 6,
+      "snapshots": [
+        {
+          "argument": 4,
+          "bytes": 16,
+          "events": 1,
+          "name": "source RECT input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5820445,
+      "call_bytes": "ff526c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5820488,
+      "call_bytes": "ff5174",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5820532,
+      "call_bytes": "ff516c",
+      "interface": "IDirectDrawSurface2",
+      "method": "Restore",
+      "formal_words": 1,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5820579,
+      "call_bytes": "ff5274",
+      "interface": "IDirectDrawSurface2",
+      "method": "SetColorKey",
+      "formal_words": 3,
+      "snapshots": [
+        {
+          "argument": 2,
+          "bytes": 8,
+          "events": 1,
+          "name": "DDCOLORKEY input"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5820908,
+      "call_bytes": "ff5144",
+      "interface": "IDirectDrawSurface2",
+      "method": "GetDC",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HDC output"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5820938,
+      "call_bytes": "ff5168",
+      "interface": "IDirectDrawSurface2",
+      "method": "ReleaseDC",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5821011,
+      "call_bytes": "ff5144",
+      "interface": "IDirectDrawSurface2",
+      "method": "GetDC",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HDC output"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5821043,
+      "call_bytes": "ff5168",
+      "interface": "IDirectDrawSurface2",
+      "method": "ReleaseDC",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5821128,
+      "call_bytes": "ff5144",
+      "interface": "IDirectDrawSurface2",
+      "method": "GetDC",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HDC output"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5821166,
+      "call_bytes": "ff5168",
+      "interface": "IDirectDrawSurface2",
+      "method": "ReleaseDC",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5821279,
+      "call_bytes": "ff9180000000",
+      "interface": "IDirectDrawSurface2",
+      "method": "Unlock",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5821311,
+      "call_bytes": "ff5144",
+      "interface": "IDirectDrawSurface2",
+      "method": "GetDC",
+      "formal_words": 2,
+      "snapshots": [
+        {
+          "argument": 1,
+          "bytes": 4,
+          "events": 2,
+          "name": "HDC output"
+        }
+      ],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5821349,
+      "call_bytes": "ff5068",
+      "interface": "IDirectDrawSurface2",
+      "method": "ReleaseDC",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5821575,
+      "call_bytes": "ff9180000000",
+      "interface": "IDirectDrawSurface2",
+      "method": "Unlock",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    },
+    {
+      "site": 5821588,
+      "call_bytes": "ff9280000000",
+      "interface": "IDirectDrawSurface2",
+      "method": "Unlock",
+      "formal_words": 2,
+      "snapshots": [],
+      "receiver_evidence": "Canvas +8 comes from exact Surface2 QueryInterface at58ade3."
+    }
+  ],
+  "excluded_reload_callbacks": [
+    5811977,
+    5814045,
+    5815165,
+    5815501,
+    5816521,
+    5816617,
+    5817067,
+    5817165,
+    5817900,
+    5817998,
+    5818384,
+    5818482,
+    5818909,
+    5819007,
+    5819601,
+    5819699,
+    5820057,
+    5820155,
+    5820516,
+    5820614
+  ]
+}

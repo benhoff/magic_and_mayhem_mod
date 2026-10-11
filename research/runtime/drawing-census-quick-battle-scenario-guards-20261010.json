@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-callers-dispatch-expanded-20261010.json": "e59d85a6d0ef4ea1f3af29724a10a5e7f7f8ce0e3a544e4dfcac256bf6b535d3",
+    "research/runtime/drawing-callers-expanded-20261010.json": "c0d173ff5c726fcd22ebd47e9d423f421842cd3cc2fe3c06e836e2af3a6c0bba",
+    "research/runtime/drawing-census-campaign-observation-20261010.json": "780cb390236f0973ab3717fe381321dfd1e3fc9de6671fbb8382415ad5489a41",
+    "research/runtime/drawing-inventory.json": "b5221df2370fc6e99498773ff8e07b26d9f0f95fa15ca9e5444c8ef31601eb1a",
+    "research/runtime/fade-writer-live-comparison-20261010.json": "328af98fcf9fc0ceae485b7e049f266df3aa551ae5adcff423e568798ba7b8d4",
+    "research/runtime/glyph-live-comparison-20261010.json": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+    "research/runtime/native-canvas-producers-final-shadow-20261010.json": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+    "research/runtime/native-canvas-producers-live-20261008.json": "f725d774af13ca489b4483cecc03fb3056198eb2acd3876b5c8a738777c20c8a",
+    "research/runtime/native-enabled-movie-startup-20261010.json": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+    "research/runtime/native-minimap-interactive-20261010.json": "ee972c4154eb1b96db98207f738c56c9c4e6f7987573492f72330b30494dd3f0",
+    "research/runtime/native-world-raster-batch-prefix16-replacement-v7-20261008.json": "a719e427ef2f6c61617511d647f6789eee3181572835b9ad8ef16381135d2204",
+    "research/runtime/render-path-inventory-static-final.json": "01d30a9574fef5a02d0195ae354e6ca1e1f600cff5c33079788f6f778762777a",
+    "runtime/canvas-writers/bridge.c": "0d4d243f016509767bdc6d89381a57d4b7c75cc1fda7996b0b828f2025044c45",
+    "runtime/drawing-census/entry.S": "44f19762a5232669ddd22633cde8a19072fe43f11f0dabb929149c36a256de1e",
+    "runtime/drawing-census/observer.c": "b5069b9b69ed6ff53e0aedaef1aa04970e94d5172a551389bd2fa29cc1b0bf0a",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tests/drawing-census-abi.c": "c35ade659432bd689cf2f5a838bb66745f24f218a889c2f893b80f04b0f211f9",
+    "tests/test-drawing-census-build.py": "21450df88d773dc04d5cc43e44d5315ca27534a6631b00f6f43d617b94b4be5e",
+    "tests/test-drawing-census-trace.py": "70cca9c032b480314684046df00a6987cc538260ea5c87960283f4b56725c92c",
+    "tests/test-drawing-census.py": "444734c84523a54d8b48b57a237163f3ab5f48e5105fe2fd55a34268f1652467",
+    "tests/test-drawing-inventory.py": "c26039c26ccd604bdc5155b7ef03f937baec614382c7375d26a6e5fa24732e57",
+    "tools/build-drawing-census.py": "ec645e78705cdf4aa74755760cc6dbd98c10135b0342ce91f903f87f31e07675",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/coverage_audit.py": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/drawing-census-game-runner.py": "626722d4bdf62ec4767cd18e65e1feb080de4768b1ea2098bdb6c4ef7e0fdd76",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_inventory.py": "626ebf119f06bdbf54a33baf1985f2c60d39e455809a473415811bee4caa0cf9",
+    "tools/export-drawing-census.py": "59bf8dd81c177b83d2d9c60c9fd38993588980688a6db1087c422e9d4cd3126f",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/prepare-drawing-census.py": "c01369e1876576d5c25c250644045ef735c28de2cd9fa81665bb526184605e35",
+    "tools/prepare-scene-observer.py": "fb28af7a20f861ff91f18bd4ece59365af607b3a33c7a41c03d67133743c6184",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/rendering_coverage.py": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+    "tools/report-drawing-inventory.py": "f227bc6f4c2665e65a8be76d0feb093f131f232e849ed891642076cb38ba081c",
+    "tools/run-opengl-game.py": "1f93ba28de3b5bd062ab256ffb8ce6fb99d4c1814f986d8cbbb533799135548c",
+    "tools/test-drawing-census-abi.py": "fba6aca58e7b774cf5db1f1035c8bee6838c2de923644071cac5d2792e9faf6b"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-inventory",
+      "contract_sha256": "64ba4699deb253c859d5966179a257f3f93e57581d2784b3cf4e5301cf5bac7e",
+      "scenarios": {
+        "drawing-census-accounting-guards-20261010": "cd20c3ddb1237edb014721dfb7d78f3e18ef96aee2588bfe36defda11891f890"
+      }
+    },
+    {
+      "behavior": "TOOL.drawing-census",
+      "contract_sha256": "0a3f012234b693996624872e314e9ba0fada1868b73370224c287a155d5df7ef",
+      "scenarios": {
+        "drawing-census-accounting-guards-20261010": "cd20c3ddb1237edb014721dfb7d78f3e18ef96aee2588bfe36defda11891f890"
+      }
+    },
+    {
+      "behavior": "DRAW.census.call-journal",
+      "contract_sha256": "d9819fb5f1d542bf462fae9c17e6a71f25fe3f7af34d44acda9651ce9f0f34f5",
+      "scenarios": {
+        "drawing-census-accounting-guards-20261010": "cd20c3ddb1237edb014721dfb7d78f3e18ef96aee2588bfe36defda11891f890"
+      }
+    }
+  ],
+  "tests": [
+    {
+      "test": "tests/test-drawing-inventory.py",
+      "cases": 37,
+      "exit": 0,
+      "log": "working/tests/draw01-quick-battle-scenario-guards/test-drawing-inventory.log",
+      "sha256": "2d13236b1f2bc89cbd9df0a3fb70fdc6001d9c68708c8dcd6b26cbcea28fe76e"
+    },
+    {
+      "test": "tests/test-drawing-census.py",
+      "cases": 6,
+      "exit": 0,
+      "log": "working/tests/draw01-quick-battle-scenario-guards/test-drawing-census.log",
+      "sha256": "c6b9b1f09add0403cc07e90bfdf272129b1ddfa2f8f7675ea8218862f2516371"
+    },
+    {
+      "test": "tests/test-drawing-census-trace.py",
+      "cases": 8,
+      "exit": 0,
+      "log": "working/tests/draw01-quick-battle-scenario-guards/test-drawing-census-trace.log",
+      "sha256": "60bb849356ffbc091f601e17fc6ae0b2eb5e26d734d433da020c6e775efbf97f"
+    },
+    {
+      "test": "tests/test-drawing-census-build.py",
+      "cases": 3,
+      "exit": 0,
+      "log": "working/tests/draw01-quick-battle-scenario-guards/test-drawing-census-build.log",
+      "sha256": "33060fd73862c5e1af97335504d5b45211fce6d229657f556d8deceeadc52ce4"
+    }
+  ],
+  "scope": "Fresh prospectively linked headless guard scenario; no original pixels or scenario closure.",
+  "sources_stable": true,
+  "total_cases": 54
+}

@@ -1,0 +1,6571 @@
+{
+  "schema": 1,
+  "journey": "movies",
+  "success": true,
+  "actions": [
+    {
+      "screen": 3,
+      "action": 18,
+      "argument": 0,
+      "request": 1,
+      "reply": [
+        2,
+        3,
+        0,
+        1,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 10,
+      "action": 20,
+      "argument": 0,
+      "request": 2,
+      "reply": [
+        7,
+        10,
+        0,
+        2,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 3,
+      "action": 1,
+      "argument": 0,
+      "request": 3,
+      "reply": [
+        10,
+        3,
+        0,
+        3,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 22,
+      "action": 4,
+      "argument": 0,
+      "request": 4,
+      "reply": [
+        13,
+        22,
+        0,
+        4,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 14,
+      "action": 6,
+      "argument": 0,
+      "request": 5,
+      "reply": [
+        17,
+        14,
+        0,
+        5,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 25,
+      "action": 10,
+      "argument": 0,
+      "request": 6,
+      "reply": [
+        21,
+        25,
+        0,
+        6,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 14,
+      "action": 5,
+      "argument": 0,
+      "request": 7,
+      "reply": [
+        25,
+        14,
+        0,
+        7,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 22,
+      "action": 2,
+      "argument": 0,
+      "request": 8,
+      "reply": [
+        28,
+        22,
+        0,
+        8,
+        1,
+        396,
+        0
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "purpose": "Enabled original startup movie requests; playback needs callee evidence",
+      "time": 109560.386023656
+    },
+    {
+      "phase": 2,
+      "purpose": "Main and setup original menu traversal",
+      "time": 109566.064622223
+    },
+    {
+      "phase": 14,
+      "purpose": "Original Main quit and DLL terminal flush",
+      "time": 109572.935357537
+    }
+  ],
+  "scenario_closure": false,
+  "original_work_forwarded": true,
+  "call_census_enabled": false,
+  "gameplay_observation_enabled": false,
+  "api_observation_enabled": true,
+  "cohort": "api_only",
+  "observer_header_seen_at": 109561.368834103,
+  "api": {
+    "schema": 2,
+    "scope": "Closed V2 API diagnostic pairs with reviewed exact layouts and bounded raw buffers. Receiver candidates are byte equality only; failed outputs, external object lifetime, full semantics/graphics/API/writer/scenario closure are not inferred.",
+    "journal_integrity": true,
+    "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "journal_sha256": "898711e1ad94a30048c24fd0a3c1d5d01ab4d7ce9a407c51a26594b018ff67ca",
+    "events": 9242,
+    "paired_calls": 4621,
+    "lost_events": 0,
+    "open_calls": 0,
+    "io_failure": 0,
+    "unassigned_calls": 0,
+    "unreadable_stack_calls": 0,
+    "unreadable_target_calls": 0,
+    "phase_calls": {
+      "1": 127,
+      "2": 4321,
+      "14": 173
+    },
+    "targets": [
+      {
+        "phase": 1,
+        "site": 4626191,
+        "target_state": 2,
+        "target_slot": 6050584,
+        "target_value": 2044755344,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626235,
+        "target_state": 2,
+        "target_slot": 1988793232,
+        "target_value": 1988755008,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626280,
+        "target_state": 2,
+        "target_slot": 1988793244,
+        "target_value": 1988752496,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626323,
+        "target_state": 2,
+        "target_slot": 1988793244,
+        "target_value": 1988752496,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626365,
+        "target_state": 2,
+        "target_slot": 6049928,
+        "target_value": 2074928156,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626385,
+        "target_state": 2,
+        "target_slot": 1988793248,
+        "target_value": 1988755296,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626420,
+        "target_state": 2,
+        "target_slot": 1988793188,
+        "target_value": 1988753728,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626455,
+        "target_state": 2,
+        "target_slot": 1988793192,
+        "target_value": 1988757120,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626531,
+        "target_state": 2,
+        "target_slot": 1988793200,
+        "target_value": 1988754528,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626576,
+        "target_state": 2,
+        "target_slot": 1988787872,
+        "target_value": 1988713344,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626618,
+        "target_state": 2,
+        "target_slot": 1988787860,
+        "target_value": 1988715040,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626663,
+        "target_state": 2,
+        "target_slot": 1988787520,
+        "target_value": 1988723568,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626696,
+        "target_state": 2,
+        "target_slot": 1988793212,
+        "target_value": 1988757632,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626788,
+        "target_state": 1,
+        "target_slot": 0,
+        "target_value": 2052695176,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626810,
+        "target_state": 2,
+        "target_slot": 1988787512,
+        "target_value": 1988724976,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626876,
+        "target_state": 2,
+        "target_slot": 1988787880,
+        "target_value": 1988714352,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626890,
+        "target_state": 2,
+        "target_slot": 1988787816,
+        "target_value": 1988717312,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626904,
+        "target_state": 2,
+        "target_slot": 1988787496,
+        "target_value": 1988724400,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626918,
+        "target_state": 2,
+        "target_slot": 2038887560,
+        "target_value": 2038799312,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626953,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4626144,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4627004,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4626480,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4627016,
+        "target_state": 2,
+        "target_slot": 1988793192,
+        "target_value": 1988757120,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4745930,
+        "target_state": 2,
+        "target_slot": 6049844,
+        "target_value": 2050503344,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5148727,
+        "target_state": 2,
+        "target_slot": 6049836,
+        "target_value": 2050385328,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5152468,
+        "target_state": 2,
+        "target_slot": 6050412,
+        "target_value": 2052695816,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5152480,
+        "target_state": 2,
+        "target_slot": 6050460,
+        "target_value": 2052696056,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810627,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 5862746,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810658,
+        "target_state": 2,
+        "target_slot": 2038886672,
+        "target_value": 2038747952,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810694,
+        "target_state": 2,
+        "target_slot": 2038886592,
+        "target_value": 2038747440,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810729,
+        "target_state": 2,
+        "target_slot": 2038886592,
+        "target_value": 2038747440,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810769,
+        "target_state": 2,
+        "target_slot": 2038903476,
+        "target_value": 2038752432,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810817,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 5879778,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5811650,
+        "target_state": 2,
+        "target_slot": 2038903416,
+        "target_value": 2038749184,
+        "count": 7
+      },
+      {
+        "phase": 1,
+        "site": 5811683,
+        "target_state": 2,
+        "target_slot": 2038887552,
+        "target_value": 2038799040,
+        "count": 7
+      },
+      {
+        "phase": 1,
+        "site": 5812511,
+        "target_state": 2,
+        "target_slot": 2038887640,
+        "target_value": 2038798384,
+        "count": 7
+      },
+      {
+        "phase": 1,
+        "site": 5813917,
+        "target_state": 2,
+        "target_slot": 2038887812,
+        "target_value": 2038805008,
+        "count": 13
+      },
+      {
+        "phase": 1,
+        "site": 5813931,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4738048,
+        "count": 13
+      },
+      {
+        "phase": 1,
+        "site": 5815383,
+        "target_state": 2,
+        "target_slot": 2038887732,
+        "target_value": 2038801680,
+        "count": 6
+      },
+      {
+        "phase": 1,
+        "site": 5815394,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4738048,
+        "count": 6
+      },
+      {
+        "phase": 1,
+        "site": 5816410,
+        "target_state": 2,
+        "target_slot": 2038887740,
+        "target_value": 2038802192,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 5817787,
+        "target_state": 2,
+        "target_slot": 2038887740,
+        "target_value": 2038802192,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 5818796,
+        "target_state": 2,
+        "target_slot": 2038887740,
+        "target_value": 2038802192,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820866,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4745552,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820884,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4745952,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820908,
+        "target_state": 2,
+        "target_slot": 2038887780,
+        "target_value": 2038803808,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820922,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4745856,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820938,
+        "target_state": 2,
+        "target_slot": 2038887816,
+        "target_value": 2038805872,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820958,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4745568,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5821220,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 5813856,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5821259,
+        "target_state": 2,
+        "target_slot": 6050568,
+        "target_value": 268480416,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5821279,
+        "target_state": 2,
+        "target_slot": 2038887680,
+        "target_value": 2038800240,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 5811650,
+        "target_state": 2,
+        "target_slot": 2038903416,
+        "target_value": 2038749184,
+        "count": 7
+      },
+      {
+        "phase": 2,
+        "site": 5811683,
+        "target_state": 2,
+        "target_slot": 2038887552,
+        "target_value": 2038799040,
+        "count": 7
+      },
+      {
+        "phase": 2,
+        "site": 5812511,
+        "target_state": 2,
+        "target_slot": 2038887640,
+        "target_value": 2038798384,
+        "count": 7
+      },
+      {
+        "phase": 2,
+        "site": 5813261,
+        "target_state": 2,
+        "target_slot": 2038887560,
+        "target_value": 2038799312,
+        "count": 6
+      },
+      {
+        "phase": 2,
+        "site": 5813283,
+        "target_state": 2,
+        "target_slot": 2038887720,
+        "target_value": 2038805744,
+        "count": 6
+      },
+      {
+        "phase": 2,
+        "site": 5813917,
+        "target_state": 2,
+        "target_slot": 2038887812,
+        "target_value": 2038805008,
+        "count": 1945
+      },
+      {
+        "phase": 2,
+        "site": 5813931,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4738048,
+        "count": 1945
+      },
+      {
+        "phase": 2,
+        "site": 5816410,
+        "target_state": 2,
+        "target_slot": 2038887740,
+        "target_value": 2038802192,
+        "count": 185
+      },
+      {
+        "phase": 2,
+        "site": 5817787,
+        "target_state": 2,
+        "target_slot": 2038887740,
+        "target_value": 2038802192,
+        "count": 128
+      },
+      {
+        "phase": 2,
+        "site": 5818796,
+        "target_state": 2,
+        "target_slot": 2038887740,
+        "target_value": 2038802192,
+        "count": 64
+      },
+      {
+        "phase": 2,
+        "site": 5821220,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 5813856,
+        "count": 7
+      },
+      {
+        "phase": 2,
+        "site": 5821259,
+        "target_state": 2,
+        "target_slot": 6050568,
+        "target_value": 268480416,
+        "count": 7
+      },
+      {
+        "phase": 2,
+        "site": 5821279,
+        "target_state": 2,
+        "target_slot": 2038887680,
+        "target_value": 2038800240,
+        "count": 7
+      },
+      {
+        "phase": 14,
+        "site": 5813261,
+        "target_state": 2,
+        "target_slot": 2038887560,
+        "target_value": 2038799312,
+        "count": 8
+      },
+      {
+        "phase": 14,
+        "site": 5813283,
+        "target_state": 2,
+        "target_slot": 2038887720,
+        "target_value": 2038805744,
+        "count": 8
+      },
+      {
+        "phase": 14,
+        "site": 5813917,
+        "target_state": 2,
+        "target_slot": 2038887812,
+        "target_value": 2038805008,
+        "count": 65
+      },
+      {
+        "phase": 14,
+        "site": 5813931,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4738048,
+        "count": 65
+      },
+      {
+        "phase": 14,
+        "site": 5816410,
+        "target_state": 2,
+        "target_slot": 2038887740,
+        "target_value": 2038802192,
+        "count": 15
+      },
+      {
+        "phase": 14,
+        "site": 5817787,
+        "target_state": 2,
+        "target_slot": 2038887740,
+        "target_value": 2038802192,
+        "count": 8
+      },
+      {
+        "phase": 14,
+        "site": 5818796,
+        "target_state": 2,
+        "target_slot": 2038887740,
+        "target_value": 2038802192,
+        "count": 4
+      }
+    ],
+    "outcomes": [
+      {
+        "phase": 1,
+        "site": 4626191,
+        "eax": 0,
+        "last_error": 14007,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626235,
+        "eax": 0,
+        "last_error": 14007,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626280,
+        "eax": 0,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626323,
+        "eax": 0,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626365,
+        "eax": 17,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626385,
+        "eax": 0,
+        "last_error": 14007,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626420,
+        "eax": 2,
+        "last_error": 14007,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626455,
+        "eax": 1,
+        "last_error": 14007,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626531,
+        "eax": 0,
+        "last_error": 14007,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626576,
+        "eax": 0,
+        "last_error": 14007,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626618,
+        "eax": 0,
+        "last_error": 14007,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626663,
+        "eax": 0,
+        "last_error": 14007,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626696,
+        "eax": 0,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626788,
+        "eax": 0,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626810,
+        "eax": 262147,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626876,
+        "eax": 3,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626890,
+        "eax": 2,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626904,
+        "eax": 0,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626918,
+        "eax": 0,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4626953,
+        "eax": 0,
+        "last_error": 14007,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4627004,
+        "eax": 0,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4627016,
+        "eax": 0,
+        "last_error": 6,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 4745930,
+        "eax": 280,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5148727,
+        "eax": 26214436,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5152468,
+        "eax": 335609933,
+        "last_error": 5,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5152480,
+        "eax": 1,
+        "last_error": 5,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810627,
+        "eax": 0,
+        "last_error": 1400,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810658,
+        "eax": 0,
+        "last_error": 1400,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810694,
+        "eax": 0,
+        "last_error": 1400,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810729,
+        "eax": 0,
+        "last_error": 1400,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810769,
+        "eax": 0,
+        "last_error": 1400,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5810817,
+        "eax": 0,
+        "last_error": 1400,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5811650,
+        "eax": 0,
+        "last_error": 0,
+        "count": 5
+      },
+      {
+        "phase": 1,
+        "site": 5811650,
+        "eax": 0,
+        "last_error": 1400,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 5811683,
+        "eax": 0,
+        "last_error": 0,
+        "count": 5
+      },
+      {
+        "phase": 1,
+        "site": 5811683,
+        "eax": 0,
+        "last_error": 1400,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 5812511,
+        "eax": 0,
+        "last_error": 0,
+        "count": 5
+      },
+      {
+        "phase": 1,
+        "site": 5812511,
+        "eax": 0,
+        "last_error": 1400,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 5813917,
+        "eax": 0,
+        "last_error": 0,
+        "count": 13
+      },
+      {
+        "phase": 1,
+        "site": 5813931,
+        "eax": 0,
+        "last_error": 0,
+        "count": 13
+      },
+      {
+        "phase": 1,
+        "site": 5815383,
+        "eax": 0,
+        "last_error": 0,
+        "count": 4
+      },
+      {
+        "phase": 1,
+        "site": 5815383,
+        "eax": 0,
+        "last_error": 6,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5815383,
+        "eax": 0,
+        "last_error": 1400,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5815394,
+        "eax": 0,
+        "last_error": 0,
+        "count": 4
+      },
+      {
+        "phase": 1,
+        "site": 5815394,
+        "eax": 0,
+        "last_error": 6,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5815394,
+        "eax": 0,
+        "last_error": 1400,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5816410,
+        "eax": 0,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 5817787,
+        "eax": 0,
+        "last_error": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "site": 5818796,
+        "eax": 0,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820866,
+        "eax": 2290176,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820884,
+        "eax": 1,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820908,
+        "eax": 0,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820922,
+        "eax": 280,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820938,
+        "eax": 0,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5820958,
+        "eax": 1,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5821220,
+        "eax": 96272432,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5821259,
+        "eax": 1,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "site": 5821279,
+        "eax": 0,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 5811650,
+        "eax": 0,
+        "last_error": 0,
+        "count": 7
+      },
+      {
+        "phase": 2,
+        "site": 5811683,
+        "eax": 0,
+        "last_error": 0,
+        "count": 7
+      },
+      {
+        "phase": 2,
+        "site": 5812511,
+        "eax": 0,
+        "last_error": 0,
+        "count": 7
+      },
+      {
+        "phase": 2,
+        "site": 5813261,
+        "eax": 0,
+        "last_error": 0,
+        "count": 6
+      },
+      {
+        "phase": 2,
+        "site": 5813283,
+        "eax": 0,
+        "last_error": 0,
+        "count": 6
+      },
+      {
+        "phase": 2,
+        "site": 5813917,
+        "eax": 0,
+        "last_error": 0,
+        "count": 1945
+      },
+      {
+        "phase": 2,
+        "site": 5813931,
+        "eax": 0,
+        "last_error": 0,
+        "count": 1945
+      },
+      {
+        "phase": 2,
+        "site": 5816410,
+        "eax": 0,
+        "last_error": 0,
+        "count": 185
+      },
+      {
+        "phase": 2,
+        "site": 5817787,
+        "eax": 0,
+        "last_error": 0,
+        "count": 128
+      },
+      {
+        "phase": 2,
+        "site": 5818796,
+        "eax": 0,
+        "last_error": 0,
+        "count": 64
+      },
+      {
+        "phase": 2,
+        "site": 5821220,
+        "eax": 96272432,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 5821220,
+        "eax": 97255472,
+        "last_error": 0,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "site": 5821220,
+        "eax": 98631728,
+        "last_error": 0,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 5821259,
+        "eax": 1,
+        "last_error": 0,
+        "count": 7
+      },
+      {
+        "phase": 2,
+        "site": 5821279,
+        "eax": 0,
+        "last_error": 0,
+        "count": 7
+      },
+      {
+        "phase": 14,
+        "site": 5813261,
+        "eax": 0,
+        "last_error": 0,
+        "count": 8
+      },
+      {
+        "phase": 14,
+        "site": 5813283,
+        "eax": 0,
+        "last_error": 0,
+        "count": 8
+      },
+      {
+        "phase": 14,
+        "site": 5813917,
+        "eax": 0,
+        "last_error": 0,
+        "count": 65
+      },
+      {
+        "phase": 14,
+        "site": 5813931,
+        "eax": 0,
+        "last_error": 0,
+        "count": 65
+      },
+      {
+        "phase": 14,
+        "site": 5816410,
+        "eax": 0,
+        "last_error": 0,
+        "count": 15
+      },
+      {
+        "phase": 14,
+        "site": 5817787,
+        "eax": 0,
+        "last_error": 0,
+        "count": 8
+      },
+      {
+        "phase": 14,
+        "site": 5818796,
+        "eax": 0,
+        "last_error": 0,
+        "count": 4
+      }
+    ],
+    "observed_cleanup": [
+      {
+        "site": 4626191,
+        "bytes": 20,
+        "count": 2
+      },
+      {
+        "site": 4626235,
+        "bytes": 16,
+        "count": 2
+      },
+      {
+        "site": 4626280,
+        "bytes": 20,
+        "count": 2
+      },
+      {
+        "site": 4626323,
+        "bytes": 20,
+        "count": 2
+      },
+      {
+        "site": 4626365,
+        "bytes": 24,
+        "count": 2
+      },
+      {
+        "site": 4626385,
+        "bytes": 12,
+        "count": 2
+      },
+      {
+        "site": 4626420,
+        "bytes": 4,
+        "count": 2
+      },
+      {
+        "site": 4626455,
+        "bytes": 4,
+        "count": 2
+      },
+      {
+        "site": 4626531,
+        "bytes": 12,
+        "count": 2
+      },
+      {
+        "site": 4626576,
+        "bytes": 12,
+        "count": 2
+      },
+      {
+        "site": 4626618,
+        "bytes": 20,
+        "count": 2
+      },
+      {
+        "site": 4626663,
+        "bytes": 12,
+        "count": 2
+      },
+      {
+        "site": 4626696,
+        "bytes": 8,
+        "count": 2
+      },
+      {
+        "site": 4626788,
+        "bytes": 4,
+        "count": 2
+      },
+      {
+        "site": 4626810,
+        "bytes": 20,
+        "count": 2
+      },
+      {
+        "site": 4626876,
+        "bytes": 4,
+        "count": 2
+      },
+      {
+        "site": 4626890,
+        "bytes": 4,
+        "count": 2
+      },
+      {
+        "site": 4626904,
+        "bytes": 4,
+        "count": 2
+      },
+      {
+        "site": 4626918,
+        "bytes": 4,
+        "count": 2
+      },
+      {
+        "site": 4626953,
+        "bytes": 4,
+        "count": 2
+      },
+      {
+        "site": 4627004,
+        "bytes": 4,
+        "count": 2
+      },
+      {
+        "site": 4627016,
+        "bytes": 4,
+        "count": 2
+      },
+      {
+        "site": 4745930,
+        "bytes": 52,
+        "count": 1
+      },
+      {
+        "site": 5148727,
+        "bytes": 4,
+        "count": 1
+      },
+      {
+        "site": 5152468,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 5152480,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 5810627,
+        "bytes": 12,
+        "count": 1
+      },
+      {
+        "site": 5810658,
+        "bytes": 12,
+        "count": 1
+      },
+      {
+        "site": 5810694,
+        "bytes": 12,
+        "count": 1
+      },
+      {
+        "site": 5810729,
+        "bytes": 12,
+        "count": 1
+      },
+      {
+        "site": 5810769,
+        "bytes": 24,
+        "count": 1
+      },
+      {
+        "site": 5810817,
+        "bytes": 0,
+        "count": 1
+      },
+      {
+        "site": 5811650,
+        "bytes": 16,
+        "count": 14
+      },
+      {
+        "site": 5811683,
+        "bytes": 12,
+        "count": 14
+      },
+      {
+        "site": 5812511,
+        "bytes": 8,
+        "count": 14
+      },
+      {
+        "site": 5813261,
+        "bytes": 4,
+        "count": 14
+      },
+      {
+        "site": 5813283,
+        "bytes": 4,
+        "count": 14
+      },
+      {
+        "site": 5813917,
+        "bytes": 20,
+        "count": 2023
+      },
+      {
+        "site": 5813931,
+        "bytes": 4,
+        "count": 2023
+      },
+      {
+        "site": 5815383,
+        "bytes": 24,
+        "count": 6
+      },
+      {
+        "site": 5815394,
+        "bytes": 4,
+        "count": 6
+      },
+      {
+        "site": 5816410,
+        "bytes": 24,
+        "count": 202
+      },
+      {
+        "site": 5817787,
+        "bytes": 24,
+        "count": 138
+      },
+      {
+        "site": 5818796,
+        "bytes": 24,
+        "count": 69
+      },
+      {
+        "site": 5820866,
+        "bytes": 0,
+        "count": 1
+      },
+      {
+        "site": 5820884,
+        "bytes": 4,
+        "count": 1
+      },
+      {
+        "site": 5820908,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 5820922,
+        "bytes": 12,
+        "count": 1
+      },
+      {
+        "site": 5820938,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 5820958,
+        "bytes": 0,
+        "count": 1
+      },
+      {
+        "site": 5821220,
+        "bytes": 0,
+        "count": 8
+      },
+      {
+        "site": 5821259,
+        "bytes": 16,
+        "count": 8
+      },
+      {
+        "site": 5821279,
+        "bytes": 8,
+        "count": 8
+      }
+    ],
+    "details": {
+      "receiver_candidate_calls": 2556,
+      "argument_layouts": [
+        {
+          "phase": 1,
+          "site": 4626191,
+          "formal_words": 5,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626235,
+          "formal_words": 4,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626280,
+          "formal_words": 5,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626323,
+          "formal_words": 5,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626365,
+          "formal_words": 6,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626385,
+          "formal_words": 3,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626420,
+          "formal_words": 1,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626455,
+          "formal_words": 1,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626531,
+          "formal_words": 3,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626576,
+          "formal_words": 3,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626618,
+          "formal_words": 5,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626663,
+          "formal_words": 3,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626696,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626788,
+          "formal_words": 1,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626810,
+          "formal_words": 5,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626876,
+          "formal_words": 1,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626890,
+          "formal_words": 1,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626904,
+          "formal_words": 1,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626918,
+          "formal_words": 1,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626953,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4627004,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4627016,
+          "formal_words": 1,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 4745930,
+          "formal_words": 13,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5148727,
+          "formal_words": 1,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5152468,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5152480,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5810627,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5810658,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5810694,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5810729,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5810769,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5810817,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5811650,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 7
+        },
+        {
+          "phase": 1,
+          "site": 5811683,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 7
+        },
+        {
+          "phase": 1,
+          "site": 5812511,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 7
+        },
+        {
+          "phase": 1,
+          "site": 5813917,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 13
+        },
+        {
+          "phase": 1,
+          "site": 5813931,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 13
+        },
+        {
+          "phase": 1,
+          "site": 5815383,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 6
+        },
+        {
+          "phase": 1,
+          "site": 5815394,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 6
+        },
+        {
+          "phase": 1,
+          "site": 5816410,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 5817787,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 2
+        },
+        {
+          "phase": 1,
+          "site": 5818796,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5820866,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5820884,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5820908,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5820922,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5820938,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5820958,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5821220,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5821259,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 1,
+          "site": 5821279,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 5811650,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 7
+        },
+        {
+          "phase": 2,
+          "site": 5811683,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 7
+        },
+        {
+          "phase": 2,
+          "site": 5812511,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 7
+        },
+        {
+          "phase": 2,
+          "site": 5813261,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 6
+        },
+        {
+          "phase": 2,
+          "site": 5813283,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 6
+        },
+        {
+          "phase": 2,
+          "site": 5813917,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1945
+        },
+        {
+          "phase": 2,
+          "site": 5813931,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 1945
+        },
+        {
+          "phase": 2,
+          "site": 5816410,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 185
+        },
+        {
+          "phase": 2,
+          "site": 5817787,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 128
+        },
+        {
+          "phase": 2,
+          "site": 5818796,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 64
+        },
+        {
+          "phase": 2,
+          "site": 5821220,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 7
+        },
+        {
+          "phase": 2,
+          "site": 5821259,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 7
+        },
+        {
+          "phase": 2,
+          "site": 5821279,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 7
+        },
+        {
+          "phase": 14,
+          "site": 5813261,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 8
+        },
+        {
+          "phase": 14,
+          "site": 5813283,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 8
+        },
+        {
+          "phase": 14,
+          "site": 5813917,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 65
+        },
+        {
+          "phase": 14,
+          "site": 5813931,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 65
+        },
+        {
+          "phase": 14,
+          "site": 5816410,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 15
+        },
+        {
+          "phase": 14,
+          "site": 5817787,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 8
+        },
+        {
+          "phase": 14,
+          "site": 5818796,
+          "formal_words": 4294967295,
+          "arguments_read": true,
+          "calls": 4
+        }
+      ],
+      "buffer_snapshots": [
+        {
+          "phase": 1,
+          "site": 4626191,
+          "event": 1,
+          "slot": 0,
+          "address": 6066736,
+          "requested_bytes": 16,
+          "state": 1,
+          "data": "e57cc449a49bd011821200c04fc32c45",
+          "count": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626191,
+          "event": 1,
+          "slot": 1,
+          "address": 6066608,
+          "requested_bytes": 16,
+          "state": 1,
+          "data": "5c59bebe6f9ad0118fde00c04fd9189d",
+          "count": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626191,
+          "event": 2,
+          "slot": 2,
+          "address": 2291652,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "10283c00",
+          "count": 1
+        },
+        {
+          "phase": 1,
+          "site": 4626191,
+          "event": 2,
+          "slot": 2,
+          "address": 2291652,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "e0353c00",
+          "count": 1
+        },
+        {
+          "phase": 1,
+          "site": 4626280,
+          "event": 1,
+          "slot": 0,
+          "address": 6066896,
+          "requested_bytes": 16,
+          "state": 1,
+          "data": "6af55fa3da9fd0118fdf00c04fd9189d",
+          "count": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626280,
+          "event": 2,
+          "slot": 1,
+          "address": 0,
+          "requested_bytes": 4,
+          "state": 2,
+          "data": "",
+          "count": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626323,
+          "event": 1,
+          "slot": 0,
+          "address": 6066912,
+          "requested_bytes": 16,
+          "state": 1,
+          "data": "6bf55fa3da9fd0118fdf00c04fd9189d",
+          "count": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626323,
+          "event": 2,
+          "slot": 1,
+          "address": 0,
+          "requested_bytes": 4,
+          "state": 2,
+          "data": "",
+          "count": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626531,
+          "event": 1,
+          "slot": 0,
+          "address": 6066896,
+          "requested_bytes": 16,
+          "state": 1,
+          "data": "6af55fa3da9fd0118fdf00c04fd9189d",
+          "count": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626531,
+          "event": 2,
+          "slot": 1,
+          "address": 2292132,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "10393c00",
+          "count": 1
+        },
+        {
+          "phase": 1,
+          "site": 4626531,
+          "event": 2,
+          "slot": 1,
+          "address": 2292132,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "782b3c00",
+          "count": 1
+        },
+        {
+          "phase": 1,
+          "site": 4626576,
+          "event": 1,
+          "slot": 0,
+          "address": 6066800,
+          "requested_bytes": 16,
+          "state": 1,
+          "data": "ce4f10f4709ad0118fde00c04fd9189d",
+          "count": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626576,
+          "event": 2,
+          "slot": 1,
+          "address": 2292136,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "14393c00",
+          "count": 1
+        },
+        {
+          "phase": 1,
+          "site": 4626576,
+          "event": 2,
+          "slot": 1,
+          "address": 2292136,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "7c2b3c00",
+          "count": 1
+        },
+        {
+          "phase": 1,
+          "site": 4626618,
+          "event": 1,
+          "slot": 0,
+          "address": 0,
+          "requested_bytes": 16,
+          "state": 2,
+          "data": "",
+          "count": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626618,
+          "event": 2,
+          "slot": 1,
+          "address": 2292128,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "483a3c00",
+          "count": 1
+        },
+        {
+          "phase": 1,
+          "site": 4626618,
+          "event": 2,
+          "slot": 1,
+          "address": 2292128,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "f8303c00",
+          "count": 1
+        },
+        {
+          "phase": 1,
+          "site": 4626663,
+          "event": 2,
+          "slot": 0,
+          "address": 2292140,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "48867301",
+          "count": 2
+        },
+        {
+          "phase": 1,
+          "site": 4626663,
+          "event": 2,
+          "slot": 1,
+          "address": 2292144,
+          "requested_bytes": 16,
+          "state": 1,
+          "data": "00000000000000006400000064000000",
+          "count": 2
+        },
+        {
+          "phase": 1,
+          "site": 4745930,
+          "event": 1,
+          "slot": 0,
+          "address": 73539144,
+          "requested_bytes": 40,
+          "state": 1,
+          "data": "280000009001000018010000010018000000000000000000120b0000120b00000000000000000000",
+          "count": 1
+        },
+        {
+          "phase": 1,
+          "site": 5152468,
+          "event": 2,
+          "slot": 0,
+          "address": 2290460,
+          "requested_bytes": 64,
+          "state": 1,
+          "data": "4d00011400000000000000000000000020030000580200006e006900000000000000000068f322000300000080000000000000005cf4220024c0bf794f2b6ad9",
+          "count": 1
+        },
+        {
+          "phase": 1,
+          "site": 5152480,
+          "event": 1,
+          "slot": 0,
+          "address": 2290460,
+          "requested_bytes": 64,
+          "state": 1,
+          "data": "4d00011400000000000000000000000020030000580200006e006900000000000000000068f322000300000080000000000000005cf4220024c0bf794f2b6ad9",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "api_bindings": {
+    "schema": 1,
+    "scope": "Prepared exact per-run allocations/module/physical CALL identities only; no installed-hook success or inferred original/logical/API/COM ownership.",
+    "integrity": true,
+    "sha256": "858da97919ce49aab1c12a8db4809ec68761348b63e08a5e3857de6d6872c39d",
+    "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "modules": {
+      "api": {
+        "base": 2004025344,
+        "size": 430080
+      },
+      "core": {
+        "base": 0,
+        "size": 0
+      },
+      "menu": {
+        "base": 2004549632,
+        "size": 143360
+      }
+    },
+    "core_leave": 0,
+    "hooks": [
+      {
+        "tag": 0,
+        "site": 4626191,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 24969216,
+        "trampoline_size": 16,
+        "remainder": 24969227,
+        "before_stub": 2004037060,
+        "after_stub": 2004037105,
+        "physical_call_return": 24969222,
+        "original_call_return": 4626197
+      },
+      {
+        "tag": 1,
+        "site": 4626209,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 25034752,
+        "trampoline_size": 15,
+        "remainder": 25034762,
+        "before_stub": 2004037150,
+        "after_stub": 2004037195,
+        "physical_call_return": 25034757,
+        "original_call_return": 4626214
+      },
+      {
+        "tag": 2,
+        "site": 4626235,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 25100288,
+        "trampoline_size": 15,
+        "remainder": 25100296,
+        "before_stub": 2004037240,
+        "after_stub": 2004037285,
+        "physical_call_return": 25100291,
+        "original_call_return": 4626238
+      },
+      {
+        "tag": 3,
+        "site": 4626250,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 25165824,
+        "trampoline_size": 15,
+        "remainder": 25165834,
+        "before_stub": 2004037330,
+        "after_stub": 2004037375,
+        "physical_call_return": 25165829,
+        "original_call_return": 4626255
+      },
+      {
+        "tag": 4,
+        "site": 4626280,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 25231360,
+        "trampoline_size": 15,
+        "remainder": 25231368,
+        "before_stub": 2004037420,
+        "after_stub": 2004037465,
+        "physical_call_return": 25231363,
+        "original_call_return": 4626283
+      },
+      {
+        "tag": 5,
+        "site": 4626295,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 25296896,
+        "trampoline_size": 15,
+        "remainder": 25296906,
+        "before_stub": 2004037510,
+        "after_stub": 2004037555,
+        "physical_call_return": 25296901,
+        "original_call_return": 4626300
+      },
+      {
+        "tag": 6,
+        "site": 4626323,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 25362432,
+        "trampoline_size": 15,
+        "remainder": 25362440,
+        "before_stub": 2004037600,
+        "after_stub": 2004037645,
+        "physical_call_return": 25362435,
+        "original_call_return": 4626326
+      },
+      {
+        "tag": 7,
+        "site": 4626338,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 25427968,
+        "trampoline_size": 15,
+        "remainder": 25427978,
+        "before_stub": 2004037690,
+        "after_stub": 2004037735,
+        "physical_call_return": 25427973,
+        "original_call_return": 4626343
+      },
+      {
+        "tag": 8,
+        "site": 4626365,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 25493504,
+        "trampoline_size": 16,
+        "remainder": 25493515,
+        "before_stub": 2004037780,
+        "after_stub": 2004037825,
+        "physical_call_return": 25493510,
+        "original_call_return": 4626371
+      },
+      {
+        "tag": 9,
+        "site": 4626385,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 25559040,
+        "trampoline_size": 15,
+        "remainder": 25559048,
+        "before_stub": 2004037870,
+        "after_stub": 2004037915,
+        "physical_call_return": 25559043,
+        "original_call_return": 4626388
+      },
+      {
+        "tag": 10,
+        "site": 4626400,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 25624576,
+        "trampoline_size": 15,
+        "remainder": 25624586,
+        "before_stub": 2004037960,
+        "after_stub": 2004038005,
+        "physical_call_return": 25624581,
+        "original_call_return": 4626405
+      },
+      {
+        "tag": 11,
+        "site": 4626420,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 25690112,
+        "trampoline_size": 13,
+        "remainder": 25690120,
+        "before_stub": 2004038050,
+        "after_stub": 2004038095,
+        "physical_call_return": 25690115,
+        "original_call_return": 4626423
+      },
+      {
+        "tag": 12,
+        "site": 4626436,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 25755648,
+        "trampoline_size": 15,
+        "remainder": 25755658,
+        "before_stub": 2004038140,
+        "after_stub": 2004038185,
+        "physical_call_return": 25755653,
+        "original_call_return": 4626441
+      },
+      {
+        "tag": 13,
+        "site": 4626455,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 25821184,
+        "trampoline_size": 13,
+        "remainder": 25821192,
+        "before_stub": 2004038230,
+        "after_stub": 2004038275,
+        "physical_call_return": 25821187,
+        "original_call_return": 4626458
+      },
+      {
+        "tag": 14,
+        "site": 4626531,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 25886720,
+        "trampoline_size": 15,
+        "remainder": 25886728,
+        "before_stub": 2004038320,
+        "after_stub": 2004038365,
+        "physical_call_return": 25886723,
+        "original_call_return": 4626534
+      },
+      {
+        "tag": 15,
+        "site": 4626546,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 25952256,
+        "trampoline_size": 15,
+        "remainder": 25952266,
+        "before_stub": 2004038410,
+        "after_stub": 2004038455,
+        "physical_call_return": 25952261,
+        "original_call_return": 4626551
+      },
+      {
+        "tag": 16,
+        "site": 4626576,
+        "length": 6,
+        "call_length": 2,
+        "trampoline": 26017792,
+        "trampoline_size": 16,
+        "remainder": 26017799,
+        "before_stub": 2004038500,
+        "after_stub": 2004038545,
+        "physical_call_return": 26017794,
+        "original_call_return": 4626578
+      },
+      {
+        "tag": 17,
+        "site": 4626590,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 26083328,
+        "trampoline_size": 15,
+        "remainder": 26083338,
+        "before_stub": 2004038590,
+        "after_stub": 2004038635,
+        "physical_call_return": 26083333,
+        "original_call_return": 4626595
+      },
+      {
+        "tag": 18,
+        "site": 4626618,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 26148864,
+        "trampoline_size": 15,
+        "remainder": 26148872,
+        "before_stub": 2004038680,
+        "after_stub": 2004038725,
+        "physical_call_return": 26148867,
+        "original_call_return": 4626621
+      },
+      {
+        "tag": 19,
+        "site": 4626633,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 26214400,
+        "trampoline_size": 15,
+        "remainder": 26214410,
+        "before_stub": 2004038770,
+        "after_stub": 2004038815,
+        "physical_call_return": 26214405,
+        "original_call_return": 4626638
+      },
+      {
+        "tag": 20,
+        "site": 4626663,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 26279936,
+        "trampoline_size": 15,
+        "remainder": 26279944,
+        "before_stub": 2004038860,
+        "after_stub": 2004038905,
+        "physical_call_return": 26279939,
+        "original_call_return": 4626666
+      },
+      {
+        "tag": 21,
+        "site": 4626678,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 26345472,
+        "trampoline_size": 15,
+        "remainder": 26345482,
+        "before_stub": 2004038950,
+        "after_stub": 2004038995,
+        "physical_call_return": 26345477,
+        "original_call_return": 4626683
+      },
+      {
+        "tag": 22,
+        "site": 4626696,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 26411008,
+        "trampoline_size": 15,
+        "remainder": 26411016,
+        "before_stub": 2004039040,
+        "after_stub": 2004039085,
+        "physical_call_return": 26411011,
+        "original_call_return": 4626699
+      },
+      {
+        "tag": 23,
+        "site": 4626711,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 26476544,
+        "trampoline_size": 15,
+        "remainder": 26476554,
+        "before_stub": 2004039130,
+        "after_stub": 2004039175,
+        "physical_call_return": 26476549,
+        "original_call_return": 4626716
+      },
+      {
+        "tag": 24,
+        "site": 4626788,
+        "length": 5,
+        "call_length": 2,
+        "trampoline": 26542080,
+        "trampoline_size": 15,
+        "remainder": 26542087,
+        "before_stub": 2004039220,
+        "after_stub": 2004039265,
+        "physical_call_return": 26542082,
+        "original_call_return": 4626790
+      },
+      {
+        "tag": 25,
+        "site": 4626810,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 26607616,
+        "trampoline_size": 15,
+        "remainder": 26607624,
+        "before_stub": 2004039310,
+        "after_stub": 2004039355,
+        "physical_call_return": 26607619,
+        "original_call_return": 4626813
+      },
+      {
+        "tag": 26,
+        "site": 4626851,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 26673152,
+        "trampoline_size": 18,
+        "remainder": 26673160,
+        "before_stub": 2004039400,
+        "after_stub": 2004039445,
+        "physical_call_return": 26673155,
+        "original_call_return": 4626854
+      },
+      {
+        "tag": 27,
+        "site": 4626876,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 26738688,
+        "trampoline_size": 13,
+        "remainder": 26738696,
+        "before_stub": 2004039490,
+        "after_stub": 2004039535,
+        "physical_call_return": 26738691,
+        "original_call_return": 4626879
+      },
+      {
+        "tag": 28,
+        "site": 4626890,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 26804224,
+        "trampoline_size": 13,
+        "remainder": 26804232,
+        "before_stub": 2004039580,
+        "after_stub": 2004039625,
+        "physical_call_return": 26804227,
+        "original_call_return": 4626893
+      },
+      {
+        "tag": 29,
+        "site": 4626904,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 26869760,
+        "trampoline_size": 13,
+        "remainder": 26869768,
+        "before_stub": 2004039670,
+        "after_stub": 2004039715,
+        "physical_call_return": 26869763,
+        "original_call_return": 4626907
+      },
+      {
+        "tag": 30,
+        "site": 4626918,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 26935296,
+        "trampoline_size": 13,
+        "remainder": 26935304,
+        "before_stub": 2004039760,
+        "after_stub": 2004039805,
+        "physical_call_return": 26935299,
+        "original_call_return": 4626921
+      },
+      {
+        "tag": 31,
+        "site": 4626953,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 27000832,
+        "trampoline_size": 15,
+        "remainder": 27000842,
+        "before_stub": 2004039850,
+        "after_stub": 2004039895,
+        "physical_call_return": 27000837,
+        "original_call_return": 4626958
+      },
+      {
+        "tag": 32,
+        "site": 4627004,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 27066368,
+        "trampoline_size": 15,
+        "remainder": 27066378,
+        "before_stub": 2004039940,
+        "after_stub": 2004039985,
+        "physical_call_return": 27066373,
+        "original_call_return": 4627009
+      },
+      {
+        "tag": 33,
+        "site": 4627016,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 27131904,
+        "trampoline_size": 13,
+        "remainder": 27131912,
+        "before_stub": 2004040030,
+        "after_stub": 2004040075,
+        "physical_call_return": 27131907,
+        "original_call_return": 4627019
+      },
+      {
+        "tag": 34,
+        "site": 4648024,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27197440,
+        "trampoline_size": 16,
+        "remainder": 27197451,
+        "before_stub": 2004040120,
+        "after_stub": 2004040165,
+        "physical_call_return": 27197446,
+        "original_call_return": 4648030
+      },
+      {
+        "tag": 35,
+        "site": 4648034,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27262976,
+        "trampoline_size": 16,
+        "remainder": 27262987,
+        "before_stub": 2004040210,
+        "after_stub": 2004040255,
+        "physical_call_return": 27262982,
+        "original_call_return": 4648040
+      },
+      {
+        "tag": 36,
+        "site": 4648125,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27328512,
+        "trampoline_size": 16,
+        "remainder": 27328523,
+        "before_stub": 2004040300,
+        "after_stub": 2004040345,
+        "physical_call_return": 27328518,
+        "original_call_return": 4648131
+      },
+      {
+        "tag": 37,
+        "site": 4745316,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27394048,
+        "trampoline_size": 16,
+        "remainder": 27394059,
+        "before_stub": 2004040390,
+        "after_stub": 2004040435,
+        "physical_call_return": 27394054,
+        "original_call_return": 4745322
+      },
+      {
+        "tag": 38,
+        "site": 4745373,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27459584,
+        "trampoline_size": 16,
+        "remainder": 27459595,
+        "before_stub": 2004040480,
+        "after_stub": 2004040525,
+        "physical_call_return": 27459590,
+        "original_call_return": 4745379
+      },
+      {
+        "tag": 39,
+        "site": 4745406,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27525120,
+        "trampoline_size": 16,
+        "remainder": 27525131,
+        "before_stub": 2004040570,
+        "after_stub": 2004040615,
+        "physical_call_return": 27525126,
+        "original_call_return": 4745412
+      },
+      {
+        "tag": 40,
+        "site": 4745930,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27590656,
+        "trampoline_size": 16,
+        "remainder": 27590667,
+        "before_stub": 2004040660,
+        "after_stub": 2004040705,
+        "physical_call_return": 27590662,
+        "original_call_return": 4745936
+      },
+      {
+        "tag": 41,
+        "site": 5148727,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27656192,
+        "trampoline_size": 16,
+        "remainder": 27656203,
+        "before_stub": 2004040750,
+        "after_stub": 2004040795,
+        "physical_call_return": 27656198,
+        "original_call_return": 5148733
+      },
+      {
+        "tag": 42,
+        "site": 5149790,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27721728,
+        "trampoline_size": 16,
+        "remainder": 27721739,
+        "before_stub": 2004040840,
+        "after_stub": 2004040885,
+        "physical_call_return": 27721734,
+        "original_call_return": 5149796
+      },
+      {
+        "tag": 43,
+        "site": 5149840,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27787264,
+        "trampoline_size": 16,
+        "remainder": 27787275,
+        "before_stub": 2004040930,
+        "after_stub": 2004040975,
+        "physical_call_return": 27787270,
+        "original_call_return": 5149846
+      },
+      {
+        "tag": 44,
+        "site": 5150083,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27852800,
+        "trampoline_size": 16,
+        "remainder": 27852811,
+        "before_stub": 2004041020,
+        "after_stub": 2004041065,
+        "physical_call_return": 27852806,
+        "original_call_return": 5150089
+      },
+      {
+        "tag": 45,
+        "site": 5152468,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27918336,
+        "trampoline_size": 16,
+        "remainder": 27918347,
+        "before_stub": 2004041110,
+        "after_stub": 2004041155,
+        "physical_call_return": 27918342,
+        "original_call_return": 5152474
+      },
+      {
+        "tag": 46,
+        "site": 5152480,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 27983872,
+        "trampoline_size": 16,
+        "remainder": 27983883,
+        "before_stub": 2004041200,
+        "after_stub": 2004041245,
+        "physical_call_return": 27983878,
+        "original_call_return": 5152486
+      },
+      {
+        "tag": 47,
+        "site": 5810627,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 28049408,
+        "trampoline_size": 15,
+        "remainder": 28049418,
+        "before_stub": 2004041290,
+        "after_stub": 2004041335,
+        "physical_call_return": 28049413,
+        "original_call_return": 5810632
+      },
+      {
+        "tag": 48,
+        "site": 5810642,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 28114944,
+        "trampoline_size": 15,
+        "remainder": 28114954,
+        "before_stub": 2004041380,
+        "after_stub": 2004041425,
+        "physical_call_return": 28114949,
+        "original_call_return": 5810647
+      },
+      {
+        "tag": 49,
+        "site": 5810658,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 28180480,
+        "trampoline_size": 15,
+        "remainder": 28180488,
+        "before_stub": 2004041470,
+        "after_stub": 2004041515,
+        "physical_call_return": 28180483,
+        "original_call_return": 5810661
+      },
+      {
+        "tag": 50,
+        "site": 5810671,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 28246016,
+        "trampoline_size": 15,
+        "remainder": 28246026,
+        "before_stub": 2004041560,
+        "after_stub": 2004041605,
+        "physical_call_return": 28246021,
+        "original_call_return": 5810676
+      },
+      {
+        "tag": 51,
+        "site": 5810694,
+        "length": 6,
+        "call_length": 2,
+        "trampoline": 28311552,
+        "trampoline_size": 20,
+        "remainder": 28311559,
+        "before_stub": 2004041650,
+        "after_stub": 2004041695,
+        "physical_call_return": 28311554,
+        "original_call_return": 5810696
+      },
+      {
+        "tag": 52,
+        "site": 5810706,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 28377088,
+        "trampoline_size": 15,
+        "remainder": 28377098,
+        "before_stub": 2004041740,
+        "after_stub": 2004041785,
+        "physical_call_return": 28377093,
+        "original_call_return": 5810711
+      },
+      {
+        "tag": 53,
+        "site": 5810729,
+        "length": 6,
+        "call_length": 2,
+        "trampoline": 28442624,
+        "trampoline_size": 20,
+        "remainder": 28442631,
+        "before_stub": 2004041830,
+        "after_stub": 2004041875,
+        "physical_call_return": 28442626,
+        "original_call_return": 5810731
+      },
+      {
+        "tag": 54,
+        "site": 5810741,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 28508160,
+        "trampoline_size": 15,
+        "remainder": 28508170,
+        "before_stub": 2004041920,
+        "after_stub": 2004041965,
+        "physical_call_return": 28508165,
+        "original_call_return": 5810746
+      },
+      {
+        "tag": 55,
+        "site": 5810769,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 28573696,
+        "trampoline_size": 15,
+        "remainder": 28573704,
+        "before_stub": 2004042010,
+        "after_stub": 2004042055,
+        "physical_call_return": 28573699,
+        "original_call_return": 5810772
+      },
+      {
+        "tag": 56,
+        "site": 5810782,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 28639232,
+        "trampoline_size": 15,
+        "remainder": 28639242,
+        "before_stub": 2004042100,
+        "after_stub": 2004042145,
+        "physical_call_return": 28639237,
+        "original_call_return": 5810787
+      },
+      {
+        "tag": 57,
+        "site": 5810817,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 28704768,
+        "trampoline_size": 15,
+        "remainder": 28704778,
+        "before_stub": 2004042190,
+        "after_stub": 2004042235,
+        "physical_call_return": 28704773,
+        "original_call_return": 5810822
+      },
+      {
+        "tag": 58,
+        "site": 5810852,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 28770304,
+        "trampoline_size": 15,
+        "remainder": 28770314,
+        "before_stub": 2004042280,
+        "after_stub": 2004042325,
+        "physical_call_return": 28770309,
+        "original_call_return": 5810857
+      },
+      {
+        "tag": 59,
+        "site": 5810867,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 28835840,
+        "trampoline_size": 15,
+        "remainder": 28835850,
+        "before_stub": 2004042370,
+        "after_stub": 2004042415,
+        "physical_call_return": 28835845,
+        "original_call_return": 5810872
+      },
+      {
+        "tag": 60,
+        "site": 5810883,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 28901376,
+        "trampoline_size": 15,
+        "remainder": 28901384,
+        "before_stub": 2004042460,
+        "after_stub": 2004042505,
+        "physical_call_return": 28901379,
+        "original_call_return": 5810886
+      },
+      {
+        "tag": 61,
+        "site": 5810896,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 28966912,
+        "trampoline_size": 15,
+        "remainder": 28966922,
+        "before_stub": 2004042550,
+        "after_stub": 2004042595,
+        "physical_call_return": 28966917,
+        "original_call_return": 5810901
+      },
+      {
+        "tag": 62,
+        "site": 5810919,
+        "length": 6,
+        "call_length": 2,
+        "trampoline": 29032448,
+        "trampoline_size": 20,
+        "remainder": 29032455,
+        "before_stub": 2004042640,
+        "after_stub": 2004042685,
+        "physical_call_return": 29032450,
+        "original_call_return": 5810921
+      },
+      {
+        "tag": 63,
+        "site": 5810931,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 29097984,
+        "trampoline_size": 15,
+        "remainder": 29097994,
+        "before_stub": 2004042730,
+        "after_stub": 2004042775,
+        "physical_call_return": 29097989,
+        "original_call_return": 5810936
+      },
+      {
+        "tag": 64,
+        "site": 5810954,
+        "length": 6,
+        "call_length": 2,
+        "trampoline": 29163520,
+        "trampoline_size": 20,
+        "remainder": 29163527,
+        "before_stub": 2004042820,
+        "after_stub": 2004042865,
+        "physical_call_return": 29163522,
+        "original_call_return": 5810956
+      },
+      {
+        "tag": 65,
+        "site": 5810966,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 29229056,
+        "trampoline_size": 15,
+        "remainder": 29229066,
+        "before_stub": 2004042910,
+        "after_stub": 2004042955,
+        "physical_call_return": 29229061,
+        "original_call_return": 5810971
+      },
+      {
+        "tag": 66,
+        "site": 5811005,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 29294592,
+        "trampoline_size": 15,
+        "remainder": 29294600,
+        "before_stub": 2004043000,
+        "after_stub": 2004043045,
+        "physical_call_return": 29294595,
+        "original_call_return": 5811008
+      },
+      {
+        "tag": 67,
+        "site": 5811018,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 29360128,
+        "trampoline_size": 15,
+        "remainder": 29360138,
+        "before_stub": 2004043090,
+        "after_stub": 2004043135,
+        "physical_call_return": 29360133,
+        "original_call_return": 5811023
+      },
+      {
+        "tag": 68,
+        "site": 5811033,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 29425664,
+        "trampoline_size": 15,
+        "remainder": 29425672,
+        "before_stub": 2004043180,
+        "after_stub": 2004043225,
+        "physical_call_return": 29425667,
+        "original_call_return": 5811036
+      },
+      {
+        "tag": 69,
+        "site": 5811066,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 29491200,
+        "trampoline_size": 15,
+        "remainder": 29491210,
+        "before_stub": 2004043270,
+        "after_stub": 2004043315,
+        "physical_call_return": 29491205,
+        "original_call_return": 5811071
+      },
+      {
+        "tag": 70,
+        "site": 5811101,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 29556736,
+        "trampoline_size": 18,
+        "remainder": 29556744,
+        "before_stub": 2004043360,
+        "after_stub": 2004043405,
+        "physical_call_return": 29556739,
+        "original_call_return": 5811104
+      },
+      {
+        "tag": 71,
+        "site": 5811127,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 29622272,
+        "trampoline_size": 19,
+        "remainder": 29622280,
+        "before_stub": 2004043450,
+        "after_stub": 2004043495,
+        "physical_call_return": 29622275,
+        "original_call_return": 5811130
+      },
+      {
+        "tag": 72,
+        "site": 5811144,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 29687808,
+        "trampoline_size": 18,
+        "remainder": 29687816,
+        "before_stub": 2004043540,
+        "after_stub": 2004043585,
+        "physical_call_return": 29687811,
+        "original_call_return": 5811147
+      },
+      {
+        "tag": 73,
+        "site": 5811155,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 29753344,
+        "trampoline_size": 18,
+        "remainder": 29753352,
+        "before_stub": 2004043630,
+        "after_stub": 2004043675,
+        "physical_call_return": 29753347,
+        "original_call_return": 5811158
+      },
+      {
+        "tag": 74,
+        "site": 5811166,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 29818880,
+        "trampoline_size": 19,
+        "remainder": 29818888,
+        "before_stub": 2004043720,
+        "after_stub": 2004043765,
+        "physical_call_return": 29818883,
+        "original_call_return": 5811169
+      },
+      {
+        "tag": 75,
+        "site": 5811199,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 29884416,
+        "trampoline_size": 12,
+        "remainder": 29884423,
+        "before_stub": 2004043810,
+        "after_stub": 2004043855,
+        "physical_call_return": 29884418,
+        "original_call_return": 5811201
+      },
+      {
+        "tag": 76,
+        "site": 5811208,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 29949952,
+        "trampoline_size": 16,
+        "remainder": 29949963,
+        "before_stub": 2004043900,
+        "after_stub": 2004043945,
+        "physical_call_return": 29949958,
+        "original_call_return": 5811214
+      },
+      {
+        "tag": 77,
+        "site": 5811246,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 30015488,
+        "trampoline_size": 15,
+        "remainder": 30015498,
+        "before_stub": 2004043990,
+        "after_stub": 2004044035,
+        "physical_call_return": 30015493,
+        "original_call_return": 5811251
+      },
+      {
+        "tag": 78,
+        "site": 5811281,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 30081024,
+        "trampoline_size": 18,
+        "remainder": 30081032,
+        "before_stub": 2004044080,
+        "after_stub": 2004044125,
+        "physical_call_return": 30081027,
+        "original_call_return": 5811284
+      },
+      {
+        "tag": 79,
+        "site": 5811307,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 30146560,
+        "trampoline_size": 19,
+        "remainder": 30146568,
+        "before_stub": 2004044170,
+        "after_stub": 2004044215,
+        "physical_call_return": 30146563,
+        "original_call_return": 5811310
+      },
+      {
+        "tag": 80,
+        "site": 5811324,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 30212096,
+        "trampoline_size": 18,
+        "remainder": 30212104,
+        "before_stub": 2004044260,
+        "after_stub": 2004044305,
+        "physical_call_return": 30212099,
+        "original_call_return": 5811327
+      },
+      {
+        "tag": 81,
+        "site": 5811335,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 30277632,
+        "trampoline_size": 18,
+        "remainder": 30277640,
+        "before_stub": 2004044350,
+        "after_stub": 2004044395,
+        "physical_call_return": 30277635,
+        "original_call_return": 5811338
+      },
+      {
+        "tag": 82,
+        "site": 5811346,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 30343168,
+        "trampoline_size": 19,
+        "remainder": 30343176,
+        "before_stub": 2004044440,
+        "after_stub": 2004044485,
+        "physical_call_return": 30343171,
+        "original_call_return": 5811349
+      },
+      {
+        "tag": 83,
+        "site": 5811380,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 30408704,
+        "trampoline_size": 12,
+        "remainder": 30408711,
+        "before_stub": 2004044530,
+        "after_stub": 2004044575,
+        "physical_call_return": 30408706,
+        "original_call_return": 5811382
+      },
+      {
+        "tag": 84,
+        "site": 5811385,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 30474240,
+        "trampoline_size": 16,
+        "remainder": 30474251,
+        "before_stub": 2004044620,
+        "after_stub": 2004044665,
+        "physical_call_return": 30474246,
+        "original_call_return": 5811391
+      },
+      {
+        "tag": 85,
+        "site": 5811407,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 30539776,
+        "trampoline_size": 16,
+        "remainder": 30539787,
+        "before_stub": 2004044710,
+        "after_stub": 2004044755,
+        "physical_call_return": 30539782,
+        "original_call_return": 5811413
+      },
+      {
+        "tag": 86,
+        "site": 5811418,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 30605312,
+        "trampoline_size": 15,
+        "remainder": 30605322,
+        "before_stub": 2004044800,
+        "after_stub": 2004044845,
+        "physical_call_return": 30605317,
+        "original_call_return": 5811423
+      },
+      {
+        "tag": 87,
+        "site": 5811650,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 30670848,
+        "trampoline_size": 15,
+        "remainder": 30670856,
+        "before_stub": 2004044890,
+        "after_stub": 2004044935,
+        "physical_call_return": 30670851,
+        "original_call_return": 5811653
+      },
+      {
+        "tag": 88,
+        "site": 5811663,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 30736384,
+        "trampoline_size": 15,
+        "remainder": 30736394,
+        "before_stub": 2004044980,
+        "after_stub": 2004045025,
+        "physical_call_return": 30736389,
+        "original_call_return": 5811668
+      },
+      {
+        "tag": 89,
+        "site": 5811683,
+        "length": 6,
+        "call_length": 2,
+        "trampoline": 30801920,
+        "trampoline_size": 16,
+        "remainder": 30801927,
+        "before_stub": 2004045070,
+        "after_stub": 2004045115,
+        "physical_call_return": 30801922,
+        "original_call_return": 5811685
+      },
+      {
+        "tag": 90,
+        "site": 5811701,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 30867456,
+        "trampoline_size": 15,
+        "remainder": 30867466,
+        "before_stub": 2004045160,
+        "after_stub": 2004045205,
+        "physical_call_return": 30867461,
+        "original_call_return": 5811706
+      },
+      {
+        "tag": 91,
+        "site": 5811728,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 30932992,
+        "trampoline_size": 15,
+        "remainder": 30933002,
+        "before_stub": 2004045250,
+        "after_stub": 2004045295,
+        "physical_call_return": 30932997,
+        "original_call_return": 5811733
+      },
+      {
+        "tag": 92,
+        "site": 5811763,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 30998528,
+        "trampoline_size": 18,
+        "remainder": 30998536,
+        "before_stub": 2004045340,
+        "after_stub": 2004045385,
+        "physical_call_return": 30998531,
+        "original_call_return": 5811766
+      },
+      {
+        "tag": 93,
+        "site": 5811789,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 31064064,
+        "trampoline_size": 19,
+        "remainder": 31064072,
+        "before_stub": 2004045430,
+        "after_stub": 2004045475,
+        "physical_call_return": 31064067,
+        "original_call_return": 5811792
+      },
+      {
+        "tag": 94,
+        "site": 5811806,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 31129600,
+        "trampoline_size": 18,
+        "remainder": 31129608,
+        "before_stub": 2004045520,
+        "after_stub": 2004045565,
+        "physical_call_return": 31129603,
+        "original_call_return": 5811809
+      },
+      {
+        "tag": 95,
+        "site": 5811817,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 31195136,
+        "trampoline_size": 18,
+        "remainder": 31195144,
+        "before_stub": 2004045610,
+        "after_stub": 2004045655,
+        "physical_call_return": 31195139,
+        "original_call_return": 5811820
+      },
+      {
+        "tag": 96,
+        "site": 5811828,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 31260672,
+        "trampoline_size": 19,
+        "remainder": 31260680,
+        "before_stub": 2004045700,
+        "after_stub": 2004045745,
+        "physical_call_return": 31260675,
+        "original_call_return": 5811831
+      },
+      {
+        "tag": 97,
+        "site": 5811861,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 31326208,
+        "trampoline_size": 16,
+        "remainder": 31326219,
+        "before_stub": 2004045790,
+        "after_stub": 2004045835,
+        "physical_call_return": 31326214,
+        "original_call_return": 5811867
+      },
+      {
+        "tag": 98,
+        "site": 5811882,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 31391744,
+        "trampoline_size": 16,
+        "remainder": 31391755,
+        "before_stub": 2004045880,
+        "after_stub": 2004045925,
+        "physical_call_return": 31391750,
+        "original_call_return": 5811888
+      },
+      {
+        "tag": 99,
+        "site": 5811908,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 31457280,
+        "trampoline_size": 15,
+        "remainder": 31457288,
+        "before_stub": 2004045970,
+        "after_stub": 2004046015,
+        "physical_call_return": 31457283,
+        "original_call_return": 5811911
+      },
+      {
+        "tag": 100,
+        "site": 5811950,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 31522816,
+        "trampoline_size": 13,
+        "remainder": 31522824,
+        "before_stub": 2004046060,
+        "after_stub": 2004046105,
+        "physical_call_return": 31522819,
+        "original_call_return": 5811953
+      },
+      {
+        "tag": 101,
+        "site": 5811963,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 31588352,
+        "trampoline_size": 15,
+        "remainder": 31588362,
+        "before_stub": 2004046150,
+        "after_stub": 2004046195,
+        "physical_call_return": 31588357,
+        "original_call_return": 5811968
+      },
+      {
+        "tag": 102,
+        "site": 5811977,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 31653888,
+        "trampoline_size": 12,
+        "remainder": 31653895,
+        "before_stub": 2004046240,
+        "after_stub": 2004046285,
+        "physical_call_return": 31653890,
+        "original_call_return": 5811979
+      },
+      {
+        "tag": 103,
+        "site": 5812011,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 31719424,
+        "trampoline_size": 15,
+        "remainder": 31719434,
+        "before_stub": 2004046330,
+        "after_stub": 2004046375,
+        "physical_call_return": 31719429,
+        "original_call_return": 5812016
+      },
+      {
+        "tag": 104,
+        "site": 5812046,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 31784960,
+        "trampoline_size": 18,
+        "remainder": 31784968,
+        "before_stub": 2004046420,
+        "after_stub": 2004046465,
+        "physical_call_return": 31784963,
+        "original_call_return": 5812049
+      },
+      {
+        "tag": 105,
+        "site": 5812072,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 31850496,
+        "trampoline_size": 19,
+        "remainder": 31850504,
+        "before_stub": 2004046510,
+        "after_stub": 2004046555,
+        "physical_call_return": 31850499,
+        "original_call_return": 5812075
+      },
+      {
+        "tag": 106,
+        "site": 5812089,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 31916032,
+        "trampoline_size": 18,
+        "remainder": 31916040,
+        "before_stub": 2004046600,
+        "after_stub": 2004046645,
+        "physical_call_return": 31916035,
+        "original_call_return": 5812092
+      },
+      {
+        "tag": 107,
+        "site": 5812100,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 31981568,
+        "trampoline_size": 18,
+        "remainder": 31981576,
+        "before_stub": 2004046690,
+        "after_stub": 2004046735,
+        "physical_call_return": 31981571,
+        "original_call_return": 5812103
+      },
+      {
+        "tag": 108,
+        "site": 5812111,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 32047104,
+        "trampoline_size": 19,
+        "remainder": 32047112,
+        "before_stub": 2004046780,
+        "after_stub": 2004046825,
+        "physical_call_return": 32047107,
+        "original_call_return": 5812114
+      },
+      {
+        "tag": 109,
+        "site": 5812145,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 32112640,
+        "trampoline_size": 16,
+        "remainder": 32112651,
+        "before_stub": 2004046870,
+        "after_stub": 2004046915,
+        "physical_call_return": 32112646,
+        "original_call_return": 5812151
+      },
+      {
+        "tag": 110,
+        "site": 5812273,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 32178176,
+        "trampoline_size": 15,
+        "remainder": 32178184,
+        "before_stub": 2004046960,
+        "after_stub": 2004047005,
+        "physical_call_return": 32178179,
+        "original_call_return": 5812276
+      },
+      {
+        "tag": 111,
+        "site": 5812306,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 32243712,
+        "trampoline_size": 15,
+        "remainder": 32243722,
+        "before_stub": 2004047050,
+        "after_stub": 2004047095,
+        "physical_call_return": 32243717,
+        "original_call_return": 5812311
+      },
+      {
+        "tag": 112,
+        "site": 5812341,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 32309248,
+        "trampoline_size": 18,
+        "remainder": 32309256,
+        "before_stub": 2004047140,
+        "after_stub": 2004047185,
+        "physical_call_return": 32309251,
+        "original_call_return": 5812344
+      },
+      {
+        "tag": 113,
+        "site": 5812367,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 32374784,
+        "trampoline_size": 19,
+        "remainder": 32374792,
+        "before_stub": 2004047230,
+        "after_stub": 2004047275,
+        "physical_call_return": 32374787,
+        "original_call_return": 5812370
+      },
+      {
+        "tag": 114,
+        "site": 5812384,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 32440320,
+        "trampoline_size": 18,
+        "remainder": 32440328,
+        "before_stub": 2004047320,
+        "after_stub": 2004047365,
+        "physical_call_return": 32440323,
+        "original_call_return": 5812387
+      },
+      {
+        "tag": 115,
+        "site": 5812395,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 32505856,
+        "trampoline_size": 18,
+        "remainder": 32505864,
+        "before_stub": 2004047410,
+        "after_stub": 2004047455,
+        "physical_call_return": 32505859,
+        "original_call_return": 5812398
+      },
+      {
+        "tag": 116,
+        "site": 5812406,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 32571392,
+        "trampoline_size": 19,
+        "remainder": 32571400,
+        "before_stub": 2004047500,
+        "after_stub": 2004047545,
+        "physical_call_return": 32571395,
+        "original_call_return": 5812409
+      },
+      {
+        "tag": 117,
+        "site": 5812440,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 32636928,
+        "trampoline_size": 16,
+        "remainder": 32636939,
+        "before_stub": 2004047590,
+        "after_stub": 2004047635,
+        "physical_call_return": 32636934,
+        "original_call_return": 5812446
+      },
+      {
+        "tag": 118,
+        "site": 5812455,
+        "length": 10,
+        "call_length": 3,
+        "trampoline": 32702464,
+        "trampoline_size": 20,
+        "remainder": 32702472,
+        "before_stub": 2004047680,
+        "after_stub": 2004047725,
+        "physical_call_return": 32702467,
+        "original_call_return": 5812458
+      },
+      {
+        "tag": 119,
+        "site": 5812486,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 32768000,
+        "trampoline_size": 15,
+        "remainder": 32768008,
+        "before_stub": 2004047770,
+        "after_stub": 2004047815,
+        "physical_call_return": 32768003,
+        "original_call_return": 5812489
+      },
+      {
+        "tag": 120,
+        "site": 5812499,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 32833536,
+        "trampoline_size": 15,
+        "remainder": 32833546,
+        "before_stub": 2004047860,
+        "after_stub": 2004047905,
+        "physical_call_return": 32833541,
+        "original_call_return": 5812504
+      },
+      {
+        "tag": 121,
+        "site": 5812511,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 32899072,
+        "trampoline_size": 15,
+        "remainder": 32899080,
+        "before_stub": 2004047950,
+        "after_stub": 2004047995,
+        "physical_call_return": 32899075,
+        "original_call_return": 5812514
+      },
+      {
+        "tag": 122,
+        "site": 5812529,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 32964608,
+        "trampoline_size": 15,
+        "remainder": 32964618,
+        "before_stub": 2004048040,
+        "after_stub": 2004048085,
+        "physical_call_return": 32964613,
+        "original_call_return": 5812534
+      },
+      {
+        "tag": 123,
+        "site": 5812556,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 33030144,
+        "trampoline_size": 15,
+        "remainder": 33030154,
+        "before_stub": 2004048130,
+        "after_stub": 2004048175,
+        "physical_call_return": 33030149,
+        "original_call_return": 5812561
+      },
+      {
+        "tag": 124,
+        "site": 5812591,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 33095680,
+        "trampoline_size": 18,
+        "remainder": 33095688,
+        "before_stub": 2004048220,
+        "after_stub": 2004048265,
+        "physical_call_return": 33095683,
+        "original_call_return": 5812594
+      },
+      {
+        "tag": 125,
+        "site": 5812617,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 33161216,
+        "trampoline_size": 19,
+        "remainder": 33161224,
+        "before_stub": 2004048310,
+        "after_stub": 2004048355,
+        "physical_call_return": 33161219,
+        "original_call_return": 5812620
+      },
+      {
+        "tag": 126,
+        "site": 5812634,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 33226752,
+        "trampoline_size": 18,
+        "remainder": 33226760,
+        "before_stub": 2004048400,
+        "after_stub": 2004048445,
+        "physical_call_return": 33226755,
+        "original_call_return": 5812637
+      },
+      {
+        "tag": 127,
+        "site": 5812645,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 33292288,
+        "trampoline_size": 18,
+        "remainder": 33292296,
+        "before_stub": 2004048490,
+        "after_stub": 2004048535,
+        "physical_call_return": 33292291,
+        "original_call_return": 5812648
+      },
+      {
+        "tag": 128,
+        "site": 5812656,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 33357824,
+        "trampoline_size": 19,
+        "remainder": 33357832,
+        "before_stub": 2004048580,
+        "after_stub": 2004048628,
+        "physical_call_return": 33357827,
+        "original_call_return": 5812659
+      },
+      {
+        "tag": 129,
+        "site": 5812689,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 33423360,
+        "trampoline_size": 16,
+        "remainder": 33423371,
+        "before_stub": 2004048676,
+        "after_stub": 2004048724,
+        "physical_call_return": 33423366,
+        "original_call_return": 5812695
+      },
+      {
+        "tag": 130,
+        "site": 5812702,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 33488896,
+        "trampoline_size": 15,
+        "remainder": 33488906,
+        "before_stub": 2004048772,
+        "after_stub": 2004048820,
+        "physical_call_return": 33488901,
+        "original_call_return": 5812707
+      },
+      {
+        "tag": 131,
+        "site": 5812718,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 33554432,
+        "trampoline_size": 16,
+        "remainder": 33554443,
+        "before_stub": 2004048868,
+        "after_stub": 2004048916,
+        "physical_call_return": 33554438,
+        "original_call_return": 5812724
+      },
+      {
+        "tag": 132,
+        "site": 5812726,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 33619968,
+        "trampoline_size": 12,
+        "remainder": 33619975,
+        "before_stub": 2004048964,
+        "after_stub": 2004049012,
+        "physical_call_return": 33619970,
+        "original_call_return": 5812728
+      },
+      {
+        "tag": 133,
+        "site": 5812731,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 33685504,
+        "trampoline_size": 15,
+        "remainder": 33685514,
+        "before_stub": 2004049060,
+        "after_stub": 2004049108,
+        "physical_call_return": 33685509,
+        "original_call_return": 5812736
+      },
+      {
+        "tag": 134,
+        "site": 5812742,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 33751040,
+        "trampoline_size": 16,
+        "remainder": 33751051,
+        "before_stub": 2004049156,
+        "after_stub": 2004049204,
+        "physical_call_return": 33751046,
+        "original_call_return": 5812748
+      },
+      {
+        "tag": 135,
+        "site": 5812760,
+        "length": 9,
+        "call_length": 2,
+        "trampoline": 33816576,
+        "trampoline_size": 19,
+        "remainder": 33816583,
+        "before_stub": 2004049252,
+        "after_stub": 2004049300,
+        "physical_call_return": 33816578,
+        "original_call_return": 5812762
+      },
+      {
+        "tag": 136,
+        "site": 5812884,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 33882112,
+        "trampoline_size": 16,
+        "remainder": 33882123,
+        "before_stub": 2004049348,
+        "after_stub": 2004049396,
+        "physical_call_return": 33882118,
+        "original_call_return": 5812890
+      },
+      {
+        "tag": 137,
+        "site": 5812912,
+        "length": 9,
+        "call_length": 2,
+        "trampoline": 33947648,
+        "trampoline_size": 19,
+        "remainder": 33947655,
+        "before_stub": 2004049444,
+        "after_stub": 2004049492,
+        "physical_call_return": 33947650,
+        "original_call_return": 5812914
+      },
+      {
+        "tag": 138,
+        "site": 5812929,
+        "length": 9,
+        "call_length": 2,
+        "trampoline": 34013184,
+        "trampoline_size": 19,
+        "remainder": 34013191,
+        "before_stub": 2004049540,
+        "after_stub": 2004049588,
+        "physical_call_return": 34013186,
+        "original_call_return": 5812931
+      },
+      {
+        "tag": 139,
+        "site": 5812946,
+        "length": 9,
+        "call_length": 2,
+        "trampoline": 34078720,
+        "trampoline_size": 19,
+        "remainder": 34078727,
+        "before_stub": 2004049636,
+        "after_stub": 2004049684,
+        "physical_call_return": 34078722,
+        "original_call_return": 5812948
+      },
+      {
+        "tag": 140,
+        "site": 5812963,
+        "length": 9,
+        "call_length": 2,
+        "trampoline": 34144256,
+        "trampoline_size": 19,
+        "remainder": 34144263,
+        "before_stub": 2004049732,
+        "after_stub": 2004049780,
+        "physical_call_return": 34144258,
+        "original_call_return": 5812965
+      },
+      {
+        "tag": 141,
+        "site": 5812980,
+        "length": 9,
+        "call_length": 2,
+        "trampoline": 34209792,
+        "trampoline_size": 19,
+        "remainder": 34209799,
+        "before_stub": 2004049828,
+        "after_stub": 2004049876,
+        "physical_call_return": 34209794,
+        "original_call_return": 5812982
+      },
+      {
+        "tag": 142,
+        "site": 5812997,
+        "length": 9,
+        "call_length": 2,
+        "trampoline": 34275328,
+        "trampoline_size": 19,
+        "remainder": 34275335,
+        "before_stub": 2004049924,
+        "after_stub": 2004049972,
+        "physical_call_return": 34275330,
+        "original_call_return": 5812999
+      },
+      {
+        "tag": 143,
+        "site": 5813014,
+        "length": 9,
+        "call_length": 2,
+        "trampoline": 34340864,
+        "trampoline_size": 19,
+        "remainder": 34340871,
+        "before_stub": 2004050020,
+        "after_stub": 2004050068,
+        "physical_call_return": 34340866,
+        "original_call_return": 5813016
+      },
+      {
+        "tag": 144,
+        "site": 5813248,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 34406400,
+        "trampoline_size": 16,
+        "remainder": 34406411,
+        "before_stub": 2004050116,
+        "after_stub": 2004050164,
+        "physical_call_return": 34406406,
+        "original_call_return": 5813254
+      },
+      {
+        "tag": 145,
+        "site": 5813261,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 34471936,
+        "trampoline_size": 15,
+        "remainder": 34471944,
+        "before_stub": 2004050212,
+        "after_stub": 2004050260,
+        "physical_call_return": 34471939,
+        "original_call_return": 5813264
+      },
+      {
+        "tag": 146,
+        "site": 5813283,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 34537472,
+        "trampoline_size": 15,
+        "remainder": 34537480,
+        "before_stub": 2004050308,
+        "after_stub": 2004050356,
+        "physical_call_return": 34537475,
+        "original_call_return": 5813286
+      },
+      {
+        "tag": 147,
+        "site": 5813308,
+        "length": 6,
+        "call_length": 3,
+        "trampoline": 34603008,
+        "trampoline_size": 16,
+        "remainder": 34603016,
+        "before_stub": 2004050404,
+        "after_stub": 2004050452,
+        "physical_call_return": 34603011,
+        "original_call_return": 5813311
+      },
+      {
+        "tag": 148,
+        "site": 5813917,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 34668544,
+        "trampoline_size": 19,
+        "remainder": 34668552,
+        "before_stub": 2004050500,
+        "after_stub": 2004050548,
+        "physical_call_return": 34668547,
+        "original_call_return": 5813920
+      },
+      {
+        "tag": 149,
+        "site": 5813931,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 34734080,
+        "trampoline_size": 15,
+        "remainder": 34734090,
+        "before_stub": 2004050596,
+        "after_stub": 2004050644,
+        "physical_call_return": 34734085,
+        "original_call_return": 5813936
+      },
+      {
+        "tag": 150,
+        "site": 5813974,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 34799616,
+        "trampoline_size": 15,
+        "remainder": 34799624,
+        "before_stub": 2004050692,
+        "after_stub": 2004050740,
+        "physical_call_return": 34799619,
+        "original_call_return": 5813977
+      },
+      {
+        "tag": 151,
+        "site": 5814018,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 34865152,
+        "trampoline_size": 13,
+        "remainder": 34865160,
+        "before_stub": 2004050788,
+        "after_stub": 2004050836,
+        "physical_call_return": 34865155,
+        "original_call_return": 5814021
+      },
+      {
+        "tag": 152,
+        "site": 5814031,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 34930688,
+        "trampoline_size": 15,
+        "remainder": 34930698,
+        "before_stub": 2004050884,
+        "after_stub": 2004050932,
+        "physical_call_return": 34930693,
+        "original_call_return": 5814036
+      },
+      {
+        "tag": 153,
+        "site": 5814045,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 34996224,
+        "trampoline_size": 12,
+        "remainder": 34996231,
+        "before_stub": 2004050980,
+        "after_stub": 2004051028,
+        "physical_call_return": 34996226,
+        "original_call_return": 5814047
+      },
+      {
+        "tag": 154,
+        "site": 5814069,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 35061760,
+        "trampoline_size": 13,
+        "remainder": 35061768,
+        "before_stub": 2004051076,
+        "after_stub": 2004051124,
+        "physical_call_return": 35061763,
+        "original_call_return": 5814072
+      },
+      {
+        "tag": 155,
+        "site": 5814106,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 35127296,
+        "trampoline_size": 15,
+        "remainder": 35127306,
+        "before_stub": 2004051172,
+        "after_stub": 2004051220,
+        "physical_call_return": 35127301,
+        "original_call_return": 5814111
+      },
+      {
+        "tag": 156,
+        "site": 5814141,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 35192832,
+        "trampoline_size": 18,
+        "remainder": 35192840,
+        "before_stub": 2004051268,
+        "after_stub": 2004051316,
+        "physical_call_return": 35192835,
+        "original_call_return": 5814144
+      },
+      {
+        "tag": 157,
+        "site": 5814167,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 35258368,
+        "trampoline_size": 19,
+        "remainder": 35258376,
+        "before_stub": 2004051364,
+        "after_stub": 2004051412,
+        "physical_call_return": 35258371,
+        "original_call_return": 5814170
+      },
+      {
+        "tag": 158,
+        "site": 5814184,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 35323904,
+        "trampoline_size": 18,
+        "remainder": 35323912,
+        "before_stub": 2004051460,
+        "after_stub": 2004051508,
+        "physical_call_return": 35323907,
+        "original_call_return": 5814187
+      },
+      {
+        "tag": 159,
+        "site": 5814195,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 35389440,
+        "trampoline_size": 18,
+        "remainder": 35389448,
+        "before_stub": 2004051556,
+        "after_stub": 2004051604,
+        "physical_call_return": 35389443,
+        "original_call_return": 5814198
+      },
+      {
+        "tag": 160,
+        "site": 5814206,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 35454976,
+        "trampoline_size": 19,
+        "remainder": 35454984,
+        "before_stub": 2004051652,
+        "after_stub": 2004051700,
+        "physical_call_return": 35454979,
+        "original_call_return": 5814209
+      },
+      {
+        "tag": 161,
+        "site": 5814239,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 35520512,
+        "trampoline_size": 16,
+        "remainder": 35520523,
+        "before_stub": 2004051748,
+        "after_stub": 2004051796,
+        "physical_call_return": 35520518,
+        "original_call_return": 5814245
+      },
+      {
+        "tag": 162,
+        "site": 5814278,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 35586048,
+        "trampoline_size": 16,
+        "remainder": 35586059,
+        "before_stub": 2004051844,
+        "after_stub": 2004051892,
+        "physical_call_return": 35586054,
+        "original_call_return": 5814284
+      },
+      {
+        "tag": 163,
+        "site": 5814637,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 35651584,
+        "trampoline_size": 16,
+        "remainder": 35651595,
+        "before_stub": 2004051940,
+        "after_stub": 2004051988,
+        "physical_call_return": 35651590,
+        "original_call_return": 5814643
+      },
+      {
+        "tag": 164,
+        "site": 5814657,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 35717120,
+        "trampoline_size": 16,
+        "remainder": 35717131,
+        "before_stub": 2004052036,
+        "after_stub": 2004052084,
+        "physical_call_return": 35717126,
+        "original_call_return": 5814663
+      },
+      {
+        "tag": 165,
+        "site": 5815050,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 35782656,
+        "trampoline_size": 15,
+        "remainder": 35782664,
+        "before_stub": 2004052132,
+        "after_stub": 2004052180,
+        "physical_call_return": 35782659,
+        "original_call_return": 5815053
+      },
+      {
+        "tag": 166,
+        "site": 5815065,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 35848192,
+        "trampoline_size": 15,
+        "remainder": 35848202,
+        "before_stub": 2004052228,
+        "after_stub": 2004052276,
+        "physical_call_return": 35848197,
+        "original_call_return": 5815070
+      },
+      {
+        "tag": 167,
+        "site": 5815088,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 35913728,
+        "trampoline_size": 15,
+        "remainder": 35913736,
+        "before_stub": 2004052324,
+        "after_stub": 2004052372,
+        "physical_call_return": 35913731,
+        "original_call_return": 5815091
+      },
+      {
+        "tag": 168,
+        "site": 5815131,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 35979264,
+        "trampoline_size": 13,
+        "remainder": 35979272,
+        "before_stub": 2004052420,
+        "after_stub": 2004052468,
+        "physical_call_return": 35979267,
+        "original_call_return": 5815134
+      },
+      {
+        "tag": 169,
+        "site": 5815144,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 36044800,
+        "trampoline_size": 15,
+        "remainder": 36044810,
+        "before_stub": 2004052516,
+        "after_stub": 2004052564,
+        "physical_call_return": 36044805,
+        "original_call_return": 5815149
+      },
+      {
+        "tag": 170,
+        "site": 5815165,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 36110336,
+        "trampoline_size": 12,
+        "remainder": 36110343,
+        "before_stub": 2004052612,
+        "after_stub": 2004052660,
+        "physical_call_return": 36110338,
+        "original_call_return": 5815167
+      },
+      {
+        "tag": 171,
+        "site": 5815383,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 36175872,
+        "trampoline_size": 15,
+        "remainder": 36175880,
+        "before_stub": 2004052708,
+        "after_stub": 2004052756,
+        "physical_call_return": 36175875,
+        "original_call_return": 5815386
+      },
+      {
+        "tag": 172,
+        "site": 5815394,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 36241408,
+        "trampoline_size": 15,
+        "remainder": 36241418,
+        "before_stub": 2004052804,
+        "after_stub": 2004052852,
+        "physical_call_return": 36241413,
+        "original_call_return": 5815399
+      },
+      {
+        "tag": 173,
+        "site": 5815428,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 36306944,
+        "trampoline_size": 15,
+        "remainder": 36306952,
+        "before_stub": 2004052900,
+        "after_stub": 2004052948,
+        "physical_call_return": 36306947,
+        "original_call_return": 5815431
+      },
+      {
+        "tag": 174,
+        "site": 5815473,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 36372480,
+        "trampoline_size": 13,
+        "remainder": 36372488,
+        "before_stub": 2004052996,
+        "after_stub": 2004053044,
+        "physical_call_return": 36372483,
+        "original_call_return": 5815476
+      },
+      {
+        "tag": 175,
+        "site": 5815486,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 36438016,
+        "trampoline_size": 15,
+        "remainder": 36438026,
+        "before_stub": 2004053092,
+        "after_stub": 2004053140,
+        "physical_call_return": 36438021,
+        "original_call_return": 5815491
+      },
+      {
+        "tag": 176,
+        "site": 5815501,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 36503552,
+        "trampoline_size": 12,
+        "remainder": 36503559,
+        "before_stub": 2004053188,
+        "after_stub": 2004053236,
+        "physical_call_return": 36503554,
+        "original_call_return": 5815503
+      },
+      {
+        "tag": 177,
+        "site": 5815511,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 36569088,
+        "trampoline_size": 15,
+        "remainder": 36569098,
+        "before_stub": 2004053284,
+        "after_stub": 2004053332,
+        "physical_call_return": 36569093,
+        "original_call_return": 5815516
+      },
+      {
+        "tag": 178,
+        "site": 5815538,
+        "length": 9,
+        "call_length": 3,
+        "trampoline": 36634624,
+        "trampoline_size": 19,
+        "remainder": 36634632,
+        "before_stub": 2004053380,
+        "after_stub": 2004053428,
+        "physical_call_return": 36634627,
+        "original_call_return": 5815541
+      },
+      {
+        "tag": 179,
+        "site": 5815547,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 36700160,
+        "trampoline_size": 15,
+        "remainder": 36700170,
+        "before_stub": 2004053476,
+        "after_stub": 2004053524,
+        "physical_call_return": 36700165,
+        "original_call_return": 5815552
+      },
+      {
+        "tag": 180,
+        "site": 5816269,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 36765696,
+        "trampoline_size": 17,
+        "remainder": 36765704,
+        "before_stub": 2004053572,
+        "after_stub": 2004053620,
+        "physical_call_return": 36765699,
+        "original_call_return": 5816272
+      },
+      {
+        "tag": 181,
+        "site": 5816290,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 36831232,
+        "trampoline_size": 16,
+        "remainder": 36831243,
+        "before_stub": 2004053668,
+        "after_stub": 2004053716,
+        "physical_call_return": 36831238,
+        "original_call_return": 5816296
+      },
+      {
+        "tag": 182,
+        "site": 5816378,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 36896768,
+        "trampoline_size": 18,
+        "remainder": 36896776,
+        "before_stub": 2004053764,
+        "after_stub": 2004053812,
+        "physical_call_return": 36896771,
+        "original_call_return": 5816381
+      },
+      {
+        "tag": 183,
+        "site": 5816410,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 36962304,
+        "trampoline_size": 13,
+        "remainder": 36962312,
+        "before_stub": 2004053860,
+        "after_stub": 2004053908,
+        "physical_call_return": 36962307,
+        "original_call_return": 5816413
+      },
+      {
+        "tag": 184,
+        "site": 5816429,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 37027840,
+        "trampoline_size": 15,
+        "remainder": 37027850,
+        "before_stub": 2004053956,
+        "after_stub": 2004054004,
+        "physical_call_return": 37027845,
+        "original_call_return": 5816434
+      },
+      {
+        "tag": 185,
+        "site": 5816452,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 37093376,
+        "trampoline_size": 15,
+        "remainder": 37093384,
+        "before_stub": 2004054052,
+        "after_stub": 2004054100,
+        "physical_call_return": 37093379,
+        "original_call_return": 5816455
+      },
+      {
+        "tag": 186,
+        "site": 5816494,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 37158912,
+        "trampoline_size": 13,
+        "remainder": 37158920,
+        "before_stub": 2004054148,
+        "after_stub": 2004054196,
+        "physical_call_return": 37158915,
+        "original_call_return": 5816497
+      },
+      {
+        "tag": 187,
+        "site": 5816507,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 37224448,
+        "trampoline_size": 15,
+        "remainder": 37224458,
+        "before_stub": 2004054244,
+        "after_stub": 2004054292,
+        "physical_call_return": 37224453,
+        "original_call_return": 5816512
+      },
+      {
+        "tag": 188,
+        "site": 5816521,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 37289984,
+        "trampoline_size": 12,
+        "remainder": 37289991,
+        "before_stub": 2004054340,
+        "after_stub": 2004054388,
+        "physical_call_return": 37289986,
+        "original_call_return": 5816523
+      },
+      {
+        "tag": 189,
+        "site": 5816537,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 37355520,
+        "trampoline_size": 15,
+        "remainder": 37355528,
+        "before_stub": 2004054436,
+        "after_stub": 2004054484,
+        "physical_call_return": 37355523,
+        "original_call_return": 5816540
+      },
+      {
+        "tag": 190,
+        "site": 5816583,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 37421056,
+        "trampoline_size": 13,
+        "remainder": 37421064,
+        "before_stub": 2004054532,
+        "after_stub": 2004054580,
+        "physical_call_return": 37421059,
+        "original_call_return": 5816586
+      },
+      {
+        "tag": 191,
+        "site": 5816596,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 37486592,
+        "trampoline_size": 15,
+        "remainder": 37486602,
+        "before_stub": 2004054628,
+        "after_stub": 2004054676,
+        "physical_call_return": 37486597,
+        "original_call_return": 5816601
+      },
+      {
+        "tag": 192,
+        "site": 5816617,
+        "length": 7,
+        "call_length": 2,
+        "trampoline": 37552128,
+        "trampoline_size": 17,
+        "remainder": 37552135,
+        "before_stub": 2004054724,
+        "after_stub": 2004054772,
+        "physical_call_return": 37552130,
+        "original_call_return": 5816619
+      },
+      {
+        "tag": 193,
+        "site": 5816769,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 37617664,
+        "trampoline_size": 17,
+        "remainder": 37617672,
+        "before_stub": 2004054820,
+        "after_stub": 2004054868,
+        "physical_call_return": 37617667,
+        "original_call_return": 5816772
+      },
+      {
+        "tag": 194,
+        "site": 5816790,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 37683200,
+        "trampoline_size": 16,
+        "remainder": 37683211,
+        "before_stub": 2004054916,
+        "after_stub": 2004054964,
+        "physical_call_return": 37683206,
+        "original_call_return": 5816796
+      },
+      {
+        "tag": 195,
+        "site": 5816889,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 37748736,
+        "trampoline_size": 18,
+        "remainder": 37748744,
+        "before_stub": 2004055012,
+        "after_stub": 2004055060,
+        "physical_call_return": 37748739,
+        "original_call_return": 5816892
+      },
+      {
+        "tag": 196,
+        "site": 5816914,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 37814272,
+        "trampoline_size": 18,
+        "remainder": 37814280,
+        "before_stub": 2004055108,
+        "after_stub": 2004055156,
+        "physical_call_return": 37814275,
+        "original_call_return": 5816917
+      },
+      {
+        "tag": 197,
+        "site": 5816950,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 37879808,
+        "trampoline_size": 13,
+        "remainder": 37879816,
+        "before_stub": 2004055204,
+        "after_stub": 2004055252,
+        "physical_call_return": 37879811,
+        "original_call_return": 5816953
+      },
+      {
+        "tag": 198,
+        "site": 5816969,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 37945344,
+        "trampoline_size": 15,
+        "remainder": 37945354,
+        "before_stub": 2004055300,
+        "after_stub": 2004055348,
+        "physical_call_return": 37945349,
+        "original_call_return": 5816974
+      },
+      {
+        "tag": 199,
+        "site": 5816996,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 38010880,
+        "trampoline_size": 15,
+        "remainder": 38010888,
+        "before_stub": 2004055396,
+        "after_stub": 2004055444,
+        "physical_call_return": 38010883,
+        "original_call_return": 5816999
+      },
+      {
+        "tag": 200,
+        "site": 5817039,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 38076416,
+        "trampoline_size": 13,
+        "remainder": 38076424,
+        "before_stub": 2004055492,
+        "after_stub": 2004055540,
+        "physical_call_return": 38076419,
+        "original_call_return": 5817042
+      },
+      {
+        "tag": 201,
+        "site": 5817052,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 38141952,
+        "trampoline_size": 15,
+        "remainder": 38141962,
+        "before_stub": 2004055588,
+        "after_stub": 2004055636,
+        "physical_call_return": 38141957,
+        "original_call_return": 5817057
+      },
+      {
+        "tag": 202,
+        "site": 5817067,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 38207488,
+        "trampoline_size": 12,
+        "remainder": 38207495,
+        "before_stub": 2004055684,
+        "after_stub": 2004055732,
+        "physical_call_return": 38207490,
+        "original_call_return": 5817069
+      },
+      {
+        "tag": 203,
+        "site": 5817083,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 38273024,
+        "trampoline_size": 15,
+        "remainder": 38273032,
+        "before_stub": 2004055780,
+        "after_stub": 2004055828,
+        "physical_call_return": 38273027,
+        "original_call_return": 5817086
+      },
+      {
+        "tag": 204,
+        "site": 5817130,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 38338560,
+        "trampoline_size": 13,
+        "remainder": 38338568,
+        "before_stub": 2004055876,
+        "after_stub": 2004055924,
+        "physical_call_return": 38338563,
+        "original_call_return": 5817133
+      },
+      {
+        "tag": 205,
+        "site": 5817143,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 38404096,
+        "trampoline_size": 15,
+        "remainder": 38404106,
+        "before_stub": 2004055972,
+        "after_stub": 2004056020,
+        "physical_call_return": 38404101,
+        "original_call_return": 5817148
+      },
+      {
+        "tag": 206,
+        "site": 5817165,
+        "length": 7,
+        "call_length": 2,
+        "trampoline": 38469632,
+        "trampoline_size": 17,
+        "remainder": 38469639,
+        "before_stub": 2004056068,
+        "after_stub": 2004056116,
+        "physical_call_return": 38469634,
+        "original_call_return": 5817167
+      },
+      {
+        "tag": 207,
+        "site": 5817312,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 38535168,
+        "trampoline_size": 17,
+        "remainder": 38535176,
+        "before_stub": 2004056164,
+        "after_stub": 2004056212,
+        "physical_call_return": 38535171,
+        "original_call_return": 5817315
+      },
+      {
+        "tag": 208,
+        "site": 5817333,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 38600704,
+        "trampoline_size": 16,
+        "remainder": 38600715,
+        "before_stub": 2004056260,
+        "after_stub": 2004056308,
+        "physical_call_return": 38600710,
+        "original_call_return": 5817339
+      },
+      {
+        "tag": 209,
+        "site": 5817425,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 38666240,
+        "trampoline_size": 15,
+        "remainder": 38666248,
+        "before_stub": 2004056356,
+        "after_stub": 2004056404,
+        "physical_call_return": 38666243,
+        "original_call_return": 5817428
+      },
+      {
+        "tag": 210,
+        "site": 5817477,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 38731776,
+        "trampoline_size": 13,
+        "remainder": 38731784,
+        "before_stub": 2004056452,
+        "after_stub": 2004056500,
+        "physical_call_return": 38731779,
+        "original_call_return": 5817480
+      },
+      {
+        "tag": 211,
+        "site": 5817631,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 38797312,
+        "trampoline_size": 17,
+        "remainder": 38797320,
+        "before_stub": 2004056548,
+        "after_stub": 2004056596,
+        "physical_call_return": 38797315,
+        "original_call_return": 5817634
+      },
+      {
+        "tag": 212,
+        "site": 5817652,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 38862848,
+        "trampoline_size": 16,
+        "remainder": 38862859,
+        "before_stub": 2004056644,
+        "after_stub": 2004056692,
+        "physical_call_return": 38862854,
+        "original_call_return": 5817658
+      },
+      {
+        "tag": 213,
+        "site": 5817751,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 38928384,
+        "trampoline_size": 18,
+        "remainder": 38928392,
+        "before_stub": 2004056740,
+        "after_stub": 2004056788,
+        "physical_call_return": 38928387,
+        "original_call_return": 5817754
+      },
+      {
+        "tag": 214,
+        "site": 5817787,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 38993920,
+        "trampoline_size": 13,
+        "remainder": 38993928,
+        "before_stub": 2004056836,
+        "after_stub": 2004056884,
+        "physical_call_return": 38993923,
+        "original_call_return": 5817790
+      },
+      {
+        "tag": 215,
+        "site": 5817806,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 39059456,
+        "trampoline_size": 15,
+        "remainder": 39059466,
+        "before_stub": 2004056932,
+        "after_stub": 2004056980,
+        "physical_call_return": 39059461,
+        "original_call_return": 5817811
+      },
+      {
+        "tag": 216,
+        "site": 5817829,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 39124992,
+        "trampoline_size": 15,
+        "remainder": 39125000,
+        "before_stub": 2004057028,
+        "after_stub": 2004057076,
+        "physical_call_return": 39124995,
+        "original_call_return": 5817832
+      },
+      {
+        "tag": 217,
+        "site": 5817872,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 39190528,
+        "trampoline_size": 13,
+        "remainder": 39190536,
+        "before_stub": 2004057124,
+        "after_stub": 2004057172,
+        "physical_call_return": 39190531,
+        "original_call_return": 5817875
+      },
+      {
+        "tag": 218,
+        "site": 5817885,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 39256064,
+        "trampoline_size": 15,
+        "remainder": 39256074,
+        "before_stub": 2004057220,
+        "after_stub": 2004057268,
+        "physical_call_return": 39256069,
+        "original_call_return": 5817890
+      },
+      {
+        "tag": 219,
+        "site": 5817900,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 39321600,
+        "trampoline_size": 12,
+        "remainder": 39321607,
+        "before_stub": 2004057316,
+        "after_stub": 2004057364,
+        "physical_call_return": 39321602,
+        "original_call_return": 5817902
+      },
+      {
+        "tag": 220,
+        "site": 5817916,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 39387136,
+        "trampoline_size": 15,
+        "remainder": 39387144,
+        "before_stub": 2004057412,
+        "after_stub": 2004057460,
+        "physical_call_return": 39387139,
+        "original_call_return": 5817919
+      },
+      {
+        "tag": 221,
+        "site": 5817963,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 39452672,
+        "trampoline_size": 13,
+        "remainder": 39452680,
+        "before_stub": 2004057508,
+        "after_stub": 2004057556,
+        "physical_call_return": 39452675,
+        "original_call_return": 5817966
+      },
+      {
+        "tag": 222,
+        "site": 5817976,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 39518208,
+        "trampoline_size": 15,
+        "remainder": 39518218,
+        "before_stub": 2004057604,
+        "after_stub": 2004057652,
+        "physical_call_return": 39518213,
+        "original_call_return": 5817981
+      },
+      {
+        "tag": 223,
+        "site": 5817998,
+        "length": 7,
+        "call_length": 2,
+        "trampoline": 39583744,
+        "trampoline_size": 17,
+        "remainder": 39583751,
+        "before_stub": 2004057700,
+        "after_stub": 2004057748,
+        "physical_call_return": 39583746,
+        "original_call_return": 5818000
+      },
+      {
+        "tag": 224,
+        "site": 5818083,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 39649280,
+        "trampoline_size": 17,
+        "remainder": 39649288,
+        "before_stub": 2004057796,
+        "after_stub": 2004057844,
+        "physical_call_return": 39649283,
+        "original_call_return": 5818086
+      },
+      {
+        "tag": 225,
+        "site": 5818104,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 39714816,
+        "trampoline_size": 16,
+        "remainder": 39714827,
+        "before_stub": 2004057892,
+        "after_stub": 2004057940,
+        "physical_call_return": 39714822,
+        "original_call_return": 5818110
+      },
+      {
+        "tag": 226,
+        "site": 5818285,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 39780352,
+        "trampoline_size": 15,
+        "remainder": 39780360,
+        "before_stub": 2004057988,
+        "after_stub": 2004058036,
+        "physical_call_return": 39780355,
+        "original_call_return": 5818288
+      },
+      {
+        "tag": 227,
+        "site": 5818313,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 39845888,
+        "trampoline_size": 15,
+        "remainder": 39845896,
+        "before_stub": 2004058084,
+        "after_stub": 2004058132,
+        "physical_call_return": 39845891,
+        "original_call_return": 5818316
+      },
+      {
+        "tag": 228,
+        "site": 5818356,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 39911424,
+        "trampoline_size": 13,
+        "remainder": 39911432,
+        "before_stub": 2004058180,
+        "after_stub": 2004058228,
+        "physical_call_return": 39911427,
+        "original_call_return": 5818359
+      },
+      {
+        "tag": 229,
+        "site": 5818369,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 39976960,
+        "trampoline_size": 15,
+        "remainder": 39976970,
+        "before_stub": 2004058276,
+        "after_stub": 2004058324,
+        "physical_call_return": 39976965,
+        "original_call_return": 5818374
+      },
+      {
+        "tag": 230,
+        "site": 5818384,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 40042496,
+        "trampoline_size": 12,
+        "remainder": 40042503,
+        "before_stub": 2004058372,
+        "after_stub": 2004058420,
+        "physical_call_return": 40042498,
+        "original_call_return": 5818386
+      },
+      {
+        "tag": 231,
+        "site": 5818400,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 40108032,
+        "trampoline_size": 15,
+        "remainder": 40108040,
+        "before_stub": 2004058468,
+        "after_stub": 2004058516,
+        "physical_call_return": 40108035,
+        "original_call_return": 5818403
+      },
+      {
+        "tag": 232,
+        "site": 5818447,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 40173568,
+        "trampoline_size": 13,
+        "remainder": 40173576,
+        "before_stub": 2004058564,
+        "after_stub": 2004058612,
+        "physical_call_return": 40173571,
+        "original_call_return": 5818450
+      },
+      {
+        "tag": 233,
+        "site": 5818460,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 40239104,
+        "trampoline_size": 15,
+        "remainder": 40239114,
+        "before_stub": 2004058660,
+        "after_stub": 2004058708,
+        "physical_call_return": 40239109,
+        "original_call_return": 5818465
+      },
+      {
+        "tag": 234,
+        "site": 5818482,
+        "length": 7,
+        "call_length": 2,
+        "trampoline": 40304640,
+        "trampoline_size": 17,
+        "remainder": 40304647,
+        "before_stub": 2004058756,
+        "after_stub": 2004058804,
+        "physical_call_return": 40304642,
+        "original_call_return": 5818484
+      },
+      {
+        "tag": 235,
+        "site": 5818637,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 40370176,
+        "trampoline_size": 17,
+        "remainder": 40370184,
+        "before_stub": 2004058852,
+        "after_stub": 2004058900,
+        "physical_call_return": 40370179,
+        "original_call_return": 5818640
+      },
+      {
+        "tag": 236,
+        "site": 5818658,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 40435712,
+        "trampoline_size": 16,
+        "remainder": 40435723,
+        "before_stub": 2004058948,
+        "after_stub": 2004058996,
+        "physical_call_return": 40435718,
+        "original_call_return": 5818664
+      },
+      {
+        "tag": 237,
+        "site": 5818760,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 40501248,
+        "trampoline_size": 18,
+        "remainder": 40501256,
+        "before_stub": 2004059044,
+        "after_stub": 2004059092,
+        "physical_call_return": 40501251,
+        "original_call_return": 5818763
+      },
+      {
+        "tag": 238,
+        "site": 5818796,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 40566784,
+        "trampoline_size": 13,
+        "remainder": 40566792,
+        "before_stub": 2004059140,
+        "after_stub": 2004059188,
+        "physical_call_return": 40566787,
+        "original_call_return": 5818799
+      },
+      {
+        "tag": 239,
+        "site": 5818815,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 40632320,
+        "trampoline_size": 15,
+        "remainder": 40632330,
+        "before_stub": 2004059236,
+        "after_stub": 2004059284,
+        "physical_call_return": 40632325,
+        "original_call_return": 5818820
+      },
+      {
+        "tag": 240,
+        "site": 5818838,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 40697856,
+        "trampoline_size": 15,
+        "remainder": 40697864,
+        "before_stub": 2004059332,
+        "after_stub": 2004059380,
+        "physical_call_return": 40697859,
+        "original_call_return": 5818841
+      },
+      {
+        "tag": 241,
+        "site": 5818881,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 40763392,
+        "trampoline_size": 13,
+        "remainder": 40763400,
+        "before_stub": 2004059428,
+        "after_stub": 2004059476,
+        "physical_call_return": 40763395,
+        "original_call_return": 5818884
+      },
+      {
+        "tag": 242,
+        "site": 5818894,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 40828928,
+        "trampoline_size": 15,
+        "remainder": 40828938,
+        "before_stub": 2004059524,
+        "after_stub": 2004059572,
+        "physical_call_return": 40828933,
+        "original_call_return": 5818899
+      },
+      {
+        "tag": 243,
+        "site": 5818909,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 40894464,
+        "trampoline_size": 12,
+        "remainder": 40894471,
+        "before_stub": 2004059620,
+        "after_stub": 2004059668,
+        "physical_call_return": 40894466,
+        "original_call_return": 5818911
+      },
+      {
+        "tag": 244,
+        "site": 5818925,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 40960000,
+        "trampoline_size": 15,
+        "remainder": 40960008,
+        "before_stub": 2004059716,
+        "after_stub": 2004059764,
+        "physical_call_return": 40960003,
+        "original_call_return": 5818928
+      },
+      {
+        "tag": 245,
+        "site": 5818972,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 41025536,
+        "trampoline_size": 13,
+        "remainder": 41025544,
+        "before_stub": 2004059812,
+        "after_stub": 2004059860,
+        "physical_call_return": 41025539,
+        "original_call_return": 5818975
+      },
+      {
+        "tag": 246,
+        "site": 5818985,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 41091072,
+        "trampoline_size": 15,
+        "remainder": 41091082,
+        "before_stub": 2004059908,
+        "after_stub": 2004059956,
+        "physical_call_return": 41091077,
+        "original_call_return": 5818990
+      },
+      {
+        "tag": 247,
+        "site": 5819007,
+        "length": 7,
+        "call_length": 2,
+        "trampoline": 41156608,
+        "trampoline_size": 17,
+        "remainder": 41156615,
+        "before_stub": 2004060004,
+        "after_stub": 2004060052,
+        "physical_call_return": 41156610,
+        "original_call_return": 5819009
+      },
+      {
+        "tag": 248,
+        "site": 5819138,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 41222144,
+        "trampoline_size": 17,
+        "remainder": 41222152,
+        "before_stub": 2004060100,
+        "after_stub": 2004060148,
+        "physical_call_return": 41222147,
+        "original_call_return": 5819141
+      },
+      {
+        "tag": 249,
+        "site": 5819159,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 41287680,
+        "trampoline_size": 16,
+        "remainder": 41287691,
+        "before_stub": 2004060196,
+        "after_stub": 2004060244,
+        "physical_call_return": 41287686,
+        "original_call_return": 5819165
+      },
+      {
+        "tag": 250,
+        "site": 5819259,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 41353216,
+        "trampoline_size": 15,
+        "remainder": 41353224,
+        "before_stub": 2004060292,
+        "after_stub": 2004060340,
+        "physical_call_return": 41353219,
+        "original_call_return": 5819262
+      },
+      {
+        "tag": 251,
+        "site": 5819311,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 41418752,
+        "trampoline_size": 15,
+        "remainder": 41418760,
+        "before_stub": 2004060388,
+        "after_stub": 2004060436,
+        "physical_call_return": 41418755,
+        "original_call_return": 5819314
+      },
+      {
+        "tag": 252,
+        "site": 5819393,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 41484288,
+        "trampoline_size": 17,
+        "remainder": 41484296,
+        "before_stub": 2004060484,
+        "after_stub": 2004060532,
+        "physical_call_return": 41484291,
+        "original_call_return": 5819396
+      },
+      {
+        "tag": 253,
+        "site": 5819414,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 41549824,
+        "trampoline_size": 16,
+        "remainder": 41549835,
+        "before_stub": 2004060580,
+        "after_stub": 2004060628,
+        "physical_call_return": 41549830,
+        "original_call_return": 5819420
+      },
+      {
+        "tag": 254,
+        "site": 5819488,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 41615360,
+        "trampoline_size": 15,
+        "remainder": 41615368,
+        "before_stub": 2004060676,
+        "after_stub": 2004060724,
+        "physical_call_return": 41615363,
+        "original_call_return": 5819491
+      },
+      {
+        "tag": 255,
+        "site": 5819507,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 41680896,
+        "trampoline_size": 15,
+        "remainder": 41680906,
+        "before_stub": 2004060772,
+        "after_stub": 2004060820,
+        "physical_call_return": 41680901,
+        "original_call_return": 5819512
+      },
+      {
+        "tag": 256,
+        "site": 5819530,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 41746432,
+        "trampoline_size": 15,
+        "remainder": 41746440,
+        "before_stub": 2004060868,
+        "after_stub": 2004060916,
+        "physical_call_return": 41746435,
+        "original_call_return": 5819533
+      },
+      {
+        "tag": 257,
+        "site": 5819573,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 41811968,
+        "trampoline_size": 13,
+        "remainder": 41811976,
+        "before_stub": 2004060964,
+        "after_stub": 2004061012,
+        "physical_call_return": 41811971,
+        "original_call_return": 5819576
+      },
+      {
+        "tag": 258,
+        "site": 5819586,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 41877504,
+        "trampoline_size": 15,
+        "remainder": 41877514,
+        "before_stub": 2004061060,
+        "after_stub": 2004061108,
+        "physical_call_return": 41877509,
+        "original_call_return": 5819591
+      },
+      {
+        "tag": 259,
+        "site": 5819601,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 41943040,
+        "trampoline_size": 12,
+        "remainder": 41943047,
+        "before_stub": 2004061156,
+        "after_stub": 2004061204,
+        "physical_call_return": 41943042,
+        "original_call_return": 5819603
+      },
+      {
+        "tag": 260,
+        "site": 5819617,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 42008576,
+        "trampoline_size": 15,
+        "remainder": 42008584,
+        "before_stub": 2004061252,
+        "after_stub": 2004061300,
+        "physical_call_return": 42008579,
+        "original_call_return": 5819620
+      },
+      {
+        "tag": 261,
+        "site": 5819664,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 42074112,
+        "trampoline_size": 13,
+        "remainder": 42074120,
+        "before_stub": 2004061348,
+        "after_stub": 2004061396,
+        "physical_call_return": 42074115,
+        "original_call_return": 5819667
+      },
+      {
+        "tag": 262,
+        "site": 5819677,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 42139648,
+        "trampoline_size": 15,
+        "remainder": 42139658,
+        "before_stub": 2004061444,
+        "after_stub": 2004061492,
+        "physical_call_return": 42139653,
+        "original_call_return": 5819682
+      },
+      {
+        "tag": 263,
+        "site": 5819699,
+        "length": 7,
+        "call_length": 2,
+        "trampoline": 42205184,
+        "trampoline_size": 17,
+        "remainder": 42205191,
+        "before_stub": 2004061540,
+        "after_stub": 2004061588,
+        "physical_call_return": 42205186,
+        "original_call_return": 5819701
+      },
+      {
+        "tag": 264,
+        "site": 5819836,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 42270720,
+        "trampoline_size": 17,
+        "remainder": 42270728,
+        "before_stub": 2004061636,
+        "after_stub": 2004061684,
+        "physical_call_return": 42270723,
+        "original_call_return": 5819839
+      },
+      {
+        "tag": 265,
+        "site": 5819857,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 42336256,
+        "trampoline_size": 16,
+        "remainder": 42336267,
+        "before_stub": 2004061732,
+        "after_stub": 2004061780,
+        "physical_call_return": 42336262,
+        "original_call_return": 5819863
+      },
+      {
+        "tag": 266,
+        "site": 5819943,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 42401792,
+        "trampoline_size": 18,
+        "remainder": 42401800,
+        "before_stub": 2004061828,
+        "after_stub": 2004061876,
+        "physical_call_return": 42401795,
+        "original_call_return": 5819946
+      },
+      {
+        "tag": 267,
+        "site": 5819962,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 42467328,
+        "trampoline_size": 13,
+        "remainder": 42467336,
+        "before_stub": 2004061924,
+        "after_stub": 2004061972,
+        "physical_call_return": 42467331,
+        "original_call_return": 5819965
+      },
+      {
+        "tag": 268,
+        "site": 5819986,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 42532864,
+        "trampoline_size": 15,
+        "remainder": 42532872,
+        "before_stub": 2004062020,
+        "after_stub": 2004062068,
+        "physical_call_return": 42532867,
+        "original_call_return": 5819989
+      },
+      {
+        "tag": 269,
+        "site": 5820029,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 42598400,
+        "trampoline_size": 13,
+        "remainder": 42598408,
+        "before_stub": 2004062116,
+        "after_stub": 2004062164,
+        "physical_call_return": 42598403,
+        "original_call_return": 5820032
+      },
+      {
+        "tag": 270,
+        "site": 5820042,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 42663936,
+        "trampoline_size": 15,
+        "remainder": 42663946,
+        "before_stub": 2004062212,
+        "after_stub": 2004062260,
+        "physical_call_return": 42663941,
+        "original_call_return": 5820047
+      },
+      {
+        "tag": 271,
+        "site": 5820057,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 42729472,
+        "trampoline_size": 12,
+        "remainder": 42729479,
+        "before_stub": 2004062308,
+        "after_stub": 2004062356,
+        "physical_call_return": 42729474,
+        "original_call_return": 5820059
+      },
+      {
+        "tag": 272,
+        "site": 5820073,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 42795008,
+        "trampoline_size": 15,
+        "remainder": 42795016,
+        "before_stub": 2004062404,
+        "after_stub": 2004062452,
+        "physical_call_return": 42795011,
+        "original_call_return": 5820076
+      },
+      {
+        "tag": 273,
+        "site": 5820120,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 42860544,
+        "trampoline_size": 13,
+        "remainder": 42860552,
+        "before_stub": 2004062500,
+        "after_stub": 2004062548,
+        "physical_call_return": 42860547,
+        "original_call_return": 5820123
+      },
+      {
+        "tag": 274,
+        "site": 5820133,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 42926080,
+        "trampoline_size": 15,
+        "remainder": 42926090,
+        "before_stub": 2004062596,
+        "after_stub": 2004062644,
+        "physical_call_return": 42926085,
+        "original_call_return": 5820138
+      },
+      {
+        "tag": 275,
+        "site": 5820155,
+        "length": 7,
+        "call_length": 2,
+        "trampoline": 42991616,
+        "trampoline_size": 17,
+        "remainder": 42991623,
+        "before_stub": 2004062692,
+        "after_stub": 2004062740,
+        "physical_call_return": 42991618,
+        "original_call_return": 5820157
+      },
+      {
+        "tag": 276,
+        "site": 5820300,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 43057152,
+        "trampoline_size": 17,
+        "remainder": 43057160,
+        "before_stub": 2004062788,
+        "after_stub": 2004062836,
+        "physical_call_return": 43057155,
+        "original_call_return": 5820303
+      },
+      {
+        "tag": 277,
+        "site": 5820321,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 43122688,
+        "trampoline_size": 16,
+        "remainder": 43122699,
+        "before_stub": 2004062884,
+        "after_stub": 2004062932,
+        "physical_call_return": 43122694,
+        "original_call_return": 5820327
+      },
+      {
+        "tag": 278,
+        "site": 5820404,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 43188224,
+        "trampoline_size": 18,
+        "remainder": 43188232,
+        "before_stub": 2004062980,
+        "after_stub": 2004063028,
+        "physical_call_return": 43188227,
+        "original_call_return": 5820407
+      },
+      {
+        "tag": 279,
+        "site": 5820421,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 43253760,
+        "trampoline_size": 13,
+        "remainder": 43253768,
+        "before_stub": 2004063076,
+        "after_stub": 2004063124,
+        "physical_call_return": 43253763,
+        "original_call_return": 5820424
+      },
+      {
+        "tag": 280,
+        "site": 5820445,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 43319296,
+        "trampoline_size": 15,
+        "remainder": 43319304,
+        "before_stub": 2004063172,
+        "after_stub": 2004063220,
+        "physical_call_return": 43319299,
+        "original_call_return": 5820448
+      },
+      {
+        "tag": 281,
+        "site": 5820488,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 43384832,
+        "trampoline_size": 13,
+        "remainder": 43384840,
+        "before_stub": 2004063268,
+        "after_stub": 2004063316,
+        "physical_call_return": 43384835,
+        "original_call_return": 5820491
+      },
+      {
+        "tag": 282,
+        "site": 5820501,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 43450368,
+        "trampoline_size": 15,
+        "remainder": 43450378,
+        "before_stub": 2004063364,
+        "after_stub": 2004063412,
+        "physical_call_return": 43450373,
+        "original_call_return": 5820506
+      },
+      {
+        "tag": 283,
+        "site": 5820516,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 43515904,
+        "trampoline_size": 12,
+        "remainder": 43515911,
+        "before_stub": 2004063460,
+        "after_stub": 2004063508,
+        "physical_call_return": 43515906,
+        "original_call_return": 5820518
+      },
+      {
+        "tag": 284,
+        "site": 5820532,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 43581440,
+        "trampoline_size": 15,
+        "remainder": 43581448,
+        "before_stub": 2004063556,
+        "after_stub": 2004063604,
+        "physical_call_return": 43581443,
+        "original_call_return": 5820535
+      },
+      {
+        "tag": 285,
+        "site": 5820579,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 43646976,
+        "trampoline_size": 13,
+        "remainder": 43646984,
+        "before_stub": 2004063652,
+        "after_stub": 2004063700,
+        "physical_call_return": 43646979,
+        "original_call_return": 5820582
+      },
+      {
+        "tag": 286,
+        "site": 5820592,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 43712512,
+        "trampoline_size": 15,
+        "remainder": 43712522,
+        "before_stub": 2004063748,
+        "after_stub": 2004063796,
+        "physical_call_return": 43712517,
+        "original_call_return": 5820597
+      },
+      {
+        "tag": 287,
+        "site": 5820614,
+        "length": 7,
+        "call_length": 2,
+        "trampoline": 43778048,
+        "trampoline_size": 17,
+        "remainder": 43778055,
+        "before_stub": 2004063844,
+        "after_stub": 2004063892,
+        "physical_call_return": 43778050,
+        "original_call_return": 5820616
+      },
+      {
+        "tag": 288,
+        "site": 5820866,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 43843584,
+        "trampoline_size": 15,
+        "remainder": 43843594,
+        "before_stub": 2004063940,
+        "after_stub": 2004063988,
+        "physical_call_return": 43843589,
+        "original_call_return": 5820871
+      },
+      {
+        "tag": 289,
+        "site": 5820884,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 43909120,
+        "trampoline_size": 15,
+        "remainder": 43909130,
+        "before_stub": 2004064036,
+        "after_stub": 2004064084,
+        "physical_call_return": 43909125,
+        "original_call_return": 5820889
+      },
+      {
+        "tag": 290,
+        "site": 5820908,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 43974656,
+        "trampoline_size": 18,
+        "remainder": 43974664,
+        "before_stub": 2004064132,
+        "after_stub": 2004064180,
+        "physical_call_return": 43974659,
+        "original_call_return": 5820911
+      },
+      {
+        "tag": 291,
+        "site": 5820922,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 44040192,
+        "trampoline_size": 15,
+        "remainder": 44040202,
+        "before_stub": 2004064228,
+        "after_stub": 2004064276,
+        "physical_call_return": 44040197,
+        "original_call_return": 5820927
+      },
+      {
+        "tag": 292,
+        "site": 5820938,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 44105728,
+        "trampoline_size": 13,
+        "remainder": 44105736,
+        "before_stub": 2004064324,
+        "after_stub": 2004064372,
+        "physical_call_return": 44105731,
+        "original_call_return": 5820941
+      },
+      {
+        "tag": 293,
+        "site": 5820958,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 44171264,
+        "trampoline_size": 15,
+        "remainder": 44171274,
+        "before_stub": 2004064420,
+        "after_stub": 2004064468,
+        "physical_call_return": 44171269,
+        "original_call_return": 5820963
+      },
+      {
+        "tag": 294,
+        "site": 5821011,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 44236800,
+        "trampoline_size": 17,
+        "remainder": 44236808,
+        "before_stub": 2004064516,
+        "after_stub": 2004064564,
+        "physical_call_return": 44236803,
+        "original_call_return": 5821014
+      },
+      {
+        "tag": 295,
+        "site": 5821027,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 44302336,
+        "trampoline_size": 15,
+        "remainder": 44302346,
+        "before_stub": 2004064612,
+        "after_stub": 2004064660,
+        "physical_call_return": 44302341,
+        "original_call_return": 5821032
+      },
+      {
+        "tag": 296,
+        "site": 5821043,
+        "length": 3,
+        "call_length": 3,
+        "trampoline": 44367872,
+        "trampoline_size": 13,
+        "remainder": 44367880,
+        "before_stub": 2004064708,
+        "after_stub": 2004064756,
+        "physical_call_return": 44367875,
+        "original_call_return": 5821046
+      },
+      {
+        "tag": 297,
+        "site": 5821090,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 44433408,
+        "trampoline_size": 15,
+        "remainder": 44433418,
+        "before_stub": 2004064804,
+        "after_stub": 2004064852,
+        "physical_call_return": 44433413,
+        "original_call_return": 5821095
+      },
+      {
+        "tag": 298,
+        "site": 5821108,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 44498944,
+        "trampoline_size": 15,
+        "remainder": 44498954,
+        "before_stub": 2004064900,
+        "after_stub": 2004064948,
+        "physical_call_return": 44498949,
+        "original_call_return": 5821113
+      },
+      {
+        "tag": 299,
+        "site": 5821128,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 44564480,
+        "trampoline_size": 17,
+        "remainder": 44564488,
+        "before_stub": 2004064996,
+        "after_stub": 2004065044,
+        "physical_call_return": 44564483,
+        "original_call_return": 5821131
+      },
+      {
+        "tag": 300,
+        "site": 5821150,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 44630016,
+        "trampoline_size": 15,
+        "remainder": 44630026,
+        "before_stub": 2004065092,
+        "after_stub": 2004065140,
+        "physical_call_return": 44630021,
+        "original_call_return": 5821155
+      },
+      {
+        "tag": 301,
+        "site": 5821166,
+        "length": 8,
+        "call_length": 3,
+        "trampoline": 44695552,
+        "trampoline_size": 18,
+        "remainder": 44695560,
+        "before_stub": 2004065188,
+        "after_stub": 2004065236,
+        "physical_call_return": 44695555,
+        "original_call_return": 5821169
+      },
+      {
+        "tag": 302,
+        "site": 5821186,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 44761088,
+        "trampoline_size": 15,
+        "remainder": 44761098,
+        "before_stub": 2004065284,
+        "after_stub": 2004065332,
+        "physical_call_return": 44761093,
+        "original_call_return": 5821191
+      },
+      {
+        "tag": 303,
+        "site": 5821220,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 44826624,
+        "trampoline_size": 15,
+        "remainder": 44826634,
+        "before_stub": 2004065380,
+        "after_stub": 2004065428,
+        "physical_call_return": 44826629,
+        "original_call_return": 5821225
+      },
+      {
+        "tag": 304,
+        "site": 5821259,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 44892160,
+        "trampoline_size": 16,
+        "remainder": 44892171,
+        "before_stub": 2004065476,
+        "after_stub": 2004065524,
+        "physical_call_return": 44892166,
+        "original_call_return": 5821265
+      },
+      {
+        "tag": 305,
+        "site": 5821279,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 44957696,
+        "trampoline_size": 16,
+        "remainder": 44957707,
+        "before_stub": 2004065572,
+        "after_stub": 2004065620,
+        "physical_call_return": 44957702,
+        "original_call_return": 5821285
+      },
+      {
+        "tag": 306,
+        "site": 5821311,
+        "length": 7,
+        "call_length": 3,
+        "trampoline": 45023232,
+        "trampoline_size": 17,
+        "remainder": 45023240,
+        "before_stub": 2004065668,
+        "after_stub": 2004065716,
+        "physical_call_return": 45023235,
+        "original_call_return": 5821314
+      },
+      {
+        "tag": 307,
+        "site": 5821333,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 45088768,
+        "trampoline_size": 15,
+        "remainder": 45088778,
+        "before_stub": 2004065764,
+        "after_stub": 2004065812,
+        "physical_call_return": 45088773,
+        "original_call_return": 5821338
+      },
+      {
+        "tag": 308,
+        "site": 5821349,
+        "length": 5,
+        "call_length": 3,
+        "trampoline": 45154304,
+        "trampoline_size": 15,
+        "remainder": 45154312,
+        "before_stub": 2004065860,
+        "after_stub": 2004065908,
+        "physical_call_return": 45154307,
+        "original_call_return": 5821352
+      },
+      {
+        "tag": 309,
+        "site": 5821411,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 45219840,
+        "trampoline_size": 15,
+        "remainder": 45219850,
+        "before_stub": 2004065956,
+        "after_stub": 2004066004,
+        "physical_call_return": 45219845,
+        "original_call_return": 5821416
+      },
+      {
+        "tag": 310,
+        "site": 5821465,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 45285376,
+        "trampoline_size": 15,
+        "remainder": 45285386,
+        "before_stub": 2004066052,
+        "after_stub": 2004066100,
+        "physical_call_return": 45285381,
+        "original_call_return": 5821470
+      },
+      {
+        "tag": 311,
+        "site": 5821481,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 45350912,
+        "trampoline_size": 15,
+        "remainder": 45350922,
+        "before_stub": 2004066148,
+        "after_stub": 2004066196,
+        "physical_call_return": 45350917,
+        "original_call_return": 5821486
+      },
+      {
+        "tag": 312,
+        "site": 5821575,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 45416448,
+        "trampoline_size": 16,
+        "remainder": 45416459,
+        "before_stub": 2004066244,
+        "after_stub": 2004066292,
+        "physical_call_return": 45416454,
+        "original_call_return": 5821581
+      },
+      {
+        "tag": 313,
+        "site": 5821588,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 45481984,
+        "trampoline_size": 16,
+        "remainder": 45481995,
+        "before_stub": 2004066340,
+        "after_stub": 2004066388,
+        "physical_call_return": 45481990,
+        "original_call_return": 5821594
+      }
+    ]
+  },
+  "physical_caller_review": {
+    "scope": "Exact prepared per-run PCs/module membership only; original/logical owners and tail flow remain pending.",
+    "callers": []
+  },
+  "process_exit": 0,
+  "inputs_unchanged": true,
+  "sources": {
+    "tools/capture-drawing-census-game.py": "c6a6697c7d620c050f62c8e51a1f48cf6620ab239548f682000662b7d3b340e0",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing-census-game-runner.py": "60678fe5c79c815337234ec8bb626efb296e01ce36da6ac672cef09ab786d9eb",
+    "tools/campaign_gameplay.py": "5ad52f29bef23bc1a90a5a8caf653a7f0d63c8a8e3f0a67790cfbe90721bc329",
+    "tools/campaign_spell.py": "be487d2172f2bad1ef80b4057c6f711af47f7adc0175e6f5b969b4a574de6b84",
+    "tools/drawing_api_cohorts.py": "fd7b573088c8c199b6981e7fa6bed5b07bff1ddda153ad4671ba49b2cf849fd5",
+    "tools/drawing_api_journal.py": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+    "tools/drawing_api_pairs.py": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+    "tools/drawing_api_details.py": "e58d042b34634ac0fc508e7dc3045c598d8a4bdd9a45a414b8485aebfdf0931f",
+    "tools/drawing_api_contracts.py": "701bf7669533eece517d19f68be7e52a3733e2cba7279a13a2b694efa7b1ed53",
+    "tools/drawing_api_bindings.py": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+    "protocols/include/mnm/drawing_api_bindings_v1.h": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+    "protocols/include/mnm/drawing_api_journal_v1.h": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+    "protocols/include/mnm/drawing_api_journal_v2.h": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+    "protocols/include/mnm/menu_v10.h": "31d7facdd6a0ec95d34f95721bd507e983a4e9ec2c0c56ee23a479196b898b17",
+    "protocols/include/mnm/menu_v11.h": "cd9a8e80df702ea904dbe15404d392896035b7ab784ceef62dee35559f27c324",
+    "protocols/include/mnm/menu_v12.h": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+    "protocols/include/mnm/menu_v2.h": "5f9db9ded1e1653411cdd542ff045070a79f8b9b3c93d05227d94edaf3da3881",
+    "protocols/include/mnm/menu_v3.h": "f0baf53e4b11455c7bef129aafad06a80984ba13ce37e877d088dd7c7ed74dd6",
+    "protocols/include/mnm/menu_v4.h": "d42e6c6af61928cd1a47efe92aca0f52b31b3ae56a2f844bbbef382354d8fa34",
+    "protocols/include/mnm/menu_v5.h": "2ed7fd0a7b6774b3f2e5158966ebb438ccad15f806c22ca1c2ab75328ece87b3",
+    "protocols/include/mnm/menu_v6.h": "4fb73cf5f6aa4890bce6b7e1e45c5b4ebeee8822241a5745cf563c43cfcd255d",
+    "protocols/include/mnm/menu_v7.h": "fc554cfcbc7fd50ebf4ad0b4046877787ccdb410eaa324b36573ed4694659c32",
+    "protocols/include/mnm/menu_v8.h": "86ca7a24180972b75b84c4ec021c62519b7c94997b260bdfe05dd80388c09f47",
+    "protocols/include/mnm/menu_v9.h": "857c603304eedb562197f433765ff1ec7bb8a0f05addd2f8cdbe7c0e684e2d6b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/draw01-movie-contract.md": "3376a28c6a20ec2d895567c15a03395f69bf1f1108c547599cd37206f13929f6",
+    "research/runtime/drawing-api-splices-export-checked-static-20261011.json": "77db2b7406c2687d0a268a92d155f2d42f955377482c08c704160ef7d907beca",
+    "research/runtime/drawing-api-v2-core-plan-static-20261011.json": "16cb948e61e4f9eed276cc00a962e700a82279ab6c6da73722ea14128174adfe",
+    "research/runtime/drawing-api-v2-only-plan-static-20261011.json": "8788e8e66d34f1afe93986466b3e2200418e1dc342e1b753d7cc32b52488b1ea",
+    "research/runtime/drawing-callers-dispatch-expanded-20261010.json": "e59d85a6d0ef4ea1f3af29724a10a5e7f7f8ce0e3a544e4dfcac256bf6b535d3",
+    "research/runtime/drawing-callers-expanded-20261010.json": "c0d173ff5c726fcd22ebd47e9d423f421842cd3cc2fe3c06e836e2af3a6c0bba",
+    "research/runtime/drawing-callers-movie-expanded-20261010.json": "29d0a95178c2099f1227fe1029f50e8c5d6a27186b7e0ab6a3d8d1fa4ce873d2",
+    "research/runtime/drawing-callers-movie-sites-20261010.json": "9bee999ddfbf3159c992399abd6d6308ffae0207c3536bed46ace94d17b18ac3",
+    "research/runtime/drawing-inventory.json": "2da4a44180c3df90c5c6b09a9b5e99aa0eab6660e444cc1691c1d522fb022159",
+    "runtime/drawing-api-census/entry.S": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+    "runtime/drawing-api-census/exception_i386.h": "74f1351bf921e9bc3c5991df046f12210113106009246cb5aa354b28ea7d7a93",
+    "runtime/drawing-api-census/observer.c": "1e684458322b7c930eeccc5341eeca375cf8fe3225f96215cba8f113f1704358",
+    "runtime/drawing-census/entry.S": "44f19762a5232669ddd22633cde8a19072fe43f11f0dabb929149c36a256de1e",
+    "runtime/drawing-census/observer.c": "d4303a1bfc54cc24a6a44e7dcfe2764850c0ede5817f4d79a1f995dc85de9881",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/campaign_gameplay_observe.h": "6969d3d3ccd673045dd8122ed535891b451572f37ef3ba594c4b882965d30a1c",
+    "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+    "runtime/menu/campaign_observe.h": "a220db2c27e263f7fc29fc41fd98876051de0f02839b2bde48fddb04d55950b4",
+    "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+    "runtime/menu/campaign_spell_observe.h": "1020a7a459db112a3521ea6859061914a78ceda776d0f2a5aa75d7b5d3a00f7a",
+    "runtime/menu/campaign_world_observe.h": "16b5d6c8f84c9ab9e804dd6415ecb01c5f719f777fb6610a0fc589726f15a2f2",
+    "runtime/menu/channel.h": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+    "runtime/menu/channel_selftest.h": "1104046daa23c138c71ce2acc6367546e27e8bcadf17981660b7ae250890ef3e",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c",
+    "runtime/menu/contract_selftest.c": "a41c0188b16e4275333e4f5c7e963614ad0c43d3759150fd297410a649b273e7",
+    "runtime/menu/mini.h": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+    "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+    "runtime/menu/observer.c": "a1af55ad3377720ce7cfd005af5bdaf43e8c577d29efa66eb380064edabce06a",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/preferences_display.h": "60a7f61c7bd734b017c831c6ee3159cd751bf9b2df4a2c1e17b103628872a2cc",
+    "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+    "runtime/menu/region_entry.h": "df429ae4125d71982471f814a946c43a5d0e46762e607e09478212546c236b7e",
+    "runtime/menu/region_entry_observe.h": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+    "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tests/drawing-api-census-abi.c": "b70a9c7e87d3eba656d258373f588507eb94022dfef313d1e0e039a245eac3f5",
+    "tests/drawing-api-detail-call.S": "703373a9d236a04a841e685496c03af7a50b1e5db4286a6f469f40dc6a047b55",
+    "tests/drawing-movie-reference.cpp": "9a2a69a81f41890adeb67f0abf7ffbc25ae194b51b6780260c74c1595e8c7d91",
+    "tests/test-drawing-api-bindings.py": "c348778917c239d51c8a35e03cea792e5b701b3847613241c41ad5a21fb73187",
+    "tests/test-drawing-api-cohorts.py": "6cb4aab6c0a2fe3acc316f0396ff4c102515040605ba4862a519e2d25a1b2801",
+    "tests/test-drawing-api-contracts.py": "2b898fe1c3b4f4dcbd32519afe1348cac7baa9ac6e14c4983421adf61e2c126f",
+    "tests/test-drawing-api-details.py": "b5a381cc3ae3458eb3f4dedada07d5756dc98a2f5480004be950ff31146a9f31",
+    "tools/build-drawing-api-census.py": "e8152392bca7fdc88ebe96050a8b3f94968c3ac1d7aa75ed7fc6b88e8bbf4b3e",
+    "tools/build-drawing-census.py": "ff40906610d1f2527cacb5103d7655dd12c76c519d862d7d310b28d50ea5acfa",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/drawing_api_sites.py": "5cab6d71de315872411a87aa3457f08069ebeed71f8f52efdbee6127ccd7b801",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/prepare-drawing-census.py": "9efc0b162a4f2eea19d05110fbff18a13a7ea0d488eb4c2c8a6d9b88fee535f9",
+    "tools/prepare-scene-observer.py": "fb28af7a20f861ff91f18bd4ece59365af607b3a33c7a41c03d67133743c6184",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/run-game.sh": "a0c1f33f375b1ab640a29224e6e7df750e5f9d9d80bb60447b73e8a91e4fe983",
+    "tools/run-opengl-game.py": "1f93ba28de3b5bd062ab256ffb8ce6fb99d4c1814f986d8cbbb533799135548c",
+    "tools/test-drawing-api-census-abi.py": "f0d346612279c0a869d83ed0fa77419c7b38b3ac99b8571954765efd291a64ae"
+  },
+  "metadata_sources": {
+    "manifest.json": "78ad86e9054db4d34a67439785744ec6085fd2c67310f7399c66fcc4a532012f",
+    "census-build.json": "1762bbc0ba2fd47928caaafc873eb1052c1cc503ed06a549547abdff2c7d1aa4",
+    "menu-build.json": "5f42715c607482a05ec3413a1262ed9d3fe70e4d048d6d9777548ac1c6379580",
+    "api-build.json": "eb75d3915fde2499d362397c98b11243df70cff73047a2c30e1cea55be8e1a85"
+  },
+  "metadata_inputs_unchanged": true,
+  "sources_stable": true,
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-api-journey",
+      "contract_sha256": "63ee9179084b4d2d068f227369747d3b6cb331b9ee14a9e90f626664349264b4",
+      "scenarios": {
+        "original-drawing-api-v2-movies-20261011": "7915e9d9f03b5ef9687ae3415dadc76677ee4fd770128938bc435eec2f8106d1"
+      }
+    },
+    {
+      "behavior": "TOOL.drawing-api-observer",
+      "contract_sha256": "c9a820c36894190797a4e5722a3f3493810ec001e52cd1192dfcc93fbcb76af6",
+      "scenarios": {
+        "original-drawing-api-v2-movies-20261011": "7915e9d9f03b5ef9687ae3415dadc76677ee4fd770128938bc435eec2f8106d1"
+      }
+    },
+    {
+      "behavior": "TOOL.drawing-api-details",
+      "contract_sha256": "d1e41725ef03e376dd67ddbe614fd291c6eb3da679a5fb9f60c0ae4883771d01",
+      "scenarios": {
+        "original-drawing-api-v2-movies-20261011": "7915e9d9f03b5ef9687ae3415dadc76677ee4fd770128938bc435eec2f8106d1"
+      }
+    },
+    {
+      "behavior": "TOOL.drawing-api-bindings",
+      "contract_sha256": "ea1789816f7504a393fd8b14a24766cc5a4cb27eee591bfc6f8b7b5b7097aa01",
+      "scenarios": {
+        "original-drawing-api-v2-movies-20261011": "7915e9d9f03b5ef9687ae3415dadc76677ee4fd770128938bc435eec2f8106d1"
+      }
+    },
+    {
+      "behavior": "TOOL.drawing-api-cohorts",
+      "contract_sha256": "3d180a9107417facd745476380dfeb920b36677ba1e9e5f9d95986286a54e280",
+      "scenarios": {
+        "original-drawing-api-v2-movies-20261011": "7915e9d9f03b5ef9687ae3415dadc76677ee4fd770128938bc435eec2f8106d1"
+      }
+    },
+    {
+      "behavior": "DRAW.census.journey-driver",
+      "contract_sha256": "5814e6ad4bd77b6b11cf53847a9cc51d624b87392457b2d53cff4f7faf1addb2",
+      "scenarios": {
+        "original-drawing-api-v2-movies-20261011": "7915e9d9f03b5ef9687ae3415dadc76677ee4fd770128938bc435eec2f8106d1"
+      }
+    }
+  ]
+}
