@@ -4563,3 +4563,16 @@ Lock/DC borrowing, resource ownership, failures and complete writer coverage.
 The central register seeds those touched contracts with independent statuses;
 no scenario or dispatch closure is promoted. Committed history92295c9..e4be448
 has exact intermediate file/behavior receipts without missing matches.
+
+### DRAW-01 separate API journal wire and static splice planning — 2026-10-11
+
+The [fresh planner](drawing-api-splices-accounted-static-20261011.json) accepts
+250 exact CALL splices and retains64refusals:52incoming direct-flow conflicts
+and12overlaps with existing census probes. The first output is retained with an
+explicit source-mutation limitation and supplies no current validation.
+[21synthetic guards](drawing-api-journal-guards-20261011.json) pass for the
+separate API wire, concrete target/stack pairing, terminal checks and continuation
+relocation. No original API or runtime observer has executed in this increment;
+output/resource borrowing and complete drawing proof remain pending. All14scenario
+andfour dispatch closures remain open. Historye4be448..f2d858b has exact12file/
+14behavior receipts without missing intermediate versions.

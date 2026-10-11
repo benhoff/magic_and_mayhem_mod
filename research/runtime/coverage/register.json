@@ -31498,6 +31498,47 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.drawing-api-journal",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Original CALL before/after API diagnostics and strict journal contract",
+      "scope": "Versioned separate API journal and byte-bound CALL splice planner for the selected pinned graphics boundaries. Preserve actual pre-CALL stack/register/target identities and post-CALL results/stack cleanup without replacing an argument or return slot. Exact bounded splices, relocation, incoming-direct-flow and overlapping-hook refusal; loss/open/IO/terminal checks independent from graphics completeness. Initial wire/planner tooling only; no original API execution, COM/GDI semantics, resource/output/borrow lifetime, original writer or DRAW-01 closure claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-graphics-api-boundaries.md"
+      ],
+      "implementation": [
+        "tools/drawing_api_journal.py",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "tools/export-drawing-api-splices.py"
+      ],
+      "tests": [
+        "tests/test-drawing-api-journal.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_sites.py",
+        "tools/drawing_census.py",
+        "tools/build-drawing-census.py",
+        "tools/export-menu-support.py",
+        "runtime/scene/canvas_producers.c",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/coverage/binary-nocd.json",
+        "research/runtime/drawing-api-sites-expanded-static-20261011.json"
+      ],
+      "evidence": [
+        "DRAW.api-splices.static-20261011",
+        "DRAW.api-journal.guards-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -60990,6 +61031,55 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW.api-splices.static-20261011",
+      "kind": "static",
+      "scope": "Static exact original CALL splice plan alongside core census spans. No actual hook execution, API result/ABI/output/ownership/borrowing or DRAW-01 closure.",
+      "record": "research/runtime/drawing-api-splices-accounted-static-20261011.json",
+      "sha256": "2d4de7bb63316866d656a44f3a80b82123c76d82a1836aebe11f2fed23af0da6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/planned",
+          "equals": 250
+        },
+        {
+          "pointer": "/counts/refused",
+          "equals": 64
+        }
+      ]
+    },
+    {
+      "id": "DRAW.api-journal.guards-20261011",
+      "kind": "native_integration",
+      "scope": "Synthetic strict API journal pairing/header/target/stack/terminal and exact CALL continuation relocation/overlap/incoming-flow guards. Native wire/planner tooling only; no original API result/ABI/output or resource lifetime validation.",
+      "record": "research/runtime/drawing-api-journal-guards-20261011.json",
+      "sha256": "55b7256a3725c37560c6b485a2623b8606691a3f3f94df1856869a5e23665d2c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/total_cases",
+          "equals": 21
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -69438,6 +69528,20 @@
       "evidence": [
         "DRAW.graphics-api-sites.guards-20261011"
       ]
+    },
+    {
+      "id": "drawing-api-journal-wire-splice-guards-20261011",
+      "level": "headless",
+      "scope": "Synthetic strict API journal field/terminal/pairing and exact original CALL splice relocation/overlap/incoming-flow guards. No actual original APIs, output ownership or graphics completeness.",
+      "behaviors": [
+        "TOOL.drawing-api-journal"
+      ],
+      "tests": [
+        "tests/test-drawing-api-journal.py"
+      ],
+      "evidence": [
+        "DRAW.api-journal.guards-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -69775,8 +69879,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-api-sites-20261011.json",
-    "sha256": "ebacda8eda0d934485c82fedb8f11f2d489d8882eabbab1547200a18664c8ffe"
+    "path": "research/runtime/coverage/source-index-draw01-api-journal-20261011.json",
+    "sha256": "5e430153616b98c1e38d0dea54d019a8d776d815715fa7b366193e4348bb5e0d"
   },
   "claim_bindings_required": true
 }

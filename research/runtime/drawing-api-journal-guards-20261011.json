@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "scope": "Synthetic strict API journal pairing/header/target/stack/terminal and exact CALL continuation relocation/overlap/incoming-flow guards. Native wire/planner tooling only; no original API result/ABI/output or resource lifetime validation.",
+  "success": true,
+  "sources": {
+    "protocols/include/mnm/drawing_api_journal_v1.h": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-api-sites-expanded-static-20261011.json": "1484165cd3535efe629a0243285bf798c2afcc01b76d7e131c8944a10e8cb73b",
+    "research/runtime/drawing-inventory.json": "2da4a44180c3df90c5c6b09a9b5e99aa0eab6660e444cc1691c1d522fb022159",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "tests/test-drawing-api-journal.py": "491ddd0917cc93ff98d229baf8d2abb5dd87e5ee4e8dee280fc800145f5577d3",
+    "tools/build-drawing-census.py": "ec645e78705cdf4aa74755760cc6dbd98c10135b0342ce91f903f87f31e07675",
+    "tools/drawing_api_journal.py": "c82406744325c3c4cee46d73bf278b330de20d91ed88e46756c02160bd5c8023",
+    "tools/drawing_api_sites.py": "5cab6d71de315872411a87aa3457f08069ebeed71f8f52efdbee6127ccd7b801",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/export-drawing-api-splices.py": "fb5e26cc1772a70d7423b7a8a440168c7afc4559d6ca0a843c77b2fd7348c002",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-api-journal",
+      "contract_sha256": "90c5d5e0e942d7e55951a40e43427644bdc6891b0a833f1fc17e26cc43ea0c97",
+      "scenarios": {
+        "drawing-api-journal-wire-splice-guards-20261011": "40f8e577b9101e991b5d7a70af3e502088b1e29ce95e72d066859fc4e17a510e"
+      }
+    }
+  ],
+  "sources_stable": true,
+  "total_cases": 21,
+  "tests": [
+    {
+      "test": "tests/test-drawing-api-journal.py",
+      "cases": 21,
+      "exit": 0,
+      "log": "working/tests/draw01-api-journal-guards-20261011.log",
+      "sha256": "9236bc32ab70cbe00d83da674654ed10e4d456c753878383a1bed4d233e68042"
+    }
+  ]
+}

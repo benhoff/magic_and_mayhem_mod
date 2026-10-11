@@ -1,0 +1,292 @@
+{
+  "schema": 1,
+  "reviewed_commit_range": "e4be4488f357e3d8281bd09273cdcc2d8077a27a..f2d858b1d8351ba475cb022e24b632cd95bef687",
+  "scope": "Committed history only; exact parent/current receipts separate from uncommitted API journal wire/splice planning. No retrospective gate pass or new validation.",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "cc2768fc6a791ff089807862c1b7e6f470c5f09f9d607dec9caae77c692964fa",
+      "after_sha256": "dbf839f9fd99d561b4f20ddd9f17d0809025cacdfa8d8abd5cc0d8b1be9f0f8b",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-92295c9-e4be448-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0d84834b3e1f00abc2ee1697e5562b1775b371f128d1933bec1c06ec886e4152",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "048d6cdb9e7b231219859a82e1e13a2e70dc1c156b35bbcfec646c3b8de79e11",
+      "after_sha256": "53281814b972ccb42485a53ce768ab24822d05580f63bcf931d2391b3fb9eb29",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-api-sites-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ebacda8eda0d934485c82fedb8f11f2d489d8882eabbab1547200a18664c8ffe",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "d49979a259f56200493f3af3723a6edfb32eb5462fe676e263ccc9802efd560c",
+      "after_sha256": "76e8d8aeffad3d63efa0e517aa15fe85c0b73a0092259417b25b18f37392c549",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-graphics-api-boundaries.md",
+      "before_sha256": null,
+      "after_sha256": "c211139141fa9d3d388002d781d373f695a6e89ac1de9bda12cd5e4c7c3f8971",
+      "behaviors": [
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-sites-expanded-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1484165cd3535efe629a0243285bf798c2afcc01b76d7e131c8944a10e8cb73b",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-sites-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "78c831b641c535aceb5af436dfa4912b71899df8980e4d1da8373396188d1aa3",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tests/test-drawing-api-sites.py",
+      "before_sha256": null,
+      "after_sha256": "2fe03404be9a2b5d9506db1d0d5d6c7a7654445ca7a2872d5c05eec01559fcb2",
+      "behaviors": [
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "test",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-site-native-tool-guards-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_sites.py",
+      "before_sha256": null,
+      "after_sha256": "5cab6d71de315872411a87aa3457f08069ebeed71f8f52efdbee6127ccd7b801",
+      "behaviors": [
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-site-native-tool-guards-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_census.py",
+      "before_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "after_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.graphics-api-boundaries",
+        "DRAW.queue-dispatch",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "RI.movies",
+        "TOOL.drawing-api-sites",
+        "TOOL.drawing-census",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory",
+        "TOOL.drawing-movie-reference"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/export-drawing-api-sites.py",
+      "before_sha256": null,
+      "after_sha256": "2cc8ad0448c48880f9ccbc975336416f108b7202cfcb8b56d99aedb6085f0342",
+      "behaviors": [
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-site-native-tool-guards-20261011"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "3ed1b8069f85b2df21d5f1bb4a3df0e0b49bd9ee5be6138fd22905e7e1b8c9c2",
+      "after_sha256": "3ed1b8069f85b2df21d5f1bb4a3df0e0b49bd9ee5be6138fd22905e7e1b8c9c2",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "38e8449c3e9f4e2d3ad9b777a8e314d98f1c33257d97f7396003bb8158b1a6b9",
+      "after_sha256": "38e8449c3e9f4e2d3ad9b777a8e314d98f1c33257d97f7396003bb8158b1a6b9",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-boundaries",
+      "before_sha256": null,
+      "after_sha256": "0142623f0fda3753664da6aa4d09a001c2559e37384895f6a3430d81edbbb4e5",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-dispatch",
+      "before_sha256": "831e91ff684fc8aa68db266e267ce3113aa449a4ab924a55c1a273c3887b66de",
+      "after_sha256": "831e91ff684fc8aa68db266e267ce3113aa449a4ab924a55c1a273c3887b66de",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "before_sha256": "e6539f050f7dfb07d8b25e2f47045d70064cc6deb48dfe082e4aa8fc55a0ef9c",
+      "after_sha256": "e6539f050f7dfb07d8b25e2f47045d70064cc6deb48dfe082e4aa8fc55a0ef9c",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "before_sha256": "c3e2b50aadc7e18ea3868bf69e93980faa3421f5a8f5da3e78c5aca53cc739ac",
+      "after_sha256": "c3e2b50aadc7e18ea3868bf69e93980faa3421f5a8f5da3e78c5aca53cc739ac",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "before_sha256": "5946bedb79dd4daf37d885b08ac6e74238b2f824cadcf1cb3866d521faf31e82",
+      "after_sha256": "5946bedb79dd4daf37d885b08ac6e74238b2f824cadcf1cb3866d521faf31e82",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RI.movies",
+      "before_sha256": "5a5855e686867ba02ea0052391c7a9ab82178ed1dd51d7cf63d3736c1aa88777",
+      "after_sha256": "5a5855e686867ba02ea0052391c7a9ab82178ed1dd51d7cf63d3736c1aa88777",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "2a0fa2a8f55dde90841abad82c5c8477fce45866725fb02341c16f934c8e7b16",
+      "after_sha256": "62eaaf2501f54f296803fe8efc0bcaf7416a066b3798745dc3995de32415a5b0",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-sites",
+      "before_sha256": null,
+      "after_sha256": "37a55be6af7ae651f892e05d2969e1d7e155476625ea016be48e02a616bad8b8",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-site-native-tool-guards-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-census",
+      "before_sha256": "a1026de6a153751cfea8b9b8c73fa332a79338586cbc94ee4d1a487892ea3977",
+      "after_sha256": "a1026de6a153751cfea8b9b8c73fa332a79338586cbc94ee4d1a487892ea3977",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-dispatch-slices",
+      "before_sha256": "621edaa9aefeff7b91bc2c3244d4c577cd8609e810b38938e9b318e6e3f50871",
+      "after_sha256": "621edaa9aefeff7b91bc2c3244d4c577cd8609e810b38938e9b318e6e3f50871",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "before_sha256": "4a3a798819b39ba770f4293772637ba0185a6ca2632e17e4eb924090572168c6",
+      "after_sha256": "4a3a798819b39ba770f4293772637ba0185a6ca2632e17e4eb924090572168c6",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-movie-reference",
+      "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011"
+      ]
+    }
+  ],
+  "missing_exact_receipts": [],
+  "unresolved_gaps": [],
+  "counts": {
+    "files": 12,
+    "behaviors": 14,
+    "missing": 0
+  }
+}

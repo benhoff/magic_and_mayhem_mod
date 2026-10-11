@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "success": false,
+  "scope": "Retained static export affected by source mutation during execution. No current-source planning validation or original API execution claim.",
+  "record": "research/runtime/drawing-api-splices-static-20261011.json",
+  "sha256": "45220fe273467f2ebe94a1e02710e9e3e019f642b006c1d53668a26e1c6aedf3",
+  "sources_stable": false,
+  "reason": "Return-before-complete-splice and selection-range guard edits were made while the first exporter process was active. Its end-of-run source hashes cannot identify all loaded planner code. Retained unchanged; fresh export freezes and compares sources."
+}
