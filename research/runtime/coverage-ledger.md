@@ -6535,3 +6535,14 @@ Ordinary unprofiled performance is pending; complete instrumented capture,
 whole-original equivalence and broad lifecycle matrix remain unproven.
 See [drawing-history investigation](resident-drawing-history-gap.md) and its
 separately retained failed/successful evidence.
+
+Final header compatibility declares the publication helper `static inline`;
+strict optimized/ASan/UBSan offline queue tests pass, and a fresh PE32 control
+passes with a byte-identical rebuilt selftest DLL. Historical source hashes
+remain unchanged. The separate ordinary TITAN journey then passes three120s
+phases, two menu returns and normal Quit:7,284balanced Worlds,19.6335engine FPS,
+32.98..33.55average paints/s, no timeout/GAP/fallback/readback and clean
+retirement. This supports bounded ordinary public continuity/performance;
+the captured benchmark stays failed/truncated, and original equivalence,
+final-header casting/combat matrix and60FPS remain unproven. See
+[ordinary TITAN result](resident-history-repaired-ordinary-titan-20261011.json).

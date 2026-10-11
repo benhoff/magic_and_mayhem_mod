@@ -146,3 +146,41 @@ remaining performance hypotheses; this result is neither a complete corpus
 nor a passing ordinary-gameplay benchmark. A separate run without profiling
 or capture will test that boundary. The drawing-history repair is supported
 by the native controls and this bounded live continuity evidence.
+
+## Header compatibility and final source control
+
+The strict offline C queue test exposed an unused-function warning for the new
+header helper. Declaring it `static inline` preserves header-only compilation.
+The [optimized/ASan/UBSan queue build](resident-publication-offline-queue-build-20261011.json)
+passes with the corrected header; its report is an unbound build diagnostic,
+not a scope-bound original comparison. The fresh
+[PE32 final-header control](resident-publication-final-header-control-20261011.json)
+passes short-owner binding, zero callback pumps, owned FIFO/archive and shutdown
+with current source hashes. Its rebuilt DLL is byte-identical to the previous
+isolated control. Old evidence retains its earlier header hash and freshness
+limitation. Ordinary unprofiled TITAN stress/menu/Quit validation passes below.
+
+Committed-history review of `650df0b..27ed7f8` matches all24 changed file versions
+to exact receipts (journal self-excluded) with no unresolved gaps; retained at
+`working/tests/resident-publication-repair-history-range-20261011.json`. This is
+source-accounting review, not retrospective validation or a new gate assertion.
+
+## Ordinary public TITAN validation
+
+The [unprofiled, uncaptured public journey](resident-history-repaired-ordinary-titan-20261011.json)
+passes the19FPS harness with7,284completed/imported/original-returned Worlds,
+three120-second camera/gameplay phases, two native menu returns and normal
+Quit. Engine World rate is19.6335FPS. Native update averages are56.82..58.11/s;
+paint averages are32.98..33.55/s. The lowest individual paint sample is16.16/s
+and the longest sample1.132s, both within the harness's existing transient
+limits. This is an average-rate plus bounded-stall benchmark, not a guarantee
+that every individual second exceeds19paints.
+
+No copy/tracker timeout or GAP is logged. There is no native fallback, pixel
+reply or World/native/RGBA readback, no pending World, and normal Quit retires
+the resident producer cleanly. Source hashes, private Wine cleanup and
+immutable originals are verified. The previous instrumented failure stays
+failed and its truncated capture is not promoted into a complete corpus.
+This separate ordinary run supports the repaired public scheduling path;
+capture/performance attribution, final-header casting/combat coverage,
+complete original/driver comparison and60FPS remain separate work.
