@@ -1,0 +1,161 @@
+// Test/application host: display native-derived frames and retain physical output.
+// This host never receives the independent original comparison directory.
+#include "../qt-shell/gl_viewport.hpp"
+#include "../../assets/asset_file.hpp"
+#include <QApplication>
+#include <QCryptographicHash>
+#include <QDir>
+#include <QElapsedTimer>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QOpenGLContext>
+#include <QScreen>
+#include <QThread>
+#include <cmath>
+#include <iostream>
+
+namespace {
+void fields(const QJsonObject &o, std::initializer_list<const char *> names) {
+    if (o.size()!=int(names.size())) throw std::invalid_argument("Missing or extra presentation field");
+    for(auto i=o.begin(); i!=o.end(); ++i) {
+        bool found=false; for(auto name:names) if(i.key()==QLatin1String(name)) found=true;
+        if(!found) throw std::invalid_argument("Unknown presentation field");
+    }
+}
+unsigned number(const QJsonValue &v, unsigned maximum) {
+    const double n=v.toDouble(-1);
+    if(!v.isDouble() || !std::isfinite(n) || n<1 || n>maximum || n!=std::floor(n))
+        throw std::invalid_argument("Invalid presentation number");
+    return unsigned(n);
+}
+QByteArray hash(const QByteArray &b) {return QCryptographicHash::hash(b,QCryptographicHash::Sha256).toHex();}
+QByteArray load(const mnm::assets::AssetStore &store, const QString &name, std::uint64_t limit) {
+    auto opened=store.open(name.toStdString());
+    if(auto *e=std::get_if<mnm::assets::Error>(&opened)) throw std::runtime_error(e->detail);
+    auto read=mnm::assets::readWhole(*std::get<std::unique_ptr<mnm::assets::AssetFile>>(opened),limit);
+    if(auto *e=std::get_if<mnm::assets::Error>(&read)) throw std::runtime_error(e->detail);
+    const auto &b=std::get<std::vector<std::uint8_t>>(read);
+    return {reinterpret_cast<const char *>(b.data()), qsizetype(b.size())};
+}
+void save(const QString &name,const QByteArray &bytes) {
+    QFile f(name);
+    if(!f.open(QIODevice::WriteOnly|QIODevice::NewOnly) || f.write(bytes)!=bytes.size())
+        throw std::runtime_error("Cannot create physical presentation output");
+}
+}
+int main(int argc,char **argv) {
+    QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+    QApplication app(argc,argv);
+    if(argc!=3 && !(argc==4 && QByteArray(argv[3])=="--normalized-nearest")) return 2;
+    const bool normalized=argc==4;
+    QJsonObject report{{"schema",1},{"success",false},{"original_oracles_read",false},
+                       {"physical_presentation",false},{"original_execution",false},
+                       {"display_conversion",normalized?"normalized-nearest":"bit-replicated"}};
+    QDir output(QString::fromLocal8Bit(argv[2])); bool owned=false;
+    try {
+        if(QGuiApplication::platformName()!=QStringLiteral("xcb"))
+            throw std::invalid_argument("Physical presentation requires X11");
+        auto created=mnm::assets::AssetStore::create(std::filesystem::path(argv[1]));
+        if(auto *e=std::get_if<mnm::assets::Error>(&created)) throw std::runtime_error(e->detail);
+        const auto store=std::get<mnm::assets::AssetStore>(std::move(created));
+        const auto declaration=load(store,"presentation.json",4*1024*1024);
+        const auto doc=QJsonDocument::fromJson(declaration);
+        if(!doc.isObject()) throw std::invalid_argument("Invalid presentation declaration");
+        const auto config=doc.object(); fields(config,{"schema","frames"});
+        if(number(config.value("schema"),1)!=1 || !config.value("frames").isArray())
+            throw std::invalid_argument("Invalid presentation schema");
+        const auto frames=config.value("frames").toArray();
+        if(frames.isEmpty() || frames.size()>8192) throw std::invalid_argument("Invalid presentation frame budget");
+        std::uint64_t total=0;
+        // Preflight all file identities before opening a window or output directory.
+        for(const auto &v:frames) {
+            if(!v.isObject()) throw std::invalid_argument("Invalid presentation frame");
+            const auto f=v.toObject(); fields(f,{"path","width","height","sha256"});
+            const auto w=number(f.value("width"),2048), h=number(f.value("height"),2048);
+            if(!QGuiApplication::primaryScreen() ||
+               !QGuiApplication::primaryScreen()->geometry().contains(QRect(0,0,int(w),int(h))))
+                throw std::invalid_argument("Physical screen cannot contain the complete native frame");
+            const auto b=load(store,f.value("path").toString(),w*h*2);
+            total+=b.size();
+            if(b.size()!=qsizetype(w*h*2) || total>2ull*1024*1024*1024 ||
+               f.value("sha256").toString().toLatin1()!=hash(b))
+                throw std::invalid_argument("Presentation source identity or extent changed");
+        }
+        if(output.exists() || !QDir().mkpath(output.absolutePath()))
+            throw std::invalid_argument("Presentation output must be new");
+        owned=true; QJsonArray outputs;
+        if(!QOpenGLContext::globalShareContext()) throw std::runtime_error("Qt GPU sharing context unavailable");
+        mnm::render::GlBlitter renderer(QOpenGLContext::globalShareContext());
+        {
+            GlViewport viewport; viewport.setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
+            viewport.setMinimumSize(1,1); viewport.setScaling(GlViewport::Scaling::Sharp);
+            unsigned ordinal=0;
+            for(const auto &v:frames) {
+                const auto f=v.toObject(); const auto w=number(f.value("width"),2048), h=number(f.value("height"),2048);
+                const auto bytes=load(store,f.value("path").toString(),w*h*2);
+                if(hash(bytes)!=f.value("sha256").toString().toLatin1())
+                    throw std::runtime_error("Native-derived frame changed during presentation");
+                mnm::render::Image image{int(w),int(h),{}}; image.pixels.reserve(w*h);
+                for(qsizetype i=0;i<bytes.size();i+=2) {
+                    const unsigned word=std::uint8_t(bytes[i])|(unsigned(std::uint8_t(bytes[i+1]))<<8);
+                    // Native-derived words alone determine this fixed display
+                    // policy. No original output or measured colour table enters.
+                    const unsigned red=((word>>11)*255+15)/31;
+                    const unsigned green=(((word>>5)&63)*255+31)/63;
+                    const unsigned blue=((word&31)*255+15)/31;
+                    image.pixels.push_back(normalized?(red<<16|green<<8|blue):word);
+                }
+                const auto surface=renderer.create(image,normalized?
+                    mnm::render::PixelFormat{32,{0xff0000,0xff00,0xff}}:
+                    mnm::render::PixelFormat{16,{0xf800,0x7e0,0x1f}});
+                try {
+                    viewport.resize(int(w),int(h)); viewport.move(0,0);
+                    viewport.setGpuFrame(renderer.presentGpu(surface));
+                    unsigned swaps=0;
+                    auto connection=QObject::connect(&viewport,&QOpenGLWidget::frameSwapped,[&]{++swaps;});
+                    viewport.show(); viewport.raise(); viewport.update();
+                    QElapsedTimer timer; timer.start();
+                    while(!swaps && timer.elapsed()<5000) {app.processEvents(); QThread::msleep(1);}
+                    QObject::disconnect(connection);
+                    if(!swaps || !viewport.ready() || !viewport.error().isEmpty() ||
+                       viewport.devicePixelRatioF()!=1 || viewport.imageRect()!=QRectF(0,0,w,h))
+                        throw std::runtime_error(QString("Native viewport admission failed: swaps=%1 ready=%2 error=%3 size=%4x%5 ratio=%6")
+                            .arg(swaps).arg(viewport.ready()).arg(viewport.error()).arg(viewport.width())
+                            .arg(viewport.height()).arg(viewport.devicePixelRatioF()).toStdString());
+                    const auto position=viewport.mapToGlobal(QPoint(0,0));
+                    if(!viewport.screen()->geometry().contains(QRect(position,QSize(int(w),int(h)))))
+                        throw std::runtime_error("Native viewport lies outside the physical screen");
+                    // Read the X11 screen after the widget's buffer swap, not its FBO.
+                    const auto physical=viewport.screen()->grabWindow(0,position.x(),position.y(),int(w),int(h))
+                        .toImage().convertToFormat(QImage::Format_RGBA8888);
+                    if(physical.size()!=QSize(int(w),int(h))) throw std::runtime_error("Physical viewport extent mismatch");
+                    QByteArray rgba; rgba.reserve(w*h*4);
+                    for(unsigned y=0;y<h;++y) rgba.append(reinterpret_cast<const char *>(physical.constScanLine(y)),w*4);
+                    const auto name=QString("frame-%1.rgba").arg(ordinal++,6,10,QChar('0'));
+                    save(output.filePath(name),rgba);
+                    outputs.append(QJsonObject{{"path",name},{"width",int(w)},{"height",int(h)},
+                        {"sha256",QString::fromLatin1(hash(rgba))},{"native_source_sha256",f.value("sha256")}});
+                    viewport.setGpuFrame({}); renderer.destroy(surface);
+                }catch(...) {viewport.setGpuFrame({});renderer.destroy(surface);throw;}
+            }
+            if(viewport.imageUploads()!=0) throw std::runtime_error("GPU viewport used QImage uploads");
+            report["qimage_uploads"]=double(viewport.imageUploads());
+        }
+        if(renderer.stats().surfaces) throw std::runtime_error("Native presentation surfaces leaked");
+        if(load(store,"presentation.json",4*1024*1024)!=declaration)
+            throw std::runtime_error("Presentation declaration changed during execution");
+        for(const auto &v:frames) {
+            const auto f=v.toObject();
+            if(hash(load(store,f.value("path").toString(),2048*2048*2))!=f.value("sha256").toString().toLatin1())
+                throw std::runtime_error("Native-derived input changed after presentation");
+        }
+        report["remaining_surfaces"]=0; report["frames"]=outputs;
+        report["driver"]=QString::fromStdString(renderer.driver().renderer);
+        report["physical_presentation"]=true;report["success"]=true;
+    }catch(const std::exception &e) {report["error"]=QString::fromUtf8(e.what());}
+    if(owned) save(output.filePath("presentation-report.json"),QJsonDocument(report).toJson());
+    std::cout<<QJsonDocument(report).toJson(QJsonDocument::Compact).toStdString()<<'\n';
+    return report.value("success").toBool()?0:1;
+}

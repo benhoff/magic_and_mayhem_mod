@@ -448,3 +448,118 @@ cold/concurrent-load latency proof. Full CPU UI destination reads/lifetimes,
 World/UI pixel and driver equivalence,movies and60FPS remain outstanding.
 Master's separate drawing-publication header change requires another complete
 proof on the combined tree before the authorized merge is finished.
+
+Integration candidate combines resident work with masterd955801's45incoming
+DRAW-01/02/03 commits. Exact committed-history review records1262file versions
+and zero missing receipts in `coverage/history-resident-incoming-master-20261011.json`.
+Coverage/register/review histories are reconciled by stable IDs without dropping
+incoming or resident findings;both ledger histories are retained. One executed
+scene dependency changed: optional drawing-publication physical fence. Its
+activation requires explicit DRAW02 publication/fence flags,excluded by the
+resident route's clean environment. Both publication/fence headers are now
+explicit resident validation dependencies before new declarations. Fresh owned
+corpus and complete merged-tree TITAN gameplay are required;the earlier passing
+result remains historical for this dependency change. No imported comparison
+hashes are refreshed and no broad equivalence is asserted by reconciliation.
+
+The complete owned corpus passes on the combined master candidate in
+`public-resident-master-integration-fixtures-20261011.json`,with unchanged sources
+and inputs. World replay/import565,no-readback/HUD/copy/cleanup and strict bounds,
+minimap four views/candidate vs full scan,shadow/source-epoch/deferred/worker/leaf
+ABI,balanced acknowledged Quit/refusals and Preferences all pass.19 Python
+evidence checks pass too. This renews current native integration after the
+publication-header dependency change;the complete TITAN rerun is in progress.
+
+The first combined-master journey completes all functional/normal Quit gates,
+4976balanced Worlds,19.338278aggregate engineFPS and zero delivery readbacks,but
+fails one cycle0 window(6native/5painted frames in1.002s). Negative
+`public-resident-master-window-negative-20261011.json` retains actual input and
+source bindings. Capture owner maximum9.726ms does not account for that delay;
+old unaligned counters cannot establish exact source/host causality. New read-only
+telemetry aligns source publication and FPS windows on monotonic timestamps and
+logs at most256host polls with>=50ms work or>=100ms dispatch gaps,separating World
+and command work. It is enabled explicitly only by the resident smoke runner;
+no game/renderer behavior,budget or failed-window filtering changes.19smoke and
+3publication-sampler checks pass. Current merged live/performance proof is still
+pending;source-only telemetry changes retain stale historical bindings honestly.
+
+The first aligned run stops on the finite60s party-lethal deadline,with verified
+Zombie melee,Wiz65HP and engaged Redcap13HP in final original snapshots;another
+enemy had drawn the combat Zombie onto a different target. Negative
+`public-resident-master-combat-deadline-negative-20261011.json` retains source,
+actual input and bounded host timings. Startup resident polling took622ms(606.55ms World initialization)
+outside active gameplay;logged command work stayed below16ms and no large
+post-startup dispatch gap was logged. This is not proof of renderer latency or
+complete FPS success. Completion observation is now bounded at120s;same engaged
+enemy party lethal,Wizard aliveness,casting and every rendering FPS floor remain
+mandatory. No AI/health/state/balance changes;fresh full integrated proof pending.
+
+The120s completion run also expires: final snapshots show Wiz114HP targeting
+enemy6,combat Zombie dead,engaged Redcap32HP and initial Zombie idle. Negative
+`public-resident-master-combat-diversion-negative-20261011.json` retains input,
+source and timing data. Waiting alone does not fix the clearance strategy. The
+helper now retains original wizard engagement while the correctly placed adjacent
+summon assists,and retreats only after the same-engaged-enemy party kill. All
+survival/casting/portrait/normalQuit/renderer gates and120s finite bound remain;
+no original gameplay state or balance change. Fresh integrated proof pending.
+
+Combined master/resident final proof (2026-10-11):
+`public-resident-master-final-campaign-20261011.json` retains the complete successful
+private NVIDIA TITAN RTX campaign, actual input, capture timings and bounded
+clock-aligned host poll rows. 4595 completed/imported/verified GPUWorlds,
+19.160183 engineFPS; all unchanged phase, portrait and worst-window gates
+pass (minimum sampled paint window 15.454545FPS, portrait worst window
+19.841270FPS). Zero World/native/RGBA delivery readbacks,
+80B ACK, no World pixel reply; real DirectDraw disabled and absent. Actual
+summoning, Fireball damage, Zombie melee and same-enemy wizard party lethal,
+blocked casts, physical movement, post-kill retreat, five portrait cycles,
+Mini Cancel/resume, Quit No/Yes/Main and private original/shell exit all pass.
+Stable portrait region maximum channel error1. Largest measured diagnostic
+capture owner work 9.696ms; this is existing diagnostic capture, separate
+from zero-readback resident World delivery. The helper now preserves original
+wizard engagement until the verified kill, then retreats; the finite completion
+window is120s. No actor health/positions/AI, balance or FPS checks are changed.
+`public-resident-master-final-fixtures-20261011.json` refreshes the full owned
+corpus on these exact final sources (7.68M candidate-minimap compared words,
+exhaustive65536-word GPU565 import, strict malformed/ownership/shutdown refusals).
+Original immutable-input manifests, compiled source closure and declared inputs
+remain stable. Reviewed incoming master history8ed5317..d955801:45commits,
+1262exact file versions, zero missing receipts; own551e6db..e1e9553:9versions,
+zero missing. Coverage histories retain exact review reports independently of
+new execution evidence. Native scoped live observation is renewed; full CPU UI
+destination reads/lifetimes, independent World/UI/driver equivalence, movies,
+all COM/loss-restore semantics and60FPS remain outstanding. Prior failed
+latency windows and combat strategies remain preserved; one successful bounded
+journey does not establish universal cold/concurrent-load latency.
+
+Final combined-tree original comparisons were rerun after host/publication
+source changes. `public-displacement-master-final-20261011.json`: two pinned
+596490/5968a4 leaves,960000WORDs,551covered/10physical-stride wrapped samples
+match native CPU/two GPU backends. `public-shadow-master-final-20261011.json`:
+two captured geometries,2.88M original/5.76M native compared WORDs,whole
+projected-envelope refusal,exact-edge equality and vertical-crop refusal match.
+Original manifests and source/input hashes remain stable. Both retain scoped
+original comparison; complete ABI/RGB555/live replacement is excluded.
+
+The first merged-tree fenced comparison used256MiB diagnostic completion
+storage. Physical acquisition passed88witnesses, but the producer journal
+explicitly records832budget failures(code11); native composition correctly
+refuses that incomplete input. Negative result and exact logs are retained in
+`draw02-resident-master-diagnostic-budget-negative-20261011.json`. Original
+frames are reference-only. This is not a passed pixel comparison or a resident
+gameplay failure; repeat with the established1GiB diagnostic budget is separate.
+
+Imported drawing milestones also pass on the final merged tree.
+`draw02-resident-master-fenced-original-20261011.json` retains103fresh guarded
+original post-copy X11 witnesses (49440000pixels) through sixteen World returns,
+stable double captures/exactACKs, original work active, no refused producer
+inputs and immutable manifests.
+`draw02-resident-master-fenced-comparison-20261011.json` compares all103frames to
+separately source-owned native physical presentation:49440000pixels,zero
+mismatches,no original reference inputs to native rendering. This renews only
+the finite fenced boundary; all original routes/threads/journeys remain excluded.
+`draw02-resident-master-native-physical-20261011.json` passes both fixedRGB565
+display policies over65536words,eight physical/refusal controls,15admission
+guards and103retained historical frames/49.44Mpixels/zero differences.
+These original-active diagnostic readbacks are separate from the public resident
+zero-World-readback path; they do not reintroduce real DirectDraw there.

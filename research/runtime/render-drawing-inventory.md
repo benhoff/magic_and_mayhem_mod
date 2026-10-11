@@ -363,3 +363,108 @@ is not complete terrain/sprite/effect/HUD output or a recovered original caller 
 Movie-enabled startup reaches Main, with no movie sample return PCs in the bounded
 draw archive; actual playback and return semantics remain unverified. Original
 drawing stays active; full visual equivalence and replacement are still open.
+
+
+## Original consumer client state fixture, 2026-10-11
+
+A separate headless fixture executes the unchanged pinned5002a0 consumer across
+58,320 unique cells. It complements the earlier2432routing matrix without changing
+its sources or hashes. Empty/one/two rows, Video0/1, kind9/15/default, first-span
+sentinel and signed boundary values, changed prior16-bit metadata, nine vertical
+positions, 480/600height flags, raw0/high/negative returns and optional cleanup are
+explicit axes. All backend/clip/cleanup calls use synthetic bindings whose pops
+are checked against actual original RET instructions. This fixture integration is
+registered separately from native renderer comparison, which remains none.
+
+Original consumer instructions remain byte-identical throughout. The row/container
+checks retain all untouched words and both trailing rows. With Video enabled and
+prior metadata different from8ad0, original row y becomes old-y minus signed prior
+plus object height16 in this explicit object fixture; unprocessed rows stay intact.
+Kind9 stores zero, selected wave metadata truncates to16bits, and defaults retain
+prior metadata. Opening clips require strict top/bottom inclusion. Their exact
+return PCs500337/500388 are separate from auxiliary clip5008b9 and restoration
+500d25, including equal raw arguments. Auxiliary dispatch requires its endpoint
+strictly below480or600according to the flag and below the clip bottom; negative
+auxiliary tops clamp to zero.
+
+The native integration records75,312clip,25,500wave and19,440copy-backend calls.
+Optional postlude produces29,160calls, including empty queues: exact receiver
+6ddf78, original three counter arguments, last-call ordering, and original zeroing
+of6e8db0/6e8db4/6e8db8 occur independently of the synthetic raw return. Disabled
+postlude preserves those counters. Raw returns are not assigned HRESULT semantics.
+Actual helper body state, raster pixels, other object layouts and changed-prior
+kinds, real drivers/interfaces/lifetimes and all14scenario/four dispatch completion
+remain pending. The table entries retain only the new selected client scope.
+
+[Final result](drawing-queue-client-state-20261011.json) retains the raw-case file,
+compiled fixture, command logs and hashes. [Attempt limitations](drawing-queue-client-state-attempts-20261011.json)
+preserve the zero-row default-sandbox SIGSYS repeat, passing debugger diagnostic,
+unsupported first scenario declaration and intermediate pass before unique-cell
+validation. The final successor uses a new supported headless declaration and
+runs with required32-bit syscall permissions; no old hash is refreshed.
+Historyc43bfde..0b40de2 has11exact file/21behavior receipts, no missing versions;
+retrospective review asserts neither a past gate pass nor new graphics validation.
+
+
+## All-kinds original consumer client state, 2026-10-11
+
+The widened fixture covers984960unique cells over all kinds-2..35, raw returns
+0/1/12345678/ffffffff, Video0/1, empty/one/two rows, first-span sentinel/signed clip
+boundaries, changed prior metadata and optional cleanup. It uses a direct object
+marker and ordinary offset; earlier indexed/-127 routing evidence remains separate.
+Every original row/container assertion, opening/auxiliary/restoration clip caller,
+strict480/600threshold and cleanup ordering/counter reset passes. Kind9 keeps zero;
+defaults and Video-disabled7/32 preserve prior metadata; ordinary results truncate
+to16bits. Wave kinds15..30 retain literal amplitude kind-14 across primary/auxiliary
+routes. Consumer instructions and original input hashes stay unchanged.
+
+The case archive records93exact original CALL return PCs,1271936clip calls,
+544000wave calls and492480cleanup calls. These are this offline fixture's counts,
+not live runtime frequencies. Fifteen direct backend RET contracts and separate
+opaque/global/virtual bindings remain explicit. Actual helper bodies are synthetic,
+so helper global effects, pixels, arbitrary objects, changed-prior indexed/-127
+branches and complete live API/lifetime/scenario/dispatch closure remain pending.
+The tables link the new client-state contract for every numeric/default entry while
+keeping their completeness flags false and all recovered native implementation/
+comparison/integration/replacement statuses none.
+
+[Fresh result](drawing-queue-all-kinds-state-20261011.json) binds the prospective
+scope/source declaration and984960unique matrix cells. The bounded producer records
+actual process exit/timeout and streams a lossless gzip archive. It hashes the raw
+stream and independently decoded archive:559379392bytes, identical SHA-256
+524f76b1099db750656eaa8494a2fca2d3fef3224bd602fafe999ad9125584de.
+Compressed size16054745bytes avoids retaining duplicate raw storage. Interrupted
+or nonzero runs cannot become successes; native helper/lifetime completion is not
+inferred from compression integrity. The earlier58320cell result and failed/
+intermediate attempts retain all historical fingerprints.
+
+History0b40de2..23bd1c0 has14file/85behavior exact receipts and no missing versions.
+Retrospective accounting does not assert a past gate pass or new graphics result.
+
+
+2026-10-11 late queue helper refinement:4d8ab0is a render postlude, including
+canvas fill/Lock, original signed numeric text/font invocation, slot128call and
+aligned row metadata. Its earlier cleanup label is incomplete; historical hashes
+remain preserved.12288owned original-client fixture cells pass, with actual
+57dc20frame and57dc60/57dc90clip stores; external fill/Lock/font/slot bodies remain
+synthetic. See [postlude evidence and limits](draw01-inventory.md#original-optional-render-postlude-2026-10-11).
+No actual pixels, COM lifetime, native equivalence or complete scenario/dispatch
+closure is implied.57dcc0scatter getter remains unassigned.
+
+
+2026-10-11 original consumer object variants:4924800unique cells now cover
+changed-prior direct/indexed markers and ordinary/-127offsets, all kinds and
+low-AX1/high-EAX distinction; row/clip/wave/postlude state passes.
+[Evidence and scope](draw01-inventory.md#original-indexed-and-offset-consumer-states-2026-10-11)
+retain synthetic external helpers and all live/pixel/lifetime/complete-dispatch
+boundaries. Existing historical reports and hashes remain untouched.
+
+
+2026-10-11 Lock client recovery:13824unchanged58b660owned mock-interface cells
+cover absent surface, cleared DDS/pitch/pointer, exact lost/Restore/retry paths,
+key/reload endpoints, teardown globals/DestroyWindow and conditional auxiliary
+Unlock. Stored Restore result is not overwritten by retried Lock result.
+[Evidence and limits](draw01-inventory.md#original-lock-recovery-client-2026-10-11)
+keep actual driver/pixel/reference/reentrant/list-destructor behavior separate.
+Fourteen exact CALL caller-effect routes gain bounded classification;58b75alist
+cleanup remains outside this fixture. No scenario/dispatch or native stage closure.

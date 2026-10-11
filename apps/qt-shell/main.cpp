@@ -45,6 +45,8 @@
 #include <QDir>
 #include <QDockWidget>
 #include <QElapsedTimer>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QFileInfo>
 #include <QLabel>
 #include <QMainWindow>
@@ -65,6 +67,9 @@
 
 class Shell final:public QMainWindow {
     quint64 nativeCommandFrames_=0,nativePaintedFrames_=0;
+    const bool nativePollTiming_=qEnvironmentVariableIntValue("MNM_RESIDENT_POLL_TIMING")==1;
+    QElapsedTimer nativePollTick_;
+    unsigned nativePollTimingRows_=0;
 public:
     CampaignPresentationProbe campaignPresentation() const{return {nativeCommandFrames_,commands_&&commands_->state()==LiveCommandSession::State::Active,nativeFallback_,nativePaintedFrames_,commands_?commands_->recoveries():0,(!residentWorldError_.isEmpty()?residentWorldError_:commands_?commands_->error():QString()),commands_&&commands_->result()?QString::fromStdString(commands_->result()->driver.renderer):QString(),commands_&&commands_->result()?commands_->result()->stats.presentationPixels:0};}
     void showPresentation(){if(presentation_)presentation_->show();else show();}
@@ -178,10 +183,15 @@ public:
             if(!stream_ || (media_ && media_->movieActive()))return;
             if(!gl_->error().isEmpty()){frames_.stop();commandDrain_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());return;}
             if(commands_){
+                QElapsedTimer workClock;workClock.start();
+                const auto gap=nativePollTick_.isValid()?nativePollTick_.elapsed():0;
+                nativePollTick_.start();
+                const auto beforeFrames=nativeCommandFrames_,beforePaints=nativePaintedFrames_;
                 if(residentWorld_){try{residentWorld_->poll(liveMenus_&&liveMenus_->normalQuitAccepted());}catch(const std::exception& e){
                     residentWorldError_=e.what();log_->appendPlainText(QString("Resident World refused: ")+e.what());
                     residentWorld_->saveReport(residentWorldReport_);commands_->abort();frames_.stop();commandDrain_.stop();poll_.stop();retry_->setEnabled(false);input_->suspend(true);nativeFallback_=true;return;
                 }}
+                const double worldMs=workClock.nsecsElapsed()/1000000.0;
                 if(!commands_->ended() && commands_->error().isEmpty()){
                     if(!commands_->poll()){
                         log_->appendPlainText("Native command session refused: "+commands_->error());
@@ -194,6 +204,12 @@ public:
                         // byte/work bounds without another idle16ms frame wait.
                         commandDrain_.start();
                     }
+                }
+                const double totalMs=workClock.nsecsElapsed()/1000000.0;
+                if(residentWorld_&&nativePollTiming_&&nativePollTimingRows_<256&&(totalMs>=50||gap>=100)){
+                    ++nativePollTimingRows_;
+                    const auto row=QJsonDocument(QJsonObject{{"start_monotonic_ms",double(workClock.msecsSinceReference())},{"gap_ms",double(gap)},{"world_ms",worldMs},{"command_ms",totalMs-worldMs},{"total_ms",totalMs},{"frames_before",qint64(beforeFrames)},{"frames_after",qint64(nativeCommandFrames_)},{"paints_before",qint64(beforePaints)},{"paints_after",qint64(nativePaintedFrames_)}}).toJson(QJsonDocument::Compact);
+                    std::fprintf(stderr,"NATIVE_RESIDENT_POLL %s\n",row.constData());
                 }
                 return;
             }

@@ -52,6 +52,7 @@ def main():
     parser.add_argument('--world-producer-bypass',type=int,choices=range(1,9),help='Replace this many selected generic raster entries in the final captured queue')
     parser.add_argument('--canvas-producers',action='store_true',help='Capture owned menu/loading/font/raster inputs and completed canvases through each sampled World return')
     parser.add_argument('--drawing-publication',action='store_true',help='Observe actual opaque-copy COM results and independent primary readbacks through the final World/HUD publication')
+    parser.add_argument('--drawing-physical-peer',type=Path,help='Reference-only X11 peer for opt-in bounded post-copy physical witnesses')
     parser.add_argument('--producer-oracle-mib',type=int,choices=range(1,3073),default=1024,metavar='1..3072',help='Bounded original completion storage in MiB (default: 1024)')
     parser.add_argument('--skip-window-screenshot',action='store_true',help='Skip the diagnostic desktop screenshot; raw completion comparisons remain independent')
     parser.add_argument('--manual-input',action='store_true',help='Bounded producer/batch session controlled through the original window; closing either window cancels')
@@ -70,6 +71,7 @@ def main():
     parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
     if args.drawing_publication and (not args.canvas_producers or args.producer_live or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('--drawing-publication requires original-active producer capture without live bypass/viewer')
+    if args.drawing_physical_peer and not args.drawing_publication:parser.error('--drawing-physical-peer requires --drawing-publication')
     if args.native_draw and not args.continuous_resident:parser.error('--native-draw requires V4 continuous GPU ownership')
     if args.continuous_resident and (args.continuous_queues is None or args.continuous_verify):
         parser.error('--continuous-resident requires continuous queues and excludes pixel verification')
@@ -119,6 +121,7 @@ def main():
     sources=[*sorted((ROOT/'runtime/scene').glob('*.[chS]')),ROOT/'protocols/include/mnm/scene_snapshot_v1.h',
              ROOT/'runtime/shadow/win32_min.h',ROOT/'tools/build-scene-observer.py',ROOT/'tools/prepare-scene-observer.py',ROOT/'tools/capture-scene-game.py',ROOT/'tools/scene-game-runner.py',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',ROOT/'protocols/include/mnm/world_channel_v2.h',ROOT/'tools/world_channel.py']
     if args.drawing_publication:sources.append(ROOT/'tools/drawing_publication.py')
+    if args.drawing_physical_peer:sources += [ROOT/p for p in ['tools/drawing_physical.py','tools/drawing_presented_session.py','apps/drawing-session/observe.cpp','apps/drawing-session/CMakeLists.txt','apps/qt-shell/window_host.cpp','apps/qt-shell/window_host.hpp']]
     if args.startup_queues:sources.append(ROOT/'tools/inspect-startup-queues.py')
     if args.kind8_objects:sources.append(ROOT/'tools/inspect-kind8.py')
     if history:sources.append(ROOT/'tools/world_refusal.py')
@@ -145,9 +148,10 @@ def main():
     if args.glyph_backend:sources += [ROOT/p for p in ['tools/glyph_live_capture.py','tools/glyph_backend_launch.py','tools/build-shadow-bridge.py','reconstruction/rendering/glyph_backend.c','reconstruction/rendering/glyph_backend.h','reconstruction/rendering/glyph_backend_state.c','reconstruction/rendering/glyph_backend_state.h','reconstruction/rendering/glyph_backend_x87.S']]
     if args.native_draw:sources += [ROOT/p for p in ['runtime/native-draw/factory.c','runtime/native-draw/surfaces.h','runtime/native-draw/dc.h','runtime/native-draw/clipper.h','runtime/native-draw/refusal.h','runtime/native-draw/status.h','tools/build-native-draw.py','tools/prepare-native-draw.py']]
     fingerprints={str(p.relative_to(ROOT)):sha(p) for p in sources}
+    physical_peer_hash=sha(args.drawing_physical_peer) if args.drawing_physical_peer else None
     spec=importlib.util.spec_from_file_location('scene_prepare',ROOT/'tools/prepare-scene-observer.py')
     staging=importlib.util.module_from_spec(spec);spec.loader.exec_module(staging)
-    process=None;viewer=None;input_fixture=None;channel=None;trace=[];report=None;root=None
+    process=None;viewer=None;input_fixture=None;physical_peer=None;physical_log=None;channel=None;trace=[];report=None;root=None
     def stop_original():
         nonlocal process
         if process and process.poll() is None:
@@ -205,6 +209,7 @@ def main():
         if args.minimap_owned:env['MNM_MINIMAP_OWNED']='1'
         if args.minimap_input_fixture:env['MNM_MINIMAP_INPUT_FIXTURE']='1'
         if args.drawing_publication:env['MNM_DRAW02_PUBLICATION']='1'
+        if args.drawing_physical_peer:env['MNM_DRAW02_PHYSICAL_FENCE']='1'
         if args.canvas_producers:env.update(MNM_CANVAS_PRODUCERS='1',MNM_CANVAS_ORACLE_MIB=str(args.producer_oracle_mib))
         if args.world_producer_bypass:env['MNM_WORLD_PRODUCER_BYPASS']=str(args.world_producer_bypass)
         if args.startup_queues:env['MNM_STARTUP_QUEUES']=str(args.startup_queues)
@@ -257,6 +262,10 @@ def main():
             trace.append({'screen':screen,'action':action,'argument':argument,'ack':request,'status':reply[0][4]})
 
         with (root/'game.log').open('x') as log:
+            if args.drawing_physical_peer:
+                physical_log=(root/'physical-peer.log').open('x')
+                physical_peer=subprocess.Popen([str(args.drawing_physical_peer.resolve()),str(root/'capture'),str(root/'physical-report.json')],
+                    env={**os.environ,'QT_QPA_PLATFORM':'xcb','QT_SCALE_FACTOR':'1'},stdout=physical_log,stderr=subprocess.STDOUT)
             process=subprocess.Popen([*(['strace','-qq','-f','-Y','--seccomp-bpf','-k','--stack-trace-frame-limit=12','-ttt','-T','-s','0','-e','trace=pselect6,clock_nanosleep','-o',str(root/'producer-waits.log')] if args.continuous_producer_waits else ['perf','record','-F','99','-g','--call-graph','dwarf','-o',str(root/'producer-perf.data'),'--'] if args.continuous_producer_profile else []),str(ROOT/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',env['WINEPREFIX'],
                 '--runner',str(ROOT/'tools/scene-game-runner.py')],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
             if not args.manual_input:
@@ -271,6 +280,7 @@ def main():
                 if args.magic_items:send(7,12,slots=wait(7)[2])
             started_live=time.monotonic();deadline=started_live+(3600 if full_rasters else 300 if args.world_producer_handoff else 60)
             while time.monotonic()<deadline:
+                if physical_peer and physical_peer.poll() is not None:raise RuntimeError('Original physical peer failed; inspect '+str(root/'physical-report.json'))
                 if args.continuous_queues is not None:
                     if viewer.poll() is not None:
                         if viewer.returncode:raise RuntimeError('Native continuous viewer failed; inspect '+str(root/'native-producers/live-report.json'))
@@ -321,6 +331,9 @@ def main():
             if input_fixture.wait(timeout=5):raise RuntimeError('Minimap input schedule failed; inspect '+str(root/'minimap-input.json'))
         # Freeze lifetime diagnostics before recording their final hashes.
         stop_original()
+        if physical_peer:
+            (root/'capture/physical-stop.flag').touch(exist_ok=False)
+            if physical_peer.wait(timeout=10):raise RuntimeError('Original physical peer failed; inspect '+str(root/'physical-report.json'))
         metadata=json.loads((root/'manifest.json').read_text())
         for name,key in [('Chaos.exe','staged_sha256'),('MnmScene.dll','scene_dll_sha256'),('MnmMenu.dll','menu_dll_sha256')]:
             if sha(root/'game'/name)!=metadata[key]:raise RuntimeError('Staged binary changed')
@@ -418,6 +431,11 @@ def main():
                 report.update(original_pixels_used_as_native_inputs=False,original_oracles_read_by_native=False,original_work_bypassed=False)
                 report['drawing_publication']=analyze(root/'capture')
                 report['canvas_producers']=report['drawing_publication']['producers']
+                if args.drawing_physical_peer:
+                    from drawing_physical import analyze as analyze_physical
+                    report['drawing_physical']=analyze_physical(root/'capture',root/'physical-report.json',report['drawing_publication'])
+                    if sha(args.drawing_physical_peer)!=physical_peer_hash:raise RuntimeError('Physical acquisition peer changed during capture')
+                    report['physical_peer_sha256']=physical_peer_hash
             else:report['canvas_producers']=inspector.analyze(root/'capture')
             if args.producer_live:
                 native=json.loads((root/'native-producers/live-report.json').read_text())
@@ -503,6 +521,11 @@ def main():
                 'manual_input':True,'sources':fingerprints,'original_pixels_used_as_native_inputs':False,
                 'scope':'Interactive window closure before the bounded producer chain completed; no equivalence or replacement validation asserted'}
     finally:
+        if physical_peer and physical_peer.poll() is None:
+            (root/'capture/physical-stop.flag').touch(exist_ok=True)
+            try:physical_peer.wait(timeout=5)
+            except subprocess.TimeoutExpired:physical_peer.terminate();physical_peer.wait(timeout=5)
+        if physical_log:physical_log.close()
         if input_fixture and input_fixture.poll() is None:
             input_fixture.terminate();input_fixture.wait(timeout=5)
         if viewer and viewer.poll() is None:

@@ -182,13 +182,90 @@ research's historical milestone numbers retain their local meaning.
 
 | Milestone | Deliverable | Current state | Exit gate |
 | --- | --- | --- | --- |
-| DRAW-01 Drawing coverage | Scenario-tagged inventory of active producers, consumers and graphics side effects. | [Machine-readable route register and checker](../research/runtime/draw01-inventory.md) account for 100 routes, 24 static windows and 52 producer hooks. Fourteen required scenario censuses, unattributed callers and incomplete dispatch remain open; full milestone completion is not claimed. | Every encountered route has a behavior ID, owner, classification and explicit support decision; unresolved indirect flows remain visible. |
-| DRAW-02 Independent comparison | Original-output corpus for surfaces and complete scenes, with frame/input identities. | Portable suite binds five original-driver surfaces, four World canvases, six composed startup checkpoints and all1,062checkpoints across16contiguous producer queues. Separate reference/parity gates cover14journeys and21operation/failure contracts. The suite now also retains103actual primary planes through16World returns, five applied menu dispatches and four observed World orientations. Guarded opaque-route pixel parity passes; Metadata-only API acquisition additionally records a bounded original Quick Battle/results/Main journey with active melee. Complete presented journeys, broader input outcomes, native active-battle pixel parity and real-driver failure/caller-result equivalence remain open. | Independent original references and reproducible passing native comparisons cover every declared journey and operation/failure requirement; oracle pixels never drive native rendering. Component/pre-display passes cannot close presented journeys. |
-| DRAW-03 Native scene completeness | Asset-backed rendering for the admitted draw kinds, backgrounds, shading and UI. | [Reusable bounded scene composition](../research/runtime/draw03-native-scene.md) reconstructs a complete map2 startup pre-display-copy canvas through World, HUD, minimap/markers and cursor from owned history and16encoded assets. Six full checkpoints match independent original outputs. Physical presentation, general HUD/window composition, alternate producers and whole-consumer side effects remain open. | The declared scene is complete, including required side effects; diagnostic backgrounds, omitted draws and unshaded approximations cannot pass baseline comparison. |
+| DRAW-01 Drawing coverage | Scenario-tagged inventory of active producers, consumers and graphics side effects. | [Route accounting and original-active observation](../research/runtime/draw01-inventory.md) now cover 636 reviewed routes, including 128 exact CPU CALL sites and five opt-in terminal entries. Graphics accounting separately retains 380 sites, 141 reviewed client contracts and 101 observed sites. Bounded menu/campaign, dispatch, ABI and lifecycle evidence exists. All 14 scenario closures and four dispatch gates remain open. | Every encountered route has a behavior ID, owner, classification and explicit support decision; unresolved indirect flows remain visible. |
+| DRAW-02 Independent comparison | Original-output corpus for surfaces and complete scenes, with frame/input identities. | The portable suite includes five original-driver surfaces, four World canvases, six composed startup checkpoints and all 1,062 checkpoints through 16 World returns. Original API/input acquisition reaches a bounded Quick Battle/results/Main journey. Synchronized original/native X11 comparison matches 103 guarded startup frames: 49.44 million pixels, zero mismatches. All 14 complete presented-journey and 21 operation/failure requirements remain open. | Independent original references and reproducible passing native comparisons cover every declared journey and operation/failure requirement; oracle pixels never drive native rendering. Component/pre-display passes cannot close presented journeys. |
+| DRAW-03 Native scene completeness | Asset-backed rendering for the admitted draw kinds, backgrounds, shading and UI. | [Source-only composition](../research/runtime/draw03-native-scene.md) now extends from six startup checkpoints to [17 complete frame publications](../research/runtime/draw03-native-journeys.md), full retained startup-sequence replay and [native session orchestration](../research/runtime/draw03-native-session.md). The bounded startup renderer also supplies the 103-frame physical comparison. General campaign/battle scenes, alternate producers, source-state generation and whole-consumer side effects remain open. | The declared scene is complete, including required side effects; diagnostic backgrounds, omitted draws and unshaded approximations cannot pass baseline comparison. |
 | DRAW-04 Continuous scene delivery | Versioned live drawing inputs from original simulation to native services. | Owned two-slot World shadow delivery and finite producer-history startup through 16 queues exist; guarded batch experiments reach 32. Unbounded contiguous history, transitions and real-time delivery remain open. | Complete frame admission, identity/lifetime, backpressure and transitions pass without sourcing dynamic frames from original raster output. |
 | DRAW-05 Scoped live takeover | Bypass original drawing for one validated route or complete scene, with explicit mode identity. | Direct-word interior/clipped takeover and admitted raster-body suppression across startup World queues 1..32 have bounded independent proof at recorded hashes. Guarded glyph takeover has bounded four-queue proof. Higher text/image/fade bypass, broader glyph inputs, whole-session and complete consumer takeover remain outstanding. | Independent live comparison and counters prove the selected original work was skipped; caller-visible behavior, readbacks and cleanup pass. |
 | DRAW-06 Supported session coverage | Expand takeover to every required drawing route and scenario. | Outstanding. | Full-session corpus, failure/recovery and supported physical-driver checks pass; every fallback or unsupported route is reported as a separate outcome. |
 | DRAW-07 Complete launcher mode | Expose a capability-checked complete-replacement option. | Unavailable. | All completion criteria below pass for the declared build/scenario scope, and the register records the appropriate replacement evidence. |
+
+### Completed increments in DRAW-01, DRAW-02 and DRAW-03
+
+The following results are recorded through 2026-10-11. They are scoped increments;
+none closes its full milestone. Historical executions retain their source hashes
+and do not automatically validate later edits.
+
+**DRAW-01 — accounting and attribution.** The inventory grew from the initial
+100 routes to 636 reviewed identities. It now distinguishes drawing entries,
+graphics API sites, exact CPU CALL sites and terminal lifecycle routes instead
+of treating them as interchangeable counts. Original-active menu and campaign
+journals retain paired calls, actual caller/thread identities and per-run resource
+bindings. Unchanged-original consumer, postlude, queue-state, Lock-recovery and
+canvas-release fixtures add bounded branch and caller-state evidence. The
+opt-in plan supports 88 core entries beside 128 CPU probes; default planning
+keeps 83 safe entries and explicitly refuses the unsafe fade interior. Six CPU
+sites have retained menu observations; the other 122 remain unexecuted. The
+compact CPU journal passes native guards and ABI fixtures, but its attempted
+original menu capture failed on temporary-filesystem quota and remains pending.
+See [DRAW-01 evidence and remaining boundaries](../research/runtime/draw01-inventory.md).
+
+Still required: close all 14 scenario censuses and four dispatch gates, attribute
+remaining writers and dynamic callers, and cover graphics side effects, callback
+registrations, failure/recovery branches and physical resource lifetimes.
+
+**DRAW-02 — independent references and presentation.** The retained
+[startup corpus and acceptance suite](../research/runtime/draw02-full-session.md)
+preserve all 1,062 original checkpoints and source histories through 16 World
+returns. Expected pixels remain external to native rendering. Original-active
+[API/input acquisition](../research/runtime/draw02-interactive-session.md) also
+records bounded battle activity, results, Continue/Quit and return to Main;
+this is observation evidence, not native battle-pixel or input-semantic parity.
+[Caller-result comparison](../research/runtime/draw02-caller-results.md) and
+native recovery/refusal fixtures add scoped operation evidence while retaining
+the real-driver boundary.
+
+The new [presented-session backend](../research/formats/drawing-presented-session.md)
+renders owned producer inputs and encoded assets through the native GPU viewport.
+An opt-in [original post-copy fence](../research/formats/drawing-physical-fence.md)
+binds two stable full-window X11 acquisitions to exact original frame identities
+at the two guarded opaque publication sites. The
+[integrated comparison](../research/runtime/draw02-integrated-fenced-comparison-20261011.json)
+matches all 103 startup frames and 49,440,000 pixels exactly, using the explicit
+normalized RGB565 display conversion observed on the original path. This extends
+the earlier original-readback comparison with synchronized physical screen
+witnesses. The original drawing thread waits for capture; other threads continue,
+so this does not establish unobtrusive full-game observation or global publication
+coverage.
+
+Still required: complete all 14 presented journeys and 21 operation/failure
+requirements, including alternate publication, campaign/active-battle and
+save/load producers, semantic input/caller outcomes and real-driver loss/recovery.
+
+**DRAW-03 — composition and session ownership.** The asset-backed scene adapter
+starts with undefined native storage and reconstructs World, HUD, minimap/markers
+and cursor from owned history and 16 encoded assets. Six full startup checkpoints
+match 2,880,000 original RGB565 pixels; the persistent increment matches 17 full
+canvases and separate frame publications, totaling 8,160,000 checkpoint pixels.
+The stricter runner also handles the complete retained 1,062-checkpoint startup
+sequence, removes observed raster returns from native inputs and compares sampled
+native low-16-bit results externally. Unknown return contracts remain explicit.
+
+The native session controller adds session/segment/frame identities, ordered
+Menu/Loading/World/Results stages, source-only transitions, budgets, stale-frame
+refusal, failure/restart and GPU lease cleanup. The recorded
+[canonical integration result](../research/runtime/native-master-integration-drawing-canonical-pass-20261011.json)
+covers 85 compiled source inputs, 12 lifecycle cases, 30 runner cases and six
+independently expected synthetic planes (99 pixels). These establish native lifecycle policy; original
+transition/failure equivalence still needs separate evidence. The same bounded
+startup composition now feeds DRAW-02's physical presentation backend.
+
+Still required: complete Quick Battle and campaign scenes, general camera/combat,
+windows/tooltips and alternate draw kinds; generate minimap/cursor source state;
+preserve picking, hotspots, node/client state and other consumer side effects;
+and integrate movies, transitions and recovery across independently compared
+complete sessions. Native startup pixels and synthetic lifecycle tests do not
+close those original-behavior requirements.
 
 The initial implementation path is `runtime/scene/`, `compat/legacy/` and
 `renderer/scenes/`. The owned World frame increment supplies actual colours,
