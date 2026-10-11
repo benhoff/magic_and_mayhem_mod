@@ -30450,204 +30450,6 @@
       }
     },
     {
-      "id": "NR.glyph-default-launch",
-      "subsystem": "native_rendering",
-      "kind": "native_policy",
-      "title": "Public Qt launcher defaults guarded glyph takeover",
-      "scope": "run-qt-shell.sh exports takeover when MNM_GLYPH_BACKEND is absent, preserving explicit shadow/takeover/off/empty settings. Both normal and live-menu staging authorize private pinned DLLs. Off removes stale runtime glyph environment and stages no glyph DLL/import. Standalone diagnostics/direct binary/raw original launcher retain their own selection. Unsupported admitted inputs retain original fallback and existing call budget. No new pixel/ABI, full interactive gameplay or performance claim.",
-      "confidence": "high_within_scope",
-      "original": [],
-      "documents": [
-        "research/runtime/glyph-live-backend.md"
-      ],
-      "implementation": [
-        "tools/run-qt-shell.sh",
-        "tools/glyph_backend_launch.py"
-      ],
-      "tests": [
-        "tools/test-glyph-default-launch.py"
-      ],
-      "validation_dependencies": [
-        "protocols/include/mnm/canvas_producers_v1.h",
-        "protocols/include/mnm/canvas_producers_v2.h",
-        "protocols/include/mnm/canvas_producers_v3.h",
-        "protocols/include/mnm/menu_v1.h",
-        "protocols/include/mnm/menu_v2.h",
-        "protocols/include/mnm/menu_v3.h",
-        "protocols/include/mnm/scene_snapshot_v1.h",
-        "protocols/include/mnm/world_channel_v1.h",
-        "protocols/include/mnm/world_channel_v2.h",
-        "protocols/include/mnm/world_frame_v1.h",
-        "protocols/python/mnm_protocols/__init__.py",
-        "protocols/python/mnm_protocols/frame_v1.py",
-        "protocols/python/mnm_protocols/input_v1.py",
-        "protocols/python/mnm_protocols/media_v1.py",
-        "protocols/python/mnm_protocols/render_commands_v1.py",
-        "protocols/python/mnm_protocols/render_commands_v2.py",
-        "protocols/python/mnm_protocols/render_control_v1.py",
-        "protocols/python/mnm_protocols/render_stream_v2.py",
-        "protocols/python/mnm_protocols/render_stream_v3.py",
-        "reconstruction/rendering/glyph_backend.c",
-        "reconstruction/rendering/glyph_backend.h",
-        "reconstruction/rendering/glyph_backend_state.c",
-        "reconstruction/rendering/glyph_backend_state.h",
-        "reconstruction/rendering/glyph_backend_x87.S",
-        "runtime/menu/battle.h",
-        "runtime/menu/battle_selftest.h",
-        "runtime/menu/campaign_defeat.h",
-        "runtime/menu/campaign_gameplay_observe.h",
-        "runtime/menu/campaign_mini_observe.h",
-        "runtime/menu/campaign_observe.h",
-        "runtime/menu/campaign_quit_observe.h",
-        "runtime/menu/campaign_spell_observe.h",
-        "runtime/menu/campaign_world_observe.h",
-        "runtime/menu/channel.h",
-        "runtime/menu/channel_selftest.h",
-        "runtime/menu/contract_selftest.S",
-        "runtime/menu/contract_selftest.c",
-        "runtime/menu/mini.h",
-        "runtime/menu/mini_selftest.h",
-        "runtime/menu/observer.c",
-        "runtime/menu/preferences.h",
-        "runtime/menu/preferences_display.h",
-        "runtime/menu/preferences_selftest.h",
-        "runtime/menu/region_entry.h",
-        "runtime/menu/region_entry_observe.h",
-        "runtime/menu/result_selftest.h",
-        "runtime/menu/results.h",
-        "runtime/menu/spell_selftest.h",
-        "runtime/menu/spells.h",
-        "runtime/render/adapter_startup.h",
-        "runtime/render/application_stop_selftest.h",
-        "runtime/render/backpressure_selftest.h",
-        "runtime/render/bootstrap_selftest.h",
-        "runtime/render/bridge.c",
-        "runtime/render/checkpoint_selftest.h",
-        "runtime/render/command_application_stop.h",
-        "runtime/render/command_channel.h",
-        "runtime/render/command_control.h",
-        "runtime/render/command_gate.h",
-        "runtime/render/command_idle_selftest.h",
-        "runtime/render/command_lifecycle.h",
-        "runtime/render/command_queue.h",
-        "runtime/render/command_recovery.h",
-        "runtime/render/command_scheduler.h",
-        "runtime/render/continuous_selftest.h",
-        "runtime/render/copy_order.h",
-        "runtime/render/dc_selftest.h",
-        "runtime/render/dirty_region.h",
-        "runtime/render/draw_capture.h",
-        "runtime/render/draw_selftest.h",
-        "runtime/render/draw_startup_selftest.h",
-        "runtime/render/drawing_recovery_selftest.h",
-        "runtime/render/failure_diagnostics.h",
-        "runtime/render/flip_history.h",
-        "runtime/render/flip_selftest.h",
-        "runtime/render/frame_pixels.h",
-        "runtime/render/history_selftest.h",
-        "runtime/render/host_recovery_selftest.h",
-        "runtime/render/indexed_copy_selftest.h",
-        "runtime/render/indexed_owned_selftest.h",
-        "runtime/render/input_polling.h",
-        "runtime/render/input_selftest.h",
-        "runtime/render/lifecycle_race_selftest.h",
-        "runtime/render/lifecycle_selftest.h",
-        "runtime/render/lock_aliases.h",
-        "runtime/render/lock_blit_selftest.h",
-        "runtime/render/lock_dc.h",
-        "runtime/render/lock_diagnostics.h",
-        "runtime/render/lock_flip.h",
-        "runtime/render/lock_lifecycle.h",
-        "runtime/render/lock_lifecycle_selftest.h",
-        "runtime/render/lock_palette.h",
-        "runtime/render/lock_surfaces.h",
-        "runtime/render/lock_updates.h",
-        "runtime/render/media_bridge.h",
-        "runtime/render/media_selftest.h",
-        "runtime/render/mutation_selftest.h",
-        "runtime/render/owned_dc_selftest.h",
-        "runtime/render/owned_session.h",
-        "runtime/render/owned_session_selftest.h",
-        "runtime/render/pacer_yield.h",
-        "runtime/render/palette_history.h",
-        "runtime/render/palette_selftest.h",
-        "runtime/render/partial_lock_selftest.h",
-        "runtime/render/precise_clock.h",
-        "runtime/render/recovery_race_selftest.h",
-        "runtime/render/recovery_selftest.h",
-        "runtime/render/resource_selftest.h",
-        "runtime/render/selftest.c",
-        "runtime/render/surface_commands.h",
-        "runtime/render/surface_history.h",
-        "runtime/render/working_set_selftest.h",
-        "runtime/scene/canvas_producers.S",
-        "runtime/scene/canvas_producers.c",
-        "runtime/scene/canvas_startup.S",
-        "runtime/scene/canvas_startup.c",
-        "runtime/scene/entry.S",
-        "runtime/scene/glyph_entry.S",
-        "runtime/scene/glyph_leave.S",
-        "runtime/scene/glyph_live.c",
-        "runtime/scene/glyph_live.h",
-        "runtime/scene/glyph_route.c",
-        "runtime/scene/glyph_route.h",
-        "runtime/scene/kind8_observer.c",
-        "runtime/scene/observer.c",
-        "runtime/scene/selftest.c",
-        "runtime/scene/startup_queue.c",
-        "runtime/scene/word_entry.S",
-        "runtime/scene/word_route.c",
-        "runtime/scene/word_workspace.h",
-        "runtime/scene/world_entry.S",
-        "runtime/scene/world_kinds.h",
-        "runtime/scene/world_lifetime.c",
-        "runtime/scene/world_producer_bypass.c",
-        "runtime/scene/world_raster_batch.c",
-        "runtime/scene/world_raster_callers.h",
-        "runtime/scene/world_stream.c",
-        "runtime/scene/world_stream_selftest.c",
-        "runtime/scene/world_trace.c",
-        "runtime/shadow/win32_min.h",
-        "tests/glyph-backend-entry-probe.S",
-        "tests/glyph-backend-state-probe.S",
-        "tests/glyph-backend-test.c",
-        "tests/sprite-binary-reference.cpp",
-        "tools/build-menu-observer.py",
-        "tools/build-render-bridge.py",
-        "tools/build-scene-observer.py",
-        "tools/build-shadow-bridge.py",
-        "tools/capture-scene-game.py",
-        "tools/decode-cfg.py",
-        "tools/encode-cfg.py",
-        "tools/export-menu-support.py",
-        "tools/glyph_live_capture.py",
-        "tools/menu-game-runner.py",
-        "tools/menu_preferences_store.py",
-        "tools/native_render_config.py",
-        "tools/original-manifest.sh",
-        "tools/prepare-menu-observer.py",
-        "tools/prepare-scene-observer.py",
-        "tools/prepare-shadow-experiment.py",
-        "tools/render-game-runner.py",
-        "tools/run-game.sh",
-        "tools/run-opengl-game.py",
-        "tools/scene-game-runner.py",
-        "tools/test-glyph-backend-state.py",
-        "tools/world_channel.py",
-        "tools/world_refusal.py"
-      ],
-      "evidence": [
-        "NR.glyph-default-launch.host-20261010"
-      ],
-      "status": {
-        "understanding": "scoped",
-        "implementation": "scoped",
-        "comparison": "none",
-        "integration": "headless",
-        "replacement": "none"
-      }
-    },
-    {
       "id": "DRAW.surface-hosting",
       "title": "Selected graphics setup and monitor API-loading inventory",
       "scope": "Static selected windows58a9b0/58aa90/58b270 from the pinned caller export. Session setup and dynamically resolved monitor APIs only; no recovered external implementation, native equivalence or lifetime completion.",
@@ -30863,6 +30665,204 @@
       }
     },
     {
+      "id": "NR.glyph-default-launch",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Public Qt launcher defaults guarded glyph takeover",
+      "scope": "run-qt-shell.sh exports takeover when MNM_GLYPH_BACKEND is absent, preserving explicit shadow/takeover/off/empty settings. Both normal and live-menu staging authorize private pinned DLLs. Off removes stale runtime glyph environment and stages no glyph DLL/import. Standalone diagnostics/direct binary/raw original launcher retain their own selection. Unsupported admitted inputs retain original fallback and existing call budget. No new pixel/ABI, full interactive gameplay or performance claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/glyph-live-backend.md"
+      ],
+      "implementation": [
+        "tools/run-qt-shell.sh",
+        "tools/glyph_backend_launch.py"
+      ],
+      "tests": [
+        "tools/test-glyph-default-launch.py"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/python/mnm_protocols/__init__.py",
+        "protocols/python/mnm_protocols/frame_v1.py",
+        "protocols/python/mnm_protocols/input_v1.py",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v2.py",
+        "protocols/python/mnm_protocols/render_control_v1.py",
+        "protocols/python/mnm_protocols/render_stream_v2.py",
+        "protocols/python/mnm_protocols/render_stream_v3.py",
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/bridge.c",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/palette_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/selftest.c",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/glyph_entry.S",
+        "runtime/scene/glyph_leave.S",
+        "runtime/scene/glyph_live.c",
+        "runtime/scene/glyph_live.h",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/glyph-backend-entry-probe.S",
+        "tests/glyph-backend-state-probe.S",
+        "tests/glyph-backend-test.c",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-scene-game.py",
+        "tools/decode-cfg.py",
+        "tools/encode-cfg.py",
+        "tools/export-menu-support.py",
+        "tools/glyph_live_capture.py",
+        "tools/menu-game-runner.py",
+        "tools/menu_preferences_store.py",
+        "tools/native_render_config.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/render-game-runner.py",
+        "tools/run-game.sh",
+        "tools/run-opengl-game.py",
+        "tools/scene-game-runner.py",
+        "tools/test-glyph-backend-state.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py"
+      ],
+      "evidence": [
+        "NR.glyph-default-launch.host-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
       "id": "DRAW.unattributed-caller",
       "subsystem": "drawing_inventory",
       "kind": "recovered",
@@ -30927,6 +30927,158 @@
         "replacement": "none"
       },
       "validation_domain": "All nine admitted RGB565 outputs compared in full against frozen independent original outputs, both native replay binaries required without backend substitution. Changed identities/provenance, output-as-input, paths, gzip extents, pointers/modes and partial canvases refuse. No full-window/session completion or new original execution."
+    },
+    {
+      "id": "NR.drawing-scene",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Complete bounded source-owned startup World and UI canvas composition",
+      "scope": "Reusable widget-free No-CD producer adapter composes an exact finite startup prefix from undefined native storage through asset-backed GPU World and ordered CPU HUD/minimap/marker/cursor operations; matching GPU World output commits to native history before later UI/copies. Explicit source-sequence/queue/canvas/extent seal exposes complete GPU output; incomplete state, unknown inside-World writes, identity gaps and execution errors poison presentation. Portable retained map2 queue1 prefix through20458 compares six full RGB565 checkpoints against immutable independent original outputs. Includes native defined-pixel history, copies/writebacks/readbacks and cleanup only; original consumer non-pixel state, physical display-copy/Flip/driver failures, source-state generation, picking/hotspots, alternate dispatch, camera/battle/session journeys and live bypass remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw03-native-scene.md",
+        "research/formats/drawing-scene-corpus.md"
+      ],
+      "implementation": [
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene_main.cpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "tools/drawing_scene_corpus.py",
+        "tools/check-drawing-scene.py",
+        "tools/retain-drawing-scene.py"
+      ],
+      "tests": [
+        "tests/drawing-scene-test.cpp",
+        "tests/test-drawing-scene.py",
+        "tests/resource-fixtures.hpp",
+        "tests/fixtures/drawing-scene/asset-001.gz",
+        "tests/fixtures/drawing-scene/asset-002.gz",
+        "tests/fixtures/drawing-scene/asset-003.gz",
+        "tests/fixtures/drawing-scene/asset-004.gz",
+        "tests/fixtures/drawing-scene/asset-005.gz",
+        "tests/fixtures/drawing-scene/asset-006.gz",
+        "tests/fixtures/drawing-scene/asset-007.gz",
+        "tests/fixtures/drawing-scene/asset-008.gz",
+        "tests/fixtures/drawing-scene/asset-009.gz",
+        "tests/fixtures/drawing-scene/asset-010.gz",
+        "tests/fixtures/drawing-scene/asset-011.gz",
+        "tests/fixtures/drawing-scene/asset-012.gz",
+        "tests/fixtures/drawing-scene/asset-013.gz",
+        "tests/fixtures/drawing-scene/asset-014.gz",
+        "tests/fixtures/drawing-scene/asset-015.gz",
+        "tests/fixtures/drawing-scene/asset-016.gz",
+        "tests/fixtures/drawing-scene/oracle-0908.gz",
+        "tests/fixtures/drawing-scene/oracle-0915.gz",
+        "tests/fixtures/drawing-scene/oracle-0916.gz",
+        "tests/fixtures/drawing-scene/oracle-0918.gz",
+        "tests/fixtures/drawing-scene/oracle-0919.gz",
+        "tests/fixtures/drawing-scene/oracle-0920.gz",
+        "tests/fixtures/drawing-scene/scene.json",
+        "tests/fixtures/drawing-scene/startup-input.gz"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tools/coverage_audit.py",
+        "tools/drawing_corpus.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/rendering_coverage.py"
+      ],
+      "validation_domain": "Pinned original-active first map2 800x600 pre-display-copy composition:20458contiguous records, World queue1 followed by HUD/minimap/markers/cursor, six full independent output planes and16encoded source assets. Native poisoning/refusal/cleanup tests are synthetic, original caller/driver side effects excluded.",
+      "evidence": [
+        "NR.drawing-scene.retention-20261010",
+        "NR.drawing-scene.native-20261010",
+        "NR.drawing-scene.native-reviewed-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -59280,6 +59432,45 @@
       ]
     },
     {
+      "id": "NR.drawing-comparison-corpus.native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh portable component replay: five sanitized original-driver surface operations plus four complete World consumer canvases from exact owned RLE, matched4320000RGB565 words with zero mismatches; no new original execution, full presented scene or live replacement.",
+      "record": "research/runtime/draw02-native-comparison-20261010.json",
+      "sha256": "79b3918984352ea9046ee310a537c06e57e3db97c4e9258bfc7639a9cf6dd487",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 4320000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
       "id": "TOOL.drawing-inventory.guards-v2-20261010",
       "kind": "native_integration",
       "scope": "DRAW-01 final offline route accounting guard execution with interior hook and repository census checks. No original execution, rendering equivalence or complete scenario census.",
@@ -59350,45 +59541,6 @@
       ]
     },
     {
-      "id": "NR.drawing-comparison-corpus.native-20261010",
-      "kind": "native_integration",
-      "scope": "Fresh portable component replay: five sanitized original-driver surface operations plus four complete World consumer canvases from exact owned RLE, matched4320000RGB565 words with zero mismatches; no new original execution, full presented scene or live replacement.",
-      "record": "research/runtime/draw02-native-comparison-20261010.json",
-      "sha256": "79b3918984352ea9046ee310a537c06e57e3db97c4e9258bfc7639a9cf6dd487",
-      "sources_pointer": "/sources",
-      "claims_pointer": "/claims",
-      "assertions": [
-        {
-          "pointer": "/success",
-          "equals": true
-        },
-        {
-          "pointer": "/sources_stable",
-          "equals": true
-        },
-        {
-          "pointer": "/inputs_stable",
-          "equals": true
-        },
-        {
-          "pointer": "/pixels_compared",
-          "equals": 4320000
-        },
-        {
-          "pointer": "/mismatches",
-          "equals": 0
-        },
-        {
-          "pointer": "/original_pixels_used_as_native_inputs",
-          "equals": false
-        },
-        {
-          "pointer": "/draw02_complete",
-          "equals": false
-        }
-      ]
-    },
-    {
       "id": "NR.drawing-comparison-corpus.clean-checkout-20261010",
       "kind": "native_integration",
       "scope": "Fresh replay after removing test dependence on a pre-existing working directory: all nine original-output component comparisons match4320000RGB565 words. Historical first execution retains its old source hashes; full presented scenes and live replacement remain pending.",
@@ -59424,6 +59576,142 @@
         {
           "pointer": "/draw02_complete",
           "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-scene.retention-20261010",
+      "kind": "static",
+      "scope": "Exact historical producer-prefix retention after verifying complete stream and source/output hashes in the unchanged original comparison. This static identity record establishes retention provenance, not new native/original execution or milestone validation.",
+      "record": "tests/fixtures/drawing-scene/scene.json",
+      "sha256": "795a812754dee653edbe1b4b9213b3d24698103c6ac5cdb3ebb6db9b982d0516",
+      "sources_pointer": "/retention_sources",
+      "assertions": [
+        {
+          "pointer": "/schema",
+          "equals": 1
+        },
+        {
+          "pointer": "/boundary/sequence",
+          "equals": 20458
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-scene.native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh source-bound execution of the native DrawingScene order/refusal/cleanup suite and eight portable corpus guards, then all six complete startup World/HUD/minimap/markers/cursor canvases matched against pinned independent original outputs:2880000RGB565 pixels, zero differences. Native GPU readiness only; physical original presentation/caller state/live replacement excluded.",
+      "record": "research/runtime/draw03-native-comparison-20261010.json",
+      "sha256": "356477d94ee2d416088d6d7ae1a7f14f2db3804fe4d49e526a17a0d71db9eaca",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 2880000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/declared_canvas_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/draw03_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/native_scene",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/portable_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-scene.native-reviewed-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh source-bound native order/refusal/cleanup, eight portable guards and six complete canvas comparisons after reviewing canonical compiler dependency paths. Matches2880000RGB565 pixels with zero differences. Earlier result and scope claims remain historical; complete presentation/original caller side effects/live replacement excluded.",
+      "record": "research/runtime/draw03-native-comparison-reviewed-20261010.json",
+      "sha256": "be7b9b15576e23f6d74648bf786ea83717ce7a0ad8d72d5a8f23efc146de85f1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 2880000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/declared_canvas_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/draw03_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/native_scene",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/portable_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
         }
       ]
     },
@@ -67179,6 +67467,24 @@
         "tools/check-drawing-corpus.py",
         "tests/fixtures/drawing/corpus.json"
       ]
+    },
+    {
+      "id": "DRAW03.startup-composed-canvas",
+      "scope": "Source-only contiguous map2 startup through first complete pre-display-copy canvas, with World/HUD/minimap/markers/cursor full-plane comparison and synthetic incomplete/unknown/identity/resource/cleanup refusal tests. Physical original presentation, caller side effects and live replacement excluded.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-scene"
+      ],
+      "evidence": [
+        "NR.drawing-scene.native-20261010",
+        "NR.drawing-scene.native-reviewed-20261010"
+      ],
+      "tests": [
+        "tests/drawing-scene-test.cpp",
+        "tests/test-drawing-scene.py",
+        "tools/check-drawing-scene.py",
+        "tests/fixtures/drawing-scene/scene.json"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -67516,8 +67822,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-commit-20261010.json",
-    "sha256": "235da28960d785e0e6159fbf5855f66df2a799b1d058836348a49bb6691bd838"
+    "path": "research/runtime/coverage/source-index-draw03-reviewed-20261010.json",
+    "sha256": "96bee8f3545127cd1cb3ba9e373885af17fb8e6d44adfa3b2f0f40c3d8b315b8"
   },
   "claim_bindings_required": true
 }

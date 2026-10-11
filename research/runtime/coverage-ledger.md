@@ -4283,6 +4283,7 @@ with zero unresolved receipt gaps. All 170 launch-test sources retain the
 recorded hashes; the existing headless evidence remains current for this launch
 policy. The census and exact change receipts are refreshed against `95c1f93`.
 
+
 ### DRAW-01 scenario-tagged route accounting — 2026-10-10
 
 The [route register](drawing-inventory.json) and [checker/importer](draw01-inventory.md)
@@ -4322,6 +4323,7 @@ Earlier tool runs keep their historical hashes; final 29-guard and retained-jour
 re-indexing results use new `TOOL.drawing-inventory.*-v2-20261010` evidence IDs.
 The [updated coverage summary](coverage/summary-draw01-20261010.md) preserves
 original comparison/replacement statuses and the incomplete census boundaries.
+
 
 ### 2026-10-10: DRAW-02 portable independent comparison corpus
 
@@ -4366,6 +4368,35 @@ checks also pass in an isolated repository subset containing no working tree,
 installed game or original media. The first execution remains immutable; its
 prior test hash is explicitly historical after this test-portability correction.
 
+
+## DRAW-03 bounded startup scene composition (2026-10-10)
+
+`NR.drawing-scene` adds a widget-free build-specific adapter over native producer,
+resource and GPU World services. Storage starts undefined; matching GPU World
+output becomes retained native input before ordered post-World UI/copies. An
+explicit source-sequence/queue/canvas/extent boundary must seal before native
+read/presentation. Unknown inside-World work, gaps, undefined history, missing
+resources and malformed boundaries poison the instance; cleanup is checked.
+
+The portable fixture retains the exact map2 startup prefix through20458,16actual
+encoded source assets and six independent original full-canvas oracles. New native
+execution matches2,880,000RGB565 pixels with zero differences, including the final
+HUD/minimap/markers/cursor composition. Eight portable guards and native order,
+refusal and cleanup tests pass. See [scope and reproduction](draw03-native-scene.md).
+Retention checks full historical input/source/output hashes and preserves the
+original comparison report; this is new native execution against frozen original
+outputs, not a new original-game execution.
+
+The output boundary precedes the physical display copy. Native defined-pixel
+history, copies, writeback/readback and cleanup are in scope; original consumer
+non-pixel state and arbitrary readbacks, display-copy/Flip/driver failures,
+source-state generation, picking/hotspots, general windows/tooltips, camera/battle
+journeys, alternate dispatch and unbounded delivery remain pending. Native policy
+implementation/headless integration are separate from recovered original
+comparison, observation and replacement; no live mode or takeover is enabled.
+Broad DRAW-03 completion is not claimed. The source census and exact receipts
+record this increment without refreshing old evidence fingerprints.
+
 The DRAW-02-only commit snapshot repeats all nine native comparisons with
 zero mismatches across 4,320,000 RGB565 pixels, registered separately as
 `NR.drawing-comparison-corpus.commit-validation-20261010`. All twelve guards
@@ -4375,3 +4406,11 @@ exact receipts, including append-only journal objects, with zero unresolved
 gaps. The report is retained at
 `coverage/draw02-history-48ca294-98b4524-20261010.json`. DRAW-03 implementation
 and its in-progress validation are excluded from this snapshot.
+
+
+The committed range48ca294..98b4524 was reviewed separately from this uncommitted
+increment:20file versions and75behavior transitions have exact receipt chains,
+with no unresolved intermediate versions. The append-only journal check and exact
+hashes are retained in
+`coverage/draw03-history-48ca294-98b4524-20261010.json`. This history accounting
+asserts neither a past gate pass nor new execution validation.

@@ -1,0 +1,159 @@
+"""Portable complete native canvas replay; original outputs stay in the comparator."""
+from collections import Counter
+import json
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+
+from drawing_corpus import ROOT, BUILD, artifact, compare, local, load_tool, sha
+
+CATALOG = 'tests/fixtures/drawing-scene/scene.json'
+RETENTION = 'NR.drawing-scene.retention-20261010'
+
+
+def asset_name(name):
+    parts = name.replace('\\', '/').split('/')
+    if not parts or any(p in ('', '.', '..') or ':' in p for p in parts):
+        raise ValueError('Invalid closed scene asset name')
+    return '/'.join(parts)
+
+
+def admit(root, catalog, register):
+    from rendering_coverage import evidence_record
+    evidence = {e['id']: e for e in register['evidence']}
+    builds = {b['id']: b for b in register['builds']}
+    # The immutable retention record pins the exact prefix slice made while
+    # checking the full historical stream hash. Historical working files are
+    # not required during portable replay.
+    retained = evidence_record(root, evidence[RETENTION], builds)
+    if catalog != retained or catalog['schema'] != 1 or catalog['source_sha256'] != BUILD:
+        raise ValueError('Scene retention identity changed')
+    ev = evidence[catalog['evidence']]
+    if (ev['build'] != catalog['build'] or ev['sha256'] != catalog['historical_report_sha256'] or
+            catalog['original_inputs_verified'] is not True or
+            ev['kind'] not in ('isolated_original', 'live_equivalence', 'live_replacement')):
+        raise ValueError('Scene requires independent original evidence')
+    historical = evidence_record(root, ev, builds)
+    if historical['original_pixels_used_as_native_inputs'] or historical['original_oracles_read_by_native']:
+        raise ValueError('Oracle-dependent original comparison')
+    stream = catalog['historical_stream']
+    if historical['inputs'].get(stream['path']) != stream['sha256']:
+        raise ValueError('Historical stream provenance mismatch')
+    raw = artifact(root, catalog['input'])
+    if len(raw) != stream['prefix_bytes']:
+        raise ValueError('Retained prefix extent mismatch')
+    _, records = load_tool('inspect-canvas-producers').decode(raw, complete=False)
+    boundary = catalog['boundary']
+    if (len(records) != boundary['sequence'] or records[-1][0][2] != 10 or
+            records[-1][0][3] != boundary['canvas'] or records[-1][0][5:7] != (boundary['width'], boundary['height']) or
+            not 0 < boundary['width'] <= 2048 or not 0 < boundary['height'] <= 2048):
+        raise ValueError('Scene boundary is not a complete canvas checkpoint')
+    if (sum(r[2] == 11 for r, _ in records) != boundary['queues'] or
+            sum(r[2] == 12 for r, _ in records) != boundary['queues'] or
+            dict(sorted(Counter(str(r[2]) for r, _ in records).items())) != catalog['producer_counts'] or
+            not catalog['remaining'] or any(not s.strip() for s in catalog['remaining'])):
+        raise ValueError('Scene queue/count/limitation identity mismatch')
+    assets, names = [], set()
+    for entry in catalog['assets']:
+        name = asset_name(entry['name'])
+        if name.casefold() in names:
+            raise ValueError('Duplicate scene asset binding')
+        names.add(name.casefold())
+        data = artifact(root, entry)
+        if historical['inputs'].get(entry['historical_path']) != sha(data):
+            raise ValueError('Scene source provenance mismatch')
+        assets.append((entry['name'], name, data))
+    originals = {c['oracle']: c for c in historical['native']['checkpoints']}
+    compared = {c['oracle']: c for c in historical['checkpoints']}
+    record_checkpoints = {r[14]: r for r, _ in records if r[2] == 10}
+    oracles, ordinals = [], set()
+    for c in catalog['checkpoints']:
+        ordinal = c['ordinal']
+        if ordinal in ordinals:
+            raise ValueError('Duplicate scene checkpoint')
+        ordinals.add(ordinal)
+        r = record_checkpoints[ordinal]
+        n = originals[ordinal]
+        if ((c['sequence'], c['canvas'], c['width'], c['height']) != (r[1], r[3], r[5], r[6]) or
+                (n['sequence'], n['canvas']) != (r[1], r[3]) or not compared[ordinal]['equal']):
+            raise ValueError('Scene oracle/frame identity mismatch')
+        expected = artifact(root, c['oracle'])
+        if historical['inputs'].get(c['oracle']['historical_path']) != sha(expected) or n['sha256'] != sha(expected):
+            raise ValueError('Independent scene output provenance mismatch')
+        if len(expected) != c['width'] * c['height'] * 2:
+            raise ValueError('Scene oracle is not a full canvas')
+        oracles.append((c, expected))
+    if records[-1][0][14] not in ordinals:
+        raise ValueError('Final composed scene lacks an independent oracle')
+    return raw, assets, oracles
+
+
+def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False):
+    path = local(root, catalog_path)
+    catalog = json.loads(path.read_text())
+    register = json.loads((root / 'research/runtime/coverage/register.json').read_text())
+    raw, assets, oracles = admit(root, catalog, register)
+    executable = executable.resolve()
+    binary_hash = sha(executable.read_bytes())
+    inputs = {str(path.relative_to(root)): sha(path.read_bytes())}
+    for entry in (catalog['input'], *catalog['assets'], *(c['oracle'] for c, _ in oracles)):
+        inputs[entry['path']] = entry['sha256']
+    parent = root / 'working/tests/drawing-scene'
+    parent.mkdir(parents=True, exist_ok=True)
+    output = Path(tempfile.mkdtemp(prefix='run-', dir=parent))
+    native_input = output / 'inputs'
+    asset_root = native_input / 'assets'
+    asset_root.mkdir(parents=True)
+    (native_input / 'producers.bin').write_bytes(raw)
+    for _, name, data in assets:
+        # Windows source spellings may mix Interface/interface. One canonical
+        # native tree avoids ambiguous case aliases in the strict resolver.
+        target = asset_root / name.casefold()
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(data)
+    # Neither oracle paths nor oracle bytes are sent to the renderer.
+    declaration = {'schema': 1, 'boundary': catalog['boundary'],
+                   'assets': {name: sha(data) for name, _, data in assets},
+                   'retain_checkpoints': [c['ordinal'] for c, _ in oracles]}
+    (native_input / 'scene.json').write_text(json.dumps(declaration, indent=2) + '\n')
+    command = [str(executable), str(native_input / 'producers.bin'), str(asset_root),
+               str(native_input / 'scene.json'), str(output / 'native')]
+    environment = dict(os.environ)
+    if headless:
+        command = ['xvfb-run', '-a', *command]
+        environment.update(QT_QPA_PLATFORM='xcb', LIBGL_ALWAYS_SOFTWARE='1')
+    execution = subprocess.run(command, capture_output=True, timeout=180, env=environment)
+    (output / 'native.log').write_bytes(execution.stdout + execution.stderr)
+    if execution.returncode:
+        raise ValueError('Native scene replay refused: ' + str(output / 'native.log'))
+    native = json.loads((output / 'native/scene-report.json').read_text())
+    if (not native['success'] or native['boundary'] != catalog['boundary'] or native['remaining_surfaces'] or
+            native['original_pixels_used_as_native_inputs'] or native['original_oracles_read'] or
+            not native['native_gpu_presentation_ready']):
+        raise ValueError('Native scene completion/admission mismatch')
+    completed = {c['ordinal']: c for c in native['checkpoints']}
+    comparisons = []
+    for c, expected in oracles:
+        actual = (output / f"native/checkpoint-{c['ordinal']:04}.565").read_bytes()
+        n = completed[c['ordinal']]
+        if any(n[k] != c[k] for k in ('sequence', 'canvas', 'width', 'height')) or n['sha256'] != sha(actual):
+            raise ValueError('Native scene checkpoint identity mismatch')
+        comparisons.append({'ordinal': c['ordinal'], 'sequence': c['sequence'], 'canvas': c['canvas'],
+                            **compare(actual, expected, c['width'], c['height'])})
+    final = next((c, expected) for c, expected in oracles if c['sequence'] == catalog['boundary']['sequence'])
+    scene = (output / 'native/scene.565').read_bytes()
+    if scene != (output / f"native/checkpoint-{final[0]['ordinal']:04}.565").read_bytes() or sha(scene) != native['scene_sha256']:
+        raise ValueError('Published scene differs from its complete final checkpoint')
+    if (sha(executable.read_bytes()) != binary_hash or
+            any(sha(local(root, name).read_bytes()) != h for name, h in inputs.items())):
+        raise ValueError('Scene inputs/binary changed during comparison')
+    return {'success': all(c['matching'] for c in comparisons), 'scope': catalog['scope'],
+            'boundary': catalog['boundary'], 'comparisons': comparisons,
+            'pixels_compared': sum(c['pixels'] for c in comparisons),
+            'mismatches': sum(c['mismatching_pixels'] for c in comparisons),
+            'native': native, 'inputs': inputs, 'binary_sha256': binary_hash,
+            'original_pixels_used_as_native_inputs': False, 'original_oracles_read_by_native': False,
+            'declared_canvas_complete': all(c['matching'] for c in comparisons),
+            'draw03_complete': False, 'live_replacement': False, 'remaining': catalog['remaining'],
+            'artifacts': str(output.relative_to(root))}
