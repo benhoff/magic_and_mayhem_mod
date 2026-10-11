@@ -4358,3 +4358,24 @@ full dispatch remain independent pending obligations. Existing evidence hashes
 and rendering status are preserved. See `draw01-inventory.md` and the new exact
 scope-bound census evidence. History `98b4524..8764d90` was reviewed separately
 from uncommitted journal changes, with exact receipt coverage retained.
+
+### DRAW-01 original queue routing and omitted helpers — 2026-10-10
+
+The route register now includes seven original consumer helper/cleanup targets,
+107 routes and 68 entry identities. Expanded exact caller evidence retains 937
+direct CALL sites. Observation admits 67 safe sites and still refuses the unsafe
+fade interior. An isolated unchanged original consumer passes 2,432 synthetic
+backend cases and retains all 105 raw dispatch branch slices. Selected wave
+kinds 16/17/20, literal colours and metadata zero/default/AX/boolean policies
+have high confidence within this routing scope; native pixels, concrete virtual
+objects, auxiliary boundaries/prior-metadata changes, helper globals and enabled
+cleanup remain pending. No comparison, integration or replacement status is
+promoted. All dispatch and fourteen scenario closure gates remain incomplete.
+
+Fresh six-size ABI execution and fresh helper-anchor consumer execution are
+registered under new evidence IDs. Historical fingerprints remain unchanged.
+Failed campaign attempts and compressed partial journal hashes are retained;
+they do not establish closed census validation. Committed history
+`8764d90..4d28021` was separately reviewed with 31 changed files, 94 affected
+behaviors and no missing exact receipts. See the retained history report and
+`draw01-inventory.md` for reproduction and scope boundaries.

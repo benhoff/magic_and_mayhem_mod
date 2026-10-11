@@ -2421,18 +2421,18 @@
         "DRAW.world-kind-16"
       ],
       "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
-      "classification": "unresolved",
-      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
-      "confidence": "provisional",
+      "classification": "producer",
+      "scope": "Queue consumer branches call original wave5806f0 with literal amplitude2; selected primary/secondary/Video0 coordinates and AX metadata are checked separately from raster pixels.",
+      "confidence": "high_within_scope",
       "support": {
-        "decision": "unresolved",
-        "reason": "Selected low-level raster inputs can be captured even when the older high-level World adapter refuses this kind; complete kind semantics remain unclassified."
+        "decision": "original_only",
+        "reason": "Keep original queue execution active. Call-routing and selected metadata are recovered; full high-level native admission, downstream pixels, helper effects and complete scenario coverage remain separate."
       },
       "side_effects": [
         "Original queue dispatch and required consumer state/readbacks",
         "Complete branch effects remain open"
       ],
-      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "remaining": "Helper global effects, auxiliary clip/prior-metadata branches and full session/native replacement remain pending.",
       "documents": [
         "research/runtime/render-drawing-inventory.md",
         "research/runtime/native-canvas-producers.md",
@@ -2453,18 +2453,18 @@
         "DRAW.world-kind-17"
       ],
       "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
-      "classification": "unresolved",
-      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
-      "confidence": "provisional",
+      "classification": "producer",
+      "scope": "Queue consumer branches call original wave5806f0 with literal amplitude3; selected primary/secondary/Video0 coordinates and AX metadata are checked separately from raster pixels.",
+      "confidence": "high_within_scope",
       "support": {
-        "decision": "unresolved",
-        "reason": "Selected low-level raster inputs can be captured even when the older high-level World adapter refuses this kind; complete kind semantics remain unclassified."
+        "decision": "original_only",
+        "reason": "Keep original queue execution active. Call-routing and selected metadata are recovered; full high-level native admission, downstream pixels, helper effects and complete scenario coverage remain separate."
       },
       "side_effects": [
         "Original queue dispatch and required consumer state/readbacks",
         "Complete branch effects remain open"
       ],
-      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "remaining": "Helper global effects, auxiliary clip/prior-metadata branches and full session/native replacement remain pending.",
       "documents": [
         "research/runtime/render-drawing-inventory.md",
         "research/runtime/native-canvas-producers.md",
@@ -2518,18 +2518,18 @@
         "DRAW.world-kind-20"
       ],
       "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
-      "classification": "unresolved",
-      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
-      "confidence": "provisional",
+      "classification": "producer",
+      "scope": "Queue consumer branches call original wave5806f0 with literal amplitude6; selected primary/secondary/Video0 coordinates and AX metadata are checked separately from raster pixels.",
+      "confidence": "high_within_scope",
       "support": {
-        "decision": "unresolved",
-        "reason": "Selected low-level raster inputs can be captured even when the older high-level World adapter refuses this kind; complete kind semantics remain unclassified."
+        "decision": "original_only",
+        "reason": "Keep original queue execution active. Call-routing and selected metadata are recovered; full high-level native admission, downstream pixels, helper effects and complete scenario coverage remain separate."
       },
       "side_effects": [
         "Original queue dispatch and required consumer state/readbacks",
         "Complete branch effects remain open"
       ],
-      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "remaining": "Helper global effects, auxiliary clip/prior-metadata branches and full session/native replacement remain pending.",
       "documents": [
         "research/runtime/render-drawing-inventory.md",
         "research/runtime/native-canvas-producers.md",
@@ -3612,6 +3612,223 @@
         }
       ],
       "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.004df840",
+      "entry": 5109824,
+      "title": "Queue consumer original helper 004df840",
+      "behaviors": [
+        "DRAW.queue-dispatch"
+      ],
+      "owner": "runtime/scene",
+      "classification": "producer",
+      "scope": "Explicit queue consumer CALL target/return contract. Backend body pixels and helper global side effects remain outside this recovered call-routing scope.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Forward the original helper. No new native pixel admission follows from consumer call routing or a known RET contract."
+      },
+      "side_effects": [
+        "Original downstream helper work and callee cleanup",
+        "Concrete pixel/global/lifetime effects need separate review"
+      ],
+      "remaining": "Backend side-effect inventory, concrete owner/caller modes and full session coverage remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x4df840"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0057e8e0",
+      "entry": 5761248,
+      "title": "Queue consumer original helper 0057e8e0",
+      "behaviors": [
+        "DRAW.queue-dispatch"
+      ],
+      "owner": "runtime/scene",
+      "classification": "producer",
+      "scope": "Explicit queue consumer CALL target/return contract. Backend body pixels and helper global side effects remain outside this recovered call-routing scope.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Forward the original helper. No new native pixel admission follows from consumer call routing or a known RET contract."
+      },
+      "side_effects": [
+        "Original downstream helper work and callee cleanup",
+        "Concrete pixel/global/lifetime effects need separate review"
+      ],
+      "remaining": "Backend side-effect inventory, concrete owner/caller modes and full session coverage remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x57e8e0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0057fe10",
+      "entry": 5766672,
+      "title": "Queue consumer original helper 0057fe10",
+      "behaviors": [
+        "DRAW.queue-dispatch"
+      ],
+      "owner": "runtime/scene",
+      "classification": "producer",
+      "scope": "Explicit queue consumer CALL target/return contract. Backend body pixels and helper global side effects remain outside this recovered call-routing scope.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Forward the original helper. No new native pixel admission follows from consumer call routing or a known RET contract."
+      },
+      "side_effects": [
+        "Original downstream helper work and callee cleanup",
+        "Concrete pixel/global/lifetime effects need separate review"
+      ],
+      "remaining": "Backend side-effect inventory, concrete owner/caller modes and full session coverage remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x57fe10"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00580260",
+      "entry": 5767776,
+      "title": "Queue consumer original helper 00580260",
+      "behaviors": [
+        "DRAW.queue-dispatch"
+      ],
+      "owner": "runtime/scene",
+      "classification": "producer",
+      "scope": "Explicit queue consumer CALL target/return contract. Backend body pixels and helper global side effects remain outside this recovered call-routing scope.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Forward the original helper. No new native pixel admission follows from consumer call routing or a known RET contract."
+      },
+      "side_effects": [
+        "Original downstream helper work and callee cleanup",
+        "Concrete pixel/global/lifetime effects need separate review"
+      ],
+      "remaining": "Backend side-effect inventory, concrete owner/caller modes and full session coverage remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x580260"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00580a90",
+      "entry": 5769872,
+      "title": "Queue consumer original helper 00580a90",
+      "behaviors": [
+        "DRAW.queue-dispatch"
+      ],
+      "owner": "runtime/scene",
+      "classification": "producer",
+      "scope": "Explicit queue consumer CALL target/return contract. Backend body pixels and helper global side effects remain outside this recovered call-routing scope.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Forward the original helper. No new native pixel admission follows from consumer call routing or a known RET contract."
+      },
+      "side_effects": [
+        "Original downstream helper work and callee cleanup",
+        "Concrete pixel/global/lifetime effects need separate review"
+      ],
+      "remaining": "Backend side-effect inventory, concrete owner/caller modes and full session coverage remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x580a90"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00581200",
+      "entry": 5771776,
+      "title": "Queue consumer original helper 00581200",
+      "behaviors": [
+        "DRAW.queue-dispatch"
+      ],
+      "owner": "runtime/scene",
+      "classification": "producer",
+      "scope": "Explicit queue consumer CALL target/return contract. Backend body pixels and helper global side effects remain outside this recovered call-routing scope.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Forward the original helper. No new native pixel admission follows from consumer call routing or a known RET contract."
+      },
+      "side_effects": [
+        "Original downstream helper work and callee cleanup",
+        "Concrete pixel/global/lifetime effects need separate review"
+      ],
+      "remaining": "Backend side-effect inventory, concrete owner/caller modes and full session coverage remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x581200"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.004d8ab0",
+      "entry": 5081776,
+      "title": "Queue consumer original helper 004d8ab0",
+      "behaviors": [
+        "DRAW.queue-dispatch"
+      ],
+      "owner": "runtime/scene",
+      "classification": "lifecycle",
+      "scope": "Explicit queue consumer CALL target/return contract. Backend body pixels and helper global side effects remain outside this recovered call-routing scope.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Forward the original helper. No new native pixel admission follows from consumer call routing or a known RET contract."
+      },
+      "side_effects": [
+        "Original downstream helper work and callee cleanup",
+        "Concrete pixel/global/lifetime effects need separate review"
+      ],
+      "remaining": "Backend side-effect inventory, concrete owner/caller modes and full session coverage remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x4d8ab0"
+        }
+      ],
+      "static_windows": []
     }
   ],
   "additional_hook_sources": [
@@ -3623,6 +3840,9 @@
   "caller_sources": [
     {
       "evidence": "RI.drawing-callers-expanded-20261010"
+    },
+    {
+      "evidence": "RI.drawing-callers-dispatch-expanded-20261010"
     }
   ]
 }

@@ -40,16 +40,16 @@ def main():
                            timeout=seconds, check=True)
     run('imports', ['llvm-dlltool', '-m', 'i386', '-D', 'KERNEL32.dll', '-d', out / 'kernel32.def',
                     '-l', out / 'kernel32.lib', '--kill-at'])
-    declarations = ['#define CENSUS_HOOKS 5',
+    declarations = ['#define CENSUS_HOOKS 8',
         'struct Hook {u32 address,length,pop,site,relocs;u8 bytes[16];u32 reloc[3];void(*entry)(void);};',
         'static const u8 original_sha256[32]={0};']
-    declarations += ['extern void census_enter_%d(void);' % tag for tag in range(5)]
-    declarations += ['static const struct Hook hooks[5]={'] + [
-        '{%d,5,%d,%d,0,{0},{0},census_enter_%d},' % (0x500100 + tag * 0x100, pop, tag == 3, tag)
-        for tag, pop in enumerate([0, 8, 24, 8, 8])] + ['};']
+    declarations += ['extern void census_enter_%d(void);' % tag for tag in range(8)]
+    declarations += ['static const struct Hook hooks[8]={'] + [
+        '{%d,5,%d,%d,0,{0},{0},census_enter_%d},' % (0x500100 + tag * 0x100, pop, tag == 6, tag)
+        for tag, pop in enumerate([0, 4, 8, 12, 20, 24, 8, 8])] + ['};']
     (out / 'hooks.inc').write_text('\n'.join(declarations) + '\n')
     (out / 'entry.S').write_text((ROOT / 'runtime/drawing-census/entry.S').read_text() + '\n' +
-                                '\n'.join('census_entry %d' % tag for tag in range(5)) + '\n')
+                                '\n'.join('census_entry %d' % tag for tag in range(8)) + '\n')
     objects = []
     for i, source in enumerate([ROOT / 'tests/drawing-census-abi.c', ROOT / 'tests/canvas-startup-call.S', out / 'entry.S']):
         obj = out / ('part%d.obj' % i); objects.append(obj)
@@ -64,7 +64,7 @@ def main():
     if sources != {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in sources}:
         raise ValueError('ABI sources changed during execution')
     report = {'schema': 1, 'success': True, 'sources': sources, 'sources_stable': True,
-              'callee_pop_bytes': [0, 8, 24], 'register_flags_x87_sse_last_error_preserved': True,
+              'callee_pop_bytes': [0, 4, 8, 12, 20, 24], 'register_flags_x87_sse_last_error_preserved': True,
               'same_stack_tail_unwind': True, 'interior_no_return_slot_change': True,
               'frame_exhaustion_forwards_and_records_loss': True, 'original_renderer_executed': False}
     if claims: report['claims'] = claims['claims']

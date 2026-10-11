@@ -143,6 +143,54 @@ hard timing promise. Movies, all writer/API/borrowed-access routes, failures and
 recovery, save/load, later map transitions, results and full dispatch still need
 separate evidence. DRAW-01 remains incomplete.
 
+## Queue dispatch and helper census — 2026-10-10
+
+The [expanded dispatch caller export](drawing-callers-dispatch-expanded-20261010.json)
+contains 937 exact direct CALL sites for 68 registered entry identities. Seven
+previously omitted consumer helper/cleanup targets are now explicit original-only
+routes: `4df840`, `57e8e0`, `57fe10`, `580260`, `580a90`, `581200`, and `4d8ab0`.
+The metadata observer now admits 67 safe sites; the unsafe fade interior remains
+refused. This increases the route register to 107 routes without asserting that
+every executable writer or indirect target has been discovered.
+
+The [original-consumer result](drawing-dispatch-anchors-20261010.json) retains
+2,432 cases executing the pinned consumer's unchanged instructions with synthetic
+backend bindings. Each binding's stack cleanup is checked against explicit
+original RET instructions. Cases span all three dispatch tables, numeric kinds
+0..34 and selected unsigned defaults, indexed/direct object markers, selected
+auxiliary spans, signed offsets, and four backend return values. They confirm
+1,280 literal wave calls and 240 literal colour calls. Kinds 16, 17 and 20 use
+wave amplitudes 2, 3 and 6 respectively. Kind 9 stores zero metadata, ordinary
+returns truncate to AX, defaults can preserve prior metadata, and one indexed
+sprite branch normalizes its result to a boolean before storage.
+
+The static slicer retains all 105 raw table targets, both conditional arms,
+shared exits and opaque CALL operands. It refuses unresolved indirect jumps or
+missing instruction boundaries. Static slices do not establish virtual target
+semantics. Numeric 33 also has pre-table routing in the Video-enabled paths;
+the raw table alone does not describe the consumer's full behavior.
+
+The fresh [expanded ABI result](drawing-census-caller-source-abi-20261010.json)
+checks callee-pop sizes 0/4/8/12/20/24 and preserves the forwarding checks from
+the earlier fixture. Original raster pixels, arbitrary virtual objects, helper
+global effects, changed prior metadata, clip-boundary auxiliary paths, enabled
+postlude cleanup, borrowed graphics API lifetimes and complete scenario caller
+ownership remain pending. All four dispatch gates remain incomplete. Earlier
+results and source fingerprints are retained, including those superseded by
+catalog or scope changes; no historical hash was refreshed.
+
+```sh
+python3 -B tools/test-drawing-dispatch.py --executable <pinned-Chaos.exe>
+python3 -B tests/test-drawing-dispatch.py
+```
+
+Campaign attempts are retained separately from the successful menu cohort. The
+Novice tutorial and the Adept Preferences return require distinct input
+fixtures. These attempts have incomplete journals and cannot close a scenario.
+Compressed partial journals retain their original byte hashes and verified
+archive hashes. Difficulty/input phase labels express intent, not complete
+camera, interaction or battle-result coverage.
+
 ## Inspect an existing producer journal
 
 The optional importer reads only 64-byte envelopes and 96-byte record headers,
