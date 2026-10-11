@@ -4630,3 +4630,15 @@ journey and21operation/failure requirements. Full route/input/viewport/transitio
 and caller-result/failure/recovery coverage remains pending. Thirteen corpus
 guards and the added suite boundary guard prevent oracle inputs, malformed traces,
 wrong provenance and premature completion claims.
+
+## 2026-10-11 DRAW-02 common API session forwarding
+
+The separate original-active session observer intercepts common surface methods0..35,
+original executable input polling/scan-code conversion and applied menu phases.
+Strict terminal/loss/gap admission preserves the partial observed-primary-API boundary.
+A fresh synthetic PE32 fixture passes32callback cases across eight primary mutators,
+including actual HRESULT/LastError/x87 preservation and eight full RGB565 planes.
+Five parser guards pass. Actual game interaction, complete global presentation,
+semantic input outcomes, real driver loss/Restore and native scene parity remain
+separate; callback faults are never labeled real engine recovery.
+See `draw02-interactive-session.md` and `NR.drawing-session-api`.

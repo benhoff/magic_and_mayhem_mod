@@ -32860,6 +32860,45 @@
         "tools/rendering_coverage.py"
       ],
       "validation_domain": "All103independently retained full primary planes through16World returns from the guarded opaque publication sites. V2 raw journal266MiB in9bounded chunks;17encoded source assets. Original World views0..3 and applied menu phase identities retained, while viewport boundaries, alternate routes and full journey/operation semantics remain pending."
+    },
+    {
+      "id": "NR.drawing-session-api",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Original-active common DirectDraw/input API session observer and strict admission",
+      "scope": "Common surface methods0..35, supported interface/factory acquisition and mode calls, original executable input polling/scan-code conversion, applied menu entry/return phases, exact original result/LastError, unthrottled full RGB565 primary mutation references and explicit terminal/loss/gap accounting. Synthetic eight-route success/lost/busy/generic-failure forwarding and x87 preservation; no global physical presentation, semantic input completion, extended interfaces, actual driver recovery, native pixel parity or suppression claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-interactive-session.md",
+        "research/formats/drawing-api-session-v1.md"
+      ],
+      "implementation": [
+        "runtime/drawing/session.c",
+        "runtime/menu/drawing_action.h",
+        "tools/build-drawing-session.py",
+        "tools/drawing_api_session.py"
+      ],
+      "tests": [
+        "runtime/drawing/selftest.c",
+        "tests/test-drawing-api-session.py",
+        "tools/test-drawing-api-session.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/build-shadow-bridge.py"
+      ],
+      "evidence": [
+        "NR.drawing-session-api.forwarding-native-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": "Synthetic PE32 stdcall callback result/error/x87 and eight complete readback planes; original engine/live observation added under separate execution evidence."
     }
   ],
   "evidence": [
@@ -62773,6 +62812,41 @@
           "equals": 530876912
         }
       ]
+    },
+    {
+      "id": "NR.drawing-session-api.forwarding-native-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh synthetic PE32 eight-route32case forwarding/error/x87 and eight full primary reference planes; no original game or real driver failure equivalence.",
+      "record": "research/runtime/draw02-api-forwarding-native-20261011.json",
+      "sha256": "eec4f95e67a2b3765f5d8868c74ef9f589d5b33c1d3d01b2b28278eb260e11a4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/scripted_com_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/primary_planes",
+          "equals": 8
+        },
+        {
+          "pointer": "/hresult_last_error_x87_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -70635,6 +70709,22 @@
         "TOOL.drawing-publication-corpus.native-20261011",
         "TOOL.drawing-publication-corpus.reviewed-native-20261011"
       ]
+    },
+    {
+      "id": "DRAW02.api-forwarding-fault-fixture",
+      "scope": "Eight common primary mutators x four scripted callback outcomes; full observer planes and actual callback return/error/x87. No real original game/driver execution.",
+      "behaviors": [
+        "NR.drawing-session-api"
+      ],
+      "tests": [
+        "runtime/drawing/selftest.c",
+        "tests/test-drawing-api-session.py",
+        "tools/test-drawing-api-session.py"
+      ],
+      "evidence": [
+        "NR.drawing-session-api.forwarding-native-20261011"
+      ],
+      "level": "headless"
     }
   ],
   "recovered_ranges": [
@@ -70972,8 +71062,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-publication-reviewed-20261011.json",
-    "sha256": "fba806826c114b5beee8c110615f36159670f78b4527c0ec0feed1d69a8c072a"
+    "path": "research/runtime/coverage/source-index-draw02-api-20261011.json",
+    "sha256": "87cc5fc1c3cea8d62cd00620c184d6c7cc70e70331efc1a04f970447832a432f"
   },
   "claim_bindings_required": true
 }
