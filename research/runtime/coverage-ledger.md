@@ -4831,3 +4831,12 @@ and 17,182 original direct calls; 24,831 call-flow pairs remain explicit, includ
 24,825 raster indirect continuations and six destruction continuations. No new
 original execution, semantic transfer edge, scenario or dispatch closure is
 claimed. The prior original binding cohort and all historical hashes are retained.
+
+DRAW-01 now retains a separate whole-image CPU call census: 127 exact CALLs
+through four raster globals plus the CRT register callback CALL at59d98a, and
+18 exact immediate pointer assignments (nine with discovered initializer484470,
+nine with unknown owners). Twelve selection/refusal guards pass. Target sets
+are static store facts; before-CALL target values, branch execution, alias writers,
+raster semantics and integration of these additional128sites remain pending.
+This does not close any of the14scenario/four dispatch gates or promote native
+implementation/comparison/replacement of the recovered initializer.

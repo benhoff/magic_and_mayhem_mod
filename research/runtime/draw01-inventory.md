@@ -784,3 +784,54 @@ with other caller continuations. The source hashes and exact retained artifacts
 are recorded under new evidence IDs. Original execution was not repeated by this
 replay and no semantic caller, writer, lifetime, scenario or dispatch closure is
 claimed. Future core captures include the independently checked caller report.
+
+## Raster global CALL and immediate writer census, 2026-10-11
+
+The build-pinned CPU census scans the whole original image for exact CALLs to
+`689b78`, `689b7c`, `6c4e3c` and `6903dc`, plus the exact register CALL at CRT
+exit callback site `59d98a`. Each site is checked against original file-backed
+bytes and retains its exact return PC/mode and discovered owner list. These are
+CPU function pointers and an untyped callback site; no COM method is inferred.
+
+The export finds 127 global CALLs: two through `689b78`, three through `689b7c`,
+59 through `6c4e3c` and 63 through `6903dc`. With the CRT register CALL, there are
+128 exact selected CALL sites. This extends the inventory beyond the previous
+380 selected graphics API/candidate boundaries; live target admission and route
+integration remain pending rather than being inferred from the old accounting
+report. Twelve synthetic selection/refusal guards pass.
+
+Eighteen exact C7 05 absolute immediate assignments are retained separately.
+Nine belong to discovered initializer `484470`; nine sibling assignments have
+empty discovered owners and retain that gap. Static assigned targets are:
+
+| Global | Exact assigned target set |
+| --- | --- |
+| `689b78` | `596490`, `5968a4` |
+| `689b7c` | `59603e`, `595b47` |
+| `6c4e3c` | `59521a`, `5947b2`, `57de00` |
+| `6903dc` | `596cb8`, `597086` |
+
+These sets record immediate store bytes, not executed branch outcomes or a
+complete writer/alias inventory. In particular, the existing menu's observed
+callee `596cb8` and exact indirect return PCs do not by themselves prove each
+before-CALL pointer value. Register, indirect, aliased and other possible writes
+remain separate obligations. Raster body/pixel, lifetime and complete dispatch
+claims are unchanged.
+
+Reproduce with new output paths:
+
+```sh
+python3 tests/test-drawing-cpu-sites.py
+python3 tools/export-drawing-cpu-sites.py --executable working/game-nocd/Chaos.exe \
+  --output working/tests/new-cpu-sites.json
+python3 tools/export-drawing-api-splices.py --executable working/game-nocd/Chaos.exe \
+  --boundaries working/tests/new-cpu-sites.json --output working/tests/new-cpu-plan.json
+```
+
+Guarded planning admits all 128 CALL sites beside the 83 safe core hooks: 127
+ordinary CALL splices and one single-byte breakpoint for CRT `call eax`. The
+existing jump at `59d988` targets `59d98c`, so a wider patch would overwrite an
+incoming continuation. The breakpoint preserves those bytes. The plan has zero
+refused CPU sites; compilation, actual target capture and integration remain
+pending. Both export/planning experiments verify all 2,927 immutable inputs
+before and after reading the pinned binary.

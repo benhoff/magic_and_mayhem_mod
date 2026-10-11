@@ -32872,6 +32872,87 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.drawing-cpu-sites",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Exact whole-image raster global CALL and immediate assignment census",
+      "scope": "Read unchanged pinned PE32 code for all exact six-byte FF15 CALLs to four known raster globals and the exact two-byte CRT register CALL at59d98a. Preserve exact original site/return/target mode, instruction-only selection and empty discovered owners. Export exact C705 immediate assignments to the four globals separately; no complete writer/alias exclusion or executed/permanent target inference. Independent file-byte checks and source/input stability; prepare core-compatible splices via existing guarded planner, keeping refusals explicit. Static admission is not target execution, raster semantics, graphics/COM/lifetime or DRAW-01 scenario/dispatch closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "tools/drawing_cpu_sites.py",
+        "tools/export-drawing-cpu-sites.py"
+      ],
+      "tests": [
+        "tests/test-drawing-cpu-sites.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_sites.py",
+        "tools/drawing_api_journal.py",
+        "tools/drawing_api_pairs.py",
+        "tools/drawing_census.py",
+        "tools/build-drawing-census.py",
+        "tools/export-drawing-api-splices.py",
+        "tools/export-menu-support.py",
+        "runtime/scene/canvas_producers.c",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "TOOL.drawing-cpu-sites.guards-20261011",
+        "TOOL.drawing-cpu-sites.export-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.raster-pointer-assignments",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Original raster global immediate pointer assignments",
+      "scope": "Nine exact C705 immediate assignments within discovered484470 to689b78,689b7c,6c4e3c,6903dc; static byte/target identity only, no configuration branch execution or complete containing function semantics. The export also retains nine sibling assignments around48486c..4848c9 with empty discovered owners, separately unassigned rather than invented function boundaries. Observed indirect raster continuations and static assigned target sets do not prove immediate runtime targets, permanent bindings, exclusion of alias writers, algorithm/pixel/side effects or complete DRAW-01 dispatch.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4736112,
+          "scope": "Exact nine selected absolute immediate raster pointer assignments only; surrounding initializer branch semantics/execution remain outside scope."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/test-drawing-cpu-sites.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_cpu_sites.py",
+        "tools/export-drawing-cpu-sites.py",
+        "tools/drawing_census.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "TOOL.drawing-cpu-sites.export-20261011",
+        "DRAW.raster-pointer-assignments.static-20261011"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -63931,6 +64012,118 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-sites.guards-20261011",
+      "kind": "native_integration",
+      "scope": "Synthetic exact CPU CALL/store selection and mismatch/owner/unsupported-mode refusals only; no original branch execution or actual target/writer/lifetime proof.",
+      "record": "research/runtime/drawing-cpu-sites-guards-20261011.json",
+      "sha256": "c3f65c83560e3271bae3224c91b4bc1ea949c98c46e77cdffe18ffe1ceed3b32",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards",
+          "equals": 12
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-sites.export-20261011",
+      "kind": "native_integration",
+      "scope": "Executed native offline exporter/file-byte checker and core-compatible guarded planner over pinned original input:128CALLs/18immediate assignments/128prepared splices. Tool pipeline integration only; no original instructions, actual target/branch, complete writers/lifetime or live installation.",
+      "record": "research/runtime/drawing-cpu-sites-static-review-20261011.json",
+      "sha256": "6d12917a8d9532d862918fc599129d3dd5b4c081d84b744db81b672a82f90a41",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/calls",
+          "equals": 128
+        },
+        {
+          "pointer": "/global_calls",
+          "equals": 127
+        },
+        {
+          "pointer": "/exit_callback_calls",
+          "equals": 1
+        },
+        {
+          "pointer": "/direct_immediate_assignments",
+          "equals": 18
+        },
+        {
+          "pointer": "/unassigned_assignment_sites",
+          "equals": 9
+        },
+        {
+          "pointer": "/planned",
+          "equals": 128
+        },
+        {
+          "pointer": "/refused",
+          "equals": 0
+        },
+        {
+          "pointer": "/one_byte_breakpoints",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/call_routes_integrated",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW.raster-pointer-assignments.static-20261011",
+      "kind": "static",
+      "scope": "Preserved pinned original file-backed C705 raster pointer immediate assignments only; nine discovered-owner/nine unassigned sibling sites. No executed configuration branches, runtime target or alias-writer exclusion.",
+      "record": "research/runtime/drawing-cpu-sites-static-20261011.json",
+      "sha256": "02d0fd599c15b0da272a6cc052bfe0e16b9384a04e6b961e443c9be251234628",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/direct_immediate_assignments",
+          "equals": 18
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -73093,6 +73286,37 @@
       "evidence": [
         "TOOL.drawing-core-callers.original-replay-20261011"
       ]
+    },
+    {
+      "id": "drawing-cpu-sites-guards-20261011",
+      "title": "drawing-cpu-sites-guards-20261011",
+      "scope": "Offline exact CPU slot/CALL/store selection and refusal; no original execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "tests": [
+        "tests/test-drawing-cpu-sites.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-cpu-sites.guards-20261011"
+      ]
+    },
+    {
+      "id": "drawing-cpu-sites-static-20261011",
+      "title": "drawing-cpu-sites-static-20261011",
+      "scope": "Pinned original byte census and guarded splice planning only; actual targets/branch execution/call forwarding and complete writers/lifetimes/scenario/dispatch remain pending.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-cpu-sites",
+        "DRAW.raster-pointer-assignments"
+      ],
+      "tests": [
+        "tests/test-drawing-cpu-sites.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-cpu-sites.export-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -73430,8 +73654,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-core-callers-20261011.json",
-    "sha256": "9efa58aa5cfe400490cc2f3f3d44f46768b378dc822f73fa3af0bc3b2a56d703"
+    "path": "research/runtime/coverage/source-index-draw01-cpu-sites-20261011.json",
+    "sha256": "dcd65e0c6cac839255a5924bc87f4ce11418b1cdcb32f356417b1661a3ee582f"
   },
   "claim_bindings_required": true
 }
