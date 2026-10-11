@@ -5,13 +5,14 @@ static void canvas_test_call(u32 address,u32 ecx,u32 edx,u32 pop,void* out){api_
 static u8 before[560] __attribute__((aligned(16))),after[560] __attribute__((aligned(16)));
 static volatile u32 body_calls,seen_argument;
 static volatile u32 seen_entry_flags,seen_entry_ecx,seen_entry_edx,seen_entry_sp,seen_entry_error,seen_last_argument;
+static volatile u32 seen_thirteen[13];
 static u32 slots[26],routines[26];
 static u32 foreign_pc,foreign_calls;
 static i32 WIN foreign_exception(struct ApiExceptionPointers* info){
  if(info->record->code!=0x80000003u||(u32)info->record->address!=foreign_pc)return 0;
  ++foreign_calls;info->context->eip=foreign_pc+1;return -1;
 }
-#define BODY(name,pop) __attribute__((naked)) static void name(void){__asm__ volatile("pushfl; popl _seen_entry_flags; movl %ecx,_seen_entry_ecx; movl %edx,_seen_entry_edx; movl %esp,_seen_entry_sp; call _GetLastError@0; movl %eax,_seen_entry_error; incl _body_calls; movl 52(%esp),%eax; movl %eax,_seen_last_argument; movl 4(%esp),%eax; movl %eax,_seen_argument; pushl $2345; call _SetLastError@4; movl $0x88760000,%eax; pushl $0x247; popfl; ret $" #pop);}
+#define BODY(name,pop) __attribute__((naked)) static void name(void){__asm__ volatile("pushfl; popl _seen_entry_flags; movl %ecx,_seen_entry_ecx; movl %edx,_seen_entry_edx; movl %esp,_seen_entry_sp; .if " #pop "==52; .set mnm_abi_arg_offset,4; .rept 13; movl mnm_abi_arg_offset(%esp),%eax; movl %eax,_seen_thirteen+mnm_abi_arg_offset-4; .set mnm_abi_arg_offset,mnm_abi_arg_offset+4; .endr; .endif; call _GetLastError@0; movl %eax,_seen_entry_error; incl _body_calls; movl 52(%esp),%eax; movl %eax,_seen_last_argument; movl 4(%esp),%eax; movl %eax,_seen_argument; pushl $2345; call _SetLastError@4; movl $0x88760000,%eax; pushl $0x247; popfl; ret $" #pop);}
 BODY(body0,0) BODY(body4,4) BODY(body8,8) BODY(body12,12)
 BODY(body16,16) BODY(body20,20) BODY(body24,24) BODY(body52,52)
 __attribute__((naked)) static void body_output(void){__asm__ volatile("incl _body_calls; movl 4(%esp),%eax; movl $0xaabbccdd,(%eax); movl $0x11223344,4(%eax); pushl $2345; call _SetLastError@4; movl $0x88760000,%eax; pushl $0x247; popfl; ret $24");}
@@ -62,15 +63,19 @@ static void exercise(u32 tag,u32 pop){
  if(api_hooks[tag].patch_bytes==1){const struct ApiHook* h=api_hooks+tag;require(*(u8*)h->address==0xcc&&same((u8*)h->address+1,original+1,31),43);}
  identical();require(entry[0]==seen_entry_flags&&entry[1]==seen_entry_ecx&&entry[2]==seen_entry_edx&&entry[3]==seen_entry_sp&&seen_entry_error==1234,55);require(body_calls==1&&GetLastError()==2345&&(!pop||seen_argument==4),21);
  require(!lost&&!active&&serial==1&&sequence==2,22);
- u32* rows=(u32*)buffer;u32* post=rows+200;require(rows[1]==1&&post[1]==2&&rows[2]==post[2]&&rows[3]==tag&&post[3]==tag,23);
+ u32* rows=(u32*)buffer;u32* post=rows+JOURNAL_RECORD/4;require(rows[1]==1&&post[1]==2&&rows[2]==post[2]&&rows[3]==tag&&post[3]==tag,23);
  require(rows[12]==1234&&post[12]==2345&&post[10]==0x88760000,24);
  require(post[7]-rows[7]==pop&&rows[27]==post[27]&&rows[27]==rows[7],25);
  require(rows[4]==2&&post[4]==2&&rows[26]==1&&post[26]==0,26);
  require(rows[17]==1&&(!pop||rows[18]==4)&&!post[17]&&same(post+18,(u32[8]){0},32),27);
  require(rows[16]==slots[tag]&&post[16]==slots[tag],28);
+#ifndef MNM_COMPACT_CPU_JOURNAL
  require(rows[32]==pop/4&&rows[33]==pop/4&&rows[34]==1&&!post[34],56);
  for(u32 i=0;i<pop/4;++i)require(rows[36+i]==4+i,57);
- if(pop==52)require(rows[48]==16&&seen_last_argument==16,58);
+ if(pop==52)require(rows[48]==16,58);
+#endif
+ if(pop==52)require(seen_last_argument==16,58);
+ if(pop==52)for(u32 i=0;i<13;++i)require(seen_thirteen[i]==4+i,79);
 
 }
 static u32 output_area[2],output_args[16];
@@ -81,10 +86,15 @@ static void output_case(u32 tag){
  for(u32 i=0;i<16;++i)output_args[i]=4+i;output_args[0]=(u32)output_area;output_args[1]=0;output_args[2]=0xfffffff0u;output_args[3]=(u32)(output_area+1);
  output_area[0]=0x12345678;output_area[1]=0x55667788;SetLastError(1234);body_calls=0;api_detail_test_call(routines[tag],0x12340000,0xabcdef00,24,before,output_args);require(body_calls==1,59);
  require(patch_hook(tag),60);reset();output_area[0]=0x12345678;output_area[1]=0x55667788;SetLastError(1234);body_calls=0;api_detail_test_call(routines[tag],0x12340000,0xabcdef00,24,after,output_args);identical();require(body_calls==1&&!lost&&!active&&sequence==2&&serial==1&&GetLastError()==2345,61);
- u32* pre=(u32*)buffer;u32* post=pre+200;
+#ifndef MNM_COMPACT_CPU_JOURNAL
+ u32* pre=(u32*)buffer;u32* post=pre+JOURNAL_RECORD/4;
  require(pre[56]==(u32)output_area&&post[56]==pre[56]&&pre[58]==1&&post[58]==1&&pre[60]==0x12345678&&post[60]==0xaabbccdd&&post[61]==0x11223344,62);
  require(pre[94]==2&&post[94]==2&&pre[130]==3&&post[130]==3,63);
  require(pre[36]==(u32)output_area&&!pre[37]&&pre[38]==0xfffffff0u&&post[10]==0x88760000,64);
+#else
+ u32* pre=(u32*)buffer;u32* post=pre+JOURNAL_RECORD/4;
+ require(pre[17]==1&&pre[18]==(u32)output_area&&!pre[19]&&pre[20]==0xfffffff0u&&post[10]==0x88760000,64);
+#endif
 }
 static void candidate_reset(u32 tag){
  u32 unused;require(VirtualProtect(candidate_object,4096,4,&unused),70);*candidate_object=(u32)(slots+tag);
@@ -94,7 +104,11 @@ static void candidate_case(u32 tag){
  current_case=tag;
  make(tag,8,(u32)body_candidate,2);candidate_reset(tag);SetLastError(1234);body_calls=0;api_detail_test_call(routines[tag],0x12340000,0xabcdef00,8,before,candidate_args);require(body_calls==1,71);
  require(patch_hook(tag),72);reset();candidate_reset(tag);SetLastError(1234);body_calls=0;api_detail_test_call(routines[tag],0x12340000,0xabcdef00,8,after,candidate_args);identical();require(body_calls==1&&!lost&&!active&&sequence==2&&serial==1&&GetLastError()==2345,73);
- u32* pre=(u32*)buffer;u32* post=pre+200;require(pre[52]==(u32)candidate_object&&pre[53]==(u32)(slots+tag)&&pre[54]==1&&same(pre+52,post+52,12),74);
+#ifndef MNM_COMPACT_CPU_JOURNAL
+ u32* pre=(u32*)buffer;u32* post=pre+JOURNAL_RECORD/4;require(pre[52]==(u32)candidate_object&&pre[53]==(u32)(slots+tag)&&pre[54]==1&&same(pre+52,post+52,12),74);
+#else
+ require(((u32*)buffer)[17]==1&&((u32*)buffer)[18]==(u32)candidate_object,74);
+#endif
  u32 memory[7];require(VirtualQuery(candidate_object,memory,28)==28&&memory[5]==1,75);
 }
 void start(void){
@@ -132,7 +146,7 @@ void start(void){
  reset();for(u32 i=0;i<2048;++i)frames[i].live=1;active=2048;body_calls=0;
  SetLastError(1234);canvas_test_call(routines[9],0x12340000,0xabcdef00,8,after);identical();require(body_calls==1&&lost==1&&active==2048&&!serial&&!sequence&&GetLastError()==2345,30);
  reset();host[4]=3;body_calls=0;SetLastError(1234);canvas_test_call(routines[9],0x12340000,0xabcdef00,8,after);identical();require(body_calls==1&&lost==1&&!active&&!serial&&!sequence&&GetLastError()==2345,31);host[4]=4;
- reset();sequence=MNM_DRAW_API_V2_MAX_RECORDS;body_calls=0;SetLastError(1234);canvas_test_call(routines[9],0x12340000,0xabcdef00,8,after);identical();require(body_calls==1&&lost==1&&active==1&&sequence==MNM_DRAW_API_V2_MAX_RECORDS&&GetLastError()==2345,32);
+ reset();sequence=JOURNAL_MAX_RECORDS;body_calls=0;SetLastError(1234);canvas_test_call(routines[9],0x12340000,0xabcdef00,8,after);identical();require(body_calls==1&&lost==1&&active==1&&sequence==JOURNAL_MAX_RECORDS&&GetLastError()==2345,32);
  reset();io_failed=1;body_calls=0;SetLastError(1234);canvas_test_call(routines[9],0x12340000,0xabcdef00,8,after);identical();require(body_calls==1&&io_failed&&!serial&&!sequence&&GetLastError()==2345,33);
  /* Per-thread most-recent frame is required: no matching older tag on loss. */
  reset();u32 regs[17]={0};api_observe(regs,0,1);api_observe(regs,1,1);api_observe(regs,0,2);require(lost==1&&active==2&&serial==2&&sequence==2,34);
@@ -151,8 +165,8 @@ void start(void){
  /* Serialize the actual native V2 writer's valid rows for strict decoder review.
   * Earlier intentional loss tests remain separate from this closed journal. */
  require(path(name,directory,"\\abi-api.bin"),65);journal=CreateFileA(name,0x40000000,1,0,1,0x80,0);require(journal!=(HANDLE)-1,66);reset();
- u32 header[16]={0};copy(header,MNM_DRAW_API_V2_MAGIC,8);header[2]=2;header[3]=64;header[4]=800;header[5]=0x400000;header[6]=API_HOOKS;header[7]=MNM_DRAW_API_V2_MAX_RECORDS;copy(header+8,original_sha256,32);require(write(header,64),67);
+ u32 header[16]={0};copy(header,JOURNAL_MAGIC,8);header[2]=JOURNAL_VERSION;header[3]=64;header[4]=JOURNAL_RECORD;header[5]=0x400000;header[6]=API_HOOKS;header[7]=JOURNAL_MAX_RECORDS;copy(header+8,original_sha256,32);require(write(header,64),67);
  for(u32 tag=0;tag<API_HOOKS;++tag){if(tag>=24){candidate_reset(tag);SetLastError(1234);api_detail_test_call(routines[tag],0x12340000,0xabcdef00,8,after,candidate_args);}else if(tag>=22){output_area[0]=0x12345678;output_area[1]=0x55667788;SetLastError(1234);api_detail_test_call(routines[tag],0x12340000,0xabcdef00,24,after,output_args);}else{SetLastError(1234);canvas_test_call(routines[tag],0x12340000,0xabcdef00,api_hooks[tag].formal_words*4,after);}}
- require(!lost&&!active&&!io_failed&&serial==API_HOOKS&&sequence==API_HOOKS*2,68);flush();u32 end[16]={0};copy(end,MNM_DRAW_API_END,8);end[2]=2;end[3]=sequence;end[4]=serial;require(write(end,64)&&CloseHandle(journal),69);journal=0;
+ require(!lost&&!active&&!io_failed&&serial==API_HOOKS&&sequence==API_HOOKS*2,68);flush();u32 end[16]={0};copy(end,MNM_DRAW_API_END,8);end[2]=JOURNAL_VERSION;end[3]=sequence;end[4]=serial;require(write(end,64)&&CloseHandle(journal),69);journal=0;
  ExitProcess(0);
 }

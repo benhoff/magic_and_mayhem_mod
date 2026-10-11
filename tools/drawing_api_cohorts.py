@@ -37,3 +37,19 @@ def call_role(metadata):
     if role=='cpu_backend_dispatch' and selected!='core_api':
         raise ValueError('CPU target role requires the original-active core cohort')
     return role
+def cpu_journal_words(manifest):
+    """Only explicit compact CPU manifests may use the diagnostic V1 wire."""
+    if manifest.get('call_boundary_role') != 'cpu_backend_dispatch' or manifest.get('cohort') != 'core_api':
+        raise ValueError('CPU journal requires an explicit original-active CPU cohort')
+    version = manifest.get('journal_version')
+    if type(version) is not int or version not in (1,2):
+        raise ValueError('Unsupported CPU journal version')
+    if version == 1:
+        if manifest.get('compact_cpu_journal') is not True or type(manifest.get('diagnostic_stack_words')) is not int or manifest['diagnostic_stack_words'] != 8 or manifest.get('formal_arguments_recorded') is not False or manifest.get('buffer_snapshots_recorded') is not False:
+            raise ValueError('Compact CPU manifest needs explicit eight-word/no-formal/no-buffer scope')
+        return 32
+    if manifest.get('compact_cpu_journal',False) is not False:
+        raise ValueError('Detailed CPU journal cannot claim the compact profile')
+    return 200
+
+

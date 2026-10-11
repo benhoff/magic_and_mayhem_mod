@@ -1116,3 +1116,32 @@ not complete semantic caller ownership. Diagnostic stack consistency does not
 prove readability. Initial flag/handle state, callback registrations, the third
 outer root,242other callback invocations, all pointer/writer/API effects and
 physical lifetimes remain pending. All14scenario/four dispatch gates remain open.
+
+
+Compact CPU journal increment (2026-10-11): explicit compact CPU/core staging
+reuses the strict128byte V1 wire,4194304record cap, eight diagnostic stack words,
+actual target/registers/flags/LastError/thread/SP/cleanup and per-run bindings.
+Typed formals and pointer/output snapshots are absent. Four exact raster-global
+namespaces and the59d98a CRT EAX CALL alone are admitted; default graphics API
+V2 remains800bytes/1048576records. Readers require the explicit compact/no-formal/
+no-buffer manifest and validate the actual wire independently. They never pad
+invented V2 fields. `prepare-drawing-terminal-census.py --compact-cpu` requires
+an explicit fresh approved plan SHA, beside all88actual core entries.
+
+Current54native guards pass (10admission,19CPU-crosswalk,14wrapper-crosswalk,
+11terminal staging). Both native ABI executions pass26synthetic bodies each,
+including13JMP/13INT3,0..52byte cleanup, all13actual callee arguments, machine
+state/LastError, negative EAX, foreign breakpoint, loss/cap/IO and binding/decoder
+round trips. Default V2 additionally retains its formal/buffer/candidate checks;
+compact V1 reports those captures absent. Actual current PE32 staging produces
+88core/128CPU with V1/no-formal/no-buffer scope and original manifests2927.
+
+The attempted original menu capture hit temporary-filesystem quota before
+closed journals and a valid journey report. Its empty/partial outputs and quota
+log are retained under `run-3zug99fn` and
+`working/tests/draw01-compact-cpu-original-quota-attempt-20261011.json`; original
+runtime validation remains explicitly pending. Source/native fixtures do not
+renew original transparency, callback registration, physical lifetime or the
+14scenario/four dispatch closures. Old observer source hashes are preserved.
+Own stopped successful ABI prefixes were removed after retaining binaries,
+reports and raw journals/maps; no other contributor outputs were cleaned.

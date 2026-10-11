@@ -31607,7 +31607,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Separate original CALL before/after forwarding observer",
-      "scope": "Opt-in PE32 observer for 302 core/API or314 API-only selected exact original CALL sites. Save/restore registers/flags/x87/SSE/LastError, capture pre-CALL stack/target and post-CALL actual ESP/result, forward original CALL and remainder without replacing an argument or return slot. Retain12core/API overlap refusals; API-only is a separate core-absent selection and abort startup on signature/protection/flush failure. Explicit journal loss/open/IO/terminal and control phase guards. Synthetic ABI tests and actual original runs remain separate; no universal transparency, caller-PC-sensitive/timing equivalence, original API/output/COM/GDI/borrow lifetime or complete writer/scenario/DRAW-01 closure claim. Adds an opt-in single-byte INT3 forwarding mode for safe whole-CALL signatures; the PE32 vectored handler changes only saved EIP for an exact owned breakpoint, forwarding foreign/mismatched exceptions. Successor and operand bytes are untouched. Wine/Windows XP+ observation policy, not a recovered Win98 engine contract; dynamic unload remains unsupported. Emits independent V2 records with sixteen-word maximum formal/diagnostic stacks and four separately reviewed bounded buffers. AFTER uses saved BEFORE pointers; Release has no snapshots and receiver candidates remain byte equality, not COM type inference. Contract revision2 adds141exact reviewed graphics client layouts, preserving legacy revision1 decoding; post-processing keeps successful selected client borrow intervals and unresolved origins/aliases separate. Client Surface/Surface2 aliases require successful exact creation/query output and IID bytes, per-run generations and observed candidate vtables. Unreviewed slot128calls require a recorded matching interface/vtable, no observed terminal release, exact8byte cleanup and matching returned pointer (or NULL) to close a selected CPU interval. Allocation reuse, absent/type-changing/failed origins remain explicit gaps; external lifetime is unproved.",
+      "scope": "Opt-in PE32 observer for 302 core/API or314 API-only selected exact original CALL sites. Save/restore registers/flags/x87/SSE/LastError, capture pre-CALL stack/target and post-CALL actual ESP/result, forward original CALL and remainder without replacing an argument or return slot. Retain12core/API overlap refusals; API-only is a separate core-absent selection and abort startup on signature/protection/flush failure. Explicit journal loss/open/IO/terminal and control phase guards. Synthetic ABI tests and actual original runs remain separate; no universal transparency, caller-PC-sensitive/timing equivalence, original API/output/COM/GDI/borrow lifetime or complete writer/scenario/DRAW-01 closure claim. Adds an opt-in single-byte INT3 forwarding mode for safe whole-CALL signatures; the PE32 vectored handler changes only saved EIP for an exact owned breakpoint, forwarding foreign/mismatched exceptions. Successor and operand bytes are untouched. Wine/Windows XP+ observation policy, not a recovered Win98 engine contract; dynamic unload remains unsupported. Emits independent V2 records with sixteen-word maximum formal/diagnostic stacks and four separately reviewed bounded buffers. AFTER uses saved BEFORE pointers; Release has no snapshots and receiver candidates remain byte equality, not COM type inference. Contract revision2 adds141exact reviewed graphics client layouts, preserving legacy revision1 decoding; post-processing keeps successful selected client borrow intervals and unresolved origins/aliases separate. Client Surface/Surface2 aliases require successful exact creation/query output and IID bytes, per-run generations and observed candidate vtables. Unreviewed slot128calls require a recorded matching interface/vtable, no observed terminal release, exact8byte cleanup and matching returned pointer (or NULL) to close a selected CPU interval. Allocation reuse, absent/type-changing/failed origins remain explicit gaps; external lifetime is unproved. Explicit compact CPU macro uses128byte V1 diagnostics only; default detailed graphics/API V2 remains unchanged in wire scope. Current native forwarding fixtures check all13actual callee words in both wires, distinct from formal/output capture.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31669,7 +31669,9 @@
         "DRAW.api-virtual.movies-20261011",
         "DRAW.api-expanded.save-load-20261011",
         "DRAW.api-expanded.quick-battle-20261011",
-        "DRAW.api-expanded.effects-20261011"
+        "DRAW.api-expanded.effects-20261011",
+        "TOOL.drawing-compact-cpu.default-abi-20261011",
+        "TOOL.drawing-compact-cpu.compact-abi-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -33024,7 +33026,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Exact direct CPU CALL to core journal crosswalk",
-      "scope": "Independently closed V1 core and V2 CPU journals and actual per-run allocation maps. Admit only reviewed raster-global/CRT CALL namespace and explicit CPU/core role. Direct pairs require exact physical CALL return, thread, target, original return-slot/cleanup equality, readable six diagnostic stack words, BEFORE and AFTER ECX/EDX/EAX/flags/LastError equality and full per-thread/site/stack/target group cardinality and order. Reject corrupt/mismatched maps, overlapping allocations, unreadable direct stacks, phase/cleanup/register mismatch. Never pair subsets or assert shared cross-journal sequence/atomic target snapshots. Keep wrapper/tail/non-core callbacks, unrelated core calls and missing groups explicit; no typed CPU arguments, pixels, writer/lifetime/semantic or scenario/dispatch completeness.",
+      "scope": "Independently closed V1 core and V2 CPU journals and actual per-run allocation maps. Admit only reviewed raster-global/CRT CALL namespace and explicit CPU/core role. Direct pairs require exact physical CALL return, thread, target, original return-slot/cleanup equality, readable six diagnostic stack words, BEFORE and AFTER ECX/EDX/EAX/flags/LastError equality and full per-thread/site/stack/target group cardinality and order. Reject corrupt/mismatched maps, overlapping allocations, unreadable direct stacks, phase/cleanup/register mismatch. Never pair subsets or assert shared cross-journal sequence/atomic target snapshots. Keep wrapper/tail/non-core callbacks, unrelated core calls and missing groups explicit; no typed CPU arguments, pixels, writer/lifetime/semantic or scenario/dispatch completeness. Explicit compact CPU/core manifests can use independently validated V1 rows without fabricated full-formal fields; readable diagnostic words and exact target/cleanup/cardinality/state still required.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -33177,7 +33179,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Exact reviewed terminal wrapper CPU/core tail crosswalk",
-      "scope": "Current native metadata replay with independently closed CPU/core journals and actual maps, exact retained staged wrapper bytes matching pinned original range proof, exact CRT register target and physical return, full per-thread/stack/wrapper group cardinality/order, fixed receivers, MOV/TEST/OR EAX/flags effects, unchanged EDX/LastError/diagnostic words and identical callee/CPU return state. Initial one-shot flag byte is not observed; reject unreadable/mismatched direct state/maps/roles/build/proof/bytes, partial groups and unsupported contract maps. No shared sequence, atomic reads, callback registration, original outer cleanup parent flow, physical COM/refcounts/storage lifetime, pixels, all callers/writers/side effects or scenario/dispatch closure.",
+      "scope": "Current native metadata replay with independently closed CPU/core journals and actual maps, exact retained staged wrapper bytes matching pinned original range proof, exact CRT register target and physical return, full per-thread/stack/wrapper group cardinality/order, fixed receivers, MOV/TEST/OR EAX/flags effects, unchanged EDX/LastError/diagnostic words and identical callee/CPU return state. Initial one-shot flag byte is not observed; reject unreadable/mismatched direct state/maps/roles/build/proof/bytes, partial groups and unsupported contract maps. No shared sequence, atomic reads, callback registration, original outer cleanup parent flow, physical COM/refcounts/storage lifetime, pixels, all callers/writers/side effects or scenario/dispatch closure. Version-validated compact V1 CPU rows are admitted without fictitious V2 formal capture; invalid record extents remain refused.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -33229,7 +33231,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Opt-in terminal wrapper parent-frame original observer",
-      "scope": "Separate explicit88core/128CPU cohort:83unchanged default-safe core entries plus five exact original10/31/46byte terminal wrappers from pinned original execution proof. MOV-only entry prefixes, full original byte/RET0 composition, incoming-interior-flow/overlap/capacity checks; existing native core/API writers and forwarders unchanged. Export fresh128CALL plans beside all88prefixes and exact direct CALL census to88entries. Staging requires explicit reviewed plan SHA, CPU namespace/core role/count, actual generated88entry manifest, unknown formals and independent nonoverlap/metadata/source checks. Default builders/plans stay separate. This supports bounded parent/root observation; no original replacement, universal transparency/timing/ABI, initial flag-byte capture, callback registration, physical COM/reference/storage lifetime, full writers/callers/side effects or14scenario/four dispatch closure. Current catalog opt-in terminal_flow routes are excluded by the default core builder and appended only by this terminal profile; reviewed output retention requires fresh current source-bound planning.",
+      "scope": "Separate explicit88core/128CPU cohort:83unchanged default-safe core entries plus five exact original10/31/46byte terminal wrappers from pinned original execution proof. MOV-only entry prefixes, full original byte/RET0 composition, incoming-interior-flow/overlap/capacity checks; existing native core/API writers and forwarders unchanged. Export fresh128CALL plans beside all88prefixes and exact direct CALL census to88entries. Staging requires explicit reviewed plan SHA, CPU namespace/core role/count, actual generated88entry manifest, unknown formals and independent nonoverlap/metadata/source checks. Default builders/plans stay separate. This supports bounded parent/root observation; no original replacement, universal transparency/timing/ABI, initial flag-byte capture, callback registration, physical COM/reference/storage lifetime, full writers/callers/side effects or14scenario/four dispatch closure. Current catalog opt-in terminal_flow routes are excluded by the default core builder and appended only by this terminal profile; reviewed output retention requires fresh current source-bound planning. Optional explicit compact CPU staging records V1/eight diagnostic words/no formal or buffer capture; default detailed CPU remains separate.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -33348,6 +33350,86 @@
       "evidence": [
         "TOOL.drawing-terminal-edges.guards-20261011",
         "TOOL.drawing-terminal-edges.retained-menu-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-compact-cpu",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Compact explicit CPU dispatch observation wire",
+      "scope": "Explicit opt-in compact CPU/core diagnostic observer, reusing strict128byte V1 wire with4194304record cap and eight diagnostic stack words. Actual target/GPR/flags/LastError/thread/SP/cleanup/loss and per-run binding contracts remain separate from typed formals or pointer/output snapshots. Only four byte-defined raster globals and exact59d98a CRT EAX CALLs admitted; unknown formals/no snapshots and original-active core required. Default graphics API V2 writer stays800bytes/1048576records. Prepare88core/128CPU through explicit reviewed current plan SHA; CPU readers/crosswalks require version/profile/no-formal/no-buffer declarations, never fabricated V2 fields. Synthetic26body ABI cases per wire preserve full native forwarding including all13callee arguments, JMP/INT3, machine state and failures; original execution remains separately recorded. No universal transparency/timing, complete writers/pixels/callbacks/physical lifetimes, full14scenario/four dispatch closure or native replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "runtime/drawing-api-census/observer.c",
+        "tools/build-drawing-api-census.py",
+        "tools/prepare-drawing-terminal-census.py",
+        "tools/drawing_api_cohorts.py",
+        "tools/drawing_cpu_crosswalk.py",
+        "tools/capture-drawing-census-game.py"
+      ],
+      "tests": [
+        "tests/test-drawing-compact-cpu.py",
+        "tests/test-drawing-cpu-crosswalk.py",
+        "tests/test-drawing-terminal-crosswalk.py",
+        "tests/test-drawing-terminal-observer.py",
+        "tests/drawing-api-census-abi.c",
+        "tools/test-drawing-api-census-abi.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_journal.py",
+        "tools/drawing_api_sites.py",
+        "tools/drawing_census.py",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-shadow-bridge.py",
+        "tests/canvas-startup-call.S",
+        "research/runtime/drawing-api-virtual-core-splices-static-20261011.json",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "tools/drawing_api_bindings.py",
+        "research/runtime/drawing-api-virtual-only-splices-static-20261011.json",
+        "tools/drawing_api_pairs.py",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "tools/drawing_api_contracts.py",
+        "tools/drawing_api_details.py",
+        "tests/drawing-api-detail-call.S",
+        "tools/drawing_api_surface_contracts.py",
+        "research/runtime/drawing-surface-api-layouts-20261011.json",
+        "tools/drawing_api_resources.py",
+        "tests/test-drawing-api-resources.py",
+        "tools/export-drawing-api-sites.py",
+        "tools/drawing_cpu_sites.py",
+        "tools/drawing_census_bindings.py",
+        "tools/drawing_census_callers.py",
+        "tools/export-drawing-terminal-plan.py",
+        "tools/build-drawing-terminal-census.py",
+        "tools/drawing_terminal_edges.py",
+        "tools/drawing_terminal_crosswalk.py",
+        "research/runtime/drawing-cpu-sites-static-20261011.json",
+        "research/runtime/drawing-terminal-callers-static-20261011.json",
+        "research/runtime/drawing-canvas-release-original-range-20261011.json",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/coverage/binary-nocd.json",
+        "tests/drawing-api-census-abi.c",
+        "tools/test-drawing-api-census-abi.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-compact-cpu.guards-20261011",
+        "TOOL.drawing-compact-cpu.default-abi-20261011",
+        "TOOL.drawing-compact-cpu.compact-abi-20261011",
+        "TOOL.drawing-compact-cpu.static-plan-20261011",
+        "TOOL.drawing-compact-cpu.plan-compile-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -65341,6 +65423,108 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "TOOL.drawing-compact-cpu.guards-20261011",
+      "kind": "native_integration",
+      "scope": "54current native compact namespace/profile, CPU V1/V2 direct pairing, terminal wrapper state/extent and terminal staging guards. Explicit diagnostic-only V1 scope; default V2 preserved. No original renderer/ABI execution from these guards or full caller/writer/lifetime/scenario/dispatch closure.",
+      "record": "research/runtime/drawing-compact-cpu-guards-20261011.json",
+      "sha256": "b5a55f58baae809a0e68a0afa93c0e16c54d0059fc69ad5c64f9770bcdf4bdc9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-compact-cpu.default-abi-20261011",
+      "kind": "native_integration",
+      "scope": "Real separate CALL stubs/observer/dynamic splices and binding writer/decoder round trip against26synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.",
+      "record": "research/runtime/drawing-compact-cpu-default-abi-20261011.json",
+      "sha256": "1ef7c9c5913da74b647921074e4d873fe4fa43775319b3b93833d2cfe449bef9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-compact-cpu.compact-abi-20261011",
+      "kind": "native_integration",
+      "scope": "Real separate CALL stubs/observer/dynamic splices and binding writer/decoder round trip against26synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.",
+      "record": "research/runtime/drawing-compact-cpu-compact-abi-20261011.json",
+      "sha256": "6d8553f8fd2885039b8d6ad66958d4d4bb06c2b7e781cdf7ad00627e982728cf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-compact-cpu.static-plan-20261011",
+      "kind": "static",
+      "scope": "Fresh original-byte native128CPU plan beside88core prefixes under current compact-capable sources. No original renderer/ABI execution or scenario/lifetime closure.",
+      "record": "research/runtime/drawing-cpu-compact-terminal-splices-static-20261011.json",
+      "sha256": "cc8bd5d8648fb29e0b080c782a95f6d27458ca8736eda77da06c166917b358a8",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/core_hook_count",
+          "equals": 88
+        },
+        {
+          "pointer": "/terminal_flow_observation",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-compact-cpu.plan-compile-20261011",
+      "kind": "native_integration",
+      "scope": "Current original-byte128CPU/88core planning and actual PE32 compilation/staging with explicit reviewed planSHA, unknown formals/no buffer snapshots and compact V1 declaration. Compilation alone proves no original execution, universal ABI, lifetime/writer/caller or scenario/dispatch closure. Subsequent original capture hit filesystem quota before closed journals/valid final report; original runtime validation remains pending.",
+      "record": "research/runtime/drawing-compact-cpu-plan-compile-20261011.json",
+      "sha256": "74a6ce80badacda1eff93e503e2c3c18114880e9edabe17095ad6000e282a9da",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/journal_version",
+          "equals": 1
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -74766,6 +74950,55 @@
       "evidence": [
         "TOOL.drawing-terminal-edges.retained-menu-20261011"
       ]
+    },
+    {
+      "id": "drawing-compact-cpu-guards-20261011",
+      "title": "drawing-compact-cpu-guards-20261011",
+      "scope": "Current compact namespace/profile guards and detailed/compact CPU and wrapper crosswalk/regression guards; no original renderer execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-compact-cpu"
+      ],
+      "tests": [
+        "tests/test-drawing-compact-cpu.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-compact-cpu.guards-20261011"
+      ]
+    },
+    {
+      "id": "drawing-compact-cpu-abi-20261011",
+      "title": "drawing-compact-cpu-abi-20261011",
+      "scope": "Actual native writer/stubs/patching/bindings on26synthetic PE32 bodies each in compact V1 and default detailed V2; no original splice execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-compact-cpu",
+        "TOOL.drawing-api-observer"
+      ],
+      "tests": [
+        "tests/test-drawing-compact-cpu.py",
+        "tests/drawing-api-census-abi.c",
+        "tools/test-drawing-api-census-abi.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-compact-cpu.default-abi-20261011",
+        "TOOL.drawing-compact-cpu.compact-abi-20261011"
+      ]
+    },
+    {
+      "id": "drawing-compact-cpu-plan-compile-20261011",
+      "title": "drawing-compact-cpu-plan-compile-20261011",
+      "scope": "Fresh source-bound original-byte plan and actual PE32 compact CPU/core staging with explicit reviewed plan SHA; compilation alone proves no original renderer/ABI execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-compact-cpu"
+      ],
+      "tests": [
+        "tests/test-drawing-compact-cpu.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-compact-cpu.plan-compile-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -75139,8 +75372,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-terminal-edges-20261011.json",
-    "sha256": "3883a42dd6cb98829117e30e21d792e3533289d25b9b85507a7f03f960797d4c"
+    "path": "research/runtime/coverage/source-index-draw01-compact-cpu-20261011.json",
+    "sha256": "d6a89c9792daf5dff543eb9b28b03dfdd6b146b6ac3abce7b852bfb6a6b16dd7"
   },
   "claim_bindings_required": true
 }

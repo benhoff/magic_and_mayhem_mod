@@ -397,6 +397,11 @@ def capture(root, template, journey, claims=None):
             report['core_physical_caller_review']={'scope':'Exact per-run relocated E8 and named leave identities only; logical tail flow/original owners remain pending.','callers':[{'physical_caller':pc,'classification':core_physical(pc,report['core_bindings'])} for pc in core_callers]}
         if report['api_observation_enabled']:
             api_manifest = json.loads((root / 'api-build.json').read_text())
+            if report['call_boundary_role']=='cpu_backend_dispatch':
+                from drawing_api_cohorts import cpu_journal_words
+                cpu_journal_words(api_manifest)
+                if manifest.get('compact_cpu_journal',False) is not api_manifest.get('compact_cpu_journal',False):
+                    raise ValueError('Prepared CPU compact profile differs from actual build')
             if api_manifest.get('call_boundary_role','graphics_api')!=report['call_boundary_role']:raise RuntimeError('CALL target observer role differs from prepared cohort')
             if api_manifest.get('cohort','core_api')!=selected:raise RuntimeError('API manifest observation cohort mismatch')
             if api_manifest.get('synthetic_fixture',False):raise RuntimeError('Original journey cannot use synthetic API namespace')

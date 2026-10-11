@@ -6,6 +6,7 @@ import importlib.util
 import json
 from pathlib import Path
 import subprocess
+import struct
 from drawing_census import ROOT, BUILD_SHA256
 from drawing_api_journal import trampoline
 from drawing_api_contracts import contract
@@ -36,10 +37,32 @@ def generated(item):
     return {'code':code,'rest':rest,'relocations':offsets,'after_offset':after,'mode':kind,'register':REGISTERS.get(mode.get('register'),7),'operand':operand}
 
 
-def build(executable, selected='core_api'):
+def compact_cpu_hooks(hooks, selected):
+    """Compact diagnostics cannot silently truncate a graphics client capture."""
+    from drawing_cpu_sites import SLOTS
+    if selected != 'core_api' or not hooks:
+        raise ValueError('Compact CPU journal requires original-active CPU/core hooks')
+    for hook in hooks:
+        mode = hook['target_mode']; raw = bytes.fromhex(hook['call']['bytes'])
+        absolute = mode.get('kind') == 'absolute_memory' and mode.get('address') in SLOTS
+        callback = hook['site'] == 0x59d98a and mode == {'kind':'register','register':'eax'}
+        if not (absolute and raw == b'\xff\x15'+struct.pack('<I',mode['address']) or callback and raw == b'\xff\xd0'):
+            raise ValueError('Compact CPU hook is outside exact global/CRT CALL namespace')
+        if hook.get('exact_import'):
+            raise ValueError('Compact CPU diagnostics cannot claim an imported client')
+        details = contract(hook,2)
+        if 'details' in hook and hook['details'] != details:
+            raise ValueError('Compact CPU metadata differs from its untyped contract')
+        if details['formal_words'] != 0xffffffff or details['snapshots']:
+            raise ValueError('Compact CPU hooks cannot carry typed formals or snapshots')
+
+
+def build(executable, selected='core_api', compact_cpu=False):
+    if type(compact_cpu) is not bool:raise ValueError('Compact CPU profile must be explicit boolean')
     if selected not in PLANS:raise ValueError('Unsupported API cohort')
     relative_plan,expected_sha256=PLANS[selected];plan_path=ROOT/relative_plan
     paths=['tools/build-drawing-api-census.py','runtime/drawing-api-census/observer.c','runtime/drawing-api-census/entry.S','runtime/drawing-api-census/exception_i386.h','runtime/shadow/win32_min.h','protocols/include/mnm/drawing_api_journal_v1.h','protocols/include/mnm/drawing_api_journal_v2.h','tools/drawing_api_contracts.py','tools/drawing_api_surface_contracts.py','research/runtime/drawing-surface-api-layouts-20261011.json','protocols/include/mnm/drawing_api_bindings_v1.h','protocols/include/mnm/drawing_census_v1.h','tools/drawing_api_journal.py','tools/drawing_api_pairs.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-shadow-bridge.py','tools/export-menu-support.py',relative_plan]
+    if compact_cpu:paths += ['tools/drawing_cpu_sites.py']
     sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     plan_raw=plan_path.read_bytes()
     if hashlib.sha256(plan_raw).hexdigest()!=expected_sha256:raise ValueError('Approved immutable API splice plan hash mismatch')
@@ -49,6 +72,7 @@ def build(executable, selected='core_api'):
     for p,digest in plan['sources'].items():
         if hashlib.sha256((ROOT/p).read_bytes()).hexdigest()!=digest:raise ValueError('Planning input changed: '+p)
     hooks=plan['hooks'];offset=load('api_pe','tools/export-menu-support.py').image_offset
+    if compact_cpu:compact_cpu_hooks(hooks,selected)
     if [r['tag'] for r in hooks]!=list(range(len(hooks))) or not 0<len(hooks)<=512:raise ValueError('Invalid bounded API hook census')
     for item in hooks:
         expected=bytes.fromhex(item['signature']);start=offset(raw,item['site'],len(expected))
@@ -66,10 +90,12 @@ def build(executable, selected='core_api'):
     (output/'entry.S').write_text((ROOT/'runtime/drawing-api-census/entry.S').read_text()+'\n'+'\n'.join(f'api_pair {r["tag"]}' for r in hooks)+'\n')
     objects=[]
     for source,name in [(ROOT/'runtime/drawing-api-census/observer.c','observer'),(output/'entry.S','entry')]:
-        obj=output/(name+'.obj');objects.append(str(obj));subprocess.run(['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I',str(output),'-c',str(source),'-o',str(obj)],check=True)
+        obj=output/(name+'.obj');objects.append(str(obj));subprocess.run(['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror',*(['-DMNM_COMPACT_CPU_JOURNAL=1'] if compact_cpu else []),'-I',str(output),'-c',str(source),'-o',str(obj)],check=True)
     dll=output/'MnmDrawingApiCensus.dll';subprocess.run(['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(dll),*objects,str(output/'kernel32.lib')],check=True)
     if hashlib.sha256(executable.read_bytes()).hexdigest()!=BUILD_SHA256 or sources!={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}:raise ValueError('Original/API build inputs changed')
     report={'schema':1,'journal_version':2,'contract_revision':2,'cohort':selected,'original_sha256':BUILD_SHA256,'sources':sources,'sources_stable':True,'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'hooks':hooks,'refused':plan['refused'],'scope':f'Compiled separate observer for{len(hooks)} exact original CALL sites in{selected}cohort. No original API execution, universal ABI/transparency/timing, output/resource lifetime or DRAW-01 closure.'}
+    if compact_cpu:
+        report.update(journal_version=1,compact_cpu_journal=True,call_boundary_role='cpu_backend_dispatch',diagnostic_stack_words=8,formal_arguments_recorded=False,buffer_snapshots_recorded=False)
     (output/'manifest.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'dll':str(dll),'hooks':len(hooks),'refused':len(plan['refused'])}));return dll
 
 

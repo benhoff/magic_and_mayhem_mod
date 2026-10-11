@@ -53,14 +53,35 @@ class CrosswalkTests(unittest.TestCase):
         return [p,q], [c,d]
 
     def run_rows(self, cpu, core):
+        compact = self.pm['journal_version'] == 1
+        if compact:cpu = [row[:32] for row in cpu]
         for path, rows, words, magic, endmagic, version, budget in [
-            (self.cpu_path,cpu,200,b'MNMDAPI2',b'MNMDAEND',2,1048576),
+            (self.cpu_path,cpu,32 if compact else 200,b'MNMDAPI1' if compact else b'MNMDAPI2',b'MNMDAEND',1 if compact else 2,4194304 if compact else 1048576),
             (self.core_path,core,32,b'MNMDCN01',b'MNMDCEND',1,4194304)]:
             for sequence,row in enumerate(rows,1): row[0] = sequence
             header = magic + struct.pack('<6I',version,64,words*4,0x400000,1,budget) + bytes.fromhex(BUILD_SHA256)
             terminal = endmagic + struct.pack('<14I',version,len(rows),max((r[2] for r in rows),default=0),0,0,0,*([0]*8))
             path.write_bytes(header+b''.join(struct.pack('<%dI'%words,*r) for r in rows)+terminal)
         return review(self.core_path,self.cm,self.cb,self.cpu_path,self.pm,self.ab,self.cohort,self.callers,self.inventory)
+
+    def compact(self):
+        self.pm.update(journal_version=1,compact_cpu_journal=True,diagnostic_stack_words=8,
+            formal_arguments_recorded=False,buffer_snapshots_recorded=False)
+
+    def test_compact_cpu_wire_pairs_without_invented_formal_rows(self):
+        self.compact();p,c = self.pair();r = self.run_rows(p,c)
+        self.assertEqual(r['cpu_journal_version'],1)
+        self.assertEqual(r['matched_direct_core_pairs'],1)
+        self.assertEqual(self.cpu_path.stat().st_size,128+2*128)
+        self.assertFalse(r['caller_attribution_complete'])
+
+    def test_compact_cpu_unreadable_diagnostic_words_refuse_matching(self):
+        self.compact();p,c = self.pair();p[0][17:26] = [0]*9;c[0][15:21] = [0]*6
+        with self.assertRaises(ValueError):self.run_rows(p,c)
+
+    def test_compact_cpu_cannot_downgrade_without_explicit_scope(self):
+        self.compact();self.pm.pop('formal_arguments_recorded');p,c = self.pair()
+        with self.assertRaises(ValueError):self.run_rows(p,c)
 
     def test_direct_pair_preserves_all_pc_and_independent_sequence_identities(self):
         p,c = self.pair(); r = self.run_rows(p,c)
