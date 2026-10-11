@@ -1,0 +1,219 @@
+{
+  "schema": 1,
+  "reviewed_range": "19882a4dbee4036f151bf598caea4566db890b56..78af69722ede09809ab85e9645e76c0b71d1a982",
+  "scope": "Committed worker/pacer exact parent/current source versions and retained receipt audit, separate from current measurement findings; no retrospective validation or gate assertion.",
+  "commits": [
+    "78af69722ede09809ab85e9645e76c0b71d1a982"
+  ],
+  "files": [
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "7331546db40925b0bd9411b49f9a094cb653c215dc48c47b4db7d50e9cbc9d99",
+      "after_sha256": "76fe42988dc6e9db0bc3675c07a5634db52aab67efecc321f991c29f2b913370",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "apps/qt-shell/resident_profile_capture.cpp",
+      "before_sha256": null,
+      "after_sha256": "eb143860154be30acf33b1fe5836def3c8f0a5fc9bdff0ea787a2468c8425d15",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "apps/qt-shell/resident_profile_capture.hpp",
+      "before_sha256": null,
+      "after_sha256": "b8bdfed9dc0d115e95ea7a17d6a141072fcdc545ceea1e1fe79a85d2f13fc5d2",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "apps/qt-shell/resident_world_session.cpp",
+      "before_sha256": "071e3ddca683ae9ea1ba768ef178568a08b5ad7b309484f06f313885cd054050",
+      "after_sha256": "59aa89b5a96caf9dca34dd824e3cfd684e04f1b0ecc2ec2f7d7df1a854399148",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "apps/qt-shell/resident_world_session.hpp",
+      "before_sha256": "2e38a71b1abf5fd0bf99e3221d8ab4e91c7ca5b24c4f98dad973609f4901f901",
+      "after_sha256": "4bc8438b3e1621d9b85c163619631df3d5c7ac2030a3a870978e92c854559ffd",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "research/formats/resident-profile-corpus.md",
+      "before_sha256": "2b625f29f3cdc1ce900500302ec1e7de32564c7a91cad82259e86df817d7cf0b",
+      "after_sha256": "cdef8e22539d9b8f5c3cb5270294ce35ccf03c53c12734449af67410a7bcbb6d",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "5d518c3a675fbb23a6e773d608ca37dee25996a5c8bea33d4d7c2a0063eb5e44",
+      "after_sha256": "8249caa49c81a4a7fb4e1c54b0b5c941f6fa8d0d2da4fc67577a22049e25e00f",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "7a595eac1b68e353f566c1f68d735ecab05f6c4454fee2a6dbfabcbdc82ea880",
+      "after_sha256": "ccf14fb9fa4574fd3446e7ea94410141492b4635b967134ba5ceb3aa3ec5b7af",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "research/runtime/coverage/resident-profile-instrumentation-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2b71b5a01115f0b287cc43a9ad7ece2d63d2e493deddba749afd269c3278f292",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "research/runtime/coverage/source-index-resident-profile-worker-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "239355cfb0c37cfdd4a455966af754bd9501f188b088107fc90353ea37622c70",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "research/runtime/native-resident-performance-profiling.md",
+      "before_sha256": "5ef419e8d42b8ad18e8487c6b49e68d505c6ba04e8674e7690811e89b1dc78c9",
+      "after_sha256": "de86c7e1f4fcac1a09e22cf0c04f280c5e2115f579cf1b1a5b11a68b1c07e8a5",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "research/runtime/resident-profile-synchronous-capture-negative-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "11c245f926612c10a827d06e22a7c71d143c89ad60cf136f4c2f4284922e946d",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "research/runtime/resident-profile-worker-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2a605faae92767719f8904eda1fd5d4a16645f7f997bc7a5310285a4d24c394d",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "runtime/render/pacer_yield.h",
+      "before_sha256": "0d0d05d4144a10561d0987b7d87145ef36c27f219c40f9746ee0eb3a1a31c423",
+      "after_sha256": "79e8180ba2ed91a5205e0c0eb1412fc50b4fbc21145f1a6ef686f856c613caa6",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "runtime/scene/world_continuous_clock.c",
+      "before_sha256": "8828954a4345f537360f7c6857e39d8667bcccf6ac119875e55046d6bf86169f",
+      "after_sha256": "2142602e01434b8dcb60bc4bdc3a77c6593ee270a83c3fe51b247353d5d35fb8",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "tests/campaign-pacer-reference.c",
+      "before_sha256": "381a77f051a2ee654d8abb30fa2c40171c04b5943aa27ebec2d226219d02fc71",
+      "after_sha256": "f81a24753900e97a7c6b8f11fd6f80eedc624a7adc07d4d2b232d89c8ee9cc88",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "tests/resident-profile-capture-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "2bc11e309b6d93691f2b5fe35ea9d20e965230bf3a0f5a3845013092eed3c089",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "tests/resident-profile-capture-test.py",
+      "before_sha256": null,
+      "after_sha256": "04fed6d2abfd4a254d5d8048af75df7dafe2ce0faef244b06745b13daac3e3fb",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "tools/benchmark-native-resident.py",
+      "before_sha256": "79d6f2680996170914c7c037cd9f635c11aad6b051f890ee97cca60f04136df9",
+      "after_sha256": "714146c4173fe9a1f679d72a20edcb6df9de3d8ff096ce0073e0f0e525d11281",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "tools/build-scene-observer.py",
+      "before_sha256": "23317bc4a8917df28ccc9d72ccb210b1bb2cb63ff1018846f62ade57a4ecc055",
+      "after_sha256": "0e8408d96fd690f7340807bdbb28a06e33a2038f0539390506a90c56aec6b6fe",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "tools/native-render-profile/CMakeLists.txt",
+      "before_sha256": "52b64efe9b159fdd69c1a449f84253d4341be9608476135a69e21d11794c58c7",
+      "after_sha256": "8e0c2426a17cdb0b98227c319ee9150b21639eb6c6f284726d4d21865b83983d",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "tools/native-render-profile/resident_profile.cpp",
+      "before_sha256": "6504ac374d272c5a0a31175cd30f8118dec2be897e86e1fd01d415e819c5029d",
+      "after_sha256": "8818c2af55a94f9aa55bec98fc2464c8fcd8e78e36a4f865f5bf38913a3880bc",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "tools/profile-native-resident.py",
+      "before_sha256": "29db9239c456100d091e921cec8548e600ff180eedbf1577bd428081186bd241",
+      "after_sha256": "64afec5dfc4ebd05457079a2faedf1c9fb84f0ad95f577f71bf4d1a01cc4b1a2",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "tools/profile_native_resident_helpers.py",
+      "before_sha256": "426816ac39ff765cf8659045304dbb8fc346a9969ac69685f26cb00a61a7e98c",
+      "after_sha256": "a7e0538e2e4c4e5c81e6d54753b361a84896fea37f5e8e79be0a7b0c420ad0a4",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "b64841de13f9533393582dd26da1277c67849519fe0ef16652c2613dff38a46f",
+      "after_sha256": "bdca3248f899e05ac22821c76618538dada594643c2285c37105438b13d55ba2",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    },
+    {
+      "commit": "78af69722ede09809ab85e9645e76c0b71d1a982",
+      "parent": "19882a4dbee4036f151bf598caea4566db890b56",
+      "path": "tools/test-native-pacer.py",
+      "before_sha256": "9ec0047e0eaff1b8de4ecee1df2076635fe870da379c0066a25787ba99137bb2",
+      "after_sha256": "795729f168a875a1504bc0329d02a1f9558d8143e25bff74fd9cd519a3c16a20",
+      "matching_review": "resident-profile-worker-and-pacer-observation-20261011"
+    }
+  ],
+  "unresolved_gaps": []
+}

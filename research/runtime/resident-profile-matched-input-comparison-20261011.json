@@ -1,0 +1,493 @@
+{
+  "schema": 1,
+  "scope": "Descriptive paired-input measurement, not a causal public-backend or production-speedup experiment. Same2423 returned/imported World inputs; public GUI/Zink/original/capture/report workload differs from headless NVIDIA EGL replay. O2/O3 flags, filesystem/driver caching and host scheduling vary; no full journey or60FPS gameplay/floor claim.",
+  "worlds": 2423,
+  "public_campaign_report": {
+    "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/tests/native-campaign/run-u4m1wj53/report.json",
+    "sha256": "0280ce865fe7638db2e84452752b489c8ec812ee69ebdb5a0c65d48ebfdd9b54"
+  },
+  "offline_records": {
+    "research/runtime/resident-profile-offline-o2-20261011.json": "23d123e0d945be11342832e83be0b0f0ae8a753cda5a8a5388eb339d41423f64",
+    "research/runtime/resident-profile-offline-o3-20261011.json": "465cbef450c1269d70227b79cad585e1e201ea8d8d8cc6c5330216b85f3fcbf6"
+  },
+  "matching_compiled_source_hashes": 97,
+  "shared_cpp_source_hashes": {
+    "assets/animation.cpp": "0cdd420e8bbd08751f652696a4eadf9fb0eada1b96ec04c83402feee1acf0bda",
+    "assets/animation.hpp": "357e2af800464197a29e0b2e0b62adbfd199e9042308a3899771b8e4eef5a76e",
+    "assets/animation_decode.cpp": "76523a27832349dda6daf9988bc42b348611b657af710a2f3e65b7a2912e947d",
+    "assets/asset_file.cpp": "0623c157e550a90ad399d17947f3fcfe8cc74243f3b6cc6c2986a5635dcfa2d6",
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/bmp.cpp": "2905db6469699156e4113816a9563a02f2f6071ecf3ce428bd19a535daf21151",
+    "assets/bmp.hpp": "a109cb3177826c54deba46b5952581ebbe9936a5feab49e0e958bee9f2fbc0d5",
+    "assets/jpeg.cpp": "0a3772e79bcace89a84aa060b3f95637f05171e7bd8c85ed77efcc0c9955d28e",
+    "assets/jpeg.hpp": "e2a16ca4030480c7832c0f1b80be5d9d48134d49d65871c37ab03e79f23fda9a",
+    "assets/path_resolver.cpp": "e85fac42e15352abbe38ceec31a18e7261c5f1dfdc60d72d933e440f6fa4d3ee",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "assets/pcx.cpp": "776eac976327478959336bc1fa20fdfd1ac04c35a431f0e1fb949ef411defa8b",
+    "assets/pcx.hpp": "f823529c1bfd7f3b4359289f8cd6880e485c318acf711d5371cb84d8392348c2",
+    "assets/resources/resource_manager.cpp": "baaf4812c29cf33b47641a4e5a6b8cf8a9ca408dbfd1071b7051c048324c2e54",
+    "assets/resources/resource_manager.hpp": "09b8bcf8b65064c88c07cd1da3267b81bac963ab9dc165ecbf0fe09c4f58a4bb",
+    "assets/sprite_frame_decoder.hpp": "55ff6be0e30d13672c8fc2fab5c2328582fc3eb0ffdf4456d3b2c6ab1a0ec6ab",
+    "assets/sprite_loader.cpp": "00abda9b22c1f85be51e2f00028bcd448a044efbacc0fff1a24fec676df68e67",
+    "assets/sprite_loader.hpp": "0ab5f80fe75601ad3010afd048c87176bd1b3d37d371525a5c4ea6e3991d263e",
+    "assets/terrain_catalog.cpp": "46f520fbada169bc3044b121e0a8838825214cff91730fa0046e5231d53f3b26",
+    "assets/terrain_catalog.hpp": "a1b91474346fd9a780fe34282684e63f826707147e628099ae4bb24b6ff50478",
+    "compat/legacy/canvas_producers.cpp": "54f602d766fe4e37f4c63ad9b9cc98afd222bd9e79999d0f45ad79125a6c6a1f",
+    "compat/legacy/canvas_producers.hpp": "971823ea1605c2918ff02d261642a3736be4ff42a3052cf7a401d3f42183f6c8",
+    "compat/legacy/canvas_world.cpp": "7f762ef780e3168ecdfac99e4ca13bec11683aae2332dbfb79f73f2a5a0ecb94",
+    "compat/legacy/canvas_world.hpp": "5538cb9ba9accee8cd9a2d4aed9ceb1bbaadbe72587134edd23c5d772e617a3b",
+    "compat/legacy/scene_snapshot.cpp": "b5611c499a9a8500d381e8368c0fb2030a03499e3a3bb997ae0f612c76a770d3",
+    "compat/legacy/scene_snapshot.hpp": "01c2118e748b3b630337c5b1bff9071acd4fb5e6f16623dbb6dc5d607ff221b2",
+    "compat/legacy/world_continuous.cpp": "503e1498af48a1ffc94d160406e48d5aacba064c59c531c23262cf78079fcaa2",
+    "compat/legacy/world_continuous.hpp": "cf3ceb7b502d490fe84b743e76835437d1cac88c548554e01da7c92c347239ba",
+    "compat/legacy/world_frame.cpp": "2f54f6d8625e76e6e3307901055f8171f0a314e106822493c5e5f4c934a40f92",
+    "compat/legacy/world_frame.hpp": "eb75708d5fd37d26fe3b6b504d6bc2e0f83ad16dcbf3fc6b1517d289518b1c9f",
+    "compat/legacy/world_raster_batch.cpp": "d33c0c8b7a8f5bcd2cc9b7c6086e6928adbd3e7653414fdbabc7626ab5ad58e7",
+    "compat/legacy/world_raster_batch.hpp": "8acae144a2c2565d85b87fea1ceb450274b80060d7a64c528b56b603a5c09a8a",
+    "compat/legacy/world_resources.cpp": "169a1f8c4550c6f46fe5c8c61cdaaba1f583763a6137ede00549bd1682dcc9a5",
+    "compat/legacy/world_resources.hpp": "7cdbbbedcdca0907c164ebd20b4378ecb183a65560530d88efabed1a1e58b484",
+    "compat/legacy/world_rolling_channel.cpp": "73c89b63ab2cb7ef9ae29330054ae3093b0ebff2cee75cf6fc603f118f39ec64",
+    "compat/legacy/world_rolling_channel.hpp": "3d2e8fe626eaca9046450c6a9f00925d7bc8fe9fb1dabee07081acd2098e371e",
+    "compat/legacy/world_rolling_handoff.cpp": "eef77854c606da97032966622c03da07834cf984b14be58cc62adcd8a363972a",
+    "compat/legacy/world_rolling_handoff.hpp": "f3f6ebfad9c166dacc2a270393305fe786d932b410fc51b118cf1b7d8ffe47a4",
+    "compat/legacy/world_rolling_packet.cpp": "a24477993dee85aaafea3f6cc4e465d9da9f9dfe3232894ea1d68f91ca9cdd77",
+    "compat/legacy/world_rolling_packet.hpp": "94fc8cd54f880c0d98d318434befa1dc10eb777920c3b5429e96d61326c16161",
+    "compat/legacy/world_rolling_session.cpp": "fcd99accc5e7d774de041966427398366ace3ad69f1d9d740766d866526bf4ea",
+    "compat/legacy/world_rolling_session.hpp": "7816923a4169a5583c945ea77d172101f9f9f41cd59d2a9c7047bbbf411d23e4",
+    "protocols/include/mnm/canvas_producers_v1.h": "5a644332be8e73853cda426477835aed3e330d68acdb88f1ad3004e8a00da52c",
+    "protocols/include/mnm/canvas_producers_v2.h": "c94a25cfe470eecaa0781aba576ee7fb0009a627e60ac8690e8ea6f4efc0b48f",
+    "protocols/include/mnm/canvas_producers_v3.h": "738a1b8d3d1830f6360ebd37320cab1824f353d73a50c9fab9cb9ce926b9a630",
+    "protocols/include/mnm/render_stream_v2.h": "4f8416f6dcdb5031b2f95f209e21e43dce0c0cad176c11ec8f2293c6c89c4101",
+    "protocols/include/mnm/render_stream_v3.h": "5dcb2dcb44b2ab94c8800babe8cbddeec66fccf18ab2dcc9c7153d57d63bb152",
+    "protocols/include/mnm/render_stream_v4.h": "203d1f98637c5ebbf4b8f6a840850964899a185c66fae73b9dc1c4598e771a03",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "protocols/include/mnm/world_continuous_checksum.h": "4d96065598923f759691b565716e511e2021edb5043af0aeaaae890f8ad43198",
+    "protocols/include/mnm/world_continuous_v3.h": "d130c9ec19782acc916e21686f8970f307c0d974f164c3bc9c64cb587972a3fd",
+    "protocols/include/mnm/world_continuous_v4.h": "35d8b7d03a370adad0a8583908047d11b95f7203d36c42dcff2946f0d8e824cd",
+    "protocols/include/mnm/world_frame_v1.h": "b9b2f78c8e5b513232f803d2a0ec6643626974a8909db18611e87262a22f83b5",
+    "protocols/include/mnm/world_raster_batch_v3.h": "f66950a0fc86061a3b489cf03986e43ba18ca9b34087cb371501f3f555815912",
+    "protocols/include/mnm/world_rolling_v1.h": "21c279fde51ea0e31d346fba054df754b7d4e376bec609d005dafb78e0e4f2bf",
+    "reconstruction/rendering/fade_span.hpp": "3f297ef7cf45a2f3bad3b99bf939ecc4ad82fe0362ec206236586b6ad8a25504",
+    "renderer/bitmap_dc.hpp": "c8fadb0fc0f4217960e08f067283b504a8dc918ef425de160df262798876fe29",
+    "renderer/blit.cpp": "4c79ec4887ec9905835fd7911a5f0b951a3131b03c7374396f4fd590ab2ab8f2",
+    "renderer/blit.hpp": "34b90dc1403f30f97b32ffb8540fdd48df8509be5e8902f702d9e0fd8e788438",
+    "renderer/canvas_mirror.hpp": "336477b63af76e1ca848933af15809a1725c4c845ed39a19dbe019886ce3032a",
+    "renderer/canvas_sequence.cpp": "98c01a5a7e617995ec32f9f6a560c1bde16e14265fb3fc5ba0acd2a7591e0d6d",
+    "renderer/canvas_sequence.hpp": "1215ec5f2e3ee6f9767dc972da4a27a812a59cce084f548b0c9ee6b7c9f3c92d",
+    "renderer/capture.cpp": "268ef510e6fb858bb5820f17594597cc186b11e08be2c0210ee230aaa020d6ed",
+    "renderer/capture.hpp": "fa4bd7076375b90d2d04fb2482cba2d47fdc01a480635b944e152bb2759213dc",
+    "renderer/command_consumer.cpp": "927a1729563aa5b66b70b0bf1382cbeaec013f8b628e5c5140dbaa9060b5e132",
+    "renderer/command_state.hpp": "f069e98172057f68e0d119981fc75774093bb06e5a33634b17294a21ffdb353f",
+    "renderer/commands.cpp": "55fe9b498537ab01f9d91ad9e5acd8208abc2556392cb955bdb54ce68d52b815",
+    "renderer/commands.hpp": "9ef93c9d09aae2021267df931c214fe8e130931c1df338dde0402ce20d5a5fed",
+    "renderer/dib.cpp": "16a73ebb47bf2eafff6c94e5fa66edcd96340aee2be054dad697fb0cfe019893",
+    "renderer/dib.hpp": "2bcbdd8b898eaadf0d7f9a34036330b70e8f8d3b9705bf8b61b33e6d8e0fe7a2",
+    "renderer/gpu_canvas_mirror.cpp": "ac410ac561ec2664f9369694e6653e34b45f1d822f2a644a8f55244827149c8e",
+    "renderer/gpu_canvas_mirror.hpp": "6ba4d5cf8e6c4832065a180b54297fe7b33515adcf87aa217660db893066d90f",
+    "renderer/known_pixels.hpp": "554595fc1977ea42a1fef2ef2b08355bd058db22e886fac9568e035d1fd82b2d",
+    "renderer/minimap/minimap.cpp": "055f1295f3369640025870c22b16fb6fc66dd154cba3d1191e843e2dece1ad77",
+    "renderer/minimap/minimap.hpp": "ec54df24f6bca1dc2000450890d4908b2db346eec696f662343ec2560cdb9b1c",
+    "renderer/minimap/overlays.cpp": "8ac9f1b8ac7bbc12826a80bffe4e57af700b1b162773bbbd8523366a15ada98c",
+    "renderer/minimap/overlays.hpp": "93e97d2697085e12e68fd8e7a7fe25a6634a3ff9cf80ca31d31c2f834b41acba",
+    "renderer/pixel_rows.cpp": "ffa72fac123001700e435112c7b09f39fc90ca4cb3308b1e4e4e31ef93027bfd",
+    "renderer/pixel_rows.hpp": "858459228fd19d19640a3d2fcefc0347952bdb07e6ccbdb0af3f3dce1637df88",
+    "renderer/resources/resource_cache.cpp": "8ad7edd786c7fe6d3a0a64bc2c2e2d1ce0563f631256235e9b23ff7df4469d1b",
+    "renderer/resources/resource_cache.hpp": "3e61d8836fff51ae3c04311958f748c574da4636d9332b6afb929729e8cedff6",
+    "renderer/resources/sprite_atlas.cpp": "1a5d3f933c39d529fb60993863bfb309e03c4249d3ca620de69d45c3033b0c7c",
+    "renderer/resources/sprite_atlas.hpp": "9a404ed6d109da25e423016d30ff6d246361ae3387b21db2c0c210c8ddb4f7e8",
+    "renderer/scenes/scene_history.cpp": "f065d6ff91f8c2a00aac820a31a7b5d3533c259e6f16c8bcb9641b25228f1d15",
+    "renderer/scenes/scene_history.hpp": "c6396e01daa3a614c578fcb6609ec64a1cdac57cbd5c460d488352115b892803",
+    "renderer/scenes/scene_renderer.cpp": "93dc98dee27dd3dd942cb800c9b57fcc2e0875d3a489cfc4083d13e7b06d7195",
+    "renderer/scenes/scene_renderer.hpp": "9ef8befcedb2b9ee90a8090d9b09f6ab42937e1afbfef194c908af4a932e4b5d",
+    "renderer/sprites/sprite.cpp": "7fce79798a163cfdbb50e28c460d13400e6f815cb794abc80dc69194698c275f",
+    "renderer/sprites/sprite.hpp": "1ca2c4cc8e9c456f5ef111035724bdf34c931701fef07b270f5164348e8d55c2",
+    "renderer/surface_access.hpp": "95166e8226849e7302dffa9762b737ed5dd1381ffc8b392283763b1fc77854ad",
+    "renderer/surface_backend.cpp": "c5cb22ea00315d78d2bcb8b4c6a252f34b32fab087f045187816a954d6113bff",
+    "renderer/surface_backend.hpp": "f7b269b079dfb94b20fce31986a7464c403bec298c98756bb675369956992425",
+    "renderer/surface_copy.cpp": "d53649101099894094d29a0ed3bd7ed6e59c83971d7ea104ea6333fe256e19b5",
+    "renderer/surface_copy.hpp": "e1cfe459249db11199cc662a88b42cb4c0b85448bdc7fdb2848eb2d11a01cdc1",
+    "tests/render-gpu-timing-test.cpp": "26ab345a79f2da6371ea385b08251132fea3a43099606c738cdf3b8d63b27efc",
+    "tools/native-render-profile/egl_platform.cpp": "2eb54af0deddf5dc66993040bc03cd2d180709b130b4a5265d1067d4e0fed848",
+    "tools/native-render-profile/resident_profile.cpp": "8818c2af55a94f9aa55bec98fc2464c8fcd8e78e36a4f865f5bf38913a3880bc"
+  },
+  "public_build_type": "RelWithDebInfo",
+  "public_flags": "-O2 -g -DNDEBUG",
+  "public_summary": {
+    "source_acquire_ms": {
+      "samples": 2360,
+      "mean": 0.7817828584745763,
+      "median": 0.7352905000000001,
+      "p95": 1.176133,
+      "maximum": 26.673417,
+      "minimum": 0.293825
+    },
+    "decode_ms": {
+      "samples": 2360,
+      "mean": 1.3242172813559323,
+      "median": 1.2334900000000002,
+      "p95": 1.996544,
+      "maximum": 4.114623,
+      "minimum": 0.536885
+    },
+    "handoff_ms": {
+      "samples": 2360,
+      "mean": 1.56380815,
+      "median": 1.4663110000000001,
+      "p95": 2.320199,
+      "maximum": 4.086238,
+      "minimum": 0.63389
+    },
+    "native_consume_ms": {
+      "samples": 2360,
+      "mean": 23.496396334322032,
+      "median": 20.676651,
+      "p95": 39.918783,
+      "maximum": 66.269008,
+      "minimum": 7.054699
+    },
+    "native_cpu_producer_ms": {
+      "samples": 2360,
+      "mean": 8.646702923728755,
+      "median": 9.061588499999864,
+      "p95": 11.54277099999986,
+      "maximum": 14.837827000000063,
+      "minimum": 3.4224510000000183
+    },
+    "native_prepare_ms": {
+      "samples": 2360,
+      "mean": 2.035954672033898,
+      "median": 1.9328949999999998,
+      "p95": 2.859261,
+      "maximum": 12.431833,
+      "minimum": 0.976803
+    },
+    "native_submit_cpu_ms": {
+      "samples": 2360,
+      "mean": 10.358412162711865,
+      "median": 7.0453375000000005,
+      "p95": 23.432757,
+      "maximum": 44.009082,
+      "minimum": 0.934172
+    },
+    "gpu_timeline_ms": {
+      "samples": 2360,
+      "mean": 11.386311050847457,
+      "median": 8.775552000000001,
+      "p95": 25.141248,
+      "maximum": 44.256768,
+      "minimum": 1.179648
+    },
+    "capture_io_cpu_ms": null,
+    "capture_enqueue_cpu_ms": {
+      "samples": 2360,
+      "mean": 0.2686842911016949,
+      "median": 0.2467695,
+      "p95": 0.379564,
+      "maximum": 3.310483,
+      "minimum": 0.131516
+    },
+    "producer_capture_ms": {
+      "samples": 2360,
+      "mean": 2.272881355932203,
+      "median": 2.0,
+      "p95": 3,
+      "maximum": 726,
+      "minimum": 1
+    },
+    "producer_wait_ack_ms": {
+      "samples": 2360,
+      "mean": 33.33050847457627,
+      "median": 27.0,
+      "p95": 49,
+      "maximum": 2544,
+      "minimum": 10
+    },
+    "producer_world_ms": {
+      "samples": 2360,
+      "mean": 35.60762711864407,
+      "median": 29.0,
+      "p95": 51,
+      "maximum": 2546,
+      "minimum": 11
+    },
+    "producer_return_ms": {
+      "samples": 2360,
+      "mean": 0.00423728813559322,
+      "median": 0.0,
+      "p95": 0,
+      "maximum": 1,
+      "minimum": 0
+    },
+    "original_frame_interval_ms": {
+      "samples": 2360,
+      "mean": 55.94406779661017,
+      "median": 50.0,
+      "p95": 63,
+      "maximum": 2885,
+      "minimum": 42
+    },
+    "engine_between_world_ms": {
+      "samples": 2360,
+      "mean": 20.820762711864408,
+      "median": 21.0,
+      "p95": 29,
+      "maximum": 1020,
+      "minimum": 10
+    },
+    "engine_pacer_ms": {
+      "samples": 2360,
+      "mean": 8.808050847457627,
+      "median": 10.0,
+      "p95": 17,
+      "maximum": 27,
+      "minimum": 0
+    },
+    "engine_screen_copy_ms": {
+      "samples": 2360,
+      "mean": 2.051694915254237,
+      "median": 2.0,
+      "p95": 2,
+      "maximum": 9,
+      "minimum": 1
+    },
+    "world_rasters": {
+      "samples": 2360,
+      "mean": 1001.5262711864407,
+      "median": 1109.0,
+      "p95": 1481,
+      "maximum": 1584,
+      "minimum": 701
+    },
+    "native_decode_handoff_consume_ms": {
+      "samples": 2360,
+      "mean": 26.384421765677967,
+      "median": 23.4841195,
+      "p95": 43.77173499999999,
+      "maximum": 70.319742,
+      "minimum": 8.368484
+    },
+    "native_acquire_decode_handoff_consume_ms": {
+      "samples": 2360,
+      "mean": 27.16620462415254,
+      "median": 24.206944,
+      "p95": 44.818329000000006,
+      "maximum": 72.297403,
+      "minimum": 8.679111
+    },
+    "between_world_residual_ms": {
+      "samples": 2360,
+      "mean": 9.961016949152542,
+      "median": 8.0,
+      "p95": 13,
+      "maximum": 1014,
+      "minimum": 7
+    },
+    "pacer_observed_worlds": 2360,
+    "pacer_unobserved_worlds": 0,
+    "negative_residuals": 0,
+    "scope": "All retained generation64+ rows, including UI pauses and long tails. Original preceding pacing/screen intervals use uint32 millisecond ticks; residual is unclassified and may include simulation, UI, dispatch and wait work. Nested native producer/prepare/submit stages are not added to native consume. GPU timeline is not GPU busy time."
+  },
+  "offline_summaries": {
+    "o2": {
+      "source_acquire_ms": null,
+      "decode_ms": {
+        "samples": 2360,
+        "mean": 0.5467078262711886,
+        "median": 0.5591559999993478,
+        "p95": 0.8289789999998902,
+        "maximum": 1.8858490000002348,
+        "minimum": 0.3269430000000284
+      },
+      "handoff_ms": {
+        "samples": 2360,
+        "mean": 0.6011676521186249,
+        "median": 0.623647999998866,
+        "p95": 0.8488300000026356,
+        "maximum": 2.263376999999764,
+        "minimum": 0.3649970000005851
+      },
+      "native_consume_ms": {
+        "samples": 2360,
+        "mean": 10.454617139406798,
+        "median": 8.267186500002026,
+        "p95": 18.389141999999993,
+        "maximum": 38.84480900000199,
+        "minimum": 4.537926999999399
+      },
+      "native_cpu_producer_ms": {
+        "samples": 2360,
+        "mean": 3.9064156478813836,
+        "median": 3.868411500000041,
+        "p95": 4.512851999999958,
+        "maximum": 11.933263999999898,
+        "minimum": 2.9638440000000603
+      },
+      "native_prepare_ms": {
+        "samples": 2360,
+        "mean": 1.1593161665254237,
+        "median": 1.2138815,
+        "p95": 1.586481,
+        "maximum": 6.754214,
+        "minimum": 0.618031
+      },
+      "native_submit_cpu_ms": {
+        "samples": 2360,
+        "mean": 4.766181431779661,
+        "median": 3.130864,
+        "p95": 11.777566,
+        "maximum": 21.57349,
+        "minimum": 0.544678
+      },
+      "gpu_timeline_ms": {
+        "samples": 2360,
+        "mean": 7.542074603389831,
+        "median": 6.166416,
+        "p95": 15.230272,
+        "maximum": 24.12336,
+        "minimum": 0.647168
+      },
+      "capture_io_cpu_ms": null,
+      "capture_enqueue_cpu_ms": null,
+      "producer_capture_ms": null,
+      "producer_wait_ack_ms": null,
+      "producer_world_ms": null,
+      "producer_return_ms": null,
+      "original_frame_interval_ms": null,
+      "engine_between_world_ms": null,
+      "engine_pacer_ms": null,
+      "engine_screen_copy_ms": null,
+      "world_rasters": {
+        "samples": 2360,
+        "mean": 1001.5262711864407,
+        "median": 1109.0,
+        "p95": 1481,
+        "maximum": 1584,
+        "minimum": 701
+      },
+      "native_decode_handoff_consume_ms": {
+        "samples": 2360,
+        "mean": 11.602492617796612,
+        "median": 9.319366499999887,
+        "p95": 19.87400599999819,
+        "maximum": 41.514531000000716,
+        "minimum": 5.238518999998632
+      },
+      "native_acquire_decode_handoff_consume_ms": null,
+      "between_world_residual_ms": null,
+      "pacer_observed_worlds": 0,
+      "pacer_unobserved_worlds": 2360,
+      "negative_residuals": 0,
+      "scope": "All retained generation64+ rows, including UI pauses and long tails. Original preceding pacing/screen intervals use uint32 millisecond ticks; residual is unclassified and may include simulation, UI, dispatch and wait work. Nested native producer/prepare/submit stages are not added to native consume. GPU timeline is not GPU busy time."
+    },
+    "o3": {
+      "source_acquire_ms": null,
+      "decode_ms": {
+        "samples": 2360,
+        "mean": 0.5331863241525477,
+        "median": 0.5470530000002327,
+        "p95": 0.8025660000002972,
+        "maximum": 1.234905000001163,
+        "minimum": 0.3411309999992227
+      },
+      "handoff_ms": {
+        "samples": 2360,
+        "mean": 0.5739643906779709,
+        "median": 0.6020135000017035,
+        "p95": 0.8144689999999173,
+        "maximum": 1.4446960000004765,
+        "minimum": 0.38132000000041444
+      },
+      "native_consume_ms": {
+        "samples": 2360,
+        "mean": 8.966018738983044,
+        "median": 7.270466000000852,
+        "p95": 16.223250999999436,
+        "maximum": 27.142973000001803,
+        "minimum": 3.817587999999887
+      },
+      "native_cpu_producer_ms": {
+        "samples": 2360,
+        "mean": 2.6990848495763062,
+        "median": 2.65922950000004,
+        "p95": 3.210177000000016,
+        "maximum": 7.957711999999955,
+        "minimum": 2.0364470000000265
+      },
+      "native_prepare_ms": {
+        "samples": 2360,
+        "mean": 1.126570286016949,
+        "median": 1.2002665000000001,
+        "p95": 1.505828,
+        "maximum": 6.857889,
+        "minimum": 0.645353
+      },
+      "native_submit_cpu_ms": {
+        "samples": 2360,
+        "mean": 4.538056577966102,
+        "median": 3.073189,
+        "p95": 11.156551,
+        "maximum": 21.585354,
+        "minimum": 0.580145
+      },
+      "gpu_timeline_ms": {
+        "samples": 2360,
+        "mean": 7.172221871186441,
+        "median": 5.9204159999999995,
+        "p95": 14.619264,
+        "maximum": 25.133056,
+        "minimum": 0.569824
+      },
+      "capture_io_cpu_ms": null,
+      "capture_enqueue_cpu_ms": null,
+      "producer_capture_ms": null,
+      "producer_wait_ack_ms": null,
+      "producer_world_ms": null,
+      "producer_return_ms": null,
+      "original_frame_interval_ms": null,
+      "engine_between_world_ms": null,
+      "engine_pacer_ms": null,
+      "engine_screen_copy_ms": null,
+      "world_rasters": {
+        "samples": 2360,
+        "mean": 1001.5262711864407,
+        "median": 1109.0,
+        "p95": 1481,
+        "maximum": 1584,
+        "minimum": 701
+      },
+      "native_decode_handoff_consume_ms": {
+        "samples": 2360,
+        "mean": 10.073169453813563,
+        "median": 8.186757500000112,
+        "p95": 17.62117500000022,
+        "maximum": 28.721778999999515,
+        "minimum": 4.595972999999503
+      },
+      "native_acquire_decode_handoff_consume_ms": null,
+      "between_world_residual_ms": null,
+      "pacer_observed_worlds": 0,
+      "pacer_unobserved_worlds": 2360,
+      "negative_residuals": 0,
+      "scope": "All retained generation64+ rows, including UI pauses and long tails. Original preceding pacing/screen intervals use uint32 millisecond ticks; residual is unclassified and may include simulation, UI, dispatch and wait work. Nested native producer/prepare/submit stages are not added to native consume. GPU timeline is not GPU busy time."
+    }
+  },
+  "offline_completion_fps": {
+    "o2": [
+      78.2885605706001,
+      71.9634037229487
+    ],
+    "o3": [
+      88.06997293966627,
+      85.65547566159469
+    ]
+  },
+  "all_six_terminal_word_hashes_equal": true,
+  "terminal_words_sha256": "3706ac364d9085bc00d073d328284d91c8a63daf57f021329acf8480fdf8400d",
+  "remaining": [
+    "Public backend/context sharing, UI import/paint, original simulation and report I/O attribution",
+    "Full complete bounded source corpus and uninstrumented cadence after profiling fixes",
+    "Recurring native drawing-history GAP cause",
+    "Native pipeline tails exceed16.667ms even on offline averaged60FPS workload",
+    "Original selected50ms pacing target and safe separation of presentation from simulation"
+  ]
+}

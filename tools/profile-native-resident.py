@@ -60,12 +60,15 @@ def main():
                 # even if the sampled process exits before the30-second window.
                 with (out/'perf.log').open('x') as log:sample=subprocess.run(perf,stdout=log,stderr=subprocess.STDOUT,timeout=60,start_new_session=True)
                 report['cpu_sample']['exit_code']=sample.returncode
-                if sample.returncode==0:
-                    for name,extra in [('flat',['--no-children']),('inclusive',['--children'])]:
-                        with (out/(name+'.txt')).open('x') as log:
-                            subprocess.run(['perf','report','--stdio','--sort','symbol','-i',str(out/'perf.data'),*extra],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=60)
-                    report['cpu_sample']['artifacts']={name:sha(out/name) for name in ['perf.data','flat.txt','inclusive.txt','perf.log']}
         report['campaign_exit_code']=child.wait(timeout=660)
+        # Symbolization can create substantial CPU/I/O pressure. Keep it outside
+        # the live observation window, after the campaign's owned-session cleanup.
+        if args.cpu_sample and report.get('cpu_sample',{}).get('exit_code')==0:
+            symbol_env=dict(os.environ,DEBUGINFOD_URLS='')
+            for name,extra in [('flat',['--no-children']),('inclusive',['--children'])]:
+                with (out/(name+'.txt')).open('x') as log:
+                    subprocess.run(['perf','report','--stdio','--sort','symbol','-i',str(out/'perf.data'),*extra],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=60,env=symbol_env)
+            report['cpu_sample']['artifacts']={name:sha(out/name) for name in ['perf.data','flat.txt','inclusive.txt','perf.log']}
         if not campaign:
             campaign=next(Path(t.partition(': ')[2]) for t in (out/'campaign.log').read_text().splitlines() if t.startswith('Campaign test evidence: '))
         game=json.loads((campaign/'report.json').read_text());report['campaign_report']=str(campaign/'report.json');report['campaign_report_sha256']=sha(campaign/'report.json')

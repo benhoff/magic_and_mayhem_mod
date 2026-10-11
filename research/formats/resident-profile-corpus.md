@@ -49,3 +49,23 @@ generation counts permit `capture_complete`. V1 describes the retained initial
 failed synchronous experiment and the normalized benchmark input. V2 is expanded
 once, outside benchmark timing, into a new V1 file whose exact hash is retained.
 Current compressed writer/reader execution is pending.
+
+
+## Explicit diagnostic completed prefix
+
+The default replay requires complete independently validated gameplay capture.
+`--completed-prefix` retains that default and provides a separately named
+measurement of contiguous imported/original-returned Worlds from a failed
+journey. It validates bounds, generations, exact decompression and EOF for the
+**whole** stored corpus, including any excluded pending tail. It does not assert
+rendering semantics for an excluded record. The selected prefix alone is copied
+to V1 and replayed; the original V2 is preserved and hash-checked against the
+post-cleanup campaign record. Its decoded total must equal the accepted worker
+snapshot. Full campaign/normal Quit remains explicitly false or unverified.
+
+Normalization reports `worlds` and `raw_bytes` for selected V1, `captured_worlds`
+and `captured_raw_bytes` for the full decoded V1 extent, and `stored_bytes` for
+complete V2 storage. Both complete decoded storage and stored input retain their
+16GiB limits. The selected generation count must be64..8192 for benchmarking.
+The source-file final size can exceed a failed in-game report's worker snapshot;
+only the post-cleanup corpus hash/size admits that diagnostic input.

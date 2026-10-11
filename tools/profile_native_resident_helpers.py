@@ -5,10 +5,11 @@ import statistics
 import struct
 import zlib
 
-def normalize_capture(source,destination):
+def normalize_capture(source,destination,*,completed_prefix=None):
     """Bounded V1/V2 read; inflate once outside benchmark timing into new V1."""
     if source.stat().st_size>16*1024**3:raise ValueError('Resident compressed file bound')
-    count=0;raw_size=8
+    if completed_prefix is not None and (type(completed_prefix) is not int or not 1<=completed_prefix<=8192):raise ValueError('Resident prefix bound')
+    count=0;raw_size=8;selected_size=8
     with source.open('rb') as incoming,destination.open('xb') as outgoing:
         magic=incoming.read(8)
         if magic not in (b'MNMPROF1',b'MNMPROF2'):raise ValueError('Resident capture magic')
@@ -33,9 +34,31 @@ def normalize_capture(source,destination):
             else:
                 payload=incoming.read(total)
                 if len(payload)!=total:raise ValueError('Truncated resident payload')
-            outgoing.write(header[:16]);outgoing.write(payload);count+=1
+            count+=1
+            if completed_prefix is None or count<=completed_prefix:
+                outgoing.write(header[:16]);outgoing.write(payload);selected_size+=16+total
     if source.stat().st_size>16*1024**3:raise ValueError('Resident compressed file bound')
-    return dict(worlds=count,raw_bytes=raw_size,stored_bytes=source.stat().st_size)
+    if completed_prefix is not None and count<completed_prefix:raise ValueError('Resident prefix exceeds capture')
+    return dict(worlds=count if completed_prefix is None else completed_prefix,captured_worlds=count,raw_bytes=selected_size,captured_raw_bytes=raw_size,stored_bytes=source.stat().st_size)
+
+def completed_prefix_worlds(game):
+    """Admit contiguous imported/original-returned Worlds without a journey claim."""
+    if not all(game.get(k) is True for k in ('sources_unchanged','private_wine_stopped','original_manifest_verified_after')):
+        raise ValueError('Prefix lacks stable-source/cleanup/original verification')
+    resident=game['resident_world'];stage=resident['stage_profile'];worker=stage['capture']
+    count=int(resident['completed'])
+    if not 64<=count<=8192 or int(resident['imports'])!=count or int(resident['verified_returns'])!=count:
+        raise ValueError('Unbalanced resident completed prefix')
+    if any(resident[k]!=0 for k in ('world_readbacks','native_readbacks','rgba_readbacks','world_pixel_reply_bytes')):
+        raise ValueError('Prefix ordinary readback contract')
+    if stage['samples_dropped'] or stage['gpu_queries_dropped'] or stage['capture_truncated'] or worker['truncated'] or worker['error']:
+        raise ValueError('Prefix dropped/truncated/failed diagnostics')
+    rows=stage['samples']
+    if len(rows)<count or any(int(row['generation'])!=i+1 or 'producer_return_ms' not in row for i,row in enumerate(rows[:count])):
+        raise ValueError('Prefix lacks ordered verified original returns')
+    if worker['accepted_worlds']<count or worker['written_worlds']<count:
+        raise ValueError('Prefix not written')
+    return count
 
 def sha(path):
     digest=hashlib.sha256()

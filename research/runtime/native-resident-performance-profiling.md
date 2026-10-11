@@ -39,14 +39,15 @@ Run through the main checkout's storage guard (allow for the complete bounded
 capture and private game installation):
 
 ```sh
-python3 tools/profile-native-resident.py --capture --cpu-sample
+python3 tools/profile-native-resident.py --cpu-sample
+python3 tools/profile-native-resident.py --capture
 python3 tools/benchmark-native-resident.py --campaign <campaign-evidence-directory>
 ```
 
 The first probe uses a private accelerated TITAN display and the existing physical
 native campaign casting/combat, Fireball/refusal, movement, portrait, Mini Cancel
 and normal Quit journey. It preserves the 19 FPS gates. Optional 99 Hz user-space
-CPU stacks sample 30 seconds after 40 seconds of physical gameplay. Capture enqueue/compression work,
+CPU stacks sample 30 seconds after 40 seconds of physical gameplay. Run CPU sampling and corpus capture separately; serialize hardware probes and keep coverage builds/symbolization outside gameplay. Symbolization is now deferred until campaign cleanup. Capture enqueue/compression work,
 timestamps, growing report writes and sampling perturb this run; it cannot replace
 an uninstrumented performance proof. Prospective behavior/scenario source claims
 precede launch. Preserve failed probes without relaxing their admission gates.
@@ -66,8 +67,9 @@ and SHA-256 comparison occur after the completion timer. Repeated/mode output
 hashes must agree; ordinary World delivery must retain zero readbacks.
 
 The offline consumer omits public command import, UI and Qt paint. Its throughput
-is a render-path measurement, not public gameplay FPS. Actual timings and CPU
-hotspots are pending fresh execution; no 60 FPS achievement is claimed here.
+is a render-path measurement, not public gameplay FPS. Fresh timing and CPU hotspot results appear below. Offline completed average
+throughput exceeds60FPS for an explicit verified combat prefix;60FPS gameplay
+and a steady frame floor remain unproven.
 
 ## Provenance and remaining boundaries
 
@@ -77,9 +79,10 @@ versions have retained receipts, with no unresolved gap. Historical renderer and
 public resident evidence retain their hashes and may become stale for shared
 source edits. New tests do not refresh those older execution records.
 
-Pending: query/context controls on real hardware, fresh public pacing and CPU
-samples after the minimap fix, a complete ordered gameplay corpus, fresh offline
-hardware throughput, and attribution of presentation/unobserved original work.
+Current results prove bounded query/context/worker controls, fresh public CPU/GPU
+and paired original pacing observations, and repeated actual combat-prefix
+hardware throughput. A complete validated capture journey, causal attribution
+of public presentation/original work and steady60FPS remain pending.
 
 ## Instrumentation milestone, 2026-10-11
 
@@ -133,3 +136,148 @@ values with two paired callbacks and no extra clock calls. Current shared import
 passes65,536 words, two HUD/copy comparisons and zero ordinary readbacks; native
 Quit acknowledges/retirement/refusal/idempotence cases pass. Full original public
 callback activation, fresh gameplay CPU stacks and throughput remain pending.
+
+## Fresh CPU/GPU/original pacing observation
+
+`resident-profile-cpu-pacing-20261011.json` preserves a complete physical journey:
+casting, Fireball, combat, movement, portraits, Mini Cancel and normal Quit,
+5421 balanced completed/imported/verified-return Worlds, zero ordinary native,
+World or RGBA readbacks and80-byte metadata ACKs. Both original pacer call sites
+are observed in all5358 retained warm rows, with no dropped rows/queries and no
+pending queries at retirement. The overall19FPS cadence gate **failed**; UI
+frame/paint counters include repeated updates and are not distinct World FPS.
+The CPU sample and symbolization overlap perturb this run. These timings are
+observations, not a new uninstrumented performance guarantee.
+
+| Warm World interval | Mean ms | Median ms | p95 ms |
+| --- | ---: | ---: | ---: |
+| Source acquire + decode + handoff + native consume |25.420|24.083|38.057|
+| Native consume, including following nested stages |21.732|20.424|33.657|
+| Native CPU producer (nested) |8.947|9.280|11.858|
+| Native prepare (nested) |1.801|1.713|2.608|
+| Native submit CPU (nested) |8.740|7.255|17.992|
+| Renderer-context GPU timeline |9.707|9.013|20.070|
+| Preceding observed original pacer |9.388|10.000|18.000|
+| Unclassified between-World residual |9.869|8.000|14.000|
+
+The current host World path alone exceeds16.667ms. It requires at least a1.53x
+reduction in mean latency to fit that budget, before public UI/paint/scanout and
+remaining original work. The GPU timeline is shorter than host consumption on
+average, but its20.070ms p95 and CPU submission gaps prevent concluding that GPU
+work meets60FPS in every frame. Original intervals remain near the unchanged
+50ms target; making replay fast cannot itself produce60 distinct gameplay Worlds.
+
+The30-second99Hz native user-thread sample reports no lost samples. Largest
+resolved flat symbols are `CanvasSequence::minimap`15.88%, raster validation3.26%,
+sort3.14%, channel polling2.17%, producer append1.63%, producerWorldDraw1.63%,
+minimap terrain1.51% and masked upload1.45%. Driver offsets remain unresolved.
+Sentinel planes and candidate sorting in minimap preparation are concrete CPU
+optimization candidates, followed by validation/packing and GL submission; these
+are priorities, not measured speedups. Do not add sample shares to stage times.
+
+`resident-profile-compressed-capture-negative-20261011.json` preserves a second
+failed capture:1857 completed Worlds and1858 written compressed records before a
+native drawing-history GAP. Concurrent coverage work and long poll/command stalls
+are recorded; their cause is unproven. It is not admitted as a complete replay
+corpus. A clean serialized capture and representative offline replay are pending.
+
+
+The next clean serialized Apprentice capture is retained as
+`resident-profile-wizard-death-negative-20261011.json`:2176 last-reported balanced
+Worlds, no native delivery error,19.270 observed World FPS, but player wizard
+death before required combat completion. Owned Wine stopped and original media
+verification passed. Final capture hash/size is recorded after teardown; it is
+larger than the last in-game worker snapshot because teardown drained later
+queued records. Neither this truncated physical journey nor the stale worker
+snapshot is promoted to a complete corpus. An Initiate retry was rejected by the casting/combat harness before launch: this
+journey requires Apprentice or harder. Its invocation error remains under
+working/tests/resident-stage-profile/run-_7agvhtm. Subsequent attempts retain
+the original Apprentice selector and unchanged combat admission gates.
+
+
+## Explicit failed-journey prefix measurement
+
+`resident-profile-serialized-gap-negative-20261011.json` preserves the next clean
+Apprentice failure: Fireball damage and a player-party lethal hit appear in the
+physical input record, but the native command producer later declares drawing
+history GAP.2423 Worlds have matching completed/imported/verified-return counts;
+one pending2424th World is excluded from diagnostic replay. This proves that
+concurrent coverage was not necessary for this GAP; it does not identify a cause.
+The complete spell/portrait/Mini/Quit journey remains failed.
+
+The default benchmark admission still requires all independent full-journey and
+complete-capture checks. Its explicit `--completed-prefix` mode instead requires
+64..8192 contiguous generations with recorded original returns, balanced imports
+and completions, stable source/owned cleanup/original verification, zero ordinary
+readbacks/pixel replies and zero dropped/truncated diagnostics. Selected records
+must already be written. Final capture size/hash and launch-owned input
+fingerprints are checked; the entire compressed file, including its excluded
+tail, is structurally validated; unselected rendering semantics are not inferred. The decoded count must match the accepted worker snapshot.
+Normalization copies only the verified prefix, so no pending World enters the
+measured workload. Failed campaign and missing full-journey checks are explicit
+in the result; this mode cannot establish native menu/Quit integration or60FPS
+gameplay. It supplies a bounded actual combat-rendering workload, with its
+original failure retained, rather than synthetic repeated terrain.
+
+Growing diagnostic JSON report publication every64 Worlds is outside stage
+timings and can perturb live cadence. Its cost and the recurring drawing-history
+GAP remain open. The offline consumer does not perform those publications.
+
+
+`resident-profile-prefix-controls-20261011.json` reruns current worker/archive,
+import/Quit and guarded clock controls. Two selected Qt/Python records match
+exactly; eighteen new prefix admission/bounds/order/return/readback/drop and bad
+excluded-tail controls refuse. The eleven existing compressed-input negatives
+also pass. The default full-journey gate is unchanged.
+
+
+## Completed actual combat-prefix replay and matched compiler settings
+
+The fresh immutable records are `resident-profile-offline-o3-20261011.json`,
+`resident-profile-offline-o2-20261011.json` and
+`resident-profile-matched-input-comparison-20261011.json`. All2423 selected Worlds
+are decoded, prepared and consumed in order; the complete2424-record compressed
+file is structurally validated, and its one pending tail World is excluded.
+97 compiled C/C++/header input hashes match the actual public capture. Both probes
+freeze sources, verify all launch-owned static inputs, bracket original manifest
+verification, refuse software/non-TITAN/desktop fallback and leave zero queries
+or surfaces after session teardown. All six runs have the same terminal native
+word SHA-256. Each performs one diagnostic readback after the timer, with zero
+ordinary delivery/World readbacks. These are repeated terminal-output checks,
+not per-frame original pixel comparison.
+
+| Same verified input prefix | Public O2/Zink/Qt | Headless O2/NVIDIA EGL | Headless O3/NVIDIA EGL |
+| --- | ---: | ---: | ---: |
+| Warm decode + handoff + native mean ms |26.384|11.602|10.073|
+| Native producer mean ms (nested) |8.647|3.906|2.699|
+| Native submit CPU mean ms (nested) |10.358|4.766|4.538|
+| GPU timeline mean ms |11.386|7.542|7.172|
+| Warm pipeline p95 ms |43.772|19.874|17.621|
+| Completed timestamp-disabled replay FPS |not applicable|78.289 /71.963|88.070 /85.655|
+
+All-frame completion throughput includes fresh renderer/session initialization,
+disk input, decode, handoff, native CPU and terminal GPU drain. The timestamps
+mode completes at77.705FPS with O2 and85.889FPS with O3. Public production uses
+RelWithDebInfo (`-O2 -g -DNDEBUG`); frozen O2 deliberately matches optimization,
+while O3 provides a separate optimized reference. The headless driver is
+`NVIDIA TITAN RTX/PCIe/SSE2`; public hardware is Zink over NVIDIA Vulkan with Qt
+shared-context presentation and concurrent original simulation. Filesystem and
+driver caches are not purged. Different host workloads and trial variation are
+retained. Compiler optimization improves this isolated workload, but cannot
+explain the entire public gap; no causal backend/context speedup is inferred.
+
+This shows that the resident rendering path can exceed60 completed Worlds/second
+on average for this actual combat prefix. Both pipeline p95 values still exceed
+16.667ms, so a steady60FPS floor is not established. Public painting, UI import,
+original work and its selected50ms pacing target are outside replay. Full live
+capture/normal Quit still failed. No60FPS gameplay, crowded-scene throughput,
+original equivalence, simulation policy change or DirectDraw restoration is
+claimed.
+
+The next measurement should run identical inputs under the public backend and
+context-sharing route, separate UI import/paint and report publication, and
+identify the repeated drawing-history GAP source/transition. Use this to choose
+changes before treating minimap CPU work or GL submission as the sole bottleneck.
+The original pacer needs its own simulation/presentation contract before changing
+cadence. This batch adds measurement, not a production optimization or game-speed
+change.

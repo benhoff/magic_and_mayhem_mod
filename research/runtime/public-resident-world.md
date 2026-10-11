@@ -563,3 +563,19 @@ display policies over65536words,eight physical/refusal controls,15admission
 guards and103retained historical frames/49.44Mpixels/zero differences.
 These original-active diagnostic readbacks are separate from the public resident
 zero-World-readback path; they do not reintroduce real DirectDraw there.
+
+
+## Profiled drawing-history GAP, 2026-10-11
+
+`public-resident-profile-gap-negative-20261011.json` retains a serialized private
+TITAN Apprentice capture. The physical record contains Fireball damage and a
+player-party lethal hit;2423 completed/imported/original-returned Worlds precede
+native command drawing-history GAP reason2 and one pending World. Native World,
+RGBA and native delivery readbacks remain zero; the whole journey fails before
+full portrait/spell/menu/normal-Quit validation. An earlier profiled capture also
+GAPs while coverage runs; this serialized repeat shows concurrent coverage is
+not necessary. The failing drawing source/transition and diagnostic contribution
+are unknown; do not attribute an uninstrumented regression or invalidate prior
+bounded successful master evidence. The explicit offline diagnostic benchmark
+may structurally validate the complete capture then replay only the2423 balanced
+Worlds, excluding the pending tail. It cannot establish full public integration.
