@@ -6546,3 +6546,25 @@ retirement. This supports bounded ordinary public continuity/performance;
 the captured benchmark stays failed/truncated, and original equivalence,
 final-header casting/combat matrix and60FPS remain unproven. See
 [ordinary TITAN result](resident-history-repaired-ordinary-titan-20261011.json).
+
+
+### Original engine cadence observation controls,2026-10-11
+
+`NR.engine-cadence-observation` adds an isolated opt-in No-CD DLL tracing primary
+message-loop pacing, accepted-update/world-counter stores, eight global ANI
+controllers, creature maintenance/budget scheduling and actual World-queue entry.
+Original speed, interval, clock, draw policy and once-only calls/stores remain.
+At most262144x96-byte events stay in memory; file writes occur only on process
+detach after gameplay. Guarded staging verifies the source PE/hash and all76
+site bytes, preserves the existing scene queue's original return PC, and refuses
+overflow/foreign-thread/incomplete records. Seven PE32 thunk paths, ten stand-in
+forwards, machine-state/LastError/marker stores and14 malformed decoder refusals
+pass at final source hashes. Two prior address-reservation setup failures remain
+separate; neither executed hooks or establishes an engine defect.
+
+This is native diagnostic-policy validation, not original routine/pixel/driver
+equivalence or a live scheduling contract. TITAN casting/combat/menu/Quit tracing,
+all-animation/pause/network/alternate pacing branches, independent render-only
+invocation and60FPS remain pending. See[experiment](engine-cadence.md).
+The exact27ed7f8..e692a4f history review covers nine files with zero receipt gaps;
+no retrospective gate or execution claim.

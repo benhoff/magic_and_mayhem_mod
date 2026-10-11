@@ -1,0 +1,37 @@
+{
+  "success": false,
+  "claims": [
+    {
+      "behavior": "NR.engine-cadence-observation",
+      "contract_sha256": "da53a30d73c724c444de03c567ce53eb39ed9b23f9b498ded173186afdaa2453",
+      "scenarios": {
+        "NR.engine-cadence-observation.fixture": "77eb9ab3694e1382511b4dcf3e14981a902161a37a41d1b8a2047dc6c0c013a4"
+      }
+    }
+  ],
+  "sources": {
+    "runtime/engine-cadence/entry.S": "46aa2a34c50e5ab1450913cc3033602e36ac490e7ea6ad095ab0d581dd97908f",
+    "runtime/engine-cadence/observer.c": "2f0ae20716bcc4563d22f93d3f11b46f88572382c2f3c260b4ed234c8d788910",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/engine-cadence-reference.S": "f6e310c4a423ab59f1e7bd2308028d910b1e3d47ca97d811d5a9f4877856f82f",
+    "tests/engine-cadence-reference.c": "f96384866eb3fe7199c8f967b53f9891ca12dd5f9a65e902debd8dfe8bbed4d6",
+    "tools/build-engine-cadence.py": "fcd3db7c289619552b0df5bf7919264273ce29c40cf0b37eed699fe7b3e8ebf6",
+    "tools/build-menu-observer.py": "40b546d7bb625630e5f58b9a58e424684a205dbb338c2eef1e5eb69db5654838",
+    "tools/engine_cadence.py": "23ba50b845ab8ab46249efcb0591c0b26f20a1447c515c53c9d4b0ea5f870e7a",
+    "tools/menu-game-runner.py": "35df7f0c50dddc870fc3b594e59eda16e40c571a0231e5759d9c008fc0a20d91",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-menu-observer.py": "e3bf7c5cdc6c9a0b45d797bec84ac50bbc375d4c4f583611de325d37a12d4796",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/test-engine-cadence.py": "72c1b467312923caa63837baacec1628301251f596e45c746f2207252db46a35",
+    "tools/test-native-campaign.py": "45961152fd669f2b8f054c6223f34f28c98056193bd938c3bc9b1182a1271dff",
+    "tools/trace-engine-cadence.py": "7b58b993812aaa896755dc54c23270c82caca24a13479ddd62736c0997ce8309"
+  },
+  "exit_code": 30,
+  "binary_sha256": "1158041fecf34a44a4c69c35d2b8e11de99a459a999e079384351cf54da7aad7",
+  "dll_sha256": "29423181bb8d059c123676664f044443a9eef2ed68c9c3d28b75fef185dcb06f",
+  "error": "PE32 thunk preservation failed",
+  "raw_report": "working/tests/engine-cadence-controls/run-xe5sw7bw/report.json",
+  "raw_report_sha256": "c00e0f24cf482cf4b904bcaad8c91c55851fff8501b511059a5e5940cd36ece0",
+  "scope": "Independent PE32 stand-in controls only; no game, GPU or original execution equivalence. Synthetic address reservation failed before any hook execution; no engine defect or behavior validation claim.",
+  "expected_failure": true
+}

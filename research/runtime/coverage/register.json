@@ -41558,6 +41558,93 @@
       "remaining_gaps": [
         "Final-header controlled PE32 publication delay avoided with rebuilt identical DLL, owned FIFO and shutdown preserved; ordinary TITAN public camera/menu/Quit passes19FPS and7284balanced Worlds with no GAP. Instrumented capture/performance overload remains unresolved. No-worker/legacy fallback and failed-join flag lifetime reviewed; arbitrary OS stalls, driver equivalence and full lifecycle/refusal matrix remain unproven."
       ]
+    },
+    {
+      "id": "NR.engine-cadence-observation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded unchanged original simulation/animation/World cadence observation",
+      "scope": "Opt-in pinned No-CD PE32 fifteen-site observer of primary message-loop pacing, accepted-update and world-counter stores, eight global ANI controllers, creature maintenance/scheduler and actual World queue entry. Preserve original once-only calls/stores, registers/flags/x87/SSE/LastError and queue return PC; clock, interval, simulation and draw skipping unchanged. Single-thread bounded262144x96-byte in-memory events, file writes only at process detach; overflow, foreign engine thread and malformed/incomplete records refuse. Selected counters/controller states establish observed update/queue relationships, not independent simulation timing, all animations, original pixel/driver equivalence, full pause/network/alternate caller policy or60FPS.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5600259,
+          "scope": "Primary outer-loop pacing call; other callers excluded"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4633695,
+          "scope": "Accepted-update sequence store"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4633750,
+          "scope": "Conditional world-counter store"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4634421,
+          "scope": "Creature maintenance call"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4634447,
+          "scope": "First of eight global ANI controller calls through0046b795"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4634527,
+          "scope": "Budget scheduler call"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5231787,
+          "scope": "First World queue call; alternate004fd554 also observed"
+        }
+      ],
+      "documents": [
+        "research/runtime/engine-cadence.md",
+        "research/runtime/engine-cadence-reservation-negative-20261011.json",
+        "research/runtime/engine-cadence-page-reservation-negative-20261011.json",
+        "research/runtime/engine-cadence-controls-20261011.json"
+      ],
+      "implementation": [
+        "runtime/engine-cadence/observer.c",
+        "runtime/engine-cadence/entry.S",
+        "tools/build-engine-cadence.py",
+        "tools/engine_cadence.py",
+        "tools/trace-engine-cadence.py"
+      ],
+      "tests": [
+        "tests/engine-cadence-reference.c",
+        "tests/engine-cadence-reference.S",
+        "tools/test-engine-cadence.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/original-manifest.sh"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.engine-cadence-observation.reservation-negative-20261011",
+        "NR.engine-cadence-observation.page-reservation-negative-20261011",
+        "NR.engine-cadence-observation.controls-20261011"
+      ],
+      "remaining_gaps": [
+        "Final-source PE32 stand-in machine-state/one-forward, guard and decoder controls pass. Live TITAN simulation/animation/World coupling, all animations, complete lifecycle/pause/network policy and60FPS remain unproven. Historical fixture reservations failed before hook execution and do not validate engine behavior."
+      ]
     }
   ],
   "evidence": [
@@ -86474,6 +86561,71 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.engine-cadence-observation.reservation-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Independent PE32 stand-in controls only; no game, GPU or original execution equivalence. Synthetic address reservation failed before any hook execution; no engine defect or behavior validation claim.",
+      "record": "research/runtime/engine-cadence-reservation-negative-20261011.json",
+      "sha256": "fbc87893282fa5b055dcba784bec511be43d653bfa8e6d8340186769441047f6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.engine-cadence-observation.page-reservation-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Independent PE32 stand-in controls only; no game, GPU or original execution equivalence. Synthetic address reservation failed before any hook execution; no engine defect or behavior validation claim.",
+      "record": "research/runtime/engine-cadence-page-reservation-negative-20261011.json",
+      "sha256": "8c8b19990b8cfd3d9dc3067893a3a1026b4a768937d2a3bdc90393d0a22fdef0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.engine-cadence-observation.controls-20261011",
+      "kind": "native_integration",
+      "scope": "Independent PE32 stand-in controls only; no game, GPU or original execution equivalence. Final-source thunk preservation,76 guard mutations and14 decoder refusals.",
+      "record": "research/runtime/engine-cadence-controls-20261011.json",
+      "sha256": "35fbd1f16f53e67a944dbb1b809082eceec5fbd3c1ae8cdebc58e2f55c91b638",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/decoder_refusals",
+          "equals": 14
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -96940,6 +97092,24 @@
         "NR.callback-publication-isolation.isolation-fixed-20261011",
         "NR.callback-publication-isolation.final-header-control-20261011"
       ]
+    },
+    {
+      "id": "NR.engine-cadence-observation.fixture",
+      "scope": "Independent PE32 thunk preservation and guard mutations with authored original stand-ins; strict decoder refusals. No game executable or live equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "NR.engine-cadence-observation"
+      ],
+      "tests": [
+        "tools/test-engine-cadence.py",
+        "tests/engine-cadence-reference.c",
+        "tests/engine-cadence-reference.S"
+      ],
+      "evidence": [
+        "NR.engine-cadence-observation.reservation-negative-20261011",
+        "NR.engine-cadence-observation.page-reservation-negative-20261011",
+        "NR.engine-cadence-observation.controls-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -97313,8 +97483,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-resident-history-final-validation-20261011.json",
-    "sha256": "f984071e9778a50472ba4e3d1e946c8d38b1f673c868ad26ac5987245df595ee"
+    "path": "research/runtime/coverage/source-index-engine-cadence-controls-20261011.json",
+    "sha256": "1506cad45c917b5e4c1b415298e2871da556c09df006ed3779218ef54f6fbaee"
   },
   "claim_bindings_required": true
 }

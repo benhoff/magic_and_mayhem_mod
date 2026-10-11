@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "NR.engine-cadence-observation",
+      "contract_sha256": "da53a30d73c724c444de03c567ce53eb39ed9b23f9b498ded173186afdaa2453",
+      "scenarios": {
+        "NR.engine-cadence-observation.fixture": "77eb9ab3694e1382511b4dcf3e14981a902161a37a41d1b8a2047dc6c0c013a4"
+      }
+    }
+  ],
+  "sources": {
+    "runtime/engine-cadence/entry.S": "46aa2a34c50e5ab1450913cc3033602e36ac490e7ea6ad095ab0d581dd97908f",
+    "runtime/engine-cadence/observer.c": "e5f1a11c1ec2555eb8d103ab5ab0126db40e52918166eeeee49e8c2cbee3104d",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/engine-cadence-reference.S": "f6e310c4a423ab59f1e7bd2308028d910b1e3d47ca97d811d5a9f4877856f82f",
+    "tests/engine-cadence-reference.c": "7b90f4d0540812e99f01e49d5a74bd207988b6ba3966298d71ee3f4878dcacbf",
+    "tools/build-engine-cadence.py": "fcd3db7c289619552b0df5bf7919264273ce29c40cf0b37eed699fe7b3e8ebf6",
+    "tools/build-menu-observer.py": "40b546d7bb625630e5f58b9a58e424684a205dbb338c2eef1e5eb69db5654838",
+    "tools/engine_cadence.py": "23ba50b845ab8ab46249efcb0591c0b26f20a1447c515c53c9d4b0ea5f870e7a",
+    "tools/menu-game-runner.py": "35df7f0c50dddc870fc3b594e59eda16e40c571a0231e5759d9c008fc0a20d91",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-menu-observer.py": "39b669c4d83573e4278b2dcfff11a4d83d4081e5386530e4cbfbbf0796d5aab6",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/test-engine-cadence.py": "7deb50cb81f58ba730e9679478ebb63caee8fd77768dede5ef5f3ad2d2a0785c",
+    "tools/test-native-campaign.py": "2ade304114c7eb581230b0331db9f034d2b2ff1dbd42503f720323de3e417429",
+    "tools/trace-engine-cadence.py": "ec2c931c39a512e48ea69f4a69379b827a24737c1abeb5646e88d27dfc24234b"
+  },
+  "exit_code": 0,
+  "binary_sha256": "f649c9a968699b8bbac22e786ce07261a5820cb23993a31ca906d8ba24e7dd55",
+  "dll_sha256": "c4dc08519c4030903d0b34d9a7fd08a09d111c59d086dea9519816a2f2e0c993",
+  "decoder_refusals": 14,
+  "sources_unchanged": true,
+  "checks": "Seven PE32 paths: all returned registers except physical ESP, flags,512B x87/SSE and LastError; ten independent original forwards; marker stores; volatile-ECX ANI snapshot;76 mutated guard bytes; bounded recorder overflow; strict decoder controls.",
+  "raw_report": "working/tests/engine-cadence-controls/run-ih3sc5or/report.json",
+  "raw_report_sha256": "d1597b44a3fc137113e450a7cb04ea2e648aa10a666fe571def5c555fbad2101",
+  "scope": "Independent PE32 stand-in controls only; no game, GPU or original execution equivalence. Final-source thunk preservation,76 guard mutations and14 decoder refusals.",
+  "expected_failure": false
+}

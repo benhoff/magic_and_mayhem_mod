@@ -35,6 +35,15 @@ if native_draw:
     os.environ['MNM_NATIVE_DRAW_STATUS']='Z:'+str(status).replace('/','\\')
     overrides=os.environ.get('WINEDLLOVERRIDES','')
     os.environ['WINEDLLOVERRIDES']=(overrides+';' if overrides else '')+'ddraw='
+os.environ.pop('MNM_ENGINE_CADENCE_FILE',None)
+if metadata.get('engine_cadence'):
+    if os.environ.get('MNM_ENGINE_CADENCE_TRACE')!='1' or not metadata.get('resident_world'):raise ValueError('Unapproved engine cadence tracing')
+    if hashlib.sha256((game/'MnmEngineCadence.dll').read_bytes()).hexdigest()!=metadata['engine_cadence_sha256']:raise ValueError('Engine cadence DLL changed')
+    trace=root/'engine-cadence.bin'
+    if trace.exists() or trace.is_symlink():raise ValueError('Stale or redirected engine cadence trace')
+    os.environ['MNM_ENGINE_CADENCE_FILE']='Z:'+str(trace).replace('/','\\')
+elif os.environ.get('MNM_ENGINE_CADENCE_TRACE') is not None:
+    raise ValueError('Engine cadence observer was not staged')
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(events).replace('/','\\')
 if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')=='1':
     trace=root/'gameplay-events.bin'
