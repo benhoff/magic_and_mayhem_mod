@@ -119,6 +119,15 @@
         "sha256": "795a812754dee653edbe1b4b9213b3d24698103c6ac5cdb3ebb6db9b982d0516"
       },
       "scope": "Six composed startup checkpoints before display copy; no presented journey."
+    },
+    {
+      "id": "startup-sequence",
+      "adapter": "producer_sequence",
+      "catalog": {
+        "path": "tests/fixtures/drawing-sequence/sequence.json",
+        "sha256": "c1b4b8d8532ff68aafcd4708c97faca814ba1b8dd63cbb8a5ff247a161164114"
+      },
+      "scope": "Every1062checkpoint in16contiguous startup World queues; no presented frame/action identities."
     }
   ]
 }

@@ -4536,3 +4536,48 @@ immutable evidence is `NR.drawing-sequence.draw03-native-20261010`; ten sequence
 guards and eight acceptance guards pass. Original raster returns remain external
 and the full sequence makes no state-parity claim across historical suppression.
 The original-active17-frame result comparison remains separate.
+
+### 2026-10-10: DRAW-02 unified suite and presented-session comparison ABI
+
+A single native suite now runs the nine component outputs, six selected composed
+startup outputs and all1,062retained sixteen-queue checkpoints, while separately
+reporting original-reference and parity gates for14journeys/21operation contracts.
+Presented-session admission requires independently registered original capture,
+contiguous publication identities, ordered action/frame/owned-input bindings and
+caller-visible effect results. RGB565/RGBA full-plane comparisons and expected
+results remain outside backend inputs. Portable session retention refuses changed
+provenance/overwrite; unsupported and native errors preserve independently
+admitted references without claiming parity.26synthetic guards exercise these
+contracts, including wrong returns despite equal pixels and dropped/reordered
+frames. Existing collectors do not yet emit complete presented-session records;
+all14full journey and21operation/failure acceptance gates remain pending. No new
+original execution, full scene replacement or live bypass is claimed.
+
+
+## DRAW-03 integration of the unified DRAW-02 suite (2026-10-10)
+
+The newly committed391a903 suite is integrated into the isolated native branch.
+Both CI guard sets, central behavior/evidence/scenario links and append-only
+receipts are preserved. Current native executables exercise the three bounded
+catalogs under one command; typed presented-session admission/refusal remains
+synthetic until a collector emits actual publication/action/effect evidence.
+Full presented journeys, native session decoding and complete consumer state
+remain pending. Exact parent/current reviews covere4ff085..391a903 and the prior
+native integration6208fcc..1472bc0 without asserting historical execution.
+
+Fresh current-source unified execution matches all three bounded catalogs over
+481,436,912 compared pixels, with zero differences. Both journey/session guard
+suites pass. New immutable evidence is
+`TOOL.drawing-journeys.draw03-native-20261010`; all14full journey and21operation
+acceptance gates remain open. Current source/result separation and all historical
+reference/pixel/state boundaries remain explicit.
+
+The final merged-suite execution registers all three current policy contracts as
+`TOOL.drawing-journeys.draw03-complete-native-20261010`:481,436,912pixels,
+zero differences and26passing journey/session guards. The preceding sandbox
+execution could not start its private X servers; its separate unchanged report
+and `TOOL.drawing-journeys.draw03-sandbox-failure-20261010` preserve all three
+admitted original references and claim no native parity or implementation
+validation. The successful retry used private Xvfb/OpenGL processes outside
+that socket restriction. All14presented journeys and21operation/failure gates
+remain open. The original manifest verifies all2927immutable files unchanged.

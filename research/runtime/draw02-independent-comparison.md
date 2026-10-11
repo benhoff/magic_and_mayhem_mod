@@ -85,3 +85,15 @@ effects, HUD/tooltips, picking, save/load, transitions, errors and recovery need
 additional full presented-scene inputs and oracles. Existing glyph, text, image,
 fade, movie and producer-history reports remain separate bounded evidence; this
 corpus does not reinterpret them as completed journeys or new original execution.
+
+## Full-session suite extension
+
+The [full-session suite](draw02-full-session.md) now runs this bounded corpus
+alongside the six DRAW-03 composed startup checkpoints and all1,062checkpoints
+of a16-queue retained startup history. It records independent-reference and native
+parity gates for all14journeys and21operation/failure contracts. Its presented
+session adapter validates exact original action/frame identities, full RGB565 or
+RGBA planes and caller-visible results, with portable retention and explicit
+unsupported/error outcomes. These guards do not create original presented
+captures. None of the14presented journeys is yet closed; the original nine-case
+corpus and all historical evidence hashes remain unchanged.

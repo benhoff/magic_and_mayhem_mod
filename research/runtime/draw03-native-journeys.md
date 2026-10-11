@@ -144,3 +144,25 @@ session action identities. Full presented Quick Battle/campaign journeys require
 new collector contracts and observed captures; startup composition cannot close
 those gates. The other contributor's uncommitted session tools remain in their
 own worktree.
+
+
+## Integration with the unified acceptance command
+
+The committed DRAW-02 suite391a903 is integrated alongside the stricter native
+result transport. Its one command exercises nine component outputs, six selected
+composed canvases and the entire1062-checkpoint startup sequence, with separate
+original-reference/native-parity gates. Presented-session contracts require exact
+physical publication/action/input/effect identities and typed JSON results. Native
+wrong returns, unsupported backends or failures cannot close parity gates from
+matching pixels. This provides a shared acceptance command; it does not supply
+the missing original collector or a native presented-session backend.
+
+The final merged-suite execution registers all three current policy contracts as
+`TOOL.drawing-journeys.draw03-complete-native-20261010`:481,436,912pixels,
+zero differences and26passing journey/session guards. The preceding sandbox
+execution could not start its private X servers; its separate unchanged report
+and `TOOL.drawing-journeys.draw03-sandbox-failure-20261010` preserve all three
+admitted original references and claim no native parity or implementation
+validation. The successful retry used private Xvfb/OpenGL processes outside
+that socket restriction. All14presented journeys and21operation/failure gates
+remain open. The original manifest verifies all2927immutable files unchanged.
