@@ -21,7 +21,7 @@ def load(name, path):
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def prepare(source, movies=False):
+def prepare(source, movies=False, menu_only=False):
     source = source.resolve(); raw = (source / 'Chaos.exe').read_bytes()
     if hashlib.sha256(raw).hexdigest() != BUILD_SHA256: raise ValueError('Unsupported source executable')
     census = load('drawing_build', 'tools/build-drawing-census.py').build(source / 'Chaos.exe')
@@ -30,10 +30,16 @@ def prepare(source, movies=False):
     root = Path(tempfile.mkdtemp(prefix='run-', dir=parent)); game = root / 'game'
     load('drawing_isolation', 'tools/prepare-scene-observer.py').copy_installation(source, game)
     if sha(game / 'Chaos.exe') != BUILD_SHA256: raise ValueError('Disposable source copy hash mismatch')
+    # The pinned executable uses Save\\ for .sav files and __temp.vas.
+    # Source-media installations can omit this empty writable output directory.
+    saves = game / 'Save'
+    if not saves.resolve().is_relative_to(game.resolve()): raise ValueError('Save output escapes disposable copy')
+    created_directories = [] if saves.exists() else ['Save']
+    saves.mkdir(exist_ok=True)
     for path in [game / 'MnmDrawingCensus.dll', game / 'MnmMenu.dll']:
         if not path.resolve().is_relative_to(game.resolve()): raise ValueError('DLL destination escapes disposable copy')
     patch = load('drawing_import', 'tools/prepare-shadow-experiment.py').add_import
-    staged = patch(raw, census.name, 'DrawingCensusAnchor', b'.mndraw')
+    staged = raw if menu_only else patch(raw, census.name, 'DrawingCensusAnchor', b'.mndraw')
     staged = patch(staged, menu.name, 'MenuAnchor', b'.mnmenu')
     pe = struct.unpack_from('<I', raw, 60)[0]; count = struct.unpack_from('<H', raw, pe + 6)[0]
     table = pe + 24 + struct.unpack_from('<H', raw, pe + 20)[0]
@@ -54,6 +60,8 @@ def prepare(source, movies=False):
     manifest = {'schema': 1, 'origin': 'drawing_census_observation', 'original_sha256': BUILD_SHA256,
                 'binaries': {name: sha(game / name) for name in ('Chaos.exe', 'MnmDrawingCensus.dll', 'MnmMenu.dll')},
                 'movies_enabled': movies, 'preferences': edits, 'source_game': str(source),
+                'created_directories': created_directories,
+                'call_census_enabled': not menu_only,
                 'scope': 'Original-active signature-pinned drawing call metadata; no native rendering or gameplay changes.'}
     (root / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     if sha(source / 'Chaos.exe') != BUILD_SHA256: raise ValueError('Original source executable changed')
@@ -62,7 +70,9 @@ def prepare(source, movies=False):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__); parser.add_argument('--source-game', type=Path, required=True)
-    parser.add_argument('--movies', action='store_true'); args = parser.parse_args()
+    parser.add_argument('--movies', action='store_true')
+    parser.add_argument('--menu-only', action='store_true', help='Diagnostic control: original drawing entries are unpatched')
+    args = parser.parse_args()
     subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
-    try: print(prepare(args.source_game, args.movies), flush=True)
+    try: print(prepare(args.source_game, args.movies, args.menu_only), flush=True)
     finally: subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)

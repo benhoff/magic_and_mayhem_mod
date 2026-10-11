@@ -299,3 +299,51 @@ the [ledger](coverage-ledger.md) for achieved scope, and the
 [replacement plan](../../docs/live-drawing-replacement.md) for sequencing. This
 route register complements the rendering API support report; neither replaces
 the other or claims an overall completion percentage.
+
+
+## Original save/load fixture under validation — 2026-10-10
+
+The isolated staging tool now creates the original `Save\\` output directory.
+Without it, the original Save dialog reports "Unable to save file" and creates
+no save. With it, the original fresh campaign produces nonempty `.sav` files;
+retained copies remain in each attempt's `saved-game-artifacts/` or
+`save-artifacts/` directory. These are original-generated artifacts, not proof
+of native persistence compatibility or a successful round trip.
+
+The first Load fixture typed the filename without selecting its list row and
+faulted reading `00000010` at `005b74dc`. The same failure repeats with drawing
+entry hooks absent, leaving the menu adapter active; it is not a fully unhooked
+baseline. The revised fixture requires exactly one new `draw01.sav`, retains
+its bytes/hash, selects that original list row, and verifies Load heading,
+World/Mini return and normal original quit. Results remain pending until the
+fresh attempt finishes; neither crashes nor screen labels close save/load.
+
+The optional `--menu-only` staging diagnostic omits the drawing DLL import and
+reports `call_census_enabled:false`. No drawing journal or terminal is inferred.
+Two later attempts exposed host-admission/lease timing: one has no channel
+publication despite visible Main; another reports retired status5. The fixture
+keeps its initial host snapshot stable during admission, then starts heartbeat
+renewal 100ms after the observer log header appears, while original assets load.
+This timing policy needs fresh live validation and is not an engine recovery fix.
+All failed attempts and partial journals remain retained; compressed partial
+journals retain their original byte hashes and explicit incomplete status.
+
+
+The [selected-row menu-only control](drawing-census-save-load-menu-only-success-20261010.json)
+now finishes the bounded original Save/Load journey: a retained 353,641-byte save,
+original World/Mini and Preferences return, original defeat/Main and exit0.
+Sources and staged binaries remain stable. Drawing entry hooks are absent and
+no call journal is claimed. The visible loading transition begins on list-row
+selection, before the later explicit Load-button input; input ordering is retained.
+The same corrected fixture with full drawing metadata remains under validation.
+The two failed Load reports are retained under distinct immutable evidence IDs;
+the successful control does not retroactively validate those attempts.
+
+
+The [full original-active save/load journal](drawing-census-save-load-observation-20261010.json)
+also completes with exit0: 3,607,228 events / 1,803,614 paired calls, zero
+loss/open calls, verified actual base400000 and stable source/binary fingerprints.
+The original-created 354,045-byte save is retained with SHA-256
+`76bd3f35812ce21ad19dc18bf073772c54725dd65eb80e8c14afb55ffda040c4`.
+This validates the bounded selected-row journey and journal; exhaustive caller,
+borrowed graphics, state/pixel/lifetime/recovery and scenario closure stay pending.
