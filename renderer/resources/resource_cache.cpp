@@ -47,6 +47,17 @@ PreparedSpriteFrame prepareResourceUpload(const assets::VisualResource& resource
         result.mask.pixels[std::size_t(row)*width+column+shift-row]=f.opaqueMask.at(std::size_t(r.first+row*2)*f.width+column);}
     return result;
 }
+void validateShadowStorage(const assets::SpriteFrame& f,std::int64_t left,std::int64_t top,
+                           ShadowRows r,QSize storage){
+    const int rows=(r.last-r.first+1)/2,shift=r.last/2;
+    if(left>=0&&top+r.first>=0&&left+f.width+shift<=storage.width()&&top+r.first+rows<=storage.height())return;
+    for(int row=0;row<rows;++row)for(unsigned col=0;col<f.width;++col){
+        if(!f.opaqueMask.at(std::size_t(r.first+row*2)*f.width+col))continue;
+        const auto x=left+col+shift-row,y=top+r.first+row;
+        if(x<0||y<0||x>=storage.width()||y>=storage.height())
+            throw std::invalid_argument("Projected shadow sample outside owned canvas");
+    }
+}
 ResourceCache::ResourceCache(GlBlitter& renderer,assets::ResourceManager& resources,ResourceCacheLimits limits)
     :renderer_(renderer),resources_(resources),limits_(limits),thread_(std::this_thread::get_id()){
     if(limits.preparedOnly&&!limits.residentOnly)throw std::invalid_argument("Prepared uploads require resident-only resources");
@@ -127,8 +138,10 @@ void ResourceCache::draw(const assets::ResourceId& id,std::size_t frame,SurfaceI
         const int first=int(std::max<std::int64_t>(0,viewport->top-top));
         const int last=int(std::min<std::int64_t>(f.height,viewport->bottom-top));
         if(first>=last)return;
+        const auto size=renderer_.dimensions(destination);
+        validateShadowStorage(f,left,top,{first,last},size);
         SpriteComposite darken;darken.mode=CompositeMode::half;
-        drawUpload(request(id,frame,nullptr,ShadowRows{first,last}),destination,int(left),int(top+first),std::nullopt,darken);return;
+        drawUpload(request(id,frame,nullptr,ShadowRows{first,last}),destination,int(left),int(top+first),Rect{0,0,size.width(),size.height()},darken);return;
     }
     checkThread();drawUpload(request(id,frame,colours),destination,x,y,viewport,composite);
 }

@@ -60,7 +60,11 @@ void SceneRenderer::validate(const SceneDraw& draw){
     if(draw.composite.mode==CompositeMode::projectedShadow){
         const auto* sprite=std::get_if<assets::Sprite>(&resource.image);if(!sprite||!draw.clip)throw std::invalid_argument("Projected shadow requires clipped SPR input");
         const auto r=draw.viewport.value_or(viewport_);const auto top=y+height/2;
-        if(x>=r.left&&x+width<=r.right&&top<r.bottom&&top+height>r.top){const auto last=std::min(height,std::int64_t(r.bottom)-top);if(width+last/2>2048||x+width+last/2>viewport_.right)throw std::invalid_argument("Projected shadow exceeds storage");}
+        if(x>=r.left&&x+width<=r.right&&top<r.bottom&&top+height>r.top){
+            const int first=int(std::max<std::int64_t>(0,r.top-top)),last=int(std::min(height,std::int64_t(r.bottom)-top));
+            if(width+last/2>2048)throw std::invalid_argument("Projected shadow exceeds storage");
+            validateShadowStorage(sprite->frames[draw.frame],x,top,{first,last},{viewport_.right,viewport_.bottom});
+        }
     }
     if(draw.composite.mode==CompositeMode::displace){const auto& c=draw.composite;if(!c.rowPeriod||c.rowPeriod>16)throw std::invalid_argument("Invalid displacement period");int reach=0;for(unsigned i=0;i<c.rowPeriod;++i){if(c.rowOffsets[i]<0||c.rowOffsets[i]>16)throw std::invalid_argument("Invalid displacement offset");reach=std::max(reach,c.rowOffsets[i]);}const auto r=draw.viewport.value_or(viewport_);if(std::min(x+width,std::int64_t(r.right))+reach>viewport_.right)throw std::invalid_argument("Scene displacement samples outside canvas");}
     if(width && !draw.clip && (x<0 || y<0 || x+width>viewport_.right || y+height>viewport_.bottom))

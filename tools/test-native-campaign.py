@@ -35,6 +35,34 @@ SOURCES = ['tools/test-native-campaign.py', 'tools/run-qt-shell.sh',
 SOURCES += ['tools/campaign_crowded.py', 'tests/campaign-crowded-test.py','runtime/render/precise_clock.h', 'tests/campaign-clock-reference.c', 'tools/test-native-clock.py', 'runtime/render/pacer_yield.h', 'tests/campaign-pacer-reference.c', 'tools/test-native-pacer.py', 'apps/qt-shell/healing_smoke_test.cpp', 'tools/campaign-healing-input.py', 'apps/qt-shell/live_battle_menu_controller.cpp', 'apps/qt-shell/live_spell_menu_controller.cpp', 'apps/qt-shell/spellbox_widget.cpp', 'apps/qt-shell/spellbox_widget.hpp', 'tools/campaign-quit-input.py','tools/campaign_spell.py', 'tests/campaign-spell-test.py', 'tools/campaign_movement.py', 'tests/campaign-movement-test.py', 'runtime/menu/campaign_spell_observe.h', 'renderer/blit.cpp', 'renderer/blit.hpp', 'tools/native_render_config.py']
 
 
+def linked_compiler_sources(build, root):
+    """Follow the built shell's object/archive links, refusing missing receipts."""
+    import shlex
+    build,root=build.resolve(),root.resolve()
+    pending=[build/'CMakeFiles/mnm-qt-shell.dir/link.txt'];visited=set();closure=set()
+    while pending:
+        link=pending.pop().resolve()
+        if link in visited:continue
+        visited.add(link)
+        base=link.parents[2];objects=0
+        for token in shlex.split(link.read_text()):
+            path=Path(token)
+            if path.suffix not in ('.o','.a'):continue
+            path=(base/path).resolve()
+            if not path.is_relative_to(build):continue
+            if path.suffix=='.a':
+                target=path.stem.removeprefix('lib')
+                pending.append(path.parent/'CMakeFiles'/f'{target}.dir/link.txt')
+                continue
+            objects+=1
+            for dependency in shlex.split(Path(str(path)+'.d').read_text().replace('\\\n',' ')):
+                source=(base/Path(dependency)).resolve()
+                if source.is_relative_to(root) and not source.is_relative_to(root/'working'):
+                    closure.add(source.relative_to(root).as_posix())
+        if not objects:raise ValueError('Linked target has no compiler dependency receipts: '+str(link))
+    return closure
+
+
 def validate_portrait_stress(inputs, flow, capture_root, seconds, min_fps=20):
     stress=inputs.get('portrait_stress',{})
     cycles=[a for a in inputs['actions'] if a['action']=='portrait-recenter']
@@ -416,14 +444,7 @@ def main():
         binary = ROOT / 'working/build/qt-shell/mnm-qt-shell'
         report['shell_sha256'] = sha(binary)
         if args.native_draw:
-            import shlex
-            closure=set()
-            for dep in (ROOT/'working/build/qt-shell').rglob('*.o.d'):
-                for token in shlex.split(dep.read_text().replace('\\\n',' ')):
-                    path=Path(token)
-                    if not path.is_absolute():continue
-                    path=path.resolve()
-                    if path.is_relative_to(ROOT) and not path.is_relative_to(ROOT/'working'):closure.add(str(path.relative_to(ROOT)))
+            closure=linked_compiler_sources(ROOT/'working/build/qt-shell',ROOT)
             report['compiled_sources']={p:sha(ROOT/p) for p in sorted(closure)}
             missing=closure-set(report['sources'])
             if missing:raise ValueError('Undeclared native shell compiler dependencies: '+repr(sorted(missing)))
