@@ -33151,6 +33151,134 @@
         "reconstruction/rendering/surface_retry.hpp"
       ],
       "validation_domain": "Native CPU scheduling versus retained independent original/scripted COM references plus comparator refusal guards; no real driver executed."
+    },
+    {
+      "id": "NR.drawing-presented-session",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Owned-input journey backend and actual native X11 presentation",
+      "scope": "Strict DRAW-02 presented-session backend decodes a versioned owned drawing-history plan, delegates source-only composition to the native session renderer, presents its derived RGB565 frames through the application GPU viewport and acquires full physical RGBA planes. Inputs and expected original output/effect results remain separated. Synthetic host validation and historical bounded startup comparison do not establish new original presented-frame acquisition, general battle rendering, semantic input equivalence, physical-driver recovery or full DRAW-02 completion.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/formats/drawing-presented-session.md"
+      ],
+      "implementation": [
+        "tools/drawing_presented_session.py",
+        "tools/replay-drawing-presented-session.py",
+        "apps/drawing-session/main.cpp",
+        "apps/drawing-session/CMakeLists.txt"
+      ],
+      "tests": [
+        "tests/test-drawing-presented-session.py",
+        "tools/test-drawing-presented-session.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/drawing_session.cpp",
+        "compat/legacy/drawing_session.hpp",
+        "compat/legacy/drawing_session_main.cpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/resource-fixtures.hpp",
+        "tools/drawing_corpus.py",
+        "tools/drawing_session.py"
+      ],
+      "evidence": [
+        "NR.drawing-presented-session.native-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": "Owned protocol input completeness/containment/hash/identity, actual GPU viewport pixel output at one-to-one sharp scaling, no application QImage uploads, strict unsupported caller-effect outcomes and zero resources after host shutdown. Original physical acquisition and semantic outcomes remain separate."
     }
   ],
   "builds": [
@@ -33164,8 +33292,8 @@
   "claim_bindings_required": true,
   "classifications": [],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-final-integration-20261011.json",
-    "sha256": "1a04ccae4d29196ae77c4af56cc7a320ac6b850ab634d11368bf65433e6259bc"
+    "path": "research/runtime/coverage/source-index-draw02-presented-session-20261011.json",
+    "sha256": "1c03ec9486159bcfed4b1e5f0eeecb7b273044416bedb96ca8aa21d0bd3cf6e1"
   },
   "dispatch_tables": [
     {
@@ -65986,6 +66114,53 @@
           "equals": 1536
         }
       ]
+    },
+    {
+      "id": "NR.drawing-presented-session.native-20261011",
+      "kind": "native_integration",
+      "sha256": "3fc92d2d618fd700c57ea4750fc1fb11abf0258e6fad61a709958be582d06654",
+      "claims_pointer": "/claims",
+      "scope": "Source-owned generic session backend and actual X11 native presentation:65536colours,three synthetic frames,seven execution/refusal controls and103retained independent original primary planes/49440000pixels/zero mismatches. Original boundary remains historical observed_primary_blt; no original physical acquisition, semantic input or complete journey/recovery claim.",
+      "record": "research/runtime/draw02-native-physical-session-20261011.json",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/physical_presentation",
+          "equals": true
+        },
+        {
+          "pointer": "/all_rgb565_colours",
+          "equals": 65536
+        },
+        {
+          "pointer": "/historical_original_comparison/frames",
+          "equals": 103
+        },
+        {
+          "pointer": "/historical_original_comparison/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
     }
   ],
   "recovered_ranges": [
@@ -71705,6 +71880,21 @@
         "NR.drawing-interactive-acquisition.record-kind-original-20261011"
       ],
       "level": "live_observation"
+    },
+    {
+      "id": "DRAW02.presented-session-native",
+      "level": "headless",
+      "scope": "Synthetic owned native producer histories and physical X11 viewport output with independent expected RGB565/RGBA planes and refusal cases; no original-game execution.",
+      "behaviors": [
+        "NR.drawing-presented-session"
+      ],
+      "tests": [
+        "tools/test-drawing-presented-session.py",
+        "tests/test-drawing-presented-session.py"
+      ],
+      "evidence": [
+        "NR.drawing-presented-session.native-20261011"
+      ]
     }
   ],
   "schema": 1,
