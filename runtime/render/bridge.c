@@ -61,6 +61,9 @@ static i32 WIN input_cooperative(void* object,void* window,u32 flags){
 #include "command_channel.h"
 #include "draw_capture.h"
 static void game_copy_stage(u32);
+struct GameCopyLease {u32 held,observe;};
+static struct GameCopyLease game_copy_bind_enter(void);
+static void game_copy_leave(struct GameCopyLease*);
 #include "lock_lifecycle.h"
 #include "lock_flip.h"
 #include "lock_dc.h"
@@ -509,6 +512,23 @@ __declspec(dllexport) u32 WIN RenderShutdown(u32 milliseconds){
     int complete=command_scheduler_shutdown_locked(milliseconds);SetLastError(error);return complete;
 }
 #ifdef MNM_RENDER_SELFTEST
+/* Actual copy/tracker ownership held until a fixture releases the barrier.
+ * Production has no barrier export or file wait. */
+__declspec(dllexport) u32 WIN RenderResidentBindHoldForTest(void){
+    u32 error=GetLastError();
+    struct GameCopyLease lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(0);
+    if(!lease.held || !lease.observe || !game_tracker_acquire()){SetLastError(error);return 0;}
+    u32 mark=1,written,start=GetTickCount();
+    HANDLE file=CreateFileA("bind-held.bin",0x40000000,1,0,1,0x80,0);
+    int ready=file!=(HANDLE)-1 && WriteFile(file,&mark,4,&written,0) && written==4;
+    if(file!=(HANDLE)-1)CloseHandle(file);
+    while(ready && GetTickCount()-start<2000){
+        file=CreateFileA("bind-release.bin",0x80000000,3,0,3,0x80,0);
+        if(file!=(HANDLE)-1){CloseHandle(file);game_tracker_release();SetLastError(error);return 1;}
+        Sleep(1);
+    }
+    game_tracker_release();SetLastError(error);return 0;
+}
 __declspec(dllexport) void WIN RenderLifecyclePauseForTest(u32 phase){__atomic_store_n(&command_lifecycle_pause,phase,__ATOMIC_RELEASE);}
 /* Deterministic full-transition contention without production wait controls. */
 __declspec(dllexport) void WIN RenderLifecycleGuardForTest(u32 held){
@@ -521,6 +541,12 @@ __declspec(dllexport) u32 WIN RenderQueueForTest(const void* bytes,u32 length,u3
     game_tracker_release();SetLastError(error);return ok;
 }
 __declspec(dllexport) void WIN RenderInstallForTest(void* surface,u32 kind){u32 error=GetLastError();command_scheduler_start();install_table(surface,kind);SetLastError(error);}
+__declspec(dllexport) u32 WIN RenderCallbackPublicationProbeForTest(u32 arm){
+    u32 error=GetLastError(),calls=__atomic_load_n(&command_publication_probe_calls,__ATOMIC_RELAXED);
+    if(arm){__atomic_store_n(&command_publication_probe_calls,0,__ATOMIC_RELAXED);__atomic_store_n(&command_publication_probe_thread,GetCurrentThreadId(),__ATOMIC_RELEASE);}
+    else __atomic_store_n(&command_publication_probe_thread,0,__ATOMIC_RELEASE);
+    SetLastError(error);return calls;
+}
 /* Read-only fixture inspection of opaque tokens after a refused lifetime. */
 __declspec(dllexport) u32 WIN RenderAliasSameForTest(void* first,void* second){
     u32 error=GetLastError();if(!game_tracker_acquire()){SetLastError(error);return 2;}

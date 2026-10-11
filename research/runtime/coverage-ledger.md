@@ -6508,3 +6508,30 @@ All outcomes remain negative journey evidence; no continuity repair, completed
 Quit, uninstrumented FPS, replacement or original pixel equivalence promotion.
 See [the investigation](resident-drawing-history-gap.md) for source-bound
 failure chains, exact retained reports and pending admission/publication work.
+
+## Resident drawing-history admission/publication repair (2026-10-11)
+
+`NR.resident-bind-admission` and `NR.callback-publication-isolation` record native
+scheduling policies independently from original-driver equivalence. A short
+cursor copy/tracker owner made the pre-repair public World bind exhaust its
+8ms tracker-only budget. Binding now joins callback/copy admission first.
+Fresh PE32 baseline/fixed controls retain the refusal and prove exactly one
+owned generation/nonce World, original Lock/Unlock results/LastError, poisoned
+borrowed storage and acknowledged FIFO/END.
+
+A fresh isolated TITAN campaign after that repair reaches1,309 balanced Worlds
+then records Unlock phase47 at1,030ms: synchronous mapped-ring pumping still
+holds the50ms drawing lease. Tracker release now delegates publication to an
+already-created worker, retaining finite/no-worker fallback and explicit
+lifecycle pumping. A selftest-only100ms callback publication delay produces
+two pumps and211.3365ms Unlock before repair; after repair there are zero
+callback pumps and9.2083ms observed Unlock. These are observed timings, not OS
+scheduling bounds. Six PE32/GPU controls pass209 independent whole frames
+(four valid sessions/two expected GAPs), and all eight reader-pressure cases
+pass. The exact public rerun finishes7,091balanced Worlds, two menu returns and
+normal Quit without GAP/timeout/fallback/readback. It remains an overall failed
+benchmark: one3.243s paint sample and capture truncation at183/7,091Worlds.
+Ordinary unprofiled performance is pending; complete instrumented capture,
+whole-original equivalence and broad lifecycle matrix remain unproven.
+See [drawing-history investigation](resident-drawing-history-gap.md) and its
+separately retained failed/successful evidence.

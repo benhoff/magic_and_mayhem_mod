@@ -6,6 +6,9 @@ static struct mnm_ring_writer command_ring;
 static u8* command_queue;
 static u32 command_queue_written,command_queue_read,command_queue_end,command_queue_failure;
 static volatile i32 command_queue_draining;
+/* Only successful worker creation enables deferred callback publication.
+ * Keep ownership through failed/timed-out joins; teardown retains storage. */
+static u32 command_publication_worker_active;
 static u32 command_queue_peak,command_queue_full,command_queue_blocked;
 /* Only the drain guard owns deadline state. No clock or peer wait in append. */
 static u32 command_queue_timeout,command_queue_armed,command_queue_since,command_queue_ack,command_queue_timed_out;
@@ -92,7 +95,23 @@ static void command_queue_drain(void){
     }
     if(__atomic_load_n(&command_queue_end,__ATOMIC_ACQUIRE) && command_queue_read==__atomic_load_n(&command_queue_written,__ATOMIC_ACQUIRE))mnm_ring_end(&command_ring);
 }
+#ifdef MNM_RENDER_SELFTEST
+/* A callback-only simulated publication stall. The real worker remains free
+ * to drain; arm/disarm surrounds just the fixture's hooked Unlock. */
+static u32 command_publication_probe_thread,command_publication_probe_calls;
+#endif
 static void command_channel_pump(void){
+#ifdef MNM_RENDER_SELFTEST
+    if(__atomic_load_n(&command_publication_probe_thread,__ATOMIC_ACQUIRE)==GetCurrentThreadId()){
+        __atomic_add_fetch(&command_publication_probe_calls,1,__ATOMIC_RELAXED);Sleep(100);
+    }
+#endif
     if(!__sync_bool_compare_and_swap(&command_queue_draining,0,1))return;
     u32 error=GetLastError();if(command_queue)command_queue_drain();SetLastError(error);__sync_lock_release(&command_queue_draining);
+}
+static void command_channel_after_tracker(void){
+    /* Mapped transport may fault or stall despite a bounded byte budget. An
+     * active worker must own this work rather than the drawing copy lease.
+     * Finite/no-worker fixtures retain their synchronous publication policy. */
+    if(!__atomic_load_n(&command_publication_worker_active,__ATOMIC_ACQUIRE))command_channel_pump();
 }
