@@ -7,7 +7,7 @@ API void WIN Sleep(u32);
 API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
 API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
 API int WIN UnmapViewOfFile(const void*);
-extern void census_leave(void);
+__declspec(dllexport) void census_leave(void);
 #include "hooks.inc"
 u32 census_trampolines[CENSUS_HOOKS];
 static struct Frame {u32 sp,thread,caller,tag,id,phase;} frames[2048];

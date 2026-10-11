@@ -7,8 +7,10 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import struct
 import tempfile
 from drawing_census import ROOT,BUILD_SHA256
+from drawing_api_bindings import decode,physical
 
 
 def main():
@@ -16,11 +18,11 @@ def main():
     claims=json.loads(args.claims.read_text());sources=claims['sources']
     if any(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()!=digest for p,digest in sources.items()):raise ValueError('Prospective ABI sources changed')
     parent=ROOT/'working/tests/drawing-api-census-abi';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
-    env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(out/'wineprefix'),WINEDEBUG='-all',WINEDLLOVERRIDES='mscoree,mshtml=d')
+    env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(out/'wineprefix'),WINEDEBUG='-all',WINEDLLOVERRIDES='mscoree,mshtml=d',MNM_API_ABI_DIR='Z:'+str(out).replace('/','\\'))
     def run(name,command,seconds=90):
         with (out/(name+'.log')).open('x') as log:subprocess.run([str(v) for v in command],env=env,stdout=log,stderr=subprocess.STDOUT,timeout=seconds,check=True)
     spec=importlib.util.spec_from_file_location('abi_builder',ROOT/'tools/build-drawing-api-census.py');builder=importlib.util.module_from_spec(spec);spec.loader.exec_module(builder)
-    imports=dict(builder.load('abi_imports','tools/build-shadow-bridge.py').IMPORTS,GetCurrentThreadId=0,GetTickCount=0,Sleep=4,CreateFileMappingA=24,MapViewOfFile=20,UnmapViewOfFile=4)
+    imports=dict(builder.load('abi_imports','tools/build-shadow-bridge.py').IMPORTS,GetCurrentThreadId=0,GetTickCount=0,Sleep=4,CreateFileMappingA=24,MapViewOfFile=20,UnmapViewOfFile=4,GetProcAddress=8)
     (out/'kernel32.def').write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{name}@{size}\n' for name,size in imports.items()))
     run('imports',['llvm-dlltool','-m','i386','-D','KERNEL32.dll','-d',out/'kernel32.def','-l',out/'kernel32.lib','--kill-at'])
     header=['#define API_HOOKS 10',builder.STRUCT,'static const u8 original_sha256[32]={'+','.join(str(v) for v in bytes.fromhex(BUILD_SHA256))+'};']
@@ -34,9 +36,29 @@ def main():
     run('prefix-copy',['cp','-a','--reflink=auto',args.prefix_template.resolve(),out/'wineprefix'])
     try:run('forwarding',['xvfb-run','-a','wine',out/'fixture.exe'])
     finally:run('stop-prefix',['wineserver','-k'],10)
+    raw=(out/'abi-hooks.bin').read_bytes()
+    if len(raw)!=640:raise ValueError('Synthetic hook manifest extent mismatch')
+    synthetic=[];registers={0:'edi',1:'esi',2:'ebp',4:'ebx',5:'edx',6:'ecx',7:'eax',9:'esp'}
+    for tag in range(10):
+        site,length,call_length,mode,register,operand=struct.unpack_from('<6I',raw,tag*64)
+        signature=raw[tag*64+24:tag*64+24+length]
+        if length>20 or any(raw[tag*64+24+length:(tag+1)*64]):raise ValueError('Synthetic signature/reserved mismatch')
+        target={'kind':'absolute_memory','address':operand} if mode==3 else {'kind':'direct_relative','target':operand} if mode==4 else {'kind':'register','register':registers[register]} if mode==1 else {'kind':'register_memory','register':registers[register],'displacement':operand if operand<0x80000000 else operand-0x100000000}
+        transfer={'kind':'call','target':operand,'condition':None} if mode==4 else None
+        call={'address':site,'bytes':signature[:call_length].hex(),'transfer':transfer};rest=[]
+        if tag==7:rest=[{'address':site+2,'bytes':'85c0','transfer':None},{'address':site+4,'bytes':'7502','transfer':{'kind':'conditional','target':site+8,'condition':5}}]
+        if tag==8:rest=[{'address':site+2,'bytes':'85c0','transfer':None},{'address':site+4,'bytes':'90','transfer':None}]
+        synthetic.append({'tag':tag,'site':site,'length':length,'call_length':call_length,'signature':signature.hex(),'target_mode':target,'call':call,'remainder':rest})
+    synthetic_manifest={'original_sha256':BUILD_SHA256,'hooks':synthetic,'scope':'Synthetic ABI only; no original splice execution.'}
+    (out/'synthetic-manifest.json').write_text(json.dumps(synthetic_manifest,indent=2)+'\n')
+    bindings=decode(out/'api-bindings.bin',synthetic_manifest)
+    for item in bindings['hooks']:
+        mapped=physical(item['physical_call_return'],bindings)
+        if mapped.get('original_call_site')!=item['site'] or mapped.get('tag')!=item['tag']:raise ValueError('Synthetic exact binding classification failed')
+    (out/'decoded-bindings.json').write_text(json.dumps(bindings,indent=2)+'\n')
     stable=all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==digest for p,digest in sources.items())
     if not stable:raise ValueError('ABI inputs changed during execution')
-    report={'schema':1,'scope':'Real separate CALL stubs/observer and dynamic splices against10synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.','success':True,'sources':sources,'sources_stable':stable,'claims':claims['claims'],'callee_pop_bytes':[0,4,8,12,16,20,24],'call_modes':['absolute_memory','register','register_memory','direct_relative'],'synthetic_bodies':10,'register_flags_x87_sse_last_error_preserved':True,'pre_call_stack_and_target_checked':True,'negative_eax_actual_cleanup_checked':True,'short_conditional_remainder_executed':True,'frame_exhaustion_phase_record_cap_io_failure_forward':True,'same_thread_lifo_and_mismatch_loss_checked':True,'original_renderer_executed':False,'original_splice_manifest_executed':False,'binaries':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [out/'fixture.exe',out/'part0.obj',out/'part1.obj',out/'part2.obj']},'logs':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(out.glob('*.log'))}}
+    report={'schema':1,'scope':'Real separate CALL stubs/observer/dynamic splices and binding writer/decoder round trip against10synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.','success':True,'sources':sources,'sources_stable':stable,'claims':claims['claims'],'callee_pop_bytes':[0,4,8,12,16,20,24],'call_modes':['absolute_memory','register','register_memory','direct_relative'],'synthetic_bodies':10,'register_flags_x87_sse_last_error_preserved':True,'pre_call_stack_and_target_checked':True,'negative_eax_actual_cleanup_checked':True,'short_conditional_remainder_executed':True,'frame_exhaustion_phase_record_cap_io_failure_forward':True,'same_thread_lifo_and_mismatch_loss_checked':True,'exact_binding_round_trip':True,'bindings':bindings,'original_renderer_executed':False,'original_splice_manifest_executed':False,'binaries':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [out/'fixture.exe',out/'part0.obj',out/'part1.obj',out/'part2.obj']},'logs':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(out.glob('*.log'))}}
     (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'success':True,'report':str(out/'report.json')}),flush=True)
 
 

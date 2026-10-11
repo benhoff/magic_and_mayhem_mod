@@ -12,6 +12,7 @@ from drawing_api_journal import trampoline
 STRUCT='struct ApiHook {u32 address,length,code_length,rest,reloc_count,after_offset,mode,reg,operand;u8 signature[20],code[64];u32 reloc[8];void(*before)(void);void(*after)(void);};'
 REGISTERS={'edi':0,'esi':1,'ebp':2,'ebx':4,'edx':5,'ecx':6,'eax':7,'esp':9}
 PLAN=ROOT/'research/runtime/drawing-api-splices-accounted-static-20261011.json'
+PLAN_SHA256='2d4de7bb63316866d656a44f3a80b82123c76d82a1836aebe11f2fed23af0da6'
 
 
 def load(name, path):
@@ -35,9 +36,11 @@ def generated(item):
 
 
 def build(executable):
-    paths=['tools/build-drawing-api-census.py','runtime/drawing-api-census/observer.c','runtime/drawing-api-census/entry.S','runtime/shadow/win32_min.h','protocols/include/mnm/drawing_api_journal_v1.h','protocols/include/mnm/drawing_census_v1.h','tools/drawing_api_journal.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-shadow-bridge.py','tools/export-menu-support.py',str(PLAN.relative_to(ROOT))]
+    paths=['tools/build-drawing-api-census.py','runtime/drawing-api-census/observer.c','runtime/drawing-api-census/entry.S','runtime/shadow/win32_min.h','protocols/include/mnm/drawing_api_journal_v1.h','protocols/include/mnm/drawing_api_bindings_v1.h','protocols/include/mnm/drawing_census_v1.h','tools/drawing_api_journal.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-shadow-bridge.py','tools/export-menu-support.py',str(PLAN.relative_to(ROOT))]
     sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
-    plan=json.loads(PLAN.read_text());raw=executable.read_bytes()
+    plan_raw=PLAN.read_bytes()
+    if hashlib.sha256(plan_raw).hexdigest()!=PLAN_SHA256:raise ValueError('Approved immutable API splice plan hash mismatch')
+    plan=json.loads(plan_raw);raw=executable.read_bytes()
     if hashlib.sha256(raw).hexdigest()!=BUILD_SHA256 or plan['original_sha256']!=BUILD_SHA256 or plan['input_unchanged'] is not True or plan['sources_stable'] is not True:raise ValueError('Unsupported/stale original CALL plan')
     for p,digest in plan['sources'].items():
         if hashlib.sha256((ROOT/p).read_bytes()).hexdigest()!=digest:raise ValueError('Planning input changed: '+p)
@@ -47,7 +50,7 @@ def build(executable):
         expected=bytes.fromhex(item['signature']);start=offset(raw,item['site'],len(expected))
         if len(expected)!=item['length'] or raw[start:start+len(expected)]!=expected:raise ValueError('Original API signature mismatch')
     output=ROOT/'working/build/drawing-api-census';output.mkdir(parents=True,exist_ok=True)
-    imports=dict(load('api_imports','tools/build-shadow-bridge.py').IMPORTS,GetCurrentThreadId=0,GetTickCount=0,Sleep=4,CreateFileMappingA=24,MapViewOfFile=20,UnmapViewOfFile=4)
+    imports=dict(load('api_imports','tools/build-shadow-bridge.py').IMPORTS,GetCurrentThreadId=0,GetTickCount=0,Sleep=4,CreateFileMappingA=24,MapViewOfFile=20,UnmapViewOfFile=4,GetProcAddress=8)
     (output/'kernel32.def').write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{name}@{size}\n' for name,size in imports.items()))
     subprocess.run(['llvm-dlltool','-m','i386','-D','KERNEL32.dll','-d',str(output/'kernel32.def'),'-l',str(output/'kernel32.lib'),'--kill-at'],check=True)
     header=[f'#define API_HOOKS {len(hooks)}',STRUCT,'static const u8 original_sha256[32]={'+','.join(str(v) for v in bytes.fromhex(BUILD_SHA256))+'};']

@@ -2,6 +2,7 @@
  * relocated calls; the observer itself issues no graphics/COM/GDI operations. */
 #include "../shadow/win32_min.h"
 #include "../../protocols/include/mnm/drawing_api_journal_v1.h"
+#include "../../protocols/include/mnm/drawing_api_bindings_v1.h"
 #include "../../protocols/include/mnm/drawing_census_v1.h"
 API u32 WIN GetCurrentThreadId(void);
 API u32 WIN GetTickCount(void);
@@ -9,6 +10,7 @@ API void WIN Sleep(u32);
 API HANDLE WIN CreateFileMappingA(HANDLE,void*,u32,u32,u32,const char*);
 API void* WIN MapViewOfFile(HANDLE,u32,u32,u32,u32);
 API int WIN UnmapViewOfFile(const void*);
+API void* WIN GetProcAddress(HANDLE,const char*);
 #include "api-hooks.inc"
 u32 api_trampolines[API_HOOKS],api_remainders[API_HOOKS];
 static struct ApiFrame {u32 live,tag,id,phase,thread,sp,state,slot,target;} frames[2048];
@@ -16,6 +18,7 @@ static HANDLE journal;
 static const volatile u32* control;
 static volatile u32 mutex;
 static u32 sequence,serial,lost,active,io_failed,used,installed;
+static u32 module_base;
 static u8 buffer[65536];
 static void copy(void* d,const void* s,u32 n){u8* a=d;const u8* b=s;while(n--)*a++=*b++;}
 static void zero(void* d,u32 n){u8* a=d;while(n--)*a++=0;}
@@ -24,6 +27,7 @@ static int readable(u32 p,u32 n){u32 end=p+n;if(!p||end<p)return 0;while(p<end){
 static void lock(void){while(__sync_lock_test_and_set(&mutex,1))Sleep(0);}
 static void unlock(void){__sync_lock_release(&mutex);}
 static int write(const void* p,u32 n){u32 at=0;while(at<n){u32 done=0;if(!WriteFile(journal,(const u8*)p+at,n-at,&done,0)||!done||done>n-at){io_failed=1;return 0;}at+=done;}return 1;}
+static int write_binding(HANDLE file,const void* p,u32 n){u32 at=0;while(at<n){u32 done=0;if(!WriteFile(file,(const u8*)p+at,n-at,&done,0)||!done||done>n-at)return 0;at+=done;}return 1;}
 static void flush(void){if(used&&!io_failed)write(buffer,used);used=0;}
 static u32 phase(void){
  for(u32 attempt=0;attempt<64;++attempt){u32 before=control[4],value=control[5],alive=control[6];__atomic_thread_fence(__ATOMIC_ACQUIRE);
@@ -78,6 +82,24 @@ static int patch_hook(u32 index){
  int flushed=FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);int protected=VirtualProtect((void*)h->address,h->length,old,&unused);return flushed&&protected;
 }
 static int path(char* out,const char* directory,const char* suffix){u32 at=0;while(directory[at]){if(at>=220)return 0;out[at]=directory[at];++at;}while(*suffix){if(at>=259)return 0;out[at++]=*suffix++;}out[at]=0;return 1;}
+static u32 image_size(u32 base){
+ if(!readable(base,64)||*(u16*)base!=0x5a4d)return 0;u32 offset=*(u32*)(base+60);
+ if(offset>4096-84||!readable(base+offset,84)||*(u32*)(base+offset)!=0x4550||*(u16*)(base+offset+24)!=0x10b)return 0;
+ u32 size=*(u32*)(base+offset+80);if(!size||base+size<base)return 0;return size;
+}
+static int write_bindings(const char* directory){
+ char name[260];if(!path(name,directory,"\\api-bindings.bin"))return 0;
+ u32 header[32]={0};copy(header,MNM_DRAW_API_BINDINGS,8);header[2]=1;header[3]=128;header[4]=48;header[5]=API_HOOKS;header[6]=0x400000;header[7]=module_base;header[8]=image_size(module_base);
+ if(!header[8])return 0;
+ header[9]=(u32)GetModuleHandleA("MnmDrawingCensus.dll");header[10]=image_size(header[9]);
+ if(header[9]){header[11]=(u32)GetProcAddress((HANDLE)header[9],"census_leave");if(!header[10]||!header[11])return 0;}
+ header[12]=(u32)GetModuleHandleA("MnmMenu.dll");header[13]=image_size(header[12]);if(header[12]&&!header[13])return 0;copy(header+16,original_sha256,32);
+ HANDLE file=CreateFileA(name,0x40000000,1,0,1,0x80,0);if(file==(HANDLE)-1)return 0;
+ int ok=write_binding(file,header,128);
+ for(u32 i=0;ok&&i<API_HOOKS;++i){const struct ApiHook* h=api_hooks+i;u32 call_length=h->after_offset-1;
+  u32 row[12]={i,h->address,h->length,call_length,api_trampolines[i],h->code_length,api_remainders[i],(u32)h->before,(u32)h->after,api_trampolines[i]+call_length,h->address+call_length,0};ok=write_binding(file,row,48);}
+ u32 end[16]={0};copy(end,MNM_DRAW_API_BINDINGS_END,8);end[2]=1;end[3]=API_HOOKS;if(ok)ok=write_binding(file,end,64);return CloseHandle(file)&&ok;
+}
 static int install(void){
  char directory[220],name[260];u32 n=GetEnvironmentVariableA("MNM_DRAW_API_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory)||(u32)GetModuleHandleA(0)!=0x400000)return 0;
  u32 a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1));if(!(d&(1u<<24)))return 0;
@@ -87,6 +109,7 @@ static int install(void){
  /* Validate every original site before allocating or patching any. */
  for(u32 i=0;i<API_HOOKS;++i){const struct ApiHook* h=api_hooks+i;if(!readable(h->address,h->length)||!same((void*)h->address,h->signature,h->length))return 0;}
  for(u32 i=0;i<API_HOOKS;++i)if(!prepare_trampoline(i))return 0;
+ if(!write_bindings(directory))return 0;
  if(!path(name,directory,"\\api-calls.bin"))return 0;journal=CreateFileA(name,0x40000000,1,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}
  u32 header[16]={0};copy(header,MNM_DRAW_API_MAGIC,8);header[2]=1;header[3]=64;header[4]=128;header[5]=(u32)GetModuleHandleA(0);header[6]=API_HOOKS;header[7]=MNM_DRAW_API_MAX_RECORDS;copy(header+8,original_sha256,32);if(!write(header,64))return 0;
  for(u32 i=0;i<API_HOOKS;++i)if(!patch_hook(i))return 0;
@@ -94,7 +117,7 @@ static int install(void){
 }
 __declspec(dllexport) void DrawingApiCensusAnchor(void){}
 int WIN DllMain(void* instance,u32 reason,void* reserved){
- (void)instance;(void)reserved;if(reason==1)return install();if(reason!=0)return 1;
+ (void)reserved;if(reason==1){module_base=(u32)instance;return install();}if(reason!=0)return 1;
  if(journal&&!installed){CloseHandle(journal);journal=0;}
  if(journal){/* Busy process detach cannot create a valid terminal. */
   if(__sync_lock_test_and_set(&mutex,1)){CloseHandle(journal);journal=0;return 1;}

@@ -236881,6 +236881,627 @@
         "reason": "10synthetic PE32 ABI cases passed with exact prospective scope/source and headless scenario bindings. No original rendering, original API or250original-splice execution claim.",
         "status": "recorded"
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "37161e908de0a9da528fd0571339154e4deabc5f8b0254e62b4df6d6a8bd9762",
+          "before_sha256": "3ed1b8069f85b2df21d5f1bb4a3df0e0b49bd9ee5be6138fd22905e7e1b8c9c2",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "5da325546758584006c2ad648f73927fe5c2e9136eb5839cbae2fd8f919e625f",
+          "before_sha256": "38e8449c3e9f4e2d3ad9b777a8e314d98f1c33257d97f7396003bb8158b1a6b9",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "a27b52f9b3d445da226be5f46b0cd3732d1d1a7152501b0726c53d6a8b94ac8c",
+          "before_sha256": "edb542ff3e79966580414e64f1595f657fdf40490dd375890906913cc3724951",
+          "id": "DRAW.graphics-api-boundaries"
+        },
+        {
+          "after_sha256": "831e91ff684fc8aa68db266e267ce3113aa449a4ab924a55c1a273c3887b66de",
+          "before_sha256": "831e91ff684fc8aa68db266e267ce3113aa449a4ab924a55c1a273c3887b66de",
+          "id": "DRAW.queue-dispatch"
+        },
+        {
+          "after_sha256": "e6539f050f7dfb07d8b25e2f47045d70064cc6deb48dfe082e4aa8fc55a0ef9c",
+          "before_sha256": "e6539f050f7dfb07d8b25e2f47045d70064cc6deb48dfe082e4aa8fc55a0ef9c",
+          "id": "DRAW.world-kind-16"
+        },
+        {
+          "after_sha256": "c3e2b50aadc7e18ea3868bf69e93980faa3421f5a8f5da3e78c5aca53cc739ac",
+          "before_sha256": "c3e2b50aadc7e18ea3868bf69e93980faa3421f5a8f5da3e78c5aca53cc739ac",
+          "id": "DRAW.world-kind-17"
+        },
+        {
+          "after_sha256": "5946bedb79dd4daf37d885b08ac6e74238b2f824cadcf1cb3866d521faf31e82",
+          "before_sha256": "5946bedb79dd4daf37d885b08ac6e74238b2f824cadcf1cb3866d521faf31e82",
+          "id": "DRAW.world-kind-20"
+        },
+        {
+          "after_sha256": "18799ed90a673208b36ed2ca3f21d8d888b57205caec15ed1d41e5a533a001df",
+          "before_sha256": "18799ed90a673208b36ed2ca3f21d8d888b57205caec15ed1d41e5a533a001df",
+          "id": "HOST.native-campaign-capture-retry"
+        },
+        {
+          "after_sha256": "fe7cb065453566c6ae695585cd765edab73ac59dddb3f998bca4b439cc307e5d",
+          "before_sha256": "fe7cb065453566c6ae695585cd765edab73ac59dddb3f998bca4b439cc307e5d",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "3929f1278ebdfd7213f45117550dff4f0b43a2b31d021ea04dd14eccf4e5f3d1",
+          "before_sha256": "3929f1278ebdfd7213f45117550dff4f0b43a2b31d021ea04dd14eccf4e5f3d1",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "a3dec1dfe0f15b124368a956faf5e3fb5ea8c6870c7613cd17f4c59d5055ea6b",
+          "before_sha256": "a3dec1dfe0f15b124368a956faf5e3fb5ea8c6870c7613cd17f4c59d5055ea6b",
+          "id": "HOST.native-campaign-movement-probes"
+        },
+        {
+          "after_sha256": "45e5082685046e0e6d72e814a72eb592c95cee2feb0a3d5103864878bb487e12",
+          "before_sha256": "45e5082685046e0e6d72e814a72eb592c95cee2feb0a3d5103864878bb487e12",
+          "id": "HOST.native-campaign-normal-quit"
+        },
+        {
+          "after_sha256": "cae86e6772a6e901871fd9d3ca48b194c54fafd55702d43b8bb6ec22ec8646b1",
+          "before_sha256": "cae86e6772a6e901871fd9d3ca48b194c54fafd55702d43b8bb6ec22ec8646b1",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "d3118d4e584704f58c82ad36a43bbd66d1c229b3a391d330f46d9fe89a0188de",
+          "before_sha256": "d3118d4e584704f58c82ad36a43bbd66d1c229b3a391d330f46d9fe89a0188de",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "c140059165a5c3cad7e9b736607363d88b8035faa7727a3dea1323698bf782ef",
+          "before_sha256": "c140059165a5c3cad7e9b736607363d88b8035faa7727a3dea1323698bf782ef",
+          "id": "HOST.native-campaign-spell-observation"
+        },
+        {
+          "after_sha256": "825a67c2705ad375df636e86250ee3213166d4a85405c5f56dc3139331d0b418",
+          "before_sha256": "825a67c2705ad375df636e86250ee3213166d4a85405c5f56dc3139331d0b418",
+          "id": "HOST.native-crowded-battle-stress"
+        },
+        {
+          "after_sha256": "560818d0e6b94dcf6ba990a0be1188af9f93a25bdcef4deca53e2300e3cacb52",
+          "before_sha256": "560818d0e6b94dcf6ba990a0be1188af9f93a25bdcef4deca53e2300e3cacb52",
+          "id": "HOST.native-healing-loadout"
+        },
+        {
+          "after_sha256": "76e307f067a7f529289206dcf180e26430feff80fac246ca65a454ef21f0422f",
+          "before_sha256": "76e307f067a7f529289206dcf180e26430feff80fac246ca65a454ef21f0422f",
+          "id": "HOST.native-pacer-yield"
+        },
+        {
+          "after_sha256": "af40d6330ec629e4c6ee56b43607df9aa25b2820acdba0c6c1643271e1311e02",
+          "before_sha256": "af40d6330ec629e4c6ee56b43607df9aa25b2820acdba0c6c1643271e1311e02",
+          "id": "HOST.native-precise-uptime-clock"
+        },
+        {
+          "after_sha256": "de0d947295fc64629f14cf7263b209785266c84b1aa9bf392990cf70dc170c57",
+          "before_sha256": "de0d947295fc64629f14cf7263b209785266c84b1aa9bf392990cf70dc170c57",
+          "id": "NR.bounded-copy-order"
+        },
+        {
+          "after_sha256": "b48521d93a863a201ef2064cc4b4f6178c655d081566826158d7c328609f400f",
+          "before_sha256": "b48521d93a863a201ef2064cc4b4f6178c655d081566826158d7c328609f400f",
+          "id": "NR.canvas-writer-admission"
+        },
+        {
+          "after_sha256": "eb867dd54d8eb648b10933d44f641e008e87fb0a654cd1df1e43dc297a30fda5",
+          "before_sha256": "eb867dd54d8eb648b10933d44f641e008e87fb0a654cd1df1e43dc297a30fda5",
+          "id": "NR.font-glyph-live-shadow"
+        },
+        {
+          "after_sha256": "d59ed462f6f6962ca50f7e6be32473be1225591c631dfdd4a4df6f4ad3afec50",
+          "before_sha256": "d59ed462f6f6962ca50f7e6be32473be1225591c631dfdd4a4df6f4ad3afec50",
+          "id": "NR.glyph-default-launch"
+        },
+        {
+          "after_sha256": "b584a493170cfe958a15bd8705e6cf04bb39b0ffd1f8c9065cb5ef1c96c380a2",
+          "before_sha256": "b584a493170cfe958a15bd8705e6cf04bb39b0ffd1f8c9065cb5ef1c96c380a2",
+          "id": "NR.glyph-live-admission"
+        },
+        {
+          "after_sha256": "a406dad59cabdba9bdfbcdb641e317c01aa3e6c4f5605a53166c1ebd4519a3d4",
+          "before_sha256": "a406dad59cabdba9bdfbcdb641e317c01aa3e6c4f5605a53166c1ebd4519a3d4",
+          "id": "NR.minimap-input-fixture"
+        },
+        {
+          "after_sha256": "99610c280c8a32b091d779606b4d976b9f601abf58d5337b6c065347fc5d9b43",
+          "before_sha256": "99610c280c8a32b091d779606b4d976b9f601abf58d5337b6c065347fc5d9b43",
+          "id": "NR.minimap-interactive-presentation"
+        },
+        {
+          "after_sha256": "dcfef878fcc25178065483b9075b6c37e7a009cc137d810c6e691d1130df2c24",
+          "before_sha256": "dcfef878fcc25178065483b9075b6c37e7a009cc137d810c6e691d1130df2c24",
+          "id": "NR.minimap-owned-observation"
+        },
+        {
+          "after_sha256": "435e16acabe8e74eac0a8a3e52d5bfd4d50e273d79a1eaf2fc4275299299e8df",
+          "before_sha256": "435e16acabe8e74eac0a8a3e52d5bfd4d50e273d79a1eaf2fc4275299299e8df",
+          "id": "NR.movie-enabled-startup"
+        },
+        {
+          "after_sha256": "ec43a5131c0da06edb7466d7dd77765921aa090beafdc53c7469c4115fca2d31",
+          "before_sha256": "ec43a5131c0da06edb7466d7dd77765921aa090beafdc53c7469c4115fca2d31",
+          "id": "NR.offline-render-soak"
+        },
+        {
+          "after_sha256": "d173e907229c3c92f7a33663417aa5dd31fd8dc1a8bbeefde707fb55ad6e9463",
+          "before_sha256": "d173e907229c3c92f7a33663417aa5dd31fd8dc1a8bbeefde707fb55ad6e9463",
+          "id": "NR.word-clipped-takeover-admission"
+        },
+        {
+          "after_sha256": "375cd8b6e2288c2b62c3d009516866805832fe877d3fcb22943d4369c6b9c953",
+          "before_sha256": "375cd8b6e2288c2b62c3d009516866805832fe877d3fcb22943d4369c6b9c953",
+          "id": "NR.word-clipping-plane-bounds"
+        },
+        {
+          "after_sha256": "397277517bcb3a9afc6500bcb725bb8ae8f45cff964d464f03bd695edf3495a0",
+          "before_sha256": "397277517bcb3a9afc6500bcb725bb8ae8f45cff964d464f03bd695edf3495a0",
+          "id": "NR.world-batch-extended-prefix"
+        },
+        {
+          "after_sha256": "c6e600fcf9eae4bf935e1c5b60a77747b9151183b6aa0fbf3f0c7b0fcc80f192",
+          "before_sha256": "c6e600fcf9eae4bf935e1c5b60a77747b9151183b6aa0fbf3f0c7b0fcc80f192",
+          "id": "NR.world-batch-profiling"
+        },
+        {
+          "after_sha256": "319d76d3cd16f0986280725a7acfc2660e406a5693234d5972dd249ef26426ac",
+          "before_sha256": "319d76d3cd16f0986280725a7acfc2660e406a5693234d5972dd249ef26426ac",
+          "id": "NR.world-batch-throughput"
+        },
+        {
+          "after_sha256": "03902eb95bf11c05ff925971c1e93fa3a989266c80bba57186422a270727aaca",
+          "before_sha256": "03902eb95bf11c05ff925971c1e93fa3a989266c80bba57186422a270727aaca",
+          "id": "NR.world-history-channel"
+        },
+        {
+          "after_sha256": "1186572adabf02e6e49546fe50d2a7d6a07e10df0047155679c7edfac03914db",
+          "before_sha256": "1186572adabf02e6e49546fe50d2a7d6a07e10df0047155679c7edfac03914db",
+          "id": "NR.world-interactive-batch-launcher"
+        },
+        {
+          "after_sha256": "ce2eb3a7168786265002d8085ec32e101c6d04595b5251f88c090cf5daf8f9b1",
+          "before_sha256": "ce2eb3a7168786265002d8085ec32e101c6d04595b5251f88c090cf5daf8f9b1",
+          "id": "NR.world-live-history"
+        },
+        {
+          "after_sha256": "30a6bd6755f7bad29cb59c06e3798bb4898941b8776a7bb99c52d458ab24361b",
+          "before_sha256": "30a6bd6755f7bad29cb59c06e3798bb4898941b8776a7bb99c52d458ab24361b",
+          "id": "NR.world-producer-handoff"
+        },
+        {
+          "after_sha256": "4bae9cfc725930a4311b1b68972af84f520a5625a17212ab815e27d57b8d3c29",
+          "before_sha256": "4bae9cfc725930a4311b1b68972af84f520a5625a17212ab815e27d57b8d3c29",
+          "id": "NR.world-raster-batch-transport"
+        },
+        {
+          "after_sha256": "b98dd24bb43ad62c1fe876236907e898517183f94039d9f0f2f0910c9643641e",
+          "before_sha256": "b98dd24bb43ad62c1fe876236907e898517183f94039d9f0f2f0910c9643641e",
+          "id": "NR.world-resource-reuse"
+        },
+        {
+          "after_sha256": "5959bb99b6738584b68aa68c6b3e394b0e7c2f31fbe1a2be597766e8342c6406",
+          "before_sha256": "5959bb99b6738584b68aa68c6b3e394b0e7c2f31fbe1a2be597766e8342c6406",
+          "id": "NR.world-startup-launcher"
+        },
+        {
+          "after_sha256": "cab56954b4a5fd3f1363b627a9e4a2c3fe643fa7625106bdce490d34af543352",
+          "before_sha256": "5a5855e686867ba02ea0052391c7a9ab82178ed1dd51d7cf63d3736c1aa88777",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "0931f1008eb222931fff1332bd78825c3ae14d853b701841441717c5e8333559",
+          "before_sha256": "0931f1008eb222931fff1332bd78825c3ae14d853b701841441717c5e8333559",
+          "id": "RS.canvas-bind-clip"
+        },
+        {
+          "after_sha256": "f133e8e7e9db240889e8be054987413bfc3677ce7784dcd39b372ec86c99c135",
+          "before_sha256": "f133e8e7e9db240889e8be054987413bfc3677ce7784dcd39b372ec86c99c135",
+          "id": "RS.canvas-create-lock"
+        },
+        {
+          "after_sha256": "4fefb5421d67018056990fcc28a1c28f3148898ba5b869b5322808e0abb3519b",
+          "before_sha256": "4fefb5421d67018056990fcc28a1c28f3148898ba5b869b5322808e0abb3519b",
+          "id": "RS.canvas-preworld-reuse"
+        },
+        {
+          "after_sha256": "271eb8360926c072765ddd0ab3783ac709006d4d2a8aeb5a785a312170589db9",
+          "before_sha256": "271eb8360926c072765ddd0ab3783ac709006d4d2a8aeb5a785a312170589db9",
+          "id": "RS.canvas-producer-sequence"
+        },
+        {
+          "after_sha256": "2cf09b1779cef0dfaf05798d325b0e0baf817d40e9819a85787527bf57034d98",
+          "before_sha256": "2cf09b1779cef0dfaf05798d325b0e0baf817d40e9819a85787527bf57034d98",
+          "id": "RS.canvas-startup-clear"
+        },
+        {
+          "after_sha256": "3cab3e20e2ea8a17a39a5f5887ef72c4b3a0b878299f554910d5bf448063f73a",
+          "before_sha256": "3cab3e20e2ea8a17a39a5f5887ef72c4b3a0b878299f554910d5bf448063f73a",
+          "id": "RS.fade-live-pixels"
+        },
+        {
+          "after_sha256": "cf8d78a7083fe1b2d5aa10a182ca31d1b0c8cd3e5e023e1c795b18d930aa0ec2",
+          "before_sha256": "cf8d78a7083fe1b2d5aa10a182ca31d1b0c8cd3e5e023e1c795b18d930aa0ec2",
+          "id": "RS.glyph-live-route"
+        },
+        {
+          "after_sha256": "67bedd3c1aa2056cd746b42a7bab02d86ddad0ecf5472a2f28b720a3ebbd76b3",
+          "before_sha256": "67bedd3c1aa2056cd746b42a7bab02d86ddad0ecf5472a2f28b720a3ebbd76b3",
+          "id": "RS.word-backend-state"
+        },
+        {
+          "after_sha256": "62797e87c96c781cb46a01e9b8090384064d79e6a75bad602abe6182d7490ff6",
+          "before_sha256": "62797e87c96c781cb46a01e9b8090384064d79e6a75bad602abe6182d7490ff6",
+          "id": "RS.word-clip-aux-shadow"
+        },
+        {
+          "after_sha256": "cc9200396c2edb8f3824f8a993232e014adc47e2ba96e63c9756cac40fa37890",
+          "before_sha256": "cc9200396c2edb8f3824f8a993232e014adc47e2ba96e63c9756cac40fa37890",
+          "id": "RS.word-clip-shadow"
+        },
+        {
+          "after_sha256": "c7d88ce3b7283d9ba9efcfebf4567c6c4f069fcca8bbd96467521090722d03b9",
+          "before_sha256": "c7d88ce3b7283d9ba9efcfebf4567c6c4f069fcca8bbd96467521090722d03b9",
+          "id": "RS.word-clip-takeover"
+        },
+        {
+          "after_sha256": "f4ac6b178a791e1c3b6c5e42e57edd9f9e8e3b65c70525716b0d8621d8d2edd1",
+          "before_sha256": "f4ac6b178a791e1c3b6c5e42e57edd9f9e8e3b65c70525716b0d8621d8d2edd1",
+          "id": "RS.world-kind8-additive"
+        },
+        {
+          "after_sha256": "d5dedf684192cfac1103084214dd04008d5a37e7496f491b446e14835163595f",
+          "before_sha256": "d5dedf684192cfac1103084214dd04008d5a37e7496f491b446e14835163595f",
+          "id": "RS.world-kind8-colour"
+        },
+        {
+          "after_sha256": "089ea5cd29643eb05690bcbf56dc77fdb9a9b54e7553cb6e1b3bc6ccf7140213",
+          "before_sha256": "089ea5cd29643eb05690bcbf56dc77fdb9a9b54e7553cb6e1b3bc6ccf7140213",
+          "id": "RS.world-kind8-noop"
+        },
+        {
+          "after_sha256": "0c3d669b9cf22aad48336e2ecdb4f0608e41f88c1796ca34b7c61eda2f31cca8",
+          "before_sha256": "0c3d669b9cf22aad48336e2ecdb4f0608e41f88c1796ca34b7c61eda2f31cca8",
+          "id": "RS.world-kind8-virtual"
+        },
+        {
+          "after_sha256": "47dccfab6b0ce4dd7747c69ce5d924e2771f64352c11035e104a251321c24558",
+          "before_sha256": "47dccfab6b0ce4dd7747c69ce5d924e2771f64352c11035e104a251321c24558",
+          "id": "RS.world-producer-bypass"
+        },
+        {
+          "after_sha256": "71a50dd75c3caf7b81f0354bc86b997f1f2d1164eeebfe7bcb174236022c3cc3",
+          "before_sha256": "71a50dd75c3caf7b81f0354bc86b997f1f2d1164eeebfe7bcb174236022c3cc3",
+          "id": "RS.world-raster-batch-return"
+        },
+        {
+          "after_sha256": "596123a6130877699ab8a0c3f90e55521a4af2811d28338563fa264c6a7e2cfb",
+          "before_sha256": "596123a6130877699ab8a0c3f90e55521a4af2811d28338563fa264c6a7e2cfb",
+          "id": "RS.world-raster-queue-replacement"
+        },
+        {
+          "after_sha256": "5a526488e7bb33deac5b229845023fb49840de5a811dc99d572c3385c15f1114",
+          "before_sha256": "5a526488e7bb33deac5b229845023fb49840de5a811dc99d572c3385c15f1114",
+          "id": "RS.world-startup-palette"
+        },
+        {
+          "after_sha256": "5d0854598de52e5fc9469aa3f80a82bac47b7507eb70ab5ed3fd49c36eae80be",
+          "before_sha256": "5d0854598de52e5fc9469aa3f80a82bac47b7507eb70ab5ed3fd49c36eae80be",
+          "id": "RS.world-startup-queues"
+        },
+        {
+          "after_sha256": "1ffe6a0e0c57aba1519cbbe819da254b07d819c86cbfacf13c45b94c093510c1",
+          "before_sha256": "1ffe6a0e0c57aba1519cbbe819da254b07d819c86cbfacf13c45b94c093510c1",
+          "id": "RS.world-startup-wave"
+        },
+        {
+          "after_sha256": "3fbb6a8135596c5b4736dd31d58a417c0f28ab17447f595db01df39c4e31e8f6",
+          "before_sha256": "3fbb6a8135596c5b4736dd31d58a417c0f28ab17447f595db01df39c4e31e8f6",
+          "id": "RT.shadow"
+        },
+        {
+          "after_sha256": "dfb8ba00fc62c189a9348a27be6405c2835ad05abdcf9b72cca736b0be193ee5",
+          "before_sha256": "6e1c8d22528932f7e8e87bc83763b7494530f4dd8ca447a46e1807225a74c37e",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "3cfb8b336a20c850a6a45e7463b997ec4606a7234d264348d17361366a04acd7",
+          "before_sha256": null,
+          "id": "TOOL.drawing-api-bindings"
+        },
+        {
+          "after_sha256": "5d23e2138ffb1b3c2c988fdc8a934293d0e03f1da580ccfd322ccb1077e3d428",
+          "before_sha256": "a7fdca08c2f5a4c41ef6c717d0115271875fb884d32cd0212ba4ff8e18b35351",
+          "id": "TOOL.drawing-api-journal"
+        },
+        {
+          "after_sha256": "c8fe9705aadf417039f39e9f9173ac8f71c204a06771faea9c75a5ff6bfe94dd",
+          "before_sha256": "d50b37ab8dfd2ae68ce20218b109339c658c3d5101eacaa1b98e1d097a1d0662",
+          "id": "TOOL.drawing-api-observer"
+        },
+        {
+          "after_sha256": "e376d82143437ee729533b36d17db132e8168ab2ea442e50a2df0b57b4f4fe26",
+          "before_sha256": "9a2f016fc42130b69daa6f3e6bbaa82e86bef514db436e86042d4a3e582d6dbb",
+          "id": "TOOL.drawing-api-sites"
+        },
+        {
+          "after_sha256": "a1026de6a153751cfea8b9b8c73fa332a79338586cbc94ee4d1a487892ea3977",
+          "before_sha256": "a1026de6a153751cfea8b9b8c73fa332a79338586cbc94ee4d1a487892ea3977",
+          "id": "TOOL.drawing-census"
+        },
+        {
+          "after_sha256": "621edaa9aefeff7b91bc2c3244d4c577cd8609e810b38938e9b318e6e3f50871",
+          "before_sha256": "621edaa9aefeff7b91bc2c3244d4c577cd8609e810b38938e9b318e6e3f50871",
+          "id": "TOOL.drawing-dispatch-slices"
+        },
+        {
+          "after_sha256": "4a3a798819b39ba770f4293772637ba0185a6ca2632e17e4eb924090572168c6",
+          "before_sha256": "4a3a798819b39ba770f4293772637ba0185a6ca2632e17e4eb924090572168c6",
+          "id": "TOOL.drawing-inventory"
+        },
+        {
+          "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+          "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+          "id": "TOOL.drawing-movie-reference"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+          "before_sha256": null,
+          "path": "protocols/include/mnm/drawing_api_bindings_v1.h"
+        },
+        {
+          "after_sha256": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+          "before_sha256": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+          "path": "protocols/include/mnm/drawing_api_journal_v1.h"
+        },
+        {
+          "after_sha256": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+          "before_sha256": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+          "path": "protocols/include/mnm/drawing_census_v1.h"
+        },
+        {
+          "after_sha256": "ee423f8ffe54eaa7501e4a787a43d48f1496ab5aa6dda41a83d07dafb7437b53",
+          "before_sha256": "2c648466e15530c792d385496c516154921413539dee83fd7d7d6e37409cc6d5",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "78ec004bc88124924a1e53f1bd0b43c828d22cfd06b04e76d721f1c6515a5375",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw01-history-34ce28f-dc626c7-20261011.json"
+        },
+        {
+          "after_sha256": "9e2d8dfbc99732d673f3802c50d675e508ca5134c390f656bb666f91ce182ce5",
+          "before_sha256": "00f4ef0c46517616c06699bd522ef85272a011362ea06dc84492a306c284b9e7",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b944187d48db1c8d272d7a1417f8b62e6339f31eca406da0bdc55f82bb83df36",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw01-api-bindings-20261011.json"
+        },
+        {
+          "after_sha256": "e4a7a1b632e5b2805ef49c8ad35e867b2f50f3fd73a90297be5a8c7146030e5d",
+          "before_sha256": "f820621e1faa2ed949d786e79fc77e5bc672306e6abc46055f3ad15caf79b2ad",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "9b6a9b31d5619bf3d39a646843f49b677040327f6e6cf809e4e8db0158f36ea8",
+          "before_sha256": "490c7330dd74300b17ff31f65cced35cf26cb3998a3d91fad5dbf3b90dcf33d0",
+          "path": "research/runtime/draw01-graphics-api-boundaries.md"
+        },
+        {
+          "after_sha256": "023dafffe296d8974fa522c863de337e05d519d71ac0c9cb7df6a27753c30db9",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-bindings-guards-20261011.json"
+        },
+        {
+          "after_sha256": "20fde336607e547f638880fc97b02364d6a7953ee61889d87c9e7e7738efac3c",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-observer-bindings-abi-20261011.json"
+        },
+        {
+          "after_sha256": "be8b4c7aef29469752c2efefa99933e55ad8bd709b6c5cdba8794234d7f943ff",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-observer-bindings-build-20261011.json"
+        },
+        {
+          "after_sha256": "42eefb0ada541bbdba78fcd9f5e5b6587aacf88f686c10d8f07e44d3f5c87cff",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-census-named-export-abi-20261011.json"
+        },
+        {
+          "after_sha256": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+          "before_sha256": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+          "path": "runtime/drawing-api-census/entry.S"
+        },
+        {
+          "after_sha256": "54b577d61f11ca09d90516eaa144231ade326c2c342e4c013bc6b5d9c9d0483e",
+          "before_sha256": "81d95a6f7bcec40368ddf3a01a6a9d73979b195fdc0aa9149e48c9413f5a5d1b",
+          "path": "runtime/drawing-api-census/observer.c"
+        },
+        {
+          "after_sha256": "d4303a1bfc54cc24a6a44e7dcfe2764850c0ede5817f4d79a1f995dc85de9881",
+          "before_sha256": "b5069b9b69ed6ff53e0aedaef1aa04970e94d5172a551389bd2fa29cc1b0bf0a",
+          "path": "runtime/drawing-census/observer.c"
+        },
+        {
+          "after_sha256": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+          "before_sha256": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+          "path": "runtime/shadow/win32_min.h"
+        },
+        {
+          "after_sha256": "1b02887ceee2edbc1175ece27482749b421481d1d59180d2167b1fa7dcbfd47c",
+          "before_sha256": "6f9beedab58ccbc5bfedecb2480e9e2df8796de8862741fe8856aafa957e1a86",
+          "path": "tests/drawing-api-census-abi.c"
+        },
+        {
+          "after_sha256": "c0239acab67be7adc8806b2be6cb1607537dfebbb75860d8b17df9f47639bede",
+          "before_sha256": null,
+          "path": "tests/test-drawing-api-bindings.py"
+        },
+        {
+          "after_sha256": "eb83b827e5d50081f01d77d841613a00589287c16d13d88c7fd12853c24e1325",
+          "before_sha256": "e341f716aef0719b22aa71050346e199e54eb70a37bfce8ec6a214133769c180",
+          "path": "tools/build-drawing-api-census.py"
+        },
+        {
+          "after_sha256": "caf11933bf14dcc515bcfc212915cdde2681c1d67d9b1f1033f6c4c4744b5144",
+          "before_sha256": null,
+          "path": "tools/drawing_api_bindings.py"
+        },
+        {
+          "after_sha256": "c82406744325c3c4cee46d73bf278b330de20d91ed88e46756c02160bd5c8023",
+          "before_sha256": "c82406744325c3c4cee46d73bf278b330de20d91ed88e46756c02160bd5c8023",
+          "path": "tools/drawing_api_journal.py"
+        },
+        {
+          "after_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+          "before_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+          "path": "tools/drawing_census.py"
+        },
+        {
+          "after_sha256": "c53a697cc76a5e18ef8e9142ee5f6fb7fe6d18b231c1c7ba42a6f28dff9b8738",
+          "before_sha256": "815bc425e262122392bb9c5621daa9e990c83587afa6fb6fd564ada9b336f23f",
+          "path": "tools/test-drawing-api-census-abi.py"
+        }
+      ],
+      "id": "draw01-api-bindings-accounting-20261011",
+      "pending_gaps": [
+        "behaviors_without_comparison:c4c0b4e4e8d5af174ad7122ea74c69039aa45cf04c051762b2176d038d93b7e2",
+        "stale_evidence:023e8ded4603ebc5215bd754248c67fd728b415e5c8858d468a2eea6ed753203",
+        "stale_evidence:073628cd9ec7ccba23529957f4d4ebb244909d82c518c92e27c729f114e5a0b6",
+        "stale_evidence:1496f2b00e67954c70417678458a281e2dd60619044ac4115cd4619fd66d82e0",
+        "stale_evidence:1667b6b7744c88e0dac25c8058a8a1796958d85a1adc624c3fddfcb010c8058f",
+        "stale_evidence:1f13064b247ade716a90f061b593443edc78fa59e7c180b678d48d109e0cf696",
+        "stale_evidence:468b1d264b53af6473400bc6fdb4cf61002f252618b83667b62ae25e2b56134b",
+        "stale_evidence:48d82bab2178794a8583045b23672d1bb53fc9d1cdd8d47e87f9c901e279d81a",
+        "stale_evidence:527849e78d3f8fdef3707d28c0913c8318d9aa071e1ae9994ca4f1747b41f9d0",
+        "stale_evidence:5ea30f671480fef7ac755ea1569211dd9c058c195c2a554974344047ea4e9b11",
+        "stale_evidence:6ceb51a445f7d5b6bb1a4a4be0cdd542a2322e769d5a7fefe6b5ade50d9041bd",
+        "stale_evidence:6f8c77f62fb82a0759be3aa45e5e1d4397abee0078b319d69d6a4cd51f6b418c",
+        "stale_evidence:769e3d855dd861a581c23a35003c47f849d867aba7652b955e9cd7a73b009d28",
+        "stale_evidence:7e3c8ab7e3feee238d51600d679cf3d6962e2de35a03aa149cca738f393cd9d3",
+        "stale_evidence:8ea50e7bb3f8dd4c03430a74bd4219b66d755f769a7959eac447eb10c2cfd0fc",
+        "stale_evidence:8fdc639dfa037eb7d5f41ac321c1dd98ff1abfa65c1f7dd52b703270b14e3da1",
+        "stale_evidence:a5b650f213fd87ab6cdd5d054755b1b8af7104e7ba95f407e6a0de5ecd585eeb",
+        "stale_evidence:a7775aab91bb5ae59482a94eaff5930f81c683fc6c7f211dec86a5807ebb1876",
+        "stale_evidence:bf9681c4bd60da6adbc734cf20365ec738ca0540ee888f9859ceca6b5dd1002e",
+        "stale_evidence:d09b2b499422619cd95cd41004040509b57ff84aef6f9c375cd7f8f99adc2f03",
+        "stale_evidence:d13456aff1817906f6479f85fcbde611dda7b59a221ededa70a96e5fa34c5734",
+        "stale_evidence:d17bac9794d4f49096920da3f0fb46ce39584b5cab289fea74e05517c740befa",
+        "stale_evidence:d20c4016e639b1555b9a988dc2a2a3d6349773fe629227558cde42d095e47558",
+        "stale_evidence:dfbc48132c13305dfe04cca4285feb4d3154069ff49541d161dcf715bd44d8ac",
+        "stale_evidence:ec8c637a73fe9442e604552de727be56ca9dcb0a29d052c8b50c2c0065c4444c",
+        "validation_gaps:4d3f13e95138073533a268f7c369977255f66438837cb5202dab6b674a7d487d",
+        "validation_gaps:8f177e54b9d1c1f157cc8157edce8d859579a0ad6d1b797b4e3013e5fe1c3640",
+        "validation_gaps:a7df2fbf1a0ef0b423e44e81f3751449dbf2f99e8d6b33d64e8f0605e3717e50"
+      ],
+      "reason": "Reviewed per-run allocation/module map wire/decoder and actual startup writer, exact trampoline/original return PCs, null modules, exported native leave identity and physical-only classification. Approved immutable250-site plan is hash pinned. Core export changes no recovered original body; all logical parent/interface/output/ownership/borrowing claims remain pending. Reviewed current source census/dependency links and34ce28f..dc626c7 exact intermediate receipts. Preserve28new comparison/source-staleness/claim gaps without refreshing old fingerprints or promoting original/scenario coverage.",
+      "validation": {
+        "evidence": [],
+        "reason": "Prepared mappings do not prove installed hooks, original logical tail ownership or actual original graphics API behavior. Historical source/scope fingerprints stay unchanged; original journals,64refused sites, outputs/borrowing and all14scenario/four dispatch closure remain pending.",
+        "status": "pending"
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "3cfb8b336a20c850a6a45e7463b997ec4606a7234d264348d17361366a04acd7",
+          "before_sha256": null,
+          "id": "TOOL.drawing-api-bindings"
+        },
+        {
+          "after_sha256": "c8fe9705aadf417039f39e9f9173ac8f71c204a06771faea9c75a5ff6bfe94dd",
+          "before_sha256": "d50b37ab8dfd2ae68ce20218b109339c658c3d5101eacaa1b98e1d097a1d0662",
+          "id": "TOOL.drawing-api-observer"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+          "before_sha256": null,
+          "path": "protocols/include/mnm/drawing_api_bindings_v1.h"
+        },
+        {
+          "after_sha256": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+          "before_sha256": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+          "path": "runtime/drawing-api-census/entry.S"
+        },
+        {
+          "after_sha256": "54b577d61f11ca09d90516eaa144231ade326c2c342e4c013bc6b5d9c9d0483e",
+          "before_sha256": "81d95a6f7bcec40368ddf3a01a6a9d73979b195fdc0aa9149e48c9413f5a5d1b",
+          "path": "runtime/drawing-api-census/observer.c"
+        },
+        {
+          "after_sha256": "1b02887ceee2edbc1175ece27482749b421481d1d59180d2167b1fa7dcbfd47c",
+          "before_sha256": "6f9beedab58ccbc5bfedecb2480e9e2df8796de8862741fe8856aafa957e1a86",
+          "path": "tests/drawing-api-census-abi.c"
+        },
+        {
+          "after_sha256": "c0239acab67be7adc8806b2be6cb1607537dfebbb75860d8b17df9f47639bede",
+          "before_sha256": null,
+          "path": "tests/test-drawing-api-bindings.py"
+        },
+        {
+          "after_sha256": "eb83b827e5d50081f01d77d841613a00589287c16d13d88c7fd12853c24e1325",
+          "before_sha256": "e341f716aef0719b22aa71050346e199e54eb70a37bfce8ec6a214133769c180",
+          "path": "tools/build-drawing-api-census.py"
+        },
+        {
+          "after_sha256": "caf11933bf14dcc515bcfc212915cdde2681c1d67d9b1f1033f6c4c4744b5144",
+          "before_sha256": null,
+          "path": "tools/drawing_api_bindings.py"
+        },
+        {
+          "after_sha256": "c53a697cc76a5e18ef8e9142ee5f6fb7fe6d18b231c1c7ba42a6f28dff9b8738",
+          "before_sha256": "815bc425e262122392bb9c5621daa9e990c83587afa6fb6fd564ada9b336f23f",
+          "path": "tools/test-drawing-api-census-abi.py"
+        }
+      ],
+      "id": "draw01-api-bindings-native-roundtrip-20261011",
+      "pending_gaps": [],
+      "reason": "Fresh prospective12mutation guards and10-body real synthetic observer ABI/binding writer-decoder round trip passed with stable sources and exact headless scenario contracts. Actual C map allocation/stub PCs match the explicit synthetic manifest. Native module/API scopes remain diagnostic; fixture EXE/module absence is explicit.",
+      "validation": {
+        "evidence": [
+          "DRAW.api-bindings.guards-20261011",
+          "DRAW.api-observer.bindings-abi-20261011"
+        ],
+        "reason": "12native binding guards and10synthetic PE32 ABI/map cases passed. No original renderer/splice/API execution or logical owner claim.",
+        "status": "recorded"
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "37161e908de0a9da528fd0571339154e4deabc5f8b0254e62b4df6d6a8bd9762",
+          "before_sha256": "3ed1b8069f85b2df21d5f1bb4a3df0e0b49bd9ee5be6138fd22905e7e1b8c9c2",
+          "id": "DRAW.census.call-journal"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d4303a1bfc54cc24a6a44e7dcfe2764850c0ede5817f4d79a1f995dc85de9881",
+          "before_sha256": "b5069b9b69ed6ff53e0aedaef1aa04970e94d5172a551389bd2fa29cc1b0bf0a",
+          "path": "runtime/drawing-census/observer.c"
+        }
+      ],
+      "id": "draw01-core-named-export-native-abi-20261011",
+      "pending_gaps": [],
+      "reason": "Reviewed named census_leave export and fresh current-source real callback/stub ABI fixture:0/4/8/12/16/20/24cleanup, selected machine state/LastError, same-stack tail/site and phase/exhaustion forwarding. No recovered original bytes/body changed and no logical original ownership is inferred from the symbol.",
+      "validation": {
+        "evidence": [
+          "DRAW.census.named-export-abi-20261011"
+        ],
+        "reason": "Current-source synthetic census ABI passed with prospective scope/source/headless scenario binding. Actual original splice/renderer remains unexecuted.",
+        "status": "recorded"
+      }
     }
   ],
   "schema": 1

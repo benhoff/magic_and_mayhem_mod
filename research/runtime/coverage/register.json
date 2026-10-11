@@ -31073,7 +31073,7 @@
       "subsystem": "drawing_inventory",
       "kind": "native_policy",
       "title": "Original-active drawing entry and return metadata census",
-      "scope": "Opt-in PE32 metadata at signature-pinned safe splices, with verified actual preferred module base, bounded buffered entry/return journal, register/flags/x87/SSE/LastError forwarding, thread and stack pairing including same-stack tail unwind, readonly host phase control, and explicit loss/open/IO refusal. Sixty legacy safe catalog sites plus seven explicitly discovered queue helper/cleanup entries and two original movie setup/sample entries; fade interior58edb0 is refused because original backedge58edde enters58edb1. Signatures are checked before patching and original bodies run. Partial installation refuses process startup; abrupt teardown/busy detach lacks a valid terminal. Metadata snapshots do not establish pixel/side-effect equivalence, exhaustive writers, lifetime/borrowed API coverage or DRAW-01 scenario closure. Dynamic DLL unload is unsupported. Explicit movie interior SITE probes require a named containing original function and do not acquire/replace a function return slot. Before-site EAX counts remain separate from paired function results.",
+      "scope": "Opt-in PE32 metadata at signature-pinned safe splices, with verified actual preferred module base, bounded buffered entry/return journal, register/flags/x87/SSE/LastError forwarding, thread and stack pairing including same-stack tail unwind, readonly host phase control, and explicit loss/open/IO refusal. Sixty legacy safe catalog sites plus seven explicitly discovered queue helper/cleanup entries and two original movie setup/sample entries; fade interior58edb0 is refused because original backedge58edde enters58edb1. Signatures are checked before patching and original bodies run. Partial installation refuses process startup; abrupt teardown/busy detach lacks a valid terminal. Metadata snapshots do not establish pixel/side-effect equivalence, exhaustive writers, lifetime/borrowed API coverage or DRAW-01 scenario closure. Dynamic DLL unload is unsupported. Explicit movie interior SITE probes require a named containing original function and do not acquire/replace a function return slot. Before-site EAX counts remain separate from paired function results. The named native census_leave export supplies exact per-run physical address identity only; no inferred original/logical caller ownership.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31126,7 +31126,8 @@
         "DRAW.census.quick-battle-accounted-observation-20261010",
         "DRAW.census.quick-battle-scenario-guards-20261010",
         "DRAW.census.campaign-effects-observation-20261011",
-        "DRAW.census.campaign-effects-guards-20261011"
+        "DRAW.census.campaign-effects-guards-20261011",
+        "DRAW.census.named-export-abi-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31569,11 +31570,54 @@
         "runtime/shadow/win32_min.h",
         "tools/build-shadow-bridge.py",
         "tests/canvas-startup-call.S",
-        "research/runtime/drawing-api-splices-accounted-static-20261011.json"
+        "research/runtime/drawing-api-splices-accounted-static-20261011.json",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "tools/drawing_api_bindings.py"
       ],
       "evidence": [
         "DRAW.api-observer.build-20261011",
-        "DRAW.api-observer.synthetic-abi-20261011"
+        "DRAW.api-observer.synthetic-abi-20261011",
+        "DRAW.api-observer.bindings-abi-20261011",
+        "DRAW.api-observer.bindings-build-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-api-bindings",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Per-run exact API trampoline/module address bindings",
+      "scope": "Versioned startup allocation map for accepted API CALL hooks: exact original site/return PC and generated trampoline return/continuation PCs, observer/core/menu module bounds and exact exported core leave address. Strict byte extents, tags, reserved/terminal fields and nonoverlapping allocation/stub bounds; null modules remain explicit. Diagnostic physical address classification only, no nearest original function or inferred logical tail/COM/API owner, installed-hook success, full writer/scenario/graphics lifetime or DRAW-01 closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-graphics-api-boundaries.md"
+      ],
+      "implementation": [
+        "tools/drawing_api_bindings.py",
+        "protocols/include/mnm/drawing_api_bindings_v1.h"
+      ],
+      "tests": [
+        "tests/test-drawing-api-bindings.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_journal.py",
+        "tools/drawing_census.py",
+        "runtime/drawing-api-census/observer.c",
+        "runtime/drawing-api-census/entry.S",
+        "runtime/shadow/win32_min.h",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "protocols/include/mnm/drawing_census_v1.h"
+      ],
+      "evidence": [
+        "DRAW.api-bindings.guards-20261011",
+        "DRAW.api-observer.bindings-abi-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -61168,6 +61212,89 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW.api-bindings.guards-20261011",
+      "kind": "native_integration",
+      "scope": "Synthetic exact allocation/original CALL PC, native module/leave and byte extent/reserved/terminal guards. Physical classification only; no actual original calls, logical ownership or all-writer proof.",
+      "record": "research/runtime/drawing-api-bindings-guards-20261011.json",
+      "sha256": "023dafffe296d8974fa522c863de337e05d519d71ac0c9cb7df6a27753c30db9",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/total_cases",
+          "equals": 12
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW.api-observer.bindings-abi-20261011",
+      "kind": "native_integration",
+      "scope": "Real separate CALL stubs/observer/dynamic splices and binding writer/decoder round trip against10synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.",
+      "record": "research/runtime/drawing-api-observer-bindings-abi-20261011.json",
+      "sha256": "20fde336607e547f638880fc97b02364d6a7953ee61889d87c9e7e7738efac3c",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/exact_binding_round_trip",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW.census.named-export-abi-20261011",
+      "kind": "native_integration",
+      "scope": "Current-source census callback synthetic ABI after named leave export. No original execution or logical ownership.",
+      "record": "research/runtime/drawing-census-named-export-abi-20261011.json",
+      "sha256": "42eefb0ada541bbdba78fcd9f5e5b6587aacf88f686c10d8f07e44d3f5c87cff",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW.api-observer.bindings-build-20261011",
+      "kind": "static",
+      "scope": "Compiled separate observer for250 exact original CALL splices. No original API execution, universal ABI/transparency/timing, output/resource lifetime or DRAW-01 closure.",
+      "record": "research/runtime/drawing-api-observer-bindings-build-20261011.json",
+      "sha256": "be8b4c7aef29469752c2efefa99933e55ad8bd709b6c5cdba8794234d7f943ff",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -69634,9 +69761,10 @@
     {
       "id": "drawing-api-observer-synthetic-abi-20261011",
       "level": "headless",
-      "scope": "Real separate API callbacks/stubs and continuation splices against synthetic PE32 bodies. Register/flags/x87/SSE/LastError/actual stack cleanup and invalid phase/loss/frame exhaustion guards. No actual original graphics APIs or resource lifetime.",
+      "scope": "Real separate API callbacks/stubs and continuation splices against synthetic PE32 bodies, plus exact native binding writer/decoder round trip. Register/flags/x87/SSE/LastError/actual cleanup and invalid phase/loss/frame exhaustion guards. No actual original graphics APIs, logical ownership or resource lifetime.",
       "behaviors": [
-        "TOOL.drawing-api-observer"
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-bindings"
       ],
       "tests": [
         "tools/test-drawing-api-census-abi.py",
@@ -69644,7 +69772,38 @@
         "tests/canvas-startup-call.S"
       ],
       "evidence": [
-        "DRAW.api-observer.synthetic-abi-20261011"
+        "DRAW.api-observer.synthetic-abi-20261011",
+        "DRAW.api-observer.bindings-abi-20261011"
+      ]
+    },
+    {
+      "id": "drawing-api-bindings-wire-guards-20261011",
+      "level": "headless",
+      "scope": "Synthetic exact API allocation/original CALL PC, module/leave and wire extent/reserved/terminal mutation guards. Physical address classification only; no original calls or logical ownership.",
+      "behaviors": [
+        "TOOL.drawing-api-bindings"
+      ],
+      "tests": [
+        "tests/test-drawing-api-bindings.py"
+      ],
+      "evidence": [
+        "DRAW.api-bindings.guards-20261011"
+      ]
+    },
+    {
+      "id": "drawing-census-export-abi-20261011",
+      "level": "headless",
+      "scope": "Current-source census callbacks/stubs under synthetic PE32 bodies after adding the named native leave export. Selected register/flags/x87/SSE/LastError,0\u201324cleanup, tail8/site/phase/exhaustion forwarding only; no original renderer, original splice or logical ownership execution.",
+      "behaviors": [
+        "DRAW.census.call-journal"
+      ],
+      "tests": [
+        "tools/test-drawing-census-abi.py",
+        "tests/drawing-census-abi.c",
+        "tests/canvas-startup-call.S"
+      ],
+      "evidence": [
+        "DRAW.census.named-export-abi-20261011"
       ]
     }
   ],
@@ -69983,8 +70142,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-api-observer-20261011.json",
-    "sha256": "9cd8f5292dd31db7b122e05ede769802d9b5c4bb427700daa83df04ad29a6b92"
+    "path": "research/runtime/coverage/source-index-draw01-api-bindings-20261011.json",
+    "sha256": "b944187d48db1c8d272d7a1417f8b62e6339f31eca406da0bdc55f82bb83df36"
   },
   "claim_bindings_required": true
 }
