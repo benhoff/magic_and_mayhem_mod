@@ -31079,6 +31079,39 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.drawing-journeys",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "DRAW-02 full session acceptance and separate reference/parity accounting",
+      "scope": "Frozen fourteen-journey and twenty-one-operation acceptance denominator; independent reference acquisition and native parity remain separate. Only contiguous action-bound independent presented frames close journey requirements; sampled components and pre-display canvases remain partial. Synthetic accounting guards do not establish original observations, rendering equivalence, full DRAW-02 completion or live replacement. Full acquisition and adapter execution remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-full-session.md",
+        "research/formats/drawing-journey-suite.md"
+      ],
+      "implementation": [
+        "tools/drawing_journeys.py"
+      ],
+      "tests": [
+        "tests/test-drawing-journeys.py",
+        "tests/fixtures/drawing-journeys/suite.json"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_corpus.py",
+        "tests/fixtures/drawing/corpus.json",
+        "tests/fixtures/drawing-scene/scene.json"
+      ],
+      "evidence": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -67822,8 +67855,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw03-reviewed-20261010.json",
-    "sha256": "96bee8f3545127cd1cb3ba9e373885af17fb8e6d44adfa3b2f0f40c3d8b315b8"
+    "path": "research/runtime/coverage/source-index-draw02-journeys-20261010.json",
+    "sha256": "7481d40aa015e0e0ae818e57d47727fb20f92281230830dd3853327a8e5d0714"
   },
   "claim_bindings_required": true
 }

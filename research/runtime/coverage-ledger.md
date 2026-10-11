@@ -4414,3 +4414,15 @@ with no unresolved intermediate versions. The append-only journal check and exac
 hashes are retained in
 `coverage/draw03-history-48ca294-98b4524-20261010.json`. This history accounting
 asserts neither a past gate pass nor new execution validation.
+
+### 2026-10-10: DRAW-02 full session acceptance denominator
+
+The isolated DRAW-02 branch adds explicit gates for all fourteen drawing journeys
+and twenty-one operation/failure contracts. Reference acquisition and native
+parity are separate axes. Only contiguous, action-bound, independently captured
+presented frames can close journey gates; operation/World/pre-display composition
+passes remain bounded comparisons. Synthetic accounting guards exercise this
+policy without claiming new original observations, rendering parity or takeover.
+The initial suite pins the existing component and startup-scene catalogs. Complete
+presented sessions and operation/failure acquisition remain pending. See
+[full session comparison](draw02-full-session.md).
