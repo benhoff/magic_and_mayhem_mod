@@ -32834,6 +32834,44 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.drawing-core-callers",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Exact original CALL and observed return-continuation accounting",
+      "scope": "Independently review closed V1 core journals against exact per-run allocation bytes and original direct CALL census. Keep physical callers and exact original return/CALL/target identities separate; relocated E8 admission requires matching observed callee and static CALL. Check active counts and newest same-thread/normalized-stack returns. Inherited native leave continuations require an active same-thread, identical original return slot and normalized cleanup; preserve immediate parent/root IDs without inventing an original CALL edge to the child. Unknown roots/transfer edges, target mismatches, missing static calls, orphan/wrong-thread/wrong-slot leaves, module neighbors and empty discovered owner ranges remain explicit. This is bounded native metadata review, not original semantic/pixel/side-effect/lifetime equivalence or complete caller/writer/scenario/dispatch closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "tools/drawing_census_callers.py"
+      ],
+      "tests": [
+        "tests/test-drawing-census-callers.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_census.py",
+        "tools/drawing_census_bindings.py",
+        "tools/capture-drawing-census-game.py",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "protocols/include/mnm/drawing_census_bindings_v1.h",
+        "research/runtime/drawing-callers-movie-sites-20261010.json",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "TOOL.drawing-core-callers.guards-20261011",
+        "TOOL.drawing-core-callers.original-replay-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -63819,6 +63857,80 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "TOOL.drawing-core-callers.guards-20261011",
+      "kind": "native_integration",
+      "scope": "Synthetic strict original CALL/relocation/return-continuation admission and refusal only; unknown original roots/transfer edges stay pending. No original execution.",
+      "record": "research/runtime/drawing-core-caller-guards-20261011.json",
+      "sha256": "60c2947c502744063022440153aa5f4fb244b5cfb45450a620d9b22af0cf6bee",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards",
+          "equals": 14
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-core-callers.original-replay-20261011",
+      "kind": "native_integration",
+      "scope": "Independent closed-journal pairing, active-count/newest-return and exact per-run core binding review. Physical callers remain intact. A same-thread/same-original-return-slot/same-cleanup inherited continuation identifies the observed parent/root, not an original CALL edge to the child or semantic owner. Discovered continuation ranges do not fill unknown functions/flows; unresolved indirect/tail callers, writers and scenario/dispatch closure remain pending.",
+      "record": "research/runtime/drawing-core-caller-original-replay-20261011.json",
+      "sha256": "d8d2afdf0b4b5e2d538aac03f904802bd6781be08aa985831419a0e30650efda",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/paired_calls",
+          "equals": 42021
+        },
+        {
+          "pointer": "/exact_original_pairs",
+          "equals": 17182
+        },
+        {
+          "pointer": "/exact_relocated_pairs",
+          "equals": 8
+        },
+        {
+          "pointer": "/inherited_continuation_pairs",
+          "equals": 0
+        },
+        {
+          "pointer": "/caller_attribution_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/draw01_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_execution_repeated",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -72951,6 +73063,36 @@
       "evidence": [
         "DRAW.core-bindings.original-menu-20261011"
       ]
+    },
+    {
+      "id": "drawing-core-caller-guards-20261011",
+      "title": "drawing-core-caller-guards-20261011",
+      "scope": "Synthetic closed-journal exact relocation/return-chain and refusal guards; no original execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-core-callers"
+      ],
+      "tests": [
+        "tests/test-drawing-census-callers.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-core-callers.guards-20261011"
+      ]
+    },
+    {
+      "id": "drawing-core-caller-original-replay-20261011",
+      "title": "drawing-core-caller-original-replay-20261011",
+      "scope": "Current native caller reviewer consumes the retained original menu journal and exact allocation map; original execution remains historical and unchanged. No new original run or scenario/dispatch closure.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-core-callers"
+      ],
+      "tests": [
+        "tests/test-drawing-census-callers.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-core-callers.original-replay-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -73288,8 +73430,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-core-bindings-20261011.json",
-    "sha256": "6a80f042ed41a6afaf11bc713c8ae7b3548f6d4da8bee73ea4fbc530a68179a0"
+    "path": "research/runtime/coverage/source-index-draw01-core-callers-20261011.json",
+    "sha256": "9efa58aa5cfe400490cc2f3f3d44f46768b378dc822f73fa3af0bc3b2a56d703"
   },
   "claim_bindings_required": true
 }

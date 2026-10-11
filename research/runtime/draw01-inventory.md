@@ -757,3 +757,30 @@ for further call-flow review; the other addresses do not acquire instrumentation
 or logical owner classifications. Raw artifacts and exact staged binaries are
 retained; only the stopped private installation/prefix was removed. This adds
 no scenario or dispatch closure.
+
+## Exact caller and return-continuation review, 2026-10-11
+
+`tools/drawing_census_callers.py` independently checks a closed original core
+journal and its exact binding sidecar. It preserves raw physical callers and
+requires matching copied E8 bytes, original direct CALL metadata and observed
+callee before classifying a relocated original CALL. Entry/return active counts
+and the newest matching thread/normalized-stack frame must agree.
+
+An observed native leave pointer can inherit a return continuation only from an
+active frame on the same thread with the identical original return slot and
+normalized cleanup. The report retains immediate parent and root call IDs. An
+inherited continuation supplies no original CALL edge to the child; that transfer
+edge remains an explicit gap. Unknown roots, differing cleanup, orphan leaves,
+wrong thread/slot, neighboring module/allocation PCs and absent discovered owner
+ranges remain unresolved. The raw journal is never rewritten.
+
+Fourteen synthetic guards pass. A current-source replay of the unchanged
+`run-t3mn_i6s` journal classifies 17,182 original direct pairs and eight relocated
+Lock pairs among 42,021 pairs. There are no observed inherited leave continuations
+in this cohort; synthetic chain admission is separate. The remaining 24,831 pairs
+retain pending call-flow review. Of these, 24,825 use the raster callee `596cb8`
+with five original indirect continuations; six use surface destruction `58b3e0`
+with other caller continuations. The source hashes and exact retained artifacts
+are recorded under new evidence IDs. Original execution was not repeated by this
+replay and no semantic caller, writer, lifetime, scenario or dispatch closure is
+claimed. Future core captures include the independently checked caller report.

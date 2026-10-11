@@ -4822,3 +4822,12 @@ unresolved logical callers. Thirteen offline guards and the actual PE32 binding
 writer/decoder plus existing ABI checks pass. Prepared maps do not establish
 installed hooks, complete callers/writers, resource lifetimes or scenario/dispatch
 closure; the 14 scenario reviews and four dispatch gates remain pending.
+
+DRAW-01 caller review now preserves physical PCs while admitting exact relocated
+original CALLs and separately recording same-thread/same-return-slot inherited
+continuations. Fourteen synthetic guards pass. Current native replay of the
+unchanged 42,021-pair original menu journal resolves eight relocated Lock calls
+and 17,182 original direct calls; 24,831 call-flow pairs remain explicit, including
+24,825 raster indirect continuations and six destruction continuations. No new
+original execution, semantic transfer edge, scenario or dispatch closure is
+claimed. The prior original binding cohort and all historical hashes are retained.

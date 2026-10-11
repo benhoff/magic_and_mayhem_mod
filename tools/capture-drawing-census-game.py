@@ -16,6 +16,7 @@ import subprocess
 import time
 from drawing_census import ROOT, trace
 from drawing_census_bindings import decode as core_bindings, physical as core_physical
+from drawing_census_callers import review as core_caller_review
 from drawing_api_journal import trace as api_trace
 from drawing_api_details import trace as api_detail_trace
 from drawing_api_resources import trace as api_resource_trace
@@ -46,7 +47,7 @@ def capture(root, template, journey, claims=None):
     source_paths = ['tools/capture-drawing-census-game.py', 'tools/drawing_census.py', 'tools/drawing-census-game-runner.py',
                     'tools/campaign_gameplay.py', 'tools/campaign_spell.py']
     source_paths += ['tools/drawing_api_cohorts.py']
-    if manifest.get('call_census_enabled',True):source_paths+=['tools/drawing_census_bindings.py']
+    if manifest.get('call_census_enabled',True):source_paths+=['tools/drawing_census_bindings.py','tools/drawing_census_callers.py']
     if manifest.get('api_observation_enabled', False): source_paths += ['tools/drawing_api_journal.py', 'tools/drawing_api_pairs.py', 'tools/drawing_api_details.py','tools/drawing_api_resources.py', 'tools/drawing_api_contracts.py','tools/drawing_api_surface_contracts.py','research/runtime/drawing-surface-api-layouts-20261011.json', 'tools/drawing_api_bindings.py']
     frozen_sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in source_paths}
     if declaration: frozen_sources.update(declaration['sources'])
@@ -389,6 +390,8 @@ def capture(root, template, journey, claims=None):
         if report['call_census_enabled']:
             report['core_bindings']=core_bindings(root/'capture/core-bindings.bin',json.loads((root/'census-build.json').read_text()))
             (root/'decoded-core-bindings.json').write_text(json.dumps(report['core_bindings'],indent=2)+'\n')
+            report['core_caller_review']=core_caller_review(root/'capture/census.bin',json.loads((root/'census-build.json').read_text()),root/'capture/core-bindings.bin',json.loads((ROOT/'research/runtime/drawing-callers-movie-sites-20261010.json').read_text()),json.loads((ROOT/'research/runtime/coverage/binary-nocd.json').read_text()))
+            (root/'decoded-core-callers.json').write_text(json.dumps(report['core_caller_review'],indent=2)+'\n')
             core_callers=sorted({r['caller'] for r in census['entry_counts']})
             report['core_physical_caller_review']={'scope':'Exact per-run relocated E8 and named leave identities only; logical tail flow/original owners remain pending.','callers':[{'physical_caller':pc,'classification':core_physical(pc,report['core_bindings'])} for pc in core_callers]}
         if report['api_observation_enabled']:
