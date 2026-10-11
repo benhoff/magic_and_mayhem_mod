@@ -1,0 +1,380 @@
+{
+  "schema": 1,
+  "reviewed_ranges": [
+    "b570002..300e423",
+    "e23e99c..964393d"
+  ],
+  "file_versions": [
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "AGENTS.md",
+      "before_sha256": "3cc02ac7b86829dff6082648e17b38056837ae267eb8f24df6d604349e19250a",
+      "after_sha256": "b2885a5552198f7170e546297ea894bdc2c86171bf55693316028ab4b255b47e",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "compat/legacy/drawing-scene/CMakeLists.txt",
+      "before_sha256": "6b8e2b4ce1d0529dfcf90bc7d82da30dd8fddddfbff7fc3d2e4768733249ce55",
+      "after_sha256": "a6bdbd1d02d3e9933618e84fc935897a673bbad894ce351a67e975573462ff13",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "compat/legacy/drawing_session.cpp",
+      "before_sha256": null,
+      "after_sha256": "ee3705d4e32a965a18269bf948e94b5542c56ebe9404bbc41359041ab936c3eb",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "compat/legacy/drawing_session.hpp",
+      "before_sha256": null,
+      "after_sha256": "cd886666bab6ad8e5d0ce6b364fe2ca758e3c3a927b01662febce54060d8be3d",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "compat/legacy/drawing_session_main.cpp",
+      "before_sha256": null,
+      "after_sha256": "c5d7f2da234f652aa632539fd89d527bfe3fbf9cb4608e613d906e7c141c8f55",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "docs/working-retention.md",
+      "before_sha256": null,
+      "after_sha256": "c6182c099d3eba57fd0a3f2bd3326aac961762f7e10c1b593c04552c65a8bdb3",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/formats/drawing-native-session-v1.md",
+      "before_sha256": null,
+      "after_sha256": "73edef5e007e4ee2dfdf4fac50f88f837c30ee0cff6de722491d18ba799b91c1",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "9ed54880313471482a9aa480b9c693e6aa281172763f23e19f61e5344f90d8de",
+      "after_sha256": "843bb94c290cacdc4c52a7a6164a0b2d9bf1024b1ec3d9fae5299c4f55405d6c",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/draw02-merged-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "14559c6f02b34b7a6d85b40768fd2ee4cae051284f454744cb14543b2c37b9eb",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/draw03-history-53bdc4a-9b15da3-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7a5d1a57c7e194be85d4351bbee63dc69fd7ca43fa827a2a93555d42e267fb3b",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/draw03-history-7789514-53bdc4a-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "324d1331a1078b71da17878f704be12cd5888c6ea5e3be61072ce01a5b07691b",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "beac58bb5c16ecc1f5cfbde239016027f122e70adfa4194402b3f3640d304fdf",
+      "after_sha256": "56d36ea3ba6e227f680f2ac884b65ba9863b3407767ac246f1fc0d40e6b3cdf5",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/source-index-draw02-draw03-storage-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ce7997013c72df19be10792d4b8ae0457fc3d9aee740ae1e702ed2e8a70d62c7",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/source-index-draw02-draw03-strict-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "eb1864ba5362cd65e7d2df57387193b1cc69aae10ba771633a94aed694cdd854",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/source-index-draw03-retention-integration-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "66e8d5e3bd6ea52165c1d0a0e5c3027e33a49a21b22176944e6a428d1b837361",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/source-index-draw03-session-lifecycle-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a8267a04ac64896e79b3158fa279b2370d3c5b5f64293b8fb0a3f7dc7d96a72f",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/source-index-draw03-session-runner-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "79306f2fe1f9ba5250edc4d9653868095f8530da46c232c9ef1fcff0b380de49",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/source-index-working-archive-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5144324950ef9ac97985acb6c3e98892d39414bf48f9415f0ff1c081d21d1ad8",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/source-index-working-archive-final-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4ddf0e8fb69c367f1434f2a6761c01d26ac63bc3d0835d35ba125bdefda1a5a9",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/source-index-working-free-space-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e8943fd801893c5e2b131866304461a44b4e4b8ffa426e77ad77674c5bb118c5",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/source-index-working-retention-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "403ed7f0fa9528bfe2682132da1c14848a2bcfeaef7c36a1cddd3afef3ac8eec",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "a473e8609bdc9cd878206fb0f3bafed1a2071358545dc27f5c9cedd64b3e51b1",
+      "after_sha256": "39853218b93a98f0f8ddc5f548a14c3def47409ed2c04b777c653b48b74811f3",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/coverage/working-retention-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7003d5ea57c5583d92c8cc9af8c19e1acdd0b7b622fb356fa71392357d8dd174",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/draw02-api-record-kind-native-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "038b65607a85b9812328896c2204df21621640406435c204e601a9102d4e4ca2",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/draw02-failure-record-kind-native-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "563626ed2a600a0accd930d97cb5ae1caaf3e769aa02a81db98db92bdf0a4816",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/draw02-interactive-record-kind-original-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "224a621bff62e242294eb62ef8c52788e2c6daa80e1b382b321b2597f4e3b69a",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/draw02-interactive-session.md",
+      "before_sha256": "0716092dd0a5b65c79efd494d530c82d9d21239437007d82cb5e941d0781481c",
+      "after_sha256": "afd56c3cc83fd2a79305c02b5092c808c7590e3d1ff1ce78a1346f66bece7d13",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/draw03-native-session-lifecycle-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c2374340dae182b80137da53bf8f68b635d15d8466d477ef86ecd889e6566652",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/draw03-native-session-runner-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "cb29e0316e86a16bbb5cb8a563ed5727b871a135a1ddc4ffb46386e4dea380cc",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "research/runtime/draw03-native-session.md",
+      "before_sha256": null,
+      "after_sha256": "a513d8df297054fa52b8944f1aa6c88cc0f7178c2b8a635422512123540a14b2",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "tests/drawing-session-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "4075da0840449af7ede1b04503c1cce442326c5ffe55877467752a2da62fb854",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "tests/test-drawing-api-session.py",
+      "before_sha256": "2d16c318c15cc6d0b9a88f8f658a7c907171bb4ac68311672c797a671ed8d870",
+      "after_sha256": "29ce7dd935fee0f36c9b83657583582b0255e41cc64970e65b3cc7817334ef11",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "tests/test-working-archive.py",
+      "before_sha256": null,
+      "after_sha256": "78355a9e9aefc64f87dfb5d2d98d82f24b67997ca55568ee03bdd0f0a6e2808a",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "tests/test-working-retention.py",
+      "before_sha256": null,
+      "after_sha256": "9b8701d2afbcbb1229c26be0d60e2ed314c22441fd87ef0dd89dac682e55ff0d",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "tools/drawing_api_session.py",
+      "before_sha256": "52226936c4a2a11a399db05929d5e0096ea4d20c0e9fde20518121c36d7731a4",
+      "after_sha256": "390ed7d47334df9960ec96b643d43876b1bce14d0007b96a43301c77a3ff19a9",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "tools/test-native-drawing-session-runner.py",
+      "before_sha256": null,
+      "after_sha256": "6192b45e5e2f4798c41da77e670a8b8d4f4a20de2f7189f27971d7e473e507ad",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "tools/test-native-drawing-session.py",
+      "before_sha256": null,
+      "after_sha256": "afc2f2d48b0717aedac3117bce92c4ea4bbd34461548b01f50e868c133a9aa8a",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "tools/working-retention.json",
+      "before_sha256": null,
+      "after_sha256": "af5164cedbeae70018ae3d9b0f3ae6be84a5b74270deaac44d80528c9011e49c",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "tools/working-retention.py",
+      "before_sha256": null,
+      "after_sha256": "cf178f82612c0e307ca4e33141ad90550fa62c9faaa37ce743e84ee289e5410d",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "300e423",
+      "parent": "b5700026084c5887f26c78f6014457e7ef06a627",
+      "path": "tools/working_archive.py",
+      "before_sha256": null,
+      "after_sha256": "a8d0c4325a0dcea6467643ec0237eabb106cc8a7bda71e6945ee0b9dfb1ef145",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "964393d",
+      "parent": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "path": "docs/working-retention.md",
+      "before_sha256": "c6182c099d3eba57fd0a3f2bd3326aac961762f7e10c1b593c04552c65a8bdb3",
+      "after_sha256": "9389089ef32b8fb2c20f62d0d221d5f5f63add8e26b9a92a80e839f9f115f155",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "964393d",
+      "parent": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "path": "research/runtime/coverage/history-native-storage-integration-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6e7af221961cf73f2e447f651e31cbe3a7815d692ebe45c9c93140e13d250bfa",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "964393d",
+      "parent": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "7d1dc6792daf0c1ad170ecbd49ddc9f4c8df2e4038e4f84318dcc7c3720b24cc",
+      "after_sha256": "902b393019313fd414cb777c3b4d9eb8cac348b0f8aa529bb39e6840908ffeb3",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "964393d",
+      "parent": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "path": "research/runtime/coverage/source-index-native-storage-race-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4fcf360dc5b39de7d52a7a1919fd7d9b8e9719b9a93b9fcd7048bdcad9d657b4",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "964393d",
+      "parent": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "path": "tests/test-working-retention.py",
+      "before_sha256": "9b8701d2afbcbb1229c26be0d60e2ed314c22441fd87ef0dd89dac682e55ff0d",
+      "after_sha256": "e87d3c72b1ab46cbf8d6128a1b253d5d4abf10421aef76352e5510aa6aef28c6",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "964393d",
+      "parent": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "path": "tools/working-retention.py",
+      "before_sha256": "cf178f82612c0e307ca4e33141ad90550fa62c9faaa37ce743e84ee289e5410d",
+      "after_sha256": "48ddf5943c9f17ff2520c859d707e084ed6a3e9c705e3c60f1f890c20f955ca7",
+      "exact_prior_receipt": true
+    }
+  ],
+  "retrospective_receipts_appended_for": [],
+  "unresolved_gaps": [],
+  "scope": "Exact parent/current version review after integration commit and concurrent storage fix. Journal self-hash excluded. No new execution or past gate assertion."
+}

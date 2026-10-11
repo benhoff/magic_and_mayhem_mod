@@ -5144,3 +5144,81 @@ Latest-master default native full public and standalone reruns are passed after 
 The live rolling fade header was already an explicit validation dependency, compiled and SHA-256 pinned in the passing `run-ta3zgqhe` execution. A later duplicate implementation-role link changed only the contract identity. Removing that redundant link preserves the entire required-source set and restores the exact pre-execution contract `50836feb00d6716d16f814d6654efe06b31f969ad6e9a3cad6e650a927ae4294`; no historical result or source fingerprint was refreshed. The hardware target retains its independently reviewed implementation link.
 
 Additional optional legacy software pixel-return reruns are preserved in `native-master-integration-rolling-file-sequence-failure-20261011.json`, `native-master-integration-rolling-delivery-latency-failure-20261011.json`, and `native-master-integration-rolling-independent-latency-failure-20261011.json`. One captured file stream skipped sequence507 (producer file-write race remains a hypothesis); two complete32-queue functional runs exceeded the unchanged120ms delivery median budget at123.243469ms and138.553323ms. No performance budget or historical evidence was altered. These failures leave legacy file-stream robustness and repeatable software-route latency pending; they do not establish universal native performance. Selected default TITAN V4/public gameplay evidence remains separately scoped.
+
+## 2026-10-11 DRAW-02 common API session forwarding
+
+The separate original-active session observer intercepts common surface methods0..35,
+original executable input polling/scan-code conversion and applied menu phases.
+Strict terminal/loss/gap admission preserves the partial observed-primary-API boundary.
+A fresh synthetic PE32 fixture passes32callback cases across eight primary mutators,
+including actual HRESULT/LastError/x87 preservation and eight full RGB565 planes.
+Five parser guards pass. Actual game interaction, complete global presentation,
+semantic input outcomes, real driver loss/Restore and native scene parity remain
+separate; callback faults are never labeled real engine recovery.
+See `draw02-interactive-session.md` and `NR.drawing-session-api`.
+
+## 2026-10-11 DRAW-02 interactive accounting and failure results
+
+The opt-in common API observer now serializes metadata/publication across original
+threads without holding its journal mutex across driver readbacks. Eight synthetic
+second-thread readback callbacks and all32 success/lost/busy/generic-error cases
+pass with exact results, LastError/x87 and eight full planes. Surface3 GUID and
+Surface7 factory ABI are corrected; tagged metadata/input-only sessions explicitly
+exclude full readbacks. Seven strict admission guards and eight caller/fault guards
+pass. Historical evidence is retained with its original fingerprints.
+
+Extra primary driver readbacks perturbed live gameplay in diagnostics. The
+interactive default uses metadata-only observation, which restored sustained
+original gameplay in matched-schedule controls. The fresh bound original-active
+run records2,444input calls, nine accepted original menu requests and19independent
+physical viewport PNGs with journal-byte fences. It observes63creature sample ticks,
+376movement records,112health-reduction samples and16original melee returns.
+Original Results Continue/Quit and Quick Back return to fresh Main. Original
+drawing/simulation remain active. Screenshots are explicitly unsynchronized with
+an exact original frame; no complete presented pixel parity is asserted. Tooltip,
+picking, complete selection/pause semantics, broader combat and global presentation
+routes remain pending. Full-readback mode is diagnostic until interference closes.
+
+The separate recovered failure comparison matches all4,480retained unchanged-original
+scripted COM wrapper traces. Its1,536two-draw exhaustions preserve exact original
+prefixes and cannot masquerade as successful return; invalid budgets are refused.
+HRESULT/LastError comparison is independent of pixel equality and checks recorded
+flags/entry identities; complete pointer-backed call-input identity remains open.
+The native GL restoration policy additionally passes30known/unknown-content,
+partial-write, explicit-reload and exhausted-recovery checks. Controlled faults
+and native unknown-content policy do not validate true live driver loss/Restore,
+restored palettes or whole-game recovery. The14journey/21operation gates remain open.
+
+See [interactive acquisition](draw02-interactive-session.md),
+[caller results](draw02-caller-results.md) and their immutable execution reports.
+Committed-history review covers53bdc4a..49c337d,16exact file versions with no gaps.
+
+### DRAW-02 integration review and strict record-kind refresh
+
+DRAW-02 source/evidence commits49c337d/b570002 are reconciled with the independent
+DRAW-03 session lifecycle/runner and storage commits9b15da3/2768aa3/e23e99c.
+Combined accounting retains all existing scopes, statuses, evidence and receipts.
+The committed-history review covers90file versions and appends22exact captured-output
+receipts without asserting new execution or a past gate pass.
+
+Final parser review rejects undefined V1 record kind6. Eight admission and eight
+caller/fault guard methods pass. New prospectively declared executions retain
+32forwarding cases/eight second-thread callbacks/eight full synthetic planes and
+all4,480native failure schedules/1,536explicit budget stops. The fresh original-active
+metadata run records2,756input calls,68gameplay sample ticks,531movement samples,
+265health-reduction samples and3original melee returns, then verifies Results
+Continue/Quit and fresh Main return. Earlier reports and their source hashes remain
+historical; the new record-kind results support current code. Physical viewport
+references remain unsynchronized and full presentation/native battle parity,
+pause/tooltip/picking and real-driver recovery remain pending.
+
+The final integration also preserves concurrent storage fix964393d. Its12guard
+tests pass, including disappearing descendants and refusal of incomplete or
+outside-root measurements. Exact committed-history review covers46file versions
+in b570002..300e423 and e23e99c..964393d with no unresolved receipt gaps. The
+combined source census retains1,729source/build files and1,525explicit behavior
+links; this indexing reconciliation adds no engine validation or status promotion.
+
+### Final concurrent master integration (2026-10-11)
+
+Both histories and exact receipts are retained, including the concurrent working-retention race fix and DRAW-02 strict record-kind/input/API work. The new `native-master-final-draw02-original-pass-20261011.json` refreshes metadata-only original-active Quick Battle acquisition against the imported launcher helpers: strict no-loss/no-gap journal, sustained gameplay, original results Continue/Quit and return to fresh Main pass with original section/manifests/source guards. This is isolated Xvfb/software GL observation, separate from the TITAN performance proofs; native pixel parity, complete picking/tooltip/pause/combat outcomes and full readback interference remain pending. Pre-admission environment failures (missing display and copied general-prefix WOW64 initialization,diagnosed by bounded loader trace) are retained separately; neither is admitted as success.

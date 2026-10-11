@@ -37411,6 +37411,179 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.drawing-session-api",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Original-active common DirectDraw/input API session observer and strict admission",
+      "scope": "Common surface methods0..35, supported interface/factory acquisition and mode calls, original executable input polling/scan-code conversion, applied menu entry/return phases, exact original result/LastError, unthrottled full RGB565 primary mutation references and explicit terminal/loss/gap accounting. Synthetic eight-route success/lost/busy/generic-failure forwarding and x87 preservation; no global physical presentation, semantic input completion, extended interfaces, actual driver recovery, native pixel parity or suppression claim. Concurrent metadata/publication is serialized without holding the journal mutex across driver readbacks; pending entries delay completion. Supported Surface3 GUID and Surface7 factory ABI are checked, and generic IUnknown aliases require an already observed vtable. Eight second-thread driver-readback callbacks are part of the forwarding fixture. Wire-tagged metadata-only and input-only modes explicitly exclude driver readbacks; successful full-mode mutations with unknown primary classification refuse admission.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-interactive-session.md",
+        "research/formats/drawing-api-session-v1.md",
+        "research/runtime/native-master-final-draw02-original-pass-20261011.json"
+      ],
+      "implementation": [
+        "runtime/drawing/session.c",
+        "runtime/menu/drawing_action.h",
+        "tools/build-drawing-session.py",
+        "tools/drawing_api_session.py"
+      ],
+      "tests": [
+        "runtime/drawing/selftest.c",
+        "tests/test-drawing-api-session.py",
+        "tools/test-drawing-api-session.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/build-shadow-bridge.py"
+      ],
+      "evidence": [
+        "NR.drawing-session-api.forwarding-native-20261011",
+        "NR.drawing-session-api.concurrent-forwarding-native-20261011",
+        "NR.drawing-interactive-acquisition.original-active-20261011",
+        "NR.drawing-session-api.record-kind-native-20261011",
+        "NR.drawing-interactive-acquisition.record-kind-original-20261011",
+        "NR.drawing-interactive-acquisition.native-master-final-original-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": "Synthetic PE32 stdcall callback result/error/x87, eight complete readback planes and eight second-thread reentrant readbacks; original-active strict live API observation is recorded separately. No global presentation or complete semantic journey."
+    },
+    {
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-interactive-session.md",
+        "research/runtime/native-master-final-draw02-original-pass-20261011.json"
+      ],
+      "evidence": [
+        "NR.drawing-interactive-acquisition.original-active-20261011",
+        "NR.drawing-interactive-acquisition.retention-static-20261011",
+        "NR.drawing-interactive-acquisition.record-kind-original-20261011",
+        "NR.drawing-interactive-acquisition.native-master-final-original-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "id": "NR.drawing-interactive-acquisition",
+      "title": "Original-active Quick Battle XTest acquisition with strict API admission",
+      "scope": "Pinned original executable staged by verified added imports, V12 original menu actions and bounded stock map2 Quick Battle schedule. XTest inputs and observed polling are separate from semantic game outcomes; only strict terminal/no-loss/no-gap wire-tagged API journals can be admitted; full primary references additionally require readback mode. Original drawing/simulation stay active; no completed journey, complete selection/tooltip/pause/combat outcomes, global presentation or native pixel parity claim. Default metadata-only mode avoids additional driver Lock/Unlock calls. Physical viewport PNGs accompany actions with journal-byte fences and hashes, explicitly unsynchronized with original frame publication. API full-readback diagnostics perturbed gameplay relative to controls and cannot assert unobtrusive live observation. Scoped Quick Battle results Continue/Quit and return through Quick to fresh Main are explicitly requested through their existing original callbacks; this verifies World exit separately from campaign Mini pause semantics.",
+      "implementation": [
+        "tools/capture-drawing-interactive.py",
+        "tools/drawing-session-runner.py",
+        "tools/build-drawing-session-input.py",
+        "tests/drawing-session-input.cpp"
+      ],
+      "tests": [
+        "tests/fixtures/drawing-journeys/interactive-schedule.json"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing/session.c",
+        "tools/drawing_api_session.py",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "tools/build-drawing-session.py",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/prepare-scene-observer.py",
+        "tools/run-game.sh",
+        "tools/run-opengl-game.py",
+        "tools/campaign_gameplay.py",
+        "runtime/shadow/win32_min.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/battle.h",
+        "runtime/menu/preferences.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/spells.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/campaign_defeat.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h"
+      ],
+      "validation_domain": "Prospective original-game metadata journal, applied menu statuses, actual input calls, passive gameplay samples and independent physical viewport snapshots. Visible screenshots carry no synchronized original-frame assertion; full readback mode is diagnostic until interference is resolved. Fresh results readiness/accepted Continue/Quit plus fresh Main readiness verify the scoped exit; combat, tooltip, complete picking and pause equivalence remain pending."
+    },
+    {
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-caller-results.md"
+      ],
+      "evidence": [
+        "NR.drawing-result-comparison.native-20261011",
+        "NR.drawing-result-comparison.record-kind-native-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "id": "NR.drawing-result-comparison",
+      "title": "Independent caller-result and bounded recovered failure schedule comparisons",
+      "scope": "Strict external equality of observed HRESULT/LastError and method/order/generation/recorded flags/entry-error identities (complete pointer-backed call-input identity remains pending) independent of pixel parity. Native recovered four-wrapper scheduling versus4480 unchanged-original scripted COM fault traces, bounded2-draw exact prefixes and explicit exhaustion; fake driver outcomes are controlled inputs. No physical driver loss/Restore pixel/palette validity, whole-game recovery or live suppression equivalence.",
+      "implementation": [
+        "tools/drawing_api_results.py",
+        "tools/check-drawing-failure-results.py"
+      ],
+      "tests": [
+        "tests/test-drawing-api-results.py",
+        "tests/surface-retry-model.cpp",
+        "tests/fixtures/surfaces/original-retry-corpus.json",
+        "tests/fixtures/surfaces/original-retry.json.gz"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_session.py",
+        "tools/check-original-surface-retry.py",
+        "reconstruction/rendering/surface_retry.hpp"
+      ],
+      "validation_domain": "Native CPU scheduling versus retained independent original/scripted COM references plus comparator refusal guards; no real driver executed."
     }
   ],
   "evidence": [
@@ -74703,6 +74876,312 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.drawing-session-api.forwarding-native-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh synthetic PE32 eight-route32case forwarding/error/x87 and eight full primary reference planes; no original game or real driver failure equivalence.",
+      "record": "research/runtime/draw02-api-forwarding-native-20261011.json",
+      "sha256": "eec4f95e67a2b3765f5d8868c74ef9f589d5b33c1d3d01b2b28278eb260e11a4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/scripted_com_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/primary_planes",
+          "equals": 8
+        },
+        {
+          "pointer": "/hresult_last_error_x87_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/original_game_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session-api.concurrent-forwarding-native-20261011",
+      "kind": "native_integration",
+      "scope": "Synthetic PE32 stdcall callback result/error/x87, eight complete readback planes and eight second-thread reentrant readbacks; original-active strict live API observation is recorded separately. No global presentation or complete semantic journey.",
+      "record": "research/runtime/draw02-api-concurrent-native-20261011.json",
+      "sha256": "b19d0d37d9c22014c336af40e23ef3c4f0ca86377cfb28104a2c31ae9e2aae24",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/driver_reentrant_threads",
+          "equals": 8
+        },
+        {
+          "pointer": "/scripted_com_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/primary_planes",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-interactive-acquisition.original-active-20261011",
+      "kind": "live_observation",
+      "scope": "Prospective original-game metadata journal, applied menu statuses, actual input calls, passive gameplay samples and independent physical viewport snapshots. Visible screenshots carry no synchronized original-frame assertion; full readback mode is diagnostic until interference is resolved. Fresh results readiness/accepted Continue/Quit plus fresh Main readiness verify the scoped exit; combat, tooltip, complete picking and pause equivalence remain pending.",
+      "record": "research/runtime/draw02-interactive-original-20261011.json",
+      "sha256": "7d390fcccc49265d8574c0f9be5e66e3fb41f983edc60d6b764a15ec384ee644",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_sections_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/observation/driver_readbacks_enabled",
+          "equals": false
+        },
+        {
+          "pointer": "/observation/drops",
+          "equals": 0
+        },
+        {
+          "pointer": "/observation/unclassified_interfaces_or_routes",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_gameplay_observation/world_exit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_gameplay_observation/sustained_gameplay_observed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_gameplay_observation/melee_returns",
+          "equals": 16
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-result-comparison.native-20261011",
+      "kind": "native_integration",
+      "scope": "Native CPU scheduling versus retained independent original/scripted COM references plus comparator refusal guards; no real driver executed.",
+      "record": "research/runtime/draw02-failure-results-native-20261011.json",
+      "sha256": "548621861ff39ca8780c782342588af035c796eecef7c255b2e2cd023956c06a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/complete/cases",
+          "equals": 4480
+        },
+        {
+          "pointer": "/complete/matching",
+          "equals": true
+        },
+        {
+          "pointer": "/bounded/budget_exhaustions",
+          "equals": 1536
+        },
+        {
+          "pointer": "/invalid_budgets_refused",
+          "equals": 2
+        },
+        {
+          "pointer": "/real_driver_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-interactive-acquisition.retention-static-20261011",
+      "kind": "static",
+      "scope": "Exact retained raw metadata/input/gameplay journals and nineteen physical viewport images from the immutable original-active report. Retention verifies recorded hashes and creates no new execution/equivalence evidence.",
+      "record": "research/runtime/draw02-interactive-reference-20261011/manifest.json",
+      "sha256": "032bb63d13cb07763c1a2dc0d6f2883b364001b45c13920d73c12ffd8fb1e3b1",
+      "assertions": [
+        {
+          "pointer": "/new_execution_or_parity_claim",
+          "equals": false
+        },
+        {
+          "pointer": "/synchronized_original_frames",
+          "equals": false
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NR.drawing-session-api.record-kind-native-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh prospective execution after V1 undefined record-kind admission was tightened; declared scopes and limitations remain unchanged.",
+      "record": "research/runtime/draw02-api-record-kind-native-20261011.json",
+      "sha256": "038b65607a85b9812328896c2204df21621640406435c204e601a9102d4e4ca2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/driver_reentrant_threads",
+          "equals": 8
+        },
+        {
+          "pointer": "/scripted_com_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/primary_planes",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-interactive-acquisition.record-kind-original-20261011",
+      "kind": "live_observation",
+      "scope": "Fresh prospective execution after V1 undefined record-kind admission was tightened; declared scopes and limitations remain unchanged.",
+      "record": "research/runtime/draw02-interactive-record-kind-original-20261011.json",
+      "sha256": "224a621bff62e242294eb62ef8c52788e2c6daa80e1b382b321b2597f4e3b69a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/observation/drops",
+          "equals": 0
+        },
+        {
+          "pointer": "/observation/unclassified_interfaces_or_routes",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_gameplay_observation/world_exit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_gameplay_observation/sustained_gameplay_observed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-result-comparison.record-kind-native-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh prospective execution after V1 undefined record-kind admission was tightened; declared scopes and limitations remain unchanged.",
+      "record": "research/runtime/draw02-failure-record-kind-native-20261011.json",
+      "sha256": "563626ed2a600a0accd930d97cb5ae1caaf3e769aa02a81db98db92bdf0a4816",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/complete/matching",
+          "equals": true
+        },
+        {
+          "pointer": "/complete/cases",
+          "equals": 4480
+        },
+        {
+          "pointer": "/bounded/budget_exhaustions",
+          "equals": 1536
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-interactive-acquisition.native-master-final-original-20261011",
+      "kind": "live_observation",
+      "scope": "Current final merged launcher/helper sources:bounded metadata-only original-active Quick Battle map2 API/input observation passes strict terminal/no-loss/no-gap admission,sustained original gameplay,and original results Continue/Quit/back to fresh Main. Original sections/manifests and prospective sources stable; no native pixel parity,complete semantic selection/tooltip/pause/combat/full journey or unobtrusive full-readback claim. Uses isolated Xvfb/software GL,not a TITAN performance proof.",
+      "record": "research/runtime/native-master-final-draw02-original-pass-20261011.json",
+      "sha256": "b2f90ba29755a792044d7c4e49c023247c702cf40a571a5242c10cdf95024261",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/observation/drops",
+          "equals": 0
+        },
+        {
+          "pointer": "/observation/unclassified_interfaces_or_routes",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_gameplay_observation/world_exit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_gameplay_observation/sustained_gameplay_observed",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -83059,6 +83538,61 @@
         "NR.canvas-fade-row-damage.fixtures-20261011",
         "NR.canvas-fade-row-damage.master-integration-20261011"
       ]
+    },
+    {
+      "id": "DRAW02.api-forwarding-fault-fixture",
+      "scope": "Eight common primary mutators x four scripted callback outcomes; full observer planes and actual callback return/error/x87. No real original game/driver execution. Eight driver readbacks invoke paired callbacks on a second thread; timeout/deadlock, dropped calls or incomplete phases refuse success.",
+      "behaviors": [
+        "NR.drawing-session-api"
+      ],
+      "tests": [
+        "runtime/drawing/selftest.c",
+        "tests/test-drawing-api-session.py",
+        "tools/test-drawing-api-session.py"
+      ],
+      "evidence": [
+        "NR.drawing-session-api.forwarding-native-20261011",
+        "NR.drawing-session-api.concurrent-forwarding-native-20261011",
+        "NR.drawing-session-api.record-kind-native-20261011"
+      ],
+      "level": "headless"
+    },
+    {
+      "id": "DRAW02.result-failure-schedules",
+      "scope": "4480 retained unchanged-original four-wrapper scripted COM schedules; complete recovered native traces, bounded2 exact prefixes and invalid-budget refusal. Driver pixels/live recovery excluded.",
+      "behaviors": [
+        "NR.drawing-result-comparison"
+      ],
+      "tests": [
+        "tools/check-drawing-failure-results.py",
+        "tests/test-drawing-api-results.py",
+        "tests/fixtures/surfaces/original-retry-corpus.json",
+        "tests/fixtures/surfaces/original-retry.json.gz"
+      ],
+      "evidence": [
+        "NR.drawing-result-comparison.native-20261011",
+        "NR.drawing-result-comparison.record-kind-native-20261011"
+      ],
+      "level": "headless"
+    },
+    {
+      "id": "DRAW02.original-interactive-api",
+      "scope": "Pinned original-active stock Quick Battle map2 with six applied original menu requests, bounded XTest schedule and idle completion wake. Default metadata-only observer retains exact API results with no lost records and takes independent physical viewport snapshots with explicit unsynchronized journal fences. No complete primary readback or selection/tooltip/pause/combat outcomes, whole-presentation or native parity claim. Then original results Continue, Quit and Quick Back must return to fresh Main; semantic World exit is checked while pause/combat remain open.",
+      "behaviors": [
+        "NR.drawing-session-api",
+        "NR.drawing-interactive-acquisition"
+      ],
+      "tests": [
+        "tools/capture-drawing-interactive.py",
+        "tests/drawing-session-input.cpp",
+        "tests/fixtures/drawing-journeys/interactive-schedule.json"
+      ],
+      "evidence": [
+        "NR.drawing-interactive-acquisition.original-active-20261011",
+        "NR.drawing-interactive-acquisition.record-kind-original-20261011",
+        "NR.drawing-interactive-acquisition.native-master-final-original-20261011"
+      ],
+      "level": "live_observation"
     }
   ],
   "recovered_ranges": [
@@ -83396,8 +83930,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-master-contract-correction-20261011.json",
-    "sha256": "f9c8c7fcb592f4a82f5b0022506cf8f51ca4980f8be0cda5c2e8836407f9dce7"
+    "path": "research/runtime/coverage/source-index-native-final-validated-master-20261011.json",
+    "sha256": "17a3da396a8ca270bd14421c23217d4049ac976497d77abc1a6dc4bf14a2ab8c"
   },
   "claim_bindings_required": true
 }

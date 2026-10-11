@@ -1,0 +1,3363 @@
+{
+  "schema": 1,
+  "reviewed_range": "2768aa32f6ea0a05fa3571a9068b203b17818d02..2e124ba4561907d72e35ea961c986a538d660c48",
+  "scope": "Committed first native merge exact parent/current receipts; no new validation or retrospective gate assertion. Concurrent master range is recorded separately.",
+  "commits": [
+    "2e124ba4561907d72e35ea961c986a538d660c48"
+  ],
+  "files": [
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "apps/qt-shell/campaign_smoke_test.cpp",
+      "before_sha256": "aafa5f3c76d8ee1744bd87857ba51d474dda24b949136121c7c5c16a9f7aa5c3",
+      "after_sha256": "1d32dc659acc52642084289cc00956e3ef82cc66b8d18d0ab702775742d5bdf0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "2fa553befe672b777b6abfca9d51901b91dfd4e2be7abbf61f50533b0bc6ba6c",
+      "after_sha256": "05347af28f79aab4fd4a8f17ca18c599695f17ece0098a596401fc942065a4c8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "7d2b5bffaa565e75f903d15882f9a0380196851e309b5d9374b88a1913888f70",
+      "after_sha256": "c26732fa8b9913d3acf803997ecc4a7fa41727d82c2ee27ffede14ead89fa668",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "apps/qt-shell/world_continuous_main.cpp",
+      "before_sha256": null,
+      "after_sha256": "dbbdcf1d9bab69217e4196cfbb73b78f713bd3080bf95194d18c738b12b36b0d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "apps/qt-shell/world_rolling_main.cpp",
+      "before_sha256": null,
+      "after_sha256": "e5037803016a067f36b624dddd3109905c16d5ba6e30ec96aa6c7be0e766c993",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/canvas_producers.cpp",
+      "before_sha256": "f428c1033c254b3b703bf03b0ec730fc0e3419b2a62b1e1f0388b4af7b2d2afb",
+      "after_sha256": "5ccc4f7787608ec3d069f0e41617689c63543ad71d2106291a5f7fb9fb0a236f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/canvas_producers.hpp",
+      "before_sha256": "5996aabf7dd370af7f851725705a06315797c96f151520a8bfb0a113c4c3e06b",
+      "after_sha256": "cb0dcdeab15b5bd00db44aadd339eaaf28fbbb24433248d38d691c8e1d2e397e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/canvas_world.cpp",
+      "before_sha256": "d6a33acb2f948ba5e097d8d609acc641a8261cc597e71118a875c3c1b693a658",
+      "after_sha256": "d338530f0dc5e6c13d446d2ce9ed9fdf628f2315e99d9d30f9cd58937e31f3e6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/canvas_world.hpp",
+      "before_sha256": "08e8a2ded094f232fae424f8f8435bcb7a3a6c299741b17f1cd46b54c7f81060",
+      "after_sha256": "5538cb9ba9accee8cd9a2d4aed9ceb1bbaadbe72587134edd23c5d772e617a3b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/scene_snapshot.hpp",
+      "before_sha256": "7bf5a558d7c8361617331523e1fc80dc61a285c5a9d2c36395f2abf5c812f868",
+      "after_sha256": "01c2118e748b3b630337c5b1bff9071acd4fb5e6f16623dbb6dc5d607ff221b2",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world-rolling/CMakeLists.txt",
+      "before_sha256": "558d394d31c0dcc599a1cac4309288953b733f5e857ac6f9934e7bd393487f71",
+      "after_sha256": "7b46b1be9e701b77e44da52e5e2cfaa73e83a08668528df2073af16ef3ffabeb",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world_continuous.cpp",
+      "before_sha256": null,
+      "after_sha256": "503e1498af48a1ffc94d160406e48d5aacba064c59c531c23262cf78079fcaa2",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world_continuous.hpp",
+      "before_sha256": null,
+      "after_sha256": "cf3ceb7b502d490fe84b743e76835437d1cac88c548554e01da7c92c347239ba",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world_raster_batch.cpp",
+      "before_sha256": "639ef3f3c1d32a38f788c0240b9f91f9fb85b78ea243d777829b439e869bd08b",
+      "after_sha256": "44d220da4c9ee4e56f5655bb33ebddd505987ef0d99d91cb66f6d6e51b30cc8b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world_raster_batch.hpp",
+      "before_sha256": "922819b4ad1af69bb6ad8e55260bc1eec0696cb8d48808fd25e615af8cdf618f",
+      "after_sha256": "8acae144a2c2565d85b87fea1ceb450274b80060d7a64c528b56b603a5c09a8a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world_resources.cpp",
+      "before_sha256": "2da404f70d690a8b86b4f605ebc8ecc6c62303e52559329b075152c636e3aab5",
+      "after_sha256": "169a1f8c4550c6f46fe5c8c61cdaaba1f583763a6137ede00549bd1682dcc9a5",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world_rolling_handoff.cpp",
+      "before_sha256": null,
+      "after_sha256": "e3493978fbbc8425db770c0462c7f42553ec757ce8301fa1d8f86a4fa8455a33",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world_rolling_handoff.hpp",
+      "before_sha256": null,
+      "after_sha256": "f3f6ebfad9c166dacc2a270393305fe786d932b410fc51b118cf1b7d8ffe47a4",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world_rolling_packet.cpp",
+      "before_sha256": "f4d2b7c568741aef8acc400b0effe7ae6fff878a0e639310b62339108a653d32",
+      "after_sha256": "a4d6f910280e6e8b569acad6f6b7e7740f055c10e0d193158b48d1d271f2fa6f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world_rolling_packet.hpp",
+      "before_sha256": "1c1e888406011ad46fb26652fa8ac4000c2723275ed5deaf37cd1b8ed53b9cdf",
+      "after_sha256": "94fc8cd54f880c0d98d318434befa1dc10eb777920c3b5429e96d61326c16161",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world_rolling_session.cpp",
+      "before_sha256": "5a999fa90524616fc7e00e2ff1c5d1ff220ca06e4b72b9a89f93c4c8539c8ffc",
+      "after_sha256": "4d90b6909393468292009e641d6673dcbc4c4fa3cfcaf9ca8c6a374fb0917920",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "compat/legacy/world_rolling_session.hpp",
+      "before_sha256": "5d130275e03d9313bfc2988fbe9619d8243abf2086eb3f24ceee17ae00bbab0b",
+      "after_sha256": "0b834446fba64da429afa5fc089253f570150215a8d22f24735a2c1bf0575612",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "protocols/include/mnm/world_continuous_checksum.h",
+      "before_sha256": null,
+      "after_sha256": "4d96065598923f759691b565716e511e2021edb5043af0aeaaae890f8ad43198",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "protocols/include/mnm/world_continuous_v1.h",
+      "before_sha256": null,
+      "after_sha256": "f27290517c154a8febe041325734f8f9f9a59f66908a9cc0145cfadc5941c40d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "protocols/include/mnm/world_continuous_v2.h",
+      "before_sha256": null,
+      "after_sha256": "de86bb1af4612812657ff09f6cf730c8274880edef1f9fece277ca1402f8784a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "protocols/include/mnm/world_continuous_v3.h",
+      "before_sha256": null,
+      "after_sha256": "d130c9ec19782acc916e21686f8970f307c0d974f164c3bc9c64cb587972a3fd",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "protocols/include/mnm/world_continuous_v4.h",
+      "before_sha256": null,
+      "after_sha256": "35d8b7d03a370adad0a8583908047d11b95f7203d36c42dcff2946f0d8e824cd",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "renderer/blit.cpp",
+      "before_sha256": "9f4563db24f569a0922e6f2ff9682a1e7e0bd3934b5171936eb0536ec021a612",
+      "after_sha256": "dfcf6cb7f3b62ad6b175df4a9a84635e4f0418bac2f00cda5078305f3b064a12",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "renderer/blit.hpp",
+      "before_sha256": "4abf821da5214e469c8305ff713c3099535495270095fc882b93709b6e60c068",
+      "after_sha256": "5e2d0b4118837b657b09d85a35816c6474743422d68104cca04d0e774a271a78",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "renderer/canvas_mirror.hpp",
+      "before_sha256": null,
+      "after_sha256": "336477b63af76e1ca848933af15809a1725c4c845ed39a19dbe019886ce3032a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "99175c1bbd6706b30f51163ffbf9f1e45a9e847c79a09535c10b592c089b8548",
+      "after_sha256": "daef7b4a08ea4dced7313c8bc80333464b152752216d670f2141fc7f3111d924",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "renderer/canvas_sequence.hpp",
+      "before_sha256": "37bfb943de403fb45254a2e93e9ee51450f4e48ab45a59dcff0b73b9e6d7ea56",
+      "after_sha256": "12096019b63ebf3b5805359d1f28f46a56bd9ea852d1101deeba27e45110585f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "renderer/gpu_canvas_mirror.cpp",
+      "before_sha256": null,
+      "after_sha256": "ac410ac561ec2664f9369694e6653e34b45f1d822f2a644a8f55244827149c8e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "renderer/gpu_canvas_mirror.hpp",
+      "before_sha256": null,
+      "after_sha256": "6ba4d5cf8e6c4832065a180b54297fe7b33515adcf87aa217660db893066d90f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "renderer/resources/sprite_atlas.cpp",
+      "before_sha256": "dfb1ef431af239b4338ade2b33fb13dbe620d8125f5463988dfe83fc1945434f",
+      "after_sha256": "1a5d3f933c39d529fb60993863bfb309e03c4249d3ca620de69d45c3033b0c7c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "renderer/resources/sprite_atlas.hpp",
+      "before_sha256": "30852c630e52526118f3d82ab388462b14b02dccf00f82ed429f9acc4355719c",
+      "after_sha256": "9a404ed6d109da25e423016d30ff6d246361ae3387b21db2c0c210c8ddb4f7e8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "renderer/scenes/scene_renderer.cpp",
+      "before_sha256": "5f3e354593d8a65fcc17ab3687f0d63c2b1943816bb87a32e17a17b6123ac92f",
+      "after_sha256": "c08de45ed2710855523c94ba011bbcc14d453addeb335983ca140a8f10bae226",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "renderer/scenes/scene_renderer.hpp",
+      "before_sha256": "2df2fc3c89b8fe74d33a0e7fda8633cb38acb4f6eba148b72b8d0df45eae6119",
+      "after_sha256": "9ef8befcedb2b9ee90a8090d9b09f6ab42937e1afbfef194c908af4a932e4b5d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/canvas-fade-gpu-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f0eeb04ab04d6b44c3b2bda89982f269760cccd35472fd79bd55b0f168f32074",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/canvas-fade-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "fcbe94fa4c59f04887e50bfe07cf38674a170489d43dff02db03bdf66fb0288c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/canvas-fade-row-damage-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c17d1814ae19be9c25e66b79d30fbbf4f94b975666fbd0aa8404fdd4ca0ec0fb",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/canvas-fade-span.md",
+      "before_sha256": "f5d8271fe7703a6ea5e440424de89a5ecb4996093b30dd5f6748b6c8fa86a019",
+      "after_sha256": "591dfa355187ee443e0723aa7b27b4c8ac1d20dc9b9852175c0a21b06007fff4",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/canvas-image-gpu-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "344a8f257956c09551720acc044dae2341d4e4f237f8caab43103808b2bb8583",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/canvas-image-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0846e0a4f5446bdfbb09608fa2cfc3d3fefd85393b6bd3e93c26df2e3e3d2cea",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "170fecf289ee2df9c900a0f0ebfdf417ad8e209efdcc1fb6c850261dedbb8d12",
+      "after_sha256": "8dd9237d121438c715a837e565730ddd3a8cd1dd5edb1c9f04afdb7a2822200f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/2925a63-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8ed0b1706422d20ae934847e0410d31c52cc89ae22abb741a961644cae31cda0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/ae45243-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ab3f9e86422a16c74603d9845b7287d7c0d6c444bc364311de92ccad749a2544",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/gpu-ownership-597005a-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bc4f51ca07cd9709f0cef99c2409df80f578040b8528180941eee481997c3ec9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-cache-validity-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a6aab949609731c455536affb31c1a7cf9208ab87b05cad6ee5d533d5cb6aaf3",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-copy-address-wait-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "45677ba4a5b29959ef1a7b254071ddc23631b2581ba8b33339cb83a045443f04",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-copy-fair-wait-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "faef7bcf23f2338fc93f30b259661462f3a02c0ac8d32f57817f551b4cf155b0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-default-bound-stage-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "21592c3e4e14edff82571189f120e08a78960f5c2582267b497cbdf839f56c26",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-draw-peer-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "011e12a859ab631848603c58fc615a58a0b5837b5a727a6ae4b75afdd835a84b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-draw-public-default-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b949b8e53791ad93ae504def97e2d368e0165ff2339a9ab56075c8809d392bb7",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-draw-public-gameplay-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e262f6f8323cf1964e60bf912261dd39ae71388d3f9054fca51d4438ed6583d1",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-draw-public-menu-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "698a5e0c90c6d4f8ea2f4f5389f66113542ff9fc9a07b9edfb9c376888564342",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-draw-services-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "58b74d094a1f0b8148139aba2237b3051ae34f603a399178ca336d894dfba186",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-draw-startup-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "012f5cc0bb0b990720d8b6984a5c2c458ebab4eb0dd3cfcdcdd935533e9f190b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-fade-recovery-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "56e89017c6e2aad673232c5fe2e5af073e91fcfa6c0ff199692be1ab68b48152",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-fade-row-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c420a1f9e7f84944c7f39dfe973a96ed6a68b7e0a9c5e214434c1e5260ce0278",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-fade4096-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "970c9099cd3e152d1bc7ee4ef1c38dc324f49687a622edf25a2d3718bb8fe6a6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-final-proofs-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "55b4361506eb4765b0a7cf4850a7089a505ebd7b98baa417baf77af8385d835c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-fog-window-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f58c520fe8d22308c62adef642f930078b46d6dffdd4e0eb7eba9d066e11bade",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-mapped-status-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f3296c11a853e301e05662c380976b8b4b50a933c4ae2e9809094b79c86b04f3",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-master-concurrent-range-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9093b5930fe86432f22f911611c062c73d7a400300911934510db3feb8960ddd",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-master-integration-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "107f9f665dc51d3f7db1b98ce046b5049942143fb3e562a5b7c10bd322b9f95d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-opengl-owned-startup-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "005305d0f0ef4acdd2e95e686728b8833fe70362b35a94bc080750ee783a7806",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/history-native-status-file-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9d8d377fec76f4e8ea98666bf48f80e9800e110b4ba22b4cc30d6c0b50e66e87",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/native-render-integration-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f58d3ab75a152299e9f6ffbed0a736f5bc8ce32ccd1facafc506535350f210ee",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/native-world-continuous-glyph-integration-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "36deb722b0c076a03042349bbd61784df7386c87b675624bdffd3b9ff512e33f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/native-world-continuous-merged-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "00b91813e29763aaf3a4b9de19bd70e6fceecc9599812ea199db9fa17000b064",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/native-world-continuous-performance-prior-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2d65f4a0ff1fa10f2616bc9d2b8048598758f97de90caa2783db09c9d2a691cf",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/native-world-continuous-prior-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0898ce79ecdef112a66fcf4f35e72c7c9516a56678e5a7fb798f0d4202644ff5",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/native-world-rolling-concurrent-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e3b98bd8e49a77b9179ded0d704232753f96dbae6ea0fe405f8bf88bf5d4624d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/native-world-rolling-live-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e15d4644a466bc0f819e4665c3493706c39c8a3c937c50fdd7a21f3adc14d362",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/native-world-rolling-postcommit-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "28f84a800a5830bfc7eef8a9afa515ae39990a3f61e96993c3f3bee411aa9b55",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "2aba109fa23495622bba572cf4f3c1c5bfcbedc6cc14709f57034e94b7d714b0",
+      "after_sha256": "5d4bafae285992a59a69632f6e20d74afe3f9f0918560dbd793f38544b3fb07c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-continuous-glyph-merge-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "09aa42daa8f0758ac657a3e237f762561903036df40af2bbdfc4b10c88a5615f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-continuous-merged-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "be770731ae057d11c8786e213c643e124563b3b5142350ad7868dde320a419ce",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-continuous-performance-checkpoint-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f9d0ee497109fc188cfca9e1a96b59819154c6aed753c727f957d1ad74c6fdd0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-gpu-ack-factory-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a6df331fec5c59e5e369d56dab78f92004451effef06b95b532458f7e5d7836a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-gpu-ownership-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "399680b423ce41c1b57a331fe108e4e2eb4d51d6e779a980f789eca08dc04224",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-cache-validity-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b62871b8666d18389c7234a43b8e4d4e7d153bd8bf815009b9e5317c9dbdd19b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-copy-address-wait-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "38372cffeccfea8285f8060830a6979aef55fcc07bd7bb5380c1d3118cdac613",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-copy-fair-wait-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "783aee5532b9289928365e00ac75776e1fe410f2c6e9cd6ca951f9f198eb3853",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-default-bound-stage-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "848b8e1b993ae65aa1f02759376ca6d8061da51e70115742aef3ed1f94708c45",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-draw-peer-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "726bde4c58b84c272ad02e0a0c47af208c7f7564e66b8f9525af979c5b812f90",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-draw-public-default-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a4a0b05f06d52469f08fdf80eb8a9709bcadc93223f7f795c8aab4e09fca11f7",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-draw-public-gameplay-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c3e634fe02ffb593cccec9101cf2f0f4636f428d34e12433879c58b27e8be4e2",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-draw-public-menu-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "795d8f45170ac30f122925f640a8b56297fc091f170db6a7eddf0e3982e392ac",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-draw-services-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b0f972c261657594ce83b2510ddf30c3f8afd433cba98becbdb0dadd2071f6cf",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-draw-startup-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9787db87dc9ccc18b6f4b3857c4242c3a6463290bfa3fdc6e5b6bf4c96592b5b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-draw-startup-bound-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8f79ae984290d82b5f182d803354087484fde52e35e66803580c04b9f2b7a1a2",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-draw-surfaces-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e2cb468d06dd76daba191691a1bd95336ac290a85445af8acf1772c7ff5d8fdc",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-fade-row-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "dd4f5fca1d4cedc041f4d7dcbf1afdf10d1233e1ef1730ebea58935cb48552f6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-fog-window-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b998dee8f74485eaf441a47da350ba8a799106e79f887afca79bd08f9fcad446",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-mapped-status-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "22f32cfc6ddb454895df054c561c2f01a79d8bcb0b789abf1f9556af869ab6d8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-master-archive-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "474fe83f289f371d631c943d0aba02d9f62b1eba41536e88ec14fdf7e179150c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-master-contract-correction-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f9c8c7fcb592f4a82f5b0022506cf8f51ca4980f8be0cda5c2e8836407f9dce7",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-master-final-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3ad45d5e852243e18c40123e6e41a9a91a06b7d1414aadc074d1c129569627d7",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-master-integration-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "21cee3dc92ad2487e48c95122e99265199b600f1e834a3210b5c9afe7ceb942e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-master-live-target-review-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a6339b9de7afe0ff47447c8dd6f29b0dea71ba41eb7f72a86d04d62355191b14",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-master-menu-admission-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a6339b9de7afe0ff47447c8dd6f29b0dea71ba41eb7f72a86d04d62355191b14",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-master-moving-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e0db6bb8919976eceea1558baac443ea92f7ade35ebda2d25c5247c613d9afd8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-master-rechecked-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b0bfef4c84514a4d092a8c6a19ccc1f744c1a97361d20dbd3a29c0fcdc46ea8d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-master-retreat-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "759894816d99689384b87f7158718113d8a600374ac71cabd3d1e9bb6218c2d0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-master-shutdown-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "71e40e82a17a40820d99040f20b8fc9cff5b90ba064af139e644929d99d4936f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-opengl-owned-startup-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e638a734214eb8ce9f01b2efb1c37be184a712af210e9f04765462f5223203e4",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-status-file-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ab73de1977150e9b9f1e9f3c6bf69aa26405a1fa9ac461ca7395fc97cca57189",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-native-status-final-proofs-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ab73de1977150e9b9f1e9f3c6bf69aa26405a1fa9ac461ca7395fc97cca57189",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-render-integration-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2fe98185b00b9f393b8befa09881a3b171770341daa8f2f01ac3b88399e2b8e8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-render-integration-final-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "27572d2e0b9ceb136837f4d6ea5908fc639d90ae6e0b3f7412f847ca21553277",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-world-continuous-probe-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "26cb188439725f95cb6df5b2564b5cc6686582bca6205b4b992a790c39bd2a94",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-world-rolling-live-final-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "fd744077579db2d2812387641ca02aacfd443a652f6981ac38ed7912dcf740a8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-cache-validity-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "c8a12f7e7a3f21e868481b1eb71a499d2e15a89dcba42a6211db4002aecea22a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-copy-address-wait-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "edb976631ddedbeef6cefed75553ee9afaaca49485b4cfcb3d86141f128ca02d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-copy-address-wait2-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "edb976631ddedbeef6cefed75553ee9afaaca49485b4cfcb3d86141f128ca02d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-copy-fair-wait-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "9bea991ca547acf0ac17506ab4c13cb8fab3aaadaf68b5fd41f212237b764812",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-default-bound-stage-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "e049469bcb292f908d126d4caf1714fc5c5f6aeb8e8dcd254245f8fdd38fe501",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-draw-peer-failure-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "5d98641a3c72f43e701dbe7946c5f9ff39043bc17c548aff2b470b6ae38393e2",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-draw-public-default-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "7ef112a1f4010434d28c9792617f039ab2f2c3ec2cf04341b8aad9c92bbdfdc6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-draw-public-gameplay-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "e8b5225436ea03ea41bb9503a18840fde85cdb2f8c3d6280d10a43b383275e7a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-draw-public-menu-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "68f7e1246dc6fd9713077116cdc241e1917453cab23c52004a8f75d8b48a7a4c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-draw-public-menu-bound-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "f768dd50f645b14d34ddafbc4163bd25a3e53f161ac11105e6082cd740ab3f27",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-draw-public-menu-current-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "68f7e1246dc6fd9713077116cdc241e1917453cab23c52004a8f75d8b48a7a4c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-draw-startup-bound-20261010.md",
+      "before_sha256": null,
+      "after_sha256": "e9ff7743ed8f41ef0819d67663d91deb230a04573f9d398b9b3063ff1ef345f5",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-draw-startup-final-20261010.md",
+      "before_sha256": null,
+      "after_sha256": "b81f952825f5cf58ccc09cfa83bff64b462ee3c5c1a7c850ac905ff975571d5b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-draw-startup-final-current-20261010.md",
+      "before_sha256": null,
+      "after_sha256": "ad1741fae4597e233fff67d9f84903870d17c944cf5cc8024a98de6814b18e07",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-fade-recovery-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "e678ed9ab592008829ff205a268b14a53f90e16cbd1510cdf12efdae9ff25465",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-fade-row-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "d204185ca22ecf78a587cfcc4ef167f9f6cb057151723be95155411a13784b61",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-fade-row-final-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "addb6b64cae4637ccf965f25279faa3dc9355aea68ef2d3f9bad872d9b97d2a9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-fade-row-final2-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "197906e42430c1ce0836188f90f2ad86f83ffb1eee7e62773c8083fa358dfbc0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-fade4096-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "8f001ce101ebe123217d0d17bb35bf9890e3f7f749ceede94ca0dfa6264b1030",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-fog-window-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "0c7d6717667fe21efefb877f66237973e769a8e39b59de337fb36d81789e2f99",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-mapped-final-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "f22f4420adf010a00e8739a821664cc8cec088e8e718fd8cd23c4f55236fddb4",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-mapped-status-full2-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "a28904b07d0c9fd441f072cd51e7222a10fcc9174ce7861e65736aa1e97edcff",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-mapped-status-pending-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "4ca1bc26a890489a510388cedb8ce706def354a4de04c7468be24fba9906c204",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-master-integration-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "f8dd5b335c395d801cfc3c1467f2787ffb105dd6c4d2c0b79d82d4b3329f0891",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-opengl-owned-startup-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "161d4c5d2d51d8f748d74a43d0e4f9bc261f6c3636e8adbefd6a326dd0f98cc4",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-opengl-owned-startup2-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "4236266d78799b213ee99779ac34285c72bb9c9b18e236ead5abb870899d2f7d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-status-file-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "922cff4050502e092881100475d2e6dbf2df3a79addf208d9ca653a2d0f51dc3",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-status-file-final-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "f02d95d8143c7aa56fc9988b549c5caa99a463d9af64c4a116e0fc65ca313b02",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary-native-status-final-proofs-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "86a231909d71ccddd64d40fd6294b20b9bd6841845947941fc8f0b04a4da507f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "14423838ebaf4e19a39a439b9eaee2d3391c9e13923d4dd04b6ae628d4b17e3a",
+      "after_sha256": "edebadf487a353c0a9e118bd2aa0418c3a43f7633c680af8761468727fb06c6a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/font-layout-gpu-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b132ac7b9a5f48aafd5cdd0d7984f9147455f32228b8e46ed92b6f049a89c1ad",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/font-layout-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bd1be3c6399733934f2f5e5677ea5f6140a5d4c9fcbc5c3fd386e14fc41d2a1c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/glyph-backend-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "08f88ebcec1fd793ac91c8f33c7b063ac0a3e83e7fbf5500a54d6cfc54489a50",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/glyph-live-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d6b369572401aa63dd6db7fcc8977d3affb7fc95a41164fea2b652c0117adf1a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-campaign-remaining-20261010.md",
+      "before_sha256": null,
+      "after_sha256": "c55c880f2432dd7dc5dbdbc97debb775e94adaabc996469a01ef3c9c3bddd533",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-campaign-remaining-artifacts-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8de7c6e53e001f6ed8e2af7a9f43b409161da84ab419cb621ec6340e32b9adf8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-campaign-remaining-flow.json",
+      "before_sha256": null,
+      "after_sha256": "3ee1774e3f28731a17831b19e2978cb842e1d98890997f7aa18deb78027d6e95",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-campaign-remaining-gameplay-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "dab201a68653a58ba20138be62d43ab8661068f5173b849316bf781ccfcd6006",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-campaign-remaining-input-0.json",
+      "before_sha256": null,
+      "after_sha256": "2d66d3db7cf30b4bb750498465d292adf7c61a8ac5bcbfa1be374d5941427536",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-copy-address-stage-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2c70e5a628873d6db38a7c70262ef9f02e1c37bf7f4099f43fc77d926d8be4b6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-copy-address-wait-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "cb814f8f6ef61c7f32835d62c578524f40b7c66240dcb0f3a80dec569c184c52",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-copy-address-wait-kernel32-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4f2ff1e639da4bd7dff4ef1ee1efbba21196d97bbce83986278cf13fc284f189",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-copy-address-wait-live-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "37c104807712d9fc20158a40e3c1aa22cf0f3ec0f4e5d4a8d9099bc06201d39e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-copy-contention-yield-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "71e9593e27229d51e658c3142986e6e72be432d2dad5814b7c6f987afb7cc8a6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-copy-status-stage-compiled-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "778b22eb8820ba09e7de04ce3aab8d73e375ba97f2046fab0a1075b46efa2fdd",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-copy-status-stage-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "964f333871188c35968069ee11de0b9f0300dcd4fdfdedad349b07223a85c85c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-busy-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a1308925be16a4ee247a1ca33a26cab19802504b33834d4f179c59778ead51e1",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-busy-control-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "6a0ba1c163943785de5ac08ed876db8f622adadb527dfa3acd61d49aa733d058",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-cache-cpu-cost-discovery-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c3ad71a9fc103a2a48076ea0a0ddf44af6628feee6df6723819f5002bf3f41aa",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-cache128-performance-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "da52da590c665445800fd68b25bdf513ca535309923ccb354b84c0da52a2f5ed",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-cache128-profile-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "fbd0b4eaf7a45f3ab6a3780ce9a70260c53b746864cf485e93b0f8a0af358399",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-cache4096-performance-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b8bb86022d4d795413b84ef22e4522c8eaefdc4fff5e4a418434971a43c21804",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-caller-mismatch-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b5cb69e56e863198ba71d4eaf7e27e23d83a411b6720dc4f36b410f9fead3e3e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-compile-control-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bdebad3e54f38cee721eae83e3b1e97e660838296aeae2631240a828635d3202",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-consumer-death-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1805abb0567aa25fbfeb467fa653235cc9296876d8fc07ddd36fed5e537f2602",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-cpu-cost-discovery-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "5186aa4cc1029fe6dcce4bf03546e645a93912a3443239bc440d138ea9441c8c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-device-surface-discovery-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "dd10c56306c4cfa5773d95dd347a9cc21288da9aac870069577ede372619bc87",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-device-surfaces.md",
+      "before_sha256": null,
+      "after_sha256": "73bcac3e6081a6d3a693e128ac0c20023e7a87231121fa96468cb09699e60104",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-dual-loader-import-pass-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "760391fe4def0c2ff504f62b431f1204d6680101e9c8674a4739302c17ff946c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-enumeration-discovery-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "5b14c1804eba30aae29349747bbd1e4ea2a9e1e80f30a55fe897b4fdc7e0019b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-enumeration-import-pass-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d29865507a793d63d7d74af14379790f1d6f9acf7c12ec64d15bb74c1dc0afe1",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-factory-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bb97925b5ac8d492c3f680c924d082c175bf9ff8bc50bea841b11dac2a68d287",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-factory-pass-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0b7d3c9ef59a5a947cdf9e6ff0be205276ccf4c50a00778c359875a125cefa0d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-factory-regression-busy-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2e18d7317e12e3adb69ce17abb9236c4b32230bb1a08d9fee9b3c34985af3fb7",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-final-4096-performance-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7a8b6f3acee0b24c544340a664b281f444c594321c5d94ad800260bf4639d2d6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-game-bound128-performance-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d3df40d6bcb1536c198c1d409e503f21b728454990e2081dd306a09e892f428c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-game-cpu-profile-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "15f6601b2f7bdd682f2cdeb0b0895d9fff9380e92d5868e62ff3ef84dbd5fdc6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-game-dual-loader-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "745859e0079d25e8f1cb4b3eca1ec42be4ff38ec208eb52e883a8513ece9f2ca",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-game-enumeration-assertion-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "3f9ef3c77dde0dca7ae6b1f58383b01b79fa7fff4ef1ef55e68b81e1a50eee1c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-game-enumeration-loader-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1c3b0ed524493fb6a841f8e9ee7109c678ea1cfcb9112ff2d9ae95d33bb37a4c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-game-final128-performance-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "97298c786016f3cc5dda7e926a58a310b4b37db2f81543be585eb09d687414fb",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-game-full-name-loader-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d03347d67dafafaf1413c02e1e48f6bbe8be44374ebf723d4e16436a855dd35b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-game-loader-control-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "300d0dca117fbd4af542c69bf5656ae4c97f81544d6f1c69098264419a26e857",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-game-resident128-performance-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "99cd48a532eda14b1429bcea05aff7634955bdf445c6d8a1af4c97439e719132",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-import-discovery-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a0b68227f4c20866c5d747b35284c9e855073976727de8b12068ab27b9a4ac1e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-import-pass-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d2ce71dcdb70f0b15cdff494b8d5d5e7247809e0ac6b26091112251f779311a6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-loader-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ef27902b142bae8925512d457a8793d47c00101cfe1304ed441b77b2dbb53789",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-mapped-status-consumer-death-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "58a93079dabe78b9159e757fa33a46b794dcb29a43ad5d0f798d87cc2ed2d5f6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-mapped-status-final-artifacts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "caba330416996fd178643ab58556787f844fab3773945bfbb58f453e5120fa8e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-mapped-status-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "44580e847acbdf3d7b8fb2a1be35ea9bdf9d80a9fe9d3401afb7d63797ef2f8c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-mapped-status-full-nvidia-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "669de3f8211c6c3d2f12fc57af66c0369f8a26ab036691ce2c4e01bacd7fb6b0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-mapped-status-producer-death-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1961470e2ba82cc04cf2c3cdb84eb9c84bfb67e018c6eec565c28d3518d46d7c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-mapped-status-recovery128-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e71612c12632e52e5fe743daeaca81a7be56b35525b259d41253148c8e64ed06",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-mapped-status-services-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1e4492f74833d9070509a06186cfdff800e02847117486678d1d3a0f3b02cc47",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-mapped-status-world4096-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b3bed06aba11f3a9a6bde9abe370f7eecbfe9e532b2d162b16dd89e7e378fa22",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-null-output-fault-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ed77030d00dd91b6905a869fc51f9ed4eb17dd33a62ce6f7f4caead135e853ea",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-positive-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "4e008137450192bbc765b1035e51bbed10872e86ca54b0ab3ffccbd526dad8e0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-producer-death-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1bca04769244b35dfc95a2c45db710f1e4cdf1286a57fefd5ccfb558a0f27159",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-default-basic-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1cb1609f2b65dbe3ca6f81550b45899de72ae821038e703f746694f9eb5a4f3f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-default-contention-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a98826a33a07ebba8abd04d52e0212f18172c2cbb3adcf4fcebebc543bb3b07c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-default-full-bound-nvidia-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a1521e0c6a3675c3855391a1428f56e517581685a082056915dca0f4a6dbb663",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-default-full-nvidia-artifacts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0543d70c787b16a3c789ff72463a48b0738ca3ef5714a216cc007333103e833e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-default-full-nvidia-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "599adedde6b198db4d93efb797e38bd44fa80c7595b0ff50f720ad49afc45f13",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-default-gameplay-defeat-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b83c1c28c9ab1dad71822d1a544a343582599989e9398cf92da0daab229040ef",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-default-repeated-contention-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6b0ca51c62cf8adf06e65c51923534c2824d873c6a52fc2f05e5b6a02543758e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-gameplay-artifacts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "98e372b6c6d0fe121e5f27bb6aecea89577801a2be18a23c913e08a949172322",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-gameplay-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2e83da821eaa6c836605360b723310ca4d5c9b921adc077362d9a679a36f2b36",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-hardware-legacy-control-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4281cdad6eb784fa1ba79e84f28971e1193d9bcfddcabeaa8c5ab8fe1dd20d96",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-hardware-negative-artifacts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "fefaf60f3ffdb1c3b4da744a898ee905a786481eb63979002db1ae4b985a5447",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-hardware-ordering-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4676878955cd0ba558bb860e7a0365f5ddd089f1d78704d933b3dd5ac0588ea6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-hardware-summon-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "95a856c8cc4c0a2a63f5165d0b6dc06cc43d9fbbdb9ce466516a323e07b7f768",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-lock-holder-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "bd73834bfc0fcdb5aee339a177e26eca694cab58714c3e21ce34ce1b1ebe94c8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-lock-stage-full-nvidia-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "fff41c85a1a36089f1d808b6e9d34a9ef738bc4e5d51c317dc92641cf7ff072c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-lock-stage-repeated-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "22d876ca13c1db5910c7bd9802bc4fb33ba06c42e4b694b2be0898ba83772dca",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-menu-bound-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ee572b332a2b6d1c841a66932d99bb43540afc9fa45fb934a27f146344adf082",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-menu-builder-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c463b7409ebf26cbc07d04d08a0a25ce4f9f0af14286f58e764e5510481d6f34",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-menu-campaign-prototype-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2af86842abd79a688d9ad1075e8b7fa2a8b76dfa2e1f27551911c9d8abd19f63",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-menu-compiler-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "66221d9b18de709ca3a88c5d4222bc6f24439452833fae4644eb5c5ea06bd305",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-nvidia-gameplay-artifacts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "d5c6eac8570792b9f1c8be47f200dacafad89986628b63463eac30eeca0ba163",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-nvidia-gameplay-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "18a00ffe63e17767d3954dada465003c8a7d4081ba986ff5827b26bc1029847a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-status-close-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5f5395fc05a3cf00c6c7249882a16d6d7035dc767149c4af20935c5ac976d092",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-status-file-full-nvidia-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "51fe3eb357150bf2510268c337ac0516c9dd62a3fcfa1fba1c22b0826b8c6e4d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-status-file-repeat-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a51824ab61933c6154593ca16bc8f660876e7f5e02d3255a33639622196562e5",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-public-status-write-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "61c83c49f84a4eb56b7915b262b50f907830fd88c02d860325259e790f13d5d9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-recovery128-performance-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "cdbf5cf8d110bd2735fc8f0c8b9b5ddc914336d47b46afd28b6c4d5b0945dd73",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-recovery4096-performance-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "79d18a04df4167e49f3861df15f681620a875065ae75900168fe0335e182bbf5",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-services-20261010.md",
+      "before_sha256": null,
+      "after_sha256": "fe5463cc78a7e4eb4c5b1b422da29eaf3fe3c3da5116774ce65953bb8a08da79",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-services-factory-busy-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c788d401aa9e8fbe9e39527499721c44a02063406564e34921fa8f6098a5c997",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-services-factory-pass-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "289b247f396f857492531800e3558be7e6cdf8171d33b0dd60a0042603b9a2c3",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-services-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c0bfce403cbcbde99ee20382e9ea5ed2cfe411bca1a610f0501582c83965661a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-services-link-control-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b7961a8b7fb23ab72e1d7d494629a0028cf1d1af04f191f1c9e377ec8765f56a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-services-pass-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "6c70bbaf1aedd32aac3b91d830d1b12396c6d8faccdf9326b204a28afc135b8c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-services-surfaces-busy-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ea911ed78687f1df5b2c8f6b928a9de7860d67c466d4e2cc5c220c120b400baa",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-services-surfaces-pass-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "865d34074f076c330214d7a2a91c302a4216d4d1fe1fb24f4c2ab66b4b1cac82",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-startup-check-discovery-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "4ec33ef3e3419dc14cc1e76c8b96088e5a15d2361be80368e1db7d13c9ff1922",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-startup-factory-current-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e819346ba27e67163ccd14d15db257543f2bee9a0cda2756c311a5be83e9745d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-startup-services-busy-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "48e16692c5024bf1d8139d990ffc4df373789ae8488cd90a6a7e8a86012589b4",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-startup-services-current-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a1185420b0239713e5fb09604e1721c8f80c7c5105741bf68bf08a513859736c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-startup-services-pass-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "cde1626b738ff5a6c4141d377dd977806682f41e897df84a474e91849f671cd1",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-startup-surfaces-current-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "61847ab3082fecfe0bac63d6f620502bee49a3eb0f80608f8589ba660149cd43",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-status-artifacts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "280c352eb13bd40d2172360f41c907c8f0e525c8091835362282bb1482405dd0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-status-consumer-death-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1a1c57c9ad0bb158e361a1e0f163197d9e3658b1a831f95e706cf768101275a4",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-status-final-artifacts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b3af7ec8e434f2a9e3a766fbf6d9e471c8fe4dc7f4e94e43f659ad5ee88a4657",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-status-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "20c5f5e44b881a3ef4afc06a12579c6f3cf40ecf4048819e0a84bde0235d4ffc",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-status-producer-death-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e71d69e278cb0f07731902755f50bedc7903d4b40f2cfd642770977e82850bc9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-status-recovery128-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6dbb9514df5f654309d081e12fe41d72b56bb1f90742efc524b98fce9231e00c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-status-services-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "8a7142547742f8d716e11e1f9b22ca4240cd9004b352fd6f7b33c7b9097ca3a3",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-status-world4096-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "8d526d7449162c29296d70781e692477878428a11f5f3b626846f4723ca1a0a0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-surface-caller-mismatch-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f3a63ed028590d0d52fdeaab3519850ce0320f890ea01418c8bd86a90aa5a0af",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-surface-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "25fd7ecdb248880d5d70437649f37f889949a4ed01ce0e076b936d970aebc27b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-draw-surfaces-pass-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ebd40d2ee9a255b8f33947b473a1949468a6d676792934f54e3cb631935aa2ef",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-enabled-movie-gpu-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "321b1551d92c5bc16441f606cc1bbe127aadb2c25bc4e98cbf440da4516019c0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-fade-row-consumer-death-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "8269eea34a27013fe2ef70ee80e0afc41941916a1985062c23641859836d0144",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-fade-row-producer-death-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0ba7fb74d1526fe5ea0d24fdd1a3a3e2ecbe3d0fcba84cf56cae56f7198feab8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-fade-row-recovery128-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "76c178567b43cfb82b56d86c6094e8be5daae35a43766d54b38e5442d321f2dd",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-fade-row-world128-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7015cc8dd0b9d6c6eeede2b4a5ca6c10e59d4a8dc7cf54b2cccadf413afa88d1",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-fade-row-world4096-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "78c8b03b9ea041d8171ae2cb69d0d0301c152584e6ec8fa8bcca3d499ca683c4",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-fog-window-128-cold-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7cec93670144ba520d2cdc7136cc0b57750da0e7c555f5a76bc5f86b360e9be9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-fog-window-4096-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "25690af7a3b46ff59f0b59f3681459a181824bbc6e1bcd84c6ed641eece257e4",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-fog-window-artifacts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5f8ee564e548c4f8ff2f928700d9ff3b3e63125a43eb18347ac3c4f2ae243155",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-fog-window-consumer-death-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "d396072fa1e2e9bfd209dbb99513949bbae62664e19c99a25456abe4c9d99d63",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-ack-batched-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "30eaef4037a139455a0d54d6f67a5fbb6eb13514574d3f9a8a34e11471161c35",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-ack-consumer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "723ed2e81ec4cbc83ce4c0a0d0ffb5d50a299293575c5c5e9e915a1c58a175db",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-ack-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2a7446029d3d64c5cccf63dce42dbdd04ed896c8033b9b7338d6b5ab60c1a4f8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-ack-launch-control-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0c38a0365aa4a66c431a23c08125b7a518ede2d046fa5b0d7dec0b83a25dc6e1",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-ack-masked-128-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "52de3d0c93d83a4b720bf72836b06ca9952971083b9212efd67c65746008fb46",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-ack-masked-4096-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "94985747e81a4b88d5f242a7682fcefd084699cba0aca92fa2b837eb05544f63",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-ack-producer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2196ec9bea5de30360b398eab8b042a3513a8550df8b855324aa956d656fa673",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-ack-recovery-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e08c9ee1d21deb321e79a5526e3c96b02bc2599f3fcd4a0c5085341eb8ef04b2",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-ack-unbatched-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "5dffb662cf36cd8e1436cfb02fa0fda6b04de773b5f0882e0e2f18c20437b39c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-ack-undeclared-control-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "fba9f4c412ca43e2a9129eaecf9722205a98b1d7e8015ce7e7aa03c0f9d17031",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-cache-closure-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a24e28314c873915a58d1542c8394e4077c3517641c0985ea9866c824cc59db6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-cache-dependency-label-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "cae3b6631e5e8c30796acba4fa51f84d662560c4fe2a3945dd9f3dc70e2a86fa",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-cache-history-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "25e22fb2c2873604ac28741c47b512bca77b756e1af5d9def96de3e65015a2c3",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-cache-target-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0a3791a5d4e0a2b8acb87204b50426583e1545dec7c0da5c65536f7d3c49b905",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-cache-validity-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0abb0facbb6f3a88add07d74b6c88e9680cf87447af44371432e63559f431525",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-frame-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ce76ebd995e819fbacb1b632c228b391ea54073c50127d86f1bb9f534d399246",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-frame-masked-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8c614af52f3e4666e583b9d79784549274b3c4676073c365a7a16be90b319f79",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-gpu-frame-ownership.md",
+      "before_sha256": null,
+      "after_sha256": "5199bf80c9c9f483bd1fc34d02b1e9ee6ec60cbdaa5dc57601a6b027b21cdccb",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-artifact-index-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1ef0ee2627efb2868ba24f264d1f59e3301a1819fa41168502ddd6ae9e462920",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-atlas-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a33c76ef64ef5c06c7c0b0308da5c28b16fab3316c2b7116f28fedbc1d40189a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-current-consumer-death-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7378b699bc1e3adcaf9d3f484108e3701525a5c34d5875786f791deedaa36fa6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-current-producer-death-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4bb8ee415779310a460664c5c7bd9ea2bf92ca2fa64b8a387a7be5a8e42f15b8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-current-public-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "679c968097c6a72255a7b1777248c8ee3e4ff2f24575033fd488ea085e526abe",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-current-readonly-timings-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b8414f1cfac9be687be6bf9e4da1ab5b1559b232a2ac6458ad05f0614b30dbc9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-current-recovery128-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "13cee9bf8ebae069e8b6a2cd3d027904f5d31612ceef6b667387cec67daf370b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-current-standalone-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ffed6c7a27dbf6f08d94c9e439670284f36180c52de8344c24843b6a9d5302ff",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-current-world4096-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "29c155811e8511b1dcc4c0ff4ed9e6272fd8906ff5bb8cd6cc28d36bb3562571",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-drawing-canonical-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a5c7e42e8d696656b25825fd09018f15c5fc0cb56f2726d2880746fca89ab350",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-drawing-session-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "48e10b4e6472d44b8a642f90dd9c9ef25661e6449b8e64a4836490b198d8dfc3",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-fade-dependency-refusal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "77ed8775a406d7821d787b9e7456ba80a79eaae769bbef6c020b66264484a038",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-fade-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1dc7505974a5f860bb6d411efa0533a76ed7364b9e68075c68dd56f7bf6b9bbe",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-gpu-history-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "45fe28e31985841a793a5b8e16f94572808320c07f1e32e5ef1bea1e510b334b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-latest-master-public-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ee8556a3cb917922c13417b4ce5e1b7f943d3172955d8193eb5af71c84803dc4",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-latest-master-standalone-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4f47ba3261e1822b352efc0b254ae7b5cf163f79dea38aa29171751138b87c75",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-launch-setup-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "08159c0cf7cc305807e18efd1314bd089a7672097236253ef9808a01f2446268",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-prepared-build-missing-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3f98edd34e6f1a9971b9eb4b2a6a250b6a8d7cc095208bb73e1411b0213a824b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-public-cleanup-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9e81f96ee652b7d294e44acbaddcc9a63212b3e8ab4c2cb7ec8d7c634fb69fe8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-public-defeat-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1ed2c0a126b29835d5757984bfd6024ac3cfc3b10371ecb477ea446efa241798",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-public-retreat-defeat-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "93440d31fbb04c2c970e4363446a33ba3d682c168d55051e150256fbf5a67dce",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-public-unlock-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5ad1400520c68df6c22e0d1443c418d395c00c39db67ef58f9d0efe25a84b8d9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-readonly-timings-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ce31f1ac25f6dea8dfbcf6b1c3db730a657b9efe82d1aa6adb284eb95c010689",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-rolling-delivery-latency-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5eeaf3018acbcab9327b63b3463ae8581d30e94e9cfbc8b9cbf7b9999b160cd9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-rolling-file-sequence-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c6438e33e75f7eb86605729cb10f11cd48a3b66053fca09d8eff10bedff92a4a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-rolling-hardware-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c849f46c3b875954678b6fabe02d634287b4bc9853351a45a35589295d5bacf7",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-rolling-independent-latency-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "72c92b726a36f5f548f28bcd71f6b0225f6ded92b65f550e3ada7248dee7f475",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-rolling-live-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6b9a4b852339e429fc4da81208f3e6603dc45b3e0e5207a8443c05b8e92d7a4a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-rolling-original-native-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1ff3d6fcdbb0eb223a2b852a7e47a1bbc97141eaa9e127b9e131b513ac5265df",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-rolling-original-original-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1ff3d6fcdbb0eb223a2b852a7e47a1bbc97141eaa9e127b9e131b513ac5265df",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-standalone-build-refusal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5d9ddbb4a25f29706c8c5f96f03303e6a639173d0b8b9377f9a0ada84976029b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-world-wait-profile-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1db39957197149eed843476ff2556588281e5f60ca79eaee0890d55151d51bf6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-world4096-latency-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "00c2a604e954a91ac19eb165a0227c5d024577d30f55338989512ad837a24b7e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-world4096-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7eebcd94637c32e77c7c256f1b0894f86cd20e9efcb41844fcc6c903ae2807b0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-master-integration-world4096-separate-latency-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3900b3efd9f7db05aebb625b32792d81bbb901fe9688ce4226682a9aaf12068b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-movie-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "6ea273437d846eccd798a7f6b0ed953c6451f71baeb8cee676611b52669d11ff",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-opengl-mapped-status-startup-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "57b48b3bd48bec5b890097d05d6b9fbf59a745aa9f8a65eb1c5b8a7a3fca967b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-opengl-owned-startup-artifacts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "59b3f78812ce225c7c23bf3148fdb0cfc949df50587b49a3a67c1d817c6db3f2",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-opengl-owned-startup-closure-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ca18893e3d69f593bde3cab7d157cadbffcd7051f6093fdbf0debe2eaee0ccec",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-opengl-owned-startup-declaration-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "917f0659cc005d3e3f033582a1c66131b2a8350ccb7eda90b3e2593251f6519d",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-opengl-owned-startup-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6742f7168c5e50f00d22e383ec4ff15d881b35e9bb436b3e48e5a7d322ae027c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-opengl-owned-startup-protocol-closure-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2fe7d52fab7cc72850f7f0ae6d9d812f93c1f3510c85d46aaa6c020a890ea940",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-opengl-owned-startup-timing-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "027aae749b138d92f2fbfde98052211b886c4d208beccd567e360ca39b4d9311",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-opengl-status-startup-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "cbf5b0565987b2e247bac92410ba242b86b53e88ed005cc0f5787c20e8d3e465",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-render-integration-complete-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d23bbbbd80cd71d16bfd05eb6a5d4c080e747b4c03af8abc1b338f1962ef0aee",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-render-integration-consumer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "575112146f3b0ef17c17811491eecc2627d8dbc0fded30be6ca5395d577f89b9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-render-integration-experiments-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "da5095b8f2ce00fdb3e2f8ce59d2f1dec0f0d0da624f8d8fab27bfc37f378411",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-render-integration-failure-latency-before-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ead52fed9731091e126db206fcb35fb9f7d1568d1b16217f6b5a53500dc39de4",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-render-integration-failure-recovery-latency-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "dd9c84d79676d0dc01871273ff97115bb7a83e607b638fe9286e9585ee5ba1ad",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-render-integration-failure-startup-timeout-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bbdc1cf1e5b6a567c5ede9b84ceb9cd59cae730c328ca58683821d219b609478",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-render-integration-hardware-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "3193d08b170c6cc0d4e860e83deeff5ecadef89edc748320b12487c79a45f44e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-render-integration-original-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "47a2d2fcd786991066f85761e9aa42c48b3ef2bfa5354f81149f2f77207c3ec1",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-render-integration-postfault-recovery-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d01529367799b9a8b314fada789be611fe49afcfa86ac00d7f38f1fcda6a6f24",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-render-integration-producer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7f9811ff60f3931e7b7cd5e2c274c262bc151fad386850b35281e0c6f28a3ac9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-canonical-cold-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2c1b3aeabd5c24f36e02c670526ef82bfb1ef4e8b95f3a4af6afb05702548c94",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-cold-fade-profile-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b5c1ed8b35b1ca462d3cf4159ad9ff79e4af3a9362d3076d79552ed0b86e585b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-continuous-64-probe-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b6033bf3bdf133136b5048eb7f642be042bd0992814d69c4ab385c2a5b9a7481",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-continuous-experiments-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "243b1dcba5808590f16081fad8e351aa9b85c1f1de1b395dac6679f140d645d6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-continuous-ordering-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "19b1eced28390c5e2c81f6fc448ef3f18a96271e7598ae4b3879966b6cafb515",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-continuous-performance-experiments-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "6dc321ceee0b37bfb0578ba62a0187f183192f8a8f7c54b5c0dc1abaff6c67b6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-continuous-profile-failure128-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9283da2665689500a814927ecec0d36c64a79585ec1c47a012360933fdcc2370",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-continuous.md",
+      "before_sha256": null,
+      "after_sha256": "b53e9888ab4d090f75290b28bfb52fe946fddcd6b1448e49af1de15c5b12e012",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-rolling-hardware-nvidia-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7cc8cc62dbd807315de6e73b0ecebc6505e7f4c6b423f87f1d97d461c16ce957",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-rolling-hardware.md",
+      "before_sha256": null,
+      "after_sha256": "eff0ddb71b26c07135fc1d5cd22ef013977a5df00d27c5c21240674e18667568",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-rolling-live-consumer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "daed618568edbb0c81d711e223749b5c58da2f54a2e0e50b73766367f2d94855",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-rolling-live-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "effaee055fedb597be7b768e58d5aba81ea44da11b80e7136a0b578b82179150",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-rolling-live-prepared-build-review-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9a270e5bf80766724f00c5afb748bac4ba7d4e7bb40e7b2ffef1d17ffaf7117b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-rolling-live-producer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7f3e2bcbb9658663be5933891a31476e0538c846a455ea49d28657969b23564c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-rolling-live-recovery-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "65a6e5c7e9329db3548549fd5ef9671b54d10ee37c84919665484cce9038a27a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-rolling-live.md",
+      "before_sha256": null,
+      "after_sha256": "488fcd54913cfef9fced0e7b2b7545e48dd6b4cc2a2fabfeb5e5a8b6e7308aaf",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/native-world-rolling-original-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f6d79ed93cc14a04002a4b76068377d2835eba643bcf7a2b0c64943a3ffcca2b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/opengl-copy-order.md",
+      "before_sha256": "37f1e422b609e8bdc2d55cdadc69b5fb6693def8c17137d863eb37e8b2d45183",
+      "after_sha256": "12cdf7b9f66f58d566c11e25b58a0a3de6748293547cd1ba6bd33bb571a86dec",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/menu/drawing_action.h",
+      "before_sha256": "cc67d2feaca4edfc6109d6a7af7b717564a3cb9120949d1f8045ec6e9b491936",
+      "after_sha256": "9d75c9ac70f01cb2a90d8b25897e134681c0e0f7c9a34b7563bcd36f9375d5c5",
+      "matching_review": "DRAW02.api-session-forwarding-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/native-draw/clipper.h",
+      "before_sha256": null,
+      "after_sha256": "06476f3c4945f29e54299606956b1d68d4aca82395f8aa8463c62df608cf2e54",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/native-draw/dc.h",
+      "before_sha256": null,
+      "after_sha256": "f787f9aeefa00ecb72df8e746126170bd6dd931f99b3df55fe3689830bf0a6aa",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/native-draw/factory.c",
+      "before_sha256": null,
+      "after_sha256": "66308a0b534d06151e3aff73433916a44e47f2580f74bff68de7079d62953079",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/native-draw/refusal.h",
+      "before_sha256": null,
+      "after_sha256": "d0b443d5357d19822c368a3a4e1de7b5b74566a12dd51ef611516f6ce5a9ebed",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/native-draw/status.h",
+      "before_sha256": null,
+      "after_sha256": "0b02ccf127b1193c368b2d80a765ff8cbf2d85c2ed7bb2dcd97120d118df60bc",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/native-draw/surfaces.h",
+      "before_sha256": null,
+      "after_sha256": "8e94ff1ad7c782a3cd22b729d5db037569dd6a48ce7b3df39ccc6c7ffdebba8a",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/render/bridge.c",
+      "before_sha256": "25a75ceeb2014b028f340c5cb32223e6a5fb27102636452d8cb7aaea42093080",
+      "after_sha256": "c0fcaf42547e0ff181737e04ba74f92f1c02460af93290ba506c1b15daffe398",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/render/copy_order.h",
+      "before_sha256": "7fce0c71de373f4496fceb4e50185a3061be8a91377c2a7dabb287b0ce7d6ebf",
+      "after_sha256": "cb474a8e41c9e2f3f0938e508cacd38f09fb864c6f294e67d29dfe5884b4d3cf",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/render/lock_lifecycle.h",
+      "before_sha256": "eb1c2aa105c5d5a2b54f15e028122272acc24e190f076645f352be37708468d1",
+      "after_sha256": "ba0d4a042c424b184ada4be6ea00aa2812b0cd7d585f6633100b1987da355c39",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/render/lock_surfaces.h",
+      "before_sha256": "bf66750b14827bab3cfa2b4aaf10ef082a6253843b16e9ecc55ef4af5c23dc06",
+      "after_sha256": "87c7a2b50a78f4f4dd479ec88e8ed629c069e3f174081f224e3a9b6fd35e2cd3",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/scene/canvas_producers.c",
+      "before_sha256": "134ea1f148a18cb6298d7566b8834057a6b7614de2c2ab5195a86ef019f9d810",
+      "after_sha256": "b5db40aa8cef73e8d0ad859698bcf8797018071191400e36b040a85b68fd646f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/scene/observer.c",
+      "before_sha256": "63b70695b7ecd53ec17322dbc949ae571ee1b153c9b22b523c1ddab6c6489071",
+      "after_sha256": "7b3296b356244f9baa3a48e0fc62805fcacfc9186e409c82bdd8401606163ea9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/scene/readable_extent.h",
+      "before_sha256": null,
+      "after_sha256": "656136c3ecacfa9389a9d9fe5dfbff372c93e91792d51446e01633ac35ae53ff",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/scene/world_continuous.c",
+      "before_sha256": null,
+      "after_sha256": "c632ab978072a50e40ce1e3cce279d301436a0937638baadf4c3f6a787ad8b2c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/scene/world_continuous_clock.c",
+      "before_sha256": null,
+      "after_sha256": "8828954a4345f537360f7c6857e39d8667bcccf6ac119875e55046d6bf86169f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "runtime/scene/world_raster_batch.c",
+      "before_sha256": "e53cf0826f8452525b0a1d53437ec2b95eb640dca93fa1cdaf11f270b709e7f5",
+      "after_sha256": "494263b8e477ea6944090e5efb45f6c364765f69d60af12dbd81496e1d6425f5",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/canvas-fade-test.cpp",
+      "before_sha256": "ca43ace6551d589dbae41584ccc8a56d869caf0ca576a15eca79bc10dc2a7f44",
+      "after_sha256": "0e3f6582f2f4c2828de0d99534d2c8627add15fe1110cade350b44196caee9ee",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/canvas-sequence-test.cpp",
+      "before_sha256": "2f6210e7d0eb669cb12a15ff4359b70cfe6ce3a7d75d8877d5950f5db915eb81",
+      "after_sha256": "e3e3edf9b2e4de5d0e6e78ddad4840195544488d37a7f4953b7dd74fc70b1d99",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/live-render-route-probe.cpp",
+      "before_sha256": "f080770532109613ff30e00877213e73531bb85342512b9c89c7e548c9b7deba",
+      "after_sha256": "9730b37007658ab8be867498b12c0e1cd0a5d6710f7adf26bbc3ab9662335c12",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/native-campaign-smoke.md",
+      "before_sha256": "716fec6a2f3757b3be919245141160cb7e5480e968e12c08dc6d11df357527a0",
+      "after_sha256": "2726eeeb90e16a0e5c3d8f075a877290e26b71aa3a2073b1b12e776fb5a8161b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/native-draw-factory-probe.c",
+      "before_sha256": null,
+      "after_sha256": "a72f99503b4362a223e841db396a96bc120c65ef7469b0dea4df884b352c8809",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/native-draw-services-probe.c",
+      "before_sha256": null,
+      "after_sha256": "e7e3afa4355d9a0cb14bf5eb449e179ac929f1008d91cf17814d061072191273",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/native-draw-status-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "ccbef95fca6ee762ad3c87fe3e6e3933cc90ab41831ebc054a1ca08f22cbf925",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/native-draw-surface-probe.c",
+      "before_sha256": null,
+      "after_sha256": "1d3c5fc0340621b17c2d10ce8ce686c544ed536a3f44fdfa6c225d4f5854eee6",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/sprite-atlas-test.cpp",
+      "before_sha256": "b4deb545a6cc3a93e1d9a14ce1ce35bc20225f2d1fea344b584cb4a358d840fc",
+      "after_sha256": "eee8a9c192cea83a4491b6d2bc5508b35789227fa79f3d4123f5da4689e8e565",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/world-continuous-channel-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "235ddd20f07987c77b745c935beb7d9948d39827982a0dec1b81f14281d9a8b5",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/world-continuous-hash-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "96c840681e43d2a10f452b8215eef1893ea558151126113f70168027b75ce532",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/world-continuous-memory-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "771ae69e0e09003ae1141e0356e617acf243b0c592c4d183766400d08665b631",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/world-continuous-normal-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "eadf25bd7802b160dae3ebf97c7440099bc2cbefbc0156d2adc6297fe1d76ce0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/world-gpu-ack-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "ba0dcd7033569dbf16dec108b58251251c073f1e59973774229c1b1806ee170e",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/world-gpu-resident-replay.cpp",
+      "before_sha256": null,
+      "after_sha256": "9ada451e4b7d753818f8e4009994de5d85137c19b936c58fcd6f9404dc4562e0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/world-gpu-resident-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "60b07d8772c2e908162b268936f140c86a5df85134a3118308d9b1c8a9756031",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/world-rolling-handoff-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "0a0e4a322d4335b801a9eed650d5c15343cff211d6b56bcd18689acd22de9a61",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/build-native-draw.py",
+      "before_sha256": null,
+      "after_sha256": "5791d97ffa126a832fd6d73b2a873cbaaa2153c922f8ac7fc4b118a657042149",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/build-render-bridge.py",
+      "before_sha256": "3873455feffcf93af8a253f20de21f75a183068da6128bf58fb4c27577b5510c",
+      "after_sha256": "97fccd98352581ae7023878adbbdbc9f46cb6d7c1cf7d0781d7a5df56c170544",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/build-scene-observer.py",
+      "before_sha256": "c1bc0f5c4783553f65343bfcceccff5da5ed729ffcfe993448e9c142660cae49",
+      "after_sha256": "23317bc4a8917df28ccc9d72ccb210b1bb2cb63ff1018846f62ade57a4ecc055",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/campaign-combat-input.py",
+      "before_sha256": "d1baf39691685b70057de606f4e6a11862360fa7e09d5e1b227027d6bbda820e",
+      "after_sha256": "8a97f6f41199bd796441fcd330b91c8180e709f0e50d0c82195e72088d117b32",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/campaign-gameplay-input.py",
+      "before_sha256": "686962987c366321b45622d4363a9a8873845764a81731b86fc1fbd5d4805ced",
+      "after_sha256": "5f894d2a6dda5c284736862bbb8a56d002651b336a607feb9fbd73a85564a6c8",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/capture-scene-game.py",
+      "before_sha256": "ccf6b3aa69666c438e993b6dd083e40e6dc275118d54c2b8fa988341d5a093e8",
+      "after_sha256": "0343610b38e3ead7228a54aa2d5b6bab981d226b9072c89a1a233ea539ac7c78",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/menu-game-runner.py",
+      "before_sha256": "ca338b36ca0c7d66bc7b4c11beff19b44b997e4f6c3578f76c2aedc51e58a149",
+      "after_sha256": "c18c045d316bd0d53be280cd8e3bf5546ddbe6376fc76699e9a9de3d4364e6be",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "cc78c6dee2f89c8afe65155eabaa525c9832bc2f2c1bf9ddf7b4674223c11d42",
+      "after_sha256": "c831ab576e2d4c4bade3e59ea69edf665ce0467d60335f27ae7787ec7e000680",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/prepare-native-draw.py",
+      "before_sha256": null,
+      "after_sha256": "ca0c49e7004717db1809d5ba44542a22dd5f526524e5aea084d38ad91ef0d28f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/prepare-scene-observer.py",
+      "before_sha256": "fb28af7a20f861ff91f18bd4ece59365af607b3a33c7a41c03d67133743c6184",
+      "after_sha256": "e2dc2bb2f2becb37d9c3d813a066a16fae193f88e89bf3eaf30f2083e2577216",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/render-game-runner.py",
+      "before_sha256": "47c99bd2226be7c54480093b87ba95595a99c2ccce81fa8b4f3f68c329083903",
+      "after_sha256": "58f02bc3164d0a704d0356933de977e533f8e1fcbb9fb2934d8439661de036cc",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/run-opengl-game.py",
+      "before_sha256": "1f93ba28de3b5bd062ab256ffb8ce6fb99d4c1814f986d8cbbb533799135548c",
+      "after_sha256": "96de833109de91a2c910873170566f0d4600a9af51c806050d38112940146b10",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/scene-game-runner.py",
+      "before_sha256": "b3cf334c6dc3eda7cd53d150f1bb6c7d4a4cb8b1bb994ebda36f1363d5d1d019",
+      "after_sha256": "7a553bc26e633e3bf8e01b1487f159ef0474f5e79faa7aa936a77e7548be624b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-canvas-fade-span.py",
+      "before_sha256": "093fc11cac38b31fc344e37c6b9fe81faa3bc0e5988b6ee670afd944349bd21c",
+      "after_sha256": "f2c13f21a38a6c3e8f711a58005affbc9a57b89c0dd146a8c204772813bdfc27",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-glyph-live.py",
+      "before_sha256": "ad3f2dbb724c615f414c3996afc76517ce7ae5dc15c3fcc0e31371895bd036fe",
+      "after_sha256": "0fcb3217f276fee969f384d42ca0f6e67bd1f3c5b3f6a5daf189fbd8aa998187",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "1584dc07f5c946eefd8f808f0d1b30c00ef91d4ed1d6a471aca1bbb0e455f91d",
+      "after_sha256": "2f97c9a31d7eb8e4869120fabab9dd406161c94e2aa96f437e9f9f21ce2ba07f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-draw-factory.py",
+      "before_sha256": null,
+      "after_sha256": "affa255d1c34133623853c3691939b1667dc7638d6feddba4e89f9412f6773a9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-draw-import.py",
+      "before_sha256": null,
+      "after_sha256": "895f224027d727e4d4a930bcd269f840158a5c84bb38d362744311bf544f18f9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-draw-services.py",
+      "before_sha256": null,
+      "after_sha256": "2746692a9e2d8ac4a3d388ee0cfe410bc56bfd7902b8d10317e0ad8c1dc91d1f",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-draw-status.py",
+      "before_sha256": null,
+      "after_sha256": "59fe338e0ed0b096507609e4b8cabd129774e09e5b8895c5673c3464d34196d0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-draw-surfaces.py",
+      "before_sha256": null,
+      "after_sha256": "1039ed187b2337cd1a076646ae38363ba8bf0375ddf4f23ca83190ebb843e9a0",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-enabled-movies.py",
+      "before_sha256": "d9ed697fb3799cde85c8f4f2a78be5635c0cf6c620085d5ee600fb3d7f95d801",
+      "after_sha256": "887e6ef7741f9f6b4d9e8230fc9f027ea6f1ff5f1c0ca3158917079d472a10f9",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-gpu-frame-ownership.py",
+      "before_sha256": null,
+      "after_sha256": "0cf909997dec2ccca1ee373fce2b3ed72bfb3de61358688f29b88dfb075327fa",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-opengl-launch.py",
+      "before_sha256": null,
+      "after_sha256": "1855b2a84af38f488811acb4b3490b29258037c3ee873d16edde3ec9c2b12d5b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-world-continuous.py",
+      "before_sha256": null,
+      "after_sha256": "5d2b07a8454da564488bade6e3d0c0c0435cad6e3173219adeb508f5f0d9130c",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-world-rolling-hardware.py",
+      "before_sha256": null,
+      "after_sha256": "d6d2a30bac7da3b063dfcf5a0cff728ed61e5a6a0d853e9aa076aa8d0e4962c3",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-world-rolling-live.py",
+      "before_sha256": null,
+      "after_sha256": "790e1c5892f9fed9ae3f1147a2bdb81333b4e51ef24a8c5b9cfa5741560db1eb",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-native-world-rolling-original.py",
+      "before_sha256": null,
+      "after_sha256": "18ecf7f80991dc195477263d641886f1d483e91978860abad69082ca6f2402be",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-sprite-atlas.py",
+      "before_sha256": "37ac02cf89bfd94745902732d63ce8324bc44f1094ee5f996d5f59c6be76d13d",
+      "after_sha256": "705edb95cde2ba85f7017a309190551370bef2822c2a8feaffc59a96ad07a14b",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    },
+    {
+      "commit": "2e124ba4561907d72e35ea961c986a538d660c48",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/test-world-raster-batch.py",
+      "before_sha256": "2445a9f8e64bd2fa26a3a71a80fb6d13b39beda0d17e683db6e9a9c64f0097b5",
+      "after_sha256": "53997d71001a6663cb92e15e2bc25bcfea658d2c9acc197cc1f82d811dd21b30",
+      "matching_review": "native-master-integration-contract-final-review-20261011"
+    }
+  ],
+  "unresolved_gaps": []
+}

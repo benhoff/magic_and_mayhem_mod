@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "scope": "Bounded private-prefix startup loader trace only,no game-state/API acquisition or new behavior equivalence. Original manifest verified before/after.",
+  "log_sha256": "24185339ca4df9e6532c9f37d4e3cad56cf2623d811cfa31f548c16f964337aa",
+  "finding": "The copied general Wine prefix fails to load a64-bit WOW64 module with c000007b before loading the game observer. EGL warnings were not sufficient to identify the startup cause. Retry clones the previously validated original scene-observer prefix instead;no engine or evidence hashes changed.",
+  "original_manifest_logs": [
+    "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+    "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+  ]
+}
