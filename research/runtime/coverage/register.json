@@ -31127,7 +31127,9 @@
         "DRAW.census.quick-battle-scenario-guards-20261010",
         "DRAW.census.campaign-effects-observation-20261011",
         "DRAW.census.campaign-effects-guards-20261011",
-        "DRAW.census.named-export-abi-20261011"
+        "DRAW.census.named-export-abi-20261011",
+        "DRAW.api-menu.observation-20261011",
+        "DRAW.census.export-checked-abi-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31142,7 +31144,7 @@
       "subsystem": "drawing_inventory",
       "kind": "native_policy",
       "title": "Isolated original DRAW-01 menu, campaign and Quick Battle census journeys",
-      "scope": "Fresh disposable signature-pinned drawing/menu imports, private Xvfb display and Wine prefix, original acknowledged menu actions, heartbeat and explicit host scenario phases, original Main quit and strict terminal decoding. Retain every failed attempt, source and staged binary stability, and commands. Menu readiness/phase labels do not prove exhaustive scenario coverage. Campaign input automation remains under live validation; save/load, later map transitions, effects, results, movies and graphics API failure/recovery need further fixtures. No original bodies bypassed or gameplay balance changed. Optional menu-only diagnostic staging leaves original drawing entries unpatched and explicitly reports that no call journal is enabled; no synthetic events or terminal are inferred. Quick Battle fixture selects the second original offered map, preserves original setup rules and offered spell assignments, uses bounded camera/HUD/cursor inputs, verifies original Escape-to-results, Continue-to-World and second Escape/results/Quit/Quick/Main/shutdown. Existing original contexts1/2 bypass ordinary Mini; experimental Quick Mini stays disabled. Unassigned loadout is retained as unassigned. Inputs alone do not prove semantic tooltip, spell/effect, camera movement, all-writer or lifetime coverage. Opt-in campaign-effects fixture uses existing signature-pinned passive original gameplay/spell hooks, original mouse dialogue dismissal and physical cast, then requires a newly living owned type14Zombie in sampled original pool before counting summon success. Inputs are recorded; complete pool/spell trace decoding and normal exit are required. No engine rules, mana/health, AI or positions are patched, and no effect-to-pixel/all-tick/lifetime completeness is inferred.",
+      "scope": "Fresh disposable signature-pinned drawing/menu imports, private Xvfb display and Wine prefix, original acknowledged menu actions, heartbeat and explicit host scenario phases, original Main quit and strict terminal decoding. Retain every failed attempt, source and staged binary stability, and commands. Menu readiness/phase labels do not prove exhaustive scenario coverage. Campaign input automation remains under live validation; save/load, later map transitions, effects, results, movies and graphics API failure/recovery need further fixtures. No original bodies bypassed or gameplay balance changed. Optional menu-only diagnostic staging leaves original drawing entries unpatched and explicitly reports that no call journal is enabled; no synthetic events or terminal are inferred. Quick Battle fixture selects the second original offered map, preserves original setup rules and offered spell assignments, uses bounded camera/HUD/cursor inputs, verifies original Escape-to-results, Continue-to-World and second Escape/results/Quit/Quick/Main/shutdown. Existing original contexts1/2 bypass ordinary Mini; experimental Quick Mini stays disabled. Unassigned loadout is retained as unassigned. Inputs alone do not prove semantic tooltip, spell/effect, camera movement, all-writer or lifetime coverage. Opt-in campaign-effects fixture uses existing signature-pinned passive original gameplay/spell hooks, original mouse dialogue dismissal and physical cast, then requires a newly living owned type14Zombie in sampled original pool before counting summon success. Inputs are recorded; complete pool/spell trace decoding and normal exit are required. No engine rules, mana/health, AI or positions are patched, and no effect-to-pixel/all-tick/lifetime completeness is inferred. Explicit opt-in separate API observation additionally decodes its independent closed journal and per-run bindings, preserving physical-only caller classification. Stable staged binaries are required for success; no logical/API/output/borrow lifetime closure is inferred.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31218,7 +31220,9 @@
         "protocols/include/mnm/menu_v12.h",
         "research/runtime/drawing-callers-movie-sites-20261010.json",
         "tools/campaign_gameplay.py",
-        "tools/campaign_spell.py"
+        "tools/campaign_spell.py",
+        "tools/drawing_api_journal.py",
+        "tools/drawing_api_bindings.py"
       ],
       "evidence": [
         "DRAW.census.menu-observation-20261010",
@@ -31234,7 +31238,8 @@
         "DRAW.census.quick-battle-transition-fault-20261010",
         "DRAW.census.quick-battle-observation-20261010",
         "DRAW.census.quick-battle-accounted-observation-20261010",
-        "DRAW.census.campaign-effects-observation-20261011"
+        "DRAW.census.campaign-effects-observation-20261011",
+        "DRAW.api-menu.observation-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31531,7 +31536,8 @@
       ],
       "evidence": [
         "DRAW.api-splices.static-20261011",
-        "DRAW.api-journal.guards-20261011"
+        "DRAW.api-journal.guards-20261011",
+        "DRAW.api-splices.export-checked-static-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31570,7 +31576,7 @@
         "runtime/shadow/win32_min.h",
         "tools/build-shadow-bridge.py",
         "tests/canvas-startup-call.S",
-        "research/runtime/drawing-api-splices-accounted-static-20261011.json",
+        "research/runtime/drawing-api-splices-export-checked-static-20261011.json",
         "protocols/include/mnm/drawing_api_bindings_v1.h",
         "tools/drawing_api_bindings.py"
       ],
@@ -31578,7 +31584,8 @@
         "DRAW.api-observer.build-20261011",
         "DRAW.api-observer.synthetic-abi-20261011",
         "DRAW.api-observer.bindings-abi-20261011",
-        "DRAW.api-observer.bindings-build-20261011"
+        "DRAW.api-observer.bindings-build-20261011",
+        "DRAW.api-menu.observation-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31617,7 +31624,110 @@
       ],
       "evidence": [
         "DRAW.api-bindings.guards-20261011",
-        "DRAW.api-observer.bindings-abi-20261011"
+        "DRAW.api-observer.bindings-abi-20261011",
+        "DRAW.api-menu.observation-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-api-journey",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Original-active separate API journal journey staging and strict completion",
+      "scope": "Explicit opt-in API observer alongside original-active core/menu journeys in fresh private installations. Hash-pin observer and original section bytes, use shared readonly phase control, retain/decode independent closed API and core journals plus per-run allocation bindings, and require stable binaries/sources and normal original exit. Initial250accepted API sites retain64refusals; diagnostic physical addresses/outcomes/cleanup do not infer logical callers, COM/GDI/output/borrowing/pixels, complete writers or DRAW-01 scenario closure. Menu-only controls cannot enable API observation.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-graphics-api-boundaries.md"
+      ],
+      "implementation": [
+        "tools/prepare-drawing-census.py",
+        "tools/drawing-census-game-runner.py",
+        "tools/capture-drawing-census-game.py"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing-census/observer.c",
+        "runtime/drawing-census/entry.S",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "tools/build-drawing-census.py",
+        "tools/prepare-drawing-census.py",
+        "tools/drawing-census-game-runner.py",
+        "tools/drawing_census.py",
+        "tests/canvas-startup-call.S",
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-opengl-game.py",
+        "runtime/scene/canvas_producers.c",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/coverage/binary-nocd.json",
+        "research/runtime/drawing-callers-expanded-20261010.json",
+        "tools/run-game.sh",
+        "research/runtime/drawing-callers-dispatch-expanded-20261010.json",
+        "research/runtime/drawing-callers-movie-expanded-20261010.json",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "research/runtime/drawing-callers-movie-sites-20261010.json",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_spell.py",
+        "runtime/drawing-api-census/observer.c",
+        "runtime/drawing-api-census/entry.S",
+        "tools/build-drawing-api-census.py",
+        "tools/drawing_api_journal.py",
+        "tools/drawing_api_bindings.py",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "research/runtime/drawing-api-splices-export-checked-static-20261011.json"
+      ],
+      "evidence": [
+        "DRAW.api-menu.observation-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -61295,6 +61405,102 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW.api-menu.observation-20261011",
+      "kind": "live_observation",
+      "scope": "Bounded original menu/preferences/setup/shutdown with independent closed core/API journals and per-run exact allocation/module bindings.27selected API sites; no formal all-argument/output, semantic API/borrow/ownership/all-writer or14scenario/four dispatch closure.",
+      "record": "research/runtime/drawing-api-menu-observation-20261011.json",
+      "sha256": "34642e0f6c14d50b4bdc5adcf5e5e8c6eba004d8e706a853d9aba5d9646e92aa",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/api/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/api/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/api/open_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/api_bindings/integrity",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW.census.export-checked-abi-20261011",
+      "kind": "native_integration",
+      "scope": "Current-source census callback ABI and actual export-table check; no original renderer or logical ownership.",
+      "record": "research/runtime/drawing-census-export-checked-abi-20261011.json",
+      "sha256": "245144706b9148717a4218cb9e36045a9a80ed965f0fc2618714538322190c05",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/named_leave_export_checked",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW.api-splices.export-checked-static-20261011",
+      "kind": "static",
+      "scope": "Static exact original CALL splice plan alongside core census spans. No actual hook execution, API result/ABI/output/ownership/borrowing or DRAW-01 closure.",
+      "record": "research/runtime/drawing-api-splices-export-checked-static-20261011.json",
+      "sha256": "77db2b7406c2687d0a268a92d155f2d42f955377482c08c704160ef7d907beca",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/planned",
+          "equals": 250
+        },
+        {
+          "pointer": "/counts/refused",
+          "equals": 64
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -69803,7 +70009,26 @@
         "tests/canvas-startup-call.S"
       ],
       "evidence": [
-        "DRAW.census.named-export-abi-20261011"
+        "DRAW.census.named-export-abi-20261011",
+        "DRAW.census.export-checked-abi-20261011"
+      ]
+    },
+    {
+      "id": "original-drawing-api-menu-journey-20261011",
+      "level": "live_observation",
+      "scope": "Bounded original Main/Preferences/menu/input/normal shutdown cohort with separate core/API journals and exact per-run bindings. No all-writer or logical API/resource/borrow/pixel/scenario closure.",
+      "behaviors": [
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-bindings",
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.api-menu.observation-20261011"
       ]
     }
   ],
@@ -70142,8 +70367,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-api-bindings-20261011.json",
-    "sha256": "b944187d48db1c8d272d7a1417f8b62e6339f31eca406da0bdc55f82bb83df36"
+    "path": "research/runtime/coverage/source-index-draw01-api-menu-20261011.json",
+    "sha256": "7ad21c9374a4a6546933118e11b2bb823857f2a590e33698782be370919e4b3d"
   },
   "claim_bindings_required": true
 }

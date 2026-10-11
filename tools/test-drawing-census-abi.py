@@ -5,6 +5,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import tempfile
@@ -56,8 +57,12 @@ def main():
         run('compile%d' % i, ['clang', '--target=i686-pc-windows-msvc', '-O2', '-ffreestanding', '-fno-builtin',
             '-fno-stack-protector', '-mno-sse', '-mno-mmx', '-Wall', '-Wextra', '-Werror', '-I', out, '-c', source, '-o', obj])
     run('link', ['lld-link', '/machine:x86', '/entry:start', '/subsystem:console', '/nodefaultlib',
-        '/base:0x400000', '/dynamicbase:no', '/safeseh:no', '/timestamp:0', '/out:' + str(out / 'fixture.exe'),
+        '/base:0x400000', '/dynamicbase:no', '/safeseh:no', '/timestamp:0', '/export:census_leave', '/out:' + str(out / 'fixture.exe'),
         *objects, out / 'kernel32.lib'])
+    exports = subprocess.check_output(['objdump', '-p', str(out / 'fixture.exe')], text=True)
+    (out / 'export-table.txt').write_text(exports)
+    if not re.search(r'^\s*\[\s*\d+\].*\bcensus_leave\s*$', exports, re.M):
+        raise ValueError('Fixture named census leave export missing')
     run('prefix-copy', ['cp', '-a', '--reflink=auto', args.prefix_template.resolve(), out / 'wineprefix'])
     run('forwarding', ['xvfb-run', '-a', 'wine', out / 'fixture.exe'])
     run('stop-prefix', ['wineserver', '-k'], 10)
@@ -67,6 +72,7 @@ def main():
               'callee_pop_bytes': [0, 4, 8, 12, 16, 20, 24], 'register_flags_x87_sse_last_error_preserved': True,
               'same_stack_tail_unwind': True, 'interior_no_return_slot_change': True,
               'invalid_host_phase_refused': True,
+              'named_leave_export_checked': True,
               'frame_exhaustion_forwards_and_records_loss': True, 'original_renderer_executed': False}
     if claims: report['claims'] = claims['claims']
     (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n')

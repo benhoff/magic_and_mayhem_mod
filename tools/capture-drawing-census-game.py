@@ -15,6 +15,8 @@ import struct
 import subprocess
 import time
 from drawing_census import ROOT, trace
+from drawing_api_journal import trace as api_trace
+from drawing_api_bindings import decode as api_bindings, physical as api_physical
 from campaign_gameplay import read_rows, creatures
 from campaign_spell import read_spell_rows
 
@@ -23,6 +25,8 @@ def capture(root, template, journey, claims=None):
     root = root.resolve()
     if (root / 'journey.json').exists(): raise ValueError('Attempt already recorded; prepare a fresh experiment')
     manifest = json.loads((root / 'manifest.json').read_text())
+    if manifest.get('api_observation_enabled', False) and not manifest.get('call_census_enabled', True):
+        raise ValueError('API observation requires the original-active core cohort')
     if journey == 'movies' and not manifest['movies_enabled']:
         raise ValueError('Movie journey requires explicitly enabled disposable preferences')
     if journey == 'campaign-effects' and not manifest.get('gameplay_observation_enabled', False):
@@ -33,6 +37,7 @@ def capture(root, template, journey, claims=None):
             if hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != digest: raise ValueError('Changed declaration source: ' + p)
     source_paths = ['tools/capture-drawing-census-game.py', 'tools/drawing_census.py', 'tools/drawing-census-game-runner.py',
                     'tools/campaign_gameplay.py', 'tools/campaign_spell.py']
+    if manifest.get('api_observation_enabled', False): source_paths += ['tools/drawing_api_journal.py', 'tools/drawing_api_bindings.py']
     frozen_sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in source_paths}
     if declaration: frozen_sources.update(declaration['sources'])
     prefix = root / 'wineprefix'
@@ -44,6 +49,7 @@ def capture(root, template, journey, claims=None):
               'scenario_closure': False, 'original_work_forwarded': True,
               'call_census_enabled': manifest.get('call_census_enabled', True),
               'gameplay_observation_enabled': manifest.get('gameplay_observation_enabled', False)}
+    report['api_observation_enabled'] = manifest.get('api_observation_enabled', False)
     server = process = display = channel = control = log = None
     subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
     try:
@@ -369,6 +375,19 @@ def capture(root, template, journey, claims=None):
             (root / 'decoded.json').write_text(json.dumps(census, indent=2) + '\n')
             report.update(decoded_sha256=hashlib.sha256((root / 'decoded.json').read_bytes()).hexdigest(),
                           events=census['events'], calls=census['calls'])
+        if report['api_observation_enabled']:
+            api_manifest = json.loads((root / 'api-build.json').read_text())
+            bindings = api_bindings(root / 'capture/api-bindings.bin', api_manifest)
+            api = api_trace(root / 'capture/api-calls.bin', api_manifest)
+            if not api['paired_calls']: raise RuntimeError('No selected original API CALL was observed')
+            if not bindings['core_leave']: raise RuntimeError('Missing exact loaded census leave identity')
+            (root / 'decoded-api-bindings.json').write_text(json.dumps(bindings, indent=2) + '\n')
+            (root / 'decoded-api.json').write_text(json.dumps(api, indent=2) + '\n')
+            physical_callers = [{'physical_caller': pc, 'classification': api_physical(pc, bindings)}
+                for pc in sorted({item['caller'] for item in census['entry_counts'] if item['caller']})]
+            report['api'] = api
+            report['api_bindings'] = bindings
+            report['physical_caller_review'] = {'scope': 'Exact prepared per-run PCs/module membership only; original/logical owners and tail flow remain pending.', 'callers': physical_callers}
         if report['gameplay_observation_enabled']:
             gp = root / 'gameplay-events.bin'; sp = root / 'spell-events.bin'
             report['original_gameplay_trace'] = {'rows': len(read_rows(gp, complete=True)),
@@ -405,7 +424,7 @@ def capture(root, template, journey, claims=None):
         report['sources'] = frozen_sources
         report['sources_stable'] = all(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == digest for p, digest in frozen_sources.items())
         if declaration: report['claims'] = declaration['claims']
-        if not report['sources_stable']: report['success'] = False
+        if not report['sources_stable'] or not report['inputs_unchanged']: report['success'] = False
         (root / 'journey.json').write_text(json.dumps(report, indent=2) + '\n')
         subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
     return report
