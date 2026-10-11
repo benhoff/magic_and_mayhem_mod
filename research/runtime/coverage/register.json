@@ -33300,6 +33300,62 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.drawing-terminal-edges",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Reviewed original inherited terminal tail transfers",
+      "scope": "Source-current native review of actual inherited terminal edges in independently validated closed core journals and per-run bindings. Pin original five wrapper bodies and staged bytes, exact active same-thread/RET0 slot parent, fixed receiver, bounded MOV/TEST/OR GPR/flags/error effects and identical child/parent return; outer4a37d0 requires one exact prior58b3e0 CALL at4a37ef and actual returned state before4a37f9 tail. Keep raw callers intact and do not invent CALL edges for tails. Diagnostic consistency is not stack readability; initial flags/handle state, registration, other callback flows, all writers/side effects/failures and physical lifetimes/full14scenario/four dispatch closure remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "tools/drawing_terminal_edges.py",
+        "tools/review-drawing-terminal-edges.py"
+      ],
+      "tests": [
+        "tests/test-drawing-terminal-edges.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_bindings.py",
+        "tools/drawing_api_details.py",
+        "tools/drawing_api_pairs.py",
+        "tools/drawing_api_contracts.py",
+        "tools/drawing_api_cohorts.py",
+        "tools/drawing_api_journal.py",
+        "tools/drawing_api_sites.py",
+        "tools/drawing_cpu_sites.py",
+        "tools/drawing_census.py",
+        "tools/drawing_census_bindings.py",
+        "tools/drawing_census_callers.py",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "protocols/include/mnm/drawing_census_bindings_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "research/runtime/drawing-callers-movie-sites-20261010.json",
+        "research/runtime/coverage/binary-nocd.json",
+        "tools/drawing_cpu_crosswalk.py",
+        "tools/export-menu-support.py",
+        "research/runtime/drawing-canvas-release-original-range-20261011.json",
+        "tools/drawing_terminal_crosswalk.py",
+        "tools/review-drawing-terminal-crosswalk.py",
+        "research/runtime/drawing-terminal-callers-static-20261011.json",
+        "research/runtime/drawing-terminal-observer-original-menu-20261011.json"
+      ],
+      "evidence": [
+        "TOOL.drawing-terminal-edges.guards-20261011",
+        "TOOL.drawing-terminal-edges.retained-menu-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -65231,6 +65287,60 @@
         }
       ],
       "scope": "Static exact original CALL splice plan in explicit core/API cohort. No actual hook execution, API result/ABI/output/ownership/borrowing or DRAW-01 closure."
+    },
+    {
+      "id": "TOOL.drawing-terminal-edges.guards-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/drawing-terminal-edges-guards-20261011.json",
+      "sha256": "3139b5c64b4b5eca9b639cc696756cd3edbce25e460c2f84a4681eaf2cc05f24",
+      "scope": "Fourteen source-current native terminal-edge guards: original body corruption, active thread/stack/phase/order, fixed receivers, GPR/flags/error/diagnostic words, identical tail return state, exact single outer prior cleanup CALL and its actual returned state. Preserve uncaptured flag PF/SF/undefined AF and no CALL edge to tail. No original renderer/ABI repetition or full caller/lifetime/scenario/dispatch closure.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-terminal-edges.retained-menu-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/drawing-terminal-edges-retained-menu-20261011.json",
+      "sha256": "a207d04fd751051519cc2daab74d87c1dfc426fb48e6a831080908d5530f2e99",
+      "scope": "Source-current native replay of exact original wrapper tail transfers: actual core leave, active same-thread/RET0 slot parent, fixed receiver, bounded TEST/OR register/flag effects, exact outer first CALL return-to-tail state and identical child/parent return state. Diagnostic word consistency is not a readability proof. No CALL edge is invented for a tail; unknown initial flags, handle state, callback registration, other cleanup targets, physical lifetime, full writers/callers/side effects or scenario/dispatch closure remain pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/reviewed_terminal_tail_edges",
+          "equals": 6
+        },
+        {
+          "pointer": "/remaining_inherited_edges",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_execution_repeated",
+          "equals": false
+        },
+        {
+          "pointer": "/diagnostic_stack_readability_proven",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -74626,6 +74736,36 @@
         "DRAW.census.default-catalog-profile-20261011",
         "TOOL.drawing-terminal-observer.catalog-profile-plan-20261011"
       ]
+    },
+    {
+      "id": "drawing-terminal-edges-guards-20261011",
+      "title": "drawing-terminal-edges-guards-20261011",
+      "scope": "Native14guards for exact tail transfers, flag scope, enclosing thread/stack/order, actual outer first cleanup and byte/receiver/state corruptions; no original renderer execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-terminal-edges"
+      ],
+      "tests": [
+        "tests/test-drawing-terminal-edges.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-terminal-edges.guards-20261011"
+      ]
+    },
+    {
+      "id": "drawing-terminal-edges-retained-menu-20261011",
+      "title": "drawing-terminal-edges-retained-menu-20261011",
+      "scope": "Current native replay of retained original88entry menu journal/bindings and unchanged staged binary; explicit inherited edges only, no repeated original execution or scenario/dispatch/lifetime closure.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-terminal-edges"
+      ],
+      "tests": [
+        "tests/test-drawing-terminal-edges.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-terminal-edges.retained-menu-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -74999,8 +75139,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-cpu-terminal-routes-20261011.json",
-    "sha256": "29249c2cad895bc7354bca9a63191c8162a2eda8042ee1fdf54a90676b3e28ba"
+    "path": "research/runtime/coverage/source-index-draw01-terminal-edges-20261011.json",
+    "sha256": "3883a42dd6cb98829117e30e21d792e3533289d25b9b85507a7f03f960797d4c"
   },
   "claim_bindings_required": true
 }
