@@ -7,4 +7,7 @@ cmake -S "$REPO_DIR/apps/qt-shell" -B "$BUILD_DIR" -DCMAKE_BUILD_TYPE="${MNM_QT_
 cmake --build "$BUILD_DIR" --target mnm-qt-shell --parallel 4
 # Wine and the shell must share the X11 display for foreign-window hosting.
 export QT_QPA_PLATFORM=${QT_QPA_PLATFORM:-xcb}
+# Public native sessions use the guarded glyph adapter unless explicitly disabled.
+# Standalone observation/comparison launchers keep their own mode selection.
+export MNM_GLYPH_BACKEND=${MNM_GLYPH_BACKEND-takeover}
 exec "$BUILD_DIR/mnm-qt-shell" --repo "$REPO_DIR" "$@"

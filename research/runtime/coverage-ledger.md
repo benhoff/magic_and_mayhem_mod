@@ -4244,3 +4244,42 @@ unresolved transitions. This retrospective review asserts neither a past gate
 pass nor new execution validation. [Experiment history](other-producer-experiment-history-20261010.json)
 retains unsuccessful attempts and earlier source versions separately from the
 seven final execution records above.
+
+
+### Default Qt glyph takeover — 2026-10-10
+
+`tools/run-qt-shell.sh` now defaults `MNM_GLYPH_BACKEND` to `takeover` when
+absent. Explicit `off` disables staging/authorization; `shadow`, `takeover` and
+an explicitly empty variable retain their selected behavior. Standalone
+comparison/capture tools, direct Qt binary invocation and the original
+`run-game.sh` launcher retain their existing selection. Both normal and native
+live-menu staging inherit the public wrapper's default.
+
+`NR.glyph-default-launch` records this intentional launch policy separately
+from recovered glyph behavior. The source-bound
+[glyph default launch report](glyph-default-launch-validation-20261010.json)
+executes the public wrapper with substituted build/Qt commands, checks five
+selection cases, and tests both real staging/authorization routes for default,
+off and shadow. Off stages no glyph DLL/import or evidence directory; active
+routes pin the DLL and staged executable hashes. Original manifests are verified
+before/after. This is headless launch integration, not interactive Qt gameplay
+or new pixel/ABI/performance evidence. Existing primitive fallback/admission
+budget and partial replacement boundaries are unchanged.
+
+The launch helper's new explicit-off branch changes older live/shared-entry
+reports' source fingerprints. Those immutable reports and historical status
+remain intact; no current-code original equivalence is inferred from this
+configuration test. Long sessions, font/DC/device transitions, full interactive
+Qt journeys, wider drawing replacement and performance remain pending.
+
+Committed-history accounting reviews `a47ad55..1fc60f4`: 44 file transitions and
+90 behavior transitions, with one retrospective movie-contract receipt and zero
+unresolved receipt gaps. This makes no historical gate-pass or fresh-validation
+assertion. The report is retained under `coverage/`.
+
+After the concurrent rendering batch committed, the additional range
+`1fc60f4..95c1f93` was reviewed: 49 file transitions and 63 behavior transitions,
+with zero unresolved receipt gaps. All 170 launch-test sources retain the
+recorded hashes; the existing headless evidence remains current for this launch
+policy. The census and exact change receipts are refreshed against `95c1f93`.
+

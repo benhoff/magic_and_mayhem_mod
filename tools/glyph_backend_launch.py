@@ -1,4 +1,4 @@
-"""Stage and authorize the opt-in fixed-build live glyph producer hook."""
+"""Stage and authorize the fixed-build live glyph producer hook."""
 import hashlib
 import importlib.util
 import json
@@ -12,8 +12,8 @@ def load(name,path):
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def mode_from_environment():
     mode=os.environ.get('MNM_GLYPH_BACKEND','')
-    if mode not in ('','shadow','takeover'):raise ValueError('MNM_GLYPH_BACKEND must be shadow or takeover')
-    return mode or None
+    if mode not in ('','off','shadow','takeover'):raise ValueError('MNM_GLYPH_BACKEND must be off, shadow or takeover')
+    return None if mode in ('','off') else mode
 def stage(root,original,patched,mode,scene_imported=False):
     if mode not in (None,'shadow','takeover'):raise ValueError('Unsupported glyph backend mode')
     if not mode:return patched,{}

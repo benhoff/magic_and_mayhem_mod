@@ -30448,6 +30448,204 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.glyph-default-launch",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Public Qt launcher defaults guarded glyph takeover",
+      "scope": "run-qt-shell.sh exports takeover when MNM_GLYPH_BACKEND is absent, preserving explicit shadow/takeover/off/empty settings. Both normal and live-menu staging authorize private pinned DLLs. Off removes stale runtime glyph environment and stages no glyph DLL/import. Standalone diagnostics/direct binary/raw original launcher retain their own selection. Unsupported admitted inputs retain original fallback and existing call budget. No new pixel/ABI, full interactive gameplay or performance claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/glyph-live-backend.md"
+      ],
+      "implementation": [
+        "tools/run-qt-shell.sh",
+        "tools/glyph_backend_launch.py"
+      ],
+      "tests": [
+        "tools/test-glyph-default-launch.py"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/python/mnm_protocols/__init__.py",
+        "protocols/python/mnm_protocols/frame_v1.py",
+        "protocols/python/mnm_protocols/input_v1.py",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v2.py",
+        "protocols/python/mnm_protocols/render_control_v1.py",
+        "protocols/python/mnm_protocols/render_stream_v2.py",
+        "protocols/python/mnm_protocols/render_stream_v3.py",
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/bridge.c",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/palette_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/selftest.c",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/glyph_entry.S",
+        "runtime/scene/glyph_leave.S",
+        "runtime/scene/glyph_live.c",
+        "runtime/scene/glyph_live.h",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/glyph-backend-entry-probe.S",
+        "tests/glyph-backend-state-probe.S",
+        "tests/glyph-backend-test.c",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-scene-game.py",
+        "tools/decode-cfg.py",
+        "tools/encode-cfg.py",
+        "tools/export-menu-support.py",
+        "tools/glyph_live_capture.py",
+        "tools/menu-game-runner.py",
+        "tools/menu_preferences_store.py",
+        "tools/native_render_config.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/render-game-runner.py",
+        "tools/run-game.sh",
+        "tools/run-opengl-game.py",
+        "tools/scene-game-runner.py",
+        "tools/test-glyph-backend-state.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py"
+      ],
+      "evidence": [
+        "NR.glyph-default-launch.host-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -58647,6 +58845,65 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.glyph-default-launch.host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/glyph-default-launch-validation-20261010.json",
+      "sha256": "0a3290fac5e85bee07ea333cc2e8c5c5c27d79259cd49b49d6816eb7f6554a03",
+      "scope": "Real public Qt wrapper exports takeover when unset, preserves off/shadow/takeover/empty; standalone helper remains original without env. Both real private launch staging/authorization paths pass default/off/shadow. No interactive Qt gameplay or new recovered equivalence assertion.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/selection/default/exported",
+          "equals": "takeover"
+        },
+        {
+          "pointer": "/diagnostic_default_original",
+          "equals": true
+        },
+        {
+          "pointer": "/off_does_not_stage_or_authorize",
+          "equals": true
+        },
+        {
+          "pointer": "/public_staging/default-menu/mode",
+          "equals": "takeover"
+        },
+        {
+          "pointer": "/public_staging/default-normal/mode",
+          "equals": "takeover"
+        },
+        {
+          "pointer": "/public_staging/off-menu/mode",
+          "equals": null
+        },
+        {
+          "pointer": "/public_staging/off-normal/mode",
+          "equals": null
+        },
+        {
+          "pointer": "/public_staging/shadow-menu/mode",
+          "equals": "shadow"
+        },
+        {
+          "pointer": "/public_staging/shadow-normal/mode",
+          "equals": "shadow"
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -66325,6 +66582,20 @@
       "evidence": [
         "NR.other-producer-checkpoints.native-20261010"
       ]
+    },
+    {
+      "id": "glyph-default-launch-headless-20261010",
+      "level": "headless",
+      "scope": "Execute public wrapper with build/Qt substitutes; feed selected environment into both real private staging/authorization paths for default, off and shadow. No interactive gameplay.",
+      "behaviors": [
+        "NR.glyph-default-launch"
+      ],
+      "tests": [
+        "tools/test-glyph-default-launch.py"
+      ],
+      "evidence": [
+        "NR.glyph-default-launch.host-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -66662,8 +66933,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-other-producers-final-20261010.json",
-    "sha256": "e81668fe0cf2d619499947d440a6f4623f79cd723b28a31896e96c44b7281165"
+    "path": "research/runtime/coverage/source-index-glyph-default-after-rendering-20261010.json",
+    "sha256": "d4367639e485f80c52013b0ded1816a917714eafa2ee2f9c3bf4cf0e616a1b92"
   },
   "claim_bindings_required": true
 }
