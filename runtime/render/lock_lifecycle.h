@@ -98,10 +98,15 @@ static int game_tracker_acquire_at(u32 site){
     lock_diagnostic("tracker_wait_timeout",0,0,owner,GetTickCount()-start,0,0,0);return 0;
 }
 static void game_tracker_release(void){
+    game_copy_stage(44);
     u32 error=GetLastError(),duration=GetTickCount()-__atomic_load_n(&game_tracker_started,__ATOMIC_RELAXED);
+    game_copy_stage(45);
     if(duration>=8){u32 values[19]={GetCurrentThreadId(),__atomic_load_n(&game_tracker_site_owner,__ATOMIC_RELAXED),duration};lock_diagnostic_values("tracker_hold_origin",values);}
+    game_copy_stage(46);
     __atomic_store_n(&game_locks_owner,0,__ATOMIC_RELEASE);__sync_lock_release(&game_locks_busy);
+    game_copy_stage(47);
     command_channel_pump();SetLastError(error);
+    game_copy_stage(48);
 }
 static void game_pixel_missed(void* object){
     if(object)for(u32 i=0;i<128;++i){
@@ -260,12 +265,16 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
     }
     /* Diagnostic file budgets never gate checkpoint maintenance or publication. */
     if(slot && result>=0 && s->data){
+        game_copy_stage(30);
         game_session_unlock(slot,s,pending->primary);
+        game_copy_stage(31);
         if(pending->primary && s->bits!=8)lock_diagnostic(game_publish_pixels(s,0)?"unlock_presented":"unlock_presentation_skipped",pending->object,pending->kind,0,0,result,0,0);
+        game_copy_stage(32);
         game_surface_sync();game_surface_store(pending->object,s,pending->primary,slot->desc);
         struct GameSurface* surface=game_surface_find(pending->object,0);
         if(surface && surface->primary && surface->pixels.bits==8)game_surface_publish(surface);
     }
     if(slot && result>=0){if(!s->data && !pending->pixels.width)game_session_invalidate(pending->object);game_lock_clear(slot);}
+    game_copy_stage(33);
     free_snapshot(s);game_tracker_release();
 }

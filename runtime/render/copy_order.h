@@ -28,7 +28,12 @@ static struct GameCopyLease game_copy_enter_at(void* target,u32 site){
     }
  done:SetLastError(error);return lease;
 }
-static void game_copy_stage(u32 phase){__atomic_store_n(&game_copy_phase,phase,__ATOMIC_RELAXED);}
+static void game_copy_stage(u32 phase){
+    /* Tracker release also runs outside an ordered callback. Such a caller
+     * must not overwrite the actual copy owner's diagnostic phase. */
+    if(__atomic_load_n(&game_copy_owner,__ATOMIC_ACQUIRE)==GetCurrentThreadId())
+        __atomic_store_n(&game_copy_phase,phase,__ATOMIC_RELAXED);
+}
 #define game_copy_enter(target) game_copy_enter_at((target),__LINE__)
 static void game_copy_leave(struct GameCopyLease* lease){
     if(lease->held){u32 error=GetLastError();__atomic_store_n(&game_copy_owner,0,__ATOMIC_RELEASE);WakeByAddressAll(&game_copy_owner);SetLastError(error);}

@@ -6495,3 +6495,16 @@ no status promotion or production render/pacing/balance change is made.
 See `native-resident-performance-profiling.md` and the matched-input JSON record.
 Deferred CPU symbolization awaits a fresh sampled execution; growing live report
 publication remains a separate diagnostic cadence limitation.
+## Resident drawing-history admission investigation — 2026-10-11
+
+The retained profiled GAP is traced to ordered-copy timeout, pixel epoch
+invalidation and local session GAP1/command GAP2. Fresh owner-qualified Unlock
+markers reproduce a cleanup/release-region hold at325ms, without identifying
+its free/log/mapped-pump suboperation. A separate fresh run proves public
+resident binding bypasses the callback/copy admission domain and times out
+against cursor-copy tracker ownership at observed16ms. One earlier fresh
+attempt reaches2,880 balanced Worlds without GAP but fails its retreat waypoint.
+All outcomes remain negative journey evidence; no continuity repair, completed
+Quit, uninstrumented FPS, replacement or original pixel equivalence promotion.
+See [the investigation](resident-drawing-history-gap.md) for source-bound
+failure chains, exact retained reports and pending admission/publication work.

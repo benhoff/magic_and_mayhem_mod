@@ -364,7 +364,9 @@ static int session_resident_unlock(struct SessionSurface* surface,const struct S
     if(!before->data || before->width!=after->width || before->height!=after->height ||
        before->length!=after->length || before->bits!=16 || after->bits!=16){game_session_gap(4);return 0;}
     u32 regions[COMMAND_DIRTY_REGIONS][4];
+    game_copy_stage(40);
     u32 count=command_dirty_regions(before->data,after->data,after->width,after->height,2,regions);
+    game_copy_stage(41);
     for(u32 i=0;i<count;++i){u32 width=regions[i][2]-regions[i][0],height=regions[i][3]-regions[i][1];
         /* Bound record/scratch bytes even for a dense full-canvas UI write. */
         for(u32 row=0;row<height;row+=32){u32 rows=height-row;if(rows>32)rows=32;u32 pixels=width*rows,length=pixels*3;
@@ -374,8 +376,10 @@ static int session_resident_unlock(struct SessionSurface* surface,const struct S
             u8* packed=HeapAlloc(GetProcessHeap(),0,length);if(!packed){game_session_gap(4);return 0;}
             __atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
             u32 fields[5]={surface->id,regions[i][0],regions[i][1]+row,width,rows};
+            game_copy_stage(42);
             for(u32 y=0;y<rows;++y)for(u32 x=0;x<width;++x){u32 at=(fields[2]+y)*after->width+fields[1]+x,p=y*width+x;
                 copy(packed+p*2,after->data+at*2,2);packed[pixels*2+p]=!same(before->data+at*2,after->data+at*2,2);}
+            game_copy_stage(43);
             int ok=session_record(MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE,fields,20,packed,length);
             HeapFree(GetProcessHeap(),0,packed);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);if(!ok)return 0;
         }
