@@ -4643,3 +4643,38 @@ they do not validate original gameplay actions, transition/failure behavior or
 full Quick Battle/campaign journeys. DRAW-01/02 collectors and acceptance gates
 are unchanged. The changed shared scene build file makes earlier build-bound
 evidence historical; existing source hashes and receipts remain unchanged.
+
+### DRAW-03 owned native session runner (2026-10-11)
+
+`NR.drawing-session` now exposes a reproducible, widget-free owned-input runner
+over the native session controller. `mnm-drawing-session-replay` admits the
+intentional native v1 declaration, closed producer streams, encoded source asset
+hashes and every independently read SPR catalogue source. It executes ordered
+native stages, publishes complete RGB565 frames with immutable session identities,
+refuses malformed or contaminated input, rechecks sources and shuts down storage.
+This is a native lifecycle policy; it does not implement the distinct DRAW-02
+presented-session ABI, original actions/caller-state, movie composition or live
+replacement. The fourteen-journey and twenty-one-operation gates remain open.
+
+Fresh `NR.drawing-session.runner-native-20261011` records 12 actual OpenGL lifecycle
+cases, the existing scene regression, and 30 owned CLI cases: six complete native
+planes/99 pixels across six segments, independently expected synthetic SPR/BMP
+composition, repeated publication, interrupted World cancellation, 29 binding,
+catalogue, schema, identity, boundary, containment and result-contamination
+refusals. Cleanup and actual execution failure paths leave zero native surfaces.
+Source/binary/log hashes and prospective scope/scenario claims are retained.
+The earlier lifecycle evidence is preserved unchanged and is historical after
+the runner/build/contract changes; neither result claims original equivalence.
+
+Reviewed committed range `53bdc4a..9b15da3` is retained separately from the new
+uncommitted source review, with no unresolved exact-receipt gaps. Shared scene
+CMake edits leave previously bound drawing evidence historical; fresh native
+policy execution does not refresh those original results. The source census and
+new links are reviewed without changing the discovered binary inventory.
+
+The main checkout gained a working-storage guard concurrently. Its default
+200 GiB preflight refused existing usage; the user explicitly authorized a
+temporary 1200 GiB ceiling for this bounded validation, a 0.1 GiB reservation
+and the unchanged 100 GiB free-space floor. The guarded execution passed with
+about 1125 GiB existing working usage and 203 GiB free. The task-local policy
+was retained under working/tests/draw03; the repository default was not changed.
