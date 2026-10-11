@@ -46,3 +46,31 @@ which exact presented frame first reflects each action. Actual HRESULT retention
 alone does not validate native failure/retry/Restore or caller-visible results.
 The wire boundary and limits are in
 [the format contract](../formats/drawing-publication-v1.md).
+
+## Applied request phases and sixteen-return camera capture
+
+The next collector version brackets actual original menu adapter dispatch with
+entry/return records, request/screen/generation/argument identities and actual
+status. Each phase records the exact preceding COM-attempt count and next primary
+readback ordinal. The call trace records its original thread and action phase.
+Rejected or unfinished requests remain explicit and cannot become successful
+applied actions. The default disabled menu fixture preserves its established
+original callback results, LastError and single-thread contract.
+
+The initial sixteen-return camera diagnostic captures103primary planes and223
+COM returns without losses, plus five successful original menu requests. Owned
+minimap input shows actual camera center changes; independent original World
+queue-entry snapshots show all four World orientations. The minimap orientation
+set is separate and is not assumed to equal the World view. This run exposed a
+237MiB V2 source journal that the native CLI's128MiB file limit refused before
+comparison. The retained negative report preserves that admission failure.
+The CLI now admits the existing512MiB V2 protocol budget; narrower V1/V3 budgets
+are still enforced by decoding. Fresh replay is required before claiming parity.
+
+Append`--minimap-owned --samples 16 --minimap-input-fixture <built-private-XTest-
+fixture>` to the capture command above for the original camera journey. This
+retains actual queue/source states and primary output, not only key injection
+attempts. Broader physical input outcomes, viewport boundaries, complete
+presentation-route coverage, transition/failure contracts and full journey gates
+remain pending. The accepted menu callback phases improve action attribution
+without promoting that wider boundary.

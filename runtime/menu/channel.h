@@ -1,3 +1,4 @@
+#include "drawing_action.h"
 #include "battle.h"
 #include "spells.h"
 #include "mini.h"
@@ -134,7 +135,9 @@ static void menu_poll(void* object,int execute){
         if(!host[0]||now-menu_seen>MNM_MENU_V1_LEASE_MS)menu_retired=1;
         if(execute&&host[2]>menu_request){
             // Consume rejected requests too: never dispatch an ID twice.
+            u32 action_screen=menu_screen,action_generation=menu_generation;
             menu_request=host[2];menu_status=MNM_MENU_OK;
+            drawing_action_record(host[2],host[3],action_screen,action_generation,host[5],1,0xffffffffu);
             if(menu_retired)menu_status=MNM_MENU_RETIRED;
             else if(host[4]!=menu_generation)menu_status=MNM_MENU_STALE;
             else if(!menu_ready)menu_status=MNM_MENU_UNAVAILABLE;
@@ -157,6 +160,7 @@ static void menu_poll(void* object,int execute){
                 u32 next=get((u8*)object+0x33);menu_handoff=next==0x6f2aa0?1:next==0x6903b8?2:0;
             }
             if(menu_version>=3&&host[3]==MNM_MENU_SPELL_FINISH&&menu_status==MNM_MENU_OK)menu_handoff=2;
+            drawing_action_record(host[2],host[3],action_screen,action_generation,host[5],2,menu_status);
             menu_state(object);
         }
     }else if(now-menu_seen>MNM_MENU_V1_LEASE_MS)menu_retired=1;

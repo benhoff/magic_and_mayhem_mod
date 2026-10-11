@@ -63,7 +63,7 @@ def main():
         frames=publication['frames'];final=frames[-1]['source_sequence'];records=records[:final]
         if [f['source_sequence'] for f in frames]!=sorted(set(f['source_sequence'] for f in frames)):raise ValueError('Native publication boundaries are duplicated or reordered')
         assets=source_assets(experiment/'game',records);inputs={}
-        for path in [capture_path,directory/'canvas-producers.bin',directory/'canvas-producers.done',directory/'drawing-publication-0000.bin',*assets.values(),*[directory/f['path'] for f in frames]]:
+        for path in [capture_path,directory/'canvas-producers.bin',directory/'canvas-producers.done',directory/'drawing-publication-0000.bin',*([directory/'drawing-actions-0000.bin'] if publication['wire_version']==2 else []),*[directory/s['path'] for s in publication['camera_state']['world_entries']],*assets.values(),*[directory/f['path'] for f in frames]]:
             inputs[path.relative_to(ROOT).as_posix()]=sha(path.read_bytes())
         sources={}
         for top in ('renderer','assets','compat/legacy','protocols/include','reconstruction/rendering'):
@@ -104,7 +104,7 @@ def main():
                 'capture_report':capture_path.relative_to(ROOT).as_posix(),'capture_report_sha256':sha(capture_bytes),
                 'source_executable_sha256':BUILD,'original_pixels_used_as_native_inputs':False,'original_oracles_read_by_native':False,
                 'original_work_bypassed':False,'live_replacement':False,'boundary':'observed_primary_blt','all_primary_routes_observed':False,'actions_bound':False,
-                'frames':checks,'pixels_compared':sum(c['pixels'] for c in checks),'mismatches':sum(c['mismatching_pixels'] for c in checks),
+                'applied_menu_actions':publication['applied_actions'],'observed_camera':publication['camera_state'],'frames':checks,'pixels_compared':sum(c['pixels'] for c in checks),'mismatches':sum(c['mismatching_pixels'] for c in checks),
                 'native_binary_sha256':binary_hash,'native':result,'asset_sources':{name:path.relative_to(ROOT).as_posix() for name,path in assets.items()},
                 'scope':'Every primary readback at the guarded opaque-copy sites in this finite startup capture; alternate publication routes, action identities, API failure equivalence and complete journeys remain pending.'}
         if claims:report['claims']=claims['claims']

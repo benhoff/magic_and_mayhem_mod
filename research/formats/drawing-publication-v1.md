@@ -52,3 +52,32 @@ primary writes, aliases/Flips, palette formats, loss/Restore, readback effects o
 broader applications and applied action/frame identities remain unresolved.
 `observed_primary_blt` is deliberately narrower than the complete
 `presented_frame` contract used to close DRAW-02 journey gates.
+
+## V2 call trace and applied menu dispatch V1
+
+New captures use`MNMDP002`/version2 with the same96-byte call records. Words22
+and23 now carry the actual original thread ID and last action-record ordinal.
+V1 traces remain readable unchanged. The optional menu adapter connects to the
+process-lifetime`SceneDrawingActionV1` seven-u32 stdcall export only when
+publication observation is enabled; missing observer export refuses that
+configured experiment. Default menu dispatch has no observer callback.
+
+`drawing-actions-0000.bin` has eight u32 header words: magic`MNMDAC01`, version1,
+record size64, build40209ca7, maximum8192 records, reserved0/0. Sixteen-u32
+records contain ordinal, phase(1entry/2return), request, adapter action, original
+screen, generation, argument, status(ffffffffat entry), producer sequence,
+completed COM-attempt count, next retained primary frame ordinal, original
+thread ID, World queue and three reserved zero words. Entry precedes actual
+dispatch; return retains its real result, including refusal. Matching fields,
+original thread, call-phase order and frame counts are checked independently.
+An unfinished request stays pending; injection or ACK alone is not an applied
+request. These callbacks observe existing original menu adapter actions rather
+than generating simulation state or input outcomes.
+
+Owned minimap state records expose effective centers and minimap orientations.
+Separate complete original queue-entry snapshots expose World orientations;
+those two orientation sets remain distinct. Their hashes and queue identities
+bind the observations. XTest attempts remain separate from observed state.
+The native CLI now reads at most the already specified512MiB V2 journal limit;
+V1/V3 decoding still enforces their128MiB protocol bounds, and other file budgets
+remain unchanged. This is bounded admission, not unbounded session capture.

@@ -123,6 +123,7 @@ static int install(void){
     }
     if(log_file){
         original_tick=(TickFn)0x5595d0;
+        if(!drawing_action_init())return 0;
         menu_init();
         if(!install_campaign_observe())menu_retired=1;
         if((campaign_log||menu_version>=8)&&!install_campaign_world_observe())menu_retired=1;

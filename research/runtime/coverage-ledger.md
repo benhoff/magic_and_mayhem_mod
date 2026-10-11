@@ -4593,3 +4593,27 @@ Original drawing remains active. Alternate primary routes, applied action/frame
 identities, complete journeys, caller failure/recovery equivalence and live
 suppression remain pending. See[scope and procedure](draw02-publication.md);
 this does not change the fourteen-journey/twenty-one-operation denominator.
+
+## 2026-10-11 DRAW-02 applied menu dispatch and camera reference
+
+Publication V2 adds same-thread original menu adapter entry/return/result records
+bound to actual COM attempt and next frame ordinals. Rejected/unfinished actions
+remain distinct from success; physical camera injection is checked against
+original owned minimap centers and independent World orientation snapshots.
+The initial16-return capture records103primary planes, five successful menu
+requests and all four World orientations. Native replay first refused its237MiB
+V2 journal at a128MiB CLI read limit; the negative result is retained and the CLI
+now follows the existing512MiB V2 envelope. Current-code native parity requires
+a new run; complete14journey/21operation gates remain open.
+
+The fresh prospectively declared sixteen-return camera run now passes independent
+source-only native comparison of all103primary planes /49,440,000pixels, with
+zero differences, no readback losses and complete native cleanup. Its266MiB V2
+owned journal is admitted within the512MiB envelope. All four original World
+orientations are observed separately from the minimap's0/2orientation set; actual
+minimap camera centers change. Five original menu adapter requests have matching
+entry/return/result phases bound to frame/call ordinals. Twenty-one parser guards,
+the native drawing-scene ownership/refusal suite and the disabled original-bytecode
+menu/battle fixture pass. Source-state observations improve camera/action
+attribution; complete publication routes, full journeys and original failure/
+recovery/caller semantics remain unadmitted.

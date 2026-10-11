@@ -1,4 +1,5 @@
 #include "drawing_scene.hpp"
+#include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include <QGuiApplication>
 #include <QCryptographicHash>
 #include <QDir>
@@ -9,9 +10,9 @@
 #include <iostream>
 
 namespace {
-QByteArray readFile(const QString &path){
+QByteArray readFile(const QString &path,qint64 maximum=128*1024*1024){
     QFile file(path);
-    if(!file.open(QIODevice::ReadOnly)||file.size()>128*1024*1024)
+    if(!file.open(QIODevice::ReadOnly)||file.size()>maximum)
         throw std::runtime_error("Cannot read bounded scene input");
     return file.readAll();
 }
@@ -46,7 +47,7 @@ int main(int argc,char **argv){
     try{
         if(output.exists()||!QDir().mkpath(output.absolutePath()))throw std::invalid_argument("Scene output must be new");
         ownsOutput=true;
-        const auto input=readFile(QString::fromLocal8Bit(argv[1]));
+        const auto input=readFile(QString::fromLocal8Bit(argv[1]),MNM_PRODUCER_V2_MAX_BYTES);
         const auto stream=mnm::legacy::decodeCanvasProducers({input.begin(),input.end()},false);
         const auto document=QJsonDocument::fromJson(readFile(QString::fromLocal8Bit(argv[3])));
         if(!document.isObject())throw std::invalid_argument("Invalid scene declaration");

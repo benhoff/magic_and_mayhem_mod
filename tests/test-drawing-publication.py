@@ -64,4 +64,42 @@ class Publication(unittest.TestCase):
         p=self.root/'drawing-publication-0000.bin';p.write_bytes(p.read_bytes()[:-1])
         with self.assertRaises(ValueError):analyze(self.root)
 
+
+
+class AppliedActions(unittest.TestCase):
+    save=Publication.save
+    def setUp(self):
+        Publication.setUp(self)
+        self.actions=[[1,1,1,1,3,1,0,0xffffffff,1,0,1,77,0,0,0,0],
+                      [2,2,1,1,3,1,0,1,2,0,1,77,0,0,0,0]]
+        self.row[22]=77;self.row[23]=2;self.save_actions()
+    def save_actions(self):
+        Publication.save(self)
+        p=self.root/'drawing-publication-0000.bin';data=bytearray(p.read_bytes());data[:8]=b'MNMDP002';struct.pack_into('<I',data,8,2);p.write_bytes(data)
+        (self.root/'drawing-actions-0000.bin').write_bytes(b'MNMDAC01'+struct.pack('<6I',1,64,0x40209ca7,8192,0,0)+b''.join(struct.pack('<16I',*r) for r in self.actions))
+    def test_actual_entry_return_identity(self):
+        a=analyze(self.root)['applied_actions'];self.assertEqual(a['successful_requests'],1);self.assertEqual(a['pending_requests'],[]);self.assertEqual(a['requests'][0]['entry_next_frame'],1)
+    def test_changed_return_argument_refuses(self):
+        self.actions[1][6]=2;self.save_actions()
+        with self.assertRaises(ValueError):analyze(self.root)
+    def test_unfinished_dispatch_remains_pending(self):
+        self.actions=self.actions[:1];self.row[23]=1;self.save_actions();a=analyze(self.root)['applied_actions'];self.assertEqual(a['pending_requests'],[1]);self.assertEqual(a['successful_requests'],0)
+    def test_rejected_dispatch_does_not_become_applied(self):
+        self.actions[1][7]=4;self.save_actions();self.assertEqual(analyze(self.root)['applied_actions']['successful_requests'],0)
+    def test_forged_phase_boundary_refuses(self):
+        self.row[23]=0;self.save_actions()
+        with self.assertRaises(ValueError):analyze(self.root)
+    def test_wrong_action_thread_refuses(self):
+        self.actions[1][11]=78;self.save_actions()
+        with self.assertRaises(ValueError):analyze(self.root)
+    def test_action_plane_ordinal_cannot_be_guessed(self):
+        self.actions[0][10]=2;self.save_actions()
+        with self.assertRaises(ValueError):analyze(self.root)
+    def test_action_trace_truncation_refuses(self):
+        p=self.root/'drawing-actions-0000.bin';p.write_bytes(p.read_bytes()[:-1])
+        with self.assertRaises(ValueError):analyze(self.root)
+    def test_absent_action_trace_refuses_v2(self):
+        (self.root/'drawing-actions-0000.bin').unlink()
+        with self.assertRaises(OSError):analyze(self.root)
+
 if __name__=='__main__':unittest.main()
