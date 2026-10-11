@@ -38,5 +38,7 @@ if metadata['menu_driver']:
     os.environ['MNM_MENU_CHANNEL']='Z:'+str(root/'channel.bin').replace('/','\\')
     if (root/'events.bin').exists() or not (root/'channel.bin').exists():
         raise ValueError('Stale or absent menu observation channel')
+from glyph_backend_launch import authorize as authorize_glyph
+authorize_glyph(root,metadata,os.environ)
 os.chdir(game)
 os.execvp('wine',['wine','explorer','/desktop=SceneObserver,800x600',str(game/'Chaos.exe'),*sys.argv[2:]])

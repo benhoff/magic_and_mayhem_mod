@@ -8,7 +8,8 @@
     "research/runtime/native-surface-operation-matrix.json",
     "docs/live-drawing-replacement.md",
     "research/runtime/native-world-raster-queue.md",
-    "research/runtime/native-world-raster-batch.md"
+    "research/runtime/native-world-raster-batch.md",
+    "research/runtime/glyph-live-backend.md"
   ],
   "surface_operations": [
     {
@@ -295,7 +296,8 @@
       "implementation": [
         "RS.word-route",
         "NR.scene-service",
-        "RS.word-clipping"
+        "RS.word-clipping",
+        "RS.glyph-live-route"
       ],
       "validation": [
         {
@@ -307,14 +309,23 @@
           "behavior": "RS.word-clipping",
           "evidence": "RS.word-clipping.complete-deps-20261010",
           "domain": "original_executable"
+        },
+        {
+          "behavior": "RS.glyph-live-route",
+          "evidence": "RS.glyph-live-route.live-20261010",
+          "domain": "original_executable"
         }
       ],
-      "scope": "Two selected in-bounds direct-word backend entries plus pixel-only synthetic GPU/original clipping comparison at zero clip globals; indexed World is accounted separately.",
-      "remaining": "Clipped caller state/ABI/live admission, other clip globals and alternate backends, full dispatch and caller side effects remain open.",
+      "scope": "Two selected in-bounds direct-word backend entries plus pixel-only synthetic GPU/original clipping comparison at zero clip globals; indexed World is accounted separately. Explicit581ec0 glyph startup shadow/takeover:1817 native calls and six retained independent original replays; partial glyph body only.",
+      "remaining": "Clipped caller state/ABI/live admission, other clip globals and alternate backends, full dispatch and caller side effects remain open. Broader glyph input/control/lifecycle coverage, higher text consumers and complete UI composition remain pending.",
       "replacement": [
         {
           "behavior": "RS.word-route",
           "evidence": "RS.word-route.takeover-20261007"
+        },
+        {
+          "behavior": "RS.glyph-live-route",
+          "evidence": "RS.glyph-live-route.takeover-20261010"
         }
       ]
     },
@@ -330,21 +341,31 @@
       "id": "RI.ui",
       "implementation": [
         "RS.word-route",
-        "NR.scene-service"
+        "NR.scene-service",
+        "RS.glyph-live-route"
       ],
       "validation": [
         {
           "behavior": "RS.word-route",
           "evidence": "RS.word-route.takeover-20261007",
           "domain": "original_executable"
+        },
+        {
+          "behavior": "RS.glyph-live-route",
+          "evidence": "RS.glyph-live-route.live-20261010",
+          "domain": "original_executable"
         }
       ],
-      "scope": "Selected direct-word UI sprite bodies only; Qt widgets/capture replay are separate.",
-      "remaining": "HUD/minimap/tooltips/fonts/cursor composition and all UI producer suppression remain open.",
+      "scope": "Selected direct-word UI sprite bodies only; Qt widgets/capture replay are separate. Explicit581ec0 glyph startup shadow/takeover:1817 native calls and six retained independent original replays; partial glyph body only.",
+      "remaining": "HUD/minimap/tooltips/fonts/cursor composition and complete UI producer suppression remain open. Broader glyph input/control/lifecycle coverage, higher text consumers and complete UI composition remain pending.",
       "replacement": [
         {
           "behavior": "RS.word-route",
           "evidence": "RS.word-route.takeover-20261007"
+        },
+        {
+          "behavior": "RS.glyph-live-route",
+          "evidence": "RS.glyph-live-route.takeover-20261010"
         }
       ]
     },

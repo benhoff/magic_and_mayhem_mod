@@ -1,0 +1,655 @@
+{
+  "schema": 1,
+  "success": true,
+  "claims": [
+    {
+      "behavior": "RS.glyph-backend",
+      "contract_sha256": "d64b9aa3d8a6cd86ab61b8f75946b57f960e4fd4cf0f611117a467fe8872ecd9",
+      "scenarios": {
+        "glyph-backend-host-20261010": "5ad44dee33e892319f5f0932368ddf0156b62a5509b61fc5943d95a10782fd29"
+      }
+    },
+    {
+      "behavior": "NR.glyph-backend-admission",
+      "contract_sha256": "bcaa4fed084606e6b8485692f2bc06a28a586666a0d04e66fc89f713f8f7bc14",
+      "scenarios": {
+        "glyph-backend-host-20261010": "5ad44dee33e892319f5f0932368ddf0156b62a5509b61fc5943d95a10782fd29"
+      }
+    },
+    {
+      "behavior": "RS.glyph-live-route",
+      "contract_sha256": "6fe977efcb8ab1c791443174c9b00794dac8d1b1a2cae8292ddf3632c836b42d",
+      "scenarios": {
+        "glyph-live-headless-20261010": "7188efe4678f48748a3089780b1699ad5218a3730ededaa16d4f1238133ef1ae",
+        "glyph-live-live_equivalence-20261010": "e4821b0f53681ec73fa0e0bd2928bd838de1dcc722f52940d7c94b24078ab7da"
+      }
+    },
+    {
+      "behavior": "NR.glyph-live-admission",
+      "contract_sha256": "a78990c5b7167ed70e2b4fa9839fc005a8b2055dfc20b75f18292f24463ccdb6",
+      "scenarios": {
+        "glyph-live-headless-20261010": "7188efe4678f48748a3089780b1699ad5218a3730ededaa16d4f1238133ef1ae",
+        "glyph-live-live_equivalence-20261010": "e4821b0f53681ec73fa0e0bd2928bd838de1dcc722f52940d7c94b24078ab7da"
+      }
+    }
+  ],
+  "sources": {
+    "protocols/include/mnm/canvas_producers_v1.h": "5a644332be8e73853cda426477835aed3e330d68acdb88f1ad3004e8a00da52c",
+    "protocols/include/mnm/canvas_producers_v2.h": "c94a25cfe470eecaa0781aba576ee7fb0009a627e60ac8690e8ea6f4efc0b48f",
+    "protocols/include/mnm/canvas_producers_v3.h": "30f373b1d4556847534e5fc444604c1a409a657b9ee25343e3222586c3dee8d7",
+    "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+    "protocols/include/mnm/menu_v2.h": "5f9db9ded1e1653411cdd542ff045070a79f8b9b3c93d05227d94edaf3da3881",
+    "protocols/include/mnm/menu_v3.h": "f0baf53e4b11455c7bef129aafad06a80984ba13ce37e877d088dd7c7ed74dd6",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+    "protocols/include/mnm/world_channel_v2.h": "7950078b61ef26403a9661981c5dd4ae9553bc582c232c8782f0f1b7ce1504f4",
+    "protocols/include/mnm/world_frame_v1.h": "b9b2f78c8e5b513232f803d2a0ec6643626974a8909db18611e87262a22f83b5",
+    "reconstruction/rendering/glyph_backend.c": "3d6ed57e5d6837e6a0535ecd92c8416d3c57717b22684dacd5e99d0e1b704775",
+    "reconstruction/rendering/glyph_backend.h": "93104365980bf04eb6047cdc3f70ffddcc7958449c4c797bcad43c16b0603245",
+    "reconstruction/rendering/glyph_backend_state.c": "e10f3ec2ad7df0c9241ec3f2600b7f9b7f3fe64bcf92d17bdbd2302e8770703e",
+    "reconstruction/rendering/glyph_backend_state.h": "b58537f01dbaf0ea98ad9ae94b0351ccf416a525ea8bdb801fc0b4ae2f3a2660",
+    "reconstruction/rendering/glyph_backend_x87.S": "fefdf95c806778f7d39fff4e43ff0beed9731e3bc1afd7d1634b4e718951f77a",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/campaign_gameplay_observe.h": "6969d3d3ccd673045dd8122ed535891b451572f37ef3ba594c4b882965d30a1c",
+    "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+    "runtime/menu/campaign_observe.h": "a220db2c27e263f7fc29fc41fd98876051de0f02839b2bde48fddb04d55950b4",
+    "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+    "runtime/menu/campaign_spell_observe.h": "1020a7a459db112a3521ea6859061914a78ceda776d0f2a5aa75d7b5d3a00f7a",
+    "runtime/menu/campaign_world_observe.h": "16b5d6c8f84c9ab9e804dd6415ecb01c5f719f777fb6610a0fc589726f15a2f2",
+    "runtime/menu/channel.h": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+    "runtime/menu/channel_selftest.h": "1104046daa23c138c71ce2acc6367546e27e8bcadf17981660b7ae250890ef3e",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c",
+    "runtime/menu/contract_selftest.c": "a41c0188b16e4275333e4f5c7e963614ad0c43d3759150fd297410a649b273e7",
+    "runtime/menu/mini.h": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+    "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+    "runtime/menu/observer.c": "a1af55ad3377720ce7cfd005af5bdaf43e8c577d29efa66eb380064edabce06a",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/preferences_display.h": "60a7f61c7bd734b017c831c6ee3159cd751bf9b2df4a2c1e17b103628872a2cc",
+    "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+    "runtime/menu/region_entry.h": "df429ae4125d71982471f814a946c43a5d0e46762e607e09478212546c236b7e",
+    "runtime/menu/region_entry_observe.h": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+    "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "runtime/scene/canvas_producers.S": "9b7f9c4ff9c099796ec8391477901adbd97a0b28a3ec7e3697ed02a101c1fdb2",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+    "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/glyph_entry.S": "9de083ae284419c71a47a99a4b88e1e192f9eef3c92b17fa16c0dcf0779b778e",
+    "runtime/scene/glyph_leave.S": "dd4657c0638ab9426386197617132b65f25dc0aed44a1b9e097afd5138c617e9",
+    "runtime/scene/glyph_live.c": "8c8801f5710c96b7e09ea4650b4484fa5431a53bf609f8fc3fda82d5cd9e415d",
+    "runtime/scene/glyph_live.h": "b9c1930ef9fb4f3cfaf83e3e1d27ccd1d614cf91823f5c4136f10ce3a0854527",
+    "runtime/scene/glyph_route.c": "cdc2b537e1ba7a16412c6d26524ccf0b0db8136ede19b7e5e723a80d0b17c2be",
+    "runtime/scene/glyph_route.h": "84b23b94c20d3761fc5db0566438f8de7e120fa47f85bffeb498dd93e8fc6fb9",
+    "runtime/scene/kind8_observer.c": "2446b756aa890f91a87fa4ae2d7a434c9f247c43b0ff7fabad994c75fa1f6563",
+    "runtime/scene/observer.c": "63b70695b7ecd53ec17322dbc949ae571ee1b153c9b22b523c1ddab6c6489071",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "runtime/scene/startup_queue.c": "466d66d8343dbaac7e196129cca7ff0d6a2e8cb60a2c9faed1bb75ee7c96d6a5",
+    "runtime/scene/word_entry.S": "23d72e078069edba6c1beed0dee47b1f3c8c1faf395bf6f36c9c06b92b450beb",
+    "runtime/scene/word_route.c": "d0a3ebcaf73d2df6451162dbf7e1aa224612953b4b40514c66cd4ed01acccf55",
+    "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+    "runtime/scene/world_entry.S": "48ce2eeaaa4ec8446e7b8804aefb0fa561a8f872a00f41e1e8b32c7500256cf1",
+    "runtime/scene/world_kinds.h": "dad1ab93f175db036c7b53fb3ee8f4f65259d016ae2ba3627a133e2685f87e4b",
+    "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+    "runtime/scene/world_producer_bypass.c": "98eec5d46516454ad224fe760922231d7b5c345ef5336422c8aedae30ef13e57",
+    "runtime/scene/world_raster_batch.c": "e53cf0826f8452525b0a1d53437ec2b95eb640dca93fa1cdaf11f270b709e7f5",
+    "runtime/scene/world_raster_callers.h": "d2a2c29e4ff60c213bd8fc2e4a2a12f0f3a5b6de7c8e1a1038da3a94b571daf7",
+    "runtime/scene/world_stream.c": "0f55cc0856779977a4b4c9a7795e4b5622fa6c16f00db06cc631fd0e12a48a60",
+    "runtime/scene/world_stream_selftest.c": "2828bc32ae8e1ff3a3675fd11d863d8d73729d07e12f48dc1b173c8b57d6ef29",
+    "runtime/scene/world_trace.c": "a2a40f336e007898f3bf44c60a25efda1b18d8466bdd69460bafa727cc752f4d",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/glyph-backend-entry-probe.S": "684a2cf1646344b8ba2c9a5fd56e678e7b0e36ac2db74ac5d6796fdb514f38c5",
+    "tests/glyph-backend-reference.cpp": "cce1b9bd5b0156c9509354e0ef149954fafa64f3f07dd5976595ba25f030df3b",
+    "tests/glyph-backend-state-probe.S": "65b6b81ec4088f7396713c649f9a884f14c9fa4cc22d3490e37d9c8d41674995",
+    "tests/glyph-backend-test.c": "bcb164ca55aaa1558960dae5dd6b3731f1f62f5234635a7550ac364580eaceeb",
+    "tests/glyph-live-admission.c": "a814792fef9ef9a1dddf39e67d661caae437cd274a7c4a7b08c6211dcd38ef47",
+    "tests/glyph-live-reference.cpp": "0f974a24451f2d8c58fa06a29967acb2fb74ab43ab7f8d1e0cf50ff73d89620e",
+    "tests/glyph-producer-entry.c": "bd9bd07753419a29c1c50f9dd0c6c0b22f3a04e35719d94db2c03b80c8baa427",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/build-scene-observer.py": "ee0f7e1a7d723b554e0eb7b2351ba92cb4f3cb863e8afb981243c440d17a6336",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/capture-scene-game.py": "a38674a8febde5dc1259b8d3dc8b50b586d0551300c9e983bc95149772753cd1",
+    "tools/decode-cfg.py": "acf3c809fa12e2227ab1b9aad20119491855b39f3becf558d90229861763e27e",
+    "tools/encode-cfg.py": "e918845eee3ec4ce355a4864bf6b4d9b6e15df79807e0d96a35875033134c77c",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/glyph_backend_launch.py": "de50405307c092ce921cfe8c0ec44fe97e3ce15427e7bb487f7bba32a518a551",
+    "tools/glyph_live_capture.py": "eaeececdb907436d1ee366ba49db2babe24d21f5c38cd05c60fbeb356cc2f470",
+    "tools/menu-game-runner.py": "ca338b36ca0c7d66bc7b4c11beff19b44b997e4f6c3578f76c2aedc51e58a149",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-menu-observer.py": "cc78c6dee2f89c8afe65155eabaa525c9832bc2f2c1bf9ddf7b4674223c11d42",
+    "tools/prepare-scene-observer.py": "fb28af7a20f861ff91f18bd4ece59365af607b3a33c7a41c03d67133743c6184",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/render-game-runner.py": "47c99bd2226be7c54480093b87ba95595a99c2ccce81fa8b4f3f68c329083903",
+    "tools/run-game.sh": "a0c1f33f375b1ab640a29224e6e7df750e5f9d9d80bb60447b73e8a91e4fe983",
+    "tools/run-opengl-game.py": "1f93ba28de3b5bd062ab256ffb8ce6fb99d4c1814f986d8cbbb533799135548c",
+    "tools/scene-game-runner.py": "b3cf334c6dc3eda7cd53d150f1bb6c7d4a4cb8b1bb994ebda36f1363d5d1d019",
+    "tools/test-glyph-backend-state.py": "c6fb0c4a8c9b2428d7e4987e4940a948f074515752d98ced3368340910786633",
+    "tools/test-glyph-backend.py": "11d0064f1dff46f2283154fc1abf3449c7df7622dc55ea1afa2f742757862fff",
+    "tools/test-glyph-live.py": "a97e7338dd6c15de0879a5781461b7817e5e85e5a1ddbaf761fad00acee0d9bd",
+    "tools/world_channel.py": "7a29c9710c7552a399b9ae6424505402f605785adb5dc53aae2d595a1d064db0",
+    "tools/world_refusal.py": "d7fcdf8fe47036e738781d97319eb32c9929cb0fccbef824eb63cdd9e072717c"
+  },
+  "experiment": "working/tests/glyph-live/run-i11xyee4",
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "scope": "Fixed-build masked supported glyph calls under observed live controls. Full shadow completion compare plus retained takeover inputs versus independently executed unchanged original; scoped partial glyph replacement only. Other drawing/layout original, no whole-game equivalence or performance claim.",
+  "virtual_query_admission": {
+    "success": true,
+    "branches": [
+      "read/write committed extent",
+      "read-only second region",
+      "guard second region",
+      "no-access second region",
+      "zero extent/address",
+      "wrapping extent"
+    ]
+  },
+  "cohorts": {
+    "shadow": {
+      "stats": {
+        "mode": 1,
+        "installed": 1,
+        "seen": 1920,
+        "admitted": 1881,
+        "handled": 0,
+        "shadow_compared": 1881,
+        "forwarded": 39,
+        "errors": 0,
+        "samples": 2,
+        "budget": 65536,
+        "busy_or_other_thread": 0,
+        "memory_or_format_refusals": 39,
+        "reserved": 0,
+        "backend_refusals": 0,
+        "recheck_refusals": 0,
+        "allocation_refusals": 0,
+        "cap_refusals": 0,
+        "reserved21": 0,
+        "reserved22": 0,
+        "reserved23": 0,
+        "fp_controls": [
+          0,
+          0,
+          0,
+          0,
+          1881,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "artifacts": {
+        "glyph-stats.bin": {
+          "sha256": "519ee23789d3cc427328062828b3d7a7280e95db41998df60d4bbfacd51e774b",
+          "bytes": 144
+        },
+        "glyph-0.bin": {
+          "sha256": "0847cd63b661f292a52f70dfc7683e744f54dcc976ca5b390b5f0ed5506476f7",
+          "bytes": 1125560
+        },
+        "glyph-1.bin": {
+          "sha256": "07ca888814b24aa3656c47f343a89996032ad0f51d78e27e29ab0d3aab44a253",
+          "bytes": 1125368
+        }
+      },
+      "scope": "Fixed-build opt-in glyph hook only. Counters observe completed live calls; retained full canvases/coverage/FX/caller snapshots require independent original replay. Layout and all other rendering stay original.",
+      "experiment": "working/experiments/scene-observer/run-g7qk5c1w",
+      "capture_report_sha256": "b1524b5937f7bc27f4e2412a73691f0fbd46fc97dcfaadcce0615cdb89dc16ba",
+      "independent_replay": "2 retained live completions match independent original/native replay; 561600 RGB565 words",
+      "inputs": {
+        "working/experiments/scene-observer/run-g7qk5c1w/glyph-backend/glyph-0.bin": "0847cd63b661f292a52f70dfc7683e744f54dcc976ca5b390b5f0ed5506476f7",
+        "working/experiments/scene-observer/run-g7qk5c1w/glyph-backend/glyph-1.bin": "07ca888814b24aa3656c47f343a89996032ad0f51d78e27e29ab0d3aab44a253"
+      }
+    },
+    "takeover": {
+      "stats": {
+        "mode": 2,
+        "installed": 1,
+        "seen": 1920,
+        "admitted": 1881,
+        "handled": 1881,
+        "shadow_compared": 0,
+        "forwarded": 39,
+        "errors": 0,
+        "samples": 2,
+        "budget": 65536,
+        "busy_or_other_thread": 0,
+        "memory_or_format_refusals": 39,
+        "reserved": 0,
+        "backend_refusals": 0,
+        "recheck_refusals": 0,
+        "allocation_refusals": 0,
+        "cap_refusals": 0,
+        "reserved21": 0,
+        "reserved22": 0,
+        "reserved23": 0,
+        "fp_controls": [
+          0,
+          0,
+          0,
+          0,
+          1881,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "artifacts": {
+        "glyph-stats.bin": {
+          "sha256": "7a21ad7b39e5dd392deb316b9f9ac031bcc7bbb8e3730f1df2197b53c576ebbc",
+          "bytes": 144
+        },
+        "glyph-0.bin": {
+          "sha256": "87e00d60935df1aae8341862e422cf3d7241516a89cc97b28121dd622eea631e",
+          "bytes": 1125560
+        },
+        "glyph-1.bin": {
+          "sha256": "7d1514472e0c295ba403ddb2c4183bcc1e0c46f7545b8fb4dab48ab87a6ed631",
+          "bytes": 1125368
+        }
+      },
+      "scope": "Fixed-build opt-in glyph hook only. Counters observe completed live calls; retained full canvases/coverage/FX/caller snapshots require independent original replay. Layout and all other rendering stay original.",
+      "experiment": "working/experiments/scene-observer/run-_bf972hh",
+      "capture_report_sha256": "fb8ef7e4fefa9173ade99a5936bac9348c4b9fc86e3e241f8eb1f1fcaaa25c87",
+      "independent_replay": "2 retained live completions match independent original/native replay; 561600 RGB565 words",
+      "inputs": {
+        "working/experiments/scene-observer/run-_bf972hh/glyph-backend/glyph-0.bin": "87e00d60935df1aae8341862e422cf3d7241516a89cc97b28121dd622eea631e",
+        "working/experiments/scene-observer/run-_bf972hh/glyph-backend/glyph-1.bin": "7d1514472e0c295ba403ddb2c4183bcc1e0c46f7545b8fb4dab48ab87a6ed631"
+      }
+    }
+  },
+  "live_observation": true,
+  "original_pixels_compared": true,
+  "live_replacement": true,
+  "original_work_bypassed": true,
+  "inputs_stable": true,
+  "original_manifest_verified_before_after": true,
+  "commands": [
+    {
+      "label": "manifest-before",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/manifest-before.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    },
+    {
+      "label": "glyph_backend",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph_backend.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/glyph_backend.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph_backend_state",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend_state.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph_backend_state.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/glyph_backend_state.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph_backend_x87",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/glyph_backend_x87.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph_backend_x87.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/glyph_backend_x87.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "glyph-backend-state-probe",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/glyph-backend-state-probe.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph-backend-state-probe.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/glyph-backend-state-probe.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "reference-build",
+      "argv": [
+        "g++",
+        "-m32",
+        "-O2",
+        "-std=c++17",
+        "-fno-pie",
+        "-no-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/glyph-live-reference.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph_backend.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph_backend_state.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph_backend_x87.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph-backend-state-probe.o",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph-live-reference"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/reference-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "admission-dll",
+      "argv": [
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/build-scene-observer.py",
+        "--selftest"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/admission-dll.log",
+      "sha256": "0c8639d93451b78f6f3c85d09a72743b78bdbace720e145fe4fe84c1911f3ff2"
+    },
+    {
+      "label": "admission-import",
+      "argv": [
+        "llvm-dlltool",
+        "-m",
+        "i386",
+        "-D",
+        "MnmScene.dll",
+        "-d",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph.def",
+        "-l",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph.lib",
+        "--kill-at"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/admission-import.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "admission-build",
+      "argv": [
+        "clang",
+        "--target=i686-pc-windows-msvc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/glyph-live-admission.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/admission.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/admission-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "admission-link",
+      "argv": [
+        "lld-link",
+        "/machine:x86",
+        "/entry:start",
+        "/subsystem:console",
+        "/nodefaultlib",
+        "/safeseh:no",
+        "/timestamp:0",
+        "/out:/home/hoff/swdev/magic_and_mayhem_mod/working/build/scene-observer-selftest/glyph-admission.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/admission.obj",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph.lib",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/scene-observer-selftest/kernel32.lib"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/admission-link.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "admission-wine",
+      "argv": [
+        "xvfb-run",
+        "-a",
+        "wine",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/build/scene-observer-selftest/glyph-admission.exe"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/admission-wine.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "shadow-capture",
+      "argv": [
+        "xvfb-run",
+        "-a",
+        "-s",
+        "-screen 0 1280x1024x24",
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/capture-scene-game.py",
+        "--glyph-backend",
+        "shadow",
+        "--samples",
+        "4",
+        "--skip-window-screenshot",
+        "--claims",
+        "working/tests/glyph-live-claims-20261010c.json"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/shadow-capture.log",
+      "sha256": "a5250f164c9a954f5d0f0f6d1f38dbf884a45fdbf83c0d99f56b7dda1b971f16"
+    },
+    {
+      "label": "shadow-original-replay",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph-live-reference",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-g7qk5c1w/glyph-backend/glyph-0.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-g7qk5c1w/glyph-backend/glyph-1.bin"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/shadow-original-replay.log",
+      "sha256": "a7a2d4dae44b2d969825f01883fba053e118fe49657d1bfe43447434e04220d1"
+    },
+    {
+      "label": "takeover-capture",
+      "argv": [
+        "xvfb-run",
+        "-a",
+        "-s",
+        "-screen 0 1280x1024x24",
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/capture-scene-game.py",
+        "--glyph-backend",
+        "takeover",
+        "--samples",
+        "4",
+        "--skip-window-screenshot",
+        "--claims",
+        "working/tests/glyph-live-claims-20261010c.json"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/takeover-capture.log",
+      "sha256": "abb1e71cc6591938bc971ab418eabeb3f1a227b2ba51ad3f87a46ada19ad92f0"
+    },
+    {
+      "label": "takeover-original-replay",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-live/run-i11xyee4/glyph-live-reference",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-_bf972hh/glyph-backend/glyph-0.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/scene-observer/run-_bf972hh/glyph-backend/glyph-1.bin"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/takeover-original-replay.log",
+      "sha256": "a7a2d4dae44b2d969825f01883fba053e118fe49657d1bfe43447434e04220d1"
+    },
+    {
+      "label": "manifest-after",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-live/run-i11xyee4/manifest-after.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    }
+  ],
+  "sources_stable": true,
+  "artifacts": {
+    "working/tests/glyph-live/run-i11xyee4/admission-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-live/run-i11xyee4/admission-dll.log": {
+      "sha256": "0c8639d93451b78f6f3c85d09a72743b78bdbace720e145fe4fe84c1911f3ff2",
+      "bytes": 89
+    },
+    "working/tests/glyph-live/run-i11xyee4/admission-import.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-live/run-i11xyee4/admission-link.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-live/run-i11xyee4/admission-wine.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-live/run-i11xyee4/admission.obj": {
+      "sha256": "91ff053f4c0151392c344b6ea33dce47380eddcc8102703c4ecd9e2a2a87668a",
+      "bytes": 702
+    },
+    "working/tests/glyph-live/run-i11xyee4/glyph-backend-state-probe.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-live/run-i11xyee4/glyph-backend-state-probe.o": {
+      "sha256": "537daf753ca72897f113d9260dee3f2c8a7f4d924cb69de1c7a729d0dbd89f4f",
+      "bytes": 1544
+    },
+    "working/tests/glyph-live/run-i11xyee4/glyph-live-reference": {
+      "sha256": "a67bad683c6fed8579cbbd62e01f61c4bd4c05a2066e989b1cdc432d39f29d21",
+      "bytes": 41332
+    },
+    "working/tests/glyph-live/run-i11xyee4/glyph.def": {
+      "sha256": "28cbd2265d8489322ac3e6338d69e91515a0402b42cebe9708a34c4c57a6bc6f",
+      "bytes": 53
+    },
+    "working/tests/glyph-live/run-i11xyee4/glyph.lib": {
+      "sha256": "25ca3a71cdba611a2bb0e111468eb3847ee977a64231248b6b10427f43223da0",
+      "bytes": 1414
+    },
+    "working/tests/glyph-live/run-i11xyee4/glyph_backend.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-live/run-i11xyee4/glyph_backend.o": {
+      "sha256": "0afb40a897c5a1d1d3c0c4e99c0840ce4044a4cbd9abc63fbb55e40d9f668eeb",
+      "bytes": 2280
+    },
+    "working/tests/glyph-live/run-i11xyee4/glyph_backend_state.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-live/run-i11xyee4/glyph_backend_state.o": {
+      "sha256": "3214a92fa6e523c3054c0810bda67d6b17321af1fce8c251be52b928657b37de",
+      "bytes": 3276
+    },
+    "working/tests/glyph-live/run-i11xyee4/glyph_backend_x87.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-live/run-i11xyee4/glyph_backend_x87.o": {
+      "sha256": "035f666a34bf48644a480e973fb646acffebc5de339632611b46d93fe18c6e9b",
+      "bytes": 1316
+    },
+    "working/tests/glyph-live/run-i11xyee4/manifest-after.log": {
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+      "bytes": 65
+    },
+    "working/tests/glyph-live/run-i11xyee4/manifest-before.log": {
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+      "bytes": 65
+    },
+    "working/tests/glyph-live/run-i11xyee4/reference-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/glyph-live/run-i11xyee4/shadow-capture.log": {
+      "sha256": "a5250f164c9a954f5d0f0f6d1f38dbf884a45fdbf83c0d99f56b7dda1b971f16",
+      "bytes": 314
+    },
+    "working/tests/glyph-live/run-i11xyee4/shadow-original-replay.log": {
+      "sha256": "a7a2d4dae44b2d969825f01883fba053e118fe49657d1bfe43447434e04220d1",
+      "bytes": 90
+    },
+    "working/tests/glyph-live/run-i11xyee4/takeover-capture.log": {
+      "sha256": "abb1e71cc6591938bc971ab418eabeb3f1a227b2ba51ad3f87a46ada19ad92f0",
+      "bytes": 314
+    },
+    "working/tests/glyph-live/run-i11xyee4/takeover-original-replay.log": {
+      "sha256": "a7a2d4dae44b2d969825f01883fba053e118fe49657d1bfe43447434e04220d1",
+      "bytes": 90
+    }
+  }
+}

@@ -11,6 +11,9 @@ std::uint32_t mnm_glyph_pinned_original=0x581ec0,mnm_glyph_original_calls;
 void mnm_glyph_counted_original();
 void (*mnm_glyph_original)()=mnm_glyph_counted_original;
 void mnm_glyph_enter();
+#ifdef MNM_GLYPH_PRODUCER_TEST
+void _producer_enter_10();
+#endif
 void mnm_glyph_probe(std::uint32_t,std::uint32_t,std::int32_t,std::int32_t,int,int,int);
 }
 static std::uint16_t half(const void *p){std::uint16_t n;std::memcpy(&n,p,2);return n;}
@@ -71,7 +74,11 @@ int main(int argc,char **argv)try{
         context.backend.pixels=pixels.data()+32;context.backend.width=w;context.backend.height=h;context.backend.stride=stride;context.backend.coverage=reinterpret_cast<std::uint32_t*>(0x6f5dac);
         if(mode==2)context.backend.state.frame=nullptr;
         mnm_glyph_route_context=mode==1?nullptr:&context;mnm_glyph_original_calls=0;
+        #ifdef MNM_GLYPH_PRODUCER_TEST
+        call(reinterpret_cast<std::uintptr_t>(_producer_enter_10));
+#else
         call(reinterpret_cast<std::uintptr_t>(mnm_glyph_enter));
+#endif
         std::uint32_t row[16]={};
         if(pixels==originalPixels)row[0]|=1;
         if(!std::memcmp(originalTable,reinterpret_cast<void*>(0x6f5dac),256))row[0]|=2;

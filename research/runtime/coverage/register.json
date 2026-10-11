@@ -26472,7 +26472,8 @@
         "TOOL.rendering-coverage.guards-final-20261010",
         "TOOL.rendering-coverage.world32-guards-20261010",
         "TOOL.rendering-coverage.clipping-guards-20261010",
-        "TOOL.rendering-coverage.clipping-final-guards-20261010"
+        "TOOL.rendering-coverage.clipping-final-guards-20261010",
+        "TOOL.rendering-coverage.glyph-live-guards-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -28787,7 +28788,7 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Guarded native glyph pixels and selected x87 effects through actual RET16 entry",
-      "scope": "Pinned No-CD581ec0 RGB565 bounded indexed RLE native kernel and explicit owned-context route/entry. Cold/initialized coverage, byte tints, bounded geometry with complete horizontal rejection and vertical cropping, empty/padded/transparent/all-installed glyph fixtures. Actual handled RET16 path compares complete canvas/table, volatile/callee GPRs, four rewritten arguments/stack guards, defined flags/DF, selected x87 CW/full status/TOP/tag/occupied values and XMM/MXCSR. Native independent x87 run/channel/truncation helpers replace original glyph arithmetic under24/53/64-bit precision and four rounding controls; original-once fallback for selected two-active-slot diagnostics. No installed live hook, arbitrary FP/unmasked exceptions, pointer/opcode history/empty register contents, process-memory admission/lifetime, GPU glyph takeover, complete text layout/font lifecycle or Win32 ABI claim. Targeted safe original-once refusal branches include absent context, mismatched owned frame, IE-unmasked finite draws and finite warm coverage aboveone.",
+      "scope": "Pinned No-CD581ec0 RGB565 bounded indexed RLE native kernel and explicit owned-context route/entry. Cold/initialized coverage, byte tints, bounded geometry with complete horizontal rejection and vertical cropping, empty/padded/transparent/all-installed glyph fixtures. Actual handled RET16 path compares complete canvas/table, volatile/callee GPRs, four rewritten arguments/stack guards, defined flags/DF, selected x87 CW/full status/TOP/tag/occupied values and XMM/MXCSR. Native independent x87 run/channel/truncation helpers replace original glyph arithmetic under24/53/64-bit precision and four rounding controls; original-once fallback for selected two-active-slot diagnostics. No installed live hook, arbitrary FP/unmasked exceptions, pointer/opcode history/empty register contents, process-memory admission/lifetime, GPU glyph takeover, complete text layout/font lifecycle or Win32 ABI claim. Targeted safe original-once refusal branches include absent context, mismatched owned frame, IE-unmasked finite draws and finite warm coverage aboveone. Shared production producer entry is also compared in isolation; process admission stays separately registered.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -28816,7 +28817,8 @@
         "tests/glyph-backend-reference.cpp",
         "tests/glyph-backend-entry-probe.S",
         "tests/glyph-backend-test.c",
-        "tools/test-glyph-backend.py"
+        "tools/test-glyph-backend.py",
+        "tests/glyph-producer-entry.c"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/glyph_backend_state.c",
@@ -28824,13 +28826,16 @@
         "tests/glyph-backend-state-probe.S",
         "tests/sprite-binary-reference.cpp",
         "tools/original-manifest.sh",
-        "tools/test-glyph-backend-state.py"
+        "tools/test-glyph-backend-state.py",
+        "runtime/scene/canvas_producers.S"
       ],
       "evidence": [
         "RS.glyph-backend.original-20261010",
         "RS.glyph-backend.host-20261010",
         "RS.glyph-backend.initial-original-20261010",
-        "RS.glyph-backend.initial-host-20261010"
+        "RS.glyph-backend.initial-host-20261010",
+        "RS.glyph-backend.original-live-entry-20261010",
+        "RS.glyph-backend.host-live-entry-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -28856,7 +28861,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Atomic guarded glyph kernel and entry admission",
-      "scope": "Intentional preflight: inherited bounded source/index/geometry/byte tint domain, owned nonaliasing canvas/table/FX buffers, aligned16 FX images, legal canvas stride/clip, masked supported precision/rounding, seven physical push slots empty and remaining canonical finite value, legal MXCSR, warm finite unit coverage. Cold endpoint aboveone is admitted only as recovered generation. Refusal is atomic and actual entry forwards original once. No original malformed equivalence, process-memory hook admission/lifetime or live replacement. Targeted safe original-once refusal branches include absent context, mismatched owned frame, IE-unmasked finite draws and finite warm coverage aboveone.",
+      "scope": "Intentional preflight: inherited bounded source/index/geometry/byte tint domain, owned nonaliasing canvas/table/FX buffers, aligned16 FX images, legal canvas stride/clip, masked supported precision/rounding, seven physical push slots empty and remaining canonical finite value, legal MXCSR, warm finite unit coverage. Cold endpoint aboveone is admitted only as recovered generation. Refusal is atomic and actual entry forwards original once. No original malformed equivalence, process-memory hook admission/lifetime or live replacement. Targeted safe original-once refusal branches include absent context, mismatched owned frame, IE-unmasked finite draws and finite warm coverage aboveone. Shared production producer entry is also compared in isolation; process admission stays separately registered.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -28874,7 +28879,8 @@
         "tests/glyph-backend-reference.cpp",
         "tests/glyph-backend-entry-probe.S",
         "tests/glyph-backend-test.c",
-        "tools/test-glyph-backend.py"
+        "tools/test-glyph-backend.py",
+        "tests/glyph-producer-entry.c"
       ],
       "validation_dependencies": [
         "reconstruction/rendering/glyph_backend_state.c",
@@ -28882,10 +28888,12 @@
         "tests/glyph-backend-state-probe.S",
         "tests/sprite-binary-reference.cpp",
         "tools/original-manifest.sh",
-        "tools/test-glyph-backend-state.py"
+        "tools/test-glyph-backend-state.py",
+        "runtime/scene/canvas_producers.S"
       ],
       "evidence": [
-        "NR.glyph-backend-admission.host-20261010"
+        "NR.glyph-backend-admission.host-20261010",
+        "NR.glyph-backend-admission.host-live-entry-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -29446,6 +29454,449 @@
         "comparison": "recorded",
         "integration": "headless",
         "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.glyph-live-route",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Bounded live glyph caller/pixel route",
+      "scope": "Pinned NoCD581ec0 opt-in shadow/takeover through shared producer tag10. Per-call private frame/canvas/table/FX snapshots, original identity preserved, bounded clip/stride RGB565, supported masked x87 domain inherited from glyph kernel. Shadow original completion compares full admitted canvas/coverage and selected caller/FP state; takeover commits rechecked snapshots and returns RET16 without original glyph body. Bounded Quick Battle startup cohort, independent retained original replay, original layout/other draws active. Single observed engine thread with concurrent/nested forwards; no lock against unrelated external writers, no complete game/GPU text ownership/performance claim. Fresh disposable public Qt staging supported; public interactive gameplay validation remains separate. Original frame/canvas/table/argument ranges must be disjoint; private canvas storage is aligned independently of frame byte length.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5775040,
+          "scope": "Selected glyph pixels/table/caller state and x87 effects through independently implemented bounded native entry."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5881568,
+          "scope": "Selected channel truncation and control/status effects; independent native helper, original helper is not called by native handled path."
+        }
+      ],
+      "documents": [
+        "research/runtime/glyph-live-backend.md"
+      ],
+      "implementation": [
+        "runtime/scene/glyph_live.c",
+        "runtime/scene/glyph_live.h",
+        "runtime/scene/glyph_leave.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/observer.c",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "tools/glyph_backend_launch.py",
+        "tools/glyph_live_capture.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py",
+        "tools/scene-game-runner.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/run-opengl-game.py",
+        "tools/render-game-runner.py"
+      ],
+      "tests": [
+        "tools/test-glyph-live.py",
+        "tests/glyph-live-reference.cpp",
+        "tests/glyph-live-admission.c",
+        "tools/test-glyph-backend.py",
+        "tests/glyph-backend-reference.cpp",
+        "tests/glyph-producer-entry.c"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/python/mnm_protocols/__init__.py",
+        "protocols/python/mnm_protocols/frame_v1.py",
+        "protocols/python/mnm_protocols/input_v1.py",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v2.py",
+        "protocols/python/mnm_protocols/render_control_v1.py",
+        "protocols/python/mnm_protocols/render_stream_v2.py",
+        "protocols/python/mnm_protocols/render_stream_v3.py",
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/bridge.c",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/palette_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/selftest.c",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/glyph_entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/glyph-backend-entry-probe.S",
+        "tests/glyph-backend-state-probe.S",
+        "tests/glyph-backend-test.c",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/decode-cfg.py",
+        "tools/encode-cfg.py",
+        "tools/export-menu-support.py",
+        "tools/menu_preferences_store.py",
+        "tools/native_render_config.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/test-glyph-backend-state.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py"
+      ],
+      "evidence": [
+        "RS.glyph-live-route.host-20261010",
+        "RS.glyph-live-route.original-20261010",
+        "RS.glyph-live-route.live-20261010",
+        "RS.glyph-live-route.takeover-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "scoped_live"
+      },
+      "validation_domain": {
+        "inputs": "Observed live glyph frames, coverage, pre-call canvas and masked controls; retained complete shadow/takeover inputs independently replayed. Admission fixture: committed writable, readonly second region, guard/no-access second region, empty/wrapping ranges. Existing glyph corpus validates actual shared entry ABI and safe native guard forwards. Original range overlap/adjacency is separately checked. Both public staging paths authorize fresh pinned glyph DLLs; unsupported mode, redirected output, changed DLL hash and conflicting word mode refuse. Full interactive Qt gameplay remains excluded.",
+        "exclusions": [
+          "arbitrary process concurrency/external writers",
+          "whole-game or other rendering replacement",
+          "GPU text ownership",
+          "higher layout/reset lifecycle",
+          "arbitrary FP/unmasked exceptions/pointer history",
+          "public interactive gameplay equivalence",
+          "performance benefit"
+        ]
+      }
+    },
+    {
+      "id": "NR.glyph-live-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded live glyph process-memory admission and launch policy",
+      "scope": "Pinned NoCD581ec0 opt-in shadow/takeover through shared producer tag10. Per-call private frame/canvas/table/FX snapshots, original identity preserved, bounded clip/stride RGB565, supported masked x87 domain inherited from glyph kernel. Shadow original completion compares full admitted canvas/coverage and selected caller/FP state; takeover commits rechecked snapshots and returns RET16 without original glyph body. Bounded Quick Battle startup cohort, independent retained original replay, original layout/other draws active. Single observed engine thread with concurrent/nested forwards; no lock against unrelated external writers, no complete game/GPU text ownership/performance claim. Fresh disposable public Qt staging supported; public interactive gameplay validation remains separate. Original frame/canvas/table/argument ranges must be disjoint; private canvas storage is aligned independently of frame byte length.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/glyph-live-backend.md"
+      ],
+      "implementation": [
+        "runtime/scene/glyph_live.c",
+        "runtime/scene/glyph_live.h",
+        "runtime/scene/glyph_leave.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/observer.c",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "tools/glyph_backend_launch.py",
+        "tools/glyph_live_capture.py",
+        "tools/prepare-scene-observer.py",
+        "tools/capture-scene-game.py",
+        "tools/scene-game-runner.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/run-opengl-game.py",
+        "tools/render-game-runner.py"
+      ],
+      "tests": [
+        "tools/test-glyph-live.py",
+        "tests/glyph-live-reference.cpp",
+        "tests/glyph-live-admission.c",
+        "tools/test-glyph-backend.py",
+        "tests/glyph-backend-reference.cpp",
+        "tests/glyph-producer-entry.c"
+      ],
+      "validation_dependencies": [
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/python/mnm_protocols/__init__.py",
+        "protocols/python/mnm_protocols/frame_v1.py",
+        "protocols/python/mnm_protocols/input_v1.py",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v2.py",
+        "protocols/python/mnm_protocols/render_control_v1.py",
+        "protocols/python/mnm_protocols/render_stream_v2.py",
+        "protocols/python/mnm_protocols/render_stream_v3.py",
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/bridge.c",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/command_control.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/palette_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/precise_clock.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/selftest.c",
+        "runtime/render/surface_commands.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/glyph_entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/glyph-backend-entry-probe.S",
+        "tests/glyph-backend-state-probe.S",
+        "tests/glyph-backend-test.c",
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/decode-cfg.py",
+        "tools/encode-cfg.py",
+        "tools/export-menu-support.py",
+        "tools/menu_preferences_store.py",
+        "tools/native_render_config.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/test-glyph-backend-state.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py"
+      ],
+      "evidence": [
+        "NR.glyph-live-admission.host-20261010",
+        "NR.glyph-live-admission.live-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_equivalence",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "inputs": "Observed live glyph frames, coverage, pre-call canvas and masked controls; retained complete shadow/takeover inputs independently replayed. Admission fixture: committed writable, readonly second region, guard/no-access second region, empty/wrapping ranges. Existing glyph corpus validates actual shared entry ABI and safe native guard forwards. Original range overlap/adjacency is separately checked. Both public staging paths authorize fresh pinned glyph DLLs; unsupported mode, redirected output, changed DLL hash and conflicting word mode refuse. Full interactive Qt gameplay remains excluded.",
+        "exclusions": [
+          "arbitrary process concurrency/external writers",
+          "whole-game or other rendering replacement",
+          "GPU text ownership",
+          "higher layout/reset lifecycle",
+          "arbitrary FP/unmasked exceptions/pointer history",
+          "public interactive gameplay equivalence",
+          "performance benefit"
+        ]
       }
     }
   ],
@@ -56722,6 +57173,578 @@
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/source_executable_sha256",
       "equivalence_pointer": "/gpu_mirror_equal"
+    },
+    {
+      "id": "RS.glyph-backend.original-live-entry-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/glyph-live-entry-comparison-20261010.json",
+      "sha256": "9e076d1a532cc6150a76942e4bec05f6587d1317e9baecff3d3332ba3b9a3084",
+      "scope": "Fresh actual isolated and production shared entry comparison:28142 matches, selected caller/FX contract and safe original-once guard forwards. Process admission is registered separately.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/execution_count",
+          "equals": 28142
+        },
+        {
+          "pointer": "/shared_producer_entry_exact",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 24
+        },
+        {
+          "pointer": "/counts/complete_matches",
+          "equals": 28142
+        },
+        {
+          "pointer": "/counts/native_handled",
+          "equals": 27966
+        },
+        {
+          "pointer": "/counts/original_body_calls",
+          "equals": 176
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.glyph-backend.host-live-entry-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/glyph-live-entry-comparison-20261010.json",
+      "sha256": "9e076d1a532cc6150a76942e4bec05f6587d1317e9baecff3d3332ba3b9a3084",
+      "scope": "Fresh actual isolated and production shared entry comparison:28142 matches, selected caller/FX contract and safe original-once guard forwards. Process admission is registered separately.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/execution_count",
+          "equals": 28142
+        },
+        {
+          "pointer": "/shared_producer_entry_exact",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 24
+        },
+        {
+          "pointer": "/counts/complete_matches",
+          "equals": 28142
+        },
+        {
+          "pointer": "/counts/native_handled",
+          "equals": 27966
+        },
+        {
+          "pointer": "/counts/original_body_calls",
+          "equals": 176
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "NR.glyph-backend-admission.host-live-entry-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/glyph-live-entry-comparison-20261010.json",
+      "sha256": "9e076d1a532cc6150a76942e4bec05f6587d1317e9baecff3d3332ba3b9a3084",
+      "scope": "Fresh actual isolated and production shared entry comparison:28142 matches, selected caller/FX contract and safe original-once guard forwards. Process admission is registered separately.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/execution_count",
+          "equals": 28142
+        },
+        {
+          "pointer": "/shared_producer_entry_exact",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 24
+        },
+        {
+          "pointer": "/counts/complete_matches",
+          "equals": 28142
+        },
+        {
+          "pointer": "/counts/native_handled",
+          "equals": 27966
+        },
+        {
+          "pointer": "/counts/original_body_calls",
+          "equals": 176
+        },
+        {
+          "pointer": "/failures",
+          "equals": []
+        }
+      ]
+    },
+    {
+      "id": "RS.glyph-live-route.host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/glyph-live-comparison-20261010.json",
+      "sha256": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+      "scope": "Bounded four World returns:1817 admitted shadow and1817 takeover calls,39 original forwards in each mode. Six complete inputs per mode independently replay1,684,800 WORDs each. Observed PC53 nearest, empty x87 and retained cold black interior glyphs; wider input/control coverage remains isolated. Production VirtualQuery/overlap fixture and both public launch staging authorization checks. Native admission policy does not claim original malformed/failure equivalence. No full Qt gameplay/whole-frame ownership/performance proof.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/virtual_query_admission/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/shadow_compared",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/handled",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/forwarded",
+          "equals": 39
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/samples",
+          "equals": 6
+        },
+        {
+          "pointer": "/public_staging/menu/authorization_refusals",
+          "equals": 4
+        },
+        {
+          "pointer": "/public_staging/normal/authorization_refusals",
+          "equals": 4
+        }
+      ]
+    },
+    {
+      "id": "NR.glyph-live-admission.host-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/glyph-live-comparison-20261010.json",
+      "sha256": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+      "scope": "Bounded four World returns:1817 admitted shadow and1817 takeover calls,39 original forwards in each mode. Six complete inputs per mode independently replay1,684,800 WORDs each. Observed PC53 nearest, empty x87 and retained cold black interior glyphs; wider input/control coverage remains isolated. Production VirtualQuery/overlap fixture and both public launch staging authorization checks. Native admission policy does not claim original malformed/failure equivalence. No full Qt gameplay/whole-frame ownership/performance proof.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/virtual_query_admission/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/shadow_compared",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/handled",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/forwarded",
+          "equals": 39
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/samples",
+          "equals": 6
+        },
+        {
+          "pointer": "/public_staging/menu/authorization_refusals",
+          "equals": 4
+        },
+        {
+          "pointer": "/public_staging/normal/authorization_refusals",
+          "equals": 4
+        }
+      ]
+    },
+    {
+      "id": "RS.glyph-live-route.original-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/glyph-live-comparison-20261010.json",
+      "sha256": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+      "scope": "Bounded four World returns:1817 admitted shadow and1817 takeover calls,39 original forwards in each mode. Six complete inputs per mode independently replay1,684,800 WORDs each. Observed PC53 nearest, empty x87 and retained cold black interior glyphs; wider input/control coverage remains isolated. Production VirtualQuery/overlap fixture and both public launch staging authorization checks. Native admission policy does not claim original malformed/failure equivalence. No full Qt gameplay/whole-frame ownership/performance proof.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/virtual_query_admission/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/shadow_compared",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/handled",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/forwarded",
+          "equals": 39
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/samples",
+          "equals": 6
+        },
+        {
+          "pointer": "/public_staging/menu/authorization_refusals",
+          "equals": 4
+        },
+        {
+          "pointer": "/public_staging/normal/authorization_refusals",
+          "equals": 4
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.glyph-live-route.live-20261010",
+      "kind": "live_equivalence",
+      "record": "research/runtime/glyph-live-comparison-20261010.json",
+      "sha256": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+      "scope": "Bounded four World returns:1817 admitted shadow and1817 takeover calls,39 original forwards in each mode. Six complete inputs per mode independently replay1,684,800 WORDs each. Observed PC53 nearest, empty x87 and retained cold black interior glyphs; wider input/control coverage remains isolated. Production VirtualQuery/overlap fixture and both public launch staging authorization checks. Native admission policy does not claim original malformed/failure equivalence. No full Qt gameplay/whole-frame ownership/performance proof.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/virtual_query_admission/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/shadow_compared",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/handled",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/forwarded",
+          "equals": 39
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/samples",
+          "equals": 6
+        },
+        {
+          "pointer": "/public_staging/menu/authorization_refusals",
+          "equals": 4
+        },
+        {
+          "pointer": "/public_staging/normal/authorization_refusals",
+          "equals": 4
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/original_pixels_compared"
+    },
+    {
+      "id": "RS.glyph-live-route.takeover-20261010",
+      "kind": "live_replacement",
+      "record": "research/runtime/glyph-live-comparison-20261010.json",
+      "sha256": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+      "scope": "Bounded four World returns:1817 admitted shadow and1817 takeover calls,39 original forwards in each mode. Six complete inputs per mode independently replay1,684,800 WORDs each. Observed PC53 nearest, empty x87 and retained cold black interior glyphs; wider input/control coverage remains isolated. Production VirtualQuery/overlap fixture and both public launch staging authorization checks. Native admission policy does not claim original malformed/failure equivalence. No full Qt gameplay/whole-frame ownership/performance proof.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/virtual_query_admission/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/shadow_compared",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/handled",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/forwarded",
+          "equals": 39
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/samples",
+          "equals": 6
+        },
+        {
+          "pointer": "/public_staging/menu/authorization_refusals",
+          "equals": 4
+        },
+        {
+          "pointer": "/public_staging/normal/authorization_refusals",
+          "equals": 4
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/original_pixels_compared",
+      "bypass_pointer": "/original_work_bypassed"
+    },
+    {
+      "id": "NR.glyph-live-admission.live-20261010",
+      "kind": "live_equivalence",
+      "record": "research/runtime/glyph-live-comparison-20261010.json",
+      "sha256": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+      "scope": "Bounded four World returns:1817 admitted shadow and1817 takeover calls,39 original forwards in each mode. Six complete inputs per mode independently replay1,684,800 WORDs each. Observed PC53 nearest, empty x87 and retained cold black interior glyphs; wider input/control coverage remains isolated. Production VirtualQuery/overlap fixture and both public launch staging authorization checks. Native admission policy does not claim original malformed/failure equivalence. No full Qt gameplay/whole-frame ownership/performance proof.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/virtual_query_admission/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/shadow_compared",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/shadow/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/handled",
+          "equals": 1817
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/forwarded",
+          "equals": 39
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/errors",
+          "equals": 0
+        },
+        {
+          "pointer": "/cohorts/takeover/stats/samples",
+          "equals": 6
+        },
+        {
+          "pointer": "/public_staging/menu/authorization_refusals",
+          "equals": 4
+        },
+        {
+          "pointer": "/public_staging/normal/authorization_refusals",
+          "equals": 4
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/original_pixels_compared"
+    },
+    {
+      "id": "TOOL.rendering-coverage.glyph-live-guards-20261010",
+      "kind": "native_integration",
+      "scope": "Sixteen synthetic rendering report guards after explicit bounded glyph sprite/UI crosswalk bindings. Accounting semantics only, no new engine execution.",
+      "record": "research/runtime/rendering-coverage-glyph-live-tests-20261010.json",
+      "sha256": "f907b4b2b103d0c22cf0f83a523988e68efb921bbe1ef64efb7506bd78c40605",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests",
+          "equals": 16
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -64194,7 +65217,10 @@
         "RS.glyph-backend.host-20261010",
         "NR.glyph-backend-admission.host-20261010",
         "RS.glyph-backend.initial-original-20261010",
-        "RS.glyph-backend.initial-host-20261010"
+        "RS.glyph-backend.initial-host-20261010",
+        "RS.glyph-backend.original-live-entry-20261010",
+        "RS.glyph-backend.host-live-entry-20261010",
+        "NR.glyph-backend-admission.host-live-entry-20261010"
       ],
       "tests": [
         "tools/test-glyph-backend.py"
@@ -64281,6 +65307,50 @@
       "evidence": [
         "RS.canvas-fade-span.comparison-20261010",
         "RS.canvas-fade-span.native-20261010"
+      ]
+    },
+    {
+      "id": "glyph-live-headless-20261010",
+      "level": "headless",
+      "scope": "Production shared RET16 entry and VirtualQuery refusal fixture",
+      "behaviors": [
+        "RS.glyph-live-route",
+        "NR.glyph-live-admission"
+      ],
+      "tests": [
+        "tools/test-glyph-live.py",
+        "tests/glyph-live-reference.cpp",
+        "tests/glyph-live-admission.c",
+        "tools/test-glyph-backend.py",
+        "tests/glyph-backend-reference.cpp",
+        "tests/glyph-producer-entry.c"
+      ],
+      "evidence": [
+        "RS.glyph-live-route.host-20261010",
+        "NR.glyph-live-admission.host-20261010"
+      ]
+    },
+    {
+      "id": "glyph-live-live_equivalence-20261010",
+      "level": "live_equivalence",
+      "scope": "Bounded four World returns after menu setup; live original shadow and opt-in glyph takeover with retained independent original replay",
+      "behaviors": [
+        "RS.glyph-live-route",
+        "NR.glyph-live-admission"
+      ],
+      "tests": [
+        "tools/test-glyph-live.py",
+        "tests/glyph-live-reference.cpp",
+        "tests/glyph-live-admission.c",
+        "tools/test-glyph-backend.py",
+        "tests/glyph-backend-reference.cpp",
+        "tests/glyph-producer-entry.c"
+      ],
+      "evidence": [
+        "RS.glyph-live-route.original-20261010",
+        "RS.glyph-live-route.live-20261010",
+        "RS.glyph-live-route.takeover-20261010",
+        "NR.glyph-live-admission.live-20261010"
       ]
     }
   ],
@@ -64619,8 +65689,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-pixel-producers-20261010.json",
-    "sha256": "364218286110df96d757f36acbfb2097fbf93dd45c551291a50e63bf231ed007"
+    "path": "research/runtime/coverage/source-index-glyph-live-20261010.json",
+    "sha256": "f81d02f551fe0193d34d826b3efa845681ad537451a68fea14a1dd4ce9f440f8"
   },
   "claim_bindings_required": true
 }

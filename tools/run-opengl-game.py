@@ -142,6 +142,8 @@ def main():
         patched=stage.add_import(patched,dll='MnmAudio.dll',symbol_name='AudioAnchor',section_name=b'.mnmaud')
         shutil.copy2(audio_dll,game/audio_dll.name)
         shutil.copy2(audio_dll.parent/'manifest.json',root/'audio-bridge-build.json')
+    from glyph_backend_launch import stage as stage_glyph,mode_from_environment
+    patched,glyph_metadata=stage_glyph(root,data,patched,mode_from_environment())
     (game/'Chaos.exe').write_bytes(patched)
     shutil.copy2(dll,game/dll.name);shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     movie_edits=skip_movies(game) if args.skip_movies else []
@@ -170,6 +172,7 @@ def main():
     if args.capture_draws:
         capture=root/'draw-capture';capture.mkdir();metadata['draw_capture_directory']=str(capture)
         print(f'Draw capture: {capture}',flush=True)
+    metadata.update(glyph_metadata)
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n');print(f'Render experiment: {root}',flush=True)
     if args.stage_only:return 0
     env=os.environ.copy();env['MNM_RENDER_STREAM']='Z:'+str(stream).replace('/','\\');env['MNM_RENDER_EXPERIMENT']=str(root);env.pop('MNM_RUNNER',None)
