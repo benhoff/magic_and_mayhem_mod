@@ -37843,7 +37843,8 @@
         "research/runtime/public-resident-master-combat-deadline-negative-20261011.json",
         "research/runtime/public-resident-master-combat-diversion-negative-20261011.json",
         "research/runtime/public-resident-master-final-campaign-20261011.json",
-        "research/runtime/public-resident-master-final-fixtures-20261011.json"
+        "research/runtime/public-resident-master-final-fixtures-20261011.json",
+        "research/runtime/public-resident-profile-gap-negative-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37893,7 +37894,8 @@
         "NR.public-resident-world.master-combat-deadline-negative-20261011",
         "NR.public-resident-world.master-combat-diversion-negative-20261011",
         "NR.public-resident-world.master-final-campaign-20261011",
-        "NR.public-resident-world.master-final-fixtures-20261011"
+        "NR.public-resident-world.master-final-fixtures-20261011",
+        "NR.public-resident-world.profile-gap-negative-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -37901,7 +37903,10 @@
         "comparison": "none",
         "integration": "live_observation",
         "replacement": "none"
-      }
+      },
+      "remaining_gaps": [
+        "Serialized stage-profile/capture Apprentice campaign reaches2423 balanced Worlds then native command drawing-history GAP reason2 with one pending World. Repeats an earlier profiled GAP without concurrent coverage; failing source/read/transition and instrumentation contribution remain unclassified. Full uninstrumented regression attribution and complete capture/normal Quit at current profiler remain pending."
+      ]
     },
     {
       "id": "NR.world-source-region-epoch",
@@ -40975,7 +40980,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded resident World CPU, GPU and original pacing diagnostics",
-      "scope": "Opt-in resident World source-acquire/decode/handoff/native CPU observations and asynchronous paired renderer-context GPU timestamps with at most64 outstanding pairs and8192 rows. Compressed source-only capture uses a256MiB raw-byte worker queue,8192 Worlds and16GiB raw/stored limits; queue/file failures mark capture incomplete while rendering continues, and drain occurs only on retirement. Exact Qt/zlib corpus normalization precedes benchmark timing. Public original clock owner forwards already-read tick values through guarded stdcall ScenePacerObservationV1(caller,tick) only at original PCs0x4e3f59/0x4e3f97 with LastError preserved and no extra clock/API or host calls; paired preceding pacing/screen intervals are separate from unclassified residual, not simulation CPU. GPU timeline includes CPU submission starvation and excludes public UI composition, Qt presentation and scanout. Ordered ownedV5/resident replay of actual captured gameplay on verified NVIDIA TITAN measures completed render-path throughput, with diagnostic hashes outside timing and zero ordinary World readbacks/pixel replies. CPU sampling is a separate perturbed diagnostic. No60FPS, universal20Hz simulation, original equivalence or pacing policy change claim.",
+      "scope": "Opt-in resident World source-acquire/decode/handoff/native CPU observations and asynchronous paired renderer-context GPU timestamps with at most64 outstanding pairs and8192 rows. Compressed source-only capture uses a256MiB raw-byte worker queue,8192 Worlds and16GiB raw/stored limits; queue/file failures mark capture incomplete while rendering continues, and drain occurs only on retirement. Exact Qt/zlib corpus normalization precedes benchmark timing. Public original clock owner forwards already-read tick values through guarded stdcall ScenePacerObservationV1(caller,tick) only at original PCs0x4e3f59/0x4e3f97 with LastError preserved and no extra clock/API or host calls; paired preceding pacing/screen intervals are separate from unclassified residual, not simulation CPU. GPU timeline includes CPU submission starvation and excludes public UI composition, Qt presentation and scanout. Ordered ownedV5/resident replay of actual captured gameplay on verified NVIDIA TITAN measures completed render-path throughput, with diagnostic hashes outside timing and zero ordinary World readbacks/pixel replies. CPU sampling is a separate perturbed diagnostic. No60FPS, universal20Hz simulation, original equivalence or pacing policy change claim. Explicit completed-prefix diagnostic replay requires64..8192 contiguous imported/verified-returned Worlds, stable source/owned cleanup/original verification, zero readbacks/drops and written capture. It validates the entire compressed tail, then excludes unverified pending Worlds; failed full campaign/normal Quit is preserved and not inferred.",
       "confidence": "provisional",
       "original": [
         {
@@ -40989,7 +40994,15 @@
         "research/formats/resident-profile-corpus.md",
         "research/runtime/resident-profile-instrumentation-20261011.json",
         "research/runtime/resident-profile-synchronous-capture-negative-20261011.json",
-        "research/runtime/resident-profile-worker-fixtures-20261011.json"
+        "research/runtime/resident-profile-worker-fixtures-20261011.json",
+        "research/runtime/resident-profile-cpu-pacing-20261011.json",
+        "research/runtime/resident-profile-compressed-capture-negative-20261011.json",
+        "research/runtime/resident-profile-wizard-death-negative-20261011.json",
+        "research/runtime/resident-profile-serialized-gap-negative-20261011.json",
+        "research/runtime/resident-profile-prefix-controls-20261011.json",
+        "research/runtime/resident-profile-offline-o3-20261011.json",
+        "research/runtime/resident-profile-offline-o2-20261011.json",
+        "research/runtime/resident-profile-matched-input-comparison-20261011.json"
       ],
       "implementation": [
         "renderer/blit.cpp",
@@ -40999,7 +41012,10 @@
         "apps/qt-shell/resident_profile_capture.cpp",
         "apps/qt-shell/resident_profile_capture.hpp",
         "runtime/render/pacer_yield.h",
-        "runtime/scene/world_continuous_clock.c"
+        "runtime/scene/world_continuous_clock.c",
+        "tools/profile_native_resident_helpers.py",
+        "tools/benchmark-native-resident.py",
+        "tools/profile-native-resident.py"
       ],
       "tests": [
         "tests/render-gpu-timing-test.cpp",
@@ -41175,7 +41191,14 @@
       "evidence": [
         "NR.resident-stage-profiling.instrumentation-20261011",
         "NR.resident-stage-profiling.synchronous-capture-failure-20261011",
-        "NR.resident-stage-profiling.worker-fixtures-20261011"
+        "NR.resident-stage-profiling.worker-fixtures-20261011",
+        "NR.resident-stage-profiling.cpu-pacing-20261011",
+        "NR.resident-stage-profiling.compressed-capture-failure-20261011",
+        "NR.resident-stage-profiling.wizard-death-failure-20261011",
+        "NR.resident-stage-profiling.serialized-gap-failure-20261011",
+        "NR.resident-stage-profiling.prefix-controls-20261011",
+        "NR.resident-stage-profiling.offline-o3-20261011",
+        "NR.resident-stage-profiling.offline-o2-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -41185,8 +41208,10 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Initial synchronous capture failure remains historical and is not a completed gameplay/performance result. Current bounded compressed worker, exact archive/malformed controls, native import/Quit and clock/LastError/observer guards pass. Full current public CPU/GPU/pacing and representative hardware corpus replay remain pending.",
-        "GPU intervals include CPU submission starvation/fence waits and do not identify hardware busy utilization; original residual and public presentation latency remain unattributed."
+        "CPU-sampled Apprentice physical casting/combat/movement/normal Quit completes5421 balanced Worlds, but diagnostic19FPS cadence gate fails. Complete compressed capture journeys fail (drawing-history GAP/wizard death); current offline proof is an explicit2423-World verified prefix, not a full capture/menu/Quit or uninstrumented performance guarantee.",
+        "Frozen actual-prefix TITAN EGL completed average throughput exceeds60FPS at O2 and O3, with matching terminal hashes and no ordinary readbacks. Pipeline p95 exceeds16.667ms; steady60FPS and public gameplay are not proven. Matching97 compiled source hashes and O2 settings still leave backend/context/UI/original/capture/report workload differences; causal attribution remains pending.",
+        "Original paired pacing and millisecond residual observations do not establish universal20Hz simulation behavior. Preserve selected50ms target; presentation/original-work attribution, crowded/other-scene workloads and safe60FPS gameplay remain outstanding.",
+        "CPU symbolization is deferred until campaign cleanup; fresh execution of that deferred sampling branch is pending. Growing diagnostic JSON publication every64 Worlds remains outside stage timing and unoptimized."
       ]
     }
   ],
@@ -85294,6 +85319,358 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.resident-stage-profiling.cpu-pacing-20261011",
+      "kind": "live_observation",
+      "scope": "Complete physical casting/combat/movement/normal Quit and5421 balanced resident Worlds;5358 warmed paired pacing/CPU/GPU rows and30-second all-native-thread CPU sample. Overall19FPS cadence gate failed; no uninstrumented performance or60FPS proof. CPU symbolization overlapped gameplay.",
+      "record": "research/runtime/resident-profile-cpu-pacing-20261011.json",
+      "sha256": "2ee546d0374b7d20103bc242237e628c768a3b0dfa29d42df9d292d70f19b354",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay_checks/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay_checks/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay_checks/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay_checks/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/cpu_sample/exit_code",
+          "equals": 0
+        },
+        {
+          "pointer": "/summary/pacer_unobserved_worlds",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.resident-stage-profiling.compressed-capture-failure-20261011",
+      "kind": "live_observation",
+      "scope": "Bounded compressed capture wrote1858 records and1857 resident Worlds completed before native producer drawing-history GAP; capture/gameplay incomplete. Concurrent coverage check and multi-second stalls retained with cause unknown.",
+      "record": "research/runtime/resident-profile-compressed-capture-negative-20261011.json",
+      "sha256": "2f2cb0fbd1dcd52dae25b37cfb26289a2c854a41fe637c2f09d0457d77088eda",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.resident-stage-profiling.wizard-death-failure-20261011",
+      "kind": "live_observation",
+      "scope": "Clean serialized Apprentice capture terminated when the player wizard died before required combat completion. Final file hash/size differs from the last in-game worker snapshot because owned teardown drained later queued records. Neither normal Quit nor complete independently validated corpus; no replay/60FPS claim.",
+      "record": "research/runtime/resident-profile-wizard-death-negative-20261011.json",
+      "sha256": "c20857e28a4850379366e6c0118e7b726b407fe53e348cc63a8454be126ba18d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.resident-stage-profiling.serialized-gap-failure-20261011",
+      "kind": "live_observation",
+      "scope": "Clean serialized Apprentice capture recorded Fireball damage and player-party lethal hit, then native drawing-history GAP.2423 balanced completed/imported/original-returned Worlds precede one pending2424th record; no full spell/portrait/Mini/normal-Quit or complete gameplay claim. Final stored corpus hash includes worker drain after failure; in-game capture snapshot is not final.",
+      "record": "research/runtime/resident-profile-serialized-gap-negative-20261011.json",
+      "sha256": "c5df5089e6ff2614427b5733fc08de31b1c3641eb45e26d1a43e106e0f8e88c7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/completed",
+          "equals": "2423"
+        }
+      ]
+    },
+    {
+      "id": "NR.resident-stage-profiling.prefix-controls-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh exact4-record Qt/Python archive and selected2-record prefix,18 prefix admission/tail/bound/order/return/readback/drop controls plus11 existing malformed archive refusals; current native import/Quit and original observer controls rerun. No full gameplay or throughput claim.",
+      "record": "research/runtime/resident-profile-prefix-controls-20261011.json",
+      "sha256": "fd084281b12536971fbc49c777e158dab273b23801b62f66ce03206fc44038bf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/archive/prefix_negative_controls",
+          "equals": 18
+        },
+        {
+          "pointer": "/archive/excluded_tail_validated",
+          "equals": true
+        },
+        {
+          "pointer": "/archive/qt_python_bytes_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/import/ordinary_import_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/quit/idempotent",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.profile-gap-negative-20261011",
+      "kind": "live_observation",
+      "scope": "Serialized opt-in resident capture on private TITAN:2423 balanced imported/original-returned Worlds then drawing-history GAP and one pending World. Failed full campaign; source-side GAP cause unresolved, no original comparison or uninstrumented regression attribution.",
+      "record": "research/runtime/public-resident-profile-gap-negative-20261011.json",
+      "sha256": "c5fa4f90803cbe71aaaf1e5e7c5861da2f07a0fa49b94f373292c513e7a3195d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/failure_code",
+          "equals": "native-command-gap-reason-2"
+        },
+        {
+          "pointer": "/resident_world/completed",
+          "equals": "2423"
+        },
+        {
+          "pointer": "/resident_world/pending",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.resident-stage-profiling.offline-o3-20261011",
+      "kind": "native_integration",
+      "scope": "Frozen NVIDIA TITAN EGL O3 replay of2423 balanced actual combat-rendering Worlds from failed Apprentice capture, excluding one pending World. Timestamped and two timestamp-disabled completion repetitions, identical terminal word hash, zero ordinary readbacks, no leaked queries/surfaces; source/input/frozen stability and original verification. No full capture/menu/Quit, steady60FPS floor, causal public backend speedup or gameplay60FPS claim.",
+      "record": "research/runtime/resident-profile-offline-o3-20261011.json",
+      "sha256": "465cbef450c1269d70227b79cad585e1e201ea8d8d8cc6c5330216b85f3fcbf6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/repeated_output_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/corpus/worlds",
+          "equals": 2423
+        },
+        {
+          "pointer": "/corpus/completed_prefix_mode",
+          "equals": true
+        },
+        {
+          "pointer": "/corpus/full_journey_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/native/throughput/runs/0/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/throughput/runs/1/remaining_queries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/throughput/runs/1/remaining_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.resident-stage-profiling.offline-o2-20261011",
+      "kind": "native_integration",
+      "scope": "Frozen NVIDIA TITAN EGL O2 replay of2423 balanced actual combat-rendering Worlds from failed Apprentice capture, excluding one pending World. Timestamped and two timestamp-disabled completion repetitions, identical terminal word hash, zero ordinary readbacks, no leaked queries/surfaces; source/input/frozen stability and original verification. No full capture/menu/Quit, steady60FPS floor, causal public backend speedup or gameplay60FPS claim.",
+      "record": "research/runtime/resident-profile-offline-o2-20261011.json",
+      "sha256": "23d123e0d945be11342832e83be0b0f0ae8a753cda5a8a5388eb339d41423f64",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/repeated_output_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/corpus/worlds",
+          "equals": 2423
+        },
+        {
+          "pointer": "/corpus/completed_prefix_mode",
+          "equals": true
+        },
+        {
+          "pointer": "/corpus/full_journey_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/native/throughput/runs/0/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/throughput/runs/1/remaining_queries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/throughput/runs/1/remaining_surfaces",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -94464,7 +94841,8 @@
         "NR.world-source-region-epoch.master-final-campaign-20261011",
         "NR.minimap-write-candidates.master-final-campaign-20261011",
         "NR.resident-normal-shutdown.master-final-campaign-20261011",
-        "HOST.native-campaign-dialogue-readiness.master-final-campaign-20261011"
+        "HOST.native-campaign-dialogue-readiness.master-final-campaign-20261011",
+        "NR.public-resident-world.profile-gap-negative-20261011"
       ]
     },
     {
@@ -95683,7 +96061,7 @@
     },
     {
       "id": "NR.resident-stage-profiling.offline",
-      "scope": "NVIDIA EGL ordered captured public gameplay through ownedV5 handoff/resident renderer, timestamped and uninstrumented throughput modes, repeated output digest and bounded query controls. Excludes original simulation, public UI/Qt paint/scanout and hardware-general60FPS.",
+      "scope": "NVIDIA EGL ordered captured public gameplay through ownedV5 handoff/resident renderer, timestamped and uninstrumented throughput modes, repeated output digest and bounded query controls. Excludes original simulation, public UI/Qt paint/scanout and hardware-general60FPS. Explicit diagnostic completed-prefix mode does not assert full campaign/capture retirement; complete-file validation and balanced verified returns bound selected actual Worlds.",
       "level": "headless",
       "behaviors": [
         "NR.resident-stage-profiling"
@@ -95695,7 +96073,10 @@
       ],
       "evidence": [
         "NR.resident-stage-profiling.instrumentation-20261011",
-        "NR.resident-stage-profiling.worker-fixtures-20261011"
+        "NR.resident-stage-profiling.worker-fixtures-20261011",
+        "NR.resident-stage-profiling.prefix-controls-20261011",
+        "NR.resident-stage-profiling.offline-o3-20261011",
+        "NR.resident-stage-profiling.offline-o2-20261011"
       ]
     },
     {
@@ -95710,7 +96091,11 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "NR.resident-stage-profiling.synchronous-capture-failure-20261011"
+        "NR.resident-stage-profiling.synchronous-capture-failure-20261011",
+        "NR.resident-stage-profiling.cpu-pacing-20261011",
+        "NR.resident-stage-profiling.compressed-capture-failure-20261011",
+        "NR.resident-stage-profiling.wizard-death-failure-20261011",
+        "NR.resident-stage-profiling.serialized-gap-failure-20261011"
       ]
     }
   ],
@@ -96085,8 +96470,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-resident-profile-worker-20261011.json",
-    "sha256": "239355cfb0c37cfdd4a455966af754bd9501f188b088107fc90353ea37622c70"
+    "path": "research/runtime/coverage/source-index-resident-profile-measurement-20261011.json",
+    "sha256": "c9c0ad565ce9f80d0e1448f28c6852983e39c0f908e4211a9885ea84f32fa0ce"
   },
   "claim_bindings_required": true
 }

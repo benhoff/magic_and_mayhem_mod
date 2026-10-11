@@ -6449,3 +6449,49 @@ pending. No original comparison/replacement or60FPS status promotion. Exact
 `19882a4` source receipts are separately reviewed in
 `coverage/resident-profile-instrumentation-history-20261011.json`; older evidence
 retains historical source/contract fingerprints.
+
+
+### Resident profiling, 2026-10-11: fresh CPU/GPU/pacing diagnostic
+
+`resident-profile-cpu-pacing-20261011.json` completes physical casting/combat,
+movement and normal Quit with5421 balanced resident Worlds and zero ordinary
+readbacks/pixel replies. All5358 warmed rows observe both original pacing call
+sites. Host acquire/decode/handoff/consume averages25.420ms (p9538.057), GPU
+timeline9.707ms (p9520.070), pacer9.388ms and unclassified residual9.869ms.
+Native minimap preparation is the largest resolved sampled symbol at15.88%.
+The overall19FPS cadence gate failed; instrumentation/symbolization perturbs
+cadence and no60FPS or uninstrumented integration status is promoted. A second
+compressed capture fails on drawing-history GAP, retaining1857 completed Worlds
+and independent cleanup/original verification. Full clean corpus/offline replay
+remain pending. Symbolization is now deferred until owned campaign cleanup.
+Committed19882a4..78af697 exact26-file history has zero receipt gaps; historical
+source fingerprints are retained. See the profiling document for scope/limits.
+
+
+### Resident profiling, 2026-10-11: completed combat-prefix hardware measurement
+
+The complete capture journey remains failed: clean Apprentice attempts retain
+wizard death and repeated native drawing-history GAP; one serialized GAP occurs
+after2423 balanced Worlds, without concurrent coverage. That failure is linked
+under both `NR.resident-stage-profiling` and `NR.public-resident-world`; its source
+transition/cause is unclassified. Historical master successes are unchanged.
+Explicit prefix admission passes eighteen new refusal controls and validates the
+whole capture before excluding its pending2424th World. Default full-journey
+admission remains strict. This scope supplies actual combat rendering inputs,
+not a positive full native menu/spell/portrait/Quit claim.
+
+Frozen TITAN NVIDIA EGL replays complete2423 verified Worlds at78.289/71.963FPS
+with public-matching O2 flags and88.070/85.655FPS at O3. Timestamped runs complete
+at77.705/85.889FPS. All six terminal word hashes match, with zero ordinary
+readbacks and zero remaining queries/surfaces; sources, frozen builds, game
+inputs and original manifests verify. Warm decode/handoff/consume averages
+11.602ms O2 and10.073ms O3 versus26.384ms for the same public captured prefix.
+All97 compiled C/C++/header hashes match. Public Zink/Qt shared-context work,
+original simulation, capture/report I/O and compiler settings differ from
+headless replay, so attribution is pending. Pipeline p9519.874/17.621ms exceeds
+16.667ms: this is averaged offline60FPS headroom, not steady/public60FPS or
+original equivalence. Comparison/replacement statuses remain independent;
+no status promotion or production render/pacing/balance change is made.
+See `native-resident-performance-profiling.md` and the matched-input JSON record.
+Deferred CPU symbolization awaits a fresh sampled execution; growing live report
+publication remains a separate diagnostic cadence limitation.
