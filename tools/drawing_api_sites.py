@@ -112,7 +112,15 @@ def selected_ranges(catalog, inventory, code=None):
     return list(selected.values())
 
 
-def boundary_rows(code, selections, inventory):
+def virtual_candidate(row):
+    # A byte-defined observation candidate, not a method/type inference.
+    raw=bytes.fromhex(row['bytes'])
+    return (row['mnemonic']=='call' and len(raw)==6 and raw[0]==0xff
+            and raw[1]>>6==2 and (raw[1]>>3)&7==2 and raw[1]&7!=4
+            and struct.unpack_from('<i',raw,2)[0]==128)
+
+
+def boundary_rows(code, selections, inventory, virtual_candidates=False):
     imports = {item['iat_va']: item for item in inventory['imports']}
     result = []
     for address, row in sorted(code.items()):
@@ -122,7 +130,10 @@ def boundary_rows(code, selections, inventory):
         exact_slot = None
         if row['bytes'].startswith('ff15') and len(bytes.fromhex(row['bytes'])) == 6:
             exact_slot = imports.get(struct.unpack_from('<I', bytes.fromhex(row['bytes']), 2)[0])
-        if not containing and not (exact_slot and graphics_import(exact_slot)): continue
+        candidate=virtual_candidates and virtual_candidate(row)
+        if not containing and not candidate and not (exact_slot and graphics_import(exact_slot)): continue
+        if not containing and candidate:
+            containing=[{'anchor':None,'ranges':[[address,address+6]],'kind':'virtual_slot128_candidate','route':f'DRAW.api-virtual-candidate.{address:08x}','scope':'Exact six-byte CALL candidate only; offset128 does not establish Unlock/type/ownership.'}]
         if not containing:
             containing = [{'anchor': None, 'ranges': [[address, address + 6]],
                 'kind': 'exact_graphics_import_call', 'import_iat': exact_slot['iat_va'],
@@ -140,7 +151,10 @@ def boundary_rows(code, selections, inventory):
     return result
 
 
-def export(executable, inventory_path, catalog_path):
+def export(executable, inventory_path, catalog_path, virtual_candidates=False):
+    paths = ['tools/drawing_api_sites.py', 'tools/export-drawing-api-sites.py', 'tools/drawing_census.py',
+             str(inventory_path.relative_to(ROOT)), str(catalog_path.relative_to(ROOT))]
+    frozen={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     raw = executable.read_bytes()
     if hashlib.sha256(raw).hexdigest() != BUILD_SHA256: raise ValueError('Unsupported original executable')
     inventory = json.loads(inventory_path.read_text()); catalog = json.loads(catalog_path.read_text())
@@ -150,15 +164,15 @@ def export(executable, inventory_path, catalog_path):
     assembly = subprocess.check_output(['objdump', '-w', '-d', '-Mintel', str(executable)], text=True)
     code = instructions(assembly)
     selections = selected_ranges(catalog, inventory, code)
-    rows = boundary_rows(code, selections, inventory)
+    rows = boundary_rows(code, selections, inventory, virtual_candidates)
     if hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256: raise ValueError('Original input changed')
-    paths = ['tools/drawing_api_sites.py', 'tools/export-drawing-api-sites.py', 'tools/drawing_census.py',
-             str(inventory_path.relative_to(ROOT)), str(catalog_path.relative_to(ROOT))]
+    if frozen!={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}:raise ValueError('API boundary sources changed')
     return {'schema': 1, 'source_sha256': BUILD_SHA256, 'image_base': inventory['image_base'],
-        'input_unchanged': True, 'scope': 'Selected exact outgoing CALL boundaries and unresolved semantics; no runtime API/lifetime or complete drawing census.',
-        'sources': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths},
+        'input_unchanged': True, 'sources_stable':True,'virtual_candidates_enabled':virtual_candidates, 'scope': 'Selected exact outgoing CALL boundaries and unresolved semantics; no runtime API/lifetime or complete drawing census.',
+        'sources': frozen,
         'assembly_sha256': hashlib.sha256(assembly.encode()).hexdigest(), 'selections': selections, 'calls': rows,
         'counts': {'selections': len(selections), 'calls': len(rows),
+            'slot128_candidates_added':sum(any(s['kind']=='virtual_slot128_candidate' for s in r['selections']) for r in rows),
             'unresolved_encodings': sum(r['target_mode']['kind'] == 'unresolved_indirect' for r in rows),
             'exact_imports': sum(r['exact_import'] is not None for r in rows),
             'unassigned_registered_entries': sum(r['kind'] == 'unassigned_reachable_instructions' for r in selections),

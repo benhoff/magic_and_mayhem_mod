@@ -12,8 +12,8 @@ from drawing_api_contracts import contract
 
 STRUCT='struct ApiSnapshot {u32 argument,bytes,events;};struct ApiHook {u32 address,length,code_length,rest,reloc_count,after_offset,mode,reg,operand;u8 signature[20],code[64];u32 reloc[8];void(*before)(void);void(*after)(void);u32 patch_bytes,formal_words,snapshot_count;struct ApiSnapshot snapshots[4];};'
 REGISTERS={'edi':0,'esi':1,'ebp':2,'ebx':4,'edx':5,'ecx':6,'eax':7,'esp':9}
-PLANS={'core_api':('research/runtime/drawing-api-v2-core-plan-static-20261011.json','16cb948e61e4f9eed276cc00a962e700a82279ab6c6da73722ea14128174adfe'),
-       'api_only':('research/runtime/drawing-api-v2-only-plan-static-20261011.json','8788e8e66d34f1afe93986466b3e2200418e1dc342e1b753d7cc32b52488b1ea')}
+PLANS={'core_api':('research/runtime/drawing-api-virtual-core-splices-static-20261011.json','9314a6621ef6172c3fade2bf3954e8d3a9f7ea758fe934b1d5582b57c03879ba'),
+       'api_only':('research/runtime/drawing-api-virtual-only-splices-static-20261011.json','09c2f679e68fd74a5248e60d1a8e6ec8cc8945139e30e08b500926d5c19d34c8')}
 
 
 def load(name, path):
