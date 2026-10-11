@@ -137,3 +137,25 @@ speedup measurements.
 The2026-10-11 [public gameplay proof](native-draw-public-gameplay-pass-20261011.json) completes a difficulty3 campaign through native menus/command presentation with real ddraw disabled and absent. Successful Zombie casting, player melee/lethal enemy depletion, physical movement, blocked spell attempts, player Fireball, nine portrait recenter cycles, Mini/resume and normal original Quit pass. The19FPS aggregate stress gate passes: combat command/paint36.7755/25.6537FPS over115.539seconds; resumed59.8363/34.6316 over60.465seconds. Worst whole-flow window11.9266FPS remains explicit. Stable portrait interior17.99seconds gives20.0111FPS, worst19.2484 and maximum channel error1. Compiler/source/input fingerprints remain stable;18 validator checks and original manifests before/after pass. Forced termination does not supply this normal-Quit proof, and normal Quit does not assert semantic COM reference cleanup.
 
 The new `test-native-campaign.py --hardware` creates and stops a private NVIDIA display and refuses software fallback. [Hardware failures](native-draw-public-hardware-negative-artifacts-20261011.json) remain failures: difficulty1 native and real-DD control both fail summoning with stopped World snapshots; their activation cause is unconfirmed. Difficulty3 advances World but reaches a50ms bounded copy-order timeout (observed64/65ms), invalidates history and refuses GAP/falls back. No native graphics unknown-method record appears; absence alone cannot establish successful gameplay. NVIDIA public gameplay/defaults and the other OpenGL launch route remain pending. This public route still executes original CPU drawing; the independently proven V4 World pixel-roundtrip removal remains a separate selected19.54FPS milestone.
+
+## Default owned native launch routes — 2026-10-11
+
+The combined native Qt menus/command route defaults to MnmDraw, and the
+standalone OpenGL launcher now stages the same guarded factory/surface services
+and disables real ddraw. Explicit MNM_NATIVE_DRAW=0 remains a legacy diagnostic.
+The standalone [startup proof](native-opengl-owned-startup-pass-20261011.json)
+shows20 native main-menu frames on the actual Qt zink/NVIDIA TITAN RTX backend,
+zero ordinary GPU readbacks/viewport uploads/recoveries, module absence, bounded
+resource counters and zero consumer resources after abort. It checks35 native
+compiler inputs, actual PE32 compiler/builder and protocol-generator inputs,
+1111 immutable installed graphics inputs and original manifests before/after.
+This proves bounded startup, excluding gameplay/FPS/movies/native Qt menu
+replacement/normal Quit/semantic COM release. Original CPU drawing remains active.
+
+The probe permits120seconds for first publication while a private Wine prefix
+starts; recovery remains disallowed by the proof. Failed early cancellation and
+undeclared compiler/schema inputs are preserved separately. The bridge builder
+now emits actual compiler dependencies, retaining existing manifest fields.
+The fresh full default gameplay attempt remains a recorded native presentation
+failure; it is not promoted to a pass because another selected journey passed.
+Universal19FPS,60FPS and whole-engine retirement remain outside these proofs.
