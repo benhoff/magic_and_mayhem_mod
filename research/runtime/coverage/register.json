@@ -31025,7 +31025,8 @@
         "DRAW.census.caller-source-abi-20261010",
         "DRAW.census.phase-abi-20261010",
         "DRAW.census.campaign-observation-20261010",
-        "DRAW.census.enabled-movie-requests-20261010"
+        "DRAW.census.enabled-movie-requests-20261010",
+        "DRAW.census.save-load-observation-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31040,7 +31041,7 @@
       "subsystem": "drawing_inventory",
       "kind": "native_policy",
       "title": "Isolated original DRAW-01 menu and campaign census journeys",
-      "scope": "Fresh disposable signature-pinned drawing/menu imports, private Xvfb display and Wine prefix, original acknowledged menu actions, heartbeat and explicit host scenario phases, original Main quit and strict terminal decoding. Retain every failed attempt, source and staged binary stability, and commands. Menu readiness/phase labels do not prove exhaustive scenario coverage. Campaign input automation remains under live validation; save/load, later map transitions, effects, results, movies and graphics API failure/recovery need further fixtures. No original bodies bypassed or gameplay balance changed.",
+      "scope": "Fresh disposable signature-pinned drawing/menu imports, private Xvfb display and Wine prefix, original acknowledged menu actions, heartbeat and explicit host scenario phases, original Main quit and strict terminal decoding. Retain every failed attempt, source and staged binary stability, and commands. Menu readiness/phase labels do not prove exhaustive scenario coverage. Campaign input automation remains under live validation; save/load, later map transitions, effects, results, movies and graphics API failure/recovery need further fixtures. No original bodies bypassed or gameplay balance changed. Optional menu-only diagnostic staging leaves original drawing entries unpatched and explicitly reports that no call journal is enabled; no synthetic events or terminal are inferred.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31078,7 +31079,11 @@
       "evidence": [
         "DRAW.census.menu-observation-20261010",
         "DRAW.census.campaign-observation-20261010",
-        "DRAW.census.enabled-movie-requests-20261010"
+        "DRAW.census.enabled-movie-requests-20261010",
+        "DRAW.census.save-load-fault-20261010",
+        "DRAW.census.save-load-menu-only-fault-20261010",
+        "DRAW.census.save-load-menu-only-success-20261010",
+        "DRAW.census.save-load-observation-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -59989,6 +59994,126 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "DRAW.census.save-load-fault-20261010",
+      "kind": "live_observation",
+      "scope": "Failed original Load request with filename typed but no list-row selection; negative diagnostic only. Not successful persistence, graphics equivalence or scenario closure. Menu-only control omits drawing entry hooks but retains menu adapter.",
+      "record": "research/runtime/drawing-census-save-load-fault-20261010.json",
+      "sha256": "93d701b82f66ee33e0c7c50ecd342a4071d52e4dc3707001882e9971dd5b7ad0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.save-load-menu-only-fault-20261010",
+      "kind": "live_observation",
+      "scope": "Failed original Load request with filename typed but no list-row selection; negative diagnostic only. Not successful persistence, graphics equivalence or scenario closure. Menu-only control omits drawing entry hooks but retains menu adapter.",
+      "record": "research/runtime/drawing-census-save-load-menu-only-fault-20261010.json",
+      "sha256": "13c231805216246da831f1161aff90c36b509bac137d1db36ed7239a6cae870a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.save-load-menu-only-success-20261010",
+      "kind": "live_observation",
+      "scope": "Bounded original campaign Save/Load with actual list-row selection, original World/Mini/Preferences/defeat/Main return and exit0, drawing hooks absent. No call-journal or full persistence/pixel equivalence/scenario closure claim.",
+      "record": "research/runtime/drawing-census-save-load-menu-only-success-20261010.json",
+      "sha256": "e4abbb8e4d536cf957753988c60b68037fd02b9135d7a17db1e5d5d1444e61a6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/call_census_enabled",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.save-load-observation-20261010",
+      "kind": "live_observation",
+      "scope": "Original-active bounded campaign Save/Load with actual one-row selection and retained engine save, original World/Mini/Preferences/defeat/Main/shutdown. Closed metadata journal, no exhaustive persistence/caller/graphics equivalence or DRAW-01 scenario closure.",
+      "record": "research/runtime/drawing-census-save-load-observation-20261010.json",
+      "sha256": "8622871f9659a306adb9a0c87849e5bb7c2c5101a1d57b5d37850eb25a8d0a00",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/call_census_enabled",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/open_calls",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -68316,6 +68441,24 @@
       "evidence": [
         "DRAW.census.enabled-movie-requests-20261010"
       ]
+    },
+    {
+      "id": "original-drawing-census-save-load-20261010",
+      "level": "live_observation",
+      "scope": "Private original campaign Save/Load screens, new disposable file and original saved-map/World return, followed by original Quit/defeat/Main/shutdown. Drawing metadata only; full persistence, arbitrary map, caller/graphics side effects and scenario census remain pending.",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.census.save-load-fault-20261010",
+        "DRAW.census.save-load-menu-only-fault-20261010",
+        "DRAW.census.save-load-menu-only-success-20261010",
+        "DRAW.census.save-load-observation-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -68653,8 +68796,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-phase-20261010.json",
-    "sha256": "32dc4c83faa8af52bff673d080dd2fd4a9cc4e13ad8b4ac9c8b4ca6ce5c8ef23"
+    "path": "research/runtime/coverage/source-index-draw01-save-load-20261010.json",
+    "sha256": "d6636ee374af112f0e4505ab0cbf67c2debf4f1587f04dc59dd1480e47d1183f"
   },
   "claim_bindings_required": true
 }

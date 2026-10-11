@@ -233016,6 +233016,194 @@
           "DRAW.census.enabled-movie-requests-20261010"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "b1e712572fa7e9dc3b6814d566cb16049cd93749cde4ff0d7b002de3beeec436",
+          "before_sha256": "1d488f046f17996cd5d71b499802ac43925c2dd1eb9bb765ceed94079186ea9d",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "e04caa2548e4bb763ebd4a49b00b81a5bc56180d055b6e0d094017c49e2d957f",
+          "before_sha256": "fe44935374211433517834790cd68c3230e34671defee257a12980b6ddb0bad1",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "cb46268d6250ce937732c242648d7be38859a59d6bdbed8bfca93480757284a1",
+          "before_sha256": "4c6689ba4be25ecc8c27efeefe77b4e286ccf0d0dc59e1683604f2698ab28699",
+          "id": "DRAW.queue-dispatch"
+        },
+        {
+          "after_sha256": "2de9d737acf1f9cbe2e525c92308f0a13fd46122368f31d7ad27dd08df3d18e3",
+          "before_sha256": "d66a56f0332ce5955b653e135c601188f46d448a83c9d091c03043b09aa0499e",
+          "id": "DRAW.surface-hosting"
+        },
+        {
+          "after_sha256": "38b1a66168f04a195c5d354eeb6738caf50a3bdc06f42b2a0a602dacb2a7393d",
+          "before_sha256": "c41ea27b171bdac7184d4df15de18e8c6d22cc7bdaf6284a45e9178f7f8edb19",
+          "id": "DRAW.unassigned-word-window"
+        },
+        {
+          "after_sha256": "5537984dc0fd2907dc5c0b69350d7654ad95a19507b3cd22bf6c491ce8d838a7",
+          "before_sha256": "434ac2027001c5d876a02de80f0cfe9ed80be29b13a1d0254417636a1d12dcd6",
+          "id": "DRAW.unattributed-caller"
+        },
+        {
+          "after_sha256": "86095ebc68680f02e8f3727ca8b1a4129cf85a55bf0865823ec1135965964783",
+          "before_sha256": "0aaffd75eca82dbadad375a2033708a2ba5547780f98d205ee47277f2b953624",
+          "id": "DRAW.world-kind-16"
+        },
+        {
+          "after_sha256": "800bf52e304a6ac94b6c2f980e966a7a6dcca46469862d51d15547b64b92a07a",
+          "before_sha256": "f7b63d5a93843c5befd00a293ebc0f7c095a6ed34827ffc191e547665acbd5fd",
+          "id": "DRAW.world-kind-17"
+        },
+        {
+          "after_sha256": "ff0bfe5dced9aa7e5d13f98ec64c3d66f40a5870c49cc5f77f4209e2086794da",
+          "before_sha256": "3f2de18ef89c37838d47f1763f6b887f370b5c70a2f568b08b18bb336245f19c",
+          "id": "DRAW.world-kind-20"
+        },
+        {
+          "after_sha256": "830369ee6fe82ba6c8b9b89a6875d305c0952a3b1595df639a1eb767dcf2934c",
+          "before_sha256": "1e34ecf429e1b43d8b063f74803d22dc96bc4d437510e8ef9c3fcbfc8116d730",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "865176e9248084b8790436395eb8439d15c792376fd583669883b1e54eb0700b",
+          "before_sha256": "4b6802543ad5dda250d2223721bb2aa185b96fe03ca648fb820b27d30eb7bc4c",
+          "id": "TOOL.drawing-census"
+        },
+        {
+          "after_sha256": "2b036d5914d169f0bd631e06956e87a644812c1ab6d76a8fbf985e7a4ccb1806",
+          "before_sha256": "929fc7c4e2aca0f3083f01c2bd7693d13f03ee8e93e2534c1f63fb41d21c12e0",
+          "id": "TOOL.drawing-dispatch-slices"
+        },
+        {
+          "after_sha256": "68a79b9fadd2d67de718879d34e75cfe7787b86c1215f4d2381feb23cf2c64dc",
+          "before_sha256": "8c187fa33f319de14857bfb9ac7b37f7744bd0a1fc3d9ee46d85cf9374162ec4",
+          "id": "TOOL.drawing-inventory"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "e32ebb617b1b080ea6d3de9c1a593de53965d1cdd7ae67093ef51db19f5c50e9",
+          "before_sha256": "e6a73d00bcc7e7f8073525e448e2e8e7664be5cd03d520e5737335624891871a",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "8bf875a974ef5ce36aeb3887b2aa1723cb168966948c98aaed636f59fa84d307",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw01-history-f240927-5abde11-20261010.json"
+        },
+        {
+          "after_sha256": "cdaa75c9a06f7aea574fc2fb51c4cb6ee7c475489b2ddb7cbeac479635c13a60",
+          "before_sha256": "98a425f006bf1e9cee1cefdc10b80f69ec7f08a47c10fbef351389fdd754cb56",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "d6636ee374af112f0e4505ab0cbf67c2debf4f1587f04dc59dd1480e47d1183f",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw01-save-load-20261010.json"
+        },
+        {
+          "after_sha256": "051d59e2999bb7fef339536add0cdc4259941e2b628e0cc2eeab77e9501c764e",
+          "before_sha256": "e4ad0a3e39d301e1c8499e0430edb10c47eec48db9e25b40002dcd3a62053b71",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "0fb54fdb8274fbf0bb7338c5b1eef9d920cc4b94cc91e0280182a23d7c97dbb8",
+          "before_sha256": "95f1a146703e92a058bb1eec3496e22bb1723998f9365f71dc0fe1ff8f4a83b3",
+          "path": "research/runtime/draw01-inventory.md"
+        },
+        {
+          "after_sha256": "93d701b82f66ee33e0c7c50ecd342a4071d52e4dc3707001882e9971dd5b7ad0",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-census-save-load-fault-20261010.json"
+        },
+        {
+          "after_sha256": "13c231805216246da831f1161aff90c36b509bac137d1db36ed7239a6cae870a",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-census-save-load-menu-only-fault-20261010.json"
+        },
+        {
+          "after_sha256": "e4abbb8e4d536cf957753988c60b68037fd02b9135d7a17db1e5d5d1444e61a6",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-census-save-load-menu-only-success-20261010.json"
+        },
+        {
+          "after_sha256": "8622871f9659a306adb9a0c87849e5bb7c2c5101a1d57b5d37850eb25a8d0a00",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-census-save-load-observation-20261010.json"
+        },
+        {
+          "after_sha256": "b60bb6eca315e7fae28e70ab83645fb851426191c276ff8e14998fd3cbd09815",
+          "before_sha256": "a323ed4be54d3b36b55c2690eb1e148e861dadcbcc84f3dbc2bad9d683736985",
+          "path": "tools/capture-drawing-census-game.py"
+        },
+        {
+          "after_sha256": "c01369e1876576d5c25c250644045ef735c28de2cd9fa81665bb526184605e35",
+          "before_sha256": "805ce67923f276eb0342bfed7e6fea2d3ad5c1c141dfd1a73d67a656942b3c8f",
+          "path": "tools/prepare-drawing-census.py"
+        }
+      ],
+      "id": "draw01-original-save-load-accounting-20261010",
+      "pending_gaps": [
+        "retired_execution_claims:1c1f80298d7782ce40ee92883c1c7a2d75009f603652de38c57f37698d212f97",
+        "retired_execution_claims:b52ae5c952cdc29e241d3646a6e82aba897266fbb5eb72112ad2a9518631e10f",
+        "stale_evidence:332ef0218526a117f78d9374989e78d8859df2f145ea0c0483c96d1497c017e2",
+        "stale_evidence:38c4939cd2671483f90c7d044d052f087957ddc85026e9a31e271aa95357454d",
+        "stale_evidence:60047bcedc5703bb5ac54ce5565687405bb40fcc0519a779127070686f08d6db",
+        "stale_evidence:775d0d3b8b45699c185d93b72ea6213129df0a347fb6faaaa6f9c7cac65e9f43",
+        "stale_evidence:77df5579ab35ad78add61c740780a20c7e430722a01898a5487b5af2bd577142",
+        "stale_evidence:cc6356257535c4359ee2a3049f518c53d403b5ad72399334b8660d7df1d78aa8",
+        "stale_evidence:d1e14a6f3d9858672d1ac6cccad7fa9c43175377d330021422889a2d388d33be",
+        "stale_evidence:d51a67976a2cf3df3a7022b9afb6214f8c681bca692fe722650287c8a8047788",
+        "stale_evidence:d538760eb1c68a9c6e00de6cd40455d573e0c86eef07d8bf523e4a2c00a2d7e0",
+        "stale_evidence:d92e2d95f6858d381ffdc5f6ac0e7303a19c91bedba971f678570b5117ac5742",
+        "stale_evidence:f67855c70030d52d9cecd31906a9388c8b7ad37539f0e2cd4f28c9fc62e354ad"
+      ],
+      "reason": "Review isolated Save output creation, original list-row selection, OCR/focus and unique snapshots, retained saves, explicit menu-only negative/positive controls and heartbeat admission timing. Preserve failed attempts and historical hashes; closed bounded save/load metadata does not close DRAW-01 callers, graphics side effects, ownership or recovery. Reviewed f240927..5abde11 exact committed receipts separately.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh full journal and menu-only control validate only the bounded journey. Shared research edits retain partial original contracts; historical driver/evidence snapshots become stale without hash refresh. All broader caller, borrowed graphics, side-effect, lifetime, failure/recovery and full scenario equivalence remain pending."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "b1e712572fa7e9dc3b6814d566cb16049cd93749cde4ff0d7b002de3beeec436",
+          "before_sha256": "1d488f046f17996cd5d71b499802ac43925c2dd1eb9bb765ceed94079186ea9d",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "e04caa2548e4bb763ebd4a49b00b81a5bc56180d055b6e0d094017c49e2d957f",
+          "before_sha256": "fe44935374211433517834790cd68c3230e34671defee257a12980b6ddb0bad1",
+          "id": "DRAW.census.journey-driver"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "b60bb6eca315e7fae28e70ab83645fb851426191c276ff8e14998fd3cbd09815",
+          "before_sha256": "a323ed4be54d3b36b55c2690eb1e148e861dadcbcc84f3dbc2bad9d683736985",
+          "path": "tools/capture-drawing-census-game.py"
+        },
+        {
+          "after_sha256": "c01369e1876576d5c25c250644045ef735c28de2cd9fa81665bb526184605e35",
+          "before_sha256": "805ce67923f276eb0342bfed7e6fea2d3ad5c1c141dfd1a73d67a656942b3c8f",
+          "path": "tools/prepare-drawing-census.py"
+        }
+      ],
+      "id": "draw01-original-save-load-journey-validation-20261010",
+      "pending_gaps": [],
+      "reason": "Validate private original campaign save/load fixture, retained save bytes, selected original list row, original World/Mini/Preferences/defeat/Main returns and normal exit; explicit drawing-hook-free control remains a separate experiment.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Fresh prospectively bound full original-active journal run-ur4hka4e: 3607228 events/1803614 paired calls, zero loss/open/IO, actual base400000, stable sources/binaries and exit0. Original-generated save354045 bytes retained. Separate menu-only control run-wtfgueah also returns and exits0. No full scenario or pixel/lifetime equivalence assertion. Trace7, inventory37 and exact-caller6 guards pass.",
+        "evidence": [
+          "DRAW.census.save-load-observation-20261010"
+        ]
+      }
     }
   ]
 }

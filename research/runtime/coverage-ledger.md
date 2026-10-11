@@ -4416,3 +4416,37 @@ validated. A successful metadata journal is not successful playback. All 18
 DRAW-01 closure blockers remain. Committed history `18d24f6..f240927` was
 reviewed separately with 12 changed/link-reviewed files, 13 affected behaviors
 and zero missing receipts.
+
+
+### DRAW-01 original save/load diagnostics — 2026-10-10
+
+Disposable census staging now supplies the original Save output directory;
+original campaign saves produce retained nonempty `.sav` files. The initial
+Load fixture omitted list selection and faulted at `005b74dc` reading `10`.
+This repeats with drawing hooks absent but the menu adapter active. A corrected
+one-row selection fixture and loader admission/heartbeat timing are under live
+validation. No successful save/load round trip, native persistence, graphics
+failure equivalence or DRAW-01 scenario closure is claimed. Failed reports,
+screenshots, original saves and hash-bound partial-journal archives remain in
+`working/experiments/drawing-census/`; prior evidence hashes are unchanged.
+Committed history `f240927..5abde11` was reviewed with zero missing exact receipts.
+
+
+The [selected-row menu-only control](drawing-census-save-load-menu-only-success-20261010.json)
+now finishes the bounded original Save/Load journey: a retained 353,641-byte save,
+original World/Mini and Preferences return, original defeat/Main and exit0.
+Sources and staged binaries remain stable. Drawing entry hooks are absent and
+no call journal is claimed. The visible loading transition begins on list-row
+selection, before the later explicit Load-button input; input ordering is retained.
+The same corrected fixture with full drawing metadata remains under validation.
+The two failed Load reports are retained under distinct immutable evidence IDs;
+the successful control does not retroactively validate those attempts.
+
+
+The [full original-active save/load journal](drawing-census-save-load-observation-20261010.json)
+also completes with exit0: 3,607,228 events / 1,803,614 paired calls, zero
+loss/open calls, verified actual base400000 and stable source/binary fingerprints.
+The original-created 354,045-byte save is retained with SHA-256
+`76bd3f35812ce21ad19dc18bf073772c54725dd65eb80e8c14afb55ffda040c4`.
+This validates the bounded selected-row journey and journal; exhaustive caller,
+borrowed graphics, state/pixel/lifetime/recovery and scenario closure stay pending.
