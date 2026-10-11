@@ -30980,7 +30980,9 @@
         "TOOL.drawing-inventory.phase-guards-20261010",
         "RI.drawing-callers-movie-expanded-20261010",
         "RI.drawing-callers-movie-sites-20261010",
-        "DRAW.census.movie-site-guards-20261010"
+        "DRAW.census.movie-site-guards-20261010",
+        "DRAW.census.quick-battle-guards-20261010",
+        "DRAW.census.quick-battle-scenario-guards-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31052,7 +31054,9 @@
         "DRAW.census.caller-source-abi-20261010",
         "RI.drawing-callers-movie-expanded-20261010",
         "RI.drawing-callers-movie-sites-20261010",
-        "DRAW.census.movie-site-guards-20261010"
+        "DRAW.census.movie-site-guards-20261010",
+        "DRAW.census.quick-battle-guards-20261010",
+        "DRAW.census.quick-battle-scenario-guards-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31114,7 +31118,11 @@
         "DRAW.census.movie-helpers-observation-20261010",
         "DRAW.census.movie-sites-observation-20261010",
         "DRAW.census.movie-sites-accounted-observation-20261010",
-        "DRAW.census.movie-site-guards-20261010"
+        "DRAW.census.movie-site-guards-20261010",
+        "DRAW.census.quick-battle-transition-fault-20261010",
+        "DRAW.census.quick-battle-observation-20261010",
+        "DRAW.census.quick-battle-accounted-observation-20261010",
+        "DRAW.census.quick-battle-scenario-guards-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31128,12 +31136,14 @@
       "id": "DRAW.census.journey-driver",
       "subsystem": "drawing_inventory",
       "kind": "native_policy",
-      "title": "Isolated original DRAW-01 menu and campaign census journeys",
-      "scope": "Fresh disposable signature-pinned drawing/menu imports, private Xvfb display and Wine prefix, original acknowledged menu actions, heartbeat and explicit host scenario phases, original Main quit and strict terminal decoding. Retain every failed attempt, source and staged binary stability, and commands. Menu readiness/phase labels do not prove exhaustive scenario coverage. Campaign input automation remains under live validation; save/load, later map transitions, effects, results, movies and graphics API failure/recovery need further fixtures. No original bodies bypassed or gameplay balance changed. Optional menu-only diagnostic staging leaves original drawing entries unpatched and explicitly reports that no call journal is enabled; no synthetic events or terminal are inferred.",
+      "title": "Isolated original DRAW-01 menu, campaign and Quick Battle census journeys",
+      "scope": "Fresh disposable signature-pinned drawing/menu imports, private Xvfb display and Wine prefix, original acknowledged menu actions, heartbeat and explicit host scenario phases, original Main quit and strict terminal decoding. Retain every failed attempt, source and staged binary stability, and commands. Menu readiness/phase labels do not prove exhaustive scenario coverage. Campaign input automation remains under live validation; save/load, later map transitions, effects, results, movies and graphics API failure/recovery need further fixtures. No original bodies bypassed or gameplay balance changed. Optional menu-only diagnostic staging leaves original drawing entries unpatched and explicitly reports that no call journal is enabled; no synthetic events or terminal are inferred. Quick Battle fixture selects the second original offered map, preserves original setup rules and offered spell assignments, uses bounded camera/HUD/cursor inputs, verifies original Escape-to-results, Continue-to-World and second Escape/results/Quit/Quick/Main/shutdown. Existing original contexts1/2 bypass ordinary Mini; experimental Quick Mini stays disabled. Unassigned loadout is retained as unassigned. Inputs alone do not prove semantic tooltip, spell/effect, camera movement, all-writer or lifetime coverage.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/draw01-inventory.md"
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/mini-menu-engine-bridge.md",
+        "research/runtime/quick-battle-results-engine-bridge.md"
       ],
       "implementation": [
         "tools/capture-drawing-census-game.py"
@@ -31213,7 +31223,10 @@
         "DRAW.census.save-load-observation-20261010",
         "DRAW.census.movie-helpers-observation-20261010",
         "DRAW.census.movie-sites-observation-20261010",
-        "DRAW.census.movie-sites-accounted-observation-20261010"
+        "DRAW.census.movie-sites-accounted-observation-20261010",
+        "DRAW.census.quick-battle-transition-fault-20261010",
+        "DRAW.census.quick-battle-observation-20261010",
+        "DRAW.census.quick-battle-accounted-observation-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -60628,6 +60641,153 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW.census.quick-battle-transition-fault-20261010",
+      "kind": "live_observation",
+      "scope": "Failed original Quick Battle attempt reaches results after Escape; wrong fixture assumption waits for Preferences. No closed journal or Mini claim.",
+      "record": "research/runtime/drawing-census-quick-battle-transition-fault-20261010.json",
+      "sha256": "628bf171c4675d3b50619e13d84ba08ccdd38b5ed77fb1195c4fb4f93172a4cb",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.quick-battle-observation-20261010",
+      "kind": "live_observation",
+      "scope": "Bounded original Quick Battle map2/default rules/empty offered slots, World/input/ Escape/results/Continue/World/Escape/results/Quit/Quick/Main/exit0 with complete journal; no actual camera/tooltip/effect/pixel/all-writer/caller/API/lifetime or scenario closure.",
+      "record": "research/runtime/drawing-census-quick-battle-observation-20261010.json",
+      "sha256": "478e46726c2d5ff54da99814f846ca987d970f002f94ab874bced5436edff8f0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/open_calls",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.quick-battle-accounted-observation-20261010",
+      "kind": "live_observation",
+      "scope": "Bounded original Quick Battle map2/default rules/empty offered slots, World/input/ Escape/results/Continue/World/Escape/results/Quit/Quick/Main/exit0 with complete journal; no actual camera/tooltip/effect/pixel/all-writer/caller/API/lifetime or scenario closure.",
+      "record": "research/runtime/drawing-census-quick-battle-accounted-observation-20261010.json",
+      "sha256": "7a75af418371f1c31e0bff3a12690cce79fa5c4b0a69192d55a00eae6f4bc4bf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/open_calls",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.quick-battle-guards-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh exact-call/trace/site-mode/inventory guard execution only; no original pixels or scenario closure.",
+      "record": "research/runtime/drawing-census-quick-battle-guards-20261010.json",
+      "sha256": "d34f96d46b5af238d157c9c32ce826bc97477eb0be3803dfaa5baf0759f44b1a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/total_cases",
+          "equals": 54
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.quick-battle-scenario-guards-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh prospectively linked headless guard scenario; no original pixels or scenario closure.",
+      "record": "research/runtime/drawing-census-quick-battle-scenario-guards-20261010.json",
+      "sha256": "237362bc8eeafd61ee7b3531da6ebc458e1641245947139624a924602665ea13",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/total_cases",
+          "equals": 54
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -69010,6 +69170,42 @@
         "DRAW.census.movie-sites-observation-20261010",
         "DRAW.census.movie-sites-accounted-observation-20261010"
       ]
+    },
+    {
+      "id": "original-drawing-census-quick-battle-20261010",
+      "level": "live_observation",
+      "scope": "Original second offered Quick Battle map with unchanged setup rules/assignments, bounded World/camera/HUD/cursor inputs and original Escape/results/Continue/World/Escape/results/Quit/Quick/Main/shutdown. No Quick Mini claim; metadata only, no semantic effect/tooltip, exhaustive census or pixel equivalence.",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.census.quick-battle-transition-fault-20261010",
+        "DRAW.census.quick-battle-observation-20261010",
+        "DRAW.census.quick-battle-accounted-observation-20261010"
+      ]
+    },
+    {
+      "id": "drawing-census-accounting-guards-20261010",
+      "level": "headless",
+      "scope": "Execute exact CALL/owner crosswalk, strict journal/site EAX pairing, explicit typed interior anchors and scenario/hook route accounting guards. Native tooling only; no new original execution, rendering equivalence or DRAW-01 closure.",
+      "behaviors": [
+        "TOOL.drawing-inventory",
+        "TOOL.drawing-census",
+        "DRAW.census.call-journal"
+      ],
+      "tests": [
+        "tests/test-drawing-inventory.py",
+        "tests/test-drawing-census.py",
+        "tests/test-drawing-census-trace.py",
+        "tests/test-drawing-census-build.py"
+      ],
+      "evidence": [
+        "DRAW.census.quick-battle-scenario-guards-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -69347,8 +69543,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-movie-sites-20261010.json",
-    "sha256": "6c7c66759a2863fa52b31432f45f9eaf574dd45d6acdec3709a02dc2a925e7dd"
+    "path": "research/runtime/coverage/source-index-draw01-quick-battle-20261010.json",
+    "sha256": "07c5f612fdbba5d1f80db97a3d8fe14a4b7ca22383df8300a9a2527f8ece0625"
   },
   "claim_bindings_required": true
 }

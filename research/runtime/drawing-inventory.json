@@ -414,6 +414,134 @@
           "activity": "live_original_active"
         }
       ]
+    },
+    {
+      "id": "quick-call-phase-02",
+      "evidence": "DRAW.census.quick-battle-accounted-observation-20261010",
+      "scenario": "main-setup-menus",
+      "scope": "Bounded original Quick Battle paired-call metadata for this host phase only. Input labels are intent, not semantic camera/tooltip/pixel/all-writer/caller/API/lifetime or scenario closure. Original empty loadout preserved; no summon/effect or Quick Mini claim.",
+      "build_pointer": "/decoded/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 2,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "quick-call-phase-04",
+      "evidence": "DRAW.census.quick-battle-accounted-observation-20261010",
+      "scenario": "quick-battle-entry",
+      "scope": "Bounded original Quick Battle paired-call metadata for this host phase only. Input labels are intent, not semantic camera/tooltip/pixel/all-writer/caller/API/lifetime or scenario closure. Original empty loadout preserved; no summon/effect or Quick Mini claim.",
+      "build_pointer": "/decoded/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 4,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "quick-call-phase-05",
+      "evidence": "DRAW.census.quick-battle-accounted-observation-20261010",
+      "scenario": "active-world",
+      "scope": "Bounded original Quick Battle paired-call metadata for this host phase only. Input labels are intent, not semantic camera/tooltip/pixel/all-writer/caller/API/lifetime or scenario closure. Original empty loadout preserved; no summon/effect or Quick Mini claim.",
+      "build_pointer": "/decoded/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 5,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "quick-call-phase-06",
+      "evidence": "DRAW.census.quick-battle-accounted-observation-20261010",
+      "scenario": "camera-motion",
+      "scope": "Bounded original Quick Battle paired-call metadata for this host phase only. Input labels are intent, not semantic camera/tooltip/pixel/all-writer/caller/API/lifetime or scenario closure. Original empty loadout preserved; no summon/effect or Quick Mini claim.",
+      "build_pointer": "/decoded/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 6,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "quick-call-phase-08",
+      "evidence": "DRAW.census.quick-battle-accounted-observation-20261010",
+      "scenario": "hud-minimap-tooltips",
+      "scope": "Bounded original Quick Battle paired-call metadata for this host phase only. Input labels are intent, not semantic camera/tooltip/pixel/all-writer/caller/API/lifetime or scenario closure. Original empty loadout preserved; no summon/effect or Quick Mini claim.",
+      "build_pointer": "/decoded/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 8,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "quick-call-phase-09",
+      "evidence": "DRAW.census.quick-battle-accounted-observation-20261010",
+      "scenario": "cursor-interaction",
+      "scope": "Bounded original Quick Battle paired-call metadata for this host phase only. Input labels are intent, not semantic camera/tooltip/pixel/all-writer/caller/API/lifetime or scenario closure. Original empty loadout preserved; no summon/effect or Quick Mini claim.",
+      "build_pointer": "/decoded/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 9,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "quick-call-phase-13",
+      "evidence": "DRAW.census.quick-battle-accounted-observation-20261010",
+      "scenario": "battle-results",
+      "scope": "Bounded original Quick Battle paired-call metadata for this host phase only. Input labels are intent, not semantic camera/tooltip/pixel/all-writer/caller/API/lifetime or scenario closure. Original empty loadout preserved; no summon/effect or Quick Mini claim.",
+      "build_pointer": "/decoded/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 13,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "quick-call-phase-14",
+      "evidence": "DRAW.census.quick-battle-accounted-observation-20261010",
+      "scenario": "shutdown",
+      "scope": "Bounded original Quick Battle paired-call metadata for this host phase only. Input labels are intent, not semantic camera/tooltip/pixel/all-writer/caller/API/lifetime or scenario closure. Original empty loadout preserved; no summon/effect or Quick Mini claim.",
+      "build_pointer": "/decoded/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 14,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
     }
   ],
   "routes": [
@@ -4552,6 +4680,11 @@
     },
     {
       "observation": "movie-site-phase-01",
+      "pointer": "/hook_manifest/hooks",
+      "refused_pointer": "/hook_manifest/unhookable"
+    },
+    {
+      "observation": "quick-call-phase-04",
       "pointer": "/hook_manifest/hooks",
       "refused_pointer": "/hook_manifest/unhookable"
     }
