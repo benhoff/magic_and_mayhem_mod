@@ -105,6 +105,9 @@ class Admission(unittest.TestCase):
     def test_rgb565_presentation_definition(self):
         self.assertEqual(rgba565(struct.pack('<4H',0,0xffff,0xf800,0xabcd)),
                          bytes([0,0,0,255,255,255,255,255,255,0,0,255,173,121,107,255]))
+    def test_normalized_rgb565_display_policy(self):
+        self.assertEqual(rgba565(struct.pack('<H',0x18e3),'normalized-nearest'),bytes([25,28,25,255]))
+        with self.assertRaises(ValueError):rgba565(b'','unknown')
     def test_native_asset_aliases_and_transport_collisions(self):
         for names in (['Interface\\Image.bmp'], ['Interface\\Image.bmp','interface/image.bmp'],
                       ['drawing-session.json'],['producer-0001.bin'],['../image.bmp'],['C:/image.bmp']):

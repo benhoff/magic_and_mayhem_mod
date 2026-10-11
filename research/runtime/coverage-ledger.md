@@ -4774,3 +4774,35 @@ DRAW-02 fourteen-journey/twenty-one-operation gates remain open. The final prior
 integration range300e423..9df6aa3 has nine exact file-version receipts and no gaps.
 See [owned presentation protocol](../formats/drawing-presented-session.md) and
 [immutable execution report](draw02-native-physical-session-20261011.json).
+
+## 2026-10-11 DRAW-02 synchronized original/native physical witnesses
+
+An opt-in post-copy fence now holds the original drawing thread at the two
+already guarded opaque primary-copy sites while an independent X11 peer acquires
+the entire client plane twice, checks stability and acknowledges exact frame and
+attempt identities. Fresh original execution retains 103 physical witnesses,
+source/queue/canvas/thread/menu-phase bindings and five successful menu dispatches
+through 16 World returns. Other original threads remain active.
+
+The first physical admission failed because bit-replicated RGB565 expansion differs
+from the tested Wine display path. All 49,440,000 original physical pixels match
+fixed nearest normalized expansion, including all 32/64/32 channel levels. The
+explicit native presentation policy expands only native-derived words, supplies
+no measured colour table and uses zero viewport QImage uploads. Both policies pass
+independent exhaustive 65,536-colour presentation tests, eight physical/refusal
+controls and fifteen admission guards.
+
+Fresh original-screen versus separately owned native-screen comparison passes
+all 103 frames / 49,440,000 pixels with zero mismatches; five physical admission
+guard methods pass. Original manifests pass before and after both original
+acquisition and comparison. Failed compile and bit-replication attempts remain
+retained under working; no historical evidence hashes were changed.
+
+This closes synchronized physical point acquisition and exact parity within the
+guarded startup prefix. It does not close the fourteen-journey/twenty-one-operation
+DRAW-02 gate: alternate/global publication, general battle/save/load producers,
+semantic input/caller effects and true driver loss/Restore remain open. Exact
+committed-history review covers 14 file versions in 9df6aa3..5bb6dce with no gaps.
+See [physical fence protocol](../formats/drawing-physical-fence.md),
+[original execution](draw02-fenced-original-20261011.json) and
+[paired comparison](draw02-fenced-screen-comparison-20261011.json).

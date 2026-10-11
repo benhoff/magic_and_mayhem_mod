@@ -33269,7 +33269,8 @@
         "tools/drawing_session.py"
       ],
       "evidence": [
-        "NR.drawing-presented-session.native-20261011"
+        "NR.drawing-presented-session.native-20261011",
+        "NR.drawing-presented-session.normalized-native-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -33278,7 +33279,243 @@
         "integration": "headless",
         "replacement": "none"
       },
-      "validation_domain": "Owned protocol input completeness/containment/hash/identity, actual GPU viewport pixel output at one-to-one sharp scaling, no application QImage uploads, strict unsupported caller-effect outcomes and zero resources after host shutdown. Original physical acquisition and semantic outcomes remain separate."
+      "validation_domain": "Owned protocol input completeness/containment/hash/identity, actual GPU viewport pixel output at one-to-one sharp scaling, no application QImage uploads, strict unsupported caller-effect outcomes and zero resources after host shutdown. Original physical acquisition and semantic outcomes remain separate. Explicit bit-replicated and normalized-nearest RGB565 display policies are independently checked over all65536words; policy selection carries no original output/table."
+    },
+    {
+      "id": "NR.drawing-fenced-acquisition",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Guarded original post-copy physical frame witnesses",
+      "scope": "Opt-in finite post-copy fence at the two already guarded original opaque primary publication sites. The original draw thread waits for a contained full-window X11 capture, two stable physical reads and exact request/ack identities. Readback planes and physical witnesses are independent comparator references only. Bound source/queue/canvas/menu phase identities are retained. This does not freeze all original threads, cover alternate/global presentation routes, prove unobtrusive gameplay, semantic input, complete journeys or true driver recovery.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816378,
+          "scope": "Guarded original opaque Blt call and original-active post-call physical witness only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816410,
+          "scope": "Guarded original opaque BltFast call and original-active post-call physical witness only."
+        }
+      ],
+      "documents": [
+        "research/formats/drawing-physical-fence.md"
+      ],
+      "implementation": [
+        "runtime/scene/drawing_physical.h",
+        "runtime/scene/drawing_publication.h",
+        "tools/drawing_physical.py",
+        "apps/drawing-session/observe.cpp",
+        "apps/drawing-session/CMakeLists.txt"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py",
+        "tools/test-drawing-physical.py",
+        "tests/test-drawing-physical.py"
+      ],
+      "validation_dependencies": [
+        "apps/drawing-session/main.cpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/window_host.cpp",
+        "apps/qt-shell/window_host.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/drawing_session.cpp",
+        "compat/legacy/drawing_session.hpp",
+        "compat/legacy/drawing_session_main.cpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/drawing_action.h",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/drawing_publication.S",
+        "runtime/scene/entry.S",
+        "runtime/scene/glyph_entry.S",
+        "runtime/scene/glyph_leave.S",
+        "runtime/scene/glyph_live.c",
+        "runtime/scene/glyph_live.h",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/resource-fixtures.hpp",
+        "tools/build-menu-observer.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/check-drawing-publication.py",
+        "tools/drawing_corpus.py",
+        "tools/drawing_presented_session.py",
+        "tools/drawing_publication.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/drawing_session.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-menu-observer.py",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/replay-drawing-presented-session.py",
+        "tools/retain-drawing-scene.py",
+        "tools/run-game.sh",
+        "tools/scene-game-runner.py",
+        "tools/test-drawing-presented-session.py",
+        "tools/test-native-drawing-session-runner.py"
+      ],
+      "evidence": [
+        "NR.drawing-fenced-acquisition.original-20261011",
+        "NR.drawing-fenced-acquisition.comparison-20261011",
+        "NR.drawing-fenced-acquisition.original-display-comparison-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      },
+      "validation_domain": "Exact publication request/ack generation and source/thread/action identities, full physical planes, stable double capture, fixed normalized-nearest RGB565 display conversion and source-only separate native presentation. Excludes unobserved routes, whole-process quiescence, unobtrusive performance, semantic action equivalence and true driver loss."
     }
   ],
   "builds": [
@@ -33292,8 +33529,8 @@
   "claim_bindings_required": true,
   "classifications": [],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-presented-session-20261011.json",
-    "sha256": "1c03ec9486159bcfed4b1e5f0eeecb7b273044416bedb96ca8aa21d0bd3cf6e1"
+    "path": "research/runtime/coverage/source-index-draw02-fenced-20261011.json",
+    "sha256": "4314342df4938ebd82b72cfde4624e493e7bef6e9db6382e96f855f26810deed"
   },
   "dispatch_tables": [
     {
@@ -66161,6 +66398,165 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.drawing-presented-session.normalized-native-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/draw02-native-normalized-physical-20261011.json",
+      "sha256": "5592e47903d3c6d13b82af212ddfbe02d733741f24bde2ce7867b5587d9f450a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Both fixed RGB565 display policies over65536words, eight executed physical/refusal controls, fifteen admission guards and103historical primary reference planes/49440000pixels/zero differences. No new original capture or full journey claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/checks/1/name",
+          "equals": "normalized-display-all-colours"
+        },
+        {
+          "pointer": "/all_rgb565_colours",
+          "equals": 65536
+        },
+        {
+          "pointer": "/historical_original_comparison/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-fenced-acquisition.original-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/draw02-fenced-original-20261011.json",
+      "sha256": "85eb77bed9496720fd3286c56c081d197ce0b78dfe20e2ef2f2916d889100305",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh original-active startup capture:103guarded post-copy full-window X11 witnesses, stable double reads, exact acknowledgements and complete source/thread/menu-phase identities through16World returns. Other threads, alternate routes and full journey semantics remain outside scope.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/drawing_physical/success",
+          "equals": true
+        },
+        {
+          "pointer": "/drawing_physical/pixels",
+          "equals": 49440000
+        },
+        {
+          "pointer": "/drawing_physical/original_draw_thread_fenced",
+          "equals": true
+        },
+        {
+          "pointer": "/drawing_physical/complete_presented_journey",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7"
+    },
+    {
+      "id": "NR.drawing-fenced-acquisition.comparison-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/draw02-fenced-screen-comparison-20261011.json",
+      "sha256": "b32bca5bdae73bd302463a4594d30f89cc4981e6d9d8e8c11e3adbfa4843ebd3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Every one of103fresh guarded original X11 witnesses compared against separately source-owned native composition and actual X11 presentation using explicit normalized-nearest RGB565 conversion:49440000pixels,zero mismatches. No alternate-route/full-journey or caller-result/real-driver claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 49440000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/complete_presented_journey",
+          "equals": false
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-fenced-acquisition.original-display-comparison-20261011",
+      "kind": "isolated_original",
+      "record": "research/runtime/draw02-fenced-original-20261011.json",
+      "sha256": "85eb77bed9496720fd3286c56c081d197ce0b78dfe20e2ef2f2916d889100305",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Independent fresh original primary readbacks and guarded original X11 witnesses validate the fixed native physical-admission normalized display conversion over103full planes/49440000pixels. Separately composed native-screen equality is registered as native integration, linked to this exact original capture hash.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/drawing_physical/success",
+          "equals": true
+        },
+        {
+          "pointer": "/drawing_physical/pixels",
+          "equals": 49440000
+        },
+        {
+          "pointer": "/drawing_physical/original_draw_thread_fenced",
+          "equals": true
+        },
+        {
+          "pointer": "/drawing_physical/complete_presented_journey",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
     }
   ],
   "recovered_ranges": [
@@ -71893,7 +72289,26 @@
         "tests/test-drawing-presented-session.py"
       ],
       "evidence": [
-        "NR.drawing-presented-session.native-20261011"
+        "NR.drawing-presented-session.native-20261011",
+        "NR.drawing-presented-session.normalized-native-20261011"
+      ]
+    },
+    {
+      "id": "DRAW02.fenced-original-primary",
+      "level": "live_observation",
+      "scope": "Original-active bounded startup post-copy physical witnesses and separately owned native frame composition; no all-route/full-journey assertion.",
+      "behaviors": [
+        "NR.drawing-fenced-acquisition"
+      ],
+      "tests": [
+        "tools/capture-scene-game.py",
+        "tools/test-drawing-physical.py",
+        "tests/test-drawing-physical.py"
+      ],
+      "evidence": [
+        "NR.drawing-fenced-acquisition.original-20261011",
+        "NR.drawing-fenced-acquisition.comparison-20261011",
+        "NR.drawing-fenced-acquisition.original-display-comparison-20261011"
       ]
     }
   ],

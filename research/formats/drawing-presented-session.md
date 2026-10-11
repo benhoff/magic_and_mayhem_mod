@@ -66,3 +66,5 @@ or historical original primary-plane references does not establish independent
 original physical presentation, active battle rendering, the fourteen complete
 journeys, real driver recovery or DRAW-02 completion. Those gates retain their
 original denominator and require new appropriate execution evidence.
+
+The optional `--display-conversion normalized-nearest` policy expands native-derived RGB565 words by integer nearest normalization into native RGB32 storage before GPU presentation. Default `bit-replicated` presentation remains available. Both fixed policies are independently checked across all 65,536 RGB565 words. Policy selection supplies no original output or measured colour table; exact full RGBA equality remains required.

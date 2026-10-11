@@ -8,3 +8,8 @@ add_subdirectory(../../compat/legacy/drawing-scene "${CMAKE_CURRENT_BINARY_DIR}/
 add_executable(mnm-drawing-present main.cpp ../qt-shell/gl_viewport.cpp)
 target_link_libraries(mnm-drawing-present PRIVATE mnm-drawing-session Qt6::Widgets Qt6::OpenGLWidgets)
 target_compile_options(mnm-drawing-present PRIVATE -Wall -Wextra -Werror -pedantic)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(XCB REQUIRED IMPORTED_TARGET xcb x11)
+add_executable(mnm-drawing-observe observe.cpp ../qt-shell/window_host.cpp)
+target_link_libraries(mnm-drawing-observe PRIVATE Qt6::Gui PkgConfig::XCB)
+target_compile_options(mnm-drawing-observe PRIVATE -Wall -Wextra -Werror -pedantic)

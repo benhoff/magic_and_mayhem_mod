@@ -11,10 +11,11 @@ def main():
     p.add_argument('owned',type=Path);p.add_argument('output',type=Path)
     p.add_argument('--composition',type=Path,default=os.environ.get('MNM_DRAW_COMPOSITION'))
     p.add_argument('--presenter',type=Path,default=os.environ.get('MNM_DRAW_PRESENTER'))
+    p.add_argument('--display-conversion',choices=['bit-replicated','normalized-nearest'],default='bit-replicated')
     a=p.parse_args()
     try:
         if not a.composition or not a.presenter:raise Unsupported('Configure native composition and physical presenter binaries')
-        result=replay(a.owned,a.output,a.composition,a.presenter)
+        result=replay(a.owned,a.output,a.composition,a.presenter,a.display_conversion)
         print(json.dumps(dict(success=True,frames=len(result['frames']),physical_presentation=True)))
         return 0
     except Unsupported as e:
