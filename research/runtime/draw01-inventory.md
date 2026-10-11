@@ -347,3 +347,31 @@ The original-created 354,045-byte save is retained with SHA-256
 `76bd3f35812ce21ad19dc18bf073772c54725dd65eb80e8c14afb55ffda040c4`.
 This validates the bounded selected-row journey and journal; exhaustive caller,
 borrowed graphics, state/pixel/lifetime/recovery and scenario closure stay pending.
+
+
+### DRAW-01 original movie contract and helper census — 2026-10-10
+
+The [unchanged original movie reference](drawing-movie-scoped-original-20261010.json)
+passes1,760selected external HRESULT/control/Escape/Update/Blt/placement/cleanup
+cases, including sentinel checks of wrapper state-write ordering. It corrects
+EDX to DirectDraw device and the first stack word to destination surface.
+[Contract findings and exclusions](draw01-movie-contract.md) retain exact
+short-circuit, skip/result and media/video/sample/source release order. Native
+Qt decoding/replacement and actual original codec/pixel/audio output stay separate.
+
+The catalog now has109routes/70entry identities; its new exact caller export
+has939direct CALL sites. The [expanded original movie-helper journal](drawing-census-movie-helpers-observation-20261010.json)
+has69safe metadata hooks plus the original unsafe fade-site refusal,82,380events /
+41,190paired calls, zero loss/open/IO, stable sources/binaries and normal exit.
+Both intros enter original setup/sample: each helper returns0 and wrapper1.
+These quick returns do not establish complete playback; exact sample Update/Blt
+counts/results and original audiovisual output remain pending. The driver now
+binds the actual menu source/header compiler inputs prospectively; older records
+retain their original narrower source declarations.
+
+The [fresh ABI fixture](drawing-census-movie-pop16-abi-20261010.json) adds the
+movie wrapper's16-byte callee cleanup to0/4/8/12/20/24, with independent tail8
+baseline and retained flags/registers/x87/SSE/LastError/loss/phase guards. It uses
+synthetic bodies; actual69original splice manifests and live observations are
+separate. Committed history5abde11..7bb1f46 has zero missing exact receipts.
+All14scenario closures and4DRAW-01 dispatch obligations remain open.

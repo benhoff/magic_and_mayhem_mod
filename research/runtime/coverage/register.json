@@ -14083,38 +14083,46 @@
       "subsystem": "rendering_inventory",
       "kind": "recovered",
       "title": "Movie wrapper and startup callers",
-      "scope": "Existing movie setup/sample/wrapper route; nonzero native control values, original placement/error paths and full live return to gameplay remain unverified. Inventory review only; no new implementation, execution comparison, integration or replacement claim. Movie-enabled startup reaches original Main; no sample return PC in 0x469830..0x469a00 appears in the bounded 2048-record draw archive. Actual playback/return results and movie pixels remain unverified.",
+      "scope": "Unchanged pinned movie setup4696e0/sample469830/wrapper469a00 under selected synthetic external contracts. Recover distinct EDX DirectDraw device and first-stack destination surface, signed controls, placement, skip/global side effects, negative HRESULT short-circuit, ignored Blt failure and release ordering. Actual Windows/COM/backend retention, codecs, original audiovisual pixels and complete live return remain pending. Historical bounded2048 draw archive lacked sample PCs; isolated original execution is separate from native media and full enabled playback.",
       "confidence": "high_within_scope",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 4626944,
-          "scope": "Existing movie setup/sample/wrapper route; nonzero native control values, original placement/error paths and full live return to gameplay remain unverified."
+          "scope": "Unchanged setup/sample/wrapper under selected mock external COM/IAT contracts; live codecs/pixels/backend retention excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 4626144,
-          "scope": "Existing movie setup/sample/wrapper route; nonzero native control values, original placement/error paths and full live return to gameplay remain unverified."
+          "scope": "Unchanged setup/sample/wrapper under selected mock external COM/IAT contracts; live codecs/pixels/backend retention excluded."
         },
         {
           "build": "nocd-40209ca7",
           "address": 4626480,
-          "scope": "Existing movie setup/sample/wrapper route; nonzero native control values, original placement/error paths and full live return to gameplay remain unverified."
+          "scope": "Unchanged setup/sample/wrapper under selected mock external COM/IAT contracts; live codecs/pixels/backend retention excluded."
         }
       ],
       "documents": [
         "research/runtime/render-drawing-inventory.md",
         "research/runtime/opengl-render-routes.md",
-        "docs/live-drawing-replacement.md"
+        "docs/live-drawing-replacement.md",
+        "research/runtime/draw01-movie-contract.md",
+        "research/runtime/qt-native-media.md"
       ],
       "implementation": [],
       "tests": [
         "tools/test-live-render-routes.py",
-        "tests/live-render-route-probe.cpp"
+        "tests/live-render-route-probe.cpp",
+        "tests/drawing-movie-reference.cpp",
+        "tools/test-drawing-movie.py"
       ],
       "evidence": [
         "RI.static-callers-final-20261006",
-        "NR.command-route-observation.live-20261006"
+        "NR.command-route-observation.live-20261006",
+        "RI.drawing-callers-movie-expanded-20261010",
+        "DRAW.movie.original-contract-20261010",
+        "DRAW.movie.original-write-order-20261010",
+        "DRAW.movie.scoped-original-20261010"
       ],
       "status": {
         "understanding": "partial",
@@ -14122,7 +14130,12 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/drawing_census.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ]
     },
     {
       "id": "NR.continuous-producer",
@@ -30901,7 +30914,8 @@
         "TOOL.drawing-inventory.retained-journal-v2-20261010",
         "RI.drawing-callers-expanded-20261010",
         "TOOL.drawing-census.callers-guards-20261010",
-        "TOOL.drawing-inventory.phase-guards-20261010"
+        "TOOL.drawing-inventory.phase-guards-20261010",
+        "RI.drawing-callers-movie-expanded-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -30970,7 +30984,8 @@
         "DRAW.census.journal-guards-20261010",
         "DRAW.census.expanded-abi-20261010",
         "RI.drawing-callers-dispatch-expanded-20261010",
-        "DRAW.census.caller-source-abi-20261010"
+        "DRAW.census.caller-source-abi-20261010",
+        "RI.drawing-callers-movie-expanded-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -30985,7 +31000,7 @@
       "subsystem": "drawing_inventory",
       "kind": "native_policy",
       "title": "Original-active drawing entry and return metadata census",
-      "scope": "Opt-in PE32 metadata at signature-pinned safe splices, with verified actual preferred module base, bounded buffered entry/return journal, register/flags/x87/SSE/LastError forwarding, thread and stack pairing including same-stack tail unwind, readonly host phase control, and explicit loss/open/IO refusal. Sixty legacy safe catalog sites plus seven explicitly discovered queue helper/cleanup entries; fade interior58edb0 is refused because original backedge58edde enters58edb1. Signatures are checked before patching and original bodies run. Partial installation refuses process startup; abrupt teardown/busy detach lacks a valid terminal. Metadata snapshots do not establish pixel/side-effect equivalence, exhaustive writers, lifetime/borrowed API coverage or DRAW-01 scenario closure. Dynamic DLL unload is unsupported.",
+      "scope": "Opt-in PE32 metadata at signature-pinned safe splices, with verified actual preferred module base, bounded buffered entry/return journal, register/flags/x87/SSE/LastError forwarding, thread and stack pairing including same-stack tail unwind, readonly host phase control, and explicit loss/open/IO refusal. Sixty legacy safe catalog sites plus seven explicitly discovered queue helper/cleanup entries and two original movie setup/sample entries; fade interior58edb0 is refused because original backedge58edde enters58edb1. Signatures are checked before patching and original bodies run. Partial installation refuses process startup; abrupt teardown/busy detach lacks a valid terminal. Metadata snapshots do not establish pixel/side-effect equivalence, exhaustive writers, lifetime/borrowed API coverage or DRAW-01 scenario closure. Dynamic DLL unload is unsupported.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31026,7 +31041,9 @@
         "DRAW.census.phase-abi-20261010",
         "DRAW.census.campaign-observation-20261010",
         "DRAW.census.enabled-movie-requests-20261010",
-        "DRAW.census.save-load-observation-20261010"
+        "DRAW.census.save-load-observation-20261010",
+        "DRAW.census.movie-pop16-abi-20261010",
+        "DRAW.census.movie-helpers-observation-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31074,7 +31091,45 @@
         "research/runtime/coverage/binary-nocd.json",
         "research/runtime/drawing-callers-expanded-20261010.json",
         "tools/run-game.sh",
-        "research/runtime/drawing-callers-dispatch-expanded-20261010.json"
+        "research/runtime/drawing-callers-dispatch-expanded-20261010.json",
+        "research/runtime/drawing-callers-movie-expanded-20261010.json",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h"
       ],
       "evidence": [
         "DRAW.census.menu-observation-20261010",
@@ -31083,7 +31138,8 @@
         "DRAW.census.save-load-fault-20261010",
         "DRAW.census.save-load-menu-only-fault-20261010",
         "DRAW.census.save-load-menu-only-success-20261010",
-        "DRAW.census.save-load-observation-20261010"
+        "DRAW.census.save-load-observation-20261010",
+        "DRAW.census.movie-helpers-observation-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31219,6 +31275,43 @@
         "DRAW.queue-dispatch.arguments-20261010",
         "DRAW.queue-dispatch.wave-kinds-20261010",
         "DRAW.queue-dispatch.anchors-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-movie-reference",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Isolated original movie contract reference",
+      "scope": "Hash-pin and execute unchanged original movie setup/sample/wrapper with distinct synthetic device/destination and explicit external bindings. Selected1760case failure/control/placement/cleanup matrix, exact source stability and retained per-case artifacts. Does not decode a movie or establish Windows API/pixel/live equivalence.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "implementation": [
+        "tools/test-drawing-movie.py",
+        "tests/drawing-movie-reference.cpp"
+      ],
+      "tests": [
+        "tools/test-drawing-movie.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/drawing_census.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "DRAW.movie.original-contract-20261010",
+        "DRAW.movie.original-write-order-20261010",
+        "DRAW.movie.scoped-original-20261010",
+        "TOOL.drawing-movie.fixture-bindings-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -60114,6 +60207,208 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "RI.drawing-callers-movie-expanded-20261010",
+      "kind": "static",
+      "scope": "Exact direct CALL census for70drawing entries including original movie setup/sample. 939exact sites, ownership only containing discovered ranges. No exhaustive indirect dispatch, live writers/API/lifetimes/scenario closure.",
+      "record": "research/runtime/drawing-callers-movie-expanded-20261010.json",
+      "sha256": "29d0a95178c2099f1227fe1029f50e8c5d6a27186b7e0ab6a3d8d1fa4ce873d2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/source_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.movie.original-contract-20261010",
+      "kind": "isolated_original",
+      "scope": "Unchanged original stream setup/sample/wrapper: selected negative HRESULT at each of ten stages, previous skip0/1, signed controls0/1/-1/127/-128, Escape0/1, Update/Blt E_FAIL0/1 and ordinary/wrapping positions. Check exact external arguments, short-circuit, placement, metadata, return policy, reference balance and original release order. EDX supplies distinct synthetic DirectDraw device; first stack word supplies destination surface. Mock APIs/COM only: original codecs/audio/pixels, Windows implementation, conversion failures, positive HRESULT variants, arbitrary COM outputs, exceptions, backend internal retention and full live playback excluded.",
+      "record": "research/runtime/drawing-movie-original-contract-20261010.json",
+      "sha256": "3ffa7cd96d600cc4dbf3ce12b66f6bee205f705a91f705880d6e4c161953c6ab",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_movie_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 1760
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "DRAW.census.movie-pop16-abi-20261010",
+      "kind": "native_integration",
+      "scope": "Real observer callbacks preserve ABI/registers/flags/x87/SSE/LastError across0/4/8/12/16/20/24callee pops, SITE, same-stack tail unwind, invalid phase and frame exhaustion. Synthetic PE32 bodies only; actual splice/live/rendering coverage separate.",
+      "record": "research/runtime/drawing-census-movie-pop16-abi-20261010.json",
+      "sha256": "c48594a2bf5e158a161b97f79f536a691af1056a086b06a90c4a2e1332e11d73",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/register_flags_x87_sse_last_error_preserved",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.movie-helpers-observation-20261010",
+      "kind": "live_observation",
+      "scope": "Expanded69safe original metadata hooks plus1refusal. Both original startup movie setup/sample/wrapper entries observed; setup and sample each return0 and wrapper1. Closed original Main/setup/shutdown journal. Actual frame counts, Update/Blt results, audible output/full playback and complete caller/side-effect/lifetime/scenario closure remain pending.",
+      "record": "research/runtime/drawing-census-movie-helpers-observation-20261010.json",
+      "sha256": "5a1f521b8da58904868ea3cfb2c1f6a214b3dc1f4bac19941b83c6693fe7869d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/open_calls",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW.movie.original-write-order-20261010",
+      "kind": "isolated_original",
+      "scope": "Unchanged original stream setup/sample/wrapper: selected negative HRESULT at each of ten stages, previous skip0/1, signed controls0/1/-1/127/-128, Escape0/1, Update/Blt E_FAIL0/1 and ordinary/wrapping positions. Check exact external arguments, short-circuit, placement, metadata, return policy, reference balance and original release order. EDX supplies distinct synthetic DirectDraw device; first stack word supplies destination surface. Mock APIs/COM only: original codecs/audio/pixels, Windows implementation, conversion failures, positive HRESULT variants, arbitrary COM outputs, exceptions, backend internal retention and full live playback excluded. Setup callbacks see sentinel prior coordinates/control; playback sees new values; wrapper writes after setup and before choosing playback.",
+      "record": "research/runtime/drawing-movie-original-write-order-20261010.json",
+      "sha256": "86fc7d2a5010b0e006021e2c2c76750a97e29e80a65f37656ea420650bcfb78b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_movie_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 1760
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "DRAW.movie.scoped-original-20261010",
+      "kind": "isolated_original",
+      "scope": "Unchanged original stream setup/sample/wrapper: selected negative HRESULT at each of ten stages, previous skip0/1, signed controls0/1/-1/127/-128, Escape0/1, Update/Blt E_FAIL0/1 and ordinary/wrapping positions. Check exact external arguments, short-circuit, placement, metadata, return policy, reference balance and original release order. EDX supplies distinct synthetic DirectDraw device; first stack word supplies destination surface. Mock APIs/COM only: original codecs/audio/pixels, Windows implementation, conversion failures, positive HRESULT variants, arbitrary COM outputs, exceptions, backend internal retention and full live playback excluded. Setup callbacks see prior sentinel coordinates/control; playback sees new values. Current headless isolated-original binding, no native/original implementation comparison.",
+      "record": "research/runtime/drawing-movie-scoped-original-20261010.json",
+      "sha256": "d222945b4bbd49d1980d5267f35a5956a855cd2ebf4ca2d197f914213d76ad32",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_movie_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 1760
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TOOL.drawing-movie.fixture-bindings-20261010",
+      "kind": "native_integration",
+      "scope": "Native host reference fixture only: mapped original PE32 body, synthetic COM/IAT callbacks, exact1760case matrix and stable sources. Validates the test infrastructure/bindings, not a native movie engine, renderer, decoder or replacement. Original recovered findings retain the separate isolated-original evidence ID.",
+      "record": "research/runtime/drawing-movie-scoped-original-20261010.json",
+      "sha256": "d222945b4bbd49d1980d5267f35a5956a855cd2ebf4ca2d197f914213d76ad32",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 1760
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -68439,7 +68734,8 @@
         "tools/capture-drawing-census-game.py"
       ],
       "evidence": [
-        "DRAW.census.enabled-movie-requests-20261010"
+        "DRAW.census.enabled-movie-requests-20261010",
+        "DRAW.census.movie-helpers-observation-20261010"
       ]
     },
     {
@@ -68458,6 +68754,25 @@
         "DRAW.census.save-load-menu-only-fault-20261010",
         "DRAW.census.save-load-menu-only-success-20261010",
         "DRAW.census.save-load-observation-20261010"
+      ]
+    },
+    {
+      "id": "original-drawing-movie-contract-20261010",
+      "level": "headless",
+      "scope": "Selected1760 unchanged original setup/sample/wrapper cases with explicit mock COM/IAT. No actual original movie decoding/pixels/audio/backend lifetime or full live scenario closure.",
+      "behaviors": [
+        "RI.movies",
+        "TOOL.drawing-movie-reference"
+      ],
+      "tests": [
+        "tools/test-drawing-movie.py",
+        "tests/drawing-movie-reference.cpp"
+      ],
+      "evidence": [
+        "DRAW.movie.original-contract-20261010",
+        "DRAW.movie.original-write-order-20261010",
+        "DRAW.movie.scoped-original-20261010",
+        "TOOL.drawing-movie.fixture-bindings-20261010"
       ]
     }
   ],
@@ -68796,8 +69111,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-save-load-20261010.json",
-    "sha256": "d6636ee374af112f0e4505ab0cbf67c2debf4f1587f04dc59dd1480e47d1183f"
+    "path": "research/runtime/coverage/source-index-draw01-movie-order-20261010.json",
+    "sha256": "4fb9b4e9d22295f3a886efd8dce75bbccdc44f764de01b19ad93396b70a8815b"
   },
   "claim_bindings_required": true
 }
