@@ -6411,3 +6411,19 @@ display policies over65536words,eight physical/refusal controls,15admission
 guards and103retained historical frames/49.44Mpixels/zero differences.
 These original-active diagnostic readbacks are separate from the public resident
 zero-World-readback path; they do not reintroduce real DirectDraw there.
+
+### Resident CPU/GPU/pacing profiling, 2026-10-11: instrumentation
+
+`NR.resident-stage-profiling` seeds opt-in bounded renderer-context timestamps,
+public CPU/original-tick rows, source-only ordered capture and a frozen NVIDIA EGL
+resident replay benchmark. The new policy preserves original speed/pacing and
+draw skipping. Fresh TITAN synthetic query overflow/identity/exception/destruction
+and pixel stability controls plus six malformed capture controls pass in
+`resident-profile-instrumentation-20261011.json`. Full public gameplay observation,
+fresh CPU stacks after the minimap fix and representative completed replay
+throughput remain pending. GPU intervals include CPU submission starvation;
+original non-pacing residual is unclassified, not simulation CPU. No60FPS, original
+comparison or replacement promotion. Historical linked renderer/public evidence
+retains its original hashes and may now be stale. Merged-master first-parent
+versions are separately receipt-audited with zero gaps in
+`coverage/resident-profile-base-history-20261011.json`.

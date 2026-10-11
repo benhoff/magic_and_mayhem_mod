@@ -212,7 +212,10 @@ def validate_healing(experiment, inputs, flow, capture_root, seconds, min_fps=20
                 scope='Native offered Cure/Zombie Quick Battle map2 loadout, injured living human wizard and original Cure positive HP plus mana debit; no cleanse/clamp/refund formula or full battle completion claim')
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    digest=hashlib.sha256()
+    with path.open('rb') as stream:
+        for block in iter(lambda:stream.read(1024*1024),b''):digest.update(block)
+    return digest.hexdigest()
 
 
 def validate_flow(flow, cycles=1, stress_seconds=0, min_fps=20, normal_quit=False):
@@ -369,6 +372,8 @@ def main():
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
     parser.add_argument('--resident-world',action='store_true',help='Require GPU-resident World delivery and ordered public UI composition with no pixel return')
+    parser.add_argument('--profile-resident',action='store_true',help='Opt-in bounded CPU/GPU stage and original pacing diagnostics; cadence is instrumented')
+    parser.add_argument('--capture-resident',action='store_true',help='Retain at most8192 ordered source-only World blocks/16GiB for offline resident replay')
     parser.add_argument('--native-draw',action='store_true',help='Require owned graphics services with real DirectDraw disabled')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
@@ -377,6 +382,8 @@ def main():
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
+    if (args.profile_resident or args.capture_resident) and not args.resident_world:parser.error('Resident diagnostics require --resident-world')
+    if args.capture_resident and not args.profile_resident:parser.error('Resident capture requires --profile-resident')
     if args.native_draw and args.legacy_directdraw:parser.error('Owned graphics and legacy DirectDraw are separate routes')
     explicit_native_draw=args.native_draw
     args.native_draw=not args.legacy_directdraw
@@ -415,6 +422,7 @@ def main():
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness','--behavior','HOST.native-campaign-spell-cases','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown'])
+        if args.profile_resident:declaration_command.extend(['--behavior','NR.resident-stage-profiling','--scenario','NR.resident-stage-profiling.live'])
         subprocess.run(declaration_command,cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     if args.claims:
         declaration=json.loads(args.claims.read_text())
@@ -447,6 +455,8 @@ def main():
     if args.resident_world:
         env['MNM_PUBLIC_RESIDENT_WORLD']='1'
         env['MNM_RESIDENT_POLL_TIMING']='1'
+    if args.profile_resident:env['MNM_RESIDENT_STAGE_PROFILE']='1'
+    if args.capture_resident:env['MNM_RESIDENT_PROFILE_CAPTURE']=str(out/'resident-source.bin')
     if args.legacy_directdraw:env['MNM_NATIVE_DRAW']='0'
     elif explicit_native_draw:env['MNM_NATIVE_DRAW']='1'
     shell = server = monitor = None
@@ -671,6 +681,8 @@ def main():
                     report.update(success=False,status='failed',profile_error=str(error))
                     exit_code=1
             report["sources_unchanged"]=all(sha(ROOT/path)==expected for path,expected in report["sources"].items())
+            corpus=out/'resident-source.bin'
+            if corpus.exists():report['resident_capture']={'path':str(corpus),'bytes':corpus.stat().st_size,'sha256':sha(corpus)}
             stop_group(shell)
         except (OSError, subprocess.SubprocessError) as error:
             report.update(success=False, status='failed', cleanup_error=str(error))
