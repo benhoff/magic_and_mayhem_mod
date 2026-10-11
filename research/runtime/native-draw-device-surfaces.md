@@ -248,3 +248,37 @@ TITAN with zero ordinary readback/upload/recovery and zero bounded-abort consume
 resources. These supersede the pending revalidation notes above within their
 recorded scopes. Full standalone gameplay/movies and public V4 fusion/60FPS remain
 separate boundaries; public casting/combat and normalQuit are separately proven.
+
+## Mapped diagnostics outside drawing-path file IO (2026-10-11)
+
+The [full campaign failure](native-draw-public-status-write-failure-20261011.json)
+reached combat/portraits but fell back during resumed gameplay. Its lifecycle
+record identifies BltFast phase3 with82/146ms held duration and native status
+stage4, the old `WriteFile`. The startup-owned handle avoided prior CloseHandle
+stalls but every-call overwrite was still blocking inside the50ms copy lease.
+
+Startup now creates a96-byte file-backed read/write view and initializes it.
+Admitted drawing callbacks check real ddraw on every call, preserve LastError
+and store24 bounded32-bit words under nonwaiting diagnostic admission. They call no
+CreateFile/seek/WriteFile/flush/unmap/close. DLL teardown flushes/unmaps and closes
+both owners. The v2 layout,terminal100/101/102 policy and resource peaks remain;
+unknown-method terminal refusal logs are separate. Concurrent external readers
+have no atomic-snapshot guarantee; crash durability and OS paging/writeback
+latency are outside scope. No extra worker/thread/unload policy is introduced.
+
+[Independent fixtures](native-draw-mapped-status-fixtures-20261011.json) pass1024
+exact guarded snapshots,no drawing file IO,LastError,module checks,collision and
+mapping/flush/unmap failures with assertions+ASan/UBSan. The
+[actual Wine/native services](native-draw-mapped-status-services-20261011.json)
+pass64 caller cases/22,464 pixels,16 startup cases/256 words and351 policy words,
+with a readable96-byte final mapped file and zero retained resources. Current
+public gameplay/World long-run/faults/standalone startup still require fresh
+executions after this DLL change; no historical fingerprints are refreshed.
+
+The current [full default public TITAN campaign](native-draw-mapped-status-full-nvidia-pass-20261011.json)
+passes after mapped diagnostics: successful casting/combat/movement,spell damage
+and both refusals,nine portraits(maximum channel error1),Mini Quit No/resume and
+normal original Quit. All requested19FPS checks pass,real ddraw disabled/absent,
+no fallback/recovery/unknown call and current8 native/44 renderer/28 protocol
+inputs are bound. Earlier WriteFile failure remains recorded; no universal
+causal speedup,publicV4fusion,60FPS or semantic COM teardown is claimed.

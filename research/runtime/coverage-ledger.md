@@ -4588,3 +4588,30 @@ World readbacks/replies/writebacks/coalescing/remaining surfaces. See
 The6-filede707e7 committed range has exact parent/current receipts with no gaps.
 This is bounded private fault/recovery evidence, not fairness,semantic COM Quit,
 publicV4fusion,full API,movies,60FPS or allscene compatibility.
+
+### Native status mapped view: eliminate drawing file IO (2026-10-11)
+
+Fresh public full campaign fails resumed gameplay after combat/portrait exercise:
+GAP/fallback,BltFast phase3 held82/146ms and native status stage4 oldWriteFile.
+[Failure](native-draw-public-status-write-failure-20261011.json) is preserved.
+`NR.native-draw-status-session-file` now uses a startup-owned96-byte file-backed
+view; admitted callbacks only perform bounded memory snapshots plus unchanged
+per-call module check. Explicit flush/unmap/close occurs only at teardown.
+Independent1024 guarded snapshot/assertion/ASan/UBSan controls pass; actual
+Wine/native64 service cases/22,464 pixels,16 startup cases/256 words and351 policy
+words pass with final96-byte status readability and zero resources. No worker
+or unload-policy change. Crash/concurrent external-read atomicity and OS paging
+latency are excluded. Current public,World4096,peer/fresh recovery and standalone
+proofs are pending after the DLL change; historical statuses/hashes remain.
+The8-file283e9dc committed range has exact parent/current receipts and no gaps.
+
+Mapped-status current-source full default TITAN public campaign passes:
+casting/summon,combat damage,movement,Fireball damage and invalid-target/
+insufficient-mana refusals,nine portraits(maximum channel error1),native Mini
+Quit No/resume and normal original Quit; all requested19FPS gates pass. Native
+PE499bd552 and actual8 native/44 renderer/28 protocol compiler-builder inputs,
+Qt and installed inputs are stable,real ddraw disabled/absent,no unknown method,
+recovery or fallback. [Proof](native-draw-mapped-status-full-nvidia-pass-20261011.json).
+This fresh live execution supports the mapped contract's live_observation stage;
+earlier pending review and WriteFile failure remain historical. It does not
+assert publicV4fusion,60FPS,fullscene pixels,full API or semantic COM teardown.
