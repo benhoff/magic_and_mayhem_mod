@@ -20,6 +20,8 @@ def capture(root, template, journey, claims=None):
     root = root.resolve()
     if (root / 'journey.json').exists(): raise ValueError('Attempt already recorded; prepare a fresh experiment')
     manifest = json.loads((root / 'manifest.json').read_text())
+    if journey == 'movies' and not manifest['movies_enabled']:
+        raise ValueError('Movie journey requires explicitly enabled disposable preferences')
     declaration = json.loads(claims.read_text()) if claims else None
     if declaration:
         for p, digest in declaration['sources'].items():
@@ -144,7 +146,10 @@ def capture(root, template, journey, claims=None):
         process = subprocess.Popen([str(ROOT / 'tools/run-game.sh'), 'launch', '--no-gamescope',
             '--prefix', str(prefix), '--runner', str(ROOT / 'tools/drawing-census-game-runner.py')],
             env=env, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
-        wait(3); phase(2, 'Main and setup original menu traversal'); hold(1)
+        if manifest['movies_enabled']:
+            phase(1, 'Enabled original startup movie requests; playback needs callee evidence')
+        wait(3, seconds=180 if manifest['movies_enabled'] else 60)
+        phase(2, 'Main and setup original menu traversal'); hold(1)
         send(3, 18); wait(10); hold(1); send(10, 20); wait(3)
         send(3, 1); send(22, 4); wait(14)
         rules = list(struct.unpack_from('<13I', channel, 168)) + [struct.unpack_from('<I', channel, 232 + i * 48)[0] for i in range(4)]
@@ -225,7 +230,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('experiment', type=Path)
     parser.add_argument('--prefix-template', type=Path, required=True)
-    parser.add_argument('--journey', choices=['menus', 'campaign'], default='menus')
+    parser.add_argument('--journey', choices=['menus', 'campaign', 'movies'], default='menus')
     parser.add_argument('--claims', type=Path)
     args = parser.parse_args()
     print(json.dumps(capture(args.experiment, args.prefix_template, args.journey, args.claims)), flush=True)

@@ -263,6 +263,134 @@
           "activity": "live_takeover"
         }
       ]
+    },
+    {
+      "id": "campaign-call-phase-02",
+      "evidence": "DRAW.census.campaign-observation-20261010",
+      "scenario": "main-setup-menus",
+      "scope": "Retained closed bounded original campaign call metadata for host phase2 only. Inputs and original callee identities observed; complete semantic caller/side-effect/writer/API/scenario coverage excluded.",
+      "build_pointer": "/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 2,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "campaign-call-phase-03",
+      "evidence": "DRAW.census.campaign-observation-20261010",
+      "scenario": "campaign-entry",
+      "scope": "Retained closed bounded original campaign call metadata for host phase3 only. Inputs and original callee identities observed; complete semantic caller/side-effect/writer/API/scenario coverage excluded.",
+      "build_pointer": "/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 3,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "campaign-call-phase-05",
+      "evidence": "DRAW.census.campaign-observation-20261010",
+      "scenario": "active-world",
+      "scope": "Retained closed bounded original campaign call metadata for host phase5 only. Inputs and original callee identities observed; complete semantic caller/side-effect/writer/API/scenario coverage excluded.",
+      "build_pointer": "/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 5,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "campaign-call-phase-06",
+      "evidence": "DRAW.census.campaign-observation-20261010",
+      "scenario": "camera-motion",
+      "scope": "Retained closed bounded original campaign call metadata for host phase6 only. Inputs and original callee identities observed; complete semantic caller/side-effect/writer/API/scenario coverage excluded.",
+      "build_pointer": "/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 6,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "campaign-call-phase-09",
+      "evidence": "DRAW.census.campaign-observation-20261010",
+      "scenario": "cursor-interaction",
+      "scope": "Retained closed bounded original campaign call metadata for host phase9 only. Inputs and original callee identities observed; complete semantic caller/side-effect/writer/API/scenario coverage excluded.",
+      "build_pointer": "/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 9,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "campaign-call-phase-10",
+      "evidence": "DRAW.census.campaign-observation-20261010",
+      "scenario": "pause-preferences",
+      "scope": "Retained closed bounded original campaign call metadata for host phase10 only. Inputs and original callee identities observed; complete semantic caller/side-effect/writer/API/scenario coverage excluded.",
+      "build_pointer": "/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 10,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "campaign-call-phase-13",
+      "evidence": "DRAW.census.campaign-observation-20261010",
+      "scenario": "battle-results",
+      "scope": "Retained closed bounded original campaign call metadata for host phase13 only. Inputs and original callee identities observed; complete semantic caller/side-effect/writer/API/scenario coverage excluded.",
+      "build_pointer": "/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 13,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "campaign-call-phase-14",
+      "evidence": "DRAW.census.campaign-observation-20261010",
+      "scenario": "shutdown",
+      "scope": "Retained closed bounded original campaign call metadata for host phase14 only. Inputs and original callee identities observed; complete semantic caller/side-effect/writer/API/scenario coverage excluded.",
+      "build_pointer": "/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 14,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
     }
   ],
   "routes": [
@@ -3843,6 +3971,13 @@
     },
     {
       "evidence": "RI.drawing-callers-dispatch-expanded-20261010"
+    }
+  ],
+  "metadata_hook_cohorts": [
+    {
+      "observation": "campaign-call-phase-02",
+      "pointer": "/hook_manifest/hooks",
+      "refused_pointer": "/hook_manifest/unhookable"
     }
   ]
 }

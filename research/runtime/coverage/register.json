@@ -30858,7 +30858,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Scenario-tagged DRAW-01 route census and closed producer-journal accounting",
-      "scope": "Offline accounting of selected pinned original static windows, instrumented entry census, retained scenario-tagged operation/kind/entry counts and closed producer-stream callers. Validate build/record identities, exact static CALL return PCs, explicit owners/behavior/classification/support/effect scopes; preserve unknowns and incomplete scenarios/dispatch. Tool tests do not establish original rendering equivalence or full DRAW-01 completion.",
+      "scope": "Offline accounting of selected pinned original static windows, instrumented entry census, retained scenario-tagged operation/kind/entry counts and closed producer-stream callers. Validate build/record identities, exact static CALL return PCs, explicit owners/behavior/classification/support/effect scopes; preserve unknowns and incomplete scenarios/dispatch. Tool tests do not establish original rendering equivalence or full DRAW-01 completion. Metadata journal entry groups are projected by exact host phase within one cohort; recorded hook manifests/refusals are checked separately from live hits. Neither phase labels nor instrumentation close scenarios.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -30889,7 +30889,9 @@
         "research/runtime/coverage/binary-nocd.json",
         "research/runtime/drawing-inventory.json",
         "tools/drawing_census.py",
-        "research/runtime/drawing-callers-expanded-20261010.json"
+        "research/runtime/drawing-callers-expanded-20261010.json",
+        "research/runtime/drawing-census-campaign-observation-20261010.json",
+        "research/runtime/drawing-callers-dispatch-expanded-20261010.json"
       ],
       "evidence": [
         "TOOL.drawing-inventory.guards-20261010",
@@ -30898,7 +30900,8 @@
         "TOOL.drawing-inventory.guards-v2-20261010",
         "TOOL.drawing-inventory.retained-journal-v2-20261010",
         "RI.drawing-callers-expanded-20261010",
-        "TOOL.drawing-census.callers-guards-20261010"
+        "TOOL.drawing-census.callers-guards-20261010",
+        "TOOL.drawing-inventory.phase-guards-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31021,7 +31024,8 @@
         "DRAW.census.expanded-abi-20261010",
         "DRAW.census.caller-source-abi-20261010",
         "DRAW.census.phase-abi-20261010",
-        "DRAW.census.campaign-observation-20261010"
+        "DRAW.census.campaign-observation-20261010",
+        "DRAW.census.enabled-movie-requests-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31073,7 +31077,8 @@
       ],
       "evidence": [
         "DRAW.census.menu-observation-20261010",
-        "DRAW.census.campaign-observation-20261010"
+        "DRAW.census.campaign-observation-20261010",
+        "DRAW.census.enabled-movie-requests-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -59926,6 +59931,64 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "TOOL.drawing-inventory.phase-guards-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh37 inventory guards and exact host-phase/cohort accounting; not original rendering or scenario completeness.",
+      "record": "research/runtime/drawing-inventory-phase-guards-20261010.json",
+      "sha256": "a56734662cc39316111e51898600c3d84f45bf0ee0d0cd4c56b4d3d4950fbcfa",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.enabled-movie-requests-20261010",
+      "kind": "live_observation",
+      "scope": "Enabled original Intro0/Intro1 wrapper calls, fast return path and closed Main/setup/shutdown journal. Two wrapper returns1 after313/189ms do not prove movie decoding/playback or all failure semantics. Full enabled playback remains pending.",
+      "record": "research/runtime/drawing-census-enabled-movie-requests-20261010.json",
+      "sha256": "91a1c7f7adf6f040a1f1b734ffb081f762b63c678289d6cc7c464a72f1a1f6d0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/open_calls",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -68238,6 +68301,21 @@
       "evidence": [
         "DRAW.census.campaign-observation-20261010"
       ]
+    },
+    {
+      "id": "original-drawing-census-enabled-movies-20261010",
+      "level": "live_observation",
+      "scope": "Explicitly enabled original startup movie requests followed by Main/setup traversal and normal original quit. Actual callee observations required; no movie controls/full placement, pixels, borrowed API or complete scenario claim.",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.census.enabled-movie-requests-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -68575,8 +68653,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-campaign-20261010.json",
-    "sha256": "21a8eb6aca89ebf3084dd50be2b052ecb58fd743104feef2034e8cf4170e5fef"
+    "path": "research/runtime/coverage/source-index-draw01-phase-20261010.json",
+    "sha256": "32dc4c83faa8af52bff673d080dd2fd4a9cc4e13ad8b4ac9c8b4ca6ce5c8ef23"
   },
   "claim_bindings_required": true
 }

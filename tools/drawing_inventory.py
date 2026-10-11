@@ -95,6 +95,18 @@ def project(record, definition):
                 raise ValueError('Incomplete original draw-kind rows')
             counts.update({key: count(value) for key, value in row['kind_counts'].items()})
         return sorted(counts.items())
+    if kind == 'census_entry_rows':
+        phase = definition['phase']
+        if type(phase) is not int or not 0 <= phase <= 14 or definition['selector'] != 'entry' or not isinstance(data, list):
+            raise ValueError('Invalid metadata census phase/entry projection')
+        counts = Counter()
+        for row in data:
+            observed_phase = row['phase']
+            if type(observed_phase) is not int or not 0 <= observed_phase <= 14:
+                raise ValueError('Invalid recorded metadata census phase')
+            entry, hits = address(row['entry']), count(row['count'])
+            if observed_phase == phase: counts[entry] += hits
+        return sorted(counts.items())
     raise ValueError('Unreviewed activity projection: ' + kind)
 
 
@@ -229,6 +241,36 @@ def reconcile(root, catalog, register):
             additional_hooks.append({'entry': address(entry), 'source': str(path)})
             if selector_key('entry', entry) not in selectors:
                 unaccounted.append({'selector': 'entry', 'identity': entry, 'activity': 'instrumented_only', 'source': str(path)})
+    metadata_hooks = []
+    metadata_refusals = []
+    for cohort in catalog.get('metadata_hook_cohorts', []):
+        from coverage_audit import pointer
+        record = records[cohort['observation']]
+        rows = pointer(record, cohort['pointer'])
+        tags = [row['tag'] for row in rows]
+        if any(type(tag) is not int for tag in tags) or tags != list(range(len(rows))):
+            raise ValueError('Invalid recorded metadata hook tags')
+        entries = set()
+        for row in rows:
+            entry = address(row['entry'])
+            if entry in entries: raise ValueError('Duplicate recorded metadata hook entry')
+            entries.add(entry)
+            route = selectors.get(selector_key('entry', entry))
+            if route is None:
+                unaccounted.append({'selector': 'entry', 'identity': entry,
+                    'activity': 'metadata_instrumented_only', 'source': cohort['observation']})
+            elif row['route'] != route:
+                raise ValueError('Recorded metadata hook route identity changed')
+            metadata_hooks.append({'entry': entry, 'tag': row['tag'], 'route': route,
+                'cohort': cohort['observation'], 'activity': 'recorded_instrumentation_only'})
+        for row in pointer(record, cohort['refused_pointer']):
+            entry = address(row['entry'])
+            if entry in entries or not row['reason'].strip():
+                raise ValueError('Invalid recorded metadata hook refusal')
+            route = selectors.get(selector_key('entry', entry))
+            if route is None or route != row['route']:
+                raise ValueError('Metadata hook refusal needs explicit current route')
+            metadata_refusals.append({**row, 'cohort': cohort['observation']})
     for source in catalog.get('caller_sources', []):
         from drawing_census import validate_callers
         caller_evidence = evidence[source['evidence']]
@@ -288,9 +330,13 @@ def reconcile(root, catalog, register):
             'activities': activities, 'scenarios': scenario_rows, 'unaccounted': unaccounted,
             'static_callers': static['callers'], 'static_caller_returns': {hex(k): v for k, v in returns.items()},
             'static_indirect_calls': indirect, 'static_computed_jumps': jumps, 'dispatch_tables': tables,
-            'hook_entries': hooks, 'additional_hook_entries': additional_hooks, 'completion_blockers': blockers, 'draw01_complete': not blockers,
+            'hook_entries': hooks, 'additional_hook_entries': additional_hooks,
+            'metadata_hook_entries': metadata_hooks, 'metadata_hook_refusals': metadata_refusals,
+            'completion_blockers': blockers, 'draw01_complete': not blockers,
             'counts': {'routes': len(routes), 'static_windows': len(windows), 'instrumented_entries': len(hooks),
                        'additional_interior_hooks': len(additional_hooks),
+                       'metadata_instrumented_entries': len({row['entry'] for row in metadata_hooks}),
+                       'metadata_refused_entries': len({row['entry'] for row in metadata_refusals}),
                        'required_scenarios': sum(s['required'] for s in scenario_rows), 'unaccounted': len(unaccounted)},
             'limitations': ['Activity counters belong to individual bounded cohorts; do not sum them into runtime frequencies.',
                             'Aggregate operations do not identify every wrapper entry or caller.',
