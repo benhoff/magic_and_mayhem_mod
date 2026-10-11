@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "success": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "sources": {
+    "reconstruction/rendering/surface_retry.hpp": "e3683f0aa2aecbe7b7f83df4db02c9240028e28c15e588e780ee04e365e89428",
+    "tests/surface-retry-model.cpp": "a5a991c503c05c464b5440dd17e8edf538eea3aedb8bc4baa9d18fe1684bd76f",
+    "tools/check-native-surface-retry.py": "3bb2468a788228989b53209339dfe7b638b374062355714dbfcb39cbceed3f84",
+    "tools/check-original-surface-retry.py": "c8da795ff99a2438d80e8e77fa8e30a8dee643c940a5df252c1336d46961741f",
+    "renderer/known_pixels.hpp": "554595fc1977ea42a1fef2ef2b08355bd058db22e886fac9568e035d1fd82b2d",
+    "renderer/blit.cpp": "9f4563db24f569a0922e6f2ff9682a1e7e0bd3934b5171936eb0536ec021a612",
+    "renderer/blit.hpp": "4abf821da5214e469c8305ff713c3099535495270095fc882b93709b6e60c068",
+    "tests/render-restoration-test.cpp": "cba5da1d59a7e961cc8f4605bee26c40d691b9f9d4186a6dab560121789aec8d",
+    "tests/fixtures/surfaces/original-retry.json.gz": "c111fde6a0364d564d1c059fc6eed5e406518e7799997d62435a4e93553ebad5",
+    "tests/fixtures/surfaces/original-retry-corpus.json": "ad58af4ddb3c5d09a8c1d6a58ebc958fd37711d45d24047abbec81e72f550e9c"
+  },
+  "cases": 4480,
+  "matched": 4480,
+  "bounded_cases": 4480,
+  "budget_exhaustions": 1536,
+  "invalid_budgets_refused": 2,
+  "validity": {
+    "success": true,
+    "checks": 30
+  },
+  "binary_sha256": "33ef3aa7c16fd4f50a1bd0cc155addbf60ff0bffed9583c0081b00b3a447c346",
+  "validity_binary_sha256": "355e06140f2ae0cf6d2eeebec3ca6a006784d9fb1f9b515d8e0ab7277e9c16b9",
+  "artifacts": "working/tests/native-surface-retry/run-schav9p9",
+  "real_driver_validation": false,
+  "scope": "Portable C++ recovered scheduling matches4480 unchanged original/scripted fault traces; bounded execution preserves original prefixes and reports exhaustion separately. Native GL undefined-content policy enforces overwritten-region validity; no original restored pixel/driver/palette/reloader, live recovery or new wire contract equivalence."
+}

@@ -31,6 +31,7 @@ jobs:
           python3 -B tests/test-drawing-publication.py
           python3 -B tests/test-drawing-publication-corpus.py
           python3 -B tests/test-drawing-api-session.py
+          python3 -B tests/test-drawing-api-results.py
           python3 -B tests/test-drawing-results.py
           python3 tools/report-drawing-inventory.py --require-accounted
       - name: Check every change against its actual base
