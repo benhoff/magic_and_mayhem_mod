@@ -31071,7 +31071,8 @@
         "NR.drawing-scene.retention-20261010",
         "NR.drawing-scene.native-20261010",
         "NR.drawing-scene.native-reviewed-20261010",
-        "NR.drawing-scene.persistent-native-20261010"
+        "NR.drawing-scene.persistent-native-20261010",
+        "NR.drawing-scene.transitions-native-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31086,7 +31087,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native ordered multi-frame publication with retained source-owned history",
-      "scope": "Native policy over build-specific owned producer records: explicit frame boundaries publish complete RGB565 GPU output while retaining source-only canvas and World history. Further records invalidate current service output; old GPU leases retain their immutable complete frame. Zero-World menu boundaries, strictly ordered frames, terminal sealing, poisoning and cleanup are admitted. Portable pinned map2 startup fixture through44927 has two queue-zero completions and fifteen post-World HUD/minimap/marker/cursor canvases with full independent original planes; bounded XZ fragments preserve exact source history. Physical display/driver semantics, enabled-movie composition, World destination/extent transitions, camera/combat/picking/consumer state, full campaign/Quick Battle journeys, recovery and live bypass remain pending.",
+      "scope": "Native policy over build-specific owned producer records: explicit frame boundaries publish complete RGB565 GPU output while retaining source-only canvas and World history. Further records invalidate current service output; old GPU leases retain their immutable complete frame. Zero-World menu boundaries, strictly ordered frames, terminal sealing, poisoning and cleanup are admitted. Native World destination switches, release/recreation and extent changes reset owned World resources while preserving the outer sequence and cumulative queue/raster identities; these transitions have synthetic tests. Portable pinned map2 startup fixture through44927 has two queue-zero completions and fifteen post-World HUD/minimap/marker/cursor canvases with full independent original planes; bounded XZ fragments preserve exact source history. Physical display/driver semantics, enabled-movie composition, independent original World transition equivalence, camera/combat/picking/consumer state, full campaign/Quick Battle journeys, recovery and live bypass remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31234,10 +31235,11 @@
         "tools/inspect-canvas-producers.py",
         "tools/rendering_coverage.py"
       ],
-      "validation_domain": "Seventeen full800x600 RGB565 pre-display-copy canvases from contiguous retained original-active startup history, plus synthetic multi-frame/menu/surface generation/stale output/poisoning/cleanup and portable fragment/frame/oracle separation guards.",
+      "validation_domain": "Seventeen full800x600 RGB565 pre-display-copy canvases from contiguous retained original-active startup history, plus synthetic multi-frame/menu/surface generation/World destination switches/extent changes/global queue refusal/stale output/poisoning/cleanup and portable fragment/frame/oracle separation guards.",
       "evidence": [
         "NR.drawing-journey.retention-20261010",
-        "NR.drawing-journey.persistent-native-20261010"
+        "NR.drawing-journey.persistent-native-20261010",
+        "NR.drawing-journey.transitions-native-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -60064,6 +60066,128 @@
           "equals": 17
         }
       ]
+    },
+    {
+      "id": "NR.drawing-scene.transitions-native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh current-source native World destination/generation/extent/global ordinal transition tests and persistent frame order/refusal/cleanup and portable admission guards, followed by full independent original canvas comparison. 2880000 RGB565 checkpoint pixels match; publication outputs are independently compared too. Pre-display-copy startup only; full Quick Battle/campaign journeys, consumer/picking state, physical presentation, live delivery and bypass excluded.",
+      "record": "research/runtime/draw03-transitions-scene-comparison-20261010.json",
+      "sha256": "9260576025a77b5b9d30f0c8ef511da29f3edb622901545295f026fd4e8b674c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 2880000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/declared_canvas_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/draw03_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/native_scene",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/portable_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-journey.transitions-native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh current-source native World destination/generation/extent/global ordinal transition tests and persistent frame order/refusal/cleanup and portable admission guards, followed by full independent original canvas comparison. 8160000 RGB565 checkpoint pixels match; publication outputs are independently compared too. Pre-display-copy startup only; full Quick Battle/campaign journeys, consumer/picking state, physical presentation, live delivery and bypass excluded.",
+      "record": "research/runtime/draw03-transitions-journey-comparison-20261010.json",
+      "sha256": "280f7cbad5bb9e1c06914053de4f4adfd8001af6882d72037babddce8c217467",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 8160000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/declared_canvas_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/draw03_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/native_scene",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/portable_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/frames_published",
+          "equals": 17
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -67785,7 +67909,8 @@
       "evidence": [
         "NR.drawing-scene.native-20261010",
         "NR.drawing-scene.native-reviewed-20261010",
-        "NR.drawing-scene.persistent-native-20261010"
+        "NR.drawing-scene.persistent-native-20261010",
+        "NR.drawing-scene.transitions-native-20261010"
       ],
       "tests": [
         "tests/drawing-scene-test.cpp",
@@ -67796,13 +67921,14 @@
     },
     {
       "id": "DRAW03.startup-composed-frames",
-      "scope": "Native ordered publication of two queue-zero completions and fifteen post-World composed canvases from retained contiguous startup inputs, independent full-plane comparison plus multi-frame refusal/cleanup guards. Not physical or full-session evidence.",
+      "scope": "Native ordered publication of two queue-zero completions and fifteen post-World composed canvases from retained contiguous startup inputs, independent full-plane comparison plus synthetic multi-frame/World destination-generation-extent/global queue refusal/cleanup guards. Not physical or full-session evidence.",
       "level": "headless",
       "behaviors": [
         "NR.drawing-journey"
       ],
       "evidence": [
-        "NR.drawing-journey.persistent-native-20261010"
+        "NR.drawing-journey.persistent-native-20261010",
+        "NR.drawing-journey.transitions-native-20261010"
       ],
       "tests": [
         "tests/drawing-scene-test.cpp",
@@ -68147,8 +68273,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw03-persistent-20261010.json",
-    "sha256": "2bdd7bd278bc5705122de9992dbd29c576a16a032075177c742cc7a0ad67756e"
+    "path": "research/runtime/coverage/source-index-draw03-transitions-20261010.json",
+    "sha256": "9acd06787f85f12c37277ee6e545d4ea8b3e580cc1914aeb01d97019c2b52504"
   },
   "claim_bindings_required": true
 }

@@ -34,18 +34,21 @@ public:
     render::Image read();
     render::GpuFrame presentGpu();
     unsigned sequence() const { return sequence_; }
-    unsigned queues() const { return world_.completedQueues(); }
-    std::uint64_t worldDraws() const { return world_.draws(); }
+    unsigned queues() const { return completedQueues_; }
+    std::uint64_t worldDraws() const { return worldDraws_; }
     unsigned checkpoints() const { return checkpoints_; }
     unsigned frames() const { return frames_; }
 private:
     void requirePublished() const;
     render::GlBlitter &renderer_;
+    assets::AssetStore store_;
     CanvasProducerReplay replay_;
-    CanvasWorld world_;
+    std::unique_ptr<CanvasWorld> world_;
     render::SurfaceId output_=0;
     unsigned sequence_=0,checkpoints_=0,publishedSequence_=0,frames_=0;
     DrawingBoundary published_{};
+    unsigned completedQueues_=0,activeQueue_=0,worldWidth_=0,worldHeight_=0;
+    std::uint64_t worldSequence_=0,worldDraws_=0;
     bool poisoned_=false,sealed_=false;
 };
 }
