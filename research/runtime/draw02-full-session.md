@@ -69,10 +69,11 @@ remains necessary.
 
 ## One suite command and presented sessions
 
-`tools/check-drawing-journeys.py` runs all three portable catalogs and derives
+`tools/check-drawing-journeys.py` runs all four portable catalogs and derives
 reference/parity coverage from admitted outputs. The current suite includes nine
 component planes, six selected startup composition planes and all1,062retained
-history planes. Duplicate historical outputs intentionally remain distinct tests
+history planes plus103observed primary publication planes. Duplicate historical
+outputs intentionally remain distinct tests
 of the separate adapters; totals count comparisons, not unique game frames.
 
 ```sh
@@ -114,12 +115,35 @@ frame/effect identities and acquisition scope remain fixed. Original captures ar
 never acquired by a native replay or manufactured by retention. Synthetic guard
 fixtures are temporary and contribute no real reference coverage.
 
-The current original collectors do not produce this complete presented-session
-contract: the retained producer collector stops at World return boundaries, does
-not observe physical publication or full-session action identities, and is bounded
-to startup queues. Consequently the14full presented journeys and21operation/failure
-gates remain open. New collector/presentation instrumentation and observed journey
-captures are required before this ambitious milestone can be marked complete.
-Native scene expansion continues under DRAW-03; continuous delivery and original
-suppression remain DRAW-04/05/06 work. This suite gives those changes an explicit,
-reproducible acceptance boundary without claiming their missing evidence.
+The [publication collector](draw02-publication.md) now independently reads actual
+primary output at the guarded opaque-copy COM sites, records original HRESULTs,
+and brackets five applied original menu dispatches with same-thread entry/return
+phases bound to call/frame ordinals. The sixteen-return camera capture observes
+all four World orientations and effective camera-center changes. A portable
+`publication` suite adapter retains the owned266MiB V2 producer journal, seventeen
+encoded assets, exact original call/action traces and all103primary planes.
+Native source-only comparison passes49,440,000pixels with zero differences.
+
+This is`observed_primary_blt` coverage. Alternate presentation routes, complete
+input outcomes, viewport boundaries, active battles, transitions and native
+failure/caller-result equivalence remain unadmitted. The fourteen full presented
+journeys and twenty-one operation/failure gates remain open. Producer-only
+collectors still use their earlier World-return boundary; generic complete
+`presented_frame` session admission keeps its stricter contract. Native scene
+expansion continues under DRAW-03; continuous delivery and original suppression
+remain DRAW-04/05/06 work.
+
+## Replaying the retained primary capture
+
+`tests/fixtures/drawing-publication/publication.json` pins the original capture
+and its separately recorded source asset bindings. Nine bounded lossless gzip
+chunks preserve the complete V2 journal; source resources and primary oracles
+retain independent raw hashes. Primary output planes/hashes and the original COM/menu result traces never
+enter the native input directory. The inherited source journal retains its
+minimap return-offset admission guard; broader caller-result equivalence remains
+separate. Exact raw call/action data preserves the
+observed route and phase identities instead of upgrading them to complete
+session input coverage. The existing suite command includes this case through
+`--scene-executable` and needs no installed game or Wine for portable replay.
+The61synthetic suite/session/publication/corpus guards include an explicit refusal
+to close full journeys from the newly observed partial publication boundary.

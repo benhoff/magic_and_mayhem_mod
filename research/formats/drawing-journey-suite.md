@@ -91,3 +91,24 @@ admission. The backend declaration cannot inherit arbitrary capture fields.
 
 Native frame identities and effect results use canonical typed JSON comparison;
 booleans cannot impersonate integral frame identities or HRESULT values.
+
+## Guarded primary publication corpus
+
+The`publication` adapter uses the scene backend argument and a separately pinned
+portable catalog. Its original acquisition boundary is`observed_primary_blt`:
+actual successful primary readbacks at two guarded opaque-copy COM sites, with
+contiguous observed call/readback ordinals and original menu dispatch phases.
+It contributes independent partial references and pixel parity. It cannot claim
+full presented-route or all-input coverage, close journey requirements or promote
+operation/failure semantics from retained original results alone.
+
+The immutable catalog binds independent original evidence and the separately
+recorded owned asset bindings. At most sixteen32MiB lossless input chunks compose
+a512MiB V2 journal; V1/V3 decoder limits remain128MiB. Primary planes are complete
+RGB565 with original raw hashes. Source assets cannot duplicate oracle payloads;
+raw trace/header/flags/order/loss/thread/action identities are revalidated, and
+original metadata cannot be relabeled. Primary oracle planes/hashes and recorded COM/menu results remain outside
+the native process. The inherited owned minimap packet keeps its observed return-
+offset guard; broader caller-result equivalence remains a separate pending scope. Source declarations and native frame/cleanup checks retain
+their existing budgets and failure outcomes. Synthetic corpus guards establish
+admission/refusal only, not new original execution or broader journey validation.

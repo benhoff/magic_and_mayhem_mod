@@ -4617,3 +4617,16 @@ the native drawing-scene ownership/refusal suite and the disabled original-bytec
 menu/battle fixture pass. Source-state observations improve camera/action
 attribution; complete publication routes, full journeys and original failure/
 recovery/caller semantics remain unadmitted.
+
+## 2026-10-11 DRAW-02 portable primary references and suite integration
+
+A new portable publication corpus losslessly retains the original-active camera
+run's complete266MiB V2 producer journal in nine bounded chunks, seventeen encoded
+source assets, exact COM/action phase traces and103independent primary planes.
+The suite now exercises this source-only native replay alongside the prior three
+component/composed/history catalogs. Its explicit`observed_primary_blt` boundary
+contributes partial independent references while retaining all14full presented
+journey and21operation/failure requirements. Full route/input/viewport/transition
+and caller-result/failure/recovery coverage remains pending. Thirteen corpus
+guards and the added suite boundary guard prevent oracle inputs, malformed traces,
+wrong provenance and premature completion claims.

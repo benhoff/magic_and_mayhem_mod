@@ -31,7 +31,7 @@ OPERATIONS = ('copy-opaque', 'copy-keyed', 'copy-clipped', 'copy-stretched',
               'sprite-indexed', 'sprite-direct', 'sprite-auxiliary', 'palette-remap',
               'palette-cycling', 'destination-dependency', 'flags-and-return-values',
               'surface-loss-restore', 'transition-recovery', 'failure-cleanup')
-BOUNDARIES = ('operation', 'world_canvas', 'composed_canvas', 'presented_frame')
+BOUNDARIES = ('operation', 'world_canvas', 'composed_canvas', 'observed_primary_blt', 'presented_frame')
 
 
 def token(value):
@@ -54,7 +54,7 @@ def admit_suite(root, catalog):
         if case['id'] in seen:
             raise ValueError('Duplicate suite case')
         seen.add(case['id'])
-        if case['adapter'] not in ('components', 'scene', 'producer_sequence', 'session'):
+        if case['adapter'] not in ('components', 'scene', 'producer_sequence', 'publication', 'session'):
             raise ValueError('Unsupported journey adapter')
         path = local(root, case['catalog']['path'])
         if sha(path.read_bytes()) != case['catalog']['sha256']:
@@ -114,7 +114,7 @@ def coverage(observations):
                 operations_parity.update(ops)
         if row['boundary'] != 'presented_frame':
             partial.append({'id': row['id'], 'scenario': scenario,
-                            'reason': row['boundary'] + ' comparison does not establish presentation'})
+                            'reason': 'Observed opaque-route publication does not establish complete route or input-action coverage' if row['boundary']=='observed_primary_blt' else row['boundary'] + ' comparison does not establish presentation'})
         if row['outcome'] in ('mismatch', 'unsupported', 'error', 'pending'):
             failures.append({'id': row['id'], 'outcome': row['outcome']})
     scenarios = []

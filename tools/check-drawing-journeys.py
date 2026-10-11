@@ -41,6 +41,15 @@ def run(root,catalog_path,*,surface=None,world=None,scene=None,session=None,head
                 reference_admitted=True
                 result=check(root=root,catalog_path=path,executable=scene,headless=headless) if scene else None
                 admitted_rows[0]['outcome']='matching' if result and result['success'] else 'mismatch' if result else 'unsupported'
+            elif case['adapter']=='publication':
+                from drawing_publication_corpus import admit,check
+                _,_,_,planes=admit(root,child,register)
+                admitted_rows.append({'id':case['id'],'scenario':'camera-motion','boundary':'observed_primary_blt',
+                    'independent_reference':True,'frames':len(planes),'contiguous':True,'actions_bound':False,
+                    'requirements':[],'operations':[],'outcome':'pending'})
+                reference_admitted=True
+                result=check(root=root,catalog_path=path,executable=scene,headless=headless) if scene else None
+                admitted_rows[0]['outcome']='matching' if result and result['success'] else 'mismatch' if result else 'unsupported'
             else:
                 from drawing_session import admit,check
                 _,frames,_=admit(root,child,register)
@@ -92,10 +101,10 @@ def main():
         fingerprints.update(load_tool('check-drawing-scene').sources())
         if (ROOT/'tests/fixtures/drawing-sequence').exists():
             fingerprints.update(load_tool('check-drawing-sequence').sources())
-        for directory in ('tests/fixtures/drawing-journeys',):
+        for directory in ('tests/fixtures/drawing-journeys','tests/fixtures/drawing-publication'):
             for path in (ROOT/directory).rglob('*'):
                 if path.is_file():fingerprints[str(path.relative_to(ROOT))]=sha(path.read_bytes())
-        for name in ('tools/check-drawing-journeys.py','tools/drawing_journeys.py','tools/drawing_session.py','tools/retain-drawing-session.py','tests/test-drawing-journeys.py','tests/test-drawing-session.py'):
+        for name in ('tools/check-drawing-journeys.py','tools/drawing_journeys.py','tools/drawing_session.py','tools/retain-drawing-session.py','tests/test-drawing-journeys.py','tests/test-drawing-session.py','tools/drawing_publication_corpus.py','tools/retain-drawing-publication.py','tools/drawing_publication.py','tests/test-drawing-publication.py','tests/test-drawing-publication-corpus.py'):
             if (ROOT/name).is_file():fingerprints[name]=sha((ROOT/name).read_bytes())
         claims=json.loads(a.claims.read_text()) if a.claims else None
         if claims:
@@ -106,7 +115,7 @@ def main():
                 fingerprints[name]=digest
         tests={}
         if a.run_guards:
-            for name in ('drawing-journeys','drawing-session'):
+            for name in ('drawing-journeys','drawing-session','drawing-publication','drawing-publication-corpus'):
                 import sys
                 execution=subprocess.run([sys.executable,'-B',str(ROOT/'tests'/('test-'+name+'.py'))],capture_output=True,timeout=120)
                 if execution.returncode:raise ValueError('Journey guard failed: '+execution.stderr.decode(errors='replace'))

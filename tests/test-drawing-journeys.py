@@ -101,6 +101,10 @@ class JourneyTest(unittest.TestCase):
             self.assertFalse(result['cases'][0]['reference_admitted'])
             self.assertTrue(all(not s['reference_covered'] for s in result['scenarios']))
 
+    def test_guarded_publication_cannot_close_full_journey(self):
+        row=self.row(boundary='observed_primary_blt',requirements=['pan','four-orientations'])
+        result=journeys.coverage([row]);self.assertFalse(result['reference_complete']);self.assertFalse(result['draw02_complete']);self.assertTrue(result['partial_boundaries'])
+
     def test_inventory_does_not_assert_execution(self):
         result=journeys.inventory(ROOT)
         self.assertFalse(result['reference_complete']);self.assertFalse(result['draw02_complete'])
