@@ -1,0 +1,1798 @@
+{
+  "schema": 1,
+  "success": true,
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-inventory",
+      "contract_sha256": "4f9d18dcbc01d897e50abbbd697bda1fa3ea4a9430ad187f8056f38b50767c39",
+      "scenarios": {}
+    }
+  ],
+  "sources": {
+    "research/runtime/glyph-live-comparison-20261010.json": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+    "research/runtime/native-canvas-producers-final-shadow-20261010.json": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+    "research/runtime/native-canvas-producers-live-20261008.json": "f725d774af13ca489b4483cecc03fb3056198eb2acd3876b5c8a738777c20c8a",
+    "research/runtime/native-enabled-movie-startup-20261010.json": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+    "research/runtime/native-minimap-interactive-20261010.json": "ee972c4154eb1b96db98207f738c56c9c4e6f7987573492f72330b30494dd3f0",
+    "research/runtime/native-world-raster-batch-prefix16-replacement-v7-20261008.json": "a719e427ef2f6c61617511d647f6789eee3181572835b9ad8ef16381135d2204",
+    "research/runtime/render-path-inventory-static-final.json": "01d30a9574fef5a02d0195ae354e6ca1e1f600cff5c33079788f6f778762777a",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "tests/test-drawing-inventory.py": "d6676584b0795535f53ceb6b73335b55a9cca9d3a027a49521eecfbc1978c32a",
+    "tools/coverage_audit.py": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/drawing_inventory.py": "419803417e564b3b5b91fe3216008dde882cbf70487cfd1b0de7ad65810616e2",
+    "tools/rendering_coverage.py": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+    "tools/report-drawing-inventory.py": "f227bc6f4c2665e65a8be76d0feb093f131f232e849ed891642076cb38ba081c"
+  },
+  "sources_stable": true,
+  "scope": "Re-indexing the retained four-return original-active producer journal. Module normalization uses explicit preferred base as a diagnostic assumption; no new runtime-base validation, original execution or pixel equivalence. Exact target/caller and aggregate operations remain separate.",
+  "returncode": 0,
+  "command": [
+    "python3",
+    "tools/report-drawing-inventory.py",
+    "--producer-stream",
+    "working/experiments/scene-observer/run-9wb1_dbf/capture/canvas-producers.bin",
+    "--done",
+    "working/experiments/scene-observer/run-9wb1_dbf/capture/canvas-producers.done",
+    "--stream-sha256",
+    "2c4ccf173bdc6ed18e046d5a0971f587ed9da2bacbff01b85661ca57fe9262cf",
+    "--stream-scenario",
+    "quick-battle-entry",
+    "--runtime-image-base",
+    "0x400000",
+    "--json",
+    "working/tests/draw01-20261010/final-producer-report.json"
+  ],
+  "inventory_valid": true,
+  "draw01_complete": false,
+  "route_counts": {
+    "routes": 99,
+    "static_windows": 24,
+    "instrumented_entries": 52,
+    "required_scenarios": 14,
+    "unaccounted": 63
+  },
+  "caller_groups": 152,
+  "unattributed_caller_groups": 63,
+  "producer_trace": {
+    "scenario": "quick-battle-entry",
+    "sha256": "2c4ccf173bdc6ed18e046d5a0971f587ed9da2bacbff01b85661ca57fe9262cf",
+    "done_sha256": "79bbe8d3c1ab2c190e11bcb9c43475b182a9fd749cd50d536a28aff4ffe02732",
+    "version": 1,
+    "records": 25520,
+    "queues": 4,
+    "closed_journal": true,
+    "runtime_image_base": "0x400000",
+    "image_base_provenance": "Explicit caller-supplied runtime module base; verify against the observed process before semantic attribution.",
+    "rows": [
+      {
+        "operation": "bevel",
+        "caller_va": "0x4cc82c",
+        "normalized_return_pc": "0x4cc82c",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bevel",
+        "count": 41
+      },
+      {
+        "operation": "bevel",
+        "caller_va": "0x4d167b",
+        "normalized_return_pc": "0x4d167b",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bevel",
+        "count": 3
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4cb603",
+        "normalized_return_pc": "0x4cb603",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 290
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4cc88d",
+        "normalized_return_pc": "0x4cc88d",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 41
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4cde1c",
+        "normalized_return_pc": "0x4cde1c",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 85
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4d08b8",
+        "normalized_return_pc": "0x4d08b8",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 3
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4d1525",
+        "normalized_return_pc": "0x4d1525",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 22
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4d2861",
+        "normalized_return_pc": "0x4d2861",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 170
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4d2aa0",
+        "normalized_return_pc": "0x4d2aa0",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 24
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4d2f48",
+        "normalized_return_pc": "0x4d2f48",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 3
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4dcb47",
+        "normalized_return_pc": "0x4dcb47",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 4
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4de723",
+        "normalized_return_pc": "0x4de723",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 1
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4fd552",
+        "normalized_return_pc": "0x4fd552",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 4
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x555d48",
+        "normalized_return_pc": "0x555d48",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 3
+      },
+      {
+        "operation": "bmp",
+        "caller_va": "0x4a36c2",
+        "normalized_return_pc": "0x4a36c2",
+        "entry_route": "DRAW.entry.0058d1a0",
+        "operation_route": "DRAW.operation.bmp",
+        "count": 1
+      },
+      {
+        "operation": "bmp",
+        "caller_va": "0x4d391f",
+        "normalized_return_pc": "0x4d391f",
+        "entry_route": "DRAW.entry.0058d1a0",
+        "operation_route": "DRAW.operation.bmp",
+        "count": 1
+      },
+      {
+        "operation": "bmp",
+        "caller_va": "0x4de702",
+        "normalized_return_pc": "0x4de702",
+        "entry_route": "DRAW.entry.0058d1a0",
+        "operation_route": "DRAW.operation.bmp",
+        "count": 1
+      },
+      {
+        "operation": "bmp",
+        "caller_va": "0x554f13",
+        "normalized_return_pc": "0x554f13",
+        "entry_route": "DRAW.entry.0058d1a0",
+        "operation_route": "DRAW.operation.bmp",
+        "count": 1
+      },
+      {
+        "operation": "checkpoint",
+        "caller_va": "0x0",
+        "normalized_return_pc": null,
+        "entry_route": null,
+        "operation_route": "DRAW.operation.checkpoint",
+        "count": 954
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4cb612",
+        "normalized_return_pc": "0x4cb612",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 290
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4cc8a4",
+        "normalized_return_pc": "0x4cc8a4",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 41
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4cde29",
+        "normalized_return_pc": "0x4cde29",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 85
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4d08c5",
+        "normalized_return_pc": "0x4d08c5",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 3
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4d153c",
+        "normalized_return_pc": "0x4d153c",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 22
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4d2878",
+        "normalized_return_pc": "0x4d2878",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 170
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4d2aaf",
+        "normalized_return_pc": "0x4d2aaf",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 24
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4d2f59",
+        "normalized_return_pc": "0x4d2f59",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 3
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4dcb5e",
+        "normalized_return_pc": "0x4dcb5e",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 4
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4de73a",
+        "normalized_return_pc": "0x4de73a",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 1
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4fcfcc",
+        "normalized_return_pc": "0x4fcfcc",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 4
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4fd570",
+        "normalized_return_pc": "0x4fd570",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 3
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x500337",
+        "normalized_return_pc": "0x500337",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 8
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x5008b9",
+        "normalized_return_pc": "0x5008b9",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 8
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x500d25",
+        "normalized_return_pc": "0x500d25",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 8
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x555d7a",
+        "normalized_return_pc": "0x555d7a",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 3
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x46ba01",
+        "normalized_return_pc": "0x46ba01",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 4
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4a449d",
+        "normalized_return_pc": "0x4a449d",
+        "entry_route": "DRAW.entry.0058c4a0",
+        "operation_route": "DRAW.operation.copy",
+        "count": 54
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4a46f9",
+        "normalized_return_pc": "0x4a46f9",
+        "entry_route": "DRAW.entry.0058c4a0",
+        "operation_route": "DRAW.operation.copy",
+        "count": 60
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4a48af",
+        "normalized_return_pc": "0x4a48af",
+        "entry_route": "DRAW.entry.0058c8a0",
+        "operation_route": "DRAW.operation.copy",
+        "count": 60
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4a758d",
+        "normalized_return_pc": "0x4a758d",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 2
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4a825d",
+        "normalized_return_pc": "0x4a825d",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 3
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4acea1",
+        "normalized_return_pc": "0x4acea1",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 4
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4bb45e",
+        "normalized_return_pc": "0x4bb45e",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 1
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4bbb79",
+        "normalized_return_pc": "0x4bbb79",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 2
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4d3af1",
+        "normalized_return_pc": "0x4d3af1",
+        "entry_route": "DRAW.entry.0058c8a0",
+        "operation_route": "DRAW.operation.copy",
+        "count": 1
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4d3c20",
+        "normalized_return_pc": "0x4d3c20",
+        "entry_route": "DRAW.entry.0058c8a0",
+        "operation_route": "DRAW.operation.copy",
+        "count": 2
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4d4704",
+        "normalized_return_pc": "0x4d4704",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 58
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4d490c",
+        "normalized_return_pc": "0x4d490c",
+        "entry_route": "DRAW.entry.0058c4a0",
+        "operation_route": "DRAW.operation.copy",
+        "count": 55
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4d6ba4",
+        "normalized_return_pc": "0x4d6ba4",
+        "entry_route": "DRAW.entry.0058c140",
+        "operation_route": "DRAW.operation.copy",
+        "count": 3
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4d6c1c",
+        "normalized_return_pc": "0x4d6c1c",
+        "entry_route": "DRAW.entry.0058c140",
+        "operation_route": "DRAW.operation.copy",
+        "count": 3
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4d97c0",
+        "normalized_return_pc": "0x4d97c0",
+        "entry_route": "DRAW.entry.0058c140",
+        "operation_route": "DRAW.operation.copy",
+        "count": 3
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4dc662",
+        "normalized_return_pc": "0x4dc662",
+        "entry_route": "DRAW.entry.0058c4a0",
+        "operation_route": "DRAW.operation.copy",
+        "count": 48
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4dc676",
+        "normalized_return_pc": "0x4dc676",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 48
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4dc6a1",
+        "normalized_return_pc": "0x4dc6a1",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 48
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4de204",
+        "normalized_return_pc": "0x4de204",
+        "entry_route": "DRAW.entry.0058c140",
+        "operation_route": "DRAW.operation.copy",
+        "count": 3
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x4de8a4",
+        "normalized_return_pc": "0x4de8a4",
+        "entry_route": "DRAW.entry.0058c140",
+        "operation_route": "DRAW.operation.copy",
+        "count": 3
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x539ba4",
+        "normalized_return_pc": "0x539ba4",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 1
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x539bd2",
+        "normalized_return_pc": "0x539bd2",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 1
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x539c4b",
+        "normalized_return_pc": "0x539c4b",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 1
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x539c79",
+        "normalized_return_pc": "0x539c79",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 1
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x539cbe",
+        "normalized_return_pc": "0x539cbe",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 1
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x539cec",
+        "normalized_return_pc": "0x539cec",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 1
+      },
+      {
+        "operation": "copy",
+        "caller_va": "0x5597fd",
+        "normalized_return_pc": "0x5597fd",
+        "entry_route": "DRAW.entry.0058bf40",
+        "operation_route": "DRAW.operation.copy",
+        "count": 36
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4633fe",
+        "normalized_return_pc": "0x4633fe",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 3
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x46346b",
+        "normalized_return_pc": "0x46346b",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 3
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4a3643",
+        "normalized_return_pc": "0x4a3643",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4a3694",
+        "normalized_return_pc": "0x4a3694",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4a71e9",
+        "normalized_return_pc": "0x4a71e9",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4a7f16",
+        "normalized_return_pc": "0x4a7f16",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4ac77a",
+        "normalized_return_pc": "0x4ac77a",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4bb76a",
+        "normalized_return_pc": "0x4bb76a",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4d38a4",
+        "normalized_return_pc": "0x4d38a4",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4d4862",
+        "normalized_return_pc": "0x4d4862",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 29
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4d645a",
+        "normalized_return_pc": "0x4d645a",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4d6511",
+        "normalized_return_pc": "0x4d6511",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4d8348",
+        "normalized_return_pc": "0x4d8348",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4d95e6",
+        "normalized_return_pc": "0x4d95e6",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4da346",
+        "normalized_return_pc": "0x4da346",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4dae10",
+        "normalized_return_pc": "0x4dae10",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4db6ad",
+        "normalized_return_pc": "0x4db6ad",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4dc4fc",
+        "normalized_return_pc": "0x4dc4fc",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4dc55d",
+        "normalized_return_pc": "0x4dc55d",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4dc949",
+        "normalized_return_pc": "0x4dc949",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4de3c8",
+        "normalized_return_pc": "0x4de3c8",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4de964",
+        "normalized_return_pc": "0x4de964",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4e415a",
+        "normalized_return_pc": "0x4e415a",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x4e41f1",
+        "normalized_return_pc": "0x4e41f1",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x539f17",
+        "normalized_return_pc": "0x539f17",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "create",
+        "caller_va": "0x554f0b",
+        "normalized_return_pc": "0x554f0b",
+        "entry_route": "DRAW.entry.0058ad90",
+        "operation_route": "DRAW.operation.create",
+        "count": 1
+      },
+      {
+        "operation": "fade",
+        "caller_va": "0x5597af",
+        "normalized_return_pc": "0x5597af",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.fade",
+        "count": 25
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x463407",
+        "normalized_return_pc": "0x463407",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 3
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x463474",
+        "normalized_return_pc": "0x463474",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 3
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4a364f",
+        "normalized_return_pc": "0x4a364f",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4a36a0",
+        "normalized_return_pc": "0x4a36a0",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4cb7b8",
+        "normalized_return_pc": "0x4cb7b8",
+        "entry_route": "DRAW.entry.0058bac0",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4d38ad",
+        "normalized_return_pc": "0x4d38ad",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4d646c",
+        "normalized_return_pc": "0x4d646c",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4d6529",
+        "normalized_return_pc": "0x4d6529",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4d7ac0",
+        "normalized_return_pc": "0x4d7ac0",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4d7acd",
+        "normalized_return_pc": "0x4d7acd",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4d835a",
+        "normalized_return_pc": "0x4d835a",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4d95f8",
+        "normalized_return_pc": "0x4d95f8",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4da357",
+        "normalized_return_pc": "0x4da357",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4dae22",
+        "normalized_return_pc": "0x4dae22",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4db6b6",
+        "normalized_return_pc": "0x4db6b6",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4de3da",
+        "normalized_return_pc": "0x4de3da",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4de976",
+        "normalized_return_pc": "0x4de976",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "fill",
+        "caller_va": "0x4e41fd",
+        "normalized_return_pc": "0x4e41fd",
+        "entry_route": "DRAW.entry.0058bc10",
+        "operation_route": "DRAW.operation.fill",
+        "count": 1
+      },
+      {
+        "operation": "font",
+        "caller_va": "0x4a6133",
+        "normalized_return_pc": "0x4a6133",
+        "entry_route": "DRAW.entry.00581ec0",
+        "operation_route": "DRAW.operation.font",
+        "count": 2002
+      },
+      {
+        "operation": "halo",
+        "caller_va": "0x4cc868",
+        "normalized_return_pc": "0x4cc868",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.halo",
+        "count": 12
+      },
+      {
+        "operation": "halo",
+        "caller_va": "0x4d15b6",
+        "normalized_return_pc": "0x4d15b6",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.halo",
+        "count": 2
+      },
+      {
+        "operation": "jpeg",
+        "caller_va": "0x4a72f8",
+        "normalized_return_pc": "0x4a72f8",
+        "entry_route": "DRAW.entry.0058d320",
+        "operation_route": "DRAW.operation.jpeg",
+        "count": 1
+      },
+      {
+        "operation": "jpeg",
+        "caller_va": "0x4a8025",
+        "normalized_return_pc": "0x4a8025",
+        "entry_route": "DRAW.entry.0058d320",
+        "operation_route": "DRAW.operation.jpeg",
+        "count": 1
+      },
+      {
+        "operation": "jpeg",
+        "caller_va": "0x4ac888",
+        "normalized_return_pc": "0x4ac888",
+        "entry_route": "DRAW.entry.0058d320",
+        "operation_route": "DRAW.operation.jpeg",
+        "count": 1
+      },
+      {
+        "operation": "jpeg",
+        "caller_va": "0x4bb878",
+        "normalized_return_pc": "0x4bb878",
+        "entry_route": "DRAW.entry.0058d320",
+        "operation_route": "DRAW.operation.jpeg",
+        "count": 1
+      },
+      {
+        "operation": "jpeg",
+        "caller_va": "0x4dc29d",
+        "normalized_return_pc": "0x4dc29d",
+        "entry_route": "DRAW.entry.0058d320",
+        "operation_route": "DRAW.operation.jpeg",
+        "count": 1
+      },
+      {
+        "operation": "jpeg",
+        "caller_va": "0x4dc330",
+        "normalized_return_pc": "0x4dc330",
+        "entry_route": "DRAW.entry.0058d320",
+        "operation_route": "DRAW.operation.jpeg",
+        "count": 1
+      },
+      {
+        "operation": "jpeg",
+        "caller_va": "0x4ddeb4",
+        "normalized_return_pc": "0x4ddeb4",
+        "entry_route": "DRAW.entry.0058d320",
+        "operation_route": "DRAW.operation.jpeg",
+        "count": 1
+      },
+      {
+        "operation": "jpeg",
+        "caller_va": "0x53a008",
+        "normalized_return_pc": "0x53a008",
+        "entry_route": "DRAW.entry.0058d320",
+        "operation_route": "DRAW.operation.jpeg",
+        "count": 1
+      },
+      {
+        "operation": "minimap",
+        "caller_va": "0x5527ae",
+        "normalized_return_pc": "0x5527ae",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.minimap",
+        "count": 3
+      },
+      {
+        "operation": "pcx",
+        "caller_va": "0x4dcad2",
+        "normalized_return_pc": "0x4dcad2",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.pcx",
+        "count": 4
+      },
+      {
+        "operation": "points",
+        "caller_va": "0x552b2d",
+        "normalized_return_pc": "0x552b2d",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.points",
+        "count": 3
+      },
+      {
+        "operation": "points",
+        "caller_va": "0x555c55",
+        "normalized_return_pc": "0x555c55",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.points",
+        "count": 3
+      },
+      {
+        "operation": "points",
+        "caller_va": "0x555c6e",
+        "normalized_return_pc": "0x555c6e",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.points",
+        "count": 3
+      },
+      {
+        "operation": "queue_entry",
+        "caller_va": "0x0",
+        "normalized_return_pc": null,
+        "entry_route": null,
+        "operation_route": "DRAW.operation.queue_entry",
+        "count": 4
+      },
+      {
+        "operation": "queue_return",
+        "caller_va": "0x0",
+        "normalized_return_pc": null,
+        "entry_route": null,
+        "operation_route": "DRAW.operation.queue_return",
+        "count": 4
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4cb653",
+        "normalized_return_pc": "0x4cb653",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 282
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4cdebf",
+        "normalized_return_pc": "0x4cdebf",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 12315
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4d091e",
+        "normalized_return_pc": "0x4d091e",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 702
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4d2ad8",
+        "normalized_return_pc": "0x4d2ad8",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 24
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4d2fa3",
+        "normalized_return_pc": "0x4d2fa3",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 384
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4dcbdd",
+        "normalized_return_pc": "0x4dcbdd",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 6
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x5003b9",
+        "normalized_return_pc": "0x5003b9",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 1953
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x5003c9",
+        "normalized_return_pc": "0x5003c9",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 4215
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x5003eb",
+        "normalized_return_pc": "0x5003eb",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 442
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500584",
+        "normalized_return_pc": "0x500584",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x5005a2",
+        "normalized_return_pc": "0x5005a2",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x5005d7",
+        "normalized_return_pc": "0x5005d7",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 162
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500764",
+        "normalized_return_pc": "0x500764",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500790",
+        "normalized_return_pc": "0x500790",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500aab",
+        "normalized_return_pc": "0x500aab",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500aca",
+        "normalized_return_pc": "0x500aca",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500c2b",
+        "normalized_return_pc": "0x500c2b",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500c4c",
+        "normalized_return_pc": "0x500c4c",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x555db4",
+        "normalized_return_pc": "0x555db4",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 3
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x57e915",
+        "normalized_return_pc": "0x57e915",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 1
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x57e940",
+        "normalized_return_pc": "0x57e940",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 3
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x57e985",
+        "normalized_return_pc": "0x57e985",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 4
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x57e9a8",
+        "normalized_return_pc": "0x57e9a8",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 4
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x57e9c7",
+        "normalized_return_pc": "0x57e9c7",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 4
+      },
+      {
+        "operation": "release",
+        "caller_va": "0x0",
+        "normalized_return_pc": null,
+        "entry_route": null,
+        "operation_route": "DRAW.operation.release",
+        "count": 7
+      },
+      {
+        "operation": "wash",
+        "caller_va": "0x4dccd1",
+        "normalized_return_pc": "0x4dccd1",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.wash",
+        "count": 4
+      }
+    ],
+    "unattributed_callers": [
+      {
+        "operation": "bevel",
+        "caller_va": "0x4cc82c",
+        "normalized_return_pc": "0x4cc82c",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bevel",
+        "count": 41
+      },
+      {
+        "operation": "bevel",
+        "caller_va": "0x4d167b",
+        "normalized_return_pc": "0x4d167b",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bevel",
+        "count": 3
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4cb603",
+        "normalized_return_pc": "0x4cb603",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 290
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4cc88d",
+        "normalized_return_pc": "0x4cc88d",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 41
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4cde1c",
+        "normalized_return_pc": "0x4cde1c",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 85
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4d08b8",
+        "normalized_return_pc": "0x4d08b8",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 3
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4d1525",
+        "normalized_return_pc": "0x4d1525",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 22
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4d2861",
+        "normalized_return_pc": "0x4d2861",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 170
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4d2aa0",
+        "normalized_return_pc": "0x4d2aa0",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 24
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4d2f48",
+        "normalized_return_pc": "0x4d2f48",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 3
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4dcb47",
+        "normalized_return_pc": "0x4dcb47",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 4
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4de723",
+        "normalized_return_pc": "0x4de723",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 1
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x4fd552",
+        "normalized_return_pc": "0x4fd552",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 4
+      },
+      {
+        "operation": "bind",
+        "caller_va": "0x555d48",
+        "normalized_return_pc": "0x555d48",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.bind",
+        "count": 3
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4cb612",
+        "normalized_return_pc": "0x4cb612",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 290
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4cc8a4",
+        "normalized_return_pc": "0x4cc8a4",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 41
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4cde29",
+        "normalized_return_pc": "0x4cde29",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 85
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4d08c5",
+        "normalized_return_pc": "0x4d08c5",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 3
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4d153c",
+        "normalized_return_pc": "0x4d153c",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 22
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4d2878",
+        "normalized_return_pc": "0x4d2878",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 170
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4d2aaf",
+        "normalized_return_pc": "0x4d2aaf",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 24
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4d2f59",
+        "normalized_return_pc": "0x4d2f59",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 3
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4dcb5e",
+        "normalized_return_pc": "0x4dcb5e",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 4
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4de73a",
+        "normalized_return_pc": "0x4de73a",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 1
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4fcfcc",
+        "normalized_return_pc": "0x4fcfcc",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 4
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x4fd570",
+        "normalized_return_pc": "0x4fd570",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 3
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x500337",
+        "normalized_return_pc": "0x500337",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 8
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x5008b9",
+        "normalized_return_pc": "0x5008b9",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 8
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x500d25",
+        "normalized_return_pc": "0x500d25",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 8
+      },
+      {
+        "operation": "clip",
+        "caller_va": "0x555d7a",
+        "normalized_return_pc": "0x555d7a",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.clip",
+        "count": 3
+      },
+      {
+        "operation": "fade",
+        "caller_va": "0x5597af",
+        "normalized_return_pc": "0x5597af",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.fade",
+        "count": 25
+      },
+      {
+        "operation": "halo",
+        "caller_va": "0x4cc868",
+        "normalized_return_pc": "0x4cc868",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.halo",
+        "count": 12
+      },
+      {
+        "operation": "halo",
+        "caller_va": "0x4d15b6",
+        "normalized_return_pc": "0x4d15b6",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.halo",
+        "count": 2
+      },
+      {
+        "operation": "minimap",
+        "caller_va": "0x5527ae",
+        "normalized_return_pc": "0x5527ae",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.minimap",
+        "count": 3
+      },
+      {
+        "operation": "pcx",
+        "caller_va": "0x4dcad2",
+        "normalized_return_pc": "0x4dcad2",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.pcx",
+        "count": 4
+      },
+      {
+        "operation": "points",
+        "caller_va": "0x552b2d",
+        "normalized_return_pc": "0x552b2d",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.points",
+        "count": 3
+      },
+      {
+        "operation": "points",
+        "caller_va": "0x555c55",
+        "normalized_return_pc": "0x555c55",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.points",
+        "count": 3
+      },
+      {
+        "operation": "points",
+        "caller_va": "0x555c6e",
+        "normalized_return_pc": "0x555c6e",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.points",
+        "count": 3
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4cb653",
+        "normalized_return_pc": "0x4cb653",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 282
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4cdebf",
+        "normalized_return_pc": "0x4cdebf",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 12315
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4d091e",
+        "normalized_return_pc": "0x4d091e",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 702
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4d2ad8",
+        "normalized_return_pc": "0x4d2ad8",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 24
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4d2fa3",
+        "normalized_return_pc": "0x4d2fa3",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 384
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x4dcbdd",
+        "normalized_return_pc": "0x4dcbdd",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 6
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x5003b9",
+        "normalized_return_pc": "0x5003b9",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 1953
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x5003c9",
+        "normalized_return_pc": "0x5003c9",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 4215
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x5003eb",
+        "normalized_return_pc": "0x5003eb",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 442
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500584",
+        "normalized_return_pc": "0x500584",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x5005a2",
+        "normalized_return_pc": "0x5005a2",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x5005d7",
+        "normalized_return_pc": "0x5005d7",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 162
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500764",
+        "normalized_return_pc": "0x500764",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500790",
+        "normalized_return_pc": "0x500790",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500aab",
+        "normalized_return_pc": "0x500aab",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500aca",
+        "normalized_return_pc": "0x500aca",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500c2b",
+        "normalized_return_pc": "0x500c2b",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x500c4c",
+        "normalized_return_pc": "0x500c4c",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 2
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x555db4",
+        "normalized_return_pc": "0x555db4",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 3
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x57e915",
+        "normalized_return_pc": "0x57e915",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 1
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x57e940",
+        "normalized_return_pc": "0x57e940",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 3
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x57e985",
+        "normalized_return_pc": "0x57e985",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 4
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x57e9a8",
+        "normalized_return_pc": "0x57e9a8",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 4
+      },
+      {
+        "operation": "raster",
+        "caller_va": "0x57e9c7",
+        "normalized_return_pc": "0x57e9c7",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.raster",
+        "count": 4
+      },
+      {
+        "operation": "wash",
+        "caller_va": "0x4dccd1",
+        "normalized_return_pc": "0x4dccd1",
+        "entry_route": null,
+        "operation_route": "DRAW.operation.wash",
+        "count": 4
+      }
+    ],
+    "unaccounted_operations": [],
+    "scope": "Operation/caller census of an existing closed instrumented journal only. No exhaustive writer coverage, new original execution or pixel-equivalence claim."
+  },
+  "inputs": {
+    "working/experiments/scene-observer/run-9wb1_dbf/capture/canvas-producers.bin": "2c4ccf173bdc6ed18e046d5a0971f587ed9da2bacbff01b85661ca57fe9262cf",
+    "working/experiments/scene-observer/run-9wb1_dbf/capture/canvas-producers.done": "79bbe8d3c1ab2c190e11bcb9c43475b182a9fd749cd50d536a28aff4ffe02732"
+  }
+}

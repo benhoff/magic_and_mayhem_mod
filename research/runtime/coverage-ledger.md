@@ -4283,3 +4283,42 @@ with zero unresolved receipt gaps. All 170 launch-test sources retain the
 recorded hashes; the existing headless evidence remains current for this launch
 policy. The census and exact change receipts are refreshed against `95c1f93`.
 
+### DRAW-01 scenario-tagged route accounting — 2026-10-10
+
+The [route register](drawing-inventory.json) and [checker/importer](draw01-inventory.md)
+implement the missing drawing-inventory accounting. They separate exact original
+entries, aggregate producer operations and raw queue kinds, with stable IDs,
+behavior/owner/classification links, scoped support decisions, required effects
+and explicit gaps. The initial reviewed census has 100 routes, 24 static windows,
+52 producer hooks, one separately anchored interior fade hook and eight retained
+live observation cohorts. Fourteen required
+scenario censuses, four incomplete dispatch records and three unclassified-kind
+support decisions remain open; full DRAW-01 completion is not claimed.
+
+`TOOL.drawing-inventory` owns the accounting implementation/tests. New recovered
+inventory entries preserve selected graphics hosting, the unassigned WORD-copy
+window, raw kinds16/17/20 and unattributed callers without asserting new whole
+function boundaries or recovered original/native equivalence. Historical source
+hashes and original binary discovery boundaries remain unchanged.
+
+The closed-journal importer checks V1/V2/V3 headers, pinned journal hashes,
+record/payload/queue bounds and a matching successful completion marker. Runtime
+module-base normalization is explicit; exact static CALL bytes identify a target,
+while missing/nearby/external PCs stay unattributed. Importing the retained
+four-return producer journal accounts for 954 checkpoints and exposes 63
+unattributed caller/operation groups. This is re-indexing retained observations,
+not a new original game execution, module-base proof or writer-completeness claim.
+
+Twenty-nine offline guard tests cover new entries/operations/kinds, hidden signed
+kinds, false/stale closure, exact and relocated caller PCs, malformed journal
+bounds/markers, duplicate census/selector declarations and historical status
+preservation. CI checks the reviewed inventory and the guards. No original
+artifacts are consumed and no binary/native rendering implementation is changed.
+
+Committed-history review of `a47ad55..48ca294` checks 103 file transitions and
+170 behavior transitions against exact receipts, with zero unresolved gaps.
+The report is retained at `coverage/draw01-history-a47ad55-48ca294-20261010.json`.
+Earlier tool runs keep their historical hashes; final 29-guard and retained-journal
+re-indexing results use new `TOOL.drawing-inventory.*-v2-20261010` evidence IDs.
+The [updated coverage summary](coverage/summary-draw01-20261010.md) preserves
+original comparison/replacement statuses and the incomplete census boundaries.

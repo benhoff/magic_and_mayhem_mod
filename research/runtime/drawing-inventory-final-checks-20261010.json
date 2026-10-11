@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "success": true,
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-inventory",
+      "contract_sha256": "4f9d18dcbc01d897e50abbbd697bda1fa3ea4a9430ad187f8056f38b50767c39",
+      "scenarios": {}
+    }
+  ],
+  "sources": {
+    "research/runtime/glyph-live-comparison-20261010.json": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+    "research/runtime/native-canvas-producers-final-shadow-20261010.json": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+    "research/runtime/native-canvas-producers-live-20261008.json": "f725d774af13ca489b4483cecc03fb3056198eb2acd3876b5c8a738777c20c8a",
+    "research/runtime/native-enabled-movie-startup-20261010.json": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+    "research/runtime/native-minimap-interactive-20261010.json": "ee972c4154eb1b96db98207f738c56c9c4e6f7987573492f72330b30494dd3f0",
+    "research/runtime/native-world-raster-batch-prefix16-replacement-v7-20261008.json": "a719e427ef2f6c61617511d647f6789eee3181572835b9ad8ef16381135d2204",
+    "research/runtime/render-path-inventory-static-final.json": "01d30a9574fef5a02d0195ae354e6ca1e1f600cff5c33079788f6f778762777a",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "tests/test-drawing-inventory.py": "d6676584b0795535f53ceb6b73335b55a9cca9d3a027a49521eecfbc1978c32a",
+    "tools/coverage_audit.py": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/drawing_inventory.py": "419803417e564b3b5b91fe3216008dde882cbf70487cfd1b0de7ad65810616e2",
+    "tools/rendering_coverage.py": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+    "tools/report-drawing-inventory.py": "f227bc6f4c2665e65a8be76d0feb093f131f232e849ed891642076cb38ba081c"
+  },
+  "sources_stable": true,
+  "scope": "Final DRAW-01 offline accounting guard and repository census execution. No original artifacts, new original execution, rendering equivalence or complete scenario closure.",
+  "returncode": 0,
+  "tests": 26,
+  "command": [
+    "python3",
+    "-B",
+    "tests/test-drawing-inventory.py"
+  ],
+  "stdout": "",
+  "stderr": "..........................\n----------------------------------------------------------------------\nRan 26 tests in 0.100s\n\nOK\n"
+}

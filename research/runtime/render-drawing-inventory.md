@@ -4,6 +4,23 @@ The [complete live drawing replacement plan](../../docs/live-drawing-replacement
 owns cross-subsystem scope, implementation order and launcher readiness. This
 inventory owns drawing-route classifications and their build-specific evidence.
 
+## DRAW-01 machine-readable route accounting — 2026-10-10
+
+The [scenario-tagged route register](drawing-inventory.json) and
+[checker/importer](draw01-inventory.md) now account for individual entry routes,
+aggregate producer operations and raw original queue kinds separately. Run
+`python3 tools/report-drawing-inventory.py --require-accounted` to check the
+reviewed static-window and producer-hook censuses and retained activity cohorts.
+`--require-complete` additionally exposes the required scenario/dispatch backlog.
+
+The initial register covers 100 routes, 24 retained static windows and 52 producer
+hook entries. Fourteen required scenario censuses remain open. The closed-journal
+importer preserves caller PCs and only assigns a target from exact static CALL
+bytes; unattributed callers, hidden kind -2 and unclassified kinds16/17/20 remain
+visible. This supersedes historical next-step prose about missing accounting
+tools below. It does not renew those findings' source hashes or establish whole
+runtime-frequency, rendering-equivalence or complete DRAW-01 coverage.
+
 ## Reconciled support accounting — 2026-10-10
 
 The [rendering coverage crosswalk](rendering-coverage.md) now connects all nine

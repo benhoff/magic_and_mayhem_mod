@@ -30646,6 +30646,245 @@
         "integration": "headless",
         "replacement": "none"
       }
+    },
+    {
+      "id": "DRAW.surface-hosting",
+      "title": "Selected graphics setup and monitor API-loading inventory",
+      "scope": "Static selected windows58a9b0/58aa90/58b270 from the pinned caller export. Session setup and dynamically resolved monitor APIs only; no recovered external implementation, native equivalence or lifetime completion.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810608,
+          "scope": "Selected setup/monitor-loading static instructions, not a whole rendering session contract."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810832,
+          "scope": "Selected setup/monitor-loading static instructions, not a whole rendering session contract."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812848,
+          "scope": "Selected setup/monitor-loading static instructions, not a whole rendering session contract."
+        }
+      ],
+      "confidence": "high_within_scope",
+      "evidence": [
+        "RI.static-callers-final-20261006"
+      ],
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "documents": [
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.unassigned-word-window",
+      "title": "Unassigned locked WORD-copy instruction window",
+      "scope": "Retain documented58d3b0..58d4a7 selected WORD-copy window, its two locks/unlocks and unresolved entry/callers. Not a discovered function or an asserted recovered range; no function census coverage or replacement.",
+      "original": [],
+      "confidence": "provisional",
+      "evidence": [
+        "RI.static-callers-final-20261006"
+      ],
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "documents": [
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "status": {
+        "understanding": "unknown",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "title": "Unclassified original World input kind16",
+      "scope": "Raw input kind16 is observed in the retained automatic Quick Battle startup queue rows. The closed producer stream captures selected lower-level rasters; this does not recover high-level kind semantics, default behavior or assign it to a particular dispatch table.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Consumer receives raw kind16; only activity/input identity is linked, branch semantics remain unclassified."
+        }
+      ],
+      "confidence": "provisional",
+      "evidence": [
+        "NR.canvas-producers.live-20261008"
+      ],
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "documents": [
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "status": {
+        "understanding": "unknown",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "title": "Unclassified original World input kind17",
+      "scope": "Raw input kind17 is observed in the retained automatic Quick Battle startup queue rows. The closed producer stream captures selected lower-level rasters; this does not recover high-level kind semantics, default behavior or assign it to a particular dispatch table.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Consumer receives raw kind17; only activity/input identity is linked, branch semantics remain unclassified."
+        }
+      ],
+      "confidence": "provisional",
+      "evidence": [
+        "NR.canvas-producers.live-20261008"
+      ],
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "documents": [
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "status": {
+        "understanding": "unknown",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "title": "Unclassified original World input kind20",
+      "scope": "Raw input kind20 is observed in the retained automatic Quick Battle startup queue rows. The closed producer stream captures selected lower-level rasters; this does not recover high-level kind semantics, default behavior or assign it to a particular dispatch table.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Consumer receives raw kind20; only activity/input identity is linked, branch semantics remain unclassified."
+        }
+      ],
+      "confidence": "provisional",
+      "evidence": [
+        "NR.canvas-producers.live-20261008"
+      ],
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "documents": [
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "status": {
+        "understanding": "unknown",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Scenario-tagged DRAW-01 route census and closed producer-journal accounting",
+      "scope": "Offline accounting of selected pinned original static windows, instrumented entry census, retained scenario-tagged operation/kind/entry counts and closed producer-stream callers. Validate build/record identities, exact static CALL return PCs, explicit owners/behavior/classification/support/effect scopes; preserve unknowns and incomplete scenarios/dispatch. Tool tests do not establish original rendering equivalence or full DRAW-01 completion.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/drawing-inventory.json"
+      ],
+      "implementation": [
+        "tools/drawing_inventory.py",
+        "tools/report-drawing-inventory.py"
+      ],
+      "tests": [
+        "tests/test-drawing-inventory.py"
+      ],
+      "validation_dependencies": [
+        "tools/rendering_coverage.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_claims.py",
+        "runtime/scene/canvas_producers.c",
+        "research/runtime/render-path-inventory-static-final.json",
+        "research/runtime/native-canvas-producers-live-20261008.json",
+        "research/runtime/native-canvas-producers-final-shadow-20261010.json",
+        "research/runtime/native-world-raster-batch-prefix16-replacement-v7-20261008.json",
+        "research/runtime/glyph-live-comparison-20261010.json",
+        "research/runtime/native-enabled-movie-startup-20261010.json",
+        "research/runtime/native-minimap-interactive-20261010.json",
+        "runtime/canvas-writers/bridge.c",
+        "research/runtime/fade-writer-live-comparison-20261010.json",
+        "research/runtime/coverage/binary-nocd.json",
+        "research/runtime/drawing-inventory.json"
+      ],
+      "evidence": [
+        "TOOL.drawing-inventory.guards-20261010",
+        "TOOL.drawing-inventory.final-guards-20261010",
+        "TOOL.drawing-inventory.retained-journal-20261010",
+        "TOOL.drawing-inventory.guards-v2-20261010",
+        "TOOL.drawing-inventory.retained-journal-v2-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.unattributed-caller",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Unattributed producer-journal callers",
+      "scope": "Preserve caller/operation groups from an existing pinned producer journal that have no exact static CALL return-PC association. Caller module base is supplied explicitly for normalization; no nearest-function assignment, stable cross-launch pointer assumption or semantic caller ownership claimed. Static selected-window export cannot attribute every active producer path.",
+      "confidence": "provisional",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "status": {
+        "understanding": "unknown",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -58904,6 +59143,169 @@
           "equals": "shadow"
         }
       ]
+    },
+    {
+      "id": "TOOL.drawing-inventory.guards-20261010",
+      "kind": "native_integration",
+      "scope": "DRAW-01 offline accounting guard execution and repository crosswalk check only. No original binary/media input, new original game execution, rendering-equivalence or complete scenario-census claim.",
+      "record": "research/runtime/drawing-inventory-checks-20261010.json",
+      "sha256": "8edc35c1c5ff93dc36237dca14605a78422ed4b6b5fec89e391d1553d7983bc8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests",
+          "equals": 26
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory.final-guards-20261010",
+      "kind": "native_integration",
+      "scope": "Final DRAW-01 offline accounting guard and repository census execution. No original artifacts, new original execution, rendering equivalence or complete scenario closure.",
+      "record": "research/runtime/drawing-inventory-final-checks-20261010.json",
+      "sha256": "f7a7e809daa027c697a852196da7996f30f36b320f61ecd77de34e400f651825",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests",
+          "equals": 26
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory.retained-journal-20261010",
+      "kind": "native_integration",
+      "scope": "Re-indexing the retained four-return original-active producer journal. Module normalization uses explicit preferred base as a diagnostic assumption; no new runtime-base validation, original execution or pixel equivalence. Exact target/caller and aggregate operations remain separate.",
+      "record": "research/runtime/drawing-inventory-retained-journal-20261010.json",
+      "sha256": "b658aa6d6e367346175dd46a59d5ce9f00e51810b480eef26de225d2b7b9d801",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inventory_valid",
+          "equals": true
+        },
+        {
+          "pointer": "/draw01_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/producer_trace/closed_journal",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_trace/queues",
+          "equals": 4
+        },
+        {
+          "pointer": "/unattributed_caller_groups",
+          "equals": 63
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory.guards-v2-20261010",
+      "kind": "native_integration",
+      "scope": "DRAW-01 final offline route accounting guard execution with interior hook and repository census checks. No original execution, rendering equivalence or complete scenario census.",
+      "record": "research/runtime/drawing-inventory-checks-v2-20261010.json",
+      "sha256": "0ed5ca92927f82b40f477ee143804a2493d66b2fb8ac11ff819d445a0ef29d22",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/tests",
+          "equals": 29
+        },
+        {
+          "pointer": "/accounted_returncode",
+          "equals": 0
+        },
+        {
+          "pointer": "/complete_returncode",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory.retained-journal-v2-20261010",
+      "kind": "native_integration",
+      "scope": "Re-index the retained original-active four-return producer journal; preferred base0x400000 is an explicit diagnostic assumption, not freshly observed runtime-base evidence. No original execution, rendering equivalence or complete drawing census.",
+      "record": "research/runtime/drawing-inventory-retained-journal-v2-20261010.json",
+      "sha256": "a2024f70c8dae259050c4b5ef91328e6056abeec2d38bcbe34f90a2153e7e9d9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/draw01_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/producer_trace/closed_journal",
+          "equals": true
+        },
+        {
+          "pointer": "/producer_trace/queues",
+          "equals": 4
+        },
+        {
+          "pointer": "/unattributed_caller_groups",
+          "equals": 63
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -66933,8 +67335,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-glyph-default-after-rendering-20261010.json",
-    "sha256": "d4367639e485f80c52013b0ded1816a917714eafa2ee2f9c3bf4cf0e616a1b92"
+    "path": "research/runtime/coverage/source-index-draw01-20261010.json",
+    "sha256": "ee10215091a3c8d919627905e2395cad35f9cfd2dc07fc989898162d9040d4e3"
   },
   "claim_bindings_required": true
 }

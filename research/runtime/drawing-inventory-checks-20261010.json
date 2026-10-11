@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "DRAW-01 offline accounting guard execution and repository crosswalk check only. No original binary/media input, new original game execution, rendering-equivalence or complete scenario-census claim.",
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-inventory",
+      "contract_sha256": "79fa1354f14b028838f6929f0b0bb618d305a88b877ad557ffdca3a6415474cc",
+      "scenarios": {}
+    }
+  ],
+  "sources": {
+    "tests/test-drawing-inventory.py": "d6676584b0795535f53ceb6b73335b55a9cca9d3a027a49521eecfbc1978c32a",
+    "tools/coverage_audit.py": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/drawing_inventory.py": "419803417e564b3b5b91fe3216008dde882cbf70487cfd1b0de7ad65810616e2",
+    "tools/rendering_coverage.py": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+    "tools/report-drawing-inventory.py": "f227bc6f4c2665e65a8be76d0feb093f131f232e849ed891642076cb38ba081c"
+  },
+  "sources_stable": true,
+  "command": [
+    "python3",
+    "-B",
+    "tests/test-drawing-inventory.py"
+  ],
+  "returncode": 0,
+  "tests": 26,
+  "stdout": "",
+  "stderr": "..........................\n----------------------------------------------------------------------\nRan 26 tests in 0.098s\n\nOK\n"
+}

@@ -1,0 +1,3623 @@
+{
+  "schema": 1,
+  "build": "nocd-40209ca7",
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "scope": "DRAW-01 selected pinned-build route accounting and declared single-player scenario backlog. Explicit owners, classifications, support decisions and required effects; no exhaustive runtime-frequency, current equivalence or full-session completion claim.",
+  "static_source": {
+    "evidence": "RI.static-callers-final-20261006"
+  },
+  "hook_source": "runtime/scene/canvas_producers.c",
+  "dispatch_tables": [
+    "RI.queue-draw-00501184",
+    "RI.queue-draw-00501210",
+    "RI.queue-draw-0050129c",
+    "world-complete-raster-admission-20261008"
+  ],
+  "producer_operations": {
+    "1": "create",
+    "2": "release",
+    "3": "bind",
+    "4": "clip",
+    "5": "fill",
+    "6": "copy",
+    "7": "jpeg",
+    "8": "font",
+    "9": "raster",
+    "10": "checkpoint",
+    "11": "queue_entry",
+    "12": "queue_return",
+    "13": "failure",
+    "14": "rgb_add",
+    "15": "bevel",
+    "16": "halo",
+    "17": "wash",
+    "18": "pcx",
+    "19": "dib",
+    "20": "bmp",
+    "21": "fade",
+    "22": "minimap",
+    "23": "points",
+    "24": "minimap_overlay",
+    "25": "source_definition"
+  },
+  "scenarios": [
+    {
+      "id": "enabled-movies",
+      "required": true,
+      "scope": "Enabled intro startup and original post-movie publication",
+      "remaining": "Only two intros observed; remaining controls/placement, screen return routes and complete caller census pending.",
+      "census_review": null
+    },
+    {
+      "id": "main-setup-menus",
+      "required": true,
+      "scope": "Main/Single Player/setup menus",
+      "remaining": "Automatic Quick Battle startup samples selected producers; manual menus, alternate controls and all DC/Lock callers need a closed census.",
+      "census_review": null
+    },
+    {
+      "id": "campaign-entry",
+      "required": true,
+      "scope": "Campaign entry",
+      "remaining": "Native campaign smoke proves a bounded host journey, not a complete producer/caller census.",
+      "census_review": null
+    },
+    {
+      "id": "quick-battle-entry",
+      "required": true,
+      "scope": "Quick Battle map2/zero-items startup through first World returns",
+      "remaining": "Selected complete producer journals and raw queues exist; unclassified callers/indirect flows and other maps/configurations remain.",
+      "census_review": null
+    },
+    {
+      "id": "active-world",
+      "required": true,
+      "scope": "Active World drawing",
+      "remaining": "Only finite startup raster prefixes; sustained active-battle producer/caller census remains pending.",
+      "census_review": null
+    },
+    {
+      "id": "camera-motion",
+      "required": true,
+      "scope": "Camera movement and rotation",
+      "remaining": "Finite minimap motion covers four views and pan; broader world/camera producer/caller census remains pending.",
+      "census_review": null
+    },
+    {
+      "id": "creatures-effects",
+      "required": true,
+      "scope": "Creature and effect drawing",
+      "remaining": "Selected effect contracts and startup rasters do not attribute every active battle/effect-to-pixel route.",
+      "census_review": null
+    },
+    {
+      "id": "hud-minimap-tooltips",
+      "required": true,
+      "scope": "HUD, minimap and tooltips",
+      "remaining": "Selected startup HUD/minimap counts exist; complete tooltip/HUD updates and semantic caller attribution remain pending.",
+      "census_review": null
+    },
+    {
+      "id": "cursor-interaction",
+      "required": true,
+      "scope": "Cursor motion, hotspots and picking",
+      "remaining": "Cursor assets/startup image writers are known; interactive cursor/picking producer and side-effect census remains pending.",
+      "census_review": null
+    },
+    {
+      "id": "pause-preferences",
+      "required": true,
+      "scope": "Pause and Preferences",
+      "remaining": "Separate menu/preferences contracts exist; drawing routes during pause/display changes need a closed census.",
+      "census_review": null
+    },
+    {
+      "id": "save-load",
+      "required": true,
+      "scope": "Save/load",
+      "remaining": "Drawing-route/caller traces across save/load remain pending.",
+      "census_review": null
+    },
+    {
+      "id": "map-transitions",
+      "required": true,
+      "scope": "Map/load transitions",
+      "remaining": "Startup loading is observed; later map/buffer transitions need a closed producer/lifecycle census.",
+      "census_review": null
+    },
+    {
+      "id": "battle-results",
+      "required": true,
+      "scope": "Battle results",
+      "remaining": "Result-screen drawing route/caller census remains pending.",
+      "census_review": null
+    },
+    {
+      "id": "shutdown",
+      "required": true,
+      "scope": "Application/game shutdown",
+      "remaining": "Separate lifecycle tests exist; original render cleanup/caller/borrowed-access census remains pending.",
+      "census_review": null
+    }
+  ],
+  "observations": [
+    {
+      "id": "producer-startup16",
+      "evidence": "NR.canvas-producers.live-20261008",
+      "scenario": "quick-battle-entry",
+      "scope": "Retained automatic map2 startup through16World queues; operation and raw draw-kind counts are separate observations.",
+      "build_pointer": "/source_executable_sha256",
+      "projections": [
+        {
+          "kind": "counts",
+          "pointer": "/canvas_producers/operations",
+          "selector": "operation",
+          "activity": "live_original_active"
+        },
+        {
+          "kind": "kind_rows",
+          "pointer": "/startup_queues/queues",
+          "selector": "draw_kind",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "producer-shadow4",
+      "evidence": "NR.font-glyph-live-shadow.live-producers-20261010",
+      "scenario": "quick-battle-entry",
+      "scope": "Four-return native producer shadow; no per-operation phase or emitter attribution.",
+      "build_pointer": "/source_executable_sha256",
+      "projections": [
+        {
+          "kind": "counts",
+          "pointer": "/producer_counts",
+          "selector": "operation",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "world-batch16",
+      "evidence": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+      "scenario": "active-world",
+      "scope": "Finite startup queues1..16; exact entries compared independently while admitted live bodies are suppressed.",
+      "build_pointer": "/source_executable_sha256",
+      "projections": [
+        {
+          "kind": "counts",
+          "pointer": "/actual_entry_counts",
+          "selector": "entry",
+          "activity": "live_takeover"
+        }
+      ]
+    },
+    {
+      "id": "glyph-shadow",
+      "evidence": "RS.glyph-live-route.live-20261010",
+      "scenario": "quick-battle-entry",
+      "scope": "Four-return original-active glyph cohort; caller branches and broader live inputs remain bounded.",
+      "build_pointer": "/original_sha256",
+      "projections": [
+        {
+          "kind": "scalar",
+          "pointer": "/cohorts/shadow/stats/admitted",
+          "identity": "0x581ec0",
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "glyph-takeover",
+      "evidence": "RS.glyph-live-route.takeover-20261010",
+      "scenario": "quick-battle-entry",
+      "scope": "Four-return native glyph cohort;39forwards remain original.",
+      "build_pointer": "/original_sha256",
+      "projections": [
+        {
+          "kind": "scalar",
+          "pointer": "/cohorts/takeover/stats/handled",
+          "identity": "0x581ec0",
+          "selector": "entry",
+          "activity": "live_takeover"
+        }
+      ]
+    },
+    {
+      "id": "enabled-intros",
+      "evidence": "NR.movie-enabled-startup.live-20261010",
+      "scenario": "enabled-movies",
+      "scope": "Both native intro completions followed by original frame publication; no DirectShow equality.",
+      "build_pointer": "/source_executable_sha256",
+      "projections": [
+        {
+          "kind": "scalar",
+          "pointer": "/completed_native_intros",
+          "identity": "0x469a00",
+          "selector": "entry",
+          "activity": "live_observation"
+        }
+      ]
+    },
+    {
+      "id": "minimap-motion",
+      "evidence": "NR.minimap-interactive-presentation.live-20261010",
+      "scenario": "camera-motion",
+      "scope": "Two sixteen-queue finite sessions, including four orientations and same-orientation pan.",
+      "build_pointer": "/source_executable_sha256",
+      "projections": []
+    },
+    {
+      "id": "fade-takeover",
+      "evidence": "RS.fade-live-pixels.takeover-20261010",
+      "scenario": "quick-battle-entry",
+      "scope": "25native fade-loop completions through automatic Main/Single Player/Quick Battle/Map2startup on original locked storage.",
+      "build_pointer": "/original_sha256",
+      "projections": [
+        {
+          "kind": "scalar",
+          "pointer": "/native_calls",
+          "identity": "0x58edb0",
+          "selector": "entry",
+          "activity": "live_takeover"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "DRAW.entry.00469a00",
+      "entry": 4626944,
+      "title": "Movie wrapper",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media; apps/qt-shell",
+      "classification": "presentation",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Playback controls/results and screen return",
+        "Original placement, failed setup/sample and audible-device behavior"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/opengl-render-routes.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x469a00"
+        }
+      ],
+      "static_windows": [
+        "movie_wrapper"
+      ]
+    },
+    {
+      "id": "DRAW.entry.004f8960",
+      "entry": 5212512,
+      "title": "Ordinary terrain submission",
+      "behaviors": [
+        "RI.terrain"
+      ],
+      "owner": "reconstruction/terrain; runtime/scene",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Queue records and depth/visibility order",
+        "Objects, overlays, water and picking branches unresolved"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x4f8960"
+        }
+      ],
+      "static_windows": [
+        "terrain_submission"
+      ]
+    },
+    {
+      "id": "DRAW.entry.005002a0",
+      "entry": 5243552,
+      "title": "World multi-branch consumer",
+      "behaviors": [
+        "RI.sprites",
+        "RS.world-frame",
+        "RS.canvas-preworld-reuse"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Effective order and raster inputs",
+        "Picking/readbacks and full consumer state changes unresolved"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x5002a0"
+        }
+      ],
+      "static_windows": [
+        "sprite_queue_consumer"
+      ]
+    },
+    {
+      "id": "DRAW.entry.00545c10",
+      "entry": 5528592,
+      "title": "RGB-add writer",
+      "behaviors": [
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Destination-dependent RGB addition and source descriptor"
+      ],
+      "remaining": "Instrumented but unobserved in retained startup producer trace; no live equivalence/bypass claim.",
+      "documents": [
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/native-world-producer-handoff.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x545c10"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0054b2d0",
+      "entry": 5550800,
+      "title": "PCX source-image writer",
+      "behaviors": [
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; assets; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Encoded PCX and effective palette, row dimensions and padding"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/native-world-producer-handoff.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x54b2d0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.005527a0",
+      "entry": 5580704,
+      "title": "Minimap camera-corner writers",
+      "behaviors": [
+        "RS.minimap-camera-corners"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Camera corner pixels and nested terrain ordering",
+        "Selected object origin results; broader picking/source generation unresolved"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x5527a0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00552b50",
+      "entry": 5581648,
+      "title": "Minimap camera-corner writers",
+      "behaviors": [
+        "RS.minimap-camera-corners"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Camera corner pixels and nested terrain ordering",
+        "Selected object origin results; broader picking/source generation unresolved"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x552b50"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00552f20",
+      "entry": 5582624,
+      "title": "Minimap camera-corner writers",
+      "behaviors": [
+        "RS.minimap-camera-corners"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Camera corner pixels and nested terrain ordering",
+        "Selected object origin results; broader picking/source generation unresolved"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x552f20"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.005532f0",
+      "entry": 5583600,
+      "title": "Minimap camera-corner writers",
+      "behaviors": [
+        "RS.minimap-camera-corners"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Camera corner pixels and nested terrain ordering",
+        "Selected object origin results; broader picking/source generation unresolved"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x5532f0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.005536c0",
+      "entry": 5584576,
+      "title": "Minimap cell marker",
+      "behaviors": [
+        "RS.minimap-cell-marker"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Palette marker pixels and EAX destination word offset"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x5536c0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00553850",
+      "entry": 5584976,
+      "title": "Minimap creature markers",
+      "behaviors": [
+        "RS.minimap-creature-markers"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Visible creature markers and selected refresh results"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x553850"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00553a40",
+      "entry": 5585472,
+      "title": "Minimap terrain writer",
+      "behaviors": [
+        "RS.minimap-terrain-raster"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Terrain source colours/visibility and retained auxiliary history",
+        "Observed invalidation result and storage geometry"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-minimap-terrain.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x553a40"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0057dc20",
+      "entry": 5757984,
+      "title": "Canvas binding and clip globals",
+      "behaviors": [
+        "RS.canvas-bind-clip"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "render_state",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Bound destination identity, stride and global clipping bounds"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-world-canvas-startup.md",
+        "research/formats/canvas-startup-diagnostics.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x57dc20"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0057dc60",
+      "entry": 5758048,
+      "title": "Canvas binding and clip globals",
+      "behaviors": [
+        "RS.canvas-bind-clip"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "render_state",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Bound destination identity, stride and global clipping bounds"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-world-canvas-startup.md",
+        "research/formats/canvas-startup-diagnostics.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x57dc60"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0057de00",
+      "entry": 5758464,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x57de00"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0057e1b0",
+      "entry": 5759408,
+      "title": "Selected indexed sprite palette route",
+      "behaviors": [
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Palette lookup and quantized destination pixels"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x57e1b0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0057e540",
+      "entry": 5760320,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x57e540"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0057ec90",
+      "entry": 5762192,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x57ec90"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0057f0f0",
+      "entry": 5763312,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x57f0f0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0057f5f0",
+      "entry": 5764592,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x57f5f0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.005806f0",
+      "entry": 5768944,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x5806f0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00581ec0",
+      "entry": 5775040,
+      "title": "SFT tinted glyph raster",
+      "behaviors": [
+        "RI.gdi-text",
+        "RS.font-glyph-raster",
+        "RS.glyph-live-route"
+      ],
+      "owner": "runtime/scene; reconstruction/rendering",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Pixels and float coverage-table mutations",
+        "Arguments, RET16, defined flags and selected x87/XMM state",
+        "Font/source/destination lifetimes"
+      ],
+      "remaining": "Higher layout remains original; broader live tint/clip/FP inputs, font resets, public gameplay and sustained recovery remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/font-glyph-raster.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x581ec0"
+        }
+      ],
+      "static_windows": [
+        "shared_sprite_dispatch"
+      ]
+    },
+    {
+      "id": "DRAW.entry.00589c90",
+      "entry": 5807248,
+      "title": "Alternate clipped-word raster",
+      "behaviors": [
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Clipped destination pixels and caller workspace; semantic admission incomplete"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/native-world-producer-handoff.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x589c90"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0058a9b0",
+      "entry": 5810608,
+      "title": "Graphics setup / monitor API loading",
+      "behaviors": [
+        "DRAW.surface-hosting"
+      ],
+      "owner": "runtime/render; apps/qt-shell",
+      "classification": "lifecycle",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "DirectDraw session setup and dynamically resolved external monitor APIs"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/opengl-render-routes.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58a9b0"
+        }
+      ],
+      "static_windows": [
+        "fullscreen_setup"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058aa90",
+      "entry": 5810832,
+      "title": "Graphics setup / monitor API loading",
+      "behaviors": [
+        "DRAW.surface-hosting"
+      ],
+      "owner": "runtime/render; apps/qt-shell",
+      "classification": "lifecycle",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "DirectDraw session setup and dynamically resolved external monitor APIs"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/opengl-render-routes.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58aa90"
+        }
+      ],
+      "static_windows": [
+        "windowed_setup"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058ad90",
+      "entry": 5811600,
+      "title": "Canvas create/release",
+      "behaviors": [
+        "RS.canvas-create-lock"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "lifecycle",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Canvas generation, extent and storage identity",
+        "Original allocation/release errors and aliases remain outside native ownership proof"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-world-canvas-startup.md",
+        "research/formats/canvas-startup-diagnostics.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58ad90"
+        }
+      ],
+      "static_windows": [
+        "surface_creation"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058b270",
+      "entry": 5812848,
+      "title": "Graphics setup / monitor API loading",
+      "behaviors": [
+        "DRAW.surface-hosting"
+      ],
+      "owner": "runtime/render; apps/qt-shell",
+      "classification": "lifecycle",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "DirectDraw session setup and dynamically resolved external monitor APIs"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/opengl-render-routes.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58b270"
+        }
+      ],
+      "static_windows": [
+        "monitor_api_loading"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058b3e0",
+      "entry": 5813216,
+      "title": "Canvas create/release",
+      "behaviors": [
+        "RS.canvas-create-lock"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "lifecycle",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Canvas generation, extent and storage identity",
+        "Original allocation/release errors and aliases remain outside native ownership proof"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-world-canvas-startup.md",
+        "research/formats/canvas-startup-diagnostics.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58b3e0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0058b660",
+      "entry": 5813856,
+      "title": "Locked pixel access",
+      "behaviors": [
+        "RI.locked-writes",
+        "RS.canvas-create-lock"
+      ],
+      "owner": "runtime/render; runtime/scene",
+      "classification": "surface_access",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Returned pointer, pitch, retry/conditional Unlock",
+        "Dirty generations and matching access lifetimes"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-canvas-startup.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58b660"
+        }
+      ],
+      "static_windows": [
+        "surface_lock"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058bac0",
+      "entry": 5814976,
+      "title": "Constant fills",
+      "behaviors": [
+        "RI.fills",
+        "RS.canvas-startup-clear"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Rectangle pixels, initialization state, original return/retry/restore semantics"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-canvas-startup.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58bac0"
+        }
+      ],
+      "static_windows": [
+        "constant_fill"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058bc10",
+      "entry": 5815312,
+      "title": "Constant fills",
+      "behaviors": [
+        "RI.fills",
+        "RS.canvas-startup-clear"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Rectangle pixels, initialization state, original return/retry/restore semantics"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-canvas-startup.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58bc10"
+        }
+      ],
+      "static_windows": [
+        "constant_fill_retry"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058bf40",
+      "entry": 5816128,
+      "title": "Opaque/keyed surface copies",
+      "behaviors": [
+        "RI.copies",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Source/destination identity, clipping, keys and ordered destination dependence",
+        "Original return/restore/retry and unequal-extent branches"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58bf40"
+        }
+      ],
+      "static_windows": [
+        "opaque_surface_copy"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058c140",
+      "entry": 5816640,
+      "title": "Opaque/keyed surface copies",
+      "behaviors": [
+        "RI.copies",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Source/destination identity, clipping, keys and ordered destination dependence",
+        "Original return/restore/retry and unequal-extent branches"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58c140"
+        }
+      ],
+      "static_windows": [
+        "source_key_surface_copy"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058c360",
+      "entry": 5817184,
+      "title": "Opaque/keyed surface copies",
+      "behaviors": [
+        "RI.copies",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Source/destination identity, clipping, keys and ordered destination dependence",
+        "Original return/restore/retry and unequal-extent branches"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58c360"
+        }
+      ],
+      "static_windows": [
+        "rectangle_copy"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058c4a0",
+      "entry": 5817504,
+      "title": "Opaque/keyed surface copies",
+      "behaviors": [
+        "RI.copies",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Source/destination identity, clipping, keys and ordered destination dependence",
+        "Original return/restore/retry and unequal-extent branches"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58c4a0"
+        }
+      ],
+      "static_windows": [
+        "rectangle_copy_restore"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058c6a0",
+      "entry": 5818016,
+      "title": "Opaque/keyed surface copies",
+      "behaviors": [
+        "RI.copies",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Source/destination identity, clipping, keys and ordered destination dependence",
+        "Original return/restore/retry and unequal-extent branches"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58c6a0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0058c8a0",
+      "entry": 5818528,
+      "title": "Opaque/keyed surface copies",
+      "behaviors": [
+        "RI.copies",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Source/destination identity, clipping, keys and ordered destination dependence",
+        "Original return/restore/retry and unequal-extent branches"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58c8a0"
+        }
+      ],
+      "static_windows": [
+        "rectangle_keyed_copy_restore"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058ca90",
+      "entry": 5819024,
+      "title": "Opaque/keyed surface copies",
+      "behaviors": [
+        "RI.copies",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Source/destination identity, clipping, keys and ordered destination dependence",
+        "Original return/restore/retry and unequal-extent branches"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58ca90"
+        }
+      ],
+      "static_windows": [
+        "rectangle_keyed_copy"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058cbc0",
+      "entry": 5819328,
+      "title": "Opaque/keyed surface copies",
+      "behaviors": [
+        "RI.copies",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Source/destination identity, clipping, keys and ordered destination dependence",
+        "Original return/restore/retry and unequal-extent branches"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58cbc0"
+        }
+      ],
+      "static_windows": [
+        "rectangle_blt"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058cd50",
+      "entry": 5819728,
+      "title": "Opaque/keyed surface copies",
+      "behaviors": [
+        "RI.copies",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Source/destination identity, clipping, keys and ordered destination dependence",
+        "Original return/restore/retry and unequal-extent branches"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58cd50"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0058cf20",
+      "entry": 5820192,
+      "title": "Opaque/keyed surface copies",
+      "behaviors": [
+        "RI.copies",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Source/destination identity, clipping, keys and ordered destination dependence",
+        "Original return/restore/retry and unequal-extent branches"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58cf20"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0058d1a0",
+      "entry": 5820832,
+      "title": "DC BMP/DIB source-image writers",
+      "behaviors": [
+        "RI.gdi-text",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; assets; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Encoded source/palette, placement and cropping",
+        "DC acquisition/release and original wrapper failure/return semantics"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-canvas-producers.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58d1a0"
+        }
+      ],
+      "static_windows": [
+        "dc_file_image"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058d240",
+      "entry": 5820992,
+      "title": "DC BMP/DIB source-image writers",
+      "behaviors": [
+        "RI.gdi-text",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; assets; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Encoded source/palette, placement and cropping",
+        "DC acquisition/release and original wrapper failure/return semantics"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-canvas-producers.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58d240"
+        }
+      ],
+      "static_windows": [
+        "dc_image"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058d280",
+      "entry": 5821056,
+      "title": "DC BMP/DIB source-image writers",
+      "behaviors": [
+        "RI.gdi-text",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; assets; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Encoded source/palette, placement and cropping",
+        "DC acquisition/release and original wrapper failure/return semantics"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-canvas-producers.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58d280"
+        }
+      ],
+      "static_windows": [
+        "dc_rectangle_image"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058d320",
+      "entry": 5821216,
+      "title": "Locked JPEG decoder",
+      "behaviors": [
+        "RI.locked-writes",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; assets; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Encoded source, destination pitch/extent and cropping",
+        "Imported decoder and Lock/Unlock lifetime/failures"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-canvas-producers.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58d320"
+        }
+      ],
+      "static_windows": [
+        "locked_jpeg_decode"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058d370",
+      "entry": 5821296,
+      "title": "Alternate positioned DC image writer",
+      "behaviors": [
+        "RI.gdi-text"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Positioned source image, borrowed DC interval and original results"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58d370"
+        }
+      ],
+      "static_windows": [
+        "dc_rectangle_image_alt"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058d3b0",
+      "entry": 5821360,
+      "title": "Unassigned locked WORD-copy window",
+      "behaviors": [
+        "DRAW.unassigned-word-window",
+        "RI.locked-writes"
+      ],
+      "owner": "runtime/render; runtime/scene",
+      "classification": "unresolved",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Two locks/unlocks and selected WORD pixel copy instructions",
+        "Entry boundary and indirect callers remain unknown"
+      ],
+      "remaining": "Selected 58d3b0..58d4a7 window is not a discovered function; no nearest-function assignment or recovered-range coverage asserted.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58d3b0"
+        }
+      ],
+      "static_windows": [
+        "locked_word_copy_window"
+      ]
+    },
+    {
+      "id": "DRAW.entry.0058d8c0",
+      "entry": 5822656,
+      "title": "Bevel/highlight/whitewash panels",
+      "behaviors": [
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered repeated destination transforms and asymmetric corner footprints",
+        "Original Lock/Unlock, return and caller machine state"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/native-world-producer-handoff.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58d8c0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0058ddf0",
+      "entry": 5823984,
+      "title": "Bevel/highlight/whitewash panels",
+      "behaviors": [
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered repeated destination transforms and asymmetric corner footprints",
+        "Original Lock/Unlock, return and caller machine state"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/native-world-producer-handoff.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58ddf0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0058e2c0",
+      "entry": 5825216,
+      "title": "Bevel/highlight/whitewash panels",
+      "behaviors": [
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered repeated destination transforms and asymmetric corner footprints",
+        "Original Lock/Unlock, return and caller machine state"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/native-world-producer-handoff.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58e2c0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0058ed80",
+      "entry": 5827968,
+      "title": "Packed-word fade",
+      "behaviors": [
+        "RS.canvas-fade-span",
+        "RS.canvas-producer-sequence",
+        "RS.fade-loop-state",
+        "RS.fade-live-pixels"
+      ],
+      "owner": "runtime/canvas-writers; reconstruction/rendering",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Contiguous physical pixel span, RGB565/RGB555 mask and padding projection",
+        "Original Lock/Unlock and wrapper caller state"
+      ],
+      "remaining": "Guarded25-call native loop takeover is independently compared on original Lock leases; other wrapper failures, borrowed surface lifetime, broader sessions and complete frame ownership remain open.",
+      "documents": [
+        "research/runtime/canvas-fade-span.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/fade-loop-takeover.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58ed80"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0058edb0",
+      "entry": 5828016,
+      "title": "Interior native fade-loop splice",
+      "behaviors": [
+        "RS.canvas-fade-span",
+        "RS.canvas-producer-sequence",
+        "RS.fade-loop-state",
+        "RS.fade-live-pixels"
+      ],
+      "owner": "runtime/canvas-writers; reconstruction/rendering",
+      "classification": "producer",
+      "scope": "Only 58edb0..58ede5 within explicitly anchored wrapper58ed80; original Lock/Unlock wrapper remains active.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Contiguous physical pixel span, RGB565/RGB555 mask and padding projection",
+        "Original Lock/Unlock and wrapper caller state"
+      ],
+      "remaining": "Guarded25-call native loop takeover is independently compared on original Lock leases; other wrapper failures, borrowed surface lifetime, broader sessions and complete frame ownership remain open.",
+      "documents": [
+        "research/runtime/canvas-fade-span.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/fade-loop-takeover.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x58edb0"
+        }
+      ],
+      "static_windows": [],
+      "original_anchor": 5827968
+    },
+    {
+      "id": "DRAW.entry.005947b2",
+      "entry": 5851058,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x5947b2"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0059521a",
+      "entry": 5853722,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x59521a"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00595677",
+      "entry": 5854839,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x595677"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00595b47",
+      "entry": 5856071,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x595b47"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.0059603e",
+      "entry": 5857342,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x59603e"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00596490",
+      "entry": 5858448,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x596490"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.005968a4",
+      "entry": 5859492,
+      "title": "Selected World raster entry",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition",
+        "RS.world-raster-batch-return"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered destination-dependent pixel writes",
+        "Selected low16 AX, callee cleanup and protected-canvas return boundary"
+      ],
+      "remaining": "Only observed admitted callers/format0 startup prefixes; complete caller/global effects, alternate paths, top clipping and sustained sessions remain open.",
+      "documents": [
+        "research/runtime/native-world-frame-rendering.md",
+        "research/formats/world-frame-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x5968a4"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00596cb8",
+      "entry": 5860536,
+      "title": "Direct-word SPR raster",
+      "behaviors": [
+        "RS.word-raster",
+        "RS.word-route"
+      ],
+      "owner": "runtime/scene; reconstruction/rendering",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Main WORD pixels and recovered workspace",
+        "Selected caller flags/FP state; auxiliary caller passes stay original"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-word-sprite-mvp.md",
+        "research/formats/word-sprite-samples-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x596cb8"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00597086",
+      "entry": 5861510,
+      "title": "Direct-word SPR raster",
+      "behaviors": [
+        "RS.word-raster",
+        "RS.word-route"
+      ],
+      "owner": "runtime/scene; reconstruction/rendering",
+      "classification": "producer",
+      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Main WORD pixels and recovered workspace",
+        "Selected caller flags/FP state; auxiliary caller passes stay original"
+      ],
+      "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-word-sprite-mvp.md",
+        "research/formats/word-sprite-samples-v1.md",
+        "docs/live-drawing-replacement.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x597086"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.0",
+      "title": "Original World input kind 0",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Only the selected documented effective raster contracts and their explicit admission apply."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 0
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.1",
+      "title": "Original World input kind 1",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Only the selected documented effective raster contracts and their explicit admission apply."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 1
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.16",
+      "title": "Original World input kind 16",
+      "behaviors": [
+        "DRAW.world-kind-16"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "unresolved",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "unresolved",
+        "reason": "Selected low-level raster inputs can be captured even when the older high-level World adapter refuses this kind; complete kind semantics remain unclassified."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 16
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.17",
+      "title": "Original World input kind 17",
+      "behaviors": [
+        "DRAW.world-kind-17"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "unresolved",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "unresolved",
+        "reason": "Selected low-level raster inputs can be captured even when the older high-level World adapter refuses this kind; complete kind semantics remain unclassified."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 17
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.2",
+      "title": "Original World input kind 2",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Only the selected documented effective raster contracts and their explicit admission apply."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 2
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.20",
+      "title": "Original World input kind 20",
+      "behaviors": [
+        "DRAW.world-kind-20"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "unresolved",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "unresolved",
+        "reason": "Selected low-level raster inputs can be captured even when the older high-level World adapter refuses this kind; complete kind semantics remain unclassified."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 20
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.22",
+      "title": "Original World input kind 22",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Only the selected documented effective raster contracts and their explicit admission apply."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 22
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.3",
+      "title": "Original World input kind 3",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Only the selected documented effective raster contracts and their explicit admission apply."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 3
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.31",
+      "title": "Original World input kind 31",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Only the selected documented effective raster contracts and their explicit admission apply."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 31
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.33",
+      "title": "Original World input kind 33",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Only the selected documented effective raster contracts and their explicit admission apply."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 33
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.4",
+      "title": "Original World input kind 4",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Only the selected documented effective raster contracts and their explicit admission apply."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 4
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.5",
+      "title": "Original World input kind 5",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Only the selected documented effective raster contracts and their explicit admission apply."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 5
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.6",
+      "title": "Original World input kind 6",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Raw original queue kind; no inferred table/default mapping or kind-to-raster semantics.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Only the selected documented effective raster contracts and their explicit admission apply."
+      },
+      "side_effects": [
+        "Original queue dispatch and required consumer state/readbacks",
+        "Complete branch effects remain open"
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": 6
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.kind.hidden-minus2",
+      "title": "Hidden original World input kind -2",
+      "behaviors": [
+        "RS.world-frame",
+        "RS.world-composition"
+      ],
+      "owner": "runtime/scene; reconstruction/terrain; renderer/scenes",
+      "classification": "render_state",
+      "scope": "Original raw queue kind -2 is hidden before selected raster admission; upstream visibility and full queue-side effects remain separate.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Hidden records remain part of the original input census even though no visible raster work is admitted."
+      },
+      "side_effects": [
+        "Retain original hidden/visibility queue state; do not count these records as visible raster draws."
+      ],
+      "remaining": "Complete kind semantics, alternate table/default dispatch and scenario coverage remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "draw_kind",
+          "identity": -2
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.bevel",
+      "title": "Producer journal operation bevel",
+      "behaviors": [
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered repeated destination transforms and asymmetric corner footprints",
+        "Original Lock/Unlock, return and caller machine state"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/native-world-producer-handoff.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "bevel"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.bind",
+      "title": "Producer journal operation bind",
+      "behaviors": [
+        "RS.canvas-bind-clip"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "render_state",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Bound destination identity, stride and global clipping bounds"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-world-canvas-startup.md",
+        "research/formats/canvas-startup-diagnostics.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "bind"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.bmp",
+      "title": "Producer journal operation bmp",
+      "behaviors": [
+        "RI.gdi-text",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; assets; compat/legacy",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Encoded source/palette, placement and cropping",
+        "DC acquisition/release and original wrapper failure/return semantics"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-canvas-producers.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "bmp"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.checkpoint",
+      "title": "Producer journal operation checkpoint",
+      "behaviors": [
+        "RI.locked-writes",
+        "RS.canvas-create-lock"
+      ],
+      "owner": "runtime/render; runtime/scene",
+      "classification": "surface_access",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Returned pointer, pitch, retry/conditional Unlock",
+        "Dirty generations and matching access lifetimes"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-canvas-startup.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "checkpoint"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.clip",
+      "title": "Producer journal operation clip",
+      "behaviors": [
+        "RS.canvas-bind-clip"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "render_state",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Bound destination identity, stride and global clipping bounds"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-world-canvas-startup.md",
+        "research/formats/canvas-startup-diagnostics.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "clip"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.copy",
+      "title": "Producer journal operation copy",
+      "behaviors": [
+        "RI.copies",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Source/destination identity, clipping, keys and ordered destination dependence",
+        "Original return/restore/retry and unequal-extent branches"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/surface-rectangle-forwarding.md",
+        "research/runtime/opengl-world-summon-observation.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "copy"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.create",
+      "title": "Producer journal operation create",
+      "behaviors": [
+        "RS.canvas-create-lock"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "lifecycle",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Canvas generation, extent and storage identity",
+        "Original allocation/release errors and aliases remain outside native ownership proof"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-world-canvas-startup.md",
+        "research/formats/canvas-startup-diagnostics.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "create"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.dib",
+      "title": "Producer journal operation dib",
+      "behaviors": [
+        "RI.gdi-text",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; assets; compat/legacy",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Encoded source/palette, placement and cropping",
+        "DC acquisition/release and original wrapper failure/return semantics"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-canvas-producers.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "dib"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.fade",
+      "title": "Producer journal operation fade",
+      "behaviors": [
+        "RS.canvas-fade-span",
+        "RS.canvas-producer-sequence",
+        "RS.fade-loop-state",
+        "RS.fade-live-pixels"
+      ],
+      "owner": "runtime/canvas-writers; reconstruction/rendering",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Contiguous physical pixel span, RGB565/RGB555 mask and padding projection",
+        "Original Lock/Unlock and wrapper caller state"
+      ],
+      "remaining": "Guarded25-call native loop takeover is independently compared on original Lock leases; other wrapper failures, borrowed surface lifetime, broader sessions and complete frame ownership remain open.",
+      "documents": [
+        "research/runtime/canvas-fade-span.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/fade-loop-takeover.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "fade"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.failure",
+      "title": "Producer journal operation failure",
+      "behaviors": [
+        "RI.sprites",
+        "RS.world-frame",
+        "RS.canvas-preworld-reuse"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Effective order and raster inputs",
+        "Picking/readbacks and full consumer state changes unresolved"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "failure"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.fill",
+      "title": "Producer journal operation fill",
+      "behaviors": [
+        "RI.fills",
+        "RS.canvas-startup-clear"
+      ],
+      "owner": "runtime/render; compat/legacy",
+      "classification": "composition",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Rectangle pixels, initialization state, original return/retry/restore semantics"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-canvas-startup.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "fill"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.font",
+      "title": "Producer journal operation font",
+      "behaviors": [
+        "RI.gdi-text",
+        "RS.font-glyph-raster",
+        "RS.glyph-live-route"
+      ],
+      "owner": "runtime/scene; reconstruction/rendering",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Pixels and float coverage-table mutations",
+        "Arguments, RET16, defined flags and selected x87/XMM state",
+        "Font/source/destination lifetimes"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Higher layout remains original; broader live tint/clip/FP inputs, font resets, public gameplay and sustained recovery remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/font-glyph-raster.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "font"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.halo",
+      "title": "Producer journal operation halo",
+      "behaviors": [
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered repeated destination transforms and asymmetric corner footprints",
+        "Original Lock/Unlock, return and caller machine state"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/native-world-producer-handoff.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "halo"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.jpeg",
+      "title": "Producer journal operation jpeg",
+      "behaviors": [
+        "RI.locked-writes",
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; assets; compat/legacy",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Encoded source, destination pitch/extent and cropping",
+        "Imported decoder and Lock/Unlock lifetime/failures"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-canvas-producers.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "jpeg"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.minimap",
+      "title": "Producer journal operation minimap",
+      "behaviors": [
+        "RS.minimap-terrain-raster"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Terrain source colours/visibility and retained auxiliary history",
+        "Observed invalidation result and storage geometry"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-minimap-terrain.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "minimap"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.minimap_overlay",
+      "title": "Producer journal operation minimap_overlay",
+      "behaviors": [
+        "RS.minimap-camera-corners"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Camera corner pixels and nested terrain ordering",
+        "Selected object origin results; broader picking/source generation unresolved"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "minimap_overlay"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.pcx",
+      "title": "Producer journal operation pcx",
+      "behaviors": [
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; assets; compat/legacy",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Encoded PCX and effective palette, row dimensions and padding"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/native-world-producer-handoff.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "pcx"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.points",
+      "title": "Producer journal operation points",
+      "behaviors": [
+        "RS.minimap-cell-marker"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Palette marker pixels and EAX destination word offset"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-minimap-overlays.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "points"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.queue_entry",
+      "title": "Producer journal operation queue_entry",
+      "behaviors": [
+        "RI.sprites",
+        "RS.world-frame",
+        "RS.canvas-preworld-reuse"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Effective order and raster inputs",
+        "Picking/readbacks and full consumer state changes unresolved"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "queue_entry"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.queue_return",
+      "title": "Producer journal operation queue_return",
+      "behaviors": [
+        "RI.sprites",
+        "RS.world-frame",
+        "RS.canvas-preworld-reuse"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Effective order and raster inputs",
+        "Picking/readbacks and full consumer state changes unresolved"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "queue_return"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.raster",
+      "title": "Producer journal operation raster",
+      "behaviors": [
+        "RI.sprites",
+        "RS.world-frame",
+        "RS.canvas-preworld-reuse"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Effective order and raster inputs",
+        "Picking/readbacks and full consumer state changes unresolved"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "raster"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.release",
+      "title": "Producer journal operation release",
+      "behaviors": [
+        "RS.canvas-create-lock"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "lifecycle",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Canvas generation, extent and storage identity",
+        "Original allocation/release errors and aliases remain outside native ownership proof"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-world-canvas-startup.md",
+        "research/formats/canvas-startup-diagnostics.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "release"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.rgb_add",
+      "title": "Producer journal operation rgb_add",
+      "behaviors": [
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; compat/legacy",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original execution retained; this inventory does not authorize replacement."
+      },
+      "side_effects": [
+        "Destination-dependent RGB addition and source descriptor"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Instrumented but unobserved in retained startup producer trace; no live equivalence/bypass claim.",
+      "documents": [
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/native-world-producer-handoff.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "rgb_add"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.source_definition",
+      "title": "Producer journal operation source_definition",
+      "behaviors": [
+        "RI.sprites",
+        "RS.world-frame",
+        "RS.canvas-preworld-reuse"
+      ],
+      "owner": "runtime/scene; renderer/scenes",
+      "classification": "consumer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Effective order and raster inputs",
+        "Picking/readbacks and full consumer state changes unresolved"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/render-drawing-inventory.md",
+        "docs/live-drawing-replacement.md",
+        "research/runtime/native-world-frame-rendering.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "source_definition"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.operation.wash",
+      "title": "Producer journal operation wash",
+      "behaviors": [
+        "RS.canvas-producer-sequence"
+      ],
+      "owner": "runtime/scene; renderer/canvas_sequence",
+      "classification": "producer",
+      "scope": "Aggregate producer journal operation; counts cannot identify each emitting wrapper or phase.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "scoped_native",
+        "reason": "Native support is limited to the linked owned-input or explicit guarded experiments; original execution remains required outside those scopes."
+      },
+      "side_effects": [
+        "Ordered repeated destination transforms and asymmetric corner footprints",
+        "Original Lock/Unlock, return and caller machine state"
+      ],
+      "remaining": "Individual emitter/caller identity and broader scenario activity remain incomplete. Broader callers, failure/lifetime branches and supported-session integration remain pending.",
+      "documents": [
+        "research/runtime/native-canvas-producers.md",
+        "research/formats/canvas-producers-v1.md",
+        "research/runtime/native-world-producer-handoff.md"
+      ],
+      "selectors": [
+        {
+          "kind": "operation",
+          "identity": "wash"
+        }
+      ],
+      "static_windows": []
+    }
+  ],
+  "additional_hook_sources": [
+    {
+      "path": "runtime/canvas-writers/bridge.c",
+      "kind": "interior_jump"
+    }
+  ]
+}
