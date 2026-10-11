@@ -44,6 +44,16 @@ if metadata.get('engine_cadence'):
     os.environ['MNM_ENGINE_CADENCE_FILE']='Z:'+str(trace).replace('/','\\')
 elif os.environ.get('MNM_ENGINE_CADENCE_TRACE') is not None:
     raise ValueError('Engine cadence observer was not staged')
+os.environ.pop('MNM_SCENE_PRODUCTION_FILE',None);os.environ.pop('MNM_SCENE_PRODUCTION_MODE',None)
+if metadata.get('scene_production_mode') is not None:
+    mode=metadata['scene_production_mode']
+    if mode not in ('0','1','2') or os.environ.get('MNM_SCENE_PRODUCTION_PROBE')!=mode or not metadata.get('resident_world'):raise ValueError('Unapproved scene production probe')
+    if hashlib.sha256((game/'MnmSceneProduction.dll').read_bytes()).hexdigest()!=metadata['scene_production_sha256']:raise ValueError('Scene production DLL changed')
+    trace=root/'scene-production.bin'
+    if trace.exists() or trace.is_symlink():raise ValueError('Stale or redirected scene production output')
+    os.environ['MNM_SCENE_PRODUCTION_FILE']='Z:'+str(trace).replace('/','\\');os.environ['MNM_SCENE_PRODUCTION_MODE']=mode
+elif os.environ.get('MNM_SCENE_PRODUCTION_PROBE') is not None:
+    raise ValueError('Scene production observer was not staged')
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(events).replace('/','\\')
 if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')=='1':
     trace=root/'gameplay-events.bin'

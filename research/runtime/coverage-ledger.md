@@ -6603,3 +6603,20 @@ and normal Quit. This instrumented pass does not replace ordinary uninstrumented
 results or the retained capture overload/performance failure. See[experiment](engine-cadence.md).
 Exact e692a4f..7c0e46a history review:19 files,zero missing receipts,with no
 retrospective gate or validation assertion.
+
+
+## Bounded repeated original scene production controls (2026-10-11)
+
+`NR.scene-production-repetition` adds an opt-in, fail-stop diagnostic for original
+004fd280 and candidate004fd315..004fd5ad. It leaves the50ms pacing/simulation
+unchanged and restores the original normal return ABI. Exact protected snapshots
+cover whole entity pools, ANI, RNG, scheduler, gameplay/map-context headers and
+counters; module/renderer changes and ordered scene rows remain separate evidence.
+All18 PE32 stand-in controls pass, including mutation/shape/unreadable refusals,
+28 guard mutations, stack/flags/FP/LastError preservation. Three fixture negatives
+are retained with their original hashes and corrections; no original engine defect
+is inferred from them. Static helper roles remain partial; original live repetition,
+full nested/map/visibility/timer/pixel safety and60FPS are pending.
+The exact7c0e46a..6cdf7a4 history review covers8 files with zero unresolved receipts;
+this is accounting, not a retrospective gate or execution claim.
+See[experiment](scene-production-repetition.md).

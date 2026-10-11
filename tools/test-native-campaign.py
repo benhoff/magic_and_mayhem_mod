@@ -363,6 +363,7 @@ def main():
     parser.add_argument('--portrait-stress-seconds', type=int, default=0, help='Repeat portrait recentering after verified combat (0 or 10..120)')
     parser.add_argument('--disable-precise-clock',action='store_true',help='Diagnostic control: retain original coarse GetTickCount uptime')
     parser.add_argument('--trace-engine-cadence',action='store_true',help='Memory-only original simulation/animation/World cadence trace; flush at normal process exit')
+    parser.add_argument('--scene-production-probe',choices=('observe','full','slice'),help='Bounded original scene production state audit; extra Worlds only for full/slice')
     pacer=parser.add_mutually_exclusive_group()
     pacer.add_argument('--enable-pacer-yield',dest='pacer_yield',action='store_true',help='Experimental opt-in cooperative Sleep0 wait; has no demonstrated portrait performance benefit')
     pacer.add_argument('--disable-pacer-yield',dest='pacer_yield',action='store_false')
@@ -425,6 +426,7 @@ def main():
         if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness','--behavior','HOST.native-campaign-spell-cases','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown'])
         if args.profile_resident:declaration_command.extend(['--behavior','NR.resident-stage-profiling','--scenario','NR.resident-stage-profiling.live'])
         if args.trace_engine_cadence:declaration_command.extend(['--behavior','NR.engine-cadence-observation','--scenario','NR.engine-cadence-observation.live'])
+        if args.scene_production_probe:declaration_command.extend(['--behavior','NR.scene-production-repetition','--scenario','NR.scene-production-repetition.live'])
         subprocess.run(declaration_command,cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     if args.claims:
         declaration=json.loads(args.claims.read_text())
@@ -457,6 +459,9 @@ def main():
     if args.trace_engine_cadence:
         if not args.resident_world or not args.normal_quit:raise ValueError('Engine cadence requires resident World and normal Quit')
         env['MNM_ENGINE_CADENCE_TRACE']='1'
+    if args.scene_production_probe:
+        if not args.resident_world or not args.normal_quit or args.trace_engine_cadence:raise ValueError('Scene production requires isolated resident World and normal Quit')
+        env['MNM_SCENE_PRODUCTION_PROBE']=str(('observe','full','slice').index(args.scene_production_probe))
     if args.resident_world:
         env['MNM_PUBLIC_RESIDENT_WORLD']='1'
         env['MNM_RESIDENT_POLL_TIMING']='1'

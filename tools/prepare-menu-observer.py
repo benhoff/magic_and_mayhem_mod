@@ -25,7 +25,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable staging aliases its source')
-    for name in ['Chaos.exe','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','MnmDraw.dll','MnmEngineCadence.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
+    for name in ['Chaos.exe','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','MnmDraw.dll','MnmEngineCadence.dll','MnmSceneProduction.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
         if not (game/name).resolve().is_relative_to(game.resolve()):
             raise ValueError('Disposable write target escapes game copy: '+name)
     if hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Copy hash mismatch')
@@ -61,6 +61,14 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         patched=module('engine_cadence_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmEngineCadence.dll','EngineCadenceAnchor',b'.mncad')
         shutil.copy2(cadence_dll,game/cadence_dll.name)
         cadence_metadata=dict(engine_cadence=True,engine_cadence_sha256=hashlib.sha256(cadence_dll.read_bytes()).hexdigest())
+    production_metadata={}
+    production=os.environ.get('MNM_SCENE_PRODUCTION_PROBE')
+    if production is not None:
+        if production not in ('0','1','2') or not resident_world or cadence is not None:raise ValueError('Scene production requires isolated resident diagnostic staging')
+        production_dll=module('scene_production_build','tools/build-scene-production.py').build(root/'scene-production-build')
+        patched=module('scene_production_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmSceneProduction.dll','SceneProductionAnchor',b'.mnprod')
+        shutil.copy2(production_dll,game/production_dll.name)
+        production_metadata=dict(scene_production_mode=production,scene_production_sha256=hashlib.sha256(production_dll.read_bytes()).hexdigest())
     (game/'Chaos.exe').write_bytes(patched);shutil.copy2(dll,game/dll.name)
     preferences=module('menu_preferences','tools/run-opengl-game.py')
     stored=None
@@ -86,7 +94,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'native_render':native_render,'render_dll_sha256':hashlib.sha256(render_dll.read_bytes()).hexdigest() if render_dll else None,
               'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
-    metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata)
+    metadata.update(glyph_metadata);metadata.update(resident_metadata);metadata.update(cadence_metadata);metadata.update(production_metadata)
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     if native_draw:
         immutable_inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx')}
