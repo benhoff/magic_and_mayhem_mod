@@ -1,7 +1,7 @@
 #include "commands.hpp"
 #include "command_state.hpp"
 #include "capture.hpp"
-#include "../protocols/include/mnm/render_stream_v3.h"
+#include "../protocols/include/mnm/render_stream_v4.h"
 #include <limits>
 #include <map>
 #include <stdexcept>
@@ -33,7 +33,7 @@ const PaletteDescription& CommandState::palette(unsigned id,unsigned generation)
     const auto at=palettes.find(id);require(at!=palettes.end() && at->second.generation==generation,"Unknown or stale palette identity");return at->second;
 }
 void CommandState::accept(const SurfaceCommand& c){
-    require((c.version==1 || c.version==2 || c.version==3) && (!version || version==c.version),"Changed or unknown command version");
+    require((c.version==1 || c.version==2 || c.version==3 || c.version==4) && (!version || version==c.version),"Changed or unknown command version");
     require(!ended && commands<(mode==CommandStreamMode::Streaming?UINT32_MAX:4096u),"Closed or oversized command session");
     require(c.sequence==commands+1,"Command sequence gap");
     const auto& w=c.words;std::size_t payload=0;
@@ -83,12 +83,12 @@ void CommandState::accept(const SurfaceCommand& c){
         for(const auto& binding:bindings){require(binding.second!=w[0],"Retiring attached palette");}
         payload=8;break;
     case MNM_RENDER_STREAM_V3_OPERATION_CLIPPER_SET:{
-        const auto& s=get(w[0]);require(c.version==3 && w[1]<=2 && w[2]==c.regions.size() &&
+        const auto& s=get(w[0]);require(c.version>=3 && w[1]<=2 && w[2]==c.regions.size() &&
             (w[1]==1 || !w[2]),"Invalid clipper mode/count or stream version");
         require(s.format.bits==16 && s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,31},"Clipper command requires RGB565");
         validateClipper(commandClipper(c),s.width,s.height);payload=12+c.regions.size()*16;break;}
     case MNM_RENDER_STREAM_V3_OPERATION_SURFACE_COPY:{
-        const auto& s=get(w[0]);const auto& d=get(w[1]);require(c.version==3 && w[2]<=1 && w[4]<=3,"Invalid surface copy identity/API/busy observations");
+        const auto& s=get(w[0]);const auto& d=get(w[1]);require(c.version>=3 && w[2]<=1 && w[4]<=3,"Invalid surface copy identity/API/busy observations");
         const std::array<std::uint32_t,3> masks{0xf800,0x7e0,31};
         require(s.format.bits==16 && d.format.bits==16 && s.format.masks==masks && d.format.masks==masks,"Surface copy command requires RGB565");
         const auto wait=w[2]?0x10u:0x01000000u,key=w[2]?1u:0x8000u;
@@ -96,7 +96,14 @@ void CommandState::accept(const SurfaceCommand& c){
         require(w[0]!=w[1] || w[3]==0 || w[3]==wait,"Self-copy requires opaque flags");
         planSurfaceCopy(s.width,s.height,d.width,d.height,d.clipper,commandSurfaceCopy(c));payload=52;break;}
     case MNM_RENDER_STREAM_V3_OPERATION_SURFACE_RESULT_CHECK:
-        require(c.version==3 && w[0] && w[0]==lastCopySequence,"Result check does not name the latest surface copy");payload=8;break;
+        require(c.version>=3 && w[0] && w[0]==lastCopySequence,"Result check does not name the latest surface copy");payload=8;break;
+    case MNM_RENDER_STREAM_V4_OPERATION_WORLD:{
+        const auto& s=get(w[0]);const auto gen=std::uint64_t(w[1])|(std::uint64_t(w[2])<<32);
+        const auto nonce=std::uint64_t(w[3])|(std::uint64_t(w[4])<<32);
+        require(c.version==4 && s.width==800 && s.height==600 && s.format.bits==16 &&
+          s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,31},"Resident World destination contract");
+        require(worldGeneration!=UINT64_MAX && gen==worldGeneration+1 && nonce &&
+          (!worldNonce || nonce==worldNonce),"Resident World generation/nonce");payload=20;break;}
     default:throw std::runtime_error("Unsupported command opcode");
     }
     if(mode==CommandStreamMode::Bounded)require(payload+12<=std::size_t(maxCommandBytes)-bytes,"Command byte budget exceeded");
@@ -110,6 +117,7 @@ void CommandState::accept(const SurfaceCommand& c){
     else if(c.operation==15)palettes.erase(w[0]);
     else if(c.operation==MNM_RENDER_STREAM_V3_OPERATION_CLIPPER_SET)live.at(w[0]).clipper=commandClipper(c);
     else if(c.operation==MNM_RENDER_STREAM_V3_OPERATION_SURFACE_COPY)lastCopySequence=c.sequence;
+    else if(c.operation==MNM_RENDER_STREAM_V4_OPERATION_WORLD){worldGeneration=std::uint64_t(w[1])|(std::uint64_t(w[2])<<32);worldNonce=std::uint64_t(w[3])|(std::uint64_t(w[4])<<32);}
     else if(c.operation==6)presented=true;
     else if(c.operation==8)ended=true;
     if(mode==CommandStreamMode::Bounded)bytes+=payload+12;
@@ -175,6 +183,10 @@ struct CommandConsumer::Impl {
             if(options.diagnostics==CommandDiagnostics::Verify){require(output.lastCopySequence==w[0] && output.lastCopy.hresult==w[1],"Captured HRESULT disagrees with surface copy replay");++output.resultChecks;}
             else ++output.skippedResultChecks;
             break;
+        case MNM_RENDER_STREAM_V4_OPERATION_WORLD:
+            require(bool(options.residentWorld),"Resident World provider unavailable");
+            renderer.importGpu565(handles.at(w[0]),options.residentWorld(admission.worldGeneration,admission.worldNonce));
+            ++output.residentWorldImports;break;
         default:throw std::runtime_error("Unsupported replay command");
         }
         ++output.commands;refresh();

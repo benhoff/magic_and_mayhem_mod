@@ -37584,6 +37584,43 @@
         "reconstruction/rendering/surface_retry.hpp"
       ],
       "validation_domain": "Native CPU scheduling versus retained independent original/scripted COM references plus comparator refusal guards; no real driver executed."
+    },
+    {
+      "id": "NR.public-resident-world",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Resident World import into public command composition",
+      "scope": "Versioned ordered World reference and same-size RGB565 shared-GPU import;strict generation/nonce/destination admission and terminal missing-provider handling. Runtime CPU baseline separation,HUD composition,menu transitions and live replacement/performance pending. No original pixel/driver equivalence or60FPS assertion.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "protocols/include/mnm/render_stream_v4.h",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/command_state.hpp",
+        "renderer/command_consumer.cpp"
+      ],
+      "tests": [
+        "tests/render-resident-world-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/public-resident-world.md"
+      ],
+      "validation_dependencies": [
+        "renderer/CMakeLists.txt"
+      ],
+      "evidence": [
+        "NR.public-resident-world.import-fixture-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -75182,6 +75219,36 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.public-resident-world.import-fixture-20261011",
+      "kind": "native_integration",
+      "scope": "Isolated shared-context RGB565 exhaustive GPU import and ordered World/HUD/copy fixture. Public runtime and performance remain pending; no original equivalence claim.",
+      "record": "research/runtime/public-resident-import-fixture-20261011.json",
+      "sha256": "83dbb343cbb6b12812cc9de8cbbab471fada4f86be7ab235f9a792c4050f9fb2",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/rgb565_words",
+          "equals": 65536
+        },
+        {
+          "pointer": "/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/ordinary_import_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/hud_and_copy_checks",
+          "equals": 2
+        },
+        {
+          "pointer": "/remaining_surfaces",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -83593,6 +83660,20 @@
         "NR.drawing-interactive-acquisition.native-master-final-original-20261011"
       ],
       "level": "live_observation"
+    },
+    {
+      "id": "NR.public-resident-world.import-fixture",
+      "scope": "GPU-only import, exhaustive 565 words, orientation, validity, ordered HUD update/copy, incompatible destination and missing-provider refusals. Public campaign integration pending.",
+      "level": "headless",
+      "behaviors": [
+        "NR.public-resident-world"
+      ],
+      "tests": [
+        "tests/render-resident-world-test.cpp"
+      ],
+      "evidence": [
+        "NR.public-resident-world.import-fixture-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -83930,8 +84011,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-final-validated-master-20261011.json",
-    "sha256": "17a3da396a8ca270bd14421c23217d4049ac976497d77abc1a6dc4bf14a2ab8c"
+    "path": "research/runtime/coverage/source-index-public-resident-import-20261011.json",
+    "sha256": "7976c14e33cacbd8798f9d2bcdc9a903c617c28ea1336bec55e743a806ef264e"
   },
   "claim_bindings_required": true
 }
