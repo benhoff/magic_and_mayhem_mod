@@ -4651,3 +4651,22 @@ Registered `DRAW.api-cohort.*-20261011` and `DRAW.api-only.movies-20261011` reta
 new results without refreshing historical hashes. The committed
 `50674a8..defa681` range has20exact file and9behavior receipts with zero missing
 intermediate versions; retrospective accounting asserts no past gate/validation.
+
+
+DRAW-01 formal argument/output capture (2026-10-11): the independently versioned
+V2 API observer retains up to16 formal/diagnostic stack words and four bounded
+before/after raw buffers with explicit null/unreadable/unavailable states. Exact
+import/movie-site layouts include the13-argument StretchDIBits and final movie
+Release; cached receiver candidates assert only BEFORE byte equality. No object
+read occurs after Release. Fresh55guards and26real PE32 ABI bodies pass, including
+52-byte cleanup, failed raw outputs, both patch modes and a callee making its
+candidate page inaccessible. Failed attempts and their caller-frame test
+limitation remain retained. Original enabled-movie/API-only run `run-xix7fqds`
+closes4621pairs at53sites, zero loss/open/IO, stable sources/staged metadata, core
+absent and exit0; final original Main image was viewed. GUID/output-pointer slots
+and a returned100x100rectangle are raw run-local observations. Semantic interface
+ownership, pixel/palette/string buffers, complete writers/failures/recovery and
+all14scenario/four dispatch closures remain pending. Older evidence fingerprints
+are preserved. History `defa681..a69697f` has17exact file/11behavior receipt matches
+with no missing intermediate versions, separate from this uncommitted increment.
+See [V2 evidence and limits](draw01-graphics-api-boundaries.md).

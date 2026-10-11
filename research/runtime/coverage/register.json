@@ -31224,7 +31224,10 @@
         "tools/campaign_spell.py",
         "tools/drawing_api_journal.py",
         "tools/drawing_api_bindings.py",
-        "tools/drawing_api_cohorts.py"
+        "tools/drawing_api_cohorts.py",
+        "tools/drawing_api_pairs.py",
+        "tools/drawing_api_details.py",
+        "tools/drawing_api_contracts.py"
       ],
       "evidence": [
         "DRAW.census.menu-observation-20261010",
@@ -31243,7 +31246,8 @@
         "DRAW.census.campaign-effects-observation-20261011",
         "DRAW.api-menu.observation-20261011",
         "DRAW.api-breakpoint.menu-20261011",
-        "DRAW.api-only.movies-20261011"
+        "DRAW.api-only.movies-20261011",
+        "DRAW.api-v2.movies-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31523,7 +31527,8 @@
       "implementation": [
         "tools/drawing_api_journal.py",
         "protocols/include/mnm/drawing_api_journal_v1.h",
-        "tools/export-drawing-api-splices.py"
+        "tools/export-drawing-api-splices.py",
+        "tools/drawing_api_pairs.py"
       ],
       "tests": [
         "tests/test-drawing-api-journal.py"
@@ -31536,7 +31541,8 @@
         "runtime/scene/canvas_producers.c",
         "research/runtime/drawing-inventory.json",
         "research/runtime/coverage/binary-nocd.json",
-        "research/runtime/drawing-api-sites-expanded-static-20261011.json"
+        "research/runtime/drawing-api-sites-expanded-static-20261011.json",
+        "tools/drawing_api_pairs.py"
       ],
       "evidence": [
         "DRAW.api-splices.static-20261011",
@@ -31545,7 +31551,8 @@
         "DRAW.api-breakpoint.guards-20261011",
         "DRAW.api-breakpoint.static-20261011",
         "DRAW.api-cohort.core-static-20261011",
-        "DRAW.api-cohort.only-static-20261011"
+        "DRAW.api-cohort.only-static-20261011",
+        "DRAW.api-v2.guards-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31560,7 +31567,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Separate original CALL before/after forwarding observer",
-      "scope": "Opt-in PE32 observer for 302 core/API or314 API-only selected exact original CALL sites. Save/restore registers/flags/x87/SSE/LastError, capture pre-CALL stack/target and post-CALL actual ESP/result, forward original CALL and remainder without replacing an argument or return slot. Retain12core/API overlap refusals; API-only is a separate core-absent selection and abort startup on signature/protection/flush failure. Explicit journal loss/open/IO/terminal and control phase guards. Synthetic ABI tests and actual original runs remain separate; no universal transparency, caller-PC-sensitive/timing equivalence, original API/output/COM/GDI/borrow lifetime or complete writer/scenario/DRAW-01 closure claim. Adds an opt-in single-byte INT3 forwarding mode for safe whole-CALL signatures; the PE32 vectored handler changes only saved EIP for an exact owned breakpoint, forwarding foreign/mismatched exceptions. Successor and operand bytes are untouched. Wine/Windows XP+ observation policy, not a recovered Win98 engine contract; dynamic unload remains unsupported.",
+      "scope": "Opt-in PE32 observer for 302 core/API or314 API-only selected exact original CALL sites. Save/restore registers/flags/x87/SSE/LastError, capture pre-CALL stack/target and post-CALL actual ESP/result, forward original CALL and remainder without replacing an argument or return slot. Retain12core/API overlap refusals; API-only is a separate core-absent selection and abort startup on signature/protection/flush failure. Explicit journal loss/open/IO/terminal and control phase guards. Synthetic ABI tests and actual original runs remain separate; no universal transparency, caller-PC-sensitive/timing equivalence, original API/output/COM/GDI/borrow lifetime or complete writer/scenario/DRAW-01 closure claim. Adds an opt-in single-byte INT3 forwarding mode for safe whole-CALL signatures; the PE32 vectored handler changes only saved EIP for an exact owned breakpoint, forwarding foreign/mismatched exceptions. Successor and operand bytes are untouched. Wine/Windows XP+ observation policy, not a recovered Win98 engine contract; dynamic unload remains unsupported. Emits independent V2 records with sixteen-word maximum formal/diagnostic stacks and four separately reviewed bounded buffers. AFTER uses saved BEFORE pointers; Release has no snapshots and receiver candidates remain byte equality, not COM type inference.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31585,10 +31592,15 @@
         "runtime/shadow/win32_min.h",
         "tools/build-shadow-bridge.py",
         "tests/canvas-startup-call.S",
-        "research/runtime/drawing-api-core-cohort-static-20261011.json",
+        "research/runtime/drawing-api-v2-core-plan-static-20261011.json",
         "protocols/include/mnm/drawing_api_bindings_v1.h",
         "tools/drawing_api_bindings.py",
-        "research/runtime/drawing-api-only-cohort-static-20261011.json"
+        "research/runtime/drawing-api-v2-only-plan-static-20261011.json",
+        "tools/drawing_api_pairs.py",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "tools/drawing_api_contracts.py",
+        "tools/drawing_api_details.py",
+        "tests/drawing-api-detail-call.S"
       ],
       "evidence": [
         "DRAW.api-observer.build-20261011",
@@ -31598,7 +31610,11 @@
         "DRAW.api-menu.observation-20261011",
         "DRAW.api-breakpoint.abi-20261011",
         "DRAW.api-breakpoint.menu-20261011",
-        "DRAW.api-only.movies-20261011"
+        "DRAW.api-only.movies-20261011",
+        "DRAW.api-v2.abi-20261011",
+        "DRAW.api-v2.movies-20261011",
+        "DRAW.api-v2.core-static-20261011",
+        "DRAW.api-v2.only-static-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31634,7 +31650,8 @@
         "runtime/shadow/win32_min.h",
         "protocols/include/mnm/drawing_api_journal_v1.h",
         "protocols/include/mnm/drawing_census_v1.h",
-        "runtime/drawing-api-census/exception_i386.h"
+        "runtime/drawing-api-census/exception_i386.h",
+        "tools/drawing_api_pairs.py"
       ],
       "evidence": [
         "DRAW.api-bindings.guards-20261011",
@@ -31643,7 +31660,10 @@
         "DRAW.api-breakpoint.guards-20261011",
         "DRAW.api-breakpoint.abi-20261011",
         "DRAW.api-breakpoint.menu-20261011",
-        "DRAW.api-only.movies-20261011"
+        "DRAW.api-only.movies-20261011",
+        "DRAW.api-v2.guards-20261011",
+        "DRAW.api-v2.abi-20261011",
+        "DRAW.api-v2.movies-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31658,7 +31678,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Original-active separate API journal journey staging and strict completion",
-      "scope": "Explicit opt-in API observer alongside original-active core/menu journeys in fresh private installations. Hash-pin observer and original section bytes, use shared readonly phase control, retain/decode independent closed API and core journals plus per-run allocation bindings, and require stable binaries/sources and normal original exit. Core/API admits302sites with12overlap refusals; separate API-only selects all314boundaries; diagnostic physical addresses/outcomes/cleanup do not infer logical callers, COM/GDI/output/borrowing/pixels, complete writers or DRAW-01 scenario closure. Menu-only controls cannot enable API observation. Explicit API-only cohort stages only menu/API imports, verifies actual core module/leave absence, and does not create, decode or claim a core call journal. It remains separate from the original-active core/API and menu-control cohorts.",
+      "scope": "Explicit opt-in API observer alongside original-active core/menu journeys in fresh private installations. Hash-pin observer and original section bytes, use shared readonly phase control, retain/decode independent closed API and core journals plus per-run allocation bindings, and require stable binaries/sources and normal original exit. Core/API admits302sites with12overlap refusals; separate API-only selects all314boundaries; diagnostic physical addresses/outcomes/cleanup do not infer logical callers, COM/GDI/output/borrowing/pixels, complete writers or DRAW-01 scenario closure. Menu-only controls cannot enable API observation. Explicit API-only cohort stages only menu/API imports, verifies actual core module/leave absence, and does not create, decode or claim a core call journal. It remains separate from the original-active core/API and menu-control cohorts. V1/V2 decoding is explicit; freeze staged experiment/build metadata as well as binaries/sources. Synthetic namespace is rejected for original runs. No version silently reinterprets V1 records.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31745,12 +31765,18 @@
         "protocols/include/mnm/drawing_api_bindings_v1.h",
         "research/runtime/drawing-api-splices-export-checked-static-20261011.json",
         "runtime/drawing-api-census/exception_i386.h",
-        "tools/drawing_api_cohorts.py"
+        "tools/drawing_api_cohorts.py",
+        "tools/drawing_api_pairs.py",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "tools/drawing_api_contracts.py",
+        "tools/drawing_api_details.py",
+        "tests/drawing-api-detail-call.S"
       ],
       "evidence": [
         "DRAW.api-menu.observation-20261011",
         "DRAW.api-breakpoint.menu-20261011",
-        "DRAW.api-only.movies-20261011"
+        "DRAW.api-only.movies-20261011",
+        "DRAW.api-v2.movies-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31780,7 +31806,48 @@
       "validation_dependencies": [],
       "evidence": [
         "DRAW.api-cohort.guards-20261011",
-        "DRAW.api-only.movies-20261011"
+        "DRAW.api-only.movies-20261011",
+        "DRAW.api-v2.movies-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-api-details",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Reviewed formal API arguments and bounded buffer snapshots",
+      "scope": "Independent V2 API diagnostic wire and exact import/original-movie-site stack layouts, including13StretchDIBits arguments and explicit bounded input/output buffers. Unknown sites remain16diagnostic words, not inferred COM interfaces. Null/unreadable/unavailable buffers and failing API raw outputs do not imply object validity; Release never dereferences a released object. Strict V2 metadata/pair/argument/pointer/extent/padding checks; actual runtime validation remains independent; no universal ABI, complete graphics API semantics/outputs/lifetimes or DRAW-01 closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-graphics-api-boundaries.md"
+      ],
+      "implementation": [
+        "tools/drawing_api_contracts.py",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "tools/drawing_api_details.py"
+      ],
+      "tests": [
+        "tests/test-drawing-api-contracts.py",
+        "tests/test-drawing-api-details.py"
+      ],
+      "validation_dependencies": [
+        "tests/drawing-movie-reference.cpp",
+        "research/runtime/draw01-movie-contract.md",
+        "tools/drawing_api_pairs.py",
+        "tools/drawing_api_journal.py",
+        "tools/drawing_census.py"
+      ],
+      "evidence": [
+        "DRAW.api-v2.guards-20261011",
+        "DRAW.api-v2.abi-20261011",
+        "DRAW.api-v2.movies-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -61751,6 +61818,127 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "DRAW.api-v2.guards-20261011",
+      "kind": "native_integration",
+      "scope": "Synthetic strict V1/V2 decoding, exact argument layouts and binding guards. No original/API/graphics/semantic ownership proof.",
+      "record": "research/runtime/drawing-api-v2-guards-20261011.json",
+      "sha256": "56d6ed16ce5f303248076f7dd13e5ecc2fac5fb2a619ceaa0c50278c75f87283",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.api-v2.abi-20261011",
+      "kind": "native_integration",
+      "scope": "Real separate CALL stubs/observer/dynamic splices and binding writer/decoder round trip against26synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.",
+      "record": "research/runtime/drawing-api-v2-abi-20261011.json",
+      "sha256": "0238efb2e0397f88afa5b9c931434b8b88c51520fb155e8817f2b313b44a17ad",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.api-v2.movies-20261011",
+      "kind": "live_observation",
+      "scope": "Closed V2 API diagnostic pairs with reviewed exact layouts and bounded raw buffers. Receiver candidates are byte equality only; failed outputs, external object lifetime, full semantics/graphics/API/writer/scenario closure are not inferred.",
+      "record": "research/runtime/drawing-api-v2-movies-20261011.json",
+      "sha256": "8a9ba29e601a369c91a3cfd9e828107f37a3b9a0baca398f859c42dd0dc617ac",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/metadata_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/call_census_enabled",
+          "equals": false
+        },
+        {
+          "pointer": "/api/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/api/schema",
+          "equals": 2
+        },
+        {
+          "pointer": "/api_bindings/core_leave",
+          "equals": 0
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW.api-v2.core-static-20261011",
+      "kind": "static",
+      "scope": "Current-source selected original CALL splice planning only, independent core/API and API-only cohorts. No execution, semantic API or DRAW-01 closure.",
+      "record": "research/runtime/drawing-api-v2-core-plan-static-20261011.json",
+      "sha256": "16cb948e61e4f9eed276cc00a962e700a82279ab6c6da73722ea14128174adfe",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/planned",
+          "equals": 302
+        }
+      ]
+    },
+    {
+      "id": "DRAW.api-v2.only-static-20261011",
+      "kind": "static",
+      "scope": "Current-source selected original CALL splice planning only, independent core/API and API-only cohorts. No execution, semantic API or DRAW-01 closure.",
+      "record": "research/runtime/drawing-api-v2-only-plan-static-20261011.json",
+      "sha256": "8788e8e66d34f1afe93986466b3e2200418e1dc342e1b753d7cc32b52488b1ea",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/planned",
+          "equals": 314
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -70363,6 +70551,62 @@
       "evidence": [
         "DRAW.api-only.movies-20261011"
       ]
+    },
+    {
+      "id": "drawing-api-v2-guards-20261011",
+      "level": "headless",
+      "scope": "55native layout/V2 buffer/base pair and allocation guards: seven exact layout, ten V2,25V1 planner/pair and13binding cases. Formal thirteen arguments, saved output pointer, failed/null/unreadable buffers, byte-only candidates, Release read refusal and malformed wire fields. No original or real exception ABI execution.",
+      "behaviors": [
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-bindings"
+      ],
+      "tests": [
+        "tests/test-drawing-api-contracts.py",
+        "tests/test-drawing-api-details.py",
+        "tests/test-drawing-api-journal.py",
+        "tests/test-drawing-api-bindings.py"
+      ],
+      "evidence": [
+        "DRAW.api-v2.guards-20261011"
+      ]
+    },
+    {
+      "id": "drawing-api-v2-abi-20261011",
+      "level": "headless",
+      "scope": "26real synthetic PE32 bodies, thirteen jump/thirteen breakpoint cases; full thirteen stack arguments/52byte cleanup, callee-entry selected flags/registers/LastError for22primitive bodies, final state/forwarding, bounded before/after buffers including failed outputs, null/unreadable pointers, and receiver pages made NOACCESS in the callee. Actual V2 writer/decoder and binding round trips, foreign/bypass/loss guards. No original renderer/API semantic output/object lifetime or universal ABI/timing claim.",
+      "behaviors": [
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-bindings"
+      ],
+      "tests": [
+        "tools/test-drawing-api-census-abi.py",
+        "tests/drawing-api-census-abi.c",
+        "tests/drawing-api-detail-call.S"
+      ],
+      "evidence": [
+        "DRAW.api-v2.abi-20261011"
+      ]
+    },
+    {
+      "id": "original-drawing-api-v2-movies-20261011",
+      "level": "live_observation",
+      "scope": "Original314selected API-only movie-enabled startup/main/shutdown with V2 reviewed formal arguments and bounded before/after buffers, independent closed pairs/bindings and frozen experiment metadata. Core absent. Actual return/object/GUID interpretation requires separate review; no full playback, semantic lifetime, global writers or DRAW-01 closure.",
+      "behaviors": [
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-cohorts",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.api-v2.movies-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -70700,8 +70944,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-api-only-20261011.json",
-    "sha256": "310faa2383cbaefbb84269515a1c54f0b8e6dbb3591ffab7345a814591c970fc"
+    "path": "research/runtime/coverage/source-index-draw01-api-v2-20261011.json",
+    "sha256": "f14dbb2557fe6a37ae0bd097b3d6d85498fd5e52d3bb031df7e93cc747ecaa9f"
   },
   "claim_bindings_required": true
 }
