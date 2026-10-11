@@ -388,3 +388,33 @@ cover mode/anchor refusal, mixed counters and result separation, exact callers
 and scenario/unknown-route accounting. Source-only decoder/catalog changes leave
 older original reference, ABI and live evidence stale; historical stages/hashes
 are retained without claiming current full original/native equivalence.
+
+## Bounded original Quick Battle and results — 2026-10-10
+
+The Quick Battle driver selects the original second offered map (Celtic Forest
+Two), keeps all17original setup rules and the offered empty spell assignments,
+and observes World plus bounded camera/HUD/cursor inputs. Original contexts1/2
+route Escape to results; Continue resumes World, and a second Escape/results/Quit
+returns through Quick Battle/Main to normal shutdown. The existing
+[results contract](quick-battle-results-engine-bridge.md) and
+[Mini findings](mini-menu-engine-bridge.md) define that boundary. Experimental
+Quick Mini remains disabled. The first attempt incorrectly expected Preferences
+after Escape, retained the actual Game Over screen and timed out; its partial
+journal and source hashes remain historical diagnostics.
+
+The first successful cohort retained2,509,020events/1,254,510paired calls at41
+entries, no sites, loss or open calls. Phase projections are declared separately
+before a repeat. Camera inputs and HUD hovering express intent; this empty
+loadout does not validate summoning, effects, actual camera motion or every
+semantic tooltip. Results rows are copied from original display strings, never
+calculated by the host. Writer/caller/side-effect/borrowed API/lifetime/recovery
+and14scenario/4dispatch closure remain pending.
+
+```sh
+python3 -B tools/prepare-drawing-census.py --source-game <pinned-installation>
+python3 -B tools/capture-drawing-census-game.py <fresh-experiment> \
+  --prefix-template <stopped-Wine-prefix> --journey quick-battle \
+  --claims <fresh-prospective-claims.json>
+```
+
+The prospectively registered [repeat](drawing-census-quick-battle-accounted-observation-20261010.json) retains2,447,382events/1,223,691pairs, zero loss/open calls, stable sources/binaries and exit0. Both original Game Over headings were checked. Each phase projection stays a bounded cohort; all18closure blockers remain.

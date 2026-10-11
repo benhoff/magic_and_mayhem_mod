@@ -4510,3 +4510,20 @@ cover mode/anchor refusal, mixed counters and result separation, exact callers
 and scenario/unknown-route accounting. Source-only decoder/catalog changes leave
 older original reference, ABI and live evidence stale; historical stages/hashes
 are retained without claiming current full original/native equivalence.
+
+### DRAW-01 original Quick Battle and both result actions — 2026-10-10
+
+The isolated original fixture now preserves original map2/default rules/empty
+spell assignments and observes World/input/Escape/results/Continue/World/
+Escape/results/Quit/Quick/Main/shutdown. Original context1 uses the documented
+Escape-to-results path, so no Quick Mini/Preferences claim or experimental gate
+activation is made. The initial incorrect Mini expectation is retained as a
+failed attempt; its partial journal remains invalid for closure. The successful
+first cohort has2,509,020events/1,254,510pairs at41entries, zero loss/open calls,
+stable binaries/sources and exit0. Phase/input intent is separate from verified
+camera/tooltip/effect behavior and pixel/graphics lifetime equivalence.
+Committed history42801df..4878427 has69exact source receipts and111behavior
+receipts without missing matches; this review is separate from uncommitted work
+and asserts neither a past gate pass nor new execution.
+
+The prospectively registered [repeat](drawing-census-quick-battle-accounted-observation-20261010.json) retains2,447,382events/1,223,691pairs, zero loss/open calls, stable sources/binaries and exit0. Both original Game Over headings were checked. Each phase projection stays a bounded cohort; all18closure blockers remain.

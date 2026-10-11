@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run original menu/campaign journeys on a private display; retain every attempt."""
+"""Run original menu/campaign/Quick Battle journeys; retain every attempt."""
 import argparse
 import configparser
 import ctypes as c
@@ -97,12 +97,13 @@ def capture(root, template, journey, claims=None):
             struct.pack_into('<I', control, 16, phase_sequence)
             report['phases'].append({'phase': value, 'purpose': purpose, 'time': time.monotonic()})
             ImageGrab.grab(xdisplay=env['DISPLAY']).save(root / ('phase-%02d-%02d.png' % (value, len(report['phases']))))
-        def send(screen, action, argument=0, rules=None):
+        def send(screen, action, argument=0, rules=None, slots=None):
             nonlocal heartbeat, sequence, request
             row = wait(screen); heartbeat += 1; sequence += 2; request += 1
             struct.pack_into('<I', channel, 16, sequence - 1)
             struct.pack_into('<6I', channel, 20, 1, heartbeat, request, action, row[0], argument)
             if rules is not None: struct.pack_into('<17I', channel, 44, *rules)
+            if slots is not None: struct.pack_into('<63I', channel, 40000, *slots)
             struct.pack_into('<I', channel, 16, sequence)
             reply = wait(ack=request)
             report['actions'].append({'screen': screen, 'action': action, 'argument': argument,
@@ -143,6 +144,8 @@ def capture(root, template, journey, claims=None):
             xt.XTestFakeMotionEvent(display, -1, px, py, 0); x.XFlush(display); hold(.2)
             xt.XTestFakeButtonEvent(display, 1, 1, 0); x.XFlush(display); hold(.12)
             xt.XTestFakeButtonEvent(display, 1, 0, 0); x.XFlush(display); hold(.3)
+        def hover(px, py, seconds=1):
+            xt.XTestFakeMotionEvent(display, -1, px, py, 0); x.XFlush(display); hold(seconds)
         def button(config, section):
             cfg = configparser.ConfigParser(inline_comment_prefixes=(';',), interpolation=None)
             cfg.read(root / 'game/Interface' / config)
@@ -187,6 +190,58 @@ def capture(root, template, journey, claims=None):
         rules = list(struct.unpack_from('<13I', channel, 168)) + [struct.unpack_from('<I', channel, 232 + i * 48)[0] for i in range(4)]
         send(14, 6, rules=rules); wait(25); hold(1); send(25, 10)
         send(14, 5); send(22, 2); wait(3)
+        if journey == 'quick-battle':
+            phase(4, 'Original Quick Battle setup, second offered map and unchanged rules')
+            send(3, 1); send(22, 4); wait(14)
+            rules = list(struct.unpack_from('<13I', channel, 168)) + [struct.unpack_from('<I', channel, 232 + i * 48)[0] for i in range(4)]
+            send(14, 6, rules=rules); wait(25)
+            map_count = struct.unpack_from('<I', channel, 164)[0]
+            if map_count < 2: raise RuntimeError('Original second offered map unavailable')
+            send(25, 9, 2); wait(14)
+            def wire_text(offset, size):
+                return bytes(channel[offset:offset + size]).split(b'\0', 1)[0].decode('cp1252')
+            report['quick_setup'] = {'map': struct.unpack_from('<I', channel, 160)[0],
+                'map_name': wire_text(412, 128), 'rules': rules,
+                'players': [{'values': list(struct.unpack_from('<4I', channel, 220 + i * 48)),
+                    'name': wire_text(236 + i * 48, 32)} for i in range(4)]}
+            if report['quick_setup']['map'] != 2: raise RuntimeError('Original map selection differs')
+            send(14, 7, rules=rules)
+            deadline = time.monotonic() + 60
+            while time.monotonic() < deadline:
+                tick(); row = state()
+                if row and (row[1] == 7 and row[2] or row[6] == 2): break
+                if process.poll() is not None: raise RuntimeError('Original exited during Quick Battle handoff')
+                time.sleep(.02)
+            else: raise RuntimeError('Original Quick Battle handoff timeout: ' + str(state()))
+            if row[1] == 7:
+                wait(7)
+                slots = list(struct.unpack_from('<63I', channel, 18000 + 28))
+                report['quick_spell_selection'] = {'policy': 'Preserve original offered assignments',
+                    'owner': struct.unpack_from('<I', channel, 18000)[0],
+                    'counts': list(struct.unpack_from('<3I', channel, 18000 + 16)), 'slots': slots}
+                send(7, 12, slots=slots)
+            hold(6); focus_game(); phase(5, 'Original Quick Battle World; passive bounded activity'); hold(2)
+            phase(6, 'Quick Battle camera arrow and recenter inputs')
+            for sym in [0xff51, 0xff53, 0xff52, 0xff54, 0x20]: key(sym)
+            phase(8, 'Quick Battle HUD/minimap hover inputs; semantic tooltip coverage requires review')
+            for point in [(75, 75), (75, 525), (523, 575), (573, 575)]: hover(*point)
+            phase(9, 'Quick Battle world cursor/click inputs'); click(350, 300); click(420, 350)
+            # Original contexts 1/2 route Escape to results, not ordinary Mini.
+            # Keep the independently experimental Quick Mini command lane disabled.
+            phase(13, 'Quick Battle original Escape-to-results transition')
+            focus_game(); key(0xff1b)
+            wait(26); heading('original-quick-results', 'Game Over')
+            report['quick_escape_transition'] = 'Original Escape-to-results; no Mini/Preferences claim'
+            report['quick_results'] = {'header': list(struct.unpack_from('<4I', channel, 42100)),
+                'rows': [{'active': struct.unpack_from('<I', channel, 42116 + i * 648)[0],
+                    'portrait': struct.unpack_from('<I', channel, 42120 + i * 648)[0],
+                    'texts': [wire_text(42124 + i * 648 + j * 128, 128) for j in range(5)]} for i in range(4)]}
+            send(26, 16); hold(2)
+            phase(5, 'Original Quick Battle Continue returns to World')
+            focus_game(); key(0xff1b); wait(26)
+            phase(13, 'Original second results visit and Quit to Quick Battle')
+            heading('original-quick-results-second', 'Game Over')
+            send(26, 17); wait(22); send(22, 2); wait(3)
         if journey.startswith('campaign'):
             phase(3, 'Fresh campaign ingress and all four difficulty choices')
             send(3, 22); wait(18)
@@ -295,7 +350,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('experiment', type=Path)
     parser.add_argument('--prefix-template', type=Path, required=True)
-    parser.add_argument('--journey', choices=['menus', 'campaign', 'campaign-save-load', 'movies'], default='menus')
+    parser.add_argument('--journey', choices=['menus', 'campaign', 'campaign-save-load', 'movies', 'quick-battle'], default='menus')
     parser.add_argument('--claims', type=Path)
     args = parser.parse_args()
     print(json.dumps(capture(args.experiment, args.prefix_template, args.journey, args.claims)), flush=True)
