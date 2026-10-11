@@ -54,3 +54,39 @@ ownership, release/destruction, clipping/format/pitch, failed operations and
 recovery remain pending. Static selection does not establish complete drawing
 writers, command-to-pixel effects, scenario closure or live replacement.
 DRAW-01 still has all 14 scenario closures and four dispatch obligations open.
+
+## Separate API wire and direct-splice planning — 2026-10-11
+
+The versioned `protocols/include/mnm/drawing_api_journal_v1.h` defines separate
+128-byte BEFORE/AFTER rows with actual ESP, registers/flags/LastError, concrete
+register or memory target identities, eight pre-CALL stack words and explicit
+read states. AFTER repeats the saved target and never dereferences a released
+object. Its actual stack delta is diagnostic; no calling convention is guessed.
+The strict decoder checks exact hook/build/phase/thread/target identities,
+serial call IDs, per-thread LIFO pairs, active counts and closed loss-free
+terminal state. API outputs and borrowed resource descriptors are not included
+in this initial wire version.
+
+The [current-source static splice plan](drawing-api-splices-accounted-static-20261011.json)
+accepts 250 of 314 selected CALLs alongside the 83 existing census spans.
+Fifty-two refuse incoming direct branches into overwritten interior bytes;
+12 overlap existing original census hook spans, chiefly the movie SITE probes.
+These refusals remain pending observer coverage. The plan verifies file-backed
+bytes, selected range containment and source stability before/after execution.
+It relocates the original CALL, jumps to an AFTER stub, then runs the copied
+remainder and resumes the exact original continuation. Short conditional/jump
+encodings expand with their original targets. A return before five bytes refuses
+copying into the next function. No original argument/return slot is replaced.
+An actual callee would see a trampoline return PC; universal transparency,
+caller-PC-sensitive behavior, timing and arbitrary indirect entry are unproved.
+This increment only plans those operations; no runtime hook is executed.
+
+[21 fresh guards](drawing-api-journal-guards-20261011.json) cover wire corruption,
+negative HRESULT/LastError retention, actual signed cleanup, explicit unreadable
+state, register/IAT identities, interleaved/reentrant pairing, relocation and
+splice refusal. The [first planning output](drawing-api-splices-static-20261011.json)
+is retained unchanged with an explicit [source-mutation limitation](drawing-api-splices-source-mutation-20261011.json):
+a guard edit occurred during that process, so its end-of-run hashes cannot
+establish the loaded planner version. It is not registered as current evidence.
+The fresh plan freezes and rechecks its inputs. Committed historye4be448..f2d858b
+has12exact file/14behavior receipt matches, without missing versions.
