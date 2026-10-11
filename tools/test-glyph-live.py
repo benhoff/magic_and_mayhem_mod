@@ -32,8 +32,9 @@ def main():
         run('admission-import',['llvm-dlltool','-m','i386','-D','MnmScene.dll','-d',definition,'-l',out/'glyph.lib','--kill-at'])
         run('admission-build',['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-Wall','-Wextra','-Werror','-c',ROOT/'tests/glyph-live-admission.c','-o',out/'admission.obj'])
         run('admission-link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{build/"glyph-admission.exe"}',out/'admission.obj',out/'glyph.lib',build/'kernel32.lib'])
-        env={**os.environ,'WINEDEBUG':'-all','WINEPREFIX':str(ROOT/'working/wineprefix-x86_64')}
+        admission_prefix=out/'admission-prefix';run('admission-prefix-copy',['cp','-a','--reflink=auto',(ROOT/'working/wineprefix-x86_64').resolve(),admission_prefix]);env={**os.environ,'WINEDEBUG':'-all','WINEPREFIX':str(admission_prefix)}
         run('admission-wine',['xvfb-run','-a','wine',build/'glyph-admission.exe'],env=env)
+        subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10);run('admission-prefix-stopped',['wineserver','-w'],env=env)
         report['virtual_query_admission']=dict(success=True,branches=['read/write committed extent','read-only second region','guard second region','no-access second region','zero extent/address','wrapping extent','overlap and adjacent identity ranges'])
         cohorts={};report['cohorts']=cohorts
         for mode in ('shadow','takeover'):

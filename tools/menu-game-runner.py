@@ -20,6 +20,21 @@ if os.environ.get('MNM_MENU_CAMPAIGN_OBSERVE'):
     expected='Z:'+str(campaign).replace('/','\\')
     if not metadata.get('campaign_observe') or os.environ['MNM_MENU_CAMPAIGN_OBSERVE']!=expected or campaign.exists():
         raise ValueError('Refusing unapproved or stale campaign observation output')
+os.environ.pop('MNM_NATIVE_DRAW_STATUS',None)
+native_draw=metadata.get('native_draw',False)
+if type(native_draw) is not bool:raise ValueError('Invalid native graphics policy')
+if native_draw:
+    if not metadata.get('native_render') or os.environ.get('MNM_MENU_NATIVE_RENDER')!='1':raise ValueError('Native graphics requires native command presentation')
+    if hashlib.sha256((game/'MnmDraw.dll').read_bytes()).hexdigest()!=metadata['native_draw_sha256']:raise ValueError('Native graphics DLL hash mismatch')
+    status=root/'native-draw-status.bin'
+    if metadata.get('native_draw_status')!=str(status) or status.exists():raise ValueError('Refusing redirected or stale native graphics status')
+    inputs=json.loads((root/'input-fingerprints.json').read_text())
+    for name,digest in inputs.items():
+        path=game/name
+        if Path(name).is_absolute() or '..' in Path(name).parts or hashlib.sha256(path.read_bytes()).hexdigest()!=digest:raise ValueError('Native graphics input changed before launch: '+name)
+    os.environ['MNM_NATIVE_DRAW_STATUS']='Z:'+str(status).replace('/','\\')
+    overrides=os.environ.get('WINEDLLOVERRIDES','')
+    os.environ['WINEDLLOVERRIDES']=(overrides+';' if overrides else '')+'ddraw='
 os.environ['MNM_MENU_OBSERVE']='Z:'+str(events).replace('/','\\')
 if os.environ.get('MNM_CAMPAIGN_CASTING_COMBAT')=='1':
     trace=root/'gameplay-events.bin'

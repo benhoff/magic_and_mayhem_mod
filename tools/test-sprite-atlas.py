@@ -5,6 +5,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import shlex
 from pathlib import Path
 import subprocess
 import tempfile
@@ -19,7 +20,7 @@ def declaration():
     claims=[{'behavior':b['id'],'contract_sha256':behavior_contract(b,{b['id']:b for b in r['builds']}),'scenarios':{s['id']:scenario_contract(s)}}]
     paths=required_sources(b)|set(s['tests'])
     # Pin the native library/build closure, beyond the policy's direct paths.
-    for directory in ('assets','renderer','compat/legacy','tests','protocols'):
+    for directory in ('assets','renderer','compat/legacy','tests','protocols','reconstruction/rendering'):
         paths.update(str(p.relative_to(ROOT)) for p in (ROOT/directory).rglob('*') if p.is_file() and (p.suffix in ('.cpp','.hpp','.h','.c','.S','.py','.sh') or p.name=='CMakeLists.txt'))
     return claims,{p:sha(ROOT/p) for p in sorted(paths)}
 def main():
@@ -39,8 +40,22 @@ def main():
         run('configure',['cmake','-S',ROOT/'compat/legacy','-B',build,'-DCMAKE_BUILD_TYPE=Debug'])
         run('build',['cmake','--build',build,*([] if args.full else ['--target','sprite-atlas-test','resource-cache-test','scene-upload-test','sprite-render-test','scene-renderer-test','scene-history-test','world-live-session-test',*(['world-atlas-replay'] if args.capture else [])]),'-j4'],timeout=600)
         run('ctest',['ctest','--test-dir',build,*([] if args.full else ['-R','^(opengl-sprite-atlas|native-resource-cache|opengl-scene-upload-budget|opengl-sprite-frames|native-shared-scene-renderer|native-scene-history|native-world-live-session)$']),'--output-on-failure','--output-junit',out/'ctest.xml'],timeout=600)
-        cases=ET.parse(out/'ctest.xml').findall('.//testcase')
-        if (len(cases)<70 if args.full else len(cases)!=7) or any(c.find('failure') is not None or c.find('skipped') is not None for c in cases):raise RuntimeError('Atlas regression corpus incomplete or failed')
+        cpu_build=out/'canvas-build'
+        run('canvas-configure',['cmake','-S',ROOT/'compat/legacy/canvas-producers','-B',cpu_build,'-DCMAKE_BUILD_TYPE=Debug'])
+        run('canvas-build',['cmake','--build',cpu_build,'--target','canvas-sequence-test','-j4'],600)
+        run('canvas-ctest',['ctest','--test-dir',cpu_build,'-R','^native-canvas-sequence$','--output-on-failure','--output-junit',out/'canvas-ctest.xml'])
+        closure=set()
+        for tree in (build,cpu_build):
+            for path in tree.rglob('*.o.d'):
+                for name in shlex.split(path.read_text().replace('\\\n',' ')):
+                    if not Path(name).is_absolute():continue
+                    source=Path(name).resolve()
+                    if source.is_absolute() and source.is_relative_to(ROOT) and not source.is_relative_to(ROOT/'working'):
+                        closure.add(str(source.relative_to(ROOT)))
+        report['compiled_sources']={p:sha(ROOT/p) for p in sorted(closure)}
+        if closure-set(sources):raise RuntimeError('Undeclared compiler dependencies: '+repr(sorted(closure-set(sources))))
+        cases=ET.parse(out/'ctest.xml').findall('.//testcase')+ET.parse(out/'canvas-ctest.xml').findall('.//testcase')
+        if (len(cases)<70 if args.full else len(cases)!=8) or any(c.find('failure') is not None or c.find('skipped') is not None for c in cases):raise RuntimeError('Atlas regression corpus incomplete or failed')
         report.update(ctests_passed=len(cases),tests=[c.attrib['name'] for c in cases],outputs={c.attrib['name']:c.findtext('system-out','') for c in cases})
         if args.capture:
             run('original-before',[ROOT/'tools/original-manifest.sh','verify'])

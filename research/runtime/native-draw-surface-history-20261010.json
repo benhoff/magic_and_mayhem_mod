@@ -1,0 +1,30 @@
+{
+  "scope": "Preserved isolated native graphics surface observations, including compile/caller/reservation failures. No game DirectDraw retirement claim.",
+  "reports": [
+    {
+      "record": "research/runtime/native-draw-compile-control-20261010.json",
+      "sha256": "bdebad3e54f38cee721eae83e3b1e97e660838296aeae2631240a828635d3202",
+      "success": false
+    },
+    {
+      "record": "research/runtime/native-draw-surface-caller-mismatch-20261010.json",
+      "sha256": "f3a63ed028590d0d52fdeaab3519850ce0320f890ea01418c8bd86a90aa5a0af",
+      "success": false
+    },
+    {
+      "record": "research/runtime/native-draw-positive-history-20261010.json",
+      "sha256": "4e008137450192bbc765b1035e51bbed10872e86ca54b0ab3ffccbd526dad8e0",
+      "success": true
+    },
+    {
+      "record": "research/runtime/native-draw-busy-control-20261010.json",
+      "sha256": "6a0ba1c163943785de5ac08ed876db8f622adadb527dfa3acd61d49aa733d058",
+      "success": false
+    },
+    {
+      "record": "research/runtime/native-draw-surfaces-pass-20261010.json",
+      "sha256": "ebd40d2ee9a255b8f33947b473a1949468a6d676792934f54e3cb631935aa2ef",
+      "success": true
+    }
+  ]
+}

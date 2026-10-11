@@ -137,3 +137,34 @@ the historical original-game GAP under rejected Sleep1 pacing. The separate
 zero fallback/recovery. Arbitrary original callback dependencies, interrupted
 owners, actual driver timing, other maps and longer hardware sessions remain
 pending. Historical evidence and its source hashes are preserved unchanged.
+
+
+2026-10-11: contending copy-lease acquisition now uses `Sleep(1)` rather than repeated `Sleep(0)`, allowing the holder to run. The50ms tick budget, atomic immediate admission, same-thread nonwaiting reentry, original-once forwarding and conservative timeout remain intact. [Eight independent fixtures](native-copy-contention-yield-fixtures-20261011.json) pass13 complete frame comparisons, four successful sessions and four expected GAP refusals with fixture original counts/HRESULT/LastError checked;30 compiler-native inputs match the725 predeclared source closure. Sleep precision, fairness, abandoned-owner behavior and original-driver scheduling are not proven.
+
+[Full public gameplay](native-draw-public-nvidia-gameplay-pass-20261011.json) now passes under the private accelerated NVIDIA/zink display with DirectDraw disabled/absent: casting/combat/movement/spells, nine portrait cycles, Mini/resume and normal Quit, with no fallback/recovery. Combat command/paint33.3999/25.1262FPS over131.138seconds; resumed59.8223/31.5958 over60.546seconds. Worst resumed window18.2648FPS remains explicit. Portrait16.994seconds averages20.0659FPS, worst19.1431 and maximum stable face channel error1. Previous hardware timeout failures remain unchanged. These are different live scenes, so no controlled speedup or guaranteed contention elimination follows. Final Qt renderer identity is cleared on normal Quit; keeping its last active identity is still a provenance improvement.
+
+## Address-based lease waiting — 2026-10-11
+
+Two fresh default NVIDIA campaign attempts still time out after the earlier
+Sleep(1) change. The50ms budget is retained. Contended acquisition now waits on
+the observed atomic owner value and release wakes all address waiters. The
+first CAS, same-thread reentry and conservative original-once timeout remain.
+Release preserves LastError around the wake call. Diagnostics report waiter
+elapsed time, holder elapsed time and wrapper source lines. No fairness,
+controlled speedup or universal frame-rate assertion follows from this policy.
+
+Installed Wine Kernel32 WakeByAddressAll is an unimplemented stub; its failed
+synthetic attempt is retained. The builder imports the implemented KernelBase
+address-wait exports instead. This targets modern Windows/Wine and does not
+claim recovered original Windows98 scheduling. Eight fresh independent fixtures
+pass13 complete-frame comparisons, four valid sessions and four expected GAP
+refusals with original call counts/return/LastError and native resource cleanup.
+Thirty linked native compiler inputs and42 bridge/compiler/builder inputs match
+129 prospectively declared sources. [Fixture evidence](native-copy-address-wait-fixtures-20261011.json).
+Live gameplay robustness remains a separate milestone.
+
+The full default NVIDIA campaign after address waiting still fails. Fresh holder
+diagnostics identify BltFast ownership spanning53ms and117ms; this distinguishes
+actual long ownership from Sleep timer granularity. The fixture pass does not
+fix or promote live gameplay robustness. Stage profiling of that critical
+section is the next investigation; the deadline is not extended.

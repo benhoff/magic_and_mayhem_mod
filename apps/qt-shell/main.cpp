@@ -264,7 +264,7 @@ private:
                 commands_=std::make_unique<LiveCommandSession>(*gl_);
                 commands_->stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
                 commands_->framePresented=[this]{++nativeCommandFrames_;input_->suspend((media_ && media_->movieActive()) || (menuStack_&&menuStack_->currentWidget()!=viewport_));placeholder_->hide();gl_->show();statusBar()->showMessage("Native command presentation active. Original rendering retained.");};
-                if(!commands_->create(commandPath,(QRandomGenerator::global()->generate()&0x7fffffffu)|1u,continuous?2:1,liveMenus_?120000:10000)){const auto error=commands_->error();statusBar()->showMessage(error);return false;}
+                if(!commands_->create(commandPath,(QRandomGenerator::global()->generate()&0x7fffffffu)|1u,continuous?2:1,120000)){const auto error=commands_->error();statusBar()->showMessage(error);return false;}
                 arguments.append({"--command-channel",commandPath});
                 if(continuous){input_->suspend(true);arguments.append({"--render-control",commandPath+".control"});}
             }
@@ -318,7 +318,7 @@ private:
             if(noReadback_)arguments.append("--no-readback");
             if(captureLocks_)arguments.append("--capture-locks");
             if(nativeCommands_)gl_->show();else gl_->hide();placeholder_->show();
-            placeholder_->setText((noReadback_ && !captureLocks_)?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":"Waiting for the first DirectDraw frame…");
+            placeholder_->setText((noReadback_ && !captureLocks_)?"Readback disabled for diagnosis. Use the Wine game window; Qt frames are disabled.":"Waiting for the first native frame…");
         }
         process_.start(launcher,arguments);
         if(!check){elapsed_.restart();poll_.start();statusBar()->showMessage("Waiting for the game window…");}

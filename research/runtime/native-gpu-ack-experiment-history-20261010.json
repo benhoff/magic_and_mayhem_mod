@@ -1,0 +1,77 @@
+{
+  "scope": "Preserved experiment records; successful protocol delivery does not excuse failed performance budgets.",
+  "records": [
+    {
+      "run": "run-klk9begz",
+      "record": "research/runtime/native-gpu-ack-undeclared-control-20261010.json",
+      "sha256": "fba9f4c412ca43e2a9129eaecf9722205a98b1d7e8015ce7e7aa03c0f9d17031",
+      "success": false,
+      "error": "['tests/world-continuous-channel-test.cpp']",
+      "scope": "Execution/failure history; delivery and performance are evaluated separately."
+    },
+    {
+      "run": "run-dkrc6dii",
+      "record": "research/runtime/native-gpu-ack-launch-control-20261010.json",
+      "sha256": "0c38a0365aa4a66c431a23c08125b7a518ede2d046fa5b0d7dec0b83a25dc6e1",
+      "success": false,
+      "error": "Original/native continuous capture failed; inspect /home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-world-continuous/run-dkrc6dii/capture.log",
+      "scope": "Execution/failure history; delivery and performance are evaluated separately."
+    },
+    {
+      "run": "run-p_5mofte",
+      "record": "research/runtime/native-gpu-ack-unbatched-20261010.json",
+      "sha256": "5dffb662cf36cd8e1436cfb02fa0fda6b04de773b5f0882e0e2f18c20437b39c",
+      "success": false,
+      "error": "Full-path performance budget exceeded",
+      "scope": "Execution/failure history; delivery and performance are evaluated separately."
+    },
+    {
+      "run": "run-tl_rc6ci",
+      "record": "research/runtime/native-gpu-ack-batched-20261010.json",
+      "sha256": "30eaef4037a139455a0d54d6f67a5fbb6eb13514574d3f9a8a34e11471161c35",
+      "success": false,
+      "error": "Full-path performance budget exceeded",
+      "scope": "Execution/failure history; delivery and performance are evaluated separately."
+    },
+    {
+      "run": "run-hg6cbdqe",
+      "record": "research/runtime/native-gpu-ack-masked-128-20261010.json",
+      "sha256": "52de3d0c93d83a4b720bf72836b06ca9952971083b9212efd67c65746008fb46",
+      "success": false,
+      "error": "Full-path performance budget exceeded",
+      "scope": "Execution/failure history; delivery and performance are evaluated separately."
+    },
+    {
+      "run": "run-ahxowe7l",
+      "record": "research/runtime/native-gpu-ack-masked-4096-20261010.json",
+      "sha256": "94985747e81a4b88d5f242a7682fcefd084699cba0aca92fa2b837eb05544f63",
+      "success": false,
+      "error": "Full-path performance budget exceeded",
+      "scope": "Execution/failure history; delivery and performance are evaluated separately."
+    },
+    {
+      "run": "run-svby9_n0",
+      "record": "research/runtime/native-gpu-ack-consumer-death-20261010.json",
+      "sha256": "723ed2e81ec4cbc83ce4c0a0d0ffb5d50a299293575c5c5e9e915a1c58a175db",
+      "success": true,
+      "error": null,
+      "scope": "Execution/failure history; delivery and performance are evaluated separately."
+    },
+    {
+      "run": "run-qa6c8440",
+      "record": "research/runtime/native-gpu-ack-producer-death-20261010.json",
+      "sha256": "2196ec9bea5de30360b398eab8b042a3513a8550df8b855324aa956d656fa673",
+      "success": true,
+      "error": null,
+      "scope": "Execution/failure history; delivery and performance are evaluated separately."
+    },
+    {
+      "run": "run-nqeyfccv",
+      "record": "research/runtime/native-gpu-ack-recovery-20261010.json",
+      "sha256": "e08c9ee1d21deb321e79a5526e3c96b02bc2599f3fcd4a0c5085341eb8ef04b2",
+      "success": false,
+      "error": "Full-path performance budget exceeded",
+      "scope": "Execution/failure history; delivery and performance are evaluated separately."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "success": false,
+  "sources": {
+    "runtime/native-draw/factory.c": "e806524b6470976aa4536b42503adb79ffac913f698eb6a399ba2ccf9f465913",
+    "runtime/native-draw/surfaces.h": "3d509e3e92ad9005cec4bccd7644d1e68169f3a9c37bc8c9fd3bb342d21e9301",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/native-draw-factory-probe.c": "32e4749cf8115197d6676e206281d5d12d40cda75835cb93a02591ac3b1cd85c",
+    "tests/native-draw-surface-probe.c": "1d3c5fc0340621b17c2d10ce8ce686c544ed536a3f44fdfa6c225d4f5854eee6",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/test-native-draw-factory.py": "566ee3747c6910fde533fe859c26baa7f83cd90eb6a16ff12a1ca21a0624a56b",
+    "tools/test-native-draw-surfaces.py": "8e7165e82306e8b51e9735b49608512e359a69de5a6ded525dd61dafbe00b969"
+  },
+  "claims": [
+    {
+      "behavior": "NR.directdraw-retirement",
+      "contract_sha256": "ca947fd7608e8abd5a3ff0ffd917eca39dbe0d04b8f29594c79805ba188068dc",
+      "scenarios": {
+        "native-draw-surfaces-20261010": "a65bacc7414402c1722b887c0678e6589568bcf1dffd22927c796d802700f75b"
+      }
+    }
+  ],
+  "scope": "64 unchanged caller cases using DirectDraw1/4 and Surface1/2/4, odd-pitch system-memory RGB565, key/copy/fill/overlap and full native words against real Wine DirectDraw. Native run disables ddraw and checks no module loads; device modes are logical native policies. Primary/flip/DC/palette services, real game integration and GPU history read dependencies remain pending.",
+  "real_game_directdraw_retired": false,
+  "error": "Another Wine session is active; serialize the runs before collecting evidence",
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true,
+  "inputs": {},
+  "inputs_stable": true
+}

@@ -3,7 +3,7 @@
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
 extern void scene_enter(void);
 extern void world_begin(u32*,u32);
-extern int canvas_producers_install(void);
+extern int canvas_producers_install(void),canvas_producers_continuous(void);
 extern void canvas_producers_close(void),canvas_producers_queue(u32*),canvas_producers_protect(void);
 extern int world_stream_init(void);
 extern void world_stream_close(void);
@@ -47,6 +47,10 @@ static int save(const u8* bytes,u32 size){
 void scene_observe(u32* registers){
     u32 error=GetLastError();if(!__sync_bool_compare_and_swap(&busy,0,1)){SetLastError(error);return;}
     u8* bytes=0;u32 saved_sample=0;
+    if(canvas_producers_continuous()){
+        canvas_producers_queue(registers);canvas_producers_protect();
+        __sync_lock_release(&busy);SetLastError(error);return;
+    }
     startup_queue_begin(registers);
     kind8_queue(registers);
     canvas_producers_queue(registers);

@@ -1,0 +1,78 @@
+{
+  "success": true,
+  "scope": "Isolated stubbed Win32 status sink and failure contract only; no real Wine/API latency or original engine equivalence.",
+  "sources": {
+    "runtime/native-draw/factory.c": "66308a0b534d06151e3aff73433916a44e47f2580f74bff68de7079d62953079",
+    "runtime/native-draw/status.h": "0b02ccf127b1193c368b2d80a765ff8cbf2d85c2ed7bb2dcd97120d118df60bc",
+    "runtime/render/bridge.c": "c0fcaf42547e0ff181737e04ba74f92f1c02460af93290ba506c1b15daffe398",
+    "runtime/render/copy_order.h": "cb474a8e41c9e2f3f0938e508cacd38f09fb864c6f294e67d29dfe5884b4d3cf",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/native-draw-status-test.cpp": "ccbef95fca6ee762ad3c87fe3e6e3933cc90ab41831ebc054a1ca08f22cbf925",
+    "tools/build-native-draw.py": "5791d97ffa126a832fd6d73b2a873cbaaa2153c922f8ac7fc4b118a657042149",
+    "tools/test-native-campaign.py": "4749166efa4f48ac6529145d99a1ea3bac8962abed864d4545d7a0479379b50a",
+    "tools/test-native-draw-status.py": "59fe338e0ed0b096507609e4b8cabd129774e09e5b8895c5673c3464d34196d0"
+  },
+  "claims": [
+    {
+      "behavior": "NR.native-draw-status-session-file",
+      "contract_sha256": "2e954f2dd7b0002a87d241d73ced206f1f84681ea8f6c1452a8b86b6fc4ac259",
+      "scenarios": {
+        "native-draw-status-session-file-20261011": "9599478c644236a6b23a769ca7ee49999a05b0de6d0b396b5b7c52b57f7b6ee0"
+      }
+    }
+  ],
+  "executions": [
+    {
+      "mode": "assertions",
+      "command": [
+        "clang++",
+        "-std=c++17",
+        "-UNDEBUG",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+        "-MD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-status/run-vy7ggr3n/assertions.d",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/tests/native-draw-status-test.cpp",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-status/run-vy7ggr3n/assertions"
+      ],
+      "compiler_inputs": {
+        "tests/native-draw-status-test.cpp": "ccbef95fca6ee762ad3c87fe3e6e3933cc90ab41831ebc054a1ca08f22cbf925",
+        "runtime/native-draw/status.h": "0b02ccf127b1193c368b2d80a765ff8cbf2d85c2ed7bb2dcd97120d118df60bc"
+      },
+      "executable_sha256": "def8b429cbdfbd8eb1224389f1883d46c349babef5e25bc4ff2666614bcf507c",
+      "output": "mapped status: 1024 complete bounded memory snapshots, zero drawing file IO, every-call module checks, LastError, collision and terminal failures PASS\n"
+    },
+    {
+      "mode": "asan-ubsan",
+      "command": [
+        "clang++",
+        "-std=c++17",
+        "-UNDEBUG",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-MD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-status/run-vy7ggr3n/asan-ubsan.d",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/tests/native-draw-status-test.cpp",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-status/run-vy7ggr3n/asan-ubsan"
+      ],
+      "compiler_inputs": {
+        "tests/native-draw-status-test.cpp": "ccbef95fca6ee762ad3c87fe3e6e3933cc90ab41831ebc054a1ca08f22cbf925",
+        "runtime/native-draw/status.h": "0b02ccf127b1193c368b2d80a765ff8cbf2d85c2ed7bb2dcd97120d118df60bc"
+      },
+      "executable_sha256": "af1a4fe9a866a4ba15cb7fbb805d1714461753921feeb050ce5dad7d104798d5",
+      "output": "mapped status: 1024 complete bounded memory snapshots, zero drawing file IO, every-call module checks, LastError, collision and terminal failures PASS\n"
+    }
+  ],
+  "sources_stable": true,
+  "finding": "Independent1024 bounded96-byte mapped memory snapshots with guard WORDs,zero admitted-drawing file operations,exact fields/peak counters/LastError,every-call module check,collision/no-wait and startup/map/flush/unmap100/101/102 refusals; asserts+ASan/UBSan and actual compiler closure pass. No real Wine scheduling latency or crash/concurrent-reader atomicity claim."
+}

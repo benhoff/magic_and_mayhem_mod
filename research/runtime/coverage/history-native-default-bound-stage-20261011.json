@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "reviewed_range": "d1553af2885af474a0626099e19dbc8e7c1e4c93^..d1553af2885af474a0626099e19dbc8e7c1e4c93",
+  "scope": "Committed parent/current SHA-256 receipt audit only; no retrospective gate or execution claim",
+  "files": [
+    {
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "7d2b5bffaa565e75f903d15882f9a0380196851e309b5d9374b88a1913888f70",
+      "after_sha256": "c26732fa8b9913d3acf803997ecc4a7fa41727d82c2ee27ffede14ead89fa668",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "eeb1f1d83b8f928d0d110f78bd52ce7b46238fa9504ca926caf363b839e2a063",
+      "after_sha256": "2cf912afab0dee670b3a727a5fba897e162c39a7b79b6fe5fda665971fd3d298",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/history-native-copy-address-wait-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "45677ba4a5b29959ef1a7b254071ddc23631b2581ba8b33339cb83a045443f04",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "2b0843ce39a978994e31cf9c0303933772c11219ce7d054896b87df80b573243",
+      "after_sha256": "874ad8a84a968616b339b502bc45f81ae870ccfbdb40c5c02cc58574664ec88b",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-default-bound-stage-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "848b8e1b993ae65aa1f02759376ca6d8061da51e70115742aef3ed1f94708c45",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-default-bound-stage-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "e049469bcb292f908d126d4caf1714fc5c5f6aeb8e8dcd254245f8fdd38fe501",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "research/runtime/native-copy-address-stage-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2c70e5a628873d6db38a7c70262ef9f02e1c37bf7f4099f43fc77d926d8be4b6",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-device-surfaces.md",
+      "before_sha256": "e0268ae163abc6236561fc00f2df7856a5c890e8db7c41fed702a4383d2e4e44",
+      "after_sha256": "7b11121aa5ae9fe2440b5c7befc071b02bedbd4af5b5d2c9e531a5555fb86db0",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-final-4096-performance-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7a8b6f3acee0b24c544340a664b281f444c594321c5d94ad800260bf4639d2d6",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-public-default-full-bound-nvidia-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a1521e0c6a3675c3855391a1428f56e517581685a082056915dca0f4a6dbb663",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-public-default-full-nvidia-artifacts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0543d70c787b16a3c789ff72463a48b0738ca3ef5714a216cc007333103e833e",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-public-default-full-nvidia-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "599adedde6b198db4d93efb797e38bd44fa80c7595b0ff50f720ad49afc45f13",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "runtime/render/bridge.c",
+      "before_sha256": "8eddd99f3abc4ea23a93fd18f78a512845bcd01d4d071f5db1b93032b4dba145",
+      "after_sha256": "c323a5c4025e4bbbfe33f7c4dcfaadb197bd5074dbc8916024dc1fbd8b9c6796",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "runtime/render/copy_order.h",
+      "before_sha256": "f13c38600da19ee8d0de38e967d17d8096257ff6fce49efa5bc17c1a74b16284",
+      "after_sha256": "dab9d8ffa17d08aa0259c48cb12d6c4cd97a3eb67e386f97eeeee9a449fd5a10",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    },
+    {
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "bc8f6113cc9b5870f2f959482ffd227cfda308223757a2f25828c8a7611ca56b",
+      "after_sha256": "4749166efa4f48ac6529145d99a1ea3bac8962abed864d4545d7a0479379b50a",
+      "matching_review_indices": [
+        641,
+        642
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

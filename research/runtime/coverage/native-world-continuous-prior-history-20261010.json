@@ -1,0 +1,525 @@
+{
+  "scope": "First-parent/current review of the integrated merge before continuous-source changes. Exact committed bytes and retained receipts; no new execution or second-parent gate assertion.",
+  "commit": "dd69a30",
+  "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+  "transitions": [
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "apps/qt-shell/world_rolling_main.cpp",
+      "before_sha256": null,
+      "after_sha256": "e5037803016a067f36b624dddd3109905c16d5ba6e30ec96aa6c7be0e766c993",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "compat/legacy/world-rolling/CMakeLists.txt",
+      "before_sha256": "558d394d31c0dcc599a1cac4309288953b733f5e857ac6f9934e7bd393487f71",
+      "after_sha256": "7ce63098d22d778f319683f302021665e471f0ad97197d1382eae7175aea04cf",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "compat/legacy/world_rolling_handoff.cpp",
+      "before_sha256": null,
+      "after_sha256": "d264fcf3003c1805a813e3ae28913bbb424477f2b0d92ed741da255b0514cddf",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "compat/legacy/world_rolling_handoff.hpp",
+      "before_sha256": null,
+      "after_sha256": "407b0647108dbb953b851e5949eb8b6044987dfe1b36d25d7ceba63ffd9e71d2",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "compat/legacy/world_rolling_session.cpp",
+      "before_sha256": "5a999fa90524616fc7e00e2ff1c5d1ff220ca06e4b72b9a89f93c4c8539c8ffc",
+      "after_sha256": "6858b738babbcd8822ebb5df3380eab6ebdf8306c56f13f984de2fd853b41f08",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "compat/legacy/world_rolling_session.hpp",
+      "before_sha256": "5d130275e03d9313bfc2988fbe9619d8243abf2086eb3f24ceee17ae00bbab0b",
+      "after_sha256": "fef759a34d16afec2b07d17f469cafdede7a2c1dec0656a8c51ff82c451624ad",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "bf30dd32171573eba585eebab132b6577cbae30de7431a10e248c02a8c24563c",
+      "after_sha256": "f2e4e9f8cf604a511caeceb85c56de28b3735f4055b9ce006126e0eea81d9d33",
+      "reviews": [
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/native-render-integration-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f58d3ab75a152299e9f6ffbed0a736f5bc8ce32ccd1facafc506535350f210ee",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/native-world-rolling-concurrent-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e3b98bd8e49a77b9179ded0d704232753f96dbae6ea0fe405f8bf88bf5d4624d",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/native-world-rolling-live-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e15d4644a466bc0f819e4665c3493706c39c8a3c937c50fdd7a21f3adc14d362",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/native-world-rolling-postcommit-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "28f84a800a5830bfc7eef8a9afa515ae39990a3f61e96993c3f3bee411aa9b55",
+      "reviews": [
+        "native-campaign-remaining-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "bdb23e6bd1037cb700db970f4ce963898fed7a4bdb7385803cda409f2ed074ee",
+      "after_sha256": "0102aa0953045c3271891ae97d87498f08eb65d0ab7459958518c8f7db631333",
+      "reviews": [
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/source-index-render-integration-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2fe98185b00b9f393b8befa09881a3b171770341daa8f2f01ac3b88399e2b8e8",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/source-index-render-integration-final-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "27572d2e0b9ceb136837f4d6ea5908fc639d90ae6e0b3f7412f847ca21553277",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/source-index-world-rolling-live-final-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "fd744077579db2d2812387641ca02aacfd443a652f6981ac38ed7912dcf740a8",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "6281be1ca7229b8f597171e314ad080afd320f33f714d63532097e17c837bb81",
+      "after_sha256": "830cbb7fb27a66fbcdd0fcae0c2b7d169227f05a535cd76ba25506c6c55ed626",
+      "reviews": [
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-campaign-remaining-20261010.md",
+      "before_sha256": null,
+      "after_sha256": "c55c880f2432dd7dc5dbdbc97debb775e94adaabc996469a01ef3c9c3bddd533",
+      "reviews": [
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-campaign-remaining-artifacts-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8de7c6e53e001f6ed8e2af7a9f43b409161da84ab419cb621ec6340e32b9adf8",
+      "reviews": [
+        "native-campaign-remaining-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-campaign-remaining-flow.json",
+      "before_sha256": null,
+      "after_sha256": "3ee1774e3f28731a17831b19e2978cb842e1d98890997f7aa18deb78027d6e95",
+      "reviews": [
+        "native-campaign-remaining-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-campaign-remaining-gameplay-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "dab201a68653a58ba20138be62d43ab8661068f5173b849316bf781ccfcd6006",
+      "reviews": [
+        "native-campaign-remaining-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-campaign-remaining-input-0.json",
+      "before_sha256": null,
+      "after_sha256": "2d66d3db7cf30b4bb750498465d292adf7c61a8ac5bcbfa1be374d5941427536",
+      "reviews": [
+        "native-campaign-remaining-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-render-integration-complete-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d23bbbbd80cd71d16bfd05eb6a5d4c080e747b4c03af8abc1b338f1962ef0aee",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-render-integration-consumer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "575112146f3b0ef17c17811491eecc2627d8dbc0fded30be6ca5395d577f89b9",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-render-integration-experiments-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "da5095b8f2ce00fdb3e2f8ce59d2f1dec0f0d0da624f8d8fab27bfc37f378411",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-render-integration-failure-latency-before-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ead52fed9731091e126db206fcb35fb9f7d1568d1b16217f6b5a53500dc39de4",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-render-integration-failure-recovery-latency-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "dd9c84d79676d0dc01871273ff97115bb7a83e607b638fe9286e9585ee5ba1ad",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-render-integration-failure-startup-timeout-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bbdc1cf1e5b6a567c5ede9b84ceb9cd59cae730c328ca58683821d219b609478",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-render-integration-hardware-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "3193d08b170c6cc0d4e860e83deeff5ecadef89edc748320b12487c79a45f44e",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-render-integration-original-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "47a2d2fcd786991066f85761e9aa42c48b3ef2bfa5354f81149f2f77207c3ec1",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-render-integration-postfault-recovery-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d01529367799b9a8b314fada789be611fe49afcfa86ac00d7f38f1fcda6a6f24",
+      "reviews": [
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-render-integration-producer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7f9811ff60f3931e7b7cd5e2c274c262bc151fad386850b35281e0c6f28a3ac9",
+      "reviews": [
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-world-rolling-hardware-nvidia-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7cc8cc62dbd807315de6e73b0ecebc6505e7f4c6b423f87f1d97d461c16ce957",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-world-rolling-hardware.md",
+      "before_sha256": null,
+      "after_sha256": "eff0ddb71b26c07135fc1d5cd22ef013977a5df00d27c5c21240674e18667568",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-world-rolling-live-consumer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "daed618568edbb0c81d711e223749b5c58da2f54a2e0e50b73766367f2d94855",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-world-rolling-live-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "effaee055fedb597be7b768e58d5aba81ea44da11b80e7136a0b578b82179150",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-world-rolling-live-prepared-build-review-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9a270e5bf80766724f00c5afb748bac4ba7d4e7bb40e7b2ffef1d17ffaf7117b",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-world-rolling-live-producer-death-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7f3e2bcbb9658663be5933891a31476e0538c846a455ea49d28657969b23564c",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-world-rolling-live-recovery-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "65a6e5c7e9329db3548549fd5ef9671b54d10ee37c84919665484cce9038a27a",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-world-rolling-live.md",
+      "before_sha256": null,
+      "after_sha256": "488fcd54913cfef9fced0e7b2b7545e48dd6b4cc2a2fabfeb5e5a8b6e7308aaf",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/native-world-rolling-original-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f6d79ed93cc14a04002a4b76068377d2835eba643bcf7a2b0c64943a3ffcca2b",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "tests/world-rolling-handoff-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "0a0e4a322d4335b801a9eed650d5c15343cff211d6b56bcd18689acd22de9a61",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "tools/test-native-world-rolling-hardware.py",
+      "before_sha256": null,
+      "after_sha256": "d6d2a30bac7da3b063dfcf5a0cff728ed61e5a6a0d853e9aa076aa8d0e4962c3",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "tools/test-native-world-rolling-live.py",
+      "before_sha256": null,
+      "after_sha256": "790e1c5892f9fed9ae3f1147a2bdb81333b4e51ef24a8c5b9cfa5741560db1eb",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "tools/test-native-world-rolling-original.py",
+      "before_sha256": null,
+      "after_sha256": "18ecf7f80991dc195477263d641886f1d483e91978860abad69082ca6f2402be",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "dd69a30",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "tools/test-world-raster-batch.py",
+      "before_sha256": "2445a9f8e64bd2fa26a3a71a80fb6d13b39beda0d17e683db6e9a9c64f0097b5",
+      "after_sha256": "53997d71001a6663cb92e15e2bc25bcfea658d2c9acc197cc1f82d811dd21b30",
+      "reviews": [
+        "native-world-rolling-live-exact-review-20261010",
+        "render-integration-source-accounting-20261010",
+        "render-integration-final-accounting-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

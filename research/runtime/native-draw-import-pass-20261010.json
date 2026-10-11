@@ -1,0 +1,58 @@
+{
+  "success": true,
+  "sources": {
+    "tools/prepare-native-draw.py": "21699b8f80893be38bc813698fe9ad24a328fc22cd084fa1ec90f16a9b1f7f72",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/test-native-draw-import.py": "9c84889f7bdaf2599189c8667779f01f81a6db8616b744b884cfc8903a8bf242"
+  },
+  "claims": [
+    {
+      "behavior": "NR.directdraw-import-retirement",
+      "contract_sha256": "0fb0f2a32770563807a1280bb734be47ca73a927b0148c20fa7d89227f933db7",
+      "scenarios": {
+        "native-draw-import-20261010": "a706b2b2b17bec0655e33e561a867c533d8c386a0f10c1c96ee5ee374ee7b1ed"
+      }
+    }
+  ],
+  "scope": "Offline guarded pinned PE32 import redirection only. Four staging compositions preserve all original section and IAT bytes, change the graphics descriptor name to native and add the anchor. Six mutations and duplicate staging refuse. No executable instructions or loader/game integration are executed.",
+  "real_game_directdraw_retired": false,
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "cases": [
+    {
+      "existing_additions": 0,
+      "output_sha256": "81ca4a8d1a3af9180da7c03d70af00b949849e8862f773e3f80987bdeeeedf6b",
+      "original_sections_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    },
+    {
+      "existing_additions": 1,
+      "output_sha256": "a1f438ea3fe5c4195867c0456fb0c956554d749fbba09ce5d15d2a5c1f98a672",
+      "original_sections_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    },
+    {
+      "existing_additions": 2,
+      "output_sha256": "763c56bd21934acea75b994605559597e8e5c103dd3d7648153f16b56897bc06",
+      "original_sections_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    },
+    {
+      "existing_additions": 3,
+      "output_sha256": "81db6f634d4388a23dff6c66e8907d1a3f559fbb6d3a475eec388b522e0d7fd9",
+      "original_sections_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    }
+  ],
+  "mutation_refusals": 6,
+  "duplicate_refusals": 4,
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true
+}

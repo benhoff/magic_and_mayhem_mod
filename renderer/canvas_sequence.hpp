@@ -1,6 +1,7 @@
 #pragma once
 #include "../assets/sprite_loader.hpp"
 #include "blit.hpp"
+#include "canvas_mirror.hpp"
 #include "minimap/overlays.hpp"
 #include <functional>
 #include <array>
@@ -10,6 +11,7 @@ namespace mnm::render {
 // operations define it. Diagnostic destination images are never accepted here.
 class CanvasSequence final {
 public:
+  explicit CanvasSequence(CanvasMirror *mirror = nullptr) : mirror_(mirror) {}
   void create(std::uint32_t, int width, int height);
   void terrainMap(std::uint32_t id, int x, int y, int width, int height, int centerX, int centerY, const std::vector<std::uint16_t> &colours, const std::vector<unsigned char> &hidden = {}, std::uint32_t previous = 0);
   std::size_t minimap(std::uint32_t, int stride, const std::function<std::size_t(MinimapPlane &)> &);
@@ -28,7 +30,11 @@ public:
   void raster(std::uint32_t, const assets::SpriteFrame &, int x, int y, Rect,
               unsigned mode, int backend,
               const std::array<std::uint16_t, 256> &,
-              const std::array<int, 16> &offsets = {}, unsigned period = 16);
+              const std::array<int, 16> &offsets = {}, unsigned period = 16,
+              bool invalidateOnly = false);
+  // Flush only known CPU writes into optional GPU storage. World output never
+  // enters this upload path. GPU-only copies propagate unknown CPU validity.
+  void publishWrites();
   Image read(std::uint32_t) const;
   std::size_t surfaces() const { return surfaces_.size(); }
 
@@ -36,9 +42,13 @@ private:
   struct Surface {
     Image image;
     std::vector<unsigned char> defined;
+    std::vector<int> dirtyFirst, dirtyEnd;
   };
   std::unordered_map<std::uint32_t, Surface> surfaces_;
   std::size_t pixels_ = 0;
+  CanvasMirror *mirror_ = nullptr;
   Surface &surface(std::uint32_t);
+  void write(Surface &, std::size_t at, std::uint32_t);
+  void dirty(Surface &, int x, int y, int width, int height);
 };
 } // namespace mnm::render

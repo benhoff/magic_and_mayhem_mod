@@ -1,0 +1,70 @@
+{
+  "success": true,
+  "sources": {
+    "runtime/native-draw/factory.c": "77a734ee0c7f5591b122d30ca26ca2e9399796aaabcec8103c867dcd82401cc6",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/native-draw-factory-probe.c": "32e4749cf8115197d6676e206281d5d12d40cda75835cb93a02591ac3b1cd85c",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/test-native-draw-factory.py": "0d70b8a48529e835dbd01718a1ab1aa2dd7aad4db99c3af690620a050b41e288"
+  },
+  "claims": [
+    {
+      "behavior": "NR.directdraw-retirement",
+      "contract_sha256": "c1da35cce1548deabc0885f98eebb37b2190839e317a33b3935ee980fa8ffdbd",
+      "scenarios": {
+        "native-draw-factory-20261010": "b96e4e4cb15cd4b35bd2bb1bcf1950a537173b104541802d76df628cdc748682"
+      }
+    }
+  ],
+  "scope": "128 isolated default native factory lifetimes with exact selected HRESULT/identity/per-interface reference/failure outputs versus real Wine DirectDraw. Native preserves incoming LastError as an explicit policy; Wine incidental error values are retained separately, not claimed equivalent. Original null-output creation fault is excluded from the common valid-caller corpus; native safe null-output refusal is a separate policy. Native enumeration is an explicit single-adapter policy. Native probe disables ddraw and verifies no module loads. Surface methods, real game integration, GPU presentation and DirectDraw retirement remain pending.",
+  "real_game_directdraw_retired": false,
+  "wine_version": "wine-11.16",
+  "compiled_sources": {
+    "runtime/native-draw/factory.c": "77a734ee0c7f5591b122d30ca26ca2e9399796aaabcec8103c867dcd82401cc6",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/native-draw-factory-probe.c": "32e4749cf8115197d6676e206281d5d12d40cda75835cb93a02591ac3b1cd85c"
+  },
+  "last_error_policy": {
+    "native": "preserve incoming0x51",
+    "original_values": [
+      1400
+    ],
+    "independent_last_error_equivalence": false
+  },
+  "cases": 128,
+  "caller_words": 2176,
+  "compared_columns": [
+    0,
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "original_results_sha256": "78749af67a20387428480f9388e6ec27a359912b90151b3446222a868deb7243",
+  "native_results_sha256": "5845be6a19d157fe3ae434d4d12ae4628c3a285ee5ccae65cdb86ca587e7f3c1",
+  "mismatch_words": [],
+  "native_ddraw_disabled": true,
+  "native_ddraw_module_absent": true,
+  "native_directdraw_imports": false,
+  "native_remaining_objects": 0,
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true,
+  "inputs": {
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-factory/run-61tv_ik5/wineprefix/drive_c/windows/syswow64/ddraw.dll": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-factory/run-61tv_ik5/MnmDraw.dll": "8ca03b659cfd2f71f4e50aee9c745af9ce0d6e2ad8586d693350d18821f4aa0c",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-factory/run-61tv_ik5/probe.exe": "2043e6a67c521c401df864c6942e87748901a07e532e136ae5dd9fe4c8131ccf"
+  },
+  "inputs_stable": true
+}

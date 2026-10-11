@@ -81,13 +81,16 @@ def main():
             at=next((i for i,(x,y) in enumerate(zip(a,b)) if x!=y),min(len(a),len(b)))
             raise ValueError('Fade mismatch at byte '+str(at))
         run('refusals',[build/'canvas-fade-test'])
-        refusals=json.loads((out/'refusals.log').read_text())['atomic_refusals']
+        controls=json.loads((out/'refusals.log').read_text())
+        refusals=controls['atomic_refusals']
         san=out/'sanitize'
         run('sanitize-configure',['cmake','-S',ROOT/'tests/canvas-fade','-B',san,'-DCMAKE_BUILD_TYPE=Debug','-DCMAKE_CXX_FLAGS=-fsanitize=address,undefined -fno-omit-frame-pointer','-DCMAKE_EXE_LINKER_FLAGS=-fsanitize=address,undefined'])
         run('sanitize-build',['cmake','--build',san,'--target','canvas-fade-test','-j4'])
         run('sanitize',[san/'canvas-fade-test'])
         report.update(cases=len(cases),words_compared=len(a)//2,physical_words_compared=sum(v['physical_words'] for v in manifest),
                       logical_words_compared=sum(v['visible_words'] for v in manifest),atomic_refusals=refusals,
+                      mirrored_cases=controls['mirrored_cases'],
+                      compiled_dependency_review={'sources':{n:sha(ROOT/n) for n in sorted(deps)}},
                       sanitizer_success=True,original_sha256=sha(out/'original.bin'),native_sha256=sha(out/'native.bin'),
                       corpus_sha256=sha(corpus),success=True)
     except Exception as exc:

@@ -1,0 +1,42 @@
+{
+  "scope": "Bounded128 native-only World session CPU cycles sampling, not performance success or instruction-level original equivalence. Profiling overhead remains charged; overall run fails unchanged budgets.",
+  "execution_report": "research/runtime/native-draw-game-cpu-profile-failure-20261010.json",
+  "execution_sha256": "15f6601b2f7bdd682f2cdeb0b0895d9fff9380e92d5868e62ff3ef84dbd5fdc6",
+  "perf_data": "working/tests/native-world-continuous/run-7ymqgjjh/native-perf.data",
+  "perf_data_sha256": "17b3504f787397e653b705b5a8ef9a0bba93d62137f9637eccee3675eaa2574f",
+  "summary_sha256": "aecfb58e00d5226eadb153dd8314f47f7b4b76b9ba8e0697eee34bd565c7b592",
+  "top_symbols": [
+    {
+      "percent": 35.07,
+      "symbol": "mnm::render::CanvasSequence::raster(unsigned int, mnm::assets::SpriteFrame const&, int, int, mnm::render::Rect, unsigned int, int, std::array<unsigned short, 256ul> const&, std::array<int, 16ul> const&, unsigned int, bool)"
+    },
+    {
+      "percent": 2.51,
+      "symbol": "mnm::render::CanvasSequence::fade(unsigned int, unsigned int, std::optional<unsigned long>, unsigned short)"
+    },
+    {
+      "percent": 1.94,
+      "symbol": "mnm::legacy::CanvasProducerReplay::apply(mnm::legacy::CanvasProducer const&)"
+    },
+    {
+      "percent": 1.64,
+      "symbol": "mnm::legacy::WorldContinuousChannel::poll(mnm::legacy::WorldContinuousChannel::Block&)"
+    },
+    {
+      "percent": 1.35,
+      "symbol": "0x0000000000185f60"
+    },
+    {
+      "percent": 1.17,
+      "symbol": "mnm::render::KnownPixels::require(mnm::render::Rect) const"
+    },
+    {
+      "percent": 1.15,
+      "symbol": "0x00000000001866c9"
+    },
+    {
+      "percent": 1.15,
+      "symbol": "0x0000000000186506"
+    }
+  ]
+}

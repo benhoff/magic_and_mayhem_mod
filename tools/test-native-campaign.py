@@ -279,6 +279,45 @@ def clean_environment(root):
     return env
 
 
+def validate_native_draw(experiment):
+    metadata=json.loads((experiment/'manifest.json').read_text())
+    if metadata.get('native_draw') is not True or metadata.get('native_render') is not True:raise ValueError('Owned native graphics were not staged')
+    if sha(experiment/'game/MnmDraw.dll')!=metadata['native_draw_sha256']:raise ValueError('Native graphics DLL changed')
+    if (experiment/'game/native-draw-refusal.bin').exists():raise ValueError('Unadmitted native graphics method')
+    raw=(experiment/'native-draw-status.bin').read_bytes()
+    if len(raw)!=96 or raw[:8]!=b'MNMDRW01':raise ValueError('Native graphics status missing or malformed')
+    q=struct.unpack('<24I',raw)
+    if q[2:5]!=(2,96,0) or q[19] or q[23] or not q[9] or not q[10] or q[20]<q[9] or q[22]:raise ValueError('Native graphics startup or module absence failed')
+    if q[5]>64 or q[6]>512 or q[7]>128 or q[8]>64 or q[15]>512 or q[16]>256*1024*1024 or q[17]>128 or q[18]>64:raise ValueError('Native graphics resources exceeded bounds')
+    return dict(ddraw_disabled=True,ddraw_module_absent=True,native_dll_sha256=metadata['native_draw_sha256'],status_sha256=sha(experiment/'native-draw-status.bin'),factory_creations=q[9],surface_creations=q[10],peak_surfaces=q[15],peak_bytes=q[16],scope='Public native Qt menus and command presentation use owned graphics services with real ddraw disabled/absent; original CPU drawing remains active. No V4 World-body suppression, independent original pixels or semantic COM teardown assertion.')
+
+
+def start_native_hardware(out,env):
+    gpu=subprocess.check_output(['nvidia-smi','--query-gpu=pci.bus_id','--format=csv,noheader'],text=True).strip().splitlines()[0]
+    match=re.fullmatch(r'[0-9A-Fa-f]{8}:([0-9A-Fa-f]{2}):([0-9A-Fa-f]{2})\.([0-7])',gpu)
+    if not match:raise ValueError('Unsupported NVIDIA bus identity')
+    bus='PCI:'+':'.join(str(int(x,16)) for x in match.groups())
+    display=next(n for n in range(170,190) if not Path(f'/tmp/.X11-unix/X{n}').exists() and not Path(f'/tmp/.X{n}-lock').exists())
+    configuration=out/'private-gpu.conf'
+    configuration.write_text('Section "ServerFlags"\n Option "AutoAddDevices" "False"\n Option "AutoEnableDevices" "False"\n Option "DontVTSwitch" "True"\nEndSection\nSection "Device"\n Identifier "native-test-gpu"\n Driver "nvidia"\n BusID "'+bus+'"\n Option "UseDisplayDevice" "none"\n Option "AllowEmptyInitialConfiguration" "True"\n Option "ProbeAllGpus" "False"\nEndSection\nSection "Screen"\n Identifier "native-test-screen"\n Device "native-test-gpu"\n DefaultDepth 24\n SubSection "Display"\n  Depth 24\n  Virtual 1280 1024\n EndSubSection\nEndSection\nSection "ServerLayout"\n Identifier "native-test-layout"\n Screen "native-test-screen"\nEndSection\n')
+    with (out/'private-gpu-start.log').open('w') as log:
+        server=subprocess.Popen(['/usr/lib/Xorg',f':{display}','-seat','native-campaign-test','-config',str(configuration),'-logfile',str(out/'private-gpu-xorg.log'),'-nolisten','tcp','-noreset','-novtswitch','-sharevts'],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+    try:
+        deadline=time.monotonic()+30
+        while not Path(f'/tmp/.X11-unix/X{display}').exists():
+            if server.poll() is not None or time.monotonic()>deadline:raise RuntimeError('Private NVIDIA display failed')
+            time.sleep(.1)
+        for key in ['LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','WAYLAND_DISPLAY','QT_XCB_GL_INTEGRATION']:env.pop(key,None)
+        env.update(DISPLAY=f':{display}',MESA_LOADER_DRIVER_OVERRIDE='zink',GALLIUM_DRIVER='zink')
+        with (out/'hardware-driver.log').open('w') as log:subprocess.run(['glxinfo','-B'],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=20)
+        driver=(out/'hardware-driver.log').read_text()
+        if 'NVIDIA' not in driver or 'Accelerated: yes' not in driver or 'llvmpipe' in driver or 'lavapipe' in driver:raise ValueError('Hardware renderer fallback refused')
+        return server
+    except BaseException:
+        stop_group(server)
+        raise
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--stress-seconds', type=int, default=0, help='Exercise physical gameplay input per phase (0 or 10..120)')
@@ -297,11 +336,18 @@ def main():
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
+    parser.add_argument('--native-draw',action='store_true',help='Require owned graphics services with real DirectDraw disabled')
+    parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
+    parser.add_argument('--hardware',action='store_true',help='Use a private no-monitor TITAN/NVIDIA display; refuse software fallback')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
+    if args.native_draw and args.legacy_directdraw:parser.error('Owned graphics and legacy DirectDraw are separate routes')
+    explicit_native_draw=args.native_draw
+    args.native_draw=not args.legacy_directdraw
+    if args.hardware and args.display:parser.error('--hardware and --display are separate display routes')
     if args.crowded_case:
         if args.healing_case:parser.error('Select only one Quick Battle case')
         if not args.stress_seconds:args.stress_seconds=180
@@ -326,19 +372,27 @@ def main():
     report = {'schema': 1, 'success': False, 'status': 'running', 'stage': 'build',
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
-              'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
+              'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
               'crowded_required':args.crowded_case,'healing_required':args.healing_case,'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
               'difficulty': args.difficulty, 'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
+    if args.native_draw and not args.claims:
+        args.claims=out/'prospective-claims.json'
+        subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.directdraw-public-native-menu','--scenario','native-draw-public-menu-campaign-20261011','--output',str(args.claims)],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     if args.claims:
         declaration=json.loads(args.claims.read_text())
         for path,expected in declaration['sources'].items():
             if Path(path).is_absolute() or not (ROOT/path).resolve().is_relative_to(ROOT):raise ValueError('Unsafe declared source')
             if sha(ROOT/path)!=expected:raise ValueError('Declared source changed before execution: '+path)
         report['claims']=declaration['claims'];report['sources'].update(declaration['sources'])
+    if args.native_draw:
+        native_sources=['tools/build-native-draw.py','tools/prepare-native-draw.py']+[str(p.relative_to(ROOT)) for p in (ROOT/'runtime/native-draw').iterdir() if p.suffix in ('.c','.h')]
+        report['sources'].update({p:sha(ROOT/p) for p in native_sources})
     env = clean_environment(out)
+    if args.legacy_directdraw:env['MNM_NATIVE_DRAW']='0'
+    elif explicit_native_draw:env['MNM_NATIVE_DRAW']='1'
     shell = server = monitor = None
     verified = False
     exit_code = 1
@@ -348,6 +402,19 @@ def main():
                            stdout=log, stderr=subprocess.STDOUT, check=True, timeout=600)
         binary = ROOT / 'working/build/qt-shell/mnm-qt-shell'
         report['shell_sha256'] = sha(binary)
+        if args.native_draw:
+            import shlex
+            closure=set()
+            for dep in (ROOT/'working/build/qt-shell').rglob('*.o.d'):
+                for token in shlex.split(dep.read_text().replace('\\\n',' ')):
+                    path=Path(token)
+                    if not path.is_absolute():continue
+                    path=path.resolve()
+                    if path.is_relative_to(ROOT) and not path.is_relative_to(ROOT/'working'):closure.add(str(path.relative_to(ROOT)))
+            report['compiled_sources']={p:sha(ROOT/p) for p in sorted(closure)}
+            missing=closure-set(report['sources'])
+            if missing:raise ValueError('Undeclared native shell compiler dependencies: '+repr(sorted(missing)))
+
         cache=(ROOT/'working/build/qt-shell/CMakeCache.txt').read_text().splitlines()
         report['native_build_type']=next((v.split('=',1)[1] for v in cache if v.startswith('CMAKE_BUILD_TYPE:STRING=')),None)
         report['stage'] = 'combined-mode-admission'
@@ -368,11 +435,14 @@ def main():
             exit_code = 0
         else:
             report['stage'] = 'runtime-prerequisites'
-            for tool in ['wine', 'wineserver'] + (['tesseract'] if args.require_casting_combat else []) + ([] if args.display else ['Xvfb']):
+            for tool in ['wine', 'wineserver'] + (['tesseract'] if args.require_casting_combat else []) + ([] if args.display or args.hardware else ['Xvfb']) + (['nvidia-smi','glxinfo'] if args.hardware else []):
                 if not shutil.which(tool):
                     report['status'] = 'blocked'
                     raise RuntimeError('Missing runtime prerequisite: ' + tool)
-            if args.display:
+            if args.hardware:
+                server=start_native_hardware(out,env)
+                report['hardware_driver']=dict(driver='zink',accelerated=True,nvidia=True,software_fallback=False,log_sha256=sha(out/'hardware-driver.log'))
+            elif args.display:
                 env['DISPLAY'] = args.display
             else:
                 with (out / 'display').open('w+') as display, (out / 'xvfb.log').open('w') as log:
@@ -437,6 +507,7 @@ def main():
                     raise RuntimeError('Public campaign flow exceeded its deadline')
             flow = json.loads((out / 'flow.json').read_text())
             report['flow'] = flow
+            if args.hardware and ('NVIDIA' not in flow.get('renderer','') or any(x in flow['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Actual Qt renderer did not retain NVIDIA hardware identity')
             if not (args.healing_case or args.crowded_case):validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
             if args.stress_seconds and not (args.healing_case or args.crowded_case):
                 for cycle in range(args.menu_cycles+1):
@@ -454,6 +525,24 @@ def main():
             if len(roots) != 1 or not roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer'):
                 raise RuntimeError('Missing unique menu experiment identity')
             report['experiment'] = str(roots[0])
+            if args.native_draw:
+                report['native_draw']=validate_native_draw(roots[0])
+                native_build=json.loads((roots[0]/'native-draw-build.json').read_text())
+                if native_build.get('directdraw_imports') is not False:raise ValueError('Native graphics DLL imports DirectDraw')
+                for name,digest in native_build['sources'].items():
+                    if report['sources'].get(name)!=digest or sha(ROOT/name)!=digest:raise ValueError('Undeclared or changed native graphics compiler source: '+name)
+                report['native_draw_compiled_sources']=native_build['sources']
+                render_build=json.loads((roots[0]/'render-bridge-build.json').read_text())
+                if not render_build.get('compiled_sources'):raise ValueError('Missing rendering bridge compiler provenance')
+                for field in ('compiled_sources','protocol_sources'):
+                    for name,digest in render_build[field].items():
+                        if report['sources'].get(name)!=digest or sha(ROOT/name)!=digest:raise ValueError('Undeclared or changed rendering bridge input: '+name)
+                report['render_bridge_compiled_sources']=render_build['compiled_sources']
+                report['render_bridge_protocol_sources']=render_build['protocol_sources']
+                game_inputs=json.loads((roots[0]/'input-fingerprints.json').read_text())
+                report['inputs']={str(roots[0]/'game'/name):digest for name,digest in game_inputs.items()}
+                report['inputs_stable']=all(sha(Path(name))==digest for name,digest in report['inputs'].items())
+                if not report['inputs_stable']:raise ValueError('Native graphics game inputs changed during smoke')
             report['native_precise_clock']={'enabled':not args.disable_precise_clock,'scope':'Real loaded WinMM timeGetTime uptime in guarded original clock import; game speed and wait target unchanged; full timing/physics equivalence excluded'}
             if not args.disable_precise_clock:
                 log=roots[0]/'lock-capture/lifecycle.log'
@@ -464,6 +553,10 @@ def main():
                 if not log.exists() or 'native_pacer_yield ' not in log.read_text():raise ValueError('Native cooperative wait was not observed')
             report['native_draw_cadence']=json.loads((roots[0]/'manifest.json').read_text())['native_draw_cadence']
             if report['native_draw_cadence']['settings']!={'SkipFrameEvery':0,'SkipXFrames':0,'MaxSkipXFrames':0}:raise RuntimeError('Native draw skipping remained enabled')
+            exports = sorted(p.name for p in (roots[0]/'lock-capture').glob('*.bin')
+                             if p.name.startswith(('lock-', 'blit-', 'update-')))
+            report['ordinary_diagnostic_binary_exports'] = exports
+            if exports:raise RuntimeError('Ordinary native presentation wrote diagnostic binary archives')
             if args.healing_case:
                 report['healing']=validate_healing(roots[0],json.loads((out/'healing-input.json').read_text()),flow,out,args.stress_seconds,args.min_fps)
                 report['healing_verified']=True
@@ -517,8 +610,15 @@ def main():
             exit_code = 1
         if (out / 'wineprefix').exists():
             try:
-                subprocess.run(['wineserver', '-k'], env=env, stdout=subprocess.DEVNULL,
-                               stderr=subprocess.DEVNULL, timeout=10, check=True)
+                stopped=subprocess.run(['wineserver', '-k'], env=env, stdout=subprocess.DEVNULL,
+                               stderr=subprocess.DEVNULL, timeout=10, check=False)
+                # Normal Quit may have already stopped this private server.
+                # Verify absence with a bounded wait even when -k reports that
+                # no server remains; other failures retain the failed result.
+                if stopped.returncode not in (0,1):raise RuntimeError('Private wineserver stop failed')
+                subprocess.run(['wineserver', '-w'], env=env, stdout=subprocess.DEVNULL,
+                               stderr=subprocess.DEVNULL, timeout=15, check=True)
+                report['private_wine_stopped']=True
             except (OSError, subprocess.SubprocessError) as error:
                 report.update(success=False, status='failed', cleanup_error=str(error))
                 exit_code = 1

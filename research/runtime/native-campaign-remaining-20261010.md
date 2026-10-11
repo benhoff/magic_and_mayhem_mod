@@ -1,0 +1,17 @@
+# Native campaign casting, combat and portrait follow-up
+
+The [fresh execution report](native-campaign-remaining-gameplay-20261010.json) passes successful summoning, player lethal combat, Fireball damage, invalid-target/insufficient-mana refusals, physical movement, native Mini/resume and normal Quit (exit0). This is the public native menu/command renderer route under private software Xvfb/Wine; original simulation and drawing remain active. It is separate from the finite32-queue guarded rolling adapter and the headless NVIDIA replay.
+
+Run `python3 tools/test-native-campaign.py --difficulty3 --require-casting-combat --spell-cases --normal-quit --portrait-stress-seconds60 --stress-seconds60 --timeout600 --claims <prospective-claims.json>`. The retained report binds predeclared behaviors/scenarios and every source hash. Source bytes also match this isolated branch; later concurrent source changes are not covered by this report.
+
+The session produces8,642 native command frames/6,478 paints with zero fallback/recovery. Twenty-five portrait recenter cycles give57.171seconds of complete interior observations at20.0101 native/paint FPS, worst19.9275 FPS, maximum stable face channel error1. Movement changes physical tiles by[0,-4] and[2,-3]; spell/health events establish actual successful casting and enemy damage/death, rather than only UI selection.
+
+The [flow journal](native-campaign-remaining-flow.json) and [input journal](native-campaign-remaining-input-0.json) are preserved with [exact artifact hashes](native-campaign-remaining-artifacts-20261010.json). Source/original manifest fingerprints remain intact. Four existing HOST/presentation behaviors and two predeclared portrait/clock scenarios receive this additional live observation without promoting complete native drawing, original simulation replacement, rolling combat or hardware desktop/input/scanout.
+
+The rendering branch integration retains this campaign result as historical
+public-shell evidence. Its source closure does not validate the combined font,
+clipping and guarded rolling sources. Fresh integration checks cover the guarded
+World adapter and original raster comparison separately; they do not establish
+casting/combat through that adapter. Current public-shell casting, portrait,
+precise-clock and draw-cadence readiness must be rerun against the final integrated
+source tree. The stored result and source fingerprints remain unchanged.

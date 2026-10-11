@@ -1,0 +1,205 @@
+{
+  "range": "9eb9316^1..9eb9316",
+  "scope": "Committed parent/current SHA256 exact receipt audit only; no retrospective gate or new execution assertion.",
+  "files": [
+    {
+      "path": "compat/legacy/canvas_world.cpp",
+      "before_sha256": "d62676cd17f5458e5c792d5b73846292dbe476e32589d9a03bb890e0a0f0121b",
+      "after_sha256": "d338530f0dc5e6c13d446d2ce9ed9fdf628f2315e99d9d30f9cd58937e31f3e6",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "919fbd545ad93b4dd365c0cde1209fe369fb816394d28ae3752ad3b9ed3bdb6c",
+      "after_sha256": "bfef00a7d528c81f2f99fae4cf1bbab368d8524eb37be479eb3a88a522c6fe32",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "renderer/resources/sprite_atlas.cpp",
+      "before_sha256": "dfb1ef431af239b4338ade2b33fb13dbe620d8125f5463988dfe83fc1945434f",
+      "after_sha256": "1a5d3f933c39d529fb60993863bfb309e03c4249d3ca620de69d45c3033b0c7c",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "renderer/resources/sprite_atlas.hpp",
+      "before_sha256": "30852c630e52526118f3d82ab388462b14b02dccf00f82ed429f9acc4355719c",
+      "after_sha256": "9a404ed6d109da25e423016d30ff6d246361ae3387b21db2c0c210c8ddb4f7e8",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f040ac946e8b53d3aec8f31d5d850f64973cb37944188a2b593b9518debb71d6",
+      "after_sha256": "591dfa0ae82cbeca35c83ccf8837e8c6ae3c8f6e0e25d0439806f729f4faeebf",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/history-native-draw-startup-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "012f5cc0bb0b990720d8b6984a5c2c458ebab4eb0dd3cfcdcdd935533e9f190b",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "1052a8d48c9e7d180bc36dce5f3bc536a77f8db34dc7a30f638240cde3ff9a17",
+      "after_sha256": "139f72acb231e71e139102bf2a066adb838b73fb6f86ab0121a94b2c537bd463",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-native-cache-validity-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b62871b8666d18389c7234a43b8e4d4e7d153bd8bf815009b9e5317c9dbdd19b",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-native-cache-validity-20261011.md",
+      "before_sha256": null,
+      "after_sha256": "c8a12f7e7a3f21e868481b1eb71a499d2e15a89dcba42a6211db4002aecea22a",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-cache-cpu-cost-discovery-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c3ad71a9fc103a2a48076ea0a0ddf44af6628feee6df6723819f5002bf3f41aa",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-cache128-performance-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "da52da590c665445800fd68b25bdf513ca535309923ccb354b84c0da52a2f5ed",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-cache128-profile-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "fbd0b4eaf7a45f3ab6a3780ce9a70260c53b746864cf485e93b0f8a0af358399",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-cache4096-performance-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b8bb86022d4d795413b84ef22e4522c8eaefdc4fff5e4a418434971a43c21804",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/native-draw-device-surfaces.md",
+      "before_sha256": "f733f15e6d619fb86f7980992ab5155258410ceb22bb754597c79c80e18b688e",
+      "after_sha256": "0e9f6069e8eac8635fded8b1cb7eb1bdd84f5f6be56cc9d81648f19278c87ed2",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-cache-closure-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a24e28314c873915a58d1542c8394e4077c3517641c0985ea9866c824cc59db6",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-cache-dependency-label-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "cae3b6631e5e8c30796acba4fa51f84d662560c4fe2a3945dd9f3dc70e2a86fa",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-cache-history-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "25e22fb2c2873604ac28741c47b512bca77b756e1af5d9def96de3e65015a2c3",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-cache-target-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0a3791a5d4e0a2b8acb87204b50426583e1545dec7c0da5c65536f7d3c49b905",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "research/runtime/native-gpu-cache-validity-pass-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0abb0facbb6f3a88add07d74b6c88e9680cf87447af44371432e63559f431525",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "tests/canvas-sequence-test.cpp",
+      "before_sha256": "2f6210e7d0eb669cb12a15ff4359b70cfe6ce3a7d75d8877d5950f5db915eb81",
+      "after_sha256": "e3e3edf9b2e4de5d0e6e78ddad4840195544488d37a7f4953b7dd74fc70b1d99",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "tests/sprite-atlas-test.cpp",
+      "before_sha256": "b4deb545a6cc3a93e1d9a14ce1ce35bc20225f2d1fea344b584cb4a358d840fc",
+      "after_sha256": "eee8a9c192cea83a4491b6d2bc5508b35789227fa79f3d4123f5da4689e8e565",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    },
+    {
+      "path": "tools/test-sprite-atlas.py",
+      "before_sha256": "37ac02cf89bfd94745902732d63ce8324bc44f1094ee5f996d5f59c6be76d13d",
+      "after_sha256": "705edb95cde2ba85f7017a309190551370bef2822c2a8feaffc59a96ad07a14b",
+      "matching_review_indices": [
+        625,
+        626
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

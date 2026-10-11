@@ -1,0 +1,1857 @@
+{
+  "scope": "Exact committed first-parent file accounting; no new execution or retrospective gate assertion.",
+  "ranges": [
+    "597005a^1..597005a"
+  ],
+  "transitions": [
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "apps/qt-shell/media_broker.cpp",
+      "before_sha256": "e09603c761d7ea3cb3dc4c9fb5c568c6031b257e8c82d6bac79608a27d4874f7",
+      "after_sha256": "fd2d9c8eadb148ab3519d96a6144947c9312326325614f137d1c1dabbaa8e90a",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "apps/qt-shell/media_cli.cpp",
+      "before_sha256": "f533762ad595145d7c4bf5bc41c4c27de1ef8d92a176d8c4a3b63b9fbccd7410",
+      "after_sha256": "36bc110a59c06fdc403883a92a343ad207fc3585cecf0a78506a804bb0ff1cd0",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "apps/qt-shell/native_playback.cpp",
+      "before_sha256": "ba5080904fa174371fdff245f2ef491863ce59d51be464c7850f8d5b99fe677a",
+      "after_sha256": "3b06cb66d0bb435ebd64b8015010911cb9586d9fb2c41cbe85f8d41d717fb955",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "apps/qt-shell/native_playback.hpp",
+      "before_sha256": "42753b3baddf9456d41ca4d7a58440a831b2aac152bbd20efb7354b977c99cb8",
+      "after_sha256": "fa864b25515e391cab7c94448254d48878277762d7c5b557c4d84922fa71ec3c",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "apps/qt-shell/world_continuous_main.cpp",
+      "before_sha256": "314f294894dbddd96425ba5548bf7870fe5746f0fb18014b5a335958a30d34df",
+      "after_sha256": "59549f4266ada62b8f28a9f8383b19dda9ab4188d4d86cdc770b2c63f5ff6c12",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/canvas_producers.cpp",
+      "before_sha256": "6aaaa122de325939e1bccd4ff7bf544001b4db28ced357d27dba2781bcc83721",
+      "after_sha256": "22952f0bd106289f15814cf1ee1bfa0548c564aca6c76e5b9910dfe6017cfe25",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/canvas_producers.hpp",
+      "before_sha256": "5996aabf7dd370af7f851725705a06315797c96f151520a8bfb0a113c4c3e06b",
+      "after_sha256": "85ea74874480bc651770bef05db186b65cb04f0ef995693dda1bcb8e676e2ea3",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/canvas_world.cpp",
+      "before_sha256": "f6d0ac96fef76a3262b5d3ae24e0d296a4a0621a4f719d3d28fb6420fad70e03",
+      "after_sha256": "d62676cd17f5458e5c792d5b73846292dbe476e32589d9a03bb890e0a0f0121b",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/canvas_world.hpp",
+      "before_sha256": "143735e1386480453e56ff6f98435a77008158034d01ea0e496795403a1f8eac",
+      "after_sha256": "5538cb9ba9accee8cd9a2d4aed9ceb1bbaadbe72587134edd23c5d772e617a3b",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/font_layout.cpp",
+      "before_sha256": null,
+      "after_sha256": "d84a50f7f1ec8180f66823fd17f37b68020b982904cd9aa86ff55a63ba3838f2",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/font_layout.hpp",
+      "before_sha256": null,
+      "after_sha256": "dec22179bcb33493620a50a3b5da51210c350f152a15484a3686475d7a897187",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/world-rolling/CMakeLists.txt",
+      "before_sha256": "0176427ddd535522c5fe1cb23668cae0257f2c89dc417404a917729066680018",
+      "after_sha256": "6e9b43010486863e816cee06ab67969485187191f35eca542d1b1c30b4b2a14e",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/world_continuous.cpp",
+      "before_sha256": "68ddf2dc72f434bf24e8a2826d29bfaed1f3561a1b733b41d6fb0de82b8f48e5",
+      "after_sha256": "665572bd329910072aba6f0a3b82d7b3f915063ccdbd5765fbd3a884bdaa71cf",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/world_continuous.hpp",
+      "before_sha256": "3bcaf6f7c788dbd187be5d060c79aefaea14d4175492a9af9aa560423af8f993",
+      "after_sha256": "0f0c1241773ac4d73cf13e4db880f3168be3fa96a01aeec2ff48c7e6cafa5834",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/world_raster_batch.cpp",
+      "before_sha256": "470b7fecd91e7944110440d11f2bb6397070f5863a06184bfc7b62671700594e",
+      "after_sha256": "44d220da4c9ee4e56f5655bb33ebddd505987ef0d99d91cb66f6d6e51b30cc8b",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/world_rolling_session.cpp",
+      "before_sha256": "bf9ac99ba3651f499f684580850d2a7b74d470c9f7afbbfaece273a1ee8493e7",
+      "after_sha256": "8268a9baf00c3367c729965afd26fc761cb86e2237607c9b00febe92c89681ab",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "compat/legacy/world_rolling_session.hpp",
+      "before_sha256": "1dd60db897026b88c4f4625d1aaa0b7be02c81ceefbb2a0765acec998b8a1c7e",
+      "after_sha256": "0b834446fba64da429afa5fc089253f570150215a8d22f24735a2c1bf0575612",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "06da58d3b5c7ee3ed0df78cd7186841e81a7d9774b3bd2f73571bd6ed0d795d4",
+      "after_sha256": "6792b1c36dde67a16565ce19e7218d141330ee1b15c5ec33350f7181eed220a8",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "protocols/include/mnm/world_continuous_checksum.h",
+      "before_sha256": "230a1e870111859781e41615a7793f103bad4a4ffb134adc5b9d0726b623f1ad",
+      "after_sha256": "4d96065598923f759691b565716e511e2021edb5043af0aeaaae890f8ad43198",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "protocols/include/mnm/world_continuous_v2.h",
+      "before_sha256": "ead7739f70e0f731150e291009fa40205fa4e676aabd686b3b9996ede92f6b39",
+      "after_sha256": "de86bb1af4612812657ff09f6cf730c8274880edef1f9fece277ca1402f8784a",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "protocols/include/mnm/world_continuous_v3.h",
+      "before_sha256": null,
+      "after_sha256": "d130c9ec19782acc916e21686f8970f307c0d974f164c3bc9c64cb587972a3fd",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "reconstruction/rendering/fade_span.hpp",
+      "before_sha256": null,
+      "after_sha256": "3f297ef7cf45a2f3bad3b99bf939ecc4ad82fe0362ec206236586b6ad8a25504",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "reconstruction/rendering/font_layout.cpp",
+      "before_sha256": null,
+      "after_sha256": "9d1a3f9fe5f21f4adf0bd20e3f3b533756ca1c3c4569d31739897b396c8e4a16",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "reconstruction/rendering/font_layout.hpp",
+      "before_sha256": null,
+      "after_sha256": "0b2bfa652f6cf6d3ff1bf9f01a984757b88d90e35ff606c766beaadf8f5c8a35",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "reconstruction/rendering/glyph_backend.c",
+      "before_sha256": null,
+      "after_sha256": "3d6ed57e5d6837e6a0535ecd92c8416d3c57717b22684dacd5e99d0e1b704775",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "reconstruction/rendering/glyph_backend.h",
+      "before_sha256": null,
+      "after_sha256": "93104365980bf04eb6047cdc3f70ffddcc7958449c4c797bcad43c16b0603245",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "reconstruction/rendering/glyph_backend_x87.S",
+      "before_sha256": null,
+      "after_sha256": "fefdf95c806778f7d39fff4e43ff0beed9731e3bc1afd7d1634b4e718951f77a",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "renderer/canvas_mirror.hpp",
+      "before_sha256": null,
+      "after_sha256": "8f4d10557120653144ebd766c2d8b4b55030f1c3d05994e6ea515a88323781ad",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "283fc4103ed3a5f38b798bb1b5cda1c6604ce1e746c45e8323497ec454123ee0",
+      "after_sha256": "93b7ee3c5619d88d92d3ff1edf14f53b6da8ffe6a28607354bd19ab6aca92705",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "renderer/canvas_sequence.hpp",
+      "before_sha256": "93b70d6c5a5af09c81e1b9e1be673018d29251fda1112691d225c626127e63f5",
+      "after_sha256": "12096019b63ebf3b5805359d1f28f46a56bd9ea852d1101deeba27e45110585f",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "renderer/gpu_canvas_mirror.cpp",
+      "before_sha256": null,
+      "after_sha256": "d3a404a0903d87f48adc16b25f602bb5bac3fe14a88b09fc7b77fd4e5b27c7f0",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "renderer/gpu_canvas_mirror.hpp",
+      "before_sha256": null,
+      "after_sha256": "8f4c9cdaddb89122849e1c8530caab53bf273dbfc37eb51e5ac71e55210f6289",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "renderer/scenes/scene_renderer.cpp",
+      "before_sha256": "5f3e354593d8a65fcc17ab3687f0d63c2b1943816bb87a32e17a17b6123ac92f",
+      "after_sha256": "c08de45ed2710855523c94ba011bbcc14d453addeb335983ca140a8f10bae226",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "renderer/scenes/scene_renderer.hpp",
+      "before_sha256": "2df2fc3c89b8fe74d33a0e7fda8633cb38acb4f6eba148b72b8d0df45eae6119",
+      "after_sha256": "9ef8befcedb2b9ee90a8090d9b09f6ab42937e1afbfef194c908af4a932e4b5d",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/canvas-fade-gpu-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f0eeb04ab04d6b44c3b2bda89982f269760cccd35472fd79bd55b0f168f32074",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/canvas-fade-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "fcbe94fa4c59f04887e50bfe07cf38674a170489d43dff02db03bdf66fb0288c",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/canvas-fade-span-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "6a78d715b48cb8c487469a59965d7c4293b1da48c2c19642a5baf6d8b3fd83c3",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/canvas-fade-span.md",
+      "before_sha256": null,
+      "after_sha256": "f5d8271fe7703a6ea5e440424de89a5ecb4996093b30dd5f6748b6c8fa86a019",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/canvas-image-gpu-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "344a8f257956c09551720acc044dae2341d4e4f237f8caab43103808b2bb8583",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/canvas-image-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0846e0a4f5446bdfbb09608fa2cfc3d3fefd85393b6bd3e93c26df2e3e3d2cea",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "7def24f7690d6d5935a49a469b5edf0ffa5f4884f5910085eba7e3f7ee83df82",
+      "after_sha256": "6574eca8f53918aedeeab04eb2aebc4908c46169b03790d5ab1ba5bd7b63c082",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/glyph-backend-history-577d293-eb3cd18-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8cd6a57e51f0f9c3b5ff497c58ea54693aa574661a6a10464703a51895308386",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/glyph-live-history-1abdfe3-59608a4-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "246ec57a7a12faf261be44a179a4c73cb5f33ac47fc286c9c307849424bbc4d7",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/glyph-live-history-59608a4-a47ad55-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0507c6e1d8b03948a8a283e88bb382f75bbe48633711a8a5a55c895933609751",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/native-world-continuous-merged-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "00b91813e29763aaf3a4b9de19bd70e6fceecc9599812ea199db9fa17000b064",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/pixel-producers-history-577d293-1abdfe3-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0c9e49a9ecf48613bfa564d0347d9dc648475e525230575071f2d1bff2d232fe",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "b4775ee818a10d2ccefdb8a6076f28ec1c39a31bf2ccd5f794371b33c6d1014b",
+      "after_sha256": "9dc48a166428258252f7e00540ce625b1f73082afa110111e75f275c6b529804",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/source-index-continuous-merged-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "be770731ae057d11c8786e213c643e124563b3b5142350ad7868dde320a419ce",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/source-index-glyph-backend-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "10426f7beff9ed0064bdc2436cd34ff451e6ed459dd848771ea50dd65e09b8ad",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/source-index-glyph-live-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f81d02f551fe0193d34d826b3efa845681ad537451a68fea14a1dd4ce9f440f8",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/source-index-gpu-ownership-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "399680b423ce41c1b57a331fe108e4e2eb4d51d6e779a980f789eca08dc04224",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/source-index-pixel-producers-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "364218286110df96d757f36acbfb2097fbf93dd45c551291a50e63bf231ed007",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "8dfe3b586905770867ec0b3482ab71e8b9f8120524f5f3e8911a4eb5b288d0d5",
+      "after_sha256": "86b85d63f908332421dd7b1e4c856deee157acce97c3a18bb632a6f54a2b1d99",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/font-layout-gpu-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b132ac7b9a5f48aafd5cdd0d7984f9147455f32228b8e46ed92b6f049a89c1ad",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/font-layout-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bd1be3c6399733934f2f5e5677ea5f6140a5d4c9fcbc5c3fd386e14fc41d2a1c",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/font-line-layout-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "168a98512a07017653343d0680c7babd283ad48249df0a63b0436958d54d4bf0",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/font-line-layout.md",
+      "before_sha256": null,
+      "after_sha256": "ed906317abc2057338f4968032343637195ca5aa71c91ebc11785463c222116e",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-backend-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "859310cd0c934bd826d74117b5409d8ff737474d5c512f891d8bb22377b7ae4f",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-backend-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0edf64ef02e2eaee63c37b5429be77b4a67ae06ddcb689ff178cddb0f68a5e48",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-backend-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "08f88ebcec1fd793ac91c8f33c7b063ac0a3e83e7fbf5500a54d6cfc54489a50",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-backend-run-2070t9ch-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b0c5d55b35bd137ab1540f2a5f5481870a0d5eae620d6c12abad20d58100a53a",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-backend-run-9lh29753-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a4e09e846e24596e73707fe688da352d0dae38d97477b3c257f17e2b4b589e53",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-backend-run-e1emqe2_-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "80fa02e7ae1391000449a452608d02bb2876a87e5ce4008f5e994e08fedeeb3e",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-backend-run-v0q3f9wh-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a2de2b17331236609f7968a3622eca181ec59f17748f759a9baea587fe8556c3",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-backend-run-x_rsvcxi-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e60d7e77804525225867ac7911d6a862b0aedf229fc334d02bfa7f9f21d3422b",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-backend.md",
+      "before_sha256": null,
+      "after_sha256": "5563472ce216760dd2f4fccc71d20a62fdb545499ab91a631ddb0542f29cf6fa",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-live-backend.md",
+      "before_sha256": null,
+      "after_sha256": "8045010a800f438c022fd2a56ce99e091a18bb1e0b354581d0e4625744308741",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-live-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-live-entry-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9e076d1a532cc6150a76942e4bec05f6587d1317e9baecff3d3332ba3b9a3084",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-live-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bf9fc00b024b762db9eca05e4f747f7ef281d505db4b527547fe6d7861b3c193",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-live-first-entry-run-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "214d4e17a8dcd646611dff5622d7f4e6500e8ca8509383fcd0216b409ac2c699",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-live-first-shadow-run-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "4db1c2c9bae70048f6384c8d3709c3029a1b7c4fbab60f99e29b0751296e7177",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-live-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d6b369572401aa63dd6db7fcc8977d3affb7fc95a41164fea2b652c0117adf1a",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-live-second-entry-run-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "aa42eedb3aa56e33b6d3e66f546d125ae52d48fc64c9f62062d5e81afe598c72",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/glyph-live-second-process-run-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "42ff9159aa36f65ee996f7c86e3d3bdce6b087d0544c95bd8ab12275befd7171",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-canvas-image-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e307081ead33a1e134e5859e18a23ca0dcb0fd9fadfd25ec9f1e29c5659c723d",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-canvas-image-production.md",
+      "before_sha256": null,
+      "after_sha256": "d46e91268439f52acdf3d28755fa341fe4d2e8f56cec0e7ee3dbc8d78e93eeae",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-canvas-producers-final-shadow-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-canvas-producers.md",
+      "before_sha256": "4f6296183c517f162d917419bb5ab4e23b0af7e2d856da1191db24e953b160e8",
+      "after_sha256": "e5734d0527732513fdd3d70bddb7f0aae54c7d91f52c2f4baf1dfabc6c83f481",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-enabled-movie-gpu-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "321b1551d92c5bc16441f606cc1bbe127aadb2c25bc4e98cbf440da4516019c0",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-enabled-movie-startup-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-enabled-movie-startup.md",
+      "before_sha256": null,
+      "after_sha256": "eb0722fa9a4c680d987c2c8f22027868518497df7ab9c7115a9d89c6f253fa91",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-gpu-frame-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ce76ebd995e819fbacb1b632c228b391ea54073c50127d86f1bb9f534d399246",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-gpu-frame-ownership.md",
+      "before_sha256": null,
+      "after_sha256": "e90687e03a9ba9c9be59ccdb5fec8fc24290656e0e452bc69ee367f21205fc56",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-media-producer-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1e7a2c62cc851f768606f4d6b024314076199163e27f9ba7fca0bb77c6d2f172",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-movie-frame-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a74dff40db72aa72b241ca3d93543419c169919a51443ddaa90543ba6cdf9a66",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-movie-frame-production.md",
+      "before_sha256": null,
+      "after_sha256": "b8b6dbac7d714d35cd144508a2f20dbafe70e5c8030e708c5c4a6e60ed635f59",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-movie-integrated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "6ea273437d846eccd798a7f6b0ed953c6451f71baeb8cee676611b52669d11ff",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/native-world-continuous.md",
+      "before_sha256": "58c041853e90949c141fa97b11b69b5633bf075e160f489c6495c7a332400a13",
+      "after_sha256": "215f9a9047fd61f65dc8fb0543f6813f512a94bb874b5bb8aade35c8b8c4b06f",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d32e3cb72e11eb9bd7dd8a84ad51e36be8a13986251f076362c56ce22b4f68a3",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-canvas-fade-span-run-30w8ni96-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "6a78d715b48cb8c487469a59965d7c4293b1da48c2c19642a5baf6d8b3fd83c3",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-canvas-fade-span-run-qj5c28kg-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "af83c32ced92a7cd6de5905114344e63b7a5f202a13c27da9dab3bbc79692c80",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-canvas-fade-span-run-tnuuh7le-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8db800af54ee2aff7e24bc928ce9aabaf0e4311117c8525def51a3c02194c9b9",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-canvas-fade-span-run-zvh6w0w9-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "455c849b1d923865239886c7fd61c527e545b071a1e7f974119129f2665e8c82",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-canvas-image-producers-run-0mcjz4p5-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d4b9bc252d0d551b70f4425c0fb15d4c708dd18ff2da04017209b9bffc16c9c1",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-canvas-image-producers-run-avvoaj23-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "90ceb54f27ffa9646f833aa82cd02a0f5f7f26693a7d89492748f067658657c6",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-canvas-image-producers-run-c77g8yq4-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e307081ead33a1e134e5859e18a23ca0dcb0fd9fadfd25ec9f1e29c5659c723d",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-canvas-image-producers-run-hwu45wzn-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "afb57280ddcbec5bb58aaa693021b78e016666218e07b6bb5ce4cf288343a818",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-canvas-image-producers-run-tjva0rnb-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ae730e1ab7f6dc03cb6375524af94745fe8be29f83f2470744db3ff04357c6b4",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-font-glyph-live-shadow-run-68qans53-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-font-glyph-live-shadow-run-ri8dzglt-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c157c5019c26baeaa510a97aa3b6dcaf13173079b8c62b4009ab185b0c35286d",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-font-glyph-live-shadow-run-wbgjwym3-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "116167c630f2acee16ea8a5dfe1026bb5af59c5a2b63dcea8e928b20784c4fb8",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-font-line-layout-run-32tcbpda-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "eabff14ca1a5131e9e136eeac13a579404e80ce10cfbd9114eba398d3a0fc30a",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-font-line-layout-run-4bwxtxqi-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "be1d659f59cbd77dae269d5871d6a3a2fac5212278b61c6b900e2e5ba33ef7dc",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-font-line-layout-run-k4ea0efq-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ac7ca1b3c1c461cb89c638cde8e86863a0e5ec5e800a7c422f4cb7a70a2eb474",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-font-line-layout-run-nbqove3o-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "168a98512a07017653343d0680c7babd283ad48249df0a63b0436958d54d4bf0",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-font-line-layout-run-xu7nmm6d-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a0fca9bdcc31855c5e22f8cd90437710fd43c8f2fa6924f105aada505f3a8aaf",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-native-enabled-movies-run-29kknr4m-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ef80e8554827244b2d9f59d300367bfbb1ab260282a0a2fd05471c182ae87417",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-native-enabled-movies-run-8ntcyoj0-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "20a5335c20d9309c5f03b965b6c37530566e98eb727a981ef7c0fe66a266aaf6",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-native-enabled-movies-run-f5gjddgv-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "544707a80c059c90c92e5f342a32bb2cf774005143da27c3edea60f94e7ec197",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-native-enabled-movies-run-j85fv7kd-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-native-enabled-movies-run-vwkp_qzh-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "13a677dd9754a402c0c234725042940a418dc2d69d7fb57702234c4bc59314f9",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-native-movie-frames-run-i_o1xfxk-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "004c860082d9576065376f50b0d9d1b26c755972a3b7e1485d022ea82ebf5262",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-native-movie-frames-run-kar353a8-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a74dff40db72aa72b241ca3d93543419c169919a51443ddaa90543ba6cdf9a66",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/pixel-producer-run-native-movie-frames-run-tfaqk5iu-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e719b40ebea95581493d2025faef56c64a162421e9ebb5bc31b687a2caa855b5",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/rendering-coverage-glyph-live-tests-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f907b4b2b103d0c22cf0f83a523988e68efb921bbe1ef64efb7506bd78c40605",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/rendering-coverage-scope.json",
+      "before_sha256": "90d23d2dfbbe9dfec2296f2d153f67008e7faef9fe022ec15e1b06405b877610",
+      "after_sha256": "12f8b636cba4f2250913360182ebd1d250250eeb0a84de66c63965a80d3d1b9c",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "research/runtime/rendering-coverage.md",
+      "before_sha256": "0bac6149911e4c8220703ba77cebd93424c0c4a40b9642feede847d3964583cc",
+      "after_sha256": "c7f833d59dc4782d17441e2b182c4f461bd995314bbcb52468569842eb88684b",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/canvas_producers.S",
+      "before_sha256": "9acf79e06ded8251084acbd6050d7c62135240b645405892876ae58addd3e7ee",
+      "after_sha256": "9b7f9c4ff9c099796ec8391477901adbd97a0b28a3ec7e3697ed02a101c1fdb2",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/canvas_producers.c",
+      "before_sha256": "773b14895fed87d01f7ec5a7cdc8cd5dfa452e2bfeb5899131795887fa86ea72",
+      "after_sha256": "65007a157eccc0c4a2b16b59189a6cac0141f63f78e4db4c196a24cad36f2595",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/glyph_entry.S",
+      "before_sha256": null,
+      "after_sha256": "9de083ae284419c71a47a99a4b88e1e192f9eef3c92b17fa16c0dcf0779b778e",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/glyph_leave.S",
+      "before_sha256": null,
+      "after_sha256": "dd4657c0638ab9426386197617132b65f25dc0aed44a1b9e097afd5138c617e9",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/glyph_live.c",
+      "before_sha256": null,
+      "after_sha256": "9ee0981cfd5f551c93a00a135f8183060bdef888ac1d31487c486aba45c22a47",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/glyph_live.h",
+      "before_sha256": null,
+      "after_sha256": "b9c1930ef9fb4f3cfaf83e3e1d27ccd1d614cf91823f5c4136f10ce3a0854527",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/glyph_route.c",
+      "before_sha256": null,
+      "after_sha256": "cdc2b537e1ba7a16412c6d26524ccf0b0db8136ede19b7e5e723a80d0b17c2be",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/glyph_route.h",
+      "before_sha256": null,
+      "after_sha256": "84b23b94c20d3761fc5db0566438f8de7e120fa47f85bffeb498dd93e8fc6fb9",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/observer.c",
+      "before_sha256": "38e4f6fe21217a205a6c7f77b3381773d6eff8e33ce53b9e916d951f4587fd0a",
+      "after_sha256": "7b3296b356244f9baa3a48e0fc62805fcacfc9186e409c82bdd8401606163ea9",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/readable_extent.h",
+      "before_sha256": null,
+      "after_sha256": "b288888cbcba237b131e0805cbac59989f7d2f001dd5999841de34da26b2b7e8",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/world_continuous.c",
+      "before_sha256": "e6433f44215a5c90503aa8a5947f9fc0f7ecafdce121eca0a67018d3fbe51e1e",
+      "after_sha256": "eafe7cf32b60afc1b9937361ef66ea8efd3983827a68d991f6dcf8b8ce9804d3",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "runtime/scene/world_continuous_clock.c",
+      "before_sha256": "d6332786cdd64cfe6436402908e4f01fad864b2cb8ce8f827d8bc0fcf675bb67",
+      "after_sha256": "8828954a4345f537360f7c6857e39d8667bcccf6ac119875e55046d6bf86169f",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/canvas-fade-native.cpp",
+      "before_sha256": null,
+      "after_sha256": "cad6c31589552ab7993c97b10127ffa8bcdb4af66efdc9d938c059e9fda6d9bb",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/canvas-fade-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "fdcc8ad114fcfad13367027619df288e7a765d853f566bed3df4b4e89af9d96f",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/canvas-fade-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "ca43ace6551d589dbae41584ccc8a56d869caf0ca576a15eca79bc10dc2a7f44",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/canvas-fade/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "282eaf2ebbd2cfd0b30274ea157ddda782876375909aedd0137e8c7ad96ab9de",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/canvas-image-producer-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "fceb9e2d59f83a22fd4cd096d2e9f0fbc5d70af0260c93b5c3ac79b9d558dcf6",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/canvas-image-producers/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "5fded6ddf988bf56618110f4fc2fcead3e88c0dd303dc1bc6ced7f7aa2b6aa9f",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/font-layout-native.cpp",
+      "before_sha256": null,
+      "after_sha256": "dd17aa0aca4fed5bbdf4678bd4b342b7c386384fb894f11d687ff52667eb425c",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/font-layout-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "6dab58289f0f1ac6d9c4dd0daf1935feab4d13757c9d65f7832814f3f48f020d",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/font-layout-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "b2447477241919bc8d69468b7fe110e06eae6dc696275df7d1430e4eacf30d82",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/font-layout/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "10b871b1f28b7ebcb6008abc6018f40ccdd9efd7ff2c217498e2f6d3d3ede27a",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/glyph-backend-entry-probe.S",
+      "before_sha256": null,
+      "after_sha256": "684a2cf1646344b8ba2c9a5fd56e678e7b0e36ac2db74ac5d6796fdb514f38c5",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/glyph-backend-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "cce1b9bd5b0156c9509354e0ef149954fafa64f3f07dd5976595ba25f030df3b",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/glyph-backend-test.c",
+      "before_sha256": null,
+      "after_sha256": "bcb164ca55aaa1558960dae5dd6b3731f1f62f5234635a7550ac364580eaceeb",
+      "reviews": [
+        "glyph-backend-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/glyph-live-admission.c",
+      "before_sha256": null,
+      "after_sha256": "a814792fef9ef9a1dddf39e67d661caae437cd274a7c4a7b08c6211dcd38ef47",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/glyph-live-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "0f974a24451f2d8c58fa06a29967acb2fb74ab43ab7f8d1e0cf50ff73d89620e",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/glyph-producer-entry.c",
+      "before_sha256": null,
+      "after_sha256": "bd9bd07753419a29c1c50f9dd0c6c0b22f3a04e35719d94db2c03b80c8baa427",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/native-movie-frame-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "cf6121d2342e30b6d94e7cf8ade00e4c467961b0b95939d7f264d0fc248001e2",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/native-movie-frames/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "fe8efa0ae93e7f394b46aa3bf3a0d9aa5b6b0e5518288c7840b827035b539691",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/world-continuous-channel-test.cpp",
+      "before_sha256": "df09db6a0950658ee219739858ac3aee8f4eaf75e6d07890b60c514f3d67cc33",
+      "after_sha256": "235ddd20f07987c77b745c935beb7d9948d39827982a0dec1b81f14281d9a8b5",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/world-continuous-hash-test.cpp",
+      "before_sha256": "d4a2e5daeb6a25a34cd872b5439eaff88f58f587b0adefb3ac0bee550e6abc88",
+      "after_sha256": "96c840681e43d2a10f452b8215eef1893ea558151126113f70168027b75ce532",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/world-continuous-memory-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "9b0404828160668a3b031f115689f46b59ffa446b6a5da5061106dc1c96eb4c6",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/world-continuous-normal-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "eadf25bd7802b160dae3ebf97c7440099bc2cbefbc0156d2adc6297fe1d76ce0",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/world-gpu-resident-replay.cpp",
+      "before_sha256": null,
+      "after_sha256": "9ada451e4b7d753818f8e4009994de5d85137c19b936c58fcd6f9404dc4562e0",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tests/world-gpu-resident-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "770bb4042c898d81ec6aead61b459f66672d85b171a74f790f7e30b5ba1ad732",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/build-scene-observer.py",
+      "before_sha256": "2ecd6454c7192506238f3efb2ee11c8e4f991ab4191e97c7153c2e9e9fa5b183",
+      "after_sha256": "0d40e2172537e98f42273a1f2672998cfecfdf2b4c3106fbbb36c727c6c4918c",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/capture-scene-game.py",
+      "before_sha256": "237c33e1f869ed6b6c605ddc0fd33afd6602b5f4baabee45212fa998d2dfe8e4",
+      "after_sha256": "859dcc72bdc99fc9934566e5a382db4ba9e94797001042806fbc936d1dd71b19",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/export-font-text-support.py",
+      "before_sha256": null,
+      "after_sha256": "d3f96cb0142f0f11b56eabc28be874463004f602cbc7462e88fcf915514c257a",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/glyph_backend_launch.py",
+      "before_sha256": null,
+      "after_sha256": "f4f6d3153ae4cad76cec82690de42443d1b31f8a9201f352254e3cbc5574ae85",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/glyph_live_capture.py",
+      "before_sha256": null,
+      "after_sha256": "ffe58afd7a3087b427abb49a769c52dd23cdffb786c897bc850ba7111f9b7246",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/menu-game-runner.py",
+      "before_sha256": "71aae007790a575b3988dd8dde4591423cfbb74ad7b9e2766469adccd97edc75",
+      "after_sha256": "ca338b36ca0c7d66bc7b4c11beff19b44b997e4f6c3578f76c2aedc51e58a149",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/prepare-menu-observer.py",
+      "before_sha256": "392f664064a0e7095c258156df98d1a9b656f9cfdc74ab8a28c0c025dc1995e6",
+      "after_sha256": "b0c94782385c2bfeea6cf2ec83f744e59fa34d728af064a03f6b381eb3142381",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/prepare-scene-observer.py",
+      "before_sha256": "38d49ece49d1eb69d69e3c221d970b004eb4e145c500dec9d8e2277312935479",
+      "after_sha256": "fb28af7a20f861ff91f18bd4ece59365af607b3a33c7a41c03d67133743c6184",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/render-game-runner.py",
+      "before_sha256": "6ff5a8b633117cd9be416f495cacfca10521c09e04792571d5c8d0d3287f8478",
+      "after_sha256": "47c99bd2226be7c54480093b87ba95595a99c2ccce81fa8b4f3f68c329083903",
+      "reviews": [
+        "glyph-live-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/run-opengl-game.py",
+      "before_sha256": "2831be408592dc9b1b38927f6205e85bad0e14ccaf2caf95bf8bca60824e8b46",
+      "after_sha256": "5ec7619d7e2d96c60b050f6f211d8e6cb7a75187aaa82ec956c3773f9fe0794e",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/scene-game-runner.py",
+      "before_sha256": "8fe84165740f59728d9beaa9ece438b5458c3cee6de2499b64a7791ed6065742",
+      "after_sha256": "e3ac21db68e904260df01df80c85304618fa865d1d8542df7cd55cbe51367352",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/test-canvas-fade-span.py",
+      "before_sha256": null,
+      "after_sha256": "093fc11cac38b31fc344e37c6b9fe81faa3bc0e5988b6ee670afd944349bd21c",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/test-canvas-image-producers.py",
+      "before_sha256": null,
+      "after_sha256": "677efcdff9bcae77f872109c5b17693d2f0fa7918cfb8c5b0cd7c86178d14339",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/test-font-line-layout.py",
+      "before_sha256": null,
+      "after_sha256": "869f27a7a513f036677402c1a72fd4a471426b62df08a876a8af4f7e9af82ccd",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/test-glyph-backend.py",
+      "before_sha256": null,
+      "after_sha256": "11d0064f1dff46f2283154fc1abf3449c7df7622dc55ea1afa2f742757862fff",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/test-glyph-live.py",
+      "before_sha256": null,
+      "after_sha256": "0fcb3217f276fee969f384d42ca0f6e67bd1f3c5b3f6a5daf189fbd8aa998187",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/test-native-enabled-movies.py",
+      "before_sha256": null,
+      "after_sha256": "887e6ef7741f9f6b4d9e8230fc9f027ea6f1ff5f1c0ca3158917079d472a10f9",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/test-native-gpu-frame-ownership.py",
+      "before_sha256": null,
+      "after_sha256": "0cf909997dec2ccca1ee373fce2b3ed72bfb3de61358688f29b88dfb075327fa",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/test-native-movie-frames.py",
+      "before_sha256": null,
+      "after_sha256": "853c020528423a1ee0bf6f757c5ebd9bc9ecdb4ad3b76396e3b88428de339d7a",
+      "reviews": [
+        "pixel-producers-source-accounting-20261010",
+        "change-177202c43771f43f"
+      ]
+    },
+    {
+      "commit": "597005a",
+      "parent": "02d851a0e7647a086d11045c0233356a28469a5f",
+      "path": "tools/test-native-world-continuous.py",
+      "before_sha256": "24d1f8f0612c45402573fc4355d21fb77eb41204dc3416accd9dd63ad35fdf5d",
+      "after_sha256": "0ffd5596152c607c9135abcc1fcf44dc8b1f15ea54c314e03922c5ad3e44e242",
+      "reviews": [
+        "change-177202c43771f43f"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

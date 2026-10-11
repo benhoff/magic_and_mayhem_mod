@@ -320,7 +320,7 @@ static void game_blit_after(struct GameBlit* p,i32 result){
         lock_diagnostic("blit_live_in_place",p->target,0,(u32)p->source,0,result,0,0);goto done;
     }
     u32 record_bytes=p->src.length+p->dst.length*2+(p->src.bits==8?1280:256);
-    int record=game_blit_count<16 && record_bytes<=GAME_SURFACE_LIMIT-game_blit_bytes;
+    int record=game_session_archive && game_blit_count<16 && record_bytes<=GAME_SURFACE_LIMIT-game_blit_bytes;
     char path[544];copy(path,lock_capture_path,lock_capture_path_length);char* tail=path+lock_capture_path_length;
     if(record){copy(tail,"\\blit-",6);failure_hex(tail+6,++game_blit_count);copy(tail+14,".bin",5);}
     int palette_ready=p->dst.bits!=8 || game_surface_colors(dst,p->dst.palette);

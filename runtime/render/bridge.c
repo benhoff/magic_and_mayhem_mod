@@ -7,6 +7,8 @@ API u32 WIN GetFileSize(HANDLE,u32*);
 API u32 WIN GetTickCount(void);
 API u32 WIN GetCurrentThreadId(void);
 API void WIN Sleep(u32);
+API i32 WIN WaitOnAddress(volatile void*,void*,u32,u32);
+API void WIN WakeByAddressAll(void*);
 API HANDLE WIN GetCurrentObject(HANDLE,u32);
 API i32 WIN GetObjectA(HANDLE,i32,void*);
 API i32 WIN GetBitmapBits(HANDLE,i32,void*);
@@ -250,18 +252,24 @@ static i32 WIN blt_fast(void* object,u32 x,u32 y,void* source,void* rect,u32 fla
     COMMAND_CALLBACK(((i32 (WIN *)(void*,u32,u32,void*,void*,u32))lookup(object)->original[7])(object,x,y,source,rect,flags));
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
     if(!copy_lease.observe){i32 result=((BltFast)lookup(object)->original[7])(object,x,y,source,rect,flags);game_copy_unobserved(object);return result;}
+    game_copy_stage(1);
     u32 error=GetLastError(),caller=(u32)__builtin_return_address(0);
     struct Table* t=lookup(object);
     int token=history_enter();struct DrawCapture* c=begin_draw(object,0,source,rect,flags,0,2,x,y,caller);
     if(token && !c)history_gap(6);
+    game_copy_stage(2);
     struct GameBlit propagated;game_blit_before(object,0,source,rect,flags,0,1,x,y,&propagated);propagated.caller=caller;
+    game_copy_stage(3);
     SetLastError(error);i32 status=((BltFast)t->original[7])(object,x,y,source,rect,flags);error=GetLastError();
+    game_copy_stage(4);
     game_blit_after(&propagated,status);
+    game_copy_stage(5);
     render_failure("application_bltfast",status,object,t->kind,flags);
     end_draw(c,object,status);
     /* For a Fast event, left/top are x/y; right/bottom are deliberately zero. */
     u32 dest[4]={x,y,0,0};draw_event(2,caller,object,source,flags,status,dest,rect);
-    if(status>=0)capture(object);history_leave(token);SetLastError(error);return status;
+    game_copy_stage(6);
+    if(status>=0)capture(object);history_leave(token);game_copy_stage(7);SetLastError(error);return status;
 }
 static i32 WIN flip(void* object,void* target,u32 flags){
     COMMAND_CALLBACK(((Flip)lookup(object)->original[11])(object,target,flags));
@@ -282,12 +290,17 @@ static i32 WIN surface_lock(void* object,void* rect,void* desc,u32 flags,HANDLE 
     if(!command_lease.observe){i32 result=((Lock)lookup(object)->original[25])(object,rect,desc,flags,event);if(result>=0 && !command_lease.retired)command_borrow_add(object,1,0);return result;}
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
     if(!copy_lease.observe){i32 result=((Lock)lookup(object)->original[25])(object,rect,desc,flags,event);if(result>=0)command_borrow_add(object,1,0);game_copy_unobserved(object);return result;}
+    game_copy_stage(10);
     u32 entry=GetLastError();struct Rect region;int region_valid=rect && readable(rect,16);if(region_valid)copy(&region,rect,16);
-    int token=history_enter();struct Table* t=lookup(object);SetLastError(entry);i32 status=((Lock)t->original[25])(object,rect,desc,flags,event);u32 error=GetLastError();
+    int token=history_enter();struct Table* t=lookup(object);game_copy_stage(11);SetLastError(entry);i32 status=((Lock)t->original[25])(object,rect,desc,flags,event);u32 error=GetLastError();
+    game_copy_stage(12);
     game_lock_observed(object,t,rect,region_valid?&region:0,desc,flags,status);
+    game_copy_stage(13);
     render_failure("application_lock",status,object,t->kind,flags);
+    game_copy_stage(14);
     if(token)history_lock(object,rect,desc,flags,status);
-    draw_event(4,(u32)__builtin_return_address(0),object,0,flags,status,rect,0);history_leave(token);SetLastError(error);return status;
+    game_copy_stage(15);
+    draw_event(4,(u32)__builtin_return_address(0),object,0,flags,status,rect,0);game_copy_stage(16);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_unlock(void* object,void* rect){
     COMMAND_CALLBACK(command_borrow_release(object,1,0,((Unlock)lookup(object)->original[32])(object,rect)));
@@ -538,6 +551,8 @@ int WIN DllMain(void* instance,u32 reason,void* reserved){
     typedef u32 (WIN *PinModule)(u32,const char*,void**);void* pinned=0;
     PinModule pin=(PinModule)GetProcAddress(GetModuleHandleA("kernel32.dll"),"GetModuleHandleExA");
     if(!pin || !pin(5,(const char*)&RenderAnchor,&pinned)){stream[MNM_FRAME_V1_STATUS_OFFSET/4]=MNM_FRAME_V1_STATUS_HOOK_FAILED;return 1;}
+    void* native_draw=GetModuleHandleA("MnmDraw.dll");
+    if(native_draw)game_copy_native_stage=(u32 (WIN *)(void))GetProcAddress(native_draw,"NativeDrawStatusStage");
     input_init();media_init();command_channel_init();
     char no_readback[8];readback_disabled=GetEnvironmentVariableA("MNM_RENDER_NO_READBACK",no_readback,sizeof(no_readback))!=0;
     init_lock_lifecycle();

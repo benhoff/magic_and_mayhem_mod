@@ -1,0 +1,641 @@
+{
+  "scope": "Read-only review of concurrently landed committed history. Renderer rolling work remains isolated on its d412789 branch, so this does not reconcile the concurrent unstaged/staged root tree or promote it. Reviewed committed source changes and original/render/source/protocol anchors separately from uncommitted font-byte work; no new execution or historical gate assertion. Recursive append-only review journal excluded from exact transition matching.",
+  "range": "d412789..d6e32e9",
+  "transitions": [
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "reconstruction/rendering/word_backend_state.c",
+      "before_sha256": "90e747fe1490ca94892ce974dfb1dbf90af71ba5da3923bef887c9396ad1134a",
+      "after_sha256": "5ec05fbe6ae5c6a48839e3e8c4ee01d4546e730e235af6bd08d9ff654a09f0f2",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "renderer/sprites/word_clipped.c",
+      "before_sha256": "11172af3b6e6409d10ce747dde1b1a325d61fa931d127ef5873eec446fabff5b",
+      "after_sha256": "7ced88878d827606070b8ac0475360ffaead969d1321a6c848324d3b72a89bba",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "renderer/sprites/word_clipped.h",
+      "before_sha256": "82ae0479efb1f5854adc958a78a12b5b0ec174554cd60c1b19d84f863a9419a7",
+      "after_sha256": "df60421e209e66511eea2d8d19647506649575e5ff1237df9fa91ed9840912b6",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/formats/word-admission-stats-v1.md",
+      "before_sha256": null,
+      "after_sha256": "2b9e83711d49eff85c881b4703c2fb300092381a8c8fb9c1a1dad7d83e4b62d2",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "36d736520519c6a35dda5079ddf90adf57c4ff5f06249308115b963efa68c2e2",
+      "after_sha256": "337b953e1e9313fa70dd6fb537bf7cac1077754adb6a14c74df0bcc1c1fcd5e4",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "bc284516941353ef60e5631b14c2a10cc08d45741cfb04380d0986c08af6d5a3",
+      "after_sha256": "9cce755b54aabf3b695a84241b94f6222eccf46704b786476b00150d57e98d36",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage/source-index-word-clip-aux-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ada92990ffbbc6674f4647352535561c23d2acd50a1370805339370584109c28",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "e7959898f91831ed1c74e5589743fe3dc99bc459bf34ddba4674d023ba1f3b01",
+      "after_sha256": "81bc26e7f82960361d2f171c3f1b87e70a3585b8e6566f067129325d7d796d6e",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage/word-clip-aux-history-652c01d-c9f99e8-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "911282a9415a11448a5c00cabd847a9a348b34a8607ee8aeb0c0a001c1920cf2",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/coverage/word-clip-aux-history-c9f99e8-d412789-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7dcff1c14675cb15c11afdb016b3a92e51e9f0278d9bbe95f7dfeee492e93fda",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/word-clip-aux-capture-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "cd0786d02a64da46a812a4293b1ff6b0ee797df1622e3d188a85c1b5417a59de",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/word-clip-aux-dimensional-sampler-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1f4c38246c904cee7af4ba1c505461b68847b68681f30743c5a6a6ad42b8afcb",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/word-clip-aux-distinct-sampler-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0d09e91191c4527bd3c6a178b223430c308b2c730e01333d87acec7b402d0c53",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/word-clip-aux-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "935ee10d6143bde26711a897382a1b76acb003c471cae1eea231c07307779cc8",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/word-clip-aux-isolated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1922c95c73718330b033bb4612acdba3d8b1a3cdbc90bff0bcb851ccd8f78c81",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/word-clip-aux-live-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bffb4ebac307af3dd2ce0d55396360c2ebd14df8370af1dc25722129e932d9c2",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/word-clip-aux-replay-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "121ecb6351244a790367954632830644000cb0c2025c13a6037ae1eabf3a6c13",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "research/runtime/word-clip-aux-shadow.md",
+      "before_sha256": null,
+      "after_sha256": "418e2986c2c93624328ba8d4d2f5c40e2ac3861f8ad9ceb5f41733ca81da5145",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "runtime/scene/word_route.c",
+      "before_sha256": "9349585787972bf479d05422d304c10977c4d50a3797e779ea1f6925ec929026",
+      "after_sha256": "9b64bc40bed96f4aad19c37528135cf82f4d251d12a44722b668ca06fab4e1bd",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "tests/word-clip-shadow-host.c",
+      "before_sha256": "a1e6e331c0e461eb0ecd33611fa4cbac26eb0329f1674f6f2458082b79aa6ac9",
+      "after_sha256": "891c514d2ce675559073495f1c75e1b5519eeb8a573a68ef6f766b0d1a619e5e",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "tests/word-clip-shadow-reference.cpp",
+      "before_sha256": "b13e0e077ad68ea313a5a573999f1563ccdecfd448acb4632259afca8ef6addc",
+      "after_sha256": "55e9390653942a89f7dbff0f70592f96a39338e8c3e64925fd3c2c1703b18957",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "tests/word-clipped-test.c",
+      "before_sha256": "bb7e89075fb9b8b412d32f16e03584488494974c49bb779bc44fa591f61362a8",
+      "after_sha256": "9d9ddc94c49c1bceec5d0f45dccd5fbbb7e52372c443b0ed7f58ff983082bb9b",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "tools/capture-scene-game.py",
+      "before_sha256": "a009162b0755e1bb813ec9ad7a5571933ff672a45019e6ee51e82340710b4c2e",
+      "after_sha256": "17922238c1d8bba5df271361a710bc784fbaa709aa60047fb63013801a66a932",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "tools/replay-word-clip-shadow.py",
+      "before_sha256": "bcfeb1c016c0f3203f0c591a1030904e037cfacad0d1d3ba7aa7127dcdc54eb7",
+      "after_sha256": "6c76305009eee307084f528ab0769eaf7e431f2458b68b36e0208ff1e651eb20",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1fc0b3edffa2df4d8f3fc892a74a438085681a93",
+      "path": "tools/test-word-clip-shadow.py",
+      "before_sha256": "a44bb1b23582c346fc445ddef3d87c50176766669ef2a01a4efe1d69c6480adf",
+      "after_sha256": "e5f472294cae689245644fe5e0a137252c0b018c43ea6fa9902e1e3ef0fe4705",
+      "reviews": [
+        "word-clip-aux-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "f2b02e3e62bb42af8744ccc2fb49f55820a4a3e3611b81f3d24a89e8cffa3086",
+      "after_sha256": "a14e7a14edf87d6f1219d2bbc613fa9939ffaeb326b9b69f10f07a16355c57b8",
+      "reviews": [
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "dc91d5e21e8e47646acead95f4b444adeb52086d6fd9cd7791b6d850af51f7db",
+      "after_sha256": "283fc4103ed3a5f38b798bb1b5cda1c6604ce1e746c45e8323497ec454123ee0",
+      "reviews": [
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-scoped-recorded-20261010",
+        "font-glyph-final-links-recorded-20261010",
+        "font-glyph-current-head-pending-20261010",
+        "font-glyph-current-head-recorded-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "337b953e1e9313fa70dd6fb537bf7cac1077754adb6a14c74df0bcc1c1fcd5e4",
+      "after_sha256": "e3b7c9fac3d32037f2597fef1896b6202daaf0cafdf5bd4a12eaf9f85406fdad",
+      "reviews": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage/font-glyph-history-ae448ba-d412789-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "026dec07f2657d1446492ea522b1af10e9d35d9be61afb99184566e8a662aea3",
+      "reviews": [
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage/font-glyph-history-d412789-1fc0b3e-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ad842afd446a3e6c7bd1cf73954b49c0bab38992415dfc859417a9fa7c1ac767",
+      "reviews": [
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "9cce755b54aabf3b695a84241b94f6222eccf46704b786476b00150d57e98d36",
+      "after_sha256": "5cc664e42b5ee8e39aac6cf8daf3a7376cf85a859bcd2c61d2a8a8373cb384a9",
+      "reviews": [
+        "font-glyph-final-shared-metadata-pending-20261010",
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage/source-index-font-glyph-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a6778d2f95ec8879b7edbdaabf896e6a455b8beccdf0bae3875c3e42b2d79a77",
+      "reviews": [
+        "font-glyph-shared-metadata-pending-20261010",
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/coverage/source-index-font-glyph-projection-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b1f64d218c6cc34f25817861496dcfc168bbd93eef2703f14717020cc5b63d85",
+      "reviews": [
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-current-head-pending-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/font-glyph-raster-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "5055dc17c1d6b2b7c01da61a1a38eb56787bf20d216d7d55bd57296e823e87fc",
+      "reviews": [
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-scoped-recorded-20261010",
+        "font-glyph-final-links-recorded-20261010",
+        "font-glyph-current-head-pending-20261010",
+        "font-glyph-current-head-recorded-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "research/runtime/font-glyph-raster.md",
+      "before_sha256": null,
+      "after_sha256": "38e9681c80a9d0116129f566bed3a4572142b9bd8b16fc23f151e86ae205b2eb",
+      "reviews": [
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-scoped-recorded-20261010",
+        "font-glyph-final-links-recorded-20261010",
+        "font-glyph-current-head-pending-20261010",
+        "font-glyph-current-head-recorded-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tests/glyph-raster-native.cpp",
+      "before_sha256": null,
+      "after_sha256": "32e547c17f4ab88d337732c9032d61d6d66ab9b99880617e34bd835ea5ebf4d9",
+      "reviews": [
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-scoped-recorded-20261010",
+        "font-glyph-final-links-recorded-20261010",
+        "font-glyph-current-head-pending-20261010",
+        "font-glyph-current-head-recorded-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tests/glyph-raster-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "06132cd8c77995948f7b50e934ab00ecaf6f570e60b5694b598ed494ce18b177",
+      "reviews": [
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-scoped-recorded-20261010",
+        "font-glyph-final-links-recorded-20261010",
+        "font-glyph-current-head-pending-20261010",
+        "font-glyph-current-head-recorded-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tests/glyph-raster-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "3908a407ea69fa5c8005db9203b8ac799b5728940dcb6a65ec93285e834cd8cc",
+      "reviews": [
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-scoped-recorded-20261010",
+        "font-glyph-final-links-recorded-20261010",
+        "font-glyph-current-head-pending-20261010",
+        "font-glyph-current-head-recorded-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tests/glyph-raster/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "9a598e03fd61544c808a8f77f22513df4240db5455b3daf2116affb07a519262",
+      "reviews": [
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-scoped-recorded-20261010",
+        "font-glyph-final-links-recorded-20261010",
+        "font-glyph-current-head-pending-20261010",
+        "font-glyph-current-head-recorded-20261010"
+      ]
+    },
+    {
+      "commit": "0191a55449752ce7867cd81d33c2cbfdd36e40b9",
+      "path": "tools/test-font-glyph-raster.py",
+      "before_sha256": null,
+      "after_sha256": "29529321224d10f7122049bbef592158225f8f07471534b379031df1f07803ae",
+      "reviews": [
+        "font-glyph-shared-source-pending-20261010",
+        "font-glyph-scoped-recorded-20261010",
+        "font-glyph-final-links-recorded-20261010",
+        "font-glyph-current-head-pending-20261010",
+        "font-glyph-current-head-recorded-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "a14e7a14edf87d6f1219d2bbc613fa9939ffaeb326b9b69f10f07a16355c57b8",
+      "after_sha256": "8208e2af85264429f4939df7644208a3e6f05ff5b20c2d6123767fef94722806",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/formats/word-clipped-takeover-stats-v1.md",
+      "before_sha256": null,
+      "after_sha256": "2849cfd181feaa5bbc0cb4a5274b9aca6f310e3ad2c731dc90d36516c4dbd23e",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "e3b7c9fac3d32037f2597fef1896b6202daaf0cafdf5bd4a12eaf9f85406fdad",
+      "after_sha256": "41a0bf8a29dfb333ff53c5cd59f23790b733485b631733ae76a4d84ff87eb61e",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "5cc664e42b5ee8e39aac6cf8daf3a7376cf85a859bcd2c61d2a8a8373cb384a9",
+      "after_sha256": "75bd392752aa38ff84c8de003c79597df1ea045f48351b364620abeff75fcbc9",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage/source-index-word-clip-takeover-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7f52676d43f2686c72cf92492438ed03b142adc5579fbe63a27e0bafd392e9c6",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "81bc26e7f82960361d2f171c3f1b87e70a3585b8e6566f067129325d7d796d6e",
+      "after_sha256": "740b9d7bd0b25420d0869fc8a35b451a6e645956959af2ad2548932e1989dfbc",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/coverage/word-clip-takeover-history-d412789-0191a55-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0c6f8ea39f219984e0722aea23f2ab1e6c9f46b0a4350215f79c7557251e57f3",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/word-clip-takeover-capture-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1da03279e45f89699cbfee33015968c5614462f3decfed3aaaeabde945b92696",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/word-clip-takeover-initial-count-failure-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9facad96b9c940f2aa1f29c03bfebd81970e379d6e795ec61e1dd8ef2f1535a4",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/word-clip-takeover-isolated-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0ce918cb45f2782a2bc8f7575d033daacbe207fcf1ad4c4a7bae8089a143393c",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/word-clip-takeover-live-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "41b30f313489d569d47b4d264328e67f7b9aa584f85389a81130967249d2d363",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/word-clip-takeover-replay-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "168299eff370b561f63916b728f01b5db3bb3f755c1b48bf7362ad7ce7d2a147",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/word-clip-takeover-shadow-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "5e4a3791e7bd66fe6812fe92415e854ad8ad4233be4d976599775118f7cfa3fa",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "research/runtime/word-clip-takeover.md",
+      "before_sha256": null,
+      "after_sha256": "093a7ba6406745878e95cf3fdda84e4dc92ca5b461cc7f611f1893921e1592d6",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "runtime/scene/word_entry.S",
+      "before_sha256": "327b2ee488c16d4c44c70c94ace26c82fa5a1bcea1b9ed4321c4df032bf18e9d",
+      "after_sha256": "23d72e078069edba6c1beed0dee47b1f3c8c1faf395bf6f36c9c06b92b450beb",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "runtime/scene/word_route.c",
+      "before_sha256": "9b64bc40bed96f4aad19c37528135cf82f4d251d12a44722b668ca06fab4e1bd",
+      "after_sha256": "d0a3ebcaf73d2df6451162dbf7e1aa224612953b4b40514c66cd4ed01acccf55",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tests/word-clip-shadow-host.c",
+      "before_sha256": "891c514d2ce675559073495f1c75e1b5519eeb8a573a68ef6f766b0d1a619e5e",
+      "after_sha256": "379286d5c18de14d4d62d8caacdd328046821b004dc22ef77960837f4211cb90",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tests/word-clip-shadow-reference.cpp",
+      "before_sha256": "55e9390653942a89f7dbff0f70592f96a39338e8c3e64925fd3c2c1703b18957",
+      "after_sha256": "43bfb5fa20af33e48ab3901fde8a001555a349c8300a5bf4e359f8317a3d31af",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tests/word-clip-shadow-replay.cpp",
+      "before_sha256": "b425ffa4bd2d1959836f6c734dc0d5192d31e0b1998d7a0fc85b12adf5ea5999",
+      "after_sha256": "9e2a4830762a8b22e7bf79980c8664cf151dbf6b7fb8ddab0432e80e8c14c9b2",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tools/capture-scene-game.py",
+      "before_sha256": "17922238c1d8bba5df271361a710bc784fbaa709aa60047fb63013801a66a932",
+      "after_sha256": "e90c7d8ae630fbad4ddc4a264bfc343880fd73264346874318aa59dff6081720",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tools/prepare-scene-observer.py",
+      "before_sha256": "bdda217c1c20c1a0ff1f01ef7ca54ee06f21de99b9228f06a66957cc63176407",
+      "after_sha256": "38d49ece49d1eb69d69e3c221d970b004eb4e145c500dec9d8e2277312935479",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tools/render-game-runner.py",
+      "before_sha256": "97193487a39b8a4cfdcf4fe9dd630190663f2bd6c1b9def979c8efb2d6cb2dcc",
+      "after_sha256": "6ff5a8b633117cd9be416f495cacfca10521c09e04792571d5c8d0d3287f8478",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tools/replay-word-clip-shadow.py",
+      "before_sha256": "6c76305009eee307084f528ab0769eaf7e431f2458b68b36e0208ff1e651eb20",
+      "after_sha256": "ccb53d725cee7fa87a9ebbe205cdab9bb11de5518d4c7ded7177884b95f0803a",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tools/run-opengl-game.py",
+      "before_sha256": "775966327b7ffdebcb3b25c21bfe82aec156bcde3ab39ab3157a6314b84b2a1a",
+      "after_sha256": "2831be408592dc9b1b38927f6205e85bad0e14ccaf2caf95bf8bca60824e8b46",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tools/scene-game-runner.py",
+      "before_sha256": "d7dd632b7e08ab76e5dd0e92c70006fa8dd60337b316c867de897660ea5a7a5a",
+      "after_sha256": "cf6bad4dc1cafea2844c66cc1fc61459304a9a0273f5c4eb1aed34697aadb593",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "d6e32e99012f8570d6f13570ca79131f60d42d55",
+      "path": "tools/test-word-clip-shadow.py",
+      "before_sha256": "e5f472294cae689245644fe5e0a137252c0b018c43ea6fa9902e1e3ef0fe4705",
+      "after_sha256": "db592ff1d1c4749ad897b0dd197f27554c3f9669f15c34cb52f5c010318732af",
+      "reviews": [
+        "word-clip-takeover-source-accounting-20261010"
+      ]
+    }
+  ],
+  "missing": [],
+  "missing_count": 0,
+  "transition_count": 66,
+  "source_boundary": "Concurrent CanvasSequence glyph input preflight and clipped-word policies differ from the isolated rolling validation source. Do not claim these new rolling results validate the other branch or merged source."
+}

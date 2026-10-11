@@ -21,9 +21,13 @@ public:
   CanvasWorld(render::GlBlitter &, const assets::AssetStore &);
   void begin(const CanvasProducer &, const render::Image &nativeHistory);
   void beginRolling(const CanvasProducer &,const render::Image &nativeHistory,std::uint64_t sequence);
+  void beginResident(const CanvasProducer &, render::SurfaceId, std::uint64_t sequence);
   void append(const CanvasProducer &);
   render::Image complete(const render::Image &nativeReference);
+  render::Image completeNormal();
+  void completeResident();
   void end(const CanvasProducer &);
+  render::GpuFrame presentGpu();
   bool active() const { return active_; }
   unsigned queue() const { return queue_; }
   unsigned canvas() const { return canvas_; }
@@ -40,9 +44,11 @@ private:
   std::unique_ptr<render::SceneRenderer> scene_;
   WorldFrame pending_;
   void beginFrame(const CanvasProducer&,const render::Image&);
+  render::Image completeFrame(const render::Image*, bool exportPixels = true);
   unsigned queue_=0,canvas_=0,completed_=0,queueDraws_=0;
   std::uint64_t rollingSequence_=0,rollingCompleted_=0,totalDraws_=0,readbacks_=0;
-  bool rolling_=false;
+  render::SurfaceId residentSurface_=0;
+  bool rolling_=false, resident_=false;
   bool active_=false,checked_=false;
   Profile profile_;
 };

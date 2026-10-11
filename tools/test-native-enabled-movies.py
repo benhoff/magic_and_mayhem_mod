@@ -89,11 +89,18 @@ def main():
         stage=paths[0];metadata=json.loads((stage/'manifest.json').read_text());game=stage/'game'
         if metadata['skip_movies'] or metadata['movie_preference_edits']:
             raise ValueError('Movies were disabled during the enabled scenario')
+        # Installed preferences may have disabled movies. Enable both native
+        # intros explicitly in this real private copy, never in the source.
+        movie_spec=importlib.util.spec_from_file_location('enabled_movie_preferences',ROOT/'tools/run-opengl-game.py')
+        movie_stage=importlib.util.module_from_spec(movie_spec);movie_spec.loader.exec_module(movie_stage)
+        report['movie_enable_preference_edits']=movie_stage.patch_staged_preferences(game,'VIDEO',{'PlayFMV':'TRUE','PlayFMVOut':'TRUE'})
+        for edit in report['movie_enable_preference_edits']:
+            path=game/edit['path'];inputs[str(path.relative_to(ROOT))]=sha(path)
         for name,key in [('Chaos.exe','staged_sha256'),('MnmRender.dll','dll_sha256')]:
             if sha(game/name)!=metadata[key]:
                 raise ValueError('Staged game/bridge changed')
         prefix=out/'wineprefix'
-        run('clone-prefix',['cp','-a','--reflink=auto',ROOT/'working/wineprefix-x86_64',prefix])
+        run('clone-prefix',['cp','-a','--reflink=auto',(ROOT/'working/wineprefix-x86_64').resolve(),prefix])
         env.update(WINEPREFIX=str(prefix),MNM_RENDER_MEDIA='Z:'+str(channel).replace('/','\\'),
                    MNM_RENDER_STREAM='Z:'+str(frame).replace('/','\\'))
         with (out/'wine.log').open('x') as log:
