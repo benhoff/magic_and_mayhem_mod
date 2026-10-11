@@ -5222,3 +5222,81 @@ links; this indexing reconciliation adds no engine validation or status promotio
 ### Final concurrent master integration (2026-10-11)
 
 Both histories and exact receipts are retained, including the concurrent working-retention race fix and DRAW-02 strict record-kind/input/API work. The new `native-master-final-draw02-original-pass-20261011.json` refreshes metadata-only original-active Quick Battle acquisition against the imported launcher helpers: strict no-loss/no-gap journal, sustained gameplay, original results Continue/Quit and return to fresh Main pass with original section/manifests/source guards. This is isolated Xvfb/software GL observation, separate from the TITAN performance proofs; native pixel parity, complete picking/tooltip/pause/combat outcomes and full readback interference remain pending. Pre-admission environment failures (missing display and copied general-prefix WOW64 initialization,diagnosed by bounded loader trace) are retained separately; neither is admitted as success.
+
+## 2026-10-11 DRAW-02 native physical presented-session backend
+
+A strict owned-history backend now implements the independent session ABI through
+source-only native composition and an application GPU viewport. It acquires complete
+X11 screen pixels after buffer swap, with zero viewport QImage uploads and native
+surfaces released. All65,536RGB565 colours and three menu/loading/results frames
+match independent synthetic expectations. Seven executed controls include physical
+screen containment, non-X11 refusal, unsupported caller effects, oracle-field
+refusal and preservation of existing outputs; fourteen protocol guard methods pass.
+All103retained startup frames match historical original primary readbacks through
+actual native X11 presentation:49,440,000pixels,zero mismatches. Source claims are
+prospective and stable; original manifests pass before/after. Earlier failed context
+sharing, asset case-directory and undersized-Xvfb attempts remain in working.
+
+The original references retain their observed_primary_blt boundary; this does not
+assert new synchronized original physical acquisition, complete semantic input,
+general battle/save/load ownership, native caller effects or real-driver recovery.
+DRAW-02 fourteen-journey/twenty-one-operation gates remain open. The final prior
+integration range300e423..9df6aa3 has nine exact file-version receipts and no gaps.
+See [owned presentation protocol](../formats/drawing-presented-session.md) and
+[immutable execution report](draw02-native-physical-session-20261011.json).
+
+## 2026-10-11 DRAW-02 synchronized original/native physical witnesses
+
+An opt-in post-copy fence now holds the original drawing thread at the two
+already guarded opaque primary-copy sites while an independent X11 peer acquires
+the entire client plane twice, checks stability and acknowledges exact frame and
+attempt identities. Fresh original execution retains 103 physical witnesses,
+source/queue/canvas/thread/menu-phase bindings and five successful menu dispatches
+through 16 World returns. Other original threads remain active.
+
+The first physical admission failed because bit-replicated RGB565 expansion differs
+from the tested Wine display path. All 49,440,000 original physical pixels match
+fixed nearest normalized expansion, including all 32/64/32 channel levels. The
+explicit native presentation policy expands only native-derived words, supplies
+no measured colour table and uses zero viewport QImage uploads. Both policies pass
+independent exhaustive 65,536-colour presentation tests, eight physical/refusal
+controls and fifteen admission guards.
+
+Fresh original-screen versus separately owned native-screen comparison passes
+all 103 frames / 49,440,000 pixels with zero mismatches; five physical admission
+guard methods pass. Original manifests pass before and after both original
+acquisition and comparison. Failed compile and bit-replication attempts remain
+retained under working; no historical evidence hashes were changed.
+
+This closes synchronized physical point acquisition and exact parity within the
+guarded startup prefix. It does not close the fourteen-journey/twenty-one-operation
+DRAW-02 gate: alternate/global publication, general battle/save/load producers,
+semantic input/caller effects and true driver loss/Restore remain open. Exact
+committed-history review covers 14 file versions in 9df6aa3..5bb6dce with no gaps.
+See [physical fence protocol](../formats/drawing-physical-fence.md),
+[original execution](draw02-fenced-original-20261011.json) and
+[paired comparison](draw02-fenced-screen-comparison-20261011.json).
+
+### Combined-source physical acquisition review (2026-10-11)
+
+The DRAW-02 physical increments are reconciled with concurrent master8ed5317,
+preserving both optional capture paths, original/native separation and all
+append-only evidence. Fresh combined-code original acquisition again retains
+103 stable full-window witnesses through 16 World returns. Independently composed
+native X11 output matches all103frames/49,440,000pixels with zero differences.
+Both native RGB565 display policies, all65,536colours, eight physical/refusal
+controls and fifteen admission guards pass again. The original manifests pass
+before/after original acquisition and paired comparison.
+
+Exact history review covers 2,839 parent/current file versions across 30 commits
+in5bb6dce..336edd1and9df6aa3..8ed5317. Seventy-five missing intermediate receipts
+are appended retrospectively with affected behavior/gap identities and pending
+validation; no past gate execution or new engine comparison is inferred.
+A transient conflict-resolution truncation was detected before original execution,
+restored from the untouched index and excluded from admitted evidence. Shared
+source edits leave other historical subsystem results pending current freshness;
+the new executions support only the declared physical point/presentation policies.
+Full DRAW-02 journey, input/caller-result and real-driver gates remain open.
+See [combined original](draw02-integrated-fenced-original-20261011.json),
+[combined native](draw02-integrated-native-physical-20261011.json) and
+[combined paired result](draw02-integrated-fenced-comparison-20261011.json).

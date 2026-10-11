@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "reviewed_ranges": [
+    "300e423..9df6aa3"
+  ],
+  "file_versions": [
+    {
+      "commit": "9df6aa3",
+      "parent": "300e4232c66acf3d0edf3e7c6733d58380c4127d",
+      "path": "docs/working-retention.md",
+      "before_sha256": "c6182c099d3eba57fd0a3f2bd3326aac961762f7e10c1b593c04552c65a8bdb3",
+      "after_sha256": "9389089ef32b8fb2c20f62d0d221d5f5f63add8e26b9a92a80e839f9f115f155",
+      "exact_receipt": true
+    },
+    {
+      "commit": "9df6aa3",
+      "parent": "300e4232c66acf3d0edf3e7c6733d58380c4127d",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "843bb94c290cacdc4c52a7a6164a0b2d9bf1024b1ec3d9fae5299c4f55405d6c",
+      "after_sha256": "ba9b29153e80dc922d6970ae2d254f9f50836716ec3955a55fed3a646fb06537",
+      "exact_receipt": true
+    },
+    {
+      "commit": "9df6aa3",
+      "parent": "300e4232c66acf3d0edf3e7c6733d58380c4127d",
+      "path": "research/runtime/coverage/draw02-final-integration-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "50de1b8de0990fef5f3e9bc397099fddd1401dc7280e99d9c8464b41c6a2af2d",
+      "exact_receipt": true
+    },
+    {
+      "commit": "9df6aa3",
+      "parent": "300e4232c66acf3d0edf3e7c6733d58380c4127d",
+      "path": "research/runtime/coverage/history-native-storage-integration-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6e7af221961cf73f2e447f651e31cbe3a7815d692ebe45c9c93140e13d250bfa",
+      "exact_receipt": true
+    },
+    {
+      "commit": "9df6aa3",
+      "parent": "300e4232c66acf3d0edf3e7c6733d58380c4127d",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "56d36ea3ba6e227f680f2ac884b65ba9863b3407767ac246f1fc0d40e6b3cdf5",
+      "after_sha256": "9f8f4073de64ff9c02b937429973b6461e3be201a060d39200e33c5188f67bdc",
+      "exact_receipt": true
+    },
+    {
+      "commit": "9df6aa3",
+      "parent": "300e4232c66acf3d0edf3e7c6733d58380c4127d",
+      "path": "research/runtime/coverage/source-index-draw02-final-integration-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1a04ccae4d29196ae77c4af56cc7a320ac6b850ab634d11368bf65433e6259bc",
+      "exact_receipt": true
+    },
+    {
+      "commit": "9df6aa3",
+      "parent": "300e4232c66acf3d0edf3e7c6733d58380c4127d",
+      "path": "research/runtime/coverage/source-index-native-storage-race-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4fcf360dc5b39de7d52a7a1919fd7d9b8e9719b9a93b9fcd7048bdcad9d657b4",
+      "exact_receipt": true
+    },
+    {
+      "commit": "9df6aa3",
+      "parent": "300e4232c66acf3d0edf3e7c6733d58380c4127d",
+      "path": "tests/test-working-retention.py",
+      "before_sha256": "9b8701d2afbcbb1229c26be0d60e2ed314c22441fd87ef0dd89dac682e55ff0d",
+      "after_sha256": "e87d3c72b1ab46cbf8d6128a1b253d5d4abf10421aef76352e5510aa6aef28c6",
+      "exact_receipt": true
+    },
+    {
+      "commit": "9df6aa3",
+      "parent": "300e4232c66acf3d0edf3e7c6733d58380c4127d",
+      "path": "tools/working-retention.py",
+      "before_sha256": "cf178f82612c0e307ca4e33141ad90550fa62c9faaa37ce743e84ee289e5410d",
+      "after_sha256": "48ddf5943c9f17ff2520c859d707e084ed6a3e9c705e3c60f1f890c20f955ca7",
+      "exact_receipt": true
+    }
+  ],
+  "unresolved_gaps": [],
+  "scope": "Exact committed integration review only; no new execution or past gate assertion."
+}
