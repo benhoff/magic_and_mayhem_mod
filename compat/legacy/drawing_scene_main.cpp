@@ -39,6 +39,8 @@ int main(int argc,char **argv){
     if(argc!=5){std::cerr<<"Usage: mnm-drawing-scene-replay INPUT.bin ASSET_ROOT SCENE.json OUTPUT_DIRECTORY\n";return 2;}
     QJsonObject report{{"success",false},{"original_pixels_used_as_native_inputs",false},{"original_oracles_read",false},{"live_replacement",false}};
     QJsonArray checkpoints,frames;
+    QByteArray rasterResults;
+    unsigned rasterResultCount=0,unknownRasterResults=0;
     bool ownsOutput=false;
     QDir output(QString::fromLocal8Bit(argv[4]));
     try{
@@ -91,6 +93,8 @@ int main(int argc,char **argv){
             mnm::legacy::DrawingScene scene(renderer,store,source);
             qsizetype nextFrame=0;
             for(const auto &c:stream.operations){
+                if(c.fields[2]==9&&c.fields[21])
+                    throw std::invalid_argument("Native scene raster input contains an observed result");
                 if(auto checkpoint=scene.apply(c)){
                     const auto bytes=pixels(checkpoint->image);
                     const auto name=QString("checkpoint-%1.565").arg(checkpoint->ordinal,4,10,QChar('0'));
@@ -98,6 +102,12 @@ int main(int argc,char **argv){
                     // checkpoint is still checked for complete native history.
                     if(config.value("retain_checkpoints").toArray().contains(int(checkpoint->ordinal)))save(output.filePath(name),bytes);
                     checkpoints.append(QJsonObject{{"sequence",int(checkpoint->sequence)},{"ordinal",int(checkpoint->ordinal)},{"canvas",int(checkpoint->canvas)},{"width",checkpoint->image.width},{"height",checkpoint->image.height},{"sha256",QString::fromLatin1(digest(bytes))}});
+                }
+                if(auto result=scene.rasterResult()){
+                    rasterResults+=QByteArray::number(result->sequence)+'\t'+QByteArray::number(result->queue)+'\t'+
+                        QByteArray::number(result->canvas)+'\t'+QByteArray::number(result->backend)+'\t'+
+                        (result->ax?QByteArray::number(*result->ax):QByteArray("unknown"))+'\n';
+                    ++rasterResultCount;if(!result->ax)++unknownRasterResults;
                 }
                 if(nextFrame<declaredFrames.size()&&scene.sequence()==number(declaredFrames[nextFrame].toObject(),"sequence")){
                     const auto frame=declaredFrames[nextFrame].toObject();
@@ -120,8 +130,14 @@ int main(int argc,char **argv){
         }
         if(renderer.stats().surfaces)throw std::runtime_error("Scene native surfaces remain after cleanup");
         for(auto i=assets.begin();i!=assets.end();++i)source(i.key().toStdString());
-        report["remaining_surfaces"]=double(renderer.stats().surfaces);report["success"]=true;
+        report["remaining_surfaces"]=double(renderer.stats().surfaces);
+        save(output.filePath("raster-results.tsv"),rasterResults);
+        report["raster_results_sha256"]=QString::fromLatin1(digest(rasterResults));
+        report["raster_result_count"]=int(rasterResultCount);
+        report["unknown_raster_results"]=int(unknownRasterResults);
+        report["original_raster_results_used_as_native_inputs"]=false;
         report["driver"]=QString::fromStdString(renderer.driver().renderer);
+        report["success"]=true;
     }catch(const std::exception &error){report["error"]=QString::fromUtf8(error.what());}
     if(ownsOutput)try{save(output.filePath("scene-report.json"),QJsonDocument(report).toJson());}catch(const std::exception &error){std::cerr<<error.what()<<'\n';return 1;}
     std::cout<<QJsonDocument(report).toJson(QJsonDocument::Compact).toStdString()<<'\n';

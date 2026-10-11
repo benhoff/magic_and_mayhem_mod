@@ -21,6 +21,7 @@ def sources():
                                    'tools/inspect-canvas-producers.py', 'tools/rendering_coverage.py',
                                    'tools/coverage_audit.py', 'tests/drawing-scene-test.cpp',
                                    'tests/test-drawing-scene.py', 'tests/resource-fixtures.hpp',
+                                   'tests/test-drawing-results.py',
                                    'research/runtime/draw03-native-scene.md'))
     return {str(p.relative_to(ROOT)): sha(p.read_bytes()) for p in sorted(paths)}
 
@@ -60,13 +61,17 @@ def main():
         guards = subprocess.run(['python3', '-B', str(ROOT / 'tests/test-drawing-scene.py')], capture_output=True, timeout=60)
         if guards.returncode:
             raise ValueError('Scene corpus guards failed: ' + guards.stderr.decode(errors='replace'))
+        result_guards = subprocess.run(['python3', '-B', str(ROOT / 'tests/test-drawing-results.py')], capture_output=True, timeout=60)
+        if result_guards.returncode:
+            raise ValueError('Raster result guards failed: ' + result_guards.stderr.decode(errors='replace'))
         if args.retention == 'NR.drawing-journey.retention-20261010':
             journey_guards = subprocess.run(['python3', '-B', str(ROOT / 'tests/test-drawing-journey.py')], capture_output=True, timeout=60)
             if journey_guards.returncode:
                 raise ValueError('Journey corpus guards failed: ' + journey_guards.stderr.decode(errors='replace'))
         result = check(catalog_path=args.corpus, executable=args.executable, headless=args.headless, retention=args.retention)
         result['tests'] = {'native_scene': True, 'portable_guards': True, 'test_binary_sha256': test_hash,
-                           'native_output': native_tests.stdout.decode(errors='replace'), 'guard_output': guards.stderr.decode(errors='replace')}
+                           'native_output': native_tests.stdout.decode(errors='replace'), 'guard_output': guards.stderr.decode(errors='replace'),
+                           'raster_result_guards': result_guards.stderr.decode(errors='replace')}
         if args.retention == 'NR.drawing-journey.retention-20261010':
             result['tests']['journey_guards'] = journey_guards.stderr.decode(errors='replace')
         if any(sha((ROOT / name).read_bytes()) != h for name, h in hashes.items()):

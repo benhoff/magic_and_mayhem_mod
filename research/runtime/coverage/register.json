@@ -30933,7 +30933,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Complete bounded source-owned startup World and UI canvas composition",
-      "scope": "Reusable widget-free No-CD producer adapter composes an exact finite startup prefix from undefined native storage through asset-backed GPU World and ordered CPU HUD/minimap/marker/cursor operations; matching GPU World output commits to native history before later UI/copies. Explicit source-sequence/queue/canvas/extent seal exposes complete GPU output; incomplete state, unknown inside-World writes, identity gaps and execution errors poison presentation. Portable retained map2 queue1 prefix through20458 compares six full RGB565 checkpoints against immutable independent original outputs. Includes native defined-pixel history, copies/writebacks/readbacks and cleanup only; original consumer non-pixel state, physical display-copy/Flip/driver failures, source-state generation, picking/hotspots, alternate dispatch, camera/battle/session journeys and live bypass remain pending.",
+      "scope": "Reusable widget-free No-CD producer adapter composes an exact finite startup prefix from undefined native storage through asset-backed GPU World and ordered CPU HUD/minimap/marker/cursor operations; matching GPU World output commits to native history before later UI/copies. Explicit source-sequence/queue/canvas/extent seal exposes complete GPU output; incomplete state, unknown inside-World writes, identity gaps and execution errors poison presentation. Portable retained map2 queue1 prefix through20458 compares six full RGB565 checkpoints against immutable independent original outputs. Includes native defined-pixel history, copies/writebacks/readbacks and cleanup only; original consumer non-pixel state, physical display-copy/Flip/driver failures, source-state generation, picking/hotspots, alternate dispatch, camera/battle/session journeys and live bypass remain pending. The runner separates recorded raster EAX from native inputs and independently emits sampled World low16 returns; unknown return contracts and complete consumer state remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -30976,7 +30976,8 @@
         "tests/fixtures/drawing-scene/oracle-0919.gz",
         "tests/fixtures/drawing-scene/oracle-0920.gz",
         "tests/fixtures/drawing-scene/scene.json",
-        "tests/fixtures/drawing-scene/startup-input.gz"
+        "tests/fixtures/drawing-scene/startup-input.gz",
+        "tests/test-drawing-results.py"
       ],
       "validation_dependencies": [
         "assets/CMakeLists.txt",
@@ -31072,7 +31073,8 @@
         "NR.drawing-scene.native-20261010",
         "NR.drawing-scene.native-reviewed-20261010",
         "NR.drawing-scene.persistent-native-20261010",
-        "NR.drawing-scene.transitions-native-20261010"
+        "NR.drawing-scene.transitions-native-20261010",
+        "NR.drawing-scene.raster-results-native-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31087,7 +31089,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native ordered multi-frame publication with retained source-owned history",
-      "scope": "Native policy over build-specific owned producer records: explicit frame boundaries publish complete RGB565 GPU output while retaining source-only canvas and World history. Further records invalidate current service output; old GPU leases retain their immutable complete frame. Zero-World menu boundaries, strictly ordered frames, terminal sealing, poisoning and cleanup are admitted. Native World destination switches, release/recreation and extent changes reset owned World resources while preserving the outer sequence and cumulative queue/raster identities; these transitions have synthetic tests. Portable pinned map2 startup fixture through44927 has two queue-zero completions and fifteen post-World HUD/minimap/marker/cursor canvases with full independent original planes; bounded XZ fragments preserve exact source history. Physical display/driver semantics, enabled-movie composition, independent original World transition equivalence, camera/combat/picking/consumer state, full campaign/Quick Battle journeys, recovery and live bypass remain pending.",
+      "scope": "Native policy over build-specific owned producer records: explicit frame boundaries publish complete RGB565 GPU output while retaining source-only canvas and World history. Further records invalidate current service output; old GPU leases retain their immutable complete frame. Zero-World menu boundaries, strictly ordered frames, terminal sealing, poisoning and cleanup are admitted. Native World destination switches, release/recreation and extent changes reset owned World resources while preserving the outer sequence and cumulative queue/raster identities; these transitions have synthetic tests. Portable pinned map2 startup fixture through44927 has two queue-zero completions and fifteen post-World HUD/minimap/marker/cursor canvases with full independent original planes; bounded XZ fragments preserve exact source history. Physical display/driver semantics, enabled-movie composition, independent original World transition equivalence, camera/combat/picking/consumer state, full campaign/Quick Battle journeys, recovery and live bypass remain pending. The runner separates recorded raster EAX from native inputs and independently emits sampled World low16 returns; unknown return contracts and complete consumer state remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31108,6 +31110,200 @@
         "tests/drawing-scene-test.cpp",
         "tests/test-drawing-scene.py",
         "tests/resource-fixtures.hpp",
+        "tests/test-drawing-journey.py",
+        "tests/fixtures/drawing-journey/asset-001.gz",
+        "tests/fixtures/drawing-journey/asset-002.gz",
+        "tests/fixtures/drawing-journey/asset-003.gz",
+        "tests/fixtures/drawing-journey/asset-004.gz",
+        "tests/fixtures/drawing-journey/asset-005.gz",
+        "tests/fixtures/drawing-journey/asset-006.gz",
+        "tests/fixtures/drawing-journey/asset-007.gz",
+        "tests/fixtures/drawing-journey/asset-008.gz",
+        "tests/fixtures/drawing-journey/asset-009.gz",
+        "tests/fixtures/drawing-journey/asset-010.gz",
+        "tests/fixtures/drawing-journey/asset-011.gz",
+        "tests/fixtures/drawing-journey/asset-012.gz",
+        "tests/fixtures/drawing-journey/asset-013.gz",
+        "tests/fixtures/drawing-journey/asset-014.gz",
+        "tests/fixtures/drawing-journey/asset-015.gz",
+        "tests/fixtures/drawing-journey/asset-016.gz",
+        "tests/fixtures/drawing-journey/input-000.xz",
+        "tests/fixtures/drawing-journey/input-001.xz",
+        "tests/fixtures/drawing-journey/input-002.xz",
+        "tests/fixtures/drawing-journey/oracle-0002.gz",
+        "tests/fixtures/drawing-journey/oracle-0907.gz",
+        "tests/fixtures/drawing-journey/oracle-0920.gz",
+        "tests/fixtures/drawing-journey/oracle-0930.gz",
+        "tests/fixtures/drawing-journey/oracle-0940.gz",
+        "tests/fixtures/drawing-journey/oracle-0950.gz",
+        "tests/fixtures/drawing-journey/oracle-0960.gz",
+        "tests/fixtures/drawing-journey/oracle-0970.gz",
+        "tests/fixtures/drawing-journey/oracle-0980.gz",
+        "tests/fixtures/drawing-journey/oracle-0990.gz",
+        "tests/fixtures/drawing-journey/oracle-1000.gz",
+        "tests/fixtures/drawing-journey/oracle-1011.gz",
+        "tests/fixtures/drawing-journey/oracle-1021.gz",
+        "tests/fixtures/drawing-journey/oracle-1031.gz",
+        "tests/fixtures/drawing-journey/oracle-1041.gz",
+        "tests/fixtures/drawing-journey/oracle-1051.gz",
+        "tests/fixtures/drawing-journey/oracle-1061.gz",
+        "tests/fixtures/drawing-journey/scene.json",
+        "tests/test-drawing-results.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tools/coverage_audit.py",
+        "tools/drawing_corpus.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/rendering_coverage.py"
+      ],
+      "validation_domain": "Seventeen full800x600 RGB565 pre-display-copy canvases from contiguous retained original-active startup history, plus synthetic multi-frame/menu/surface generation/World destination switches/extent changes/global queue refusal/stale output/poisoning/cleanup and portable fragment/frame/oracle separation guards.",
+      "evidence": [
+        "NR.drawing-journey.retention-20261010",
+        "NR.drawing-journey.persistent-native-20261010",
+        "NR.drawing-journey.transitions-native-20261010",
+        "NR.drawing-journey.raster-results-native-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.drawing-raster-results",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Externally compared sampled World raster low16 returns",
+      "scope": "Native result policy over owned World source records. Emit exact source sequence/global queue/canvas/backend and sampled low16 AX from native recovered horizontal-refusal/zero-return rules; backend8 returns unknown. Non-raster records clear results and poisoned services refuse queries. Native replay receives zero observed raster EAX fields, rejects nonzero fields and emits a hash-bound transcript. External frozen original result comparison is admitted only before any recorded original-body suppression. Seventeen retained startup canvases through44927/queues1..15 provide original return observations; pixel parity and return parity are separate. Full node/picking/hotspot state, flags, high EAX, scratch globals, physical presentation, wrappers/alternate callers, full journeys and live replacement remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw03-native-journeys.md",
+        "research/formats/drawing-scene-corpus.md"
+      ],
+      "implementation": [
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene_main.cpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "tools/drawing_scene_corpus.py",
+        "tools/check-drawing-scene.py",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp"
+      ],
+      "tests": [
+        "tests/drawing-scene-test.cpp",
+        "tests/test-drawing-scene.py",
+        "tests/resource-fixtures.hpp",
+        "tests/fixtures/drawing-scene/asset-001.gz",
+        "tests/fixtures/drawing-scene/asset-002.gz",
+        "tests/fixtures/drawing-scene/asset-003.gz",
+        "tests/fixtures/drawing-scene/asset-004.gz",
+        "tests/fixtures/drawing-scene/asset-005.gz",
+        "tests/fixtures/drawing-scene/asset-006.gz",
+        "tests/fixtures/drawing-scene/asset-007.gz",
+        "tests/fixtures/drawing-scene/asset-008.gz",
+        "tests/fixtures/drawing-scene/asset-009.gz",
+        "tests/fixtures/drawing-scene/asset-010.gz",
+        "tests/fixtures/drawing-scene/asset-011.gz",
+        "tests/fixtures/drawing-scene/asset-012.gz",
+        "tests/fixtures/drawing-scene/asset-013.gz",
+        "tests/fixtures/drawing-scene/asset-014.gz",
+        "tests/fixtures/drawing-scene/asset-015.gz",
+        "tests/fixtures/drawing-scene/asset-016.gz",
+        "tests/fixtures/drawing-scene/oracle-0908.gz",
+        "tests/fixtures/drawing-scene/oracle-0915.gz",
+        "tests/fixtures/drawing-scene/oracle-0916.gz",
+        "tests/fixtures/drawing-scene/oracle-0918.gz",
+        "tests/fixtures/drawing-scene/oracle-0919.gz",
+        "tests/fixtures/drawing-scene/oracle-0920.gz",
+        "tests/fixtures/drawing-scene/scene.json",
+        "tests/fixtures/drawing-scene/startup-input.gz",
+        "tests/test-drawing-results.py",
         "tests/test-drawing-journey.py",
         "tests/fixtures/drawing-journey/asset-001.gz",
         "tests/fixtures/drawing-journey/asset-002.gz",
@@ -31235,11 +31431,9 @@
         "tools/inspect-canvas-producers.py",
         "tools/rendering_coverage.py"
       ],
-      "validation_domain": "Seventeen full800x600 RGB565 pre-display-copy canvases from contiguous retained original-active startup history, plus synthetic multi-frame/menu/surface generation/World destination switches/extent changes/global queue refusal/stale output/poisoning/cleanup and portable fragment/frame/oracle separation guards.",
+      "validation_domain": "Original-active bounded map2 startup queues1..15 before the frozen capture's selected native bypass at45634. Exact observed low16 return values for every World raster; unknown/provenance/count/order/identity/mismatch and original-EAX separation tests. No complete consumer or physical display claim.",
       "evidence": [
-        "NR.drawing-journey.retention-20261010",
-        "NR.drawing-journey.persistent-native-20261010",
-        "NR.drawing-journey.transitions-native-20261010"
+        "NR.drawing-raster-results.native-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -60188,6 +60382,263 @@
           "equals": 17
         }
       ]
+    },
+    {
+      "id": "NR.drawing-scene.raster-results-native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh current-source native World destination/generation/extent/global ordinal transition tests and persistent frame order/refusal/cleanup and portable admission guards, followed by full independent original canvas comparison. 2880000 RGB565 checkpoint pixels match; publication outputs are independently compared too. Pre-display-copy startup only; full Quick Battle/campaign journeys, consumer/picking state, physical presentation, live delivery and bypass excluded. 1964 native World low16 results independently match external original-active observations before recorded suppression; observed raster EAX fields are removed from native inputs. Node/picking/flags/scratch/high-EAX state is excluded.",
+      "record": "research/runtime/draw03-raster-results-scene-comparison-20261010.json",
+      "sha256": "1cdcee521e2c5ccf7abe6a8823ebbb1c587e1b57669c1c71ed0f5251e1738536",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 2880000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/declared_canvas_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/draw03_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/native_scene",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/portable_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/raster_result_comparison/results_compared",
+          "equals": 1964
+        },
+        {
+          "pointer": "/raster_result_comparison/matching",
+          "equals": true
+        },
+        {
+          "pointer": "/raster_result_comparison/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/raster_result_comparison/unknown_results",
+          "equals": 0
+        },
+        {
+          "pointer": "/recorded_raster_results_removed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_results_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-journey.raster-results-native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh current-source native World destination/generation/extent/global ordinal transition tests and persistent frame order/refusal/cleanup and portable admission guards, followed by full independent original canvas comparison. 8160000 RGB565 checkpoint pixels match; publication outputs are independently compared too. Pre-display-copy startup only; full Quick Battle/campaign journeys, consumer/picking state, physical presentation, live delivery and bypass excluded. 25883 native World low16 results independently match external original-active observations before recorded suppression; observed raster EAX fields are removed from native inputs. Node/picking/flags/scratch/high-EAX state is excluded.",
+      "record": "research/runtime/draw03-raster-results-journey-comparison-20261010.json",
+      "sha256": "4f71a637a063eaca261101346f2ad915ca6da7df9b26366b2ecee18ea0144b4f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 8160000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/declared_canvas_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/draw03_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/native_scene",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/portable_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/frames_published",
+          "equals": 17
+        },
+        {
+          "pointer": "/raster_result_comparison/results_compared",
+          "equals": 25883
+        },
+        {
+          "pointer": "/raster_result_comparison/matching",
+          "equals": true
+        },
+        {
+          "pointer": "/raster_result_comparison/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/raster_result_comparison/unknown_results",
+          "equals": 0
+        },
+        {
+          "pointer": "/recorded_raster_results_removed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_results_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-raster-results.native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh source/claim-bound native result separation, provenance/refusal/unknown/identity/mismatch guards and every sampled World low16 return over the retained original-active startup prefix. All25883 externally held original observations match native results independently of complete canvas pixel parity. Scope excludes complete consumer state and all live/physical stages.",
+      "record": "research/runtime/draw03-raster-results-journey-comparison-20261010.json",
+      "sha256": "4f71a637a063eaca261101346f2ad915ca6da7df9b26366b2ecee18ea0144b4f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 8160000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/declared_canvas_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/draw03_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/native_scene",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/portable_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/frames_published",
+          "equals": 17
+        },
+        {
+          "pointer": "/raster_result_comparison/results_compared",
+          "equals": 25883
+        },
+        {
+          "pointer": "/raster_result_comparison/matching",
+          "equals": true
+        },
+        {
+          "pointer": "/raster_result_comparison/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/raster_result_comparison/unknown_results",
+          "equals": 0
+        },
+        {
+          "pointer": "/recorded_raster_results_removed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_raster_results_used_as_native_inputs",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -67910,7 +68361,8 @@
         "NR.drawing-scene.native-20261010",
         "NR.drawing-scene.native-reviewed-20261010",
         "NR.drawing-scene.persistent-native-20261010",
-        "NR.drawing-scene.transitions-native-20261010"
+        "NR.drawing-scene.transitions-native-20261010",
+        "NR.drawing-scene.raster-results-native-20261010"
       ],
       "tests": [
         "tests/drawing-scene-test.cpp",
@@ -67928,11 +68380,29 @@
       ],
       "evidence": [
         "NR.drawing-journey.persistent-native-20261010",
-        "NR.drawing-journey.transitions-native-20261010"
+        "NR.drawing-journey.transitions-native-20261010",
+        "NR.drawing-journey.raster-results-native-20261010"
       ],
       "tests": [
         "tests/drawing-scene-test.cpp",
         "tests/test-drawing-journey.py",
+        "tools/check-drawing-scene.py",
+        "tests/fixtures/drawing-journey/scene.json"
+      ]
+    },
+    {
+      "id": "DRAW03.startup-raster-results",
+      "scope": "Original-active retained startup World queues1..15: recorded raster results removed from native input, exact low16 native result transcript compared externally, plus unknown/provenance/identity/mismatch/poisoning guards. Full consumer/picking state and physical/live behavior excluded.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-raster-results"
+      ],
+      "evidence": [
+        "NR.drawing-raster-results.native-20261010"
+      ],
+      "tests": [
+        "tests/drawing-scene-test.cpp",
+        "tests/test-drawing-results.py",
         "tools/check-drawing-scene.py",
         "tests/fixtures/drawing-journey/scene.json"
       ]
@@ -68273,8 +68743,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw03-transitions-20261010.json",
-    "sha256": "9acd06787f85f12c37277ee6e545d4ea8b3e580cc1914aeb01d97019c2b52504"
+    "path": "research/runtime/coverage/source-index-draw03-raster-results-20261010.json",
+    "sha256": "2008dc0d8c87a9a1009f236c717da8a4c4cca75f8291424d1899d7c97f67b68e"
   },
   "claim_bindings_required": true
 }

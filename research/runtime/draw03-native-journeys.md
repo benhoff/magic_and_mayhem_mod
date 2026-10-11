@@ -64,6 +64,38 @@ one. They check retained pixels, global counts and zero remaining surfaces.
 The original startup fixture still exercises only a single World destination;
 these tests do not establish original map-transition equivalence.
 
+## Increment: externally checked raster returns
+
+`DrawingScene::rasterResult` exposes the most recent World raster's sequence,
+outer queue, canvas, backend and optional low16 AX. The result comes from the
+existing recovered horizontal-refusal rule and sampled zero-return backend
+domain; original EAX observations do not supply it. Backend8 explicitly has an
+unknown return contract. Non-raster operations clear the result and poisoned
+instances refuse queries. This does not implement node state, picking, hotspots,
+flags, scratch globals or high EAX.
+
+The comparator removes field21 from every raster record before launching the
+native process. Exact wire/source bytes otherwise remain unchanged. The native
+runner refuses nonzero observed raster returns and writes a separate bounded
+result transcript. The comparator verifies count/order/queue/canvas/backend,
+low16 values, transcript hash and unknown-result count against original return
+observations held externally. Pixel publication and result comparison have
+separate outcomes; neither substitutes for the other.
+
+Historical provenance matters: the full c4ps704z capture contains one selected
+native bypass at sequence45634 in queue16. Its recorded EAX is0xfffffff8; this
+is not an original raster return observation. The frozen independent comparator
+records that exact selected bypass in `bypass_checks`, while its private original
+raster replay establishes pixel equality separately. The retained six-canvas and
+17-frame prefixes end at20458 and44927, respectively, before suppression. The
+new state comparator refuses any prefix reaching the first recorded bypass and
+refuses unknown bypass provenance. Historical reports and hashes stay unchanged.
+
+Portable guards cover return removal, bypass provenance, result mismatches,
+unknown returns and malformed/reordered output. The command-isolation mocks use
+simulated outputs only to check separation; fresh native execution supplies the
+actual startup result comparison. The full consumer-state contract remains open.
+
 ## Reproduce
 
 ```sh

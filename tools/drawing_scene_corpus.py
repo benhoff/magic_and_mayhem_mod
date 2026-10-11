@@ -5,12 +5,71 @@ import lzma
 import os
 from pathlib import Path
 import subprocess
+import struct
 import tempfile
 
 from drawing_corpus import ROOT, BUILD, artifact, compare, local, load_tool, sha
 
 CATALOG = 'tests/fixtures/drawing-scene/scene.json'
 RETENTION = 'NR.drawing-scene.retention-20261010'
+
+
+def raster_inputs(raw):
+    """Keep wire/source bytes intact except recorded raster return observations."""
+    # Admission/decode precedes this transformation. Keep font/minimap source
+    # state intact: their observed fields have separate, still pending contracts.
+    load_tool('inspect-canvas-producers').decode(raw, complete=False)
+    result = bytearray(raw)
+    at = 64
+    while at < len(result):
+        size, _, kind = struct.unpack_from('<3I', result, at)
+        if kind == 9:
+            struct.pack_into('<I', result, at + 84, 0)
+        at += size
+    return bytes(result)
+
+
+def original_raster_results(raw, historical):
+    """Admit original return observations only before any recorded bypass."""
+    _, records = load_tool('inspect-canvas-producers').decode(raw, complete=False)
+    bypasses = historical.get('bypass_checks')
+    if not isinstance(bypasses, list):
+        raise ValueError('Historical raster result provenance is unknown')
+    first_bypass = min((c['sequence'] for c in bypasses), default=len(records) + 1)
+    if records[-1][0][1] >= first_bypass:
+        raise ValueError('Raster result history reaches original-body suppression')
+    results, queue = [], 0
+    for r, _ in records:
+        if r[2] == 11:
+            queue = r[14]
+        elif r[2] == 12:
+            queue = 0
+        elif queue and r[2] == 9:
+            results.append((r[1], queue, r[3], r[15], r[21] & 65535))
+    return results
+
+
+def compare_raster_results(data, expected):
+    actual = []
+    try:
+        for line in data.decode('ascii').splitlines():
+            fields = line.split('\t')
+            if len(fields) != 5 or any(not s.isdecimal() for s in fields[:4]):
+                raise ValueError('Malformed native raster result')
+            ax = None if fields[4] == 'unknown' else int(fields[4])
+            if ax is not None and not 0 <= ax <= 65535:
+                raise ValueError('Native raster return outside low16 contract')
+            actual.append((*map(int, fields[:4]), ax))
+    except (UnicodeError, ValueError) as error:
+        raise ValueError('Malformed native raster result') from error
+    if len(actual) != len(expected) or any(a[:4] != e[:4] for a, e in zip(actual, expected)):
+        raise ValueError('Native raster result count/order/queue/source identity mismatch')
+    mismatches = [{'sequence': a[0], 'queue': a[1], 'backend': a[3], 'native_ax': a[4], 'original_ax': e[4]}
+                  for a, e in zip(actual, expected) if a[4] != e[4]]
+    return {'results_compared': len(actual), 'matching': not mismatches,
+            'mismatches': len(mismatches), 'unknown_results': sum(a[4] is None for a in actual),
+            'first_mismatches': mismatches[:16],
+            'by_backend': dict(sorted(Counter(str(a[3]) for a in actual).items()))}
 
 
 def asset_name(name):
@@ -147,6 +206,11 @@ def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False, retent
     catalog = json.loads(path.read_text())
     register = json.loads((root / 'research/runtime/coverage/register.json').read_text())
     raw, assets, oracles = admit(root, catalog, register, retention)
+    from rendering_coverage import evidence_record
+    historical = evidence_record(root, next(e for e in register['evidence'] if e['id'] == catalog['evidence']),
+                                 {b['id']: b for b in register['builds']})
+    expected_results = original_raster_results(raw, historical)
+    source_raw = raster_inputs(raw)
     executable = executable.resolve()
     binary_hash = sha(executable.read_bytes())
     inputs = {str(path.relative_to(root)): sha(path.read_bytes())}
@@ -158,7 +222,7 @@ def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False, retent
     native_input = output / 'inputs'
     asset_root = native_input / 'assets'
     asset_root.mkdir(parents=True)
-    (native_input / 'producers.bin').write_bytes(raw)
+    (native_input / 'producers.bin').write_bytes(source_raw)
     for _, name, data in assets:
         # Windows source spellings may mix Interface/interface. One canonical
         # native tree avoids ambiguous case aliases in the strict resolver.
@@ -185,8 +249,15 @@ def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False, retent
     native = json.loads((output / 'native/scene-report.json').read_text())
     if (not native['success'] or native['boundary'] != catalog['boundary'] or native['remaining_surfaces'] or
             native['original_pixels_used_as_native_inputs'] or native['original_oracles_read'] or
+            native['original_raster_results_used_as_native_inputs'] or
             not native['native_gpu_presentation_ready']):
         raise ValueError('Native scene completion/admission mismatch')
+    result_data = (output / 'native/raster-results.tsv').read_bytes()
+    state_comparison = compare_raster_results(result_data, expected_results)
+    if (native['raster_result_count'] != len(expected_results) or
+            native['raster_results_sha256'] != sha(result_data) or
+            native['unknown_raster_results'] != state_comparison['unknown_results']):
+        raise ValueError('Native raster result report identity mismatch')
     completed = {c['ordinal']: c for c in native['checkpoints']}
     comparisons = []
     for c, expected in oracles:
@@ -214,11 +285,15 @@ def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False, retent
     if (sha(executable.read_bytes()) != binary_hash or
             any(sha(local(root, name).read_bytes()) != h for name, h in inputs.items())):
         raise ValueError('Scene inputs/binary changed during comparison')
-    return {'success': all(c['matching'] for c in comparisons + frame_comparisons), 'scope': catalog['scope'],
+    return {'success': all(c['matching'] for c in comparisons + frame_comparisons) and state_comparison['matching'], 'scope': catalog['scope'],
             'boundary': catalog['boundary'], 'comparisons': comparisons,
             'pixels_compared': sum(c['pixels'] for c in comparisons),
             'mismatches': sum(c['mismatching_pixels'] for c in comparisons),
             'frame_comparisons': frame_comparisons,
+            'raster_result_comparison': state_comparison,
+            'native_source_input_sha256': sha(source_raw),
+            'recorded_raster_results_removed': True,
+            'original_raster_results_used_as_native_inputs': False,
             'native': native, 'inputs': inputs, 'binary_sha256': binary_hash,
             'original_pixels_used_as_native_inputs': False, 'original_oracles_read_by_native': False,
             'declared_canvas_complete': all(c['matching'] for c in comparisons),

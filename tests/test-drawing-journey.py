@@ -80,6 +80,8 @@ class JourneyTest(unittest.TestCase):
                 self.assertEqual(set(declaration), {'schema', 'boundary', 'assets', 'retain_checkpoints', 'frames'})
                 self.assertFalse(any('oracle' in p.name for p in inputs.rglob('*')))
                 self.assertEqual(declaration['frames'], self.catalog['frames'])
+                source_raw=(inputs/'producers.bin').read_bytes()
+                self.assertTrue(all(r[21]==0 for r,_ in corpus.load_tool('inspect-canvas-producers').decode(source_raw,False)[1] if r[2]==9))
                 output = Path(command[-1]);output.mkdir()
                 checkpoints = []
                 by_sequence = {}
@@ -99,6 +101,13 @@ class JourneyTest(unittest.TestCase):
                     original_pixels_used_as_native_inputs=False, original_oracles_read=False,
                     native_gpu_presentation_ready=True, checkpoints=checkpoints, frames=frames,
                     frames_published=len(frames), scene_sha256=corpus.sha(data))
+                original=corpus.input_bytes(ROOT,self.catalog)
+                historical=json.loads((ROOT / 'research/runtime/native-world-producer-handoff-gpu-current-comparison-20261008.json').read_text())
+                results=corpus.original_raster_results(original,historical)
+                result_data=''.join('\t'.join(map(str,row))+'\n' for row in results).encode()
+                (output/'raster-results.tsv').write_bytes(result_data)
+                report.update(original_raster_results_used_as_native_inputs=False,raster_result_count=len(results),
+                              unknown_raster_results=0,raster_results_sha256=corpus.sha(result_data))
                 (output / 'scene-report.json').write_text(json.dumps(report))
                 return CompletedProcess(command, 0, b'', b'')
             with patch.object(corpus.subprocess, 'run', side_effect=execute):

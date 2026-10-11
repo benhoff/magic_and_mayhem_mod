@@ -96,6 +96,19 @@ int main(int argc,char **argv)try{
         auto next=entry();next.fields[14]=nextQueue;rejected([&]{submit(scene,next);});rejected([&]{scene.presentGpu();});
     }
     require(renderer.stats().surfaces==0,"World destination transition leaked storage");
+    for(unsigned backend:{0u,8u}){
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);submit(scene,entry());
+        auto draw=raster();draw.fields[15]=backend;draw.fields[8]=0;draw.fields[21]=0xfffffff8;
+        submit(scene,draw);const auto result=scene.rasterResult();
+        require(result&&result->sequence==scene.sequence()&&result->queue==1&&result->canvas==7&&result->backend==backend,"Native raster return identity changed");
+        require(backend==8?!result->ax:result->ax&&*result->ax==1,"Observed EAX supplied native return or unsupported return was invented");
+        auto returned=entry();returned.fields[2]=12;submit(scene,returned);
+        require(!scene.rasterResult(),"Non-raster operation exposed a stale raster result");
+        scene.publish({scene.sequence(),1,7,5,3});
+        auto bad=fill(7,0);bad.fields[1]=scene.sequence()+2;bad.fields[0]=96;
+        rejected([&]{scene.apply(bad);});rejected([&]{scene.rasterResult();});
+    }
+    require(renderer.stats().surfaces==0,"Raster result refusal cleanup leaked storage");
     {
         legacy::DrawingScene scene(renderer,input,source);submit(scene,create(7));auto partial=fill(7,0);partial.fields[12]=1;submit(scene,partial);
         rejected([&]{submit(scene,entry());});rejected([&]{scene.seal({scene.sequence(),1,7,5,3});});rejected([&]{scene.presentGpu();});

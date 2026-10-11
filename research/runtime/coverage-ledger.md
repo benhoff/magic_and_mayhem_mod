@@ -4461,3 +4461,30 @@ comparisons, full journeys and rendering consumer state remain pending.
 The exact committed range3b6785a..7127121 is reviewed separately in
 `coverage/draw03-history-3b6785a-7127121-20261010.json`; this accounts for parent/current
 receipt chains without claiming historical execution or a past gate pass.
+
+
+## DRAW-03 independent raster return comparison (2026-10-10)
+
+A separate native World raster result interface now exposes sampled low16 AX
+with exact source/global queue/canvas/backend identities. Original raster return
+observations are removed before native replay; the runner rejects nonzero
+observed returns and emits a hash-bound result transcript. External comparisons
+check state separately from full canvas pixels. Unknown contracts, provenance,
+identity errors and mismatches remain explicit. Picking, node mutations, flags,
+scratch globals and complete rendering consumer state remain pending.
+
+The historical full c4ps704z run contains a selected native bypass at sequence45634,
+queue16, whose EAX0xfffffff8 is not original return evidence. Both retained native
+prefixes end before this operation. State comparison refuses histories reaching
+a recorded bypass; this does not revise historical independent pixel results.
+The exact committed range7127121..fb79078 is reviewed separately in
+`coverage/draw03-history-7127121-fb79078-20261010.json`.
+
+Fresh executions independently match25,883 World low16 results in the17-frame
+prefix and1,964 in the six-canvas regression, with zero differences or unknown
+returns. Full checkpoint pixels (8,160,000 and2,880,000) and all17 publications
+also match. Native and eight scene/four journey/four result guards pass. New
+immutable evidence is `NR.drawing-raster-results.native-20261010`, alongside
+`NR.drawing-scene.raster-results-native-20261010` and
+`NR.drawing-journey.raster-results-native-20261010`. Historical fingerprints
+remain unchanged; full DRAW-03 remains pending.
