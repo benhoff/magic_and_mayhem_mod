@@ -25,7 +25,7 @@ def main():
   for path in (a.channel,a.assets,a.prefix):
    if not path.resolve().is_relative_to(ROOT/'working'):raise ValueError('Require owned retained test inputs')
   run([str(ROOT/'tools/original-manifest.sh'),'verify'])
-  run(['python3','tools/draft-coverage-claims.py','--behavior','NR.public-resident-world','--behavior','NR.world-source-region-epoch','--scenario','NR.public-resident-world.owned-fixtures','--output',str(out/'claims.json')])
+  run(['python3','tools/draft-coverage-claims.py','--behavior','NR.public-resident-world','--behavior','NR.world-source-region-epoch','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown','--scenario','NR.public-resident-world.owned-fixtures','--output',str(out/'claims.json')])
   claims=json.loads((out/'claims.json').read_text());report.update(claims=claims['claims'],sources=claims['sources'])
   for directory in ('apps','assets','audio','compat','reconstruction','renderer','runtime','protocols'):
    for source in (ROOT/directory).rglob('*'):
@@ -37,7 +37,7 @@ def main():
   leaf=run(['python3','tools/test-resident-leaf-abi.py','--prefix',str(a.prefix.resolve())]);leafpath=Path(next(line[8:] for line in leaf.splitlines() if line.startswith('Report: ')))
   report['leaf_abi']=json.loads(leafpath.read_text());assert report['leaf_abi']['success'] and report['leaf_abi']['sources_unchanged']
   run(['cmake','-S','apps/qt-shell','-B','working/build/qt-shell','-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
-  targets=['resident-public-block-replay','render-resident-world-test','world-deferred-test','world-source-regions-test','world-raster-batch-test','minimap-producer-test','scene-renderer-test','scene-upload-test']
+  targets=['resident-public-block-replay','render-resident-world-test','world-deferred-test','world-source-regions-test','world-raster-batch-test','minimap-producer-test','minimap-candidates-test','menu-resident-quit-test','menu-campaign-preferences-test','scene-renderer-test','scene-upload-test']
   run(['cmake','--build','working/build/qt-shell','--target',*targets,'-j','8'])
   build=ROOT/'working/build/qt-shell';sub=build/'world-rolling/canvas-producers'
   run(['xvfb-run','-a',str(build/'world-rolling/resident-public-block-replay'),str(a.channel.resolve()),str(a.assets.resolve()),str(out/'mixed.json')],True)
@@ -49,7 +49,10 @@ def main():
   report['shadow_upload']=run(['xvfb-run','-a',str(sub/'scenes/scene-upload-test')],True).strip()
   report['strict_batch']=run([str(sub/'world-raster-batch-test')]).strip()
   report['minimap']=run([str(sub/'minimap-producer-test')]).strip()
-  report['executables']={str(binary.relative_to(ROOT)):sha(binary) for binary in [build/'world-rolling/resident-public-block-replay',build/'renderer/render-resident-world-test',build/'world-rolling/world-deferred-test',build/'world-rolling/world-source-regions-test',sub/'world-raster-batch-test',sub/'minimap-producer-test',sub/'scenes/scene-renderer-test',sub/'scenes/scene-upload-test']}
+  report['minimap_candidates']=json.loads(run([str(sub/'minimap-candidates-test')]))
+  report['resident_quit']=json.loads(run(['xvfb-run','-a',str(build/'menu-resident-quit-test')],True))
+  report['campaign_preferences']=run(['xvfb-run','-a',str(build/'menu-campaign-preferences-test')],True).strip()
+  report['executables']={str(binary.relative_to(ROOT)):sha(binary) for binary in [build/'world-rolling/resident-public-block-replay',build/'renderer/render-resident-world-test',build/'world-rolling/world-deferred-test',build/'world-rolling/world-source-regions-test',sub/'world-raster-batch-test',sub/'minimap-producer-test',sub/'minimap-candidates-test',build/'menu-resident-quit-test',build/'menu-campaign-preferences-test',sub/'scenes/scene-renderer-test',sub/'scenes/scene-upload-test']}
   report['success']=True
  except (OSError,ValueError,RuntimeError,subprocess.SubprocessError,AssertionError) as e:report['error']=str(e)
  finally:

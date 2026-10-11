@@ -21956,7 +21956,8 @@
         }
       ],
       "documents": [
-        "research/runtime/native-minimap-terrain.md"
+        "research/runtime/native-minimap-terrain.md",
+        "research/runtime/public-resident-minimap-terrain-current-20261011.json"
       ],
       "implementation": [
         "renderer/minimap/minimap.cpp",
@@ -21975,7 +21976,8 @@
       ],
       "validation_domain": "Isolated bounded source-only four-orientation terrain comparison; exhaustive centres for grids2x1/2x2/4x3/4x4/6x5, boundary centres for8x8/16x3/16x16/32x17/64x64/128x127/256x256. Four fog configurations, independent owned source/history patterns and padded rows;15 native atomic refusals. Excludes real driver locks, live replacement, markers, gameplay visibility generation and arbitrary grid/centre/clip admission.",
       "evidence": [
-        "RS.minimap-terrain-raster.comparison-20261009"
+        "RS.minimap-terrain-raster.comparison-20261009",
+        "RS.minimap-terrain-raster.candidate-refresh-original-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -21990,7 +21992,8 @@
       "kind": "recovered",
       "confidence": "high_within_scope",
       "documents": [
-        "research/runtime/native-minimap-overlays.md"
+        "research/runtime/native-minimap-overlays.md",
+        "research/runtime/public-resident-minimap-overlays-current-20261011.json"
       ],
       "implementation": [
         "renderer/minimap/overlays.cpp",
@@ -22010,7 +22013,8 @@
       ],
       "evidence": [
         "RS.minimap-cell-marker.comparison-20261009",
-        "RS.minimap-cell-marker.comparison-range-20261009"
+        "RS.minimap-cell-marker.comparison-range-20261009",
+        "RS.minimap-cell-marker.candidate-refresh-original-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -22036,7 +22040,8 @@
       "kind": "recovered",
       "confidence": "high_within_scope",
       "documents": [
-        "research/runtime/native-minimap-overlays.md"
+        "research/runtime/native-minimap-overlays.md",
+        "research/runtime/public-resident-minimap-overlays-current-20261011.json"
       ],
       "implementation": [
         "renderer/minimap/overlays.cpp",
@@ -22056,7 +22061,8 @@
       ],
       "evidence": [
         "RS.minimap-creature-markers.comparison-20261009",
-        "RS.minimap-creature-markers.comparison-range-20261009"
+        "RS.minimap-creature-markers.comparison-range-20261009",
+        "RS.minimap-creature-markers.candidate-refresh-original-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -22082,7 +22088,8 @@
       "kind": "recovered",
       "confidence": "high_within_scope",
       "documents": [
-        "research/runtime/native-minimap-overlays.md"
+        "research/runtime/native-minimap-overlays.md",
+        "research/runtime/public-resident-minimap-overlays-current-20261011.json"
       ],
       "implementation": [
         "renderer/minimap/overlays.cpp",
@@ -22102,7 +22109,8 @@
       ],
       "evidence": [
         "RS.minimap-camera-corners.comparison-20261009",
-        "RS.minimap-camera-corners.comparison-range-20261009"
+        "RS.minimap-camera-corners.comparison-range-20261009",
+        "RS.minimap-camera-corners.candidate-refresh-original-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -37646,7 +37654,9 @@
         "tests/world-deferred-test.cpp",
         "tests/minimap-producer-test.cpp",
         "tests/scene-renderer-test.cpp",
-        "tests/native-shell-provenance-test.py"
+        "tests/native-shell-provenance-test.py",
+        "tests/minimap-candidates-test.cpp",
+        "tests/menu-resident-quit-test.cpp"
       ],
       "documents": [
         "research/runtime/public-resident-world.md",
@@ -37669,7 +37679,8 @@
         "research/runtime/public-resident-retreat-edge-negative-20261011.json",
         "research/runtime/public-resident-retreat-edge-input-20261011.json",
         "research/runtime/public-resident-profile-quit-negative-20261011.json",
-        "research/runtime/public-resident-cpu-profile-20261011.json"
+        "research/runtime/public-resident-cpu-profile-20261011.json",
+        "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37706,7 +37717,8 @@
         "NR.public-resident-world.shadow-envelope-dialogue-negative-20261011",
         "NR.public-resident-world.casting-retreat-negative-20261011",
         "NR.public-resident-world.retreat-edge-negative-20261011",
-        "NR.public-resident-world.profile-quit-negative-20261011"
+        "NR.public-resident-world.profile-quit-negative-20261011",
+        "NR.public-resident-world.minimap-shutdown-fixtures-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -37794,7 +37806,8 @@
       "documents": [
         "research/runtime/public-resident-world.md",
         "research/runtime/public-displacement-linear-comparison-20261011.json",
-        "research/runtime/public-displacement-linear-after-shadow-20261011.json"
+        "research/runtime/public-displacement-linear-after-shadow-20261011.json",
+        "research/runtime/public-displacement-after-minimap-20261011.json"
       ],
       "validation_dependencies": [
         "tests/sprite-binary-reference.cpp",
@@ -37804,7 +37817,9 @@
       "evidence": [
         "RS.displacement-linear-stride.original-20261011",
         "RS.displacement-linear-stride.native-20261011",
-        "RS.displacement-linear-stride.after-shadow-original-20261011"
+        "RS.displacement-linear-stride.after-shadow-original-20261011",
+        "RS.displacement-linear-stride.after-minimap-original-20261011",
+        "RS.displacement-linear-stride.after-minimap-native-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -37846,7 +37861,8 @@
         "research/runtime/public-resident-world.md",
         "research/runtime/public-shadow-projected-envelope-comparison-20261011.json",
         "research/runtime/public-shadow-linear-model-refusal-20261011.json",
-        "research/runtime/public-shadow-envelope-final-scope-comparison-20261011.json"
+        "research/runtime/public-shadow-envelope-final-scope-comparison-20261011.json",
+        "research/runtime/public-shadow-after-minimap-20261011.json"
       ],
       "validation_dependencies": [
         "tests/sprite-binary-reference.cpp",
@@ -37857,13 +37873,99 @@
         "RS.shadow-linear-stride.original-20261011",
         "RS.shadow-linear-stride.native-20261011",
         "RS.shadow-linear-stride.final-scope-original-20261011",
-        "RS.shadow-linear-stride.final-scope-native-20261011"
+        "RS.shadow-linear-stride.final-scope-native-20261011",
+        "RS.shadow-linear-stride.after-minimap-original-20261011",
+        "RS.shadow-linear-stride.after-minimap-native-20261011"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "partial",
         "comparison": "recorded",
         "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.minimap-write-candidates",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Dual-background minimap comparison at traced service writes",
+      "scope": "Known owned terrain/cell/creature/camera services optionally collect every committed destination word after atomic admission. Canvas composition retains two distinct fresh backgrounds and equal-word detection, comparing only the union of traced writes; generic callbacks retain complete scans. Source/return semantics, equal-to-sentinel values, duplicates,padded rows,unknown CPU validity and atomic failures must remain unchanged. No original World pixels/reads enter replay. Bounded native integration/performance proof pending; arbitrary traced callbacks and whole original driver/UI equivalence excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/canvas_sequence.cpp",
+        "compat/legacy/canvas_producers.cpp"
+      ],
+      "tests": [
+        "tests/minimap-candidates-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tools/test-public-resident-fixtures.py"
+      ],
+      "validation_dependencies": [
+        "compat/legacy/canvas-producers/CMakeLists.txt"
+      ],
+      "documents": [
+        "research/runtime/public-resident-world.md",
+        "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json"
+      ],
+      "evidence": [
+        "NR.minimap-write-candidates.minimap-shutdown-fixtures-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.resident-normal-shutdown",
+      "subsystem": "runtime_and_hosting",
+      "kind": "native_policy",
+      "title": "Retire balanced resident delivery only after accepted native Main Quit",
+      "scope": "Resident producer cancellation remains terminal except after same-thread exact-request OK acknowledgement of original native Main Quit and with no outstanding World/import/return lease,balanced completed/import/return counts and no prior error. Menu session refreshes pending Quit ACK before classifying cancellation. One-way retirement rejects new imports and preserves report until process finish. Unacknowledged/rejected/wrong-thread/wrong-request/pending/unbalanced/error cancellation remains fatal. Owned synthetic and fresh normalQuit proof pending; original application lifecycle/driver equivalence excluded.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "apps/qt-shell/live_menu_session.hpp",
+        "apps/qt-shell/menu_bridge.hpp",
+        "apps/qt-shell/main.cpp"
+      ],
+      "tests": [
+        "tests/menu-resident-quit-test.cpp",
+        "tools/test-public-resident-fixtures.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/CMakeLists.txt",
+        "apps/qt-shell/menu_bridge.cpp",
+        "apps/qt-shell/engine_preferences_store.cpp",
+        "compat/legacy/world_continuous.cpp",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/world_channel_v2.h"
+      ],
+      "documents": [
+        "research/runtime/public-resident-world.md",
+        "research/runtime/public-resident-candidates-quit-fixture-role-refusal-20261011.json",
+        "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json"
+      ],
+      "evidence": [
+        "NR.resident-normal-shutdown.minimap-shutdown-fixtures-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     }
@@ -76320,6 +76422,383 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NR.public-resident-world.minimap-shutdown-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh complete owned corpus after candidate minimap and acknowledged shutdown changes.16four-view/padded cases compare7.68Mwords with19396unique service writes, sentinel-equal/duplicate/generic callback/atomic/unknown refusals;5QuitACK variants,3retirement cases and8refusals. GPUWorld1.44Mwords/import565/ownership/shadow/defer/region/ABI and Preferences regressions also pass. Native integration only; no new original/full live/performance equivalence.",
+      "record": "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json",
+      "sha256": "4bbdce487aff316962fb4c9db9aa6b5977d7416143673e3184ccd175abc94381",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/minimap_candidates/compared_words",
+          "equals": 7680000
+        },
+        {
+          "pointer": "/resident_quit/ack_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/resident_quit/refusals",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "NR.minimap-write-candidates.minimap-shutdown-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh complete owned corpus after candidate minimap and acknowledged shutdown changes.16four-view/padded cases compare7.68Mwords with19396unique service writes, sentinel-equal/duplicate/generic callback/atomic/unknown refusals;5QuitACK variants,3retirement cases and8refusals. GPUWorld1.44Mwords/import565/ownership/shadow/defer/region/ABI and Preferences regressions also pass. Native integration only; no new original/full live/performance equivalence.",
+      "record": "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json",
+      "sha256": "4bbdce487aff316962fb4c9db9aa6b5977d7416143673e3184ccd175abc94381",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/minimap_candidates/compared_words",
+          "equals": 7680000
+        },
+        {
+          "pointer": "/resident_quit/ack_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/resident_quit/refusals",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "NR.resident-normal-shutdown.minimap-shutdown-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh complete owned corpus after candidate minimap and acknowledged shutdown changes.16four-view/padded cases compare7.68Mwords with19396unique service writes, sentinel-equal/duplicate/generic callback/atomic/unknown refusals;5QuitACK variants,3retirement cases and8refusals. GPUWorld1.44Mwords/import565/ownership/shadow/defer/region/ABI and Preferences regressions also pass. Native integration only; no new original/full live/performance equivalence.",
+      "record": "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json",
+      "sha256": "4bbdce487aff316962fb4c9db9aa6b5977d7416143673e3184ccd175abc94381",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/minimap_candidates/compared_words",
+          "equals": 7680000
+        },
+        {
+          "pointer": "/resident_quit/ack_cases",
+          "equals": 5
+        },
+        {
+          "pointer": "/resident_quit/refusals",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-terrain-raster.candidate-refresh-original-20261011",
+      "kind": "isolated_original",
+      "scope": "Owned RGB565 terrain placement in four orientations; bounded centres, even widths, fog retained from owned auxiliary history, positive padded rows. Isolated original raster/side-effect comparison; no live hook, driver, marker or gameplay equivalence. Fresh default service semantics after optional write receipts; traced canvas policy is proved separately by native fixtures.",
+      "record": "research/runtime/public-resident-minimap-terrain-current-20261011.json",
+      "sha256": "57b8b5ff5fa1ce47584422fc0aa85b6a73667c73a733f8a675287f8b14992e39",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/equal",
+          "equals": 1360
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 35486800
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-cell-marker.candidate-refresh-original-20261011",
+      "kind": "isolated_original",
+      "scope": "Four-view owned RGB565/RGB555 cell and creature markers plus selected camera-corner outlines. Independent source-only private PE32 comparison includes cell EAX destination offsets and creature dimension/camera origin results. Outline terrain is a byte-checked private no-op adapter; outer border and subsequent marker list are excluded. No live hook, simulation visibility/corner-vector generation, driver or drawing bypass claim. Fresh default service semantics after optional write receipts; traced canvas policy is proved separately by native fixtures.",
+      "record": "research/runtime/public-resident-minimap-overlays-current-20261011.json",
+      "sha256": "147b57ffd02e4bf41a2e4f8ada44ff6e0e52df156056a4f4939955937a42ba76",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4752
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 53312088
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-creature-markers.candidate-refresh-original-20261011",
+      "kind": "isolated_original",
+      "scope": "Four-view owned RGB565/RGB555 cell and creature markers plus selected camera-corner outlines. Independent source-only private PE32 comparison includes cell EAX destination offsets and creature dimension/camera origin results. Outline terrain is a byte-checked private no-op adapter; outer border and subsequent marker list are excluded. No live hook, simulation visibility/corner-vector generation, driver or drawing bypass claim. Fresh default service semantics after optional write receipts; traced canvas policy is proved separately by native fixtures.",
+      "record": "research/runtime/public-resident-minimap-overlays-current-20261011.json",
+      "sha256": "147b57ffd02e4bf41a2e4f8ada44ff6e0e52df156056a4f4939955937a42ba76",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4752
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 53312088
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.minimap-camera-corners.candidate-refresh-original-20261011",
+      "kind": "isolated_original",
+      "scope": "Four-view owned RGB565/RGB555 cell and creature markers plus selected camera-corner outlines. Independent source-only private PE32 comparison includes cell EAX destination offsets and creature dimension/camera origin results. Outline terrain is a byte-checked private no-op adapter; outer border and subsequent marker list are excluded. No live hook, simulation visibility/corner-vector generation, driver or drawing bypass claim. Fresh default service semantics after optional write receipts; traced canvas policy is proved separately by native fixtures.",
+      "record": "research/runtime/public-resident-minimap-overlays-current-20261011.json",
+      "sha256": "147b57ffd02e4bf41a2e4f8ada44ff6e0e52df156056a4f4939955937a42ba76",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/equal",
+          "equals": 4752
+        },
+        {
+          "pointer": "/words_compared",
+          "equals": 53312088
+        },
+        {
+          "pointer": "/sanitizer_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "RS.displacement-linear-stride.after-minimap-original-20261011",
+      "kind": "isolated_original",
+      "scope": "Captured gen269request980 physical-stride forward sampling on pinned unmodified596490/5968a4; analytical gradient comparison960000words,551covered/10wrapped samples. Two selected leaves and tight800x600storage only; no whole ABI/live replacement.",
+      "record": "research/runtime/public-displacement-after-minimap-20261011.json",
+      "sha256": "dab166fff92b398316caf66503528387c390cd75866a9d66fad4b11a231e6f91",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/wrapped_samples",
+          "equals": 10
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/inputs/~1home~1hoff~1swdev~1magic_and_mayhem_mod~1working~1native-render-continuous~1working~1game-nocd-owned-20261010~1Chaos.exe"
+    },
+    {
+      "id": "RS.displacement-linear-stride.after-minimap-native-20261011",
+      "kind": "native_integration",
+      "scope": "Same captured request compares native CPU/two GPU backends with both original leaves:960000GPU/CPU words and exact original native canvas match, zero delivery readback; past-allocation atomic scene2/CPU1 refusals plus19historical atomic checks and canvas regression. Tight native storage, offsets0..16, no public replacement or arbitrary original failure equivalence.",
+      "record": "research/runtime/public-displacement-after-minimap-20261011.json",
+      "sha256": "dab166fff92b398316caf66503528387c390cd75866a9d66fad4b11a231e6f91",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_native_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native/delivery_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/atomic_cpu_refusals",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "RS.shadow-linear-stride.after-minimap-original-20261011",
+      "kind": "isolated_original",
+      "scope": "Two captured projected-shadow envelopes: nominal813/covered801 and nominal805/covered786. Both whole draws refuse in original and native. Exact projected edge equality draws; vertical crop cannot relax full-source envelope. Original2.88Mwords/native CPU+two GPU backends5.76Mwords with zero delivery readback. Complete ABI/RGB555/live replacement excluded.",
+      "record": "research/runtime/public-shadow-after-minimap-20261011.json",
+      "sha256": "bfbd38b17cd236e35dfd61effdcd9e5d60eaa7853bf0302ee4b4230c1c304eb9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_native_pixels_match",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RS.shadow-linear-stride.after-minimap-native-20261011",
+      "kind": "native_integration",
+      "scope": "Two captured projected-shadow envelopes: nominal813/covered801 and nominal805/covered786. Both whole draws refuse in original and native. Exact projected edge equality draws; vertical crop cannot relax full-source envelope. Original2.88Mwords/native CPU+two GPU backends5.76Mwords with zero delivery readback. Complete ABI/RGB555/live replacement excluded.",
+      "record": "research/runtime/public-shadow-after-minimap-20261011.json",
+      "sha256": "bfbd38b17cd236e35dfd61effdcd9e5d60eaa7853bf0302ee4b4230c1c304eb9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_native_pixels_match",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -84757,7 +85236,9 @@
         "RS.displacement-linear-stride",
         "RS.shadow-linear-stride",
         "HOST.native-campaign-dialogue-readiness",
-        "HOST.native-campaign-spell-cases"
+        "HOST.native-campaign-spell-cases",
+        "NR.minimap-write-candidates",
+        "NR.resident-normal-shutdown"
       ],
       "tests": [
         "tools/test-native-campaign.py"
@@ -84783,7 +85264,9 @@
       "level": "headless",
       "behaviors": [
         "NR.public-resident-world",
-        "NR.world-source-region-epoch"
+        "NR.world-source-region-epoch",
+        "NR.minimap-write-candidates",
+        "NR.resident-normal-shutdown"
       ],
       "tests": [
         "tools/test-public-resident-fixtures.py"
@@ -84796,7 +85279,10 @@
         "NR.public-resident-world.shadow-fixtures-20261011",
         "NR.public-resident-world.linked-provenance-fixtures-20261011",
         "NR.public-resident-world.linear-full-fixtures-20261011",
-        "NR.public-resident-world.shadow-envelope-fixtures-20261011"
+        "NR.public-resident-world.shadow-envelope-fixtures-20261011",
+        "NR.public-resident-world.minimap-shutdown-fixtures-20261011",
+        "NR.minimap-write-candidates.minimap-shutdown-fixtures-20261011",
+        "NR.resident-normal-shutdown.minimap-shutdown-fixtures-20261011"
       ]
     },
     {
@@ -84812,7 +85298,9 @@
       "evidence": [
         "RS.displacement-linear-stride.original-20261011",
         "RS.displacement-linear-stride.native-20261011",
-        "RS.displacement-linear-stride.after-shadow-original-20261011"
+        "RS.displacement-linear-stride.after-shadow-original-20261011",
+        "RS.displacement-linear-stride.after-minimap-original-20261011",
+        "RS.displacement-linear-stride.after-minimap-native-20261011"
       ]
     },
     {
@@ -84829,7 +85317,9 @@
         "RS.shadow-linear-stride.original-20261011",
         "RS.shadow-linear-stride.native-20261011",
         "RS.shadow-linear-stride.final-scope-original-20261011",
-        "RS.shadow-linear-stride.final-scope-native-20261011"
+        "RS.shadow-linear-stride.final-scope-native-20261011",
+        "RS.shadow-linear-stride.after-minimap-original-20261011",
+        "RS.shadow-linear-stride.after-minimap-native-20261011"
       ]
     },
     {
@@ -85182,8 +85672,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-resident-return-visited-20261011.json",
-    "sha256": "ad283e57456941fb808669bd902b23bccd0a53d5dca04f3ca1384a8741f3c6da"
+    "path": "research/runtime/coverage/source-index-resident-minimap-shutdown-20261011.json",
+    "sha256": "6760995bc06d357d561720759a2d405e1146571c4312fbec95a6c8871de7ff90"
   },
   "claim_bindings_required": true
 }

@@ -50,7 +50,7 @@ void CanvasSequence::discardCpu(std::uint32_t id) {
   auto& s=surface(id);publishWrites();std::fill(s.defined.begin(),s.defined.end(),0);
 }
 std::size_t CanvasSequence::minimap(std::uint32_t id, int stride,
-    const std::function<std::size_t(MinimapPlane &)> &draw) {
+    const std::function<std::size_t(MinimapPlane &)> &draw, bool tracedServices) {
   auto &s = surface(id);
   if (stride < s.image.width || stride > 4096)
     throw std::invalid_argument("Invalid captured minimap stride");
@@ -59,13 +59,32 @@ std::size_t CanvasSequence::minimap(std::uint32_t id, int stride,
   MinimapPlane a{s.image.width, s.image.height, stride,
       std::vector<std::uint16_t>(std::size_t(stride) * s.image.height, 0x1357)};
   auto b = a; std::fill(b.words.begin(), b.words.end(), 0xeca8);
+  std::vector<std::size_t> firstWrites, secondWrites;
+  if (tracedServices) { a.writeCandidates = &firstWrites; b.writeCandidates = &secondWrites; }
   const auto result = draw(a); if (draw(b) != result)
     throw std::logic_error("Minimap result depends on diagnostic background");
-  for (int y = 0; y < s.image.height; ++y)
-    for (int x = 0; x < s.image.width; ++x) {
-      const auto from = std::size_t(y) * stride + x, to = std::size_t(y) * s.image.width + x;
+  if (tracedServices) {
+    // Both fresh sentinels remain distinct at every untouched word. Only the
+    // union of the recovered services' committed writes can compare equal.
+    // Generic callbacks keep the full scan because their writes are untraced.
+    firstWrites.insert(firstWrites.end(), secondWrites.begin(), secondWrites.end());
+    std::sort(firstWrites.begin(), firstWrites.end());
+    firstWrites.erase(std::unique(firstWrites.begin(), firstWrites.end()), firstWrites.end());
+    if (!firstWrites.empty() && firstWrites.back() >= a.words.size())
+      throw std::invalid_argument("Minimap candidate outside owned storage");
+    for (const auto from : firstWrites) {
+      const auto y = from / std::size_t(stride), x = from % std::size_t(stride);
+      if (x >= std::size_t(s.image.width)) continue;
+      const auto to = y * s.image.width + x;
       if (a.words[from] == b.words[from]) { write(s, to, a.words[from]); s.defined[to] = 1; }
     }
+  } else {
+    for (int y = 0; y < s.image.height; ++y)
+      for (int x = 0; x < s.image.width; ++x) {
+        const auto from = std::size_t(y) * stride + x, to = std::size_t(y) * s.image.width + x;
+        if (a.words[from] == b.words[from]) { write(s, to, a.words[from]); s.defined[to] = 1; }
+      }
+  }
   return result;
 }
 void CanvasSequence::terrainMap(std::uint32_t id, int rootX, int rootY, int w, int h, int centerX, int centerY, const std::vector<std::uint16_t> &colours, const std::vector<unsigned char> &hidden, std::uint32_t previous) {

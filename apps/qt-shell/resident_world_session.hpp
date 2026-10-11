@@ -12,12 +12,13 @@ class ResidentWorldSession final {
 public:
     ResidentWorldSession(GlViewport&,const QString& channel,const QString& game);
     ~ResidentWorldSession();
-    void poll();
+    void poll(bool acceptedNormalQuit=false);
     void abort(const QString&);
     mnm::render::GpuFrame import(std::uint64_t generation,std::uint64_t nonce);
     QJsonObject report() const;
     void saveReport(const QString&) const;
 private:
+    friend struct ResidentWorldSessionTestAccess;
     struct Pending {
         mnm::legacy::WorldContinuousChannel::Block block;
         mnm::legacy::RollingHandoff handoff;
@@ -36,4 +37,5 @@ private:
     std::uint64_t profiled_=0;
     double decodeMs_=0,handoffMs_=0,nativeMs_=0,prepareMs_=0,submitMs_=0,maxNativeMs_=0,producerMs_=0;
     QString error_;
+    bool normalQuitRetired_=false;
 };

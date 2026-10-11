@@ -178,7 +178,7 @@ public:
             if(!stream_ || (media_ && media_->movieActive()))return;
             if(!gl_->error().isEmpty()){frames_.stop();commandDrain_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());return;}
             if(commands_){
-                if(residentWorld_){try{residentWorld_->poll();}catch(const std::exception& e){
+                if(residentWorld_){try{residentWorld_->poll(liveMenus_&&liveMenus_->normalQuitAccepted());}catch(const std::exception& e){
                     residentWorldError_=e.what();log_->appendPlainText(QString("Resident World refused: ")+e.what());
                     residentWorld_->saveReport(residentWorldReport_);commands_->abort();frames_.stop();commandDrain_.stop();poll_.stop();retry_->setEnabled(false);input_->suspend(true);nativeFallback_=true;return;
                 }}

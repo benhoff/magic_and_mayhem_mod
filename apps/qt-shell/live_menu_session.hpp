@@ -26,6 +26,7 @@ public:
     int smokeSeconds=0; // Bounded live validation only; normal sessions have no limit.
     bool start();
     bool running() const;
+    bool normalQuitAccepted();
     QString evidenceDirectory() const {return root_;}
     bool request(quint32 action,quint32 argument=0,const std::array<int,17>* rules=nullptr);
     bool finishSpells(const std::array<int,63>& assignments);
@@ -58,6 +59,7 @@ private:
     std::unique_ptr<MenuBridge> bridge_;
     MenuBridge::State state_;
     bool preparing_=false,active_=false,pending_=false,transition_=false,bypass_=false,exitRequested_=false,quitting_=false,inBattle_=false;
+    bool normalQuitAccepted_=false;
     qint64 lastState_=0,requestedAt_=0;
     quint32 sequence_=0,target_=0,action_=0;
 };
