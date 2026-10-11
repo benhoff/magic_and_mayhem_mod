@@ -1,0 +1,61 @@
+/* Actual observation callbacks and assembly against synthetic PE32 callees.
+ * No original instructions or rendering execute in this fixture. */
+#include "../runtime/drawing-census/observer.c"
+extern void canvas_test_call(u32,u32,u32,u32,void*);
+static volatile u8 reserve[0x310000];
+static u8 before[560] __attribute__((aligned(16))),after[560] __attribute__((aligned(16)));
+__attribute__((naked)) static void pop0(void){__asm__ volatile("ret");}
+__attribute__((naked)) static void pop4(void){__asm__ volatile("ret $4");}
+__attribute__((naked)) static void pop12(void){__asm__ volatile("ret $12");}
+__attribute__((naked)) static void pop16(void){__asm__ volatile("ret $16");}
+__attribute__((naked)) static void pop20(void){__asm__ volatile("ret $20");}
+__attribute__((naked)) static void pop8(void){__asm__ volatile("ret $8");}
+__attribute__((naked)) static void pop24(void){__asm__ volatile("ret $24");}
+__attribute__((naked)) static void tail8(void){__asm__ volatile("jmp _census_enter_2");}
+static void identical(void){for(u32 i=0;i<560;++i)if(before[i]!=after[i])ExitProcess(20);}
+void start(void){
+ reserve[sizeof(reserve)-1]=1;
+ static u32 host[16]={0};host[4]=2;host[5]=2;host[6]=1;control=host;
+ /* Invalid control cannot silently reuse a prior scenario label. */
+ if(phase()!=2||lost)ExitProcess(28);
+ host[4]=3;if(phase()!=0||lost!=1)ExitProcess(29);
+ host[4]=4;host[5]=15;if(phase()!=0||lost!=2)ExitProcess(30);
+ host[5]=14;host[6]=0;if(phase()!=0||lost!=3)ExitProcess(31);
+ host[6]=1;if(phase()!=14||lost!=3)ExitProcess(32);
+ host[5]=2;
+ u32 callees[9]={(u32)pop0,(u32)pop4,(u32)pop8,(u32)pop12,(u32)pop20,(u32)pop24,(u32)pop0,(u32)tail8,(u32)pop16};
+ for(u32 index=0;index<8;++index){
+  u32 tag=index==7?8:index;
+  used=sequence=serial=lost=active=io_failed=0;zero(frames,sizeof(frames));
+  census_trampolines[tag]=callees[tag];
+  SetLastError(1234);canvas_test_call(callees[tag],0x12340000,0xabcdef00,hooks[tag].pop,before);
+  SetLastError(1234);canvas_test_call((u32)hooks[tag].entry,0x12340000,0xabcdef00,hooks[tag].pop,after);
+  identical();if(GetLastError()!=1234||lost||active||serial!=1)ExitProcess(21);
+  u32* row=(u32*)buffer;
+  if(row[13]!=1234||row[4]!=2||row[6]!=hooks[tag].address)ExitProcess(22);
+  if(hooks[tag].site){if(sequence!=1||row[1]!=3||row[7])ExitProcess(23);}
+  else if(sequence!=2||row[1]!=1||row[33]!=2||row[45]!=1234||row[34]!=row[2])ExitProcess(24);
+ }
+ /* A tail call shares SP/thread with its parent; the newest frame returns first. */
+ used=sequence=serial=lost=active=0;zero(frames,sizeof(frames));
+ census_trampolines[7]=(u32)tail8;census_trampolines[2]=(u32)pop8;
+ SetLastError(1234);canvas_test_call((u32)pop8,0x12340000,0xabcdef00,8,before);
+ SetLastError(1234);canvas_test_call((u32)hooks[7].entry,0x12340000,0xabcdef00,8,after);
+ identical();if(lost||active||serial!=2||sequence!=4||GetLastError()!=1234)ExitProcess(26);
+ u32* rows=(u32*)buffer;
+ if(rows[3]!=7||rows[35]!=2||rows[67]!=2||rows[99]!=7)ExitProcess(27);
+ /* The real native binding writer records actual allocated bytes and the
+  * actual named leave export; synthetic prefixes are not original execution. */
+ module_base=(u32)GetModuleHandleA(0);
+ for(u32 i=0;i<CENSUS_HOOKS;++i){const struct Hook* h=hooks+i;u8* code=VirtualAlloc(0,h->length+5,0x3000,0x40);if(!code)ExitProcess(33);copy(code,h->bytes,h->length);
+  for(u32 j=0;j<h->relocs;++j){u32 at=h->reloc[j];*(u32*)(code+at+1)=h->address+at+5+*(i32*)(h->bytes+at+1)-(u32)code-at-5;}
+  code[h->length]=0xe9;*(u32*)(code+h->length+1)=h->address-(u32)code-5;census_trampolines[i]=(u32)code;
+ }
+ char directory[220];u32 n=GetEnvironmentVariableA("MNM_CORE_BINDINGS_TEST_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory)||!write_bindings(directory))ExitProcess(34);
+ census_trampolines[2]=(u32)pop8;
+ /* Exhaustion forwards the original and records loss rather than guessing. */
+ for(u32 i=0;i<2048;++i)frames[i].sp=i+1;
+ SetLastError(1234);canvas_test_call((u32)hooks[2].entry,0x12340000,0xabcdef00,8,after);
+ identical();if(lost!=1||active||GetLastError()!=1234)ExitProcess(25);
+ ExitProcess(0);
+}

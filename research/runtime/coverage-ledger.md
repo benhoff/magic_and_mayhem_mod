@@ -5222,3 +5222,661 @@ links; this indexing reconciliation adds no engine validation or status promotio
 ### Final concurrent master integration (2026-10-11)
 
 Both histories and exact receipts are retained, including the concurrent working-retention race fix and DRAW-02 strict record-kind/input/API work. The new `native-master-final-draw02-original-pass-20261011.json` refreshes metadata-only original-active Quick Battle acquisition against the imported launcher helpers: strict no-loss/no-gap journal, sustained gameplay, original results Continue/Quit and return to fresh Main pass with original section/manifests/source guards. This is isolated Xvfb/software GL observation, separate from the TITAN performance proofs; native pixel parity, complete picking/tooltip/pause/combat outcomes and full readback interference remain pending. Pre-admission environment failures (missing display and copied general-prefix WOW64 initialization,diagnosed by bounded loader trace) are retained separately; neither is admitted as success.
+### DRAW-01 complete-session census: expanded callers — 2026-10-10
+
+The authorized end-to-end scope retains all fourteen required single-player
+journeys and all drawing-side effects, alternate/default dispatch, caller
+attribution, failure/retry/recovery and cleanup obligations. Incremental work is
+performed on an isolated branch so concurrent drawing-comparison/scene changes
+are preserved.
+
+`TOOL.drawing-census` exports 909 exact rel32 CALL sites to all 61 registered
+entry identities from the hash-verified original No-CD executable. The reviewed
+supplemental source augments the historical selected-window census and preserves
+empty discovered-owner lists. No nearby-PC or inferred function assignment is
+used. Against the explicitly diagnostic preferred-base interpretation of the
+historical four-return journal, 53 of the 63 unattributed groups have exact
+static matches; ten indirect raster groups still need observed callee identities.
+This does not establish a fresh runtime module base or refresh historical journal
+evidence. Source changes leave older tool results historical until fresh guard
+execution is registered. No original drawing body is suppressed.
+
+
+### DRAW-01 original-active call journal increment — 2026-10-10
+
+The isolated `draw01-full-census` branch adds a bounded, original-active PE32
+entry/return metadata journal, strict decoder and private menu/campaign journey
+driver. All original drawing work is forwarded. Sixty catalog splices are
+accepted; `58edb0` is refused because original backedge `58edde -> 58edb1` enters
+overwritten bytes. Failed attempts are retained. Actual callbacks/trampolines
+pass synthetic register/flags/x87/SSE/error, callee-pop and same-stack tail
+unwind checks; closed menu/shutdown metadata demonstrates a verified runtime
+base and paired calls only. Scenario closure, caller ownership/indirect chains,
+all writers, API/borrowed access, pixel/side-effect equivalence, recovery and
+full dispatch remain independent pending obligations. Existing evidence hashes
+and rendering status are preserved. See `draw01-inventory.md` and the new exact
+scope-bound census evidence. History `98b4524..8764d90` was reviewed separately
+from uncommitted journal changes, with exact receipt coverage retained.
+
+### DRAW-01 original queue routing and omitted helpers — 2026-10-10
+
+The route register now includes seven original consumer helper/cleanup targets,
+107 routes and 68 entry identities. Expanded exact caller evidence retains 937
+direct CALL sites. Observation admits 67 safe sites and still refuses the unsafe
+fade interior. An isolated unchanged original consumer passes 2,432 synthetic
+backend cases and retains all 105 raw dispatch branch slices. Selected wave
+kinds 16/17/20, literal colours and metadata zero/default/AX/boolean policies
+have high confidence within this routing scope; native pixels, concrete virtual
+objects, auxiliary boundaries/prior-metadata changes, helper globals and enabled
+cleanup remain pending. No comparison, integration or replacement status is
+promoted. All dispatch and fourteen scenario closure gates remain incomplete.
+
+Fresh six-size ABI execution and fresh helper-anchor consumer execution are
+registered under new evidence IDs. Historical fingerprints remain unchanged.
+Failed campaign attempts and compressed partial journal hashes are retained;
+they do not establish closed census validation. Committed history
+`8764d90..4d28021` was separately reviewed with 31 changed files, 94 affected
+behaviors and no missing exact receipts. See the retained history report and
+`draw01-inventory.md` for reproduction and scope boundaries.
+
+### DRAW-01 closed bounded campaign metadata — 2026-10-10
+
+Fresh original-active Adept campaign metadata retains 2,416,882 events and
+1,208,441 paired calls with zero loss/open/IO, unchanged staged binaries and
+declared sources, and normal original exit. Main/setup, campaign entry, World,
+camera/cursor input, Mini/Preferences/World return, Quit confirmation, defeat
+report, Main and shutdown were exercised. Original Hermes dialogue input holds
+are handled through original input and retained screenshots. The host phase
+reader now retries transient seqlock changes boundedly; persistent invalid/dead
+host control remains explicit loss and is checked by fresh actual PE32 ABI
+execution. Earlier failed/rejected journals and their fingerprints are retained.
+
+This establishes bounded observation integrity only. All fourteen scenario
+closures and four dispatch obligations remain pending; no rendering comparison,
+integration or replacement promotion is asserted. History `4d28021..18d24f6`
+was separately reviewed with 24 changed/link-reviewed files, 63 affected behaviors
+and zero missing exact receipts. See the campaign observation and phase/ABI
+evidence for exact source/contract bindings.
+
+### DRAW-01 phase accounting and original movie-request path — 2026-10-10
+
+Eight exact campaign host phases now contribute bounded entry activity to their
+declared scenario inventories. Recorded metadata instrumentation is counted
+separately: 67 accepted sites and one refused fade interior, alongside the 52
+legacy producer hooks. Fresh 37-guard accounting checks pass without closing
+any scenario or dispatch obligation. Historical observation hashes remain fixed.
+
+An explicitly movie-enabled original run records both startup movie-wrapper
+calls, followed by Main/setup and normal shutdown: 84,752 events / 42,376 paired
+calls, zero loss/open/IO and stable binaries/sources. Wrapper returns1 after
+313/189ms establish a fast return path only; complete original movie playback,
+stream failure semantics, placement, controls and graphics side effects are not
+validated. A successful metadata journal is not successful playback. All 18
+DRAW-01 closure blockers remain. Committed history `18d24f6..f240927` was
+reviewed separately with 12 changed/link-reviewed files, 13 affected behaviors
+and zero missing receipts.
+
+
+### DRAW-01 original save/load diagnostics — 2026-10-10
+
+Disposable census staging now supplies the original Save output directory;
+original campaign saves produce retained nonempty `.sav` files. The initial
+Load fixture omitted list selection and faulted at `005b74dc` reading `10`.
+This repeats with drawing hooks absent but the menu adapter active. A corrected
+one-row selection fixture and loader admission/heartbeat timing are under live
+validation. No successful save/load round trip, native persistence, graphics
+failure equivalence or DRAW-01 scenario closure is claimed. Failed reports,
+screenshots, original saves and hash-bound partial-journal archives remain in
+`working/experiments/drawing-census/`; prior evidence hashes are unchanged.
+Committed history `f240927..5abde11` was reviewed with zero missing exact receipts.
+
+
+The [selected-row menu-only control](drawing-census-save-load-menu-only-success-20261010.json)
+now finishes the bounded original Save/Load journey: a retained 353,641-byte save,
+original World/Mini and Preferences return, original defeat/Main and exit0.
+Sources and staged binaries remain stable. Drawing entry hooks are absent and
+no call journal is claimed. The visible loading transition begins on list-row
+selection, before the later explicit Load-button input; input ordering is retained.
+The same corrected fixture with full drawing metadata remains under validation.
+The two failed Load reports are retained under distinct immutable evidence IDs;
+the successful control does not retroactively validate those attempts.
+
+
+The [full original-active save/load journal](drawing-census-save-load-observation-20261010.json)
+also completes with exit0: 3,607,228 events / 1,803,614 paired calls, zero
+loss/open calls, verified actual base400000 and stable source/binary fingerprints.
+The original-created 354,045-byte save is retained with SHA-256
+`76bd3f35812ce21ad19dc18bf073772c54725dd65eb80e8c14afb55ffda040c4`.
+This validates the bounded selected-row journey and journal; exhaustive caller,
+borrowed graphics, state/pixel/lifetime/recovery and scenario closure stay pending.
+
+
+### DRAW-01 original movie contract and helper census — 2026-10-10
+
+The [unchanged original movie reference](drawing-movie-scoped-original-20261010.json)
+passes1,760selected external HRESULT/control/Escape/Update/Blt/placement/cleanup
+cases, including sentinel checks of wrapper state-write ordering. It corrects
+EDX to DirectDraw device and the first stack word to destination surface.
+[Contract findings and exclusions](draw01-movie-contract.md) retain exact
+short-circuit, skip/result and media/video/sample/source release order. Native
+Qt decoding/replacement and actual original codec/pixel/audio output stay separate.
+
+The catalog now has109routes/70entry identities; its new exact caller export
+has939direct CALL sites. The [expanded original movie-helper journal](drawing-census-movie-helpers-observation-20261010.json)
+has69safe metadata hooks plus the original unsafe fade-site refusal,82,380events /
+41,190paired calls, zero loss/open/IO, stable sources/binaries and normal exit.
+Both intros enter original setup/sample: each helper returns0 and wrapper1.
+These quick returns do not establish complete playback; exact sample Update/Blt
+counts/results and original audiovisual output remain pending. The driver now
+binds the actual menu source/header compiler inputs prospectively; older records
+retain their original narrower source declarations.
+
+The [fresh ABI fixture](drawing-census-movie-pop16-abi-20261010.json) adds the
+movie wrapper's16-byte callee cleanup to0/4/8/12/20/24, with independent tail8
+baseline and retained flags/registers/x87/SSE/LastError/loss/phase guards. It uses
+synthetic bodies; actual69original splice manifests and live observations are
+separate. Committed history5abde11..7bb1f46 has zero missing exact receipts.
+All14scenario closures and4DRAW-01 dispatch obligations remain open.
+
+
+### DRAW-01 original movie loop and error-site diagnostics — 2026-10-10
+
+Fourteen explicit original movie SITE probes extend safe metadata coverage to83
+sites (plus the retained unsafe fade refusal),123routes/84entry-or-site identities
+and939exact direct CALL sites. SITE probes require explicit containing original
+function anchors, preserve the return slot, and report before-instruction EAX
+separately from function results and paired-call counts. The first retained
+original run has82,328events/41,162paired calls/4SITE events, no loss/open/IO,
+stable sources/binaries and original exit0. Each intro enters the loop once,
+then cleanup with00040003; no successful Update/Blt-dispatch or selected error
+site fires. This is immediate original end-of-stream in the observed Wine path,
+not full playback. [Interpretation and API source](draw01-movie-contract.md).
+The first inventory guard attempts exposed a missing future evidence record and
+an incorrect build JSON pointer; those failed logs remain retained. Catalog
+projection now addresses the actual nested decoded build, with a fresh accounted
+run pending. Source-only metadata corrections preserve the first run's hashes.
+History7bb1f46..42801df has zero missing exact parent/current receipts.
+
+
+The [fresh accounted movie-site repeat](drawing-census-movie-sites-accounted-observation-20261010.json)
+again observes two immediate `MS_S_ENDOFSTREAM` exits:82,316events,41,156paired
+calls and4SITE events; zero loss/open/IO, stable declared sources/binaries and
+exit0. Its catalog projection correctly addresses `/decoded/original_sha256`;
+the earlier record and failed inventory guards remain unchanged. The inventory
+reports123routes,83metadata sites/1refusal,939direct CALL sites and0unaccounted
+activity; all18DRAW-01 closure blockers remain. [54fresh guards](drawing-census-movie-site-guards-20261010.json)
+cover mode/anchor refusal, mixed counters and result separation, exact callers
+and scenario/unknown-route accounting. Source-only decoder/catalog changes leave
+older original reference, ABI and live evidence stale; historical stages/hashes
+are retained without claiming current full original/native equivalence.
+
+### DRAW-01 original Quick Battle and both result actions — 2026-10-10
+
+The isolated original fixture now preserves original map2/default rules/empty
+spell assignments and observes World/input/Escape/results/Continue/World/
+Escape/results/Quit/Quick/Main/shutdown. Original context1 uses the documented
+Escape-to-results path, so no Quick Mini/Preferences claim or experimental gate
+activation is made. The initial incorrect Mini expectation is retained as a
+failed attempt; its partial journal remains invalid for closure. The successful
+first cohort has2,509,020events/1,254,510pairs at41entries, zero loss/open calls,
+stable binaries/sources and exit0. Phase/input intent is separate from verified
+camera/tooltip/effect behavior and pixel/graphics lifetime equivalence.
+Committed history42801df..4878427 has69exact source receipts and111behavior
+receipts without missing matches; this review is separate from uncommitted work
+and asserts neither a past gate pass nor new execution.
+
+The prospectively registered [repeat](drawing-census-quick-battle-accounted-observation-20261010.json) retains2,447,382events/1,223,691pairs, zero loss/open calls, stable sources/binaries and exit0. Both original Game Over headings were checked. Each phase projection stays a bounded cohort; all18closure blockers remain.
+
+### DRAW-01 original campaign summon/effect observation — 2026-10-11
+
+The [original-active cohort](drawing-census-campaign-effects-observation-20261011.json)
+records a new living, player-owned Zombie after a physical original cast. Its
+original callback has a raw mana debit of 4,352 in the sampled creation interval;
+the inspected screenshot shows the summon effect and `1/15` HUD. The existing
+read-only spell validator was applied after the run with that explicit scope.
+There are 514 passive creature samples and 12 spell rows, each checked for
+framing/sequences and retained at its recorded hash. Their formats lack terminal
+and loss counters, so no all-tick/callback/lifetime claim is made.
+
+The drawing journal retains 4,184,314 events / 2,092,157 paired calls, zero
+loss/open calls, stable staged binaries/sources and normal original exit. It
+nearly reaches the fixed 4,194,304-record cap; any overflow remains invalid.
+Original campaign Mini/Preferences/World/Quit/defeat/Main/shutdown follows the
+cast. Phase7/8 projections are declared before execution. Input labels remain
+separate from semantic camera/tooltip and full effect-to-queue-to-pixel proof;
+all14scenario/four dispatch and caller/graphics/lifetime closure remains pending.
+Committed history4878427..92295c9 has15exact file and16behavior receipt matches,
+without missing intermediate versions; no retrospective validation is asserted.
+
+### DRAW-01 selected graphics API CALL boundaries — 2026-10-11
+
+The [static export](drawing-api-sites-expanded-static-20261011.json) retains
+314 selected original CALL instructions, 37 exact import identities and 15
+whole-image graphics-import calls outside the selected wrappers. Three registered
+entries have bounded normal-return instruction graphs with null discovered
+anchors; their function identity and exception/indirect flows remain unassigned.
+[Byte/ownership guards](drawing-api-sites-guards-20261011.json) pass 12 cases.
+[Scope and remaining contracts](draw01-graphics-api-boundaries.md) separate this
+static boundary evidence from concrete runtime targets, API results/cleanup,
+Lock/DC borrowing, resource ownership, failures and complete writer coverage.
+The central register seeds those touched contracts with independent statuses;
+no scenario or dispatch closure is promoted. Committed history92295c9..e4be448
+has exact intermediate file/behavior receipts without missing matches.
+
+### DRAW-01 separate API journal wire and static splice planning — 2026-10-11
+
+The [fresh planner](drawing-api-splices-accounted-static-20261011.json) accepts
+250 exact CALL splices and retains64refusals:52incoming direct-flow conflicts
+and12overlaps with existing census probes. The first output is retained with an
+explicit source-mutation limitation and supplies no current validation.
+[21synthetic guards](drawing-api-journal-guards-20261011.json) pass for the
+separate API wire, concrete target/stack pairing, terminal checks and continuation
+relocation. No original API or runtime observer has executed in this increment;
+output/resource borrowing and complete drawing proof remain pending. All14scenario
+andfour dispatch closures remain open. Historye4be448..f2d858b has exact12file/
+14behavior receipts without missing intermediate versions.
+
+### DRAW-01 separate API forwarding observer and synthetic ABI — 2026-10-11
+
+The [separate DLL build](drawing-api-observer-build-20261011.json) compiles
+250signature-pinned CALL probes, retaining64refusals. The [synthetic ABI](drawing-api-observer-synthetic-abi-20261011.json)
+passes10bodies/four CALL addressing modes with0–24-byte cleanup. Its tested
+registers/flags/x87/SSE/LastError, original argument placement, concrete target,
+negative EAX and actual cleanup match baseline. Loss/frame/phase/cap/IO states
+still forward the synthetic body through a fixed continuation. This fixture
+executes no original graphics API or original splice manifest; actual original
+installation/shutdown/journals, refused-site handling and output/resource/borrow
+lifetimes remain pending. All14scenario/four dispatch closures remain open.
+
+### DRAW-01 exact per-run API bindings — 2026-10-11
+
+The [native writer/decoder round trip](drawing-api-observer-bindings-abi-20261011.json)
+passes all10synthetic probes and records exact original/trampoline return PCs,
+continuations and stub/module bounds. [12mutation guards](drawing-api-bindings-guards-20261011.json)
+check physical identity and refuse overlap/alias/corruption. The named native
+census leave export has a [fresh synthetic ABI](drawing-census-named-export-abi-20261011.json).
+Physical module membership does not assign original/logical ownership, and
+prepared allocations do not prove hook installation. Earlier source/claim
+fingerprints remain preserved with current validation limits. Original API
+journals,64refused sites, outputs/borrow lifetimes and all14scenario/four dispatch
+closure remain pending. Committed history34ce28f..dc626c7 is separately reviewed
+for exact intermediate receipts without asserting retrospective validation.
+
+### DRAW-01 first original separate API journal and export fix — 2026-10-11
+
+The [original cohort](drawing-api-menu-observation-20261011.json) retains
+81,680core events/40,840pairs and7,876API events/3,938pairs at27API sites.
+Both journals and the live allocation map close cleanly; no loss/open/IO or
+unreadable API data, stable binaries/sources and normal original exit0.
+Actual cleanup includes52bytes, exceeding the initial eight-word diagnostic
+stack; formal full arguments and outputs are still pending. The final Main
+screenshot is inspected; startup's phase2 snapshot is black, with no pixel
+comparison claim.
+
+Actual export inspection caught a missing assembly-symbol export despite its
+annotated declaration. The earlier callback ABI report is retained unchanged
+with an [explicit visibility limitation](drawing-census-export-declaration-limit-20261011.json).
+Explicit linker export/table guards and a [fresh ABI](drawing-census-export-checked-abi-20261011.json)
+now verify the name; current re-exported splices remain250accepted/64refused.
+Historydc626c7..6e85d84 has exact intermediate receipts and separately names the
+export semantic gap; no retrospective gate pass or original validation is
+asserted. All14scenario/four dispatch, remaining callers/API contracts,
+outputs/resource borrowing and failure/recovery closure remain open.
+
+DRAW-01 incremental CALL observation (2026-10-11): the separate API observer
+now admits 302/314 selected boundaries, including 52 single-byte INT3 sites whose
+successors have incoming original branches; twelve core-hook overlaps remain
+explicitly refused. Fresh 38 native guards and twenty-body PE32 ABI/binding
+fixture passed, including untouched successor bypass and foreign exception
+forwarding. The original menu cohort `run-opctpvl0` closed 41,380 core and 4,348
+API pairs at 32 sites, with 382 calls at five breakpoint sites, zero loss/open/IO,
+stable inputs/sources and normal original exit. Evidence is registered separately
+as `DRAW.api-breakpoint.*-20261011`; historical fingerprints remain unchanged.
+This does not close formal API output/lifetime or all-scenario/dispatch accounting.
+The committed range `6e85d84..50674a8` has 75 exact file and 114 behavior receipts,
+zero missing intermediate receipts; that review does not assert a past gate pass
+or new runtime validation. The shared worktree remains untouched by this branch.
+
+DRAW-01 selected API cohort (2026-10-11): the explicit API-only plan admits all
+314 selected CALL boundaries; the separate core/API plan remains302with12overlap
+refusals. Seven fresh native admission guards prevent API-only evidence from
+claiming a core call journal. The enabled original movie cohort `run-yyj3me1m`
+closed4,511API pairs at53sites (19movie-helper sites), zero loss/open/IO, stable
+sources/binaries, actual null startup core module/leave and normal exit. Both
+startup setup/sample HRESULT paths returned0 and their first Updates00040003;
+this is EOF evidence, not full playback. Formal arguments/outputs, ownership and
+borrow intervals, complete writer/scenario/dispatch accounting remain pending.
+Registered `DRAW.api-cohort.*-20261011` and `DRAW.api-only.movies-20261011` retain
+new results without refreshing historical hashes. The committed
+`50674a8..defa681` range has20exact file and9behavior receipts with zero missing
+intermediate versions; retrospective accounting asserts no past gate/validation.
+
+
+DRAW-01 formal argument/output capture (2026-10-11): the independently versioned
+V2 API observer retains up to16 formal/diagnostic stack words and four bounded
+before/after raw buffers with explicit null/unreadable/unavailable states. Exact
+import/movie-site layouts include the13-argument StretchDIBits and final movie
+Release; cached receiver candidates assert only BEFORE byte equality. No object
+read occurs after Release. Fresh55guards and26real PE32 ABI bodies pass, including
+52-byte cleanup, failed raw outputs, both patch modes and a callee making its
+candidate page inaccessible. Failed attempts and their caller-frame test
+limitation remain retained. Original enabled-movie/API-only run `run-xix7fqds`
+closes4621pairs at53sites, zero loss/open/IO, stable sources/staged metadata, core
+absent and exit0; final original Main image was viewed. GUID/output-pointer slots
+and a returned100x100rectangle are raw run-local observations. Semantic interface
+ownership, pixel/palette/string buffers, complete writers/failures/recovery and
+all14scenario/four dispatch closures remain pending. Older evidence fingerprints
+are preserved. History `defa681..a69697f` has17exact file/11behavior receipt matches
+with no missing intermediate versions, separate from this uncommitted increment.
+See [V2 evidence and limits](draw01-graphics-api-boundaries.md).
+
+
+DRAW-01 exact client layouts/borrows (2026-10-11): contract revision2 adds141
+reviewed DirectDraw/Surface2/clipper CALL layouts while excluding20reload
+callbacks and preserving legacy revision1 V2 decoding.68fresh guards and26real
+PE32 cases pass. Original movie-enabled API-only run `run-12h9dfva` closes4559
+pairs/53sites, stable sources/metadata, core absent and exit0.42interface-output
+observations/40client Releases and one successful DC interval are retained;
+1992CPU-overlap,8unobserved/alias Unlock-origin and9Release-with-open-borrow gaps,
+plus5terminal open intervals remain explicit. The first false DDSD_LPSURFACE
+output prerequisite and its original report hashes are preserved separately.
+Successful Lock returns a pointer with flags100f. Full-code static review finds
+70offset128candidates; their independent receiver/alias review and expanded
+coverage are next. Complete writers, resource ownership/failures and14scenario/
+four dispatch closure remain pending. History a69697f..2a1885c has28file/20behavior
+exact matches with no missing versions. See [evidence/limits](draw01-graphics-api-boundaries.md).
+
+The141site layout review retains22unanchored CALL locations explicitly; no
+binary function or recovered-range expansion is asserted. The earlier passing
+26body ABI declaration used an unsupported scenario level; its hash-bound
+limitation and the separately declared/rerun final ABI remain distinct.
+
+
+DRAW-01 whole-image candidate/client-alias increment (2026-10-11): opt-in66
+untyped offset128 candidates expand the API-only plan to380 admitted sites; the
+core/API plan remains368with12overlap refusals. Successful exact client creation/
+Surface2 query observations, generation/vtable guards and matching pointer/cleanup
+now support candidate Unlock assignment.91fresh guards and26PE32 ABI bodies pass.
+Original movie-enabled `run-z6gijsyt` closes6439pairs/67sites, stable inputs/source/
+metadata, core absent and exit0.14query aliases and1964closed client intervals
+(one DC/1963CPU,1955candidate Unlocks) leave zero resource gaps/open intervals in
+this cohort. Reviewed phase14image is the faded Quick Battle screen, not final
+Main. All14scenario/four dispatch closure, complete writers/callers and external
+lifetime/failure coverage remain pending. History2a1885c..910e3f7 has26file/13behavior
+exact receipt matches and no missing intermediate versions; old evidence remains.
+See [scope/evidence](draw01-graphics-api-boundaries.md).
+
+
+DRAW-01 expanded original API gameplay cohorts (2026-10-11): unchanged380site
+API-only observation completes three new prospectively declared runs, each zero
+journal loss/open/IO/unreadable stack/target, stable sources/binaries/metadata,
+core absent and normal exit0. Campaign/save/load `run-4qxfz709` records33476pairs/
+74sites,128query aliases and8508closed client intervals; original353420byte save
+SHA2ba05e42437c3a81117dbda7ff490d78f2ef3eb447a6f1b52c8370f0bd29adc5 is retained,
+selected and loaded, with after-load World image reviewed. Quick Battle/results
+`run-6vqq61md` has20006pairs/61sites,73aliases and5289closed intervals, reviewed
+Game Over/Continue/second-results/Quit. Campaign effects `run-bs6fnbfw` has29851pairs/
+75sites,115aliases and7313closed intervals, passive original living owned Zombie
+slot4/type14/health90 and reviewed spell/creature image. All three have zero
+resource gaps/terminal open intervals. The four expanded movie/gameplay cohorts
+observe101unique CALL sites and36CPU closing sites;279admitted sites remain
+unexecuted. These are separate cohort counts, not aggregate runtime frequencies.
+All14scenario/four dispatch closure, complete writers/callers, failed/recovery/
+external lifetime paths remain pending. History910e3f7..002633e has18file/12behavior
+exact matches and zero missing receipts. See [evidence/limits](draw01-graphics-api-boundaries.md).
+
+
+DRAW-01 API route reconciliation (2026-10-11): current offline inventory has503
+routes, including380byte/return-PC/mode-bound CALL points separate from function
+entries. Four independent retained original API-only cohorts project101unique
+sites across14host phases, leaving279unexecuted sites and preserving unassigned
+owners/unknown types.45native guards pass; require-accounted passes0unknowns and
+require-complete fails with the expected18obligations (14scenario/four dispatch).
+Scenario limitations now name actual original save/load/results/summon observations
+without promoting census closure. Catalog source-only changes retain historical
+original evidence hashes/staleness; the new proof validates offline accounting,
+not current original renderer equivalence. History002633e..c43bfde has9file/
+12behavior exact receipts, no missing versions. See [accounting scope](draw01-inventory.md).
+
+
+DRAW-01 original queue client-state increment (2026-10-11): separate headless
+native integration fixture executes byte-unchanged5002a0consumer58320unique cells,
+empty/one/two queues, Video0/1, selected9/15/default kinds, signed spans/changed
+prior metadata, clip480/600branches, rawhigh/negative returns and optional postlude.
+Original row/container mutations, strict/clamped clips and exact original callers,
+29160cleanup calls (includingemptyqueues) and counter resets pass.75312clip/
+25500wave/19440copy calls are retained with exact raw-case/binary hashes. First
+sandboxSIGSYS/unsupported scenario declaration and intermediate pass remain under
+explicit attempt limits. Actual helper effects, pixels, other changed-prior kinds,
+external API/lifetime and14scenario/four dispatch closure remain pending; recovered
+implementation/comparison/integration/replacement statuses staynone. History
+c43bfde..0b40de2 has11file/21behavior exact receipts with no missing versions.
+See [client-state scope](draw01-inventory.md).
+
+
+DRAW-01 all-kinds consumer client state (2026-10-11):984960unique unchanged-original
+consumer cells pass across kinds-2..35, direct-marker/ordinary-offset, four raw
+returns, Video0/1, empty/one/two rows, signed first spans/changed prior metadata,
+480/600clip branches and optional cleanup.93exact CALL return PCs,1271936clip/
+544000wave/492480cleanup calls are retained as offline counts. Raw559379392byte
+output and16054745byte gzip decode to the sameSHA524f76b1099db750656eaa8494a2fca2d3fef3224bd602fafe999ad9125584de.
+Original/source hashes are stable; the earlier58320cells remain historical without
+refresh. All numeric/default table entries now link the selected client-state
+contract, but actual helper effects, indexed/-127 changed-prior variants, pixels/
+objects/lifetime and14scenario/four dispatch closure remain pending. Recovered
+native implementation/comparison/integration/replacement remainnone. History
+0b40de2..23bd1c0 has14file/85behavior exact receipts and no missing versions.
+See [full scoped evidence](draw01-inventory.md).
+
+
+DRAW-01 original render-postlude refinement (2026-10-11):12288owned unchanged-original
+client cases cover4d8ab0enabled/readiness/null-Lock exits, signed text, real frame/
+clip stores, aligned row metadata and ignored synthetic failure returns. The
+route's old cleanup/lifecycle label is refined to composition; old evidence hashes
+remain historical. [Evidence and retained failed expectation](draw01-inventory.md#original-optional-render-postlude-2026-10-11)
+exclude actual canvas/font/COM bodies, pixels, lifetime and native equivalence.
+Current45offline guards account503routes with zero unknowns;14scenario/four dispatch
+closure remain pending.23bd1c0..1fe53d9exact committed-history review has10file/29behavior
+receipts and no gaps. Independent recovered native statuses remain none.
+
+
+DRAW-01 original queue object variants (2026-10-11):4924800unique unchanged-original
+client cells pass direct/indexed markers, ordinary/-127offsets, changed prior
+metadata, all kinds, low-AX1/high-EAX distinction and clip/postlude policies.
+The raw/decompressed2972130848byte archive hashes match, native exit0/no timeout;
+[Evidence and rejected pre-execution launch](draw01-inventory.md#original-indexed-and-offset-consumer-states-2026-10-11)
+retain historical narrower results. Actual helpers/pixels/arbitrary objects/
+lifetime and14scenario/four dispatch closure remain pending. Recovered native
+implementation/comparison/integration/replacement stay none. Committed
+1fe53d9..b85df54history has15file/86behavior exact receipts and no gaps.
+
+
+DRAW-01 original Lock recovery client (2026-10-11):13824owned unchanged58b660
+scripted-interface cases pass descriptor/pitch/pointer, lost/Restore/retry, key/
+reload endpoints, teardown globals/DestroyWindow and conditional Unlock.1296cells
+distinguish stored Restore from retryLock result;2304return a nonnull scripted
+error descriptor, without asserting real valid storage or driver recovery.
+[Evidence and retained cardinality error](draw01-inventory.md#original-lock-recovery-client-2026-10-11)
+exclude populated/reentrant destructors, physical lifetime/pixels/reload/UI.
+Fourteen exact caller-effect routes are classified;45current offline guards
+account503routes, preserving14scenario/four dispatch closure. Recovered native
+stages remain none. b85df54..d3cd04fhistory has11file/30behavior exact receipts,
+no missing versions; historical live fingerprints are retained.
+
+
+DRAW-01 reviewed API client route binding (2026-10-11):141existing exact DirectDraw/
+Surface2/clipper declarations now require matching static build/source hash, CALL
+bytes, primary PE32 formals, explicit receiver provenance and route classification.
+239sites retain no client contract;20reload callback exclusions and empty
+discovered owner sets remain explicit. [51current native guards](draw01-inventory.md#reviewed-exact-api-client-declarations-2026-10-11)
+pass with503routes/zero unknowns and18completion obligations. This validates
+offline interpretation, not new original execution, dynamic ownership/pixels/
+lifetime or native graphics replacement; historical live sources remain stale.
+Committedd3cd04f..f30b3b6history has17file/45behavior exact receipts and no gaps.
+
+DRAW-01 now has exact per-run core allocation binding metadata alongside its
+unchanged entry/return journal. Byte-checked relocation and continuation mapping
+separates exact relocated E8 return PCs from E9 transfers, module membership and
+unresolved logical callers. Thirteen offline guards and the actual PE32 binding
+writer/decoder plus existing ABI checks pass. Prepared maps do not establish
+installed hooks, complete callers/writers, resource lifetimes or scenario/dispatch
+closure; the 14 scenario reviews and four dispatch gates remain pending.
+
+DRAW-01 caller review now preserves physical PCs while admitting exact relocated
+original CALLs and separately recording same-thread/same-return-slot inherited
+continuations. Fourteen synthetic guards pass. Current native replay of the
+unchanged 42,021-pair original menu journal resolves eight relocated Lock calls
+and 17,182 original direct calls; 24,831 call-flow pairs remain explicit, including
+24,825 raster indirect continuations and six destruction continuations. No new
+original execution, semantic transfer edge, scenario or dispatch closure is
+claimed. The prior original binding cohort and all historical hashes are retained.
+
+DRAW-01 now retains a separate whole-image CPU call census: 127 exact CALLs
+through four raster globals plus the CRT register callback CALL at59d98a, and
+18 exact immediate pointer assignments (nine with discovered initializer484470,
+nine with unknown owners). Twelve selection/refusal guards pass. Target sets
+are static store facts; before-CALL target values, branch execution, alias writers,
+raster semantics and integration of these additional128sites remain pending.
+This does not close any of the14scenario/four dispatch gates or promote native
+implementation/comparison/replacement of the recovered initializer.
+
+DRAW-01's separate original-active128site CPU target observer now passes its
+12admission guards and an original menu cohort:25071CPU pairs/42008core pairs,
+zero loss/open/unreadable/IO/unassigned phase, matching core/API-wire allocation
+identities, stable sources/metadata/binaries and normal exit0. Five menu sites
+observe24825before-target values596cb8 through6903dc; the CRT site observes246
+callbacks with177distinct targets.122CPU sites remain unexecuted. Graphics API
+coverage, permanent/atomic bindings, caller crosswalk, aliases/lifetimes and all
+14scenario/four dispatch closure gates remain independent and pending.
+
+DRAW-01's current native CPU/core crosswalk now matches all24825menu raster
+pairs using exact actual CALL return, thread, target, stack/cleanup, six diagnostic
+words and BEFORE/AFTER registers/flags/LastError.16synthetic guards pass; current
+replay preserves both independent journal orders/full group cardinalities and
+all historical hashes without new original execution.246exit callbacks retain
+unreviewed wrapper/non-core flow, including four observed core wrapper entries;
+ordinary direct calls are outside this CPU-only crosswalk, and two outer cleanup
+continuations still need transfer review. No typed CPU signature, atomic target,
+writer/lifetime/pixel or14scenario/four dispatch closure is claimed. Committed
+02addc6..e3ee037history has36file/89behavior exact receipts with zero missing.
+
+DRAW-01 original canvas release/terminal wrapper client evidence now covers6217
+distinct isolated cells:5184release/shared-cap/list/current/count/object cases,
+1024callback flag cases (two invocations each) and nine optional CloseHandle
+cases.864cells confirm one shared1000iteration cap still executes a second
+surface Release;864confirm controlled unsigned count0decrement. Five existing
+core/API routes link these bounded side effects. Scripted interfaces do not prove
+physical reference/storage lifetime, invalid/null/reentrant paths, all list shapes,
+callback registration or actual exit wrapper correlation. Four exact wrapper
+addresses retain missing discovered function bodies. Immutable2927inputs and
+original/source bytes verify before/after; native stages and14scenario/four
+dispatch closure remain pending. e3ee037..c44885fhistory has26file/34behavior exact
+receipts, no missing intermediate versions.
+
+DRAW-01 current native terminal replay now matches all four captured CRT
+wrapper-to-core tails against unchanged pinned original wrapper bytes and the
+retained staged executable, complete exact thread/stack/target groups and
+reviewed register/flags/RET0 effects.12state/group/byte/proof guards pass; initial
+one-shot flag byte remains unobserved and AF undefined.24825direct raster pairs
+plus four wrapper tails are matched;242other callbacks and two outer cleanup
+root continuations retain independent pending flow/classification. No new
+original execution, callback registration, physical lifetime/pixels, all writers
+or14scenario/four dispatch closure is asserted. c44885f..034ce79history has15file/
+34behavior exact receipts, no missing versions.
+
+DRAW-01's opt-in88core/128CPU parent-frame cohort now passes11guards, fresh
+128CALL planning/942direct-call export and actualPE32 compilation, while keeping
+default83safe hooks/plans separate and refusing unsafe fade58edb0. Original menu
+run closes41451core/24834CPU pairs with zero loss/open/unreadable/IO, matching
+actual allocations, stable sources/staging and exit0.24592CPU/core matches include
+24588rasters/four CRT parents; six inherited child frames identify four wrappers
+and both outer cleanup parents with original roots4e9dee/557956. The third outer
+CALL is unexecuted; inherited transfer edges, initial flags/registration,242other
+callbacks, physical lifetime and all writer/API/side-effect/14scenario/four
+dispatch closure remain pending. All raw artifacts/binaries survive stopped
+disposable cleanup.034ce79..40a16e0history has28file/51behavior exact receipts and
+zero missing intermediate versions.
+
+
+DRAW-01 CPU/terminal route accounting (2026-10-11): reviewed inventory expands
+from 503 to 636 routes with separate exact128CPU selectors and five explicitly
+opt-in terminal lifecycle entries. Current59native guards and retained original
+menu phase projections account for all reviewed inputs without promoting any
+scenario/dispatch gate: 14+4 remain. Six CPU sites observed/122 unexecuted;
+380graphics sites/141reviewed clients/101observed remain separate. Current
+native planning preserves default83safe/one unsafe fade refusal and opt-in
+88core/128CPU. Source/catalog changes intentionally leave earlier original
+observer plans/journals historical; new native planning does not renew ABI,
+original execution, full writer/caller/side-effect/lifetime or live equivalence.
+
+
+Inherited terminal edge review (2026-10-11):14current native guards and a
+source-bound replay of the retained88entry original menu journal verify all six
+observed inherited transfers to58b3e0: four fixed/one-shot wrapper tails and two
+outer4a37d0 tails. Original full-body bytes and per-run core bindings remain
+pinned; the active same-thread/RET0 return slot, fixed receiver, bounded
+MOV/TEST/OR register/flags/error effects and identical child/parent return state
+are checked. Each outer tail requires exactly one preceding original CALL at
+4a37ef, receiver642000, stack one word below the parent, and its actual returned
+state reaching the641fc8 tail at4a37f9. Optional CloseHandle effects are not
+assumed to preserve outer entry registers. Raw physical callers remain intact;
+a tail transfer never becomes an original CALL edge.
+
+Reproduce with `python3 tests/test-drawing-terminal-edges.py`, then the
+`tools/review-drawing-terminal-edges.py` CLI with a new prospective declaration,
+retained `run-_pwj3is8` and a new output path. Both original manifest checks pass
+2927files; sources/artifacts stay stable. No original execution is repeated.
+Zero remaining inherited edges in this journal is a bounded transfer result,
+not complete semantic caller ownership. Diagnostic stack consistency does not
+prove readability. Initial flag/handle state, callback registrations, the third
+outer root,242other callback invocations, all pointer/writer/API effects and
+physical lifetimes remain pending. All14scenario/four dispatch gates remain open.
+
+
+Compact CPU journal increment (2026-10-11): explicit compact CPU/core staging
+reuses the strict128byte V1 wire,4194304record cap, eight diagnostic stack words,
+actual target/registers/flags/LastError/thread/SP/cleanup and per-run bindings.
+Typed formals and pointer/output snapshots are absent. Four exact raster-global
+namespaces and the59d98a CRT EAX CALL alone are admitted; default graphics API
+V2 remains800bytes/1048576records. Readers require the explicit compact/no-formal/
+no-buffer manifest and validate the actual wire independently. They never pad
+invented V2 fields. `prepare-drawing-terminal-census.py --compact-cpu` requires
+an explicit fresh approved plan SHA, beside all88actual core entries.
+
+Current54native guards pass (10admission,19CPU-crosswalk,14wrapper-crosswalk,
+11terminal staging). Both native ABI executions pass26synthetic bodies each,
+including13JMP/13INT3,0..52byte cleanup, all13actual callee arguments, machine
+state/LastError, negative EAX, foreign breakpoint, loss/cap/IO and binding/decoder
+round trips. Default V2 additionally retains its formal/buffer/candidate checks;
+compact V1 reports those captures absent. Actual current PE32 staging produces
+88core/128CPU with V1/no-formal/no-buffer scope and original manifests2927.
+
+The attempted original menu capture hit temporary-filesystem quota before
+closed journals and a valid journey report. Its empty/partial outputs and quota
+log are retained under `run-3zug99fn` and
+`working/tests/draw01-compact-cpu-original-quota-attempt-20261011.json`; original
+runtime validation remains explicitly pending. Source/native fixtures do not
+renew original transparency, callback registration, physical lifetime or the
+14scenario/four dispatch closures. Old observer source hashes are preserved.
+Own stopped successful ABI prefixes were removed after retaining binaries,
+reports and raw journals/maps; no other contributor outputs were cleaned.
+
+### DRAW-01 integration with current master (2026-10-11)
+
+The isolated integration combines DRAW-01 increments through `13ceb66` with
+master `8ed5317`, retaining the other contributors' DRAW-02, DRAW-03, native
+rendering and storage work. The five shared workflow/accounting/documentation
+files were reconciled; all historical evidence records and exact receipts were
+preserved. The committed-history report
+`coverage/draw01-master-merge-history-20261011.json` reviews 89 commits and
+2,151 watched file versions against their first parents with zero missing exact
+receipts. This is retrospective accounting, not a past gate pass or new engine
+comparison. The merged source census is newly pinned; historical fingerprints
+remain unchanged.
+
+Merged-tree Python checks and the coverage audit/gate are integration checks.
+The compact original-game capture remains pending after the filesystem-quota
+failure; the 54 compact guards and 52 native ABI cases remain scoped evidence
+from increment 39. DRAW-01 still has all fourteen scenario and four dispatch
+closure obligations open. This merge does not promote recovered comparison,
+live equivalence or replacement status.
