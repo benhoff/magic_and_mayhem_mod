@@ -4474,3 +4474,29 @@ windows >=19.8610FPS. The separate current4096-World result fails full-path FPS:
 All deliveries and paints complete, but performance remains a failure. These
 milestones are recorded independently. The d29a37c receipt audit covers14 exact
 transitions without gaps or retrospective execution claims.
+
+
+## Fog readability window and current4096 performance (2026-10-11)
+
+Continuous tag45 fog copying resets a checked readable-memory window for each
+admission. It reuses region protection proof only within that synchronous loop,
+with no original callback or retained cross-queue pointer proof. Fog bytes and
+signed comparisons stay unchanged; legacy noncontinuous checks stay per-cell.
+The independent memory fixture admits8192 bytes using2 region queries versus
+8192 fresh checks, and refuses guard/uncommitted/null/overflow boundaries and
+protection changes on the next admission. Assertions and ASan/UBSan pass.
+
+The source-bound [4096 run](research/runtime/native-fog-window-4096-pass-20261011.json) passes all
+unchanged budgets on actual TITAN RTX accelerated Zink:19.8825 original and
+19.8868 painted FPS,cold451.04ms, all-warm4033 World samples median36/p9540/max67ms,
+cache492/512,RSS growth9,388,032 bytes. All4096 returns and paints are checked;
+coalescing, pixel replies, original World writebacks and GPU World readbacks are
+zero. Real ddraw is disabled/absent. Last1023 region queries median7635; differing
+scenes preclude a causal paired speedup claim. The earlier128 run failed its
+unchanged500ms cold limit at535.73ms despite warm19.80/19.98FPS and complete delivery.
+
+A subsequent full public campaign separately fails copy-order admission: its
+surface_lock holder reached105ms and longer. This does not invalidate World
+transport measurements or establish robust public gameplay. Public V4 fusion,
+arbitrary-scene19/60FPS, original pixel equivalence and semantic COM Quit remain
+separate unfinished milestones. Historical hashes and failures are preserved.

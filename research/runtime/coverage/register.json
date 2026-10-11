@@ -15015,7 +15015,8 @@
         "research/runtime/native-copy-address-wait-kernel32-failure-20261011.json",
         "research/runtime/native-copy-address-wait-fixtures-20261011.json",
         "research/runtime/native-copy-address-wait-live-failure-20261011.json",
-        "research/runtime/native-copy-address-stage-fixtures-20261011.json"
+        "research/runtime/native-copy-address-stage-fixtures-20261011.json",
+        "research/runtime/native-draw-public-lock-holder-failure-20261011.json"
       ],
       "implementation": [
         "runtime/render/copy_order.h",
@@ -24035,7 +24036,8 @@
         "research/runtime/native-portrait-rendering.md",
         "research/runtime/coverage/native-campaign-history-review-52dcdf8-5c086ce.json",
         "research/runtime/native-portrait-cpu-profile-20261010.json",
-        "research/runtime/native-campaign-remaining-20261010.md"
+        "research/runtime/native-campaign-remaining-20261010.md",
+        "research/runtime/native-draw-public-lock-holder-failure-20261011.json"
       ],
       "implementation": [
         "apps/qt-shell/main.cpp",
@@ -31807,7 +31809,10 @@
         "research/runtime/native-draw-device-surfaces.md",
         "research/runtime/native-draw-services-20261010.md",
         "research/runtime/native-draw-startup-check-discovery-20261010.json",
-        "research/runtime/native-draw-final-4096-performance-failure-20261011.json"
+        "research/runtime/native-draw-final-4096-performance-failure-20261011.json",
+        "research/runtime/native-fog-window-128-cold-failure-20261011.json",
+        "research/runtime/native-fog-window-4096-pass-20261011.json",
+        "research/runtime/native-fog-window-artifacts-20261011.json"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
@@ -32074,7 +32079,8 @@
         "NR.directdraw-retirement.consumer-death-20261011",
         "NR.directdraw-retirement.producer-death-20261011",
         "NR.directdraw-retirement.recovery128-performance-20261011",
-        "NR.directdraw-retirement.recovery4096-performance-20261011"
+        "NR.directdraw-retirement.recovery4096-performance-20261011",
+        "NR.minimap-continuous-read-window.live4096-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -32094,7 +32100,10 @@
       "confidence": "provisional",
       "documents": [
         "research/runtime/native-gpu-frame-ownership.md",
-        "research/runtime/native-draw-final-4096-performance-failure-20261011.json"
+        "research/runtime/native-draw-final-4096-performance-failure-20261011.json",
+        "research/runtime/native-fog-window-128-cold-failure-20261011.json",
+        "research/runtime/native-fog-window-4096-pass-20261011.json",
+        "research/runtime/native-fog-window-artifacts-20261011.json"
       ],
       "implementation": [
         "protocols/include/mnm/world_continuous_v4.h",
@@ -32344,7 +32353,8 @@
         "NR.directdraw-retirement.consumer-death-20261011",
         "NR.directdraw-retirement.producer-death-20261011",
         "NR.directdraw-retirement.recovery128-performance-20261011",
-        "NR.directdraw-retirement.recovery4096-performance-20261011"
+        "NR.directdraw-retirement.recovery4096-performance-20261011",
+        "NR.minimap-continuous-read-window.live4096-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -32437,7 +32447,8 @@
         "research/runtime/native-copy-address-wait-live-failure-20261011.json",
         "research/runtime/native-draw-public-default-full-nvidia-pass-20261011.json",
         "research/runtime/native-draw-public-default-full-nvidia-artifacts-20261011.json",
-        "research/runtime/native-draw-public-default-full-bound-nvidia-pass-20261011.json"
+        "research/runtime/native-draw-public-default-full-bound-nvidia-pass-20261011.json",
+        "research/runtime/native-draw-public-lock-holder-failure-20261011.json"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -33955,6 +33966,40 @@
       ],
       "status": {
         "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.minimap-continuous-read-window",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Per-admission checked fog-state readability window",
+      "scope": "Continuous producer minimap tag45 reuses only a freshly checked bounded readable region while copying one synchronous fog-state input packet. Local base/end reset for each request, no original callback occurs inside the cell-copy loop, no pointer proof survives an admission/queue/launch. Failed/null/overflow/lower/end/guard/uncommitted pointers still refuse; fog bytes and signed comparison remain unchanged. Legacy noncontinuous per-cell checks remain. No recovered original scheduling, shared-writer synchronization, persistent pointer stability or gameplay/balance change claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "runtime/scene/readable_extent.h",
+        "runtime/scene/canvas_producers.c"
+      ],
+      "tests": [
+        "tests/world-continuous-memory-test.cpp",
+        "tools/test-native-world-continuous.py"
+      ],
+      "documents": [
+        "research/runtime/native-world-continuous.md",
+        "research/runtime/native-fog-window-128-cold-failure-20261011.json",
+        "research/runtime/native-fog-window-4096-pass-20261011.json",
+        "research/runtime/native-fog-window-artifacts-20261011.json"
+      ],
+      "evidence": [
+        "NR.minimap-continuous-read-window.live4096-20261011"
+      ],
+      "validation_dependencies": [],
+      "status": {
+        "understanding": "scoped",
         "implementation": "partial",
         "comparison": "none",
         "integration": "live_observation",
@@ -66068,6 +66113,97 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.minimap-continuous-read-window.live4096-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-fog-window-4096-pass-20261011.json",
+      "sha256": "25690af7a3b46ff59f0b59f3681459a181824bbc6e1bcd84c6ed641eece257e4",
+      "scope": "Local per-admission fog readability windows: current selected4096 World/TITAN frames pass all unchanged19FPS/performance/resource gates, zero pixel replies/readbacks/writebacks and real ddraw absent. No paired-scene speedup, arbitrary-scene19/60FPS, public V4 integration, original pixel equivalence or semantic COM Quit claim. Separate128 cold535.7ms failure remains.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/selected_session_directdraw_backend_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/original_returns",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/qt_paints",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/caches",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/original_fps",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/memory_fixtures_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -74024,6 +74160,23 @@
         "NR.copy-order.address-wait-20261011",
         "NR.copy-order.address-stage-20261011"
       ]
+    },
+    {
+      "id": "native-world-fog-window-live-20261011",
+      "level": "live_observation",
+      "scope": "Current4096 selected NoCD V4 World delivery with native graphics and per-admission fog-state readability reuse; all queue/ACK/paint/cap/zero readback-writeback checks and unchanged19FPS full-path policy. Synthetic memory fixtures check region boundaries/refusals/reset and independent legacy admission/query counts. No all-scene19/60FPS, original pixel equivalence or public V4 integration claim.",
+      "behaviors": [
+        "NR.world-gpu-ack-delivery",
+        "NR.directdraw-retirement",
+        "NR.minimap-continuous-read-window"
+      ],
+      "tests": [
+        "tools/test-native-world-continuous.py",
+        "tests/world-continuous-memory-test.cpp"
+      ],
+      "evidence": [
+        "NR.minimap-continuous-read-window.live4096-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -74361,8 +74514,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-default-bound-stage-20261011.json",
-    "sha256": "848b8e1b993ae65aa1f02759376ca6d8061da51e70115742aef3ed1f94708c45"
+    "path": "research/runtime/coverage/source-index-native-fog-window-20261011.json",
+    "sha256": "b998dee8f74485eaf441a47da350ba8a799106e79f887afca79bd08f9fcad446"
   },
   "claim_bindings_required": true
 }

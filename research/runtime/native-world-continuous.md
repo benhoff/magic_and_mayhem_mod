@@ -101,3 +101,29 @@ The timing increment uses protocol V3 (MNMCON03), preserving the fixed channel e
 ## V4 GPU acknowledgement checkpoint (2026-10-10)
 
 The explicit `--resident` test path uses `MNMCON04`/mode1 and80-byte identity/nonce/generation/descriptor-bound acknowledgements. It retains GPU canvas history and restores original destination protection without writeback. Actual original return marker2 is checked before slot release. V3 comparison/pixel mode remains separate. See [GPU frame ownership](native-gpu-frame-ownership.md) and the immutable [4,096-queue report](native-gpu-ack-masked-4096-20261010.json). All4,096 queues and native presentations complete with zero GPU readbacks/pixel replies/World writebacks and bounded resources. Both peer-death controls at generation34 and a128-queue fresh recovery execute. Full performance fails at16.1786FPS and a664ms maximum;19FPS/60FPS, real-game DirectDraw retirement, picking and complete gameplay rendering remain pending.
+
+
+## Fog readability window and current4096 performance (2026-10-11)
+
+Continuous tag45 fog copying resets a checked readable-memory window for each
+admission. It reuses region protection proof only within that synchronous loop,
+with no original callback or retained cross-queue pointer proof. Fog bytes and
+signed comparisons stay unchanged; legacy noncontinuous checks stay per-cell.
+The independent memory fixture admits8192 bytes using2 region queries versus
+8192 fresh checks, and refuses guard/uncommitted/null/overflow boundaries and
+protection changes on the next admission. Assertions and ASan/UBSan pass.
+
+The source-bound [4096 run](native-fog-window-4096-pass-20261011.json) passes all
+unchanged budgets on actual TITAN RTX accelerated Zink:19.8825 original and
+19.8868 painted FPS,cold451.04ms, all-warm4033 World samples median36/p9540/max67ms,
+cache492/512,RSS growth9,388,032 bytes. All4096 returns and paints are checked;
+coalescing, pixel replies, original World writebacks and GPU World readbacks are
+zero. Real ddraw is disabled/absent. Last1023 region queries median7635; differing
+scenes preclude a causal paired speedup claim. The earlier128 run failed its
+unchanged500ms cold limit at535.73ms despite warm19.80/19.98FPS and complete delivery.
+
+A subsequent full public campaign separately fails copy-order admission: its
+surface_lock holder reached105ms and longer. This does not invalidate World
+transport measurements or establish robust public gameplay. Public V4 fusion,
+arbitrary-scene19/60FPS, original pixel equivalence and semantic COM Quit remain
+separate unfinished milestones. Historical hashes and failures are preserved.

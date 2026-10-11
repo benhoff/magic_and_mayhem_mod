@@ -265029,6 +265029,456 @@
         "evidence": [],
         "reason": "4096 current native owned World frames/paints complete but FPS gates fail,median40ms World plus14ms between and8941 region queries. Broader original comparisons, movie/full-game/lifecycle/all-scene19/60FPS claims and pure-shell gameplay remain pending; no unrelated promotion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "3753f15e8375436df08d1f98015cf8b0f7df668058e90ee8d985dffebb6168ed",
+          "before_sha256": "a8bcded766290492bbbb5b00631518c7a22c8a0af8a76b23ba4e7c3d3a552098",
+          "id": "NR.directdraw-retirement"
+        },
+        {
+          "after_sha256": "f3ff649f8387a82e8e4716b04266f2e5e366104ae230b391b5ae5413de7e4769",
+          "before_sha256": null,
+          "id": "NR.minimap-continuous-read-window"
+        },
+        {
+          "after_sha256": "605119931e4b9f21af349a333b97f5467cc4cde5b563e2c26452ae02f450188a",
+          "before_sha256": "86f0cc5ce5185bab3bf69fc8073a4d1580bd2cc3c0677bfee836f3a3a10f7856",
+          "id": "NR.world-gpu-ack-delivery"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "a1bb64121b779e5153084f43ef317b221c1ceb5c191c1350e9d2274d2b5e663b",
+          "before_sha256": "2cf912afab0dee670b3a727a5fba897e162c39a7b79b6fe5fda665971fd3d298",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "21592c3e4e14edff82571189f120e08a78960f5c2582267b497cbdf839f56c26",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-default-bound-stage-20261011.json"
+        },
+        {
+          "after_sha256": "df89a924e688b7de9dfbabb7002a7538745b95fc7e642780f1357490c3882406",
+          "before_sha256": "874ad8a84a968616b339b502bc45f81ae870ccfbdb40c5c02cc58574664ec88b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b998dee8f74485eaf441a47da350ba8a799106e79f887afca79bd08f9fcad446",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-fog-window-20261011.json"
+        },
+        {
+          "after_sha256": "0c7d6717667fe21efefb877f66237973e769a8e39b59de337fb36d81789e2f99",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-fog-window-20261011.md"
+        },
+        {
+          "after_sha256": "bd73834bfc0fcdb5aee339a177e26eca694cab58714c3e21ce34ce1b1ebe94c8",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-public-lock-holder-failure-20261011.json"
+        },
+        {
+          "after_sha256": "7cec93670144ba520d2cdc7136cc0b57750da0e7c555f5a76bc5f86b360e9be9",
+          "before_sha256": null,
+          "path": "research/runtime/native-fog-window-128-cold-failure-20261011.json"
+        },
+        {
+          "after_sha256": "25690af7a3b46ff59f0b59f3681459a181824bbc6e1bcd84c6ed641eece257e4",
+          "before_sha256": null,
+          "path": "research/runtime/native-fog-window-4096-pass-20261011.json"
+        },
+        {
+          "after_sha256": "5f8ee564e548c4f8ff2f928700d9ff3b3e63125a43eb18347ac3c4f2ae243155",
+          "before_sha256": null,
+          "path": "research/runtime/native-fog-window-artifacts-20261011.json"
+        },
+        {
+          "after_sha256": "521a42346e9d1d4658b093603300dcf2d9a00805dd3e274bcefb8a93a53c1ed8",
+          "before_sha256": "27c11e21bcd01cff23e3ae6ff4107a1473c45bd32990c60a1452e55d79bb59c8",
+          "path": "research/runtime/native-world-continuous.md"
+        },
+        {
+          "after_sha256": "d5121332708a29eadea5847d629e4e2fbff6182485c1d6f25b321c0e94115551",
+          "before_sha256": "1dd142d35efd3c990208b4eff9769fff18f26c4016f5689967add5f93d8d7295",
+          "path": "runtime/scene/canvas_producers.c"
+        },
+        {
+          "after_sha256": "656136c3ecacfa9389a9d9fe5dfbff372c93e91792d51446e01633ac35ae53ff",
+          "before_sha256": "b288888cbcba237b131e0805cbac59989f7d2f001dd5999841de34da26b2b7e8",
+          "path": "runtime/scene/readable_extent.h"
+        },
+        {
+          "after_sha256": "771ae69e0e09003ae1141e0356e617acf243b0c592c4d183766400d08665b631",
+          "before_sha256": "9b0404828160668a3b031f115689f46b59ffa446b6a5da5061106dc1c96eb4c6",
+          "path": "tests/world-continuous-memory-test.cpp"
+        },
+        {
+          "after_sha256": "bac80d3a1f33b41a209ad1c2b4c99fb697f5247b6f17f7cf729228a0ca777b79",
+          "before_sha256": "3d642834520bc530024515ae139dccd4ac6d467a5bddd60acbc902f6a5163b52",
+          "path": "tools/test-native-world-continuous.py"
+        }
+      ],
+      "id": "change-c3d71fc6def82a39-scoped4096",
+      "pending_gaps": [],
+      "reason": "Reviewed local reset/overflow/region boundaries, unchanged fog byte semantics and prospective native-policy scenario.8192 admission corpus uses2 queries versus8192 legacy, assertions and ASan/UBSan pass. Exact d155 committed-history audit15 files has no missing receipt. Immutable4096 PASS and128 cold FAIL plus separate public surface-lock FAIL retained.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.minimap-continuous-read-window.live4096-20261011"
+        ],
+        "reason": "Fresh current-source/frozen compiler-bound4096 actual TITAN World returns/paints pass every unchanged19FPS/resource gate, DDdisabled/absent, zero pixel replies/GPUreadbacks/writebacks. No paired causal speedup/allscene19/60/publicV4/originalequivalence/semanticQuit promotion."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "6d85deac6753b42062dccf39ca3994d906b10504eb94f0ac212840bcab6f1a8a",
+          "before_sha256": "f532db013c2d8d08f117cb5ceaa407e6e06805730866064dfb68f54b797d4641",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "c5e812006f8374f16660c21adfe93c7624c3a951702b8a5699877ecd6a06e3fc",
+          "before_sha256": "b367f2bd76a6321f15b8ead19a1afc27ff223220aaeecf83a39353a18ef0a2c0",
+          "id": "NR.bounded-copy-order"
+        },
+        {
+          "after_sha256": "4a2ec75f0aa69bb2962ecb9b3fe6ce7393a4d5f75d8897bb8f9623807e72962a",
+          "before_sha256": "69edf4c1098b379b9eea5bb0627c4b4d80a45f0de998dec9261042d0efcffee3",
+          "id": "NR.directdraw-native-opengl-launch"
+        },
+        {
+          "after_sha256": "346b631b8db95b4b0522be287dc73974106dbaa2b578ffa5b4d532cfe8128381",
+          "before_sha256": "3f6521eede4f0a1e55e9b20776b94358ef3fba3f84d6d50fbbcc2177183e35a7",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "3753f15e8375436df08d1f98015cf8b0f7df668058e90ee8d985dffebb6168ed",
+          "before_sha256": "a8bcded766290492bbbb5b00631518c7a22c8a0af8a76b23ba4e7c3d3a552098",
+          "id": "NR.directdraw-retirement"
+        },
+        {
+          "after_sha256": "66463766565c0d145ac718440bbca71e8265dc12f447d48b7d00db8795b0416b",
+          "before_sha256": "fb4ab49efbab95493529ab9f5caac239a6eb0686645be7d5da0aaac2dbacdb97",
+          "id": "NR.font-glyph-live-shadow"
+        },
+        {
+          "after_sha256": "9fe2eeb11bd6111bd178e8f47eccb642f678b0c0b3016e5e00de497c4200630e",
+          "before_sha256": "2a3189e147af307d6ef6cbbac77e39c7a44dfbdd817aa1a987cc6c6291d321cf",
+          "id": "NR.glyph-live-admission"
+        },
+        {
+          "after_sha256": "f3ff649f8387a82e8e4716b04266f2e5e366104ae230b391b5ae5413de7e4769",
+          "before_sha256": null,
+          "id": "NR.minimap-continuous-read-window"
+        },
+        {
+          "after_sha256": "e5b10ba54054d0d3ec9e0f8cc1d7acbb651c1f0f17547bc9c65add2cfcc4b38e",
+          "before_sha256": "638ca497ae1caa9ea667b46e893051b49c9e16279e258abb248f9574733b3fa6",
+          "id": "NR.minimap-input-fixture"
+        },
+        {
+          "after_sha256": "8e902b5fd2c9821ed19c7b407fbb026f1db316a3483c3ea41a503ab843b91b84",
+          "before_sha256": "98612d5e0d69fc337ad6c10da448038da8e5cecf7296e45f3c7db8220ed42f63",
+          "id": "NR.minimap-interactive-presentation"
+        },
+        {
+          "after_sha256": "65c2de3ac76463970f6c4d89978144b4335b8ca13c3444a96ce395554c143d37",
+          "before_sha256": "51e181f4f242bc2de6cf05531c4c25ced6938da0d8c804e93aea66501e954a67",
+          "id": "NR.minimap-owned-observation"
+        },
+        {
+          "after_sha256": "2835abf7d15c29a8e47cd7816d6bfe59247bbfe23289a8ba895e62fe0598c211",
+          "before_sha256": "b00f5f7ef797904b5362984925ab287227c1ba8492ef7c431dce23bdefb9d609",
+          "id": "NR.offline-render-soak"
+        },
+        {
+          "after_sha256": "bc1869fa86be5dab3558f72e4f581ef3f5da87f255da05bf1775293e43463ca3",
+          "before_sha256": "cd82f648d8b257df5a018c7f77cc2dd6bb1742c71cf40359207205f485e47b8a",
+          "id": "NR.word-clipped-takeover-admission"
+        },
+        {
+          "after_sha256": "61bb2c874bb3889ecc3738b64f7271c0871f0dbda6beb96bd6e00bb0bf3b4286",
+          "before_sha256": "e74bcd7f6cd3701f36843eb3b7357077064756ff39db8d3979ef3fdbf1da3595",
+          "id": "NR.world-batch-extended-prefix"
+        },
+        {
+          "after_sha256": "47c2e664ac42bb39b0b0da2108a2b7a2c7f98792d4ba92467a951264e526915e",
+          "before_sha256": "377a998a49b2811cb90fe1755aabe9fb38aef49e9436241eb722a1c3c14b9db4",
+          "id": "NR.world-batch-profiling"
+        },
+        {
+          "after_sha256": "11e480929bbd52beb234d3d31f48d4937b5ab11dec0cc1f4e7ea92683e79f73d",
+          "before_sha256": "a147d308f8bf503d8ed205d3f9918e34cf0ccc24a72195c58d2af6ba27a6d51a",
+          "id": "NR.world-batch-throughput"
+        },
+        {
+          "after_sha256": "c605244399b7e4ff09f4a39b5142e6a62db7d9f2fbe1f10fb77f8171e69e346e",
+          "before_sha256": "bad6f7b43c2117ab4b9ab463004520767ce3e43a9e286460947594e59fe310fa",
+          "id": "NR.world-continuous-normal-performance"
+        },
+        {
+          "after_sha256": "3f97b1b88c050d37ef36d06dd6496fb2d4e4aaeb28ea7eb928b01b1a41e6a8e2",
+          "before_sha256": "039c1b8f1910ff614b612dfedf99e40860b0b12b96682678199eef0574a50400",
+          "id": "NR.world-continuous-source"
+        },
+        {
+          "after_sha256": "605119931e4b9f21af349a333b97f5467cc4cde5b563e2c26452ae02f450188a",
+          "before_sha256": "86f0cc5ce5185bab3bf69fc8073a4d1580bd2cc3c0677bfee836f3a3a10f7856",
+          "id": "NR.world-gpu-ack-delivery"
+        },
+        {
+          "after_sha256": "9549c7183008826d9cb2e27a6592f09598188c836ec81da2bfb902d6aeea8c70",
+          "before_sha256": "6727aeb9ed357ee104f6c9e0614e9642ed9cdd3e626602cff615837e71c95826",
+          "id": "NR.world-history-channel"
+        },
+        {
+          "after_sha256": "d2352ea90903a62184580c0e7fb90da0db151bc83d088cb03048e2aae57c5560",
+          "before_sha256": "8b1d256712771f7423fad59d8eb3a12a77a398a77cc4ec5bc6ef9643dc7cf8d4",
+          "id": "NR.world-interactive-batch-launcher"
+        },
+        {
+          "after_sha256": "2af289723084887c161fd77d9d323485fc5a7f11c71bc6a9ee748aa5a1952015",
+          "before_sha256": "5dcfc3bd9c0765da861a180d8b2e222bb8f7a2e6beabbe25bdbbc69ac93e6063",
+          "id": "NR.world-live-history"
+        },
+        {
+          "after_sha256": "c40bee3ad9a6b792a7488077b42a7268811b9bdc9091bab3075948cd325b6bb1",
+          "before_sha256": "0f29eb11bd52a943df618cb1ab95eab0f68f914387db9447164472b89dbe8482",
+          "id": "NR.world-producer-handoff"
+        },
+        {
+          "after_sha256": "da916d14b02054cc75ec03c1ebdeac4909d9ca8e863a2e43c08cb138f1abec87",
+          "before_sha256": "939d4ec19749f82187d5e1cbee78c639b7c33e3562568889264b3d7de470fa55",
+          "id": "NR.world-raster-batch-transport"
+        },
+        {
+          "after_sha256": "3c25542dae63ab096adb93c82e3ff1715a254f1a610130d2d1025c7a5e96a9d0",
+          "before_sha256": "4c9ee64d6be00f7074f94aeec59a96990863a18b25bf5f5ee1b53f4c27bda2fb",
+          "id": "NR.world-resource-reuse"
+        },
+        {
+          "after_sha256": "93ee71024d0cfaa2320118797f489fb23e2a77bfd2910b14dcbfcbc2dd828091",
+          "before_sha256": "b9bc137de07b06b35d176186e46f041da4f5470b65fc910741db2f98a352346a",
+          "id": "NR.world-rolling-live-handoff"
+        },
+        {
+          "after_sha256": "120e4db51f1fd01cd8f3d28fc68b8211fcb7b5f493b1dad040d2cf3a0f4b5f3c",
+          "before_sha256": "4a823e28c22acc94bb9e630ab70317872ccfdc8675e36805fe31619270b382e5",
+          "id": "NR.world-startup-launcher"
+        },
+        {
+          "after_sha256": "14dcd2eb165e316c73b14871e436b16983e519a4d4d0a33962abd2b501b7907d",
+          "before_sha256": "20f9929176f6823d306997229cb6787984844904765ca8fe2d1f0fbc363151f4",
+          "id": "RS.canvas-producer-sequence"
+        },
+        {
+          "after_sha256": "24dc22d495a53ac442f6c48983ab5093963a12252badda94968697c1e420b15b",
+          "before_sha256": "d658164aa06d6d1e0535d815a89a64d26d86d7f81ba1b48701443373740026c0",
+          "id": "RS.glyph-live-route"
+        },
+        {
+          "after_sha256": "4d4c06705a732bddb54b444c9ff1f919750dd27ae12447a31759f85ef3d72084",
+          "before_sha256": "f4805479590063e61b57387032f8aab4ae70e996afb0b09c363cbf7bcf18758a",
+          "id": "RS.word-clip-takeover"
+        },
+        {
+          "after_sha256": "6c7e807235ba1885ef4a7faf9f8fc3ed0dc1ea55a479d00262802635b9862f6f",
+          "before_sha256": "e54a97772793a14e07233ca191e1c934c1673f8ec1bfec2c12431789d30b9253",
+          "id": "RS.world-continuous-producer"
+        },
+        {
+          "after_sha256": "42d59edce07a056ae2dcb20a26b60c9983add064af66c19ab18a93e394db9bed",
+          "before_sha256": "b5a7cb4a8a8b6b3ebf4da963a572db98565059e05e82fff8d924fa8256d1ed9a",
+          "id": "RS.world-producer-bypass"
+        },
+        {
+          "after_sha256": "b5d67b4fb7e1695b33a575ef5e51d8e2861912886c38e01c2eac56ecf77edcc4",
+          "before_sha256": "0e531b30313a4abb74ebdf12a217d07de56e25fc59a0046f47831ec02d312acc",
+          "id": "RS.world-raster-batch-return"
+        },
+        {
+          "after_sha256": "7d0588e2d2ba17a834b47453db5c73cfb14e08e66be8dd65f6dba5f7f7aeeef3",
+          "before_sha256": "7deb2029db9b56fca21cb998d676ddcea05d9678567e0059ef179a88bde6f071",
+          "id": "RS.world-raster-queue-replacement"
+        },
+        {
+          "after_sha256": "02297f90c244680ce8ace1b6d6bb13a666defa67fbf8fc4c23e31094ba4ea83b",
+          "before_sha256": "80d8d344a3822d935ea06c52fa0fafc1e3866e1340560de9bfa893f9a8bdf07c",
+          "id": "RS.world-rolling-handoff-equivalence"
+        },
+        {
+          "after_sha256": "fc717ad89ee8e00ff025697c7cb0346dedd1220d14b7b73096366608483516e1",
+          "before_sha256": "08c2c763016ca50bc2b86dc9c33cb8dcd6c88e390ae1e51bd2aba4a71824f8c2",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "a1bb64121b779e5153084f43ef317b221c1ceb5c191c1350e9d2274d2b5e663b",
+          "before_sha256": "2cf912afab0dee670b3a727a5fba897e162c39a7b79b6fe5fda665971fd3d298",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "21592c3e4e14edff82571189f120e08a78960f5c2582267b497cbdf839f56c26",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-default-bound-stage-20261011.json"
+        },
+        {
+          "after_sha256": "df89a924e688b7de9dfbabb7002a7538745b95fc7e642780f1357490c3882406",
+          "before_sha256": "874ad8a84a968616b339b502bc45f81ae870ccfbdb40c5c02cc58574664ec88b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "b998dee8f74485eaf441a47da350ba8a799106e79f887afca79bd08f9fcad446",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-fog-window-20261011.json"
+        },
+        {
+          "after_sha256": "0c7d6717667fe21efefb877f66237973e769a8e39b59de337fb36d81789e2f99",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-fog-window-20261011.md"
+        },
+        {
+          "after_sha256": "bd73834bfc0fcdb5aee339a177e26eca694cab58714c3e21ce34ce1b1ebe94c8",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-public-lock-holder-failure-20261011.json"
+        },
+        {
+          "after_sha256": "7cec93670144ba520d2cdc7136cc0b57750da0e7c555f5a76bc5f86b360e9be9",
+          "before_sha256": null,
+          "path": "research/runtime/native-fog-window-128-cold-failure-20261011.json"
+        },
+        {
+          "after_sha256": "25690af7a3b46ff59f0b59f3681459a181824bbc6e1bcd84c6ed641eece257e4",
+          "before_sha256": null,
+          "path": "research/runtime/native-fog-window-4096-pass-20261011.json"
+        },
+        {
+          "after_sha256": "5f8ee564e548c4f8ff2f928700d9ff3b3e63125a43eb18347ac3c4f2ae243155",
+          "before_sha256": null,
+          "path": "research/runtime/native-fog-window-artifacts-20261011.json"
+        },
+        {
+          "after_sha256": "521a42346e9d1d4658b093603300dcf2d9a00805dd3e274bcefb8a93a53c1ed8",
+          "before_sha256": "27c11e21bcd01cff23e3ae6ff4107a1473c45bd32990c60a1452e55d79bb59c8",
+          "path": "research/runtime/native-world-continuous.md"
+        },
+        {
+          "after_sha256": "d5121332708a29eadea5847d629e4e2fbff6182485c1d6f25b321c0e94115551",
+          "before_sha256": "1dd142d35efd3c990208b4eff9769fff18f26c4016f5689967add5f93d8d7295",
+          "path": "runtime/scene/canvas_producers.c"
+        },
+        {
+          "after_sha256": "656136c3ecacfa9389a9d9fe5dfbff372c93e91792d51446e01633ac35ae53ff",
+          "before_sha256": "b288888cbcba237b131e0805cbac59989f7d2f001dd5999841de34da26b2b7e8",
+          "path": "runtime/scene/readable_extent.h"
+        },
+        {
+          "after_sha256": "771ae69e0e09003ae1141e0356e617acf243b0c592c4d183766400d08665b631",
+          "before_sha256": "9b0404828160668a3b031f115689f46b59ffa446b6a5da5061106dc1c96eb4c6",
+          "path": "tests/world-continuous-memory-test.cpp"
+        },
+        {
+          "after_sha256": "bac80d3a1f33b41a209ad1c2b4c99fb697f5247b6f17f7cf729228a0ca777b79",
+          "before_sha256": "3d642834520bc530024515ae139dccd4ac6d467a5bddd60acbc902f6a5163b52",
+          "path": "tools/test-native-world-continuous.py"
+        }
+      ],
+      "id": "change-c3d71fc6def82a39-boundaries-pending",
+      "pending_gaps": [
+        "behaviors_without_comparison:2775026c8f2d51d7a329dc18a7a45fe07de8f840ab5e0b216f0af020f51d1ae7",
+        "stale_evidence:026a99e28d66d5025011e8447feb85557797f4389017c4001198d420b76d5c69",
+        "stale_evidence:02a3ca07020eddbef42767e02ec8ca33c2b6b45eaa286f1c883ce766c393e456",
+        "stale_evidence:02b4f23950f0c873b1d31b64bfb93033992064984a511e966bb43465e9980c30",
+        "stale_evidence:042d3cfaf03448c8fd5540e9f8817447ebf2df5ba07aedd58501ab8a0610b9f1",
+        "stale_evidence:0529ab22a75b7a73fb4cbab41187553638ba1dc42700e966f27ae9fbe5219f1d",
+        "stale_evidence:07d559b50d17bacede94f009779ee002d75a81161f13517066665f8e03b0f114",
+        "stale_evidence:099e8a69a306ea83776e87ddf07e3eb9858f5a234c693b0596566731154c4f78",
+        "stale_evidence:0f5d0aa41230a242c84db19f585339e8d7ce85a2dd8cec9d846d5cf2a88c82f8",
+        "stale_evidence:113524d53933b9cf37db1865cb6a676101a504278f81beb83b3dfb5426583da5",
+        "stale_evidence:1193d4bfbdb77300f5bc9ebb2994b6a83a232ee7c524068331e4a45c68e9b74a",
+        "stale_evidence:137b35a2864f22557887ce24b5579be799fe984e834e75fca2b939306a81352e",
+        "stale_evidence:1e3289b042605c2e2617eae6866936b0c660eed219f3d71571f6adc5ae0ca7c8",
+        "stale_evidence:208098117b75d2c87db54fad616323fcd10a7d713f30e3b65a4768dae3e4329e",
+        "stale_evidence:23b1f3f1749ec8c8135238db5afc304c41c3548828663bd29931882b7e6b535a",
+        "stale_evidence:300e4b9e5f0c23d0839c066bcc19d26c8fd857e735b3d1228c4df16e5af6eee6",
+        "stale_evidence:31c24caacb1392da20dd79dec99055f9d1681d659a42c53c67150f5dc398f1c0",
+        "stale_evidence:31e16d15846a4641ff2917bb7ababa8d6de8f176d72133e4d36f2a754e5c9ec2",
+        "stale_evidence:370584ed2586d1a51eae540e3d21fe1443ce8d7ecd6b0368d4f27359075f6296",
+        "stale_evidence:3a2321966615ba2b4a1186ca515ae29985fb16757f075b1b6bb6abf1f190cd09",
+        "stale_evidence:41a311c4b9c45c30d64ea4ea0c602ae931776763d1a7fe144f79cb68cc6260b7",
+        "stale_evidence:41b186ed60b26bb0c984064d9bfe4ee78ebcfa7ac42e9049a4aa2ed13af06a89",
+        "stale_evidence:44cab951f58f8793859a1f48c1456157c566c172eb3fd3df94e57c782cb9e07c",
+        "stale_evidence:44faf83bc66a9c790ba8ffa5feb1c62ff9dbc2cd3652190fe86a9cb6167e7936",
+        "stale_evidence:46db9e7dfa6e7cb5a779306ac1f7d84d2f203310a93ded3add778ed39afb7815",
+        "stale_evidence:483becc30560ddba06d6079852a9fb72504096051717f392176ae2a3e6f42821",
+        "stale_evidence:4c399f1ac40a7bc8f1b2bd85b7e2b59099044d9de3943e56d66e92ba83f805b9",
+        "stale_evidence:4cdc50918a854ea1e168c0604fc9ef0f29e9142deabb88ca8360fe92aa9b8cc5",
+        "stale_evidence:54a62bcef438ffb0e9f2224ec800bd287d557be74df694ae8177f1bb8c1be86d",
+        "stale_evidence:55557974fe1e95b010ca0a35f3050a94a0651f2dda39fd1cd6398cef34b185ed",
+        "stale_evidence:59cbfd7238b9cd7ac1cdadf2a472c18a89249a12f72a6542f8c6a899d93e88c3",
+        "stale_evidence:5c3607c3a97370c9855fbb9742cb4b9b9ee11e8138b28b08c364a00e13070560",
+        "stale_evidence:5c75757ef973c5f00340d2185687e67c49eff3e09515421c20be664a599148e4",
+        "stale_evidence:5caddad60177b4adfaa3ac4ca215ce12f76d40779cba0c1152128ab66180d981",
+        "stale_evidence:5cf4a72be2252a8d6c18ff7914f2b050d3a25a4b55697b7b91444eebce56220a",
+        "stale_evidence:5faa5976181ee63506c2aa015fbc733a4440a36af6924e6e008d8be7df9fc688",
+        "stale_evidence:60e92f0aaea111f98d0fde4ac4ca806be945ac4848c11dcb547e372c7b495d4d",
+        "stale_evidence:61cd74a20d09421ae589f4d54f801ed8c02b152331c3f61c625bb8fe8e73dd9d",
+        "stale_evidence:627d3da70ecee625a4d590c0a07872f177cbee04a9a333197cce7d9a0e56d09b",
+        "stale_evidence:63891db04bc2eb0690d78ace08bfc33017c91cc9ea5920cbb6502e6c9209d43c",
+        "stale_evidence:6ec1f534cc570b034b1d7700fadf99420ca19f9fabae029b061bb7a6ebc8d41f",
+        "stale_evidence:6ef52b01ddb8179d76de215a2c37a2a0dd7c5fd24963bd66af8df45888993199",
+        "stale_evidence:82fe3a1375046f1e0f3dbe886a15661465530061c765619dd9292a1249fe3ca0",
+        "stale_evidence:8431b2112bdf3699056c48ea167b1dc13500af93eb1257b8c21f87f9ec2f01ac",
+        "stale_evidence:849ecf1ace2c1cb1ddce5f4559c55d79f96eab6a814b5cc733f4d78407d35573",
+        "stale_evidence:862620644626554de2f907a9192f23e928697953884178256a8a6fee2372a6d4",
+        "stale_evidence:8b3827f03c3a876b0e7d5222a3ecc94732c872b5e6b18f8a1d9ea4baf2fe21c7",
+        "stale_evidence:8d481d823ff5f451e0c954b084b5a46b51dfb411a4c4d208fd0f4eed2ab0e51f",
+        "stale_evidence:8e3f0f1b73f6d337661eb6c1d6f2ee047c7db0a9177eff1775aeb3d082a236f9",
+        "stale_evidence:8f61aff85c45be498846411c9ea05931ef7c6539ad0722fd4b06580537a6a940",
+        "stale_evidence:913cd39dd99ccdd943b22ed23ec7bd1e7e043c4657c8ca09f10589a9702e954b",
+        "stale_evidence:964798cb1ff05397b8744e4de584e29f65ad963caccebd1d1342730beff298d7",
+        "stale_evidence:978c78d7e858afca7a61cdf6fb66fd7972d89c4ab20f3a2b69aa2cc0fa6f9cb6",
+        "stale_evidence:9b6585564f753dde276f1136d2629f6131cc5cfb55cc7ca015f2acc91ec991fb",
+        "stale_evidence:9d880bd129832ad49c29ee0c1c7b7ffd4c86a694123c1bf4b381947783fa8ca4",
+        "stale_evidence:a7d07f90a7a5342d298e6d104f1eee65f7f3a843e8b634d900d7cafc2e22996e",
+        "stale_evidence:b09a943450511a0560e7dcfd3abe7f7c38170a8f43565ca88fd195112e45d20e",
+        "stale_evidence:b919299b10202e95fa98c90ff7a4c1f264d22ff565d83180e72fd29ccd3c8ed7",
+        "stale_evidence:ba617842374e5954a4fc0d68ec6c22790e92b5ccdceebae04dba94a5b824248d",
+        "stale_evidence:c11e85f71ab57479e6a31a73b8e2baceada0f0f75c06b800bf9346fd51e296a6",
+        "stale_evidence:c1606864ca653851df06b8e8410f4f3887fd543b0f32c8465407c8fb73d5325b",
+        "stale_evidence:c582ed64e25c5aa43041fefb4571b2272f0be97be865125daab044ad32654c07",
+        "stale_evidence:ca2196269035960b0f6007b62c9d31e48d1003947bd1040a986d06385f6f6d26",
+        "stale_evidence:cae5416ece4d50335c2509f83e3ae8321664a044e4d250c09cf795839724587a",
+        "stale_evidence:cbf072b1604e315167bcf60d1795355aed2ddebe1a4f53a0915648f7d0cdfe1f",
+        "stale_evidence:ccd5fb7831318b997cda6581770befa064a1494ea54869c6034f2f966acabe07",
+        "stale_evidence:cee0db69ed84bbf711767a246d3e9d0a240760cd32cf32ae1da5e68c8ac22ce1",
+        "stale_evidence:d4df1d58c6150f1e35554986c1c9814244087f429d7c67d7343b41a46f7d4bfb",
+        "stale_evidence:d763e375107ef46d60e74db06066e907e0705acd23d544907477098423f008ee",
+        "stale_evidence:d7852e684b8a29ea6899365a18068a9ea0e7fbbe138b2963d5a3e42001c27341",
+        "stale_evidence:d8007d52e761f545c40a4091127552973cd9a279f3ebb8c0471625a15c64d40e",
+        "stale_evidence:da26eb438b688851a07d0d2b6fe2413557977c246f1bfcf1a23ccffc12a2c0ef",
+        "stale_evidence:da290018b8c0df8eb6b8012b89df887b143c919cea9479b7f49b8975c66e0994",
+        "stale_evidence:e532a839d719dc316d78fbac2c271020b0826d2f35b5bf5ce28999078fe55eec",
+        "stale_evidence:e6130ec7f065ebe6bcb72e182ca9cd9bccdb39eb2f37a5248e0d73e96bbee40f",
+        "stale_evidence:ec2984b12dcab018122284afd6f30972992d14989ff51c98e4a42d759583faa0",
+        "stale_evidence:ee22e2b799440114c9e8ba408d6a42b203d8d128556ecb9d1720bfb7cfb173b7",
+        "stale_evidence:ef342a8bf7901042b330e36383e4afd09db59d73fe725d8ad11e3a4c5f062e11",
+        "stale_evidence:f2821162b088cff3af46633e5ad6a4b07617f759653ac63336b7a14ceb0b9be6",
+        "stale_evidence:f3e10cb003b8bb835b06a684eb785c6978b99e8fa7f21f242c4ea8213bab01f8",
+        "stale_evidence:f63ae15ec09da8a3fd19f9ac51ae08d03c891a8bc4206068ee6d3a07601fd778",
+        "stale_evidence:f98aed53830e41a2ece26168b066a2971bae918935ea17427d9502c2748d3b79",
+        "validation_gaps:6352cb7b93008a4adf85afe2bdcae556839f037bfe388e6df39304b92c9ec1d0",
+        "validation_gaps:775d3e2eda45c155c4669f356b18f4ea98925b6abb44cf886e162602b0a7f8bc"
+      ],
+      "reason": "Reviewed exact changed files and dependent contracts. Preserve historical hashes/statuses while source staleness and previously pending comparisons remain explicit. Public campaign failed long surface-lock holder105ms; no success asserted by World result.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Public contention robustness,128 cold budget,arbitraryscene19/60FPS,publicV4integration,originalequivalence,semanticQuit and broader original contracts remain unproven. Existing historical evidence is not refreshed."
+      }
     }
   ]
 }
