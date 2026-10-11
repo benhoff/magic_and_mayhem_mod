@@ -4860,3 +4860,16 @@ ordinary direct calls are outside this CPU-only crosswalk, and two outer cleanup
 continuations still need transfer review. No typed CPU signature, atomic target,
 writer/lifetime/pixel or14scenario/four dispatch closure is claimed. Committed
 02addc6..e3ee037history has36file/89behavior exact receipts with zero missing.
+
+DRAW-01 original canvas release/terminal wrapper client evidence now covers6217
+distinct isolated cells:5184release/shared-cap/list/current/count/object cases,
+1024callback flag cases (two invocations each) and nine optional CloseHandle
+cases.864cells confirm one shared1000iteration cap still executes a second
+surface Release;864confirm controlled unsigned count0decrement. Five existing
+core/API routes link these bounded side effects. Scripted interfaces do not prove
+physical reference/storage lifetime, invalid/null/reentrant paths, all list shapes,
+callback registration or actual exit wrapper correlation. Four exact wrapper
+addresses retain missing discovered function bodies. Immutable2927inputs and
+original/source bytes verify before/after; native stages and14scenario/four
+dispatch closure remain pending. e3ee037..c44885fhistory has26file/34behavior exact
+receipts, no missing intermediate versions.
