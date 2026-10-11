@@ -4572,3 +4572,19 @@ selected long-run no-pixel-roundtrip path and19FPS target, not universal scenes,
 and fresh recovery,public gameplay and standalone startup regressions remain
 separate current-code milestones. The26-file2d8a57f committed range has complete
 parent/current receipts, with no retrospective execution assertion.
+
+### Current native peer failures and fresh recovery (2026-10-11)
+
+Both current102-input TITAN controls kill the owned producer or consumer at
+outstanding generation34, require the expected terminal refusal and stopped
+private Wine, and forbid a completed-session claim. Real ddraw stays disabled
+and absent with bounded resources. A fresh128 session after both controls passes
+all unchanged budgets: cold386.921ms,original19.6863/Qt19.8794FPS,warm65
+median38/p9545/max58ms,RSS growth4,497,408 bytes;all128 returns/paints and zero
+World readbacks/replies/writebacks/coalescing/remaining surfaces. See
+[producer](native-fade-row-producer-death-pass-20261011.json),
+[consumer](native-fade-row-consumer-death-pass-20261011.json),
+[recovery](native-fade-row-recovery128-pass-20261011.json).
+The6-filede707e7 committed range has exact parent/current receipts with no gaps.
+This is bounded private fault/recovery evidence, not fairness,semantic COM Quit,
+publicV4fusion,full API,movies,60FPS or allscene compatibility.
