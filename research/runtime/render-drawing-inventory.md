@@ -440,3 +440,13 @@ intermediate attempts retain all historical fingerprints.
 
 History0b40de2..23bd1c0 has14file/85behavior exact receipts and no missing versions.
 Retrospective accounting does not assert a past gate pass or new graphics result.
+
+
+2026-10-11 late queue helper refinement:4d8ab0is a render postlude, including
+canvas fill/Lock, original signed numeric text/font invocation, slot128call and
+aligned row metadata. Its earlier cleanup label is incomplete; historical hashes
+remain preserved.12288owned original-client fixture cells pass, with actual
+57dc20frame and57dc60/57dc90clip stores; external fill/Lock/font/slot bodies remain
+synthetic. See [postlude evidence and limits](draw01-inventory.md#original-optional-render-postlude-2026-10-11).
+No actual pixels, COM lifetime, native equivalence or complete scenario/dispatch
+closure is implied.57dcc0scatter getter remains unassigned.

@@ -4768,3 +4768,14 @@ objects/lifetime and14scenario/four dispatch closure remain pending. Recovered
 native implementation/comparison/integration/replacement remainnone. History
 0b40de2..23bd1c0 has14file/85behavior exact receipts and no missing versions.
 See [full scoped evidence](draw01-inventory.md).
+
+
+DRAW-01 original render-postlude refinement (2026-10-11):12288owned unchanged-original
+client cases cover4d8ab0enabled/readiness/null-Lock exits, signed text, real frame/
+clip stores, aligned row metadata and ignored synthetic failure returns. The
+route's old cleanup/lifecycle label is refined to composition; old evidence hashes
+remain historical. [Evidence and retained failed expectation](draw01-inventory.md#original-optional-render-postlude-2026-10-11)
+exclude actual canvas/font/COM bodies, pixels, lifetime and native equivalence.
+Current45offline guards account503routes with zero unknowns;14scenario/four dispatch
+closure remain pending.23bd1c0..1fe53d9exact committed-history review has10file/29behavior
+receipts and no gaps. Independent recovered native statuses remain none.
