@@ -37854,7 +37854,9 @@
         "research/runtime/public-resident-master-final-fixtures-20261011.json",
         "research/runtime/public-resident-profile-gap-negative-20261011.json",
         "research/runtime/resident-drawing-history-gap.md",
-        "research/runtime/engine-cadence-titan-campaign-20261011.json"
+        "research/runtime/engine-cadence-titan-campaign-20261011.json",
+        "research/runtime/scene-production-full-campaign-20261011.json",
+        "research/runtime/scene-production-slice-campaign-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37912,7 +37914,9 @@
         "NR.public-resident-world.inline-pump-gap-negative-20261011",
         "NR.public-resident-world.repaired-capture-performance-negative-20261011",
         "NR.public-resident-world.repaired-ordinary-titan-20261011",
-        "NR.public-resident-world.engine-cadence-campaign-20261011"
+        "NR.public-resident-world.engine-cadence-campaign-20261011",
+        "NR.public-resident-world.scene-production-full-campaign-20261011",
+        "NR.public-resident-world.scene-production-slice-campaign-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -41657,7 +41661,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded repeated original scene production with exact state auditing",
-      "scope": "Opt-in pinned No-CD original004fd280 outer producer and narrower004fd315..004fd5ad draw slice, invoked only on a validated original producer return and owning engine thread. Keep simulation tick, pacing and original once-only outer return ABI. Bound attempts and compare full owned creature/effect/third-family pools, global ANI controllers, complete gameplay-object/map-context headers, counters/mode/pacing/full252-word RNG/scheduler bytes before/after each extra production; capture whole writable module and renderer changes as unclassified state evidence. Independently copy/compare ordered nonempty original36-byte scene records before primary/extra consumer entry; scene equality is separate from protected-state equality. Refuse malformed/unreadable/changed pool shapes and critical byte differences; stop further repetition after first difference, never restore game state or conceal a failure. Existing actual native resident rendering consumes generated Worlds without pixel roundtrip. Slice deliberately excludes outer camera/countdown/creature pre/post work; reset original renderer callback count and preserve original scene-call PCs. Not all nested pointers, map/visibility state, concurrent timer writes, arbitrary inputs/driver/pixel equivalence, independent60FPS scheduling or safe default activation.",
+      "scope": "Opt-in pinned No-CD original004fd280 outer producer and narrower004fd315..004fd5ad draw slice, invoked only on a validated original producer return and owning engine thread. Keep simulation tick, pacing and original once-only outer return ABI. Bound attempts and compare full owned creature/effect/third-family pools, global ANI controllers, complete gameplay-object/map-context headers, counters/mode/pacing/full252-word RNG/scheduler bytes before/after each extra production; capture whole writable module and renderer changes as unclassified state evidence. Independently copy/compare ordered nonempty original36-byte scene records before primary/extra consumer entry; scene equality is separate from protected-state equality. Refuse malformed/unreadable/changed pool shapes and critical byte differences; stop further repetition after first difference, never restore game state or conceal a failure. Existing actual native resident rendering consumes generated Worlds without pixel roundtrip. Slice deliberately excludes outer camera/countdown/creature pre/post work; reset original renderer callback count and preserve original scene-call PCs. Not all nested pointers, map/visibility state, concurrent timer writes, arbitrary inputs/driver/pixel equivalence, independent60FPS scheduling or safe default activation. Native diagnostic mode3 additionally suppresses only guarded004fa4ef->0051fa60 position-history shifting on validated extra drawing and the owning thread; all normal calls still forward once with their original return PC. Record normal/extra history forwards/skips, require matching positive primary/skipped counts and zero extra forwards, protected-state equality and exact ordered scene-row equality for at least8cases. This is an explicit native once-per-primary history policy, not recovered original behavior at a changed simulation rate. Diagnostic wireversion2 adds three history counters and retains strictversion1 read compatibility.",
       "confidence": "provisional",
       "original": [
         {
@@ -41689,6 +41693,16 @@
           "build": "nocd-40209ca7",
           "address": 5417856,
           "scope": "Outer post-draw creature helper, excluded by slice"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5372512,
+          "scope": "Partially recovered creature history copy/update; extra-only suppression is a native diagnostic policy"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5219567,
+          "scope": "Guarded direct scene-builder history call; original return004fa4f4 preserved"
         }
       ],
       "documents": [
@@ -41697,7 +41711,13 @@
         "research/runtime/scene-production-fixture-fp-negative-20261011.json",
         "research/runtime/scene-production-fixture-refusal-negative-20261011.json",
         "research/runtime/scene-production-controls-20261011.json",
-        "research/runtime/scene-production-static-20261011.json"
+        "research/runtime/scene-production-static-20261011.json",
+        "research/runtime/scene-production-full-negative-20261011.json",
+        "research/runtime/scene-production-slice-negative-20261011.json",
+        "research/runtime/scene-production-history-fields-static-20261011.json",
+        "research/runtime/scene-production-history-controls-initial-20261011.json",
+        "research/runtime/scene-production-history-adapter-static-20261011.json",
+        "research/runtime/scene-production-history-controls-20261011.json"
       ],
       "implementation": [
         "tools/export-scene-production.py",
@@ -41712,7 +41732,8 @@
         "tests/scene-production-reference.c",
         "tests/scene-production-reference.S",
         "tools/test-scene-production.py",
-        "tools/test-native-campaign.py"
+        "tools/test-native-campaign.py",
+        "tests/test-scene-production-decoder.py"
       ],
       "validation_dependencies": [
         "tools/export-menu-support.py",
@@ -41728,7 +41749,12 @@
         "NR.scene-production-repetition.fixture-fp-negative-20261011",
         "NR.scene-production-repetition.fixture-refusal-negative-20261011",
         "NR.scene-production-repetition.controls-20261011",
-        "NR.scene-production-repetition.static-20261011"
+        "NR.scene-production-repetition.static-20261011",
+        "NR.scene-production-repetition.full-negative-20261011",
+        "NR.scene-production-repetition.slice-negative-20261011",
+        "NR.scene-production-repetition.history-controls-initial-20261011",
+        "NR.scene-production-repetition.history-adapter-static-20261011",
+        "NR.scene-production-repetition.history-controls-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -41738,7 +41764,46 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Final-source18 PE32 authored controls pass and static producer/helper boundaries are retained. Actual original whole-protected-state and scene-record invariance, bounded extra native World delivery, full nested/map/visibility/timer/driver/pixel safety, normal gameplay/Quit and60FPS remain pending. Broad stages unchanged."
+        "Original full producer and narrower body both fail protected creature history invariance despite identical scene rows. Final30 PE32 and17 decoder controls pass for explicit native mode3 extra-only history suppression, but actual TITAN mode3 state/scene equality and independent rendering schedule are pending. Original helper pointer/copy/consumer roles remain partial. Full nested map/visibility/timer/driver/pixel/default safety and60FPS are unproved; historical negatives retain their exact source hashes."
+      ]
+    },
+    {
+      "id": "RS.creature-draw-position-history",
+      "subsystem": "rendering",
+      "kind": "recovered",
+      "title": "Original creature projected position-history copy and update",
+      "scope": "Pinned0051fa60 uses overlapping24-byte copy from creature+754 to+760, stores two stack arguments at+754/+758 and a word from the object selected by creature+b4 at+75c, returning RET8. One direct call004fa4ef lies in scene construction. Static partial recovery only: deeper copy-helper, pointer/coordinate roles, indirect callers, original execution equivalence and all consumers remain unclassified; do not equate this with pure scene generation.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5372512,
+          "scope": "Partial three-record creature draw history writer"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5219567,
+          "scope": "One observed direct scene construction call"
+        }
+      ],
+      "documents": [
+        "research/runtime/scene-production-repetition.md",
+        "research/runtime/scene-production-history-fields-static-20261011.json"
+      ],
+      "implementation": [],
+      "tests": [],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "evidence": [
+        "NR.scene-production-repetition.history-adapter-static-20261011"
+      ],
+      "remaining_gaps": [
+        "Static helper only; no isolated original helper comparison, complete pointer/copy/consumer semantics or native replacement. Native extra-only suppression is accounted separately in NR.scene-production-repetition."
       ]
     }
   ],
@@ -86965,6 +87030,234 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.scene-production-repetition.full-negative-20261011",
+      "kind": "live_observation",
+      "scope": "Actual private TITAN full original producer repeats:one equal case, then five creature bytes change across position-history fields at second extra; fail-stop after2extra Worlds despite exact760-row scene equality. Gameplay and normal Quit pass; not protected-state invariance or60FPS.",
+      "record": "research/runtime/scene-production-full-negative-20261011.json",
+      "sha256": "7e588fe51fdd61d8f4a05074cd357a7f318d194216e362b1b08f508200f2fe8d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": true
+        },
+        {
+          "pointer": "/production/critical_failures",
+          "equals": 1
+        },
+        {
+          "pointer": "/production/extra_worlds",
+          "equals": 2
+        },
+        {
+          "pointer": "/production/protected_state_invariance",
+          "equals": false
+        },
+        {
+          "pointer": "/production/scene_record_equality",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.scene-production-full-campaign-20261011",
+      "kind": "live_observation",
+      "scope": "Private TITAN full-producer diagnostic campaign:4459balanced native resident Worlds at19.44656aggregateFPS; actual casting/combat/refusals/movement/portraits/Mini/normal Quit, no delivery readbacks/pixel replies, clean retirement. The separate scene-state invariance test fails; no default repeated production or60FPS safety claim.",
+      "record": "research/runtime/scene-production-full-campaign-20261011.json",
+      "sha256": "5bebd37919f87bebc5d7905cfda93aa429f021160e46c3541f7ae00ee391194c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.slice-negative-20261011",
+      "kind": "live_observation",
+      "scope": "Actual private TITAN narrower original scene body changes one creature+774 history byte at its first extra World despite identical762 ordered scene rows; fail-stop after1extra. Casting/combat/portraits/Mini/normal Quit pass, source/original/cleanup verify. No protected-state invariance or60FPS.",
+      "record": "research/runtime/scene-production-slice-negative-20261011.json",
+      "sha256": "c8f46de2572ba080f373ef673f3183aded0efcf789eb1f29f2c1228de378f0da",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/campaign_success",
+          "equals": true
+        },
+        {
+          "pointer": "/production/critical_failures",
+          "equals": 1
+        },
+        {
+          "pointer": "/production/extra_worlds",
+          "equals": 1
+        },
+        {
+          "pointer": "/production/protected_state_invariance",
+          "equals": false
+        },
+        {
+          "pointer": "/production/scene_record_equality",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.scene-production-slice-campaign-20261011",
+      "kind": "live_observation",
+      "scope": "Private TITAN narrower scene-body diagnostic campaign passes actual casting/combat/refusals/movement/portraits/Mini/normal Quit and19FPS gates; separate state invariance fails at1extra World, no delivery readback/pixel replies or pending retirement. Not safe repeat/default policy or60FPS.",
+      "record": "research/runtime/scene-production-slice-campaign-20261011.json",
+      "sha256": "5a9b185d1fdc3a6a9bda87418c8721b4e07a28fad0fdd245119c74555e8c39a3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.history-controls-initial-20261011",
+      "kind": "native_integration",
+      "scope": "Initial30 PE32 full/slice/frozen-history guard, ABI, protected mutation and extra-only history forwarding controls pass; decoder/claims subsequently strengthened, so this is retained intermediate-source evidence, not final current-scope validation.",
+      "record": "research/runtime/scene-production-history-controls-initial-20261011.json",
+      "sha256": "d70817a681158da38af724a9f2dad444bcedb05cdf488385db82a3e682c66de8",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.history-adapter-static-20261011",
+      "kind": "static",
+      "scope": "Static assembly only; opaque indirect flow/helper roles remain partial. No execution, patch or renderer/gameplay equivalence.",
+      "record": "research/runtime/scene-production-history-adapter-static-20261011.json",
+      "sha256": "5bed42a3df2975bf1717fdbbb9198d49479f6526de9ad159968e7308200fd9a6",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/source_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.history-controls-20261011",
+      "kind": "native_integration",
+      "scope": "Final-source30 PE32 authored full/slice/frozen-history ABI/RET8/guard33/state mutation/refusal controls,17 malformed decoder refusals plus count/scene negative controls andversion1 compatibility. No actual original helper equivalence or TITAN mode3 proof.",
+      "record": "research/runtime/scene-production-history-controls-20261011.json",
+      "sha256": "32a9939ca3205ad7dd5ba00ad7e7e976e6637dcd9fdc281ef5cd3d61f07a6a40",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/decoder_controls/decoder_refusals",
+          "equals": 17
+        },
+        {
+          "pointer": "/decoder_controls/version1_compatibility",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -97468,7 +97761,7 @@
     },
     {
       "id": "NR.scene-production-repetition.fixture",
-      "scope": "Actual PE32 authored original stand-ins: full/slice forward/extra-call ABI and exact state mutation/shape/unreadable refusal controls; no original game/driver equivalence.",
+      "scope": "Actual PE32 authored original stand-ins: full/slice forward/extra-call ABI and exact state mutation/shape/unreadable refusal controls; no original game/driver equivalence. Frozen-history controls retain normal once-only forwarding/RET8, suppress only extra history writes and still detect all other protected mutations;33 anchor bytes. Independent decoder rejects malformed/partial fixed/pool extents, runtime/retained-byte contradictions and count inconsistencies; version1 compatibility and negative extra-history/scene equality controls.",
       "level": "headless",
       "behaviors": [
         "NR.scene-production-repetition"
@@ -97476,13 +97769,32 @@
       "tests": [
         "tools/test-scene-production.py",
         "tests/scene-production-reference.c",
-        "tests/scene-production-reference.S"
+        "tests/scene-production-reference.S",
+        "tests/test-scene-production-decoder.py"
       ],
       "evidence": [
         "NR.scene-production-repetition.fixture-abi-negative-20261011",
         "NR.scene-production-repetition.fixture-fp-negative-20261011",
         "NR.scene-production-repetition.fixture-refusal-negative-20261011",
-        "NR.scene-production-repetition.controls-20261011"
+        "NR.scene-production-repetition.controls-20261011",
+        "NR.scene-production-repetition.history-controls-initial-20261011",
+        "NR.scene-production-repetition.history-controls-20261011"
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.live",
+      "scope": "Private TITAN native resident casting/combat/portrait/Mini/normal Quit with bounded selected natural/full/slice scene producer state audit. Original pacing retained; false outcomes and unclassified state writes preserved. Frozen-history candidate applies explicit native extra-only history policy; at least8repeats require protected state plus exact ordered scene equality and positive matching forward/skip counts.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.scene-production-repetition"
+      ],
+      "tests": [
+        "tools/probe-scene-production.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.scene-production-repetition.full-negative-20261011",
+        "NR.scene-production-repetition.slice-negative-20261011"
       ]
     }
   ],
@@ -97857,8 +98169,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-scene-production-controls-20261011.json",
-    "sha256": "fa25a78e3d81f7e90194163d0e10640c72ffa19ee7e8b4d59d7525a3db39173e"
+    "path": "research/runtime/coverage/source-index-scene-production-history-20261011.json",
+    "sha256": "248a84f1d389e20238bfc7e3b030cb3975b430ae59d4762917dec7053e6c2019"
   },
   "claim_bindings_required": true
 }

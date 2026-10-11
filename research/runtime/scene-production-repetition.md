@@ -40,4 +40,36 @@ requires the ordinary caller/object/mode and owning thread, and stops at the fir
 protected difference or refusal. No state rollback is performed. The file flushes
 only at detach. Snapshots and independently copied36-byte scene records allow
 offline exact comparison; scene equality is distinct from protected-state equality.
-TITAN casting/combat/menu/Quit execution and safe repeat scheduling remain pending.
+Both original candidates fail exact creature invariance on TITAN. Full production
+passes its first repeat, then changes five bytes in slot0+760/+768 and
+slot3+76c/+770/+774 on repeat2. The narrower body changes slot0+774 on repeat1.
+Each repeat still emits one native World with identical ordered760/762 scene
+records. Counter/sequence, whole gameplay/map headers, ANI, RNG, scheduler and
+other protected pools are unchanged in those retained pairs. This does not excuse
+the creature writes: the probes fail and stop, retaining full before/after bytes.
+Both independent casting/combat/refusal/movement/portrait/Mini/normal Quit journeys
+pass19FPS, source stability, original verification and private cleanup. The full
+campaign records4459 balanced Worlds at19.44656 aggregate FPS. Module/renderer
+differences remain unclassified; independent60FPS and safe defaults remain pending.
+
+Static confirmed helper0051fa60 performs a24-byte overlapping copy from creature
++754 to+760, then writes two arguments to+754/+758 and the value selected through
+creature+b4 to+75c, returning RET8. One direct scene-builder call is004fa4ef,
+return004fa4f4. These three12-byte records are interpreted as draw position history;
+full pointer/coordinate/copy-helper/consumer and indirect-call semantics remain
+partial. `RS.creature-draw-position-history` preserves that recovered boundary.
+The observed changed fields agree with its copy destination; static attribution
+does not by itself prove every runtime write came from this helper.
+
+Diagnostic mode3 (`frozen-history`) applies an explicit native policy: keep all
+normal calls and original return PCs, and skip only the guarded history call during
+a validated extra slice on the owning thread, with a creature-pool ownership check.
+No state is restored or omitted from comparisons. Wireversion2 records primary
+history forwards, extra skips and extra forwards; the decoder retainsversion1
+compatibility. A live pass requires at least8 cases with protected equality,
+identical scene rows, positive matching primary/skip counts and zero extra forwards.
+Final-source30 PE32 mutation/guard/forwarding controls and17 decoder refusals
+pass, including negative history-count/scene-equality gates andversion1 compatibility.
+Actual TITAN mode3 execution is pending. This experiment does not change the50ms simulation or activate a
+default rendering schedule; full nested/map/visibility/timer/pixel safety remains
+outside its scope.

@@ -21,14 +21,16 @@ static struct SceneState before,after,first_before,first_after,bad_before,bad_af
 static u32 have_first,have_bad;
 static u32 rows[CASE_MAX][ROW_WORDS],diffs[DIFF_MAX][8],diff_count;
 static u32 count,primary_calls,queue_calls,mode,enabled,owner,foreign,failed,refused;
+static u32 history_forward,history_skipped;
 static u32 frequency[2];static HANDLE file;
 #define SCENE_BYTES (12320u*36u)
 static u8 primary_scene[SCENE_BYTES],extra_scene[SCENE_BYTES];
 static u32 primary_scene_bytes,extra_scene_bytes,scene_capture,scene_phase,scene_bad;
 u32 production_trampoline,production_slice_stack;
 extern void production_enter(void),production_leave(void),production_draw_end(void),production_queue(void);
+extern void production_history(void);
 extern void production_repeat_full(u32,void*),production_repeat_slice(u32,void*);
-struct SceneFrame {u32 sp,caller,object,selected,queues;};
+struct SceneFrame {u32 sp,caller,object,selected,queues,histories,skipped;};
 static struct SceneFrame frames[8];
 static int owned(void){
  u32 tid=GetCurrentThreadId();__sync_bool_compare_and_swap(&owner,0,tid);
@@ -50,11 +52,21 @@ void production_queue_seen(u32* r){
   }
  }SetLastError(error);
 }
+void production_history_gate(u32* r){
+ u32 error=GetLastError();r[3]=0; /* PUSHAD's ignored saved ESP is decision storage. */
+ if(enabled&&owned()){
+  if(mode==3&&scene_capture&&scene_phase&&r[9]==0x4fa4f4){
+   u32 base=get(0x6def58),capacity=get(0x6def5c),object=r[6];
+   if(object>=base&&(object-base)%0xe4b==0&&(object-base)/0xe4b<capacity){r[3]=1;++history_skipped;}
+   else{++refused;++history_forward;}
+  }else ++history_forward;
+ }SetLastError(error);
+}
 void production_before(u32* r){
  u32 error=GetLastError();if(!enabled||!owned()){SetLastError(error);return;}
  u32* args=r+9;u32 sp=(u32)args+4;++primary_calls;
  for(u32 i=0;i<8;++i)if(!frames[i].sp){
-  struct SceneFrame* f=frames+i;f->sp=sp;f->caller=args[0];f->object=r[6];f->queues=queue_calls;
+  struct SceneFrame* f=frames+i;f->sp=sp;f->caller=args[0];f->object=r[6];f->queues=queue_calls;f->histories=history_forward;f->skipped=history_skipped;
   int caller=f->caller==0x46bbd8;
 #ifdef MNM_SCENE_PRODUCTION_SELFTEST
   caller=1;
@@ -95,6 +107,7 @@ void production_after(u32* r,void* fx){
   if(!f.selected){SetLastError(error);return;}
   u32* row=rows[count];row[0]=count+1;row[1]=mode;row[2]=get(0x6c4830);row[3]=get(0x6cbb78+0xfd62);
   row[4]=f.object;row[5]=primary_calls;row[6]=queue_calls;row[18]=get(0x6c4830);row[20]=get(0x6cbb78+0xfd62);
+  u32 history_base=history_forward;row[34]=history_base-f.histories;
   unsigned long long begin=0,end=0;
   if(foreign||(mode&&!state_capture(&before,f.object))){row[7]=2;++refused;}
   else{
@@ -111,6 +124,7 @@ void production_after(u32* r,void* fx){
   row[14]=(u32)(end-begin);row[15]=(u32)((end-begin)>>32);
   row[16]=queue_calls-row[6];row[17]=queue_calls-f.queues;
   row[19]=get(0x6c4830);row[21]=get(0x6cbb78+0xfd62);row[29]=foreign;
+  row[35]=history_skipped-f.skipped;row[36]=history_forward-history_base;
   row[30]=primary_scene_bytes/36;row[31]=extra_scene_bytes/36;row[33]=scene_bad;
   if(mode&&primary_scene_bytes==extra_scene_bytes){for(u32 k=0;k<primary_scene_bytes;++k)row[32]+=primary_scene[k]!=extra_scene[k];}
   else if(mode)row[32]=0xffffffffu;
@@ -124,9 +138,10 @@ void production_after(u32* r,void* fx){
 static int guards(void){
  static const u8 entry[5]={0x53,0x55,0x56,0x8b,0xf1},start[5]={0x8b,0x46,0x25,0x8b,0xce},end[8]={0x33,0xdb,0x8b,0x96,0x29,0x02,0,0};
  static const u8 q1[5]={0xe8,0xf0,0x2d,0,0},q2[5]={0xe8,0x47,0x2d,0,0};
- return (u32)GetModuleHandleA(0)==0x400000&&readable(0x4fd280,0x500)&&
+ static const u8 history[5]={0xe8,0x6c,0x55,0x02,0};
+ return (u32)GetModuleHandleA(0)==0x400000&&readable(0x4fd280,0x500)&&readable(0x4fa4ef,5)&&
    same((void*)0x4fd280,entry,5)&&same((void*)0x4fd315,start,5)&&same((void*)0x4fd5ad,end,8)&&
-   same((void*)0x4fd4ab,q1,5)&&same((void*)0x4fd554,q2,5);
+   same((void*)0x4fd4ab,q1,5)&&same((void*)0x4fd554,q2,5)&&same((void*)0x4fa4ef,history,5);
 }
 static int patch(u32 at,u32 target,u32 n,u8 opcode){
  u32 old,restore;if(!VirtualProtect((void*)at,n,0x40,&old))return 0;
@@ -134,14 +149,15 @@ static int patch(u32 at,u32 target,u32 n,u8 opcode){
  return FlushInstructionCache(GetCurrentProcess(),(void*)at,n)&&VirtualProtect((void*)at,n,old,&restore);
 }
 static int install(u32 candidate){
- if(candidate>2||production_trampoline||!guards())return 0;
+ if(candidate>3||production_trampoline||!guards())return 0;
  u32 a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1));if(!(d&(1u<<24)))return 0;
  u8* t=VirtualAlloc(0,10,0x3000,0x40);if(!t)return 0;
  copy(t,(void*)0x4fd280,5);t[5]=0xe9;put(t+6,0x4fd285-(u32)t-10);
  if(!FlushInstructionCache(GetCurrentProcess(),t,10)||!QueryPerformanceFrequency(frequency))return 0;
  production_trampoline=(u32)t;mode=candidate;
  if(!patch(0x4fd280,(u32)production_enter,5,0xe9)||!patch(0x4fd5ad,(u32)production_draw_end,8,0xe9)||
-    !patch(0x4fd4ab,(u32)production_queue,5,0xe8)||!patch(0x4fd554,(u32)production_queue,5,0xe8))return 0;
+    !patch(0x4fd4ab,(u32)production_queue,5,0xe8)||!patch(0x4fd554,(u32)production_queue,5,0xe8)||
+    !patch(0x4fa4ef,(u32)production_history,5,0xe8))return 0;
  enabled=1;return 1;
 }
 static int write(const void* p,u32 n){u32 done=0;while(done<n){u32 wrote=0;if(!WriteFile(file,(const u8*)p+done,n-done,&wrote,0)||!wrote||wrote>n-done)return 0;done+=wrote;}return 1;}
@@ -149,7 +165,7 @@ static int save_state(u32 tag,const struct SceneState* s){
  u32 h[4]={tag,s->count,s->bytes,0};return write(h,sizeof(h))&&write(s->regions,s->count*sizeof(*s->regions))&&write(s->data,s->bytes);
 }
 static void finish(void){
- if(!file)return;enabled=0;u32 h[16]={0};copy(h,"MNMSPR01",8);h[2]=1;h[3]=ROW_WORDS*4;h[4]=count;h[5]=mode;h[6]=failed;h[7]=refused;h[8]=foreign;h[9]=owner;h[10]=frequency[0];h[11]=frequency[1];h[12]=diff_count;h[13]=queue_calls;h[14]=primary_calls;h[15]=2*have_first+2*have_bad;
+ if(!file)return;enabled=0;u32 h[16]={0};copy(h,"MNMSPR01",8);h[2]=2;h[3]=ROW_WORDS*4;h[4]=count;h[5]=mode;h[6]=failed;h[7]=refused;h[8]=foreign;h[9]=owner;h[10]=frequency[0];h[11]=frequency[1];h[12]=diff_count;h[13]=queue_calls;h[14]=primary_calls;h[15]=2*have_first+2*have_bad;
  if(write(h,sizeof(h))&&write(rows,count*sizeof(*rows))&&write(diffs,diff_count*sizeof(*diffs))){
   if(have_first){save_state(1,&first_before);save_state(2,&first_after);}
   if(have_bad){save_state(3,&bad_before);save_state(4,&bad_after);}
@@ -159,7 +175,7 @@ static void finish(void){
 __declspec(dllexport) void SceneProductionAnchor(void){}
 #ifdef MNM_SCENE_PRODUCTION_SELFTEST
 __declspec(dllexport) u32 WIN SceneProductionInstallForTest(u32 candidate){u32 e=GetLastError(),ok=install(candidate);primary_calls=511;SetLastError(e);return ok;}
-__declspec(dllexport) u32 WIN SceneProductionStatusForTest(u32 index){return index==0?count:index==1?failed:index==2?refused:index==3?queue_calls:index==4?rows[0][11]:rows[0][16];}
+__declspec(dllexport) u32 WIN SceneProductionStatusForTest(u32 index){return index==0?count:index==1?failed:index==2?refused:index==3?queue_calls:index==4?rows[0][11]:index==5?rows[0][16]:index==6?history_skipped:history_forward;}
 #endif
 int WIN DllMain(void* dll,u32 reason,void* reserved){
  (void)dll;(void)reserved;u32 error=GetLastError();int ok=1;
@@ -167,7 +183,7 @@ int WIN DllMain(void* dll,u32 reason,void* reserved){
   char path[2048],option[2];u32 n=GetEnvironmentVariableA("MNM_SCENE_PRODUCTION_FILE",path,sizeof(path));
   if(n){
    u32 m=GetEnvironmentVariableA("MNM_SCENE_PRODUCTION_MODE",option,2);
-   if(n>=sizeof(path)||m!=1||option[0]<'0'||option[0]>'2')ok=0;
+   if(n>=sizeof(path)||m!=1||option[0]<'0'||option[0]>'3')ok=0;
    else{file=CreateFileA(path,0x40000000,0,0,1,0x80,0);if(file==(HANDLE)-1){file=0;ok=0;}else ok=install(option[0]-'0');}
   }
  }else if(reason==0)finish();SetLastError(error);return ok;

@@ -6,6 +6,11 @@ _fixture_draw:
     call *_queue_call
     jmp *_draw_end
 .globl _fixture_invoke
+.globl _fixture_history
+_fixture_history:
+    movl 4(%esp),%ecx
+    call *_history_call_start
+    ret
 _fixture_invoke:
     pushl %ebp
     pushl %ebx
@@ -57,3 +62,4 @@ _fixture_invoke:
 _queue_call: .long 0x4fd554
 _draw_end: .long 0x4fd5ad
 _mxcsr_seed: .long 0x1f80
+_history_call_start: .long 0x4fa4e7
