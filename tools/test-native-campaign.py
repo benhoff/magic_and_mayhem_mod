@@ -425,6 +425,15 @@ def main():
     if args.native_draw:
         native_sources=['tools/build-native-draw.py','tools/prepare-native-draw.py']+[str(p.relative_to(ROOT)) for p in (ROOT/'runtime/native-draw').iterdir() if p.suffix in ('.c','.h')]
         report['sources'].update({p:sha(ROOT/p) for p in native_sources})
+        # The render bridge also executes the imported shadow build recipe and
+        # checks generated wire headers against their JSON schemas. Declare
+        # these inputs before building or launching, then keep the existing
+        # exact compiler/protocol manifest comparison at completion.
+        render_sources=['tools/build-render-bridge.py','tools/build-shadow-bridge.py']
+        render_sources += [p.relative_to(ROOT).as_posix() for directory in ('runtime/render','protocols')
+                           for p in (ROOT/directory).rglob('*')
+                           if p.is_file() and p.suffix in ('.c','.h','.py','.json')]
+        report['sources'].update({p:sha(ROOT/p) for p in render_sources})
     if args.resident_world:
         if not args.native_draw:raise ValueError('Resident World requires native drawing')
         # Declare the complete repository compiler-input superset before launch;

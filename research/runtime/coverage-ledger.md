@@ -5490,3 +5490,31 @@ shadow comparisons,including both GPU backends and complete owned canvas words:
 unmodified original leaves, with stable sources/inputs and zero delivery readbacks.
 Historical reports/hashes remain intact. Fresh unprofiled full Titan proof is
 running; no19FPS/completed normalQuit assertion is made from headless fixtures.
+
+The first unprofiled minimap/shutdown journey completes all physical input and
+native menu steps without renderer fallback:4640completed/imported/returned
+Worlds,zero delivery readbacks,normal_quit_retired true,19.044765aggregate engine
+FPS. Native work averages21.127ms and producer work9.069ms per World,versus
+24.178/12.694ms in the earlier profiled negative run; different scene progression
+and profiler overhead exclude a controlled causal speedup claim. The complete
+test nevertheless refuses missing prospective render-build inputs before later
+validation: the imported shadow build recipe and seven wire JSON schemas were
+undeclared. Negative report `public-resident-render-provenance-negative-20261011.json`
+retains that failure and immutable source hashes. The runner now declares the
+render recipe/runtime/protocol superset before building or launching and retains
+all exact compiler/protocol comparisons.19 fail-closed evidence tests pass.
+A fresh full TITAN rerun is required; no completed live integration promotion.
+Read-only inspection of that negative run's retained rates also finds a2.976s
+resumed-play sample and a1.272s sample with0.786paintedFPS; these independently
+fail the unchanged worst-window performance gate despite the whole-run19.045
+engineFPS. The next run must pass both gates. Aggregate FPS alone is insufficient.
+
+The next prospectively declared TITAN run stops on player death before required
+Zombie melee,not a renderer stall. Negative `public-resident-combat-placement-negative-20261011.json`
+is retained with unchanged source/private shutdown checks. Input traces show the
+helper reused a pre-movement approach vector for its combat summon,then kept the
+wizard exposed while waiting for autonomous combat. The helper now projects an
+adjacent summon from current observed enemy/wizard coordinates and issues an
+ordinary opposite ground order for wizard clearance. No simulation/health/AI or
+performance/admission changes; native projection is a test strategy,not recovered
+order/pathfinding equivalence.19fail-closed checks pass;fresh full proof pending.

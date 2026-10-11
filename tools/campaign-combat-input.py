@@ -195,8 +195,16 @@ def main():
                         if spent>=2:break
                     if not result.get('ranged'):raise RuntimeError('No player Fireball enemy damage after bounded shots')
                 # Summon beside the enemy, through the same native spell HUD.
+                # The approach delta was computed before moving the wizard.
+                # Recompute this target from current observed positions; using
+                # the old movement vector can place the Zombie past the enemy.
+                actor=state()[wizard['slot']];enemy=state()[enemy['slot']]
+                tx,ty,tz=enemy['x']-actor['x'],enemy['y']-actor['y'],enemy['z']-actor['z']
+                summon_point=(max(90,min(650,400+32*(tx-ty)+32)),
+                              max(100,min(430,300+16*(tx+ty-tz)+16)))
+                record('combat-summon-projection',wizard=actor,enemy=enemy,logical_point=list(summon_point))
                 click(523,575);cast_sequence=read_rows(trace)[-1][0];prior=state()
-                click(400+sx,280+sy,3);time.sleep(2)
+                click(*summon_point,3);time.sleep(2)
                 current=state()
                 for a in current.values():
                     old=prior.get(a['slot'])
@@ -204,6 +212,12 @@ def main():
                         result['additional_summons'].append(dict(before_sequence=cast_sequence,after_sequence=a['sequence'],slot=a['slot']))
                 extra_slots=[a['slot'] for a in state().values() if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0]
                 capture('combat-approach')
+                # Keep the wizard clear while the summoned creatures engage.
+                # This is an ordinary ground order opposite the observed enemy,
+                # with no position/health/AI writes or relaxed combat admission.
+                center();click(max(90,min(650,400-32*(tx-ty))),
+                               max(100,min(430,280-16*(tx+ty-tz))),3)
+                record('combat-wizard-clearance',enemy_slot=enemy['slot'])
                 time.sleep(3)
         if 'combat' not in result:raise RuntimeError('No player Zombie melee damage before bounded combat deadline')
         finish_deadline=time.monotonic()+60

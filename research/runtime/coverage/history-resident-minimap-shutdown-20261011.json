@@ -1,0 +1,251 @@
+{
+  "schema": 1,
+  "reviewed_range": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6..32c29b0a153eb88077d6210596e552180488295f",
+  "scope": "Committed minimap-candidate and strict shutdown milestone exact parent/current source SHA-256 and receipt audit. Separate from pending public frontend wiring; no retrospective execution or gate assertion.",
+  "commits": [
+    "32c29b0a153eb88077d6210596e552180488295f"
+  ],
+  "files": [
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "apps/qt-shell/CMakeLists.txt",
+      "before_sha256": "8c2510a38d2855545a356d5f635ca12d5f71ba87bbfecc769e37936be5c12e7b",
+      "after_sha256": "7331546db40925b0bd9411b49f9a094cb653c215dc48c47b4db7d50e9cbc9d99",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "apps/qt-shell/live_menu_session.cpp",
+      "before_sha256": "da91da65027eb6d4554f9b547b59a65157ec40f70798ca8c0a56c77b8bb58024",
+      "after_sha256": "523969eb948199d9d6eb6098259a7c2675b709c38cb94f9a72d3ff5f13aacfff",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "apps/qt-shell/live_menu_session.hpp",
+      "before_sha256": "1ba1c0fa72e4c82874d535eb1d8391198aaa265902b9a8d7fb9711f19f0bcf34",
+      "after_sha256": "cb0aa1c227cf230b5187f6d1e23b37b2cf7f48efb9477cc3e09d5a489781fdd5",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "eb997dc95c9c98e7d0513240295b2fbde8bf33b77700eb81587bb6ff6d8cd410",
+      "after_sha256": "c4c3b12dd81b914f9c72f0f7f55b9e359d2892e8fb4ef21a60fe8d41206eb54b",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "apps/qt-shell/menu_bridge.hpp",
+      "before_sha256": "631087eda5168c3ddaaaa590c22c19e7958a49c7d9026f71bbde0702a1ec62fa",
+      "after_sha256": "0d62887e455c33a261be71f9d7f98c1a70104f1a6a7d347f479f54a37f7b380b",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "apps/qt-shell/resident_world_session.cpp",
+      "before_sha256": "a1d7e461e42b777ad3592ecb78bc1dce43e22f4005ad7cd5798c3770c1155286",
+      "after_sha256": "a5fa04b85527b56831c74891366abb52a2eda9f4dbba4c728b178a8087c4d1e2",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "apps/qt-shell/resident_world_session.hpp",
+      "before_sha256": "262d33659d769b460f1623fad62a2407028da412d11d6a138b3784a7fc99ecbd",
+      "after_sha256": "0e456fe0c16e4a3d596ff6326cecf0e40933c52935504ab6cc8bcd1e0b971564",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "compat/legacy/canvas-producers/CMakeLists.txt",
+      "before_sha256": "4dc273c63e796eaaa828b8edf21f4d96a92b279ad70ecfbc3c6648d17bacac36",
+      "after_sha256": "bae9d18a55354f36297a09ffc2c9a0f2f1394eb92dd045decb477382247f0fcd",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "compat/legacy/canvas_producers.cpp",
+      "before_sha256": "7a1000d8b15b2fcaa8688a74117c97f85f7e87dc6c98109502733ff0c2bba5c3",
+      "after_sha256": "54f602d766fe4e37f4c63ad9b9cc98afd222bd9e79999d0f45ad79125a6c6a1f",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "d05d6c7510db35099639e8c11658faf6b7574cf14194ec746d6f79f8a77b37c4",
+      "after_sha256": "98c01a5a7e617995ec32f9f6a560c1bde16e14265fb3fc5ba0acd2a7591e0d6d",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "renderer/canvas_sequence.hpp",
+      "before_sha256": "889e4b295dfb04d16f1a39252f003199dfd14eb3d9e1b31a849fad7477be3fd3",
+      "after_sha256": "1215ec5f2e3ee6f9767dc972da4a27a812a59cce084f548b0c9ee6b7c9f3c92d",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "renderer/minimap/minimap.cpp",
+      "before_sha256": "1f340ea7d1a0307660e8d262dbe1580a3d0ccadfaa6e6e156b2e94b8652f5857",
+      "after_sha256": "055f1295f3369640025870c22b16fb6fc66dd154cba3d1191e843e2dece1ad77",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "renderer/minimap/minimap.hpp",
+      "before_sha256": "74970c73a9eff06a2c2fd015b47e38fce5229c712250f11fe5c9dea1dbd5f470",
+      "after_sha256": "ec54df24f6bca1dc2000450890d4908b2db346eec696f662343ec2560cdb9b1c",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "renderer/minimap/overlays.cpp",
+      "before_sha256": "d1d5b6bdc8d3b6bb156aeac0055257450e35e12069567c03befce1f415b4e3c8",
+      "after_sha256": "8ac9f1b8ac7bbc12826a80bffe4e57af700b1b162773bbbd8523366a15ada98c",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "d5d26bc4f28e0968427f26ddee612c295a1c4aa20851860ecaa8e7b97007d276",
+      "after_sha256": "49d90a149ae09f8aeff16f1cdd47c51664f015e2ebac32b296b4d89bbb74b4ce",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/coverage/history-resident-visited-profile-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "36395a1f9e46a5cde31265745a3fe9dbb97a8f428fd80600d1f63da57b398dc0",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "28b7e5fe7cd18a347d487d9c33352e2f2f441067118705aea7b0a88ca6d600d1",
+      "after_sha256": "aa4df8c5efc87cc3ecfb1acf0c91e05275a1084619b8f919f644243a7b6ed3a1",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/coverage/source-index-resident-minimap-shutdown-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6760995bc06d357d561720759a2d405e1146571c4312fbec95a6c8871de7ff90",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "8c88ea74cb231c5afd9faef2cd18f65509cd2d0e1ce51e702ef349b71c5d9684",
+      "after_sha256": "908d6ff0f0339c12f6102ed4fc610c5351246da7dea052f12471de5d8ce73665",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/public-displacement-after-minimap-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "dab166fff92b398316caf66503528387c390cd75866a9d66fad4b11a231e6f91",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/public-resident-candidates-quit-fixture-role-refusal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b9faa9fa6895dad59dba6a42b185076c7832ea61eb877ebe335c4738b87ffc64",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/public-resident-minimap-overlays-current-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "147b57ffd02e4bf41a2e4f8ada44ff6e0e52df156056a4f4939955937a42ba76",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4bbdce487aff316962fb4c9db9aa6b5977d7416143673e3184ccd175abc94381",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/public-resident-minimap-terrain-current-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "57b8b5ff5fa1ce47584422fc0aa85b6a73667c73a733f8a675287f8b14992e39",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/public-resident-world.md",
+      "before_sha256": "36e1bfbdc0791243e2da7008e5fe6015f96261b9ed223bc6ae6ad8c3395ecc02",
+      "after_sha256": "13cdc91d7844c512fe87e6579a214dd68de8c6fab1ba355b3dbb6484aa0d1e3c",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "research/runtime/public-shadow-after-minimap-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "bfbd38b17cd236e35dfd61effdcd9e5d60eaa7853bf0302ee4b4230c1c304eb9",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "tests/menu-resident-quit-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "78fd6b8b44f9f18719d51877dba29b88cc1c1f1f316d0bc5307977c581c6119c",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "tests/minimap-candidates-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "1705e46d0b45b6e297b40b2c6219da9f4c47d160ccafac7445751d14de2fc26e",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "9923592d80518ace02440bafa4502260ac4d9ee85dadf02f7f00e37d18ba807f",
+      "after_sha256": "ac8ec0994d656880323a5b753ad4531c11434d42839f6d32c52fcb858e6d070b",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    },
+    {
+      "commit": "32c29b0a153eb88077d6210596e552180488295f",
+      "parent": "5ab6484c21c8a664f2a503f6eb014800e1ca85f6",
+      "path": "tools/test-public-resident-fixtures.py",
+      "before_sha256": "4e070301059efb3644d1b7e41f7d8a55ad6b40d7e43025fb24ec4340bd9aab34",
+      "after_sha256": "3998effedfe514403ad5016f15959c1b0a2ba91a8976e234c74c202ff0014b21",
+      "matching_review": "public-resident-minimap-shutdown-headless-review-20261011"
+    }
+  ],
+  "unresolved_gaps": []
+}

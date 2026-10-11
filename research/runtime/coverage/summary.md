@@ -7,7 +7,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 595 |
-| evidence | 1121 |
+| evidence | 1123 |
 | scenarios | 311 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
@@ -26,10 +26,10 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 166 |
 | behaviors without comparison | 490 |
 | behaviors without tests | 1 |
-| stale evidence | 912 |
+| stale evidence | 917 |
 | behavior anchors outside discovered functions | 46 |
-| validation gaps | 771 |
-| retired execution claims | 449 |
+| validation gaps | 776 |
+| retired execution claims | 461 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
 | removed indexed sources | 0 |
@@ -46,9 +46,9 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Current scope-bound validation | Counts |
 | --- | --- |
-| implementation | none: 166; pending: 412; current: 17 |
+| implementation | none: 166; pending: 415; current: 14 |
 | comparison | none: 490; pending: 97; current: 8 |
-| integration | none: 330; pending: 256; current: 9 |
+| integration | none: 330; pending: 258; current: 7 |
 | replacement | none: 589; pending: 6; current: 0 |
 
 ## Animation checklist
@@ -409,7 +409,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | NR.world-source-region-epoch | Guarded World owner permission-query epoch | native policy | scoped | partial | none | none | none | stale |
 | RS.displacement-linear-stride | Selected distortion physical-stride source sampling | `0x596490`, `0x5968a4` | scoped | partial | recorded | none | none | stale |
 | RS.shadow-linear-stride | Projected shadow whole horizontal envelope refusal | `0x57e540` | scoped | partial | recorded | none | none | stale |
-| NR.minimap-write-candidates | Dual-background minimap comparison at traced service writes | native policy | scoped | partial | none | headless | none | current_fingerprints |
+| NR.minimap-write-candidates | Dual-background minimap comparison at traced service writes | native policy | scoped | partial | none | headless | none | stale |
 
 ## Native World checklist
 
@@ -629,7 +629,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | HOST.native-smoke-cleanup | Retain bounded private cleanup after malformed auxiliary profile | native policy | scoped | scoped | none | headless | none | stale |
 | HOST.native-precise-uptime-clock | Real higher-resolution uptime clock for native-hosted original wait | `0x4e3e40` | scoped | scoped | none | live_observation | none | stale |
 | HOST.native-crowded-battle-stress | Native ordinary four-player crowded Quick Battle stress | `0x5076f0` | scoped | scoped | none | live_observation | none | stale |
-| NR.resident-normal-shutdown | Retire balanced resident delivery only after accepted native Main Quit | native policy | scoped | partial | none | headless | none | current_fingerprints |
+| NR.resident-normal-shutdown | Retire balanced resident delivery only after accepted native Main Quit | native policy | scoped | partial | none | headless | none | stale |
 
 ## Spell Dispatch checklist
 
@@ -1709,7 +1709,12 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **HOST.native-campaign-dialogue-readiness.resident-owned-oracles-20261011**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/main.cpp`, `tools/campaign-combat-input.py`, `tools/test-native-campaign.py`
 - **NR.public-resident-world.casting-retreat-negative-20261011**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/menu_bridge.hpp`, `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas-producers/CMakeLists.txt`, `compat/legacy/canvas_producers.cpp`, `renderer/canvas_sequence.cpp`, `renderer/canvas_sequence.hpp`, `renderer/minimap/minimap.cpp`, `renderer/minimap/minimap.hpp`, `renderer/minimap/overlays.cpp`, `tools/campaign-combat-input.py`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
 - **NR.public-resident-world.retreat-edge-negative-20261011**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/menu_bridge.hpp`, `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas-producers/CMakeLists.txt`, `compat/legacy/canvas_producers.cpp`, `renderer/canvas_sequence.cpp`, `renderer/canvas_sequence.hpp`, `renderer/minimap/minimap.cpp`, `renderer/minimap/minimap.hpp`, `renderer/minimap/overlays.cpp`, `tools/campaign-combat-input.py`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
-- **NR.public-resident-world.profile-quit-negative-20261011**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/menu_bridge.hpp`, `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas-producers/CMakeLists.txt`, `compat/legacy/canvas_producers.cpp`, `renderer/canvas_sequence.cpp`, `renderer/canvas_sequence.hpp`, `renderer/minimap/minimap.cpp`, `renderer/minimap/minimap.hpp`, `renderer/minimap/overlays.cpp`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
+- **NR.public-resident-world.profile-quit-negative-20261011**: `apps/qt-shell/CMakeLists.txt`, `apps/qt-shell/live_menu_session.cpp`, `apps/qt-shell/live_menu_session.hpp`, `apps/qt-shell/main.cpp`, `apps/qt-shell/menu_bridge.hpp`, `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas-producers/CMakeLists.txt`, `compat/legacy/canvas_producers.cpp`, `renderer/canvas_sequence.cpp`, `renderer/canvas_sequence.hpp`, `renderer/minimap/minimap.cpp`, `renderer/minimap/minimap.hpp`, `renderer/minimap/overlays.cpp`, `tools/campaign-combat-input.py`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
+- **NR.public-resident-world.minimap-shutdown-fixtures-20261011**: `tools/test-native-campaign.py`
+- **NR.minimap-write-candidates.minimap-shutdown-fixtures-20261011**: `tools/test-native-campaign.py`
+- **NR.resident-normal-shutdown.minimap-shutdown-fixtures-20261011**: `tools/test-native-campaign.py`
+- **NR.public-resident-world.render-provenance-negative-20261011**: `tools/campaign-combat-input.py`, `tools/test-native-campaign.py`
+- **NR.public-resident-world.combat-placement-negative-20261011**: `tools/campaign-combat-input.py`
 
 ## Checklist gaps
 

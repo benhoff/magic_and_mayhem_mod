@@ -37680,7 +37680,9 @@
         "research/runtime/public-resident-retreat-edge-input-20261011.json",
         "research/runtime/public-resident-profile-quit-negative-20261011.json",
         "research/runtime/public-resident-cpu-profile-20261011.json",
-        "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json"
+        "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json",
+        "research/runtime/public-resident-render-provenance-negative-20261011.json",
+        "research/runtime/public-resident-combat-placement-negative-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37718,7 +37720,9 @@
         "NR.public-resident-world.casting-retreat-negative-20261011",
         "NR.public-resident-world.retreat-edge-negative-20261011",
         "NR.public-resident-world.profile-quit-negative-20261011",
-        "NR.public-resident-world.minimap-shutdown-fixtures-20261011"
+        "NR.public-resident-world.minimap-shutdown-fixtures-20261011",
+        "NR.public-resident-world.render-provenance-negative-20261011",
+        "NR.public-resident-world.combat-placement-negative-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -37911,10 +37915,12 @@
       ],
       "documents": [
         "research/runtime/public-resident-world.md",
-        "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json"
+        "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json",
+        "research/runtime/public-resident-render-provenance-negative-20261011.json"
       ],
       "evidence": [
-        "NR.minimap-write-candidates.minimap-shutdown-fixtures-20261011"
+        "NR.minimap-write-candidates.minimap-shutdown-fixtures-20261011",
+        "NR.public-resident-world.render-provenance-negative-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -37956,10 +37962,12 @@
       "documents": [
         "research/runtime/public-resident-world.md",
         "research/runtime/public-resident-candidates-quit-fixture-role-refusal-20261011.json",
-        "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json"
+        "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json",
+        "research/runtime/public-resident-render-provenance-negative-20261011.json"
       ],
       "evidence": [
-        "NR.resident-normal-shutdown.minimap-shutdown-fixtures-20261011"
+        "NR.resident-normal-shutdown.minimap-shutdown-fixtures-20261011",
+        "NR.public-resident-world.render-provenance-negative-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -76799,6 +76807,64 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.public-resident-world.render-provenance-negative-20261011",
+      "kind": "live_observation",
+      "scope": "Unprofiled private TITAN journey completes physical input and native menu flow with4640balanced Worlds,19.0448aggregate engineFPS,normal_quit_retired true and no delivery readbacks; complete test refuses undeclared build-shadow recipe and wire-schema provenance. No fulljourney success or current runner validation claim.",
+      "record": "research/runtime/public-resident-render-provenance-negative-20261011.json",
+      "sha256": "84c1718a8c97d5e52c1078a77e0fb01d20440f5c46202ccb9dc3498c22ca0f8b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/error",
+          "equals": ""
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/error",
+          "equals": "Undeclared or changed rendering bridge input: tools/build-shadow-bridge.py"
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.combat-placement-negative-20261011",
+      "kind": "live_observation",
+      "scope": "Fresh private TITAN test with corrected rendering provenance stops when the wizard dies before required Zombie melee verification. Initial summon and Fireball observed; full gameplay/performance fails.2816periodically reported Worlds/18.926FPS are partial only; no renderer fault inference.",
+      "record": "research/runtime/public-resident-combat-placement-negative-20261011.json",
+      "sha256": "8cd0a5736700d64888dd1d16ac131c470ee60655a028c6378188457801f5299f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -85255,7 +85321,9 @@
         "NR.public-resident-world.shadow-envelope-dialogue-negative-20261011",
         "NR.public-resident-world.casting-retreat-negative-20261011",
         "NR.public-resident-world.retreat-edge-negative-20261011",
-        "NR.public-resident-world.profile-quit-negative-20261011"
+        "NR.public-resident-world.profile-quit-negative-20261011",
+        "NR.public-resident-world.render-provenance-negative-20261011",
+        "NR.public-resident-world.combat-placement-negative-20261011"
       ]
     },
     {
@@ -85672,8 +85740,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-resident-minimap-shutdown-20261011.json",
-    "sha256": "6760995bc06d357d561720759a2d405e1146571c4312fbec95a6c8871de7ff90"
+    "path": "research/runtime/coverage/source-index-resident-combat-placement-20261011.json",
+    "sha256": "6c9dfb8991d5680c5c01996d165ae6afa6fa0e183ec5fc79e8b20232bcebb9fb"
   },
   "claim_bindings_required": true
 }
