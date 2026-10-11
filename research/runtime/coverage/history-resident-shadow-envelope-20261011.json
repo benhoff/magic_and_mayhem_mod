@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "reviewed_range": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc..fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+  "scope": "Committed resident projected-shadow envelope milestone exact parent/current source SHA-256 and receipt audit. Separate from pending public frontend wiring; no retrospective execution or gate assertion.",
+  "commits": [
+    "fbe1729a0585d60a4ceef892a54cd784d74b5ffe"
+  ],
+  "files": [
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "compat/legacy/canvas_world.cpp",
+      "before_sha256": "8033f7fba958b07203d01b974c17157001b04d7698ac2080bb2100cf38b98aef",
+      "after_sha256": "7f762ef780e3168ecdfac99e4ca13bec11683aae2332dbfb79f73f2a5a0ecb94",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "compat/legacy/world-rolling/CMakeLists.txt",
+      "before_sha256": "98f4f1823d51a7e0e65c67960c5157b3c4775bf5dcbc152b8370594b21c853a5",
+      "after_sha256": "8e98ddcf100aa665d490ebbeed4774c9b98c8852ab7cf925cdffdf6bb45a66e9",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "185866d3ddb408547c5a98908a317c7e59373c6f9f74de588b82b49a805f6cd1",
+      "after_sha256": "d05d6c7510db35099639e8c11658faf6b7574cf14194ec746d6f79f8a77b37c4",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "renderer/resources/resource_cache.cpp",
+      "before_sha256": "246cde96f7ff7ff55141ed9fe516521dbf3c5049bb41bf172c9da0287dedf7b5",
+      "after_sha256": "8ad7edd786c7fe6d3a0a64bc2c2e2d1ce0563f631256235e9b23ff7df4469d1b",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "renderer/scenes/scene_renderer.cpp",
+      "before_sha256": "0f83bc0f77c0c7f65c42e0632cbe93fcb478587d225d9c3572fd802c30025da7",
+      "after_sha256": "93dc98dee27dd3dd942cb800c9b57fcc2e0875d3a489cfc4083d13e7b06d7195",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f344bb645fbbd759f0e2480323d332c2aff2f20d3f783fdbbb5e810350a70583",
+      "after_sha256": "d1fee35112915861f8696e2c0c5689dbabad98f426968b2e5e5458bca9912f0b",
+      "matching_review": "public-shadow-envelope-final-contract-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/coverage/history-resident-linear-stride-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5cbb9663685b2a3a3837f5cdf812711607c8eb6a6a0b111908499efc5b9313ba",
+      "matching_review": "public-shadow-envelope-final-contract-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "81f75f9ad0dc7244fd8f3860f2b232cf68161aca2ad61855dca476a13297e85c",
+      "after_sha256": "260bd749e9bed96784d5d35d7d0451c7be0a08b274435b534958d9c4aea71b5e",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/coverage/source-index-public-shadow-envelope-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c4f709f7d8623f6be562ecc9afe5ea61581347d889d01bbbf01ad2f1333511fb",
+      "matching_review": "public-shadow-envelope-final-contract-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "fb6d1ff28b1773f9d63a3f7433e72b64d784a95f9c1eeec16307e40c4d574436",
+      "after_sha256": "ad18f432f2daa347d5f2f61852d55957048fed438216f07c5ba9894aca34475a",
+      "matching_review": "public-shadow-envelope-final-contract-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/public-displacement-linear-after-shadow-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "75642250df7564964173ff4411013da32a6f4869e558deea9d29de4192d23293",
+      "matching_review": "public-shadow-envelope-final-contract-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/public-resident-shadow-envelope-dialogue-negative-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "238dc0d3f2f91a48ce032cdcc41f687f791aa0fecf04c53dddf51e1a2d80310d",
+      "matching_review": "public-shadow-envelope-final-contract-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/public-resident-shadow-envelope-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6ea6fec08a5d93fb6e432ef5d98cce7d56e421e0715b05ab82769164d74da5fc",
+      "matching_review": "public-shadow-envelope-final-contract-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/public-resident-world.md",
+      "before_sha256": "87595c8616ccf06a37a039c6750d0a96f49dbb357f861494073f588cc3ea52c9",
+      "after_sha256": "932573090af8d1d88428b701640f0b221be9f27e4ab5ebe4d10cf2d798310a18",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/public-shadow-envelope-final-scope-comparison-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3b0c2cd7564bb127f9da456f1b7f85be3c74f33794d77cdd3b0be9a2ac75a298",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/public-shadow-linear-model-refusal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1b4789e404aa4af3e924c8db970726f22c06db7a5f347f70c82e6399001763e0",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "research/runtime/public-shadow-projected-envelope-comparison-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "61675d8973b113cf948fac6ee3d256f8a7647ea6fbf18b17ecafd94272ccd11d",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "tests/scene-renderer-test.cpp",
+      "before_sha256": "3d95f2dd56d498aa051105dd6a17af2137fc692401002f71ea2cb453dbbac853",
+      "after_sha256": "a4441be3137cf5324a21a55317cce7e69d8787502cf8f591bdc930ac6e377e7e",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "tests/shadow-linear-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "c845c41f8afede0aeea64ffc95f8f45af7995995b77c61088f04b13f774b62b7",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "tests/shadow-linear-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "5da7722f02a39a1e15329166b117d7f7665ba6af68634441e98c920f0460c744",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "56b9529b6934c39d0f61884ce87ae290655ca35467d27909c8de6d16275ed499",
+      "after_sha256": "dabe599a35c9d69d66ca9aa9a3d75e9505d8427bdf3881d8505c4ae95f2c15b2",
+      "matching_review": "public-shadow-envelope-final-contract-20261011"
+    },
+    {
+      "commit": "fbe1729a0585d60a4ceef892a54cd784d74b5ffe",
+      "parent": "61dd90b0f62c2c0ed37aaf89ecce465182fe0adc",
+      "path": "tools/test-shadow-linear.py",
+      "before_sha256": null,
+      "after_sha256": "ae75cd6aec3759d488e01c722b1f9d634f864d6ae6ea730efb77f4a8f680a7cd",
+      "matching_review": "public-shadow-envelope-final-contract-original-review-20261011"
+    }
+  ],
+  "unresolved_gaps": []
+}

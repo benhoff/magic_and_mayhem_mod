@@ -303,3 +303,15 @@ were rerun prospectively against that final contract. Fresh report:
 `public-shadow-envelope-final-scope-comparison-20261011.json`; earlier execution
 hashes and scope-bound limitations are preserved. Only the final scoped original
 comparison is current; broad gameplay/UI/ABI/RGB555 equivalence remains pending.
+
+Resident World dialogue readiness now retains both diagnostic images/OCR and
+hash checks but uses the resident image for the World heading. Retired original
+World drawing no longer clears CPU World pixels; that buffer cannot establish
+current dialogue dismissal. The runner's explicit resident mode must match the
+helper oracle tag; native visible Hermes still refuses. The bounded12second,
+two quiet sample policy is retained. Completed gameplay separately requires
+fresh identity-valid original summon/cast/combat observations, so quiet images
+alone do not prove input admission. Two owned oracle cases pass:
+`native-resident-dialogue-owned-oracles-20261011.json`. Equal-value CPU UI writes,
+destination-dependent UI and full original pixel/internal dialogue-state
+ equivalence remain pending. Fresh full Titan gameplay is being executed.

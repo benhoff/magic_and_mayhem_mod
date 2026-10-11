@@ -172,6 +172,26 @@ class EvidenceTests(unittest.TestCase):
                 else:bad['captures'][0]['image_sha256']['native']='0'*64
                 with self.assertRaises(ValueError):smoke.validate_dialogue_readiness(bad,root)
 
+    def test_resident_dialogue_never_uses_stale_cpu_world_as_readiness(self):
+        import hashlib
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);name='combat-00-dialogue-check-0';data=b'owned diagnostic'
+            for route in ('native','original'):(root/(name+'-'+route+'.png')).write_bytes(data)
+            inp=dict(dialogue_oracle='resident-native',
+                     dialogue_checks=[dict(capture=name,texts=dict(native='',original='Hermes old CPU pixels'),visible=dict(native=False,original=True))],
+                     captures=[dict(name=name,metadata=dict(native_saved=True,original_saved=True,fallback=False),image_sha256={r:hashlib.sha256(data).hexdigest() for r in ('native','original')})])
+            self.assertEqual(smoke.validate_dialogue_readiness(inp,root,resident_world=True)['oracle'],'resident-native')
+            # The caller's explicit rendering mode authorizes the oracle; input
+            # metadata alone cannot weaken the original dual-draw check.
+            with self.assertRaises(ValueError):smoke.validate_dialogue_readiness(inp,root)
+            for kind in ('visible-native','wrong-mode','bad-classification','changed-image'):
+                bad=copy.deepcopy(inp)
+                if kind=='visible-native':bad['dialogue_checks'][0].update(texts=dict(native='Hermes',original='Hermes'),visible=dict(native=True,original=True))
+                elif kind=='wrong-mode':bad['dialogue_oracle']='dual-draw'
+                elif kind=='bad-classification':bad['dialogue_checks'][0]['texts']['native']='Hermes'
+                else:bad['captures'][0]['image_sha256']['original']='0'*64
+                with self.subTest(kind=kind),self.assertRaises(ValueError):smoke.validate_dialogue_readiness(bad,root,resident_world=True)
+
     def test_startup_frames_do_not_authorize_gameplay(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);rows=self.events(root)

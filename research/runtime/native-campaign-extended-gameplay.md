@@ -289,3 +289,15 @@ returns. Native command rate29.1996FPS, visible paints25.3715FPS, worst window
 Both immutable manifests verify; complete traces and diagnostic PNGs are retained.
 The final view has a smaller surviving squad; this is a bounded battle stress
 result, not a guarantee of a densely populated screen for every sampled second.
+
+Resident World dialogue readiness now retains both diagnostic images/OCR and
+hash checks but uses the resident image for the World heading. Retired original
+World drawing no longer clears CPU World pixels; that buffer cannot establish
+current dialogue dismissal. The runner's explicit resident mode must match the
+helper oracle tag; native visible Hermes still refuses. The bounded12second,
+two quiet sample policy is retained. Completed gameplay separately requires
+fresh identity-valid original summon/cast/combat observations, so quiet images
+alone do not prove input admission. Two owned oracle cases pass:
+`native-resident-dialogue-owned-oracles-20261011.json`. Equal-value CPU UI writes,
+destination-dependent UI and full original pixel/internal dialogue-state
+ equivalence remain pending. Fresh full Titan gameplay is being executed.
