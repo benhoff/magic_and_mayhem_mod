@@ -457,3 +457,37 @@ python3 -B tools/capture-drawing-census-game.py <fresh-experiment> \
   --prefix-template <stopped-Wine-prefix> --journey campaign-effects \
   --claims <fresh-prospective-claims.json>
 ```
+
+
+## Exact API CALL-site accounting, 2026-10-11
+
+The route census now separately includes380 exact original CALL instructions,
+bringing the reviewed catalog to503routes. CALL points have an `api_site` selector,
+not a function `entry`: their complete instruction bytes and return PC must match
+the retained pinned static export, and every exported site needs a reviewed route.
+Target mode and exact import slots are checked independently against bytes. Empty
+discovered owner sets stay empty, and offset128 never supplies a COM method/type.
+All380API routes preserve original execution; no native replacement is admitted.
+
+Four independent expanded original API-only movie/save/load/results/effects reports
+project CALL-site activity by the exact host phase. The projection requires an
+intact build-bound journal and validates excluded rows as well as included rows.
+Repeated per-run target instances accumulate only within their own phase/cohort.
+Unknown observed sites remain unaccounted; no nearest function/entry is assigned.
+The selected cohorts observe101unique sites across all14host phase labels. This
+records selected activity, with279admitted sites still unexecuted; it establishes
+neither complete writer instrumentation nor semantic caller/effect/lifetime scope.
+Resource intervals and host phase intent remain separately bounded evidence.
+
+Forty-five native guards pass. `--require-accounted` passes with zero unknown
+identities, while `--require-complete` exits1 with18pending obligations:14scenario
+reviews and four dispatch gates. None of those reviews is promoted. Their remaining
+text now reflects the original save/load, results and summon evidence rather than
+claiming those observations do not exist. The retained byte export/original reports
+keep their historical source hashes; changing the catalog creates explicit source
+staleness, not fresh original execution. The new [guard result](drawing-inventory-api-site-guards-20261011.json)
+validates current offline accounting only.
+
+History002633e..c43bfde contains9exact file/12behavior receipt matches and no
+missing intermediate versions. Its review does not assert a past gate pass or a
+new graphics result. The branch remains isolated from the shared worktree.

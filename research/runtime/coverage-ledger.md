@@ -4725,3 +4725,16 @@ unexecuted. These are separate cohort counts, not aggregate runtime frequencies.
 All14scenario/four dispatch closure, complete writers/callers, failed/recovery/
 external lifetime paths remain pending. History910e3f7..002633e has18file/12behavior
 exact matches and zero missing receipts. See [evidence/limits](draw01-graphics-api-boundaries.md).
+
+
+DRAW-01 API route reconciliation (2026-10-11): current offline inventory has503
+routes, including380byte/return-PC/mode-bound CALL points separate from function
+entries. Four independent retained original API-only cohorts project101unique
+sites across14host phases, leaving279unexecuted sites and preserving unassigned
+owners/unknown types.45native guards pass; require-accounted passes0unknowns and
+require-complete fails with the expected18obligations (14scenario/four dispatch).
+Scenario limitations now name actual original save/load/results/summon observations
+without promoting census closure. Catalog source-only changes retain historical
+original evidence hashes/staleness; the new proof validates offline accounting,
+not current original renderer equivalence. History002633e..c43bfde has9file/
+12behavior exact receipts, no missing versions. See [accounting scope](draw01-inventory.md).
