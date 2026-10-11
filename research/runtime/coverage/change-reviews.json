@@ -235557,6 +235557,267 @@
           "DRAW.census.quick-battle-scenario-guards-20261010"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "3ed1b8069f85b2df21d5f1bb4a3df0e0b49bd9ee5be6138fd22905e7e1b8c9c2",
+          "before_sha256": "f14c23fcc474fec2bb391a53121ce342d45f41efb70a99d60c390044104cfb02",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "38e8449c3e9f4e2d3ad9b777a8e314d98f1c33257d97f7396003bb8158b1a6b9",
+          "before_sha256": "ccb441110f63301aeb56f747928535daef5bdb092d5d978c567c6129363a39b2",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "831e91ff684fc8aa68db266e267ce3113aa449a4ab924a55c1a273c3887b66de",
+          "before_sha256": "9e1acbb79beeee09bb013192f607516f41f4cad09d2bf2ce7e16de5df001d480",
+          "id": "DRAW.queue-dispatch"
+        },
+        {
+          "after_sha256": "8b6721445f033384382bb8a0513e491446ef65071e579f9108ae380269448ab6",
+          "before_sha256": "dc571119aaad8eb840c9c08acbae26d14fb92031294f849aa3fe36c10a8607dc",
+          "id": "DRAW.surface-hosting"
+        },
+        {
+          "after_sha256": "67777c4b89a53bd0a717c9f628f9f05b4be571a87a1b5812b97720ca3a49a489",
+          "before_sha256": "5cc9a276a63ff924ae52b60419ebad2f6318f9a1d8f53e19ad686b75517910ce",
+          "id": "DRAW.unassigned-word-window"
+        },
+        {
+          "after_sha256": "4144cf165d6e909e99ce6961719a92b978c82bdae28bbe88797310e5e87bc05a",
+          "before_sha256": "5a373492df42c6e8d19cb7d62d301a42eae9f38a049d7461681054792851386b",
+          "id": "DRAW.unattributed-caller"
+        },
+        {
+          "after_sha256": "e6539f050f7dfb07d8b25e2f47045d70064cc6deb48dfe082e4aa8fc55a0ef9c",
+          "before_sha256": "f7b1c41779a4a605b6abe3b9326153a0fdf1a1bd6fcff370b9fd3a7fc61326e6",
+          "id": "DRAW.world-kind-16"
+        },
+        {
+          "after_sha256": "c3e2b50aadc7e18ea3868bf69e93980faa3421f5a8f5da3e78c5aca53cc739ac",
+          "before_sha256": "ba905fa80d4008ba343d09167234c19a422a415e9f9cd3fabe82bd73a4a934dc",
+          "id": "DRAW.world-kind-17"
+        },
+        {
+          "after_sha256": "5946bedb79dd4daf37d885b08ac6e74238b2f824cadcf1cb3866d521faf31e82",
+          "before_sha256": "b65efece0248a8c53445a6b59da0d7cffd4f66cb02df1226f9d048093ef726fd",
+          "id": "DRAW.world-kind-20"
+        },
+        {
+          "after_sha256": "18799ed90a673208b36ed2ca3f21d8d888b57205caec15ed1d41e5a533a001df",
+          "before_sha256": "18799ed90a673208b36ed2ca3f21d8d888b57205caec15ed1d41e5a533a001df",
+          "id": "HOST.native-campaign-capture-retry"
+        },
+        {
+          "after_sha256": "fe7cb065453566c6ae695585cd765edab73ac59dddb3f998bca4b439cc307e5d",
+          "before_sha256": "fe7cb065453566c6ae695585cd765edab73ac59dddb3f998bca4b439cc307e5d",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "3929f1278ebdfd7213f45117550dff4f0b43a2b31d021ea04dd14eccf4e5f3d1",
+          "before_sha256": "3929f1278ebdfd7213f45117550dff4f0b43a2b31d021ea04dd14eccf4e5f3d1",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "a3dec1dfe0f15b124368a956faf5e3fb5ea8c6870c7613cd17f4c59d5055ea6b",
+          "before_sha256": "a3dec1dfe0f15b124368a956faf5e3fb5ea8c6870c7613cd17f4c59d5055ea6b",
+          "id": "HOST.native-campaign-movement-probes"
+        },
+        {
+          "after_sha256": "45e5082685046e0e6d72e814a72eb592c95cee2feb0a3d5103864878bb487e12",
+          "before_sha256": "45e5082685046e0e6d72e814a72eb592c95cee2feb0a3d5103864878bb487e12",
+          "id": "HOST.native-campaign-normal-quit"
+        },
+        {
+          "after_sha256": "d3118d4e584704f58c82ad36a43bbd66d1c229b3a391d330f46d9fe89a0188de",
+          "before_sha256": "d3118d4e584704f58c82ad36a43bbd66d1c229b3a391d330f46d9fe89a0188de",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "c140059165a5c3cad7e9b736607363d88b8035faa7727a3dea1323698bf782ef",
+          "before_sha256": "c140059165a5c3cad7e9b736607363d88b8035faa7727a3dea1323698bf782ef",
+          "id": "HOST.native-campaign-spell-observation"
+        },
+        {
+          "after_sha256": "825a67c2705ad375df636e86250ee3213166d4a85405c5f56dc3139331d0b418",
+          "before_sha256": "825a67c2705ad375df636e86250ee3213166d4a85405c5f56dc3139331d0b418",
+          "id": "HOST.native-crowded-battle-stress"
+        },
+        {
+          "after_sha256": "560818d0e6b94dcf6ba990a0be1188af9f93a25bdcef4deca53e2300e3cacb52",
+          "before_sha256": "560818d0e6b94dcf6ba990a0be1188af9f93a25bdcef4deca53e2300e3cacb52",
+          "id": "HOST.native-healing-loadout"
+        },
+        {
+          "after_sha256": "5a5855e686867ba02ea0052391c7a9ab82178ed1dd51d7cf63d3736c1aa88777",
+          "before_sha256": "971bcebb7efa239b18c6d43d78433d431ad8a84804ea1a7be94b77e4f9c01b4a",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "2a0fa2a8f55dde90841abad82c5c8477fce45866725fb02341c16f934c8e7b16",
+          "before_sha256": "76793f3d59bf6a200039742ed662b9ad8a21c5987c162d7704fbb735411b7c2e",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "a1026de6a153751cfea8b9b8c73fa332a79338586cbc94ee4d1a487892ea3977",
+          "before_sha256": "e6f943426f365d97df718b01cb76f9c37211f6fdd532a0068c214057b0b78540",
+          "id": "TOOL.drawing-census"
+        },
+        {
+          "after_sha256": "621edaa9aefeff7b91bc2c3244d4c577cd8609e810b38938e9b318e6e3f50871",
+          "before_sha256": "1612f977fbd97e1dd74d6c253bc5359df7e89c71ddf3f8ab47ead69b70826816",
+          "id": "TOOL.drawing-dispatch-slices"
+        },
+        {
+          "after_sha256": "4a3a798819b39ba770f4293772637ba0185a6ca2632e17e4eb924090572168c6",
+          "before_sha256": "94c892ca3584c7f3ba2c99e9736968730848bb6ba2fa648d9f740c3b6acada77",
+          "id": "TOOL.drawing-inventory"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "cc2768fc6a791ff089807862c1b7e6f470c5f09f9d607dec9caae77c692964fa",
+          "before_sha256": "813245f2dc7c4c762d23d0ece3b4363e52ffd30370bc08c9133e8fbf72d9dbbe",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "57ae930fa59eaf27af0d666cadb06553d2aa4573ac7550743d80306a23481251",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw01-history-4878427-92295c9-20261011.json"
+        },
+        {
+          "after_sha256": "048d6cdb9e7b231219859a82e1e13a2e70dc1c156b35bbcfec646c3b8de79e11",
+          "before_sha256": "97b951a7b397df4df3be1958869936036efb9d45d8fff3e5beea9015df5bb1d2",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "47fc22f4bb1dd102d36e9363a307e8083a3048501f90892f310cc311b6fdf25b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw01-campaign-effects-20261011.json"
+        },
+        {
+          "after_sha256": "d49979a259f56200493f3af3723a6edfb32eb5462fe676e263ccc9802efd560c",
+          "before_sha256": "4d919e5ad76c41bb881ecc9b73c5f7005a14813d8ec2732ec5d98f8fd90952fd",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "4e3c32b7c1ac6c68596f0f94aa81a7edf185f5850edec16be461ad7f1b9ae8e1",
+          "before_sha256": "d175de7cfefbe831a5db2a3204a5168e75ac8b188c06d74c56434efd61b5ee23",
+          "path": "research/runtime/draw01-inventory.md"
+        },
+        {
+          "after_sha256": "aff29a9f4a6ff1c4d86f0fe9b92d71790a2782491d9111e300ac95d47131e62b",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-census-campaign-effects-guards-20261011.json"
+        },
+        {
+          "after_sha256": "4e38873606dafe392f66df158f6cfd3d0400bde1b2f5c6bd29c4132b65a9ab31",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-census-campaign-effects-observation-20261011.json"
+        },
+        {
+          "after_sha256": "2da4a44180c3df90c5c6b09a9b5e99aa0eab6660e444cc1691c1d522fb022159",
+          "before_sha256": "b5221df2370fc6e99498773ff8e07b26d9f0f95fa15ca9e5444c8ef31601eb1a",
+          "path": "research/runtime/drawing-inventory.json"
+        },
+        {
+          "after_sha256": "5ad52f29bef23bc1a90a5a8caf653a7f0d63c8a8e3f0a67790cfbe90721bc329",
+          "before_sha256": "5ad52f29bef23bc1a90a5a8caf653a7f0d63c8a8e3f0a67790cfbe90721bc329",
+          "path": "tools/campaign_gameplay.py"
+        },
+        {
+          "after_sha256": "be487d2172f2bad1ef80b4057c6f711af47f7adc0175e6f5b969b4a574de6b84",
+          "before_sha256": "be487d2172f2bad1ef80b4057c6f711af47f7adc0175e6f5b969b4a574de6b84",
+          "path": "tools/campaign_spell.py"
+        },
+        {
+          "after_sha256": "fdb529d496f622f2793edfd8b6e8be7578d349e42ad49508684dc1d4658f9f7c",
+          "before_sha256": "e43a60b9c6a439d1215ff8cb638ea8687690506957dc483535274c34ac9db187",
+          "path": "tools/capture-drawing-census-game.py"
+        },
+        {
+          "after_sha256": "47703d7a9c7e1ab5a54da9d15ccfa049179a3d0a7e7966e63f4d65cad1ddab6e",
+          "before_sha256": "626722d4bdf62ec4767cd18e65e1feb080de4768b1ea2098bdb6c4ef7e0fdd76",
+          "path": "tools/drawing-census-game-runner.py"
+        },
+        {
+          "after_sha256": "d9f6980aff448c0c51991d2f0d61fc99dc46972a6509cc2da8984bb54194fad1",
+          "before_sha256": "c01369e1876576d5c25c250644045ef735c28de2cd9fa81665bb526184605e35",
+          "path": "tools/prepare-drawing-census.py"
+        }
+      ],
+      "id": "draw01-original-campaign-effects-accounting-20261011",
+      "pending_gaps": [
+        "stale_evidence:0541f1b69f08c22ad2eba7cb441554186c48590c9efb95f404a8e31f63d4ce4f",
+        "stale_evidence:0c499a66abefbc166078ce4fe32ecb141d1957b1130874a903c8eab8da9067a3",
+        "stale_evidence:11357d07bba28a662f0a4bae434fc3bc3d442b10d80ad9e6ca0b3b210b4145d8",
+        "stale_evidence:14289ac68abdf8a1779e68e7ad82bab89fcaba6e262b01aa7c232caac0896d25",
+        "stale_evidence:14f2c383abb3e8be488dc4aea95f29b767179f7e83291848e53783975c75dff4",
+        "stale_evidence:172f40b2d78f93b5e23f04f16338f768fba76980e8c45b48186cdd65b7a57093",
+        "stale_evidence:231191bfda7ddc0d2a2e95c746840bd216e17552898f5b3c817a987a9ff9bd1e",
+        "stale_evidence:330e35683655dbd43ca1af1ffe3e0ce124f3925c553ec277770352b2b64f0cf1",
+        "stale_evidence:5431ca5873dfe797ca03816fb2d6a5f8edf3b9e4127ebc62cbe9060043792469",
+        "stale_evidence:5643d2dc456d45146f88e9985acaf0ac39309a11796bb89f213758f9e95e4768",
+        "stale_evidence:5be730be5cc3ba19ae48b67c37e8586a17f5744d85ce39049c04f039972fc035",
+        "stale_evidence:66a1a77538757cbcda27ed18cf5d4e3fb4158cd91c22711fd3d4e83ece114494",
+        "stale_evidence:6f7c8e8aa87d6e99e600b5e3725e02369b7e7dcfd7d509c77b5387999ebd0a1a",
+        "stale_evidence:7054026b4b634921216b5a8cd99c5958dc4d0566653b151a4d83e24e7f860f22",
+        "stale_evidence:73be3c3658177e1e72868e85316f9505d14c417a9900cdc9b649af764a6177a5",
+        "stale_evidence:7c25b49109f96f486dbc6a32923f37adb11a99c2da5802ac8778e4d4401d0659",
+        "stale_evidence:80a821250cb9586c40fede5a3bc012ffaabfa782021faccd401354193d0ad901",
+        "stale_evidence:85fdb2c276c376ddea74a708226be22d789487dbaf978b87ea41fb5fdd9c3ad5",
+        "stale_evidence:8f22e9bcdedbb7b4317aa7bb0e1a95c77a25eef2059edb7047ff00b3f2d8706f",
+        "stale_evidence:8fe97e2f3af46461b665903672172c309f40bfff4022d245e1f00c3d80eb7926",
+        "stale_evidence:94b720a727a1fea1801722b26dc958d6fd554e09d342e68217fcd7ddfc08974c",
+        "stale_evidence:97bc7d0e9ade045589940a35f5f62b8cc7fed73aa3a0bdafb13f6136091cb3a9",
+        "stale_evidence:9b4af9058e9879372a19f227bea3d74931354a493f30d28fdeef68f8cb70d6b3",
+        "stale_evidence:9e855ff576b693d27606fe58f69e13688d1f8ed6000dab48869c3c323fddab98",
+        "stale_evidence:a738d1827d569376cc93b3e2423dcc39500267b914b0ee22ed7052d873766847",
+        "stale_evidence:ae8db0a11dccea8a24424e5b721c06896d35b0aca6dae35a7a0582d3145817cb",
+        "stale_evidence:b257e1890ee5f50f0d07bed53ac8512c9ae509de3c80c867a223cef71b0e5d47",
+        "stale_evidence:b34b2e32fe7069088e70eb5ca9712ebedd94f55f16de0e1d68a20446754b5095",
+        "stale_evidence:b8d623d5db842d967579e77ce82d5a4eee9def235eab4bf48fa70187fa8ccdee",
+        "stale_evidence:c17f81f4cbc8ec7db2b75e66df58e0ee3c2c1ffc97b26db9072a260f5a87252e",
+        "stale_evidence:c661eb0de02dd0f8cebf64a879b7daa2147c452ff511ce380fed241d42230897",
+        "stale_evidence:c775d5c9adf29a274aa5b175cc499d39ce6dfe32d750bca7b962b2d3d0d7a970",
+        "stale_evidence:d5b580c68ae3cdc5e145624ea927a901bd860bb39e5b5f45c8e121d7ff37c6e5",
+        "stale_evidence:e258a4c34d21f78981294613ac5023a193e102e579bab95603f22f10140f529d",
+        "stale_evidence:e3c40bbdfd3953f40d08a1bffd8e211faa043c92e863839f623333f30d10807c",
+        "stale_evidence:ec5e704fb87115c101c96a881df0c7bcd7f06b35877dd54df2e4c41d9adb41fb",
+        "stale_evidence:f3af73827c573e8843e8a0d3d190de9d9e0e354c1cee5533813928043d526505"
+      ],
+      "reason": "Reviewed explicit passive gameplay/spell opt-in in disposable staging/runner, physical original dialogue/cast inputs and new living owned Zombie prerequisite, complete auxiliary framing/sequence checks and nonzero-exit refusal. Registered prospectively declared phase7/8 cohort, retained exact input/sources and independent post-run spell-validator scope, source census and exact preceding15file/16behavior committed receipt matches. No original, application/native renderer, simulation or balance modifications.",
+      "validation": {
+        "status": "pending",
+        "reason": "Fresh original campaign run4,184,314events/2,092,157pairs at44entries, zero loss/open calls, stable binaries/sources, exit0. Passive pool records newly living owned type14Zombie; read-only retained spell validation observes raw4352mana debit; inspected screenshot shows summon/1-of-15 HUD.54fresh scenario-bound guards and zero-unaccounted inventory pass. Auxiliary traces have no loss/terminal claim and journal nearly fills bounded cap. Full effect-to-pixel, all14scenario/four dispatch/caller/graphics/lifetime closure remains pending. Changes to driver/runner/stager and inventory leave37new exact historical staleness gaps explicit; old evidence fingerprints/status retained without current equivalence."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "a1026de6a153751cfea8b9b8c73fa332a79338586cbc94ee4d1a487892ea3977",
+          "before_sha256": "e6f943426f365d97df718b01cb76f9c37211f6fdd532a0068c214057b0b78540",
+          "id": "TOOL.drawing-census"
+        },
+        {
+          "after_sha256": "4a3a798819b39ba770f4293772637ba0185a6ca2632e17e4eb924090572168c6",
+          "before_sha256": "94c892ca3584c7f3ba2c99e9736968730848bb6ba2fa648d9f740c3b6acada77",
+          "id": "TOOL.drawing-inventory"
+        }
+      ],
+      "files": [],
+      "id": "draw01-campaign-effects-tool-guards-recorded-20261011",
+      "pending_gaps": [],
+      "reason": "Reviewed explicit passive gameplay/spell opt-in in disposable staging/runner, physical original dialogue/cast inputs and new living owned Zombie prerequisite, complete auxiliary framing/sequence checks and nonzero-exit refusal. Registered prospectively declared phase7/8 cohort, retained exact input/sources and independent post-run spell-validator scope, source census and exact preceding15file/16behavior committed receipt matches. No original, application/native renderer, simulation or balance modifications.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "DRAW.census.campaign-effects-guards-20261011"
+        ],
+        "reason": "Fresh prospective headless drawing-census-accounting-guards-20261010 declaration and54actual native tooling guards with stable complete source fingerprints. No original engine/pixel or scenario completeness promotion."
+      }
     }
   ]
 }

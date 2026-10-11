@@ -4527,3 +4527,24 @@ receipts without missing matches; this review is separate from uncommitted work
 and asserts neither a past gate pass nor new execution.
 
 The prospectively registered [repeat](drawing-census-quick-battle-accounted-observation-20261010.json) retains2,447,382events/1,223,691pairs, zero loss/open calls, stable sources/binaries and exit0. Both original Game Over headings were checked. Each phase projection stays a bounded cohort; all18closure blockers remain.
+
+### DRAW-01 original campaign summon/effect observation — 2026-10-11
+
+The [original-active cohort](drawing-census-campaign-effects-observation-20261011.json)
+records a new living, player-owned Zombie after a physical original cast. Its
+original callback has a raw mana debit of 4,352 in the sampled creation interval;
+the inspected screenshot shows the summon effect and `1/15` HUD. The existing
+read-only spell validator was applied after the run with that explicit scope.
+There are 514 passive creature samples and 12 spell rows, each checked for
+framing/sequences and retained at its recorded hash. Their formats lack terminal
+and loss counters, so no all-tick/callback/lifetime claim is made.
+
+The drawing journal retains 4,184,314 events / 2,092,157 paired calls, zero
+loss/open calls, stable staged binaries/sources and normal original exit. It
+nearly reaches the fixed 4,194,304-record cap; any overflow remains invalid.
+Original campaign Mini/Preferences/World/Quit/defeat/Main/shutdown follows the
+cast. Phase7/8 projections are declared before execution. Input labels remain
+separate from semantic camera/tooltip and full effect-to-queue-to-pixel proof;
+all14scenario/four dispatch and caller/graphics/lifetime closure remains pending.
+Committed history4878427..92295c9 has15exact file and16behavior receipt matches,
+without missing intermediate versions; no retrospective validation is asserted.

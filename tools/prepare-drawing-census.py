@@ -21,7 +21,7 @@ def load(name, path):
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def prepare(source, movies=False, menu_only=False):
+def prepare(source, movies=False, menu_only=False, gameplay=False):
     source = source.resolve(); raw = (source / 'Chaos.exe').read_bytes()
     if hashlib.sha256(raw).hexdigest() != BUILD_SHA256: raise ValueError('Unsupported source executable')
     census = load('drawing_build', 'tools/build-drawing-census.py').build(source / 'Chaos.exe')
@@ -62,6 +62,7 @@ def prepare(source, movies=False, menu_only=False):
                 'movies_enabled': movies, 'preferences': edits, 'source_game': str(source),
                 'created_directories': created_directories,
                 'call_census_enabled': not menu_only,
+                'gameplay_observation_enabled': gameplay,
                 'scope': 'Original-active signature-pinned drawing call metadata; no native rendering or gameplay changes.'}
     (root / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     if sha(source / 'Chaos.exe') != BUILD_SHA256: raise ValueError('Original source executable changed')
@@ -72,7 +73,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__); parser.add_argument('--source-game', type=Path, required=True)
     parser.add_argument('--movies', action='store_true')
     parser.add_argument('--menu-only', action='store_true', help='Diagnostic control: original drawing entries are unpatched')
+    parser.add_argument('--gameplay-observation', action='store_true', help='Enable existing passive original creature/spell hooks in the disposable game')
     args = parser.parse_args()
     subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
-    try: print(prepare(args.source_game, args.movies, args.menu_only), flush=True)
+    try: print(prepare(args.source_game, args.movies, args.menu_only, args.gameplay_observation), flush=True)
     finally: subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)

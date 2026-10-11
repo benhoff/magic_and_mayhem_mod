@@ -25,5 +25,8 @@ for key in list(os.environ):
 def windows(path): return 'Z:' + str(path).replace('/', '\\')
 os.environ.update(MNM_DRAW_CENSUS_DIR=windows(capture), MNM_MENU_OBSERVE=windows(root / 'events.bin'),
                   MNM_MENU_CHANNEL=windows(root / 'channel.bin'))
+if metadata.get('gameplay_observation_enabled', False):
+    os.environ.update(MNM_MENU_GAMEPLAY_OBSERVE=windows(root / 'gameplay-events.bin'),
+                      MNM_MENU_SPELL_OBSERVE=windows(root / 'spell-events.bin'))
 os.chdir(game)
 os.execvp('wine', ['wine', 'explorer', '/desktop=DrawingCensus,800x600', str(game / 'Chaos.exe'), *sys.argv[2:]])

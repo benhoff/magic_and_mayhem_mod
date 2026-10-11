@@ -15,6 +15,8 @@ import struct
 import subprocess
 import time
 from drawing_census import ROOT, trace
+from campaign_gameplay import read_rows, creatures
+from campaign_spell import read_spell_rows
 
 
 def capture(root, template, journey, claims=None):
@@ -23,11 +25,14 @@ def capture(root, template, journey, claims=None):
     manifest = json.loads((root / 'manifest.json').read_text())
     if journey == 'movies' and not manifest['movies_enabled']:
         raise ValueError('Movie journey requires explicitly enabled disposable preferences')
+    if journey == 'campaign-effects' and not manifest.get('gameplay_observation_enabled', False):
+        raise ValueError('Creature/effect journey requires opt-in passive original gameplay observation')
     declaration = json.loads(claims.read_text()) if claims else None
     if declaration:
         for p, digest in declaration['sources'].items():
             if hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != digest: raise ValueError('Changed declaration source: ' + p)
-    source_paths = ['tools/capture-drawing-census-game.py', 'tools/drawing_census.py', 'tools/drawing-census-game-runner.py']
+    source_paths = ['tools/capture-drawing-census-game.py', 'tools/drawing_census.py', 'tools/drawing-census-game-runner.py',
+                    'tools/campaign_gameplay.py', 'tools/campaign_spell.py']
     frozen_sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in source_paths}
     if declaration: frozen_sources.update(declaration['sources'])
     prefix = root / 'wineprefix'
@@ -37,7 +42,8 @@ def capture(root, template, journey, claims=None):
                MNM_DRAW_CENSUS_EXPERIMENT=str(root))
     report = {'schema': 1, 'journey': journey, 'success': False, 'actions': [], 'phases': [],
               'scenario_closure': False, 'original_work_forwarded': True,
-              'call_census_enabled': manifest.get('call_census_enabled', True)}
+              'call_census_enabled': manifest.get('call_census_enabled', True),
+              'gameplay_observation_enabled': manifest.get('gameplay_observation_enabled', False)}
     server = process = display = channel = control = log = None
     subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
     try:
@@ -140,12 +146,16 @@ def capture(root, template, journey, claims=None):
                     pending.extend(children[i] for i in range(count.value))
                     if children: x.XFree(children)
             raise RuntimeError('Original game input window absent: ' + str(names))
-        def click(px, py):
+        def click(px, py, mouse_button=1):
             xt.XTestFakeMotionEvent(display, -1, px, py, 0); x.XFlush(display); hold(.2)
-            xt.XTestFakeButtonEvent(display, 1, 1, 0); x.XFlush(display); hold(.12)
-            xt.XTestFakeButtonEvent(display, 1, 0, 0); x.XFlush(display); hold(.3)
+            xt.XTestFakeButtonEvent(display, mouse_button, 1, 0); x.XFlush(display); hold(.12)
+            xt.XTestFakeButtonEvent(display, mouse_button, 0, 0); x.XFlush(display); hold(.3)
+            report.setdefault('physical_inputs', []).append({'kind': 'click', 'x': px, 'y': py,
+                'button': mouse_button, 'time': time.monotonic()})
         def hover(px, py, seconds=1):
             xt.XTestFakeMotionEvent(display, -1, px, py, 0); x.XFlush(display); hold(seconds)
+            report.setdefault('physical_inputs', []).append({'kind': 'hover', 'x': px, 'y': py,
+                'time': time.monotonic()})
         def button(config, section):
             cfg = configparser.ConfigParser(inline_comment_prefixes=(';',), interpolation=None)
             cfg.read(root / 'game/Interface' / config)
@@ -155,6 +165,8 @@ def capture(root, template, journey, claims=None):
             code = x.XKeysymToKeycode(display, sym)
             xt.XTestFakeKeyEvent(display, code, 1, 0); x.XFlush(display); hold(.35)
             xt.XTestFakeKeyEvent(display, code, 0, 0); x.XFlush(display); hold(.3)
+            report.setdefault('physical_inputs', []).append({'kind': 'key', 'keysym': sym,
+                'time': time.monotonic()})
         def heading(name, expected):
             shot = ImageGrab.grab(xdisplay=env['DISPLAY'])
             shot.save(root / (name + '.png'))
@@ -247,6 +259,49 @@ def capture(root, template, journey, claims=None):
             send(3, 22); wait(18)
             for choice in [0, 2, 3, 1]: send(18, 23, choice); hold(.4)
             send(18, 25); hold(6); focus_game(); phase(5, 'Original campaign world active'); click(400, 300); hold(2)
+            if journey == 'campaign-effects':
+                # Introductory Hermes dialogues consume ordinary cast inputs.
+                # Check/dismiss through original mouse input before counting a cast.
+                report['dialogue_checks'] = []
+                quiet = 0
+                dialogue_start = time.monotonic()
+                for attempt in range(16):
+                    name = 'effects-dialogue-%02d' % attempt
+                    shot = ImageGrab.grab(xdisplay=env['DISPLAY']); shot.save(root / (name + '.png'))
+                    crop = root / (name + '-text.png'); shot.crop((225, 90, 600, 270)).save(crop)
+                    text = subprocess.run(['tesseract', str(crop), 'stdout', '--psm', '6'],
+                        capture_output=True, text=True, check=True, timeout=10).stdout.strip()
+                    visible = 'hermes' in text.casefold()
+                    report['dialogue_checks'].append({'capture': name, 'text': text, 'hermes': visible})
+                    quiet = 0 if visible else quiet + 1
+                    if quiet >= 2 and time.monotonic() - dialogue_start >= 12: break
+                    if visible: click(400, 160)
+                    hold(1)
+                else: raise RuntimeError('Original introductory Hermes dialogue did not clear')
+                gameplay = root / 'gameplay-events.bin'
+                prior_rows = read_rows(gameplay); prior = creatures(prior_rows)
+                wizards = [a for a in prior.values() if a['type'] == 0 and a['active'] and a['health'] > 0]
+                if len(wizards) != 1: raise RuntimeError('Expected unique living original campaign wizard')
+                wizard = wizards[0]; owner = wizard['owner']
+                phase(7, 'Original physical Zombie summon; require new living owned creature in passive pool')
+                before_sequence = prior_rows[-1][0]
+                click(523, 575); click(440, 310, 3)
+                deadline = time.monotonic() + 12
+                while time.monotonic() < deadline:
+                    hold(.25); rows = read_rows(gameplay); current = creatures(rows)
+                    summoned = [a for a in current.values() if a['type'] == 14 and a['owner'] == owner
+                        and a['active'] and a['health'] > 0 and (a['slot'] not in prior
+                        or not prior[a['slot']]['active'] or prior[a['slot']]['type'] != 14
+                        or prior[a['slot']]['owner'] != owner)]
+                    if summoned: break
+                else: raise RuntimeError('Original physical cast created no living owned Zombie')
+                report['original_summon'] = {'before_sequence': before_sequence, 'after_sequence': rows[-1][0],
+                    'wizard': wizard, 'summoned': summoned, 'prior_creatures': list(prior.values()),
+                    'observed': True, 'scope': 'Passive sampled original pool transition; no complete effect-to-pixel or lifetime proof'}
+                ImageGrab.grab(xdisplay=env['DISPLAY']).save(root / 'effects-summon-confirmed.png'); hold(2)
+                phase(8, 'Original campaign HUD/spell/minimap tooltip hover inputs after observed summon')
+                for point in [(523, 575), (573, 575), (695, 55)]: hover(*point)
+                phase(7, 'Bounded original creature animation after observed summon'); hold(2)
             phase(6, 'Camera arrow input')
             for sym in [0xff51, 0xff53, 0xff52, 0xff54]: key(sym)
             phase(9, 'Cursor movement and world click'); click(350, 300); click(420, 350)
@@ -314,8 +369,18 @@ def capture(root, template, journey, claims=None):
             (root / 'decoded.json').write_text(json.dumps(census, indent=2) + '\n')
             report.update(decoded_sha256=hashlib.sha256((root / 'decoded.json').read_bytes()).hexdigest(),
                           events=census['events'], calls=census['calls'])
+        if report['gameplay_observation_enabled']:
+            gp = root / 'gameplay-events.bin'; sp = root / 'spell-events.bin'
+            report['original_gameplay_trace'] = {'rows': len(read_rows(gp, complete=True)),
+                'sha256': hashlib.sha256(gp.read_bytes()).hexdigest(), 'bytes': gp.stat().st_size,
+                'scope': 'Bounded passive original samples; no protocol terminal, all-tick or exhaustive lifecycle claim'}
+            report['original_spell_trace'] = {'rows': len(read_spell_rows(sp, complete=True)),
+                'sha256': hashlib.sha256(sp.read_bytes()).hexdigest(), 'bytes': sp.stat().st_size,
+                'scope': 'Bounded passive original spell callbacks; no all-path/whole-frame equivalence claim'}
+        if process.returncode != 0: raise RuntimeError('Original process exited abnormally: ' + str(process.returncode))
         report.update(success=True, process_exit=process.returncode)
     except Exception as error:
+        report['success'] = False
         report['error'] = str(error)
         if display:
             ImageGrab.grab(xdisplay=env['DISPLAY']).save(root / 'failure.png')
@@ -350,7 +415,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('experiment', type=Path)
     parser.add_argument('--prefix-template', type=Path, required=True)
-    parser.add_argument('--journey', choices=['menus', 'campaign', 'campaign-save-load', 'movies', 'quick-battle'], default='menus')
+    parser.add_argument('--journey', choices=['menus', 'campaign', 'campaign-save-load', 'campaign-effects', 'movies', 'quick-battle'], default='menus')
     parser.add_argument('--claims', type=Path)
     args = parser.parse_args()
     print(json.dumps(capture(args.experiment, args.prefix_template, args.journey, args.claims)), flush=True)
