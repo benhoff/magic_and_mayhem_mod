@@ -178,3 +178,11 @@ cold450.270ms, original19.6259/Qt19.8767FPS, warm65 median39/p9549/max57ms, with
 all source/frozen/input and unchanged timing/resource/no-roundtrip checks passing.
 See [record](native-fade-row-world128-pass-20261011.json). This uninstrumented
 execution is a separate selected-path proof, not a paired profile speedup.
+
+Current normalized4096 after fade row damage passes all unchanged gates:
+original19.9362/Qt19.9390FPS,cold405.796ms,warm4033 median36/p9542/max65ms,
+RSS growth6,565,888 bytes. All4096 returns/completions/paints,zero World
+readbacks/replies/writebacks/coalescing/resources,real ddraw disabled/absent and
+all102 canonical compiler/fixture inputs/source/frozen/installed pins current.
+See [record](native-fade-row-world4096-pass-20261011.json). No paired causal
+speedup or arbitrary-scene/60FPS/publicV4fusion claim follows from this result.

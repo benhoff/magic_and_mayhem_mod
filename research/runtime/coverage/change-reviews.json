@@ -267570,6 +267570,151 @@
         ],
         "reason": "Fresh source-current972 independent original-loop cases compare1,738,592 WORDs exactly;126 mirror cases/11 refusals and ASan/UBSan pass,18 compiled inputs stable. Fresh Release-O3 canonical102-input TITAN128 passes every unchanged timing/resource gate: cold450.270ms,19.6259/19.8767FPS, warm median39/p9549/max57, all128 returns/paints,zero World readbacks/replies/writebacks/coalescing/resources. Selected bounded128 integration only, no causal paired speedup or long-run/public/60FPS assertion."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1d13083f3d564ae22dd78afe4d755a8a9350cce31659b99f8e91016dd544487b",
+          "before_sha256": "621af94ece56edf952c296103fb039e7dda838eaf767b548b68ef1491a652d97",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "0ae817516ade38e6157414ff45e68ffe21451e334a3fb6c7cafb9fae5a75ebc6",
+          "before_sha256": "5fdd650b11ed3b73ad770a60a7ad6a0080b9169ad7cf1fdcd14b4bb996e5d484",
+          "id": "NR.directdraw-retirement"
+        },
+        {
+          "after_sha256": "cf95ee875b8afd778d675c75cade945200f1bfd99570fa13541966df204891c7",
+          "before_sha256": "c2d91963dbf10eba7f9460443b2412cc187bc73984db0126786f25454d1c54da",
+          "id": "NR.minimap-continuous-read-window"
+        },
+        {
+          "after_sha256": "354d4a5c63af1952c3f38c504957a845f7aa8bfe87ea43f080753a201dacc517",
+          "before_sha256": "bc6a04e7ddad83f4e6c2c2d55f11f2a3ee2c8aa6f31573cf7c343fcbb4ddc110",
+          "id": "NR.world-continuous-normal-performance"
+        },
+        {
+          "after_sha256": "4fe8b68dee1869b99831c7c4ea26d58d131842e9c3feeaf2d9488a3458c63f87",
+          "before_sha256": "fbc9ec4623697bb12550c2804dec786860346d36d9fe9695f1f8af1791ba3534",
+          "id": "NR.world-continuous-source"
+        },
+        {
+          "after_sha256": "846018d98aac10fcc59de0a19964d19b1dec1be58978699c889d326be1e85b76",
+          "before_sha256": "09fab45359dfa07d32c797cf16b6fb81de241f755579c823fd294ebcd8359c71",
+          "id": "NR.world-gpu-ack-delivery"
+        },
+        {
+          "after_sha256": "de3024a0259583bc2e075eedd78c837f5bfe8cb17ad842eaae16212167652d96",
+          "before_sha256": "16aa1ffdd243eb5efa513bdcbcf990082651c63affee08b5c909afcc087efa85",
+          "id": "RS.world-continuous-producer"
+        },
+        {
+          "after_sha256": "4a32d1bba6700950b44214e957e3ebf59aceee998cec6cb82e76ee227c9e2ae4",
+          "before_sha256": "8a249bcd76e9c5302edb494724b20d14792974e717390c1d624f707963a8da6b",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "2c10cb100bb3f64fce361075d4a2ae96ea4dcc76bf50212a2a0ef6152cbacbf7",
+          "before_sha256": "2fd351fa5fa245829e1daf5e4eee732f55384027c6900b8d3b44298acfa2a04b",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "c420a1f9e7f84944c7f39dfe973a96ed6a68b7e0a9c5e214434c1e5260ce0278",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-fade-row-20261011.json"
+        },
+        {
+          "after_sha256": "a7703d0ef65741578629e9387bc5003aa8b819263c1946b9faae8b1f5f251a72",
+          "before_sha256": "ecdccfea49bf31ea25b7e76bf844920d6aef632f1eb15bda9da5e8d8156886f3",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "8f001ce101ebe123217d0d17bb35bf9890e3f7f749ceede94ca0dfa6264b1030",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-fade4096-20261011.md"
+        },
+        {
+          "after_sha256": "78c8b03b9ea041d8171ae2cb69d0d0301c152584e6ec8fa8bcca3d499ca683c4",
+          "before_sha256": null,
+          "path": "research/runtime/native-fade-row-world4096-pass-20261011.json"
+        },
+        {
+          "after_sha256": "665992c429a4616861bd6dbd662373325ad1737b0265b08da980a899259bcf8c",
+          "before_sha256": "2145ee1e8bd8e35668eb074eb5d9fdea32c72434eb329c13376a713db1a29d2d",
+          "path": "research/runtime/native-world-continuous.md"
+        }
+      ],
+      "id": "native-fade4096-evidence-accounting-20261011",
+      "pending_gaps": [],
+      "reason": "Reviewed current4096 report pins,102 actual compiler/fixture dependency hashes,relative prepared-root reconstruction,all completion/timing/resource checks and evidence assertions. Append immutable selected long-run result; older pass/fail/profile evidence is preserved. Reviewed26-file2d8a57f parent/current receipt range with no gaps. Source census remains current; no code or behavior contract change in this proof commit.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Metadata/ledger/history updates preserve broader historical statuses and source hashes. Fresh selected World4096 evidence is recorded below; current peer-death/recovery and public/standalone regressions remain pending. No allscene,60FPS,publicV4fusion,driver or semanticCOM equivalence assertion."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "0ae817516ade38e6157414ff45e68ffe21451e334a3fb6c7cafb9fae5a75ebc6",
+          "before_sha256": "5fdd650b11ed3b73ad770a60a7ad6a0080b9169ad7cf1fdcd14b4bb996e5d484",
+          "id": "NR.directdraw-retirement"
+        },
+        {
+          "after_sha256": "cf95ee875b8afd778d675c75cade945200f1bfd99570fa13541966df204891c7",
+          "before_sha256": "c2d91963dbf10eba7f9460443b2412cc187bc73984db0126786f25454d1c54da",
+          "id": "NR.minimap-continuous-read-window"
+        },
+        {
+          "after_sha256": "846018d98aac10fcc59de0a19964d19b1dec1be58978699c889d326be1e85b76",
+          "before_sha256": "09fab45359dfa07d32c797cf16b6fb81de241f755579c823fd294ebcd8359c71",
+          "id": "NR.world-gpu-ack-delivery"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "2c10cb100bb3f64fce361075d4a2ae96ea4dcc76bf50212a2a0ef6152cbacbf7",
+          "before_sha256": "2fd351fa5fa245829e1daf5e4eee732f55384027c6900b8d3b44298acfa2a04b",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "c420a1f9e7f84944c7f39dfe973a96ed6a68b7e0a9c5e214434c1e5260ce0278",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-fade-row-20261011.json"
+        },
+        {
+          "after_sha256": "a7703d0ef65741578629e9387bc5003aa8b819263c1946b9faae8b1f5f251a72",
+          "before_sha256": "ecdccfea49bf31ea25b7e76bf844920d6aef632f1eb15bda9da5e8d8156886f3",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "8f001ce101ebe123217d0d17bb35bf9890e3f7f749ceede94ca0dfa6264b1030",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-fade4096-20261011.md"
+        },
+        {
+          "after_sha256": "78c8b03b9ea041d8171ae2cb69d0d0301c152584e6ec8fa8bcca3d499ca683c4",
+          "before_sha256": null,
+          "path": "research/runtime/native-fade-row-world4096-pass-20261011.json"
+        },
+        {
+          "after_sha256": "665992c429a4616861bd6dbd662373325ad1737b0265b08da980a899259bcf8c",
+          "before_sha256": "2145ee1e8bd8e35668eb074eb5d9fdea32c72434eb329c13376a713db1a29d2d",
+          "path": "research/runtime/native-world-continuous.md"
+        }
+      ],
+      "id": "native-fade4096-titan-long-run-validation-20261011",
+      "pending_gaps": [],
+      "reason": "Reviewed current4096 report pins,102 actual compiler/fixture dependency hashes,relative prepared-root reconstruction,all completion/timing/resource checks and evidence assertions. Append immutable selected long-run result; older pass/fail/profile evidence is preserved. Reviewed26-file2d8a57f parent/current receipt range with no gaps. Source census remains current; no code or behavior contract change in this proof commit.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.directdraw-retirement.fade-row-world4096-20261011"
+        ],
+        "reason": "Current102-input TITAN4096 report passes every unchanged budget: all4096 returns/native completions/paints,19.9362/19.9390FPS,cold405.796ms,warm4033 median36/p9542/max65,RSS growth6,565,888 bytes. Source/frozen/installed inputs stable,real ddraw disabled/absent,zero World readbacks/replies/writebacks/coalescing/teardown surfaces. Selected long-run scope only, no universal performance or original-driver equivalence."
+      }
     }
   ]
 }

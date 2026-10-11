@@ -4557,3 +4557,18 @@ zero World readbacks/replies/writebacks/coalescing and remaining surfaces. See
 [native fade World128](native-fade-row-world128-pass-20261011.json). Longer4096,
 peer-death/recovery and current-source public/standalone regression executions
 remain the next separate milestones; no paired causal speedup is claimed.
+
+### Native DirectDraw retirement: current long-run World milestone (2026-10-11)
+
+Current102-input Release-O3 TITAN4096 passes every unchanged gate: all4096
+original returns/native completions/Qt paints, original19.9362/Qt19.9390FPS,
+cold405.796ms,all-warm4033 median36/p9542/max65ms,RSS growth6,565,888 bytes.
+Zero World readbacks,pixel replies,writebacks/coalescing and teardown surfaces;
+real ddraw disabled/absent. Relative prepared-root reporting exposes the complete
+actual compiler/fixture mapping and all source/frozen/input pins remain stable.
+[Proof](native-fade-row-world4096-pass-20261011.json). This establishes the
+selected long-run no-pixel-roundtrip path and19FPS target, not universal scenes,
+60FPS,publicV4fusion,movies,original pixels or semantic COM teardown. Peer-death
+and fresh recovery,public gameplay and standalone startup regressions remain
+separate current-code milestones. The26-file2d8a57f committed range has complete
+parent/current receipts, with no retrospective execution assertion.

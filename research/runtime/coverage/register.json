@@ -31836,7 +31836,8 @@
         "research/runtime/native-draw-status-recovery128-pass-20261011.json",
         "research/runtime/native-draw-status-final-artifacts-20261011.json",
         "research/runtime/native-world-canonical-cold-failure-20261011.json",
-        "research/runtime/native-fade-row-world128-pass-20261011.json"
+        "research/runtime/native-fade-row-world128-pass-20261011.json",
+        "research/runtime/native-fade-row-world4096-pass-20261011.json"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
@@ -32111,7 +32112,8 @@
         "NR.directdraw-retirement.status-producer-death-20261011",
         "NR.directdraw-retirement.status-consumer-death-20261011",
         "NR.directdraw-retirement.status-recovery128-20261011",
-        "NR.directdraw-retirement.fade-row-world128-20261011"
+        "NR.directdraw-retirement.fade-row-world128-20261011",
+        "NR.directdraw-retirement.fade-row-world4096-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -32143,7 +32145,8 @@
         "research/runtime/native-draw-status-final-artifacts-20261011.json",
         "research/runtime/native-world-canonical-cold-failure-20261011.json",
         "research/runtime/native-world-cold-fade-profile-20261011.json",
-        "research/runtime/native-fade-row-world128-pass-20261011.json"
+        "research/runtime/native-fade-row-world128-pass-20261011.json",
+        "research/runtime/native-fade-row-world4096-pass-20261011.json"
       ],
       "implementation": [
         "protocols/include/mnm/world_continuous_v4.h",
@@ -32400,7 +32403,8 @@
         "NR.directdraw-retirement.status-producer-death-20261011",
         "NR.directdraw-retirement.status-consumer-death-20261011",
         "NR.directdraw-retirement.status-recovery128-20261011",
-        "NR.directdraw-retirement.fade-row-world128-20261011"
+        "NR.directdraw-retirement.fade-row-world128-20261011",
+        "NR.directdraw-retirement.fade-row-world4096-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -34055,13 +34059,15 @@
         "research/runtime/native-draw-status-recovery128-pass-20261011.json",
         "research/runtime/native-draw-status-final-artifacts-20261011.json",
         "research/runtime/native-world-canonical-cold-failure-20261011.json",
-        "research/runtime/native-fade-row-world128-pass-20261011.json"
+        "research/runtime/native-fade-row-world128-pass-20261011.json",
+        "research/runtime/native-fade-row-world4096-pass-20261011.json"
       ],
       "evidence": [
         "NR.minimap-continuous-read-window.live4096-20261011",
         "NR.directdraw-retirement.status-world4096-20261011",
         "NR.directdraw-retirement.status-recovery128-20261011",
-        "NR.directdraw-retirement.fade-row-world128-20261011"
+        "NR.directdraw-retirement.fade-row-world128-20261011",
+        "NR.directdraw-retirement.fade-row-world4096-20261011"
       ],
       "validation_dependencies": [],
       "status": {
@@ -67342,6 +67348,97 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.directdraw-retirement.fade-row-world4096-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-fade-row-world4096-pass-20261011.json",
+      "sha256": "78c8b03b9ea041d8171ae2cb69d0d0301c152584e6ec8fa8bcca3d499ca683c4",
+      "scope": "Fresh current-source4096 original-engine/native resident World returns and Qt paints on TITAN RTX, canonical102 compiler/fixture inputs exposed with a relative prepared root. Every unchanged timing/resource gate passes: original19.9362/Qt19.9390FPS,cold405.796ms,all-warm4033 median36/p9542/max65ms,RSS growth6,565,888 bytes. Real ddraw disabled/absent,zero World GPU readbacks,pixel replies,writebacks/coalescing/teardown surfaces. Source/frozen/installed inputs stable. No paired causal speedup,arbitrary-scene19/60FPS,publicV4fusion,movies,driver pixels or semanticCOM Quit claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/selected_session_directdraw_backend_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/original_returns",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/qt_paints",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/caches",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/original_fps",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/memory_fixtures_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -75325,7 +75422,8 @@
         "NR.minimap-continuous-read-window.live4096-20261011",
         "NR.directdraw-retirement.status-world4096-20261011",
         "NR.directdraw-retirement.status-recovery128-20261011",
-        "NR.directdraw-retirement.fade-row-world128-20261011"
+        "NR.directdraw-retirement.fade-row-world128-20261011",
+        "NR.directdraw-retirement.fade-row-world4096-20261011"
       ]
     },
     {
