@@ -2003,11 +2003,12 @@
       "title": "Locked pixel access",
       "behaviors": [
         "RI.locked-writes",
-        "RS.canvas-create-lock"
+        "RS.canvas-create-lock",
+        "DRAW.canvas-lock-recovery"
       ],
       "owner": "runtime/render; runtime/scene",
       "classification": "surface_access",
-      "scope": "Selected pinned No-CD entry; only the linked research contract applies.",
+      "scope": "Original Lock client plus bounded scripted recovery/failure fixture: absent surface, cleared108byte descriptor, stored Restore versus retried Lock result, returned pointer/pitch, low16key, reload endpoints, ordered teardown and optional auxiliary Unlock. External recovery/pixels/lifetime and populated/reentrant destructor paths remain pending.",
       "confidence": "high_within_scope",
       "support": {
         "decision": "original_only",
@@ -2015,13 +2016,17 @@
       },
       "side_effects": [
         "Returned pointer, pitch, retry/conditional Unlock",
-        "Dirty generations and matching access lifetimes"
+        "Dirty generations and matching access lifetimes",
+        "Stored6f8150result differs from retried Lock result on lost paths",
+        "Failure releases/display/window teardown and selected global resets; actual external effects are not assumed",
+        "Restored surface key and zero/callback/sentinel reload ordering; external pixels remain unknown"
       ],
       "remaining": "Broader callers, failure/lifetime branches and supported-session integration remain pending.",
       "documents": [
         "research/runtime/render-drawing-inventory.md",
         "docs/live-drawing-replacement.md",
-        "research/runtime/native-world-canvas-startup.md"
+        "research/runtime/native-world-canvas-startup.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11510,11 +11515,12 @@
       "api_site": 5813917,
       "title": "Exact original API diagnostic CALL 0058b69d",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "surface_access",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11526,7 +11532,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11541,11 +11548,12 @@
       "api_site": 5813931,
       "title": "Exact original API diagnostic CALL 0058b6ab",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "lifecycle",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11557,7 +11565,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11572,11 +11581,12 @@
       "api_site": 5813974,
       "title": "Exact original API diagnostic CALL 0058b6d6",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "lifecycle",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11588,7 +11598,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11603,11 +11614,12 @@
       "api_site": 5814018,
       "title": "Exact original API diagnostic CALL 0058b702",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "render_state",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11619,7 +11631,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11634,11 +11647,12 @@
       "api_site": 5814031,
       "title": "Exact original API diagnostic CALL 0058b70f",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "composition",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11650,7 +11664,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11665,11 +11680,12 @@
       "api_site": 5814045,
       "title": "Exact original API diagnostic CALL 0058b71d",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "composition",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11681,7 +11697,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11696,11 +11713,12 @@
       "api_site": 5814069,
       "title": "Exact original API diagnostic CALL 0058b735",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "surface_access",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11712,7 +11730,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11758,11 +11777,12 @@
       "api_site": 5814141,
       "title": "Exact original API diagnostic CALL 0058b77d",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "lifecycle",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11774,7 +11794,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11789,11 +11810,12 @@
       "api_site": 5814167,
       "title": "Exact original API diagnostic CALL 0058b797",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "render_state",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11805,7 +11827,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11820,11 +11843,12 @@
       "api_site": 5814184,
       "title": "Exact original API diagnostic CALL 0058b7a8",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "lifecycle",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11836,7 +11860,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11851,11 +11876,12 @@
       "api_site": 5814195,
       "title": "Exact original API diagnostic CALL 0058b7b3",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "lifecycle",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11867,7 +11893,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11882,11 +11909,12 @@
       "api_site": 5814206,
       "title": "Exact original API diagnostic CALL 0058b7be",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "lifecycle",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11898,7 +11926,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11913,11 +11942,12 @@
       "api_site": 5814239,
       "title": "Exact original API diagnostic CALL 0058b7df",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "lifecycle",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11929,7 +11959,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
@@ -11944,11 +11975,12 @@
       "api_site": 5814278,
       "title": "Exact original API diagnostic CALL 0058b806",
       "behaviors": [
-        "DRAW.graphics-api-boundaries"
+        "DRAW.graphics-api-boundaries",
+        "DRAW.canvas-lock-recovery"
       ],
-      "owner": "Original graphics/media client; external target implementation and semantic caller ownership remain unassigned",
-      "classification": "unresolved",
-      "scope": "One exact pinned original CALL instruction with byte-defined target mode. Selected live activity is an observed CALL, not a recovered function, COM type or complete graphics operation.",
+      "owner": "Original canvas Lock wrapper client (nocd-40209ca7:0x58b660); external implementation/lifetime remains separate",
+      "classification": "surface_access",
+      "scope": "Exact CALL in original58b660client, selected branch ordering/state checked by13824owned scripted external-result cells. Classification covers caller operation only; no universal dynamic interface type, physical recovery, pixels or complete scenario/lifetime claim.",
       "confidence": "provisional",
       "support": {
         "decision": "original_only",
@@ -11960,7 +11992,8 @@
       ],
       "remaining": "Unexecuted branches, semantic caller/type ownership, variable outputs and pixels, external lifetime/refcounts and failures/recovery remain pending. Empty discovered owner sets remain empty.",
       "documents": [
-        "research/runtime/draw01-graphics-api-boundaries.md"
+        "research/runtime/draw01-graphics-api-boundaries.md",
+        "research/runtime/draw01-inventory.md"
       ],
       "selectors": [
         {
