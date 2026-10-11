@@ -72,6 +72,7 @@ public:
   void apply(const CanvasProducer &);
   void publishWrites() { canvases_.publishWrites(); }
   void invalidateWorld(const CanvasProducer &);
+  void discardCpuWorld(std::uint32_t id) { canvases_.discardCpu(id); }
   CanvasFrameCacheStats frameCacheStats() const { return frames_.stats(); }
   mnm::render::Image read(std::uint32_t id) const { return canvases_.read(id); }
   void commitNativeWorld(std::uint32_t id, const mnm::render::Image &image) {

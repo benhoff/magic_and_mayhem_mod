@@ -5,7 +5,7 @@ namespace mnm::legacy {
 WorldRollingSession::WorldRollingSession(render::GlBlitter &renderer,
                                          const assets::AssetStore &store,
                                          bool verify, bool resident)
-    : mirror_(resident ? std::make_unique<render::GpuCanvasMirror>(renderer) : nullptr),
+    : renderer_(renderer), mirror_(resident ? std::make_unique<render::GpuCanvasMirror>(renderer) : nullptr),
       producer_([store](const auto &name) {
         auto opened = store.open(name);
         if (auto *e = std::get_if<assets::Error>(&opened))
@@ -80,7 +80,7 @@ render::Image WorldRollingSession::consumeStream(
       const auto &r = c.fields;
       const auto start = std::chrono::steady_clock::now();
       if (resident_ && world_.active() && (r[2] == 9 || r[2] == 14 || r[2] == 26))
-        producer_.invalidateWorld(c);
+        {} // GPU World consumes these requests; CPU knowledge was discarded once.
       else if (verify_ || !world_.active() || r[2] != 9)
         producer_.apply(c);
       cpuMs += std::chrono::duration<double, std::milli>(
@@ -90,6 +90,7 @@ render::Image WorldRollingSession::consumeStream(
         canvas = r[3];
         if(resident_) {
           producer_.publishWrites();
+          producer_.discardCpuWorld(canvas);
           world_.beginResident(c,mirror_->surface(canvas),sequence);
           continue;
         }
@@ -125,6 +126,7 @@ render::Image WorldRollingSession::consumeStream(
     if (world_.active() || world_.completedSequence() != sequence)
       throw std::runtime_error("Rolling renderer did not complete the packet");
     const auto &p = world_.profile();
+    producerMs_ = cpuMs;
     nativeMs_ = cpuMs + p.adoptMs + p.prepareMs + p.submitMs + p.readbackMs +
                 p.compareMs;
     auto result = resident_ ? render::Image{} : producer_.read(canvas);
@@ -138,8 +140,9 @@ render::Image WorldRollingSession::consumeStream(
 render::GpuFrame WorldRollingSession::consumeResident(std::uint64_t sequence,
                                                        const CanvasProducerStream &stream) {
   if(!resident_)throw std::logic_error("Session does not own resident canvases");
-  consumeOwned(sequence,stream);
-  return presentGpu();
+  render::GpuFrame frame;
+  renderer_.batch([&] { consumeOwned(sequence,stream); frame=presentGpu(); });
+  return frame;
 }
 render::Image WorldRollingSession::diagnosticReadResident(render::GlBlitter &renderer) {
   if(!resident_ || failed_ || !completed_)throw std::logic_error("No resident diagnostic frame");

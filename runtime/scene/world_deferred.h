@@ -2,7 +2,7 @@
 #define MNM_WORLD_DEFERRED_H
 #include "../../protocols/include/mnm/canvas_producers_v1.h"
 #define MNM_WORLD_DEFERRED_BYTES (4u*1024u*1024u)
-#define MNM_WORLD_DEFERRED_RECORDS 64u
+#define MNM_WORLD_DEFERRED_RECORDS 512u
 /* Native capture policy: these secondary operations are independent of World
  * traversal. Admission never permits a World source/destination or global bind. */
 static int mnm_world_defer_admitted(const unsigned* r,unsigned n,unsigned world,

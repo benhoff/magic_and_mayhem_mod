@@ -35,6 +35,8 @@ public:
   // Flush only known CPU writes into optional GPU storage. World output never
   // enters this upload path. GPU-only copies propagate unknown CPU validity.
   void publishWrites();
+  // Discard CPU knowledge after native GPU World ownership; no GPU mutation.
+  void discardCpu(std::uint32_t);
   Image read(std::uint32_t) const;
   std::size_t surfaces() const { return surfaces_.size(); }
 

@@ -14,6 +14,7 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--claims',type=Path,required=True)
+    parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64',help='Read-only stopped Wine prefix to copy into the private experiment')
     args=parser.parse_args();claims=json.loads(args.claims.read_text())
     if not os.environ.get('DISPLAY'):parser.error('Use isolated Xvfb')
     for name,digest in claims['sources'].items():
@@ -21,7 +22,7 @@ def main():
     parent=ROOT/'working/tests/native-draw-surfaces';parent.mkdir(parents=True,exist_ok=True)
     out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
     report=dict(success=False,sources=claims['sources'],claims=claims['claims'],
-      scope='64 unchanged caller cases using DirectDraw1/4 and Surface1/2/4, odd-pitch system-memory RGB565, key/copy/fill/overlap and full native words against real Wine DirectDraw. Native run disables ddraw and checks no module loads; device modes are logical native policies. Primary/flip/DC/palette services, real game integration and GPU history read dependencies remain pending.',
+      scope='Four native default-placement 510x180 RGB565 policies on108/124-byte descriptors and two malformed-cap/format refusals, separately from64 unchanged caller cases using DirectDraw1/4 and Surface1/2/4, odd-pitch system-memory RGB565, key/copy/fill/overlap and full native words against real Wine DirectDraw. Native run disables ddraw and checks no module loads; device modes are logical native policies. Primary/flip/DC/palette services, real game integration and GPU history read dependencies remain pending.',
       real_game_directdraw_retired=False)
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
     env.update(WINEDEBUG='-all',LIBGL_ALWAYS_SOFTWARE='1',WINEPREFIX=str(out/'wineprefix'))
@@ -33,10 +34,17 @@ def main():
         run('original-before',[ROOT/'tools/original-manifest.sh','verify']);before=True
         spec=importlib.util.spec_from_file_location('native_factory_reservation',ROOT/'tools/capture-original-surface-keys.py')
         module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);reservation=module.reserve_wine()
-        run('prefix',['cp','-a','--reflink=auto',(ROOT/'working/wineprefix-x86_64').resolve(),out/'wineprefix'])
+        template=args.prefix_template.resolve()
+        if not template.is_dir():raise ValueError('Missing prefix template')
+        report['prefix_template']=str(template)
+        for registry in ('system.reg','user.reg','userdef.reg'):
+            path=template/registry
+            if path.exists():inputs[str(path)]=sha(path)
+        run('prefix',['cp','-a','--reflink=auto',template,out/'wineprefix'])
         run('wineboot',['wineboot','-u'])
-        driver=out/'wineprefix/drive_c/windows/syswow64/ddraw.dll'
-        if driver.exists():inputs[str(driver)]=sha(driver)
+        for directory in ('system32','syswow64'):
+            driver=out/'wineprefix/drive_c/windows'/directory/'ddraw.dll'
+            if driver.exists():inputs[str(driver)]=sha(driver)
         report['wine_version']=subprocess.check_output(['wine','--version'],text=True).strip()
         imports={'VirtualAlloc':16,'VirtualFree':12,'GetModuleHandleA':4,'VirtualQuery':12,'GetProcessHeap':0,'HeapAlloc':12,'HeapFree':12,'GetLastError':0,'SetLastError':4,'GetEnvironmentVariableA':12,'LoadLibraryA':4,'GetProcAddress':8,'CreateFileA':28,'WriteFile':20,'CloseHandle':4,'ExitProcess':4}
         definition=out/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{v}\n' for n,v in imports.items()))
@@ -74,9 +82,9 @@ def main():
         report.update(cases=64,caller_words=64*32,pixel_words=64*5*13*9,original_results_sha256=sha(out/'original/surface-results.bin'),native_results_sha256=sha(out/'native/surface-results.bin'),mismatch_words=mismatch,
           native_ddraw_disabled=True,native_ddraw_module_absent=True,native_directdraw_imports=False,native_remaining_surfaces=max(native_words[i*words+29] for i in range(64)),native_remaining_devices=max(native_words[i*words+30] for i in range(64)))
         if mismatch:raise ValueError('Original/native caller or pixel mismatch: '+repr(mismatch[:30]))
-        policy=struct.unpack('<4I',(out/'native/surface-policy.bin').read_bytes())
-        if policy!=(8,117,512,0):raise ValueError('Native refusal/capacity policy incomplete')
-        report['native_policy']=dict(refusals=policy[0],unchanged_words=policy[1],surface_capacity=policy[2],remaining_surfaces=policy[3],policy_sha256=sha(out/'native/surface-policy.bin'))
+        policy=struct.unpack('<6I',(out/'native/surface-policy.bin').read_bytes())
+        if policy!=(10,117,512,0,4,367200):raise ValueError('Native refusal/capacity policy incomplete')
+        report['native_policy']=dict(refusals=policy[0],unchanged_words=policy[1],surface_capacity=policy[2],remaining_surfaces=policy[3],default_offscreen_cases=policy[4],default_offscreen_words=policy[5],policy_sha256=sha(out/'native/surface-policy.bin'))
         report['success']=True
     except Exception as error:report['error']=str(error)
     finally:

@@ -134,6 +134,15 @@ static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,
  for(u32 i=0;i<5;++i)s->aliases[i]=(struct NsObject){ns_tables[i],s,i};
  s->interfaces=1;s->refs[device->kind==3?3:1]=1;s->device=device;nd_retain(device);s->width=width;s->height=height;s->caps=caps;++nd_surfaces;++ns_creates;ns_bytes+=s->pitch*height;nd_status();return s;
 }
+/* First failed descriptor per owned launch, preserving the HRESULT policy.
+ * This diagnostic is local bytes, not a pointer-bearing shared wire contract. */
+static i32 ns_surface_refusal(struct NdObject* o,const u32* d,u32 reason,void* caller){
+ u32 error=GetLastError(),record[39]={0x534d4e4d,0x31465255,1,156,o->kind,reason,(u32)caller,d[0]},done=0;
+ for(u32 i=0;i<(d[0]==124?31u:27u);++i)record[8+i]=d[i];
+ HANDLE file=CreateFileA("native-draw-surface-refusal.bin",0x40000000,0,0,1,0x80,0);
+ if(file!=(HANDLE)-1){WriteFile(file,record,sizeof(record),&done,0);CloseHandle(file);}
+ SetLastError(error);return NS_UNSUPPORTED;
+}
 static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer){
  if(!out)return ND_INVALID;*out=0;if(outer)return (i32)0x80040110u;
  if(!d || d[0]!=(o->kind==3?124u:108u))return ND_INVALID;
@@ -144,10 +153,10 @@ static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer
   if((caps==0x200 && flags!=1) || (caps==0x218 && (flags!=0x21 || d[5]!=1)))return NS_UNSUPPORTED;
   w=o->state->width;h=o->state->height;
  }else {
-  if((flags!=7 && flags!=0x1007) || (caps!=0x840 && caps!=0x40))return NS_UNSUPPORTED;
-  if(flags==0x1007 && (d[18]!=32 || d[19]!=0x40 || d[21]!=16 || d[22]!=0xf800 || d[23]!=0x7e0 || d[24]!=0x1f || d[25]))return NS_UNSUPPORTED;
+  if((flags!=7 && flags!=0x1007) || (caps!=0x840 && caps!=0x40 && caps!=0x800))return ns_surface_refusal(o,d,1,__builtin_return_address(0));
+  if(flags==0x1007 && (d[18]!=32 || d[19]!=0x40 || d[21]!=16 || d[22]!=0xf800 || d[23]!=0x7e0 || d[24]!=0x1f || d[25]))return ns_surface_refusal(o,d,2,__builtin_return_address(0));
  }
- struct NsState* s=ns_allocate(o,w,h,caps==0x40?0x10004040:caps);
+ struct NsState* s=ns_allocate(o,w,h,caps==0x40?0x10004040:(caps==0x800?0x840:caps));
  if(!s)return (i32)0x8007000eu;
  if(caps==0x218){s->back=ns_allocate(o,w,h,0x14);if(!s->back){ns_release(&s->aliases[o->kind==3?3:1]);return (i32)0x8007000eu;}}
  if(caps==0x200 || caps==0x218)o->state->primary=s;

@@ -30,6 +30,7 @@ public:
   }
   std::uint64_t completed() const { return completed_; }
   double nativeWorkMs() const { return nativeMs_; }
+  double producerWorkMs() const { return producerMs_; }
   double checkpointAssertionMs() const { return assertionMs_; }
   bool failed() const { return failed_; }
   struct PacketCacheStats {
@@ -45,12 +46,13 @@ private:
           &checkpoint,
       const std::function<void(const CanvasProducer &, const render::Image &)>
           &entry);
+  render::GlBlitter &renderer_;
   std::unique_ptr<render::GpuCanvasMirror> mirror_;
   CanvasProducerReplay producer_;
   CanvasWorld world_;
   std::uint64_t completed_ = 0;
   bool failed_ = false, verify_ = true, resident_ = false;
-  double nativeMs_ = 0, assertionMs_ = 0;
+  double nativeMs_ = 0, assertionMs_ = 0, producerMs_ = 0;
   std::vector<std::uint8_t> cachedBytes_;
   std::optional<CanvasProducerStream> cached_;
   std::uint64_t decodes_ = 0, hits_ = 0;

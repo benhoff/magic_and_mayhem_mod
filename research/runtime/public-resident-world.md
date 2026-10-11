@@ -87,3 +87,46 @@ These transient figures are not a sustained performance pass. Public casting,
 combat, pause/resume, quit and sustained19FPS remain pending. Historical kind8
 and minimap original comparisons retain their recorded hashes; this wiring does
 not promote them to current public replacement or pixel equivalence.
+
+## Default offscreen storage and batch profile milestone
+
+The first rejected descriptor is108bytes, flags7,510x180 and offscreen caps0x800
+with no explicit memory placement or format. Native policy selects owned
+system-memory RGB565 (returned caps0x840). Explicit0x1007 requests still require
+exact565 masks; unsupported caps and RGB555 remain refused. The first rejection
+is retained as156local bytes without changing HRESULT or GetLastError.
+`native-default-offscreen-pass-20261011.json` passes64unchanged Wine cases,
+37,440pixel words and2,048caller words, separately from4native default-placement
+cases/367,200words,10refusals and bounded512surface cleanup.
+
+Resident World now discards CPU validity once at entry rather than replaying
+each sprite's CPU validity work. All prefixes, native draws and shared-frame
+publication run under one bounded GL context batch. Unknown CPU reads still
+refuse and native GPU history stays resident. Fresh owned headless fixtures are
+`public-resident-batch-fixtures-20261011.json`:1,440,000reference words, mixed
+primitives, strict admission, rotated minimaps and leaf ABI; no original or
+public-gameplay equivalence is inferred.
+
+Titan profiling after batching measures24.41ms native work,11.02ms producer
+work,3.03ms prepare and6.38ms submit per World, versus35.48ms before batching.
+The aggregate11.22FPS remains a failure. The run reaches195verified Worlds
+then refuses a concurrent primary-screen40x40 cursor save copy. The captured
+source isID1, destinationID5, while the immutable World entry isID2; this is
+secondary cursor traffic, not a World source read. Capacity exhaustion is the
+remaining admission reason (record or byte budget); exact counters were absent
+in that historical diagnostic. Additional bound counters and a tested512record
+limit are pending fresh execution; the4MiB budget and World-source/destination
+prohibitions remain. The bounded smoke
+progress report records active/frame/stress state. The legacy fallback flag
+denotes terminal suspension on this resident route; it does not present the
+original viewport. See `public-resident-batch-background-copy-failure-20261011.json`.
+Performance, casting/combat, Mini/Cancel, semantic quit and current original
+World/UI pixel equivalence remain pending. Historical hashes are preserved.
+
+The follow-up512record/4MiB queue preserves every World-source/destination
+refusal and passes nine malformed/bounds cases plus a512record primary cursor
+copy burst. Fresh full owned fixtures are retained in
+`public-resident-cursor-queue-fixtures-20261011.json`. The Titan follow-up passes
+1100resident Worlds without a deferred refusal but stops at smoke Escape stage4
+(Mini does not appear) and misses19FPS; negative report
+`public-resident-cursor-queue-live-failure-20261011.json`. No status promotion.

@@ -45,6 +45,10 @@ void CanvasSequence::create(std::uint32_t id, int width, int height) {
     mirror_->create(id, width, height);
   }
 }
+void CanvasSequence::discardCpu(std::uint32_t id) {
+  if(!mirror_)throw std::logic_error("CPU knowledge discard requires a GPU mirror");
+  auto& s=surface(id);publishWrites();std::fill(s.defined.begin(),s.defined.end(),0);
+}
 std::size_t CanvasSequence::minimap(std::uint32_t id, int stride,
     const std::function<std::size_t(MinimapPlane &)> &draw) {
   auto &s = surface(id);

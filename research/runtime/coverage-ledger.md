@@ -5256,3 +5256,30 @@ ABI fixtures are distinct from historical original kind8/minimap comparisons.
 No original-comparison, integration or live-replacement status is promoted for
 the incomplete public campaign. Updated sources may stale older evidence;
 historical hashes are preserved rather than refreshed.
+
+### Public resident surface and batching milestone,2026-10-11
+
+Default offscreen caps0x800 now selects bounded owned RGB565 storage. Four exact
+510x180 native cases and the unchanged64-case Wine surface comparison pass;
+`native-default-offscreen-pass-20261011.json` retains current source/input claims.
+The prior rejected descriptor/modal stall remains separately preserved.
+Whole-World GL batching and bulk CPU knowledge discard pass the fresh owned
+fixtures in `public-resident-batch-fixtures-20261011.json` without delivery
+readbacks. Titan native work falls from~35ms to~24ms per World;19FPS is not met.
+The public run reaches195verified/imported Worlds then refuses a background
+primary-screen cursor copy. SourceID1 is distinct from guarded WorldID2; deferred
+record/byte capacity is the remaining refusal reason. Exact historical bound
+counters were absent; bounded512record traffic validation remains pending.
+`public-resident-batch-background-copy-failure-20261011.json` is negative evidence.
+Casting/combat, Mini/Cancel, quit and whole original pixel equivalence remain
+pending. Independent statuses and historical source hashes are unchanged.
+The previous committed range audit names a5ebae6..0063d12,56exact reviewed file
+versions and zero missing receipts; no retrospective gate/execution assertion.
+
+The follow-up512record/4MiB queue preserves every World-source/destination
+refusal and passes nine malformed/bounds cases plus a512record primary cursor
+copy burst. Fresh full owned fixtures are retained in
+`public-resident-cursor-queue-fixtures-20261011.json`. The Titan follow-up passes
+1100resident Worlds without a deferred refusal but stops at smoke Escape stage4
+(Mini does not appear) and misses19FPS; negative report
+`public-resident-cursor-queue-live-failure-20261011.json`. No status promotion.
