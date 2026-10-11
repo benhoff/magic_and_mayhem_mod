@@ -1,0 +1,3809 @@
+{
+  "schema": 1,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "image_base": 4194304,
+  "input_unchanged": true,
+  "sources_stable": true,
+  "sources": {
+    "tools/export-drawing-cpu-sites.py": "0dade10e0f41d85a66988e58c7e086a368e31ca67a79a8072556972df5d91ece",
+    "tools/drawing_cpu_sites.py": "3e480307240f93eabc190b63f04cdb3b4f8ccfdbcc851edf357a5bd5bc946178",
+    "tools/drawing_api_sites.py": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+  },
+  "assembly_sha256": "ce7024872d1adaeec45fa8d04e00bc5d2eb0a6955a9f3ebf0e1163d83561c576",
+  "slots": [
+    6855544,
+    6855548,
+    6882268,
+    7097916
+  ],
+  "calls": [
+    {
+      "site": 4235547,
+      "return_pc": 4235553,
+      "bytes": "ff157c9b6800",
+      "operand": "DWORD PTR ds:0x689b7c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6855548
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4235547,
+              4235553
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 4235625,
+      "return_pc": 4235631,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4235625,
+              4235631
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4235600
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 4235720,
+      "return_pc": 4235726,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4235720,
+              4235726
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4235600
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 4235781,
+      "return_pc": 4235787,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4235781,
+              4235787
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4235760
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 4235866,
+      "return_pc": 4235872,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4235866,
+              4235872
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4235760
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 4730041,
+      "return_pc": 4730047,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4730041,
+              4730047
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4730016
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 4730130,
+      "return_pc": 4730136,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4730130,
+              4730136
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4730016
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 4737639,
+      "return_pc": 4737645,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4737639,
+              4737645
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4737328
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5015302,
+      "return_pc": 5015308,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5015302,
+              5015308
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5012144
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5015320,
+      "return_pc": 5015326,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5015320,
+              5015326
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5012144
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5027405,
+      "return_pc": 5027411,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5027405,
+              5027411
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5027232
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5027516,
+      "return_pc": 5027522,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5027516,
+              5027522
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5027232
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5027534,
+      "return_pc": 5027540,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5027534,
+              5027540
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5027232
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5030557,
+      "return_pc": 5030563,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5030557,
+              5030563
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5030578,
+      "return_pc": 5030584,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5030578,
+              5030584
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5030677,
+      "return_pc": 5030683,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5030677,
+              5030683
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5030731,
+      "return_pc": 5030737,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5030731,
+              5030737
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5037753,
+      "return_pc": 5037759,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5037753,
+              5037759
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5037771,
+      "return_pc": 5037777,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5037771,
+              5037777
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5041392,
+      "return_pc": 5041398,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041392,
+              5041398
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5041445,
+      "return_pc": 5041451,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041445,
+              5041451
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5041538,
+      "return_pc": 5041544,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041538,
+              5041544
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5041562,
+      "return_pc": 5041568,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041562,
+              5041568
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5041612,
+      "return_pc": 5041618,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041612,
+              5041618
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5041636,
+      "return_pc": 5041642,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041636,
+              5041642
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5048600,
+      "return_pc": 5048606,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5048600,
+              5048606
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5048618,
+      "return_pc": 5048624,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5048618,
+              5048624
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5057234,
+      "return_pc": 5057240,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5057234,
+              5057240
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5057088
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5057252,
+      "return_pc": 5057258,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5057252,
+              5057258
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5057088
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5058441,
+      "return_pc": 5058447,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058441,
+              5058447
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5058461,
+      "return_pc": 5058467,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058461,
+              5058467
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5058554,
+      "return_pc": 5058560,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058554,
+              5058560
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5058574,
+      "return_pc": 5058580,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058574,
+              5058580
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5058666,
+      "return_pc": 5058672,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058666,
+              5058672
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5058686,
+      "return_pc": 5058692,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058686,
+              5058692
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5061941,
+      "return_pc": 5061947,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5061941,
+              5061947
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5061959,
+      "return_pc": 5061965,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5061959,
+              5061965
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5062043,
+      "return_pc": 5062049,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062043,
+              5062049
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5062061,
+      "return_pc": 5062067,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062061,
+              5062067
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5062145,
+      "return_pc": 5062151,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062145,
+              5062151
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5062167,
+      "return_pc": 5062173,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062167,
+              5062173
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5062244,
+      "return_pc": 5062250,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062244,
+              5062250
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5062266,
+      "return_pc": 5062272,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062266,
+              5062272
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5063723,
+      "return_pc": 5063729,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063723,
+              5063729
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5063741,
+      "return_pc": 5063747,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063741,
+              5063747
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5063796,
+      "return_pc": 5063802,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063796,
+              5063802
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5063814,
+      "return_pc": 5063820,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063814,
+              5063820
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5063909,
+      "return_pc": 5063915,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063909,
+              5063915
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5063927,
+      "return_pc": 5063933,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063927,
+              5063933
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5064001,
+      "return_pc": 5064007,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5064001,
+              5064007
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5064047,
+      "return_pc": 5064053,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5064047,
+              5064053
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5064065,
+      "return_pc": 5064071,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5064065,
+              5064071
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5064122,
+      "return_pc": 5064128,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5064122,
+              5064128
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5064140,
+      "return_pc": 5064146,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5064140,
+              5064146
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5078926,
+      "return_pc": 5078932,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5078926,
+              5078932
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5078832
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5078942,
+      "return_pc": 5078948,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5078942,
+              5078948
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5078832
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5094459,
+      "return_pc": 5094465,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094459,
+              5094465
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5094477,
+      "return_pc": 5094483,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094477,
+              5094483
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5094614,
+      "return_pc": 5094620,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094614,
+              5094620
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5094631,
+      "return_pc": 5094637,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094631,
+              5094637
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5094763,
+      "return_pc": 5094769,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094763,
+              5094769
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5094781,
+      "return_pc": 5094787,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094781,
+              5094787
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5094912,
+      "return_pc": 5094918,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094912,
+              5094918
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5094931,
+      "return_pc": 5094937,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094931,
+              5094937
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5095069,
+      "return_pc": 5095075,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095069,
+              5095075
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5095087,
+      "return_pc": 5095093,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095087,
+              5095093
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5095188,
+      "return_pc": 5095194,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095188,
+              5095194
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5095204,
+      "return_pc": 5095210,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095204,
+              5095210
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5095294,
+      "return_pc": 5095300,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095294,
+              5095300
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5095311,
+      "return_pc": 5095317,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095311,
+              5095317
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5095398,
+      "return_pc": 5095404,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095398,
+              5095404
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5095417,
+      "return_pc": 5095423,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095417,
+              5095423
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5098455,
+      "return_pc": 5098461,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5098455,
+              5098461
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5098160
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5098473,
+      "return_pc": 5098479,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5098473,
+              5098479
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5098160
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5101552,
+      "return_pc": 5101558,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5101552,
+              5101558
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5101248
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5101570,
+      "return_pc": 5101576,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5101570,
+              5101576
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5101248
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5103096,
+      "return_pc": 5103102,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5103096,
+              5103102
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5102944
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5103112,
+      "return_pc": 5103118,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5103112,
+              5103118
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5102944
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5243843,
+      "return_pc": 5243849,
+      "bytes": "ff157c9b6800",
+      "operand": "DWORD PTR ds:0x689b7c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6855548
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5243843,
+              5243849
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5244017,
+      "return_pc": 5244023,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5244017,
+              5244023
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5244172,
+      "return_pc": 5244178,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5244172,
+              5244178
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5244369,
+      "return_pc": 5244375,
+      "bytes": "ff15789b6800",
+      "operand": "DWORD PTR ds:0x689b78",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6855544
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5244369,
+              5244375
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5244991,
+      "return_pc": 5244997,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5244991,
+              5244997
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5245184,
+      "return_pc": 5245190,
+      "bytes": "ff157c9b6800",
+      "operand": "DWORD PTR ds:0x689b7c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6855548
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5245184,
+              5245190
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5245280,
+      "return_pc": 5245286,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5245280,
+              5245286
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5245361,
+      "return_pc": 5245367,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5245361,
+              5245367
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5245431,
+      "return_pc": 5245437,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5245431,
+              5245437
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5245512,
+      "return_pc": 5245518,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5245512,
+              5245518
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5246188,
+      "return_pc": 5246194,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5246188,
+              5246194
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5246362,
+      "return_pc": 5246368,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5246362,
+              5246368
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5246446,
+      "return_pc": 5246452,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5246446,
+              5246452
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5246530,
+      "return_pc": 5246536,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5246530,
+              5246536
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5246706,
+      "return_pc": 5246712,
+      "bytes": "ff15789b6800",
+      "operand": "DWORD PTR ds:0x689b78",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6855544
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5246706,
+              5246712
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5247257,
+      "return_pc": 5247263,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5247257,
+              5247263
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5542701,
+      "return_pc": 5542707,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5542701,
+              5542707
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5542734,
+      "return_pc": 5542740,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5542734,
+              5542740
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5543885,
+      "return_pc": 5543891,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5543885,
+              5543891
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5543918,
+      "return_pc": 5543924,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5543918,
+              5543924
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5545021,
+      "return_pc": 5545027,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5545021,
+              5545027
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5545054,
+      "return_pc": 5545060,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5545054,
+              5545060
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5547267,
+      "return_pc": 5547273,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5547267,
+              5547273
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5547357,
+      "return_pc": 5547363,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5547357,
+              5547363
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5572609,
+      "return_pc": 5572615,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5572609,
+              5572615
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5572256
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5572627,
+      "return_pc": 5572633,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5572627,
+              5572633
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5572256
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5573640,
+      "return_pc": 5573646,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5573640,
+              5573646
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5572976
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5573658,
+      "return_pc": 5573664,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5573658,
+              5573664
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5572976
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5594542,
+      "return_pc": 5594548,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5594542,
+              5594548
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5593488
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5594560,
+      "return_pc": 5594566,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5594560,
+              5594566
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5593488
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5738973,
+      "return_pc": 5738979,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5738973,
+              5738979
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5738991,
+      "return_pc": 5738997,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5738991,
+              5738997
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5739047,
+      "return_pc": 5739053,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739047,
+              5739053
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5739065,
+      "return_pc": 5739071,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739065,
+              5739071
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5739160,
+      "return_pc": 5739166,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739160,
+              5739166
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5739178,
+      "return_pc": 5739184,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739178,
+              5739184
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5739252,
+      "return_pc": 5739258,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739252,
+              5739258
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5739295,
+      "return_pc": 5739301,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739295,
+              5739301
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5739313,
+      "return_pc": 5739319,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739313,
+              5739319
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5761063,
+      "return_pc": 5761069,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761063,
+              5761069
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5761134,
+      "return_pc": 5761140,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761134,
+              5761140
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5761269,
+      "return_pc": 5761275,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761269,
+              5761275
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5761248
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5761338,
+      "return_pc": 5761344,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761338,
+              5761344
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5761248
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5761510,
+      "return_pc": 5761516,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761510,
+              5761516
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5761248
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5761571,
+      "return_pc": 5761577,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761571,
+              5761577
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5761248
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5761771,
+      "return_pc": 5761777,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761771,
+              5761777
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5761852,
+      "return_pc": 5761858,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761852,
+              5761858
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5762004,
+      "return_pc": 5762010,
+      "bytes": "ff15dc036900",
+      "operand": "DWORD PTR ds:0x6903dc",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5762004,
+              5762010
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5762085,
+      "return_pc": 5762091,
+      "bytes": "ff153c4e6c00",
+      "operand": "DWORD PTR ds:0x6c4e3c",
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5762085,
+              5762091
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    },
+    {
+      "site": 5888394,
+      "return_pc": 5888396,
+      "bytes": "ffd0",
+      "operand": "eax",
+      "target_mode": {
+        "kind": "register",
+        "register": "eax"
+      },
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5888394,
+              5888396
+            ]
+          ],
+          "kind": "exact_exit_callback_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5888312
+      ],
+      "exact_import": null,
+      "semantic_contract": "unreviewed",
+      "remaining": "Immediate target needs before-CALL observation; static slot or inherited continuation does not establish actual callee/body/lifetime."
+    }
+  ],
+  "direct_immediate_assignments": [
+    {
+      "site": 4736279,
+      "bytes": "c7053c4e6c001a525900",
+      "slot": 7097916,
+      "target": 5853722,
+      "discovered_owners": [
+        4736112
+      ],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4736289,
+      "bytes": "c7057c9b68003e605900",
+      "slot": 6855548,
+      "target": 5857342,
+      "discovered_owners": [
+        4736112
+      ],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4736299,
+      "bytes": "c705789b680090645900",
+      "slot": 6855544,
+      "target": 5858448,
+      "discovered_owners": [
+        4736112
+      ],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4736309,
+      "bytes": "c705dc036900b86c5900",
+      "slot": 6882268,
+      "target": 5860536,
+      "discovered_owners": [
+        4736112
+      ],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4736323,
+      "bytes": "c7053c4e6c00b2475900",
+      "slot": 7097916,
+      "target": 5851058,
+      "discovered_owners": [
+        4736112
+      ],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4736333,
+      "bytes": "c7057c9b6800475b5900",
+      "slot": 6855548,
+      "target": 5856071,
+      "discovered_owners": [
+        4736112
+      ],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4736343,
+      "bytes": "c705789b6800a4685900",
+      "slot": 6855544,
+      "target": 5859492,
+      "discovered_owners": [
+        4736112
+      ],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4736353,
+      "bytes": "c705dc03690086705900",
+      "slot": 6882268,
+      "target": 5861510,
+      "discovered_owners": [
+        4736112
+      ],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4736378,
+      "bytes": "c7053c4e6c0000de5700",
+      "slot": 7097916,
+      "target": 5758464,
+      "discovered_owners": [
+        4736112
+      ],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4737132,
+      "bytes": "c7053c4e6c001a525900",
+      "slot": 7097916,
+      "target": 5853722,
+      "discovered_owners": [],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4737142,
+      "bytes": "c7057c9b68003e605900",
+      "slot": 6855548,
+      "target": 5857342,
+      "discovered_owners": [],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4737152,
+      "bytes": "c705789b680090645900",
+      "slot": 6855544,
+      "target": 5858448,
+      "discovered_owners": [],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4737162,
+      "bytes": "c705dc036900b86c5900",
+      "slot": 6882268,
+      "target": 5860536,
+      "discovered_owners": [],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4737176,
+      "bytes": "c7053c4e6c00b2475900",
+      "slot": 7097916,
+      "target": 5851058,
+      "discovered_owners": [],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4737186,
+      "bytes": "c7057c9b6800475b5900",
+      "slot": 6855548,
+      "target": 5856071,
+      "discovered_owners": [],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4737196,
+      "bytes": "c705789b6800a4685900",
+      "slot": 6855544,
+      "target": 5859492,
+      "discovered_owners": [],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4737206,
+      "bytes": "c705dc03690086705900",
+      "slot": 6882268,
+      "target": 5861510,
+      "discovered_owners": [],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    },
+    {
+      "site": 4737225,
+      "bytes": "c7053c4e6c0000de5700",
+      "slot": 7097916,
+      "target": 5758464,
+      "discovered_owners": [],
+      "scope": "Exact absolute immediate assignment only; no executed branch, permanent binding or exclusion of indirect/alias writers."
+    }
+  ],
+  "counts": {
+    "calls": 128,
+    "global_calls": 127,
+    "exit_callback_calls": 1,
+    "direct_immediate_assignments": 18
+  },
+  "scope": "Whole-image exact CALL census for four original raster globals and one exact CRT exit callback CALL; exact C7 05 immediate assignments only. Empty discovered owners remain empty. No permanent/dynamic target, universal writer/alias exclusion, raster semantics, API/COM/lifetime, installed-hook or DRAW-01 closure."
+}
