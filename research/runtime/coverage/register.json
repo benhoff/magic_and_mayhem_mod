@@ -31539,6 +31539,49 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.drawing-api-observer",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Separate original CALL before/after forwarding observer",
+      "scope": "Opt-in PE32 observer for the250 accepted exact original CALL splices alongside core census. Save/restore registers/flags/x87/SSE/LastError, capture pre-CALL stack/target and post-CALL actual ESP/result, forward original CALL and remainder without replacing an argument or return slot. Retain64refused sites and abort startup on signature/protection/flush failure. Explicit journal loss/open/IO/terminal and control phase guards. Synthetic ABI tests and actual original runs remain separate; no universal transparency, caller-PC-sensitive/timing equivalence, original API/output/COM/GDI/borrow lifetime or complete writer/scenario/DRAW-01 closure claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-graphics-api-boundaries.md"
+      ],
+      "implementation": [
+        "runtime/drawing-api-census/observer.c",
+        "runtime/drawing-api-census/entry.S",
+        "tools/build-drawing-api-census.py"
+      ],
+      "tests": [
+        "tests/drawing-api-census-abi.c",
+        "tools/test-drawing-api-census-abi.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_journal.py",
+        "tools/drawing_api_sites.py",
+        "tools/drawing_census.py",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "runtime/shadow/win32_min.h",
+        "tools/build-shadow-bridge.py",
+        "tests/canvas-startup-call.S",
+        "research/runtime/drawing-api-splices-accounted-static-20261011.json"
+      ],
+      "evidence": [
+        "DRAW.api-observer.build-20261011",
+        "DRAW.api-observer.synthetic-abi-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -61080,6 +61123,51 @@
         }
       ],
       "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW.api-observer.build-20261011",
+      "kind": "static",
+      "scope": "Compiled separate observer for250 exact original CALL splices. No original API execution, universal ABI/transparency/timing, output/resource lifetime or DRAW-01 closure.",
+      "record": "research/runtime/drawing-api-observer-build-20261011.json",
+      "sha256": "2d4a0aa6ce69a111caf084bfe809cd259150d4c5d650051601a5363ef56008e0",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.api-observer.synthetic-abi-20261011",
+      "kind": "native_integration",
+      "scope": "Real separate CALL stubs/observer and dynamic splices against10synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.",
+      "record": "research/runtime/drawing-api-observer-synthetic-abi-20261011.json",
+      "sha256": "ee897fc41942fbffb63b043731ac58d78247f5aa9bca872fa2ba88b2e6b02e13",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/synthetic_bodies",
+          "equals": 10
+        },
+        {
+          "pointer": "/register_flags_x87_sse_last_error_preserved",
+          "equals": true
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ],
+      "claims_pointer": "/claims"
     }
   ],
   "classifications": [],
@@ -69542,6 +69630,22 @@
       "evidence": [
         "DRAW.api-journal.guards-20261011"
       ]
+    },
+    {
+      "id": "drawing-api-observer-synthetic-abi-20261011",
+      "level": "headless",
+      "scope": "Real separate API callbacks/stubs and continuation splices against synthetic PE32 bodies. Register/flags/x87/SSE/LastError/actual stack cleanup and invalid phase/loss/frame exhaustion guards. No actual original graphics APIs or resource lifetime.",
+      "behaviors": [
+        "TOOL.drawing-api-observer"
+      ],
+      "tests": [
+        "tools/test-drawing-api-census-abi.py",
+        "tests/drawing-api-census-abi.c",
+        "tests/canvas-startup-call.S"
+      ],
+      "evidence": [
+        "DRAW.api-observer.synthetic-abi-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -69879,8 +69983,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-api-journal-20261011.json",
-    "sha256": "5e430153616b98c1e38d0dea54d019a8d776d815715fa7b366193e4348bb5e0d"
+    "path": "research/runtime/coverage/source-index-draw01-api-observer-20261011.json",
+    "sha256": "9cd8f5292dd31db7b122e05ede769802d9b5c4bb427700daa83df04ad29a6b92"
   },
   "claim_bindings_required": true
 }

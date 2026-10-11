@@ -4576,3 +4576,15 @@ relocation. No original API or runtime observer has executed in this increment;
 output/resource borrowing and complete drawing proof remain pending. All14scenario
 andfour dispatch closures remain open. Historye4be448..f2d858b has exact12file/
 14behavior receipts without missing intermediate versions.
+
+### DRAW-01 separate API forwarding observer and synthetic ABI — 2026-10-11
+
+The [separate DLL build](drawing-api-observer-build-20261011.json) compiles
+250signature-pinned CALL probes, retaining64refusals. The [synthetic ABI](drawing-api-observer-synthetic-abi-20261011.json)
+passes10bodies/four CALL addressing modes with0–24-byte cleanup. Its tested
+registers/flags/x87/SSE/LastError, original argument placement, concrete target,
+negative EAX and actual cleanup match baseline. Loss/frame/phase/cap/IO states
+still forward the synthetic body through a fixed continuation. This fixture
+executes no original graphics API or original splice manifest; actual original
+installation/shutdown/journals, refused-site handling and output/resource/borrow
+lifetimes remain pending. All14scenario/four dispatch closures remain open.
