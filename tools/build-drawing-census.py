@@ -46,6 +46,10 @@ def hook_rows(executable):
     all_code = instructions(subprocess.check_output(['objdump', '-d', '-Mintel', str(executable)], text=True))
     rows, refused = [], []
     for route in catalog['routes']:
+        if 'observation_profile' in route:
+            if route['observation_profile'] != 'terminal_flow':
+                raise ValueError('Unreviewed opt-in core observation profile')
+            continue
         selectors = [s for s in route['selectors'] if s['kind'] == 'entry']
         if not selectors: continue
         entry = int(selectors[0]['identity'], 0) if isinstance(selectors[0]['identity'], str) else selectors[0]['identity']

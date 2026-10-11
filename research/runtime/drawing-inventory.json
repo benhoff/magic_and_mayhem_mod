@@ -1070,6 +1070,52 @@
           "activity": "live_original_active"
         }
       ]
+    },
+    {
+      "id": "terminal-cpu-menu-phase-2",
+      "evidence": "DRAW.terminal-observer.original-menu-20261011",
+      "scenario": "main-setup-menus",
+      "scope": "One retained original menu observer phase; parent/core and separate CPU target activity only. Host phase is a cohort label, not scenario completion.",
+      "build_pointer": "/core/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/core/entry_counts",
+          "phase": 2,
+          "selector": "entry",
+          "activity": "live_original_active"
+        },
+        {
+          "kind": "cpu_site_rows",
+          "pointer": "/api/targets",
+          "phase": 2,
+          "selector": "cpu_site",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "terminal-cpu-menu-phase-14",
+      "evidence": "DRAW.terminal-observer.original-menu-20261011",
+      "scenario": "main-setup-menus",
+      "scope": "One retained original menu observer phase; parent/core and separate CPU target activity only. Host phase is a cohort label, not scenario completion.",
+      "build_pointer": "/core/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/core/entry_counts",
+          "phase": 14,
+          "selector": "entry",
+          "activity": "live_original_active"
+        },
+        {
+          "kind": "cpu_site_rows",
+          "pointer": "/api/targets",
+          "phase": 14,
+          "selector": "cpu_site",
+          "activity": "live_original_active"
+        }
+      ]
     }
   ],
   "routes": [
@@ -18547,6 +18593,4134 @@
         }
       ],
       "static_windows": []
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0040a11b",
+      "cpu_site": 4235547,
+      "title": "Exact original CPU diagnostic CALL 0040a11b",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 4235547
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0040a169",
+      "cpu_site": 4235625,
+      "title": "Exact original CPU diagnostic CALL 0040a169",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 4235625
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0040a1c8",
+      "cpu_site": 4235720,
+      "title": "Exact original CPU diagnostic CALL 0040a1c8",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 4235720
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0040a205",
+      "cpu_site": 4235781,
+      "title": "Exact original CPU diagnostic CALL 0040a205",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 4235781
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0040a25a",
+      "cpu_site": 4235866,
+      "title": "Exact original CPU diagnostic CALL 0040a25a",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 4235866
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00482cb9",
+      "cpu_site": 4730041,
+      "title": "Exact original CPU diagnostic CALL 00482cb9",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 4730041
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00482d12",
+      "cpu_site": 4730130,
+      "title": "Exact original CPU diagnostic CALL 00482d12",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 4730130
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00484a67",
+      "cpu_site": 4737639,
+      "title": "Exact original CPU diagnostic CALL 00484a67",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 4737639
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004c8706",
+      "cpu_site": 5015302,
+      "title": "Exact original CPU diagnostic CALL 004c8706",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5015302
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004c8718",
+      "cpu_site": 5015320,
+      "title": "Exact original CPU diagnostic CALL 004c8718",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5015320
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cb64d",
+      "cpu_site": 5027405,
+      "title": "Exact original CPU diagnostic CALL 004cb64d",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5027405
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cb6bc",
+      "cpu_site": 5027516,
+      "title": "Exact original CPU diagnostic CALL 004cb6bc",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5027516
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cb6ce",
+      "cpu_site": 5027534,
+      "title": "Exact original CPU diagnostic CALL 004cb6ce",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5027534
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cc29d",
+      "cpu_site": 5030557,
+      "title": "Exact original CPU diagnostic CALL 004cc29d",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5030557
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cc2b2",
+      "cpu_site": 5030578,
+      "title": "Exact original CPU diagnostic CALL 004cc2b2",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5030578
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cc315",
+      "cpu_site": 5030677,
+      "title": "Exact original CPU diagnostic CALL 004cc315",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5030677
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cc34b",
+      "cpu_site": 5030731,
+      "title": "Exact original CPU diagnostic CALL 004cc34b",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5030731
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cdeb9",
+      "cpu_site": 5037753,
+      "title": "Exact original CPU diagnostic CALL 004cdeb9",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5037753
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cdecb",
+      "cpu_site": 5037771,
+      "title": "Exact original CPU diagnostic CALL 004cdecb",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5037771
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cecf0",
+      "cpu_site": 5041392,
+      "title": "Exact original CPU diagnostic CALL 004cecf0",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5041392
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004ced25",
+      "cpu_site": 5041445,
+      "title": "Exact original CPU diagnostic CALL 004ced25",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5041445
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004ced82",
+      "cpu_site": 5041538,
+      "title": "Exact original CPU diagnostic CALL 004ced82",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5041538
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004ced9a",
+      "cpu_site": 5041562,
+      "title": "Exact original CPU diagnostic CALL 004ced9a",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5041562
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cedcc",
+      "cpu_site": 5041612,
+      "title": "Exact original CPU diagnostic CALL 004cedcc",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5041612
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004cede4",
+      "cpu_site": 5041636,
+      "title": "Exact original CPU diagnostic CALL 004cede4",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5041636
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d0918",
+      "cpu_site": 5048600,
+      "title": "Exact original CPU diagnostic CALL 004d0918",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5048600
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d092a",
+      "cpu_site": 5048618,
+      "title": "Exact original CPU diagnostic CALL 004d092a",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5048618
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d2ad2",
+      "cpu_site": 5057234,
+      "title": "Exact original CPU diagnostic CALL 004d2ad2",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5057234
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d2ae4",
+      "cpu_site": 5057252,
+      "title": "Exact original CPU diagnostic CALL 004d2ae4",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5057252
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d2f89",
+      "cpu_site": 5058441,
+      "title": "Exact original CPU diagnostic CALL 004d2f89",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5058441
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d2f9d",
+      "cpu_site": 5058461,
+      "title": "Exact original CPU diagnostic CALL 004d2f9d",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5058461
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d2ffa",
+      "cpu_site": 5058554,
+      "title": "Exact original CPU diagnostic CALL 004d2ffa",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5058554
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d300e",
+      "cpu_site": 5058574,
+      "title": "Exact original CPU diagnostic CALL 004d300e",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5058574
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d306a",
+      "cpu_site": 5058666,
+      "title": "Exact original CPU diagnostic CALL 004d306a",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5058666
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d307e",
+      "cpu_site": 5058686,
+      "title": "Exact original CPU diagnostic CALL 004d307e",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5058686
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d3d35",
+      "cpu_site": 5061941,
+      "title": "Exact original CPU diagnostic CALL 004d3d35",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5061941
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d3d47",
+      "cpu_site": 5061959,
+      "title": "Exact original CPU diagnostic CALL 004d3d47",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5061959
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d3d9b",
+      "cpu_site": 5062043,
+      "title": "Exact original CPU diagnostic CALL 004d3d9b",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5062043
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d3dad",
+      "cpu_site": 5062061,
+      "title": "Exact original CPU diagnostic CALL 004d3dad",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5062061
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d3e01",
+      "cpu_site": 5062145,
+      "title": "Exact original CPU diagnostic CALL 004d3e01",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5062145
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d3e17",
+      "cpu_site": 5062167,
+      "title": "Exact original CPU diagnostic CALL 004d3e17",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5062167
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d3e64",
+      "cpu_site": 5062244,
+      "title": "Exact original CPU diagnostic CALL 004d3e64",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5062244
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d3e7a",
+      "cpu_site": 5062266,
+      "title": "Exact original CPU diagnostic CALL 004d3e7a",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5062266
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d442b",
+      "cpu_site": 5063723,
+      "title": "Exact original CPU diagnostic CALL 004d442b",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5063723
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d443d",
+      "cpu_site": 5063741,
+      "title": "Exact original CPU diagnostic CALL 004d443d",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5063741
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d4474",
+      "cpu_site": 5063796,
+      "title": "Exact original CPU diagnostic CALL 004d4474",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5063796
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d4486",
+      "cpu_site": 5063814,
+      "title": "Exact original CPU diagnostic CALL 004d4486",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5063814
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d44e5",
+      "cpu_site": 5063909,
+      "title": "Exact original CPU diagnostic CALL 004d44e5",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5063909
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d44f7",
+      "cpu_site": 5063927,
+      "title": "Exact original CPU diagnostic CALL 004d44f7",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5063927
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d4541",
+      "cpu_site": 5064001,
+      "title": "Exact original CPU diagnostic CALL 004d4541",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5064001
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d456f",
+      "cpu_site": 5064047,
+      "title": "Exact original CPU diagnostic CALL 004d456f",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5064047
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d4581",
+      "cpu_site": 5064065,
+      "title": "Exact original CPU diagnostic CALL 004d4581",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5064065
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d45ba",
+      "cpu_site": 5064122,
+      "title": "Exact original CPU diagnostic CALL 004d45ba",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5064122
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d45cc",
+      "cpu_site": 5064140,
+      "title": "Exact original CPU diagnostic CALL 004d45cc",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5064140
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d7f8e",
+      "cpu_site": 5078926,
+      "title": "Exact original CPU diagnostic CALL 004d7f8e",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5078926
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004d7f9e",
+      "cpu_site": 5078942,
+      "title": "Exact original CPU diagnostic CALL 004d7f9e",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5078942
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbc3b",
+      "cpu_site": 5094459,
+      "title": "Exact original CPU diagnostic CALL 004dbc3b",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5094459
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbc4d",
+      "cpu_site": 5094477,
+      "title": "Exact original CPU diagnostic CALL 004dbc4d",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5094477
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbcd6",
+      "cpu_site": 5094614,
+      "title": "Exact original CPU diagnostic CALL 004dbcd6",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5094614
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbce7",
+      "cpu_site": 5094631,
+      "title": "Exact original CPU diagnostic CALL 004dbce7",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5094631
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbd6b",
+      "cpu_site": 5094763,
+      "title": "Exact original CPU diagnostic CALL 004dbd6b",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5094763
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbd7d",
+      "cpu_site": 5094781,
+      "title": "Exact original CPU diagnostic CALL 004dbd7d",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5094781
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbe00",
+      "cpu_site": 5094912,
+      "title": "Exact original CPU diagnostic CALL 004dbe00",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5094912
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbe13",
+      "cpu_site": 5094931,
+      "title": "Exact original CPU diagnostic CALL 004dbe13",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5094931
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbe9d",
+      "cpu_site": 5095069,
+      "title": "Exact original CPU diagnostic CALL 004dbe9d",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5095069
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbeaf",
+      "cpu_site": 5095087,
+      "title": "Exact original CPU diagnostic CALL 004dbeaf",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5095087
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbf14",
+      "cpu_site": 5095188,
+      "title": "Exact original CPU diagnostic CALL 004dbf14",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5095188
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbf24",
+      "cpu_site": 5095204,
+      "title": "Exact original CPU diagnostic CALL 004dbf24",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5095204
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbf7e",
+      "cpu_site": 5095294,
+      "title": "Exact original CPU diagnostic CALL 004dbf7e",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5095294
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbf8f",
+      "cpu_site": 5095311,
+      "title": "Exact original CPU diagnostic CALL 004dbf8f",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5095311
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbfe6",
+      "cpu_site": 5095398,
+      "title": "Exact original CPU diagnostic CALL 004dbfe6",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5095398
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dbff9",
+      "cpu_site": 5095417,
+      "title": "Exact original CPU diagnostic CALL 004dbff9",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5095417
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dcbd7",
+      "cpu_site": 5098455,
+      "title": "Exact original CPU diagnostic CALL 004dcbd7",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5098455
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dcbe9",
+      "cpu_site": 5098473,
+      "title": "Exact original CPU diagnostic CALL 004dcbe9",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5098473
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dd7f0",
+      "cpu_site": 5101552,
+      "title": "Exact original CPU diagnostic CALL 004dd7f0",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5101552
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dd802",
+      "cpu_site": 5101570,
+      "title": "Exact original CPU diagnostic CALL 004dd802",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5101570
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dddf8",
+      "cpu_site": 5103096,
+      "title": "Exact original CPU diagnostic CALL 004dddf8",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5103096
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.004dde08",
+      "cpu_site": 5103112,
+      "title": "Exact original CPU diagnostic CALL 004dde08",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5103112
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.005003c3",
+      "cpu_site": 5243843,
+      "title": "Exact original CPU diagnostic CALL 005003c3",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5243843
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00500471",
+      "cpu_site": 5244017,
+      "title": "Exact original CPU diagnostic CALL 00500471",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5244017
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0050050c",
+      "cpu_site": 5244172,
+      "title": "Exact original CPU diagnostic CALL 0050050c",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5244172
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.005005d1",
+      "cpu_site": 5244369,
+      "title": "Exact original CPU diagnostic CALL 005005d1",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5244369
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0050083f",
+      "cpu_site": 5244991,
+      "title": "Exact original CPU diagnostic CALL 0050083f",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5244991
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00500900",
+      "cpu_site": 5245184,
+      "title": "Exact original CPU diagnostic CALL 00500900",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5245184
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00500960",
+      "cpu_site": 5245280,
+      "title": "Exact original CPU diagnostic CALL 00500960",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5245280
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.005009b1",
+      "cpu_site": 5245361,
+      "title": "Exact original CPU diagnostic CALL 005009b1",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5245361
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.005009f7",
+      "cpu_site": 5245431,
+      "title": "Exact original CPU diagnostic CALL 005009f7",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5245431
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00500a48",
+      "cpu_site": 5245512,
+      "title": "Exact original CPU diagnostic CALL 00500a48",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5245512
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00500cec",
+      "cpu_site": 5246188,
+      "title": "Exact original CPU diagnostic CALL 00500cec",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5246188
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00500d9a",
+      "cpu_site": 5246362,
+      "title": "Exact original CPU diagnostic CALL 00500d9a",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5246362
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00500dee",
+      "cpu_site": 5246446,
+      "title": "Exact original CPU diagnostic CALL 00500dee",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5246446
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00500e42",
+      "cpu_site": 5246530,
+      "title": "Exact original CPU diagnostic CALL 00500e42",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5246530
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00500ef2",
+      "cpu_site": 5246706,
+      "title": "Exact original CPU diagnostic CALL 00500ef2",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5246706
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00501119",
+      "cpu_site": 5247257,
+      "title": "Exact original CPU diagnostic CALL 00501119",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5247257
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0054932d",
+      "cpu_site": 5542701,
+      "title": "Exact original CPU diagnostic CALL 0054932d",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5542701
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0054934e",
+      "cpu_site": 5542734,
+      "title": "Exact original CPU diagnostic CALL 0054934e",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5542734
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.005497cd",
+      "cpu_site": 5543885,
+      "title": "Exact original CPU diagnostic CALL 005497cd",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5543885
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.005497ee",
+      "cpu_site": 5543918,
+      "title": "Exact original CPU diagnostic CALL 005497ee",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5543918
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00549c3d",
+      "cpu_site": 5545021,
+      "title": "Exact original CPU diagnostic CALL 00549c3d",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5545021
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00549c5e",
+      "cpu_site": 5545054,
+      "title": "Exact original CPU diagnostic CALL 00549c5e",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5545054
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0054a503",
+      "cpu_site": 5547267,
+      "title": "Exact original CPU diagnostic CALL 0054a503",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5547267
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0054a55d",
+      "cpu_site": 5547357,
+      "title": "Exact original CPU diagnostic CALL 0054a55d",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5547357
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00550801",
+      "cpu_site": 5572609,
+      "title": "Exact original CPU diagnostic CALL 00550801",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5572609
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00550813",
+      "cpu_site": 5572627,
+      "title": "Exact original CPU diagnostic CALL 00550813",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5572627
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00550c08",
+      "cpu_site": 5573640,
+      "title": "Exact original CPU diagnostic CALL 00550c08",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5573640
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00550c1a",
+      "cpu_site": 5573658,
+      "title": "Exact original CPU diagnostic CALL 00550c1a",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5573658
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00555dae",
+      "cpu_site": 5594542,
+      "title": "Exact original CPU diagnostic CALL 00555dae",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5594542
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00555dc0",
+      "cpu_site": 5594560,
+      "title": "Exact original CPU diagnostic CALL 00555dc0",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5594560
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.005791dd",
+      "cpu_site": 5738973,
+      "title": "Exact original CPU diagnostic CALL 005791dd",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5738973
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.005791ef",
+      "cpu_site": 5738991,
+      "title": "Exact original CPU diagnostic CALL 005791ef",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5738991
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00579227",
+      "cpu_site": 5739047,
+      "title": "Exact original CPU diagnostic CALL 00579227",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5739047
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00579239",
+      "cpu_site": 5739065,
+      "title": "Exact original CPU diagnostic CALL 00579239",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5739065
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00579298",
+      "cpu_site": 5739160,
+      "title": "Exact original CPU diagnostic CALL 00579298",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5739160
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.005792aa",
+      "cpu_site": 5739178,
+      "title": "Exact original CPU diagnostic CALL 005792aa",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5739178
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.005792f4",
+      "cpu_site": 5739252,
+      "title": "Exact original CPU diagnostic CALL 005792f4",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5739252
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0057931f",
+      "cpu_site": 5739295,
+      "title": "Exact original CPU diagnostic CALL 0057931f",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5739295
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.00579331",
+      "cpu_site": 5739313,
+      "title": "Exact original CPU diagnostic CALL 00579331",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5739313
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0057e827",
+      "cpu_site": 5761063,
+      "title": "Exact original CPU diagnostic CALL 0057e827",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5761063
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0057e86e",
+      "cpu_site": 5761134,
+      "title": "Exact original CPU diagnostic CALL 0057e86e",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5761134
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0057e8f5",
+      "cpu_site": 5761269,
+      "title": "Exact original CPU diagnostic CALL 0057e8f5",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5761269
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0057e93a",
+      "cpu_site": 5761338,
+      "title": "Exact original CPU diagnostic CALL 0057e93a",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5761338
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0057e9e6",
+      "cpu_site": 5761510,
+      "title": "Exact original CPU diagnostic CALL 0057e9e6",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5761510
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0057ea23",
+      "cpu_site": 5761571,
+      "title": "Exact original CPU diagnostic CALL 0057ea23",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5761571
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0057eaeb",
+      "cpu_site": 5761771,
+      "title": "Exact original CPU diagnostic CALL 0057eaeb",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5761771
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0057eb3c",
+      "cpu_site": 5761852,
+      "title": "Exact original CPU diagnostic CALL 0057eb3c",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5761852
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0057ebd4",
+      "cpu_site": 5762004,
+      "title": "Exact original CPU diagnostic CALL 0057ebd4",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5762004
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0057ec25",
+      "cpu_site": 5762085,
+      "title": "Exact original CPU diagnostic CALL 0057ec25",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5762085
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "TOOL.drawing-cpu-sites"
+      ],
+      "owner": "Original CPU dispatch client; semantic callee and complete writer ownership remain unresolved",
+      "classification": "unresolved",
+      "scope": "One byte-defined original global/CRT CALL; exact diagnostic target mode only. No inferred function boundary, semantic callee contract or borrowed API type.",
+      "confidence": "provisional",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "All pointer writers, configuration branches, target bodies, aliases/registration, failures and physical lifetimes remain pending. Static CALL identity and selected activity do not close dispatch or scenarios.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.cpu-site.0059d98a",
+      "cpu_site": 5888394,
+      "title": "Exact original CPU diagnostic CALL 0059d98a",
+      "selectors": [
+        {
+          "kind": "cpu_site",
+          "identity": 5888394
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "DRAW.terminal-canvas-wrappers"
+      ],
+      "owner": "Original fixed canvas cleanup wrapper; registration and full lifetime ownership remain unresolved",
+      "classification": "lifecycle",
+      "scope": "Exact unchanged original bounded wrapper control flow, fixed receiver, RET0 and opt-in parent-frame observation. External release bodies, registration and initial runtime flag byte remain outside this wrapper contract.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "Full registrations, all root paths, actual flag byte/handle history, external mutations/reentrancy and physical reference/storage lifetimes remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.terminal-entry.004bdd10",
+      "entry": 4971792,
+      "title": "Opt-in original terminal wrapper 004bdd10",
+      "observation_profile": "terminal_flow",
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": 4971792
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "DRAW.terminal-canvas-wrappers"
+      ],
+      "owner": "Original fixed canvas cleanup wrapper; registration and full lifetime ownership remain unresolved",
+      "classification": "lifecycle",
+      "scope": "Exact unchanged original bounded wrapper control flow, fixed receiver, RET0 and opt-in parent-frame observation. External release bodies, registration and initial runtime flag byte remain outside this wrapper contract.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "Full registrations, all root paths, actual flag byte/handle history, external mutations/reentrancy and physical reference/storage lifetimes remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.terminal-entry.004bdcb0",
+      "entry": 4971696,
+      "title": "Opt-in original terminal wrapper 004bdcb0",
+      "observation_profile": "terminal_flow",
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": 4971696
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "DRAW.terminal-canvas-wrappers"
+      ],
+      "owner": "Original fixed canvas cleanup wrapper; registration and full lifetime ownership remain unresolved",
+      "classification": "lifecycle",
+      "scope": "Exact unchanged original bounded wrapper control flow, fixed receiver, RET0 and opt-in parent-frame observation. External release bodies, registration and initial runtime flag byte remain outside this wrapper contract.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "Full registrations, all root paths, actual flag byte/handle history, external mutations/reentrancy and physical reference/storage lifetimes remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.terminal-entry.004a2f00",
+      "entry": 4861696,
+      "title": "Opt-in original terminal wrapper 004a2f00",
+      "observation_profile": "terminal_flow",
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": 4861696
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "DRAW.terminal-canvas-wrappers"
+      ],
+      "owner": "Original fixed canvas cleanup wrapper; registration and full lifetime ownership remain unresolved",
+      "classification": "lifecycle",
+      "scope": "Exact unchanged original bounded wrapper control flow, fixed receiver, RET0 and opt-in parent-frame observation. External release bodies, registration and initial runtime flag byte remain outside this wrapper contract.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "Full registrations, all root paths, actual flag byte/handle history, external mutations/reentrancy and physical reference/storage lifetimes remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.terminal-entry.004a2f70",
+      "entry": 4861808,
+      "title": "Opt-in original terminal wrapper 004a2f70",
+      "observation_profile": "terminal_flow",
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": 4861808
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "DRAW.terminal-canvas-wrappers"
+      ],
+      "owner": "Original fixed canvas cleanup wrapper; registration and full lifetime ownership remain unresolved",
+      "classification": "lifecycle",
+      "scope": "Exact unchanged original bounded wrapper control flow, fixed receiver, RET0 and opt-in parent-frame observation. External release bodies, registration and initial runtime flag byte remain outside this wrapper contract.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original target remains forwarded; diagnostic CALL accounting admits no native replacement."
+      },
+      "side_effects": [
+        "Original immediate target and actual cleanup/GPR/flags/LastError are separately observed",
+        "Pixel, globals, allocation and lifetime effects require callee/writer-specific evidence"
+      ],
+      "remaining": "Full registrations, all root paths, actual flag byte/handle history, external mutations/reentrancy and physical reference/storage lifetimes remain pending.",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "static_windows": [],
+      "id": "DRAW.terminal-entry.004a37d0",
+      "entry": 4863952,
+      "title": "Opt-in original terminal wrapper 004a37d0",
+      "observation_profile": "terminal_flow",
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": 4863952
+        }
+      ]
     }
   ],
   "additional_hook_sources": [
@@ -18595,6 +22769,12 @@
   "api_layout_sources": [
     {
       "evidence": "DRAW.surface-api.layouts-static-20261011"
+    }
+  ],
+  "cpu_site_sources": [
+    {
+      "evidence": "DRAW.raster-pointer-assignments.static-20261011",
+      "scope": "Exact retained128global/CRT CALL boundaries only; independent CPU selector, unknown callee contract, no COM typing/native admission or refreshed original execution."
     }
   ]
 }

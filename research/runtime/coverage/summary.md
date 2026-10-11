@@ -7,8 +7,8 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 589 |
-| evidence | 1017 |
-| scenarios | 328 |
+| evidence | 1021 |
+| scenarios | 330 |
 | functions | 6675 |
 | registered recovered ranges | 29 |
 | incomplete dispatch tables | 22 |
@@ -26,10 +26,10 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 175 |
 | behaviors without comparison | 487 |
 | behaviors without tests | 1 |
-| stale evidence | 790 |
+| stale evidence | 798 |
 | behavior anchors outside discovered functions | 50 |
 | validation gaps | 721 |
-| retired execution claims | 405 |
+| retired execution claims | 406 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
 | removed indexed sources | 0 |
@@ -156,10 +156,10 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | TOOL.drawing-core-bindings | Exact per-run core relocation bytes and physical CALL identities | native policy | scoped | partial | none | none | none | stale |
 | TOOL.drawing-core-callers | Exact original CALL and observed return-continuation accounting | native policy | scoped | partial | none | none | none | stale |
 | TOOL.drawing-cpu-sites | Exact whole-image raster global CALL and immediate assignment census | native policy | scoped | partial | none | none | none | stale |
-| TOOL.drawing-cpu-observer | Separate original-active CPU global and CRT CALL target observer | native policy | scoped | partial | none | none | none | current_fingerprints |
+| TOOL.drawing-cpu-observer | Separate original-active CPU global and CRT CALL target observer | native policy | scoped | partial | none | none | none | stale |
 | TOOL.drawing-cpu-crosswalk | Exact direct CPU CALL to core journal crosswalk | native policy | scoped | partial | none | none | none | current_fingerprints |
 | TOOL.drawing-terminal-crosswalk | Exact reviewed terminal wrapper CPU/core tail crosswalk | native policy | scoped | partial | none | none | none | current_fingerprints |
-| TOOL.drawing-terminal-observer | Opt-in terminal wrapper parent-frame original observer | native policy | scoped | partial | none | none | none | current_fingerprints |
+| TOOL.drawing-terminal-observer | Opt-in terminal wrapper parent-frame original observer | native policy | scoped | partial | none | none | none | stale |
 
 ## Drawing Inventory checklist
 
@@ -1568,15 +1568,23 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **DRAW.queue-client-state.all-kinds-fixture-20261011**: `tests/drawing-queue-state-reference.cpp`, `tools/test-drawing-queue-state.py`
 - **TOOL.drawing-inventory.postlude-guards-20261011**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-inventory.py`, `tools/drawing_inventory.py`
 - **TOOL.drawing-inventory.lock-recovery-guards-20261011**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-inventory.py`, `tools/drawing_inventory.py`
-- **TOOL.drawing-inventory.reviewed-api-client-guards-20261011**: `research/runtime/drawing-inventory.json`
-- **TOOL.drawing-core-bindings.guards-20261011**: `research/runtime/drawing-inventory.json`, `tools/capture-drawing-census-game.py`, `tools/prepare-drawing-census.py`
-- **DRAW.core-bindings.abi-20261011**: `research/runtime/drawing-inventory.json`, `tools/capture-drawing-census-game.py`, `tools/prepare-drawing-census.py`
-- **DRAW.core-bindings.original-menu-20261011**: `research/runtime/drawing-inventory.json`, `tools/capture-drawing-census-game.py`, `tools/drawing_api_cohorts.py`, `tools/prepare-drawing-census.py`
+- **TOOL.drawing-inventory.reviewed-api-client-guards-20261011**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-inventory.py`, `tools/drawing_inventory.py`
+- **TOOL.drawing-core-bindings.guards-20261011**: `research/runtime/drawing-inventory.json`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/prepare-drawing-census.py`
+- **DRAW.core-bindings.abi-20261011**: `research/runtime/drawing-inventory.json`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/prepare-drawing-census.py`
+- **DRAW.core-bindings.original-menu-20261011**: `research/runtime/drawing-inventory.json`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing_api_cohorts.py`, `tools/prepare-drawing-census.py`
 - **TOOL.drawing-core-callers.guards-20261011**: `tools/capture-drawing-census-game.py`
 - **TOOL.drawing-core-callers.original-replay-20261011**: `tools/capture-drawing-census-game.py`
-- **TOOL.drawing-cpu-sites.guards-20261011**: `research/runtime/drawing-inventory.json`
-- **TOOL.drawing-cpu-sites.export-20261011**: `research/runtime/drawing-inventory.json`
+- **TOOL.drawing-cpu-sites.guards-20261011**: `research/runtime/drawing-inventory.json`, `tools/build-drawing-census.py`
+- **TOOL.drawing-cpu-sites.export-20261011**: `research/runtime/drawing-inventory.json`, `tools/build-drawing-census.py`
+- **TOOL.drawing-cpu-observer.role-guards-20261011**: `tools/build-drawing-census.py`
+- **DRAW.cpu-observer.original-menu-20261011**: `tools/build-drawing-census.py`
 - **DRAW.canvas-release.fixture-20261011**: `tools/test-drawing-canvas-release.py`
+- **TOOL.drawing-inventory.canvas-release-route-guards-20261011**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-inventory.py`, `tools/drawing_inventory.py`
+- **TOOL.drawing-terminal-observer.guards-20261011**: `tools/build-drawing-census.py`
+- **TOOL.drawing-terminal-observer.plan-compile-20261011**: `tools/build-drawing-census.py`
+- **DRAW.terminal-observer.original-menu-20261011**: `tools/build-drawing-census.py`
+- **TOOL.drawing-terminal-observer.static-plan-20261011**: `research/runtime/drawing-inventory.json`, `tools/build-drawing-census.py`
+- **TOOL.drawing-terminal-observer.static-callers-20261011**: `research/runtime/drawing-inventory.json`, `tools/build-drawing-census.py`
 
 ## Checklist gaps
 
