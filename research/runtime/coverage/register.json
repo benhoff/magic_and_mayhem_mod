@@ -14083,7 +14083,7 @@
       "subsystem": "rendering_inventory",
       "kind": "recovered",
       "title": "Movie wrapper and startup callers",
-      "scope": "Unchanged pinned movie setup4696e0/sample469830/wrapper469a00 under selected synthetic external contracts. Recover distinct EDX DirectDraw device and first-stack destination surface, signed controls, placement, skip/global side effects, negative HRESULT short-circuit, ignored Blt failure and release ordering. Actual Windows/COM/backend retention, codecs, original audiovisual pixels and complete live return remain pending. Historical bounded2048 draw archive lacked sample PCs; isolated original execution is separate from native media and full enabled playback.",
+      "scope": "Unchanged pinned movie setup4696e0/sample469830/wrapper469a00 under selected synthetic external contracts. Recover distinct EDX DirectDraw device and first-stack destination surface, signed controls, placement, skip/global side effects, negative HRESULT short-circuit, ignored Blt failure and release ordering. Actual Windows/COM/backend retention, codecs, original audiovisual pixels and complete live return remain pending. Historical bounded2048 draw archive lacked sample PCs; isolated original execution is separate from native media and full enabled playback. Selected original movie error-log, loop, successful Update, Blt-dispatch and cleanup SITE metadata narrows live loop termination; EAX interpretation is bound to each explicit branch context.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -14114,7 +14114,8 @@
         "tools/test-live-render-routes.py",
         "tests/live-render-route-probe.cpp",
         "tests/drawing-movie-reference.cpp",
-        "tools/test-drawing-movie.py"
+        "tools/test-drawing-movie.py",
+        "tools/capture-drawing-census-game.py"
       ],
       "evidence": [
         "RI.static-callers-final-20261006",
@@ -14122,7 +14123,10 @@
         "RI.drawing-callers-movie-expanded-20261010",
         "DRAW.movie.original-contract-20261010",
         "DRAW.movie.original-write-order-20261010",
-        "DRAW.movie.scoped-original-20261010"
+        "DRAW.movie.scoped-original-20261010",
+        "RI.drawing-callers-movie-sites-20261010",
+        "DRAW.census.movie-sites-observation-20261010",
+        "DRAW.census.movie-sites-accounted-observation-20261010"
       ],
       "status": {
         "understanding": "partial",
@@ -14134,7 +14138,66 @@
       "validation_dependencies": [
         "tests/sprite-binary-reference.cpp",
         "tools/drawing_census.py",
-        "research/runtime/coverage/binary-nocd.json"
+        "research/runtime/coverage/binary-nocd.json",
+        "runtime/drawing-census/observer.c",
+        "runtime/drawing-census/entry.S",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "tools/build-drawing-census.py",
+        "tools/prepare-drawing-census.py",
+        "tools/drawing-census-game-runner.py",
+        "tests/canvas-startup-call.S",
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-opengl-game.py",
+        "runtime/scene/canvas_producers.c",
+        "research/runtime/drawing-inventory.json",
+        "tools/capture-drawing-census-game.py",
+        "research/runtime/drawing-callers-expanded-20261010.json",
+        "tools/run-game.sh",
+        "research/runtime/drawing-callers-dispatch-expanded-20261010.json",
+        "research/runtime/drawing-callers-movie-expanded-20261010.json",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "research/runtime/drawing-callers-movie-sites-20261010.json"
       ]
     },
     {
@@ -30915,7 +30978,9 @@
         "RI.drawing-callers-expanded-20261010",
         "TOOL.drawing-census.callers-guards-20261010",
         "TOOL.drawing-inventory.phase-guards-20261010",
-        "RI.drawing-callers-movie-expanded-20261010"
+        "RI.drawing-callers-movie-expanded-20261010",
+        "RI.drawing-callers-movie-sites-20261010",
+        "DRAW.census.movie-site-guards-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -30954,7 +31019,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Exact drawing caller export, splice control-flow guard and closed journal decoding",
-      "scope": "Export exact rel32 CALL bytes to registered original drawing entry addresses across pinned objdump output. Preserve containing discovered-range ownership and empty owner lists; verify supplemental build/entry/return-PC/input identities. Static matches provide no runtime-base proof, indirect-target recovery or scenario closure. Refuse incoming direct branches/CALLs entering overwritten interior bytes. Decode bounded terminal journals with exact thread/stack/callee/phase return pairing, preserved unsigned result values and runtime base; interior checkpoints carry no invented caller. Known journal integrity never closes writer, ownership, scenario or drawing-equivalence gaps.",
+      "scope": "Export exact rel32 CALL bytes to registered original drawing entry addresses across pinned objdump output. Preserve containing discovered-range ownership and empty owner lists; verify supplemental build/entry/return-PC/input identities. Static matches provide no runtime-base proof, indirect-target recovery or scenario closure. Refuse incoming direct branches/CALLs entering overwritten interior bytes. Decode bounded terminal journals with exact thread/stack/callee/phase return pairing, preserved unsigned result values and runtime base; interior checkpoints carry no invented caller. Known journal integrity never closes writer, ownership, scenario or drawing-equivalence gaps. Decoder exposes paired_calls and site_events separately from the wire call/SITE identity counter, and preserves before-site EAX without promoting it to a function result.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -30985,7 +31050,9 @@
         "DRAW.census.expanded-abi-20261010",
         "RI.drawing-callers-dispatch-expanded-20261010",
         "DRAW.census.caller-source-abi-20261010",
-        "RI.drawing-callers-movie-expanded-20261010"
+        "RI.drawing-callers-movie-expanded-20261010",
+        "RI.drawing-callers-movie-sites-20261010",
+        "DRAW.census.movie-site-guards-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31000,7 +31067,7 @@
       "subsystem": "drawing_inventory",
       "kind": "native_policy",
       "title": "Original-active drawing entry and return metadata census",
-      "scope": "Opt-in PE32 metadata at signature-pinned safe splices, with verified actual preferred module base, bounded buffered entry/return journal, register/flags/x87/SSE/LastError forwarding, thread and stack pairing including same-stack tail unwind, readonly host phase control, and explicit loss/open/IO refusal. Sixty legacy safe catalog sites plus seven explicitly discovered queue helper/cleanup entries and two original movie setup/sample entries; fade interior58edb0 is refused because original backedge58edde enters58edb1. Signatures are checked before patching and original bodies run. Partial installation refuses process startup; abrupt teardown/busy detach lacks a valid terminal. Metadata snapshots do not establish pixel/side-effect equivalence, exhaustive writers, lifetime/borrowed API coverage or DRAW-01 scenario closure. Dynamic DLL unload is unsupported.",
+      "scope": "Opt-in PE32 metadata at signature-pinned safe splices, with verified actual preferred module base, bounded buffered entry/return journal, register/flags/x87/SSE/LastError forwarding, thread and stack pairing including same-stack tail unwind, readonly host phase control, and explicit loss/open/IO refusal. Sixty legacy safe catalog sites plus seven explicitly discovered queue helper/cleanup entries and two original movie setup/sample entries; fade interior58edb0 is refused because original backedge58edde enters58edb1. Signatures are checked before patching and original bodies run. Partial installation refuses process startup; abrupt teardown/busy detach lacks a valid terminal. Metadata snapshots do not establish pixel/side-effect equivalence, exhaustive writers, lifetime/borrowed API coverage or DRAW-01 scenario closure. Dynamic DLL unload is unsupported. Explicit movie interior SITE probes require a named containing original function and do not acquire/replace a function return slot. Before-site EAX counts remain separate from paired function results.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31017,7 +31084,8 @@
       "tests": [
         "tests/drawing-census-abi.c",
         "tools/test-drawing-census-abi.py",
-        "tests/test-drawing-census-trace.py"
+        "tests/test-drawing-census-trace.py",
+        "tests/test-drawing-census-build.py"
       ],
       "validation_dependencies": [
         "tools/drawing_census.py",
@@ -31043,7 +31111,10 @@
         "DRAW.census.enabled-movie-requests-20261010",
         "DRAW.census.save-load-observation-20261010",
         "DRAW.census.movie-pop16-abi-20261010",
-        "DRAW.census.movie-helpers-observation-20261010"
+        "DRAW.census.movie-helpers-observation-20261010",
+        "DRAW.census.movie-sites-observation-20261010",
+        "DRAW.census.movie-sites-accounted-observation-20261010",
+        "DRAW.census.movie-site-guards-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31129,7 +31200,8 @@
         "protocols/include/mnm/menu_v9.h",
         "protocols/include/mnm/menu_v10.h",
         "protocols/include/mnm/menu_v11.h",
-        "protocols/include/mnm/menu_v12.h"
+        "protocols/include/mnm/menu_v12.h",
+        "research/runtime/drawing-callers-movie-sites-20261010.json"
       ],
       "evidence": [
         "DRAW.census.menu-observation-20261010",
@@ -31139,7 +31211,9 @@
         "DRAW.census.save-load-menu-only-fault-20261010",
         "DRAW.census.save-load-menu-only-success-20261010",
         "DRAW.census.save-load-observation-20261010",
-        "DRAW.census.movie-helpers-observation-20261010"
+        "DRAW.census.movie-helpers-observation-20261010",
+        "DRAW.census.movie-sites-observation-20261010",
+        "DRAW.census.movie-sites-accounted-observation-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -60409,6 +60483,151 @@
           "equals": 1760
         }
       ]
+    },
+    {
+      "id": "RI.drawing-callers-movie-sites-20261010",
+      "kind": "static",
+      "scope": "Exact direct CALL census for84entry/site identities including explicit movie probes.939exact sites. Interior site identities do not imply function entries; ownership uses named containing functions and exact ranges. No indirect entry/writer/API/lifetime/scenario closure.",
+      "record": "research/runtime/drawing-callers-movie-sites-20261010.json",
+      "sha256": "9bee999ddfbf3159c992399abd6d6308ffae0207c3536bed46ace94d17b18ac3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/source_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.movie-sites-observation-20261010",
+      "kind": "live_observation",
+      "scope": "Bounded original startup movie path with83safe hooks and14explicit interior probes. Each intro loops once, ends Update with00040003, reaches no successful-Update/Blt-dispatch or selected error-log sites, returns helper0/wrapper1 and original Main/setup/exit0. No actual movie frames/audio, backend internal retention, indefinite/all-platform equivalence or scenario closure.",
+      "record": "research/runtime/drawing-census-movie-sites-observation-20261010.json",
+      "sha256": "31979d1bfffca9733c3e8b8ada799e37728e579fb0e7c83607b3998b1eddbd61",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/open_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/movie_path/successful_update_sites",
+          "equals": 0
+        },
+        {
+          "pointer": "/movie_path/blt_dispatch_sites",
+          "equals": 0
+        },
+        {
+          "pointer": "/movie_path/cleanup_eax",
+          "equals": [
+            262147,
+            262147
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.movie-sites-accounted-observation-20261010",
+      "kind": "live_observation",
+      "scope": "Bounded original startup movie path with83safe hooks and14explicit interior probes. Each intro loops once, ends Update with00040003, reaches no successful-Update/Blt-dispatch or selected error-log sites, returns helper0/wrapper1 and original Main/setup/exit0. No actual movie frames/audio, backend internal retention, indefinite/all-platform equivalence or scenario closure. Fresh sources and prospectively corrected nested decoded-build inventory pointer; earlier report/source hashes retained.",
+      "record": "research/runtime/drawing-census-movie-sites-accounted-observation-20261010.json",
+      "sha256": "3b64b3c5d7d85ca0cce52901931fe455033ac9c08dcc6e6164e86add8cf4d1c4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/open_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/movie_path/successful_update_sites",
+          "equals": 0
+        },
+        {
+          "pointer": "/movie_path/blt_dispatch_sites",
+          "equals": 0
+        },
+        {
+          "pointer": "/movie_path/cleanup_eax",
+          "equals": [
+            262147,
+            262147
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.movie-site-guards-20261010",
+      "kind": "native_integration",
+      "scope": "Synthetic entry/SITE admission, containing-anchor/unknown/legacy-return refusal, mixed wire counters and EAX versus function results; exact caller and phase/unknown-route guards. Initial inventory missing-evidence/build-pointer failures retained separately. No original execution or full scenario closure.",
+      "record": "research/runtime/drawing-census-movie-site-guards-20261010.json",
+      "sha256": "a7f8d4853e92b1162aa5f8539721ee403705fe7f6159bfec708cd6d72c155c9e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -68774,6 +68993,23 @@
         "DRAW.movie.scoped-original-20261010",
         "TOOL.drawing-movie.fixture-bindings-20261010"
       ]
+    },
+    {
+      "id": "original-drawing-census-movie-sites-20261010",
+      "level": "live_observation",
+      "scope": "Enabled original startup movie helper calls plus14explicit before-site probes: selected error logging, sample loop, successful Update, Blt dispatch and cleanup EAX. Strict original Main/setup/shutdown journal. No full audiovisual pixels/audio, backend retention or DRAW-01 scenario closure.",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "RI.movies"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.census.movie-sites-observation-20261010",
+        "DRAW.census.movie-sites-accounted-observation-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -69111,8 +69347,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-movie-order-20261010.json",
-    "sha256": "4fb9b4e9d22295f3a886efd8dce75bbccdc44f764de01b19ad93396b70a8815b"
+    "path": "research/runtime/coverage/source-index-draw01-movie-sites-20261010.json",
+    "sha256": "6c7c66759a2863fa52b31432f45f9eaf574dd45d6acdec3709a02dc2a925e7dd"
   },
   "claim_bindings_required": true
 }

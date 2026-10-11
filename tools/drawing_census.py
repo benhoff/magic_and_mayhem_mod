@@ -121,7 +121,7 @@ def trace(path, manifest, caller_census, inventory):
     def caller_owners(pc):
         if pc not in owner_cache: owner_cache[pc] = owners(pc - 1, inventory)
         return owner_cache[pc]
-    counts = Counter(); sites = Counter(); returns = Counter(); result_counts = Counter()
+    counts = Counter(); sites = Counter(); returns = Counter(); result_counts = Counter(); site_eax = Counter()
     open_calls = {}; last_call = sequence = 0; unassigned = set(); unknown = set()
     before = path.stat()
     size = before.st_size
@@ -152,7 +152,8 @@ def trace(path, manifest, caller_census, inventory):
                 if event == 1:
                     open_calls[cid] = (tag, phase, thread, entry, caller, sp)
                     counts[key] += 1
-                else: sites[key] += 1
+                else:
+                    sites[key] += 1; site_eax[(phase, entry, row[11])] += 1
             elif event == 2:
                 if hook['site'] or open_calls.pop(cid, None) != (tag, phase, thread, entry, caller, sp):
                     raise ValueError('Return has no exact thread/stack/callee/phase entry')
@@ -183,10 +184,13 @@ def trace(path, manifest, caller_census, inventory):
         raise ValueError('Trace changed during review')
     return {'schema': 1, 'journal_integrity': True, 'original_sha256': BUILD_SHA256,
             'observed_runtime_image_base': words[5], 'events': sequence, 'calls': last_call,
+            'paired_calls': sum(counts.values()), 'site_events': sum(sites.values()),
             'lost_events': 0, 'open_calls': 0, 'sha256': digest,
             'entry_counts': items(counts), 'site_counts': items(sites), 'return_counts': items(returns),
             'result_counts': [{'phase': phase, 'entry': entry, 'result': value, 'count': hits}
                               for (phase, entry, value), hits in sorted(result_counts.items())],
+            'site_eax_counts': [{'phase': phase, 'entry': entry, 'eax': value, 'count': hits}
+                                for (phase, entry, value), hits in sorted(site_eax.items())],
             'unassigned_phase_calls': len(unassigned), 'caller_pcs_without_discovered_owner': sorted(unknown),
             'remaining': ['All writer/side-effect coverage needs separate review.',
                           'Observed indirect/tail callees need exact call-flow classification.',

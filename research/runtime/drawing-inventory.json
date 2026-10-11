@@ -391,6 +391,29 @@
           "activity": "live_original_active"
         }
       ]
+    },
+    {
+      "id": "movie-site-phase-01",
+      "evidence": "DRAW.census.movie-sites-accounted-observation-20261010",
+      "scenario": "enabled-movies",
+      "scope": "Bounded phase1 original movie helper ENTRY and before-instruction SITE metadata only. SITE counts are not paired function calls or complete graphics/API/scenario evidence.",
+      "build_pointer": "/decoded/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 1,
+          "selector": "entry",
+          "activity": "live_original_active"
+        },
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/site_counts",
+          "phase": 1,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
     }
   ],
   "routes": [
@@ -4023,6 +4046,482 @@
         }
       ],
       "static_windows": []
+    },
+    {
+      "id": "DRAW.site.00469721",
+      "entry": 4626209,
+      "original_anchor": 4626144,
+      "observation_mode": "site",
+      "title": "Original movie Create stream failure",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x469721"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.0046974a",
+      "entry": 4626250,
+      "original_anchor": 4626144,
+      "observation_mode": "site",
+      "title": "Original movie Initialize stream failure",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x46974a"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.00469777",
+      "entry": 4626295,
+      "original_anchor": 4626144,
+      "observation_mode": "site",
+      "title": "Original movie Video admission failure",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x469777"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.004697a2",
+      "entry": 4626338,
+      "original_anchor": 4626144,
+      "observation_mode": "site",
+      "title": "Original movie Audio admission failure",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x4697a2"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.004697e0",
+      "entry": 4626400,
+      "original_anchor": 4626144,
+      "observation_mode": "site",
+      "title": "Original movie Open file failure",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x4697e0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.00469872",
+      "entry": 4626546,
+      "original_anchor": 4626480,
+      "observation_mode": "site",
+      "title": "Original movie Get media stream failure",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x469872"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.0046989e",
+      "entry": 4626590,
+      "original_anchor": 4626480,
+      "observation_mode": "site",
+      "title": "Original movie Query video interface failure",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x46989e"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.004698c9",
+      "entry": 4626633,
+      "original_anchor": 4626480,
+      "observation_mode": "site",
+      "title": "Original movie Create sample failure",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x4698c9"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.004698f6",
+      "entry": 4626678,
+      "original_anchor": 4626480,
+      "observation_mode": "site",
+      "title": "Original movie Get source surface failure",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x4698f6"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.00469917",
+      "entry": 4626711,
+      "original_anchor": 4626480,
+      "observation_mode": "site",
+      "title": "Original movie Set stream state failure",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x469917"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.00469962",
+      "entry": 4626786,
+      "original_anchor": 4626480,
+      "observation_mode": "site",
+      "title": "Original movie Sample loop before Escape poll",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x469962"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.00469981",
+      "entry": 4626817,
+      "original_anchor": 4626480,
+      "observation_mode": "site",
+      "title": "Original movie Successful sample Update before control test",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x469981"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.0046998a",
+      "entry": 4626826,
+      "original_anchor": 4626480,
+      "observation_mode": "site",
+      "title": "Original movie Control-zero Blt dispatch",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x46998a"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.site.004699b1",
+      "entry": 4626865,
+      "original_anchor": 4626480,
+      "observation_mode": "site",
+      "title": "Original movie Sample cleanup entry",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "render_state",
+      "scope": "One original movie instruction site, not a function entry or API return hook. Snapshot registers before original instructions; no invented caller/return. Log sites retain pre-log HRESULT; successful Update/Blt dispatch and cleanup observations require exact branch context.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Observe pinned original sites and forward their complete relocated instructions; no original COM/API/drawing work substituted."
+      },
+      "side_effects": [
+        "Original error logging or sample loop work forwarded",
+        "Before-site EAX is diagnostic context, not generally a HRESULT or function return",
+        "Internal COM retention, audiovisual output and full recovery remain pending"
+      ],
+      "remaining": "Indirect entry into splices, full codec/pixel/audio/backend retention and complete session coverage remain pending. Direct incoming control flow and original byte boundaries are checked during signature-pinned build.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x4699b1"
+        }
+      ],
+      "static_windows": []
     }
   ],
   "additional_hook_sources": [
@@ -4040,11 +4539,19 @@
     },
     {
       "evidence": "RI.drawing-callers-movie-expanded-20261010"
+    },
+    {
+      "evidence": "RI.drawing-callers-movie-sites-20261010"
     }
   ],
   "metadata_hook_cohorts": [
     {
       "observation": "campaign-call-phase-02",
+      "pointer": "/hook_manifest/hooks",
+      "refused_pointer": "/hook_manifest/unhookable"
+    },
+    {
+      "observation": "movie-site-phase-01",
       "pointer": "/hook_manifest/hooks",
       "refused_pointer": "/hook_manifest/unhookable"
     }

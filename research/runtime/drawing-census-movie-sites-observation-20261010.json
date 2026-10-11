@@ -1,0 +1,5297 @@
+{
+  "schema": 1,
+  "journey": "movies",
+  "success": true,
+  "actions": [
+    {
+      "screen": 3,
+      "action": 18,
+      "argument": 0,
+      "request": 1,
+      "reply": [
+        2,
+        3,
+        0,
+        1,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 10,
+      "action": 20,
+      "argument": 0,
+      "request": 2,
+      "reply": [
+        7,
+        10,
+        0,
+        2,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 3,
+      "action": 1,
+      "argument": 0,
+      "request": 3,
+      "reply": [
+        10,
+        3,
+        0,
+        3,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 22,
+      "action": 4,
+      "argument": 0,
+      "request": 4,
+      "reply": [
+        13,
+        22,
+        0,
+        4,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 14,
+      "action": 6,
+      "argument": 0,
+      "request": 5,
+      "reply": [
+        17,
+        14,
+        0,
+        5,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 25,
+      "action": 10,
+      "argument": 0,
+      "request": 6,
+      "reply": [
+        21,
+        25,
+        0,
+        6,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 14,
+      "action": 5,
+      "argument": 0,
+      "request": 7,
+      "reply": [
+        25,
+        14,
+        0,
+        7,
+        1,
+        396,
+        0
+      ]
+    },
+    {
+      "screen": 22,
+      "action": 2,
+      "argument": 0,
+      "request": 8,
+      "reply": [
+        28,
+        22,
+        0,
+        8,
+        1,
+        396,
+        0
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "purpose": "Enabled original startup movie requests; playback needs callee evidence",
+      "time": 97894.253320511
+    },
+    {
+      "phase": 2,
+      "purpose": "Main and setup original menu traversal",
+      "time": 97898.588251391
+    },
+    {
+      "phase": 14,
+      "purpose": "Original Main quit and DLL terminal flush",
+      "time": 97905.371092189
+    }
+  ],
+  "scenario_closure": false,
+  "original_work_forwarded": true,
+  "call_census_enabled": true,
+  "observer_header_seen_at": 97895.200393733,
+  "decoded_sha256": "e17be9541311a85dd862afe69226f07c191dbd65f366f38aa191fff33932bf9c",
+  "events": 82328,
+  "calls": 41166,
+  "process_exit": 0,
+  "inputs_unchanged": true,
+  "sources": {
+    "tools/capture-drawing-census-game.py": "e530d0434595506f6526d4b941580448c2b2dfb64ed72d9c608a5ebd598fb852",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing-census-game-runner.py": "626722d4bdf62ec4767cd18e65e1feb080de4768b1ea2098bdb6c4ef7e0fdd76",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+    "protocols/include/mnm/menu_v10.h": "31d7facdd6a0ec95d34f95721bd507e983a4e9ec2c0c56ee23a479196b898b17",
+    "protocols/include/mnm/menu_v11.h": "cd9a8e80df702ea904dbe15404d392896035b7ab784ceef62dee35559f27c324",
+    "protocols/include/mnm/menu_v12.h": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+    "protocols/include/mnm/menu_v2.h": "5f9db9ded1e1653411cdd542ff045070a79f8b9b3c93d05227d94edaf3da3881",
+    "protocols/include/mnm/menu_v3.h": "f0baf53e4b11455c7bef129aafad06a80984ba13ce37e877d088dd7c7ed74dd6",
+    "protocols/include/mnm/menu_v4.h": "d42e6c6af61928cd1a47efe92aca0f52b31b3ae56a2f844bbbef382354d8fa34",
+    "protocols/include/mnm/menu_v5.h": "2ed7fd0a7b6774b3f2e5158966ebb438ccad15f806c22ca1c2ab75328ece87b3",
+    "protocols/include/mnm/menu_v6.h": "4fb73cf5f6aa4890bce6b7e1e45c5b4ebeee8822241a5745cf563c43cfcd255d",
+    "protocols/include/mnm/menu_v7.h": "fc554cfcbc7fd50ebf4ad0b4046877787ccdb410eaa324b36573ed4694659c32",
+    "protocols/include/mnm/menu_v8.h": "86ca7a24180972b75b84c4ec021c62519b7c94997b260bdfe05dd80388c09f47",
+    "protocols/include/mnm/menu_v9.h": "857c603304eedb562197f433765ff1ec7bb8a0f05addd2f8cdbe7c0e684e2d6b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-callers-dispatch-expanded-20261010.json": "e59d85a6d0ef4ea1f3af29724a10a5e7f7f8ce0e3a544e4dfcac256bf6b535d3",
+    "research/runtime/drawing-callers-expanded-20261010.json": "c0d173ff5c726fcd22ebd47e9d423f421842cd3cc2fe3c06e836e2af3a6c0bba",
+    "research/runtime/drawing-callers-movie-expanded-20261010.json": "29d0a95178c2099f1227fe1029f50e8c5d6a27186b7e0ab6a3d8d1fa4ce873d2",
+    "research/runtime/drawing-callers-movie-sites-20261010.json": "9bee999ddfbf3159c992399abd6d6308ffae0207c3536bed46ace94d17b18ac3",
+    "research/runtime/drawing-inventory.json": "6faa0e3400104365c9b3efd36d48174898a81cf62b19d031f1564867365dff09",
+    "runtime/drawing-census/entry.S": "44f19762a5232669ddd22633cde8a19072fe43f11f0dabb929149c36a256de1e",
+    "runtime/drawing-census/observer.c": "b5069b9b69ed6ff53e0aedaef1aa04970e94d5172a551389bd2fa29cc1b0bf0a",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/campaign_gameplay_observe.h": "6969d3d3ccd673045dd8122ed535891b451572f37ef3ba594c4b882965d30a1c",
+    "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+    "runtime/menu/campaign_observe.h": "a220db2c27e263f7fc29fc41fd98876051de0f02839b2bde48fddb04d55950b4",
+    "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+    "runtime/menu/campaign_spell_observe.h": "1020a7a459db112a3521ea6859061914a78ceda776d0f2a5aa75d7b5d3a00f7a",
+    "runtime/menu/campaign_world_observe.h": "16b5d6c8f84c9ab9e804dd6415ecb01c5f719f777fb6610a0fc589726f15a2f2",
+    "runtime/menu/channel.h": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+    "runtime/menu/channel_selftest.h": "1104046daa23c138c71ce2acc6367546e27e8bcadf17981660b7ae250890ef3e",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c",
+    "runtime/menu/contract_selftest.c": "a41c0188b16e4275333e4f5c7e963614ad0c43d3759150fd297410a649b273e7",
+    "runtime/menu/mini.h": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+    "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+    "runtime/menu/observer.c": "a1af55ad3377720ce7cfd005af5bdaf43e8c577d29efa66eb380064edabce06a",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/preferences_display.h": "60a7f61c7bd734b017c831c6ee3159cd751bf9b2df4a2c1e17b103628872a2cc",
+    "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+    "runtime/menu/region_entry.h": "df429ae4125d71982471f814a946c43a5d0e46762e607e09478212546c236b7e",
+    "runtime/menu/region_entry_observe.h": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+    "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tests/drawing-census-abi.c": "c35ade659432bd689cf2f5a838bb66745f24f218a889c2f893b80f04b0f211f9",
+    "tests/drawing-movie-reference.cpp": "9a2a69a81f41890adeb67f0abf7ffbc25ae194b51b6780260c74c1595e8c7d91",
+    "tests/live-render-route-probe.cpp": "f080770532109613ff30e00877213e73531bb85342512b9c89c7e548c9b7deba",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tests/test-drawing-census-build.py": "21450df88d773dc04d5cc43e44d5315ca27534a6631b00f6f43d617b94b4be5e",
+    "tests/test-drawing-census-trace.py": "70cca9c032b480314684046df00a6987cc538260ea5c87960283f4b56725c92c",
+    "tools/build-drawing-census.py": "ec645e78705cdf4aa74755760cc6dbd98c10135b0342ce91f903f87f31e07675",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/prepare-drawing-census.py": "c01369e1876576d5c25c250644045ef735c28de2cd9fa81665bb526184605e35",
+    "tools/prepare-scene-observer.py": "fb28af7a20f861ff91f18bd4ece59365af607b3a33c7a41c03d67133743c6184",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/run-game.sh": "a0c1f33f375b1ab640a29224e6e7df750e5f9d9d80bb60447b73e8a91e4fe983",
+    "tools/run-opengl-game.py": "1f93ba28de3b5bd062ab256ffb8ce6fb99d4c1814f986d8cbbb533799135548c",
+    "tools/test-drawing-census-abi.py": "fba6aca58e7b774cf5db1f1035c8bee6838c2de923644071cac5d2792e9faf6b",
+    "tools/test-drawing-movie.py": "bc1a8f353eb8499dc75aef9447a4ce119c0f1f0ad89e8d9af84cf9185288bc8f",
+    "tools/test-live-render-routes.py": "6368a42598e5efccd3e8d142d4e13605217a128f89a0f793aee3df35737028d5"
+  },
+  "sources_stable": true,
+  "claims": [
+    {
+      "behavior": "DRAW.census.call-journal",
+      "contract_sha256": "d9819fb5f1d542bf462fae9c17e6a71f25fe3f7af34d44acda9651ce9f0f34f5",
+      "scenarios": {
+        "original-drawing-census-movie-sites-20261010": "d50001c19e549d837d40780efb46164ee6e8f2f3a0563f3853b1ae54ca49e556"
+      }
+    },
+    {
+      "behavior": "DRAW.census.journey-driver",
+      "contract_sha256": "00c237e9131ba158882b9da05a8cf4f2e5a123b353d8bea8204093e6fcc09413",
+      "scenarios": {
+        "original-drawing-census-movie-sites-20261010": "d50001c19e549d837d40780efb46164ee6e8f2f3a0563f3853b1ae54ca49e556"
+      }
+    },
+    {
+      "behavior": "RI.movies",
+      "contract_sha256": "ee658d84b869e0d2b8b2c4d7044b55ae3dab1cb6084575cd0f41328ce94b4990",
+      "scenarios": {
+        "original-drawing-census-movie-sites-20261010": "d50001c19e549d837d40780efb46164ee6e8f2f3a0563f3853b1ae54ca49e556"
+      }
+    }
+  ],
+  "decoded": {
+    "schema": 1,
+    "journal_integrity": true,
+    "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "observed_runtime_image_base": 4194304,
+    "events": 82328,
+    "calls": 41166,
+    "paired_calls": 41162,
+    "site_events": 4,
+    "lost_events": 0,
+    "open_calls": 0,
+    "sha256": "2417b7b9c4cc2cd6e4eac9eee1b8a8665852bcb94312815a694a6f57553c9a5a",
+    "entry_counts": [
+      {
+        "phase": 1,
+        "entry": 4626144,
+        "caller": 4626958,
+        "count": 2,
+        "route": "DRAW.entry.004696e0",
+        "caller_owners": [
+          4626944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 4626480,
+        "caller": 4627009,
+        "count": 2,
+        "route": "DRAW.entry.00469830",
+        "caller_owners": [
+          4626944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 4626944,
+        "caller": 5151024,
+        "count": 1,
+        "route": "DRAW.entry.00469a00",
+        "caller_owners": [
+          5148032
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 4626944,
+        "caller": 5151089,
+        "count": 1,
+        "route": "DRAW.entry.00469a00",
+        "caller_owners": [
+          5148032
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5757984,
+        "caller": 5032077,
+        "count": 5,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5757984,
+        "caller": 5056609,
+        "count": 1,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5758048,
+        "caller": 5032100,
+        "count": 5,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5758048,
+        "caller": 5056632,
+        "count": 1,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5775040,
+        "caller": 4874547,
+        "count": 53,
+        "route": "DRAW.entry.00581ec0",
+        "caller_owners": [
+          4873440
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5810608,
+        "caller": 5128497,
+        "count": 1,
+        "route": "DRAW.entry.0058a9b0",
+        "caller_owners": [
+          5128400
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 4863555,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          4862128
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 4863636,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          4862128
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 4878825,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 5079880,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          5079792
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 5093037,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          5092944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 5128538,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          5128400
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 5128689,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          5128400
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "caller": 5032048,
+        "count": 5,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "caller": 5056578,
+        "count": 1,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "caller": 5822764,
+        "count": 1,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5822656
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "caller": 5824090,
+        "count": 5,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5823984
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "caller": 27590665,
+        "count": 1,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 4863567,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          4862128
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 4863648,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          4862128
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 5079898,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          5079792
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 5093046,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          5092944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 5128701,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          5128400
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 5151100,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          5148032
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5816128,
+        "caller": 4879757,
+        "count": 1,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5816128,
+        "caller": 5609469,
+        "count": 1,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5817504,
+        "caller": 4867229,
+        "count": 1,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4866944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5817504,
+        "caller": 4867833,
+        "count": 1,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5818528,
+        "caller": 4868271,
+        "count": 1,
+        "route": "DRAW.entry.0058c8a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5820832,
+        "caller": 4863682,
+        "count": 1,
+        "route": "DRAW.entry.0058d1a0",
+        "caller_owners": [
+          4862128
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5821216,
+        "caller": 4879096,
+        "count": 1,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5822656,
+        "caller": 5032040,
+        "count": 1,
+        "route": "DRAW.entry.0058d8c0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5823984,
+        "caller": 5031980,
+        "count": 5,
+        "route": "DRAW.entry.0058ddf0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5027331,
+        "count": 440,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [
+          5027232
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5032077,
+        "count": 228,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5037596,
+        "count": 121,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5041134,
+        "count": 228,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5048504,
+        "count": 19,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5051685,
+        "count": 198,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5056609,
+        "count": 405,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5057184,
+        "count": 24,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [
+          5057088
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5027346,
+        "count": 440,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [
+          5027232
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5032100,
+        "count": 228,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5037609,
+        "count": 121,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5041147,
+        "count": 228,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5048517,
+        "count": 19,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5051708,
+        "count": 198,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5056632,
+        "count": 405,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5057199,
+        "count": 24,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [
+          5057088
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5775040,
+        "caller": 4874547,
+        "count": 10306,
+        "route": "DRAW.entry.00581ec0",
+        "caller_owners": [
+          4873440
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5807248,
+        "caller": 5027601,
+        "count": 54,
+        "route": "DRAW.entry.00589c90",
+        "caller_owners": [
+          5027232
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5811600,
+        "caller": 4878825,
+        "count": 2,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5811600,
+        "caller": 4882198,
+        "count": 2,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5811600,
+        "caller": 4886358,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5811600,
+        "caller": 4900730,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5811600,
+        "caller": 4962154,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4878415,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4878384
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4878429,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4878384
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4881791,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4881760
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4881805,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4881760
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4900143,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4900112
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4900157,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4900112
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4961695,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4961664
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4961709,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4961664
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5027300,
+        "count": 440,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5027232
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5032048,
+        "count": 228,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5037565,
+        "count": 121,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5041085,
+        "count": 228,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5048473,
+        "count": 19,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5051621,
+        "count": 18,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5051838,
+        "count": 18,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5056578,
+        "count": 405,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5057154,
+        "count": 24,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5057088
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5822764,
+        "count": 88,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5822656
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5824090,
+        "count": 247,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5823984
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5828001,
+        "count": 40,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5827968
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 27590665,
+        "count": 7,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4879757,
+        "count": 25,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4883037,
+        "count": 4,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4888208,
+        "count": 18,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [
+          4888176
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4902561,
+        "count": 4,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4961374,
+        "count": 1,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [
+          4961312
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4963193,
+        "count": 18,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [
+          4963168
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 5609469,
+        "count": 109,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5817184,
+        "caller": 4868865,
+        "count": 2,
+        "route": "DRAW.entry.0058c360",
+        "caller_owners": [
+          4868368
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5817184,
+        "caller": 4869158,
+        "count": 2,
+        "route": "DRAW.entry.0058c360",
+        "caller_owners": [
+          4868368
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5817504,
+        "caller": 4867229,
+        "count": 61,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4866944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5817504,
+        "caller": 4867833,
+        "count": 61,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5818528,
+        "caller": 4868271,
+        "count": 61,
+        "route": "DRAW.entry.0058c8a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5819024,
+        "caller": 4869423,
+        "count": 2,
+        "route": "DRAW.entry.0058ca90",
+        "caller_owners": [
+          4868368
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5821216,
+        "caller": 4879096,
+        "count": 2,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5821216,
+        "caller": 4882469,
+        "count": 2,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5821216,
+        "caller": 4886483,
+        "count": 1,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5821216,
+        "caller": 4901000,
+        "count": 1,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5821216,
+        "caller": 4962424,
+        "count": 1,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5822656,
+        "caller": 5032040,
+        "count": 70,
+        "route": "DRAW.entry.0058d8c0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5822656,
+        "caller": 5051830,
+        "count": 18,
+        "route": "DRAW.entry.0058d8c0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5823984,
+        "caller": 5031980,
+        "count": 228,
+        "route": "DRAW.entry.0058ddf0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5823984,
+        "caller": 5052027,
+        "count": 19,
+        "route": "DRAW.entry.0058ddf0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5827968,
+        "caller": 5609391,
+        "count": 40,
+        "route": "DRAW.entry.0058ed80",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5860536,
+        "caller": 5027411,
+        "count": 378,
+        "route": "DRAW.entry.00596cb8",
+        "caller_owners": [
+          5027232
+        ],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 2,
+        "entry": 5860536,
+        "caller": 5037759,
+        "count": 19119,
+        "route": "DRAW.entry.00596cb8",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 2,
+        "entry": 5860536,
+        "caller": 5041544,
+        "count": 228,
+        "route": "DRAW.entry.00596cb8",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 2,
+        "entry": 5860536,
+        "caller": 5048606,
+        "count": 4446,
+        "route": "DRAW.entry.00596cb8",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 2,
+        "entry": 5860536,
+        "caller": 5057240,
+        "count": 24,
+        "route": "DRAW.entry.00596cb8",
+        "caller_owners": [
+          5057088
+        ],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 14,
+        "entry": 5757984,
+        "caller": 5032077,
+        "count": 25,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5757984,
+        "caller": 5056609,
+        "count": 5,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5758048,
+        "caller": 5032100,
+        "count": 25,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5758048,
+        "caller": 5056632,
+        "count": 5,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5775040,
+        "caller": 4874547,
+        "count": 265,
+        "route": "DRAW.entry.00581ec0",
+        "caller_owners": [
+          4873440
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4668399,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4668160
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4863988,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4863952
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4878415,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4878384
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4878429,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4878384
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4972957,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4972800
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4985633,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4985344
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4985672,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4985344
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4987225,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4986592
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5060178,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5059792
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5063365,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5063264
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5069861,
+        "count": 29,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5069760
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5070246,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5069936
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5070262,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5069936
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5079751,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5079632
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5083948,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5083712
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5087679,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5087536
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5090376,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5090208
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5092887,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5092832
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5096513,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5096464
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5096523,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5096464
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5096562,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5096464
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5096577,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5096464
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5103737,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5103520
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5105743,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5105648
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5152238,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5601622,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5723582,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5723488
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5811471,
+        "count": 5,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5811440
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5888396,
+        "count": 4,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5888312
+        ],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 14,
+        "entry": 5813856,
+        "caller": 5032048,
+        "count": 25,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813856,
+        "caller": 5056578,
+        "count": 5,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813856,
+        "caller": 5822764,
+        "count": 5,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5822656
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813856,
+        "caller": 5824090,
+        "count": 25,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5823984
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813856,
+        "caller": 5828001,
+        "count": 5,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5827968
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5816128,
+        "caller": 4879757,
+        "count": 5,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5816128,
+        "caller": 5609469,
+        "count": 10,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5817504,
+        "caller": 4867229,
+        "count": 4,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4866944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5817504,
+        "caller": 4867833,
+        "count": 4,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5818528,
+        "caller": 4868271,
+        "count": 4,
+        "route": "DRAW.entry.0058c8a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5822656,
+        "caller": 5032040,
+        "count": 5,
+        "route": "DRAW.entry.0058d8c0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5823984,
+        "caller": 5031980,
+        "count": 25,
+        "route": "DRAW.entry.0058ddf0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5827968,
+        "caller": 5609391,
+        "count": 5,
+        "route": "DRAW.entry.0058ed80",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      }
+    ],
+    "site_counts": [
+      {
+        "phase": 1,
+        "entry": 4626786,
+        "caller": 0,
+        "count": 2,
+        "route": "DRAW.site.00469962",
+        "caller_owners": [],
+        "caller_attribution": "interior_site_no_return_caller"
+      },
+      {
+        "phase": 1,
+        "entry": 4626865,
+        "caller": 0,
+        "count": 2,
+        "route": "DRAW.site.004699b1",
+        "caller_owners": [],
+        "caller_attribution": "interior_site_no_return_caller"
+      }
+    ],
+    "return_counts": [
+      {
+        "phase": 1,
+        "entry": 4626144,
+        "caller": 4626958,
+        "count": 2,
+        "route": "DRAW.entry.004696e0",
+        "caller_owners": [
+          4626944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 4626480,
+        "caller": 4627009,
+        "count": 2,
+        "route": "DRAW.entry.00469830",
+        "caller_owners": [
+          4626944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 4626944,
+        "caller": 5151024,
+        "count": 1,
+        "route": "DRAW.entry.00469a00",
+        "caller_owners": [
+          5148032
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 4626944,
+        "caller": 5151089,
+        "count": 1,
+        "route": "DRAW.entry.00469a00",
+        "caller_owners": [
+          5148032
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5757984,
+        "caller": 5032077,
+        "count": 5,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5757984,
+        "caller": 5056609,
+        "count": 1,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5758048,
+        "caller": 5032100,
+        "count": 5,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5758048,
+        "caller": 5056632,
+        "count": 1,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5775040,
+        "caller": 4874547,
+        "count": 53,
+        "route": "DRAW.entry.00581ec0",
+        "caller_owners": [
+          4873440
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5810608,
+        "caller": 5128497,
+        "count": 1,
+        "route": "DRAW.entry.0058a9b0",
+        "caller_owners": [
+          5128400
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 4863555,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          4862128
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 4863636,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          4862128
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 4878825,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 5079880,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          5079792
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 5093037,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          5092944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 5128538,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          5128400
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "caller": 5128689,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [
+          5128400
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "caller": 5032048,
+        "count": 5,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "caller": 5056578,
+        "count": 1,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "caller": 5822764,
+        "count": 1,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5822656
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "caller": 5824090,
+        "count": 5,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5823984
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "caller": 27590665,
+        "count": 1,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 4863567,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          4862128
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 4863648,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          4862128
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 5079898,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          5079792
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 5093046,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          5092944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 5128701,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          5128400
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "caller": 5151100,
+        "count": 1,
+        "route": "DRAW.entry.0058bc10",
+        "caller_owners": [
+          5148032
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5816128,
+        "caller": 4879757,
+        "count": 1,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5816128,
+        "caller": 5609469,
+        "count": 1,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5817504,
+        "caller": 4867229,
+        "count": 1,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4866944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5817504,
+        "caller": 4867833,
+        "count": 1,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5818528,
+        "caller": 4868271,
+        "count": 1,
+        "route": "DRAW.entry.0058c8a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5820832,
+        "caller": 4863682,
+        "count": 1,
+        "route": "DRAW.entry.0058d1a0",
+        "caller_owners": [
+          4862128
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5821216,
+        "caller": 4879096,
+        "count": 1,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5822656,
+        "caller": 5032040,
+        "count": 1,
+        "route": "DRAW.entry.0058d8c0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 1,
+        "entry": 5823984,
+        "caller": 5031980,
+        "count": 5,
+        "route": "DRAW.entry.0058ddf0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5027331,
+        "count": 440,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [
+          5027232
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5032077,
+        "count": 228,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5037596,
+        "count": 121,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5041134,
+        "count": 228,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5048504,
+        "count": 19,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5051685,
+        "count": 198,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5056609,
+        "count": 405,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "caller": 5057184,
+        "count": 24,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [
+          5057088
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5027346,
+        "count": 440,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [
+          5027232
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5032100,
+        "count": 228,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5037609,
+        "count": 121,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5041147,
+        "count": 228,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5048517,
+        "count": 19,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5051708,
+        "count": 198,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5056632,
+        "count": 405,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "caller": 5057199,
+        "count": 24,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [
+          5057088
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5775040,
+        "caller": 4874547,
+        "count": 10306,
+        "route": "DRAW.entry.00581ec0",
+        "caller_owners": [
+          4873440
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5807248,
+        "caller": 5027601,
+        "count": 54,
+        "route": "DRAW.entry.00589c90",
+        "caller_owners": [
+          5027232
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5811600,
+        "caller": 4878825,
+        "count": 2,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5811600,
+        "caller": 4882198,
+        "count": 2,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5811600,
+        "caller": 4886358,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5811600,
+        "caller": 4900730,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5811600,
+        "caller": 4962154,
+        "count": 1,
+        "route": "DRAW.entry.0058ad90",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4878415,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4878384
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4878429,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4878384
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4881791,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4881760
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4881805,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4881760
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4900143,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4900112
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4900157,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4900112
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4961695,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4961664
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "caller": 4961709,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4961664
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5027300,
+        "count": 440,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5027232
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5032048,
+        "count": 228,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5037565,
+        "count": 121,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5041085,
+        "count": 228,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5048473,
+        "count": 19,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5051621,
+        "count": 18,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5051838,
+        "count": 18,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5056578,
+        "count": 405,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5057154,
+        "count": 24,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5057088
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5822764,
+        "count": 88,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5822656
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5824090,
+        "count": 247,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5823984
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 5828001,
+        "count": 40,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5827968
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "caller": 27590665,
+        "count": 7,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4879757,
+        "count": 25,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4883037,
+        "count": 4,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4888208,
+        "count": 18,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [
+          4888176
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4902561,
+        "count": 4,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4961374,
+        "count": 1,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [
+          4961312
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 4963193,
+        "count": 18,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [
+          4963168
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "caller": 5609469,
+        "count": 109,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5817184,
+        "caller": 4868865,
+        "count": 2,
+        "route": "DRAW.entry.0058c360",
+        "caller_owners": [
+          4868368
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5817184,
+        "caller": 4869158,
+        "count": 2,
+        "route": "DRAW.entry.0058c360",
+        "caller_owners": [
+          4868368
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5817504,
+        "caller": 4867229,
+        "count": 61,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4866944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5817504,
+        "caller": 4867833,
+        "count": 61,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5818528,
+        "caller": 4868271,
+        "count": 61,
+        "route": "DRAW.entry.0058c8a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5819024,
+        "caller": 4869423,
+        "count": 2,
+        "route": "DRAW.entry.0058ca90",
+        "caller_owners": [
+          4868368
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5821216,
+        "caller": 4879096,
+        "count": 2,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5821216,
+        "caller": 4882469,
+        "count": 2,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5821216,
+        "caller": 4886483,
+        "count": 1,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5821216,
+        "caller": 4901000,
+        "count": 1,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5821216,
+        "caller": 4962424,
+        "count": 1,
+        "route": "DRAW.entry.0058d320",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5822656,
+        "caller": 5032040,
+        "count": 70,
+        "route": "DRAW.entry.0058d8c0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5822656,
+        "caller": 5051830,
+        "count": 18,
+        "route": "DRAW.entry.0058d8c0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5823984,
+        "caller": 5031980,
+        "count": 228,
+        "route": "DRAW.entry.0058ddf0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5823984,
+        "caller": 5052027,
+        "count": 19,
+        "route": "DRAW.entry.0058ddf0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5827968,
+        "caller": 5609391,
+        "count": 40,
+        "route": "DRAW.entry.0058ed80",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 2,
+        "entry": 5860536,
+        "caller": 5027411,
+        "count": 378,
+        "route": "DRAW.entry.00596cb8",
+        "caller_owners": [
+          5027232
+        ],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 2,
+        "entry": 5860536,
+        "caller": 5037759,
+        "count": 19119,
+        "route": "DRAW.entry.00596cb8",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 2,
+        "entry": 5860536,
+        "caller": 5041544,
+        "count": 228,
+        "route": "DRAW.entry.00596cb8",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 2,
+        "entry": 5860536,
+        "caller": 5048606,
+        "count": 4446,
+        "route": "DRAW.entry.00596cb8",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 2,
+        "entry": 5860536,
+        "caller": 5057240,
+        "count": 24,
+        "route": "DRAW.entry.00596cb8",
+        "caller_owners": [
+          5057088
+        ],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 14,
+        "entry": 5757984,
+        "caller": 5032077,
+        "count": 25,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5757984,
+        "caller": 5056609,
+        "count": 5,
+        "route": "DRAW.entry.0057dc20",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5758048,
+        "caller": 5032100,
+        "count": 25,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5758048,
+        "caller": 5056632,
+        "count": 5,
+        "route": "DRAW.entry.0057dc60",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5775040,
+        "caller": 4874547,
+        "count": 265,
+        "route": "DRAW.entry.00581ec0",
+        "caller_owners": [
+          4873440
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4668399,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4668160
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4863988,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4863952
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4878415,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4878384
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4878429,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4878384
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4972957,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4972800
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4985633,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4985344
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4985672,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4985344
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 4987225,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          4986592
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5060178,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5059792
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5063365,
+        "count": 2,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5063264
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5069861,
+        "count": 29,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5069760
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5070246,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5069936
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5070262,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5069936
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5079751,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5079632
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5083948,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5083712
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5087679,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5087536
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5090376,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5090208
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5092887,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5092832
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5096513,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5096464
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5096523,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5096464
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5096562,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5096464
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5096577,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5096464
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5103737,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5103520
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5105743,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5105648
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5152238,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5601622,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5723582,
+        "count": 1,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5723488
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5811471,
+        "count": 5,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5811440
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "caller": 5888396,
+        "count": 4,
+        "route": "DRAW.entry.0058b3e0",
+        "caller_owners": [
+          5888312
+        ],
+        "caller_attribution": "observed_callee_pending_call_flow_review"
+      },
+      {
+        "phase": 14,
+        "entry": 5813856,
+        "caller": 5032048,
+        "count": 25,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813856,
+        "caller": 5056578,
+        "count": 5,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5056512
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813856,
+        "caller": 5822764,
+        "count": 5,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5822656
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813856,
+        "caller": 5824090,
+        "count": 25,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5823984
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5813856,
+        "caller": 5828001,
+        "count": 5,
+        "route": "DRAW.entry.0058b660",
+        "caller_owners": [
+          5827968
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5816128,
+        "caller": 4879757,
+        "count": 5,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5816128,
+        "caller": 5609469,
+        "count": 10,
+        "route": "DRAW.entry.0058bf40",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5817504,
+        "caller": 4867229,
+        "count": 4,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4866944
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5817504,
+        "caller": 4867833,
+        "count": 4,
+        "route": "DRAW.entry.0058c4a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5818528,
+        "caller": 4868271,
+        "count": 4,
+        "route": "DRAW.entry.0058c8a0",
+        "caller_owners": [
+          4867504
+        ],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5822656,
+        "caller": 5032040,
+        "count": 5,
+        "route": "DRAW.entry.0058d8c0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5823984,
+        "caller": 5031980,
+        "count": 25,
+        "route": "DRAW.entry.0058ddf0",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      },
+      {
+        "phase": 14,
+        "entry": 5827968,
+        "caller": 5609391,
+        "count": 5,
+        "route": "DRAW.entry.0058ed80",
+        "caller_owners": [],
+        "caller_attribution": "exact_direct_call"
+      }
+    ],
+    "result_counts": [
+      {
+        "phase": 1,
+        "entry": 4626144,
+        "result": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "entry": 4626480,
+        "result": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "entry": 4626944,
+        "result": 1,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "entry": 5757984,
+        "result": 600,
+        "count": 6
+      },
+      {
+        "phase": 1,
+        "entry": 5758048,
+        "result": 651,
+        "count": 5
+      },
+      {
+        "phase": 1,
+        "entry": 5758048,
+        "result": 791,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "entry": 5775040,
+        "result": 0,
+        "count": 53
+      },
+      {
+        "phase": 1,
+        "entry": 5810608,
+        "result": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "result": 2112,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "result": 268451904,
+        "count": 4
+      },
+      {
+        "phase": 1,
+        "entry": 5811600,
+        "result": 268485120,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "result": 57409584,
+        "count": 12
+      },
+      {
+        "phase": 1,
+        "entry": 5813856,
+        "result": 81133616,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "entry": 5815312,
+        "result": 0,
+        "count": 6
+      },
+      {
+        "phase": 1,
+        "entry": 5816128,
+        "result": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "entry": 5817504,
+        "result": 0,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "entry": 5818528,
+        "result": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "entry": 5820832,
+        "result": 1,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "entry": 5821216,
+        "result": 1,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "entry": 5822656,
+        "result": 0,
+        "count": 1
+      },
+      {
+        "phase": 1,
+        "entry": 5823984,
+        "result": 0,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "entry": 5757984,
+        "result": 600,
+        "count": 1663
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 76,
+        "count": 12
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 81,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 119,
+        "count": 36
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 126,
+        "count": 16
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 137,
+        "count": 18
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 144,
+        "count": 20
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 162,
+        "count": 20
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 221,
+        "count": 18
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 281,
+        "count": 18
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 292,
+        "count": 18
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 301,
+        "count": 16
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 316,
+        "count": 10
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 326,
+        "count": 128
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 376,
+        "count": 17
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 401,
+        "count": 112
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 431,
+        "count": 18
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 451,
+        "count": 18
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 461,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 521,
+        "count": 4
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 551,
+        "count": 52
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 569,
+        "count": 18
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 576,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 601,
+        "count": 64
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 619,
+        "count": 65
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 636,
+        "count": 236
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 637,
+        "count": 24
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 638,
+        "count": 19
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 644,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 649,
+        "count": 10
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 651,
+        "count": 125
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 660,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 669,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 689,
+        "count": 20
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 694,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 701,
+        "count": 4
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 719,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 724,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 731,
+        "count": 18
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 751,
+        "count": 36
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 761,
+        "count": 18
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 776,
+        "count": 143
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 791,
+        "count": 25
+      },
+      {
+        "phase": 2,
+        "entry": 5758048,
+        "result": 801,
+        "count": 242
+      },
+      {
+        "phase": 2,
+        "entry": 5775040,
+        "result": 0,
+        "count": 10306
+      },
+      {
+        "phase": 2,
+        "entry": 5807248,
+        "result": 0,
+        "count": 54
+      },
+      {
+        "phase": 2,
+        "entry": 5811600,
+        "result": 2112,
+        "count": 7
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "result": 0,
+        "count": 6
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "result": 6,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "result": 7,
+        "count": 4
+      },
+      {
+        "phase": 2,
+        "entry": 5813216,
+        "result": 8,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "result": 57409584,
+        "count": 1876
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "result": 81133616,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "result": 82116656,
+        "count": 5
+      },
+      {
+        "phase": 2,
+        "entry": 5813856,
+        "result": 83492912,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "entry": 5816128,
+        "result": 0,
+        "count": 179
+      },
+      {
+        "phase": 2,
+        "entry": 5817184,
+        "result": 0,
+        "count": 4
+      },
+      {
+        "phase": 2,
+        "entry": 5817504,
+        "result": 0,
+        "count": 122
+      },
+      {
+        "phase": 2,
+        "entry": 5818528,
+        "result": 0,
+        "count": 61
+      },
+      {
+        "phase": 2,
+        "entry": 5819024,
+        "result": 0,
+        "count": 2
+      },
+      {
+        "phase": 2,
+        "entry": 5821216,
+        "result": 1,
+        "count": 7
+      },
+      {
+        "phase": 2,
+        "entry": 5822656,
+        "result": 0,
+        "count": 88
+      },
+      {
+        "phase": 2,
+        "entry": 5823984,
+        "result": 0,
+        "count": 247
+      },
+      {
+        "phase": 2,
+        "entry": 5827968,
+        "result": 0,
+        "count": 40
+      },
+      {
+        "phase": 2,
+        "entry": 5860536,
+        "result": 0,
+        "count": 24195
+      },
+      {
+        "phase": 14,
+        "entry": 5757984,
+        "result": 600,
+        "count": 30
+      },
+      {
+        "phase": 14,
+        "entry": 5758048,
+        "result": 651,
+        "count": 25
+      },
+      {
+        "phase": 14,
+        "entry": 5758048,
+        "result": 791,
+        "count": 5
+      },
+      {
+        "phase": 14,
+        "entry": 5775040,
+        "result": 0,
+        "count": 265
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "result": 0,
+        "count": 59
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "result": 1,
+        "count": 1
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "result": 2,
+        "count": 1
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "result": 3,
+        "count": 1
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "result": 4,
+        "count": 1
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "result": 5,
+        "count": 1
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "result": 6,
+        "count": 1
+      },
+      {
+        "phase": 14,
+        "entry": 5813216,
+        "result": 7,
+        "count": 1
+      },
+      {
+        "phase": 14,
+        "entry": 5813856,
+        "result": 57409584,
+        "count": 65
+      },
+      {
+        "phase": 14,
+        "entry": 5816128,
+        "result": 0,
+        "count": 15
+      },
+      {
+        "phase": 14,
+        "entry": 5817504,
+        "result": 0,
+        "count": 8
+      },
+      {
+        "phase": 14,
+        "entry": 5818528,
+        "result": 0,
+        "count": 4
+      },
+      {
+        "phase": 14,
+        "entry": 5822656,
+        "result": 0,
+        "count": 5
+      },
+      {
+        "phase": 14,
+        "entry": 5823984,
+        "result": 0,
+        "count": 25
+      },
+      {
+        "phase": 14,
+        "entry": 5827968,
+        "result": 0,
+        "count": 5
+      }
+    ],
+    "site_eax_counts": [
+      {
+        "phase": 1,
+        "entry": 4626786,
+        "eax": 80,
+        "count": 2
+      },
+      {
+        "phase": 1,
+        "entry": 4626865,
+        "eax": 262147,
+        "count": 2
+      }
+    ],
+    "unassigned_phase_calls": 0,
+    "caller_pcs_without_discovered_owner": [
+      4878825,
+      4879096,
+      4879757,
+      4882198,
+      4882469,
+      4883037,
+      4886358,
+      4886483,
+      4900730,
+      4901000,
+      4902561,
+      4962154,
+      4962424,
+      5031980,
+      5032040,
+      5032048,
+      5032077,
+      5032100,
+      5037565,
+      5037596,
+      5037609,
+      5037759,
+      5041085,
+      5041134,
+      5041147,
+      5041544,
+      5048473,
+      5048504,
+      5048517,
+      5048606,
+      5051621,
+      5051685,
+      5051708,
+      5051830,
+      5051838,
+      5052027,
+      5152238,
+      5601622,
+      5609391,
+      5609469,
+      27590665
+    ],
+    "remaining": [
+      "All writer/side-effect coverage needs separate review.",
+      "Observed indirect/tail callees need exact call-flow classification.",
+      "Graphics API, borrowed access, failure/recovery and complete dispatch remain separate obligations."
+    ],
+    "draw01_complete": false
+  },
+  "hook_manifest": {
+    "schema": 1,
+    "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "dll_sha256": "56abc1ff7785c755cf5c382303cf257a0f9b167c5ac2457e4fb2f0c59ec08bca",
+    "hooks": [
+      {
+        "tag": 0,
+        "entry": 4626944,
+        "signature": "518d442400",
+        "length": 5,
+        "pop": 16,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00469a00"
+      },
+      {
+        "tag": 1,
+        "entry": 5212512,
+        "signature": "558bec83e4f8",
+        "length": 6,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.004f8960"
+      },
+      {
+        "tag": 2,
+        "entry": 5243552,
+        "signature": "83ec1853b8006cca88",
+        "length": 9,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.005002a0"
+      },
+      {
+        "tag": 3,
+        "entry": 5528592,
+        "signature": "83ec1ca1881f6e00",
+        "length": 8,
+        "pop": 8,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00545c10"
+      },
+      {
+        "tag": 4,
+        "entry": 5550800,
+        "signature": "83ec185357",
+        "length": 5,
+        "pop": 4,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0054b2d0"
+      },
+      {
+        "tag": 5,
+        "entry": 5580704,
+        "signature": "83ec285355",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.005527a0"
+      },
+      {
+        "tag": 6,
+        "entry": 5581648,
+        "signature": "83ec285355",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00552b50"
+      },
+      {
+        "tag": 7,
+        "entry": 5582624,
+        "signature": "83ec285355",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00552f20"
+      },
+      {
+        "tag": 8,
+        "entry": 5583600,
+        "signature": "83ec285355",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.005532f0"
+      },
+      {
+        "tag": 9,
+        "entry": 5584576,
+        "signature": "538b1d94546c00",
+        "length": 7,
+        "pop": 16,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.005536c0"
+      },
+      {
+        "tag": 10,
+        "entry": 5584976,
+        "signature": "83ec085355",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00553850"
+      },
+      {
+        "tag": 11,
+        "entry": 5585472,
+        "signature": "83ec20568bf1",
+        "length": 6,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00553a40"
+      },
+      {
+        "tag": 12,
+        "entry": 5757984,
+        "signature": "8b442404890d74816500",
+        "length": 10,
+        "pop": 4,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0057dc20"
+      },
+      {
+        "tag": 13,
+        "entry": 5758048,
+        "signature": "8b442404890d6cbb6c00",
+        "length": 10,
+        "pop": 8,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0057dc60"
+      },
+      {
+        "tag": 14,
+        "entry": 5758464,
+        "signature": "558bec83ec18",
+        "length": 6,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0057de00"
+      },
+      {
+        "tag": 15,
+        "entry": 5759408,
+        "signature": "83ec145355",
+        "length": 5,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0057e1b0"
+      },
+      {
+        "tag": 16,
+        "entry": 5760320,
+        "signature": "83ec18a1881f6e00",
+        "length": 8,
+        "pop": 4,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0057e540"
+      },
+      {
+        "tag": 17,
+        "entry": 5762192,
+        "signature": "83ec1c5355",
+        "length": 5,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0057ec90"
+      },
+      {
+        "tag": 18,
+        "entry": 5763312,
+        "signature": "83ec245355",
+        "length": 5,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0057f0f0"
+      },
+      {
+        "tag": 19,
+        "entry": 5764592,
+        "signature": "83ec245355",
+        "length": 5,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0057f5f0"
+      },
+      {
+        "tag": 20,
+        "entry": 5768944,
+        "signature": "83ec208b442428",
+        "length": 7,
+        "pop": 8,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.005806f0"
+      },
+      {
+        "tag": 21,
+        "entry": 5775040,
+        "signature": "83ec288b442430",
+        "length": 7,
+        "pop": 16,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00581ec0"
+      },
+      {
+        "tag": 22,
+        "entry": 5807248,
+        "signature": "83ec1ca1881f6e00",
+        "length": 8,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00589c90"
+      },
+      {
+        "tag": 23,
+        "entry": 5810608,
+        "signature": "a1cc1e6e00",
+        "length": 5,
+        "pop": 8,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058a9b0"
+      },
+      {
+        "tag": 24,
+        "entry": 5810832,
+        "signature": "a1cc1e6e00",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058aa90"
+      },
+      {
+        "tag": 25,
+        "entry": 5811600,
+        "signature": "a154816f00",
+        "length": 5,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058ad90"
+      },
+      {
+        "tag": 26,
+        "entry": 5812848,
+        "signature": "a1bc986f00",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058b270"
+      },
+      {
+        "tag": 27,
+        "entry": 5813216,
+        "signature": "53568bf157",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058b3e0"
+      },
+      {
+        "tag": 28,
+        "entry": 5813856,
+        "signature": "83ec0833c0",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058b660"
+      },
+      {
+        "tag": 29,
+        "entry": 5814976,
+        "signature": "83ec6c568bf1",
+        "length": 6,
+        "pop": 8,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058bac0"
+      },
+      {
+        "tag": 30,
+        "entry": 5815312,
+        "signature": "83ec6c568bf1",
+        "length": 6,
+        "pop": 4,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058bc10"
+      },
+      {
+        "tag": 31,
+        "entry": 5816128,
+        "signature": "83ec305355",
+        "length": 5,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058bf40"
+      },
+      {
+        "tag": 32,
+        "entry": 5816640,
+        "signature": "83ec305355",
+        "length": 5,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058c140"
+      },
+      {
+        "tag": 33,
+        "entry": 5817184,
+        "signature": "83ec1833d2",
+        "length": 5,
+        "pop": 16,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058c360"
+      },
+      {
+        "tag": 34,
+        "entry": 5817504,
+        "signature": "83ec2033d2",
+        "length": 5,
+        "pop": 16,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058c4a0"
+      },
+      {
+        "tag": 35,
+        "entry": 5818016,
+        "signature": "83ec20a1d8686f00",
+        "length": 8,
+        "pop": 16,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058c6a0"
+      },
+      {
+        "tag": 36,
+        "entry": 5818528,
+        "signature": "83ec208b44242c",
+        "length": 7,
+        "pop": 16,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058c8a0"
+      },
+      {
+        "tag": 37,
+        "entry": 5819024,
+        "signature": "83ec18538b5c2428",
+        "length": 8,
+        "pop": 16,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058ca90"
+      },
+      {
+        "tag": 38,
+        "entry": 5819328,
+        "signature": "83ec10a1d8686f00",
+        "length": 8,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058cbc0"
+      },
+      {
+        "tag": 39,
+        "entry": 5819728,
+        "signature": "83ec20538b5c242c",
+        "length": 8,
+        "pop": 16,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058cd50"
+      },
+      {
+        "tag": 40,
+        "entry": 5820192,
+        "signature": "83ec20538b5c242c",
+        "length": 8,
+        "pop": 16,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058cf20"
+      },
+      {
+        "tag": 41,
+        "entry": 5820832,
+        "signature": "6aff68682e5c00",
+        "length": 7,
+        "pop": 4,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058d1a0"
+      },
+      {
+        "tag": 42,
+        "entry": 5820992,
+        "signature": "51568bf18b4608",
+        "length": 7,
+        "pop": 4,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058d240"
+      },
+      {
+        "tag": 43,
+        "entry": 5821056,
+        "signature": "6aff68882e5c00",
+        "length": 7,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058d280"
+      },
+      {
+        "tag": 44,
+        "entry": 5821216,
+        "signature": "56578bf1e837e3ffff",
+        "length": 9,
+        "pop": 4,
+        "site": false,
+        "relocations": [
+          4
+        ],
+        "route": "DRAW.entry.0058d320"
+      },
+      {
+        "tag": 45,
+        "entry": 5821296,
+        "signature": "51568bf18d542404",
+        "length": 8,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058d370"
+      },
+      {
+        "tag": 46,
+        "entry": 5821360,
+        "signature": "81ec08040000",
+        "length": 6,
+        "pop": 0,
+        "site": true,
+        "relocations": [],
+        "route": "DRAW.entry.0058d3b0"
+      },
+      {
+        "tag": 47,
+        "entry": 5822656,
+        "signature": "83ec38a1881f6e00",
+        "length": 8,
+        "pop": 4,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058d8c0"
+      },
+      {
+        "tag": 48,
+        "entry": 5823984,
+        "signature": "83ec40a1881f6e00",
+        "length": 8,
+        "pop": 16,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058ddf0"
+      },
+      {
+        "tag": 49,
+        "entry": 5825216,
+        "signature": "83ec24a1881f6e00",
+        "length": 8,
+        "pop": 4,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058e2c0"
+      },
+      {
+        "tag": 50,
+        "entry": 5827968,
+        "signature": "5155568b35881f6e00",
+        "length": 9,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0058ed80"
+      },
+      {
+        "tag": 51,
+        "entry": 5851058,
+        "signature": "558bec5657",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.005947b2"
+      },
+      {
+        "tag": 52,
+        "entry": 5853722,
+        "signature": "558bec5657",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0059521a"
+      },
+      {
+        "tag": 53,
+        "entry": 5854839,
+        "signature": "558bec5657",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00595677"
+      },
+      {
+        "tag": 54,
+        "entry": 5856071,
+        "signature": "558bec5657",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00595b47"
+      },
+      {
+        "tag": 55,
+        "entry": 5857342,
+        "signature": "558bec5657",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0059603e"
+      },
+      {
+        "tag": 56,
+        "entry": 5858448,
+        "signature": "558bec5657",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00596490"
+      },
+      {
+        "tag": 57,
+        "entry": 5859492,
+        "signature": "558bec5657",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.005968a4"
+      },
+      {
+        "tag": 58,
+        "entry": 5860536,
+        "signature": "558bec5657",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00596cb8"
+      },
+      {
+        "tag": 59,
+        "entry": 5861510,
+        "signature": "558bec5657",
+        "length": 5,
+        "pop": 0,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00597086"
+      },
+      {
+        "tag": 60,
+        "entry": 5109824,
+        "signature": "83ec0c5355",
+        "length": 5,
+        "pop": 20,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.004df840"
+      },
+      {
+        "tag": 61,
+        "entry": 5761248,
+        "signature": "53558be956",
+        "length": 5,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0057e8e0"
+      },
+      {
+        "tag": 62,
+        "entry": 5766672,
+        "signature": "83ec205355",
+        "length": 5,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.0057fe10"
+      },
+      {
+        "tag": 63,
+        "entry": 5767776,
+        "signature": "83ec28a150145f00",
+        "length": 8,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00580260"
+      },
+      {
+        "tag": 64,
+        "entry": 5769872,
+        "signature": "83ec305355",
+        "length": 5,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00580a90"
+      },
+      {
+        "tag": 65,
+        "entry": 5771776,
+        "signature": "83ec185355",
+        "length": 5,
+        "pop": 20,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00581200"
+      },
+      {
+        "tag": 66,
+        "entry": 5081776,
+        "signature": "81ec14020000",
+        "length": 6,
+        "pop": 12,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.004d8ab0"
+      },
+      {
+        "tag": 67,
+        "entry": 4626144,
+        "signature": "81ec0c020000",
+        "length": 6,
+        "pop": 4,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.004696e0"
+      },
+      {
+        "tag": 68,
+        "entry": 4626480,
+        "signature": "83ec305355",
+        "length": 5,
+        "pop": 4,
+        "site": false,
+        "relocations": [],
+        "route": "DRAW.entry.00469830"
+      },
+      {
+        "tag": 69,
+        "entry": 4626209,
+        "signature": "e812331300",
+        "length": 5,
+        "pop": 0,
+        "site": true,
+        "relocations": [
+          0
+        ],
+        "route": "DRAW.site.00469721"
+      },
+      {
+        "tag": 70,
+        "entry": 4626250,
+        "signature": "e8e9321300",
+        "length": 5,
+        "pop": 0,
+        "site": true,
+        "relocations": [
+          0
+        ],
+        "route": "DRAW.site.0046974a"
+      },
+      {
+        "tag": 71,
+        "entry": 4626295,
+        "signature": "e8bc321300",
+        "length": 5,
+        "pop": 0,
+        "site": true,
+        "relocations": [
+          0
+        ],
+        "route": "DRAW.site.00469777"
+      },
+      {
+        "tag": 72,
+        "entry": 4626338,
+        "signature": "e891321300",
+        "length": 5,
+        "pop": 0,
+        "site": true,
+        "relocations": [
+          0
+        ],
+        "route": "DRAW.site.004697a2"
+      },
+      {
+        "tag": 73,
+        "entry": 4626400,
+        "signature": "e853321300",
+        "length": 5,
+        "pop": 0,
+        "site": true,
+        "relocations": [
+          0
+        ],
+        "route": "DRAW.site.004697e0"
+      },
+      {
+        "tag": 74,
+        "entry": 4626546,
+        "signature": "e8c1311300",
+        "length": 5,
+        "pop": 0,
+        "site": true,
+        "relocations": [
+          0
+        ],
+        "route": "DRAW.site.00469872"
+      },
+      {
+        "tag": 75,
+        "entry": 4626590,
+        "signature": "e895311300",
+        "length": 5,
+        "pop": 0,
+        "site": true,
+        "relocations": [
+          0
+        ],
+        "route": "DRAW.site.0046989e"
+      },
+      {
+        "tag": 76,
+        "entry": 4626633,
+        "signature": "e86a311300",
+        "length": 5,
+        "pop": 0,
+        "site": true,
+        "relocations": [
+          0
+        ],
+        "route": "DRAW.site.004698c9"
+      },
+      {
+        "tag": 77,
+        "entry": 4626678,
+        "signature": "e83d311300",
+        "length": 5,
+        "pop": 0,
+        "site": true,
+        "relocations": [
+          0
+        ],
+        "route": "DRAW.site.004698f6"
+      },
+      {
+        "tag": 78,
+        "entry": 4626711,
+        "signature": "e81c311300",
+        "length": 5,
+        "pop": 0,
+        "site": true,
+        "relocations": [
+          0
+        ],
+        "route": "DRAW.site.00469917"
+      },
+      {
+        "tag": 79,
+        "entry": 4626786,
+        "signature": "6a1bffd76685c0",
+        "length": 7,
+        "pop": 0,
+        "site": true,
+        "relocations": [],
+        "route": "DRAW.site.00469962"
+      },
+      {
+        "tag": 80,
+        "entry": 4626817,
+        "signature": "a15cbf5f00",
+        "length": 5,
+        "pop": 0,
+        "site": true,
+        "relocations": [],
+        "route": "DRAW.site.00469981"
+      },
+      {
+        "tag": 81,
+        "entry": 4626826,
+        "signature": "8b54241c8b03",
+        "length": 6,
+        "pop": 0,
+        "site": true,
+        "relocations": [],
+        "route": "DRAW.site.0046998a"
+      },
+      {
+        "tag": 82,
+        "entry": 4626865,
+        "signature": "8b4424143bc5",
+        "length": 6,
+        "pop": 0,
+        "site": true,
+        "relocations": [],
+        "route": "DRAW.site.004699b1"
+      }
+    ],
+    "unhookable": [
+      {
+        "entry": 5828016,
+        "route": "DRAW.entry.0058edb0",
+        "reason": "Original branch enters overwritten interior bytes: [{'site': 5828062, 'target': 5828017}]"
+      }
+    ],
+    "sources": {
+      "tools/build-drawing-census.py": "ec645e78705cdf4aa74755760cc6dbd98c10135b0342ce91f903f87f31e07675",
+      "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+      "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+      "runtime/drawing-census/observer.c": "b5069b9b69ed6ff53e0aedaef1aa04970e94d5172a551389bd2fa29cc1b0bf0a",
+      "runtime/drawing-census/entry.S": "44f19762a5232669ddd22633cde8a19072fe43f11f0dabb929149c36a256de1e",
+      "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+      "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+      "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+      "research/runtime/drawing-inventory.json": "6faa0e3400104365c9b3efd36d48174898a81cf62b19d031f1564867365dff09",
+      "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    },
+    "scope": "Observation-only entry/return metadata. Safe splices only; refused entries remain explicit. No writer completeness, side-effect equivalence, full dispatch or scenario closure assertion."
+  },
+  "scope": "Bounded original startup movie path with83safe hooks and14explicit interior probes. Each intro loops once, ends Update with00040003, reaches no successful-Update/Blt-dispatch or selected error-log sites, returns helper0/wrapper1 and original Main/setup/exit0. No actual movie frames/audio, backend internal retention, indefinite/all-platform equivalence or scenario closure.",
+  "movie_entry_site_return_rows": [
+    {
+      "sequence": 9,
+      "type": 1,
+      "call": 5,
+      "phase": 1,
+      "entry": 4626944,
+      "physical_caller": 5151024,
+      "eax": 24509552,
+      "tick": 97896087
+    },
+    {
+      "sequence": 10,
+      "type": 1,
+      "call": 6,
+      "phase": 1,
+      "entry": 4626144,
+      "physical_caller": 4626958,
+      "eax": 2292188,
+      "tick": 97896087
+    },
+    {
+      "sequence": 11,
+      "type": 2,
+      "call": 6,
+      "phase": 1,
+      "entry": 4626144,
+      "physical_caller": 4626958,
+      "eax": 0,
+      "tick": 97896390
+    },
+    {
+      "sequence": 12,
+      "type": 1,
+      "call": 7,
+      "phase": 1,
+      "entry": 4626480,
+      "physical_caller": 4627009,
+      "eax": 0,
+      "tick": 97896390
+    },
+    {
+      "sequence": 13,
+      "type": 3,
+      "call": 8,
+      "phase": 1,
+      "entry": 4626786,
+      "physical_caller": 0,
+      "eax": 80,
+      "tick": 97896399
+    },
+    {
+      "sequence": 14,
+      "type": 3,
+      "call": 9,
+      "phase": 1,
+      "entry": 4626865,
+      "physical_caller": 0,
+      "eax": 262147,
+      "tick": 97896399
+    },
+    {
+      "sequence": 15,
+      "type": 2,
+      "call": 7,
+      "phase": 1,
+      "entry": 4626480,
+      "physical_caller": 4627009,
+      "eax": 0,
+      "tick": 97896399
+    },
+    {
+      "sequence": 16,
+      "type": 2,
+      "call": 5,
+      "phase": 1,
+      "entry": 4626944,
+      "physical_caller": 5151024,
+      "eax": 1,
+      "tick": 97896411
+    },
+    {
+      "sequence": 17,
+      "type": 1,
+      "call": 10,
+      "phase": 1,
+      "entry": 4626944,
+      "physical_caller": 5151089,
+      "eax": 24509552,
+      "tick": 97896411
+    },
+    {
+      "sequence": 18,
+      "type": 1,
+      "call": 11,
+      "phase": 1,
+      "entry": 4626144,
+      "physical_caller": 4626958,
+      "eax": 2292188,
+      "tick": 97896411
+    },
+    {
+      "sequence": 19,
+      "type": 2,
+      "call": 11,
+      "phase": 1,
+      "entry": 4626144,
+      "physical_caller": 4626958,
+      "eax": 0,
+      "tick": 97896588
+    },
+    {
+      "sequence": 20,
+      "type": 1,
+      "call": 12,
+      "phase": 1,
+      "entry": 4626480,
+      "physical_caller": 4627009,
+      "eax": 0,
+      "tick": 97896588
+    },
+    {
+      "sequence": 21,
+      "type": 3,
+      "call": 13,
+      "phase": 1,
+      "entry": 4626786,
+      "physical_caller": 0,
+      "eax": 80,
+      "tick": 97896591
+    },
+    {
+      "sequence": 22,
+      "type": 3,
+      "call": 14,
+      "phase": 1,
+      "entry": 4626865,
+      "physical_caller": 0,
+      "eax": 262147,
+      "tick": 97896591
+    },
+    {
+      "sequence": 23,
+      "type": 2,
+      "call": 12,
+      "phase": 1,
+      "entry": 4626480,
+      "physical_caller": 4627009,
+      "eax": 0,
+      "tick": 97896591
+    },
+    {
+      "sequence": 24,
+      "type": 2,
+      "call": 10,
+      "phase": 1,
+      "entry": 4626944,
+      "physical_caller": 5151089,
+      "eax": 1,
+      "tick": 97896603
+    }
+  ],
+  "movie_path": {
+    "loop_sites": 2,
+    "successful_update_sites": 0,
+    "blt_dispatch_sites": 0,
+    "selected_error_log_sites": 0,
+    "cleanup_eax": [
+      262147,
+      262147
+    ],
+    "cleanup_code_name": "MS_S_ENDOFSTREAM",
+    "api_code_source": "https://learn.microsoft.com/en-us/windows/win32/directshow/multimedia-streaming-error-and-success-codes",
+    "api_semantics_source": "https://learn.microsoft.com/en-us/previous-versions/ms786825(v=vs.85)",
+    "interpretation": "No sample successfully updated in this bounded observed Wine path. Original wrapper return1 is not full movie playback. This does not establish why the stream immediately ended, audio absence, arbitrary backend behavior or all movie controls."
+  },
+  "retained_artifacts": {
+    "working/experiments/drawing-census/run-13j4m4__/journey.json": {
+      "sha256": "6fda21d180657e952b1e18ab655e049e068e3229b300eb58b04c3fe63026ef70",
+      "bytes": 10927
+    },
+    "working/experiments/drawing-census/run-13j4m4__/decoded.json": {
+      "sha256": "e17be9541311a85dd862afe69226f07c191dbd65f366f38aa191fff33932bf9c",
+      "bytes": 82864
+    },
+    "working/experiments/drawing-census/run-13j4m4__/phase-14-03.png": {
+      "sha256": "bd5442cce381dc64908c1078db9a5ac30243a4539afc9e20321e502a81c5b87b",
+      "bytes": 503022
+    },
+    "working/experiments/drawing-census/run-13j4m4__/phase-02-02.png": {
+      "sha256": "bd5442cce381dc64908c1078db9a5ac30243a4539afc9e20321e502a81c5b87b",
+      "bytes": 503022
+    },
+    "working/experiments/drawing-census/run-13j4m4__/events.bin": {
+      "sha256": "b73fd8ce1eb6bbf156699cf161647511174ff7ae740e98f59bd19dc6f068e89d",
+      "bytes": 3216
+    },
+    "working/experiments/drawing-census/run-13j4m4__/phase-01-01.png": {
+      "sha256": "0e78e1e00e1b64efefcadff280b26c47573f6b85aa1a36b6d7773abfbc2088f9",
+      "bytes": 1476
+    },
+    "working/experiments/drawing-census/run-13j4m4__/game.log": {
+      "sha256": "ec3dcee41afb37112cd241cb16ea6c46a7150f16dbf9d519863f32a21ceb5e81",
+      "bytes": 639
+    },
+    "working/experiments/drawing-census/run-13j4m4__/wineboot.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/experiments/drawing-census/run-13j4m4__/xvfb.log": {
+      "sha256": "230291ecd88b9ee120e3395981d75755ac098e09e69227d24ee6d06935075c1a",
+      "bytes": 1766
+    },
+    "working/experiments/drawing-census/run-13j4m4__/manifest.json": {
+      "sha256": "cb0b5504f8d67e13f21bfc48fea6a796379399335bea36d18024cd15695703cd",
+      "bytes": 1185
+    },
+    "working/experiments/drawing-census/run-13j4m4__/menu-build.json": {
+      "sha256": "5f42715c607482a05ec3413a1262ed9d3fe70e4d048d6d9777548ac1c6379580",
+      "bytes": 3766
+    },
+    "working/experiments/drawing-census/run-13j4m4__/census-build.json": {
+      "sha256": "aec3d8725afc74bf69f9090617b1aa0b9af55a4508346fbe527e57e3634a8c5f",
+      "bytes": 19186
+    },
+    "working/experiments/drawing-census/run-13j4m4__/channel.bin": {
+      "sha256": "f2c226380075190b1ba58350964e23e22ca7183375ae66d795b1af269e5551b3",
+      "bytes": 106496
+    },
+    "working/experiments/drawing-census/run-13j4m4__/capture/census.bin": {
+      "sha256": "2417b7b9c4cc2cd6e4eac9eee1b8a8665852bcb94312815a694a6f57553c9a5a",
+      "bytes": 10538112
+    },
+    "working/experiments/drawing-census/run-13j4m4__/capture/census-control.bin": {
+      "sha256": "14a2497442dd7ddfacd15828c79d67e90d7bb58dc919ac793e2da6ea911200ad",
+      "bytes": 64
+    }
+  }
+}

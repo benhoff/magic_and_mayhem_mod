@@ -67,8 +67,21 @@ class TraceTests(unittest.TestCase):
         struct.pack_into('<I', self.end, 12, 1)
         result = self.decode([row]); self.assertEqual(result['site_counts'][0]['caller_attribution'],
                                                       'interior_site_no_return_caller')
+        self.assertEqual((result['calls'], result['paired_calls'], result['site_events']), (1, 0, 1))
+        self.assertEqual(result['site_eax_counts'], [{'phase': 14, 'entry': 0x401200, 'eax': 0, 'count': 1}])
+        self.assertEqual(result['result_counts'], [])
         row[7] = 0x401005
         with self.assertRaises(ValueError): self.decode([row])
+
+    def test_mixed_sites_keep_call_counter_and_results_distinct(self):
+        site = list(self.entry); site[:5] = [2, 3, 2, 1, 2]
+        site[6] = 0x401200; site[7] = 0; site[11] = 0x80004005
+        leave = list(self.leave); leave[0] = 3
+        struct.pack_into('<II', self.end, 12, 3, 2)
+        result = self.decode([self.entry, site, leave])
+        self.assertEqual((result['calls'], result['paired_calls'], result['site_events']), (2, 1, 1))
+        self.assertEqual(result['site_eax_counts'][0]['eax'], 0x80004005)
+        self.assertEqual(result['result_counts'][0]['result'], 0xffffffff)
 
     def test_unknown_and_unassigned_remain_explicit(self):
         self.entry[4] = self.leave[4] = 0; self.entry[7] = self.leave[7] = 0x410005

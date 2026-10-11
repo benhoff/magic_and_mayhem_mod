@@ -17,6 +17,22 @@ def load(name, path):
     return module
 
 
+def site_mode(route, entry, inventory):
+    legacy_site = entry in (0x58d3b0, 0x58edb0)
+    mode = route.get('observation_mode', 'site' if legacy_site else 'entry')
+    if type(mode) is not str or mode not in ('entry', 'site'):
+        raise ValueError('Unreviewed observation mode')
+    if legacy_site and mode != 'site':
+        raise ValueError('Legacy interior cannot acquire a return slot')
+    if mode == 'site' and not legacy_site:
+        anchor = route.get('original_anchor')
+        if type(anchor) is not int or not any(f['entry'] == anchor and
+                any(start <= entry < end for start, end in f['ranges'])
+                for f in inventory['functions']):
+            raise ValueError('Interior site needs an explicit containing original function')
+    return mode == 'site'
+
+
 def hook_rows(executable):
     raw = executable.read_bytes()
     if hashlib.sha256(raw).hexdigest() != BUILD_SHA256:
@@ -34,6 +50,7 @@ def hook_rows(executable):
         if not selectors: continue
         entry = int(selectors[0]['identity'], 0) if isinstance(selectors[0]['identity'], str) else selectors[0]['identity']
         try:
+            site = site_mode(route, entry, inventory)
             asm = subprocess.check_output(['objdump', '-d', '-Mintel', '--start-address=' + hex(entry),
                                           '--stop-address=' + hex(entry + 32), str(executable)], text=True)
             code = instructions(asm); cursor = entry; signature = bytearray(); relocs = []
@@ -53,9 +70,8 @@ def hook_rows(executable):
                 raise ValueError('Entry splice exceeds bounded signature/relocation storage')
             if bytes(signature) != raw[offset(raw, entry, len(signature)):][:len(signature)]:
                 raise ValueError('Disassembly bytes disagree with original file-backed bytes')
-            site = entry in (0x58d3b0, 0x58edb0)
-            if entry in known: pop = known[entry]
-            elif site: pop = 0
+            if site: pop = 0
+            elif entry in known: pop = known[entry]
             else:
                 function = next((f for f in inventory['functions'] if f['entry'] == entry), None)
                 if function is None: raise ValueError('No explicit recovered return contract')
