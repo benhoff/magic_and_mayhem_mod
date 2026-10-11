@@ -1,0 +1,273 @@
+{
+  "schema": 1,
+  "scope": "Retained development attempts, including sandbox sanitizer refusal, fallback back-edge fault, missing launcher executable permission, compiler warning and synthetic Win32 mapping conflict. Original manifests and actual commands remain in each immutable report. Earlier successes retain their original source/scope hashes; this history does not promote them to current validation.",
+  "experiments": [
+    {
+      "record": "working/tests/fade-loop/run-l9_sk2x0/report.json",
+      "sha256": "15336fad7afc6b17b6edc616b239b4357577b9e194eb94921805d865a6a531a2",
+      "success": false,
+      "error": "CalledProcessError(-11, ['/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-l9_sk2x0/fade-reference', '/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe', 'working/tests/canvas-fade-span/run-30w8ni96/cases.bin', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-l9_sk2x0/results.bin'], '', '')",
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "RS.fade-loop-state",
+          "contract_sha256": "5a097feb4d421b5bb4b88e8116afcf66068423505c0f09396de2d16ef8d0737f",
+          "scenarios": {}
+        }
+      ]
+    },
+    {
+      "record": "working/tests/fade-loop/run-otxjjjn5/report.json",
+      "sha256": "84c1bc8a745f5de875818a343d6c3efbea4870c2ab2556b8b0e6649f9e5e6feb",
+      "success": true,
+      "error": null,
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "RS.fade-loop-state",
+          "contract_sha256": "6524b55ad6170510bd96063e147d4ebdd2a84ef92895834f305bcb1c583908ae",
+          "scenarios": {}
+        }
+      ]
+    },
+    {
+      "record": "working/tests/fade-loop/run-veyqv0ai/report.json",
+      "sha256": "3e19d5fe2e677128bc0944bd251551783c4c53fececc6e32054d7fee7b568983",
+      "success": false,
+      "error": "CalledProcessError(1, ['/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-veyqv0ai/unit'], '', '==22==LeakSanitizer has encountered a fatal error.\\n==22==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\\n==22==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\\n')",
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "RS.fade-loop-state",
+          "contract_sha256": "5a097feb4d421b5bb4b88e8116afcf66068423505c0f09396de2d16ef8d0737f",
+          "scenarios": {}
+        }
+      ]
+    },
+    {
+      "record": "working/tests/fade-loop/run-w5bdm4st/report.json",
+      "sha256": "53606814018ac906c76ff4224e924b7ada34940beaa1fc6672a5fae3032c4d34",
+      "success": true,
+      "error": null,
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "RS.fade-loop-state",
+          "contract_sha256": "5a097feb4d421b5bb4b88e8116afcf66068423505c0f09396de2d16ef8d0737f",
+          "scenarios": {}
+        }
+      ]
+    },
+    {
+      "record": "working/tests/canvas-writer-admission/run-scr9ql4f/report.json",
+      "sha256": "9eb92722e8c5dd1fb70f167d9677ca2b0751b54c97e805e201085d1eeee15cd6",
+      "success": true,
+      "error": null,
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "NR.canvas-writer-admission",
+          "contract_sha256": "4747cd9122771a4f419d67ece22ec7d45e0f967c9961b2bb99019f6b76296090",
+          "scenarios": {
+            "native-canvas-writer-admission-20261010": "0d004b2bdad1a2f3bc484161ae4331bd97da21924c4be777850c0558acea8c5b"
+          }
+        }
+      ]
+    },
+    {
+      "record": "working/tests/canvas-writer-admission/run-wq0fh8m8/report.json",
+      "sha256": "3a1fd9fa01d88de7bd3d073c96af25b92c67909ac0469a07db59d583c2e27c3b",
+      "success": false,
+      "error": "CalledProcessError(1, ['wine', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/canvas-writer-admission/run-wq0fh8m8/selftest.exe'], '', '')",
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "NR.canvas-writer-admission",
+          "contract_sha256": "4747cd9122771a4f419d67ece22ec7d45e0f967c9961b2bb99019f6b76296090",
+          "scenarios": {
+            "native-canvas-writer-admission-20261010": "0d004b2bdad1a2f3bc484161ae4331bd97da21924c4be777850c0558acea8c5b"
+          }
+        }
+      ]
+    },
+    {
+      "record": "working/experiments/canvas-writers/run-a03q29h1/report.json",
+      "sha256": "328af98fcf9fc0ceae485b7e049f266df3aa551ae5adcff423e568798ba7b8d4",
+      "success": true,
+      "error": null,
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "RS.fade-live-pixels",
+          "contract_sha256": "28cb2f9de9d4fdd5151decae67308ee404fe4a5f0505716c40ddf61f5a988ca0",
+          "scenarios": {
+            "native-fade-menu-startup-20261010": "05c55da633efc39828e3dc5cb4422802c31e215ea56c95192dc1ed42aacc4460"
+          }
+        }
+      ]
+    },
+    {
+      "record": "working/experiments/canvas-writers/run-d88dvo4i/report.json",
+      "sha256": "e34a3334df853cff440b6a82b6f4b360c712c412efe118ebb7b4da769390191d",
+      "success": false,
+      "error": "ValueError('Original exited before menu reply')",
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "RS.fade-live-pixels",
+          "contract_sha256": "28cb2f9de9d4fdd5151decae67308ee404fe4a5f0505716c40ddf61f5a988ca0",
+          "scenarios": {
+            "native-fade-menu-startup-20261010": "05c55da633efc39828e3dc5cb4422802c31e215ea56c95192dc1ed42aacc4460"
+          }
+        }
+      ]
+    },
+    {
+      "record": "working/experiments/canvas-writers/run-oibcdj11/report.json",
+      "sha256": "074f155128a5ae1c2643ffe54f52c88e48610d33a7a1ae1418ecd65350a0d47f",
+      "success": true,
+      "error": null,
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "RS.fade-live-pixels",
+          "contract_sha256": "28cb2f9de9d4fdd5151decae67308ee404fe4a5f0505716c40ddf61f5a988ca0",
+          "scenarios": {
+            "native-fade-menu-startup-20261010": "05c55da633efc39828e3dc5cb4422802c31e215ea56c95192dc1ed42aacc4460"
+          }
+        }
+      ]
+    },
+    {
+      "record": "working/tests/panel-domain/run-fkc7sdmu/report.json",
+      "sha256": "3d1d506fc561f4c4802dd76b702b6451d13f2c97eb41c5f6973fb5e1aa6e062f",
+      "success": true,
+      "error": null,
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "RS.panel-pixel-domain",
+          "contract_sha256": "39b19423f8bc38f41488ad0f3e4a3a522d43c7eb561085f0d2d3dc76a3ee759e",
+          "scenarios": {
+            "native-panel-domain-20261010": "e116cf05b2dbbe6360101708f655149153a6eb7756b2608af02a38e2ff9aa0b7"
+          }
+        },
+        {
+          "behavior": "NR.panel-atomic-admission",
+          "contract_sha256": "dceac15a5b036321f6994862f561fd443cf9fd8782d0da8497a1a55799fa577c",
+          "scenarios": {
+            "native-panel-domain-20261010": "e116cf05b2dbbe6360101708f655149153a6eb7756b2608af02a38e2ff9aa0b7"
+          }
+        }
+      ]
+    },
+    {
+      "record": "working/tests/panel-domain/run-tsaogmtr/report.json",
+      "sha256": "026f8202eec2d989168c58774575cb78b6eeb526f6c96175bfa8b0f7f7f678cf",
+      "success": true,
+      "error": null,
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "RS.panel-pixel-domain",
+          "contract_sha256": "39b19423f8bc38f41488ad0f3e4a3a522d43c7eb561085f0d2d3dc76a3ee759e",
+          "scenarios": {
+            "native-panel-domain-20261010": "e116cf05b2dbbe6360101708f655149153a6eb7756b2608af02a38e2ff9aa0b7"
+          }
+        },
+        {
+          "behavior": "NR.panel-atomic-admission",
+          "contract_sha256": "dceac15a5b036321f6994862f561fd443cf9fd8782d0da8497a1a55799fa577c",
+          "scenarios": {
+            "native-panel-domain-20261010": "e116cf05b2dbbe6360101708f655149153a6eb7756b2608af02a38e2ff9aa0b7"
+          }
+        }
+      ]
+    },
+    {
+      "record": "working/tests/panel-domain/run-ut4d_lwv/report.json",
+      "sha256": "16aab69755a8c381e589f484093f5de392f894a09c35802e5260ae29bc399d1b",
+      "success": false,
+      "error": "CalledProcessError(1, ['g++', '-m32', '-O2', '-std=c++17', '-fno-pie', '-no-pie', '-Wall', '-Wextra', '-Werror', '-MMD', '-MF', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-ut4d_lwv/reference.d', '/home/hoff/swdev/magic_and_mayhem_mod/tests/panel-domain-reference.cpp', '-o', '/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-ut4d_lwv/reference'], '', '/home/hoff/swdev/magic_and_mayhem_mod/tests/panel-domain-reference.cpp: In function \u2018int main(int, char**)\u2019:\\n/home/hoff/swdev/magic_and_mayhem_mod/tests/panel-domain-reference.cpp:29:3: error: this \u2018if\u2019 clause does not guard... [-Werror=misleading-indentation]\\n   29 |   if(at!=b.size() || !out)throw std::runtime_error(\"Input/output extent\");return 0;\\n      |   ^~\\n/home/hoff/swdev/magic_and_mayhem_mod/tests/panel-domain-reference.cpp:29:75: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the \u2018if\u2019\\n   29 |   if(at!=b.size() || !out)throw std::runtime_error(\"Input/output extent\");return 0;\\n      |                                                                           ^~~~~~\\ncc1plus: all warnings being treated as errors\\n')",
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "RS.panel-pixel-domain",
+          "contract_sha256": "39b19423f8bc38f41488ad0f3e4a3a522d43c7eb561085f0d2d3dc76a3ee759e",
+          "scenarios": {
+            "native-panel-domain-20261010": "e116cf05b2dbbe6360101708f655149153a6eb7756b2608af02a38e2ff9aa0b7"
+          }
+        },
+        {
+          "behavior": "NR.panel-atomic-admission",
+          "contract_sha256": "dceac15a5b036321f6994862f561fd443cf9fd8782d0da8497a1a55799fa577c",
+          "scenarios": {
+            "native-panel-domain-20261010": "e116cf05b2dbbe6360101708f655149153a6eb7756b2608af02a38e2ff9aa0b7"
+          }
+        }
+      ]
+    },
+    {
+      "record": "working/tests/panel-domain/run-yie5yhm9/report.json",
+      "sha256": "34126f66a5633803833a71ad8de397dd1012474f6d152f3c73f9024445a72485",
+      "success": true,
+      "error": null,
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "RS.panel-pixel-domain",
+          "contract_sha256": "39b19423f8bc38f41488ad0f3e4a3a522d43c7eb561085f0d2d3dc76a3ee759e",
+          "scenarios": {
+            "native-panel-domain-20261010": "e116cf05b2dbbe6360101708f655149153a6eb7756b2608af02a38e2ff9aa0b7"
+          }
+        },
+        {
+          "behavior": "NR.panel-atomic-admission",
+          "contract_sha256": "dceac15a5b036321f6994862f561fd443cf9fd8782d0da8497a1a55799fa577c",
+          "scenarios": {
+            "native-panel-domain-20261010": "e116cf05b2dbbe6360101708f655149153a6eb7756b2608af02a38e2ff9aa0b7"
+          }
+        }
+      ]
+    },
+    {
+      "record": "working/tests/other-producer-checkpoints/run-d3fmx90x/report.json",
+      "sha256": "e54a13706ea7c5f12e68c95b4f4c1462f25446070955b8fa173ee427de93becc",
+      "success": true,
+      "error": null,
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "NR.other-producer-checkpoints",
+          "contract_sha256": "ebf7d89d62fd64f663eda0507411d714aa3d9b62eca98b143177671ab512d9ba",
+          "scenarios": {
+            "other-producer-saved-checkpoints-20261010": "8c184736ac660297dd8196f605862bad19de80e9e7c195214276a25e9554e0ba"
+          }
+        }
+      ]
+    },
+    {
+      "record": "working/tests/other-producer-checkpoints/run-o27nw06k/report.json",
+      "sha256": "9b612c58d7c2a873f2c3a3145dc0fefa5f871ba7ff609c6169453ba44d19e645",
+      "success": true,
+      "error": null,
+      "sources_stable": true,
+      "claims": [
+        {
+          "behavior": "NR.other-producer-checkpoints",
+          "contract_sha256": "e95cbc7fde2ba3578d77ee42e6edcffdc28261e3eb48fc1c8adbfadb508aa0df",
+          "scenarios": {
+            "other-producer-saved-checkpoints-20261010": "1dba839ae9ff9719646b132b1acdfafe6cbf393a962a6831d01bf1a9ed6857cb"
+          }
+        },
+        {
+          "behavior": "NR.other-writer-atomic-admission",
+          "contract_sha256": "1ef3b48d924197ce020d88654e360ff61ec25f498f898e0ed1919ddabb990513",
+          "scenarios": {
+            "other-producer-saved-checkpoints-20261010": "1dba839ae9ff9719646b132b1acdfafe6cbf393a962a6831d01bf1a9ed6857cb"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "success": true,
+  "claims": [
+    {
+      "behavior": "NR.canvas-writer-admission",
+      "contract_sha256": "4747cd9122771a4f419d67ece22ec7d45e0f967c9961b2bb99019f6b76296090",
+      "scenarios": {
+        "native-canvas-writer-admission-20261010": "0d004b2bdad1a2f3bc484161ae4331bd97da21924c4be777850c0558acea8c5b"
+      }
+    }
+  ],
+  "sources": {
+    "reconstruction/rendering/fade_kernel.c": "6bb06acf26a2f11e287310fef9a14a690fcc703b6e07b424759f8b750f26b725",
+    "reconstruction/rendering/fade_kernel.h": "1ec396a3a408732329996a82a34cc5f81476dfa4ce33faae03731960ef0e0675",
+    "runtime/canvas-writers/bridge.c": "0d4d243f016509767bdc6d89381a57d4b7c75cc1fda7996b0b828f2025044c45",
+    "runtime/canvas-writers/fade_entry.S": "07800eb25990a9a7996e2971876ba1891e1d0ee8a9f8971a5b06c5bab2fac0aa",
+    "runtime/canvas-writers/fade_finish.S": "0cd8a96eb0954f2f47aa40aad8f8dccf47fc3a176c138d114856c6c8c7ebd1ff",
+    "runtime/canvas-writers/fade_route.c": "ee166bf0a3abeaba5d5c03e841285b0fbae91071d7ce5f674893d8c8e1ad44a9",
+    "runtime/canvas-writers/fade_route.h": "c5b1d6429d51adc0d7a6d561356956334b64ce85fbbed1cfcf80ca0b16b17263",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/canvas-writers-selftest.c": "f0c05abbb8e1b34655bfa60010cd06ee993114d7acc66002f1cf30f4cc2f4afe",
+    "tests/test-fade-live-capture.py": "5059f736820cbbd1d3df73202faeaa63eb81581f41a8d407d1fe9a134366d2a6",
+    "tools/build-canvas-writers.py": "dc8460cd0aef18db38eead9960f2ba06208f516253f681ebbee5d95d8042c1ed",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/fade_live_capture.py": "3f3550823b7b03193a0c157d592c92998d923f82137dd35075ba42ae9169f028",
+    "tools/test-canvas-writer-admission.py": "3067674e988c99ad7f8606d0ae6562fc1faf17a6aecff61ceeded3b4959f0f26"
+  },
+  "experiment": "working/tests/canvas-writer-admission/run-scr9ql4f",
+  "original_work_bypassed": false,
+  "live_replacement": false,
+  "scope": "Synthetic PE32 DLL admission: explicit default-off/invalid-mode/signature refusal before patch, writable-page/guard-page/cross-region preflight, width/height/pitch/mask/phase/local-lock guards, LastError, native physical prefix/FX-independent entry metadata and capture128-call budget. No original executable or game run, owner-thread race or arbitrary DirectDraw lifetime proof.",
+  "handled": 128,
+  "atomic_refusals": 15,
+  "disabled_and_install_refusals": 3,
+  "compared_words": 1024,
+  "commands": [
+    {
+      "label": "build",
+      "returncode": 0,
+      "argv": [
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/build-canvas-writers.py",
+        "--selftest"
+      ],
+      "log": "working/tests/canvas-writer-admission/run-scr9ql4f/build.log",
+      "sha256": "38affaebe095707eff05a2c72acf2fa03429e6b825bc90b58a714055c8402c4f"
+    },
+    {
+      "label": "clone-prefix",
+      "returncode": 0,
+      "argv": [
+        "cp",
+        "-a",
+        "--reflink=auto",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/wineprefix-x86_64",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/canvas-writer-admission/run-scr9ql4f/wineprefix"
+      ],
+      "log": "working/tests/canvas-writer-admission/run-scr9ql4f/clone-prefix.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "wineboot",
+      "returncode": 0,
+      "argv": [
+        "wineboot",
+        "-u"
+      ],
+      "log": "working/tests/canvas-writer-admission/run-scr9ql4f/wineboot.log",
+      "sha256": "28c2b2e4a1cf042326218d71d06f1012d1b8d5b91767ef0e6643bc253842be06"
+    },
+    {
+      "label": "off",
+      "returncode": 0,
+      "argv": [
+        "wine",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/canvas-writer-admission/run-scr9ql4f/selftest.exe"
+      ],
+      "log": "working/tests/canvas-writer-admission/run-scr9ql4f/off.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "bad",
+      "returncode": 0,
+      "argv": [
+        "wine",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/canvas-writer-admission/run-scr9ql4f/selftest.exe"
+      ],
+      "log": "working/tests/canvas-writer-admission/run-scr9ql4f/bad.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "anchor",
+      "returncode": 0,
+      "argv": [
+        "wine",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/canvas-writer-admission/run-scr9ql4f/selftest.exe"
+      ],
+      "log": "working/tests/canvas-writer-admission/run-scr9ql4f/anchor.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "on",
+      "returncode": 0,
+      "argv": [
+        "wine",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/canvas-writer-admission/run-scr9ql4f/selftest.exe"
+      ],
+      "log": "working/tests/canvas-writer-admission/run-scr9ql4f/on.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "sources_stable": true,
+  "artifacts": {
+    "working/tests/canvas-writer-admission/run-scr9ql4f/MnmCanvasWriters.dll": {
+      "sha256": "f3ffcaaddae84f678c50680ccdbd0189bfebb86fa7933525b30092bb1b603f33",
+      "bytes": 6144
+    },
+    "working/tests/canvas-writer-admission/run-scr9ql4f/anchor.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/canvas-writer-admission/run-scr9ql4f/bad.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/canvas-writer-admission/run-scr9ql4f/build.log": {
+      "sha256": "38affaebe095707eff05a2c72acf2fa03429e6b825bc90b58a714055c8402c4f",
+      "bytes": 97
+    },
+    "working/tests/canvas-writer-admission/run-scr9ql4f/clone-prefix.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/canvas-writer-admission/run-scr9ql4f/manifest.json": {
+      "sha256": "2243f90deedf0f68f62ed83a29dc6d6b2203267c9cef29da27f880990785e4d8",
+      "bytes": 1326
+    },
+    "working/tests/canvas-writer-admission/run-scr9ql4f/off.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/canvas-writer-admission/run-scr9ql4f/on.bin": {
+      "sha256": "6516e111646215454538128f58461405fca2279e1140d5a114d7f2f9ece9aa69",
+      "bytes": 10248
+    },
+    "working/tests/canvas-writer-admission/run-scr9ql4f/on.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/canvas-writer-admission/run-scr9ql4f/selftest.exe": {
+      "sha256": "902a260f5930b7881220aecfb1dc319dbdaf146808d5566f3ab6c1363f20fbac",
+      "bytes": 3281920
+    },
+    "working/tests/canvas-writer-admission/run-scr9ql4f/wineboot.log": {
+      "sha256": "28c2b2e4a1cf042326218d71d06f1012d1b8d5b91767ef0e6643bc253842be06",
+      "bytes": 1208
+    }
+  }
+}

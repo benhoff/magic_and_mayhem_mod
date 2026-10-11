@@ -1,0 +1,703 @@
+{
+  "schema": 1,
+  "success": true,
+  "claims": [
+    {
+      "behavior": "RS.fade-live-pixels",
+      "contract_sha256": "28cb2f9de9d4fdd5151decae67308ee404fe4a5f0505716c40ddf61f5a988ca0",
+      "scenarios": {
+        "native-fade-menu-startup-20261010": "05c55da633efc39828e3dc5cb4422802c31e215ea56c95192dc1ed42aacc4460"
+      }
+    }
+  ],
+  "sources": {
+    "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+    "protocols/include/mnm/menu_v10.h": "31d7facdd6a0ec95d34f95721bd507e983a4e9ec2c0c56ee23a479196b898b17",
+    "protocols/include/mnm/menu_v11.h": "cd9a8e80df702ea904dbe15404d392896035b7ab784ceef62dee35559f27c324",
+    "protocols/include/mnm/menu_v12.h": "40b917530ea695d8858fc899bc0e41e5cd9b6ea681af8378ec24b7311c1346c5",
+    "protocols/include/mnm/menu_v2.h": "5f9db9ded1e1653411cdd542ff045070a79f8b9b3c93d05227d94edaf3da3881",
+    "protocols/include/mnm/menu_v3.h": "f0baf53e4b11455c7bef129aafad06a80984ba13ce37e877d088dd7c7ed74dd6",
+    "protocols/include/mnm/menu_v4.h": "d42e6c6af61928cd1a47efe92aca0f52b31b3ae56a2f844bbbef382354d8fa34",
+    "protocols/include/mnm/menu_v5.h": "2ed7fd0a7b6774b3f2e5158966ebb438ccad15f806c22ca1c2ab75328ece87b3",
+    "protocols/include/mnm/menu_v6.h": "4fb73cf5f6aa4890bce6b7e1e45c5b4ebeee8822241a5745cf563c43cfcd255d",
+    "protocols/include/mnm/menu_v7.h": "fc554cfcbc7fd50ebf4ad0b4046877787ccdb410eaa324b36573ed4694659c32",
+    "protocols/include/mnm/menu_v8.h": "86ca7a24180972b75b84c4ec021c62519b7c94997b260bdfe05dd80388c09f47",
+    "protocols/include/mnm/menu_v9.h": "857c603304eedb562197f433765ff1ec7bb8a0f05addd2f8cdbe7c0e684e2d6b",
+    "reconstruction/rendering/fade_kernel.c": "6bb06acf26a2f11e287310fef9a14a690fcc703b6e07b424759f8b750f26b725",
+    "reconstruction/rendering/fade_kernel.h": "1ec396a3a408732329996a82a34cc5f81476dfa4ce33faae03731960ef0e0675",
+    "runtime/canvas-writers/bridge.c": "0d4d243f016509767bdc6d89381a57d4b7c75cc1fda7996b0b828f2025044c45",
+    "runtime/canvas-writers/fade_entry.S": "07800eb25990a9a7996e2971876ba1891e1d0ee8a9f8971a5b06c5bab2fac0aa",
+    "runtime/canvas-writers/fade_finish.S": "0cd8a96eb0954f2f47aa40aad8f8dccf47fc3a176c138d114856c6c8c7ebd1ff",
+    "runtime/canvas-writers/fade_route.c": "ee166bf0a3abeaba5d5c03e841285b0fbae91071d7ce5f674893d8c8e1ad44a9",
+    "runtime/canvas-writers/fade_route.h": "c5b1d6429d51adc0d7a6d561356956334b64ce85fbbed1cfcf80ca0b16b17263",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/campaign_gameplay_observe.h": "6969d3d3ccd673045dd8122ed535891b451572f37ef3ba594c4b882965d30a1c",
+    "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+    "runtime/menu/campaign_observe.h": "a220db2c27e263f7fc29fc41fd98876051de0f02839b2bde48fddb04d55950b4",
+    "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+    "runtime/menu/campaign_spell_observe.h": "1020a7a459db112a3521ea6859061914a78ceda776d0f2a5aa75d7b5d3a00f7a",
+    "runtime/menu/campaign_world_observe.h": "16b5d6c8f84c9ab9e804dd6415ecb01c5f719f777fb6610a0fc589726f15a2f2",
+    "runtime/menu/channel.h": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+    "runtime/menu/channel_selftest.h": "1104046daa23c138c71ce2acc6367546e27e8bcadf17981660b7ae250890ef3e",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c",
+    "runtime/menu/contract_selftest.c": "a41c0188b16e4275333e4f5c7e963614ad0c43d3759150fd297410a649b273e7",
+    "runtime/menu/mini.h": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+    "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+    "runtime/menu/observer.c": "a1af55ad3377720ce7cfd005af5bdaf43e8c577d29efa66eb380064edabce06a",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/preferences_display.h": "60a7f61c7bd734b017c831c6ee3159cd751bf9b2df4a2c1e17b103628872a2cc",
+    "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+    "runtime/menu/region_entry.h": "df429ae4125d71982471f814a946c43a5d0e46762e607e09478212546c236b7e",
+    "runtime/menu/region_entry_observe.h": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+    "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/canvas-fade-reference.cpp": "fdcc8ad114fcfad13367027619df288e7a765d853f566bed3df4b4e89af9d96f",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tests/test-fade-live-capture.py": "5059f736820cbbd1d3df73202faeaa63eb81581f41a8d407d1fe9a134366d2a6",
+    "tools/build-canvas-writers.py": "dc8460cd0aef18db38eead9960f2ba06208f516253f681ebbee5d95d8042c1ed",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/canvas-writer-game-runner.py": "1944e8203fb27fba4b6790c9e9dcd572a7768103d2e6e498a8a3d2d2414a196e",
+    "tools/capture-fade-writer-game.py": "05a40640dffbf342ff8f2c433f2e5888584109f5ad9cc3134590a04f9c90bdcc",
+    "tools/decode-cfg.py": "acf3c809fa12e2227ab1b9aad20119491855b39f3becf558d90229861763e27e",
+    "tools/encode-cfg.py": "e918845eee3ec4ce355a4864bf6b4d9b6e15df79807e0d96a35875033134c77c",
+    "tools/fade_live_capture.py": "3f3550823b7b03193a0c157d592c92998d923f82137dd35075ba42ae9169f028",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/run-game.sh": "a0c1f33f375b1ab640a29224e6e7df750e5f9d9d80bb60447b73e8a91e4fe983"
+  },
+  "experiment": "working/experiments/canvas-writers/run-a03q29h1",
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "live_equivalence": true,
+  "original_work_bypassed": true,
+  "live_replacement": true,
+  "scope": "Installed opt-in native positive bounded fade loop under original Lock/Unlock in automatic Main/Single Player/Quick Battle/Map/startup. Full physical output compared with independent unchanged PE32 replay for each admitted captured call. No glyph/image/panel/world replacement, manual play or whole-canvas/native renderer claim.",
+  "executed_project_sources": [
+    "protocols/include/mnm/menu_v1.h",
+    "protocols/include/mnm/menu_v10.h",
+    "protocols/include/mnm/menu_v11.h",
+    "protocols/include/mnm/menu_v12.h",
+    "protocols/include/mnm/menu_v2.h",
+    "protocols/include/mnm/menu_v3.h",
+    "protocols/include/mnm/menu_v4.h",
+    "protocols/include/mnm/menu_v5.h",
+    "protocols/include/mnm/menu_v6.h",
+    "protocols/include/mnm/menu_v7.h",
+    "protocols/include/mnm/menu_v8.h",
+    "protocols/include/mnm/menu_v9.h",
+    "reconstruction/rendering/fade_kernel.c",
+    "reconstruction/rendering/fade_kernel.h",
+    "runtime/canvas-writers/bridge.c",
+    "runtime/canvas-writers/fade_entry.S",
+    "runtime/canvas-writers/fade_finish.S",
+    "runtime/canvas-writers/fade_route.c",
+    "runtime/canvas-writers/fade_route.h",
+    "runtime/menu/battle.h",
+    "runtime/menu/battle_selftest.h",
+    "runtime/menu/campaign_defeat.h",
+    "runtime/menu/campaign_gameplay_observe.h",
+    "runtime/menu/campaign_mini_observe.h",
+    "runtime/menu/campaign_observe.h",
+    "runtime/menu/campaign_quit_observe.h",
+    "runtime/menu/campaign_spell_observe.h",
+    "runtime/menu/campaign_world_observe.h",
+    "runtime/menu/channel.h",
+    "runtime/menu/channel_selftest.h",
+    "runtime/menu/contract_selftest.S",
+    "runtime/menu/contract_selftest.c",
+    "runtime/menu/mini.h",
+    "runtime/menu/mini_selftest.h",
+    "runtime/menu/observer.c",
+    "runtime/menu/preferences.h",
+    "runtime/menu/preferences_display.h",
+    "runtime/menu/preferences_selftest.h",
+    "runtime/menu/region_entry.h",
+    "runtime/menu/region_entry_observe.h",
+    "runtime/menu/result_selftest.h",
+    "runtime/menu/results.h",
+    "runtime/menu/spell_selftest.h",
+    "runtime/menu/spells.h",
+    "runtime/shadow/win32_min.h",
+    "tests/canvas-fade-reference.cpp",
+    "tests/sprite-binary-reference.cpp",
+    "tests/test-fade-live-capture.py",
+    "tools/build-canvas-writers.py",
+    "tools/build-menu-observer.py",
+    "tools/build-shadow-bridge.py",
+    "tools/canvas-writer-game-runner.py",
+    "tools/capture-fade-writer-game.py",
+    "tools/decode-cfg.py",
+    "tools/encode-cfg.py",
+    "tools/fade_live_capture.py",
+    "tools/original-manifest.sh",
+    "tools/prepare-shadow-experiment.py",
+    "tools/run-game.sh"
+  ],
+  "menu_trace": [
+    {
+      "screen": 3,
+      "action": 1,
+      "argument": 0,
+      "ack": 1,
+      "status": 1
+    },
+    {
+      "screen": 22,
+      "action": 4,
+      "argument": 0,
+      "ack": 2,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 6,
+      "argument": 0,
+      "ack": 3,
+      "status": 1
+    },
+    {
+      "screen": 25,
+      "action": 9,
+      "argument": 2,
+      "ack": 4,
+      "status": 1
+    },
+    {
+      "screen": 14,
+      "action": 7,
+      "argument": 0,
+      "ack": 5,
+      "status": 1
+    }
+  ],
+  "case_count": 25,
+  "compared_words": 12000000,
+  "native_calls": 25,
+  "forwarded_calls": 0,
+  "cases": [
+    {
+      "index": 1,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 1,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 2,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 2,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 3,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 3,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 4,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 4,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 5,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 5,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 6,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 6,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 7,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 7,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 8,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 8,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 9,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 9,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 10,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 10,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 11,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 11,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 12,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 12,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 13,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 13,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 14,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 14,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 15,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 15,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 16,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 16,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 17,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 17,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 18,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 18,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 19,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 19,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 20,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 20,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 21,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 21,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 22,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 22,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 23,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 23,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 24,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 24,
+      "forwarded": 0,
+      "refusals": 0
+    },
+    {
+      "index": 25,
+      "width": 800,
+      "height": 600,
+      "stride": 800,
+      "format": 0,
+      "words": 480000,
+      "touched": 480000,
+      "native": 25,
+      "forwarded": 0,
+      "refusals": 0
+    }
+  ],
+  "failures": [],
+  "commands": [
+    {
+      "label": "manifest-before",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/experiments/canvas-writers/run-a03q29h1/manifest-before.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    },
+    {
+      "label": "build-writers",
+      "argv": [
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/build-canvas-writers.py"
+      ],
+      "returncode": 0,
+      "log": "working/experiments/canvas-writers/run-a03q29h1/build-writers.log",
+      "sha256": "180e3c3f9f0caf43435ce4a85e07e98bcdf083028e8bf8d0afb3417319045be7"
+    },
+    {
+      "label": "build-menu",
+      "argv": [
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/build-menu-observer.py"
+      ],
+      "returncode": 0,
+      "log": "working/experiments/canvas-writers/run-a03q29h1/build-menu.log",
+      "sha256": "9b5460e2bc52762331a18d5ad06610925550e76e93bb7adbe15c824a5712618e"
+    },
+    {
+      "label": "copy-game",
+      "argv": [
+        "cp",
+        "-a",
+        "--reflink=auto",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/canvas-writers/run-a03q29h1/game"
+      ],
+      "returncode": 0,
+      "log": "working/experiments/canvas-writers/run-a03q29h1/copy-game.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "decoder-test",
+      "argv": [
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/test-fade-live-capture.py"
+      ],
+      "returncode": 0,
+      "log": "working/experiments/canvas-writers/run-a03q29h1/decoder-test.log",
+      "sha256": "b1ef7b5c2ff0a52e63d36f74c7544c30b2dd098fbf9f036c0f5dfe096b0a8606"
+    },
+    {
+      "label": "copy-prefix",
+      "argv": [
+        "cp",
+        "-a",
+        "--reflink=auto",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/wineprefix-x86_64",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/canvas-writers/run-a03q29h1/wineprefix"
+      ],
+      "returncode": 0,
+      "log": "working/experiments/canvas-writers/run-a03q29h1/copy-prefix.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "wineboot",
+      "argv": [
+        "wineboot",
+        "-u"
+      ],
+      "returncode": 0,
+      "log": "working/experiments/canvas-writers/run-a03q29h1/wineboot.log",
+      "sha256": "28c2b2e4a1cf042326218d71d06f1012d1b8d5b91767ef0e6643bc253842be06"
+    },
+    {
+      "label": "wine-stop",
+      "argv": [
+        "wineserver",
+        "-k"
+      ],
+      "returncode": 0,
+      "log": "working/experiments/canvas-writers/run-a03q29h1/wine-stop.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "reference-build",
+      "argv": [
+        "g++",
+        "-m32",
+        "-O2",
+        "-std=c++17",
+        "-fno-pie",
+        "-no-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/canvas-fade-reference.cpp",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/canvas-writers/run-a03q29h1/original-fade-reference"
+      ],
+      "returncode": 0,
+      "log": "working/experiments/canvas-writers/run-a03q29h1/reference-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "independent-original-replay",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/canvas-writers/run-a03q29h1/original-fade-reference",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/canvas-writers/run-a03q29h1/live-cases.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/experiments/canvas-writers/run-a03q29h1/original.bin"
+      ],
+      "returncode": 0,
+      "log": "working/experiments/canvas-writers/run-a03q29h1/independent-original-replay.log",
+      "sha256": "f60a1177d4e60c71065d6500414e6aac0142715b06160de9ba9f6fa668b9a1e2"
+    },
+    {
+      "label": "manifest-after",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/experiments/canvas-writers/run-a03q29h1/manifest-after.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    }
+  ],
+  "sources_stable": true,
+  "source_input_stable": true,
+  "artifacts": {
+    "working/experiments/canvas-writers/run-a03q29h1/build-menu.log": {
+      "sha256": "9b5460e2bc52762331a18d5ad06610925550e76e93bb7adbe15c824a5712618e",
+      "bytes": 78
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/build-writers.log": {
+      "sha256": "180e3c3f9f0caf43435ce4a85e07e98bcdf083028e8bf8d0afb3417319045be7",
+      "bytes": 88
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/canvas-writers-build.json": {
+      "sha256": "d0ffdfd2d93fa6014a2382ea0625ad33f2ea5da9cf0530f77b2477ccaf3a62be",
+      "bytes": 1326
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/channel.bin": {
+      "sha256": "b9d0fe2fd402465a0a72b19e1cd71f86ac4e98b50c4e4f5ae82fd9cae77000ed",
+      "bytes": 32768
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/copy-game.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/copy-prefix.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/decoder-test.log": {
+      "sha256": "b1ef7b5c2ff0a52e63d36f74c7544c30b2dd098fbf9f036c0f5dfe096b0a8606",
+      "bytes": 55
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/events.bin": {
+      "sha256": "1ac5237321bbae095c154351ef1796928d1ce292710f654de468de2bfc864c25",
+      "bytes": 1936
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/fades.bin": {
+      "sha256": "3a639e6bfdf0a832373251ead8861ea0923e3b30192256010423bc693dfcb318",
+      "bytes": 48001208
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/game.log": {
+      "sha256": "c4456d2bf178817dc5aff989d0cfaf37fa1e67ed528bf71d36cb1a3ff0dce871",
+      "bytes": 1801
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/independent-original-replay.log": {
+      "sha256": "f60a1177d4e60c71065d6500414e6aac0142715b06160de9ba9f6fa668b9a1e2",
+      "bytes": 75
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/live-cases.bin": {
+      "sha256": "f10f5cbfd1679bc1eeb8173b7803e4719cfd670ce2e4562cd21fc3c1a8577e39",
+      "bytes": 24000412
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/manifest-after.log": {
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+      "bytes": 65
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/manifest-before.log": {
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+      "bytes": 65
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/manifest.json": {
+      "sha256": "64cd2d7f42d435f870abcb90152bad9a28df80252526b0e13dee2e0805b95358",
+      "bytes": 640
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/menu-observer-build.json": {
+      "sha256": "938034eb00b47cd94ff156b71c90f7a8d9dab17ce8b277194d45880eb82cec16",
+      "bytes": 3766
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/original-fade-reference": {
+      "sha256": "bb3faf55ba6b3741c43d9636670c9d817d87f0db7196a4b90f454594a0f03250",
+      "bytes": 31748
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/original.bin": {
+      "sha256": "74138f151604b184b48c483f627ab0cea7aa74a4c770808af7a7de2d95e23330",
+      "bytes": 48000000
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/reference-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/wine-stop.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/experiments/canvas-writers/run-a03q29h1/wineboot.log": {
+      "sha256": "28c2b2e4a1cf042326218d71d06f1012d1b8d5b91767ef0e6643bc253842be06",
+      "bytes": 1208
+    }
+  }
+}

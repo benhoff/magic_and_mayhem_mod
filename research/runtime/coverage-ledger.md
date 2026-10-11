@@ -4207,3 +4207,40 @@ Other rendering and higher text layout remain original. Whole Qt gameplay,
 font/DC lifecycle, broader glyph live inputs, GPU-owned text/window composition,
 sustained recovery and performance remain pending. Shared scene/launcher edits
 leave unrelated historical evidence stale; no unrelated stages are promoted.
+
+The non-glyph writer increment adds an independent opt-in native fade DLL, with
+original Lock/Unlock retained. [Isolated caller-state proof](fade-loop-state-comparison-20261010.json)
+passes19,440executions/3,888native completions/15,552original-once fallbacks and
+17,541,440physical WORD comparisons. [Synthetic Win32 admission](canvas-writer-admission-comparison-20261010.json)
+passes15atomic phase/page/budget refusals, default-off/invalid-mode/signature
+checks,128completions and LastError preservation. [Installed fade takeover](fade-writer-live-comparison-20261010.json)
+passes all25captured loops/12,000,000WORDs against independent unchanged-original
+replay, with zero forwards. Its writable original lease is a bounded selected
+Win32 assumption; full driver lifetime, arbitrary FP/failure/reentry and native
+surface/frame ownership remain separate. The fallback trampoline preserves the
+whole loop because its outer back-edge enters the patched entry; failed attempts
+are retained in the experiment history. This DLL does not share the glyph hook.
+
+[Panel domain proof](panel-domain-comparison-20261010.json) passes7,490cases /
+2,160,320physical WORDs, including degenerate/edge rectangles, asymmetric corner
+passes, percentage/boolean branches, padding and exhaustive whitewash values.
+Nineteen atomic native panel refusals preserve previous pixels. RGB addition,
+blend/wave/projected-shadow rasters and legacy hidden minimap history now preflight
+all touched dependencies before mutation. [Current saved producer regression](other-producer-checkpoints-20261010.json)
+passes19atomic writer refusals/two positive dependency cases, the Debug native
+history/minimap fixtures, all954saved startup/HUD checkpoints/422,875,312pixels,
+allGPUmirrors and clean surface retirement. This is fresh native replay of pinned
+historical inputs, not fresh live producer attribution or glyph takeover evidence.
+[Image regression](canvas-image-producer-regression-20261010.json) refreshes288
+placements/5,387,712WORDs/288malformed-input refusals; [canvas fade refresh](canvas-fade-span-regression-20261010.json)
+refreshes972original cases/877,072physical plus861,520logical WORDs/ten refusals.
+Historical hashes remain unchanged. Live image/panel suppression, wider HUD/
+cursor/tooltip journeys, unknown writers and complete rendering remain open.
+
+The committed-history review covers `a47ad55..1fc60f4`, following the retained
+reviews through `59608a4` and `a47ad55`. [Exact parent/current hashes and receipt
+chains](coverage/other-producer-history-a47ad55-1fc60f4-20261010.json) find no
+unresolved transitions. This retrospective review asserts neither a past gate
+pass nor new execution validation. [Experiment history](other-producer-experiment-history-20261010.json)
+retains unsuccessful attempts and earlier source versions separately from the
+seven final execution records above.

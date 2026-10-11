@@ -1,0 +1,579 @@
+{
+  "schema": 1,
+  "success": true,
+  "claims": [
+    {
+      "behavior": "RS.fade-loop-state",
+      "contract_sha256": "6524b55ad6170510bd96063e147d4ebdd2a84ef92895834f305bcb1c583908ae",
+      "scenarios": {}
+    }
+  ],
+  "sources": {
+    "reconstruction/rendering/fade_kernel.c": "6bb06acf26a2f11e287310fef9a14a690fcc703b6e07b424759f8b750f26b725",
+    "reconstruction/rendering/fade_kernel.h": "1ec396a3a408732329996a82a34cc5f81476dfa4ce33faae03731960ef0e0675",
+    "runtime/canvas-writers/fade_entry.S": "07800eb25990a9a7996e2971876ba1891e1d0ee8a9f8971a5b06c5bab2fac0aa",
+    "runtime/canvas-writers/fade_finish.S": "0cd8a96eb0954f2f47aa40aad8f8dccf47fc3a176c138d114856c6c8c7ebd1ff",
+    "runtime/canvas-writers/fade_route.c": "ee166bf0a3abeaba5d5c03e841285b0fbae91071d7ce5f674893d8c8e1ad44a9",
+    "runtime/canvas-writers/fade_route.h": "c5b1d6429d51adc0d7a6d561356956334b64ce85fbbed1cfcf80ca0b16b17263",
+    "tests/fade-kernel-test.c": "9ede6c9657fec3eef76a0d94b97346c72263276593ec9ccd33e3ebcd17f82088",
+    "tests/fade-loop-reference.cpp": "741079b2a6cf1137bce0a5eadb08379360e07938fa9a56fef88d7972fff0a2d4",
+    "tests/fade-loop-state-probe.S": "26eae8ba8edaec4f7544ebcac6e14e08d6fd0d5579074c04ea1fa91d9b49d939",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/test-fade-loop.py": "d2eab7d61f650c86f46586dee17cd3a3ac5b117b940fa25fe59918ef6ed6140f"
+  },
+  "inputs": {
+    "working/tests/canvas-fade-span/run-30w8ni96/cases.bin": "9aee8b2670a4c33fce1c138f4b9770abb161a21c804cf692bf289e81677d2ca4"
+  },
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "experiment": "working/tests/fade-loop/run-otxjjjn5",
+  "live_replacement": false,
+  "original_work_bypassed": false,
+  "scope": "Actual 58edb0 interior native splice under unchanged original wrapper and supplied external Lock/Unlock adapters. Full guarded physical words, eight GPRs/stack, defined EFLAGS/DF, full FX save region, callback arguments/count/state and original-once fallback. Positive bounded dimensions, both masks, odd/padded layouts, two finite active x87 values and XMM scratch clobber. No installed game hook, failed Lock recovery or arbitrary process lease/lifetime proof.",
+  "atomic_result": "262144 independently checked words; guards and empty span pass",
+  "pe32_undefined": "U _mnm_fade_finish\n         U _mnm_fade_tail",
+  "compiled_project_sources": [
+    "reconstruction/rendering/fade_kernel.c",
+    "reconstruction/rendering/fade_kernel.h",
+    "runtime/canvas-writers/fade_entry.S",
+    "runtime/canvas-writers/fade_finish.S",
+    "runtime/canvas-writers/fade_route.c",
+    "runtime/canvas-writers/fade_route.h",
+    "tests/fade-kernel-test.c",
+    "tests/fade-loop-reference.cpp",
+    "tests/fade-loop-state-probe.S",
+    "tests/sprite-binary-reference.cpp",
+    "tools/original-manifest.sh",
+    "tools/test-fade-loop.py"
+  ],
+  "case_count": 972,
+  "execution_count": 19440,
+  "compared_words": 17541440,
+  "native_handled": 3888,
+  "original_once_fallbacks": 15552,
+  "failures": [],
+  "original_entries": {
+    "fade": {
+      "address": 5827968,
+      "bytes": "5155568b35881f6e00"
+    },
+    "splice": {
+      "address": 5828016,
+      "bytes": "538b471033db"
+    },
+    "lock": {
+      "address": 5813856,
+      "bytes": "83ec0833c0"
+    }
+  },
+  "commands": [
+    {
+      "label": "manifest-before",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/manifest-before.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    },
+    {
+      "label": "unit-build",
+      "argv": [
+        "gcc",
+        "-O1",
+        "-g",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/fade_kernel.c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/fade-kernel-test.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/unit"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/unit-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "unit-sanitized",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/unit"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/unit-sanitized.log",
+      "sha256": "bdba591a647ec0ed21b09e32992cf97db4404919565e49ca652e2ff774f4e6fe"
+    },
+    {
+      "label": "fade_kernel",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_kernel.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/fade_kernel.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_kernel.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/fade_kernel.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fade_kernel-pe32",
+      "argv": [
+        "clang",
+        "--target=i686-pc-windows-msvc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_kernel.pe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/reconstruction/rendering/fade_kernel.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_kernel.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/fade_kernel-pe32.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fade_route",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_route.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/runtime/canvas-writers/fade_route.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_route.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/fade_route.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fade_route-pe32",
+      "argv": [
+        "clang",
+        "--target=i686-pc-windows-msvc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_route.pe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/runtime/canvas-writers/fade_route.c",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_route.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/fade_route-pe32.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fade_entry",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_entry.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/runtime/canvas-writers/fade_entry.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_entry.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/fade_entry.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fade_entry-pe32",
+      "argv": [
+        "clang",
+        "--target=i686-pc-windows-msvc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_entry.pe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/runtime/canvas-writers/fade_entry.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_entry.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/fade_entry-pe32.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fade_finish",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_finish.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/runtime/canvas-writers/fade_finish.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_finish.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/fade_finish.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fade_finish-pe32",
+      "argv": [
+        "clang",
+        "--target=i686-pc-windows-msvc",
+        "-O2",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_finish.pe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/runtime/canvas-writers/fade_finish.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_finish.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/fade_finish-pe32.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fade-loop-state-probe",
+      "argv": [
+        "gcc",
+        "-m32",
+        "-O2",
+        "-fno-pie",
+        "-mno-sse",
+        "-mno-mmx",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade-loop-state-probe.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/fade-loop-state-probe.S",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade-loop-state-probe.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/fade-loop-state-probe.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "pe32-combine",
+      "argv": [
+        "ld",
+        "-r",
+        "-m",
+        "i386pe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_kernel.obj",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_route.obj",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_entry.obj",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_finish.obj",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade-combined.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/pe32-combine.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "pe32-imports",
+      "argv": [
+        "nm",
+        "-u",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade-combined.obj"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/pe32-imports.log",
+      "sha256": "c37469ff0165eba9844c87127f13eeac87d5625a5b5c5dc6c400bcc14ce3648c"
+    },
+    {
+      "label": "reference-build",
+      "argv": [
+        "g++",
+        "-m32",
+        "-O2",
+        "-std=c++17",
+        "-fno-pie",
+        "-no-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/reference.d",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/fade-loop-reference.cpp",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_kernel.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_route.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_entry.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade_finish.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade-loop-state-probe.o",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade-reference"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/reference-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "original-native-wrapper",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/fade-reference",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "working/tests/canvas-fade-span/run-30w8ni96/cases.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/fade-loop/run-otxjjjn5/results.bin"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/original-native-wrapper.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "manifest-after",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/fade-loop/run-otxjjjn5/manifest-after.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    }
+  ],
+  "sources_stable": true,
+  "inputs_stable": true,
+  "artifacts": {
+    "working/tests/fade-loop/run-otxjjjn5/fade-combined.obj": {
+      "sha256": "9668947e61d95796b6aa158d452d76056024482ebf6c8d50908dd99e50717706",
+      "bytes": 1986
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade-loop-state-probe.d": {
+      "sha256": "f4a408aba54931ad32177590f278ac4847e636150a8f1866904f2fded6845fb1",
+      "bytes": 171
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade-loop-state-probe.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade-loop-state-probe.o": {
+      "sha256": "29aaad282e4b6842005073828c53353bf5dd49850cab160db6204ba29ac5c5ad",
+      "bytes": 1620
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade-reference": {
+      "sha256": "08c254cc3894e96de9c01b777cec38c82807479ec105e20230726a876a545b5c",
+      "bytes": 37072
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_entry-pe32.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_entry.d": {
+      "sha256": "eb6bb4ce639bf0d414c9be7f84a27ca9c7c3ef45151c211443eb45eaec78b0e9",
+      "bytes": 166
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_entry.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_entry.o": {
+      "sha256": "8948e27e1869a3fdbea08ae14522fa834ccebef00d6e5a7d19296989cc5491f0",
+      "bytes": 812
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_entry.obj": {
+      "sha256": "3e927d5a2c4d5edc206ec13942cecc307d15cf37e137f68a6a31821d0ed4049d",
+      "bytes": 484
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_entry.pe.d": {
+      "sha256": "d1e409817e9d1228a1f2c496027bb36a18f1eca9729bb5a0613c01bfc2b2e7ec",
+      "bytes": 169
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_finish-pe32.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_finish.d": {
+      "sha256": "cd391ee18b384be754e021c10c3e21cd5f67238b0970b31ba07c6763f0088646",
+      "bytes": 168
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_finish.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_finish.o": {
+      "sha256": "0b2457810c462fae0ad2ee48b267ddfc5580f2d0db0a6d408cb1f821da4ed8d5",
+      "bytes": 752
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_finish.obj": {
+      "sha256": "b6e62468688b6b6c68194c3f133cfe83cbbf2a4f4d8b6f412a9f5ccc852e77d5",
+      "bytes": 418
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_finish.pe.d": {
+      "sha256": "7a488f77e9171afa2f03749c0a53e4de635f101f99a824f19ebf1b46a9b893e0",
+      "bytes": 171
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_kernel-pe32.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_kernel.d": {
+      "sha256": "ab4026da800feb12e51537aa05675618cd74727ba80e8341504d55d4869d6a5b",
+      "bytes": 250
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_kernel.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_kernel.o": {
+      "sha256": "cc5e084547a43268412765620c2f6fd30850913392da41cf9332b4e0021e10a3",
+      "bytes": 948
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_kernel.obj": {
+      "sha256": "53b253ee364c2ba8818880059db40e99df5a7aca53836515ce1c85c2b2e6e066",
+      "bytes": 760
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_kernel.pe.d": {
+      "sha256": "1ac75f74c63539059b0faee0235ca7170f35f56a1a65cab7714281e1de875199",
+      "bytes": 254
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_route-pe32.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_route.d": {
+      "sha256": "0aa96878624ffa6502b5364b5fb1964e7a3b100fbf7e2ff182a70f704c911d15",
+      "bytes": 352
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_route.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_route.o": {
+      "sha256": "841670e7ec6bc7184fd3970f52dd1c3dc117bcbf361cc296c753fe026c40aac0",
+      "bytes": 1660
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_route.obj": {
+      "sha256": "489e635dd68609bf3a79558fa9b74bda0a6c0b674f9382815ff745a09b12e843",
+      "bytes": 1173
+    },
+    "working/tests/fade-loop/run-otxjjjn5/fade_route.pe.d": {
+      "sha256": "e2ab0d33b40153d5e07fd18df5d01c5c99600cd4bb24fa91b208b1df1c99793f",
+      "bytes": 357
+    },
+    "working/tests/fade-loop/run-otxjjjn5/manifest-after.log": {
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+      "bytes": 65
+    },
+    "working/tests/fade-loop/run-otxjjjn5/manifest-before.log": {
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+      "bytes": 65
+    },
+    "working/tests/fade-loop/run-otxjjjn5/original-native-wrapper.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/pe32-combine.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/pe32-imports.log": {
+      "sha256": "c37469ff0165eba9844c87127f13eeac87d5625a5b5c5dc6c400bcc14ce3648c",
+      "bytes": 54
+    },
+    "working/tests/fade-loop/run-otxjjjn5/reference-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/reference.d": {
+      "sha256": "fdb0e6005390cfcca3a812d2bac380a0b41be4f6bb8372bdd0fd1cc1784fc80a",
+      "bytes": 323
+    },
+    "working/tests/fade-loop/run-otxjjjn5/results.bin": {
+      "sha256": "e911aab7461129b647af1c71d652f565fde35ee05f03f6f42c27d35545548ff3",
+      "bytes": 622088
+    },
+    "working/tests/fade-loop/run-otxjjjn5/unit": {
+      "sha256": "6d34e6dc9b14fa22b83f8fb89abf93de76efa1f75faf91e95bbb04483ca42f1b",
+      "bytes": 28704
+    },
+    "working/tests/fade-loop/run-otxjjjn5/unit-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/fade-loop/run-otxjjjn5/unit-sanitized.log": {
+      "sha256": "bdba591a647ec0ed21b09e32992cf97db4404919565e49ca652e2ff774f4e6fe",
+      "bytes": 63
+    }
+  }
+}

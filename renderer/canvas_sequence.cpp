@@ -70,6 +70,17 @@ void CanvasSequence::terrainMap(std::uint32_t id, int rootX, int rootY, int w, i
   if (previous && (old.width < 2 * w || old.height < (h + w) / 2)) throw std::invalid_argument("Minimap previous canvas extent");
   const auto wrap = [](std::int64_t n, int size) { return int((n % size + size) % size); };
   const int startX = wrap(std::int64_t(centerX) - w / 2, w), startY = wrap(std::int64_t(centerY) - h / 2, h);
+  // Resolve all projected history reads before defining destination pixels.
+  for (int row = 0; row < h; ++row)
+    for (int col = 0; col < w; ++col) {
+      const auto cell = std::size_t((startY + row) % h) * w + (startX + col) % w;
+      if (!hidden.empty() && hidden[cell]) {
+        const int sourceX = w - 1 - 2 * (row / 2) + col,
+                  sourceY = (row + 1) / 2 + col / 2;
+        if (!previous || sourceX < 0 || sourceY < 0 || sourceX >= old.width || sourceY >= old.height)
+          throw std::invalid_argument("Minimap hidden cell lacks owned projected history");
+      }
+    }
   for (int row = 0; row < h; ++row)
     for (int col = 0; col < w; ++col) {
       const auto at = slot(s.image, rootX - 2 * (row / 2) + col, rootY + (row + 1) / 2 + col / 2);
@@ -108,10 +119,12 @@ void CanvasSequence::addRgb(std::uint32_t id, Rect r,
     throw std::invalid_argument(
         "RGB addition outside recovered unsigned channels");
   for (int y = std::max(0, r.top); y < std::min(s.image.height, r.bottom); ++y)
+    for (int x = std::max(0, r.left); x < std::min(s.image.width, r.right); ++x)
+      known(s.defined, slot(s.image, x, y));
+  for (int y = std::max(0, r.top); y < std::min(s.image.height, r.bottom); ++y)
     for (int x = std::max(0, r.left); x < std::min(s.image.width, r.right);
          ++x) {
       const auto at = slot(s.image, x, y);
-      known(s.defined, at);
       const auto old = s.image.pixels[at];
       s.image.pixels[at] = (std::min(31u, ((old >> 11) & 31) + add[0]) << 11) |
                            (std::min(63u, ((old >> 5) & 63) + add[1]) << 5) |
@@ -122,12 +135,47 @@ void CanvasSequence::panel(std::uint32_t id, Rect r, unsigned mode,
                            unsigned percent, bool pressed, bool reverse) {
   auto &s = surface(id);
   if (mode < 15 || mode > 17 || percent > 1000 || r.left < 0 || r.top < 0 ||
-      r.right < r.left || r.bottom < r.top || r.right >= s.image.width ||
-      r.bottom >= s.image.height)
+      r.right < r.left || r.bottom < r.top ||
+      (mode == 17 ? r.right > s.image.width || r.bottom > s.image.height
+                  : r.right >= s.image.width || r.bottom >= s.image.height))
     throw std::invalid_argument("Panel writer outside recovered owned extent");
+  if (mode == 15 && (r.right + 1 >= s.image.width ||
+                     r.bottom + 1 >= s.image.height))
+    throw std::invalid_argument(
+        "Bevel's inclusive extra row/column escaped owned extent");
+  // Validate the complete ordered footprint before the first destination read
+  // can mutate storage. Overlapping corners still receive each original pass.
+  auto visit = [&](const auto &pixel) {
+    if (mode == 17) {
+      for (int y = r.top; y < r.bottom; ++y)
+        for (int x = r.left; x < r.right; ++x) pixel(x, y, 0);
+    } else if (mode == 16) {
+      for (int x = r.left; x < r.right; ++x) pixel(x, r.top, 0);
+      for (int x = r.left + 1; x <= r.right; ++x) pixel(x, r.bottom, 0);
+      for (int y = r.top + 1; y <= r.bottom; ++y) pixel(r.left, y, 0);
+      for (int y = r.top; y < r.bottom; ++y) pixel(r.right, y, 0);
+    } else {
+      const int right = r.right + 1, bottom = r.bottom + 1,
+                sign = pressed ? 1 : -1;
+      const int rows[4] = {r.top, r.top + 1, bottom, bottom - 1},
+                cols[4] = {r.left, r.left + 1, right, right - 1};
+      for (unsigned j = 0; j < 4; ++j) {
+        const int inset = j >= 2 ? 2 : 0,
+                  direction = j >= 2 && reverse ? -sign : sign;
+        for (int x = r.left + inset; x < right; ++x)
+          pixel(x, rows[j], direction);
+      }
+      for (unsigned j = 0; j < 4; ++j) {
+        const int inset = j < 2 ? 2 : 0,
+                  direction = j >= 2 && reverse ? -sign : sign;
+        for (int y = r.top + inset; y < bottom; ++y)
+          pixel(cols[j], y, direction);
+      }
+    }
+  };
+  visit([&](int x, int y, int) { known(s.defined, slot(s.image, x, y)); });
   auto pixel = [&](int x, int y, int sign) {
     const auto at = slot(s.image, x, y);
-    known(s.defined, at);
     const auto old = s.image.pixels[at];
     unsigned c[3] = {((old >> 11) & 31) << 3, ((old >> 5) & 63) << 2,
                      (old & 31) << 3};
@@ -140,41 +188,7 @@ void CanvasSequence::panel(std::uint32_t id, Rect r, unsigned mode,
     }
     s.image.pixels[at] = ((c[0] >> 3) << 11) | ((c[1] >> 2) << 5) | (c[2] >> 3);
   };
-  if (mode == 17) {
-    for (int y = r.top; y < r.bottom; ++y)
-      for (int x = r.left; x < r.right; ++x)
-        pixel(x, y, 0);
-    return;
-  }
-  if (mode == 16) {
-    for (int x = r.left; x < r.right; ++x)
-      pixel(x, r.top, 0);
-    for (int x = r.left + 1; x <= r.right; ++x)
-      pixel(x, r.bottom, 0);
-    for (int y = r.top + 1; y <= r.bottom; ++y)
-      pixel(r.left, y, 0);
-    for (int y = r.top; y < r.bottom; ++y)
-      pixel(r.right, y, 0);
-    return;
-  }
-  const int right = r.right + 1, bottom = r.bottom + 1, sign = pressed ? 1 : -1;
-  if (right >= s.image.width || bottom >= s.image.height)
-    throw std::invalid_argument(
-        "Bevel's inclusive extra row/column escaped owned extent");
-  const int rows[4] = {r.top, r.top + 1, bottom, bottom - 1},
-            cols[4] = {r.left, r.left + 1, right, right - 1};
-  for (unsigned j = 0; j < 4; ++j) {
-    const int inset = j >= 2 ? 2 : 0,
-              direction = j >= 2 && reverse ? -sign : sign;
-    for (int x = r.left + inset; x < right; ++x)
-      pixel(x, rows[j], direction);
-  }
-  for (unsigned j = 0; j < 4; ++j) {
-    const int inset = j < 2 ? 2 : 0,
-              direction = j >= 2 && reverse ? -sign : sign;
-    for (int y = r.top + inset; y < bottom; ++y)
-      pixel(cols[j], y, direction);
-  }
+  visit(pixel);
 }
 void CanvasSequence::fill(std::uint32_t id, Rect r, std::uint16_t colour) {
   auto &s = surface(id);
@@ -307,6 +321,7 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
     const int first = int(std::max<std::int64_t>(0, clip.top - shadowTop)),
               last = int(
                   std::min<std::int64_t>(f.height, clip.bottom - shadowTop));
+    auto visit = [&](const auto &pixel) {
     for (int row = 0; row < (last - first + 1) / 2; ++row)
       for (unsigned col = 0; col < f.width; ++col) {
         if (!f.opaqueMask.at(std::size_t(first + row * 2) * f.width + col))
@@ -317,10 +332,28 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
           throw std::invalid_argument(
               "Projected shadow sample outside owned canvas");
         const auto at = slot(s.image, int(dx), int(dy));
-        known(s.defined, at);
-        s.image.pixels[at] = (s.image.pixels[at] >> 1) & 0x7bef;
+        pixel(at);
       }
+    };
+    visit([&](std::size_t at) { known(s.defined, at); });
+    visit([&](std::size_t at) { s.image.pixels[at] = (s.image.pixels[at] >> 1) & 0x7bef; });
     return;
+  }
+  if (mode) {
+    for (unsigned j = 0; j < f.height; ++j)
+      for (unsigned i = 0; i < f.width; ++i) {
+        const auto dx = left + i, dy = top + j;
+        if (dx < 0 || dy < 0 || dx >= s.image.width || dy >= s.image.height ||
+            dx < clip.left || dx >= clip.right || dy < clip.top || dy >= clip.bottom ||
+            !f.opaqueMask[std::size_t(j) * f.width + i]) continue;
+        known(s.defined, slot(s.image, int(dx), int(dy)));
+        if (mode == 3) {
+          const int shift = offsets[unsigned(dy) % period];
+          if (shift < 0 || shift > 16 || dx + shift >= s.image.width)
+            throw std::invalid_argument("Producer displacement sample outside owned canvas");
+          known(s.defined, slot(s.image, int(dx) + shift, int(dy)));
+        }
+      }
   }
   // Blends sample only their own destination. Displacement offsets are admitted
   // only in [0,16], so this left-to-right traversal samples the current pixel or

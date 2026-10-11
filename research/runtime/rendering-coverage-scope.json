@@ -9,7 +9,10 @@
     "docs/live-drawing-replacement.md",
     "research/runtime/native-world-raster-queue.md",
     "research/runtime/native-world-raster-batch.md",
-    "research/runtime/glyph-live-backend.md"
+    "research/runtime/glyph-live-backend.md",
+    "research/runtime/fade-loop-takeover.md",
+    "research/runtime/panel-domain.md",
+    "research/runtime/other-writer-admission.md"
   ],
   "surface_operations": [
     {
@@ -245,18 +248,36 @@
       "id": "RI.locked-writes",
       "implementation": [
         "RS.word-raster",
-        "NR.surface-access"
+        "NR.surface-access",
+        "RS.fade-live-pixels",
+        "RS.panel-pixel-domain",
+        "NR.other-writer-atomic-admission"
       ],
       "validation": [
         {
           "behavior": "RS.word-raster",
           "evidence": "RS.word-raster.original-20261007",
           "domain": "original_executable"
+        },
+        {
+          "behavior": "RS.fade-loop-state",
+          "evidence": "RS.fade-loop-state.original-20261010",
+          "domain": "original_executable"
+        },
+        {
+          "behavior": "RS.panel-pixel-domain",
+          "evidence": "RS.panel-pixel-domain.original-20261010",
+          "domain": "original_executable"
         }
       ],
-      "scope": "Selected CPU sprite raster producer and compatible owned lock storage only.",
-      "remaining": "Unclassified Lock writers, JPEG destination writer and other producers remain open.",
-      "replacement": []
+      "scope": "Selected CPU sprite raster producer and compatible owned lock storage only. Positive bounded native transition fade loop under original Lock/Unlock; panel success pixels and atomic native RGB/blend/wave/shadow/history refusal.",
+      "remaining": "Live panel/image/other writer suppression, driver lease/lifetime/failure semantics, unsampled writers and full frame ownership remain open.",
+      "replacement": [
+        {
+          "behavior": "RS.fade-live-pixels",
+          "evidence": "RS.fade-live-pixels.takeover-20261010"
+        }
+      ]
     },
     {
       "id": "RI.gdi-text",
@@ -342,7 +363,9 @@
       "implementation": [
         "RS.word-route",
         "NR.scene-service",
-        "RS.glyph-live-route"
+        "RS.glyph-live-route",
+        "RS.panel-pixel-domain",
+        "NR.other-producer-checkpoints"
       ],
       "validation": [
         {
@@ -354,9 +377,14 @@
           "behavior": "RS.glyph-live-route",
           "evidence": "RS.glyph-live-route.live-20261010",
           "domain": "original_executable"
+        },
+        {
+          "behavior": "RS.panel-pixel-domain",
+          "evidence": "RS.panel-pixel-domain.original-20261010",
+          "domain": "original_executable"
         }
       ],
-      "scope": "Selected direct-word UI sprite bodies only; Qt widgets/capture replay are separate. Explicit581ec0 glyph startup shadow/takeover:1817 native calls and six retained independent original replays; partial glyph body only.",
+      "scope": "Selected direct-word UI sprite bodies only; Qt widgets/capture replay are separate. Explicit581ec0 glyph startup shadow/takeover:1817 native calls and six retained independent original replays; partial glyph body only. Fresh saved original startup/HUD CPU/GPU checkpoint replay and bounded original panel pixel domain.",
       "remaining": "HUD/minimap/tooltips/fonts/cursor composition and complete UI producer suppression remain open. Broader glyph input/control/lifecycle coverage, higher text consumers and complete UI composition remain pending.",
       "replacement": [
         {
@@ -372,12 +400,24 @@
     {
       "id": "RI.movies",
       "implementation": [
-        "HOST.media"
+        "HOST.media",
+        "RS.fade-live-pixels"
       ],
-      "validation": [],
-      "scope": "Partial native media plumbing with static register support.",
-      "remaining": "Enabled movies, placement/errors and graphics ownership on World return remain open.",
-      "replacement": []
+      "validation": [
+        {
+          "behavior": "RS.fade-live-pixels",
+          "evidence": "RS.fade-live-pixels.live-20261010",
+          "domain": "original_executable"
+        }
+      ],
+      "scope": "Partial native media plumbing with static register support. Twenty-five installed native transition fade pixel loops independently match unchanged original replay under original Lock/Unlock.",
+      "remaining": "Complete movie/transition screen ownership, broader controls, World return and driver failure paths remain open.",
+      "replacement": [
+        {
+          "behavior": "RS.fade-live-pixels",
+          "evidence": "RS.fade-live-pixels.takeover-20261010"
+        }
+      ]
     }
   ],
   "world_takeovers": [

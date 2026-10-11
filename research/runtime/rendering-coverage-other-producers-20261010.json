@@ -1,0 +1,1538 @@
+{
+  "schema": 1,
+  "scope": "Reviewed No-CD rendering crosswalk: all twelve required surface categories and nine inventoried drawing families, plus bounded World raster-entry executions. Counts indicate categories with some scoped support, not complete category coverage or effort. Simulation/traversal remains independent.",
+  "overall_completion_percent": null,
+  "audit": {
+    "valid": true,
+    "errors": [],
+    "warnings": [
+      "Recorded evidence fingerprints older source; historical claims are retained, current validation is not implied.",
+      "Pinned recovered code exists outside Ghidra function bodies; explicit range links preserve this discovery gap.",
+      "Historical stages are retained; current validation requires exact execution claims, complete provenance and matching scenarios."
+    ]
+  },
+  "surface_operations": {
+    "rows": [
+      {
+        "id": "SURF.format.rgb565",
+        "implementation": [
+          "NR.surface-backend.formats-pitch"
+        ],
+        "validation": [
+          {
+            "behavior": "RE.surface-copy.rgb565-bltfast",
+            "evidence": "ORIGINAL.surface-copy.rgb565-bltfast-clipping-stream-20261006",
+            "domain": "original_executable",
+            "record": "research/runtime/native-surface-fixtures-clipping-stream-20261006.json",
+            "scope": "Offline native/CPU comparison with five retained independent original-game driver RGB565 opaque BltFast destination outputs at return PC0x0058c5be within wrapper0x0058c4a0. Includes three40x40, one40x3 and one unchanged40x1 rectangles with full800x600 destination comparisons. Not wrapper reexecution, timing, clipping, physical-driver, current collector or live equivalence. Evidence kind denotes isolated offline comparison against historical live captures, not a new isolated execution of original machine code.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Native RGB565 and selected installed copy outputs/presentation conversion.",
+        "remaining": "Other callers, transitions and driver/display scenarios remain unverified.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "Only five opaque BltFast captures at one caller; other operations and formats remain separate. Chunk3 independently compares1400standalone driver draws across5canonical formats and2800owned signedrow imports; active-mask fills/keys, retainedunusedbits, keydescriptors/padding/guards and actual binding refusals recorded. Original gameplay format reachability beyond retained RGB565 and remaining operation/error/flag/DC/live/Windows scopes are separate; no driver negative acceptance."
+      },
+      {
+        "id": "SURF.format.other",
+        "implementation": [
+          "NR.surface-backend.formats-pitch"
+        ],
+        "validation": [
+          {
+            "behavior": "NR.surface-backend.formats-pitch",
+            "evidence": "NR.surface-backend.formats-pitch.replay-20261006",
+            "domain": "standalone_driver",
+            "record": "research/runtime/native-surface-formats-20261006.json",
+            "scope": "Owned five canonical same-format fills/keys/copies/clip/self-overlap and key descriptor outputs compare1400independentdriver cases;2800signedrow imports compare identical logicaloutputs separately as nativepolicy.667800nativewords/descriptors/presentation values,2150400packedbytes,27259checks/60refusals. New RGBA conversion and signed import/lease/pitch flip policies are native; no original game multi-format/live/Windows claim.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Five canonical formats and bounded signed-row imports matched to standalone driver outputs.",
+        "remaining": "Gameplay format reachability, arbitrary masks/conversion and live integration remain unverified.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "Native indexed8/RGB555/RGB565/RGB24/RGB32 same-format draws and signed owned byte rows implemented within1400independent standalone driver cases+2800native signedvariants. Actual caller memory creation/binding failures retained; negative layouts and sampled RGB24 user binding reject in driver. Game RGB565 is independently captured; required original callers/descriptors beyond that, arbitrary masks/conversion/newDC/Windows/live remain unvalidated. Signed imports/defaultallocation/presentation are native policies."
+      },
+      {
+        "id": "SURF.copy.opaque",
+        "implementation": [
+          "NR.surface-backend.owned"
+        ],
+        "validation": [
+          {
+            "behavior": "RE.surface-copy.rgb565-bltfast",
+            "evidence": "ORIGINAL.surface-copy.rgb565-bltfast-clipping-stream-20261006",
+            "domain": "original_executable",
+            "record": "research/runtime/native-surface-fixtures-clipping-stream-20261006.json",
+            "scope": "Offline native/CPU comparison with five retained independent original-game driver RGB565 opaque BltFast destination outputs at return PC0x0058c5be within wrapper0x0058c4a0. Includes three40x40, one40x3 and one unchanged40x1 rectangles with full800x600 destination comparisons. Not wrapper reexecution, timing, clipping, physical-driver, current collector or live equivalence. Evidence kind denotes isolated offline comparison against historical live captures, not a new isolated execution of original machine code.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Retained original RGB565 BltFast rectangles; additional owned same-format driver fixtures.",
+        "remaining": "All original wrappers/callers and native-only live dispatch remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "Blt, whole-surface and non-RGB565 original outputs still missing; current fixtures only establish selected RGB565 BltFast rectangles. Chunk3 independently compares1400standalone driver draws across5canonical formats and2800owned signedrow imports; active-mask fills/keys, retainedunusedbits, keydescriptors/padding/guards and actual binding refusals recorded. Original gameplay format reachability beyond retained RGB565 and remaining operation/error/flag/DC/live/Windows scopes are separate; no driver negative acceptance."
+      },
+      {
+        "id": "SURF.key.exact_source",
+        "implementation": [
+          "NR.surface-backend.owned"
+        ],
+        "validation": [
+          {
+            "behavior": "RE.surface-copy.rgb565-keyed",
+            "evidence": "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+            "domain": "original_executable",
+            "record": "research/runtime/native-surface-formats-backend-regression-20261006.json",
+            "scope": "Fresh changed-backend offline comparison of retained250originalfills/436keyed/1536opaque-overlap/2304keyed-overlap results and pixels, no new original execution. Other driver/DC outputs remain separate scope.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Selected original keyed wrapper, native error/overlap compositions.",
+        "remaining": "All wrappers, formats/clips and native-only live dispatch remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "436 unchanged original wrapper0x58ca90 calls against Wine Surface2 captured;434 successful RGB565 outputs compared offline. Two missing-key Blt errors retained without native keyed HRESULT equivalence. Other keyed wrappers, indexed duplicate-color indices, clipping, live caller scenarios and Windows-driver equivalence remain pending. Integrated owned backend now matches2630draw HRESULTs/299808pixels across retained fill/keyed/clipping/opaque-overlap/DC/access fixtures, including all105fill/2keyed failures and same-ID continuation. Borrowed-fill/keyed overlap/new combinations/shared ownership/loss/new formats/live remain pending. Combined closure supersedes provisional borrowed-fill/keyed-overlap gaps within sampled scopes:5114results/538272pixels,2304original keyed overlap and180driver borrowed draws. Forward row-major keyed path bounded4096texels; mapped fill/empty-Blt branches match. Shared ownership/recovery/new formats/uncaptured combinations/live remain pending. Chunk3 independently compares1400standalone driver draws across5canonical formats and2800owned signedrow imports; active-mask fills/keys, retainedunusedbits, keydescriptors/padding/guards and actual binding refusals recorded. Original gameplay format reachability beyond retained RGB565 and remaining operation/error/flag/DC/live/Windows scopes are separate; no driver negative acceptance."
+      },
+      {
+        "id": "SURF.palette",
+        "implementation": [
+          "NR.surface-backend.ownership-recovery",
+          "NR.palette-resources"
+        ],
+        "validation": [
+          {
+            "behavior": "NR.surface-backend.ownership-recovery",
+            "evidence": "NR.surface-backend.ownership-recovery.final-20261006",
+            "domain": "standalone_driver",
+            "record": "research/runtime/native-surface-ownership-final-20261006.json",
+            "scope": "Owned native shared lifetimes/attachments,11flips+leases/2128ownership words;6656palette entries/864defined indices/66statuses from independent prior recovery capture.16native wrapper compositions/432input pixels plus supplied global cursor BMP/DC reload;286checks/29refusals. Unspecified Restore pixels excluded; physical original lost-draw/asset internals/live pending.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Selected shared palette/alias ownership and standalone flip/palette state.",
+        "remaining": "Flags, logical palettes and full native-only live palette lifecycle remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "No independently captured original indexed colors/state sequence in this corpus; native lifetime policy is separate from original semantics. Chunk2 now supplies scoped native shared ownership/attachment/recovery and11independent standalone primary flips including busy-after-swap CPU/DC lease effects. Fresh6656palette entries/864definedindices/4480originalfault schedules compare; no unknown restored bytes invented. Flags/logical palettes/longchains/mixed flips/physical original lost-draw/asset internals/live/wire/Windows remain pending."
+      },
+      {
+        "id": "SURF.clip.rectangles",
+        "implementation": [
+          "NR.surface-copy.clipping"
+        ],
+        "validation": [
+          {
+            "behavior": "NR.surface-copy.clipping",
+            "evidence": "NR.surface-copy.clipping.backend-20261006",
+            "domain": "standalone_driver",
+            "record": "research/runtime/native-surface-clipping-backend-final-20261006.json",
+            "scope": "Distinct RGB565 surfaces, bounded owned destination clip descriptors and one-to-one Blt/BltFast selected HRESULT/native pixel behavior modeled on408 retained Wine Surface2 outputs. Partial writes, empty/missing lists and18 native lifetime/admission checks; busy flags are caller observations only. Other formats, stretching, self-copy, successful keyed clipping, native locks/Restore, original game/Windows equivalence and live replacement remain pending.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Bounded RGB565 Wine Surface2 bounds, precedence and partial writes reproduced natively.",
+        "remaining": "Live clipper observation, retry and remaining formats/key combinations remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "RGB565 backend and v3 offline command replay match the bounded Wine Surface2 corpus. Live producer clipper/region observation and negotiation, original wrapper error/retry/Restore, other formats/keys/fills and Windows-driver equivalence remain pending."
+      },
+      {
+        "id": "SURF.clip.regions",
+        "implementation": [
+          "NR.surface-copy.clipping"
+        ],
+        "validation": [
+          {
+            "behavior": "NR.surface-copy.clipping",
+            "evidence": "NR.surface-copy.clipping.backend-20261006",
+            "domain": "standalone_driver",
+            "record": "research/runtime/native-surface-clipping-backend-final-20261006.json",
+            "scope": "Distinct RGB565 surfaces, bounded owned destination clip descriptors and one-to-one Blt/BltFast selected HRESULT/native pixel behavior modeled on408 retained Wine Surface2 outputs. Partial writes, empty/missing lists and18 native lifetime/admission checks; busy flags are caller observations only. Other formats, stretching, self-copy, successful keyed clipping, native locks/Restore, original game/Windows equivalence and live replacement remain pending.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Explicit bounded destination clip-region fixture shapes and changes.",
+        "remaining": "Reachable original game region shapes and native-only live dispatch remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "RGB565 backend and v3 offline command replay match the bounded Wine Surface2 corpus. Live producer clipper/region observation and negotiation, original wrapper error/retry/Restore, other formats/keys/fills and Windows-driver equivalence remain pending."
+      },
+      {
+        "id": "SURF.fill",
+        "implementation": [
+          "NR.surface-backend.owned"
+        ],
+        "validation": [
+          {
+            "behavior": "RE.surface-fill.rgb565",
+            "evidence": "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+            "domain": "original_executable",
+            "record": "research/runtime/native-surface-formats-backend-regression-20261006.json",
+            "scope": "Fresh changed-backend offline comparison of retained250originalfills/436keyed/1536opaque-overlap/2304keyed-overlap results and pixels, no new original execution. Other driver/DC outputs remain separate scope.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Selected original fill arguments/results and native owned error compositions.",
+        "remaining": "Other fill wrapper, physical loss/retry and native-only live fills remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "250 unchanged original wrapper0x58bac0 calls against Wine Surface2 captured;145 successful RGB565 fill outputs compared offline through argument-derived UPDATE regions. CPU model also matches65 invalid-rectangle and40 missing-clip-list results. Native fill HRESULTs, original loss/Restore/retry and0x58bc10, unknown initial pixels, indexed/masked formats, live callers and Windows-driver equivalence remain pending. Error-report UI imports are bounded observers. Integrated owned backend now matches2630draw HRESULTs/299808pixels across retained fill/keyed/clipping/opaque-overlap/DC/access fixtures, including all105fill/2keyed failures and same-ID continuation. Borrowed-fill/keyed overlap/new combinations/shared ownership/loss/new formats/live remain pending. Combined closure supersedes provisional borrowed-fill/keyed-overlap gaps within sampled scopes:5114results/538272pixels,2304original keyed overlap and180driver borrowed draws. Forward row-major keyed path bounded4096texels; mapped fill/empty-Blt branches match. Shared ownership/recovery/new formats/uncaptured combinations/live remain pending. Chunk3 independently compares1400standalone driver draws across5canonical formats and2800owned signedrow imports; active-mask fills/keys, retainedunusedbits, keydescriptors/padding/guards and actual binding refusals recorded. Original gameplay format reachability beyond retained RGB565 and remaining operation/error/flag/DC/live/Windows scopes are separate; no driver negative acceptance."
+      },
+      {
+        "id": "SURF.copy.self_overlap",
+        "implementation": [
+          "NR.surface-backend.owned"
+        ],
+        "validation": [
+          {
+            "behavior": "RE.surface-copy.rgb565-overlap",
+            "evidence": "ORIGINAL.surface-copy.rgb565-overlap.native-20261006",
+            "domain": "original_executable",
+            "record": "research/runtime/original-surface-overlap-native-20261006.json",
+            "scope": "Fresh offline1536 original opaque RGB565 shared-backing result/pixel outputs compared with native GPU per-piece snapshots and v3 logical-ID replay. Direct Surface2 and Surface1 aliases normalize to verified backing identity.20 policy checks,6 rejected streams; no live/Windows/Restore equivalence.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Bounded same-ID opaque RGB565 overlap and alias outputs.",
+        "remaining": "Other formats and live alias/borrowed/mixed-key combinations remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "Keyed/masked overlap, other formats, live COM alias identity tracking, loss/Restore/retry and Windows driver comparison remain outstanding. Offline opaque RGB565 outputs/HRESULTs now match1536 unchanged original wrapper/driver captures. Integrated owned backend now matches2630draw HRESULTs/299808pixels across retained fill/keyed/clipping/opaque-overlap/DC/access fixtures, including all105fill/2keyed failures and same-ID continuation. Borrowed-fill/keyed overlap/new combinations/shared ownership/loss/new formats/live remain pending. Combined closure supersedes provisional borrowed-fill/keyed-overlap gaps within sampled scopes:5114results/538272pixels,2304original keyed overlap and180driver borrowed draws. Forward row-major keyed path bounded4096texels; mapped fill/empty-Blt branches match. Shared ownership/recovery/new formats/uncaptured combinations/live remain pending. Chunk3 independently compares1400standalone driver draws across5canonical formats and2800owned signedrow imports; active-mask fills/keys, retainedunusedbits, keydescriptors/padding/guards and actual binding refusals recorded. Original gameplay format reachability beyond retained RGB565 and remaining operation/error/flag/DC/live/Windows scopes are separate; no driver negative acceptance."
+      },
+      {
+        "id": "SURF.restore",
+        "implementation": [
+          "NR.surface-backend.ownership-recovery",
+          "NR.surface-reload.bitmap-dc"
+        ],
+        "validation": [
+          {
+            "behavior": "RE.surface-copy.restore-retry",
+            "evidence": "ORIGINAL.surface-retry.formats-pitch-replay-20261006",
+            "domain": "original_executable",
+            "record": "research/runtime/native-surface-formats-ownership-regression-20261006.json",
+            "scope": "Fresh offline4480retained unchanged-original retry fault traces and1536bounded prefixes. Original build hash preserved; native physical loss/ownership/driver comparisons are separate scopes.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Original scripted retry scheduling and selected supplied bitmap/native reload compositions.",
+        "remaining": "Actual game/driver lost-draw, remaining reload bodies and full native-only recovery remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "1456 explicit cursor/callback/none route traces and12 exact submitted-buffer cases compare original captures;36 nativeRGB24/32 cases compare1346928 independent real GDI RGB pixels,12 scripted recovery compositions preserve triggering-surface invalidity.4480 legacy callback schedules and30 validity checks freshly pass. DirectDraw GetDC formats/RGB565/indexed conversion/clipping/palettes, other reload callback bodies, malformed/second allocation failures, actual-lost-draw composition, Windows/live/wire recovery remain pending. Subsequent72 real Surface2RGB565/RGB32 native/DC frames now captured independently; native matches2693856 pixels and24 scripted cursor compositions. RGB565 conversion/presentation is validated within this DC scope. Native DC admission, indexed destination palettes/DC clipping, actual loss/other callback bodies/Windows/live/wire recovery and runtime CPU floor-color alignment remain pending. Subsequent450 native DC palette/region cases match43200 independent native/DC outputs; explicit indexed palettes/identity/ties/24-bit-bin centers and application GDI clipping now validated within8x6 system-memory probes. Attached DirectDraw clippers separately do not constrain measured DC reload. Absent palettes, arbitrary GDI geometry/lease reuse/sharedCOM identity/flag semantics, indexed original cursor composition/native DC admission/actual loss/Windows/live/wire remain pending. Subsequent192cases/576 repeated DC leases now compare owned raster snapshots/default context55296 pixels/258048 entries. Application clips reset and direct DC edits are lease-local; binding updates during leases defer. Default environment input is explicit, primitive full-palette admission unchanged. COMDC/global lock/busy ownership, logical/shared/flag palettes/other GDI state/primary-video/original real lost-draw/loss/Windows/live/wire remain pending. Integrated owned backend now matches2630draw HRESULTs/299808pixels across retained fill/keyed/clipping/opaque-overlap/DC/access fixtures, including all105fill/2keyed failures and same-ID continuation. Borrowed-fill/keyed overlap/new combinations/shared ownership/loss/new formats/live remain pending. Combined closure supersedes provisional borrowed-fill/keyed-overlap gaps within sampled scopes:5114results/538272pixels,2304original keyed overlap and180driver borrowed draws. Forward row-major keyed path bounded4096texels; mapped fill/empty-Blt branches match. Shared ownership/recovery/new formats/uncaptured combinations/live remain pending. Chunk2 now supplies scoped native shared ownership/attachment/recovery and11independent standalone primary flips including busy-after-swap CPU/DC lease effects. Fresh6656palette entries/864definedindices/4480originalfault schedules compare; no unknown restored bytes invented. Flags/logical palettes/longchains/mixed flips/physical original lost-draw/asset internals/live/wire/Windows remain pending."
+      },
+      {
+        "id": "SURF.lifetime_updates",
+        "implementation": [
+          "NR.surface-access",
+          "NR.surface-backend.ownership-recovery"
+        ],
+        "validation": [
+          {
+            "behavior": "NR.surface-backend.ownership-recovery",
+            "evidence": "NR.surface-backend.ownership-recovery.final-20261006",
+            "domain": "standalone_driver",
+            "record": "research/runtime/native-surface-ownership-final-20261006.json",
+            "scope": "Owned native shared lifetimes/attachments,11flips+leases/2128ownership words;6656palette entries/864defined indices/66statuses from independent prior recovery capture.16native wrapper compositions/432input pixels plus supplied global cursor BMP/DC reload;286checks/29refusals. Unspecified Restore pixels excluded; physical original lost-draw/asset internals/live pending.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Owned access leases/alias attachments and explicit validity with standalone sequences.",
+        "remaining": "Complete original producer/CPU-write lifecycle and live recovery remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "Synthetic foundation exists; game-driver sequences and unobserved leases remain outside this fixture set. Standalone96 driver lock/DC sequences now compare HRESULT/normalized output/stable descriptor fields and readable final bytes, replayed by owned native admission state. Drawing while borrowed, integration with bitmap raster/storage, pointer/alias ownership, other flags/rectangles, cross-thread behavior, original game/actual loss/Windows/live remain pending. Integrated owned backend now matches2630draw HRESULTs/299808pixels across retained fill/keyed/clipping/opaque-overlap/DC/access fixtures, including all105fill/2keyed failures and same-ID continuation. Borrowed-fill/keyed overlap/new combinations/shared ownership/loss/new formats/live remain pending. Combined closure supersedes provisional borrowed-fill/keyed-overlap gaps within sampled scopes:5114results/538272pixels,2304original keyed overlap and180driver borrowed draws. Forward row-major keyed path bounded4096texels; mapped fill/empty-Blt branches match. Shared ownership/recovery/new formats/uncaptured combinations/live remain pending. Chunk2 now supplies scoped native shared ownership/attachment/recovery and11independent standalone primary flips including busy-after-swap CPU/DC lease effects. Fresh6656palette entries/864definedindices/4480originalfault schedules compare; no unknown restored bytes invented. Flags/logical palettes/longchains/mixed flips/physical original lost-draw/asset internals/live/wire/Windows remain pending. Chunk3 independently compares1400standalone driver draws across5canonical formats and2800owned signedrow imports; active-mask fills/keys, retainedunusedbits, keydescriptors/padding/guards and actual binding refusals recorded. Original gameplay format reachability beyond retained RGB565 and remaining operation/error/flag/DC/live/Windows scopes are separate; no driver negative acceptance."
+      },
+      {
+        "id": "SURF.flip",
+        "implementation": [
+          "NR.surface-backend.ownership-recovery"
+        ],
+        "validation": [
+          {
+            "behavior": "NR.surface-backend.ownership-recovery",
+            "evidence": "NR.surface-backend.ownership-recovery.final-20261006",
+            "domain": "standalone_driver",
+            "record": "research/runtime/native-surface-ownership-final-20261006.json",
+            "scope": "Owned native shared lifetimes/attachments,11flips+leases/2128ownership words;6656palette entries/864defined indices/66statuses from independent prior recovery capture.16native wrapper compositions/432input pixels plus supplied global cursor BMP/DC reload;286checks/29refusals. Unspecified Restore pixels excluded; physical original lost-draw/asset internals/live pending.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Two-buffer native storage/validity/lease swaps matched to eleven standalone primary flips.",
+        "remaining": "Native-only live presentation, uncaptured interleavings and longer chains remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "No original paired front/back output fixtures here; longer chains are conditional scope. Chunk2 now supplies scoped native shared ownership/attachment/recovery and11independent standalone primary flips including busy-after-swap CPU/DC lease effects. Fresh6656palette entries/864definedindices/4480originalfault schedules compare; no unknown restored bytes invented. Flags/logical palettes/longchains/mixed flips/physical original lost-draw/asset internals/live/wire/Windows remain pending."
+      }
+    ],
+    "implementation_states": {
+      "scoped_support": 12
+    },
+    "scoped_code_support": {
+      "count": 12,
+      "total": 12,
+      "percent": 100.0
+    },
+    "any_code_support": {
+      "count": 12,
+      "total": 12,
+      "percent": 100.0
+    },
+    "independent_validation_support": {
+      "count": 12,
+      "total": 12,
+      "percent": 100.0
+    },
+    "original_executable_comparison_support": {
+      "count": 6,
+      "total": 12,
+      "percent": 50.0
+    },
+    "scoped_live_replacement_support": {
+      "count": 0,
+      "total": 12,
+      "percent": 0.0
+    },
+    "current_support": {
+      "current_implementation": {
+        "count": 0,
+        "total": 12,
+        "percent": 0.0
+      },
+      "validation": {
+        "count": 0,
+        "total": 12,
+        "percent": 0.0
+      },
+      "replacement": {
+        "count": 0,
+        "total": 12,
+        "percent": 0.0
+      }
+    }
+  },
+  "drawing_routes": {
+    "rows": [
+      {
+        "id": "RI.copies",
+        "implementation": [
+          "NR.surface-backend.owned"
+        ],
+        "validation": [
+          {
+            "behavior": "RE.surface-copy.rgb565-bltfast",
+            "evidence": "ORIGINAL.surface-copy.rgb565-bltfast-clipping-stream-20261006",
+            "domain": "original_executable",
+            "record": "research/runtime/native-surface-fixtures-clipping-stream-20261006.json",
+            "scope": "Offline native/CPU comparison with five retained independent original-game driver RGB565 opaque BltFast destination outputs at return PC0x0058c5be within wrapper0x0058c4a0. Includes three40x40, one40x3 and one unchanged40x1 rectangles with full800x600 destination comparisons. Not wrapper reexecution, timing, clipping, physical-driver, current collector or live equivalence. Evidence kind denotes isolated offline comparison against historical live captures, not a new isolated execution of original machine code.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Native same-format surface-copy subset.",
+        "remaining": "Complete caller attribution and original copy suppression remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "Selected DirectDraw copy wrappers, direct caller ownership and indirect sites; active clipper/stretch/self-copy/effect flags and unknown keys remain unsupported by owned tracking. Inventory review only; no new implementation, execution comparison, integration or replacement claim. Tutorial summon observation confirms original actions independently; successful original copy interleaving during hook admission/commit can conservatively refuse native publication. No reliable active-gameplay or driver equivalence claim. An opt-in continuous copy scheduling policy now bounds concurrent hooked Blt/BltFast admission through original call and commit; timeouts and reentrant writes retain uncertainty refusal. This intentional scheduling does not recover original ordering or enable default replacement."
+      },
+      {
+        "id": "RI.fills",
+        "implementation": [
+          "NR.surface-backend.owned"
+        ],
+        "validation": [
+          {
+            "behavior": "RE.surface-fill.rgb565",
+            "evidence": "ORIGINAL.surface-backend.formats-pitch.operations-20261006",
+            "domain": "original_executable",
+            "record": "research/runtime/native-surface-formats-backend-regression-20261006.json",
+            "scope": "Fresh changed-backend offline comparison of retained250originalfills/436keyed/1536opaque-overlap/2304keyed-overlap results and pixels, no new original execution. Other driver/DC outputs remain separate scope.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Native owned fill subset.",
+        "remaining": "All callers/retry branches and original fill suppression remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "Selected NULL-source Blt fill construction and retry windows; initial partial fill and unsupported effects/ownership remain open. Inventory review only; no new implementation, execution comparison, integration or replacement claim."
+      },
+      {
+        "id": "RI.locked-writes",
+        "implementation": [
+          "RS.word-raster",
+          "NR.surface-access",
+          "RS.fade-live-pixels",
+          "RS.panel-pixel-domain",
+          "NR.other-writer-atomic-admission"
+        ],
+        "validation": [
+          {
+            "behavior": "RS.word-raster",
+            "evidence": "RS.word-raster.original-20261007",
+            "domain": "original_executable",
+            "record": "research/runtime/native-word-sprite-takeover-20261007.json",
+            "scope": "256 original/native direct-word fixtures, two selected backends; 119288 complete pixels. Native unsafe-input refusals are intentional policies.",
+            "source_freshness": "stale",
+            "current": false
+          },
+          {
+            "behavior": "RS.fade-loop-state",
+            "evidence": "RS.fade-loop-state.original-20261010",
+            "domain": "original_executable",
+            "record": "research/runtime/fade-loop-state-comparison-20261010.json",
+            "scope": "Positive bounded 58edb0..58ede5 fade pixel-loop splice under unchanged 58ed80 wrapper Lock/Unlock. Native contiguous word kernel, full physical words, wrapper arguments/callback trace, GPR/defined EFLAGS/DF, stack and selected full FX state. Explicit writable live lease admission; refusal forwards original loop once. No image/panel/glyph takeover, failed original Lock dereference recovery or complete renderer replacement.",
+            "source_freshness": "unchanged",
+            "current": true
+          },
+          {
+            "behavior": "RS.panel-pixel-domain",
+            "evidence": "RS.panel-pixel-domain.original-20261010",
+            "domain": "original_executable",
+            "record": "research/runtime/panel-domain-comparison-20261010.json",
+            "scope": "Bounded zero-origin RGB565 58ddf0/58d8c0/58e2c0 physical pixels, inclusive/half-open/asymmetric corner ordering, degenerate and edge rectangles, percent0..1000, both pressed/reverse booleans, initial channel extremes/exhaustive whitewash words and padded rows. External Lock/Unlock success adapters. No live takeover, caller/FX state, nonzero origin clipping or RGB555 panels.",
+            "source_freshness": "unchanged",
+            "current": true
+          }
+        ],
+        "scope": "Selected CPU sprite raster producer and compatible owned lock storage only. Positive bounded native transition fade loop under original Lock/Unlock; panel success pixels and atomic native RGB/blend/wave/shadow/history refusal.",
+        "remaining": "Live panel/image/other writer suppression, driver lease/lifetime/failure semantics, unsampled writers and full frame ownership remain open.",
+        "replacement": [
+          {
+            "behavior": "RS.fade-live-pixels",
+            "evidence": "RS.fade-live-pixels.takeover-20261010",
+            "domain": "replacement",
+            "record": "research/runtime/fade-writer-live-comparison-20261010.json",
+            "scope": "Opt-in fixed NoCD fade loop native suppression under unchanged original Lock/Unlock. Single owner thread, positive bounded readable/writable original leases. Full physical before/after diagnostics through Main/Single Player/Quick Battle/Map/startup; independently replay every admitted input through the unchanged original loop. Full pixel equality and evidence of interior original loop bypass only. Synthetic caller/FX validation separately RS.fade-loop-state. Not independent native surface ownership, GPU frame takeover, failed original Lock behavior, arbitrary gameplay or other writers.",
+            "source_freshness": "unchanged",
+            "current": true
+          }
+        ],
+        "implementation_state": "scoped_support",
+        "current_implementation": true,
+        "remaining_matrix_gap": "Lock pointer/pitch and selected JPEG destination route; unassigned WORD-copy window and semantic classification of remaining lock callers retained. Inventory review only; no new implementation, execution comparison, integration or replacement claim."
+      },
+      {
+        "id": "RI.gdi-text",
+        "implementation": [
+          "NR.surface-reload.bitmap-dc"
+        ],
+        "validation": [
+          {
+            "behavior": "RE.surface-reload.cursor-sentinel",
+            "evidence": "ORIGINAL.surface-reload.cursor-sentinel.native-20261006",
+            "domain": "original_executable",
+            "record": "research/runtime/native-cursor-reload-rgb24-32-20261006.json",
+            "scope": "Fresh1456 recovered C++ cursor/none/callback dispatch traces versus unchanged original x86 captures and12 exact file-load result/header/palette/pixel buffer comparisons;813 bounded stops/two invalid budgets. Native/GDI raster scope registered separately; no real loss/live original equivalence.",
+            "source_freshness": "stale",
+            "current": false
+          }
+        ],
+        "scope": "Supplied cursor bitmap/reloader compositions only; SFT glyphs are a separate sprite route.",
+        "remaining": "Active GDI producers, original text layout and native GDI suppression remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "Selected DC image wrappers and shared sprite destination used by SFT; individual GDI rasterization and higher-level text layout/encoding/palette equivalence remain unresolved. Inventory review only; no new implementation, execution comparison, integration or replacement claim."
+      },
+      {
+        "id": "RI.terrain",
+        "implementation": [
+          "NR.scene-service",
+          "RE.terrain_submission"
+        ],
+        "validation": [
+          {
+            "behavior": "RE.terrain_submission",
+            "evidence": "ORIGINAL.terrain-submission",
+            "domain": "original_executable",
+            "record": "research/runtime/terrain-submission.json",
+            "scope": "Selected offline algorithm on owned inputs; full world production, original allocation and live replacement are not covered. Registration reviews existing code and test coverage; it is not a new execution or equivalence result. Historical original comparison, limited to the helper/input domain stated in the linked research report. Frozen source keys bind to current code without changing stored hashes.",
+            "source_freshness": "unchanged",
+            "current": false
+          }
+        ],
+        "scope": "Selected ordinary terrain submission/native scenes; World raster bypass is separate below.",
+        "remaining": "Traversal/submission remains original; complete water/overlay/picking/visibility routes remain open.",
+        "replacement": [],
+        "implementation_state": "scoped_support",
+        "current_implementation": false,
+        "remaining_matrix_gap": "Existing selected ordinary traversal/submission links; object/overlay/creature/picking and full original-world raster output excluded. Inventory review only; no new implementation, execution comparison, integration or replacement claim."
+      },
+      {
+        "id": "RI.sprites",
+        "implementation": [
+          "RS.word-route",
+          "NR.scene-service",
+          "RS.word-clipping",
+          "RS.glyph-live-route"
+        ],
+        "validation": [
+          {
+            "behavior": "RS.word-route",
+            "evidence": "RS.word-route.takeover-20261007",
+            "domain": "original_executable",
+            "record": "research/runtime/native-word-sprite-takeover-20261007.json",
+            "scope": "12608 admitted backend calls bypassed through World startup; eight actual native before/after canvas and workspace samples match independently executed original backends.705 original fallbacks remain distinct. Whole scene, remaining ABI branches, gameplay duration, full shutdown and physical driver claims excluded.",
+            "source_freshness": "stale",
+            "current": false
+          },
+          {
+            "behavior": "RS.word-clipping",
+            "evidence": "RS.word-clipping.complete-deps-20261010",
+            "domain": "original_executable",
+            "record": "research/runtime/word-sprite-clipping-complete-deps-20261010.json",
+            "scope": "960 zero-origin viewport direct-word clipping cases compared with existing native GPU drawClipped and each of two unmodified original backends; 447330 complete canvas pixels per path. Pixel-only, default clip globals, no live admission or caller-state proof. Complete project compiler dependency provenance, including render_stream_v3.h; fresh prospective declaration and rerun.",
+            "source_freshness": "stale",
+            "current": false
+          },
+          {
+            "behavior": "RS.glyph-live-route",
+            "evidence": "RS.glyph-live-route.live-20261010",
+            "domain": "original_executable",
+            "record": "research/runtime/glyph-live-comparison-20261010.json",
+            "scope": "Bounded four World returns:1817 admitted shadow and1817 takeover calls,39 original forwards in each mode. Six complete inputs per mode independently replay1,684,800 WORDs each. Observed PC53 nearest, empty x87 and retained cold black interior glyphs; wider input/control coverage remains isolated. Production VirtualQuery/overlap fixture and both public launch staging authorization checks. Native admission policy does not claim original malformed/failure equivalence. No full Qt gameplay/whole-frame ownership/performance proof.",
+            "source_freshness": "unchanged",
+            "current": true
+          }
+        ],
+        "scope": "Two selected in-bounds direct-word backend entries plus pixel-only synthetic GPU/original clipping comparison at zero clip globals; indexed World is accounted separately. Explicit581ec0 glyph startup shadow/takeover:1817 native calls and six retained independent original replays; partial glyph body only.",
+        "remaining": "Clipped caller state/ABI/live admission, other clip globals and alternate backends, full dispatch and caller side effects remain open. Broader glyph input/control/lifecycle coverage, higher text consumers and complete UI composition remain pending.",
+        "replacement": [
+          {
+            "behavior": "RS.word-route",
+            "evidence": "RS.word-route.takeover-20261007",
+            "domain": "replacement",
+            "record": "research/runtime/native-word-sprite-takeover-20261007.json",
+            "scope": "12608 admitted backend calls bypassed through World startup; eight actual native before/after canvas and workspace samples match independently executed original backends.705 original fallbacks remain distinct. Whole scene, remaining ABI branches, gameplay duration, full shutdown and physical driver claims excluded.",
+            "source_freshness": "stale",
+            "current": false
+          },
+          {
+            "behavior": "RS.glyph-live-route",
+            "evidence": "RS.glyph-live-route.takeover-20261010",
+            "domain": "replacement",
+            "record": "research/runtime/glyph-live-comparison-20261010.json",
+            "scope": "Bounded four World returns:1817 admitted shadow and1817 takeover calls,39 original forwards in each mode. Six complete inputs per mode independently replay1,684,800 WORDs each. Observed PC53 nearest, empty x87 and retained cold black interior glyphs; wider input/control coverage remains isolated. Production VirtualQuery/overlap fixture and both public launch staging authorization checks. Native admission policy does not claim original malformed/failure equivalence. No full Qt gameplay/whole-frame ownership/performance proof.",
+            "source_freshness": "unchanged",
+            "current": true
+          }
+        ],
+        "implementation_state": "scoped_support",
+        "current_implementation": true,
+        "remaining_matrix_gap": "Selected shared dispatch/direct-word backend and consumer sites; alternate/MMX/auxiliary/shading and complete consumer draw-kind dispatch remain unresolved. Inventory review only; no new implementation, execution comparison, integration or replacement claim."
+      },
+      {
+        "id": "RI.effects",
+        "implementation": [],
+        "validation": [],
+        "scope": "Offline effect state/light/animation foundations do not establish the complete effect-to-pixel route.",
+        "remaining": "Effect-to-raster attribution and full visual admission/ordering remain unresolved.",
+        "replacement": [],
+        "implementation_state": "none",
+        "current_implementation": false,
+        "remaining_matrix_gap": "Existing creation/animation setup anchors only; full effect-to-queue-to-raster chain and reverse/attachment/shading variants remain open. Inventory review only; no new implementation, execution comparison, integration or replacement claim."
+      },
+      {
+        "id": "RI.ui",
+        "implementation": [
+          "RS.word-route",
+          "NR.scene-service",
+          "RS.glyph-live-route",
+          "RS.panel-pixel-domain",
+          "NR.other-producer-checkpoints"
+        ],
+        "validation": [
+          {
+            "behavior": "RS.word-route",
+            "evidence": "RS.word-route.takeover-20261007",
+            "domain": "original_executable",
+            "record": "research/runtime/native-word-sprite-takeover-20261007.json",
+            "scope": "12608 admitted backend calls bypassed through World startup; eight actual native before/after canvas and workspace samples match independently executed original backends.705 original fallbacks remain distinct. Whole scene, remaining ABI branches, gameplay duration, full shutdown and physical driver claims excluded.",
+            "source_freshness": "stale",
+            "current": false
+          },
+          {
+            "behavior": "RS.glyph-live-route",
+            "evidence": "RS.glyph-live-route.live-20261010",
+            "domain": "original_executable",
+            "record": "research/runtime/glyph-live-comparison-20261010.json",
+            "scope": "Bounded four World returns:1817 admitted shadow and1817 takeover calls,39 original forwards in each mode. Six complete inputs per mode independently replay1,684,800 WORDs each. Observed PC53 nearest, empty x87 and retained cold black interior glyphs; wider input/control coverage remains isolated. Production VirtualQuery/overlap fixture and both public launch staging authorization checks. Native admission policy does not claim original malformed/failure equivalence. No full Qt gameplay/whole-frame ownership/performance proof.",
+            "source_freshness": "unchanged",
+            "current": true
+          },
+          {
+            "behavior": "RS.panel-pixel-domain",
+            "evidence": "RS.panel-pixel-domain.original-20261010",
+            "domain": "original_executable",
+            "record": "research/runtime/panel-domain-comparison-20261010.json",
+            "scope": "Bounded zero-origin RGB565 58ddf0/58d8c0/58e2c0 physical pixels, inclusive/half-open/asymmetric corner ordering, degenerate and edge rectangles, percent0..1000, both pressed/reverse booleans, initial channel extremes/exhaustive whitewash words and padded rows. External Lock/Unlock success adapters. No live takeover, caller/FX state, nonzero origin clipping or RGB555 panels.",
+            "source_freshness": "unchanged",
+            "current": true
+          }
+        ],
+        "scope": "Selected direct-word UI sprite bodies only; Qt widgets/capture replay are separate. Explicit581ec0 glyph startup shadow/takeover:1817 native calls and six retained independent original replays; partial glyph body only. Fresh saved original startup/HUD CPU/GPU checkpoint replay and bounded original panel pixel domain.",
+        "remaining": "HUD/minimap/tooltips/fonts/cursor composition and complete UI producer suppression remain open. Broader glyph input/control/lifecycle coverage, higher text consumers and complete UI composition remain pending.",
+        "replacement": [
+          {
+            "behavior": "RS.word-route",
+            "evidence": "RS.word-route.takeover-20261007",
+            "domain": "replacement",
+            "record": "research/runtime/native-word-sprite-takeover-20261007.json",
+            "scope": "12608 admitted backend calls bypassed through World startup; eight actual native before/after canvas and workspace samples match independently executed original backends.705 original fallbacks remain distinct. Whole scene, remaining ABI branches, gameplay duration, full shutdown and physical driver claims excluded.",
+            "source_freshness": "stale",
+            "current": false
+          },
+          {
+            "behavior": "RS.glyph-live-route",
+            "evidence": "RS.glyph-live-route.takeover-20261010",
+            "domain": "replacement",
+            "record": "research/runtime/glyph-live-comparison-20261010.json",
+            "scope": "Bounded four World returns:1817 admitted shadow and1817 takeover calls,39 original forwards in each mode. Six complete inputs per mode independently replay1,684,800 WORDs each. Observed PC53 nearest, empty x87 and retained cold black interior glyphs; wider input/control coverage remains isolated. Production VirtualQuery/overlap fixture and both public launch staging authorization checks. Native admission policy does not claim original malformed/failure equivalence. No full Qt gameplay/whole-frame ownership/performance proof.",
+            "source_freshness": "unchanged",
+            "current": true
+          }
+        ],
+        "implementation_state": "scoped_support",
+        "current_implementation": true,
+        "remaining_matrix_gap": "Startup surface/movie calls and existing menu observations/assets; complete widget/HUD/minimap caller classification and paired original pixels remain open. Inventory review only; no new implementation, execution comparison, integration or replacement claim. Subsequent bounded live observation matches five independent stable menu regions within one channel value, including Region Entry after failed-reader recovery; complete UI caller attribution, full screenshots and HUD/gameplay parity remain open."
+      },
+      {
+        "id": "RI.movies",
+        "implementation": [
+          "HOST.media",
+          "RS.fade-live-pixels"
+        ],
+        "validation": [
+          {
+            "behavior": "RS.fade-live-pixels",
+            "evidence": "RS.fade-live-pixels.live-20261010",
+            "domain": "original_executable",
+            "record": "research/runtime/fade-writer-live-comparison-20261010.json",
+            "scope": "Opt-in fixed NoCD fade loop native suppression under unchanged original Lock/Unlock. Single owner thread, positive bounded readable/writable original leases. Full physical before/after diagnostics through Main/Single Player/Quick Battle/Map/startup; independently replay every admitted input through the unchanged original loop. Full pixel equality and evidence of interior original loop bypass only. Synthetic caller/FX validation separately RS.fade-loop-state. Not independent native surface ownership, GPU frame takeover, failed original Lock behavior, arbitrary gameplay or other writers.",
+            "source_freshness": "unchanged",
+            "current": true
+          }
+        ],
+        "scope": "Partial native media plumbing with static register support. Twenty-five installed native transition fade pixel loops independently match unchanged original replay under original Lock/Unlock.",
+        "remaining": "Complete movie/transition screen ownership, broader controls, World return and driver failure paths remain open.",
+        "replacement": [
+          {
+            "behavior": "RS.fade-live-pixels",
+            "evidence": "RS.fade-live-pixels.takeover-20261010",
+            "domain": "replacement",
+            "record": "research/runtime/fade-writer-live-comparison-20261010.json",
+            "scope": "Opt-in fixed NoCD fade loop native suppression under unchanged original Lock/Unlock. Single owner thread, positive bounded readable/writable original leases. Full physical before/after diagnostics through Main/Single Player/Quick Battle/Map/startup; independently replay every admitted input through the unchanged original loop. Full pixel equality and evidence of interior original loop bypass only. Synthetic caller/FX validation separately RS.fade-loop-state. Not independent native surface ownership, GPU frame takeover, failed original Lock behavior, arbitrary gameplay or other writers.",
+            "source_freshness": "unchanged",
+            "current": true
+          }
+        ],
+        "implementation_state": "scoped_support",
+        "current_implementation": true,
+        "remaining_matrix_gap": "Existing movie setup/sample/wrapper route; nonzero native control values, original placement/error paths and full live return to gameplay remain unverified. Inventory review only; no new implementation, execution comparison, integration or replacement claim. Movie-enabled startup reaches original Main; no sample return PC in 0x469830..0x469a00 appears in the bounded 2048-record draw archive. Actual playback/return results and movie pixels remain unverified."
+      }
+    ],
+    "implementation_states": {
+      "scoped_support": 8,
+      "none": 1
+    },
+    "scoped_code_support": {
+      "count": 8,
+      "total": 9,
+      "percent": 88.89
+    },
+    "any_code_support": {
+      "count": 8,
+      "total": 9,
+      "percent": 88.89
+    },
+    "independent_validation_support": {
+      "count": 8,
+      "total": 9,
+      "percent": 88.89
+    },
+    "original_executable_comparison_support": {
+      "count": 8,
+      "total": 9,
+      "percent": 88.89
+    },
+    "scoped_live_replacement_support": {
+      "count": 4,
+      "total": 9,
+      "percent": 44.44
+    },
+    "current_support": {
+      "current_implementation": {
+        "count": 4,
+        "total": 9,
+        "percent": 44.44
+      },
+      "validation": {
+        "count": 4,
+        "total": 9,
+        "percent": 44.44
+      },
+      "replacement": {
+        "count": 4,
+        "total": 9,
+        "percent": 44.44
+      }
+    }
+  },
+  "conditional_surface_operations": [
+    {
+      "id": "SURF.key.ranged_destination",
+      "requirement": "conditional",
+      "requirement_evidence": "No recovered selected wrapper requirement established; current adapter refuses ranges/destination keys.",
+      "native_backend": "unsupported",
+      "wire_support": "not represented",
+      "behavior_ids": [
+        "RI.copies"
+      ],
+      "original": [],
+      "acceptance_cases": [
+        "range endpoints",
+        "destination admission",
+        "key/clipping interactions"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Keep as explicit discovery backlog; promote to required only with caller/descriptor evidence or an explicit scope decision."
+    },
+    {
+      "id": "SURF.conversion_stretch",
+      "requirement": "conditional",
+      "requirement_evidence": "Current selected copies are same-format/unscaled; other routes remain possible.",
+      "native_backend": "unsupported",
+      "wire_support": "not represented",
+      "behavior_ids": [
+        "RI.copies"
+      ],
+      "original": [],
+      "acceptance_cases": [
+        "format-pair conversion",
+        "scale sampling and clipping"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Keep as explicit discovery backlog; promote to required only with caller/descriptor evidence or an explicit scope decision."
+    },
+    {
+      "id": "SURF.effects",
+      "requirement": "conditional",
+      "requirement_evidence": "ROP/DDFX/blend/rotation are refused; no selected caller semantics recovered.",
+      "native_backend": "unsupported",
+      "wire_support": "not represented",
+      "behavior_ids": [
+        "RI.copies"
+      ],
+      "original": [],
+      "acceptance_cases": [
+        "flag-specific effects",
+        "failed/unsupported result"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Keep as explicit discovery backlog; promote to required only with caller/descriptor evidence or an explicit scope decision."
+    },
+    {
+      "id": "SURF.flip.complex",
+      "requirement": "conditional",
+      "requirement_evidence": "Only selected double buffers validated; longer/stereo/field chains unresolved.",
+      "native_backend": "unsupported",
+      "wire_support": "not represented",
+      "behavior_ids": [
+        "NR.surfaces"
+      ],
+      "original": [],
+      "acceptance_cases": [
+        "multi-buffer ownership",
+        "stereo/field flags"
+      ],
+      "original_fixture_ids": [],
+      "remaining_gap": "Keep as explicit discovery backlog; promote to required only with caller/descriptor evidence or an explicit scope decision."
+    }
+  ],
+  "world_takeovers": [
+    {
+      "behavior": "RS.world-raster-queue-replacement",
+      "evidence": "RS.world-raster-queue.prefix16-boundary-replacement-20261008",
+      "admitted_entries": [
+        "0x595677",
+        "0x5947b2",
+        "0x59521a",
+        "0x595b47",
+        "0x59603e",
+        "0x57de00",
+        "0x57ec90",
+        "0x57f0f0",
+        "0x57f5f0",
+        "0x5806f0",
+        "0x596490",
+        "0x5968a4",
+        "0x57e540"
+      ],
+      "domain": "replacement",
+      "record": "research/runtime/native-world-raster-prefix16-boundary-replacement-20261008.json",
+      "scope": "Complete selected raster queues only; every live native intermediate matched actual skipped original entry and low16AX. Original traversal, menu/HUD work outside queues, palette preparation and non-drawing lazy wave table preparation retained. No full native simulation or real-time performance claim.",
+      "source_freshness": "stale",
+      "current": false,
+      "exercised_entries": {
+        "count": 10,
+        "total": 13,
+        "percent": 76.92
+      },
+      "unobserved_entries": [
+        "0x5947b2",
+        "0x595b47",
+        "0x5968a4"
+      ],
+      "complete_queues": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "original_call_comparisons": 36556,
+      "actual_entry_counts": {
+        "0x595677": 5415,
+        "0x57de00": 1862,
+        "0x57f5f0": 20,
+        "0x57f0f0": 20,
+        "0x57ec90": 20,
+        "0x5806f0": 16,
+        "0x59603e": 27450,
+        "0x596490": 1710,
+        "0x59521a": 35,
+        "0x57e540": 8
+      }
+    },
+    {
+      "behavior": "RS.world-raster-batch-return",
+      "evidence": "RS.world-raster-batch.prefix16-replacement-v7-20261008",
+      "admitted_entries": [
+        "0x595677",
+        "0x5947b2",
+        "0x59521a",
+        "0x595b47",
+        "0x59603e",
+        "0x57de00",
+        "0x57ec90",
+        "0x57f0f0",
+        "0x57f5f0",
+        "0x5806f0",
+        "0x596490",
+        "0x5968a4",
+        "0x57e540"
+      ],
+      "domain": "replacement",
+      "record": "research/runtime/native-world-raster-batch-prefix16-replacement-v7-20261008.json",
+      "scope": "Complete independently validated guarded startup World queues1..16, pinned800x600 format0 Quick Battle map2. Every observed admitted source-only CPU intermediate canvas and low16AX equals its precise original entry; native GPU final and live reply canvases match. Guard proves no original destination access during admitted traversal, and exactly one native canvas writeback/readback occurs per queue before World return/checkpoint/HUD. Original traversal/simulation, outside-World menu/HUD and non-drawing lazy wave preparation remain active. No full dispatcher, other-format/caller/global, top-clipped displacement or real-time claim. This combined record binds captured suppression/guard/one-writeback proof to separate original equivalence, rather than treating post-bypass oracles as original-only pixels.",
+      "source_freshness": "stale",
+      "current": false,
+      "exercised_entries": {
+        "count": 10,
+        "total": 13,
+        "percent": 76.92
+      },
+      "unobserved_entries": [
+        "0x5947b2",
+        "0x595b47",
+        "0x5968a4"
+      ],
+      "complete_queues": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "original_call_comparisons": 23480,
+      "actual_entry_counts": {
+        "0x57de00": 931,
+        "0x57e540": 8,
+        "0x57ec90": 20,
+        "0x57f0f0": 20,
+        "0x57f5f0": 20,
+        "0x5806f0": 16,
+        "0x59521a": 35,
+        "0x595677": 3695,
+        "0x59603e": 18210,
+        "0x596490": 525
+      }
+    },
+    {
+      "behavior": "RS.world-raster-batch-return",
+      "evidence": "RS.world-raster-batch.identity-cache-replacement-20261009",
+      "admitted_entries": [
+        "0x595677",
+        "0x5947b2",
+        "0x59521a",
+        "0x595b47",
+        "0x59603e",
+        "0x57de00",
+        "0x57ec90",
+        "0x57f0f0",
+        "0x57f5f0",
+        "0x5806f0",
+        "0x596490",
+        "0x5968a4",
+        "0x57e540"
+      ],
+      "domain": "replacement",
+      "record": "research/runtime/native-world-frame-identity-cache-original-20261009.json",
+      "scope": "Current owned-byte identity-reusing native World, pinned800x600 RGB565 Quick Battle map2/zero-items startup queues1..16. Source-only CPU/GPU replay independently compared with every precise original intermediate and low16AX,16 final canvases and all checkpoints. Captured guard/writebacks separately bind live suppression. Original simulation, outside-World drawing and lazy wave preparation retained. No all-caller/global/gameplay or hardware latency claim.",
+      "source_freshness": "stale",
+      "current": false,
+      "exercised_entries": {
+        "count": 9,
+        "total": 13,
+        "percent": 69.23
+      },
+      "unobserved_entries": [
+        "0x5947b2",
+        "0x595b47",
+        "0x596490",
+        "0x5968a4"
+      ],
+      "complete_queues": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "original_call_comparisons": 26146,
+      "actual_entry_counts": {
+        "0x57de00": 906,
+        "0x57e540": 8,
+        "0x57ec90": 20,
+        "0x57f0f0": 20,
+        "0x57f5f0": 20,
+        "0x5806f0": 16,
+        "0x59521a": 35,
+        "0x595677": 5066,
+        "0x59603e": 20055
+      }
+    },
+    {
+      "behavior": "RS.world-raster-batch-return",
+      "evidence": "NR.world32.replacement-20261010",
+      "admitted_entries": [
+        "0x595677",
+        "0x5947b2",
+        "0x59521a",
+        "0x595b47",
+        "0x59603e",
+        "0x57de00",
+        "0x57ec90",
+        "0x57f0f0",
+        "0x57f5f0",
+        "0x5806f0",
+        "0x596490",
+        "0x5968a4",
+        "0x57e540"
+      ],
+      "domain": "replacement",
+      "record": "research/runtime/native-world32-replacement-20261010.json",
+      "scope": "Bounded source-only native32 World raster replacement with separate exact original PE32 intermediate/AX comparisons. Live capture uses RelWithDebInfo and software Mesa; frozen independent comparison uses Debug. Original traversal/simulation and outside-World drawing remain active. Transport source definitions are not original drawing calls. No continuous/hardware/full-dispatch/realtime claim. Every63124 precise raster RGB565 canvas and low16AX matches unmodified nocd40209ca7 bodies,1224 checkpoint canvases and32live finals match. Matching source/contract/input hashes and86compiler dependencies reviewed; immutable original manifests verified before/after. No broad scope or status promotion of historical contracts.",
+      "source_freshness": "stale",
+      "current": false,
+      "exercised_entries": {
+        "count": 10,
+        "total": 13,
+        "percent": 76.92
+      },
+      "unobserved_entries": [
+        "0x5947b2",
+        "0x595b47",
+        "0x5968a4"
+      ],
+      "complete_queues": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "original_call_comparisons": 63124,
+      "actual_entry_counts": {
+        "0x57de00": 2194,
+        "0x57e540": 48,
+        "0x57ec90": 40,
+        "0x57f0f0": 40,
+        "0x57f5f0": 40,
+        "0x5806f0": 32,
+        "0x59521a": 135,
+        "0x595677": 9941,
+        "0x59603e": 49259,
+        "0x596490": 1395
+      }
+    }
+  ],
+  "release_contract": {
+    "id": "NR.live-drawing-replacement",
+    "scope": "Planned No-CD single-player drawing takeover retaining original simulation. The authoritative roadmap defines drawing coverage, independent comparison, complete native scenes, continuous versioned delivery, actual original-raster bypass, supported session validation and capability-checked launcher release. Capture/replay, bounded snapshots and surface primitives do not establish replacement. Implementation, tests, original comparison, continuous integration, actual bypass and scenario execution remain pending; no launcher option enables this target today. This entry records planning policy only, not recovered rendering equivalence.",
+    "status": {
+      "understanding": "partial",
+      "implementation": "none",
+      "comparison": "none",
+      "integration": "none",
+      "replacement": "none"
+    }
+  },
+  "unresolved_render_dispatch": [
+    {
+      "id": "RI.queue-draw-00501184",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5247364,
+        "relation": "data",
+        "scope": "First consumer computed jump at 0x5003fc; selected raster links only, complete table semantics not claimed."
+      },
+      "document": "research/runtime/render-drawing-inventory.md",
+      "scope": "Selected first consumer path links recovered from static calls and bounded effective raster capture. Other values, default branches, alternate tables and complete consumer state/readback semantics remain unresolved.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 31,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "RS.world-initial-state",
+            "RS.world-startup-wave"
+          ]
+        },
+        {
+          "value": "other-or-default",
+          "behaviors": []
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "RS.world-startup-wave"
+          ]
+        },
+        {
+          "value": 17,
+          "behaviors": [
+            "RS.world-startup-wave"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "RS.world-kind8-virtual"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RI.queue-draw-00501210",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5247504,
+        "relation": "data",
+        "scope": "Static computed jump at 0x50093d; table semantics unclassified."
+      },
+      "document": "research/runtime/render-drawing-inventory.md",
+      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
+      "complete": false,
+      "entries": []
+    },
+    {
+      "id": "RI.queue-draw-0050129c",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5247644,
+        "relation": "data",
+        "scope": "Static computed jump at 0x500d69; table semantics unclassified."
+      },
+      "document": "research/runtime/render-drawing-inventory.md",
+      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
+      "complete": false,
+      "entries": []
+    },
+    {
+      "id": "kind8-vtable-5c7420",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059040,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-additive"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "kind8-vtable-5c73f0",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6058992,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-additive"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "kind8-vtable-5c7408",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059016,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-additive"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "kind8-vtable-5c7494",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059156,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-colour"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "kind8-vtable-5c74b0",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059184,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-colour"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "kind8-vtable-5c74cc",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059212,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-noop"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "world-complete-raster-admission-20261008",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5243552,
+        "scope": "Selected observed outer raster routes within retained World traversal."
+      },
+      "document": "research/runtime/native-world-raster-queue.md",
+      "scope": "Build-pinned13-entry observed caller admission; unknown caller/mode and unobserved routes retained. No complete dispatcher recovery.",
+      "complete": false,
+      "entries": [
+        {
+          "value": "0x595677",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x5947b2",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x59521a",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x595b47",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x59603e",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x57de00",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x57ec90",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x57f0f0",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x57f5f0",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x5806f0",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x596490",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x5968a4",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x57e540",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "unknown-or-unobserved-caller-mode",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "minimap-terrain-orientations",
+      "document": "research/runtime/native-minimap-terrain.md",
+      "scope": "Four fog orientation entries; companion non-fog table554820; pixel branch classification only, driver/caller semantics pending.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": "out-of-range",
+          "behaviors": []
+        }
+      ],
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5589008,
+        "relation": "data",
+        "scope": "Fog-enabled four-entry orientation table; companion fog-disabled table at554820."
+      }
+    },
+    {
+      "id": "minimap-camera-outline-call-sites",
+      "document": "research/runtime/native-minimap-live.md",
+      "scope": "Static selected four-slot caller table only; repeats5527a0, no5532f0 call. Original caller-state generation, other call sites and out-of-range branch remain unresolved.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": "out-of-range",
+          "behaviors": []
+        }
+      ],
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5594632,
+        "relation": "data",
+        "scope": "Four raw dispatch slots at555e08, mapped to three direct call sites; not global minimap orientation dispatch equivalence."
+      }
+    }
+  ],
+  "input_sha256": {
+    "research/runtime/coverage/register.json": "f22bdec541cd1eca30441f020e93a542bf2ff1fe567fbdae70bc789ae1029610",
+    "research/runtime/native-surface-operation-matrix.json": "fc8325951f294e3d53f06f6cdb0b4a79eb6624d4206ff3fea267705ce8977840",
+    "research/runtime/rendering-coverage-scope.json": "8a01e535a6247f14f21b8a7013291643a41b65a62542152bdbc7f904149be0ac",
+    "research/runtime/render-drawing-inventory.md": "d57813545a8d97a0084d267b6a1201a954fb4a25dc19082d369a6a4131da9c90",
+    "docs/live-drawing-replacement.md": "5d3c1ef8c920f75c1bcfd7c36458c1c8ee1b35020db0688acc5bbff90a1fe3cc",
+    "tools/rendering_coverage.py": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+    "tools/report-rendering-coverage.py": "7c6f221dedc1aa4c8f6eaa6f660acdfaec90e683a1c64fcd2b9472fe577603fb"
+  }
+}

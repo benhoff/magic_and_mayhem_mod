@@ -1,0 +1,451 @@
+{
+  "schema": 1,
+  "success": true,
+  "claims": [
+    {
+      "behavior": "RS.panel-pixel-domain",
+      "contract_sha256": "39b19423f8bc38f41488ad0f3e4a3a522d43c7eb561085f0d2d3dc76a3ee759e",
+      "scenarios": {
+        "native-panel-domain-20261010": "e116cf05b2dbbe6360101708f655149153a6eb7756b2608af02a38e2ff9aa0b7"
+      }
+    },
+    {
+      "behavior": "NR.panel-atomic-admission",
+      "contract_sha256": "dceac15a5b036321f6994862f561fd443cf9fd8782d0da8497a1a55799fa577c",
+      "scenarios": {
+        "native-panel-domain-20261010": "e116cf05b2dbbe6360101708f655149153a6eb7756b2608af02a38e2ff9aa0b7"
+      }
+    }
+  ],
+  "sources": {
+    "assets/asset_file.hpp": "7079447b1cc2f6980f4001c0ae9c4a7b29047793da43fa76de9de8d55bfabd09",
+    "assets/path_resolver.hpp": "0c80357b7feeca7378446e9efc01e27ab53b4e5cde00ad6584e2ce3f6e7513a2",
+    "assets/sprite_loader.hpp": "0ab5f80fe75601ad3010afd048c87176bd1b3d37d371525a5c4ea6e3991d263e",
+    "renderer/blit.hpp": "4abf821da5214e469c8305ff713c3099535495270095fc882b93709b6e60c068",
+    "renderer/canvas_sequence.cpp": "99175c1bbd6706b30f51163ffbf9f1e45a9e847c79a09535c10b592c089b8548",
+    "renderer/canvas_sequence.hpp": "37bfb943de403fb45254a2e93e9ee51450f4e48ab45a59dcff0b73b9e6d7ea56",
+    "renderer/minimap/minimap.cpp": "1f340ea7d1a0307660e8d262dbe1580a3d0ccadfaa6e6e156b2e94b8652f5857",
+    "renderer/minimap/minimap.hpp": "74970c73a9eff06a2c2fd015b47e38fce5229c712250f11fe5c9dea1dbd5f470",
+    "renderer/minimap/overlays.cpp": "d1d5b6bdc8d3b6bb156aeac0055257450e35e12069567c03befce1f415b4e3c8",
+    "renderer/minimap/overlays.hpp": "93e97d2697085e12e68fd8e7a7fe25a6634a3ff9cf80ca31d31c2f834b41acba",
+    "tests/panel-domain-native.cpp": "fc0780277d779320beca925f27f851b3f71a13835d9536f67f520ec7e7993ef6",
+    "tests/panel-domain-reference.cpp": "843cf9bcc51e91a2a264ce6d6db275409abefa89c4a9ae1df0760e52bded0f04",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/test-panel-domain.py": "b7e3b109624b3b7e5747c1d2fcc0b52035d2415e58888d158dd9af45f48511f1"
+  },
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "experiment": "working/tests/panel-domain/run-yie5yhm9",
+  "live_replacement": false,
+  "original_work_bypassed": false,
+  "scope": "RGB565 bevel/halo/whitewash original physical pixels, padded rows, corner/pass ordering, degenerate rectangles, per-channel extremes and percent0..1000 with both pressed/reverse booleans. Native complete-footprint refusal before writes. Synthetic external Lock/Unlock adapters, no actual producer suppression, arbitrary caller state or live panel lifetime claim.",
+  "inputs": {
+    "working/tests/panel-domain/run-yie5yhm9/cases.bin": "875a5ef599b884c101cd6b67da2809a026e244647afb7cf38b8912b77131718e",
+    "working/tests/panel-domain/run-yie5yhm9/cases.json": "08c76069f0360735af4f017f436318d0e312c49ab362948c09dea4e299706ce7"
+  },
+  "qt_version": "6.11.2",
+  "compiled_project_sources": [
+    "assets/asset_file.hpp",
+    "assets/path_resolver.hpp",
+    "assets/sprite_loader.hpp",
+    "renderer/blit.hpp",
+    "renderer/canvas_sequence.cpp",
+    "renderer/canvas_sequence.hpp",
+    "renderer/minimap/minimap.cpp",
+    "renderer/minimap/minimap.hpp",
+    "renderer/minimap/overlays.cpp",
+    "renderer/minimap/overlays.hpp",
+    "tests/panel-domain-native.cpp",
+    "tests/panel-domain-reference.cpp",
+    "tests/sprite-binary-reference.cpp",
+    "tools/original-manifest.sh",
+    "tools/test-panel-domain.py"
+  ],
+  "atomic_result": "19 atomic late-undefined panel refusals pass",
+  "case_count": 7490,
+  "compared_words": 2160320,
+  "modes": {
+    "15": 6720,
+    "16": 336,
+    "17": 434
+  },
+  "failures": [],
+  "atomic_refusals": 19,
+  "original_entries": {
+    "bevel": {
+      "address": 5823984,
+      "bytes": "83ec40a1881f6e00"
+    },
+    "halo": {
+      "address": 5822656,
+      "bytes": "83ec38a1881f6e00"
+    },
+    "wash": {
+      "address": 5825216,
+      "bytes": "83ec24a1881f6e00"
+    }
+  },
+  "commands": [
+    {
+      "label": "manifest-before",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/manifest-before.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    },
+    {
+      "label": "qt-flags",
+      "argv": [
+        "pkg-config",
+        "--cflags",
+        "--libs",
+        "Qt6Gui"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/qt-flags.log",
+      "sha256": "a26924cd5c55cf66ac09a3f9a847c8f9c202796a6547a4ee6add0a49f6fb7f55"
+    },
+    {
+      "label": "qt-version",
+      "argv": [
+        "pkg-config",
+        "--modversion",
+        "Qt6Gui"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/qt-version.log",
+      "sha256": "a3919b6e99dc05252d0aebc0230a485a0af02effbaad4e0698b526a6a89fb643"
+    },
+    {
+      "label": "reference-build",
+      "argv": [
+        "g++",
+        "-m32",
+        "-O2",
+        "-std=c++17",
+        "-fno-pie",
+        "-no-pie",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/reference.d",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/panel-domain-reference.cpp",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/reference"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/reference-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "panel-domain-native",
+      "argv": [
+        "g++",
+        "-O1",
+        "-g",
+        "-std=c++17",
+        "-fPIC",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/panel-domain-native.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tests/panel-domain-native.cpp",
+        "-I/usr/include/qt6/QtGui",
+        "-I/usr/include/qt6",
+        "-DQT_GUI_LIB",
+        "-I/usr/include/qt6/QtCore",
+        "-DQT_CORE_LIB",
+        "-I/usr/lib/qt6/mkspecs/linux-g++",
+        "-lQt6Gui",
+        "-lQt6Core",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/panel-domain-native.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/panel-domain-native.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "canvas_sequence",
+      "argv": [
+        "g++",
+        "-O1",
+        "-g",
+        "-std=c++17",
+        "-fPIC",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/canvas_sequence.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/renderer/canvas_sequence.cpp",
+        "-I/usr/include/qt6/QtGui",
+        "-I/usr/include/qt6",
+        "-DQT_GUI_LIB",
+        "-I/usr/include/qt6/QtCore",
+        "-DQT_CORE_LIB",
+        "-I/usr/lib/qt6/mkspecs/linux-g++",
+        "-lQt6Gui",
+        "-lQt6Core",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/canvas_sequence.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/canvas_sequence.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "minimap",
+      "argv": [
+        "g++",
+        "-O1",
+        "-g",
+        "-std=c++17",
+        "-fPIC",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/minimap.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/renderer/minimap/minimap.cpp",
+        "-I/usr/include/qt6/QtGui",
+        "-I/usr/include/qt6",
+        "-DQT_GUI_LIB",
+        "-I/usr/include/qt6/QtCore",
+        "-DQT_CORE_LIB",
+        "-I/usr/lib/qt6/mkspecs/linux-g++",
+        "-lQt6Gui",
+        "-lQt6Core",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/minimap.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/minimap.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "overlays",
+      "argv": [
+        "g++",
+        "-O1",
+        "-g",
+        "-std=c++17",
+        "-fPIC",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-MMD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/overlays.d",
+        "-c",
+        "/home/hoff/swdev/magic_and_mayhem_mod/renderer/minimap/overlays.cpp",
+        "-I/usr/include/qt6/QtGui",
+        "-I/usr/include/qt6",
+        "-DQT_GUI_LIB",
+        "-I/usr/include/qt6/QtCore",
+        "-DQT_CORE_LIB",
+        "-I/usr/lib/qt6/mkspecs/linux-g++",
+        "-lQt6Gui",
+        "-lQt6Core",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/overlays.o"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/overlays.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "native-link",
+      "argv": [
+        "g++",
+        "-fsanitize=address,undefined",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/panel-domain-native.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/canvas_sequence.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/minimap.o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/overlays.o",
+        "-I/usr/include/qt6/QtGui",
+        "-I/usr/include/qt6",
+        "-DQT_GUI_LIB",
+        "-I/usr/include/qt6/QtCore",
+        "-DQT_CORE_LIB",
+        "-I/usr/lib/qt6/mkspecs/linux-g++",
+        "-lQt6Gui",
+        "-lQt6Core",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/native"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/native-link.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "unchanged-original",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/reference",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/Chaos.exe",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/cases.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/original.bin"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/unchanged-original.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "native-sanitized",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/native",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/cases.bin",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/panel-domain/run-yie5yhm9/native.bin"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/native-sanitized.log",
+      "sha256": "e141adce4a1e52579fecd01798c2c54c548051ec340ac1e0aac3d6ac8c2e0397"
+    },
+    {
+      "label": "manifest-after",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/panel-domain/run-yie5yhm9/manifest-after.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    }
+  ],
+  "sources_stable": true,
+  "source_input_stable": true,
+  "artifacts": {
+    "working/tests/panel-domain/run-yie5yhm9/canvas_sequence.d": {
+      "sha256": "482cbd8095ddd25b38dfa2aeace8f8116bcb5356d9f8f9279adf162e1f9c2fbc",
+      "bytes": 5448
+    },
+    "working/tests/panel-domain/run-yie5yhm9/canvas_sequence.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/panel-domain/run-yie5yhm9/canvas_sequence.o": {
+      "sha256": "4f81c09ce0aa2f2b6bd7ebdb4a8d11d576d3941aabceac3e86794230a364b254",
+      "bytes": 1631968
+    },
+    "working/tests/panel-domain/run-yie5yhm9/cases.bin": {
+      "sha256": "875a5ef599b884c101cd6b67da2809a026e244647afb7cf38b8912b77131718e",
+      "bytes": 4650212
+    },
+    "working/tests/panel-domain/run-yie5yhm9/cases.json": {
+      "sha256": "08c76069f0360735af4f017f436318d0e312c49ab362948c09dea4e299706ce7",
+      "bytes": 1547153
+    },
+    "working/tests/panel-domain/run-yie5yhm9/manifest-after.log": {
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+      "bytes": 65
+    },
+    "working/tests/panel-domain/run-yie5yhm9/manifest-before.log": {
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994",
+      "bytes": 65
+    },
+    "working/tests/panel-domain/run-yie5yhm9/minimap.d": {
+      "sha256": "9a482ffa0624a378a724353a603a1a9fd9fdba5426bd41d62a094ed4fa69e752",
+      "bytes": 229
+    },
+    "working/tests/panel-domain/run-yie5yhm9/minimap.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/panel-domain/run-yie5yhm9/minimap.o": {
+      "sha256": "2e7103210b077ccb2078f3d5a22433b69fa15d92a731b2b90a10d5f4c70c0aa6",
+      "bytes": 227864
+    },
+    "working/tests/panel-domain/run-yie5yhm9/native": {
+      "sha256": "624584c7acf08e26fe18d7c5a49c1b8d43736ddfb12f802d7a037425a6fd441a",
+      "bytes": 2426800
+    },
+    "working/tests/panel-domain/run-yie5yhm9/native-link.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/panel-domain/run-yie5yhm9/native-sanitized.log": {
+      "sha256": "e141adce4a1e52579fecd01798c2c54c548051ec340ac1e0aac3d6ac8c2e0397",
+      "bytes": 45
+    },
+    "working/tests/panel-domain/run-yie5yhm9/native.bin": {
+      "sha256": "5ff3c124aee317e4fc70b24e44896ed3ff218247c470146b410b1bd67d3263ca",
+      "bytes": 4320640
+    },
+    "working/tests/panel-domain/run-yie5yhm9/original.bin": {
+      "sha256": "5ff3c124aee317e4fc70b24e44896ed3ff218247c470146b410b1bd67d3263ca",
+      "bytes": 4320640
+    },
+    "working/tests/panel-domain/run-yie5yhm9/overlays.d": {
+      "sha256": "e38c25cb0f1e15363563d5839f74cd0d33f33cc0dad3188173829b6505faabe2",
+      "bytes": 302
+    },
+    "working/tests/panel-domain/run-yie5yhm9/overlays.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/panel-domain/run-yie5yhm9/overlays.o": {
+      "sha256": "8b0445a3592e920c8d38e0495c4fa51d0c665736441141c6b568782ebe671fa8",
+      "bytes": 314816
+    },
+    "working/tests/panel-domain/run-yie5yhm9/panel-domain-native.d": {
+      "sha256": "1f6928f80b2b9894aaaeae119e5291ed04736e384020958f5c68682c0b6cc5eb",
+      "bytes": 5516
+    },
+    "working/tests/panel-domain/run-yie5yhm9/panel-domain-native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/panel-domain/run-yie5yhm9/panel-domain-native.o": {
+      "sha256": "ae2ce42eaba67a9671c8a00b44fc617cfdd37ac79fabed6e9ddc0d172961c063",
+      "bytes": 768064
+    },
+    "working/tests/panel-domain/run-yie5yhm9/qt-flags.log": {
+      "sha256": "a26924cd5c55cf66ac09a3f9a847c8f9c202796a6547a4ee6add0a49f6fb7f55",
+      "bytes": 149
+    },
+    "working/tests/panel-domain/run-yie5yhm9/qt-version.log": {
+      "sha256": "a3919b6e99dc05252d0aebc0230a485a0af02effbaad4e0698b526a6a89fb643",
+      "bytes": 7
+    },
+    "working/tests/panel-domain/run-yie5yhm9/reference": {
+      "sha256": "b2d167d5e3ed69e47d5460a7a44d0e14123aafc8cfcf55c26eb0b3b67a5d406f",
+      "bytes": 31748
+    },
+    "working/tests/panel-domain/run-yie5yhm9/reference-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/panel-domain/run-yie5yhm9/reference.d": {
+      "sha256": "90e0e385092131c5ad425c6438068de88b1f403f5381e0db3973edeea9c32ccf",
+      "bytes": 238
+    },
+    "working/tests/panel-domain/run-yie5yhm9/unchanged-original.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}
