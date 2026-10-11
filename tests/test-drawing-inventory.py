@@ -172,6 +172,91 @@ class DrawingInventoryTest(unittest.TestCase):
         self.assertFalse(r['draw01_complete'])
         self.assertEqual(r['counts']['instrumented_entries'], 1)
 
+    def client(self):
+        self.api()
+        self.layouts = {'schema': 1, 'original_sha256': self.original,
+            'contracts': [{'site': 0x401008, 'call_bytes': 'ff9180000000',
+                'interface': 'IDirectDrawSurface2', 'method': 'Unlock', 'formal_words': 2,
+                'receiver_evidence': 'Explicit test receiver reviewed at this exact CALL; no offset-only inference.'}],
+            'excluded_reload_callbacks': []}
+        self.client_review = {'schema': 1, 'original_sha256': self.original,
+            'layouts': 'layouts.json', 'sources': {}, 'reviewed_layouts': 1, 'excluded_callbacks': 0}
+        self.register['evidence'].append({'id': 'client-static', 'record': 'client-static.json',
+            'kind': 'static', 'assertions': [{'pointer': '/reviewed_layouts', 'equals': 1}]})
+        self.catalog['api_layout_sources'] = [{'evidence': 'client-static'}]
+        self.write_layouts()
+        self.catalog['routes'][-1]['classification'] = 'surface_access'
+        self.catalog['routes'][-1]['client_contract'] = {
+            'source_evidence': 'client-static', 'layout_sha256': self.client_review['sources']['layouts.json'],
+            'interface': 'IDirectDrawSurface2', 'method': 'Unlock', 'formal_words': 2,
+            'receiver_evidence': self.layouts['contracts'][0]['receiver_evidence']}
+
+    def write_layouts(self):
+        raw = json.dumps(self.layouts).encode(); (self.root / 'layouts.json').write_bytes(raw)
+        self.client_review['sources']['layouts.json'] = hashlib.sha256(raw).hexdigest()
+        self.write_record('client-static', self.client_review)
+
+    def test_reviewed_client_preserves_exact_site_and_independent_closure(self):
+        self.client(); r = self.report()
+        self.assertEqual(r['counts']['api_reviewed_clients'], 1)
+        self.assertEqual(r['counts']['api_unreviewed_clients'], 0)
+        self.assertEqual(r['reviewed_api_clients'][0]['contract']['method'], 'Unlock')
+        self.assertEqual(r['static_api_sites'][0]['discovered_owners'], [])
+        self.assertFalse(r['draw01_complete'])
+
+    def test_reviewed_client_route_cannot_change_type_formals_provenance_or_class(self):
+        self.client(); route = self.catalog['routes'][-1]
+        for field, value in [('interface', 'IUnknown'), ('method', 'Release'),
+                             ('formal_words', 1), ('receiver_evidence', 'Offset alone'),
+                             ('layout_sha256', '0' * 64), ('source_evidence', 'static')]:
+            original = route['client_contract'][field]; route['client_contract'][field] = value
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'client contract'): self.report()
+            route['client_contract'][field] = original
+        route['classification'] = 'lifecycle'
+        with self.assertRaisesRegex(ValueError, 'classification'): self.report()
+
+    def test_client_layout_build_bytes_prototype_and_receiver_reject_even_new_hash(self):
+        self.client(); original = copy.deepcopy(self.layouts)
+        for field, value in [('site', True), ('site', 0x401009), ('call_bytes', '909090909090'),
+                             ('interface', 'IUnknown'), ('method', 'Unknown'),
+                             ('formal_words', True), ('formal_words', 3), ('receiver_evidence', '')]:
+            self.layouts = copy.deepcopy(original); self.layouts['contracts'][0][field] = value; self.write_layouts()
+            with self.subTest(field=field), self.assertRaises(ValueError): self.report()
+        for field, value in [('schema', True), ('schema', 2), ('original_sha256', 'wrong')]:
+            self.layouts = copy.deepcopy(original); self.layouts[field] = value; self.write_layouts()
+            with self.subTest(field=field), self.assertRaises(ValueError): self.report()
+
+    def test_client_review_requires_static_build_bound_hash_and_safe_path(self):
+        self.client(); original = copy.deepcopy(self.client_review)
+        for field, value in [('schema', True), ('original_sha256', 'wrong'),
+                             ('layouts', 'working/layouts.json'), ('layouts', '../layouts.json'),
+                             ('layouts', '/tmp/layouts.json'), ('reviewed_layouts', True), ('reviewed_layouts', 2)]:
+            self.client_review = copy.deepcopy(original); self.client_review[field] = value
+            self.write_record('client-static', self.client_review)
+            with self.subTest(field=field), self.assertRaises(ValueError): self.report()
+        self.client_review = copy.deepcopy(original); self.client_review['sources']['layouts.json'] = '0' * 64
+        self.write_record('client-static', self.client_review)
+        with self.assertRaisesRegex(ValueError, 'source hash'): self.report()
+        self.client_review = copy.deepcopy(original); self.write_record('client-static', self.client_review)
+        next(e for e in self.register['evidence'] if e['id'] == 'client-static')['kind'] = 'live_observation'
+        with self.assertRaisesRegex(ValueError, 'static review'): self.report()
+
+    def test_client_duplicate_and_excluded_callback_declarations_reject(self):
+        self.client(); original = copy.deepcopy(self.layouts)
+        next(e for e in self.register['evidence'] if e['id'] == 'client-static')['assertions'][0]['equals'] = 2
+        self.layouts['contracts'] *= 2; self.client_review['reviewed_layouts'] = 2; self.write_layouts()
+        with self.assertRaisesRegex(ValueError, 'Duplicate'): self.report()
+        next(e for e in self.register['evidence'] if e['id'] == 'client-static')['assertions'][0]['equals'] = 1
+        self.layouts = copy.deepcopy(original); self.client_review['reviewed_layouts'] = 1
+        self.layouts['excluded_reload_callbacks'] = [0x401008]; self.client_review['excluded_callbacks'] = 1; self.write_layouts()
+        with self.assertRaisesRegex(ValueError, 'excluded'): self.report()
+        self.layouts['excluded_reload_callbacks'] *= 2; self.client_review['excluded_callbacks'] = 2; self.write_layouts()
+        with self.assertRaisesRegex(ValueError, 'exclusions'): self.report()
+
+    def test_unreviewed_virtual_offset_cannot_copy_a_client_contract(self):
+        self.client(); self.catalog.pop('api_layout_sources')
+        with self.assertRaisesRegex(ValueError, 'Unreviewed'): self.report()
+
     def test_api_unknown_site_is_not_nearest_entry_or_dropped(self):
         self.api(); self.record['api']['targets'][0]['site'] += 1; self.write_record('live', self.record)
         self.assertEqual(self.report()['unaccounted'][0]['identity'], 0x401009)
