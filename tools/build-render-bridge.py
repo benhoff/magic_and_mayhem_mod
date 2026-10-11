@@ -19,6 +19,8 @@ def build(selftest=False):
     gdi_definition=root/'gdi32.def';gdi_definition.write_text('LIBRARY GDI32.dll\nEXPORTS\nGetCurrentObject@8\nGetObjectA@12\nGetBitmapBits@12\nGdiFlush@0\n')
     if selftest:gdi_definition.write_text(gdi_definition.read_text()+'CreateCompatibleDC@4\nCreateDIBSection@24\nSelectObject@8\nDeleteObject@4\nDeleteDC@4\n')
     subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(gdi_definition),'-l',str(root/'gdi32.lib')],check=True)
+    address_definition=root/'kernelbase.def';address_definition.write_text('LIBRARY KERNELBASE.dll\nEXPORTS\nWaitOnAddress@16\nWakeByAddressAll@4\n')
+    subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(address_definition),'-l',str(root/'kernelbase.lib')],check=True)
     source=REPO/'runtime/render'
     flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror']
     if selftest:flags+=['-DMNM_RENDER_SELFTEST']
@@ -28,7 +30,7 @@ def build(selftest=False):
     exports+=['/export:RenderStop=_RenderStop@4','/export:RenderShutdown=_RenderShutdown@4','/export:RenderStartup=_RenderStartup@0','/export:RenderRecover=_RenderRecover@4']
     if selftest:exports+=['/export:RenderStopStateForTest=_RenderStopStateForTest@4','/export:RenderRecoveryStorageForTest=_RenderRecoveryStorageForTest@4','/export:RenderExitInstallForTest=_RenderExitInstallForTest@4','/export:RenderRecoveryStateForTest=_RenderRecoveryStateForTest@4']
     dll=root/'MnmRender.dll'
-    subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{dll}',str(root/'bridge.obj'),str(root/'kernel32.lib'),str(root/'gdi32.lib')],check=True)
+    subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{dll}',str(root/'bridge.obj'),str(root/'kernel32.lib'),str(root/'kernelbase.lib'),str(root/'gdi32.lib')],check=True)
     closure={'tools/build-render-bridge.py','tools/build-shadow-bridge.py','protocols/generate.py'}
     for token in (root/'bridge.d').read_text().replace('\\\n',' ').split():
         path=Path(token).resolve()
@@ -44,7 +46,7 @@ def build(selftest=False):
         definition=root/'render.def';definition.write_text('LIBRARY MnmRender.dll\nEXPORTS\nRenderInstallForTest@8\nRenderCaptureGuardForTest@4\nRenderCaptureWaitsForTest@0\nRenderCreateForTest@16\nRenderInputForTest@12\nRenderMediaForTest@12\nRenderStop@4\nRenderStopStateForTest@4\nRenderShutdown@4\nRenderStartup@0\nRenderRecover@4\nRenderRecoveryStateForTest@4\nRenderRecoveryStorageForTest@4\nRenderExitInstallForTest@4\nRenderQueueForTest@12\nRenderAliasSameForTest@8\nRenderLifecycleGuardForTest@4\nRenderLifecyclePauseForTest@4\n')
         subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(root/'render.lib')],check=True)
         subprocess.run(flags+['-c',str(source/'selftest.c'),'-o',str(root/'selftest.obj')],check=True)
-        subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x18000000','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{root / "selftest.exe"}',str(root/'selftest.obj'),str(root/'render.lib'),str(root/'kernel32.lib'),str(root/'gdi32.lib')],check=True)
+        subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x18000000','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{root / "selftest.exe"}',str(root/'selftest.obj'),str(root/'render.lib'),str(root/'kernel32.lib'),str(root/'kernelbase.lib'),str(root/'gdi32.lib')],check=True)
     return dll
 if __name__=='__main__':
     import argparse
