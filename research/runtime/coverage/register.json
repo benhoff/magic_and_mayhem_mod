@@ -25255,11 +25255,12 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Native campaign introductory dialogue readiness",
-      "scope": "Bounded native physical dismiss clicks and independent native/original Hermes heading OCR before non-tutorial gameplay spell attempts; images/hashes retained. Acknowledges dialogue consumption instead of inferring input failure from absent cast. Other speaker layouts, exact tutorial branches and internal UI admission remain pending. Up to12checks retain two consecutive quiet samples after a12second introductory observation interval; one early blank cannot establish sustained readiness.",
+      "scope": "Bounded native physical dismiss clicks and independent native/original Hermes heading OCR before non-tutorial gameplay spell attempts; images/hashes retained. Acknowledges dialogue consumption instead of inferring input failure from absent cast. Other speaker layouts, exact tutorial branches and internal UI admission remain pending. Up to12checks retain two consecutive quiet samples after a12second introductory observation interval; one early blank cannot establish sustained readiness. Resident mode retains both image hashes/OCR but uses native World heading only for readiness because retired original World drawing leaves stale CPU words. The explicit runner mode must match the helper oracle tag. Two quiet native samples after12seconds still required before attempts; independent original summon/cast/combat observations are required by the completed public journey. Equal-value UI writes/destination-dependent UI/full pixel equivalence and internal dialogue state remain excluded.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/native-campaign-extended-gameplay.md"
+        "research/runtime/native-campaign-extended-gameplay.md",
+        "research/runtime/native-resident-dialogue-owned-oracles-20261011.json"
       ],
       "implementation": [
         "tools/campaign-combat-input.py"
@@ -25272,7 +25273,8 @@
         "HOST.native-campaign.late-dialogue-negative-20261010",
         "HOST.native-campaign.adept-ranged-negative-20261010",
         "HOST.native-campaign.normal-quit-passed-20261010",
-        "HOST.native-campaign.adept-party-defeat-20261010"
+        "HOST.native-campaign.adept-party-defeat-20261010",
+        "HOST.native-campaign-dialogue-readiness.resident-owned-oracles-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -76205,6 +76207,29 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "HOST.native-campaign-dialogue-readiness.resident-owned-oracles-20261011",
+      "kind": "native_integration",
+      "scope": "Two owned unit cases: dual-draw readiness remains strict; resident mode requires explicit caller authorization, rejects visible native Hermes and stale/changed diagnostic evidence. No live original UI equivalence.",
+      "record": "research/runtime/native-resident-dialogue-owned-oracles-20261011.json",
+      "sha256": "0dd4c9829415c8b756ff704af9805c8e86c32673da88d1805adef5a533b373ae",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 2
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -84640,7 +84665,8 @@
         "NR.public-resident-world",
         "NR.world-source-region-epoch",
         "RS.displacement-linear-stride",
-        "RS.shadow-linear-stride"
+        "RS.shadow-linear-stride",
+        "HOST.native-campaign-dialogue-readiness"
       ],
       "tests": [
         "tools/test-native-campaign.py"
@@ -84653,7 +84679,8 @@
         "NR.world-source-region-epoch.tutorial-failure-20261011",
         "NR.world-source-region-epoch.shadow-failure-20261011",
         "NR.public-resident-world.displacement-failure-20261011",
-        "NR.public-resident-world.shadow-write-failure-20261011"
+        "NR.public-resident-world.shadow-write-failure-20261011",
+        "NR.public-resident-world.shadow-envelope-dialogue-negative-20261011"
       ]
     },
     {
@@ -84709,6 +84736,20 @@
         "RS.shadow-linear-stride.native-20261011",
         "RS.shadow-linear-stride.final-scope-original-20261011",
         "RS.shadow-linear-stride.final-scope-native-20261011"
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-dialogue-readiness.owned-oracles",
+      "scope": "Owned fail-closed dual-draw/resident dialogue evidence classifications, caller-authorized mode, visible native refusal and retained image integrity. No engine dialogue lifecycle/live equivalence claim.",
+      "level": "headless",
+      "behaviors": [
+        "HOST.native-campaign-dialogue-readiness"
+      ],
+      "tests": [
+        "tests/test-native-campaign.py"
+      ],
+      "evidence": [
+        "HOST.native-campaign-dialogue-readiness.resident-owned-oracles-20261011"
       ]
     }
   ],
@@ -85047,8 +85088,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-public-shadow-envelope-20261011.json",
-    "sha256": "c4f709f7d8623f6be562ecc9afe5ea61581347d889d01bbbf01ad2f1333511fb"
+    "path": "research/runtime/coverage/source-index-resident-dialogue-oracles-20261011.json",
+    "sha256": "0dfdde620fca98c7408ada9f683cb73eb4b3f82ba5352ff5756d0e1e152fb9f4"
   },
   "claim_bindings_required": true
 }

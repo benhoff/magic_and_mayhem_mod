@@ -32,7 +32,9 @@ def main():
     xt.XTestFakeMotionEvent.argtypes=[c.c_void_p,c.c_int,c.c_int,c.c_int,c.c_ulong]
     display=x.XOpenDisplay(os.environ['DISPLAY'].encode())
     if not display:raise RuntimeError('No native input display')
-    start=time.monotonic(); actions=[]; captures=[]; result=dict(success=False,monotonic_start=start)
+    start=time.monotonic(); actions=[]; captures=[]
+    resident_dialogue=os.environ.get('MNM_PUBLIC_RESIDENT_WORLD')=='1'
+    result=dict(success=False,monotonic_start=start,dialogue_oracle='resident-native' if resident_dialogue else 'dual-draw')
     def record(action,**values):
         actions.append(dict(action=action,seconds=time.monotonic()-start,**values))
         args.output.write_text(json.dumps(dict(result,seconds=time.monotonic()-start,actions=actions,captures=captures),indent=2)+'\n')
@@ -84,8 +86,10 @@ def main():
         if len(wizards)!=1:raise RuntimeError('Expected unique living player wizard: '+str(wizards))
         wizard=wizards[0];owner=wizard['owner'];result.update(player_owner=owner,wizard_slot=wizard['slot'],initial_creatures=initial)
         click(400,300);time.sleep(.5) # dismiss ordinary Hermes dialogue
-        # Original introductory dialogues consume HUD/scene clicks. Verify
-        # both independent images rather than guessing that spell input failed.
+        # Introductory dialogues consume HUD/scene clicks. Retain both images.
+        # Resident World drawing does not clear old CPU World pixels, so only
+        # the resident image can classify dialogue there. Successful original
+        # summon/cast/combat observations below separately prove input admission.
         result['dialogue_checks']=[]
         dialogue_start=time.monotonic();quiet=0
         for attempt in range(12):
@@ -99,12 +103,12 @@ def main():
             visible={r:'hermes' in texts[r].lower() for r in texts}
             result['dialogue_checks'].append(dict(capture=item['name'],texts=texts,visible=visible))
             record('dialogue-check',attempt=attempt,visible=visible)
-            if not any(visible.values()):
+            if not any(visible[r] for r in (('native',) if resident_dialogue else ('native','original'))):
                 quiet+=1
                 if time.monotonic()-dialogue_start>=12 and quiet>=2:break
                 time.sleep(2);continue
             quiet=0
-            if visible['native']!=visible['original']:time.sleep(.5);continue
+            if not resident_dialogue and visible['native']!=visible['original']:time.sleep(.5);continue
             click(400,300);time.sleep(.6)
         else:raise RuntimeError('Introductory Hermes dialogue did not clear after bounded native input')
         before=capture('before-summon',True)

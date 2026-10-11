@@ -100,10 +100,14 @@ def validate_portrait_stress(inputs, flow, capture_root, seconds, min_fps=20):
 
 
 
-def validate_dialogue_readiness(inputs, capture_root):
+def validate_dialogue_readiness(inputs, capture_root, resident_world=False):
+    oracle="resident-native" if resident_world else "dual-draw"
+    if inputs.get("dialogue_oracle","dual-draw")!=oracle:
+        raise ValueError("Dialogue oracle differs from requested rendering mode")
+    routes=("native",) if resident_world else ("native","original")
     checks=inputs.get('dialogue_checks',[])
-    if not 1<=len(checks)<=12 or set(checks[-1]['visible'])!={'native','original'} or any(checks[-1]['visible'].values()):
-        raise ValueError('Missing independently cleared introductory dialogue')
+    if not 1<=len(checks)<=12 or set(checks[-1]['visible'])!={'native','original'} or any(checks[-1]['visible'][r] for r in routes):
+        raise ValueError('Missing cleared introductory dialogue from requested World oracle')
     captures={c['name']:c for c in inputs['captures']}
     for item in checks:
         if set(item['texts'])!={'native','original'} or item['visible']!={r:'hermes' in item['texts'][r].lower() for r in ('native','original')}:
@@ -114,8 +118,8 @@ def validate_dialogue_readiness(inputs, capture_root):
             raise ValueError('Invalid independent gameplay diagnostic capture')
         for route in ('native','original'):
             if sha(capture_root/(cap['name']+'-'+route+'.png'))!=cap['image_sha256'][route]:raise ValueError('Gameplay diagnostic image changed after capture')
-    return dict(verified=True,checks=len(checks),dismissed=sum(all(i['visible'].values()) for i in checks),
-                scope='Bounded introductory Hermes heading OCR from independent native/original images; other dialogue speakers/layouts and internal tutorial admission excluded')
+    return dict(verified=True,checks=len(checks),dismissed=sum(all(i['visible'][r] for r in routes) for i in checks),oracle=oracle,
+                scope=('Bounded resident Hermes heading OCR with retained CPU diagnostic images; CPU World pixels are stale and cannot classify dismissal. Original summon/cast/combat observation separately required; full UI equivalence excluded.' if resident_world else 'Bounded introductory Hermes heading OCR from independent native/original images; other dialogue speakers/layouts and internal tutorial admission excluded'))
 
 
 def validate_casting_combat(experiment, inputs, capture_root):
@@ -410,7 +414,7 @@ def main():
     if args.native_draw and not args.claims:
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
-        if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride'])
+        if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness'])
         subprocess.run(declaration_command,cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     if args.claims:
         declaration=json.loads(args.claims.read_text())
@@ -630,7 +634,7 @@ def main():
                 if shell.returncode!=0:raise ValueError('Native shell did not exit normally after original Quit')
                 report['normal_quit_verified']=True
             if args.require_casting_combat:
-                report['dialogue']=validate_dialogue_readiness(json.loads((out/'input-0.json').read_text()),out)
+                report['dialogue']=validate_dialogue_readiness(json.loads((out/'input-0.json').read_text()),out,resident_world=args.resident_world)
                 report['gameplay']=validate_casting_combat(roots[0],json.loads((out/'input-0.json').read_text()),out)
                 report.update(casting_verified=True,combat_verified=True,movement_verified=report['gameplay']['movement']['verified'])
                 if args.spell_cases:
