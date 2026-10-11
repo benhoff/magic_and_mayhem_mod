@@ -47,7 +47,7 @@ elif os.environ.get('MNM_ENGINE_CADENCE_TRACE') is not None:
 os.environ.pop('MNM_SCENE_PRODUCTION_FILE',None);os.environ.pop('MNM_SCENE_PRODUCTION_MODE',None)
 if metadata.get('scene_production_mode') is not None:
     mode=metadata['scene_production_mode']
-    if mode not in ('0','1','2') or os.environ.get('MNM_SCENE_PRODUCTION_PROBE')!=mode or not metadata.get('resident_world'):raise ValueError('Unapproved scene production probe')
+    if mode not in ('0','1','2','3') or os.environ.get('MNM_SCENE_PRODUCTION_PROBE')!=mode or not metadata.get('resident_world'):raise ValueError('Unapproved scene production probe')
     if hashlib.sha256((game/'MnmSceneProduction.dll').read_bytes()).hexdigest()!=metadata['scene_production_sha256']:raise ValueError('Scene production DLL changed')
     trace=root/'scene-production.bin'
     if trace.exists() or trace.is_symlink():raise ValueError('Stale or redirected scene production output')

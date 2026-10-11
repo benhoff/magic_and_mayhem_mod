@@ -1,0 +1,218 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "NR.scene-production-repetition",
+      "contract_sha256": "db71f5692cb42375f5e9655ea1afd28a500036e4bd455887910c16d5406ee050",
+      "scenarios": {
+        "NR.scene-production-repetition.fixture": "c8cd8bb9955ca71b815666c2e2782cac691372d1164e2dc477452d568ce2b2f7"
+      }
+    }
+  ],
+  "sources": {
+    "runtime/scene-production/entry.S": "608801cca103c64f0e9df785edbf2909e28d38055bffb405109ea9a347af3d93",
+    "runtime/scene-production/observer.c": "a630fafefaf226c90b84e97d6cb1e585ea0ea1e83aa0e4da9fd64af3696824de",
+    "runtime/scene-production/state_audit.h": "5263e831cda7e72a23bfd19588351a22394316cd4c1901e5d4df1b96e8d9089e",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/scene-production-reference.S": "adb84c328a057350868a49dcf6ed039d8e44e39015aaf174ad6e7b830ce62638",
+    "tests/scene-production-reference.c": "3523a4f2b5b0040d3e60048d4d7a526ae348f2e86a33f38e8281d5ffbc13b909",
+    "tests/test-scene-production-decoder.py": "4011aed5fb05f37977c16875ed6c1845733372c7f5242ed0c6c11d28685e2423",
+    "tools/build-menu-observer.py": "40b546d7bb625630e5f58b9a58e424684a205dbb338c2eef1e5eb69db5654838",
+    "tools/build-scene-production.py": "7b2fd4741e6a275f3fdf614d4868a917df277172c699df8bf38a404401880640",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/export-scene-production.py": "ec35e7ef5988a03da87ae0447e71b3eeb1d559f8370d0fb0e300bb954b6f34d5",
+    "tools/menu-game-runner.py": "9353c8e51919c89ce37f351a759bb833b190ee4967afac4e8e245f291475252d",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-menu-observer.py": "bd1cf6ee3d280881183dd4aaf1822d5f68dab5be02fb0971900cb767f506f9a3",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/probe-scene-production.py": "f6a04c95e5e2d38821e2d26a15bcce198d139ca89afecfe716675bedfdfd1165",
+    "tools/scene_production.py": "e9a4508fa6ba64fb9180f58c337dc15d8e189ea8feeb4f6b5be6bc46b97d69b1",
+    "tools/test-native-campaign.py": "d93f55ccfc57d9692bd71cbef56fe84604e552469efd141939245bb60662e1eb",
+    "tools/test-scene-production.py": "9343d8b8445011b1ac6ed74764a6f8938ec91a0df4dda09e2064d7b50f6d9513"
+  },
+  "cases": [
+    {
+      "case": 0,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 1,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 2,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 3,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 4,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 5,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 6,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 7,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 8,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 9,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 0,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 1,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 2,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 3,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 4,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 5,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 6,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 7,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 8,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 9,
+      "mode": 2,
+      "exit_code": 0
+    },
+    {
+      "case": 0,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 1,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 2,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 3,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 4,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 5,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 6,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 7,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 8,
+      "mode": 3,
+      "exit_code": 0
+    },
+    {
+      "case": 9,
+      "mode": 3,
+      "exit_code": 0
+    }
+  ],
+  "decoder_controls": {
+    "success": true,
+    "decoder_refusals": 17,
+    "controls": [
+      "magic",
+      "version",
+      "version1-mode3",
+      "row-size",
+      "case-limit",
+      "critical-total",
+      "zero-owner",
+      "zero-clock",
+      "truncated",
+      "trailing",
+      "row-reserved",
+      "fixed-region-size",
+      "duplicate-region",
+      "missing-protected-kind",
+      "pool-shape",
+      "state-reserved",
+      "independent-byte-contradiction"
+    ],
+    "negative_history_counts": 2,
+    "negative_scene_equality": 1,
+    "version1_compatibility": true
+  },
+  "binary_sha256": "4e3766cb8955f79b61fa5a05c846172cfac8059cb48a3cf10e184130ca5588b1",
+  "dll_sha256": "447603529319d62b47cdd9306a99f47b29c0049257157e5bc9738bd80bd6220f",
+  "sources_unchanged": true,
+  "checks": "30 PE32 full/slice/frozen-history controls: original caller registers/flags/512B FP/error state and exact stack restoration, normal+extra once-only queue/call counts;33 single-byte guard refusals and bad/repeated admission; counter/whole-creature/scheduler/last RNG word/gameplay object/map context changes, changed pool shape and unreadable pool refuse. History mutation forwards twice for full/slice and exactly once plus one skip for frozen-history. Authored stand-ins, not original engine execution.",
+  "raw_report": "working/tests/scene-production-controls/run-py5wf0uj/report.json",
+  "raw_report_sha256": "a8f9d95044d35f671cd17ac1d9e21dccd6f6e069111260c653020e28ddbbb5d6",
+  "scope": "Final-source30 PE32 authored full/slice/frozen-history ABI/RET8/guard33/state mutation/refusal controls,17 malformed decoder refusals plus count/scene negative controls andversion1 compatibility. No actual original helper equivalence or TITAN mode3 proof."
+}

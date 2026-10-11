@@ -17,10 +17,12 @@ RANGES={
     'creature_post_draw':(0x52ab80,0x52abb6),
     'camera_creature_adjust':(0x508a10,0x508af1),
     'rng':(0x54e200,0x54e22b),
+    'creature_position_history':(0x51fa60,0x51fa9e),
+    'scene_history_call':(0x4fa4db,0x4fa4f4),
 }
 ANCHORS={0x4fd280:'5355568bf1',0x4fd315:'8b46258bce',
          0x4fd5ad:'33db8b9629020000',0x4fd352:'e8f9fbffff',
-         0x4fd554:'e8472d0000'}
+         0x4fd554:'e8472d0000',0x4fa4ef:'e86c550200'}
 
 def export():
     source=ROOT/'working/game-nocd/Chaos.exe';data=source.read_bytes()

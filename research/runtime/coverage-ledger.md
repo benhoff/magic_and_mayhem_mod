@@ -6620,3 +6620,28 @@ full nested/map/visibility/timer/pixel safety and60FPS are pending.
 The exact7c0e46a..6cdf7a4 history review covers8 files with zero unresolved receipts;
 this is accounting, not a retrospective gate or execution claim.
 See[experiment](scene-production-repetition.md).
+
+## Original scene repetition failures and history-isolation candidate (2026-10-11)
+
+Full004fd280 repeat2 changes five creature bytes; narrower004fd315..004fd5ad
+repeat1 changes creature+774. Both stop on the first critical difference despite
+exact ordered760/762 scene-row equality and unchanged selected counters, ANI,
+RNG, scheduler, complete gameplay/map headers and other entity pools. Both actual
+private TITAN casting/combat/refusal/movement/portrait/Mini/normal Quit campaigns
+pass19FPS and integrity/cleanup; the full result is4459 Worlds at19.44656FPS.
+Negative invariance reports and independently passing gameplay reports are distinct.
+
+`RS.creature-draw-position-history` registers partial static0051fa60 recovery:
+an overlapping24-byte copy request+754->+760, latest coordinate/value stores and
+RET8, with one direct scene-builder call004fa4ef. Complete copy/pointer/consumer
+semantics, isolated original comparison and native implementation remain pending.
+Diagnostic mode3 is an explicit native extra-only history suppression policy;
+normal drawing still forwards the original helper once. Whole protected snapshots
+retain every byte. Wireversion2 reports primary/extra history counts, and independent
+decoding checks complete fixed/pool regions and retained bytes against runtime
+change counts. All30 final-source PE32 controls and17 decoder refusals pass; negative history/scene
+count gates andversion1 compatibility pass. Actual TITAN mode3 state+scene equality
+is pending. No default activation,
+simulation pacing change, complete nested/map/visibility/timer/pixel safety or60FPS.
+Exact6cdf7a4..0986a18 committed history review:23 files,zero missing receipts;
+no retrospective gate or behavior validation claim.

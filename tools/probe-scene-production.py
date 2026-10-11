@@ -14,7 +14,7 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--claims',type=Path,required=True)
-    parser.add_argument('--candidate',choices=('observe','full','slice'),required=True);args=parser.parse_args()
+    parser.add_argument('--candidate',choices=('observe','full','slice','frozen-history'),required=True);args=parser.parse_args()
     declaration=json.loads(args.claims.read_text())
     if any(sha(ROOT/p)!=h for p,h in declaration['sources'].items()):raise ValueError('Changed prospective production sources')
     parent=ROOT/'working/tests/scene-production';parent.mkdir(parents=True,exist_ok=True)
@@ -41,6 +41,7 @@ def main():
         if not all(report[k] for k in ('sources_unchanged','private_wine_stopped','original_manifest_verified_after')):raise ValueError('Production integrity/cleanup failed')
         if exit_code or not game['success']:raise ValueError('Campaign failed; preserve production diagnostic separately')
         if args.candidate!='observe' and not report['production']['protected_state_invariance']:raise ValueError('Repeated producer changed protected state or refused; not an invariance pass')
+        if args.candidate!='observe' and not report['production']['scene_record_equality']:raise ValueError('Extra producer changed ordered scene records; not a scene equality pass')
         if args.candidate=='observe' and len(report['production']['cases'])<8:raise ValueError('Insufficient natural producer observations')
         report['success']=True
     except (OSError,KeyError,ValueError,subprocess.SubprocessError) as error:report['error']=str(error)

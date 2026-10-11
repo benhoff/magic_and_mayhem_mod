@@ -21,6 +21,8 @@ def main():
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')};env.update(WINEPREFIX=str(out/'wineprefix'),WINEDEBUG='-all')
     report=dict(success=False,claims=declaration['claims'],sources=declaration['sources'],cases=[])
     try:
+        subprocess.run(['python3',str(ROOT/'tests/test-scene-production-decoder.py'),str(out/'decoder-report.json')],check=True)
+        report['decoder_controls']=json.loads((out/'decoder-report.json').read_text())
         spec=importlib.util.spec_from_file_location('production_build',ROOT/'tools/build-scene-production.py')
         module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
         dll=module.build(out,selftest=True)
@@ -31,15 +33,15 @@ def main():
             executable=out/'fixture.exe'
             subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/base:0x400000','/fixed','/dynamicbase:no','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{executable}',
                             str(out/'scene-production-reference.c.obj'),str(out/'scene-production-reference.S.obj'),str(dll.with_suffix('.lib')),str(out/'kernel32.lib')],stdout=log,stderr=subprocess.STDOUT,check=True)
-        for mode in (1,2):
-            for case in range(9):
+        for mode in (1,2,3):
+            for case in range(10):
                 key=f'{case}{mode}';case_env=dict(env,MNM_PRODUCTION_TEST_CASE=key)
                 with (out/f'case-{key}.log').open('x') as log:
                     result=subprocess.run(['xvfb-run','-a','wine',str(executable)],env=case_env,cwd=out,stdout=log,stderr=subprocess.STDOUT,timeout=120)
                 report['cases'].append(dict(case=case,mode=mode,exit_code=result.returncode))
                 if result.returncode:raise ValueError(f'PE32 production control failed {key}:exit{result.returncode}')
         report.update(binary_sha256=sha(executable),dll_sha256=sha(dll),sources_unchanged=all(sha(ROOT/p)==h for p,h in report['sources'].items()),
-                      checks='18 PE32 full/slice controls: original caller registers/flags/512B FP/error state and exact stack restoration, normal+extra once-only queue/call counts;28 single-byte guard refusals and bad/repeated admission; counter/whole-creature/scheduler/last RNG word/gameplay object/map context changes, changed pool shape and unreadable pool refuse. Authored stand-ins, not original engine execution.')
+                      checks='30 PE32 full/slice/frozen-history controls: original caller registers/flags/512B FP/error state and exact stack restoration, normal+extra once-only queue/call counts;33 single-byte guard refusals and bad/repeated admission; counter/whole-creature/scheduler/last RNG word/gameplay object/map context changes, changed pool shape and unreadable pool refuse. History mutation forwards twice for full/slice and exactly once plus one skip for frozen-history. Authored stand-ins, not original engine execution.')
         if not report['sources_unchanged']:raise ValueError('Fixture sources changed')
         report['success']=True
     except (OSError,ValueError,subprocess.SubprocessError) as error:report['error']=str(error)

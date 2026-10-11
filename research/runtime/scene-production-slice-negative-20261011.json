@@ -1,0 +1,270 @@
+{
+  "success": false,
+  "candidate": "slice",
+  "claims": [
+    {
+      "behavior": "NR.scene-production-repetition",
+      "contract_sha256": "16b2c1517248e3046ef7d7b85c3b49fe2329c4107b387911e3a074ea86c80542",
+      "scenarios": {
+        "NR.scene-production-repetition.live": "8f6d32744ccdbce2249235f70a684680a2a031c169c8c4a5a6915771ee7c7e87"
+      }
+    }
+  ],
+  "sources": {
+    "runtime/scene-production/entry.S": "8ef491495df936d50e323f573829d1c9d5f6a224f1469299869b16629b196b49",
+    "runtime/scene-production/observer.c": "fb08782b971039f8901a05e70e27b8020ed54070d9ffa7d2af57bf9765150ef2",
+    "runtime/scene-production/state_audit.h": "5263e831cda7e72a23bfd19588351a22394316cd4c1901e5d4df1b96e8d9089e",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/scene-production-reference.S": "121971c44c29788adb2c6aa8867852d90fe8d3974617a240902cfe711797b91b",
+    "tests/scene-production-reference.c": "fede029af735737b95ed8017f26f1ab38c6cb07159ed1e9246f14e47f95aa696",
+    "tools/build-menu-observer.py": "40b546d7bb625630e5f58b9a58e424684a205dbb338c2eef1e5eb69db5654838",
+    "tools/build-scene-production.py": "7b2fd4741e6a275f3fdf614d4868a917df277172c699df8bf38a404401880640",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/export-scene-production.py": "20d591e8c381827e11a422fa05544438d2ae63a8982e5bb2e4c625bc25ac9c94",
+    "tools/menu-game-runner.py": "4b33156a03f7b1ee5fb5a74f771de6ba64394ced4bc3eb97229ba78c3a0d3fe6",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-menu-observer.py": "5acf6bca1bb7da9f8409ace07e8cf305da8ba103581f1ddd8dc0f2fc6915419d",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/probe-scene-production.py": "805d836d004d369daa7c257df0d3af396b085baec6dcab80120ec428846e5e2b",
+    "tools/scene_production.py": "2bd2656a23e3d4717ec74505c38c8c3917e34dbe8091f6ed1d5422bb46ddc841",
+    "tools/test-native-campaign.py": "4185ad63b3450392c5188fc4e16bc855ee6d100d8acb2c12277bc17c6d8f0161",
+    "tools/test-scene-production.py": "b3e1a556628f281ff4cb1fabee0b27311ffc8381c2dfa7215f6ddc743ab75b5d"
+  },
+  "scope": "Actual private TITAN narrower original scene body changes one creature+774 history byte at its first extra World despite identical762 ordered scene rows; fail-stop after1extra. Casting/combat/portraits/Mini/normal Quit pass, source/original/cleanup verify. No protected-state invariance or60FPS.",
+  "campaign_report": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/tests/native-campaign/run-a171tcw5/report.json",
+  "campaign_report_sha256": "dbf47943081d1cc4a0bed0562ea8f07c3f4e9e55c11eadff73f9856026538160",
+  "campaign_success": true,
+  "campaign_exit_code": 0,
+  "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/experiments/menu-observer/run-t25s3jt6",
+  "trace_sha256": "96ad7e68b18d7e64b452b16f2110b70fc7c1badbfa72f843a7bc458fa5f54db5",
+  "production": {
+    "mode": "slice",
+    "cases": [
+      {
+        "case": 1,
+        "mode": 2,
+        "world_counter": 330,
+        "update_sequence": 512,
+        "primary_calls": 512,
+        "status": "critical-difference",
+        "critical_changed_regions": 1,
+        "critical_changed_bytes": 1,
+        "module_changed_bytes": 7,
+        "renderer_changed_bytes": 4,
+        "extra_worlds": 1,
+        "total_window_worlds": 2,
+        "counter_unchanged": true,
+        "sequence_unchanged": true,
+        "extra_production_ms": 42.8242,
+        "primary_scene_draws": 762,
+        "extra_scene_draws": 762,
+        "raw_scene_changed_bytes": 0,
+        "scene_refusals": 0,
+        "first_critical_difference": {
+          "region": "creature-pool",
+          "offset": 1908,
+          "before": 127,
+          "after": 128
+        }
+      }
+    ],
+    "critical_failures": 1,
+    "refusals": 0,
+    "foreign": 0,
+    "original_scene_calls": 4332,
+    "actual_queue_calls": 4333,
+    "extra_worlds": 1,
+    "protected_state_invariance": false,
+    "independently_compared_retained_pairs": [
+      {
+        "module-data-unclassified": 7,
+        "renderer-unclassified": 4,
+        "world-counter": 0,
+        "mode-sequence": 0,
+        "pacing-target": 0,
+        "pacing-baseline": 0,
+        "global-ANI": 0,
+        "scheduler": 0,
+        "RNG": 0,
+        "gameplay-object": 0,
+        "map-context": 0,
+        "creature-pool": 1,
+        "effect-pool": 0,
+        "third-pool": 0
+      },
+      {
+        "module-data-unclassified": 7,
+        "renderer-unclassified": 4,
+        "world-counter": 0,
+        "mode-sequence": 0,
+        "pacing-target": 0,
+        "pacing-baseline": 0,
+        "global-ANI": 0,
+        "scheduler": 0,
+        "RNG": 0,
+        "gameplay-object": 0,
+        "map-context": 0,
+        "creature-pool": 1,
+        "effect-pool": 0,
+        "third-pool": 0
+      }
+    ],
+    "scene_record_equality": true,
+    "differences": [
+      {
+        "case": 1,
+        "region": "module-data-unclassified",
+        "base": "0x5d8000",
+        "offset": 434112,
+        "before": 11,
+        "after": 9,
+        "critical": false
+      },
+      {
+        "case": 1,
+        "region": "module-data-unclassified",
+        "base": "0x5d8000",
+        "offset": 727901,
+        "before": 32,
+        "after": 72,
+        "critical": false
+      },
+      {
+        "case": 1,
+        "region": "module-data-unclassified",
+        "base": "0x5d8000",
+        "offset": 727902,
+        "before": 0,
+        "after": 107,
+        "critical": false
+      },
+      {
+        "case": 1,
+        "region": "module-data-unclassified",
+        "base": "0x5d8000",
+        "offset": 727905,
+        "before": 0,
+        "after": 250,
+        "critical": false
+      },
+      {
+        "case": 1,
+        "region": "module-data-unclassified",
+        "base": "0x5d8000",
+        "offset": 727906,
+        "before": 0,
+        "after": 2,
+        "critical": false
+      },
+      {
+        "case": 1,
+        "region": "module-data-unclassified",
+        "base": "0x5d8000",
+        "offset": 1117616,
+        "before": 1,
+        "after": 251,
+        "critical": false
+      },
+      {
+        "case": 1,
+        "region": "module-data-unclassified",
+        "base": "0x5d8000",
+        "offset": 1117617,
+        "before": 95,
+        "after": 97,
+        "critical": false
+      },
+      {
+        "case": 1,
+        "region": "renderer-unclassified",
+        "base": "0x689930",
+        "offset": 557,
+        "before": 32,
+        "after": 72,
+        "critical": false
+      },
+      {
+        "case": 1,
+        "region": "renderer-unclassified",
+        "base": "0x689930",
+        "offset": 558,
+        "before": 0,
+        "after": 107,
+        "critical": false
+      },
+      {
+        "case": 1,
+        "region": "renderer-unclassified",
+        "base": "0x689930",
+        "offset": 561,
+        "before": 0,
+        "after": 250,
+        "critical": false
+      },
+      {
+        "case": 1,
+        "region": "renderer-unclassified",
+        "base": "0x689930",
+        "offset": 562,
+        "before": 0,
+        "after": 2,
+        "critical": false
+      },
+      {
+        "case": 1,
+        "region": "creature-pool",
+        "base": "0x68b0024",
+        "offset": 1908,
+        "before": 127,
+        "after": 128,
+        "critical": true
+      }
+    ],
+    "scope": "Exact bounded protected records/counters/ANI/RNG/scheduler. Module/renderer writes are unclassified; nested pointers,map/timer state and driver/pixel equivalence excluded. No60FPS/default activation claim."
+  },
+  "sources_unchanged": true,
+  "private_wine_stopped": true,
+  "original_manifest_verified_after": true,
+  "hardware_driver": {
+    "driver": "zink",
+    "accelerated": true,
+    "nvidia": true,
+    "software_fallback": false,
+    "log_sha256": "50b688817b2d124c4a8aca4d40f51b598d92e2c21e63ba3e819aedbdac87e300"
+  },
+  "resident_world": {
+    "actual_region_queries_per_world": 26.499884606508193,
+    "completed": "4333",
+    "decode_ms_per_world": 1.3742029213016356,
+    "engine_fps": 19.22972972972973,
+    "error": "",
+    "handoff_ms_per_world": 1.6887760373874978,
+    "imports": "4333",
+    "max_native_ms": 195.053844,
+    "native_ms_per_world": 22.042157747980593,
+    "native_readbacks": 0,
+    "nonce": "7434064338007741743",
+    "normal_quit_retired": true,
+    "pending": false,
+    "prepare_ms_per_world": 1.9385454048003683,
+    "producer_ms_per_world": 9.449233036002708,
+    "profiled_worlds": 4333,
+    "rasters": "5318936",
+    "renderer": "zink Vulkan 1.4(NVIDIA TITAN RTX (NVIDIA_PROPRIETARY))",
+    "reply_bytes_per_world": 80,
+    "rgba_readbacks": 0,
+    "submit_ms_per_world": 8.485677419570722,
+    "verified_returns": "4333",
+    "world_pixel_reply_bytes": 0,
+    "world_readbacks": 0
+  },
+  "gameplay_checks": {
+    "casting_verified": true,
+    "combat_verified": true,
+    "movement_verified": true,
+    "normal_quit_verified": true
+  },
+  "error": "Repeated producer changed protected state or refused; not an invariance pass",
+  "raw_report": "working/tests/scene-production/run-5_ihdr0o/report.json",
+  "raw_report_sha256": "9f5f6b205257efcc621fb8c9327009a95be74a5d9abff9f375f448991f09890b"
+}

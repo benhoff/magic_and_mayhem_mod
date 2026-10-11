@@ -1,0 +1,86 @@
+{
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "script_sha256": "3b5f309f04a6c96c5ff378da8f3f657e8633ea945dd08379ccf46921baed4539",
+  "direct_calls": [
+    "  4fa4ef:\te8 6c 55 02 00       \tcall   0x51fa60"
+  ],
+  "artifacts": {
+    "history-helper.asm": "4fcac6dc4e7f3281fea50627876e06c2ada9c3ee6f5c00fb68eda7f27642107c"
+  },
+  "scope": "Static helper and direct-call contexts; indirect callers and semantic role remain partial; no original execution assertion.",
+  "raw_manifest": "working/tests/scene-production-history-helper-export-20261011/manifest.json",
+  "raw_manifest_sha256": "cd0525175423611859a269fd098a122f72a50d92dc2b96928a7afe9c230932fb",
+  "displacement_export": {
+    "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "script_sha256": "73e976620b3f9eefe35f27a4b7bc582d73cba5f5f619af865324da13dad6fe5a",
+    "hits": [
+      "  4b5356:\t89 bc 24 6c 07 00 00 \tmov    DWORD PTR [esp+0x76c],edi",
+      "  4b5370:\tc7 84 24 6c 07 00 00 \tmov    DWORD PTR [esp+0x76c],0xffffffff",
+      "  4c3b5a:\t89 ac 24 60 07 00 00 \tmov    DWORD PTR [esp+0x760],ebp",
+      "  4c3b9f:\t89 ac 24 60 07 00 00 \tmov    DWORD PTR [esp+0x760],ebp",
+      "  4c3be5:\t89 ac 24 60 07 00 00 \tmov    DWORD PTR [esp+0x760],ebp",
+      "  51fa6c:\t8d 86 60 07 00 00    \tlea    eax,[esi+0x760]",
+      "  526189:\t8d 86 60 07 00 00    \tlea    eax,[esi+0x760]",
+      "  5261b0:\t8d 8e 6c 07 00 00    \tlea    ecx,[esi+0x76c]",
+      "  528835:\t8d 95 60 07 00 00    \tlea    edx,[ebp+0x760]",
+      "  528861:\t8d 85 6c 07 00 00    \tlea    eax,[ebp+0x76c]",
+      "  551722:\t89 bc 24 6c 07 00 00 \tmov    DWORD PTR [esp+0x76c],edi",
+      "  55173c:\tc7 84 24 6c 07 00 00 \tmov    DWORD PTR [esp+0x76c],0xffffffff",
+      "  579032:\t89 bc 24 6c 07 00 00 \tmov    DWORD PTR [esp+0x76c],edi",
+      "  57904c:\tc7 84 24 6c 07 00 00 \tmov    DWORD PTR [esp+0x76c],0xffffffff"
+    ],
+    "artifacts": {
+      "fields.asm": "1651b7b4331e45524af05de08871d516559458df5b1acbae0151fc2441c5d5f0"
+    },
+    "scope": "Static displacement references, no semantic classification or execution claim."
+  },
+  "displacement_manifest_sha256": "ec7bbe5f7528a0eafa35446c0f6b2d18b10395c9368f067779f17f934f1b520e",
+  "original_manifest_verified_before": true,
+  "original_manifest_verified_after": true,
+  "retained_field_changes": {
+    "trace_sha256": "a23d28dbc9ff5aa7a727914ed4ddd950ad13589a516814f54734fbdbc72f7bcc",
+    "changed_fields": [
+      {
+        "slot": 0,
+        "field": "0x760",
+        "before_hex": "0x147",
+        "after_hex": "0x148",
+        "before_float": 4.582245978342152e-43,
+        "after_float": 4.5962589629854e-43
+      },
+      {
+        "slot": 0,
+        "field": "0x768",
+        "before_hex": "0xcc",
+        "after_hex": "0xcb",
+        "before_float": 2.858648867222627e-43,
+        "after_float": 2.8446358825793787e-43
+      },
+      {
+        "slot": 3,
+        "field": "0x76c",
+        "before_hex": "0x1a5",
+        "after_hex": "0x1a7",
+        "before_float": 5.89946653480748e-43,
+        "after_float": 5.927492504093976e-43
+      },
+      {
+        "slot": 3,
+        "field": "0x770",
+        "before_hex": "0x101",
+        "after_hex": "0x102",
+        "before_float": 3.60133705331478e-43,
+        "after_float": 3.615350037958028e-43
+      },
+      {
+        "slot": 3,
+        "field": "0x774",
+        "before_hex": "0x88",
+        "after_hex": "0x89",
+        "before_float": 1.9057659114817512e-43,
+        "after_float": 1.9197788961249994e-43
+      }
+    ],
+    "scope": "Independent retained failed pair DWORD interpretation; field semantics unclassified; this is not rollback or a new engine execution."
+  }
+}

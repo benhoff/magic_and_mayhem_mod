@@ -45,6 +45,29 @@ _production_queue:
     popfl
     jmp *_queue_target
 .globl _production_repeat_full
+.globl _production_history
+_production_history:
+    pushfl
+    pushal
+    movl %esp,%ebx
+    subl $527,%esp
+    andl $-16,%esp
+    fxsave (%esp)
+    cld
+    pushl %ebx
+    call _production_history_gate
+    addl $4,%esp
+    fxrstor (%esp)
+    movl %ebx,%esp
+    cmpl $0,12(%esp)
+    jne history_skip
+    popal
+    popfl
+    jmp *_history_target
+history_skip:
+    popal
+    popfl
+    ret $8
 _production_repeat_full:
     movl 8(%esp),%eax
     fxrstor (%eax)
@@ -87,3 +110,4 @@ normal_end:
 _queue_target: .long 0x5002a0
 _slice_start: .long 0x4fd315
 _draw_resume: .long 0x4fd5b5
+_history_target: .long 0x51fa60
