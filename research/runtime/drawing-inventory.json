@@ -3957,6 +3957,72 @@
         }
       ],
       "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.004696e0",
+      "entry": 4626144,
+      "title": "Original movie stream setup",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "lifecycle",
+      "scope": "Original setup/sample body with selected synthetic external call/failure/cleanup contracts. Full codecs, audible output, pixels and live COM/backend retention excluded.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original movie helper retained; native Qt replacement enters at wrapper only. This census observes original helpers without substituting decoder or drawing."
+      },
+      "side_effects": [
+        "Original COM setup/sample references and exact selected release order",
+        "Original placement, skip reset, polling/update/Blt failure and result policy",
+        "Backend-internal device/destination retention and actual pixel/audio output remain pending"
+      ],
+      "remaining": "Complete live audiovisual playback, backend retention/failure recovery and full scenario census remain pending.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md",
+        "research/runtime/qt-native-media.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x4696e0"
+        }
+      ],
+      "static_windows": []
+    },
+    {
+      "id": "DRAW.entry.00469830",
+      "entry": 4626480,
+      "title": "Original movie sample playback",
+      "behaviors": [
+        "RI.movies"
+      ],
+      "owner": "runtime/media",
+      "classification": "presentation",
+      "scope": "Original setup/sample body with selected synthetic external call/failure/cleanup contracts. Full codecs, audible output, pixels and live COM/backend retention excluded.",
+      "confidence": "high_within_scope",
+      "support": {
+        "decision": "original_only",
+        "reason": "Original movie helper retained; native Qt replacement enters at wrapper only. This census observes original helpers without substituting decoder or drawing."
+      },
+      "side_effects": [
+        "Original COM setup/sample references and exact selected release order",
+        "Original placement, skip reset, polling/update/Blt failure and result policy",
+        "Backend-internal device/destination retention and actual pixel/audio output remain pending"
+      ],
+      "remaining": "Complete live audiovisual playback, backend retention/failure recovery and full scenario census remain pending.",
+      "documents": [
+        "research/runtime/draw01-movie-contract.md",
+        "research/runtime/qt-native-media.md"
+      ],
+      "selectors": [
+        {
+          "kind": "entry",
+          "identity": "0x469830"
+        }
+      ],
+      "static_windows": []
     }
   ],
   "additional_hook_sources": [
@@ -3971,6 +4037,9 @@
     },
     {
       "evidence": "RI.drawing-callers-dispatch-expanded-20261010"
+    },
+    {
+      "evidence": "RI.drawing-callers-movie-expanded-20261010"
     }
   ],
   "metadata_hook_cohorts": [

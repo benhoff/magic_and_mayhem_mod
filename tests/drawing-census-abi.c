@@ -7,6 +7,7 @@ static u8 before[560] __attribute__((aligned(16))),after[560] __attribute__((ali
 __attribute__((naked)) static void pop0(void){__asm__ volatile("ret");}
 __attribute__((naked)) static void pop4(void){__asm__ volatile("ret $4");}
 __attribute__((naked)) static void pop12(void){__asm__ volatile("ret $12");}
+__attribute__((naked)) static void pop16(void){__asm__ volatile("ret $16");}
 __attribute__((naked)) static void pop20(void){__asm__ volatile("ret $20");}
 __attribute__((naked)) static void pop8(void){__asm__ volatile("ret $8");}
 __attribute__((naked)) static void pop24(void){__asm__ volatile("ret $24");}
@@ -22,8 +23,9 @@ void start(void){
  host[5]=14;host[6]=0;if(phase()!=0||lost!=3)ExitProcess(31);
  host[6]=1;if(phase()!=14||lost!=3)ExitProcess(32);
  host[5]=2;
- u32 callees[7]={(u32)pop0,(u32)pop4,(u32)pop8,(u32)pop12,(u32)pop20,(u32)pop24,(u32)pop8};
- for(u32 tag=0;tag<7;++tag){
+ u32 callees[9]={(u32)pop0,(u32)pop4,(u32)pop8,(u32)pop12,(u32)pop20,(u32)pop24,(u32)pop8,(u32)tail8,(u32)pop16};
+ for(u32 index=0;index<8;++index){
+  u32 tag=index==7?8:index;
   used=sequence=serial=lost=active=io_failed=0;zero(frames,sizeof(frames));
   census_trampolines[tag]=callees[tag];
   SetLastError(1234);canvas_test_call(callees[tag],0x12340000,0xabcdef00,hooks[tag].pop,before);
@@ -37,6 +39,7 @@ void start(void){
  /* A tail call shares SP/thread with its parent; the newest frame returns first. */
  used=sequence=serial=lost=active=0;zero(frames,sizeof(frames));
  census_trampolines[7]=(u32)tail8;census_trampolines[2]=(u32)pop8;
+ SetLastError(1234);canvas_test_call((u32)pop8,0x12340000,0xabcdef00,8,before);
  SetLastError(1234);canvas_test_call((u32)hooks[7].entry,0x12340000,0xabcdef00,8,after);
  identical();if(lost||active||serial!=2||sequence!=4||GetLastError()!=1234)ExitProcess(26);
  u32* rows=(u32*)buffer;

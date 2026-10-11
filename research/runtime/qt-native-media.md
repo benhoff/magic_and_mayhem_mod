@@ -14,8 +14,8 @@ Addresses below apply only to that executable at base `0x00400000`.
 
 | Address | Finding | Evidence / confidence |
 |---|---|---|
-| `0x00469a00` | Movie wrapper; path in ECX, DirectDraw surface in EDX, four stack arguments: HWND, x, y, signed control byte | `llvm-objdump` entry, argument accesses and `ret 0x10`; high static confidence, synthetic fastcall test |
-| `0x004696e0` | Creates the multimedia stream, converts/open path, configures video/audio | Static COM call sequence; high for role, not all error branches reconstructed |
+| `0x00469a00` | Movie wrapper; path in ECX, DirectDraw device in EDX, four stack arguments: destination surface, x, y, signed control byte | Unchanged original setup/sample/wrapper with distinct mock device/surface; [DRAW-01 contract](draw01-movie-contract.md). Corrects historical HWND/EDX-surface labels; high within scoped accesses |
+| `0x004696e0` | Creates the multimedia stream, converts/open path, configures video/audio | Static COM call sequence and selected original negative-HRESULT short-circuit/cleanup reference; actual Windows/codec failure behavior remains pending |
 | `0x00469830` | Plays stream samples, blits to DirectDraw, polls Escape | Static call/branch inspection; high |
 | `0x004e992b`, `0x004e996c` | Startup calls for Intro0 and Intro1 | Static callers; high |
 | `0x005fbf50`, `0x005fbf54` | Original movie destination x/y offsets | Wrapper stores; high |
