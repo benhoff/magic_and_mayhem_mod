@@ -99,7 +99,8 @@ static int journal_write(const void* data,u32 n){
  if(!journal_buffer){journal_buffer=HeapAlloc(producer_heap(),0,65536);if(!journal_buffer){journal_failed=1;return 0;}}
  const u8* p=data;while(n){u32 count=65536-journal_used;if(count>n)count=n;copy(journal_buffer+journal_used,p,count);journal_used+=count;p+=count;n-=count;if(journal_used==65536&&!journal_flush())return 0;}return 1;
 }
-void canvas_producers_close(void){glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
+static void publication_close(void);
+void canvas_producers_close(void){publication_close();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
 static void emit_raw(u32* r,const void* payload,u32 n){if(!file||stopped)return;if(sequence>=(limit>16?MNM_PRODUCER_V3_MAX_RECORDS:minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS)||bytes>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-96||n>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){canvas_producers_close();return;}bytes+=96+n;}
 /* V3 source snapshots live on the private producer heap. No original pointers
  * or destination pixels enter this cache; equality includes every state byte. */
@@ -237,6 +238,7 @@ static void frame_enter(u32* registers,u32 tag){
  if(f.record)HeapFree(producer_heap(),0,f.record);fail(16,tag);canvas_producers_close();
 }
 #include "world_producer_bypass.c"
+#include "drawing_publication.h"
 int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();
  if(tag==10){int handled=glyph_live_enter(registers,fx);SetLastError(error);if(handled)return 1;}
@@ -276,7 +278,7 @@ void producer_leave_observe(u32* registers){
    if(f.tag==0){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}for(u32 j=0;j<MAX_SURFACES;++j)if(!surfaces[j].object){s=surfaces+j;s->object=f.ecx;s->id=++next_id;s->width=get((void*)(f.ecx+16));s->height=get((void*)(f.ecx+20));s->stride=get((void*)(f.ecx+24))/2;u32 r[24]={0};r[2]=MNM_PRODUCER_CREATE;extent(r,s);r[14]=f.args[0];r[21]=registers[7];r[22]=f.caller;emit(r,0,0);break;}}
    else if(f.tag==1){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}}
    else if(f.tag==2){struct Surface* s=object(f.ecx);if(s){s->pixels=registers[7];s->stride=get((void*)(f.ecx+24))/2;checkpoint(s,3);}}
-   else if(f.tag==100){struct Surface* s=bound();if(batch_enabled&&raster_active()&&!batch_finish(s)){fail(47,queue);ExitProcess(95);}checkpoint(s,4);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_RETURN;extent(r,s);r[14]=queue;if(raster_active()){r[15]=bypass_completed;r[16]=raster_preparations;if(batch_enabled){r[17]=batch_transfers;r[19]=batch_count;r[20]=1;}}emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}raster_world_open=0;if(queue>=limit){canvas_producers_close();if(journal_failed)ExitProcess(95);char name[260];u32 n=0;while(directory[n]){name[n]=directory[n];++n;}const char* suffix="\\canvas-producers.done";while(*suffix)name[n++]=*suffix++;name[n]=0;HANDLE done=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(done!=(HANDLE)-1){u32 mark[8]={0};copy(mark,"MNMPDONE",8);mark[2]=1;mark[3]=queue;mark[4]=sequence;mark[5]=failures;mark[6]=oracle;mark[7]=bytes;write(done,mark,32);CloseHandle(done);}}}
+   else if(f.tag==100){struct Surface* s=bound();if(batch_enabled&&raster_active()&&!batch_finish(s)){fail(47,queue);ExitProcess(95);}checkpoint(s,4);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_RETURN;extent(r,s);r[14]=queue;if(raster_active()){r[15]=bypass_completed;r[16]=raster_preparations;if(batch_enabled){r[17]=batch_transfers;r[19]=batch_count;r[20]=1;}}emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}raster_world_open=0;if(queue>=limit&&!publication_enabled){canvas_producers_close();if(journal_failed)ExitProcess(95);char name[260];u32 n=0;while(directory[n]){name[n]=directory[n];++n;}const char* suffix="\\canvas-producers.done";while(*suffix)name[n++]=*suffix++;name[n]=0;HANDLE done=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(done!=(HANDLE)-1){u32 mark[8]={0};copy(mark,"MNMPDONE",8);mark[2]=1;mark[3]=queue;mark[4]=sequence;mark[5]=failures;mark[6]=oracle;mark[7]=bytes;write(done,mark,32);CloseHandle(done);}}}
    if(f.record){u32* r=(u32*)f.record;r[21]=registers[7];
     if(minimap_owned&&f.tag==45)r[19]=get((void*)(f.ecx+0xff));
     if(minimap_owned&&f.tag==47){struct Surface* d=map_destination(f.ecx);if(!d||registers[7]<d->pixels||(registers[7]-d->pixels)%2){fail(35,f.tag);}else r[21]=(registers[7]-d->pixels)/2;}
@@ -285,6 +287,13 @@ void producer_leave_observe(u32* registers){
     else if(r[2]==MNM_PRODUCER_RASTER)raster_state(f.record,f.tag);
     emit(r,f.record+96,r[18]);for(u32 j=0;j<MAX_SURFACES;++j)if(surfaces[j].id==r[3]){struct Surface* s=surfaces+j;if((r[2]>=MNM_PRODUCER_FILL&&r[2]<=MNM_PRODUCER_RASTER)||r[2]>=MNM_PRODUCER_RGB_ADD){++s->dirty;if(r[2]==MNM_PRODUCER_FILL||r[2]==MNM_PRODUCER_JPEG||r[2]==MNM_PRODUCER_COPY||r[2]==MNM_PRODUCER_FADE||r[2]==MNM_PRODUCER_MINIMAP)checkpoint(s,5);}break;}
    }
+  }
+  if(publication_terminal&&!stopped){
+   canvas_producers_close();if(journal_failed)ExitProcess(95);
+   char name[260];u32 n=0;while(directory[n]){name[n]=directory[n];++n;}const char* suffix="\\canvas-producers.done";while(*suffix)name[n++]=*suffix++;name[n]=0;
+   HANDLE done=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(done==(HANDLE)-1)ExitProcess(95);
+   u32 mark[8]={0};copy(mark,"MNMPDONE",8);mark[2]=1;mark[3]=queue;mark[4]=sequence;mark[5]=failures;mark[6]=oracle;mark[7]=bytes;
+   if(!write(done,mark,32)||!CloseHandle(done))ExitProcess(95);
   }
   if(f.tag==45)for(u32 k=0;k<MAX_FRAMES;++k)if(frames[k].sp&&(frames[k].tag==46||frames[k].tag>=49)&&frames[k].record){u32* q=(u32*)frames[k].record;if(minimap_owned){q[19]=get((void*)(frames[k].ecx+0xf7));q[20]=get((void*)(frames[k].ecx+0xfb));}emit(q,frames[k].record+96,q[18]);struct Surface* dst=map_destination(frames[k].ecx);if(dst)++dst->dirty;HeapFree(producer_heap(),0,frames[k].record);frames[k].record=0;break;}
   if(f.record)HeapFree(producer_heap(),0,f.record);if(f.tag==100&&minimap_pace&&queue<limit)Sleep(250);SetLastError(error);return;
@@ -326,5 +335,5 @@ int canvas_producers_install(void){
  char name[260];u32 i=0;while(directory[i]){name[i]=directory[i];++i;}const char* suffix="\\canvas-producers.bin";while(*suffix)name[i++]=*suffix++;name[i]=0;file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(file==(HANDLE)-1){file=0;return 0;}
  u32 header[16]={0};copy(header,limit>16?MNM_PRODUCER_V3_MAGIC:minimap_owned?"MNMPRO02":MNM_PRODUCER_MAGIC,8);header[2]=limit>16?3:minimap_owned?2:1;header[3]=64;header[4]=MNM_PRODUCER_BUILD;header[5]=limit>16?MNM_PRODUCER_V3_MAX_RECORDS:minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS;header[6]=limit;if(!write(file,header,64))return 0;bytes=64;
  for(u32 j=0;j<HOOKS;++j){struct Hook* h=hooks+j;u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;u8 patch[10]={0xe9};put(patch+1,(u32)h->entry-h->address-5);for(u32 k=5;k<h->length;++k)patch[k]=0x90;copy((void*)h->address,patch,h->length);FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);VirtualProtect((void*)h->address,h->length,old,&unused);}
- enabled=1;return 1;
+ if(!publication_install())return 0;enabled=1;return 1;
 }

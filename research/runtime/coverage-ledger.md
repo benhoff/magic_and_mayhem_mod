@@ -4581,3 +4581,15 @@ admitted original references and claim no native parity or implementation
 validation. The successful retry used private Xvfb/OpenGL processes outside
 that socket restriction. All14presented journeys and21operation/failure gates
 remain open. The original manifest verifies all2927immutable files unchanged.
+
+## 2026-10-11 DRAW-02 original primary publication acquisition
+
+Opt-in guarded opaque-copy COM return observation and independent primary
+RGB565 readback now extend the producer capture through the final HUD/cursor
+publication. The first one-return diagnostic compares89actual primary planes /
+42,720,000pixels with zero differences from source-only native composition.
+Twelve parser guards retain readback losses and refuse forged/partial records.
+Original drawing remains active. Alternate primary routes, applied action/frame
+identities, complete journeys, caller failure/recovery equivalence and live
+suppression remain pending. See[scope and procedure](draw02-publication.md);
+this does not change the fourteen-journey/twenty-one-operation denominator.

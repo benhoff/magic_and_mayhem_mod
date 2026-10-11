@@ -24,7 +24,7 @@ def build(selftest=False):
              '-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror']
     if selftest:
         flags += ['-DMNM_SCENE_SELFTEST']
-    names=('observer.c','entry.S','world_trace.c','world_entry.S','world_stream.c','world_lifetime.c','canvas_startup.c','canvas_startup.S','startup_queue.c','kind8_observer.c','canvas_producers.c','canvas_producers.S','glyph_live.c','glyph_leave.S','glyph_route.c')
+    names=('observer.c','entry.S','world_trace.c','world_entry.S','world_stream.c','world_lifetime.c','canvas_startup.c','canvas_startup.S','startup_queue.c','kind8_observer.c','canvas_producers.c','canvas_producers.S','drawing_publication.S','glyph_live.c','glyph_leave.S','glyph_route.c')
     for name in names:
         subprocess.run([*flags,'-c',str(ROOT/'runtime/scene'/name),'-o',str(output/(name+'.obj'))],check=True)
     backend_names=('glyph_backend.c','glyph_backend_state.c','glyph_backend_x87.S')
