@@ -232,7 +232,9 @@ def main():
             retreat_x, retreat_y = max(1, wizard['x'] - 7), wizard['y'] + 8
             result['retreat_target'] = [retreat_x, retreat_y]
             center()
-            for attempt in range(8):
+            # Long retreats can need more than eight bounded steps at native
+            # cadence. Keep exact waypoint/aliveness admission unchanged.
+            for attempt in range(12):
                 actor=state()[wizard['slot']];dx=retreat_x-actor['x'];dy=retreat_y-actor['y']
                 if math.hypot(dx,dy)<3:break
                 if len(calibration)==2:

@@ -301,3 +301,15 @@ alone do not prove input admission. Two owned oracle cases pass:
 `native-resident-dialogue-owned-oracles-20261011.json`. Equal-value CPU UI writes,
 destination-dependent UI and full original pixel/internal dialogue-state
  equivalence remain pending. Fresh full Titan gameplay is being executed.
+
+The first resident ordinary Titan run after dialogue correction successfully
+creates a player Zombie, observes player Fireball93to73, five Zombie melee hits
+and a party5to0 enemy finish.2816resident Worlds complete at19.5038aggregateFPS
+with zero delivery readbacks/no renderer error. Full journey remains negative:
+the eight-order retreat budget expires at(5,69) en route to(3,79). Every order
+still advances the living125HPwizard, so evidence does not establish unreachable
+terrain. Report/input:`public-resident-casting-retreat-negative-20261011.json`
+and `public-resident-casting-retreat-input-20261011.json`. The bounded budget is
+now12orders; the same within3tiles/aliveness requirement remains. Portrait,
+Mini/quit, remaining refusal and complete journey proof are pending; no broad
+replacement or original UI equivalence promotion.
