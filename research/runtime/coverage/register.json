@@ -30894,8 +30894,8 @@
       "id": "TOOL.drawing-census",
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
-      "title": "Exact drawing caller export and strict supplemental census admission",
-      "scope": "Export exact rel32 CALL bytes to registered original drawing entry addresses across pinned objdump output. Preserve containing discovered-range ownership and empty owner lists; verify supplemental build/entry/return-PC/input identities. Static matches provide no runtime-base proof, indirect-target recovery or scenario closure.",
+      "title": "Exact drawing caller export, splice control-flow guard and closed journal decoding",
+      "scope": "Export exact rel32 CALL bytes to registered original drawing entry addresses across pinned objdump output. Preserve containing discovered-range ownership and empty owner lists; verify supplemental build/entry/return-PC/input identities. Static matches provide no runtime-base proof, indirect-target recovery or scenario closure. Refuse incoming direct branches/CALLs entering overwritten interior bytes. Decode bounded terminal journals with exact thread/stack/callee/phase return pairing, preserved unsigned result values and runtime base; interior checkpoints carry no invented caller. Known journal integrity never closes writer, ownership, scenario or drawing-equivalence gaps.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -30907,7 +30907,8 @@
       ],
       "tests": [
         "tests/test-drawing-census.py",
-        "tests/test-drawing-inventory.py"
+        "tests/test-drawing-inventory.py",
+        "tests/test-drawing-census-trace.py"
       ],
       "validation_dependencies": [
         "research/runtime/coverage/binary-nocd.json",
@@ -30920,7 +30921,108 @@
       ],
       "evidence": [
         "RI.drawing-callers-expanded-20261010",
-        "TOOL.drawing-census.callers-guards-20261010"
+        "TOOL.drawing-census.callers-guards-20261010",
+        "DRAW.census.journal-guards-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.census.call-journal",
+      "subsystem": "drawing_inventory",
+      "kind": "native_policy",
+      "title": "Original-active drawing entry and return metadata census",
+      "scope": "Opt-in PE32 metadata at signature-pinned safe splices, with verified actual preferred module base, bounded buffered entry/return journal, register/flags/x87/SSE/LastError forwarding, thread and stack pairing including same-stack tail unwind, readonly host phase control, and explicit loss/open/IO refusal. Sixty current safe catalog sites; fade interior58edb0 is refused because original backedge58edde enters58edb1. Signatures are checked before patching and original bodies run. Partial installation refuses process startup; abrupt teardown/busy detach lacks a valid terminal. Metadata snapshots do not establish pixel/side-effect equivalence, exhaustive writers, lifetime/borrowed API coverage or DRAW-01 scenario closure. Dynamic DLL unload is unsupported.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "runtime/drawing-census/observer.c",
+        "runtime/drawing-census/entry.S",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "tools/build-drawing-census.py",
+        "tools/prepare-drawing-census.py",
+        "tools/drawing-census-game-runner.py"
+      ],
+      "tests": [
+        "tests/drawing-census-abi.c",
+        "tools/test-drawing-census-abi.py",
+        "tests/test-drawing-census-trace.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_census.py",
+        "tests/canvas-startup-call.S",
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-opengl-game.py",
+        "runtime/scene/canvas_producers.c",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "DRAW.census.journal-guards-20261010",
+        "DRAW.census.menu-observation-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "subsystem": "drawing_inventory",
+      "kind": "native_policy",
+      "title": "Isolated original DRAW-01 menu and campaign census journeys",
+      "scope": "Fresh disposable signature-pinned drawing/menu imports, private Xvfb display and Wine prefix, original acknowledged menu actions, heartbeat and explicit host scenario phases, original Main quit and strict terminal decoding. Retain every failed attempt, source and staged binary stability, and commands. Menu readiness/phase labels do not prove exhaustive scenario coverage. Campaign input automation remains under live validation; save/load, later map transitions, effects, results, movies and graphics API failure/recovery need further fixtures. No original bodies bypassed or gameplay balance changed.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing-census/observer.c",
+        "runtime/drawing-census/entry.S",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "tools/build-drawing-census.py",
+        "tools/prepare-drawing-census.py",
+        "tools/drawing-census-game-runner.py",
+        "tools/drawing_census.py",
+        "tests/canvas-startup-call.S",
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-opengl-game.py",
+        "runtime/scene/canvas_producers.c",
+        "research/runtime/drawing-inventory.json",
+        "research/runtime/coverage/binary-nocd.json",
+        "research/runtime/drawing-callers-expanded-20261010.json",
+        "tools/run-game.sh"
+      ],
+      "evidence": [
+        "DRAW.census.menu-observation-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -59387,6 +59489,60 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW.census.journal-guards-20261010",
+      "kind": "native_integration",
+      "scope": "Actual synthetic PE32 callback/trampoline ABI and strict journal/splice guards; no original raster equivalence or complete DRAW-01 census.",
+      "record": "research/runtime/drawing-census-journal-guards-20261010.json",
+      "sha256": "23a80cf15a44095fcc0417d1456f978ca18b0f6d9de488f2a1d081de008432b0",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/same_stack_tail_unwind",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.menu-observation-20261010",
+      "kind": "live_observation",
+      "scope": "Original Main/Preferences/Quick/Single Player setup/Map Cancel and original shutdown with verified module base and closed bounded entry/return metadata. No exhaustive scenario/writer census, semantic caller ownership, pixel equivalence or drawing replacement.",
+      "record": "research/runtime/drawing-census-menu-observation-20261010.json",
+      "sha256": "64f826169e9215765fa3367bfc9de7aa5d476493dd2d9edce78de1618b3a3c88",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/draw01_complete",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -67079,6 +67235,21 @@
       "evidence": [
         "NR.glyph-default-launch.host-20261010"
       ]
+    },
+    {
+      "id": "original-drawing-census-menus-20261010",
+      "level": "live_observation",
+      "scope": "Original Main/Preferences/Quick/Single Player setup/Map Cancel and original quit, with bounded paired call journal only. No all-writer census, pixel comparison or complete DRAW-01 closure.",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.census.menu-observation-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -67416,8 +67587,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-callers-20261010.json",
-    "sha256": "fe056d8ec94fe1ce1ce1982770605291b581d2f38f8e6d98e772959a548d86db"
+    "path": "research/runtime/coverage/source-index-draw01-journal-20261010.json",
+    "sha256": "4ac931fb78ed0d8fdfc8f99095d74453cf3e4e50721de1475ad0d032012978ae"
   },
   "claim_bindings_required": true
 }

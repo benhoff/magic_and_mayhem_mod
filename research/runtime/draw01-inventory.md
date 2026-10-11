@@ -82,6 +82,67 @@ including sustained battles, interactions, transitions and shutdown. Incremental
 commits do not close this milestone until scenario, caller, graphics-side-effect,
 failure/lifecycle and dispatch evidence supports the strict completion gate.
 
+## Original-active call metadata — 2026-10-10
+
+The observation-only `runtime/drawing-census/` hook and V1 wire journal retain
+actual callee entries, thread, incoming return address, paired return, unsigned
+EAX, flags/LastError, six diagnostic argument words, selected drawing globals and
+host scenario phases. The loader requires the actual module base `0x400000`,
+checks all selected original signatures before mutation, and relocates copied
+relative instructions. Staging checks the pinned executable hash and preserves
+every original file-backed section; added DLL imports live in disposable files.
+The original drawing bodies and menu callbacks execute. There is no native
+rendering, original-body suppression or balance change.
+
+The current build accepts **60 of 61 catalog sites**. The fade interior
+`58edb0` cannot safely take a six-byte entry splice: the original branch at
+`58edde` targets `58edb1`, inside those bytes. The first live attempt exposed this
+and is retained as failed evidence. The builder now refuses incoming direct
+branch/CALL targets inside a splice; it does not assert that indirect entry into
+all copied bytes has been excluded. Fade wrapper `58ed80` remains observable.
+An interior checkpoint records no guessed caller or paired return.
+
+The fresh scope-bound menu repeat retained 83,178 events / 41,589 calls at 18
+entries. Its result is registered as
+`DRAW.census.menu-observation-20261010`; the journal/ABI/guard result is
+`DRAW.census.journal-guards-20261010`. Neither result closes a scenario census.
+
+The synthetic PE32 fixture executes the actual assembly and callbacks against
+callee-pop 0/8/24-byte contracts, comparing full register/flags/x87/SSE snapshots
+and LastError. It checks same-stack tail-call unwinding, interior forwarding,
+recorded errors and frame-exhaustion forwarding with explicit loss. The journal
+parser rejects malformed build/base/tag/extent/count/reserved fields, wrong
+thread/stack/callee/phase returns, loss, open calls, IO failure and absent terminal
+markers. Host phase labels express fixture intent, not scenario completion.
+
+The menu fixture traverses Main -> Preferences -> Main -> Quick Battle -> Single
+Player setup -> Map selection -> cancel back through Main -> original quit. A
+closed diagnostic run retained 94,256 events / 47,128 calls at 20 entries in 112
+entry/caller groups. These are that cohort's counts only. Empty discovered-owner
+sets stay empty. Physical return addresses may include observation trampolines
+for tail calls or the separate menu action bridge; they require explicit
+call-flow classification before semantic attribution. Global snapshots identify
+possible state changes; they do not inventory every side effect or pixel writer.
+
+```sh
+python3 -B tools/prepare-drawing-census.py --source-game <pinned-installation>
+python3 -B tools/capture-drawing-census-game.py <fresh-experiment> \
+  --prefix-template <stopped-Wine-prefix> --journey menus
+python3 -B tools/test-drawing-census-abi.py \
+  --prefix-template <stopped-Wine-prefix>
+python3 -B tests/test-drawing-census-trace.py
+```
+
+Use a fresh experiment for each journey. The fixture owns a private Xvfb display
+and Wine prefix, maintains the menu host heartbeat, retains failed reports and
+checks staged binaries. A successful terminal proves only bounded journal
+integrity: loss/open/IO counters must be zero. Busy loader detach does not wait on
+terminated workers and cannot produce a valid terminal. Dynamic unload is
+unsupported; partial hook installation refuses startup. Capture overhead has no
+hard timing promise. Movies, all writer/API/borrowed-access routes, failures and
+recovery, save/load, later map transitions, results and full dispatch still need
+separate evidence. DRAW-01 remains incomplete.
+
 ## Inspect an existing producer journal
 
 The optional importer reads only 64-byte envelopes and 96-byte record headers,

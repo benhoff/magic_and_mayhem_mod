@@ -1,4 +1,5 @@
 """Build-pinned drawing call census; addresses never imply function ownership."""
+from collections import Counter
 import hashlib
 import json
 from pathlib import Path
@@ -34,6 +35,17 @@ def direct_call(row):
     if not operand or int(operand[1], 16) != target:
         raise ValueError('CALL operand disagrees with exact relative bytes')
     return target
+
+
+def splice_conflicts(entry, length, code):
+    """Reject incoming direct control flow into the middle of overwritten bytes."""
+    conflicts = []
+    for row in code.values():
+        if row['mnemonic'].startswith(('j', 'loop')) or row['mnemonic'] == 'call':
+            target = re.fullmatch(r'0x([0-9a-f]+)(?:\s+<[^>]+>)?', row['operand'])
+            if target and entry < int(target[1], 16) < entry + length:
+                conflicts.append({'site': row['address'], 'target': int(target[1], 16)})
+    return conflicts
 
 
 def owners(address, inventory):
@@ -94,3 +106,89 @@ def export(executable, catalog, inventory_path):
             'input_unchanged': True, 'entries': sorted(entries), 'callers': calls,
             'sources': {'tools/drawing_census.py': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                         str(inventory_path.relative_to(ROOT)): hashlib.sha256(inventory_path.read_bytes()).hexdigest()}}
+
+
+def trace(path, manifest, caller_census, inventory):
+    """Decode closed observation metadata; integrity never supplies census closure."""
+    hooks = {r['tag']: r for r in manifest['hooks']}
+    if len(hooks) != len(manifest['hooks']) or set(hooks) != set(range(len(hooks))):
+        raise ValueError('Invalid hook tag census')
+    if inventory['source_sha256'] != BUILD_SHA256 or manifest['original_sha256'] != BUILD_SHA256:
+        raise ValueError('Trace metadata build mismatch')
+    callers = validate_callers(caller_census, BUILD_SHA256, {r['entry'] for r in hooks.values()})
+    route_by_entry = {r['entry']: r['route'] for r in hooks.values()}
+    owner_cache = {}
+    def caller_owners(pc):
+        if pc not in owner_cache: owner_cache[pc] = owners(pc - 1, inventory)
+        return owner_cache[pc]
+    counts = Counter(); sites = Counter(); returns = Counter(); result_counts = Counter()
+    open_calls = {}; last_call = sequence = 0; unassigned = set(); unknown = set()
+    before = path.stat()
+    size = before.st_size
+    if size < 128 or size > 64 + 4194304 * 128 + 64 or (size - 128) % 128:
+        raise ValueError('Missing terminal marker or invalid bounded trace extent')
+    with path.open('rb') as source:
+        header = source.read(64); words = struct.unpack('<16I', header)
+        if header[:8] != b'MNMDCN01' or words[2:5] != (1, 64, 128) or words[5] != 0x400000:
+            raise ValueError('Unreviewed trace layout or observed module base')
+        if header[32:64].hex() != BUILD_SHA256 or manifest['original_sha256'] != BUILD_SHA256:
+            raise ValueError('Drawing trace build mismatch')
+        if words[6] != len(hooks) or words[7] != 4194304:
+            raise ValueError('Drawing trace hook/budget census mismatch')
+        while source.tell() < size - 64:
+            row = struct.unpack('<32I', source.read(128)); sequence += 1
+            seq, event, cid, tag, phase, thread, entry, caller, sp = row[:9]
+            if seq != sequence or tag not in hooks or entry != hooks[tag]['entry'] or not 0 <= phase <= 14:
+                raise ValueError('Trace sequence, phase or callee identity mismatch')
+            if any(row[29:]) or not cid or not thread or not sp:
+                raise ValueError('Trace reserved/identity fields invalid')
+            hook = hooks[tag]
+            if phase == 0: unassigned.add(cid)
+            key = (phase, entry, caller)
+            if event in (1, 3):
+                if cid != last_call + 1 or (event == 3) != bool(hook['site']):
+                    raise ValueError('Call identity/site contract mismatch')
+                last_call = cid
+                if event == 1:
+                    open_calls[cid] = (tag, phase, thread, entry, caller, sp)
+                    counts[key] += 1
+                else: sites[key] += 1
+            elif event == 2:
+                if hook['site'] or open_calls.pop(cid, None) != (tag, phase, thread, entry, caller, sp):
+                    raise ValueError('Return has no exact thread/stack/callee/phase entry')
+                returns[key] += 1; result_counts[(phase, entry, row[11])] += 1
+            else: raise ValueError('Unknown trace event')
+            if event == 3 and caller != 0:
+                raise ValueError('Interior site must not invent a return caller')
+            if event == 1 and not caller_owners(caller): unknown.add(caller)
+        terminal = source.read(64); end = struct.unpack('<16I', terminal)
+        if terminal[:8] != b'MNMDCEND' or end[2:5] != (1, sequence, last_call) or any(end[8:]):
+            raise ValueError('Drawing trace terminal identity/count mismatch')
+        if any(end[5:8]) or open_calls:
+            raise ValueError('Drawing journal has loss, open calls or IO failure')
+    def items(counter):
+        result = []
+        for (phase, entry, caller), hits in sorted(counter.items()):
+            exact = callers.get(caller)
+            result.append({'phase': phase, 'entry': entry, 'caller': caller, 'count': hits,
+                           'route': route_by_entry[entry],
+                           'caller_owners': caller_owners(caller) if caller else [],
+                           'caller_attribution': ('interior_site_no_return_caller' if not caller else
+                               'exact_direct_call' if exact and exact['entry'] == entry else
+                               'observed_callee_pending_call_flow_review')})
+        return result
+    with path.open('rb') as source: digest = hashlib.file_digest(source, 'sha256').hexdigest()
+    after = path.stat()
+    if (before.st_ino, before.st_size, before.st_mtime_ns) != (after.st_ino, after.st_size, after.st_mtime_ns):
+        raise ValueError('Trace changed during review')
+    return {'schema': 1, 'journal_integrity': True, 'original_sha256': BUILD_SHA256,
+            'observed_runtime_image_base': words[5], 'events': sequence, 'calls': last_call,
+            'lost_events': 0, 'open_calls': 0, 'sha256': digest,
+            'entry_counts': items(counts), 'site_counts': items(sites), 'return_counts': items(returns),
+            'result_counts': [{'phase': phase, 'entry': entry, 'result': value, 'count': hits}
+                              for (phase, entry, value), hits in sorted(result_counts.items())],
+            'unassigned_phase_calls': len(unassigned), 'caller_pcs_without_discovered_owner': sorted(unknown),
+            'remaining': ['All writer/side-effect coverage needs separate review.',
+                          'Observed indirect/tail callees need exact call-flow classification.',
+                          'Graphics API, borrowed access, failure/recovery and complete dispatch remain separate obligations.'],
+            'draw01_complete': False}
