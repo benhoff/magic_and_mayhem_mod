@@ -62,6 +62,11 @@ GPU writeback and complete readbacks are checked within this native contract.
 A completed diagnostic checkpoint does not implicitly authorize presentation.
 The explicit boundary must follow all layers in the declared frame.
 
+The later [multi-frame increment](draw03-native-journeys.md) adds explicit
+publication while retaining native history. Sealing remains terminal; a subsequent
+producer invalidates the service's current output. Its separate retained fixture
+and evidence extend startup canvas coverage without closing the full journey gate.
+
 Synthetic tests exercise ordered World/HUD/encoded-BMP/final-copy composition,
 undefined startup, incomplete boundaries, unknown producers, sequence/identity
 errors, missing assets, poisoning and cleanup. The baseline fixture verifies the

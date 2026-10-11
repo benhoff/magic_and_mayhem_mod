@@ -1,6 +1,7 @@
 """Portable complete native canvas replay; original outputs stay in the comparator."""
 from collections import Counter
 import json
+import lzma
 import os
 from pathlib import Path
 import subprocess
@@ -19,15 +20,49 @@ def asset_name(name):
     return '/'.join(parts)
 
 
-def admit(root, catalog, register):
+def input_entries(catalog):
+    entry = catalog['input']
+    return entry.get('chunks', [entry])
+
+
+def input_bytes(root, catalog):
+    entries = input_entries(catalog)
+    if not 1 <= len(entries) <= 8:
+        raise ValueError('Invalid bounded scene input chunks')
+    def chunk(entry):
+        if entry['encoding'] == 'gzip':
+            return artifact(root, entry)
+        if entry['encoding'] != 'xz':
+            raise ValueError('Unsupported scene chunk encoding')
+        path = local(root, entry['path'])
+        if path.stat().st_size > 32 * 1024 * 1024:
+            raise ValueError('Scene input chunk storage exceeds bound')
+        packed = path.read_bytes()
+        if sha(packed) != entry['sha256']:
+            raise ValueError('Scene input chunk hash changed')
+        try:
+            decoder = lzma.LZMADecompressor(format=lzma.FORMAT_XZ, memlimit=128*1024*1024)
+            raw = decoder.decompress(packed, max_length=32*1024*1024+1)
+            if not decoder.eof or decoder.unused_data or len(raw) > 32*1024*1024 or sha(raw) != entry['raw_sha256']:
+                raise ValueError('Scene input chunk extent/hash/trailing data changed')
+            return raw
+        except lzma.LZMAError as error:
+            raise ValueError('Invalid bounded scene input chunk') from error
+    raw = b''.join(chunk(entry) for entry in entries)
+    if len(raw) > 128 * 1024 * 1024 or sha(raw) != catalog['input']['raw_sha256']:
+        raise ValueError('Scene input concatenation identity changed')
+    return raw
+
+
+def admit(root, catalog, register, retention=RETENTION):
     from rendering_coverage import evidence_record
     evidence = {e['id']: e for e in register['evidence']}
     builds = {b['id']: b for b in register['builds']}
     # The immutable retention record pins the exact prefix slice made while
     # checking the full historical stream hash. Historical working files are
     # not required during portable replay.
-    retained = evidence_record(root, evidence[RETENTION], builds)
-    if catalog != retained or catalog['schema'] != 1 or catalog['source_sha256'] != BUILD:
+    retained = evidence_record(root, evidence[retention], builds)
+    if catalog != retained or catalog['schema'] not in (1, 2) or catalog['source_sha256'] != BUILD:
         raise ValueError('Scene retention identity changed')
     ev = evidence[catalog['evidence']]
     if (ev['build'] != catalog['build'] or ev['sha256'] != catalog['historical_report_sha256'] or
@@ -40,7 +75,7 @@ def admit(root, catalog, register):
     stream = catalog['historical_stream']
     if historical['inputs'].get(stream['path']) != stream['sha256']:
         raise ValueError('Historical stream provenance mismatch')
-    raw = artifact(root, catalog['input'])
+    raw = input_bytes(root, catalog)
     if len(raw) != stream['prefix_bytes']:
         raise ValueError('Retained prefix extent mismatch')
     _, records = load_tool('inspect-canvas-producers').decode(raw, complete=False)
@@ -86,18 +121,36 @@ def admit(root, catalog, register):
         oracles.append((c, expected))
     if records[-1][0][14] not in ordinals:
         raise ValueError('Final composed scene lacks an independent oracle')
+    if catalog['schema'] == 2:
+        frames = catalog['frames']
+        if not 1 <= len(frames) <= 4096 or frames[-1] != boundary:
+            raise ValueError('Invalid bounded journey frame declaration')
+        prior = 0
+        completed = 0
+        available = {}
+        for r, _ in records:
+            if r[2] == 12:
+                completed += 1
+            available[r[1]] = completed
+        for frame in frames:
+            if frame['sequence'] <= prior:
+                raise ValueError('Journey frame ordering changed')
+            matching = [c for c, _ in oracles if all(c[k] == frame[k] for k in ('sequence', 'canvas', 'width', 'height'))]
+            if len(matching) != 1 or frame['queues'] != available.get(frame['sequence']):
+                raise ValueError('Journey frame is not an independently compared closed completion')
+            prior = frame['sequence']
     return raw, assets, oracles
 
 
-def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False):
+def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False, retention=RETENTION):
     path = local(root, catalog_path)
     catalog = json.loads(path.read_text())
     register = json.loads((root / 'research/runtime/coverage/register.json').read_text())
-    raw, assets, oracles = admit(root, catalog, register)
+    raw, assets, oracles = admit(root, catalog, register, retention)
     executable = executable.resolve()
     binary_hash = sha(executable.read_bytes())
     inputs = {str(path.relative_to(root)): sha(path.read_bytes())}
-    for entry in (catalog['input'], *catalog['assets'], *(c['oracle'] for c, _ in oracles)):
+    for entry in (*input_entries(catalog), *catalog['assets'], *(c['oracle'] for c, _ in oracles)):
         inputs[entry['path']] = entry['sha256']
     parent = root / 'working/tests/drawing-scene'
     parent.mkdir(parents=True, exist_ok=True)
@@ -113,9 +166,11 @@ def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False):
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(data)
     # Neither oracle paths nor oracle bytes are sent to the renderer.
-    declaration = {'schema': 1, 'boundary': catalog['boundary'],
+    declaration = {'schema': catalog['schema'], 'boundary': catalog['boundary'],
                    'assets': {name: sha(data) for name, _, data in assets},
                    'retain_checkpoints': [c['ordinal'] for c, _ in oracles]}
+    if catalog['schema'] == 2:
+        declaration['frames'] = catalog['frames']
     (native_input / 'scene.json').write_text(json.dumps(declaration, indent=2) + '\n')
     command = [str(executable), str(native_input / 'producers.bin'), str(asset_root),
                str(native_input / 'scene.json'), str(output / 'native')]
@@ -145,13 +200,25 @@ def check(*, root=ROOT, catalog_path=CATALOG, executable, headless=False):
     scene = (output / 'native/scene.565').read_bytes()
     if scene != (output / f"native/checkpoint-{final[0]['ordinal']:04}.565").read_bytes() or sha(scene) != native['scene_sha256']:
         raise ValueError('Published scene differs from its complete final checkpoint')
+    frame_comparisons = []
+    if catalog['schema'] == 2:
+        if len(native['frames']) != len(catalog['frames']) or native['frames_published'] != len(catalog['frames']):
+            raise ValueError('Journey omitted a complete declared frame')
+        for i, frame in enumerate(catalog['frames'], 1):
+            actual = (output / f"native/frame-{i:04}.565").read_bytes()
+            n = native['frames'][i-1]
+            if any(n[k] != frame[k] for k in frame) or n['ordinal'] != i or n['sha256'] != sha(actual):
+                raise ValueError('Journey frame identity mismatch')
+            _, expected = next((c, expected) for c, expected in oracles if c['sequence'] == frame['sequence'])
+            frame_comparisons.append({'ordinal': i, **frame, **compare(actual, expected, frame['width'], frame['height'])})
     if (sha(executable.read_bytes()) != binary_hash or
             any(sha(local(root, name).read_bytes()) != h for name, h in inputs.items())):
         raise ValueError('Scene inputs/binary changed during comparison')
-    return {'success': all(c['matching'] for c in comparisons), 'scope': catalog['scope'],
+    return {'success': all(c['matching'] for c in comparisons + frame_comparisons), 'scope': catalog['scope'],
             'boundary': catalog['boundary'], 'comparisons': comparisons,
             'pixels_compared': sum(c['pixels'] for c in comparisons),
             'mismatches': sum(c['mismatching_pixels'] for c in comparisons),
+            'frame_comparisons': frame_comparisons,
             'native': native, 'inputs': inputs, 'binary_sha256': binary_hash,
             'original_pixels_used_as_native_inputs': False, 'original_oracles_read_by_native': False,
             'declared_canvas_complete': all(c['matching'] for c in comparisons),

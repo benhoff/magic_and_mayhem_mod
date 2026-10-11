@@ -11,6 +11,7 @@ DrawingScene::~DrawingScene(){if(output_)renderer_.destroy(output_);}
 std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
     if(poisoned_||sealed_)throw std::runtime_error("Drawing scene is poisoned or sealed");
     try{
+        if(output_){renderer_.destroy(output_);output_=0;}
         const auto &r=c.fields;
         if(sequence_==std::numeric_limits<unsigned>::max()||r[1]!=sequence_+1||
            r[2]<1||r[2]>MNM_PRODUCER_PAYLOAD_SOURCE||r[23]||
@@ -47,11 +48,12 @@ std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
         sequence_=r[1];return completed;
     }catch(...){poisoned_=true;throw;}
 }
-void DrawingScene::seal(DrawingBoundary boundary){
+void DrawingScene::publish(DrawingBoundary boundary){
     if(poisoned_||sealed_)throw std::runtime_error("Drawing scene is poisoned or sealed");
     try{
-        if(world_.active()||!boundary.queues||boundary.queues!=world_.completedQueues()||
-           boundary.sequence!=sequence_||!boundary.canvas||!boundary.width||!boundary.height)
+        if(world_.active()||boundary.queues!=world_.completedQueues()||
+           !boundary.sequence||boundary.sequence!=sequence_||boundary.sequence<=publishedSequence_||
+           frames_==std::numeric_limits<unsigned>::max()||!boundary.canvas||!boundary.width||!boundary.height)
             throw std::invalid_argument("Incomplete declared drawing scene boundary");
         const auto image=replay_.read(boundary.canvas);
         if(image.width!=int(boundary.width)||image.height!=int(boundary.height))
@@ -59,12 +61,23 @@ void DrawingScene::seal(DrawingBoundary boundary){
         output_=renderer_.create(image,{16,{0xf800,0x07e0,0x001f}});
         if(renderer_.read(output_).pixels!=image.pixels)
             throw std::runtime_error("Completed scene GPU mirror differs");
-        sealed_=true;
+        published_=boundary;publishedSequence_=sequence_;++frames_;
     }catch(...){poisoned_=true;throw;}
 }
-void DrawingScene::requireSealed() const{
-    if(poisoned_||!sealed_)throw std::runtime_error("Drawing scene has no complete sealed output");
+void DrawingScene::seal(DrawingBoundary boundary){
+    if(poisoned_||sealed_)throw std::runtime_error("Drawing scene is poisoned or sealed");
+    if(output_&&boundary.sequence==publishedSequence_){
+        if(boundary.queues!=published_.queues||boundary.canvas!=published_.canvas||
+           boundary.width!=published_.width||boundary.height!=published_.height){
+            poisoned_=true;throw std::invalid_argument("Sealed boundary differs from published frame");
+        }
+    }else publish(boundary);
+    sealed_=true;
 }
-render::Image DrawingScene::read(){requireSealed();return renderer_.read(output_);}
-render::GpuFrame DrawingScene::presentGpu(){requireSealed();return renderer_.presentGpu(output_);}
+void DrawingScene::requirePublished() const{
+    if(poisoned_||!output_||publishedSequence_!=sequence_)
+        throw std::runtime_error("Drawing scene has no complete current published output");
+}
+render::Image DrawingScene::read(){requirePublished();return renderer_.read(output_);}
+render::GpuFrame DrawingScene::presentGpu(){requirePublished();return renderer_.presentGpu(output_);}
 }

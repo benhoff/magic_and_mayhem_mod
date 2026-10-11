@@ -1,4 +1,4 @@
-# Native drawing-scene declarations (schema1)
+# Native drawing-scene declarations (schemas1/2)
 
 These JSON files are native toolkit formats, not recovered game file formats.
 They use the existing [producer wire contract](canvas-producers-v1.md); no host
@@ -35,3 +35,18 @@ readiness and cleanup, and exposes refusal errors. A successful native output is
 not itself proof of independent original equality. The external comparator checks
 all selected full planes and verifies that `scene.565` is the final checkpoint.
 Neither file format establishes physical presentation equivalence or live bypass.
+
+Schema2 adds ordered `frames`, each with the same fields as `boundary`. The
+last frame equals the terminal boundary; source sequences strictly increase and
+completed World counts cannot decrease. Zero queues admits menu/loading frames.
+Each retained frame must name its own independent full-canvas checkpoint. The
+renderer receives frame identities only and writes `frame-NNNN.565` plus frame
+hashes. Every publication is compared separately from diagnostic checkpoints.
+Sealing an already published terminal boundary adds no frame.
+
+Schema2 may represent `input` as `raw_sha256` plus an ordered `chunks` array.
+Each fragment has packed/raw hashes and gzip or XZ encoding. XZ decoding requires
+one complete stream with no trailing bytes, at most128MiB dictionary memory
+and32MiB output; concatenation requires at most eight fragments,128MiB total and
+the exact prefix SHA-256. This packaging preserves the original wire bytes and
+does not reset producer, queue, checkpoint or canvas identities between chunks.

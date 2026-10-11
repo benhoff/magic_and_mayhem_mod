@@ -4414,3 +4414,31 @@ with no unresolved intermediate versions. The append-only journal check and exac
 hashes are retained in
 `coverage/draw03-history-48ca294-98b4524-20261010.json`. This history accounting
 asserts neither a past gate pass nor new execution validation.
+
+## DRAW-03 persistent source-owned frame publication (2026-10-10)
+
+`NR.drawing-journey` extends the native scene adapter with explicit ordered
+publication while retaining native producer/World history. Queue-zero menus,
+subsequent-frame invalidation, immutable old GPU leases, terminal sealing,
+refusal poisoning and cleanup have native tests. A portable schema2 fixture
+retains exact contiguous inputs through44927,16encoded assets and17 independent
+full800x600 original planes: two queue-zero completions and fifteen post-World
+HUD/minimap/marker/cursor canvases. Large source history is bounded, hash-bound
+XZ fragments; oracles never enter the renderer.
+
+Fresh native execution matches8,160,000 checkpoint pixels with zero differences
+and independently matches all17 published frames. The earlier six-canvas fixture
+is rerun after the service extension and matches2,880,000 pixels. The eight scene
+and four journey portable guards plus native publication/refusal/cleanup tests
+pass. New immutable results are `draw03-persistent-journey-comparison-20261010.json`
+and `draw03-persistent-scene-comparison-20261010.json`; prior evidence remains
+historical. See [journey scope](draw03-native-journeys.md).
+
+Native implementation/headless integration advance within this finite startup
+scope. Physical presentation/driver behavior, movie composition, World
+destination/extent changes, active camera/combat, picking/consumer state,
+save/load/map/results transitions, recovery and complete Quick Battle/campaign
+journeys remain pending. Broad DRAW-03, continuous delivery and live replacement
+are not claimed. Committed f60ec65..3b6785a has a separate exact receipt-chain
+review with no accounting errors, retained in
+`coverage/draw03-history-f60ec65-3b6785a-20261010.json`.

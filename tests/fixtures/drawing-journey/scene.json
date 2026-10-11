@@ -1,0 +1,570 @@
+{
+  "schema": 2,
+  "build": "nocd-40209ca7",
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "retention_sources": {
+    "tools/retain-drawing-scene.py": "92b470f20f6373a9c86dd00bdf02865c006ebe944dbd05acf26c99084985f128",
+    "tools/drawing_corpus.py": "79703261fa72cb7b30bd8ba4dbdfa68b4f3c268748a2622a1a10b0af51d8384e",
+    "tools/inspect-canvas-producers.py": "1110c61e7d9af79cf6ef9086ab693388737e615c41c98ac7de4dd2b8b2154ac4",
+    "tools/rendering_coverage.py": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+    "tools/retain-drawing-journey.py": "dc011835571ae7ca53338a6b5417bbe78c93248b343dc52b43e676bd5c90f004"
+  },
+  "historical_report_sha256": "69ac3a94216bbc46a7b23f5b17c8811113f2e924373445a9f0ef06d5bf0dfc57",
+  "original_inputs_verified": true,
+  "evidence": "NR.world-producer-handoff.original-gpu-current-20261008",
+  "scope": "Contiguous original-active Quick Battle map2 startup: two complete queue-zero checkpoints and fifteen complete post-World HUD/minimap/marker/cursor canvases. Native multi-frame publication and history; not a full gameplay or physical-display journey.",
+  "boundary": {
+    "sequence": 44927,
+    "queues": 15,
+    "canvas": 2,
+    "width": 800,
+    "height": 600
+  },
+  "historical_stream": {
+    "path": "working/experiments/scene-observer/run-c4ps704z/capture/canvas-producers.bin",
+    "sha256": "1eba40731b61fed060a59a863ba9aba581dfca9db50be025e4c38b930263e355",
+    "prefix_bytes": 66865794
+  },
+  "input": {
+    "raw_sha256": "042d1799ce0af1fc30dc7497bdba64222d17a668545c35318bd92be9628b5dc3",
+    "chunks": [
+      {
+        "path": "tests/fixtures/drawing-journey/input-000.xz",
+        "encoding": "xz",
+        "sha256": "00467f1dc78b7ce9a6cf89ca043108ff73181fedb0b752d4b8051ffacb777827",
+        "raw_sha256": "00869f795a096a0970cdd5f690e6cd1ee04fd948f713a7bd8c019ffa9a14559d"
+      },
+      {
+        "path": "tests/fixtures/drawing-journey/input-001.xz",
+        "encoding": "xz",
+        "sha256": "96bc2ec33cf7513dfa4ed010bb9d0aaa78ea20e60b33e63482e991c859d080e6",
+        "raw_sha256": "7de3cf85898468de59fd488366247a4fdba1d3c4915eefe57d19df2c1fc72ca4"
+      },
+      {
+        "path": "tests/fixtures/drawing-journey/input-002.xz",
+        "encoding": "xz",
+        "sha256": "9c55aa386b807215a973549fc83025c1f93734914c36cb1890f91d8106178b8f",
+        "raw_sha256": "64f94db22e1a0ef44599d660de62a1f45716cbe65238d8ea9b3702e8f61ceb36"
+      }
+    ]
+  },
+  "assets": [
+    {
+      "path": "tests/fixtures/drawing-journey/asset-001.gz",
+      "encoding": "gzip",
+      "sha256": "db2d79c571cbed0e9f413ff397ca64885310651c7290ac01e6611e311c964b9c",
+      "raw_sha256": "5f04b49c911fb2182ff99898fd989c25640b3a51c9e5f5f8fa607f87a51e7365",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Creatures/16Mb_Anims/Wizard1.spr",
+      "name": "Creatures/16Mb_Anims/Wizard1.spr"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-002.gz",
+      "encoding": "gzip",
+      "sha256": "db0629fc3504a5af6d4c9bd1cc0fab44fd9692bd5498a5409538ce84a7cfd0df",
+      "raw_sha256": "46196c7ea711793ae44310fa54c5e59888ab5d116c077fef49e1a3c8746a25ff",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Interface/MainScreen/800x600/Main Menu 800-600.JPG",
+      "name": "Interface\\MainScreen\\800x600\\Main Menu 800-600.JPG"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-003.gz",
+      "encoding": "gzip",
+      "sha256": "f918e3053e67b69bb179cf0e674d61ca9d1da9e720a5f5b90e60f3e640c4e664",
+      "raw_sha256": "467813a4559d2c0bf1e4dde2649d26c0fdab9609f0e1f44b5f9a3a81647a4210",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Interface/MapSelectionScreen/800x600/Map Selection Screen 800-600.jpg",
+      "name": "Interface\\MapSelectionScreen\\800x600\\Map Selection Screen 800-600.JPG"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-004.gz",
+      "encoding": "gzip",
+      "sha256": "c168058942aaff86a79bcd303a503ca0a7e281d4281cde5ad2c505af95a1c174",
+      "raw_sha256": "a0461f844ac19c03c201a22372396413d6713acb2b8bbe5428cc1a2633cc0085",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Interface/MultiplayerBattleLoad/800x600/Multiplayer Battle Load 800-600.JPG",
+      "name": "Interface\\MultiplayerBattleLoad\\800x600\\Multiplayer Battle Load 800-600.JPG"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-005.gz",
+      "encoding": "gzip",
+      "sha256": "af79621694a5de3f48ed62f1702505cebd3f444b1cbab08e4411ae28056188ae",
+      "raw_sha256": "b16371b55e6d61e88e611a8c56b01f5738d37947d8108a419dced7f137066c1c",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Interface/QuickBattleMainMenu/800x600/Quick Battle Main Menu 800-600.JPG",
+      "name": "Interface\\QuickBattleMainMenu\\800x600\\Quick Battle Main Menu 800-600.JPG"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-006.gz",
+      "encoding": "gzip",
+      "sha256": "c3c8630100fa142216a158a6a2b92d4282fae54d9928bd4c84e8425018fbb9d5",
+      "raw_sha256": "698ac6a3f00ec0363c843944904d60e0a84c20d29a2b38f9a96a56b8b3a7feb9",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Interface/SinglePlayerBattle/800x600/Single player Battle Setup 800-600.JPG",
+      "name": "Interface\\SinglePlayerBattle\\800x600\\Single player Battle Setup 800-600.JPG"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-007.gz",
+      "encoding": "gzip",
+      "sha256": "d69771ea3ecd8d99c7f57c75aab5abaade4ebf85b758fd890ded68bddeb7d5a3",
+      "raw_sha256": "bbff01037b19eaf97c067dc742c2b93bb29f69d4862f0c811a9e2a33fff7b65b",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Realms/Celtic/Forest/Terrain.spr",
+      "name": "Realms/Celtic/Forest/Terrain.spr"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-008.gz",
+      "encoding": "gzip",
+      "sha256": "e06be35ab0362fc13b6d62642546211ac9c97f8b18522841a2e20423dbec0e05",
+      "raw_sha256": "5b6cfda83380a2543dd01e4192a900a6935ee00f56b53d72c21f30bd5eee483e",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Sprites/Effects11.spr",
+      "name": "Sprites/Effects11.spr"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-009.gz",
+      "encoding": "gzip",
+      "sha256": "09aef98a04090e289d0328d5c0b7ff540b9b4c76aa889679b566dd4f20708d6f",
+      "raw_sha256": "fe89cdbb7fb4a64579c6143ec253bfe15a3a82db8db9f39f5f9a6b04bca913aa",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Sprites/Effects5.spr",
+      "name": "Sprites/Effects5.spr"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-010.gz",
+      "encoding": "gzip",
+      "sha256": "468e24da9751bdcf013a4b53456b1f46313463a7f767185407cc784971478781",
+      "raw_sha256": "67df1a179b155fbab870992aa7ac86a0bc9edc8edfab9434392d7255d6c39efd",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Bitmaps/Control Limit.bmp",
+      "name": "bitmaps\\Control Limit.bmp"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-011.gz",
+      "encoding": "gzip",
+      "sha256": "a6c28f8d17f56d31a2166709d850d80ff2d89ecab20c186655192ef039b0d437",
+      "raw_sha256": "288d27c695fc0d00f87b89222748e06e5c6ec89952e27baea3b310d697828a8a",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Bitmaps/Cornelius Young.BMP",
+      "name": "bitmaps\\Cornelius Young.bmp"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-012.gz",
+      "encoding": "gzip",
+      "sha256": "e40767219732364a56c0103707aba8dc47cfdf08d74413ad3abffd917561794e",
+      "raw_sha256": "009ea05c7fded93d8a2a10b34ad23ba34013a4a21839fb291d3630c70f6131c2",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Bitmaps/cursors.bmp",
+      "name": "bitmaps\\cursors.bmp"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-013.gz",
+      "encoding": "gzip",
+      "sha256": "58d74afc3da642abbb269af4252fe6cfb7d590ad0802b4fa2aea42ee4f79c6fe",
+      "raw_sha256": "9cbee01a9b1b5944c70bb031623fbe03abe6e236fea866a66e406871c6685fe2",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Bitmaps/Scan5by5Middle.bmp",
+      "name": "bitmaps\\scan5by5Middle.bmp"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-014.gz",
+      "encoding": "gzip",
+      "sha256": "0f68b51fc00eec31ca094dc0e6cf2ad9a46a747d3fa0066b77347e5384e9cfa8",
+      "raw_sha256": "d1d35ba5b107eba1467b72ad2dc009c7792a7baf62e9408c316fa79a74059222",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Bitmaps/Timer background.JPG",
+      "name": "bitmaps\\timer background.jpg"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-015.gz",
+      "encoding": "gzip",
+      "sha256": "1a1c1cf53949173c2ebf34395520866332b1e000cfbb97ccbc80b3649fe76c3a",
+      "raw_sha256": "cb4992b3d0cb8c3338d9999eae4ccfe78502c496bcbd0e47d9002a63d1ad7855",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Interface/ProgressIndicator/MultiPlayer Progress Bar Desaturated.JPG",
+      "name": "interface\\ProgressIndicator\\Multiplayer Progress Bar Desaturated.JPG"
+    },
+    {
+      "path": "tests/fixtures/drawing-journey/asset-016.gz",
+      "encoding": "gzip",
+      "sha256": "9ba428f86c5d550e23b3c74f6599e946ee47f1aeadeba70df39496875001bd3a",
+      "raw_sha256": "ef4ee9bcc81936ecab271e29faaef227d8ff55546c4b125034f8d0d41818adbc",
+      "historical_path": "working/experiments/scene-observer/run-c4ps704z/game/Interface/ProgressIndicator/MultiPlayer Progress Bar.JPG",
+      "name": "interface\\ProgressIndicator\\Multiplayer Progress Bar.JPG"
+    }
+  ],
+  "checkpoints": [
+    {
+      "ordinal": 2,
+      "sequence": 17,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-0002.gz",
+        "encoding": "gzip",
+        "sha256": "e083adc521e2c366b83316ead4d44f19a06af42da4c8452bb0d87687c5636e24",
+        "raw_sha256": "ce6712391892708b445b6d201914d9c8e7dfec5274cc7b7f1eb7531a14cee0fa",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-0002.565"
+      }
+    },
+    {
+      "ordinal": 907,
+      "sequence": 18452,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-0907.gz",
+        "encoding": "gzip",
+        "sha256": "533688cf96b9b06f0fd1bed50a14e0fd8c77422eed368c048821ee127789e5aa",
+        "raw_sha256": "bea43eddbc320d39ed672d17cc34a3d9c0babf6f158896aa181c9755bf40320b",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-0907.565"
+      }
+    },
+    {
+      "ordinal": 920,
+      "sequence": 20458,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-0920.gz",
+        "encoding": "gzip",
+        "sha256": "d6bfbd3da1be6d55ab3ccc95f68efa9ab36f6d0b6bba54d6ade7712ab6daf6e0",
+        "raw_sha256": "ed0005e720e7b052cf6ee2652a35101f579093b6945496d0d8fb176c3f5bc00d",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-0920.565"
+      }
+    },
+    {
+      "ordinal": 930,
+      "sequence": 22206,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-0930.gz",
+        "encoding": "gzip",
+        "sha256": "adfb012f2b8ad5f2711fe6a473502dbcd6a4a9a2a888a320ef7435e4fc27d38a",
+        "raw_sha256": "5a6521d04a7d2a4bb206d4ccf71ad25b2a77cbeed905003ce4ee07a0c4d0b049",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-0930.565"
+      }
+    },
+    {
+      "ordinal": 940,
+      "sequence": 23954,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-0940.gz",
+        "encoding": "gzip",
+        "sha256": "65b7d1683c14d3166264a2f2746ea74a0d29d701df14ac1fe29ac12709589a4f",
+        "raw_sha256": "31eda98c74f57a88d6402df3a751d1d35cf3dfe1adc31833c828fdccc9cd6025",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-0940.565"
+      }
+    },
+    {
+      "ordinal": 950,
+      "sequence": 25702,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-0950.gz",
+        "encoding": "gzip",
+        "sha256": "f077ab7e35a6ff0216d32fbbea1be7a78905de7e7fd6c792edd5c08529631dd4",
+        "raw_sha256": "70e53d36b9582ef7ad70344a33f37c6d27ada0c0366119013e89476bd8858caf",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-0950.565"
+      }
+    },
+    {
+      "ordinal": 960,
+      "sequence": 27450,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-0960.gz",
+        "encoding": "gzip",
+        "sha256": "57e94da7315bad7aa6d60dc7380e7a5288c06e9de4a6dff61d8831b1662e1386",
+        "raw_sha256": "37051ecb4fac748a881e3b2b3a0460ef2cdcd69713f71060d2291686ea88413f",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-0960.565"
+      }
+    },
+    {
+      "ordinal": 970,
+      "sequence": 29198,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-0970.gz",
+        "encoding": "gzip",
+        "sha256": "f7bfdc0c412f4ae84f448a91a87ecc15cd95f86d2893c563e022a0ef2bde93e1",
+        "raw_sha256": "ac383246eb0d904e65c7600ae2fe2f89d01a3f74377ede5033423abea59c72f1",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-0970.565"
+      }
+    },
+    {
+      "ordinal": 980,
+      "sequence": 30946,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-0980.gz",
+        "encoding": "gzip",
+        "sha256": "a5cadc9423bbe6a646a1c40172a5dca1cd97a0fc76408c93088ea3cb8e80703a",
+        "raw_sha256": "38fe05e31e384ec55007e15bb73b3839626fcd1920f7c7be5e078952f2a5c515",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-0980.565"
+      }
+    },
+    {
+      "ordinal": 990,
+      "sequence": 32694,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-0990.gz",
+        "encoding": "gzip",
+        "sha256": "4d125e1ad3ebf2eddb120a137f2c5a0ba5475144c2b21053d29f31874abc71d9",
+        "raw_sha256": "b97878eaf1194c1be72d1a875364940bbde22c99405d6c16d1ec9a3a97258b28",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-0990.565"
+      }
+    },
+    {
+      "ordinal": 1000,
+      "sequence": 34444,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-1000.gz",
+        "encoding": "gzip",
+        "sha256": "b43d187b28dc4fc9ac0fa56af062c87c2475e69a3d0c6d93de68108ac9641f17",
+        "raw_sha256": "238ccdad86a732832891856f554edb638e9991e07f63f09c1ca22105e864e60b",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-1000.565"
+      }
+    },
+    {
+      "ordinal": 1011,
+      "sequence": 36192,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-1011.gz",
+        "encoding": "gzip",
+        "sha256": "0294eca170dd7fff5717f86bff8e2671d5e5a782c6237758b5008df5987502c9",
+        "raw_sha256": "2fddfed963fa4eb9246134707933b2bdb2577e48cfc50e2c2f1c15eb98f41591",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-1011.565"
+      }
+    },
+    {
+      "ordinal": 1021,
+      "sequence": 37939,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-1021.gz",
+        "encoding": "gzip",
+        "sha256": "8fa294bc743a62d211ee6ddd82be8b94f007e1176d0833f4799ae89a825405f4",
+        "raw_sha256": "87fdf1d09483ea4115233c5cef9d7e9bef8346814d2012a5d6bd9156ae4c140f",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-1021.565"
+      }
+    },
+    {
+      "ordinal": 1031,
+      "sequence": 39686,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-1031.gz",
+        "encoding": "gzip",
+        "sha256": "825170ec5661e5d272683861374b03b6a5fae39def6ba1af26743cf05333337b",
+        "raw_sha256": "940a23b2cf66605ca67195eda7a4fffa36152a60a71021c6a0bcd209bf42f2f0",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-1031.565"
+      }
+    },
+    {
+      "ordinal": 1041,
+      "sequence": 41433,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-1041.gz",
+        "encoding": "gzip",
+        "sha256": "13352834ee8507eee23494cd717ad379db1251e2f42ab0c53a7bf4bafff18e77",
+        "raw_sha256": "ba5353c83e81fc55fd06dbb10508e7686fef42b44a977278bc185d5e54f39130",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-1041.565"
+      }
+    },
+    {
+      "ordinal": 1051,
+      "sequence": 43180,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-1051.gz",
+        "encoding": "gzip",
+        "sha256": "3fbde37cdb0f2da91adbde7eedf970b6ae48363135bb832d520ca8feede131e2",
+        "raw_sha256": "63439252ee6127c1439fa291666783fda6bbd2562b043b4ce9ff3cca9498c199",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-1051.565"
+      }
+    },
+    {
+      "ordinal": 1061,
+      "sequence": 44927,
+      "canvas": 2,
+      "width": 800,
+      "height": 600,
+      "oracle": {
+        "path": "tests/fixtures/drawing-journey/oracle-1061.gz",
+        "encoding": "gzip",
+        "sha256": "295e0a2b1b43aaf5e39d72519a665e3035f9aad963b6625f3d0c4df8719928b8",
+        "raw_sha256": "760c6d1a216068a6d1e9b6f39a0855af48d7de4d060eee0518021b55c8aadecb",
+        "historical_path": "working/experiments/scene-observer/run-c4ps704z/capture/producer-oracle-1061.565"
+      }
+    }
+  ],
+  "producer_counts": {
+    "1": 58,
+    "10": 1061,
+    "11": 15,
+    "12": 15,
+    "15": 40,
+    "16": 13,
+    "17": 4,
+    "18": 4,
+    "2": 7,
+    "20": 4,
+    "21": 25,
+    "22": 15,
+    "23": 45,
+    "3": 681,
+    "4": 786,
+    "5": 22,
+    "6": 602,
+    "7": 8,
+    "8": 1898,
+    "9": 39624
+  },
+  "remaining": [
+    "Physical display copy/Flip and driver/error semantics",
+    "Original World consumer non-pixel state and readbacks beyond admitted native composition",
+    "General HUD/tooltips, picking/hotspots and source-state generation",
+    "Camera actions, active battles, alternate dispatch and unbounded sessions"
+  ],
+  "frames": [
+    {
+      "sequence": 17,
+      "queues": 0,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 18452,
+      "queues": 0,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 20458,
+      "queues": 1,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 22206,
+      "queues": 2,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 23954,
+      "queues": 3,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 25702,
+      "queues": 4,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 27450,
+      "queues": 5,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 29198,
+      "queues": 6,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 30946,
+      "queues": 7,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 32694,
+      "queues": 8,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 34444,
+      "queues": 9,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 36192,
+      "queues": 10,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 37939,
+      "queues": 11,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 39686,
+      "queues": 12,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 41433,
+      "queues": 13,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 43180,
+      "queues": 14,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    },
+    {
+      "sequence": 44927,
+      "queues": 15,
+      "canvas": 2,
+      "width": 800,
+      "height": 600
+    }
+  ]
+}
