@@ -41651,6 +41651,95 @@
       "remaining_gaps": [
         "Fresh TITAN4545World casting/combat/portrait/menu/Quit trace passes and establishes4355advancing1counter/8globalANI/1scheduler/1queue windows plus189non-advancing1queue/no selected tick/ANI/maintenance/scheduler windows. Field+fd5a is observed as a low byte; complete mode policy and other timers/world/effect work are excluded. Repeated original render-only invocation safety, independent simulation timing, arbitrary long stalls, complete pause/network/alternate pacing/all-animation/lifecycle/driver/pixel equivalence and60FPS remain unproven."
       ]
+    },
+    {
+      "id": "NR.scene-production-repetition",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Bounded repeated original scene production with exact state auditing",
+      "scope": "Opt-in pinned No-CD original004fd280 outer producer and narrower004fd315..004fd5ad draw slice, invoked only on a validated original producer return and owning engine thread. Keep simulation tick, pacing and original once-only outer return ABI. Bound attempts and compare full owned creature/effect/third-family pools, global ANI controllers, complete gameplay-object/map-context headers, counters/mode/pacing/full252-word RNG/scheduler bytes before/after each extra production; capture whole writable module and renderer changes as unclassified state evidence. Independently copy/compare ordered nonempty original36-byte scene records before primary/extra consumer entry; scene equality is separate from protected-state equality. Refuse malformed/unreadable/changed pool shapes and critical byte differences; stop further repetition after first difference, never restore game state or conceal a failure. Existing actual native resident rendering consumes generated Worlds without pixel roundtrip. Slice deliberately excludes outer camera/countdown/creature pre/post work; reset original renderer callback count and preserve original scene-call PCs. Not all nested pointers, map/visibility state, concurrent timer writes, arbitrary inputs/driver/pixel equivalence, independent60FPS scheduling or safe default activation.",
+      "confidence": "provisional",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5231232,
+          "scope": "Observed zero-stack-argument original scene outer; all helper roles remain partial"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5230416,
+          "scope": "Scene build invoked by original body with one stack argument"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5231381,
+          "scope": "Candidate narrower body start; new native adapter admission, not an original function entry"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5232045,
+          "scope": "Candidate draw-end marker before iterator/camera postlude"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5366368,
+          "scope": "Outer creature preparation helper, excluded by slice"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5417856,
+          "scope": "Outer post-draw creature helper, excluded by slice"
+        }
+      ],
+      "documents": [
+        "research/runtime/scene-production-repetition.md",
+        "research/runtime/scene-production-fixture-abi-negative-20261011.json",
+        "research/runtime/scene-production-fixture-fp-negative-20261011.json",
+        "research/runtime/scene-production-fixture-refusal-negative-20261011.json",
+        "research/runtime/scene-production-controls-20261011.json",
+        "research/runtime/scene-production-static-20261011.json"
+      ],
+      "implementation": [
+        "tools/export-scene-production.py",
+        "runtime/scene-production/observer.c",
+        "runtime/scene-production/entry.S",
+        "runtime/scene-production/state_audit.h",
+        "tools/build-scene-production.py",
+        "tools/scene_production.py",
+        "tools/probe-scene-production.py"
+      ],
+      "tests": [
+        "tests/scene-production-reference.c",
+        "tests/scene-production-reference.S",
+        "tools/test-scene-production.py",
+        "tools/test-native-campaign.py"
+      ],
+      "validation_dependencies": [
+        "tools/export-menu-support.py",
+        "tools/original-manifest.sh",
+        "runtime/shadow/win32_min.h",
+        "tools/build-menu-observer.py",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/prepare-shadow-experiment.py"
+      ],
+      "evidence": [
+        "NR.scene-production-repetition.fixture-abi-negative-20261011",
+        "NR.scene-production-repetition.fixture-fp-negative-20261011",
+        "NR.scene-production-repetition.fixture-refusal-negative-20261011",
+        "NR.scene-production-repetition.controls-20261011",
+        "NR.scene-production-repetition.static-20261011"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Final-source18 PE32 authored controls pass and static producer/helper boundaries are retained. Actual original whole-protected-state and scene-record invariance, bounded extra native World delivery, full nested/map/visibility/timer/driver/pixel safety, normal gameplay/Quit and60FPS remain pending. Broad stages unchanged."
+      ]
     }
   ],
   "evidence": [
@@ -86778,6 +86867,104 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.scene-production-repetition.fixture-abi-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Combined ABI assertion included absolute ESP from different C call sites and incoming floating-point state was not seeded consistently; fixture issue, no original engine execution.",
+      "record": "research/runtime/scene-production-fixture-abi-negative-20261011.json",
+      "sha256": "9fe9cf5390c9fd4dab700f02f78c17ae99bb09eda366a8e828b0dd24ec25867e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.fixture-fp-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Isolated exit73 floating-point assertion: incoming XMM/MXCSR differed after guard-control Win32 calls. Corrected fixture seeds XMM0..7/MXCSR plus x87; runtime preservation implementation unchanged.",
+      "record": "research/runtime/scene-production-fixture-fp-negative-20261011.json",
+      "sha256": "f920a55a0532fb109a179363bf355b8bc44bdec52c1913622ec2a692d181b34e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.fixture-refusal-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Six full controls passed, then unreadable-pool control expected exactly one refusal. Implementation reports unreadable pool plus missing extra scene/World; fixture now requires at least one refusal and no extra call.",
+      "record": "research/runtime/scene-production-fixture-refusal-negative-20261011.json",
+      "sha256": "10769bb606ac4a9fbb9cf57321c4cfd596c3ed2bdcf4563481eba00015d4c81d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.controls-20261011",
+      "kind": "native_integration",
+      "scope": "All18 final-source full/slice PE32 stand-in controls passed; actual original scene/driver/world invariance remains pending.",
+      "record": "research/runtime/scene-production-controls-20261011.json",
+      "sha256": "c458e3db218b50a89c047bb1451662eb7f210c12a25409ddb689a0b8ae537aad",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/expected_failure",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.scene-production-repetition.static-20261011",
+      "kind": "static",
+      "scope": "Static assembly only; opaque indirect flow/helper roles remain partial. No execution, patch or renderer/gameplay equivalence.",
+      "record": "research/runtime/scene-production-static-20261011.json",
+      "sha256": "4352c7c81b00d0e0c1bf097e31666500fc5f758f2ae7aa24fbf6e4c54aa9685d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/source_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -97278,6 +97465,25 @@
       "evidence": [
         "NR.engine-cadence-observation.titan-20261011"
       ]
+    },
+    {
+      "id": "NR.scene-production-repetition.fixture",
+      "scope": "Actual PE32 authored original stand-ins: full/slice forward/extra-call ABI and exact state mutation/shape/unreadable refusal controls; no original game/driver equivalence.",
+      "level": "headless",
+      "behaviors": [
+        "NR.scene-production-repetition"
+      ],
+      "tests": [
+        "tools/test-scene-production.py",
+        "tests/scene-production-reference.c",
+        "tests/scene-production-reference.S"
+      ],
+      "evidence": [
+        "NR.scene-production-repetition.fixture-abi-negative-20261011",
+        "NR.scene-production-repetition.fixture-fp-negative-20261011",
+        "NR.scene-production-repetition.fixture-refusal-negative-20261011",
+        "NR.scene-production-repetition.controls-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -97651,8 +97857,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-engine-cadence-titan-20261011.json",
-    "sha256": "1506cad45c917b5e4c1b415298e2871da556c09df006ed3779218ef54f6fbaee"
+    "path": "research/runtime/coverage/source-index-scene-production-controls-20261011.json",
+    "sha256": "fa25a78e3d81f7e90194163d0e10640c72ffa19ee7e8b4d59d7525a3db39173e"
   },
   "claim_bindings_required": true
 }

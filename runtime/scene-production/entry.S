@@ -1,0 +1,89 @@
+.text
+.macro save_call name arguments
+    pushfl
+    pushal
+    movl %esp,%ebx
+    subl $527,%esp
+    andl $-16,%esp
+    fxsave (%esp)
+    cld
+    .if \arguments == 2
+    pushl %esp
+    .endif
+    pushl %ebx
+    call _\name
+    addl $(4*\arguments),%esp
+    fxrstor (%esp)
+    movl %ebx,%esp
+    popal
+    popfl
+.endm
+.globl _production_enter
+_production_enter:
+    save_call production_before 1
+    jmp *_production_trampoline
+.globl _production_leave
+_production_leave:
+    pushl $0
+    save_call production_after 2
+    ret
+.globl _production_queue
+_production_queue:
+    pushfl
+    pushal
+    movl %esp,%ebx
+    subl $527,%esp
+    andl $-16,%esp
+    fxsave (%esp)
+    cld
+    pushl %ebx
+    call _production_queue_seen
+    addl $4,%esp
+    fxrstor (%esp)
+    movl %ebx,%esp
+    popal
+    popfl
+    jmp *_queue_target
+.globl _production_repeat_full
+_production_repeat_full:
+    movl 8(%esp),%eax
+    fxrstor (%eax)
+    movl 4(%esp),%ecx
+    jmp *_production_trampoline
+.globl _production_repeat_slice
+_production_repeat_slice:
+    movl 8(%esp),%eax
+    fxrstor (%eax)
+    movl 4(%esp),%ecx
+    pushl %ebx
+    pushl %ebp
+    pushl %esi
+    movl %ecx,%esi
+    xorl %ebx,%ebx
+    pushl %edi
+    movl $0,0x1e5(%esi)
+    movl %esp,_production_slice_stack
+    jmp *_slice_start
+.globl _production_draw_end
+_production_draw_end:
+    pushfl
+    pushl %eax
+    leal 8(%esp),%eax
+    cmpl %eax,_production_slice_stack
+    popl %eax
+    jne normal_end
+    popfl
+    popl %edi
+    popl %esi
+    popl %ebp
+    popl %ebx
+    ret
+normal_end:
+    popfl
+    xorl %ebx,%ebx
+    movl 0x229(%esi),%edx
+    jmp *_draw_resume
+.data
+_queue_target: .long 0x5002a0
+_slice_start: .long 0x4fd315
+_draw_resume: .long 0x4fd5b5

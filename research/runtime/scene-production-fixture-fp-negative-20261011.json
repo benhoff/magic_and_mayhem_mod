@@ -1,0 +1,44 @@
+{
+  "success": false,
+  "claims": [
+    {
+      "behavior": "NR.scene-production-repetition",
+      "contract_sha256": "731713c16dd8428ad10d9979ae89985ce49cb3af58c3d4f83b06aa627cf4316d",
+      "scenarios": {
+        "NR.scene-production-repetition.fixture": "dc0fdf870486711b0c06a8eb8708776f7251d004a32b015b48494212a0798408"
+      }
+    }
+  ],
+  "sources": {
+    "runtime/scene-production/entry.S": "2b780f54c90e65d3d1c6dd0a09e4eff373ee1bacf7170799acdef9fd4feab95a",
+    "runtime/scene-production/observer.c": "ca7349beaea7d2073c4e999fe355f79f009075d630442f4146d27fee02a99438",
+    "runtime/scene-production/state_audit.h": "8937aba8784b187845b51fc146a7c6db703c487b85bf8f7b4c1ca08ee06978d8",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/scene-production-reference.S": "0e1e7ed8e2120c5936f8b2d86b37c0816d130a0032570949a21fa76420381f4b",
+    "tests/scene-production-reference.c": "76f7771a7a4a7b10ff6ef46377bc129dc91b8d736990bc37c7efaa2f3e95bd76",
+    "tools/build-menu-observer.py": "40b546d7bb625630e5f58b9a58e424684a205dbb338c2eef1e5eb69db5654838",
+    "tools/build-scene-production.py": "7b2fd4741e6a275f3fdf614d4868a917df277172c699df8bf38a404401880640",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/export-scene-production.py": "20d591e8c381827e11a422fa05544438d2ae63a8982e5bb2e4c625bc25ac9c94",
+    "tools/menu-game-runner.py": "4b33156a03f7b1ee5fb5a74f771de6ba64394ced4bc3eb97229ba78c3a0d3fe6",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-menu-observer.py": "5acf6bca1bb7da9f8409ace07e8cf305da8ba103581f1ddd8dc0f2fc6915419d",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/probe-scene-production.py": "805d836d004d369daa7c257df0d3af396b085baec6dcab80120ec428846e5e2b",
+    "tools/scene_production.py": "bc168eb74a97265651dabff56ab5473c47ce7acee34ed1b7291ae9992f2982a6",
+    "tools/test-native-campaign.py": "4185ad63b3450392c5188fc4e16bc855ee6d100d8acb2c12277bc17c6d8f0161",
+    "tools/test-scene-production.py": "c643541e329a7705beec47271a27e0b10a25cd3be28e9bd8287f5b0aa5545016"
+  },
+  "cases": [
+    {
+      "case": 0,
+      "mode": 1,
+      "exit_code": 73
+    }
+  ],
+  "error": "PE32 production control failed 01:exit73",
+  "raw_report": "working/tests/scene-production-controls/run-zp6coc5v/report.json",
+  "raw_report_sha256": "08f296ef5a055419e2e817b4447cf534f459e112d2bc673ebaa0c967ab12a67d",
+  "scope": "Isolated exit73 floating-point assertion: incoming XMM/MXCSR differed after guard-control Win32 calls. Corrected fixture seeds XMM0..7/MXCSR plus x87; runtime preservation implementation unchanged.",
+  "expected_failure": true
+}

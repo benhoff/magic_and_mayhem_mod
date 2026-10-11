@@ -1,0 +1,74 @@
+{
+  "success": false,
+  "claims": [
+    {
+      "behavior": "NR.scene-production-repetition",
+      "contract_sha256": "731713c16dd8428ad10d9979ae89985ce49cb3af58c3d4f83b06aa627cf4316d",
+      "scenarios": {
+        "NR.scene-production-repetition.fixture": "dc0fdf870486711b0c06a8eb8708776f7251d004a32b015b48494212a0798408"
+      }
+    }
+  ],
+  "sources": {
+    "runtime/scene-production/entry.S": "8ef491495df936d50e323f573829d1c9d5f6a224f1469299869b16629b196b49",
+    "runtime/scene-production/observer.c": "fb08782b971039f8901a05e70e27b8020ed54070d9ffa7d2af57bf9765150ef2",
+    "runtime/scene-production/state_audit.h": "5263e831cda7e72a23bfd19588351a22394316cd4c1901e5d4df1b96e8d9089e",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/scene-production-reference.S": "121971c44c29788adb2c6aa8867852d90fe8d3974617a240902cfe711797b91b",
+    "tests/scene-production-reference.c": "4dcc97ea33feb4d6feddb4786a4c38ee1f7c4b257e40c71d55dcfee0c4b5ee6b",
+    "tools/build-menu-observer.py": "40b546d7bb625630e5f58b9a58e424684a205dbb338c2eef1e5eb69db5654838",
+    "tools/build-scene-production.py": "7b2fd4741e6a275f3fdf614d4868a917df277172c699df8bf38a404401880640",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/export-scene-production.py": "20d591e8c381827e11a422fa05544438d2ae63a8982e5bb2e4c625bc25ac9c94",
+    "tools/menu-game-runner.py": "4b33156a03f7b1ee5fb5a74f771de6ba64394ced4bc3eb97229ba78c3a0d3fe6",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-menu-observer.py": "5acf6bca1bb7da9f8409ace07e8cf305da8ba103581f1ddd8dc0f2fc6915419d",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/probe-scene-production.py": "805d836d004d369daa7c257df0d3af396b085baec6dcab80120ec428846e5e2b",
+    "tools/scene_production.py": "e972b7f89e03c4eaa1e19c63e4e67988d4e14af3c470af79f9dadcab37f79d30",
+    "tools/test-native-campaign.py": "4185ad63b3450392c5188fc4e16bc855ee6d100d8acb2c12277bc17c6d8f0161",
+    "tools/test-scene-production.py": "b3e1a556628f281ff4cb1fabee0b27311ffc8381c2dfa7215f6ddc743ab75b5d"
+  },
+  "cases": [
+    {
+      "case": 0,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 1,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 2,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 3,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 4,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 5,
+      "mode": 1,
+      "exit_code": 0
+    },
+    {
+      "case": 6,
+      "mode": 1,
+      "exit_code": 11
+    }
+  ],
+  "error": "PE32 production control failed 61:exit11",
+  "raw_report": "working/tests/scene-production-controls/run-fnlymmgr/report.json",
+  "raw_report_sha256": "9c4df13cd39fe193f2c2f58e351b3f1711a8f27d1842a4c5bdfd8e743709711e",
+  "scope": "Six full controls passed, then unreadable-pool control expected exactly one refusal. Implementation reports unreadable pool plus missing extra scene/World; fixture now requires at least one refusal and no extra call.",
+  "expected_failure": true
+}
