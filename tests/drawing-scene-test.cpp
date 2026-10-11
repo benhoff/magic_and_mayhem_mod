@@ -71,6 +71,31 @@ int main(int argc,char **argv)try{
         rejected([&]{scene.apply(bad);});rejected([&]{scene.presentGpu();});
     }
     require(renderer.stats().surfaces==0,"Journey publication or refusal cleanup leaked storage");
+    for(unsigned newCanvas:{7u,8u}){
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);world(scene);
+        scene.publish({scene.sequence(),1,7,5,3});
+        auto release=create(7);release.fields[2]=2;submit(scene,release);
+        auto allocated=create(newCanvas);allocated.fields[5]=6;allocated.fields[6]=4;submit(scene,allocated);
+        auto clear=fill(newCanvas,0x2468);clear.fields[12]=6;clear.fields[13]=4;submit(scene,clear);
+        auto next=entry();next.fields[3]=newCanvas;next.fields[5]=6;next.fields[6]=4;next.fields[14]=2;submit(scene,next);
+        auto draw=raster();draw.fields[3]=newCanvas;draw.fields[5]=6;draw.fields[6]=4;draw.fields[12]=6;draw.fields[13]=4;submit(scene,draw);
+        next.fields[2]=12;submit(scene,next);scene.publish({scene.sequence(),2,newCanvas,6,4});
+        const auto image=scene.read();
+        require(image.width==6&&image.height==4&&image.pixels.back()==0x2468&&scene.queues()==2&&scene.worldDraws()==2,"World destination/generation/extent transition lost native history or global counts");
+    }
+    {
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);world(scene);
+        scene.publish({scene.sequence(),1,7,5,3});submit(scene,create(8));submit(scene,fill(8,0x1357));
+        auto next=entry();next.fields[3]=8;next.fields[14]=2;submit(scene,next);
+        auto draw=raster();draw.fields[3]=8;submit(scene,draw);next.fields[2]=12;submit(scene,next);
+        scene.publish({scene.sequence(),2,8,5,3});
+        require(scene.read().pixels[0]==0x1357&&scene.queues()==2,"Switch to another fully owned canvas failed");
+    }
+    for(unsigned nextQueue:{1u,3u}){
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);world(scene);
+        auto next=entry();next.fields[14]=nextQueue;rejected([&]{submit(scene,next);});rejected([&]{scene.presentGpu();});
+    }
+    require(renderer.stats().surfaces==0,"World destination transition leaked storage");
     {
         legacy::DrawingScene scene(renderer,input,source);submit(scene,create(7));auto partial=fill(7,0);partial.fields[12]=1;submit(scene,partial);
         rejected([&]{submit(scene,entry());});rejected([&]{scene.seal({scene.sequence(),1,7,5,3});});rejected([&]{scene.presentGpu();});

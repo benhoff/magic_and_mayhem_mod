@@ -7,7 +7,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 563 |
-| evidence | 918 |
+| evidence | 920 |
 | scenarios | 272 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
@@ -26,7 +26,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 166 |
 | behaviors without comparison | 461 |
 | behaviors without tests | 1 |
-| stale evidence | 705 |
+| stale evidence | 707 |
 | behavior anchors outside discovered functions | 46 |
 | validation gaps | 708 |
 | retired execution claims | 373 |
@@ -380,7 +380,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | NR.glyph-default-launch | Public Qt launcher defaults guarded glyph takeover | native policy | scoped | scoped | none | headless | none | current_fingerprints |
 | NR.drawing-comparison-corpus | Portable independent surface and complete World canvas comparison corpus | native policy | scoped | scoped | none | headless | none | stale |
 | NR.drawing-scene | Complete bounded source-owned startup World and UI canvas composition | native policy | scoped | scoped | none | headless | none | stale |
-| NR.drawing-journey | Native ordered multi-frame publication with retained source-owned history | native policy | scoped | scoped | none | headless | none | current_fingerprints |
+| NR.drawing-journey | Native ordered multi-frame publication with retained source-owned history | native policy | scoped | scoped | none | headless | none | stale |
 
 ## Native World checklist
 
@@ -1466,6 +1466,8 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **NR.drawing-scene.retention-20261010**: `tools/retain-drawing-scene.py`
 - **NR.drawing-scene.native-20261010**: `compat/legacy/drawing_scene.cpp`, `compat/legacy/drawing_scene.hpp`, `compat/legacy/drawing_scene_main.cpp`, `research/runtime/draw03-native-scene.md`, `tests/../compat/legacy/drawing_scene.hpp`, `tests/drawing-scene-test.cpp`, `tools/check-drawing-scene.py`, `tools/drawing_scene_corpus.py`, `tools/retain-drawing-scene.py`
 - **NR.drawing-scene.native-reviewed-20261010**: `compat/legacy/drawing_scene.cpp`, `compat/legacy/drawing_scene.hpp`, `compat/legacy/drawing_scene_main.cpp`, `research/runtime/draw03-native-scene.md`, `tests/drawing-scene-test.cpp`, `tools/check-drawing-scene.py`, `tools/drawing_scene_corpus.py`, `tools/retain-drawing-scene.py`
+- **NR.drawing-scene.persistent-native-20261010**: `compat/legacy/drawing_scene.cpp`, `compat/legacy/drawing_scene.hpp`, `tests/drawing-scene-test.cpp`
+- **NR.drawing-journey.persistent-native-20261010**: `compat/legacy/drawing_scene.cpp`, `compat/legacy/drawing_scene.hpp`, `tests/drawing-scene-test.cpp`
 
 ## Checklist gaps
 

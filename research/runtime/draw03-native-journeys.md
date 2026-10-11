@@ -49,6 +49,21 @@ and command-level oracle separation. Simulated command outputs in the isolation
 test establish argument separation only; the separate native replay performs
 the actual pixel comparison.
 
+## Increment: World destination and generation changes
+
+The outer adapter validates global original queue ordinals independently of the
+private World resource generation. Releasing the World canvas, changing its ID
+or changing its extent creates a new owned World resource context. Native CPU
+canvas history stays authoritative; cumulative queue/raster identities survive.
+The new context uses the existing rolling World interface with a local ordinal.
+Repeated or skipped outer ordinals refuse and poison presentation.
+
+Native tests exercise release/recreation using the same ID, a new ID with a new
+extent, and switching to another fully defined canvas without releasing the old
+one. They check retained pixels, global counts and zero remaining surfaces.
+The original startup fixture still exercises only a single World destination;
+these tests do not establish original map-transition equivalence.
+
 ## Reproduce
 
 ```sh
@@ -74,8 +89,8 @@ Evidence IDs are `NR.drawing-scene.persistent-native-20261010` and
 
 This increment supports finite ordered frame publication. Full Quick Battle and
 campaign capture, enabled movie-to-canvas integration, physical presentation,
-camera/combat/alternate producers, picking and other consumer state, World
-destination/extent changes and recovery remain pending. It adds no live capture,
+camera/combat/alternate producers, picking and other consumer state, independent original World
+destination/extent transition comparison and recovery remain pending. It adds no live capture,
 continuous transport or original-body suppression. Complete DRAW-03 requires
 the full journeys above with independent pixels and required side effects;
 a passing startup-prefix comparison cannot satisfy that claim.

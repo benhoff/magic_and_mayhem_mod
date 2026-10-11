@@ -6,7 +6,7 @@
 namespace mnm::legacy {
 DrawingScene::DrawingScene(render::GlBlitter &renderer,const assets::AssetStore &store,
     std::function<std::vector<std::uint8_t>(const std::string &)> source)
-    :renderer_(renderer),replay_(std::move(source)),world_(renderer,store){}
+    :renderer_(renderer),store_(store),replay_(std::move(source)),world_(std::make_unique<CanvasWorld>(renderer,store)){}
 DrawingScene::~DrawingScene(){if(output_)renderer_.destroy(output_);}
 std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
     if(poisoned_||sealed_)throw std::runtime_error("Drawing scene is poisoned or sealed");
@@ -17,24 +17,46 @@ std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
            r[2]<1||r[2]>MNM_PRODUCER_PAYLOAD_SOURCE||r[23]||
            c.bytes().size()>128u*1024u*1024u-96||r[0]!=96+c.bytes().size()||r[18]!=c.bytes().size())
             throw std::invalid_argument("Drawing scene source sequence or record is invalid");
-        if(world_.active()&&r[2]!=MNM_PRODUCER_RASTER&&r[2]!=MNM_PRODUCER_CLIP&&
+        if(world_->active()&&r[2]!=MNM_PRODUCER_RASTER&&r[2]!=MNM_PRODUCER_CLIP&&
            r[2]!=MNM_PRODUCER_CHECKPOINT&&r[2]!=MNM_PRODUCER_QUEUE_RETURN&&r[2]!=MNM_PRODUCER_PAYLOAD_SOURCE)
             throw std::invalid_argument("Unadmitted producer inside native World scene");
-        if(r[2]==MNM_PRODUCER_QUEUE_RETURN&&(!world_.active()||r[3]!=world_.canvas()||r[14]!=world_.queue()))
+        if(r[2]==MNM_PRODUCER_QUEUE_RETURN&&(!world_->active()||r[3]!=world_->canvas()||r[14]!=activeQueue_))
             throw std::invalid_argument("Drawing scene World return identity changed");
         if(r[2]==MNM_PRODUCER_QUEUE_RETURN){
             const auto prior=replay_.read(r[3]);
             if(prior.width!=int(r[5])||prior.height!=int(r[6]))
                 throw std::invalid_argument("Drawing scene World return extent changed");
         }
+        if(r[2]==MNM_PRODUCER_QUEUE_ENTRY&&
+           (completedQueues_==std::numeric_limits<unsigned>::max()||r[14]!=completedQueues_+1))
+            throw std::invalid_argument("Drawing scene World sequence gap or exhaustion");
+        if(r[2]==MNM_PRODUCER_RASTER&&world_->active()&&worldDraws_==std::numeric_limits<std::uint64_t>::max())
+            throw std::invalid_argument("Drawing scene raster count exhausted");
         replay_.apply(c);
-        if(r[2]==MNM_PRODUCER_QUEUE_ENTRY)world_.begin(c,replay_.read(r[3]));
-        else if(world_.active()){
-            if(r[2]==MNM_PRODUCER_RASTER)world_.append(c);
-            else if((r[2]==MNM_PRODUCER_CHECKPOINT&&r[3]==world_.canvas())||r[2]==MNM_PRODUCER_QUEUE_RETURN){
-                replay_.commitNativeWorld(world_.canvas(),world_.complete(replay_.read(world_.canvas())));
-                if(r[2]==MNM_PRODUCER_QUEUE_RETURN)world_.end(c);
+        if(r[2]==MNM_PRODUCER_QUEUE_ENTRY){
+            if(world_->canvas()&&(world_->canvas()!=r[3]||worldWidth_!=r[5]||worldHeight_!=r[6])){
+                world_=std::make_unique<CanvasWorld>(renderer_,store_);worldSequence_=0;
             }
+            if(worldSequence_==std::numeric_limits<std::uint64_t>::max())
+                throw std::invalid_argument("Drawing scene World generation exhausted");
+            // CanvasWorld's rolling interface uses a local queue ordinal. The
+            // outer adapter retains and validates the original global identity.
+            auto normalized=c;normalized.fields[14]=1;
+            world_->beginRolling(normalized,replay_.read(r[3]),++worldSequence_);
+            activeQueue_=r[14];worldWidth_=r[5];worldHeight_=r[6];
+        }else if(world_->active()){
+            if(r[2]==MNM_PRODUCER_RASTER){world_->append(c);++worldDraws_;}
+            else if((r[2]==MNM_PRODUCER_CHECKPOINT&&r[3]==world_->canvas())||r[2]==MNM_PRODUCER_QUEUE_RETURN){
+                replay_.commitNativeWorld(world_->canvas(),world_->complete(replay_.read(world_->canvas())));
+                if(r[2]==MNM_PRODUCER_QUEUE_RETURN){
+                    auto normalized=c;normalized.fields[14]=1;world_->end(normalized);
+                    ++completedQueues_;activeQueue_=0;
+                }
+            }
+        }
+        if(r[2]==MNM_PRODUCER_RELEASE&&r[3]==world_->canvas()){
+            world_=std::make_unique<CanvasWorld>(renderer_,store_);worldSequence_=0;
+            worldWidth_=worldHeight_=0;
         }
         std::optional<DrawingCheckpoint> completed;
         if(r[2]==MNM_PRODUCER_CHECKPOINT){
@@ -51,7 +73,7 @@ std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
 void DrawingScene::publish(DrawingBoundary boundary){
     if(poisoned_||sealed_)throw std::runtime_error("Drawing scene is poisoned or sealed");
     try{
-        if(world_.active()||boundary.queues!=world_.completedQueues()||
+        if(world_->active()||boundary.queues!=completedQueues_||
            !boundary.sequence||boundary.sequence!=sequence_||boundary.sequence<=publishedSequence_||
            frames_==std::numeric_limits<unsigned>::max()||!boundary.canvas||!boundary.width||!boundary.height)
             throw std::invalid_argument("Incomplete declared drawing scene boundary");

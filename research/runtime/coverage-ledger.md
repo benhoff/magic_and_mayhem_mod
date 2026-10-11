@@ -4442,3 +4442,22 @@ journeys remain pending. Broad DRAW-03, continuous delivery and live replacement
 are not claimed. Committed f60ec65..3b6785a has a separate exact receipt-chain
 review with no accounting errors, retained in
 `coverage/draw03-history-f60ec65-3b6785a-20261010.json`.
+
+
+## DRAW-03 native World destination transitions (2026-10-10)
+
+The source-owned adapter now separates global original queue identity from its
+private World resource generation. Release/recreation, another destination ID
+and changed extents reset owned World resources without discarding native canvas
+history or cumulative queue/raster counts. Synthetic tests cover same-ID and new-ID
+recreation, switching between defined destinations, ordinal repetition/gaps and
+cleanup. Fresh startup comparisons match all17 full retained canvases (8,160,000 pixels)
+and six regression canvases (2,880,000 pixels), with zero differences; all17 frame
+publications also match. Native transition and portable guard tests pass. Reports
+`draw03-transitions-journey-comparison-20261010.json` and
+`draw03-transitions-scene-comparison-20261010.json` supply new evidence IDs; the previous results remain historical. Original destination/map-transition
+comparisons, full journeys and rendering consumer state remain pending.
+
+The exact committed range3b6785a..7127121 is reviewed separately in
+`coverage/draw03-history-3b6785a-7127121-20261010.json`; this accounts for parent/current
+receipt chains without claiming historical execution or a past gate pass.
