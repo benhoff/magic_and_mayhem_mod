@@ -23,7 +23,7 @@ void start(void){
  host[5]=14;host[6]=0;if(phase()!=0||lost!=3)ExitProcess(31);
  host[6]=1;if(phase()!=14||lost!=3)ExitProcess(32);
  host[5]=2;
- u32 callees[9]={(u32)pop0,(u32)pop4,(u32)pop8,(u32)pop12,(u32)pop20,(u32)pop24,(u32)pop8,(u32)tail8,(u32)pop16};
+ u32 callees[9]={(u32)pop0,(u32)pop4,(u32)pop8,(u32)pop12,(u32)pop20,(u32)pop24,(u32)pop0,(u32)tail8,(u32)pop16};
  for(u32 index=0;index<8;++index){
   u32 tag=index==7?8:index;
   used=sequence=serial=lost=active=io_failed=0;zero(frames,sizeof(frames));
@@ -44,6 +44,15 @@ void start(void){
  identical();if(lost||active||serial!=2||sequence!=4||GetLastError()!=1234)ExitProcess(26);
  u32* rows=(u32*)buffer;
  if(rows[3]!=7||rows[35]!=2||rows[67]!=2||rows[99]!=7)ExitProcess(27);
+ /* The real native binding writer records actual allocated bytes and the
+  * actual named leave export; synthetic prefixes are not original execution. */
+ module_base=(u32)GetModuleHandleA(0);
+ for(u32 i=0;i<CENSUS_HOOKS;++i){const struct Hook* h=hooks+i;u8* code=VirtualAlloc(0,h->length+5,0x3000,0x40);if(!code)ExitProcess(33);copy(code,h->bytes,h->length);
+  for(u32 j=0;j<h->relocs;++j){u32 at=h->reloc[j];*(u32*)(code+at+1)=h->address+at+5+*(i32*)(h->bytes+at+1)-(u32)code-at-5;}
+  code[h->length]=0xe9;*(u32*)(code+h->length+1)=h->address-(u32)code-5;census_trampolines[i]=(u32)code;
+ }
+ char directory[220];u32 n=GetEnvironmentVariableA("MNM_CORE_BINDINGS_TEST_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory)||!write_bindings(directory))ExitProcess(34);
+ census_trampolines[2]=(u32)pop8;
  /* Exhaustion forwards the original and records loss rather than guessing. */
  for(u32 i=0;i<2048;++i)frames[i].sp=i+1;
  SetLastError(1234);canvas_test_call((u32)hooks[2].entry,0x12340000,0xabcdef00,8,after);

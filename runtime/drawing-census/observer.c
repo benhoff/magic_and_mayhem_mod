@@ -1,6 +1,8 @@
 /* Opt-in call metadata only. Original arguments, results and work are forwarded. */
 #include "../shadow/win32_min.h"
 #include "../../protocols/include/mnm/drawing_census_v1.h"
+#include "../../protocols/include/mnm/drawing_census_bindings_v1.h"
+API void* WIN GetProcAddress(HANDLE,const char*);
 API u32 WIN GetCurrentThreadId(void);
 API u32 WIN GetTickCount(void);
 API void WIN Sleep(u32);
@@ -12,6 +14,7 @@ __declspec(dllexport) void census_leave(void);
 u32 census_trampolines[CENSUS_HOOKS];
 static struct Frame {u32 sp,thread,caller,tag,id,phase;} frames[2048];
 static HANDLE journal;
+static u32 module_base;
 static const volatile u32* control;
 static volatile u32 mutex;
 static u32 sequence,serial,lost,active,io_failed,used;
@@ -62,6 +65,22 @@ void census_leave_observe(u32* regs){
  ++lost;flush();unlock();ExitProcess(94);
 }
 static int path(char* out,const char* dir,const char* suffix){u32 at=0;while(dir[at]){if(at>=220)return 0;out[at]=dir[at];++at;}while(*suffix){if(at>=259)return 0;out[at++]=*suffix++;}out[at]=0;return 1;}
+static u32 image_size(u32 base){
+ if(!readable(base,64)||*(u16*)base!=0x5a4d)return 0;u32 offset=*(u32*)(base+60);
+ if(offset>4096-84||!readable(base+offset,84)||*(u32*)(base+offset)!=0x4550||*(u16*)(base+offset+24)!=0x10b)return 0;
+ u32 size=*(u32*)(base+offset+80);if(!size||base+size<base)return 0;return size;
+}
+static int write_binding(HANDLE file,const void* p,u32 n){u32 at=0;while(at<n){u32 done=0;if(!WriteFile(file,(const u8*)p+at,n-at,&done,0)||!done||done>n-at)return 0;at+=done;}return 1;}
+static int write_bindings(const char* directory){
+ char name[260];if(!path(name,directory,"\\core-bindings.bin"))return 0;
+ u32 header[32]={0};copy(header,MNM_DRAW_CENSUS_BINDINGS,8);header[2]=1;header[3]=128;header[4]=96;header[5]=CENSUS_HOOKS;header[6]=0x400000;header[7]=module_base;header[8]=image_size(module_base);header[9]=(u32)GetProcAddress((HANDLE)module_base,"census_leave");copy(header+16,original_sha256,32);
+ if(!header[8]||header[9]!=(u32)census_leave||header[9]<module_base||header[9]>=module_base+header[8])return 0;
+ HANDLE file=CreateFileA(name,0x40000000,1,0,1,0x80,0);if(file==(HANDLE)-1)return 0;int ok=write_binding(file,header,128);
+ for(u32 i=0;ok&&i<CENSUS_HOOKS;++i){const struct Hook* h=hooks+i;u32 row[24]={i,h->address,h->length,h->pop,h->site,census_trampolines[i],h->length+5,(u32)h->entry,h->relocs};
+  if(!readable(row[5],row[6])){ok=0;break;}copy(row+9,h->reloc,4*h->relocs);copy(row+12,h->bytes,h->length);copy(row+16,(void*)row[5],row[6]);ok=write_binding(file,row,96);
+ }
+ u32 end[16]={0};copy(end,MNM_DRAW_CENSUS_BINDINGS_END,8);end[2]=1;end[3]=CENSUS_HOOKS;if(ok)ok=write_binding(file,end,64);return CloseHandle(file)&&ok;
+}
 static int install(void){
  char directory[220],name[260];u32 n=GetEnvironmentVariableA("MNM_DRAW_CENSUS_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory)||(u32)GetModuleHandleA(0)!=0x400000)return 0;
  u32 a,b,c,d;__asm__ volatile("cpuid":"=a"(a),"=b"(b),"=c"(c),"=d"(d):"a"(1));if(!(d&(1u<<24)))return 0;
@@ -75,6 +94,7 @@ static int install(void){
   t[h->length]=0xe9;*(u32*)(t+h->length+1)=h->address+h->length-(u32)t-h->length-5;census_trampolines[i]=(u32)t;
   if(!FlushInstructionCache(GetCurrentProcess(),t,h->length+5))return 0;
  }
+ if(!write_bindings(directory))return 0;
  if(!path(name,directory,"\\census.bin"))return 0;journal=CreateFileA(name,0x40000000,1,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}
  u32 header[16]={0};copy(header,MNM_DRAW_CENSUS_MAGIC,8);header[2]=1;header[3]=64;header[4]=128;header[5]=(u32)GetModuleHandleA(0);header[6]=CENSUS_HOOKS;header[7]=MNM_DRAW_CENSUS_MAX_RECORDS;copy(header+8,original_sha256,32);if(!write(header,64))return 0;
  for(u32 i=0;i<CENSUS_HOOKS;++i){const struct Hook* h=hooks+i;u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;u8 bytes[16];zero(bytes,16);bytes[0]=0xe9;*(u32*)(bytes+1)=(u32)h->entry-h->address-5;for(u32 j=5;j<h->length;++j)bytes[j]=0x90;copy((void*)h->address,bytes,h->length);int flushed=FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);int protected=VirtualProtect((void*)h->address,h->length,old,&unused);if(!flushed||!protected)return 0;}
@@ -82,7 +102,7 @@ static int install(void){
 }
 __declspec(dllexport) void DrawingCensusAnchor(void){}
 int WIN DllMain(void* instance,u32 reason,void* reserved){
- (void)instance;(void)reserved;if(reason==1)return install();if(reason!=0)return 1;
+ (void)reserved;if(reason==1){module_base=(u32)instance;return install();}if(reason!=0)return 1;
  if(journal){/* Process detach cannot wait on a terminated worker. Busy means no valid terminal. */
  if(__sync_lock_test_and_set(&mutex,1)){CloseHandle(journal);journal=0;return 1;}flush();u32 end[16]={0};copy(end,MNM_DRAW_CENSUS_END,8);end[2]=1;end[3]=sequence;end[4]=serial;end[5]=lost;end[6]=active;end[7]=io_failed;if(!io_failed)write(end,64);CloseHandle(journal);journal=0;unlock();}if(control){UnmapViewOfFile((const void*)control);control=0;}return 1;
 }

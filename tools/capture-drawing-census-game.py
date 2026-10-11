@@ -15,6 +15,7 @@ import struct
 import subprocess
 import time
 from drawing_census import ROOT, trace
+from drawing_census_bindings import decode as core_bindings, physical as core_physical
 from drawing_api_journal import trace as api_trace
 from drawing_api_details import trace as api_detail_trace
 from drawing_api_resources import trace as api_resource_trace
@@ -45,6 +46,7 @@ def capture(root, template, journey, claims=None):
     source_paths = ['tools/capture-drawing-census-game.py', 'tools/drawing_census.py', 'tools/drawing-census-game-runner.py',
                     'tools/campaign_gameplay.py', 'tools/campaign_spell.py']
     source_paths += ['tools/drawing_api_cohorts.py']
+    if manifest.get('call_census_enabled',True):source_paths+=['tools/drawing_census_bindings.py']
     if manifest.get('api_observation_enabled', False): source_paths += ['tools/drawing_api_journal.py', 'tools/drawing_api_pairs.py', 'tools/drawing_api_details.py','tools/drawing_api_resources.py', 'tools/drawing_api_contracts.py','tools/drawing_api_surface_contracts.py','research/runtime/drawing-surface-api-layouts-20261011.json', 'tools/drawing_api_bindings.py']
     frozen_sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in source_paths}
     if declaration: frozen_sources.update(declaration['sources'])
@@ -384,11 +386,19 @@ def capture(root, template, journey, claims=None):
             (root / 'decoded.json').write_text(json.dumps(census, indent=2) + '\n')
             report.update(decoded_sha256=hashlib.sha256((root / 'decoded.json').read_bytes()).hexdigest(),
                           events=census['events'], calls=census['calls'])
+        if report['call_census_enabled']:
+            report['core_bindings']=core_bindings(root/'capture/core-bindings.bin',json.loads((root/'census-build.json').read_text()))
+            (root/'decoded-core-bindings.json').write_text(json.dumps(report['core_bindings'],indent=2)+'\n')
+            core_callers=sorted({r['caller'] for r in census['entry_counts']})
+            report['core_physical_caller_review']={'scope':'Exact per-run relocated E8 and named leave identities only; logical tail flow/original owners remain pending.','callers':[{'physical_caller':pc,'classification':core_physical(pc,report['core_bindings'])} for pc in core_callers]}
         if report['api_observation_enabled']:
             api_manifest = json.loads((root / 'api-build.json').read_text())
             if api_manifest.get('cohort','core_api')!=selected:raise RuntimeError('API manifest observation cohort mismatch')
             if api_manifest.get('synthetic_fixture',False):raise RuntimeError('Original journey cannot use synthetic API namespace')
             bindings = api_bindings(root / 'capture/api-bindings.bin', api_manifest)
+            if report['call_census_enabled']:
+                cb=report['core_bindings']
+                if bindings['modules']['core']!=cb['core_module'] or bindings['core_leave']!=cb['core_leave']:raise ValueError('Independent core/API per-run module/leave identities disagree')
             api = (api_detail_trace if api_manifest.get('journal_version')==2 else api_trace)(root / 'capture/api-calls.bin', api_manifest)
             if api_manifest.get('journal_version')==2:
                 report['api_resources']=api_resource_trace(root / 'capture/api-calls.bin',api_manifest)

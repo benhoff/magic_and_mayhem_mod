@@ -4814,3 +4814,11 @@ pass with503routes/zero unknowns and18completion obligations. This validates
 offline interpretation, not new original execution, dynamic ownership/pixels/
 lifetime or native graphics replacement; historical live sources remain stale.
 Committedd3cd04f..f30b3b6history has17file/45behavior exact receipts and no gaps.
+
+DRAW-01 now has exact per-run core allocation binding metadata alongside its
+unchanged entry/return journal. Byte-checked relocation and continuation mapping
+separates exact relocated E8 return PCs from E9 transfers, module membership and
+unresolved logical callers. Thirteen offline guards and the actual PE32 binding
+writer/decoder plus existing ABI checks pass. Prepared maps do not establish
+installed hooks, complete callers/writers, resource lifetimes or scenario/dispatch
+closure; the 14 scenario reviews and four dispatch gates remain pending.

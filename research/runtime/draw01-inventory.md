@@ -722,3 +722,38 @@ unchanged; current guards validate their interpretation and exact route binding.
 Historyd3cd04f..f30b3b6has17file/45behavior exact receipts and no missing versions.
 Retrospective accounting asserts no past gate pass or new graphics validation.
 The branch remains isolated from the shared worktree.
+
+## Exact core allocation bindings, 2026-10-11
+
+The observation DLL now writes a separate `core-bindings.bin` before patching
+any original entry. Its versioned 128-byte header, 96-byte rows and 64-byte
+terminal preserve the actual core module bounds, named `census_leave`, entry
+stubs, each prepared allocation, original prefix, relocated prefix and final
+continuation bytes. The existing 128-byte call journal is unchanged. Partial
+maps are refused; a complete map proves preparation, not installation.
+
+`tools/drawing_census_bindings.py` independently reconstructs every relocation
+and continuation and refuses mismatched build, tags, RET/SITE declarations,
+bytes, padding, extents, overlapping allocations or duplicate stub identities.
+Only a recorded relocated E8's exact physical return maps to its original CALL,
+return PC and target. E9 transfers, other allocation/module addresses and the
+named leave remain diagnostic; logical tail attribution still requires separate
+thread/stack/flow review. Existing journals without the sidecar retain their
+original limitations.
+
+Thirteen offline mutation guards pass. A fresh synthetic PE32 fixture executes
+the actual writer and decoder across nine prepared allocations, including an
+E8 and an E9; the E9 acquires no CALL identity. The existing register, selected
+flags, x87/SSE, LastError, 0–24-byte cleanup, same-stack tail, phase and exhaustion
+checks also pass. Synthetic prefixes are not original game execution.
+
+The original menu cohort `run-t3mn_i6s` independently closes 42,021 pairs across
+84,042 events with no unassigned phase, loss, open calls or IO failure. All 83
+safe prepared allocations pass exact byte reconstruction; the existing unsafe
+fade remains refused. The original exits0 with stable sources, staged binaries
+and metadata; both immutable-input manifest checks pass. Of 109 distinct observed
+physical callers, one is an exact relocated E8 return. That identity is available
+for further call-flow review; the other addresses do not acquire instrumentation
+or logical owner classifications. Raw artifacts and exact staged binaries are
+retained; only the stopped private installation/prefix was removed. This adds
+no scenario or dispatch closure.
