@@ -213,3 +213,46 @@ unrelated/generated inputs are excluded and missing linked object/archive
 receipts refuse. New durable result `public-resident-linked-provenance-fixtures-20261011.json`
 is source bound; the earlier negative is preserved separately. New validation
 metadata does not promote engine gameplay or original equivalence.
+
+## Forward distortion crossing a physical row
+
+After the shadow fix, ordinary Titan gameplay reaches268verified Worlds at
+19.7216aggregateFPS and then refuses displacement geometry. Captured gen269
+request980 has61x47geometry,origin(31,31),anchor(764,456),effective16row offsets,
+strict unprojected right794,nominal sampled right810.551covered samples include
+10whose logical source x crosses800 (maximum803). This is a genuine linear
+source read into the next physical row, rather than transparent padding.
+
+The pinned original entries596490/5968a4 load DWORD[edi+offset*2] and store its
+lowWORD without checking row x; destination advances by the physical stride.
+`RS.displacement-linear-stride` owns this selected branch. Initial independent
+unmodified execution matches an analytical linear model for both leaves and
+960000canvas words, with10wrapped samples. Historical discovery report retains
+its exact source hashes. Native CPU uses the same linear index; GPU freezes the
+needed row span, then maps each linear source address to texture(x,y). Ordinary
+within-row snapshots stay cropped. No delivery readback or original pixels seed
+the independently generated native gradient.
+
+Native offsets remain0..16 and every source envelope stays inside owned storage.
+Past-allocation envelopes, padded/non-tight native storage, negative shifts,
+complete original ABI/state and original out-of-allocation behavior remain
+excluded. Current-code original/native comparison and public gameplay proof are
+separate pending milestones.
+
+Fresh `public-displacement-linear-comparison-20261011.json` compares both
+unmodified original leaves with the analytical tight-stride model, then native
+CPU and both GPU backends.960000canvas words match, with551covered/10wrapped
+samples, zero delivery readbacks, two atomic scene/one CPU allocation refusals,
+19existing atomic refusals and the canvas regression. Sources/inputs remain
+unchanged and both executables are hashed. Only the new scoped behavior's
+comparison status is recorded; public integration/replacement and whole
+original failure/state equivalence remain pending.
+
+Full current owned fixtures pass in `public-resident-linear-full-fixtures-20261011.json`.
+The ordinary Titan follow-up passes326Worlds then refuses genuine covered
+projected-shadow overflow;17.2778aggregateFPS fails19, with zero World/native/
+RGBA delivery readbacks. `public-resident-linear-pass-shadow-write-failure-20261011.json`
+preserves this negative. Next work must investigate original shadow destination
+stride semantics before extending native admission, then profile sustained
+gameplay. No public integration/replacement promotion. The committed
+b1f4ff1..884d263 audit reviews22exact file versions and finds no receipt gaps.

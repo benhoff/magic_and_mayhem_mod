@@ -395,15 +395,17 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
         known(s.defined, slot(s.image, int(dx), int(dy)));
         if (mode == 3) {
           const int shift = offsets[unsigned(dy) % period];
-          if (shift < 0 || shift > 16 || dx + shift >= s.image.width)
+          const auto sample=std::uint64_t(dy)*s.image.width+dx+shift;
+          if (shift < 0 || shift > 16 || sample>=s.image.pixels.size())
             throw std::invalid_argument("Producer displacement sample outside owned canvas");
-          known(s.defined, slot(s.image, int(dx) + shift, int(dy)));
+          known(s.defined, sample);
         }
       }
   }
   // Blends sample only their own destination. Displacement offsets are admitted
   // only in [0,16], so this left-to-right traversal samples the current pixel or
-  // a pixel not yet written in this row. Both preserve pre-draw sample semantics
+  // a later linear pixel, including the next physical row at the right edge.
+  // Both preserve pre-draw sample semantics
   // without cloning the entire image/defined mask for each sprite.
   for (unsigned j = 0; j < f.height; ++j)
     for (unsigned i = 0; i < f.width; ++i) {
@@ -436,10 +438,10 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
           colour = half + ((half >> 1) & m) + ((d >> 2) & (m >> 1) & m);
         } else {
           const int shift = offsets.at(unsigned(dy) % period);
-          if (shift < 0 || shift > 16 || dx + shift >= s.image.width)
+          const auto sample=std::uint64_t(dy)*s.image.width+dx+shift;
+          if (shift < 0 || shift > 16 || sample>=s.image.pixels.size())
             throw std::invalid_argument(
                 "Producer displacement sample outside owned canvas");
-          const auto sample = slot(s.image, int(dx) + shift, int(dy));
           known(s.defined, sample);
           colour = s.image.pixels[sample];
         }
