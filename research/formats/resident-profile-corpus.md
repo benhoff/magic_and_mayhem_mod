@@ -28,3 +28,24 @@ perturbs the live diagnostic run. File hashing streams bounded chunks.
 
 Confidence: confirmed by the native writer/reader implementation; fresh complete
 capture and hardware replay execution remain pending.
+
+## Compressed version 2
+
+The bounded background writer emits `MNMPROF2`. A record begins with the same
+16-byte generation/source/request header, followed by uint32 compressed length
+at offset16, then a Qt `qCompress(...,1)` byte array at offset20. That array starts
+with its four-byte **big-endian** uncompressed length and a zlib member encoding
+source bytes followed by request bytes. This prefix must exactly match the checked
+source/request sum before inflation. Compressed size is bounded by that sum plus
+integer(sum/1000)+128. Expansion limits output to checked length+1 and requires
+exact output length, zlib EOF and no trailing/unused compressed bytes. Corrupt
+lengths, payloads and trailing members refuse.
+
+The writer admits at most8192 Worlds,16GiB raw bytes and16GiB stored bytes, with
+a256MiB pending raw-byte queue; compression scratch is additional bounded
+per-record storage. Saturation/failure marks truncation/error without blocking
+gameplay on disk I/O. Only completed retirement and matching accepted/written
+generation counts permit `capture_complete`. V1 describes the retained initial
+failed synchronous experiment and the normalized benchmark input. V2 is expanded
+once, outside benchmark timing, into a new V1 file whose exact hash is retained.
+Current compressed writer/reader execution is pending.

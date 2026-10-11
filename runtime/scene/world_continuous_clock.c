@@ -9,19 +9,37 @@ API void *WIN GetProcAddress(HANDLE, const char *);
 #undef PACER_FIRST_YIELD
 #undef MNM_PACER_POLICY_TEST
 static u32 continuous_pacer_start,continuous_pacer_end,continuous_pacer_mask;
+/* Versioned original-process callback from the public render clock owner.
+ * No extra clock/API calls, mapping access, heap, host pointers or pixel work. */
+__declspec(dllexport) void WIN ScenePacerObservationV1(u32 caller,u32 tick){
+  if(caller==0x4e3f59){continuous_pacer_start=tick;continuous_pacer_mask=1;}
+  else if(caller==0x4e3f97&&continuous_pacer_mask==1){continuous_pacer_end=tick;continuous_pacer_mask=3;}
+}
 static u32 WIN continuous_clock_read(void) {
   u32 caller=(u32)__builtin_return_address(0),tick=pacer_read(0,0);
   /* Record the existing wait's actual entry/commit calls; the returned clock
    * and original comparison target are unchanged. No extra clock call. */
-  if(caller==0x4e3f59){continuous_pacer_start=tick;continuous_pacer_mask=1;}
-  else if(caller==0x4e3f97&&continuous_pacer_mask==1){continuous_pacer_end=tick;continuous_pacer_mask=3;}
+  ScenePacerObservationV1(caller,tick);
   return tick;
 }
 static int continuous_clock_install(void) {
   char option[2];
   u32 n = GetEnvironmentVariableA("MNM_CONTINUOUS_PRECISE_CLOCK", option, 2);
-  if (!n)
-    return 1;
+  if (!n){
+    /* Public render owns the IAT hook. Match its configured fine clock for
+     * diagnostic slot timestamps without installing a second hook. */
+    u32 observe=GetEnvironmentVariableA("MNM_RENDER_PACER_OBSERVE",option,2);
+    if(!observe)return 1;
+    if(observe!=1||option[0]!='1'||!continuous_public_bind)return 0;
+    u32 fine_mode=GetEnvironmentVariableA("MNM_RENDER_PRECISE_CLOCK",option,2);
+    if(!fine_mode)return 1;
+    if(fine_mode!=1||option[0]!='1')return 0;
+    HANDLE kernel=GetModuleHandleA("kernel32.dll"),winmm=GetModuleHandleA("winmm.dll");
+    PacerTickFn original=(PacerTickFn)GetProcAddress(kernel,"GetTickCount");
+    PacerTickFn fine=winmm?(PacerTickFn)GetProcAddress(winmm,"timeGetTime"):0;
+    if(!original||!fine||!precise_clock_epoch_matches(original(),fine()))return 0;
+    pacer_original_tick=original;pacer_precise_tick=fine;return 1;
+  }
   if (n != 1 || option[0] != '1')
     return 0;
   u32 *slot = (u32 *)0x5c5164;

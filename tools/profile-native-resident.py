@@ -51,15 +51,20 @@ def main():
                                     pid=int(entry.name);report['cpu_sample']=dict(pid=pid,shell_sha256=sha(exe),input_seconds=state['seconds'],actions=state.get('actions',[])[-2:]);break
                             if pid:break
                 time.sleep(1)
-            if not pid:raise RuntimeError('No owned native shell at physical gameplay sampling window')
-            perf=['perf','record','-q','-e','cpu-clock:u','-F','99','-g','--call-graph','dwarf,16384',
-                  '-p',str(pid),'-o',str(out/'perf.data'),'--','sleep','30']
-            report['cpu_sample']['command']=perf
-            with (out/'perf.log').open('x') as log:subprocess.run(perf,stdout=log,stderr=subprocess.STDOUT,timeout=60,check=True)
-            for name,extra in [('flat',['--no-children']),('inclusive',['--children'])]:
-                with (out/(name+'.txt')).open('x') as log:
-                    subprocess.run(['perf','report','--stdio','--sort','symbol','-i',str(out/'perf.data'),*extra],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=60)
-            report['cpu_sample']['artifacts']={name:sha(out/name) for name in ['perf.data','flat.txt','inclusive.txt','perf.log']}
+            if not pid:report['cpu_sample']={'error':'No owned native shell at physical gameplay sampling window','exit_code':None}
+            else:
+                perf=['perf','record','-q','-e','cpu-clock:u','-F','99','-g','--call-graph','dwarf,16384',
+                      '-p',str(pid),'-o',str(out/'perf.data'),'--','sleep','30']
+                report['cpu_sample']['command']=perf
+                # Isolate the sampler's signal group and retain campaign cleanup
+                # even if the sampled process exits before the30-second window.
+                with (out/'perf.log').open('x') as log:sample=subprocess.run(perf,stdout=log,stderr=subprocess.STDOUT,timeout=60,start_new_session=True)
+                report['cpu_sample']['exit_code']=sample.returncode
+                if sample.returncode==0:
+                    for name,extra in [('flat',['--no-children']),('inclusive',['--children'])]:
+                        with (out/(name+'.txt')).open('x') as log:
+                            subprocess.run(['perf','report','--stdio','--sort','symbol','-i',str(out/'perf.data'),*extra],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=60)
+                    report['cpu_sample']['artifacts']={name:sha(out/name) for name in ['perf.data','flat.txt','inclusive.txt','perf.log']}
         report['campaign_exit_code']=child.wait(timeout=660)
         if not campaign:
             campaign=next(Path(t.partition(': ')[2]) for t in (out/'campaign.log').read_text().splitlines() if t.startswith('Campaign test evidence: '))
@@ -69,7 +74,8 @@ def main():
         report['hardware_driver']=game.get('hardware_driver');report['resident_capture']=game.get('resident_capture')
         stages=report['resident_world'].get('stage_profile',{});report['summary']=summarize(stages.get('samples',[]))
         report['sources_stable']=all(sha(ROOT/n)==h for n,h in report['sources'].items())
-        report['success']=bool(game['success'] and report['sources_stable'] and stages.get('samples') and not stages['samples_dropped'] and not stages['gpu_queries_dropped'])
+        report['success']=bool(game['success'] and report['sources_stable'] and stages.get('samples') and not stages['samples_dropped'] and not stages['gpu_queries_dropped'] and
+                               (not args.cpu_sample or report.get('cpu_sample',{}).get('exit_code')==0) and (not args.capture or stages.get('capture_complete')))
         if not report['success']:report['error']='Profile did not complete every required diagnostic/gameplay check; original campaign failure retained without relaxing FPS gates'
     except (OSError,RuntimeError,subprocess.SubprocessError,StopIteration,KeyError,ValueError) as error:
         report['error']=str(error)

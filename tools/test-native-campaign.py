@@ -455,7 +455,7 @@ def main():
     if args.resident_world:
         env['MNM_PUBLIC_RESIDENT_WORLD']='1'
         env['MNM_RESIDENT_POLL_TIMING']='1'
-    if args.profile_resident:env['MNM_RESIDENT_STAGE_PROFILE']='1'
+    if args.profile_resident:env.update(MNM_RESIDENT_STAGE_PROFILE='1',MNM_RENDER_PACER_OBSERVE='1')
     if args.capture_resident:env['MNM_RESIDENT_PROFILE_CAPTURE']=str(out/'resident-source.bin')
     if args.legacy_directdraw:env['MNM_NATIVE_DRAW']='0'
     elif explicit_native_draw:env['MNM_NATIVE_DRAW']='1'

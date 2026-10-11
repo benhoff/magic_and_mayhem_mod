@@ -7,7 +7,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
-from profile_native_resident_helpers import sha, summarize
+from profile_native_resident_helpers import sha, summarize, normalize_capture
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -45,6 +45,9 @@ def main():
             inputs[n]=digest
         report['inputs']=inputs;report['corpus']=dict(path=str(corpus),worlds=stage['captured_worlds'],bytes=corpus.stat().st_size,
                 campaign_success=game['success'],campaign_error=game.get('error'),casting_verified=game['casting_verified'],combat_verified=game['combat_verified'],movement_verified=game['movement_verified'],normal_quit_verified=game['normal_quit_verified'])
+        normalized=out/'resident-source-v1.bin';report['normalization']=normalize_capture(corpus,normalized)
+        if report['normalization']['worlds']!=stage['captured_worlds']:raise ValueError('Normalized capture lost Worlds')
+        inputs[str(normalized)]=sha(normalized)
         frozen=out/'source'
         tracked=subprocess.check_output(['git','ls-files','-z'],cwd=ROOT).decode().split('\0')
         configured={n for n in tracked if n and n.split('/')[0] not in ('original','working','research') and
@@ -67,7 +70,7 @@ def main():
         run('gpu-timing-fixture',[build/'mnm-gpu-timing-fixture'],timeout=30);report['gpu_fixture']=json.loads((out/'gpu-timing-fixture.log').read_text().splitlines()[-1])
         native={};digests=[]
         for mode,repeats in [('timestamps',1),('throughput',args.repeats)]:
-            run(mode,[build/'mnm-resident-profile',corpus,assets,mode,repeats,out/(mode+'.json')],timeout=1800)
+            run(mode,[build/'mnm-resident-profile',normalized,assets,mode,repeats,out/(mode+'.json')],timeout=1800)
             result=json.loads((out/(mode+'.json')).read_text());native[mode]=result
             for trial in result['runs']:
                 if trial['worlds']!=stage['captured_worlds']:raise ValueError('Resident replay dropped World inputs')

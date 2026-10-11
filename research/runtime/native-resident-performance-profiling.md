@@ -46,7 +46,7 @@ python3 tools/benchmark-native-resident.py --campaign <campaign-evidence-directo
 The first probe uses a private accelerated TITAN display and the existing physical
 native campaign casting/combat, Fireball/refusal, movement, portrait, Mini Cancel
 and normal Quit journey. It preserves the 19 FPS gates. Optional 99 Hz user-space
-CPU stacks sample 30 seconds after 40 seconds of physical gameplay. Source capture,
+CPU stacks sample 30 seconds after 40 seconds of physical gameplay. Capture enqueue/compression work,
 timestamps, growing report writes and sampling perturb this run; it cannot replace
 an uninstrumented performance proof. Prospective behavior/scenario source claims
 precede launch. Preserve failed probes without relaxing their admission gates.
@@ -91,3 +91,45 @@ identity/exception/nesting refusals, deletion of pending queries on destruction,
 short payload) refuse without publishing a success report. Profiling tools and
 the public native shell build successfully. These are synthetic controls; full
 public shared-context observation and representative throughput remain pending.
+
+## Diagnostic failure and bounded capture repair
+
+The first raw synchronous capture probe is preserved as
+`resident-profile-synchronous-capture-negative-20261011.json`. Its smoke reported
+native fallback after multi-second host poll gaps; a retained individual capture
+write took946.324452 ms while the corresponding native consume took21.931336 ms.
+Other command/poll stalls remain unattributed. Sampling was terminated and the
+wrapper interrupted campaign cleanup; the owned display/Wine session was then
+independently stopped and original media reverified. This is a failed diagnostic,
+not a rendering throughput result or completed gameplay corpus.
+
+The replacement capture service copies immutable source/request bytes into a
+256MiB raw-byte queue. A worker owns compression and file writes, with no widget,
+GL context, original pointer or channel mapping access. Queue/file/generation
+failures make the capture incomplete while gameplay continues. Retirement drains
+the worker after native gameplay has ended. The compressed V2 corpus is normalized
+exactly once into bounded V1 outside all benchmark timing. This keeps compression
+and expansion work separate from measured render-path throughput. CPU sampling
+runs in its own signal group; sampler failure is recorded before awaiting normal
+campaign cleanup, preserving its report.
+
+Public clock ownership previously left all pacing masks unobserved. The guarded
+render IAT owner now optionally calls `ScenePacerObservationV1(uint32 caller,
+uint32 tick)` with stdcall32 at return PCs0x4e3f59/0x4e3f97 only. Admission checks
+the existing import/load/wait loop plus both original call-site byte anchors and
+the loaded versioned scene export. The callback only updates process-owned
+integers; it does not call a clock, API, host or renderer. Its caller preserves
+LastError. The scene diagnostic clock uses the same configured real WinMM uptime
+when appropriate, without installing a second IAT hook. Missing/partial masks
+remain unobserved; no universal20Hz simulation policy is inferred. Fresh source
+acquire timings also separate channel copying/hash validation from decode/handoff.
+New capture, callback and complete public performance execution remain pending.
+
+`resident-profile-worker-fixtures-20261011.json` proves four byte-exact Qt/Python
+compressed records, five queue/generation/extent/NewOnly controls and11 malformed
+compressed inputs (including hostile expansion lengths and trailing streams).
+Clock forwarding passes33 mutated byte guards and exact original clock/LastError
+values with two paired callbacks and no extra clock calls. Current shared import
+passes65,536 words, two HUD/copy comparisons and zero ordinary readbacks; native
+Quit acknowledges/retirement/refusal/idempotence cases pass. Full original public
+callback activation, fresh gameplay CPU stacks and throughput remain pending.

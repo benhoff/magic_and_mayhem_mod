@@ -21,3 +21,7 @@ target_compile_options(mnm-resident-profile PRIVATE -Wall -Wextra -Werror -pedan
 add_executable(mnm-gpu-timing-fixture "${MNM_REPO_ROOT}/tests/render-gpu-timing-test.cpp")
 target_link_libraries(mnm-gpu-timing-fixture PRIVATE mnm-renderer)
 target_compile_options(mnm-gpu-timing-fixture PRIVATE -Wall -Wextra -Werror -pedantic)
+find_package(Threads REQUIRED)
+add_executable(mnm-resident-capture-fixture "${MNM_REPO_ROOT}/tests/resident-profile-capture-test.cpp" "${MNM_REPO_ROOT}/apps/qt-shell/resident_profile_capture.cpp")
+target_link_libraries(mnm-resident-capture-fixture PRIVATE Qt6::Core Threads::Threads)
+target_compile_options(mnm-resident-capture-fixture PRIVATE -Wall -Wextra -Werror -pedantic)
