@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources_stable": true,
+  "sources": {
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-callers-dispatch-expanded-20261010.json": "e59d85a6d0ef4ea1f3af29724a10a5e7f7f8ce0e3a544e4dfcac256bf6b535d3",
+    "research/runtime/drawing-callers-expanded-20261010.json": "c0d173ff5c726fcd22ebd47e9d423f421842cd3cc2fe3c06e836e2af3a6c0bba",
+    "research/runtime/drawing-census-campaign-observation-20261010.json": "780cb390236f0973ab3717fe381321dfd1e3fc9de6671fbb8382415ad5489a41",
+    "research/runtime/drawing-inventory.json": "2c3293c7494890bf4830051081fc9d5082dac47d4f73fa07273adf169bb77774",
+    "research/runtime/fade-writer-live-comparison-20261010.json": "328af98fcf9fc0ceae485b7e049f266df3aa551ae5adcff423e568798ba7b8d4",
+    "research/runtime/glyph-live-comparison-20261010.json": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+    "research/runtime/native-canvas-producers-final-shadow-20261010.json": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+    "research/runtime/native-canvas-producers-live-20261008.json": "f725d774af13ca489b4483cecc03fb3056198eb2acd3876b5c8a738777c20c8a",
+    "research/runtime/native-enabled-movie-startup-20261010.json": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+    "research/runtime/native-minimap-interactive-20261010.json": "ee972c4154eb1b96db98207f738c56c9c4e6f7987573492f72330b30494dd3f0",
+    "research/runtime/native-world-raster-batch-prefix16-replacement-v7-20261008.json": "a719e427ef2f6c61617511d647f6789eee3181572835b9ad8ef16381135d2204",
+    "research/runtime/render-path-inventory-static-final.json": "01d30a9574fef5a02d0195ae354e6ca1e1f600cff5c33079788f6f778762777a",
+    "runtime/canvas-writers/bridge.c": "0d4d243f016509767bdc6d89381a57d4b7c75cc1fda7996b0b828f2025044c45",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "tests/test-drawing-inventory.py": "c26039c26ccd604bdc5155b7ef03f937baec614382c7375d26a6e5fa24732e57",
+    "tools/coverage_audit.py": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/drawing_census.py": "f4a4977e4b7ce633ffad69608e38cec0fed7ff8f6b391bba71e576d14c4ba6a0",
+    "tools/drawing_inventory.py": "626ebf119f06bdbf54a33baf1985f2c60d39e455809a473415811bee4caa0cf9",
+    "tools/rendering_coverage.py": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+    "tools/report-drawing-inventory.py": "f227bc6f4c2665e65a8be76d0feb093f131f232e849ed891642076cb38ba081c"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-inventory",
+      "contract_sha256": "64ba4699deb253c859d5966179a257f3f93e57581d2784b3cf4e5301cf5bac7e",
+      "scenarios": {}
+    }
+  ],
+  "guard_tests": 37,
+  "accounting_counts": {
+    "routes": 107,
+    "static_windows": 24,
+    "instrumented_entries": 52,
+    "additional_interior_hooks": 1,
+    "metadata_instrumented_entries": 67,
+    "metadata_refused_entries": 1,
+    "required_scenarios": 14,
+    "unaccounted": 0
+  },
+  "completion_blockers": [
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "enabled-movies",
+      "detail": "Only two intros observed; remaining controls/placement, screen return routes and complete caller census pending."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "main-setup-menus",
+      "detail": "Automatic Quick Battle startup samples selected producers; manual menus, alternate controls and all DC/Lock callers need a closed census."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "campaign-entry",
+      "detail": "Native campaign smoke proves a bounded host journey, not a complete producer/caller census."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "quick-battle-entry",
+      "detail": "Selected complete producer journals and raw queues exist; unclassified callers/indirect flows and other maps/configurations remain."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "active-world",
+      "detail": "Only finite startup raster prefixes; sustained active-battle producer/caller census remains pending."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "camera-motion",
+      "detail": "Finite minimap motion covers four views and pan; broader world/camera producer/caller census remains pending."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "creatures-effects",
+      "detail": "Selected effect contracts and startup rasters do not attribute every active battle/effect-to-pixel route."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "hud-minimap-tooltips",
+      "detail": "Selected startup HUD/minimap counts exist; complete tooltip/HUD updates and semantic caller attribution remain pending."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "cursor-interaction",
+      "detail": "Cursor assets/startup image writers are known; interactive cursor/picking producer and side-effect census remains pending."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "pause-preferences",
+      "detail": "Separate menu/preferences contracts exist; drawing routes during pause/display changes need a closed census."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "save-load",
+      "detail": "Drawing-route/caller traces across save/load remain pending."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "map-transitions",
+      "detail": "Startup loading is observed; later map/buffer transitions need a closed producer/lifecycle census."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "battle-results",
+      "detail": "Result-screen drawing route/caller census remains pending."
+    },
+    {
+      "kind": "scenario_census_pending",
+      "scenario": "shutdown",
+      "detail": "Separate lifecycle tests exist; original render cleanup/caller/borrowed-access census remains pending."
+    },
+    {
+      "kind": "incomplete_dispatch",
+      "table": "RI.queue-draw-00501184"
+    },
+    {
+      "kind": "incomplete_dispatch",
+      "table": "RI.queue-draw-00501210"
+    },
+    {
+      "kind": "incomplete_dispatch",
+      "table": "RI.queue-draw-0050129c"
+    },
+    {
+      "kind": "incomplete_dispatch",
+      "table": "world-complete-raster-admission-20261008"
+    }
+  ],
+  "draw01_complete": false,
+  "scope": "Metadata entry-phase projection and recorded67hook/1refusal cohort accounting, with37 inventory guards. Historical observations remain historical; no original rendering execution or scenario closure."
+}

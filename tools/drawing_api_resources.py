@@ -1,0 +1,137 @@
+"""Bounded client lease accounting from an independently closed V2 journal."""
+from collections import Counter
+import hashlib
+import struct
+from drawing_api_details import trace as detail_trace
+
+
+class Resources:
+    def __init__(self):
+        self.leases={};self.intervals=[];self.outputs=[];self.releases=[];self.gaps=[];self.calls=Counter()
+        self.interfaces={};self.aliases=[];self.generation=0;self.candidates=Counter()
+
+    def gap(self,call,reason):
+        self.gaps.append({'call_id':call['call_id'],'site':call['site'],'reason':reason})
+
+    def pointer(self,call,name):
+        slots=[s for s in call['snapshots'] if s['event']==2 and s['name']==name and s['state']==1 and len(s['data'])==8]
+        return int.from_bytes(bytes.fromhex(slots[0]['data']),'little') if len(slots)==1 else 0
+
+    def identify(self,call):
+        """Track client output/query identity; never infer external liveness."""
+        method=call['method'];receiver=call['receiver'];node=self.interfaces.get(receiver)
+        table=call.get('vtable',0)
+        if node and table:
+            if node['vtable'] and node['vtable']!=table:
+                self.gap(call,'Known interface pointer now has a different observed vtable; candidate identity invalidated')
+                self.interfaces.pop(receiver);node=None
+            else:node['vtable']=table
+        if call['eax']!=0:return
+        if method=='IDirectDraw2.CreateSurface':
+            pointer=self.pointer(call,'surface pointer output')
+            if pointer:
+                previous=self.interfaces.get(pointer)
+                if previous:
+                    root,generation=previous['root'],previous['generation']
+                    for address in [a for a,n in self.interfaces.items() if (n['root'],n['generation'])==(root,generation)]:self.interfaces.pop(address)
+                    if any(k[:2]==(root,generation) for k in self.leases):self.gap(call,'CreateSurface reuses an interface pointer with an unresolved previous-generation borrow')
+                self.generation+=1
+                self.interfaces[pointer]={'kind':'Surface','root':pointer,'generation':self.generation,'vtable':0,'terminal_release_seen':False,'origin_call':call['call_id']}
+        elif method=='IDirectDrawStreamSample.GetSurface':
+            pointer=self.pointer(call,'surface pointer output')
+            if pointer and pointer not in self.interfaces:
+                self.generation+=1;self.interfaces[pointer]={'kind':'Surface','root':pointer,'generation':self.generation,'vtable':0,'terminal_release_seen':False,'origin_call':call['call_id']}
+        elif method=='IUnknown.QueryInterface':
+            # PE32 IID_IDirectDrawSurface2 bytes from the pinned primary SDK.
+            purpose=[s for s in call['snapshots'] if s['event']==1 and s['name']=='IID input' and s['state']==1]
+            pointer=self.pointer(call,'interface pointer output')
+            if pointer and len(purpose)==1 and purpose[0]['data']=='85588057ec6ecf119441a82303c10e27':
+                if node and node['kind'] in ('Surface','Surface2') and not node['terminal_release_seen']:
+                    self.interfaces[pointer]={'kind':'Surface2','root':node['root'],'generation':node['generation'],'vtable':table if pointer==receiver else 0,'terminal_release_seen':False,'origin_call':call['call_id']}
+                    self.aliases.append({'call_id':call['call_id'],'source_interface':receiver,'output_interface':pointer,'root':node['root'],'generation':node['generation'],'scope':'Successful exact Surface2 query joins these client identities; no external reference count, destruction or pointer stability inferred'})
+                else:
+                    self.generation+=1;self.interfaces[pointer]={'kind':'Surface2','root':pointer,'generation':self.generation,'vtable':0,'terminal_release_seen':False,'origin_call':call['call_id']}
+                    self.gap(call,'Surface2 query output has an unobserved source surface origin; no source/output alias assigned')
+
+    def observe(self,call):
+        """Completed, already wire-validated call; output snapshots remain raw."""
+        method=call['method'];receiver=call['receiver'];args=call['args'];result=call['eax']
+        if method=='unreviewed' and call.get('displacement')==128:
+            node=self.interfaces.get(receiver)
+            if (not call['arguments_read'] or not args or receiver!=args[0] or not node
+                    or node['kind'] not in ('Surface','Surface2') or node['terminal_release_seen']
+                    or not node['vtable'] or node['vtable']!=call.get('vtable') or call.get('cleanup')!=8):
+                self.candidates['unassigned']+=1
+                self.gap(call,'Offset128 candidate lacks current recorded client output/query identity, exact prior vtable or8byte cleanup; method/borrow remains unassigned')
+                self.calls[method]+=1;return
+            method='IDirectDrawSurface2.Unlock' if node['kind']=='Surface2' else 'IDirectDrawSurface.Unlock'
+            self.candidates['assigned_client_unlock']+=1
+        self.calls[method]+=1
+        if not method.startswith(('IDirectDrawSurface.','IDirectDrawSurface2.','IUnknown.','IDirectDraw2.','IAMMultiMediaStream.','IMultiMediaStream.','IDirectDrawMediaStream.','IDirectDrawStreamSample.')):return
+        if not call['arguments_read'] or not args or not receiver or receiver!=args[0]:
+            self.gap(call,'Reviewed call has no readable exact BEFORE receiver candidate; no semantic interval assigned');return
+        self.identify(call)
+        node=self.interfaces.get(receiver)
+        root,generation=(node['root'],node['generation']) if node else (receiver,0)
+        for slot in call['snapshots']:
+            if slot['event']==2 and 'pointer output' in slot['name']:
+                self.outputs.append({'call_id':call['call_id'],'site':call['site'],'receiver':receiver,'method':method,'hresult':result,'read_state':slot['state'],'raw_bytes':slot['data'],'validity':'successful nonnull output' if result==0 and slot['state']==1 and len(slot['data'])==8 and int.from_bytes(bytes.fromhex(slot['data']),'little') else 'raw, validity unassigned'})
+        if method=='IUnknown.Release':
+            self.releases.append({'call_id':call['call_id'],'site':call['site'],'receiver':receiver,'eax':result,'scope':'Client Release observed; return does not prove destruction, unique ownership or absence of aliases'})
+            if any(k[:2]==(root,generation) for k in self.leases):self.gap(call,'Release observed with a client borrow still open; no external lifetime inferred')
+            if node and result==0:node['terminal_release_seen']=True
+            return
+        if method not in ('IDirectDrawSurface2.GetDC','IDirectDrawSurface2.ReleaseDC','IDirectDrawSurface2.Lock','IDirectDrawSurface2.Unlock','IDirectDrawSurface.Unlock'):return
+        kind='DC' if method.endswith(('GetDC','ReleaseDC')) else 'CPU';key=(root,generation,kind)
+        if result!=0:return
+        acquiring=method.endswith(('GetDC','Lock'))
+        if acquiring:
+            slots=[slot for slot in call['snapshots'] if slot['event']==2 and slot['state']==1]
+            if kind=='DC':pointer=self.pointer(call,'HDC output');descriptor=None
+            else:
+                slots=[slot for slot in slots if slot['name']=='DDSURFACEDESC input/output' and len(slot['data'])==216]
+                descriptor=struct.unpack('<27I',bytes.fromhex(slots[0]['data'])) if len(slots)==1 else None
+                # Successful original Lock returns flags100f; LPSURFACE isn't required.
+                pointer=descriptor[9] if descriptor and descriptor[0]==108 else 0
+            if not pointer:self.gap(call,'Successful acquire lacks a captured valid nonnull output/descriptor pointer; borrow origin pending');return
+            if key in self.leases:
+                self.gap(call,'Successful acquire overlaps an existing observed borrow; previous interval retained as unresolved')
+                previous=self.leases.pop(key);previous['state']='overlapped, close unassigned';self.intervals.append(previous)
+            self.leases[key]={'receiver':receiver,'root':root,'generation':generation,'kind':kind,'pointer':pointer,'thread':call['thread'],'begin_call':call['call_id'],'begin_site':call['site'],'begin_phase':call['phase'],'state':'open','descriptor':list(descriptor) if descriptor else None}
+        else:
+            lease=self.leases.get(key)
+            if lease is None:self.gap(call,'Successful release/unlock has no selected observed acquire; origin outside capture or alias unresolved');return
+            if method.endswith('ReleaseDC') and (len(args)<2 or args[1]!=lease['pointer']):
+                self.gap(call,'Successful ReleaseDC handle differs from observed GetDC output; interval remains open');return
+            # Legacy Surface Unlock takes the returned memory pointer (or NULL).
+            if method.endswith('.Unlock') and (len(args)<2 or args[1] not in (0,lease['pointer'])):
+                self.gap(call,'Surface Unlock pointer differs from the observed Lock output; interval remains open');return
+            lease=self.leases.pop(key);lease.update(state='closed client interval',end_call=call['call_id'],end_site=call['site'],end_phase=call['phase'],end_thread=call['thread'],end_receiver=receiver)
+            self.intervals.append(lease)
+
+    def result(self):
+        return {'scope':'Selected successful original client API borrow intervals only. Failure outputs remain raw; open/overlapping/unobserved origins, external aliases/reference ownership, concurrent use, memory writers and actual destruction remain unresolved. No pixel/caller/scenario/DRAW-01 closure.',
+                'calls_by_reviewed_method':dict(sorted(self.calls.items())), 'candidate_classifications':dict(self.candidates),'surface_query_aliases':self.aliases, 'closed_or_unresolved_intervals':self.intervals,'open_intervals':list(self.leases.values()),'interface_output_observations':self.outputs,'release_observations':self.releases,'gaps':self.gaps}
+
+
+def trace(path,manifest):
+    verified=detail_trace(path,manifest);hooks={h['tag']:h for h in manifest['hooks']};frames={};resources=Resources()
+    before=path.stat()
+    with path.open('rb') as source:
+        source.seek(64)
+        for unused in range(verified['events']):
+            row=struct.unpack('<200I',source.read(800));spec=hooks[row[3]]['details']
+            if row[1]==1:frames[row[2]]=row
+            else:
+                pre=frames.pop(row[2]);slots=[]
+                for original,event in ((pre,1),(row,2)):
+                    for index,plan in enumerate(spec['snapshots']):
+                        if not plan['events']&event:continue
+                        at=56+index*36;payload=struct.pack('<32I',*original[at+4:at+36])
+                        slots.append({'name':plan['name'],'event':event,'state':original[at+2],'data':payload[:original[at+3]].hex()})
+                count=pre[33]
+                resources.observe({'call_id':pre[2],'site':pre[6],'phase':pre[4],'thread':pre[5],'method':spec['name'],'args':list(pre[36:36+count]),'arguments_read':bool(pre[34]),'receiver':pre[52] if pre[54] else 0,'eax':row[10],'snapshots':slots,'vtable':pre[53] if pre[54] else 0,'displacement':hooks[row[3]]['target_mode'].get('displacement'),'cleanup':(row[7]-pre[7])&0xffffffff})
+    with path.open('rb') as source:digest=hashlib.file_digest(source,'sha256').hexdigest()
+    after=path.stat()
+    if frames or digest!=verified['journal_sha256'] or (before.st_ino,before.st_size,before.st_mtime_ns)!=(after.st_ino,after.st_size,after.st_mtime_ns):raise ValueError('Resource journal changed during independent interval review')
+    return {'schema':1,'journal_integrity':True,'journal_sha256':digest,'events':verified['events'],'paired_calls':verified['paired_calls'],**resources.result()}

@@ -1,0 +1,5389 @@
+{
+  "schema": 1,
+  "integrity": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "journal_sha256": "4753ae3b61702f2db98c66a63801531000c9282737d5d2097ca8975423a3380f",
+  "bindings_sha256": "841d3444aa4cabbb7f5c5c666887ce016b96f771e61b608dae2102f7dffbb8c7",
+  "paired_calls": 42021,
+  "site_events": 0,
+  "counts": [
+    {
+      "phase": 14,
+      "entry": 5757984,
+      "physical_caller": 5032077,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5032077,
+      "original_call_site": 5032072,
+      "original_call_target": 5757984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 25,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 83019,
+          "call_id": 41510,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41510,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83043,
+          "call_id": 41522,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41522,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83069,
+          "call_id": 41535,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41535,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83101,
+          "call_id": 41551,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41551,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5757984,
+      "physical_caller": 5056609,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5056609,
+      "original_call_site": 5056604,
+      "original_call_target": 5757984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 5,
+      "continuation_discovered_owners": [
+        5056512
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83147,
+          "call_id": 41574,
+          "thread": 384,
+          "entry_return_slot": 2292068,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41574,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83323,
+          "call_id": 41662,
+          "thread": 384,
+          "entry_return_slot": 2292068,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41662,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83499,
+          "call_id": 41750,
+          "thread": 384,
+          "entry_return_slot": 2292068,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41750,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83675,
+          "call_id": 41838,
+          "thread": 384,
+          "entry_return_slot": 2292068,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41838,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5758048,
+      "physical_caller": 5032100,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5032100,
+      "original_call_site": 5032095,
+      "original_call_target": 5758048,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 25,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 83021,
+          "call_id": 41511,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41511,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83045,
+          "call_id": 41523,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41523,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83071,
+          "call_id": 41536,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41536,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83103,
+          "call_id": 41552,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41552,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5758048,
+      "physical_caller": 5056632,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5056632,
+      "original_call_site": 5056627,
+      "original_call_target": 5758048,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 5,
+      "continuation_discovered_owners": [
+        5056512
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83149,
+          "call_id": 41575,
+          "thread": 384,
+          "entry_return_slot": 2292064,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41575,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83325,
+          "call_id": 41663,
+          "thread": 384,
+          "entry_return_slot": 2292064,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41663,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83501,
+          "call_id": 41751,
+          "thread": 384,
+          "entry_return_slot": 2292064,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41751,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83677,
+          "call_id": 41839,
+          "thread": 384,
+          "entry_return_slot": 2292064,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41839,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5775040,
+      "physical_caller": 4874547,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4874547,
+      "original_call_site": 4874542,
+      "original_call_target": 5775040,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 265,
+      "continuation_discovered_owners": [
+        4873440
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83023,
+          "call_id": 41512,
+          "thread": 384,
+          "entry_return_slot": 2289904,
+          "normalized_return_sp": 2289924,
+          "continuation_root_call_id": 41512,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83025,
+          "call_id": 41513,
+          "thread": 384,
+          "entry_return_slot": 2289904,
+          "normalized_return_sp": 2289924,
+          "continuation_root_call_id": 41513,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83027,
+          "call_id": 41514,
+          "thread": 384,
+          "entry_return_slot": 2289904,
+          "normalized_return_sp": 2289924,
+          "continuation_root_call_id": 41514,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83029,
+          "call_id": 41515,
+          "thread": 384,
+          "entry_return_slot": 2289904,
+          "normalized_return_sp": 2289924,
+          "continuation_root_call_id": 41515,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 4668399,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4668399,
+      "original_call_site": 4668394,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4668160
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83943,
+          "call_id": 41972,
+          "thread": 384,
+          "entry_return_slot": 2293332,
+          "normalized_return_sp": 2293336,
+          "continuation_root_call_id": 41972,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 4863988,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4863988,
+      "original_call_site": 4863983,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 2,
+      "continuation_discovered_owners": [
+        4863952
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83915,
+          "call_id": 41958,
+          "thread": 384,
+          "entry_return_slot": 2292092,
+          "normalized_return_sp": 2292096,
+          "continuation_root_call_id": 41958,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83919,
+          "call_id": 41960,
+          "thread": 384,
+          "entry_return_slot": 2290000,
+          "normalized_return_sp": 2290004,
+          "continuation_root_call_id": 41960,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 4878415,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4878415,
+      "original_call_site": 4878410,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4878384
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83911,
+          "call_id": 41956,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292088,
+          "continuation_root_call_id": 41956,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 4878429,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4878429,
+      "original_call_site": 4878424,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4878384
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83913,
+          "call_id": 41957,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292088,
+          "continuation_root_call_id": 41957,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 4972957,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4972957,
+      "original_call_site": 4972952,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4972800
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83957,
+          "call_id": 41979,
+          "thread": 384,
+          "entry_return_slot": 2293376,
+          "normalized_return_sp": 2293380,
+          "continuation_root_call_id": 41979,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 4985633,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4985633,
+      "original_call_site": 4985628,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4985344
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83939,
+          "call_id": 41970,
+          "thread": 384,
+          "entry_return_slot": 2293376,
+          "normalized_return_sp": 2293380,
+          "continuation_root_call_id": 41970,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 4985672,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4985672,
+      "original_call_site": 4985667,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4985344
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83941,
+          "call_id": 41971,
+          "thread": 384,
+          "entry_return_slot": 2293380,
+          "normalized_return_sp": 2293384,
+          "continuation_root_call_id": 41971,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 4987225,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4987225,
+      "original_call_site": 4987220,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4986592
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83963,
+          "call_id": 41982,
+          "thread": 384,
+          "entry_return_slot": 2293376,
+          "normalized_return_sp": 2293380,
+          "continuation_root_call_id": 41982,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5060178,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5060178,
+      "original_call_site": 5060173,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5059792
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83961,
+          "call_id": 41981,
+          "thread": 384,
+          "entry_return_slot": 2293372,
+          "normalized_return_sp": 2293376,
+          "continuation_root_call_id": 41981,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5063365,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5063365,
+      "original_call_site": 5063360,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 2,
+      "continuation_discovered_owners": [
+        5063264
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83935,
+          "call_id": 41968,
+          "thread": 384,
+          "entry_return_slot": 2293352,
+          "normalized_return_sp": 2293356,
+          "continuation_root_call_id": 41968,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83937,
+          "call_id": 41969,
+          "thread": 384,
+          "entry_return_slot": 2293352,
+          "normalized_return_sp": 2293356,
+          "continuation_root_call_id": 41969,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5069861,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5069861,
+      "original_call_site": 5069856,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 29,
+      "continuation_discovered_owners": [
+        5069760
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83977,
+          "call_id": 41989,
+          "thread": 384,
+          "entry_return_slot": 2293288,
+          "normalized_return_sp": 2293292,
+          "continuation_root_call_id": 41989,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83979,
+          "call_id": 41990,
+          "thread": 384,
+          "entry_return_slot": 2293288,
+          "normalized_return_sp": 2293292,
+          "continuation_root_call_id": 41990,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83981,
+          "call_id": 41991,
+          "thread": 384,
+          "entry_return_slot": 2293288,
+          "normalized_return_sp": 2293292,
+          "continuation_root_call_id": 41991,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83983,
+          "call_id": 41992,
+          "thread": 384,
+          "entry_return_slot": 2293288,
+          "normalized_return_sp": 2293292,
+          "continuation_root_call_id": 41992,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5070246,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5070246,
+      "original_call_site": 5070241,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5069936
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83973,
+          "call_id": 41987,
+          "thread": 384,
+          "entry_return_slot": 2293376,
+          "normalized_return_sp": 2293380,
+          "continuation_root_call_id": 41987,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5070262,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5070262,
+      "original_call_site": 5070257,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5069936
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83975,
+          "call_id": 41988,
+          "thread": 384,
+          "entry_return_slot": 2293376,
+          "normalized_return_sp": 2293380,
+          "continuation_root_call_id": 41988,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5079751,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5079751,
+      "original_call_site": 5079746,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5079632
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83969,
+          "call_id": 41985,
+          "thread": 384,
+          "entry_return_slot": 2293388,
+          "normalized_return_sp": 2293392,
+          "continuation_root_call_id": 41985,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5083948,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5083948,
+      "original_call_site": 5083943,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5083712
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83967,
+          "call_id": 41984,
+          "thread": 384,
+          "entry_return_slot": 2293376,
+          "normalized_return_sp": 2293380,
+          "continuation_root_call_id": 41984,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5087679,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5087679,
+      "original_call_site": 5087674,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5087536
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83965,
+          "call_id": 41983,
+          "thread": 384,
+          "entry_return_slot": 2293380,
+          "normalized_return_sp": 2293384,
+          "continuation_root_call_id": 41983,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5090376,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5090376,
+      "original_call_site": 5090371,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5090208
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83959,
+          "call_id": 41980,
+          "thread": 384,
+          "entry_return_slot": 2293380,
+          "normalized_return_sp": 2293384,
+          "continuation_root_call_id": 41980,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5092887,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5092887,
+      "original_call_site": 5092882,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5092832
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83971,
+          "call_id": 41986,
+          "thread": 384,
+          "entry_return_slot": 2293388,
+          "normalized_return_sp": 2293392,
+          "continuation_root_call_id": 41986,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5096513,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5096513,
+      "original_call_site": 5096508,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5096464
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83945,
+          "call_id": 41973,
+          "thread": 384,
+          "entry_return_slot": 2293332,
+          "normalized_return_sp": 2293336,
+          "continuation_root_call_id": 41973,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5096523,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5096523,
+      "original_call_site": 5096518,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5096464
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83947,
+          "call_id": 41974,
+          "thread": 384,
+          "entry_return_slot": 2293332,
+          "normalized_return_sp": 2293336,
+          "continuation_root_call_id": 41974,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5096562,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5096562,
+      "original_call_site": 5096557,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5096464
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83949,
+          "call_id": 41975,
+          "thread": 384,
+          "entry_return_slot": 2293332,
+          "normalized_return_sp": 2293336,
+          "continuation_root_call_id": 41975,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5096577,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5096577,
+      "original_call_site": 5096572,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5096464
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83951,
+          "call_id": 41976,
+          "thread": 384,
+          "entry_return_slot": 2293332,
+          "normalized_return_sp": 2293336,
+          "continuation_root_call_id": 41976,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5103737,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5103737,
+      "original_call_site": 5103732,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5103520
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83953,
+          "call_id": 41977,
+          "thread": 384,
+          "entry_return_slot": 2293384,
+          "normalized_return_sp": 2293388,
+          "continuation_root_call_id": 41977,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5105743,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5105743,
+      "original_call_site": 5105738,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5105648
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83955,
+          "call_id": 41978,
+          "thread": 384,
+          "entry_return_slot": 2293388,
+          "normalized_return_sp": 2293392,
+          "continuation_root_call_id": 41978,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5152238,
+      "classification": "observed_callee_pending_call_flow_review",
+      "original_return_continuation": null,
+      "original_call_site": null,
+      "original_call_target": null,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 83921,
+          "call_id": 41961,
+          "thread": 384,
+          "entry_return_slot": 2290004,
+          "normalized_return_sp": 2290008,
+          "continuation_root_call_id": 41961,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5601622,
+      "classification": "observed_callee_pending_call_flow_review",
+      "original_return_continuation": null,
+      "original_call_site": null,
+      "original_call_target": null,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 83917,
+          "call_id": 41959,
+          "thread": 384,
+          "entry_return_slot": 2292096,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 41959,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5723582,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5723582,
+      "original_call_site": 5723577,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5723488
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83933,
+          "call_id": 41967,
+          "thread": 384,
+          "entry_return_slot": 2293388,
+          "normalized_return_sp": 2293392,
+          "continuation_root_call_id": 41967,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5811471,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5811471,
+      "original_call_site": 5811466,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 5,
+      "continuation_discovered_owners": [
+        5811440
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83923,
+          "call_id": 41962,
+          "thread": 384,
+          "entry_return_slot": 2289996,
+          "normalized_return_sp": 2290000,
+          "continuation_root_call_id": 41962,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83925,
+          "call_id": 41963,
+          "thread": 384,
+          "entry_return_slot": 2289996,
+          "normalized_return_sp": 2290000,
+          "continuation_root_call_id": 41963,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83927,
+          "call_id": 41964,
+          "thread": 384,
+          "entry_return_slot": 2289996,
+          "normalized_return_sp": 2290000,
+          "continuation_root_call_id": 41964,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83929,
+          "call_id": 41965,
+          "thread": 384,
+          "entry_return_slot": 2289996,
+          "normalized_return_sp": 2290000,
+          "continuation_root_call_id": 41965,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813216,
+      "physical_caller": 5888396,
+      "classification": "observed_callee_pending_call_flow_review",
+      "original_return_continuation": null,
+      "original_call_site": null,
+      "original_call_target": null,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 4,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 84035,
+          "call_id": 42018,
+          "thread": 384,
+          "entry_return_slot": 2293412,
+          "normalized_return_sp": 2293416,
+          "continuation_root_call_id": 42018,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 84037,
+          "call_id": 42019,
+          "thread": 384,
+          "entry_return_slot": 2293412,
+          "normalized_return_sp": 2293416,
+          "continuation_root_call_id": 42019,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 84039,
+          "call_id": 42020,
+          "thread": 384,
+          "entry_return_slot": 2293412,
+          "normalized_return_sp": 2293416,
+          "continuation_root_call_id": 42020,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 84041,
+          "call_id": 42021,
+          "thread": 384,
+          "entry_return_slot": 2293412,
+          "normalized_return_sp": 2293416,
+          "continuation_root_call_id": 42021,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813856,
+      "physical_caller": 5032048,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5032048,
+      "original_call_site": 5032043,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 25,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 83017,
+          "call_id": 41509,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41509,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83041,
+          "call_id": 41521,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41521,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83067,
+          "call_id": 41534,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41534,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83099,
+          "call_id": 41550,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41550,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813856,
+      "physical_caller": 5056578,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5056578,
+      "original_call_site": 5056573,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 5,
+      "continuation_discovered_owners": [
+        5056512
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83145,
+          "call_id": 41573,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41573,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83321,
+          "call_id": 41661,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41661,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83497,
+          "call_id": 41749,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41749,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83673,
+          "call_id": 41837,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 41837,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813856,
+      "physical_caller": 5822764,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5822764,
+      "original_call_site": 5822759,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 5,
+      "continuation_discovered_owners": [
+        5822656
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83014,
+          "call_id": 41508,
+          "thread": 384,
+          "entry_return_slot": 2291968,
+          "normalized_return_sp": 2291972,
+          "continuation_root_call_id": 41508,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83190,
+          "call_id": 41596,
+          "thread": 384,
+          "entry_return_slot": 2291968,
+          "normalized_return_sp": 2291972,
+          "continuation_root_call_id": 41596,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83366,
+          "call_id": 41684,
+          "thread": 384,
+          "entry_return_slot": 2291968,
+          "normalized_return_sp": 2291972,
+          "continuation_root_call_id": 41684,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83542,
+          "call_id": 41772,
+          "thread": 384,
+          "entry_return_slot": 2291968,
+          "normalized_return_sp": 2291972,
+          "continuation_root_call_id": 41772,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813856,
+      "physical_caller": 5824090,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5824090,
+      "original_call_site": 5824085,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 25,
+      "continuation_discovered_owners": [
+        5823984
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83010,
+          "call_id": 41506,
+          "thread": 384,
+          "entry_return_slot": 2291944,
+          "normalized_return_sp": 2291948,
+          "continuation_root_call_id": 41506,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83038,
+          "call_id": 41520,
+          "thread": 384,
+          "entry_return_slot": 2291944,
+          "normalized_return_sp": 2291948,
+          "continuation_root_call_id": 41520,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83064,
+          "call_id": 41533,
+          "thread": 384,
+          "entry_return_slot": 2291944,
+          "normalized_return_sp": 2291948,
+          "continuation_root_call_id": 41533,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83096,
+          "call_id": 41549,
+          "thread": 384,
+          "entry_return_slot": 2291944,
+          "normalized_return_sp": 2291948,
+          "continuation_root_call_id": 41549,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5813856,
+      "physical_caller": 5828001,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5828001,
+      "original_call_site": 5827996,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 5,
+      "continuation_discovered_owners": [
+        5827968
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83882,
+          "call_id": 41942,
+          "thread": 384,
+          "entry_return_slot": 2292088,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 41942,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83888,
+          "call_id": 41945,
+          "thread": 384,
+          "entry_return_slot": 2292088,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 41945,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83894,
+          "call_id": 41948,
+          "thread": 384,
+          "entry_return_slot": 2292088,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 41948,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83900,
+          "call_id": 41951,
+          "thread": 384,
+          "entry_return_slot": 2292088,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 41951,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5816128,
+      "physical_caller": 4879757,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4879757,
+      "original_call_site": 4879752,
+      "original_call_target": 5816128,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 5,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 83007,
+          "call_id": 41504,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 41504,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83183,
+          "call_id": 41592,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 41592,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83359,
+          "call_id": 41680,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 41680,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83535,
+          "call_id": 41768,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 41768,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5816128,
+      "physical_caller": 5609469,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5609469,
+      "original_call_site": 5609464,
+      "original_call_target": 5816128,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 10,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 83179,
+          "call_id": 41590,
+          "thread": 384,
+          "entry_return_slot": 2292096,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 41590,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83355,
+          "call_id": 41678,
+          "thread": 384,
+          "entry_return_slot": 2292096,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 41678,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83531,
+          "call_id": 41766,
+          "thread": 384,
+          "entry_return_slot": 2292096,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 41766,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83707,
+          "call_id": 41854,
+          "thread": 384,
+          "entry_return_slot": 2292096,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 41854,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5817504,
+      "physical_caller": 4867229,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4867229,
+      "original_call_site": 4867224,
+      "original_call_target": 5817504,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 4,
+      "continuation_discovered_owners": [
+        4866944
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83181,
+          "call_id": 41591,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 41591,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83357,
+          "call_id": 41679,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 41679,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83533,
+          "call_id": 41767,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 41767,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83709,
+          "call_id": 41855,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 41855,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5817504,
+      "physical_caller": 4867833,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4867833,
+      "original_call_site": 4867828,
+      "original_call_target": 5817504,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 4,
+      "continuation_discovered_owners": [
+        4867504
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83175,
+          "call_id": 41588,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 41588,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83351,
+          "call_id": 41676,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 41676,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83527,
+          "call_id": 41764,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 41764,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83703,
+          "call_id": 41852,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 41852,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5818528,
+      "physical_caller": 4868271,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4868271,
+      "original_call_site": 4868266,
+      "original_call_target": 5818528,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 4,
+      "continuation_discovered_owners": [
+        4867504
+      ],
+      "proof_samples": [
+        {
+          "sequence": 83177,
+          "call_id": 41589,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 41589,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83353,
+          "call_id": 41677,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 41677,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83529,
+          "call_id": 41765,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 41765,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83705,
+          "call_id": 41853,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 41853,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5822656,
+      "physical_caller": 5032040,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5032040,
+      "original_call_site": 5032035,
+      "original_call_target": 5822656,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 5,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 83013,
+          "call_id": 41507,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41507,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83189,
+          "call_id": 41595,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41595,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83365,
+          "call_id": 41683,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41683,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83541,
+          "call_id": 41771,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 41771,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5823984,
+      "physical_caller": 5031980,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5031980,
+      "original_call_site": 5031975,
+      "original_call_target": 5823984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 25,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 83009,
+          "call_id": 41505,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 41505,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83037,
+          "call_id": 41519,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 41519,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83063,
+          "call_id": 41532,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 41532,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83095,
+          "call_id": 41548,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 41548,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "entry": 5827968,
+      "physical_caller": 5609391,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5609391,
+      "original_call_site": 5609386,
+      "original_call_target": 5827968,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 5,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 83881,
+          "call_id": 41941,
+          "thread": 384,
+          "entry_return_slot": 2292108,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 41941,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83887,
+          "call_id": 41944,
+          "thread": 384,
+          "entry_return_slot": 2292108,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 41944,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83893,
+          "call_id": 41947,
+          "thread": 384,
+          "entry_return_slot": 2292108,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 41947,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 83899,
+          "call_id": 41950,
+          "thread": 384,
+          "entry_return_slot": 2292108,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 41950,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5757984,
+      "physical_caller": 5027331,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5027331,
+      "original_call_site": 5027326,
+      "original_call_target": 5757984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 449,
+      "continuation_discovered_owners": [
+        5027232
+      ],
+      "proof_samples": [
+        {
+          "sequence": 4261,
+          "call_id": 2131,
+          "thread": 384,
+          "entry_return_slot": 2291996,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2131,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4269,
+          "call_id": 2135,
+          "thread": 384,
+          "entry_return_slot": 2291996,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2135,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4277,
+          "call_id": 2139,
+          "thread": 384,
+          "entry_return_slot": 2291996,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2139,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4669,
+          "call_id": 2335,
+          "thread": 384,
+          "entry_return_slot": 2291996,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2335,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5757984,
+      "physical_caller": 5032077,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5032077,
+      "original_call_site": 5032072,
+      "original_call_target": 5757984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 217,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 45,
+          "call_id": 23,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 23,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 69,
+          "call_id": 35,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 35,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 95,
+          "call_id": 48,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 48,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 127,
+          "call_id": 64,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 64,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5757984,
+      "physical_caller": 5037596,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5037596,
+      "original_call_site": 5037591,
+      "original_call_target": 5757984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 123,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 3877,
+          "call_id": 1939,
+          "thread": 384,
+          "entry_return_slot": 2292036,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 1939,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4285,
+          "call_id": 2143,
+          "thread": 384,
+          "entry_return_slot": 2292036,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 2143,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 5205,
+          "call_id": 2603,
+          "thread": 384,
+          "entry_return_slot": 2292036,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 2603,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 5613,
+          "call_id": 2807,
+          "thread": 384,
+          "entry_return_slot": 2292036,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 2807,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5757984,
+      "physical_caller": 5041134,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5041134,
+      "original_call_site": 5041129,
+      "original_call_target": 5757984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 240,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 3413,
+          "call_id": 1707,
+          "thread": 384,
+          "entry_return_slot": 2291632,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1707,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3447,
+          "call_id": 1724,
+          "thread": 384,
+          "entry_return_slot": 2291632,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1724,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3479,
+          "call_id": 1740,
+          "thread": 384,
+          "entry_return_slot": 2291632,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1740,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3495,
+          "call_id": 1748,
+          "thread": 384,
+          "entry_return_slot": 2291632,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1748,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5757984,
+      "physical_caller": 5048504,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5048504,
+      "original_call_site": 5048499,
+      "original_call_target": 5757984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 20,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42391,
+          "call_id": 21196,
+          "thread": 384,
+          "entry_return_slot": 2291088,
+          "normalized_return_sp": 2291096,
+          "continuation_root_call_id": 21196,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 43475,
+          "call_id": 21738,
+          "thread": 384,
+          "entry_return_slot": 2291976,
+          "normalized_return_sp": 2291984,
+          "continuation_root_call_id": 21738,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 44595,
+          "call_id": 22298,
+          "thread": 384,
+          "entry_return_slot": 2291976,
+          "normalized_return_sp": 2291984,
+          "continuation_root_call_id": 22298,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 45715,
+          "call_id": 22858,
+          "thread": 384,
+          "entry_return_slot": 2291976,
+          "normalized_return_sp": 2291984,
+          "continuation_root_call_id": 22858,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5757984,
+      "physical_caller": 5051685,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5051685,
+      "original_call_site": 5051680,
+      "original_call_target": 5757984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 209,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42933,
+          "call_id": 21467,
+          "thread": 384,
+          "entry_return_slot": 2292020,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21467,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 42987,
+          "call_id": 21494,
+          "thread": 384,
+          "entry_return_slot": 2292020,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21494,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 43035,
+          "call_id": 21518,
+          "thread": 384,
+          "entry_return_slot": 2292020,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21518,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 43087,
+          "call_id": 21544,
+          "thread": 384,
+          "entry_return_slot": 2292020,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21544,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5757984,
+      "physical_caller": 5056609,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5056609,
+      "original_call_site": 5056604,
+      "original_call_target": 5757984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 414,
+      "continuation_discovered_owners": [
+        5056512
+      ],
+      "proof_samples": [
+        {
+          "sequence": 173,
+          "call_id": 87,
+          "thread": 384,
+          "entry_return_slot": 2292068,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 87,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 349,
+          "call_id": 175,
+          "thread": 384,
+          "entry_return_slot": 2292068,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 175,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 525,
+          "call_id": 263,
+          "thread": 384,
+          "entry_return_slot": 2292068,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 263,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 701,
+          "call_id": 351,
+          "thread": 384,
+          "entry_return_slot": 2292068,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 351,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5757984,
+      "physical_caller": 5057184,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5057184,
+      "original_call_site": 5057179,
+      "original_call_target": 5757984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 24,
+      "continuation_discovered_owners": [
+        5057088
+      ],
+      "proof_samples": [
+        {
+          "sequence": 36005,
+          "call_id": 18003,
+          "thread": 384,
+          "entry_return_slot": 2292052,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18003,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36013,
+          "call_id": 18007,
+          "thread": 384,
+          "entry_return_slot": 2292052,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18007,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36021,
+          "call_id": 18011,
+          "thread": 384,
+          "entry_return_slot": 2292052,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18011,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36029,
+          "call_id": 18015,
+          "thread": 384,
+          "entry_return_slot": 2292052,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18015,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5758048,
+      "physical_caller": 5027346,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5027346,
+      "original_call_site": 5027341,
+      "original_call_target": 5758048,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 449,
+      "continuation_discovered_owners": [
+        5027232
+      ],
+      "proof_samples": [
+        {
+          "sequence": 4263,
+          "call_id": 2132,
+          "thread": 384,
+          "entry_return_slot": 2291992,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2132,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4271,
+          "call_id": 2136,
+          "thread": 384,
+          "entry_return_slot": 2291992,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2136,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4279,
+          "call_id": 2140,
+          "thread": 384,
+          "entry_return_slot": 2291992,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2140,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4671,
+          "call_id": 2336,
+          "thread": 384,
+          "entry_return_slot": 2291992,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2336,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5758048,
+      "physical_caller": 5032100,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5032100,
+      "original_call_site": 5032095,
+      "original_call_target": 5758048,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 217,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 47,
+          "call_id": 24,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 24,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 71,
+          "call_id": 36,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 36,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 97,
+          "call_id": 49,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 49,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 129,
+          "call_id": 65,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 65,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5758048,
+      "physical_caller": 5037609,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5037609,
+      "original_call_site": 5037604,
+      "original_call_target": 5758048,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 123,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 3879,
+          "call_id": 1940,
+          "thread": 384,
+          "entry_return_slot": 2292032,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 1940,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4287,
+          "call_id": 2144,
+          "thread": 384,
+          "entry_return_slot": 2292032,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 2144,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 5207,
+          "call_id": 2604,
+          "thread": 384,
+          "entry_return_slot": 2292032,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 2604,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 5615,
+          "call_id": 2808,
+          "thread": 384,
+          "entry_return_slot": 2292032,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 2808,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5758048,
+      "physical_caller": 5041147,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5041147,
+      "original_call_site": 5041142,
+      "original_call_target": 5758048,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 240,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 3415,
+          "call_id": 1708,
+          "thread": 384,
+          "entry_return_slot": 2291628,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1708,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3449,
+          "call_id": 1725,
+          "thread": 384,
+          "entry_return_slot": 2291628,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1725,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3481,
+          "call_id": 1741,
+          "thread": 384,
+          "entry_return_slot": 2291628,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1741,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3497,
+          "call_id": 1749,
+          "thread": 384,
+          "entry_return_slot": 2291628,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1749,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5758048,
+      "physical_caller": 5048517,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5048517,
+      "original_call_site": 5048512,
+      "original_call_target": 5758048,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 20,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42393,
+          "call_id": 21197,
+          "thread": 384,
+          "entry_return_slot": 2291084,
+          "normalized_return_sp": 2291096,
+          "continuation_root_call_id": 21197,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 43477,
+          "call_id": 21739,
+          "thread": 384,
+          "entry_return_slot": 2291972,
+          "normalized_return_sp": 2291984,
+          "continuation_root_call_id": 21739,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 44597,
+          "call_id": 22299,
+          "thread": 384,
+          "entry_return_slot": 2291972,
+          "normalized_return_sp": 2291984,
+          "continuation_root_call_id": 22299,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 45717,
+          "call_id": 22859,
+          "thread": 384,
+          "entry_return_slot": 2291972,
+          "normalized_return_sp": 2291984,
+          "continuation_root_call_id": 22859,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5758048,
+      "physical_caller": 5051708,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5051708,
+      "original_call_site": 5051703,
+      "original_call_target": 5758048,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 209,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42935,
+          "call_id": 21468,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21468,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 42989,
+          "call_id": 21495,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21495,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 43037,
+          "call_id": 21519,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21519,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 43089,
+          "call_id": 21545,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21545,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5758048,
+      "physical_caller": 5056632,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5056632,
+      "original_call_site": 5056627,
+      "original_call_target": 5758048,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 414,
+      "continuation_discovered_owners": [
+        5056512
+      ],
+      "proof_samples": [
+        {
+          "sequence": 175,
+          "call_id": 88,
+          "thread": 384,
+          "entry_return_slot": 2292064,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 88,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 351,
+          "call_id": 176,
+          "thread": 384,
+          "entry_return_slot": 2292064,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 176,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 527,
+          "call_id": 264,
+          "thread": 384,
+          "entry_return_slot": 2292064,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 264,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 703,
+          "call_id": 352,
+          "thread": 384,
+          "entry_return_slot": 2292064,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 352,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5758048,
+      "physical_caller": 5057199,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5057199,
+      "original_call_site": 5057194,
+      "original_call_target": 5758048,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 24,
+      "continuation_discovered_owners": [
+        5057088
+      ],
+      "proof_samples": [
+        {
+          "sequence": 36007,
+          "call_id": 18004,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18004,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36015,
+          "call_id": 18008,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18008,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36023,
+          "call_id": 18012,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18012,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36031,
+          "call_id": 18016,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18016,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5775040,
+      "physical_caller": 4874547,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4874547,
+      "original_call_site": 4874542,
+      "original_call_target": 5775040,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 10568,
+      "continuation_discovered_owners": [
+        4873440
+      ],
+      "proof_samples": [
+        {
+          "sequence": 49,
+          "call_id": 25,
+          "thread": 384,
+          "entry_return_slot": 2289904,
+          "normalized_return_sp": 2289924,
+          "continuation_root_call_id": 25,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 51,
+          "call_id": 26,
+          "thread": 384,
+          "entry_return_slot": 2289904,
+          "normalized_return_sp": 2289924,
+          "continuation_root_call_id": 26,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 53,
+          "call_id": 27,
+          "thread": 384,
+          "entry_return_slot": 2289904,
+          "normalized_return_sp": 2289924,
+          "continuation_root_call_id": 27,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 55,
+          "call_id": 28,
+          "thread": 384,
+          "entry_return_slot": 2289904,
+          "normalized_return_sp": 2289924,
+          "continuation_root_call_id": 28,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5807248,
+      "physical_caller": 5027601,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5027601,
+      "original_call_site": 5027596,
+      "original_call_target": 5807248,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 57,
+      "continuation_discovered_owners": [
+        5027232
+      ],
+      "proof_samples": [
+        {
+          "sequence": 4265,
+          "call_id": 2133,
+          "thread": 384,
+          "entry_return_slot": 2291988,
+          "normalized_return_sp": 2291992,
+          "continuation_root_call_id": 2133,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4273,
+          "call_id": 2137,
+          "thread": 384,
+          "entry_return_slot": 2291988,
+          "normalized_return_sp": 2291992,
+          "continuation_root_call_id": 2137,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4281,
+          "call_id": 2141,
+          "thread": 384,
+          "entry_return_slot": 2291988,
+          "normalized_return_sp": 2291992,
+          "continuation_root_call_id": 2141,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 5593,
+          "call_id": 2797,
+          "thread": 384,
+          "entry_return_slot": 2291988,
+          "normalized_return_sp": 2291992,
+          "continuation_root_call_id": 2797,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5810608,
+      "physical_caller": 5128497,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5128497,
+      "original_call_site": 5128492,
+      "original_call_target": 5810608,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5128400
+      ],
+      "proof_samples": [
+        {
+          "sequence": 1,
+          "call_id": 1,
+          "thread": 384,
+          "entry_return_slot": 2292080,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 1,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5811600,
+      "physical_caller": 4863555,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4863555,
+      "original_call_site": 4863550,
+      "original_call_target": 5811600,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4862128
+      ],
+      "proof_samples": [
+        {
+          "sequence": 17,
+          "call_id": 9,
+          "thread": 384,
+          "entry_return_slot": 2290192,
+          "normalized_return_sp": 2290208,
+          "continuation_root_call_id": 9,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5811600,
+      "physical_caller": 4863636,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4863636,
+      "original_call_site": 4863631,
+      "original_call_target": 5811600,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4862128
+      ],
+      "proof_samples": [
+        {
+          "sequence": 21,
+          "call_id": 11,
+          "thread": 384,
+          "entry_return_slot": 2290192,
+          "normalized_return_sp": 2290208,
+          "continuation_root_call_id": 11,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5811600,
+      "physical_caller": 4878825,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4878825,
+      "original_call_site": 4878820,
+      "original_call_target": 5811600,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 3,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 27,
+          "call_id": 14,
+          "thread": 384,
+          "entry_return_slot": 2291140,
+          "normalized_return_sp": 2291156,
+          "continuation_root_call_id": 14,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 28893,
+          "call_id": 14447,
+          "thread": 384,
+          "entry_return_slot": 2291140,
+          "normalized_return_sp": 2291156,
+          "continuation_root_call_id": 14447,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 82825,
+          "call_id": 41413,
+          "thread": 384,
+          "entry_return_slot": 2291148,
+          "normalized_return_sp": 2291164,
+          "continuation_root_call_id": 41413,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5811600,
+      "physical_caller": 4882198,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4882198,
+      "original_call_site": 4882193,
+      "original_call_target": 5811600,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 2,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 29279,
+          "call_id": 14640,
+          "thread": 384,
+          "entry_return_slot": 2291176,
+          "normalized_return_sp": 2291192,
+          "continuation_root_call_id": 14640,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 82355,
+          "call_id": 41178,
+          "thread": 384,
+          "entry_return_slot": 2291176,
+          "normalized_return_sp": 2291192,
+          "continuation_root_call_id": 41178,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5811600,
+      "physical_caller": 4886358,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4886358,
+      "original_call_site": 4886353,
+      "original_call_target": 5811600,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 3405,
+          "call_id": 1703,
+          "thread": 384,
+          "entry_return_slot": 2291680,
+          "normalized_return_sp": 2291696,
+          "continuation_root_call_id": 1703,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5811600,
+      "physical_caller": 4900730,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4900730,
+      "original_call_site": 4900725,
+      "original_call_target": 5811600,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 29749,
+          "call_id": 14875,
+          "thread": 384,
+          "entry_return_slot": 2290916,
+          "normalized_return_sp": 2290932,
+          "continuation_root_call_id": 14875,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5811600,
+      "physical_caller": 4962154,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4962154,
+      "original_call_site": 4962149,
+      "original_call_target": 5811600,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42379,
+          "call_id": 21190,
+          "thread": 384,
+          "entry_return_slot": 2291176,
+          "normalized_return_sp": 2291192,
+          "continuation_root_call_id": 21190,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5811600,
+      "physical_caller": 5079880,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5079880,
+      "original_call_site": 5079875,
+      "original_call_target": 5811600,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5079792
+      ],
+      "proof_samples": [
+        {
+          "sequence": 13,
+          "call_id": 7,
+          "thread": 384,
+          "entry_return_slot": 2291756,
+          "normalized_return_sp": 2291772,
+          "continuation_root_call_id": 7,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5811600,
+      "physical_caller": 5093037,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5093037,
+      "original_call_site": 5093032,
+      "original_call_target": 5811600,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5092944
+      ],
+      "proof_samples": [
+        {
+          "sequence": 9,
+          "call_id": 5,
+          "thread": 384,
+          "entry_return_slot": 2291756,
+          "normalized_return_sp": 2291772,
+          "continuation_root_call_id": 5,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5811600,
+      "physical_caller": 5128538,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5128538,
+      "original_call_site": 5128533,
+      "original_call_target": 5811600,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5128400
+      ],
+      "proof_samples": [
+        {
+          "sequence": 3,
+          "call_id": 2,
+          "thread": 384,
+          "entry_return_slot": 2292076,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 2,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5811600,
+      "physical_caller": 5128689,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5128689,
+      "original_call_site": 5128684,
+      "original_call_target": 5811600,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5128400
+      ],
+      "proof_samples": [
+        {
+          "sequence": 5,
+          "call_id": 3,
+          "thread": 384,
+          "entry_return_slot": 2292076,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 3,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813216,
+      "physical_caller": 4878415,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4878415,
+      "original_call_site": 4878410,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 2,
+      "continuation_discovered_owners": [
+        4878384
+      ],
+      "proof_samples": [
+        {
+          "sequence": 3401,
+          "call_id": 1701,
+          "thread": 384,
+          "entry_return_slot": 2292092,
+          "normalized_return_sp": 2292096,
+          "continuation_root_call_id": 1701,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 29275,
+          "call_id": 14638,
+          "thread": 384,
+          "entry_return_slot": 2292092,
+          "normalized_return_sp": 2292096,
+          "continuation_root_call_id": 14638,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813216,
+      "physical_caller": 4878429,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4878429,
+      "original_call_site": 4878424,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 2,
+      "continuation_discovered_owners": [
+        4878384
+      ],
+      "proof_samples": [
+        {
+          "sequence": 3403,
+          "call_id": 1702,
+          "thread": 384,
+          "entry_return_slot": 2292092,
+          "normalized_return_sp": 2292096,
+          "continuation_root_call_id": 1702,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 29277,
+          "call_id": 14639,
+          "thread": 384,
+          "entry_return_slot": 2292092,
+          "normalized_return_sp": 2292096,
+          "continuation_root_call_id": 14639,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813216,
+      "physical_caller": 4881791,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4881791,
+      "original_call_site": 4881786,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 2,
+      "continuation_discovered_owners": [
+        4881760
+      ],
+      "proof_samples": [
+        {
+          "sequence": 29745,
+          "call_id": 14873,
+          "thread": 384,
+          "entry_return_slot": 2292088,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 14873,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 82821,
+          "call_id": 41411,
+          "thread": 384,
+          "entry_return_slot": 2292080,
+          "normalized_return_sp": 2292084,
+          "continuation_root_call_id": 41411,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813216,
+      "physical_caller": 4881805,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4881805,
+      "original_call_site": 4881800,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 2,
+      "continuation_discovered_owners": [
+        4881760
+      ],
+      "proof_samples": [
+        {
+          "sequence": 29747,
+          "call_id": 14874,
+          "thread": 384,
+          "entry_return_slot": 2292088,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 14874,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 82823,
+          "call_id": 41412,
+          "thread": 384,
+          "entry_return_slot": 2292080,
+          "normalized_return_sp": 2292084,
+          "continuation_root_call_id": 41412,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813216,
+      "physical_caller": 4900143,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4900143,
+      "original_call_site": 4900138,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4900112
+      ],
+      "proof_samples": [
+        {
+          "sequence": 82351,
+          "call_id": 41176,
+          "thread": 384,
+          "entry_return_slot": 2292092,
+          "normalized_return_sp": 2292096,
+          "continuation_root_call_id": 41176,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813216,
+      "physical_caller": 4900157,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4900157,
+      "original_call_site": 4900152,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4900112
+      ],
+      "proof_samples": [
+        {
+          "sequence": 82353,
+          "call_id": 41177,
+          "thread": 384,
+          "entry_return_slot": 2292092,
+          "normalized_return_sp": 2292096,
+          "continuation_root_call_id": 41177,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813216,
+      "physical_caller": 4961695,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4961695,
+      "original_call_site": 4961690,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4961664
+      ],
+      "proof_samples": [
+        {
+          "sequence": 64193,
+          "call_id": 32097,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292088,
+          "continuation_root_call_id": 32097,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813216,
+      "physical_caller": 4961709,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4961709,
+      "original_call_site": 4961704,
+      "original_call_target": 5813216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4961664
+      ],
+      "proof_samples": [
+        {
+          "sequence": 64195,
+          "call_id": 32098,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292088,
+          "continuation_root_call_id": 32098,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 27590665,
+      "classification": "exact_relocated_original_call",
+      "original_return_continuation": 5821225,
+      "original_call_site": 5821220,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 8,
+      "continuation_discovered_owners": [
+        5821216
+      ],
+      "proof_samples": [
+        {
+          "sequence": 30,
+          "call_id": 16,
+          "thread": 384,
+          "entry_return_slot": 2291132,
+          "normalized_return_sp": 2291136,
+          "continuation_root_call_id": 16,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3408,
+          "call_id": 1705,
+          "thread": 384,
+          "entry_return_slot": 2291676,
+          "normalized_return_sp": 2291680,
+          "continuation_root_call_id": 1705,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 28896,
+          "call_id": 14449,
+          "thread": 384,
+          "entry_return_slot": 2291132,
+          "normalized_return_sp": 2291136,
+          "continuation_root_call_id": 14449,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 29282,
+          "call_id": 14642,
+          "thread": 384,
+          "entry_return_slot": 2291168,
+          "normalized_return_sp": 2291172,
+          "continuation_root_call_id": 14642,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5027300,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5027300,
+      "original_call_site": 5027295,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 449,
+      "continuation_discovered_owners": [
+        5027232
+      ],
+      "proof_samples": [
+        {
+          "sequence": 4259,
+          "call_id": 2130,
+          "thread": 384,
+          "entry_return_slot": 2292000,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2130,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4267,
+          "call_id": 2134,
+          "thread": 384,
+          "entry_return_slot": 2292000,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2134,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4275,
+          "call_id": 2138,
+          "thread": 384,
+          "entry_return_slot": 2292000,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2138,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4667,
+          "call_id": 2334,
+          "thread": 384,
+          "entry_return_slot": 2292000,
+          "normalized_return_sp": 2292004,
+          "continuation_root_call_id": 2334,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5032048,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5032048,
+      "original_call_site": 5032043,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 217,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 43,
+          "call_id": 22,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 22,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 67,
+          "call_id": 34,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 34,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 93,
+          "call_id": 47,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 47,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 125,
+          "call_id": 63,
+          "thread": 384,
+          "entry_return_slot": 2292048,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 63,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5037565,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5037565,
+      "original_call_site": 5037560,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 123,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 3875,
+          "call_id": 1938,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 1938,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4283,
+          "call_id": 2142,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 2142,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 5203,
+          "call_id": 2602,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 2602,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 5611,
+          "call_id": 2806,
+          "thread": 384,
+          "entry_return_slot": 2292040,
+          "normalized_return_sp": 2292044,
+          "continuation_root_call_id": 2806,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5041085,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5041085,
+      "original_call_site": 5041080,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 240,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 3411,
+          "call_id": 1706,
+          "thread": 384,
+          "entry_return_slot": 2291636,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1706,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3445,
+          "call_id": 1723,
+          "thread": 384,
+          "entry_return_slot": 2291636,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1723,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3477,
+          "call_id": 1739,
+          "thread": 384,
+          "entry_return_slot": 2291636,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1739,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3493,
+          "call_id": 1747,
+          "thread": 384,
+          "entry_return_slot": 2291636,
+          "normalized_return_sp": 2291640,
+          "continuation_root_call_id": 1747,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5048473,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5048473,
+      "original_call_site": 5048468,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 20,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42389,
+          "call_id": 21195,
+          "thread": 384,
+          "entry_return_slot": 2291092,
+          "normalized_return_sp": 2291096,
+          "continuation_root_call_id": 21195,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 43473,
+          "call_id": 21737,
+          "thread": 384,
+          "entry_return_slot": 2291980,
+          "normalized_return_sp": 2291984,
+          "continuation_root_call_id": 21737,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 44593,
+          "call_id": 22297,
+          "thread": 384,
+          "entry_return_slot": 2291980,
+          "normalized_return_sp": 2291984,
+          "continuation_root_call_id": 22297,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 45713,
+          "call_id": 22857,
+          "thread": 384,
+          "entry_return_slot": 2291980,
+          "normalized_return_sp": 2291984,
+          "continuation_root_call_id": 22857,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5051621,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5051621,
+      "original_call_site": 5051616,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 19,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42931,
+          "call_id": 21466,
+          "thread": 384,
+          "entry_return_slot": 2292024,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21466,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 44051,
+          "call_id": 22026,
+          "thread": 384,
+          "entry_return_slot": 2292024,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 22026,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 45171,
+          "call_id": 22586,
+          "thread": 384,
+          "entry_return_slot": 2292024,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 22586,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 46291,
+          "call_id": 23146,
+          "thread": 384,
+          "entry_return_slot": 2292024,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 23146,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5051838,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5051838,
+      "original_call_site": 5051833,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 19,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42941,
+          "call_id": 21471,
+          "thread": 384,
+          "entry_return_slot": 2292024,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21471,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 44061,
+          "call_id": 22031,
+          "thread": 384,
+          "entry_return_slot": 2292024,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 22031,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 45181,
+          "call_id": 22591,
+          "thread": 384,
+          "entry_return_slot": 2292024,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 22591,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 46301,
+          "call_id": 23151,
+          "thread": 384,
+          "entry_return_slot": 2292024,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 23151,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5056578,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5056578,
+      "original_call_site": 5056573,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 414,
+      "continuation_discovered_owners": [
+        5056512
+      ],
+      "proof_samples": [
+        {
+          "sequence": 171,
+          "call_id": 86,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 86,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 347,
+          "call_id": 174,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 174,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 523,
+          "call_id": 262,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 262,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 699,
+          "call_id": 350,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292076,
+          "continuation_root_call_id": 350,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5057154,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5057154,
+      "original_call_site": 5057149,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 24,
+      "continuation_discovered_owners": [
+        5057088
+      ],
+      "proof_samples": [
+        {
+          "sequence": 36003,
+          "call_id": 18002,
+          "thread": 384,
+          "entry_return_slot": 2292056,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18002,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36011,
+          "call_id": 18006,
+          "thread": 384,
+          "entry_return_slot": 2292056,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18006,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36019,
+          "call_id": 18010,
+          "thread": 384,
+          "entry_return_slot": 2292056,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18010,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36027,
+          "call_id": 18014,
+          "thread": 384,
+          "entry_return_slot": 2292056,
+          "normalized_return_sp": 2292060,
+          "continuation_root_call_id": 18014,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5822764,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5822764,
+      "original_call_site": 5822759,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 88,
+      "continuation_discovered_owners": [
+        5822656
+      ],
+      "proof_samples": [
+        {
+          "sequence": 40,
+          "call_id": 21,
+          "thread": 384,
+          "entry_return_slot": 2291968,
+          "normalized_return_sp": 2291972,
+          "continuation_root_call_id": 21,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 216,
+          "call_id": 109,
+          "thread": 384,
+          "entry_return_slot": 2291968,
+          "normalized_return_sp": 2291972,
+          "continuation_root_call_id": 109,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 392,
+          "call_id": 197,
+          "thread": 384,
+          "entry_return_slot": 2291968,
+          "normalized_return_sp": 2291972,
+          "continuation_root_call_id": 197,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 568,
+          "call_id": 285,
+          "thread": 384,
+          "entry_return_slot": 2291968,
+          "normalized_return_sp": 2291972,
+          "continuation_root_call_id": 285,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5824090,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5824090,
+      "original_call_site": 5824085,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 237,
+      "continuation_discovered_owners": [
+        5823984
+      ],
+      "proof_samples": [
+        {
+          "sequence": 36,
+          "call_id": 19,
+          "thread": 384,
+          "entry_return_slot": 2291944,
+          "normalized_return_sp": 2291948,
+          "continuation_root_call_id": 19,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 64,
+          "call_id": 33,
+          "thread": 384,
+          "entry_return_slot": 2291944,
+          "normalized_return_sp": 2291948,
+          "continuation_root_call_id": 33,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 90,
+          "call_id": 46,
+          "thread": 384,
+          "entry_return_slot": 2291944,
+          "normalized_return_sp": 2291948,
+          "continuation_root_call_id": 46,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 122,
+          "call_id": 62,
+          "thread": 384,
+          "entry_return_slot": 2291944,
+          "normalized_return_sp": 2291948,
+          "continuation_root_call_id": 62,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5813856,
+      "physical_caller": 5828001,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5828001,
+      "original_call_site": 5827996,
+      "original_call_target": 5813856,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 40,
+      "continuation_discovered_owners": [
+        5827968
+      ],
+      "proof_samples": [
+        {
+          "sequence": 3372,
+          "call_id": 1687,
+          "thread": 384,
+          "entry_return_slot": 2292088,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 1687,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3378,
+          "call_id": 1690,
+          "thread": 384,
+          "entry_return_slot": 2292088,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 1690,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3384,
+          "call_id": 1693,
+          "thread": 384,
+          "entry_return_slot": 2292088,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 1693,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3390,
+          "call_id": 1696,
+          "thread": 384,
+          "entry_return_slot": 2292088,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 1696,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5815312,
+      "physical_caller": 4863567,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4863567,
+      "original_call_site": 4863562,
+      "original_call_target": 5815312,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4862128
+      ],
+      "proof_samples": [
+        {
+          "sequence": 19,
+          "call_id": 10,
+          "thread": 384,
+          "entry_return_slot": 2290200,
+          "normalized_return_sp": 2290208,
+          "continuation_root_call_id": 10,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5815312,
+      "physical_caller": 4863648,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4863648,
+      "original_call_site": 4863643,
+      "original_call_target": 5815312,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4862128
+      ],
+      "proof_samples": [
+        {
+          "sequence": 23,
+          "call_id": 12,
+          "thread": 384,
+          "entry_return_slot": 2290200,
+          "normalized_return_sp": 2290208,
+          "continuation_root_call_id": 12,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5815312,
+      "physical_caller": 5079898,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5079898,
+      "original_call_site": 5079893,
+      "original_call_target": 5815312,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5079792
+      ],
+      "proof_samples": [
+        {
+          "sequence": 15,
+          "call_id": 8,
+          "thread": 384,
+          "entry_return_slot": 2291764,
+          "normalized_return_sp": 2291772,
+          "continuation_root_call_id": 8,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5815312,
+      "physical_caller": 5093046,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5093046,
+      "original_call_site": 5093041,
+      "original_call_target": 5815312,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5092944
+      ],
+      "proof_samples": [
+        {
+          "sequence": 11,
+          "call_id": 6,
+          "thread": 384,
+          "entry_return_slot": 2291764,
+          "normalized_return_sp": 2291772,
+          "continuation_root_call_id": 6,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5815312,
+      "physical_caller": 5128701,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5128701,
+      "original_call_site": 5128696,
+      "original_call_target": 5815312,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        5128400
+      ],
+      "proof_samples": [
+        {
+          "sequence": 7,
+          "call_id": 4,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 4,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5816128,
+      "physical_caller": 4879757,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4879757,
+      "original_call_site": 4879752,
+      "original_call_target": 5816128,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 22,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 33,
+          "call_id": 17,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 17,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 209,
+          "call_id": 105,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 105,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 385,
+          "call_id": 193,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 193,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 561,
+          "call_id": 281,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 281,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5816128,
+      "physical_caller": 4883037,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4883037,
+      "original_call_site": 4883032,
+      "original_call_target": 5816128,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 4,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 29285,
+          "call_id": 14643,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 14643,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 29503,
+          "call_id": 14752,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 14752,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 82361,
+          "call_id": 41181,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 41181,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 82579,
+          "call_id": 41290,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 41290,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5816128,
+      "physical_caller": 4888208,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4888208,
+      "original_call_site": 4888203,
+      "original_call_target": 5816128,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 19,
+      "continuation_discovered_owners": [
+        4888176
+      ],
+      "proof_samples": [
+        {
+          "sequence": 3637,
+          "call_id": 1819,
+          "thread": 384,
+          "entry_return_slot": 2292076,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 1819,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4965,
+          "call_id": 2483,
+          "thread": 384,
+          "entry_return_slot": 2292076,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 2483,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 6293,
+          "call_id": 3147,
+          "thread": 384,
+          "entry_return_slot": 2292076,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 3147,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 7621,
+          "call_id": 3811,
+          "thread": 384,
+          "entry_return_slot": 2292076,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 3811,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5816128,
+      "physical_caller": 4902561,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4902561,
+      "original_call_site": 4902556,
+      "original_call_target": 5816128,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 4,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 29755,
+          "call_id": 14878,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 14878,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36059,
+          "call_id": 18030,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 18030,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 69727,
+          "call_id": 34864,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 34864,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 76031,
+          "call_id": 38016,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 38016,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5816128,
+      "physical_caller": 4961374,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4961374,
+      "original_call_site": 4961369,
+      "original_call_target": 5816128,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4961312
+      ],
+      "proof_samples": [
+        {
+          "sequence": 42887,
+          "call_id": 21444,
+          "thread": 384,
+          "entry_return_slot": 2292088,
+          "normalized_return_sp": 2292104,
+          "continuation_root_call_id": 21444,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5816128,
+      "physical_caller": 4963193,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4963193,
+      "original_call_site": 4963188,
+      "original_call_target": 5816128,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 19,
+      "continuation_discovered_owners": [
+        4963168
+      ],
+      "proof_samples": [
+        {
+          "sequence": 42889,
+          "call_id": 21445,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 21445,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 44009,
+          "call_id": 22005,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 22005,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 45129,
+          "call_id": 22565,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 22565,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 46249,
+          "call_id": 23125,
+          "thread": 384,
+          "entry_return_slot": 2292084,
+          "normalized_return_sp": 2292100,
+          "continuation_root_call_id": 23125,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5816128,
+      "physical_caller": 5609469,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5609469,
+      "original_call_site": 5609464,
+      "original_call_target": 5816128,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 108,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 205,
+          "call_id": 103,
+          "thread": 384,
+          "entry_return_slot": 2292096,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 103,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 381,
+          "call_id": 191,
+          "thread": 384,
+          "entry_return_slot": 2292096,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 191,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 557,
+          "call_id": 279,
+          "thread": 384,
+          "entry_return_slot": 2292096,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 279,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 733,
+          "call_id": 367,
+          "thread": 384,
+          "entry_return_slot": 2292096,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 367,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5817504,
+      "physical_caller": 4867229,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4867229,
+      "original_call_site": 4867224,
+      "original_call_target": 5817504,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 60,
+      "continuation_discovered_owners": [
+        4866944
+      ],
+      "proof_samples": [
+        {
+          "sequence": 207,
+          "call_id": 104,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 104,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 383,
+          "call_id": 192,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 192,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 559,
+          "call_id": 280,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 280,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 735,
+          "call_id": 368,
+          "thread": 384,
+          "entry_return_slot": 2292072,
+          "normalized_return_sp": 2292092,
+          "continuation_root_call_id": 368,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5817504,
+      "physical_caller": 4867833,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4867833,
+      "original_call_site": 4867828,
+      "original_call_target": 5817504,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 60,
+      "continuation_discovered_owners": [
+        4867504
+      ],
+      "proof_samples": [
+        {
+          "sequence": 201,
+          "call_id": 101,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 101,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 377,
+          "call_id": 189,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 189,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 553,
+          "call_id": 277,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 277,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 729,
+          "call_id": 365,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 365,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5818528,
+      "physical_caller": 4868271,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4868271,
+      "original_call_site": 4868266,
+      "original_call_target": 5818528,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 60,
+      "continuation_discovered_owners": [
+        4867504
+      ],
+      "proof_samples": [
+        {
+          "sequence": 203,
+          "call_id": 102,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 102,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 379,
+          "call_id": 190,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 190,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 555,
+          "call_id": 278,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 278,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 731,
+          "call_id": 366,
+          "thread": 384,
+          "entry_return_slot": 2292016,
+          "normalized_return_sp": 2292036,
+          "continuation_root_call_id": 366,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5820832,
+      "physical_caller": 4863682,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4863682,
+      "original_call_site": 4863677,
+      "original_call_target": 5820832,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [
+        4862128
+      ],
+      "proof_samples": [
+        {
+          "sequence": 25,
+          "call_id": 13,
+          "thread": 384,
+          "entry_return_slot": 2290200,
+          "normalized_return_sp": 2290208,
+          "continuation_root_call_id": 13,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5821216,
+      "physical_caller": 4879096,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4879096,
+      "original_call_site": 4879091,
+      "original_call_target": 5821216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 3,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 29,
+          "call_id": 15,
+          "thread": 384,
+          "entry_return_slot": 2291144,
+          "normalized_return_sp": 2291152,
+          "continuation_root_call_id": 15,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 28895,
+          "call_id": 14448,
+          "thread": 384,
+          "entry_return_slot": 2291144,
+          "normalized_return_sp": 2291152,
+          "continuation_root_call_id": 14448,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 82827,
+          "call_id": 41414,
+          "thread": 384,
+          "entry_return_slot": 2291152,
+          "normalized_return_sp": 2291160,
+          "continuation_root_call_id": 41414,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5821216,
+      "physical_caller": 4882469,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4882469,
+      "original_call_site": 4882464,
+      "original_call_target": 5821216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 2,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 29281,
+          "call_id": 14641,
+          "thread": 384,
+          "entry_return_slot": 2291180,
+          "normalized_return_sp": 2291188,
+          "continuation_root_call_id": 14641,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 82357,
+          "call_id": 41179,
+          "thread": 384,
+          "entry_return_slot": 2291180,
+          "normalized_return_sp": 2291188,
+          "continuation_root_call_id": 41179,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5821216,
+      "physical_caller": 4886483,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4886483,
+      "original_call_site": 4886478,
+      "original_call_target": 5821216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 3407,
+          "call_id": 1704,
+          "thread": 384,
+          "entry_return_slot": 2291688,
+          "normalized_return_sp": 2291696,
+          "continuation_root_call_id": 1704,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5821216,
+      "physical_caller": 4901000,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4901000,
+      "original_call_site": 4900995,
+      "original_call_target": 5821216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 29751,
+          "call_id": 14876,
+          "thread": 384,
+          "entry_return_slot": 2290924,
+          "normalized_return_sp": 2290932,
+          "continuation_root_call_id": 14876,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5821216,
+      "physical_caller": 4962424,
+      "classification": "exact_original_call",
+      "original_return_continuation": 4962424,
+      "original_call_site": 4962419,
+      "original_call_target": 5821216,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 1,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42381,
+          "call_id": 21191,
+          "thread": 384,
+          "entry_return_slot": 2291184,
+          "normalized_return_sp": 2291192,
+          "continuation_root_call_id": 21191,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5822656,
+      "physical_caller": 5032040,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5032040,
+      "original_call_site": 5032035,
+      "original_call_target": 5822656,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 69,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 39,
+          "call_id": 20,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 20,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 215,
+          "call_id": 108,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 108,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 391,
+          "call_id": 196,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 196,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 567,
+          "call_id": 284,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292052,
+          "continuation_root_call_id": 284,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5822656,
+      "physical_caller": 5051830,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5051830,
+      "original_call_site": 5051825,
+      "original_call_target": 5822656,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 19,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42937,
+          "call_id": 21469,
+          "thread": 384,
+          "entry_return_slot": 2292020,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21469,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 44057,
+          "call_id": 22029,
+          "thread": 384,
+          "entry_return_slot": 2292020,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 22029,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 45177,
+          "call_id": 22589,
+          "thread": 384,
+          "entry_return_slot": 2292020,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 22589,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 46297,
+          "call_id": 23149,
+          "thread": 384,
+          "entry_return_slot": 2292020,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 23149,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5823984,
+      "physical_caller": 5031980,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5031980,
+      "original_call_site": 5031975,
+      "original_call_target": 5823984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 217,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 35,
+          "call_id": 18,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 18,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 63,
+          "call_id": 32,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 32,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 89,
+          "call_id": 45,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 45,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 121,
+          "call_id": 61,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 61,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5823984,
+      "physical_caller": 5052027,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5052027,
+      "original_call_site": 5052022,
+      "original_call_target": 5823984,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 20,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42385,
+          "call_id": 21193,
+          "thread": 384,
+          "entry_return_slot": 2291100,
+          "normalized_return_sp": 2291120,
+          "continuation_root_call_id": 21193,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 43469,
+          "call_id": 21735,
+          "thread": 384,
+          "entry_return_slot": 2292008,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 21735,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 44589,
+          "call_id": 22295,
+          "thread": 384,
+          "entry_return_slot": 2292008,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 22295,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 45709,
+          "call_id": 22855,
+          "thread": 384,
+          "entry_return_slot": 2292008,
+          "normalized_return_sp": 2292028,
+          "continuation_root_call_id": 22855,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5827968,
+      "physical_caller": 5609391,
+      "classification": "exact_original_call",
+      "original_return_continuation": 5609391,
+      "original_call_site": 5609386,
+      "original_call_target": 5827968,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 40,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 3371,
+          "call_id": 1686,
+          "thread": 384,
+          "entry_return_slot": 2292108,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 1686,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3377,
+          "call_id": 1689,
+          "thread": 384,
+          "entry_return_slot": 2292108,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 1689,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3383,
+          "call_id": 1692,
+          "thread": 384,
+          "entry_return_slot": 2292108,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 1692,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3389,
+          "call_id": 1695,
+          "thread": 384,
+          "entry_return_slot": 2292108,
+          "normalized_return_sp": 2292112,
+          "continuation_root_call_id": 1695,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5860536,
+      "physical_caller": 5027411,
+      "classification": "observed_callee_pending_call_flow_review",
+      "original_return_continuation": null,
+      "original_call_site": null,
+      "original_call_target": null,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 384,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 4673,
+          "call_id": 2337,
+          "thread": 384,
+          "entry_return_slot": 2291988,
+          "normalized_return_sp": 2291992,
+          "continuation_root_call_id": 2337,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4681,
+          "call_id": 2341,
+          "thread": 384,
+          "entry_return_slot": 2291988,
+          "normalized_return_sp": 2291992,
+          "continuation_root_call_id": 2341,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 4689,
+          "call_id": 2345,
+          "thread": 384,
+          "entry_return_slot": 2291988,
+          "normalized_return_sp": 2291992,
+          "continuation_root_call_id": 2345,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 6001,
+          "call_id": 3001,
+          "thread": 384,
+          "entry_return_slot": 2291988,
+          "normalized_return_sp": 2291992,
+          "continuation_root_call_id": 3001,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5860536,
+      "physical_caller": 5037759,
+      "classification": "observed_callee_pending_call_flow_review",
+      "original_return_continuation": null,
+      "original_call_site": null,
+      "original_call_target": null,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 19497,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 3881,
+          "call_id": 1941,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292032,
+          "continuation_root_call_id": 1941,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3883,
+          "call_id": 1942,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292032,
+          "continuation_root_call_id": 1942,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3885,
+          "call_id": 1943,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292032,
+          "continuation_root_call_id": 1943,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3887,
+          "call_id": 1944,
+          "thread": 384,
+          "entry_return_slot": 2292028,
+          "normalized_return_sp": 2292032,
+          "continuation_root_call_id": 1944,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5860536,
+      "physical_caller": 5041544,
+      "classification": "observed_callee_pending_call_flow_review",
+      "original_return_continuation": null,
+      "original_call_site": null,
+      "original_call_target": null,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 240,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 3443,
+          "call_id": 1722,
+          "thread": 384,
+          "entry_return_slot": 2291624,
+          "normalized_return_sp": 2291628,
+          "continuation_root_call_id": 1722,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3475,
+          "call_id": 1738,
+          "thread": 384,
+          "entry_return_slot": 2291624,
+          "normalized_return_sp": 2291628,
+          "continuation_root_call_id": 1738,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3491,
+          "call_id": 1746,
+          "thread": 384,
+          "entry_return_slot": 2291624,
+          "normalized_return_sp": 2291628,
+          "continuation_root_call_id": 1746,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 3505,
+          "call_id": 1753,
+          "thread": 384,
+          "entry_return_slot": 2291624,
+          "normalized_return_sp": 2291628,
+          "continuation_root_call_id": 1753,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5860536,
+      "physical_caller": 5048606,
+      "classification": "observed_callee_pending_call_flow_review",
+      "original_return_continuation": null,
+      "original_call_site": null,
+      "original_call_target": null,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 4680,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 42395,
+          "call_id": 21198,
+          "thread": 384,
+          "entry_return_slot": 2291080,
+          "normalized_return_sp": 2291084,
+          "continuation_root_call_id": 21198,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 42397,
+          "call_id": 21199,
+          "thread": 384,
+          "entry_return_slot": 2291080,
+          "normalized_return_sp": 2291084,
+          "continuation_root_call_id": 21199,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 42399,
+          "call_id": 21200,
+          "thread": 384,
+          "entry_return_slot": 2291080,
+          "normalized_return_sp": 2291084,
+          "continuation_root_call_id": 21200,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 42401,
+          "call_id": 21201,
+          "thread": 384,
+          "entry_return_slot": 2291080,
+          "normalized_return_sp": 2291084,
+          "continuation_root_call_id": 21201,
+          "inherited_parent_call_id": null
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "entry": 5860536,
+      "physical_caller": 5057240,
+      "classification": "observed_callee_pending_call_flow_review",
+      "original_return_continuation": null,
+      "original_call_site": null,
+      "original_call_target": null,
+      "inherited_parent_entry": null,
+      "inherited_depth": 0,
+      "count": 24,
+      "continuation_discovered_owners": [],
+      "proof_samples": [
+        {
+          "sequence": 36009,
+          "call_id": 18005,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 18005,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36017,
+          "call_id": 18009,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 18009,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36025,
+          "call_id": 18013,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 18013,
+          "inherited_parent_call_id": null
+        },
+        {
+          "sequence": 36033,
+          "call_id": 18017,
+          "thread": 384,
+          "entry_return_slot": 2292044,
+          "normalized_return_sp": 2292048,
+          "continuation_root_call_id": 18017,
+          "inherited_parent_call_id": null
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "reason": "observed_callee_pending_call_flow_review",
+      "entry": 5813216,
+      "physical_caller": 5152238,
+      "count": 1
+    },
+    {
+      "reason": "observed_callee_pending_call_flow_review",
+      "entry": 5813216,
+      "physical_caller": 5601622,
+      "count": 1
+    },
+    {
+      "reason": "observed_callee_pending_call_flow_review",
+      "entry": 5813216,
+      "physical_caller": 5888396,
+      "count": 4
+    },
+    {
+      "reason": "observed_callee_pending_call_flow_review",
+      "entry": 5860536,
+      "physical_caller": 5027411,
+      "count": 384
+    },
+    {
+      "reason": "observed_callee_pending_call_flow_review",
+      "entry": 5860536,
+      "physical_caller": 5037759,
+      "count": 19497
+    },
+    {
+      "reason": "observed_callee_pending_call_flow_review",
+      "entry": 5860536,
+      "physical_caller": 5041544,
+      "count": 240
+    },
+    {
+      "reason": "observed_callee_pending_call_flow_review",
+      "entry": 5860536,
+      "physical_caller": 5048606,
+      "count": 4680
+    },
+    {
+      "reason": "observed_callee_pending_call_flow_review",
+      "entry": 5860536,
+      "physical_caller": 5057240,
+      "count": 24
+    }
+  ],
+  "exact_relocated_pairs": 8,
+  "exact_original_pairs": 17182,
+  "inherited_continuation_pairs": 0,
+  "caller_attribution_complete": false,
+  "draw01_complete": false,
+  "scope": "Independent closed-journal pairing, active-count/newest-return and exact per-run core binding review. Physical callers remain intact. A same-thread/same-original-return-slot/same-cleanup inherited continuation identifies the observed parent/root, not an original CALL edge to the child or semantic owner. Discovered continuation ranges do not fill unknown functions/flows; unresolved indirect/tail callers, writers and scenario/dispatch closure remain pending.",
+  "sources": {
+    "protocols/include/mnm/drawing_census_bindings_v1.h": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-callers-movie-sites-20261010.json": "9bee999ddfbf3159c992399abd6d6308ffae0207c3536bed46ace94d17b18ac3",
+    "tests/test-drawing-census-callers.py": "a829e6581052a410ee4bd67a4f5f02e9d358419eea70487a9e9f165caa3cfbb5",
+    "tools/capture-drawing-census-game.py": "f693db1cfe59da196a538ff2b62485b25d3430155cefdfd63587fd1abf3a6bac",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_census_bindings.py": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+    "tools/drawing_census_callers.py": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-core-callers",
+      "contract_sha256": "0882b9c35dc8bc020abed156b9bae0223f7f5f3a4c56826739f121e2f8efdcf4",
+      "scenarios": {
+        "drawing-core-caller-guards-20261011": "652e74ac33d95b6faf609e304c4c051dda9c8b500aeb5ef68d2fdefffe165895",
+        "drawing-core-caller-original-replay-20261011": "356768fdea7d716cd25cad7a78aea4e66905789724c6896934d7fb43a262bd70"
+      }
+    }
+  ],
+  "sources_stable": true,
+  "original_execution_repeated": false,
+  "artifacts": {
+    "working/experiments/drawing-census/run-t3mn_i6s/capture/census.bin": {
+      "sha256": "4753ae3b61702f2db98c66a63801531000c9282737d5d2097ca8975423a3380f",
+      "bytes": 10757504
+    },
+    "working/experiments/drawing-census/run-t3mn_i6s/capture/core-bindings.bin": {
+      "sha256": "841d3444aa4cabbb7f5c5c666887ce016b96f771e61b608dae2102f7dffbb8c7",
+      "bytes": 8160
+    },
+    "working/experiments/drawing-census/run-t3mn_i6s/census-build.json": {
+      "sha256": "a9285f3be8680a03e4b0c090f2fccb10b047b3bb19921c83dae2a5bcb6302f5a",
+      "bytes": 19350
+    },
+    "working/experiments/drawing-census/run-t3mn_i6s/journey.json": {
+      "sha256": "c4f3f20603eec0b4e7688b16c7380733f26877062fee8722d2fdcdb8b373dd29",
+      "bytes": 45251
+    },
+    "working/tests/draw01-core-caller-claims-20261011.json": {
+      "sha256": "3948d409e815525a565902cc5ec21e039b427c5343eebf3803b9bdc954f1877b",
+      "bytes": 1647
+    }
+  }
+}

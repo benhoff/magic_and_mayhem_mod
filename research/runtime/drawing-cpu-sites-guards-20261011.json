@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources_stable": true,
+  "sources": {
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-inventory.json": "a89137b0b7d218b4db57712444082e5187e98d5efba56914625d99436f1b08d4",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "tests/test-drawing-cpu-sites.py": "47d6eba21c58fc276711b11a48b1e7761eb34272271dad51138c3cd986383359",
+    "tools/build-drawing-census.py": "6cea420d0324aed0f74f933552829d5541c35a33b190ad55989b12b97c5f950b",
+    "tools/drawing_api_journal.py": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+    "tools/drawing_api_pairs.py": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+    "tools/drawing_api_sites.py": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_cpu_sites.py": "3e480307240f93eabc190b63f04cdb3b4f8ccfdbcc851edf357a5bd5bc946178",
+    "tools/export-drawing-api-splices.py": "1a5e5a2b9df06a5a6fc91c2e610961fbfd05058d24d95c7f993220507460a317",
+    "tools/export-drawing-cpu-sites.py": "0dade10e0f41d85a66988e58c7e086a368e31ca67a79a8072556972df5d91ece",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-cpu-sites",
+      "contract_sha256": "ddd5278b39a4c8776eff57a62b01d1d11176474408273a32074583a22612327c",
+      "scenarios": {
+        "drawing-cpu-sites-guards-20261011": "853e782ebe5163e2ed793f3e8a05e8223a61cffa85134b1f503198dee83f2cb0",
+        "drawing-cpu-sites-static-20261011": "f4f650aad7f8d18d72e91530419b3c1600cda3f90b629742210188124411b2c2"
+      }
+    },
+    {
+      "behavior": "DRAW.raster-pointer-assignments",
+      "contract_sha256": "4fe28f550d8bc05f31962249e55854e37678542e2c3b63a91c4e47cf46e4e638",
+      "scenarios": {
+        "drawing-cpu-sites-static-20261011": "f4f650aad7f8d18d72e91530419b3c1600cda3f90b629742210188124411b2c2"
+      }
+    }
+  ],
+  "guards": 12,
+  "original_renderer_executed": false,
+  "scope": "Synthetic exact CPU CALL/store selection and mismatch/owner/unsupported-mode refusals only; no original branch execution or actual target/writer/lifetime proof.",
+  "artifacts": {
+    "working/tests/draw01-cpu-sites-guards-20261011.log": {
+      "sha256": "72f09eca554e87a45b7156c6109520cf15e8b6ec157dc5c033610649b49b8698",
+      "bytes": 111
+    }
+  }
+}

@@ -1,0 +1,1229 @@
+{
+  "schema": 1,
+  "reviewed_commit_range": "3b50e6786313ef4c143c097c6e6f43125d1c78d4..02addc61a586583baf6a72a1aae6ca9556e81d2e",
+  "scope": "Committed history only; exact parent/current hashes, affected behavior links and contract receipts reviewed separately from current uncommitted work. No retrospective gate pass or new validation.",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "f9257eb20253ba3c802d99b39d6401998f8663ddf7a69340df33ec688fac2335",
+      "after_sha256": "89131e74600aee32feedec29eb90ccb21ef53b8732a11c43b6aee13c84cae2ad",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-3766bfb-3b50e67-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "8bc8dc482c600842a8f194f79bbcde7b91f636dcf04f4be4627a242c4b3d9ea0",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "478a516046cb480bf3e50540c72b06c828bf764e37ba927390a5c9cdc50dc7af",
+      "after_sha256": "577e4274a0319d858e72526fd54d835ba3c12110dfd8ae6db3a2772e76068549",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-cpu-sites-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "dcd65e0c6cac839255a5924bc87f4ce11418b1cdcb32f356417b1661a3ee582f",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "134730a51a1bf8d02c03e80a7bed80536d0086a3e253c700f69669fd314e3eee",
+      "after_sha256": "558f2a34a59988430c9f42fdec4f24c204ba9492e115b3171518ec927d9033df",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-inventory.md",
+      "before_sha256": "5d78818c174d596f9df26311a5a50d0cb236d9c795f3b2d5e85cca86bba9e912",
+      "after_sha256": "4f1c89959e809c0f335b85d6bb79afdc261068b067e5ec57d4f590213a99b55a",
+      "behaviors": [
+        "DRAW.canvas-lock-recovery",
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.queue-client-state",
+        "DRAW.queue-dispatch",
+        "DRAW.queue-render-postlude",
+        "DRAW.raster-pointer-assignments",
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-census",
+        "TOOL.drawing-core-bindings",
+        "TOOL.drawing-core-callers",
+        "TOOL.drawing-cpu-sites",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-cpu-core-splices-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5554492d37878a97e2aa1b079bcebbdd2299783f616e622530c4938a55274313",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-cpu-sites-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c3f65c83560e3271bae3224c91b4bc1ea949c98c46e77cdffe18ffe1ceed3b32",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-cpu-sites-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "02d0fd599c15b0da272a6cc052bfe0e16b9384a04e6b961e443c9be251234628",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-cpu-sites-static-review-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6d12917a8d9532d862918fc599129d3dd5b4c081d84b744db81b672a82f90a41",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "runtime/scene/canvas_producers.c",
+      "before_sha256": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+      "after_sha256": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "NR.font-glyph-live-shadow",
+        "NR.glyph-default-launch",
+        "NR.glyph-live-admission",
+        "NR.minimap-input-fixture",
+        "NR.minimap-interactive-presentation",
+        "NR.minimap-owned-observation",
+        "NR.offline-render-soak",
+        "NR.word-clipped-takeover-admission",
+        "NR.world-batch-extended-prefix",
+        "NR.world-batch-profiling",
+        "NR.world-batch-throughput",
+        "NR.world-history-channel",
+        "NR.world-interactive-batch-launcher",
+        "NR.world-live-history",
+        "NR.world-producer-handoff",
+        "NR.world-raster-batch-transport",
+        "NR.world-resource-reuse",
+        "NR.world-startup-launcher",
+        "RI.movies",
+        "RS.canvas-producer-sequence",
+        "RS.glyph-live-route",
+        "RS.word-clip-takeover",
+        "RS.world-producer-bypass",
+        "RS.world-raster-batch-return",
+        "RS.world-raster-queue-replacement",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-cpu-sites",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "code",
+      "change": "links_changed",
+      "exact_receipts": [
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-api-menu-current-observation-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tests/test-drawing-cpu-sites.py",
+      "before_sha256": null,
+      "after_sha256": "47d6eba21c58fc276711b11a48b1e7761eb34272271dad51138c3cd986383359",
+      "behaviors": [
+        "DRAW.raster-pointer-assignments",
+        "TOOL.drawing-cpu-sites"
+      ],
+      "role": "test",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/build-drawing-census.py",
+      "before_sha256": "6cea420d0324aed0f74f933552829d5541c35a33b190ad55989b12b97c5f950b",
+      "after_sha256": "6cea420d0324aed0f74f933552829d5541c35a33b190ad55989b12b97c5f950b",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "RI.movies",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-core-bindings",
+        "TOOL.drawing-cpu-sites"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_journal.py",
+      "before_sha256": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+      "after_sha256": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-cpu-sites"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-surface-api-exact-accounting-20261011",
+        "draw01-surface-api-native-validation-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_pairs.py",
+      "before_sha256": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+      "after_sha256": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-cpu-sites"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-surface-api-exact-accounting-20261011",
+        "draw01-surface-api-native-validation-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_sites.py",
+      "before_sha256": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+      "after_sha256": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-api-sites",
+        "TOOL.drawing-cpu-sites",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-api-inventory-exact-accounting-20261011",
+        "draw01-api-inventory-native-validation-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_census.py",
+      "before_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "after_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "behaviors": [
+        "DRAW.canvas-lock-recovery",
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.graphics-api-boundaries",
+        "DRAW.queue-client-state",
+        "DRAW.queue-dispatch",
+        "DRAW.queue-render-postlude",
+        "DRAW.raster-pointer-assignments",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "RI.movies",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-sites",
+        "TOOL.drawing-census",
+        "TOOL.drawing-core-bindings",
+        "TOOL.drawing-core-callers",
+        "TOOL.drawing-cpu-sites",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory",
+        "TOOL.drawing-movie-reference"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-api-menu-current-observation-20261011",
+        "draw01-api-v2-exact-accounting-20261011",
+        "draw01-api-v2-native-validation-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-fixture-validation-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-lock-recovery-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_cpu_sites.py",
+      "before_sha256": null,
+      "after_sha256": "3e480307240f93eabc190b63f04cdb3b4f8ccfdbcc851edf357a5bd5bc946178",
+      "behaviors": [
+        "DRAW.raster-pointer-assignments",
+        "TOOL.drawing-cpu-sites"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/export-drawing-api-splices.py",
+      "before_sha256": "1a5e5a2b9df06a5a6fc91c2e610961fbfd05058d24d95c7f993220507460a317",
+      "after_sha256": "1a5e5a2b9df06a5a6fc91c2e610961fbfd05058d24d95c7f993220507460a317",
+      "behaviors": [
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-cpu-sites"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/export-drawing-cpu-sites.py",
+      "before_sha256": null,
+      "after_sha256": "0dade10e0f41d85a66988e58c7e086a368e31ca67a79a8072556972df5d91ece",
+      "behaviors": [
+        "DRAW.raster-pointer-assignments",
+        "TOOL.drawing-cpu-sites"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/export-menu-support.py",
+      "before_sha256": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+      "after_sha256": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "NR.font-glyph-live-shadow",
+        "NR.glyph-default-launch",
+        "NR.glyph-live-admission",
+        "NR.minimap-input-fixture",
+        "NR.minimap-interactive-presentation",
+        "NR.minimap-owned-observation",
+        "NR.offline-render-soak",
+        "NR.world-batch-extended-prefix",
+        "NR.world-batch-profiling",
+        "NR.world-batch-throughput",
+        "NR.world-interactive-batch-launcher",
+        "NR.world-resource-reuse",
+        "NR.world-startup-launcher",
+        "RI.movies",
+        "RS.glyph-live-route",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-cpu-sites"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "world-startup-launcher-accounting-20261008",
+        "world-raster-batch-v7-dependencies-pending-20261008",
+        "world-interactive-batch-source-and-index-review-20261009",
+        "world-resource-reuse-source-and-index-review-20261009",
+        "REVIEW.history-merge-20261009-1",
+        "minimap-live-source-and-accounting-20261009",
+        "minimap-interactive-source-accounting-20261010",
+        "native-world32-source-reuse-20261010",
+        "native-world32-source-reuse-validated-20261010",
+        "native-world-throughput-source-policy-20261010",
+        "native-world-throughput-headless-validated-20261010",
+        "native-render-offline-soak-accounting-20261010",
+        "font-byte-source-accounting-20261010",
+        "glyph-live-source-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-api-menu-current-observation-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.canvas-lock-recovery",
+      "before_sha256": "016c070733b33138bf9d2fd5700005389f021d54b4bbb328147e8f21077d303a",
+      "after_sha256": "04602d9d43279db113ca68b5b7e901006da13a5db39943e21a8641eedc9587f7",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "210e2c1a9cd5b5eb82f4385b5a86134baa90be9c8accc122738e181e1c20ab90",
+      "after_sha256": "bb2ddc511c22f7f63a8e0ded8d4659a1ff70e3da9a1dbff5abad8ccc4edee20c",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "ebfd3223025905cbfb8ba3f9b48fc716b08fa66106cc66abd8fe0150fef27e65",
+      "after_sha256": "4332d79190d96d0b3c9e41503d3b08b48c27062337c9ecd1010fc269e7911450",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-boundaries",
+      "before_sha256": "684b4c313fe166aa7d36d34cef1a51758c165496944400745979088a45b0c2f3",
+      "after_sha256": "684b4c313fe166aa7d36d34cef1a51758c165496944400745979088a45b0c2f3",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-client-state",
+      "before_sha256": "3e28135307703ad00efd7c203d6741d30cdb560178c0dcf9880aaa78b2ebbd00",
+      "after_sha256": "0daf65688fbe51731688a9cae18eb58f1ec566acba1c35fb82d9569e70eafd04",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-dispatch",
+      "before_sha256": "118dfbfb7cde832cf03d22020ed037062033fd3d97ed8069523513e3fc239849",
+      "after_sha256": "c5ca226a9c21cd6534d44859cbe30abf36a8512b906fbf2c1c60ab4b2d2bb636",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-render-postlude",
+      "before_sha256": "549cfa2f3f0e236470219c443f03c1223033e395c2ea26849ba2d319616cd263",
+      "after_sha256": "f964d26db58d7d73dbba65fd607d7520efb8c7beaa5e4bc3d34c6dd68a280a84",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.raster-pointer-assignments",
+      "before_sha256": null,
+      "after_sha256": "89d3b6f7294f7d64a300dd0a529e16dc99384cb2d41ff21ae5acd1b5bb1f2e49",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.surface-hosting",
+      "before_sha256": "ee00a93ec0ed11fa91024a46eb6bfa7e59b3f1203da4774e5c49d700f10285d6",
+      "after_sha256": "a09bb6ce9fb0c54f2353b3d63a64e5512ddec5673c5d310150fde1c7de74aee8",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.unassigned-word-window",
+      "before_sha256": "3ab7661c9fe6af9a71483f3403f837883d23c1b5119490666658653009aaef6d",
+      "after_sha256": "58e73e8e5b8594ff1093959fa7c71ae30866a0402f9b2c000ec1d18e587254a8",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.unattributed-caller",
+      "before_sha256": "d11c7b3eda0c16199aa1c4112a8b21af644a76f3e6453d7d32a0f21d70fb0f4f",
+      "after_sha256": "966b1d494e284e6d6a87456977f6d2c9bedc42f8d4f298bf10e52d1e521b46b3",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "before_sha256": "98d48f1c5681cb3ba2ffb44613f80ba889745861888b8eebc48b68bb83abcfb7",
+      "after_sha256": "c29f852a25f1129a8fbf25c950bbeaff4ee9568af546d6780352d4ee4aa69498",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "before_sha256": "c20dba32fa9ffd583dadbcbb16f9ec4d1442d776531a3a874d8d2aeaccbd3926",
+      "after_sha256": "7518bd3f150c6c1a3071ddfc170644c97f722ec324ff4a3f94165b911331a142",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "before_sha256": "ad8e96f4386bd932e7a18f90676edd20fb14c5a60cfbc6d618bba23e64e88bd3",
+      "after_sha256": "37defd57de039b10cd16f0b2e2d2056b949961998589dd99ceb231fae26bd0f4",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.font-glyph-live-shadow",
+      "before_sha256": "eb867dd54d8eb648b10933d44f641e008e87fb0a654cd1df1e43dc297a30fda5",
+      "after_sha256": "eb867dd54d8eb648b10933d44f641e008e87fb0a654cd1df1e43dc297a30fda5",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.glyph-default-launch",
+      "before_sha256": "d59ed462f6f6962ca50f7e6be32473be1225591c631dfdd4a4df6f4ad3afec50",
+      "after_sha256": "d59ed462f6f6962ca50f7e6be32473be1225591c631dfdd4a4df6f4ad3afec50",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.glyph-live-admission",
+      "before_sha256": "b584a493170cfe958a15bd8705e6cf04bb39b0ffd1f8c9065cb5ef1c96c380a2",
+      "after_sha256": "b584a493170cfe958a15bd8705e6cf04bb39b0ffd1f8c9065cb5ef1c96c380a2",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.minimap-input-fixture",
+      "before_sha256": "a406dad59cabdba9bdfbcdb641e317c01aa3e6c4f5605a53166c1ebd4519a3d4",
+      "after_sha256": "a406dad59cabdba9bdfbcdb641e317c01aa3e6c4f5605a53166c1ebd4519a3d4",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.minimap-interactive-presentation",
+      "before_sha256": "99610c280c8a32b091d779606b4d976b9f601abf58d5337b6c065347fc5d9b43",
+      "after_sha256": "99610c280c8a32b091d779606b4d976b9f601abf58d5337b6c065347fc5d9b43",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.minimap-owned-observation",
+      "before_sha256": "dcfef878fcc25178065483b9075b6c37e7a009cc137d810c6e691d1130df2c24",
+      "after_sha256": "dcfef878fcc25178065483b9075b6c37e7a009cc137d810c6e691d1130df2c24",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.offline-render-soak",
+      "before_sha256": "ec43a5131c0da06edb7466d7dd77765921aa090beafdc53c7469c4115fca2d31",
+      "after_sha256": "ec43a5131c0da06edb7466d7dd77765921aa090beafdc53c7469c4115fca2d31",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.word-clipped-takeover-admission",
+      "before_sha256": "d173e907229c3c92f7a33663417aa5dd31fd8dc1a8bbeefde707fb55ad6e9463",
+      "after_sha256": "d173e907229c3c92f7a33663417aa5dd31fd8dc1a8bbeefde707fb55ad6e9463",
+      "exact_receipts": [
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-batch-extended-prefix",
+      "before_sha256": "397277517bcb3a9afc6500bcb725bb8ae8f45cff964d464f03bd695edf3495a0",
+      "after_sha256": "397277517bcb3a9afc6500bcb725bb8ae8f45cff964d464f03bd695edf3495a0",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-batch-profiling",
+      "before_sha256": "c6e600fcf9eae4bf935e1c5b60a77747b9151183b6aa0fbf3f0c7b0fcc80f192",
+      "after_sha256": "c6e600fcf9eae4bf935e1c5b60a77747b9151183b6aa0fbf3f0c7b0fcc80f192",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-batch-throughput",
+      "before_sha256": "319d76d3cd16f0986280725a7acfc2660e406a5693234d5972dd249ef26426ac",
+      "after_sha256": "319d76d3cd16f0986280725a7acfc2660e406a5693234d5972dd249ef26426ac",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-history-channel",
+      "before_sha256": "03902eb95bf11c05ff925971c1e93fa3a989266c80bba57186422a270727aaca",
+      "after_sha256": "03902eb95bf11c05ff925971c1e93fa3a989266c80bba57186422a270727aaca",
+      "exact_receipts": [
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-interactive-batch-launcher",
+      "before_sha256": "1186572adabf02e6e49546fe50d2a7d6a07e10df0047155679c7edfac03914db",
+      "after_sha256": "1186572adabf02e6e49546fe50d2a7d6a07e10df0047155679c7edfac03914db",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-live-history",
+      "before_sha256": "ce2eb3a7168786265002d8085ec32e101c6d04595b5251f88c090cf5daf8f9b1",
+      "after_sha256": "ce2eb3a7168786265002d8085ec32e101c6d04595b5251f88c090cf5daf8f9b1",
+      "exact_receipts": [
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-producer-handoff",
+      "before_sha256": "30a6bd6755f7bad29cb59c06e3798bb4898941b8776a7bb99c52d458ab24361b",
+      "after_sha256": "30a6bd6755f7bad29cb59c06e3798bb4898941b8776a7bb99c52d458ab24361b",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-raster-batch-transport",
+      "before_sha256": "4bae9cfc725930a4311b1b68972af84f520a5625a17212ab815e27d57b8d3c29",
+      "after_sha256": "4bae9cfc725930a4311b1b68972af84f520a5625a17212ab815e27d57b8d3c29",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-resource-reuse",
+      "before_sha256": "b98dd24bb43ad62c1fe876236907e898517183f94039d9f0f2f0910c9643641e",
+      "after_sha256": "b98dd24bb43ad62c1fe876236907e898517183f94039d9f0f2f0910c9643641e",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "NR.world-startup-launcher",
+      "before_sha256": "5959bb99b6738584b68aa68c6b3e394b0e7c2f31fbe1a2be597766e8342c6406",
+      "after_sha256": "5959bb99b6738584b68aa68c6b3e394b0e7c2f31fbe1a2be597766e8342c6406",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-expanded-callers-source-review-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RI.movies",
+      "before_sha256": "4ac040afb845a290663a3a6476f8330fbcd77a3e9b17eef3bc540bae163cd96f",
+      "after_sha256": "4ac040afb845a290663a3a6476f8330fbcd77a3e9b17eef3bc540bae163cd96f",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.canvas-producer-sequence",
+      "before_sha256": "271eb8360926c072765ddd0ab3783ac709006d4d2a8aeb5a785a312170589db9",
+      "after_sha256": "271eb8360926c072765ddd0ab3783ac709006d4d2a8aeb5a785a312170589db9",
+      "exact_receipts": [
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.glyph-live-route",
+      "before_sha256": "cf8d78a7083fe1b2d5aa10a182ca31d1b0c8cd3e5e023e1c795b18d930aa0ec2",
+      "after_sha256": "cf8d78a7083fe1b2d5aa10a182ca31d1b0c8cd3e5e023e1c795b18d930aa0ec2",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.word-clip-takeover",
+      "before_sha256": "c7d88ce3b7283d9ba9efcfebf4567c6c4f069fcca8bbd96467521090722d03b9",
+      "after_sha256": "c7d88ce3b7283d9ba9efcfebf4567c6c4f069fcca8bbd96467521090722d03b9",
+      "exact_receipts": [
+        "other-producers-exact-accounting-20261010",
+        "glyph-default-source-accounting-20261010",
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.world-producer-bypass",
+      "before_sha256": "47dccfab6b0ce4dd7747c69ce5d924e2771f64352c11035e104a251321c24558",
+      "after_sha256": "47dccfab6b0ce4dd7747c69ce5d924e2771f64352c11035e104a251321c24558",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.world-raster-batch-return",
+      "before_sha256": "71a50dd75c3caf7b81f0354bc86b997f1f2d1164eeebfe7bcb174236022c3cc3",
+      "after_sha256": "71a50dd75c3caf7b81f0354bc86b997f1f2d1164eeebfe7bcb174236022c3cc3",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RS.world-raster-queue-replacement",
+      "before_sha256": "596123a6130877699ab8a0c3f90e55521a4af2811d28338563fa264c6a7e2cfb",
+      "after_sha256": "596123a6130877699ab8a0c3f90e55521a4af2811d28338563fa264c6a7e2cfb",
+      "exact_receipts": [
+        "glyph-default-after-rendering-source-accounting-20261010",
+        "draw01-commit-snapshot-20261010",
+        "draw01-original-active-journal-increment-20261010",
+        "draw01-dispatch-routing-and-helper-increment-20261010",
+        "draw01-original-movie-contract-accounting-20261010",
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "3976b31bd306f3719d7ea97581604c08269f70a27c28eff9124f81ad8f9e4f26",
+      "after_sha256": "b404eb2f96cc5f86788784bd333d101ee6dd899076b5a9fa373bcfaeba4df9db",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-bindings",
+      "before_sha256": "1b48a1a9b9c20f245c869bd9a432f355ae8459790811c5cfa3c5bb5108ed0ecb",
+      "after_sha256": "1b48a1a9b9c20f245c869bd9a432f355ae8459790811c5cfa3c5bb5108ed0ecb",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-details",
+      "before_sha256": "d0d0a762425f2b0f071c44706254eb1c110e8090c351a4e30965b7364b22c57c",
+      "after_sha256": "d0d0a762425f2b0f071c44706254eb1c110e8090c351a4e30965b7364b22c57c",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journal",
+      "before_sha256": "a5eb1c441966417f8d1fcc632756ff7ee575fad01f77e02af703b18e3b7c369a",
+      "after_sha256": "a5eb1c441966417f8d1fcc632756ff7ee575fad01f77e02af703b18e3b7c369a",
+      "exact_receipts": [
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journey",
+      "before_sha256": "2a30a1abb8b931f551f778e36feccd448666cc6a3497d68b3508c6e69ee3a17c",
+      "after_sha256": "2a30a1abb8b931f551f778e36feccd448666cc6a3497d68b3508c6e69ee3a17c",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-observer",
+      "before_sha256": "9790e68037256a3639dd7cc20ed9e7a058bf9410a5609c8d75dcee7c185a0671",
+      "after_sha256": "9790e68037256a3639dd7cc20ed9e7a058bf9410a5609c8d75dcee7c185a0671",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-resources",
+      "before_sha256": "23f058b1eb1a7b70b89a1295d28d44f66a5016b3bef60a4c7f8d594c003e26fd",
+      "after_sha256": "23f058b1eb1a7b70b89a1295d28d44f66a5016b3bef60a4c7f8d594c003e26fd",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-sites",
+      "before_sha256": "4683e11d46d4fe823779fe678afcfabcf3812a70d9adacef2f9b7cbca24c06c2",
+      "after_sha256": "4683e11d46d4fe823779fe678afcfabcf3812a70d9adacef2f9b7cbca24c06c2",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-census",
+      "before_sha256": "4118326874fb42bd874ed8f1956b51fd65149f43a185ce6352ccd63e85a62179",
+      "after_sha256": "f84c6c871e1a500884a16e23fb5ffeaeee02d404d738648d30f89200401f6ef5",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-core-bindings",
+      "before_sha256": "f04c8a1124aed3d02fbaa225ce81f191e60190eb145e1acbb180972cb7da74fe",
+      "after_sha256": "cdbf9b5d9d137caac3a5d1b2633e68979ac6c35c0cafa10d1fcae91d2bca7d0b",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-core-callers",
+      "before_sha256": "5d8648de9b6cd45a627918dfdcded02c7eadf776dcc494fc9ce738d5dc958f37",
+      "after_sha256": "6a9f8364e0df0abe9ab7d691524250784546f43decf8126ee0ad2f6c4fe751d9",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-sites",
+      "before_sha256": null,
+      "after_sha256": "586b3b6bf19db42d6bcf9f0820100e822e6434bae4be21a4dd4fe1393d3728d6",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-dispatch-slices",
+      "before_sha256": "82e98da10ca5a01d75e35b4180f78b39a445843aef77e21849fbb60c6104203d",
+      "after_sha256": "704e024cff518801864575d53ce95eea37fd88d74b4ff3c9bc98ae3e448b99f3",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "before_sha256": "f73d470f558c28bb613294865459c63d14a251205c7a86933a5a9a630bbd7b25",
+      "after_sha256": "edd8a37c61a20a4645f423eb836119cacf24ccdd64b3fca5bffd80c9dac82edc",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-movie-reference",
+      "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-api-v2-exact-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-lock-recovery-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "counts": {
+    "files": 21,
+    "behaviors": 54,
+    "missing_exact_receipts": 0
+  }
+}

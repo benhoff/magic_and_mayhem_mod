@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "scope": "Synthetic exact allocation/original CALL PC, native module/leave and byte extent/reserved/terminal guards. Physical classification only; no actual original calls, logical ownership or all-writer proof.",
+  "success": true,
+  "sources": {
+    "protocols/include/mnm/drawing_api_bindings_v1.h": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+    "protocols/include/mnm/drawing_api_journal_v1.h": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "runtime/drawing-api-census/entry.S": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+    "runtime/drawing-api-census/observer.c": "54b577d61f11ca09d90516eaa144231ade326c2c342e4c013bc6b5d9c9d0483e",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/test-drawing-api-bindings.py": "c0239acab67be7adc8806b2be6cb1607537dfebbb75860d8b17df9f47639bede",
+    "tools/drawing_api_bindings.py": "caf11933bf14dcc515bcfc212915cdde2681c1d67d9b1f1033f6c4c4744b5144",
+    "tools/drawing_api_journal.py": "c82406744325c3c4cee46d73bf278b330de20d91ed88e46756c02160bd5c8023",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-api-bindings",
+      "contract_sha256": "23d06ba4c4feb1dbfe1640fd8f188be880108a22b430dd58a038aaa59a87413a",
+      "scenarios": {
+        "drawing-api-bindings-wire-guards-20261011": "c34cec4d27f2dc6d5c36fdfaa4e5cff18d2eb96e8d9451e2c48e367872d9f691"
+      }
+    }
+  ],
+  "sources_stable": true,
+  "total_cases": 12,
+  "tests": [
+    {
+      "test": "tests/test-drawing-api-bindings.py",
+      "cases": 12,
+      "exit": 0,
+      "log": "working/tests/draw01-api-bindings-guards-20261011.log",
+      "sha256": "84d8772355e571485804666521d02c4d9d3dc524b3389ba7950c37dc4c70d799"
+    }
+  ]
+}

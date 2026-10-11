@@ -1,0 +1,378 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/test-drawing-dispatch.py": "90739b8f450c95e791064f2e7ef8f40b4ae38c6dcf3bc6bc72693f16ddf032a7",
+    "tools/drawing_dispatch.py": "6ef1855c906089203fa36745166dac2c10603b8a79539849d3d257d752370ef7",
+    "tools/drawing_census.py": "f4a4977e4b7ce633ffad69608e38cec0fed7ff8f6b391bba71e576d14c4ba6a0",
+    "tools/inspect-world-dispatch.py": "6ecef1fa10ea3dbbf871d13055a8ded70c4561ac95ca530253ae5bb8cf839017",
+    "tests/drawing-dispatch-reference.cpp": "d70d2297bc233857a298740c5eadf819f20fd394b8fa871976dda1bc1fe84f19",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tests/test-drawing-dispatch.py": "07a17ed97b03e77b964b3fa7d0a75d722e8a51b203321f9824bae5a0832522a8",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+  },
+  "sources_stable": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "original_consumer_instructions_unchanged": true,
+  "original_cases": 2432,
+  "table_entries": 105,
+  "wave_calls_checked": 1280,
+  "colour_calls_checked": 240,
+  "backend_return_contracts": [
+    {
+      "address": 5109824,
+      "pop": 20,
+      "returns": [
+        {
+          "address": 5110172,
+          "bytes": "c21400",
+          "mnemonic": "ret",
+          "operand": "0x14"
+        }
+      ]
+    },
+    {
+      "address": 5758048,
+      "pop": 8,
+      "returns": [
+        {
+          "address": 5758079,
+          "bytes": "c20800",
+          "mnemonic": "ret",
+          "operand": "0x8"
+        }
+      ]
+    },
+    {
+      "address": 5758464,
+      "pop": 0,
+      "returns": [
+        {
+          "address": 5758826,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        },
+        {
+          "address": 5759009,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        },
+        {
+          "address": 5759396,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        },
+        {
+          "address": 5759406,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        }
+      ]
+    },
+    {
+      "address": 5760320,
+      "pop": 4,
+      "returns": [
+        {
+          "address": 5760846,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        },
+        {
+          "address": 5760859,
+          "bytes": "c20400",
+          "mnemonic": "ret",
+          "operand": "0x4"
+        }
+      ]
+    },
+    {
+      "address": 5761248,
+      "pop": 12,
+      "returns": [
+        {
+          "address": 5761493,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5761621,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        }
+      ]
+    },
+    {
+      "address": 5762192,
+      "pop": 12,
+      "returns": [
+        {
+          "address": 5762921,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5763293,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5763306,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        }
+      ]
+    },
+    {
+      "address": 5763312,
+      "pop": 12,
+      "returns": [
+        {
+          "address": 5764050,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5764575,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5764588,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        }
+      ]
+    },
+    {
+      "address": 5764592,
+      "pop": 12,
+      "returns": [
+        {
+          "address": 5765366,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5765885,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5765898,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        }
+      ]
+    },
+    {
+      "address": 5766672,
+      "pop": 12,
+      "returns": [
+        {
+          "address": 5767380,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5767752,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5767765,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        }
+      ]
+    },
+    {
+      "address": 5767776,
+      "pop": 12,
+      "returns": [
+        {
+          "address": 5768478,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5768925,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5768938,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        }
+      ]
+    },
+    {
+      "address": 5768944,
+      "pop": 8,
+      "returns": [
+        {
+          "address": 5769672,
+          "bytes": "c20800",
+          "mnemonic": "ret",
+          "operand": "0x8"
+        },
+        {
+          "address": 5769815,
+          "bytes": "c20800",
+          "mnemonic": "ret",
+          "operand": "0x8"
+        },
+        {
+          "address": 5769857,
+          "bytes": "c20800",
+          "mnemonic": "ret",
+          "operand": "0x8"
+        }
+      ]
+    },
+    {
+      "address": 5769872,
+      "pop": 12,
+      "returns": [
+        {
+          "address": 5770696,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5771760,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        },
+        {
+          "address": 5771773,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        }
+      ]
+    },
+    {
+      "address": 5771776,
+      "pop": 20,
+      "returns": [
+        {
+          "address": 5772560,
+          "bytes": "c21400",
+          "mnemonic": "ret",
+          "operand": "0x14"
+        },
+        {
+          "address": 5773032,
+          "bytes": "c21400",
+          "mnemonic": "ret",
+          "operand": "0x14"
+        },
+        {
+          "address": 5773045,
+          "bytes": "c21400",
+          "mnemonic": "ret",
+          "operand": "0x14"
+        }
+      ]
+    },
+    {
+      "address": 5854839,
+      "pop": 0,
+      "returns": [
+        {
+          "address": 5855221,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        },
+        {
+          "address": 5855233,
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "operand": ""
+        }
+      ]
+    },
+    {
+      "address": 5081776,
+      "pop": 12,
+      "returns": [
+        {
+          "address": 5082282,
+          "bytes": "c20c00",
+          "mnemonic": "ret",
+          "operand": "0xc"
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "working/tests/drawing-dispatch/run-cly5k2l7/cases.jsonl": {
+      "sha256": "c77ef2efad96d8b5fa159d0aa2620045ae5c4ada6b5a9ee7e8a7161bf07fc337",
+      "bytes": 627457
+    },
+    "working/tests/drawing-dispatch/run-cly5k2l7/static.json": {
+      "sha256": "280bc5f77a966089c9475b23fd6f803995acd1b8166ae20366645f881830cbf1",
+      "bytes": 335945
+    },
+    "working/tests/drawing-dispatch/run-cly5k2l7/reference": {
+      "sha256": "6ca3573f30515829c0ac0eef258ebaaceaa4ec3a04a0c0ac88bab539b782fbb5",
+      "bytes": 36460
+    }
+  },
+  "scope": "Unmodified pinned consumer with synthetic backend bindings: 0..34 kinds and -2/-1/35 defaults, Video0/1, selected auxiliary span, palette-marker and -127/ordinary offset variants, AX0/1/1234/ffff. Check metadata zero/default/boolean/truncation policies and literal wave/colour arguments. All105 raw branch slices retained. Downstream pixels, arbitrary virtual objects, helper global effects, changed prior metadata, clip-boundary auxiliary paths and live graphics API/lifetime equivalence are excluded.",
+  "claims": [
+    {
+      "behavior": "DRAW.queue-dispatch",
+      "contract_sha256": "1068e7389eddd5a41aaf7ca8998c2366bd5e96e685fbf19691777b0ca60903b9",
+      "scenarios": {}
+    },
+    {
+      "behavior": "TOOL.drawing-dispatch-slices",
+      "contract_sha256": "32064054a8088a37e1f6374db9083b102956a3359e0e027120cb833350ec325c",
+      "scenarios": {}
+    },
+    {
+      "behavior": "DRAW.world-kind-16",
+      "contract_sha256": "a9931217e0c6f5485a0ad46e32a4f5a21a68c84dfd40b4978ceb3b3acca2d169",
+      "scenarios": {}
+    },
+    {
+      "behavior": "DRAW.world-kind-17",
+      "contract_sha256": "47af0fb040944d2a11008c9fafd7d7ad8457dfd2b115d8e6067368c59fe222d3",
+      "scenarios": {}
+    },
+    {
+      "behavior": "DRAW.world-kind-20",
+      "contract_sha256": "96193c1f0db2b58787a538b4b1ea46fb9c659c3024b52800aa5341f0010995f2",
+      "scenarios": {}
+    }
+  ]
+}
