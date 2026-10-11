@@ -4439,3 +4439,19 @@ all checkpoints with zero mismatches; final source-bound delta replay is recorde
 separately. Historical one-raster bypass provenance remains explicit. This does
 not establish presented frame/action continuity, new original execution, caller
 or driver failure behavior or any complete session journey.
+
+### 2026-10-10: DRAW-02 unified suite and presented-session comparison ABI
+
+A single native suite now runs the nine component outputs, six selected composed
+startup outputs and all1,062retained sixteen-queue checkpoints, while separately
+reporting original-reference and parity gates for14journeys/21operation contracts.
+Presented-session admission requires independently registered original capture,
+contiguous publication identities, ordered action/frame/owned-input bindings and
+caller-visible effect results. RGB565/RGBA full-plane comparisons and expected
+results remain outside backend inputs. Portable session retention refuses changed
+provenance/overwrite; unsupported and native errors preserve independently
+admitted references without claiming parity.26synthetic guards exercise these
+contracts, including wrong returns despite equal pixels and dropped/reordered
+frames. Existing collectors do not yet emit complete presented-session records;
+all14full journey and21operation/failure acceptance gates remain pending. No new
+original execution, full scene replacement or live bypass is claimed.
