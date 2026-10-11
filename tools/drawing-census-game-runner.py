@@ -6,14 +6,17 @@ import os
 from pathlib import Path
 import struct
 import sys
+from drawing_api_cohorts import cohort
 
 root = Path(os.environ['MNM_DRAW_CENSUS_EXPERIMENT']).resolve()
 metadata = json.loads((root / 'manifest.json').read_text()); game = root / 'game'
 if metadata['origin'] != 'drawing_census_observation': raise ValueError('Unsupported experiment')
+selected=cohort(metadata)
 expected = {'Chaos.exe', 'MnmDrawingCensus.dll', 'MnmMenu.dll'}
 if metadata.get('api_observation_enabled', False):
-    if not metadata.get('call_census_enabled', True): raise ValueError('API observation requires core census')
     expected.add('MnmDrawingApiCensus.dll')
+    if json.loads((root/'api-build.json').read_text()).get('cohort','core_api')!=selected:
+        raise ValueError('Staged API plan/observation cohort mismatch')
 if set(metadata['binaries']) != expected: raise ValueError('Missing/unreviewed staged binary identities')
 for name, digest in metadata['binaries'].items():
     if hashlib.sha256((game / name).read_bytes()).hexdigest() != digest: raise ValueError('Staged binary changed: ' + name)
@@ -30,6 +33,7 @@ def windows(path): return 'Z:' + str(path).replace('/', '\\')
 os.environ.update(MNM_DRAW_CENSUS_DIR=windows(capture), MNM_MENU_OBSERVE=windows(root / 'events.bin'),
                   MNM_MENU_CHANNEL=windows(root / 'channel.bin'))
 if metadata.get('api_observation_enabled', False): os.environ['MNM_DRAW_API_DIR'] = windows(capture)
+if selected=='api_only':os.environ.pop('MNM_DRAW_CENSUS_DIR')
 if metadata.get('gameplay_observation_enabled', False):
     os.environ.update(MNM_MENU_GAMEPLAY_OBSERVE=windows(root / 'gameplay-events.bin'),
                       MNM_MENU_SPELL_OBSERVE=windows(root / 'spell-events.bin'))

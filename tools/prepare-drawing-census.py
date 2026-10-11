@@ -10,6 +10,7 @@ import struct
 import subprocess
 import tempfile
 from drawing_census import ROOT, BUILD_SHA256
+from drawing_api_cohorts import cohort
 
 
 def load(name, path):
@@ -21,13 +22,14 @@ def load(name, path):
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def prepare(source, movies=False, menu_only=False, gameplay=False, api=False):
+def prepare(source, movies=False, menu_only=False, gameplay=False, api=False, api_only=False):
     if api and menu_only: raise ValueError('API observation requires the original-active core census cohort')
+    selected=cohort({'api_observation_enabled':api,'call_census_enabled':not(menu_only or api_only),'api_only':api_only})
     source = source.resolve(); raw = (source / 'Chaos.exe').read_bytes()
     if hashlib.sha256(raw).hexdigest() != BUILD_SHA256: raise ValueError('Unsupported source executable')
     census = load('drawing_build', 'tools/build-drawing-census.py').build(source / 'Chaos.exe')
     menu = load('drawing_menu', 'tools/build-menu-observer.py').build()
-    api_dll = load('drawing_api_build', 'tools/build-drawing-api-census.py').build(source / 'Chaos.exe') if api else None
+    api_dll = load('drawing_api_build', 'tools/build-drawing-api-census.py').build(source / 'Chaos.exe', selected) if api else None
     parent = ROOT / 'working/experiments/drawing-census'; parent.mkdir(parents=True, exist_ok=True)
     root = Path(tempfile.mkdtemp(prefix='run-', dir=parent)); game = root / 'game'
     load('drawing_isolation', 'tools/prepare-scene-observer.py').copy_installation(source, game)
@@ -41,7 +43,7 @@ def prepare(source, movies=False, menu_only=False, gameplay=False, api=False):
     for path in [game / 'MnmDrawingCensus.dll', game / 'MnmMenu.dll', *([game / api_dll.name] if api_dll else [])]:
         if not path.resolve().is_relative_to(game.resolve()): raise ValueError('DLL destination escapes disposable copy')
     patch = load('drawing_import', 'tools/prepare-shadow-experiment.py').add_import
-    staged = raw if menu_only else patch(raw, census.name, 'DrawingCensusAnchor', b'.mndraw')
+    staged = raw if menu_only or api_only else patch(raw, census.name, 'DrawingCensusAnchor', b'.mndraw')
     staged = patch(staged, menu.name, 'MenuAnchor', b'.mnmenu')
     if api_dll: staged = patch(staged, api_dll.name, 'DrawingApiCensusAnchor', b'.mnapi')
     pe = struct.unpack_from('<I', raw, 60)[0]; count = struct.unpack_from('<H', raw, pe + 6)[0]
@@ -66,7 +68,8 @@ def prepare(source, movies=False, menu_only=False, gameplay=False, api=False):
                 'binaries': {name: sha(game / name) for name in ('Chaos.exe', 'MnmDrawingCensus.dll', 'MnmMenu.dll', *([api_dll.name] if api_dll else []))},
                 'movies_enabled': movies, 'preferences': edits, 'source_game': str(source),
                 'created_directories': created_directories,
-                'call_census_enabled': not menu_only,
+                'call_census_enabled': not(menu_only or api_only),
+                'api_only':api_only,'cohort':selected,
                 'gameplay_observation_enabled': gameplay,
                 'api_observation_enabled': api,
                 'scope': 'Original-active signature-pinned drawing call metadata; no native rendering or gameplay changes.'}
@@ -81,7 +84,8 @@ if __name__ == '__main__':
     parser.add_argument('--menu-only', action='store_true', help='Diagnostic control: original drawing entries are unpatched')
     parser.add_argument('--gameplay-observation', action='store_true', help='Enable existing passive original creature/spell hooks in the disposable game')
     parser.add_argument('--api-observation', action='store_true', help='Enable separate original CALL before/after API journal and exact per-run bindings')
+    parser.add_argument('--api-only',action='store_true',help='Separate full API cohort; original drawing entries remain unpatched and core census is absent')
     args = parser.parse_args()
     subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
-    try: print(prepare(args.source_game, args.movies, args.menu_only, args.gameplay_observation, args.api_observation), flush=True)
+    try: print(prepare(args.source_game, args.movies, args.menu_only, args.gameplay_observation, args.api_observation or args.api_only, args.api_only), flush=True)
     finally: subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)

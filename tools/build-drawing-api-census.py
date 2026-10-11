@@ -11,8 +11,8 @@ from drawing_api_journal import trampoline
 
 STRUCT='struct ApiHook {u32 address,length,code_length,rest,reloc_count,after_offset,mode,reg,operand;u8 signature[20],code[64];u32 reloc[8];void(*before)(void);void(*after)(void);u32 patch_bytes;};'
 REGISTERS={'edi':0,'esi':1,'ebp':2,'ebx':4,'edx':5,'ecx':6,'eax':7,'esp':9}
-PLAN=ROOT/'research/runtime/drawing-api-breakpoints-static-20261011.json'
-PLAN_SHA256='7e5c141ca7e2e3137a85b3ae0bd1b7324a18b8aec753b613d57c8c93555dd53d'
+PLANS={'core_api':('research/runtime/drawing-api-core-cohort-static-20261011.json','9ac31ecfb21aeadcfd1aec1acaf6a3a699407d105f183d8c4d21ddd8f32dcad2'),
+       'api_only':('research/runtime/drawing-api-only-cohort-static-20261011.json','c113e403a33880d6a0e30a3126f55ef9956f9dbd64653635706522e239714c54')}
 
 
 def load(name, path):
@@ -35,12 +35,15 @@ def generated(item):
     return {'code':code,'rest':rest,'relocations':offsets,'after_offset':after,'mode':kind,'register':REGISTERS.get(mode.get('register'),7),'operand':operand}
 
 
-def build(executable):
-    paths=['tools/build-drawing-api-census.py','runtime/drawing-api-census/observer.c','runtime/drawing-api-census/entry.S','runtime/drawing-api-census/exception_i386.h','runtime/shadow/win32_min.h','protocols/include/mnm/drawing_api_journal_v1.h','protocols/include/mnm/drawing_api_bindings_v1.h','protocols/include/mnm/drawing_census_v1.h','tools/drawing_api_journal.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-shadow-bridge.py','tools/export-menu-support.py',str(PLAN.relative_to(ROOT))]
+def build(executable, selected='core_api'):
+    if selected not in PLANS:raise ValueError('Unsupported API cohort')
+    relative_plan,expected_sha256=PLANS[selected];plan_path=ROOT/relative_plan
+    paths=['tools/build-drawing-api-census.py','runtime/drawing-api-census/observer.c','runtime/drawing-api-census/entry.S','runtime/drawing-api-census/exception_i386.h','runtime/shadow/win32_min.h','protocols/include/mnm/drawing_api_journal_v1.h','protocols/include/mnm/drawing_api_bindings_v1.h','protocols/include/mnm/drawing_census_v1.h','tools/drawing_api_journal.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-shadow-bridge.py','tools/export-menu-support.py',relative_plan]
     sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
-    plan_raw=PLAN.read_bytes()
-    if hashlib.sha256(plan_raw).hexdigest()!=PLAN_SHA256:raise ValueError('Approved immutable API splice plan hash mismatch')
+    plan_raw=plan_path.read_bytes()
+    if hashlib.sha256(plan_raw).hexdigest()!=expected_sha256:raise ValueError('Approved immutable API splice plan hash mismatch')
     plan=json.loads(plan_raw);raw=executable.read_bytes()
+    if plan.get('cohort')!=selected or (plan['core_hook_count']==0)!=(selected=='api_only'):raise ValueError('Static plan/core cohort mismatch')
     if hashlib.sha256(raw).hexdigest()!=BUILD_SHA256 or plan['original_sha256']!=BUILD_SHA256 or plan['input_unchanged'] is not True or plan['sources_stable'] is not True:raise ValueError('Unsupported/stale original CALL plan')
     for p,digest in plan['sources'].items():
         if hashlib.sha256((ROOT/p).read_bytes()).hexdigest()!=digest:raise ValueError('Planning input changed: '+p)
@@ -65,12 +68,12 @@ def build(executable):
         obj=output/(name+'.obj');objects.append(str(obj));subprocess.run(['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I',str(output),'-c',str(source),'-o',str(obj)],check=True)
     dll=output/'MnmDrawingApiCensus.dll';subprocess.run(['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(dll),*objects,str(output/'kernel32.lib')],check=True)
     if hashlib.sha256(executable.read_bytes()).hexdigest()!=BUILD_SHA256 or sources!={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}:raise ValueError('Original/API build inputs changed')
-    report={'schema':1,'original_sha256':BUILD_SHA256,'sources':sources,'sources_stable':True,'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'hooks':hooks,'refused':plan['refused'],'scope':'Compiled separate observer for302 exact original CALL sites, including52 one-byte INT3 plans. No original API execution, universal ABI/transparency/timing, output/resource lifetime or DRAW-01 closure.'}
+    report={'schema':1,'cohort':selected,'original_sha256':BUILD_SHA256,'sources':sources,'sources_stable':True,'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'hooks':hooks,'refused':plan['refused'],'scope':f'Compiled separate observer for{len(hooks)} exact original CALL sites in{selected}cohort. No original API execution, universal ABI/transparency/timing, output/resource lifetime or DRAW-01 closure.'}
     (output/'manifest.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'dll':str(dll),'hooks':len(hooks),'refused':len(plan['refused'])}));return dll
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--executable',type=Path,required=True);args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--executable',type=Path,required=True);parser.add_argument('--api-only',action='store_true');args=parser.parse_args()
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
-    try:build(args.executable)
+    try:build(args.executable,'api_only' if args.api_only else 'core_api')
     finally:subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)

@@ -4637,3 +4637,17 @@ This does not close formal API output/lifetime or all-scenario/dispatch accounti
 The committed range `6e85d84..50674a8` has 75 exact file and 114 behavior receipts,
 zero missing intermediate receipts; that review does not assert a past gate pass
 or new runtime validation. The shared worktree remains untouched by this branch.
+
+DRAW-01 selected API cohort (2026-10-11): the explicit API-only plan admits all
+314 selected CALL boundaries; the separate core/API plan remains302with12overlap
+refusals. Seven fresh native admission guards prevent API-only evidence from
+claiming a core call journal. The enabled original movie cohort `run-yyj3me1m`
+closed4,511API pairs at53sites (19movie-helper sites), zero loss/open/IO, stable
+sources/binaries, actual null startup core module/leave and normal exit. Both
+startup setup/sample HRESULT paths returned0 and their first Updates00040003;
+this is EOF evidence, not full playback. Formal arguments/outputs, ownership and
+borrow intervals, complete writer/scenario/dispatch accounting remain pending.
+Registered `DRAW.api-cohort.*-20261011` and `DRAW.api-only.movies-20261011` retain
+new results without refreshing historical hashes. The committed
+`50674a8..defa681` range has20exact file and9behavior receipts with zero missing
+intermediate versions; retrospective accounting asserts no past gate/validation.
