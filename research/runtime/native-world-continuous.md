@@ -127,3 +127,54 @@ surface_lock holder reached105ms and longer. This does not invalidate World
 transport measurements or establish robust public gameplay. Public V4 fusion,
 arbitrary-scene19/60FPS, original pixel equivalence and semantic COM Quit remain
 separate unfinished milestones. Historical hashes and failures are preserved.
+
+## Current diagnostic-file World and recovery proof (2026-10-11)
+
+After the native status-file stall fix, the source-bound
+[4096-frame TITAN run](native-draw-status-world4096-pass-20261011.json) passes all
+unchanged limits:19.9697 original/19.9731 painted FPS,cold459.699ms,4033 warm World
+samples median35/p9540/max60ms,RSS growth11,182,080 bytes. Every4096 original
+return/native completion/paint is checked. Coalescing, World GPU readbacks,
+pixel replies, original World writebacks and final native GPU surfaces are zero.
+Real ddraw remains disabled/absent. Canonical94 native compiler inputs and current
+PE backend/build/schema/installed inputs are bound; the reusable native binary
+matches its frozen Release-O3 sources. This is current-code selected-path19FPS,
+not paired-scene speedup or universal scene/60FPS/original-pixel equivalence.
+
+Both current private producer and consumer death controls refuse at generation34
+and stop their owned Wine processes without claiming completion. A subsequent
+[fresh128 recovery](native-draw-status-recovery128-pass-20261011.json) passes every
+budget and all returns/paints:19.7653/19.9622FPS,cold472.004ms,warm median34/p9539/
+max49ms,RSS growth344064 bytes. Recovery creates a new private session/cookie;
+no poisoned slot is resumed. Process stop does not prove original semantic Quit
+or COM reference release. All previous failures/hashes remain intact.
+
+The current [actual standalone OpenGL launcher](native-opengl-status-startup-pass-20261011.json)
+also reaches21 native menu frames on actual TITAN Zink,zero ordinary native/RGBA
+readbacks or viewport uploads/recovery and zero bounded-abort consumer resources,
+with real ddraw disabled/absent. Standalone full gameplay/movies/FPS/normalQuit
+remain separately unproven. Default public Qt menus plus command gameplay have
+separate fresh casting/combat/portrait/normalQuit and three-cycle proofs. The
+public command route still performs original CPU World drawing; integrating its
+menus/HUD with V4 resident World delivery is a further milestone. The observed
+original50ms frame cadence also remains a boundary to unique60FPS World updates.
+
+## Canonical dependency report correction and cold optimization (2026-10-11)
+
+The earlier94-input prose above understated the aggregate compiler/fixture
+closure: the prepared-build prechecks checked102 canonical paths. Resolve a
+relative `--prepared` root before reconstructing compiler dependencies so the
+new report also exposes all102; an absolute-vs-relative containment test had
+left that supplemental mapping empty. No old fingerprints are refreshed.
+The normalized4096 execution passed warm19.893FPS but failed cold502.500ms
+against500ms, recorded independently. An instrumented128 probe also failed
+(cold505.320ms); early CPU samples show per-WORD fade damage bookkeeping.
+The row optimization's original-loop and mirror comparison passes; current
+performance, peer-failure and public launch claims require fresh executions.
+Earlier proofs retain their historical hashes and scope.
+
+Fresh native fade World128 passes:102 actual canonical compiler/fixture inputs,
+cold450.270ms, original19.6259/Qt19.8767FPS, warm65 median39/p9549/max57ms, with
+all source/frozen/input and unchanged timing/resource/no-roundtrip checks passing.
+See [record](native-fade-row-world128-pass-20261011.json). This uninstrumented
+execution is a separate selected-path proof, not a paired profile speedup.

@@ -95,11 +95,21 @@ void CanvasSequence::fade(std::uint32_t id,unsigned stride,
     throw std::invalid_argument("Fade span outside canvas storage");
   // Padding has no cross-WORD influence after the original channel mask. Only
   // visible pixels in the contiguous physical span require destination reads.
-  for(int y=0;y<s.image.height;++y)for(int x=0;x<s.image.width;++x)
-    if(std::size_t(y)*stride+x<count)known(s.defined,slot(s.image,x,y));
-  for(int y=0;y<s.image.height;++y)for(int x=0;x<s.image.width;++x)
-    if(std::size_t(y)*stride+x<count){auto &p=s.image.pixels[slot(s.image,x,y)];
-      write(s,slot(s.image,x,y),(std::uint16_t(p)>>1)&mask);}
+  for(int y=0;y<s.image.height && std::size_t(y)*stride<count;++y) {
+    const auto words=std::min(std::size_t(s.image.width),count-std::size_t(y)*stride);
+    const auto row=std::size_t(y)*s.image.width;
+    for(std::size_t x=0;x<words;++x)known(s.defined,row+x);
+  }
+  // Validation above is complete before any mutation. A physical prefix covers
+  // one visible prefix per row; track that damage once, without per-WORD div/mod.
+  for(int y=0;y<s.image.height && std::size_t(y)*stride<count;++y) {
+    const auto words=std::min(std::size_t(s.image.width),count-std::size_t(y)*stride);
+    const auto row=std::size_t(y)*s.image.width;
+    for(std::size_t x=0;x<words;++x) {
+      auto &p=s.image.pixels[row+x];p=(std::uint16_t(p)>>1)&mask;
+    }
+    dirty(s,0,y,int(words),1);
+  }
 }
 void CanvasSequence::release(std::uint32_t id) {
   auto &s = surface(id);
