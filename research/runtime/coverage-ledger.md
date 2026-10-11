@@ -4738,3 +4738,18 @@ without promoting census closure. Catalog source-only changes retain historical
 original evidence hashes/staleness; the new proof validates offline accounting,
 not current original renderer equivalence. History002633e..c43bfde has9file/
 12behavior exact receipts, no missing versions. See [accounting scope](draw01-inventory.md).
+
+
+DRAW-01 original queue client-state increment (2026-10-11): separate headless
+native integration fixture executes byte-unchanged5002a0consumer58320unique cells,
+empty/one/two queues, Video0/1, selected9/15/default kinds, signed spans/changed
+prior metadata, clip480/600branches, rawhigh/negative returns and optional postlude.
+Original row/container mutations, strict/clamped clips and exact original callers,
+29160cleanup calls (includingemptyqueues) and counter resets pass.75312clip/
+25500wave/19440copy calls are retained with exact raw-case/binary hashes. First
+sandboxSIGSYS/unsupported scenario declaration and intermediate pass remain under
+explicit attempt limits. Actual helper effects, pixels, other changed-prior kinds,
+external API/lifetime and14scenario/four dispatch closure remain pending; recovered
+implementation/comparison/integration/replacement statuses staynone. History
+c43bfde..0b40de2 has11file/21behavior exact receipts with no missing versions.
+See [client-state scope](draw01-inventory.md).

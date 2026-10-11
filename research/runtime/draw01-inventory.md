@@ -491,3 +491,44 @@ validates current offline accounting only.
 History002633e..c43bfde contains9exact file/12behavior receipt matches and no
 missing intermediate versions. Its review does not assert a past gate pass or a
 new graphics result. The branch remains isolated from the shared worktree.
+
+
+## Original consumer client state fixture, 2026-10-11
+
+A separate headless fixture executes the unchanged pinned5002a0 consumer across
+58,320 unique cells. It complements the earlier2432routing matrix without changing
+its sources or hashes. Empty/one/two rows, Video0/1, kind9/15/default, first-span
+sentinel and signed boundary values, changed prior16-bit metadata, nine vertical
+positions, 480/600height flags, raw0/high/negative returns and optional cleanup are
+explicit axes. All backend/clip/cleanup calls use synthetic bindings whose pops
+are checked against actual original RET instructions. This fixture integration is
+registered separately from native renderer comparison, which remains none.
+
+Original consumer instructions remain byte-identical throughout. The row/container
+checks retain all untouched words and both trailing rows. With Video enabled and
+prior metadata different from8ad0, original row y becomes old-y minus signed prior
+plus object height16 in this explicit object fixture; unprocessed rows stay intact.
+Kind9 stores zero, selected wave metadata truncates to16bits, and defaults retain
+prior metadata. Opening clips require strict top/bottom inclusion. Their exact
+return PCs500337/500388 are separate from auxiliary clip5008b9 and restoration
+500d25, including equal raw arguments. Auxiliary dispatch requires its endpoint
+strictly below480or600according to the flag and below the clip bottom; negative
+auxiliary tops clamp to zero.
+
+The native integration records75,312clip,25,500wave and19,440copy-backend calls.
+Optional postlude produces29,160calls, including empty queues: exact receiver
+6ddf78, original three counter arguments, last-call ordering, and original zeroing
+of6e8db0/6e8db4/6e8db8 occur independently of the synthetic raw return. Disabled
+postlude preserves those counters. Raw returns are not assigned HRESULT semantics.
+Actual helper body state, raster pixels, other object layouts and changed-prior
+kinds, real drivers/interfaces/lifetimes and all14scenario/four dispatch completion
+remain pending. The table entries retain only the new selected client scope.
+
+[Final result](drawing-queue-client-state-20261011.json) retains the raw-case file,
+compiled fixture, command logs and hashes. [Attempt limitations](drawing-queue-client-state-attempts-20261011.json)
+preserve the zero-row default-sandbox SIGSYS repeat, passing debugger diagnostic,
+unsupported first scenario declaration and intermediate pass before unique-cell
+validation. The final successor uses a new supported headless declaration and
+runs with required32-bit syscall permissions; no old hash is refreshed.
+Historyc43bfde..0b40de2 has11exact file/21behavior receipts, no missing versions;
+retrospective review asserts neither a past gate pass nor new graphics validation.

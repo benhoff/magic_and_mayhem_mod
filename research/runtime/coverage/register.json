@@ -32637,6 +32637,46 @@
         ],
         "scope": "22CALL identities remain documented in exact layout metadata without a discovered function or whole-range anchor. Do not substitute nearest functions or expand historical16byte range exceptions."
       }
+    },
+    {
+      "id": "DRAW.queue-client-state",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Original queue client row, auxiliary clip and cleanup state",
+      "scope": "Pinned5002a0 consumer only, with synthetic clip/backend/cleanup bindings: empty/one/two rows, Video0/1, sentinel/signed first span and changed prior16bit metadata, signed row-y mutation, strict opening clips and auxiliary480/600height thresholds, zero/default/truncated row metadata, raw high/negative backend results, optional final cleanup receiver/arguments and original three-counter reset. Exact original clip/cleanup CALL return PCs distinguish equal argument values. No actual clip/backend/cleanup helper body effects, raster pixels, arbitrary object layouts or live API/lifetime/scenario/complete dispatch closure.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Original consumer row/container mutations, exact auxiliary clip caller/argument conditions and postlude client counter reset only; helper bodies are synthetic bindings."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/drawing-queue-state-reference.cpp",
+        "tools/test-drawing-queue-state.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/test-drawing-dispatch.py",
+        "tools/drawing_census.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "DRAW.queue-client-state.fixture-20261011"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -63185,6 +63225,41 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW.queue-client-state.fixture-20261011",
+      "kind": "native_integration",
+      "scope": "Native headless fixture integration executing unchanged original consumer58320unique state cells with synthetic clip/backend/cleanup bindings. Literal original row/caller/cleanup observations only; no native renderer/original platform equivalence or helper/pixel/lifetime closure.",
+      "record": "research/runtime/drawing-queue-client-state-20261011.json",
+      "sha256": "d5bb6e1c0b668ab485ad8a747426145928b19dfa7cdb06c238ec86965993ca6e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_consumer_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 58320
+        },
+        {
+          "pointer": "/unique_matrix_cells",
+          "equals": 58320
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -65302,7 +65377,7 @@
         "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending.",
       "complete": false,
       "entries": [
         {
@@ -65377,7 +65452,8 @@
         {
           "value": 9,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65413,7 +65489,8 @@
         {
           "value": 15,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65544,7 +65621,8 @@
         {
           "value": "other-or-default",
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         }
       ]
@@ -65558,7 +65636,7 @@
         "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending.",
       "complete": false,
       "entries": [
         {
@@ -65618,7 +65696,8 @@
         {
           "value": 9,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65654,7 +65733,8 @@
         {
           "value": 15,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65777,7 +65857,8 @@
         {
           "value": "other-or-default",
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         }
       ]
@@ -65791,7 +65872,7 @@
         "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending.",
       "complete": false,
       "entries": [
         {
@@ -65851,7 +65932,8 @@
         {
           "value": 9,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65887,7 +65969,8 @@
         {
           "value": 15,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -66010,7 +66093,8 @@
         {
           "value": "other-or-default",
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         }
       ]
@@ -72044,6 +72128,21 @@
       "evidence": [
         "TOOL.drawing-inventory.api-site-guards-20261011"
       ]
+    },
+    {
+      "id": "original-drawing-queue-client-state-20261011",
+      "level": "headless",
+      "scope": "Native headless integration fixture executing the unchanged original consumer58320case state/clip/postlude matrix with synthetic external/backend bindings. No actual helper effects, graphics driver/COM lifetime/pixels, native rendering equivalence, live scenario or full dispatch proof.",
+      "behaviors": [
+        "DRAW.queue-client-state"
+      ],
+      "tests": [
+        "tools/test-drawing-queue-state.py",
+        "tests/drawing-queue-state-reference.cpp"
+      ],
+      "evidence": [
+        "DRAW.queue-client-state.fixture-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -72381,8 +72480,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-api-inventory-20261011.json",
-    "sha256": "7ec628ad06674d04423a03364b1489f5d954f040ac849d09aa6f355d0d3dd911"
+    "path": "research/runtime/coverage/source-index-draw01-queue-state-20261011.json",
+    "sha256": "8a4ad216827e5d645659359eb66833e45f40a7fd770bfe8726b8cebdd842dfcc"
   },
   "claim_bindings_required": true
 }
