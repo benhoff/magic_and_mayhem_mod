@@ -4322,3 +4322,56 @@ Earlier tool runs keep their historical hashes; final 29-guard and retained-jour
 re-indexing results use new `TOOL.drawing-inventory.*-v2-20261010` evidence IDs.
 The [updated coverage summary](coverage/summary-draw01-20261010.md) preserves
 original comparison/replacement statuses and the incomplete census boundaries.
+
+### 2026-10-10: DRAW-02 portable independent comparison corpus
+
+[The identity-bound comparison corpus](draw02-independent-comparison.md) retains
+five existing original-driver surface operations and four complete 800x600 World
+consumer outputs with their owned drawing inputs. Native replay consumes no
+installed game or original executable. Exact source RLE bytes are wrapped in
+native SPR containers; expected World pixels remain comparator-only. Surface
+expected after-planes are zeroed before native invocation. Every destination word
+including borders is compared; reports bind capture sequence, input hashes,
+canvas extents, native binary identities and mismatch coordinates.
+
+`NR.drawing-comparison-corpus` owns this native comparison/retention policy. It
+preserves `RS.world-frame.original-20261007` and existing surface evidence at their
+historical hashes; no new original execution or recovered/live status is asserted.
+World capture sequences 1..4 represent spaced consumer samples after 120 skipped
+calls, not contiguous producer history. World canvases exclude subsequent window
+composition; surface destination-before remains an operation fixture input.
+
+The selected component corpus implements a bounded DRAW-02 exit gate. All
+fourteen required full presented-scene journeys remain explicit pending scope,
+including camera actions, active battles, tooltips/picking and recovery. Strict
+`--require-complete` refuses a broad milestone claim. DRAW-03..07 and full drawing
+replacement remain separate. Current native replay and refusal validation are
+registered under a new execution ID; older source fingerprints are unchanged.
+
+
+Fresh DRAW-02 execution (`NR.drawing-comparison-corpus.native-20261010`) matches
+all 4,320,000 destination words with zero mismatches on Mesa llvmpipe; twelve
+admission/oracle-isolation/strict-completion regression checks pass. Original
+manifest verification passes before and after retention/replay work. The
+unanchored DRAW-01 WORD-copy window retains its documented static scope, but
+understanding remains unknown until a valid original range/entry link exists;
+this corrects an audit-invalid recovered-status claim without adding discovery,
+comparison or replacement evidence.
+
+
+The clean-checkout follow-up
+(`NR.drawing-comparison-corpus.clean-checkout-20261010`) repeats all nine native
+comparisons with the current test sources and zero mismatches. All twelve guard
+checks also pass in an isolated repository subset containing no working tree,
+installed game or original media. The first execution remains immutable; its
+prior test hash is explicitly historical after this test-portability correction.
+
+The DRAW-02-only commit snapshot repeats all nine native comparisons with
+zero mismatches across 4,320,000 RGB565 pixels, registered separately as
+`NR.drawing-comparison-corpus.commit-validation-20261010`. All twelve guards
+pass, and CI now runs that portable guard suite. Review of the subsequent
+`48ca294..98b4524` commit checks 20 file and 38 behavior transitions against
+exact receipts, including append-only journal objects, with zero unresolved
+gaps. The report is retained at
+`coverage/draw02-history-48ca294-98b4524-20261010.json`. DRAW-03 implementation
+and its in-progress validation are excluded from this snapshot.
