@@ -31843,7 +31843,11 @@
         "research/runtime/native-fade-row-producer-death-pass-20261011.json",
         "research/runtime/native-fade-row-consumer-death-pass-20261011.json",
         "research/runtime/native-fade-row-recovery128-pass-20261011.json",
-        "research/runtime/native-draw-mapped-status-services-20261011.json"
+        "research/runtime/native-draw-mapped-status-services-20261011.json",
+        "research/runtime/native-draw-mapped-status-world4096-pass-20261011.json",
+        "research/runtime/native-draw-mapped-status-producer-death-pass-20261011.json",
+        "research/runtime/native-draw-mapped-status-consumer-death-pass-20261011.json",
+        "research/runtime/native-draw-mapped-status-recovery128-pass-20261011.json"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
@@ -32123,7 +32127,11 @@
         "NR.directdraw-retirement.fade-row-producer-death-20261011",
         "NR.directdraw-retirement.fade-row-consumer-death-20261011",
         "NR.directdraw-retirement.fade-row-recovery128-20261011",
-        "NR.directdraw-retirement.mapped-services-20261011"
+        "NR.directdraw-retirement.mapped-services-20261011",
+        "NR.directdraw-retirement.mapped-world4096-20261011",
+        "NR.directdraw-retirement.mapped-producer-death-20261011",
+        "NR.directdraw-retirement.mapped-consumer-death-20261011",
+        "NR.directdraw-retirement.mapped-recovery128-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -32159,7 +32167,11 @@
         "research/runtime/native-fade-row-world4096-pass-20261011.json",
         "research/runtime/native-fade-row-producer-death-pass-20261011.json",
         "research/runtime/native-fade-row-consumer-death-pass-20261011.json",
-        "research/runtime/native-fade-row-recovery128-pass-20261011.json"
+        "research/runtime/native-fade-row-recovery128-pass-20261011.json",
+        "research/runtime/native-draw-mapped-status-world4096-pass-20261011.json",
+        "research/runtime/native-draw-mapped-status-producer-death-pass-20261011.json",
+        "research/runtime/native-draw-mapped-status-consumer-death-pass-20261011.json",
+        "research/runtime/native-draw-mapped-status-recovery128-pass-20261011.json"
       ],
       "implementation": [
         "protocols/include/mnm/world_continuous_v4.h",
@@ -32420,7 +32432,11 @@
         "NR.directdraw-retirement.fade-row-world4096-20261011",
         "NR.directdraw-retirement.fade-row-producer-death-20261011",
         "NR.directdraw-retirement.fade-row-consumer-death-20261011",
-        "NR.directdraw-retirement.fade-row-recovery128-20261011"
+        "NR.directdraw-retirement.fade-row-recovery128-20261011",
+        "NR.directdraw-retirement.mapped-world4096-20261011",
+        "NR.directdraw-retirement.mapped-producer-death-20261011",
+        "NR.directdraw-retirement.mapped-consumer-death-20261011",
+        "NR.directdraw-retirement.mapped-recovery128-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -33308,7 +33324,8 @@
         "research/runtime/native-opengl-owned-startup-pass-20261011.json",
         "research/runtime/native-opengl-owned-startup-artifacts-20261011.json",
         "research/runtime/native-opengl-status-startup-pass-20261011.json",
-        "research/runtime/native-draw-status-final-artifacts-20261011.json"
+        "research/runtime/native-draw-status-final-artifacts-20261011.json",
+        "research/runtime/native-opengl-mapped-status-startup-pass-20261011.json"
       ],
       "implementation": [
         "tools/run-opengl-game.py",
@@ -34042,7 +34059,8 @@
       ],
       "evidence": [
         "NR.directdraw-native-opengl-launch.startup-20261011",
-        "NR.directdraw-native-opengl-launch.status-startup-20261011"
+        "NR.directdraw-native-opengl-launch.status-startup-20261011",
+        "NR.directdraw-native-opengl-launch.mapped-startup-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -34079,7 +34097,9 @@
         "research/runtime/native-world-canonical-cold-failure-20261011.json",
         "research/runtime/native-fade-row-world128-pass-20261011.json",
         "research/runtime/native-fade-row-world4096-pass-20261011.json",
-        "research/runtime/native-fade-row-recovery128-pass-20261011.json"
+        "research/runtime/native-fade-row-recovery128-pass-20261011.json",
+        "research/runtime/native-draw-mapped-status-world4096-pass-20261011.json",
+        "research/runtime/native-draw-mapped-status-recovery128-pass-20261011.json"
       ],
       "evidence": [
         "NR.minimap-continuous-read-window.live4096-20261011",
@@ -34087,7 +34107,9 @@
         "NR.directdraw-retirement.status-recovery128-20261011",
         "NR.directdraw-retirement.fade-row-world128-20261011",
         "NR.directdraw-retirement.fade-row-world4096-20261011",
-        "NR.directdraw-retirement.fade-row-recovery128-20261011"
+        "NR.directdraw-retirement.fade-row-recovery128-20261011",
+        "NR.directdraw-retirement.mapped-world4096-20261011",
+        "NR.directdraw-retirement.mapped-recovery128-20261011"
       ],
       "validation_dependencies": [],
       "status": {
@@ -67846,6 +67868,349 @@
           "equals": 9
         }
       ]
+    },
+    {
+      "id": "NR.directdraw-retirement.mapped-world4096-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-mapped-status-world4096-pass-20261011.json",
+      "sha256": "b3bed06aba11f3a9a6bde9abe370f7eecbfe9e532b2d162b16dd89e7e378fa22",
+      "scope": "Current mapped-status native DDS on actual TITAN RTX:4096 resident World returns/completions/paints pass all unchanged budgets,19.90895 engine/19.91260 Qt FPS,cold499.079784ms against500ms (narrow margin),warm4033 median38/p9544/max66ms,RSS growth9478144 bytes. Canonical102 compiler/fixture inputs,source/frozen/installed inputs and original manifests stable; real ddraw disabled/absent;zero World GPU readbacks,pixel replies,writebacks/coalescing/remaining surfaces. No paired causal speedup,universal scene19/60FPS,publicV4 fusion,movies,original pixels or semantic COM Quit claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/selected_session_directdraw_backend_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/original_returns",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/qt_paints",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/caches",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/original_fps",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/memory_fixtures_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.mapped-producer-death-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-mapped-status-producer-death-pass-20261011.json",
+      "sha256": "1961470e2ba82cc04cf2c3cdb84eb9c84bfb67e018c6eec565c28d3518d46d7c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current mapped-status native DDS/102-input World:kill owned producer at outstanding generation34;expected terminal refusal,private Wine stopped,no completed-session claim,real ddraw disabled/absent and resource bounds. Source/frozen/installed inputs and original manifests stable. No normal performance or semantic COM Quit claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/fault_injected",
+          "equals": true
+        },
+        {
+          "pointer": "/expected_terminal_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_success_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/native_draw_fault/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_fault/ddraw_module_absent",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.mapped-consumer-death-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-mapped-status-consumer-death-pass-20261011.json",
+      "sha256": "58a93079dabe78b9159e757fa33a46b794dcb29a43ad5d0f798d87cc2ed2d5f6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current mapped-status native DDS/102-input World:kill owned consumer at outstanding generation34;expected terminal refusal,private Wine stopped,no completed-session claim,real ddraw disabled/absent and resource bounds. Source/frozen/installed inputs and original manifests stable. No normal performance or semantic COM Quit claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/fault_injected",
+          "equals": true
+        },
+        {
+          "pointer": "/expected_terminal_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_success_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/native_draw_fault/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_fault/ddraw_module_absent",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.mapped-recovery128-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-mapped-status-recovery128-pass-20261011.json",
+      "sha256": "e71612c12632e52e5fe743daeaca81a7be56b35525b259d41253148c8e64ed06",
+      "scope": "Fresh current mapped-status TITAN128 session after both peer deaths:all128 returns/completions/paints pass unchanged budgets,cold426.446818ms,engine19.7530864/Qt19.9692205FPS,warm65 median34/p9540/max52ms,RSS growth364544 bytes. Canonical102 compiler/fixture inputs/source/frozen/installed inputs and original manifests stable;real ddraw disabled/absent,zero World GPU readbacks,replies,writebacks/coalescing/remaining surfaces. No universal performance,publicV4 fusion,60FPS,original pixels or semantic COM Quit claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/selected_session_directdraw_backend_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/original_returns",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/qt_paints",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/caches",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/original_fps",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/memory_fixtures_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-native-opengl-launch.mapped-startup-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-opengl-mapped-status-startup-pass-20261011.json",
+      "sha256": "57b48b3bd48bec5b890097d05d6b9fbf59a745aa9f8a65eb1c5b8a7a3fca967b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current actual default standalone native OpenGL startup on Qt TITAN RTX:20 native menu frames/5311 commands,zero ordinary native/RGBA readbacks,viewport uploads/recoveries,consumer resources0 at bounded abort.35 actual linked/probe compiler inputs plus native DDS builder/protocol/installed closure stable,real ddraw disabled/absent,original manifests verified. Later explicit artifact snapshot is excluded from ordinary presentation counters. No full standalone gameplay,19/60FPS,movies,normal Quit,publicV4 fusion or semantic COM cleanup claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_default_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_progress/recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_progress/ordinary_native_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_progress/ordinary_rgba_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_progress/viewport_uploads",
+          "equals": 0
+        },
+        {
+          "pointer": "/consumer_terminal_resources",
+          "equals": 0
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -75737,7 +76102,9 @@
         "NR.directdraw-retirement.status-producer-death-20261011",
         "NR.directdraw-retirement.status-consumer-death-20261011",
         "NR.directdraw-retirement.fade-row-producer-death-20261011",
-        "NR.directdraw-retirement.fade-row-consumer-death-20261011"
+        "NR.directdraw-retirement.fade-row-consumer-death-20261011",
+        "NR.directdraw-retirement.mapped-producer-death-20261011",
+        "NR.directdraw-retirement.mapped-consumer-death-20261011"
       ]
     },
     {
@@ -75794,7 +76161,8 @@
       ],
       "evidence": [
         "NR.directdraw-native-opengl-launch.startup-20261011",
-        "NR.directdraw-native-opengl-launch.status-startup-20261011"
+        "NR.directdraw-native-opengl-launch.status-startup-20261011",
+        "NR.directdraw-native-opengl-launch.mapped-startup-20261011"
       ]
     },
     {
@@ -75834,7 +76202,9 @@
         "NR.directdraw-retirement.status-recovery128-20261011",
         "NR.directdraw-retirement.fade-row-world128-20261011",
         "NR.directdraw-retirement.fade-row-world4096-20261011",
-        "NR.directdraw-retirement.fade-row-recovery128-20261011"
+        "NR.directdraw-retirement.fade-row-recovery128-20261011",
+        "NR.directdraw-retirement.mapped-world4096-20261011",
+        "NR.directdraw-retirement.mapped-recovery128-20261011"
       ]
     },
     {

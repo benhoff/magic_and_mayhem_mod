@@ -4615,3 +4615,37 @@ recovery or fallback. [Proof](native-draw-mapped-status-full-nvidia-pass-2026101
 This fresh live execution supports the mapped contract's live_observation stage;
 earlier pending review and WriteFile failure remain historical. It does not
 assert publicV4fusion,60FPS,fullscene pixels,full API or semantic COM teardown.
+
+### Native rendering batch complete: mapped-status final proofs (2026-10-11)
+
+Current mapped-status DDS passes the complete resident World4096 TITAN run:
+engine19.90895/Qt19.91260FPS,all4096 returns/completions/paints,cold499.079784ms
+against the unchanged500ms gate (narrow margin),warm4033 median38/p9544/max66ms,
+RSS growth9,478,144 bytes. Zero World GPU readbacks,pixel replies,writebacks,
+coalescing and remaining surfaces;real ddraw disabled/absent. Both owned peer
+kill controls at generation34 terminate as expected,stop private Wine and make
+no completed-session claim. Fresh128 recovery after both controls passes all
+unchanged gates:cold426.446818ms,engine19.75309/Qt19.96922FPS,warm65 median34/
+p9540/max52ms,RSS growth364,544 bytes. All102 actual compiler/fixture inputs,
+source/frozen/installed inputs and original manifests remain stable. See
+[World4096](native-draw-mapped-status-world4096-pass-20261011.json),
+[producer death](native-draw-mapped-status-producer-death-pass-20261011.json),
+[consumer death](native-draw-mapped-status-consumer-death-pass-20261011.json),
+[recovery128](native-draw-mapped-status-recovery128-pass-20261011.json).
+
+Current default standalone OpenGL startup on actual Qt TITAN reaches20 native
+menu frames/5311 commands with no ordinary GPU/RGBA readbacks,viewport uploads
+or recovery and zero consumer resources at bounded abort.35 actual compiler
+inputs plus the native DDS builder/protocol/installed closure remain stable;
+real ddraw is disabled/absent. A later explicit snapshot is artifact capture,
+not ordinary presentation. [Standalone proof](native-opengl-mapped-status-startup-pass-20261011.json).
+Together with the preceding fresh public casting/combat/spells/portraits/resume/
+normal Quit proof,this completes the current default-native retirement batch.
+Raw final artifacts retain new exact hashes;historical evidence is preserved.
+The14-file8084ee1 committed range has exact parent/current receipts with no gaps.
+
+This is selected-session native policy and bounded execution evidence,not full
+DirectDraw API/movie/original-driver pixel/semantic COM equivalence. Public V4
+resident World fusion remains outstanding:the public frontend still invokes
+original CPU World drawing.60FPS and wider scene coverage remain future work;
+19FPS is proven only for the exercised scenarios,not universally.
