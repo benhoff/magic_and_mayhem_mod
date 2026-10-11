@@ -394827,6 +394827,214 @@
           "HOST.native-campaign-dialogue-readiness.resident-owned-oracles-20261011"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "e6a452458ad322adeaab9736e66418b1bce34a40d6c542212f531fc24f684326",
+          "before_sha256": "1ba6d2937a7f3b927a7a82ddc01ead41df1eec0fc135b6ceed8248ff53bf112f",
+          "id": "HOST.native-campaign-capture-retry"
+        },
+        {
+          "after_sha256": "a825836b8122b07d0416a42dd689b9035cbdd4538f8f64e6668eaf431ceb8933",
+          "before_sha256": "e7366b178a322041ef8af5a5604c0855f5bc2b93cb7a10aba295facc4a1bbf1a",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "798b280c9444b9eaf1a73e1fc7c1bd85e440d63cb0900fc2ceef1968e80a75bc",
+          "before_sha256": "46bf89b7e0aaad50aa763b1a2bdc3b9f92d834d9f302f3dbfbfb293e778ac838",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "35e8b6b0651d6801fa2ab637a855557981a7f7f0a76ff6b03ec8e3b8b5935de7",
+          "before_sha256": "befdec4dd852950465b9523f2ce372abf9235f5617e4983ba0f39f4e165486e1",
+          "id": "HOST.native-campaign-movement-probes"
+        },
+        {
+          "after_sha256": "c9ec93507491be24f56625852cc6ed84eed6b6d6b39e862556861a94b1c1063e",
+          "before_sha256": "5744c3231717280c5380e6c729e5a0d2eb03aa8bc4922ddd3b7b21f81006284a",
+          "id": "HOST.native-campaign-normal-quit"
+        },
+        {
+          "after_sha256": "4dd81ea990f17356d0a62f0fa96ee0c4d863d8150baf8dffe06f194aeb9c3df0",
+          "before_sha256": "a9b87995b0b5dc0de5bdaf0dc17ed7ef3359cd17e2e79bb03f7bdb8a799e31ad",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "9f48d1438a0fd9d8b2e9360dfa7afa2956126cb32a413d454e4fb2fcc67950e8",
+          "before_sha256": "c3af4cd8f6804f9cb4a2ccc3c964eea4e0a5c8a84699ed56684d5f0b650da7ec",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "97601c56da88b8e50ca1cdd2d641182ddf0e5fd2939be6a725ca3efaec0c0693",
+          "before_sha256": "57238301b849046f54013831b3211e932c2ac69ebe64f8ad5943322d0cced299",
+          "id": "HOST.native-campaign-spell-observation"
+        },
+        {
+          "after_sha256": "41b117b99848dd8cbe30d96ca574b4f28dcf04dd395a816c6425d2ff5745fa4b",
+          "before_sha256": "0c532b2de97bfc932e6d9d0ce15c6792b6a50f0b8275fae58901fe6dcd69e5cc",
+          "id": "HOST.native-command-launch"
+        },
+        {
+          "after_sha256": "ed516eabc1d472626d5cedfcd10811a6ae74a41ce4e095ec3019ac01a2fbec9f",
+          "before_sha256": "5aecc519cb51d7ee66d9170a93ccad2c28c227bfd1394791f821a319aa3a34dd",
+          "id": "HOST.native-crowded-battle-stress"
+        },
+        {
+          "after_sha256": "f81565cd59dce59924bf70b26ca441c22c1225a6079f35032069dfad01058fbc",
+          "before_sha256": "d4f7a53feedfef8c1c43ed0922e033a467933d0072ea3b0be689ad7e6e0ef527",
+          "id": "HOST.native-healing-loadout"
+        },
+        {
+          "after_sha256": "969fc6ef87c2a2e2803d1206850044b376cd9d548936e4fc0b2f8464cd1b083c",
+          "before_sha256": "446c3668fd5a78f01de593cad078aaa5976b2ac4dc7169c3af49b7a3c9da8958",
+          "id": "HOST.native-pacer-yield"
+        },
+        {
+          "after_sha256": "edfff4956763ae1b16fd0049cfc5793b77ad48c02b7510358cf7a6a3e4f426ab",
+          "before_sha256": "238b04b415f6d51760132c7e2a82d5852ceae1df02e3b3757c6a88a3329bdba4",
+          "id": "HOST.native-precise-uptime-clock"
+        },
+        {
+          "after_sha256": "66f4c643e053378ac3d1e1fd9bdae77f808a370fa6c4318b70d92c89c2d2c882",
+          "before_sha256": "1b3b32f87032a1a84311d9f708e36c715368fcc18c54d5c3a50ebccbeb99e71b",
+          "id": "HOST.native-render-draw-cadence"
+        },
+        {
+          "after_sha256": "11f2417ee2002a4538a721e4226b97768d30d58bbe6e92f33ce0b642d274470a",
+          "before_sha256": "82d81585d80aec75114430d0bf4a2386f504e6b752bf3a5982449089bd7ab43f",
+          "id": "HOST.native-smoke-cleanup"
+        },
+        {
+          "after_sha256": "bf58219e1e60cfc9432b79296efdb96909b16fe3cbf4b62f0bc1a921ec0dfd4b",
+          "before_sha256": "58098fd6325a5480f0e7e2d176c089ea796c81a57ff084e55a78c63c77f68731",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "993cb88e51d37bf7d3fdcc5b9cd999bcb36dd8c79cbc06646519a14a3cb879fb",
+          "before_sha256": "0395c7821152b4b201f09040b58ea3a75beff4e07c76c4e1d0bed7f2ffd8af05",
+          "id": "NR.directdraw-native-opengl-launch"
+        },
+        {
+          "after_sha256": "d8e8c49f5d77f5cef8c815689fbfb4f01e2ef4c360b8c09a75f6b32f94ca9ede",
+          "before_sha256": "786937046ad4c306e8fdce2dd9f6668e82fa8d4ecf0114ba6e6cc7bf5b928afe",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "1b85105befc0d97d1bf902a80b4612a112d2fd19e4b6aae514431419daa62c5f",
+          "before_sha256": "952a103a9321f1470ad38bdc11e5b53ac2625b26a1f03265a77b4b54f9644648",
+          "id": "NR.native-draw-status-session-file"
+        },
+        {
+          "after_sha256": "eec1715ea616c64f2d0e58a753bb5d24763669311f9fef95757d3c91f66f3cc6",
+          "before_sha256": "5882c31f6b99e855b5eb2f0695834d62e11016a079dbf82fedf98f5ee4203351",
+          "id": "NR.presentation-damage"
+        },
+        {
+          "after_sha256": "091332944c82dfe57219ab70998ca6138c2a15131b503e18d3c980ec07525533",
+          "before_sha256": "f540f07d21790b29fe85b4a9aed7f7d421fd2bef8568e0551153dd8e03d31c66",
+          "id": "NR.public-resident-world"
+        },
+        {
+          "after_sha256": "d9896d7c3eb031cc2bce16f3578c45dd7f8f4fe2ad510a802c8af3d4bed3a263",
+          "before_sha256": "c8c015677c7785ff65738e4d149f974c48b71f4816b9080ced328679381ad641",
+          "id": "NR.world-source-region-epoch"
+        },
+        {
+          "after_sha256": "babe2d6ef4be473769222ff456d7f5e429dd392d36cfc3e93004fb8f4268d93c",
+          "before_sha256": "65c00f238cfad348af172d3e03b474bd11aa65ab9cc5cd081ed4090338e8c100",
+          "id": "RS.displacement-linear-stride"
+        },
+        {
+          "after_sha256": "c9ccab2d074c9e4596c1f381bbd562e44af75cb628acc444ee5fdc249abceb8e",
+          "before_sha256": "fbd08b21a4def22601d414839b4b00de636742ed394bfa5a0ed20bb1fe2c17b2",
+          "id": "RS.shadow-linear-stride"
+        },
+        {
+          "after_sha256": "94d5d9656ff68019610285da7e6fff3ca1e82a5de1bc16b6d362106565e036b9",
+          "before_sha256": "a9b8ddfcc6ee6338718cb318ba13e06fc7815fd9a6e30ecd424fc32103b7b441",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "d5a29e5a333d4b54cf86fe06c3dc80dd8bae71f337d50b9444e4c4ba0792e391",
+          "before_sha256": "466013c9d1a541079bb03b5723b88ac4d48256cce1fa89fa62c6e38f8dbff5f5",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "cfad26160ffb482650a514b6566faec176c4cd70a9e1381048b0aa808542c6f9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-resident-dialogue-oracles-20261011.json"
+        },
+        {
+          "after_sha256": "0d1c983701fd0776fc0e82a14c94cac54b48ea64333695c05369da6a1ffe0125",
+          "before_sha256": "5b0ef729309e431faf59baa4703e63059ddc2936462117b55708597816f9cdf5",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "7715899e09808730d97e36c4d42267b019d957955c4de0cf6d5eab7b21b43723",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-resident-retreat-budget-20261011.json"
+        },
+        {
+          "after_sha256": "d01e50fcd038e8a214a0dc1bc87d86d167fa1658b7d1f7fe39f9ea727aa97376",
+          "before_sha256": "f8f86ea8539eb631beb0e9077b9219880cf3ce3a8b9d9ed9c638b3988016944d",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "f97433363b89a732b6708c1bf13cde4e0b375a288c7238bcfcd49368fa50b78d",
+          "before_sha256": "1ffb7f1b450c572c3bc59f7300a848eb9e41909a265a311063ebab6d89a5c8f3",
+          "path": "research/runtime/native-campaign-extended-gameplay.md"
+        },
+        {
+          "after_sha256": "30345c11314d6481a8dbe964e83548d1a1ef7a192d23100377fc5a1ed2f6ce3f",
+          "before_sha256": null,
+          "path": "research/runtime/public-resident-casting-retreat-input-20261011.json"
+        },
+        {
+          "after_sha256": "054401b839a6ef744e4a81ed0bf041c3c40bd9b304169d9f9a4879a5a5aa56cd",
+          "before_sha256": null,
+          "path": "research/runtime/public-resident-casting-retreat-negative-20261011.json"
+        },
+        {
+          "after_sha256": "e786e9d2389ed66f4dc401b0a695baaf4a7d46f153e0206d6c1709158caccc67",
+          "before_sha256": "df0a70c7306c70e5e73f6ad148cfcafaf269070b29f8f748645cf7fab1d7258e",
+          "path": "research/runtime/public-resident-world.md"
+        },
+        {
+          "after_sha256": "15718fba16631fd90142c74c30ed1281293c86d0efcae0891ae67c8afd839004",
+          "before_sha256": "4cabf98c28b5b1a73ab2a116f9f31ec589612f2ca1a5d2fd7e18d228ba7c4588",
+          "path": "tools/campaign-combat-input.py"
+        },
+        {
+          "after_sha256": "9923592d80518ace02440bafa4502260ac4d9ee85dadf02f7f00e37d18ba807f",
+          "before_sha256": "25ba3f037be41a0d8ae5d1625f6c850ee5ce6db25162a8661a01051d0f01bb55",
+          "path": "tools/test-native-campaign.py"
+        }
+      ],
+      "id": "public-resident-retreat-budget-review-20261011",
+      "pending_gaps": [
+        "retired_execution_claims:ac5f9d30273108f5cde573c59ca561ca35a3e02c2fb87969a35899f27d6411da",
+        "retired_execution_claims:b1b3e6cadea82a06feceafc04a7c0cf62e154c62a4b67824ef836e5b8776251e",
+        "retired_execution_claims:c6c1bd506fb9df115c49bb4cbc99a3028b2f872ba14352e2aa71858f73b1e2a7",
+        "retired_execution_claims:f8203852847e673cea91f30e8786a22c858a8a37b9d66e5091146ea8de467fa3",
+        "stale_evidence:30e2141a63d81340b009cc58bff9b07e0b0ce94a299e92ea44240575ce93b449",
+        "stale_evidence:31d70e628a486ef43692cd877d6cef6a49c2fb923ec06ab9bf8a46d5e9000551",
+        "stale_evidence:3a634b17e5b14ac8f1c71e62dd14939d24793b02568046bc45ec5708c9074ae9",
+        "stale_evidence:7e2ea04732b9e760578405cc2779275ae6229c92418123ae4edf2c3186534569",
+        "validation_gaps:09df32fe1316b8abd8b0695cc8b00a982f7e69cba509b3b0010b9d8db03081a0",
+        "validation_gaps:40b37baa9c8e4b9d2dbd306c74acad2fb0649d5bc20fb816fb4f4f4b5bb3faff",
+        "validation_gaps:8979a0ceb39503917cb27339fd9a1cd3636982d6265aa147ad7f81430cf3fb0a"
+      ],
+      "reason": "Reviewed first native resident casting/combat negative full journey: actual Zombie creation,player Fireball damage,melee/party kill and healthy19.5038FPS precede retreat-budget failure. Every one of eight return-ground orders advances a living125HPwizard toward(3,79); no unreachable-terrain or renderer failure inference. Extend bounded orders to12while preserving exact waypoint/aliveness test and all spell/portrait/quit/FPS requirements. Retain negative report and raw input; reviewed prior11committed file versions with zero receipt gaps.",
+      "validation": {
+        "status": "pending",
+        "reason": "Existing19 evidence checks pass; successful cast/combat observations remain bounded within a failed complete journey. Fresh12order full Titan run is in progress. New helper/runner/scope/scenario changes stale/retire prior bindings; preserve historical hashes/statuses and pending original UI/dialogue/pathfinding/fulljourney equivalence.",
+        "evidence": [
+          "NR.public-resident-world.casting-retreat-negative-20261011"
+        ]
+      }
     }
   ]
 }

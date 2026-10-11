@@ -25046,7 +25046,7 @@
       "subsystem": "runtime_and_hosting",
       "kind": "native_policy",
       "title": "Native blocked casts and player Fireball damage",
-      "scope": "First campaign physical invalid-target Zombie attempt and insufficient-mana attempt after normal Zombie/Fireball costs; no newly living Zombie or observed mana loss in bounded same-identity caster intervals. Original defended enemy HP reduction inside a player-sourced Fireball71 dispatch, matching damage attribution owner. Ordinary return-ground orders before optional portrait stress. Pre-ingress UI refusal remains distinct from internal admission. Cure41 is absent from the starting loadout and healing remains pending; refunds, mitigation formulas, full animation equivalence, other maps and simulation/drawing replacement are excluded. Fireball evidence additionally requires a same-thread player Wizard71 cast with identity-valid mana debit within10seconds and a reviewed direct impact/dispatch damage caller (0x48ed24/0x48b4e2); stale context or arbitrary health loss cannot establish the bounded hit.",
+      "scope": "First campaign physical invalid-target Zombie attempt and insufficient-mana attempt after normal Zombie/Fireball costs; no newly living Zombie or observed mana loss in bounded same-identity caster intervals. Original defended enemy HP reduction inside a player-sourced Fireball71 dispatch, matching damage attribution owner. Ordinary return-ground orders before optional portrait stress. Pre-ingress UI refusal remains distinct from internal admission. Cure41 is absent from the starting loadout and healing remains pending; refunds, mitigation formulas, full animation equivalence, other maps and simulation/drawing replacement are excluded. Fireball evidence additionally requires a same-thread player Wizard71 cast with identity-valid mana debit within10seconds and a reviewed direct impact/dispatch damage caller (0x48ed24/0x48b4e2); stale context or arbitrary health loss cannot establish the bounded hit. Return-ground waypoint requires a living wizard within3tiles of the initial-relative target after at most12physical orders. Eight attempts previously expired while the wizard still made progress on every order; the waypoint/aliveness requirement is retained, no engine state is written. Terrain admission and arbitrary map pathfinding remain excluded.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -37663,7 +37663,9 @@
         "research/runtime/public-resident-linear-full-fixtures-20261011.json",
         "research/runtime/public-resident-linear-pass-shadow-write-failure-20261011.json",
         "research/runtime/public-resident-shadow-envelope-fixtures-20261011.json",
-        "research/runtime/public-resident-shadow-envelope-dialogue-negative-20261011.json"
+        "research/runtime/public-resident-shadow-envelope-dialogue-negative-20261011.json",
+        "research/runtime/public-resident-casting-retreat-negative-20261011.json",
+        "research/runtime/public-resident-casting-retreat-input-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37697,7 +37699,8 @@
         "NR.public-resident-world.linear-full-fixtures-20261011",
         "NR.public-resident-world.shadow-write-failure-20261011",
         "NR.public-resident-world.shadow-envelope-fixtures-20261011",
-        "NR.public-resident-world.shadow-envelope-dialogue-negative-20261011"
+        "NR.public-resident-world.shadow-envelope-dialogue-negative-20261011",
+        "NR.public-resident-world.casting-retreat-negative-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -76230,6 +76233,33 @@
           "equals": 2
         }
       ]
+    },
+    {
+      "id": "NR.public-resident-world.casting-retreat-negative-20261011",
+      "kind": "live_observation",
+      "scope": "Negative full ordinary Titan journey: original player Zombie creation,Fireball93to73,5Zombie hits and party enemy5to0 observed before eight-attempt retreat budget expired.2816Worlds/19.5038engineFPS/no renderer error/zero readbacks. Portrait/Mini/normalQuit/fulljourney not completed; no replacement promotion.",
+      "record": "research/runtime/public-resident-casting-retreat-negative-20261011.json",
+      "sha256": "054401b839a6ef744e4a81ed0bf041c3c40bd9b304169d9f9a4879a5a5aa56cd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/error",
+          "equals": ""
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -84666,7 +84696,8 @@
         "NR.world-source-region-epoch",
         "RS.displacement-linear-stride",
         "RS.shadow-linear-stride",
-        "HOST.native-campaign-dialogue-readiness"
+        "HOST.native-campaign-dialogue-readiness",
+        "HOST.native-campaign-spell-cases"
       ],
       "tests": [
         "tools/test-native-campaign.py"
@@ -84680,7 +84711,8 @@
         "NR.world-source-region-epoch.shadow-failure-20261011",
         "NR.public-resident-world.displacement-failure-20261011",
         "NR.public-resident-world.shadow-write-failure-20261011",
-        "NR.public-resident-world.shadow-envelope-dialogue-negative-20261011"
+        "NR.public-resident-world.shadow-envelope-dialogue-negative-20261011",
+        "NR.public-resident-world.casting-retreat-negative-20261011"
       ]
     },
     {
@@ -85088,8 +85120,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-resident-dialogue-oracles-20261011.json",
-    "sha256": "0dfdde620fca98c7408ada9f683cb73eb4b3f82ba5352ff5756d0e1e152fb9f4"
+    "path": "research/runtime/coverage/source-index-resident-retreat-budget-20261011.json",
+    "sha256": "7715899e09808730d97e36c4d42267b019d957955c4de0cf6d5eab7b21b43723"
   },
   "claim_bindings_required": true
 }
