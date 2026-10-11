@@ -7,8 +7,8 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 565 |
-| evidence | 919 |
-| scenarios | 270 |
+| evidence | 921 |
+| scenarios | 271 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
 | incomplete dispatch tables | 22 |
@@ -26,7 +26,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 167 |
 | behaviors without comparison | 463 |
 | behaviors without tests | 1 |
-| stale evidence | 708 |
+| stale evidence | 709 |
 | behavior anchors outside discovered functions | 46 |
 | validation gaps | 710 |
 | retired execution claims | 373 |
@@ -1468,9 +1468,10 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **TOOL.drawing-inventory.retained-journal-v2-20261010**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-inventory.py`, `tools/drawing_inventory.py`
 - **RI.drawing-callers-expanded-20261010**: `tools/drawing_census.py`
 - **TOOL.drawing-census.callers-guards-20261010**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-census.py`, `tools/drawing_census.py`
-- **DRAW.census.journal-guards-20261010**: `research/runtime/drawing-inventory.json`, `tests/drawing-census-abi.c`, `tools/test-drawing-census-abi.py`
-- **DRAW.census.menu-observation-20261010**: `research/runtime/drawing-inventory.json`, `tests/drawing-census-abi.c`, `tools/capture-drawing-census-game.py`, `tools/test-drawing-census-abi.py`
-- **DRAW.census.expanded-abi-20261010**: `research/runtime/drawing-inventory.json`
+- **DRAW.census.journal-guards-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tests/drawing-census-abi.c`, `tools/test-drawing-census-abi.py`
+- **DRAW.census.menu-observation-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tests/drawing-census-abi.c`, `tools/capture-drawing-census-game.py`, `tools/test-drawing-census-abi.py`
+- **DRAW.census.expanded-abi-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tests/drawing-census-abi.c`, `tools/test-drawing-census-abi.py`
+- **DRAW.census.caller-source-abi-20261010**: `runtime/drawing-census/observer.c`, `tests/drawing-census-abi.c`, `tools/test-drawing-census-abi.py`
 
 ## Checklist gaps
 

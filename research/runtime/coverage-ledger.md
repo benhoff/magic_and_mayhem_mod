@@ -4379,3 +4379,22 @@ they do not establish closed census validation. Committed history
 `8764d90..4d28021` was separately reviewed with 31 changed files, 94 affected
 behaviors and no missing exact receipts. See the retained history report and
 `draw01-inventory.md` for reproduction and scope boundaries.
+
+### DRAW-01 closed bounded campaign metadata — 2026-10-10
+
+Fresh original-active Adept campaign metadata retains 2,416,882 events and
+1,208,441 paired calls with zero loss/open/IO, unchanged staged binaries and
+declared sources, and normal original exit. Main/setup, campaign entry, World,
+camera/cursor input, Mini/Preferences/World return, Quit confirmation, defeat
+report, Main and shutdown were exercised. Original Hermes dialogue input holds
+are handled through original input and retained screenshots. The host phase
+reader now retries transient seqlock changes boundedly; persistent invalid/dead
+host control remains explicit loss and is checked by fresh actual PE32 ABI
+execution. Earlier failed/rejected journals and their fingerprints are retained.
+
+This establishes bounded observation integrity only. All fourteen scenario
+closures and four dispatch obligations remain pending; no rendering comparison,
+integration or replacement promotion is asserted. History `4d28021..18d24f6`
+was separately reviewed with 24 changed/link-reviewed files, 63 affected behaviors
+and zero missing exact receipts. See the campaign observation and phase/ABI
+evidence for exact source/contract bindings.

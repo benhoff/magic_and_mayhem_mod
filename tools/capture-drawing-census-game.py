@@ -162,6 +162,11 @@ def capture(root, template, journey, claims=None):
             def open_mini():
                 focus_game()
                 for attempt in range(8):
+                    # The original Hermes introduction can hold World input
+                    # after camera motion or a menu return. Dismiss through
+                    # original mouse input, then request Mini through Escape.
+                    ImageGrab.grab(xdisplay=env['DISPLAY']).save(root / ('before-mini-%02d-%02d.png' % (request, attempt)))
+                    click(400, 160)
                     key(0xff1b)
                     try: return wait(17, seconds=1)
                     except RuntimeError:
@@ -171,7 +176,7 @@ def capture(root, template, journey, claims=None):
             send(17, 14); wait(10); hold(1); send(10, 20); hold(2)
             ImageGrab.grab(xdisplay=env['DISPLAY']).save(root / 'after-campaign-preferences.png')
             open_mini()
-            send(17, 15); click(265, 395); wait(6); phase(13, 'Original campaign defeat result and return'); send(6, 26); wait(3)
+            send(17, 15); hold(1); click(265, 395); wait(6); phase(13, 'Original campaign defeat result and return'); send(6, 26); wait(3)
         phase(14, 'Original Main quit and DLL terminal flush')
         # Quit can finish before its acknowledgement is published.
         row = wait(3); sequence += 2; request += 1
@@ -180,7 +185,7 @@ def capture(root, template, journey, claims=None):
         struct.pack_into('<I', channel, 16, sequence)
         process.wait(timeout=30)
         census = trace(root / 'capture/census.bin', json.loads((root / 'census-build.json').read_text()),
-            json.loads((ROOT / 'research/runtime/drawing-callers-expanded-20261010.json').read_text()),
+            json.loads((ROOT / 'research/runtime/drawing-callers-dispatch-expanded-20261010.json').read_text()),
             json.loads((ROOT / 'research/runtime/coverage/binary-nocd.json').read_text()))
         (root / 'decoded.json').write_text(json.dumps(census, indent=2) + '\n')
         report.update(success=True, process_exit=process.returncode, decoded_sha256=hashlib.sha256(

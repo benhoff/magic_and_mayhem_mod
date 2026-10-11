@@ -29,7 +29,7 @@ def main():
             if hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != digest: raise ValueError('Changed declaration source: ' + p)
             sources[p] = digest
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
-    env.update(WINEPREFIX=str(out / 'wineprefix'), WINEDEBUG='-all')
+    env.update(WINEPREFIX=str(out / 'wineprefix'), WINEDEBUG='-all', WINEDLLOVERRIDES='mscoree,mshtml=d')
     spec = importlib.util.spec_from_file_location('abi_imports', ROOT / 'tools/build-menu-observer.py')
     module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
     (out / 'kernel32.def').write_text('LIBRARY KERNEL32.dll\nEXPORTS\n' + ''.join(
@@ -66,6 +66,7 @@ def main():
     report = {'schema': 1, 'success': True, 'sources': sources, 'sources_stable': True,
               'callee_pop_bytes': [0, 4, 8, 12, 20, 24], 'register_flags_x87_sse_last_error_preserved': True,
               'same_stack_tail_unwind': True, 'interior_no_return_slot_change': True,
+              'invalid_host_phase_refused': True,
               'frame_exhaustion_forwards_and_records_loss': True, 'original_renderer_executed': False}
     if claims: report['claims'] = claims['claims']
     (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n')

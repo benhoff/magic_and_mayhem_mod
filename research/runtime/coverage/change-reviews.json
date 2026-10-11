@@ -232660,6 +232660,180 @@
           "DRAW.census.caller-source-abi-20261010"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "3ff53224259bb2a151732f782cb6fc595c52071abdf0a5532ccadfe0bea9cf4f",
+          "before_sha256": "85ad6f276cb854bc9eda9e496aa2950f58e7c01a64fe32a0aefaa703724cc058",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "967f5eba2eeb2125ccc90a0b8808c9d1bc5d05949647a995ad0958fc1f6c1b9b",
+          "before_sha256": "2e031dbac634e4fe542d76a58729a0becaada3bdd48e3cdda468628e76f964e3",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "f6f11dc04a6880eaa7465f8837b1998684d7e93dc14127489148ba6930a31295",
+          "before_sha256": "657455ba22c129a6ce1a3b9d3d04f4544386ca457ff4eeb40d237c82bf7ec83a",
+          "id": "DRAW.queue-dispatch"
+        },
+        {
+          "after_sha256": "81cf2efdd6b0ce96e073f7d07d635cf2a9050d2d05551b3bfaee28a31b4e08c7",
+          "before_sha256": "c195c2f8183c5119784e0ce020832e071cc87a750b79bbea33d4fe655067462b",
+          "id": "DRAW.surface-hosting"
+        },
+        {
+          "after_sha256": "18d4e6aedab01901d231335170d6324607b31447f79d892593f63fcdaad05276",
+          "before_sha256": "10fbf4525d1e47ee98d3ad77255a6363351e9152e300c32e3f641dcfacba8fa7",
+          "id": "DRAW.unassigned-word-window"
+        },
+        {
+          "after_sha256": "540e350c4c0b411761874d44269f5d569577808ef70cc108410b0c4f5b009df5",
+          "before_sha256": "d8bd1e49f5029865577a8d7e5c2ac192e5399d9491124cf658b5e0a2507a6173",
+          "id": "DRAW.unattributed-caller"
+        },
+        {
+          "after_sha256": "aafb9d112f376c050f50077c494266b8d4aec4462e044e1dc1ea49ae50323152",
+          "before_sha256": "701d44e6abd925d91ec6bbd93cc0a8b53d692e81bb187f974764266eea915fbc",
+          "id": "DRAW.world-kind-16"
+        },
+        {
+          "after_sha256": "a98683871daa7ede97acfd9281dc3179014aa051c132380d4927bd2390a6767a",
+          "before_sha256": "b98b70368e34a8534768e1aacf48280c003e327f98268831f369fd31178adf03",
+          "id": "DRAW.world-kind-17"
+        },
+        {
+          "after_sha256": "5d718b2236620a6d0ee8f128a50c4946de14b6d11c0f51873f83c9221fa488c2",
+          "before_sha256": "ef75f15d0a6f40de03a627584e0cb972d6b4c1eb67950d9d88ce0e2605b7103b",
+          "id": "DRAW.world-kind-20"
+        },
+        {
+          "after_sha256": "9fa56d17af2b58e9d5863feb1d707759f735205a7cef9f7603e7fd52ed68b22f",
+          "before_sha256": "b66c5644aac0d85cd740d2f0d715ac159b194c8e4d37f1204fe09b628bc9a78c",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "772f51e4d487b5243e41c4a544b8a51517414ebfbcb739bc159bdb2bad24d8b5",
+          "before_sha256": "8947ba9403c27c58dbb6ee927c2747e81fa96fd99ff09be8bb645fbfd61c538e",
+          "id": "TOOL.drawing-census"
+        },
+        {
+          "after_sha256": "9a9d9735601e12b60dce7c7a4aa3bfd622647190048cbe0e6fdff0e1e2121bf3",
+          "before_sha256": "7121ae48b7c6a71a935589472a5c57bc782d69d835842c086a1b6bbc590c3baf",
+          "id": "TOOL.drawing-dispatch-slices"
+        },
+        {
+          "after_sha256": "ffaa21de1f07b70805b1a1f6177cdc0938f6481de2319e7c4021b86998024dda",
+          "before_sha256": "792a2b8870f73f9c16ca8d2fb0bf93af3229fc20acb631d84517da87da4fc3bc",
+          "id": "TOOL.drawing-inventory"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "c425796892ab524155e2b3e07f1b530e8ecd99000a6a54e61925c0e9afd0143b",
+          "before_sha256": "1913bf791cdffab49c7668a142f14ec496c9b7c7ccaa6c0dcc6d34e30b863039",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "2dad4fea56a74b07efc2bf67b0e46a898eea353b04494d8b432cd3a0aea3e421",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw01-history-4d28021-18d24f6-20261010.json"
+        },
+        {
+          "after_sha256": "9674c3cdfc91457668aaedfcb49c9b4f5da629be2c68a894995b0fd04d0d62f3",
+          "before_sha256": "f9317b89c0f8a17a29124e25d24ceb6a8921189e1042e8b14ae9378ebb7f0024",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "21a8eb6aca89ebf3084dd50be2b052ecb58fd743104feef2034e8cf4170e5fef",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw01-campaign-20261010.json"
+        },
+        {
+          "after_sha256": "3fc592bac5927f87ae35b5aebc5912a34a3d1ee2c11133e949debcb2d0020c89",
+          "before_sha256": "947a3f4afcc7cb948edbb38e3e577f683ac4c5073b5ddecee2762a4a795e4ea7",
+          "path": "research/runtime/draw01-inventory.md"
+        },
+        {
+          "after_sha256": "780cb390236f0973ab3717fe381321dfd1e3fc9de6671fbb8382415ad5489a41",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-census-campaign-observation-20261010.json"
+        },
+        {
+          "after_sha256": "2a19dbe9d6148bd561c660a3166620b57dd8c1709b9d217417042c9115abe064",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-census-phase-abi-20261010.json"
+        },
+        {
+          "after_sha256": "b5069b9b69ed6ff53e0aedaef1aa04970e94d5172a551389bd2fa29cc1b0bf0a",
+          "before_sha256": "95a308c446fb7bec135dc77f148c1fb7428d50e8aeb74d0512952f28be061319",
+          "path": "runtime/drawing-census/observer.c"
+        },
+        {
+          "after_sha256": "a4aaa7c2933110b1f140b37716d92cfc5c64acb87eb3bd007211f4cef8475848",
+          "before_sha256": "f030c299dafae0064399501e4e2a52dbdaabc49872aaa097408673cb5dcb892b",
+          "path": "tests/drawing-census-abi.c"
+        },
+        {
+          "after_sha256": "285fd80236ff7f7caa6c0969ad35c61c1fd53ec8f2ceb4ea97cea6ff02c2d70a",
+          "before_sha256": "da09b23b5760ade53b49195b99afc03b6d74242ad93af6512350e1e1becce6b1",
+          "path": "tools/capture-drawing-census-game.py"
+        },
+        {
+          "after_sha256": "e857fd8ea079fb2d78527b0614cea62d3ecb42339cdff5d98a3441d60f49bc37",
+          "before_sha256": "6fd3859b3b48b965a764bee29219092b3dd1a59c29b13c4b1886c665f6bcf7c5",
+          "path": "tools/test-drawing-census-abi.py"
+        },
+        {
+          "path": "research/runtime/coverage/summary.md",
+          "before_sha256": "10e570dd1d89af6296378644dc8755b1b784daefbe3bd003d08364656e5acdc1",
+          "after_sha256": "71f72770ce2297447fafe2e5308e2e99b080dad63f787df65a7955162ebac6db"
+        }
+      ],
+      "id": "draw01-bounded-campaign-and-phase-reader-20261010",
+      "pending_gaps": [
+        "stale_evidence:4a89c1630c1b8687b2ae2f9d0827f206038fcd1e962a248fd3fee575d1d933a3",
+        "stale_evidence:50c8a81d5bd60de37fadac9424b387956e26b4e97733bac064cc17f91c877a33",
+        "stale_evidence:8421dc4341a5ec1a0f1429eb9e882442f8af1764b9e3b165d49975c7c91cad95",
+        "stale_evidence:8f7ea7b87d73e6cecf4bd850a3d93b679dba1f75d72f724a87c881bf91c4945c",
+        "stale_evidence:9fc5b3339e98bcb064ba1823099c9234a9b2f210d4bdcdee2aa11ae3b84ecd09",
+        "stale_evidence:a05f1a1b34a95a482cc817c82cbe8ace7e602c98e7dd8ae0b3bf1608d69a86fa",
+        "stale_evidence:adca6234257661a7b37e7eae332d5dcaf70ef6bace36067cc012db3722cb213a",
+        "stale_evidence:f6dd37beba90bdde30ed21925bc9759612b878ed084bbc8267edf19c3b71ad7f",
+        "validation_gaps:4d3f13e95138073533a268f7c369977255f66438837cb5202dab6b674a7d487d"
+      ],
+      "reason": "Review original-active campaign fixture including dialogue input holds, retained snapshots/failures, expanded exact caller metadata, bounded host-seqlock retry and persistent-invalid refusal. Current44 entries674 groups include615 exact direct groups59 pending call flows;9 formerly unmatched caller PCs observed,4dcbdd absent. Review history4d28021..18d24f6 exact receipts separately; no retrospective gate assertion. Preserve all historical hashes and independent rendering statuses; fourteen scenario closures/four dispatch/all writers/API/lifetime/recovery still pending.",
+      "validation": {
+        "status": "pending",
+        "reason": "Bounded census policies have separately recorded fresh ABI and live campaign execution; shared catalog/research dependencies do not renew unrelated rendering or tool evidence. Retain each new stale/validation gap and no raster/comparison/integration/replacement promotion."
+      }
+    },
+    {
+      "id": "draw01-campaign-phase-bounded-validation-20261010",
+      "files": [],
+      "behaviors": [
+        {
+          "after_sha256": "3ff53224259bb2a151732f782cb6fc595c52071abdf0a5532ccadfe0bea9cf4f",
+          "before_sha256": "85ad6f276cb854bc9eda9e496aa2950f58e7c01a64fe32a0aefaa703724cc058",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "967f5eba2eeb2125ccc90a0b8808c9d1bc5d05949647a995ad0958fc1f6c1b9b",
+          "before_sha256": "2e031dbac634e4fe542d76a58729a0becaada3bdd48e3cdda468628e76f964e3",
+          "id": "DRAW.census.journey-driver"
+        }
+      ],
+      "pending_gaps": [],
+      "reason": "Record only fresh exact-source/contract-bound original-active call journal and private journey policy evidence; scenario cohort bound explicitly, no complete route census.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Actual PE32 observer ABI checks six callee-pop contracts, invalid/odd/dead phase control refusal, registers/flags/x87/SSE/LastError,tail unwind and exhaustion. Fresh original campaign exits0 with2416882events1208441pairedcalls,zero loss/open/IO and stable declared sources/staged binaries. Exact campaign scenario bound before execution.",
+        "evidence": [
+          "DRAW.census.phase-abi-20261010",
+          "DRAW.census.campaign-observation-20261010"
+        ]
+      }
     }
   ]
 }
