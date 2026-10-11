@@ -7,12 +7,12 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 579 |
-| evidence | 993 |
-| scenarios | 309 |
+| evidence | 994 |
+| scenarios | 310 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
 | incomplete dispatch tables | 22 |
-| indexed sources | 1717 |
+| indexed sources | 1718 |
 | unclassified functions | 6401 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
@@ -26,7 +26,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 172 |
 | behaviors without comparison | 477 |
 | behaviors without tests | 1 |
-| stale evidence | 779 |
+| stale evidence | 780 |
 | behavior anchors outside discovered functions | 46 |
 | validation gaps | 717 |
 | retired execution claims | 376 |
@@ -1552,10 +1552,11 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **DRAW.api-expanded.save-load-20261011**: `research/runtime/drawing-inventory.json`
 - **DRAW.api-expanded.quick-battle-20261011**: `research/runtime/drawing-inventory.json`
 - **DRAW.api-expanded.effects-20261011**: `research/runtime/drawing-inventory.json`
-- **TOOL.drawing-inventory.api-site-guards-20261011**: `research/runtime/drawing-inventory.json`
+- **TOOL.drawing-inventory.api-site-guards-20261011**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-inventory.py`, `tools/drawing_inventory.py`
 - **DRAW.queue-client-state.fixture-20261011**: `tests/drawing-queue-state-reference.cpp`, `tools/test-drawing-queue-state.py`
 - **DRAW.queue-client-state.all-kinds-fixture-20261011**: `tests/drawing-queue-state-reference.cpp`, `tools/test-drawing-queue-state.py`
-- **TOOL.drawing-inventory.postlude-guards-20261011**: `research/runtime/drawing-inventory.json`
+- **TOOL.drawing-inventory.postlude-guards-20261011**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-inventory.py`, `tools/drawing_inventory.py`
+- **TOOL.drawing-inventory.lock-recovery-guards-20261011**: `research/runtime/drawing-inventory.json`, `tests/test-drawing-inventory.py`, `tools/drawing_inventory.py`
 
 ## Checklist gaps
 

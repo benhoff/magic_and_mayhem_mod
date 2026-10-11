@@ -4803,3 +4803,14 @@ Fourteen exact caller-effect routes are classified;45current offline guards
 account503routes, preserving14scenario/four dispatch closure. Recovered native
 stages remain none. b85df54..d3cd04fhistory has11file/30behavior exact receipts,
 no missing versions; historical live fingerprints are retained.
+
+
+DRAW-01 reviewed API client route binding (2026-10-11):141existing exact DirectDraw/
+Surface2/clipper declarations now require matching static build/source hash, CALL
+bytes, primary PE32 formals, explicit receiver provenance and route classification.
+239sites retain no client contract;20reload callback exclusions and empty
+discovered owner sets remain explicit. [51current native guards](draw01-inventory.md#reviewed-exact-api-client-declarations-2026-10-11)
+pass with503routes/zero unknowns and18completion obligations. This validates
+offline interpretation, not new original execution, dynamic ownership/pixels/
+lifetime or native graphics replacement; historical live sources remain stale.
+Committedd3cd04f..f30b3b6history has17file/45behavior exact receipts and no gaps.

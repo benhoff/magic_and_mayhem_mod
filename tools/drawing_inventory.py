@@ -204,6 +204,8 @@ def reconcile(root, catalog, register):
             if site in api_sites and api_sites[site] != row:
                 raise ValueError('Conflicting static API CALL site')
             api_sites[site] = row
+    from drawing_api_clients import reviewed_clients
+    api_clients = reviewed_clients(root, catalog.get('api_layout_sources', []), evidence, builds, build, api_sites)
     windows = {}
     selectors = {}
     binary = None
@@ -224,6 +226,12 @@ def reconcile(root, catalog, register):
             point = address(route['api_site'])
             if 'entry' in route or route.get('selectors') != [{'kind': 'api_site', 'identity': point}] or point not in api_sites:
                 raise ValueError('API site needs an exact static CALL route, separate from function entries')
+            client = api_clients.get(point)
+            if client:
+                if route.get('client_contract') != client['contract'] or route['classification'] != client['classification']:
+                    raise ValueError('API route differs from reviewed client contract/classification')
+            elif 'client_contract' in route:
+                raise ValueError('Unreviewed API site cannot claim a client contract')
         for path in route['documents']:
             target = (root / path).resolve()
             if Path(path).is_absolute() or '..' in Path(path).parts or not target.is_relative_to(root.resolve()) or not target.is_file() or path.split('/')[0] in {'original', 'working', '.git'}:
@@ -392,7 +400,7 @@ def reconcile(root, catalog, register):
             'activities': activities, 'scenarios': scenario_rows, 'unaccounted': unaccounted,
             'static_callers': static['callers'], 'static_caller_returns': {hex(k): v for k, v in returns.items()},
             'static_indirect_calls': indirect, 'static_computed_jumps': jumps, 'dispatch_tables': tables,
-            'static_api_sites': list(api_sites.values()),
+            'static_api_sites': list(api_sites.values()), 'reviewed_api_clients': list(api_clients.values()),
             'hook_entries': hooks, 'additional_hook_entries': additional_hooks,
             'metadata_hook_entries': metadata_hooks, 'metadata_hook_refusals': metadata_refusals,
             'completion_blockers': blockers, 'draw01_complete': not blockers,
@@ -401,6 +409,8 @@ def reconcile(root, catalog, register):
                        'metadata_instrumented_entries': len({row['entry'] for row in metadata_hooks}),
                        'metadata_refused_entries': len({row['entry'] for row in metadata_refusals}),
                        'api_registered_sites': len(api_sites),
+                       'api_reviewed_clients': len(api_clients),
+                       'api_unreviewed_clients': len(api_sites) - len(api_clients),
                        'api_observed_sites': len({a['identity'] for a in activities if a['selector'] == 'api_site' and a['count']}),
                        'required_scenarios': sum(s['required'] for s in scenario_rows), 'unaccounted': len(unaccounted)},
             'limitations': ['Activity counters belong to individual bounded cohorts; do not sum them into runtime frequencies.',

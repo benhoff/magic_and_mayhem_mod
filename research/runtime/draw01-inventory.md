@@ -689,3 +689,36 @@ account503routes with no unknown identities and preserve18completion obligations
 Changing the catalog preserves old live source hashes and their staleness.
 Historyb85df54..d3cd04fhas11file/30behavior exact receipts and no missing versions;
 retrospective accounting asserts no past gate pass or new validation.
+
+
+## Reviewed exact API client declarations, 2026-10-11
+
+The route inventory now binds141existing [reviewed client layouts](drawing-surface-api-layouts-20261011.json)
+to their exact380CALL census points. A static review's build and source hash,
+CALL bytes/mode, selected primary PE32 prototype/formal count, explicit receiver
+provenance and route contract/classification must all agree. The review's20reload
+callbacks remain excluded from these declarations. Duplicate/excluded layouts,
+changed types/formals/provenance/classes, unsafe paths, stale source hashes and
+unreviewed sites claiming a contract are rejected. A virtual displacement alone
+still supplies no type. Empty discovered owner sets stay empty.
+
+Known declarations describe submitted client composition, surface access, state
+and lifecycle operations. They do not assign a universal runtime implementation,
+reference lifetime, valid output buffer/pixels or complete semantic caller owner.
+The other239sites have no reviewed client contracts; selected Lock wrapper
+caller-effect labels remain separately bounded by their original-client fixture.
+All support decisions retain original execution. No native graphics replacement
+or recovered behavior status is promoted.
+
+[51current native guards](drawing-inventory-reviewed-api-client-guards-20261011.json)
+pass, including a strengthened duplicate declaration case that reaches its actual
+rejection guard rather than an earlier review-count assertion. The preceding
+51guard run and prospective hashes are retained as intermediate evidence only.
+Current offline accounting has503routes,141reviewed clients,101observed API sites,
+zero unknown identities and18completion obligations. This neither reruns original
+code nor refreshes historical live sources. Existing layout review hashes remain
+unchanged; current guards validate their interpretation and exact route binding.
+
+Historyd3cd04f..f30b3b6has17file/45behavior exact receipts and no missing versions.
+Retrospective accounting asserts no past gate pass or new graphics validation.
+The branch remains isolated from the shared worktree.

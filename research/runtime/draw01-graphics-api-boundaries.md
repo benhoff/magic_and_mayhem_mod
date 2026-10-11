@@ -453,3 +453,13 @@ Evidence: [original save/load](drawing-api-expanded-save-load-20261011.json),
 [original effects](drawing-api-expanded-effects-20261011.json). Committed-history
 review910e3f7..002633e finds18exact file and12behavior receipt matches, no missing
 intermediate versions, and asserts neither a past gate pass nor new validation.
+
+
+2026-10-11 exact client route declarations:141existing reviewed DirectDraw/Surface2/
+clipper CALL layouts now bind source evidence/hash, bytes, primary PE32 formals
+and receiver provenance to classified inventory routes.239sites have no reviewed
+client declaration; excluded reload callbacks/virtual offsets do not infer types.
+[51offline guards and scope](draw01-inventory.md#reviewed-exact-api-client-declarations-2026-10-11)
+retain empty function owners, historical live fingerprints and18completion gaps.
+These are static client operation declarations, not universal dynamic types,
+physical ownership/pixels, original comparison or scenario closure.
