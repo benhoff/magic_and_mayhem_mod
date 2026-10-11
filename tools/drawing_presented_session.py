@@ -165,16 +165,22 @@ def admit(root):
     return session, plan, bindings, identities, segments, mapped
 
 
-def rgba565(raw):
+def rgba565(raw, conversion='bit-replicated'):
+    if conversion not in ('bit-replicated','normalized-nearest'):
+        raise ValueError('Unknown RGB565 display conversion')
     out = bytearray()
     for i in range(0, len(raw), 2):
         value = raw[i] | raw[i+1] << 8
         r, g, b = value >> 11, value >> 5 & 63, value & 31
-        out.extend((r << 3 | r >> 2, g << 2 | g >> 4, b << 3 | b >> 2, 255))
+        if conversion == 'normalized-nearest':
+            out.extend(((r*255+15)//31, (g*255+31)//63, (b*255+15)//31, 255))
+        else:
+            out.extend((r << 3 | r >> 2, g << 2 | g >> 4, b << 3 | b >> 2, 255))
     return bytes(out)
 
 
-def replay(root, output, composition, presenter):
+def replay(root, output, composition, presenter, conversion='bit-replicated'):
+    rgba565(b'', conversion)  # Reject unknown policies before producing output.
     root = Path(root).resolve(); output = Path(output).resolve()
     session, plan, bindings, identities, segments, mapped = admit(root)
     if output.exists() or output.is_relative_to(root): raise ValueError('Native output must be new and outside owned inputs')
@@ -213,14 +219,15 @@ def replay(root, output, composition, presenter):
         name = f'frame-{index:06}.565'; (physical_input/name).write_bytes(raw); planes.append(raw)
         declarations.append(dict(path=name, width=boundary['width'], height=boundary['height'], sha256=sha(raw)))
     (physical_input/'presentation.json').write_text(json.dumps(dict(schema=1, frames=declarations)))
-    execute('presentation', [str(Path(presenter).resolve()), str(physical_input), str(output/'physical')])
+    execute('presentation', [str(Path(presenter).resolve()), str(physical_input), str(output/'physical'),
+        *(['--normalized-nearest'] if conversion == 'normalized-nearest' else [])])
     physical = json.loads((output/'physical/presentation-report.json').read_text())
-    if physical['success'] is not True or physical['remaining_surfaces'] != 0 or physical['qimage_uploads'] != 0 or physical['physical_presentation'] is not True or len(physical['frames']) != len(planes):
+    if physical['success'] is not True or physical['remaining_surfaces'] != 0 or physical['qimage_uploads'] != 0 or physical['physical_presentation'] is not True or physical['display_conversion'] != conversion or len(physical['frames']) != len(planes):
         raise ValueError('Native physical presentation did not finish')
     frames = []
     for index, (p, raw, frame) in enumerate(zip(physical['frames'], planes, session['frames'])):
         rgba = read(output/'physical', p['path'], len(raw)*2)
-        if sha(rgba) != p['sha256'] or rgba != rgba565(raw) or p['native_source_sha256'] != sha(raw):
+        if sha(rgba) != p['sha256'] or rgba != rgba565(raw,conversion) or p['native_source_sha256'] != sha(raw):
             raise ValueError('Native physical pixels differ from the derived frame')
         # RGB565 output is derived from the observed physical plane, never the
         # composition file. Exact RGBA equality above guards quantization loss.
@@ -239,6 +246,6 @@ def replay(root, output, composition, presenter):
                   effects=[], remaining_surfaces=0, original_oracles_read=False,
                   original_pixels_used_as_native_inputs=False, physical_presentation=True,
                   qimage_uploads=0, physical_frames=len(frames), semantic_input_equivalence=False,
-                  full_draw02_completion=False)
+                  full_draw02_completion=False, display_conversion=conversion)
     (output/'session-report.json').write_text(json.dumps(report,indent=2)+'\n')
     return report

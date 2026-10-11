@@ -48,9 +48,11 @@ void save(const QString &name,const QByteArray &bytes) {
 int main(int argc,char **argv) {
     QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     QApplication app(argc,argv);
-    if(argc!=3) return 2;
+    if(argc!=3 && !(argc==4 && QByteArray(argv[3])=="--normalized-nearest")) return 2;
+    const bool normalized=argc==4;
     QJsonObject report{{"schema",1},{"success",false},{"original_oracles_read",false},
-                       {"physical_presentation",false},{"original_execution",false}};
+                       {"physical_presentation",false},{"original_execution",false},
+                       {"display_conversion",normalized?"normalized-nearest":"bit-replicated"}};
     QDir output(QString::fromLocal8Bit(argv[2])); bool owned=false;
     try {
         if(QGuiApplication::platformName()!=QStringLiteral("xcb"))
@@ -96,9 +98,18 @@ int main(int argc,char **argv) {
                 if(hash(bytes)!=f.value("sha256").toString().toLatin1())
                     throw std::runtime_error("Native-derived frame changed during presentation");
                 mnm::render::Image image{int(w),int(h),{}}; image.pixels.reserve(w*h);
-                for(qsizetype i=0;i<bytes.size();i+=2)
-                    image.pixels.push_back(std::uint8_t(bytes[i])|(unsigned(std::uint8_t(bytes[i+1]))<<8));
-                const auto surface=renderer.create(image,{16,{0xf800,0x7e0,0x1f}});
+                for(qsizetype i=0;i<bytes.size();i+=2) {
+                    const unsigned word=std::uint8_t(bytes[i])|(unsigned(std::uint8_t(bytes[i+1]))<<8);
+                    // Native-derived words alone determine this fixed display
+                    // policy. No original output or measured colour table enters.
+                    const unsigned red=((word>>11)*255+15)/31;
+                    const unsigned green=(((word>>5)&63)*255+31)/63;
+                    const unsigned blue=((word&31)*255+15)/31;
+                    image.pixels.push_back(normalized?(red<<16|green<<8|blue):word);
+                }
+                const auto surface=renderer.create(image,normalized?
+                    mnm::render::PixelFormat{32,{0xff0000,0xff00,0xff}}:
+                    mnm::render::PixelFormat{16,{0xf800,0x7e0,0x1f}});
                 try {
                     viewport.resize(int(w),int(h)); viewport.move(0,0);
                     viewport.setGpuFrame(renderer.presentGpu(surface));

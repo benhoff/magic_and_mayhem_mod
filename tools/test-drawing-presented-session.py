@@ -93,9 +93,9 @@ def main():
     run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',QT_SCALE_FACTOR='1')
     composition=a.composition.resolve();presenter=a.presenter.resolve();binaries={str(b):sha(b.read_bytes()) for b in (composition,presenter)}
     checks=[]
-    def execute(name,input_root,output,expected_code=0,extra_env=None):
+    def execute(name,input_root,output,expected_code=0,extra_env=None,conversion='bit-replicated'):
         command=['xvfb-run','-a','-s','-screen 0 2048x2048x24','python3',str(ROOT/'tools/replay-drawing-presented-session.py'),str(input_root),str(output),
-                 '--composition',str(composition),'--presenter',str(presenter)]
+                 '--composition',str(composition),'--presenter',str(presenter),'--display-conversion',conversion]
         result=subprocess.run(command,env=env|dict(extra_env or {}),capture_output=True,timeout=600)
         (run/(name+'.log')).write_bytes(result.stdout+result.stderr)
         if result.returncode!=expected_code:raise ValueError(name+' failed; inspect '+str(run/(name+'.log')))
@@ -106,6 +106,14 @@ def main():
     execute('physical-colours-and-transitions',run/'synthetic-input',output)
     for index,plane in enumerate(expected):
         if (output/f'frame-{index:06}.bin').read_bytes()!=plane:raise ValueError('Independent physical expected plane differs')
+    normalized=run/'normalized-output'
+    execute('normalized-display-all-colours',run/'synthetic-input',normalized,conversion='normalized-nearest')
+    colour_words=range(65536)
+    colour_plane=bytes(channel for value in colour_words for channel in
+        (((value>>11)*255+15)//31,(((value>>5)&63)*255+31)//63,((value&31)*255+15)//31,255))
+    if (normalized/'frame-000001.bin').read_bytes()!=colour_plane:raise ValueError('Independent normalized physical expected plane differs')
+    for index in (0,2):
+        if (normalized/f'frame-{index:06}.bin').read_bytes()!=expected[index]:raise ValueError('Normalized RGB565 round trip differs')
     # Expected outcomes are not transported to the backend. Unknown contracts
     # cannot become successful caller effects by echoing the comparison oracle.
     original=json.loads((run/'synthetic-input/session.json').read_text())
