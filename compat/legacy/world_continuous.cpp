@@ -1,4 +1,5 @@
 #include "world_continuous.hpp"
+#include "../../protocols/include/mnm/world_continuous_checksum.h"
 #include <cstring>
 #include <limits>
 #include <stdexcept>
@@ -25,11 +26,8 @@ void store(std::uint8_t *p, unsigned n, unsigned v) {
   __atomic_store_n(reinterpret_cast<unsigned *>(p + n * 4), v,
                    __ATOMIC_RELEASE);
 }
-unsigned fnv(const std::uint8_t *p, std::size_t n) {
-  unsigned h = 2166136261u;
-  for (std::size_t i = 0; i < n; ++i)
-    h = (h ^ p[i]) * 16777619u;
-  return h;
+unsigned checksum(const std::uint8_t *p, std::size_t n) {
+  return mnm_cont_crc32c(p, unsigned(n));
 }
 void require(bool b, const char *s) {
   if (!b)
@@ -49,7 +47,7 @@ void WorldContinuousChannel::create(const QString &path, std::uint64_t nonce,
   require(p, "Cannot map continuous channel");
   std::memset(p, 0, MNM_CONT_HEADER);
   std::memcpy(p, MNM_CONT_MAGIC, 8);
-  put(p, 2, 1);
+  put(p, 2, MNM_CONT_VERSION);
   put(p, 3, MNM_CONT_HEADER);
   put(p, 4, MNM_CONT_BYTES);
   put(p, 6, unsigned(nonce));
@@ -67,7 +65,8 @@ WorldContinuousChannel::WorldContinuousChannel(const QString &path)
   try {
     nonce_ = nonce();
     target_ = target();
-    require(!std::memcmp(map_, MNM_CONT_MAGIC, 8) && word(map_, 2) == 1 &&
+    require(!std::memcmp(map_, MNM_CONT_MAGIC, 8) &&
+                word(map_, 2) == MNM_CONT_VERSION &&
                 word(map_, 3) == MNM_CONT_HEADER &&
                 word(map_, 4) == MNM_CONT_BYTES && word(map_, 5) == 0 &&
                 nonce() != 0,
@@ -126,8 +125,8 @@ bool WorldContinuousChannel::poll(Block &b) {
   b = {expected_,
        {s + MNM_CONT_SLOT_HEADER, s + MNM_CONT_SLOT_HEADER + n},
        {s + requestAt, s + requestAt + r}};
-  require(fnv(b.source.data(), b.source.size()) == word(s, 6) &&
-              fnv(b.request.data(), b.request.size()) == word(s, 7),
+  require(checksum(b.source.data(), b.source.size()) == word(s, 6) &&
+              checksum(b.request.data(), b.request.size()) == word(s, 7),
           "Continuous owned source checksum");
   return true;
 }
@@ -141,7 +140,7 @@ void WorldContinuousChannel::reply(std::uint64_t g,
           "Continuous reply lease/extent");
   std::memcpy(s + replyAt, bytes.data(), bytes.size());
   put(s, 10, unsigned(bytes.size()));
-  put(s, 11, fnv(bytes.data(), bytes.size()));
+  put(s, 11, checksum(bytes.data(), bytes.size()));
   store(s, 0, MNM_CONT_REPLY);
 }
 bool WorldContinuousChannel::returned(std::uint64_t g,
@@ -170,7 +169,8 @@ void WorldContinuousChannel::release(std::uint64_t g) {
 } // namespace mnm::legacy
 
 void mnm::legacy::WorldContinuousChannel::validate() const {
-  require(!std::memcmp(map_, MNM_CONT_MAGIC, 8) && word(map_, 2) == 1 &&
+  require(!std::memcmp(map_, MNM_CONT_MAGIC, 8) &&
+              word(map_, 2) == MNM_CONT_VERSION &&
               word(map_, 3) == MNM_CONT_HEADER &&
               word(map_, 4) == MNM_CONT_BYTES && word(map_, 5) == 0 &&
               nonce() == nonce_ && target() == target_ && load(map_, 8) == 1 &&
@@ -187,4 +187,24 @@ mnm::legacy::WorldContinuousChannel::ticks(std::uint64_t g) const {
   require(load(s, 0) == MNM_CONT_RETURNED && wide(s, 2) == g,
           "Continuous timing lease");
   return {word(s, 12), word(s, 13), word(s, 14), word(s, 15)};
+}
+
+bool mnm::legacy::WorldContinuousChannel::returnRecords(
+    std::uint64_t g, const std::vector<std::uint8_t> &prefix,
+    std::array<std::uint8_t, 192> &records) {
+  validate();
+  require(!cancelled(), "Continuous session cancelled");
+  auto *s = slot(g);
+  if (load(s, 0) != MNM_CONT_RETURNED)
+    return false;
+  require(wide(s, 2) == g && word(s, 4) == prefix.size() &&
+              word(s, 8) == prefix.size() + 192 &&
+              word(s, 8) <= MNM_CONT_SOURCE_BYTES,
+          "Continuous returned record extent");
+  const auto *source = s + MNM_CONT_SLOT_HEADER;
+  require(std::equal(prefix.begin(), prefix.end(), source),
+          "Continuous original changed published source");
+  std::copy(source + prefix.size(), source + prefix.size() + 192,
+            records.begin());
+  return true;
 }

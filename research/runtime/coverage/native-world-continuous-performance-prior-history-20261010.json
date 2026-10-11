@@ -1,0 +1,213 @@
+{
+  "scope": "Committed first-parent glyph integration review before continuous performance changes. No retrospective gate or new validation assertion.",
+  "ranges": [
+    "550e489^..550e489"
+  ],
+  "transitions": [
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "4c643a691ac98380c3f55adbb160793444e8591cadf70201b367e656cb2798f1",
+      "after_sha256": "06da58d3b5c7ee3ed0df78cd7186841e81a7d9774b3bd2f73571bd6ed0d795d4",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "reconstruction/rendering/glyph_backend_state.c",
+      "before_sha256": null,
+      "after_sha256": "e10f3ec2ad7df0c9241ec3f2600b7f9b7f3fe64bcf92d17bdbd2302e8770703e",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "reconstruction/rendering/glyph_backend_state.h",
+      "before_sha256": null,
+      "after_sha256": "b58537f01dbaf0ea98ad9ae94b0351ccf416a525ea8bdb801fc0b4ae2f3a2660",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "767b704125cd0f05db8abf896a3915e2f896d23db5d2ed9813b5b4511123a1c7",
+      "after_sha256": "9a770052fa6f0898110f0078644af62f52fea0a00363a93b0e65845433e393af",
+      "reviews": [
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/coverage/glyph-backend-state-history-0191a55-577d293-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a3834024dcec8ecd2f885adaeb0d629a3caccac0e7fc0ce6b072510da92d26b5",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/coverage/native-world-continuous-glyph-integration-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "36deb722b0c076a03042349bbd61784df7386c87b675624bdffd3b9ff512e33f",
+      "reviews": [
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "e279b0eb3c16266be1f52b86a4d6f04b4a81493531c9e8b106d2879311c5a1b4",
+      "after_sha256": "15573e4165a46c1c598999889733bb771540bce599f843e63872eb7899a720bb",
+      "reviews": [
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/coverage/source-index-continuous-glyph-merge-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "09aa42daa8f0758ac657a3e237f762561903036df40af2bbdfc4b10c88a5615f",
+      "reviews": [
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/coverage/source-index-glyph-backend-state-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "858c8dc81bba7ad6cd4cd534ca06fd42ed77cbcdb5c4c258a20d59af387fbf6a",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "669fe234555745ee87e6cf72072597edc82b5e7b657ab5a517fdf99eaf707f90",
+      "after_sha256": "d327b0c95b801353a291835bd4a03bcb9126fece535bc08cfcc9a49d9d4cc022",
+      "reviews": [
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/glyph-backend-state-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c5d90404ef87dcce91395cff12c52ef4877002a49f58bd21a57625986031fe49",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/glyph-backend-state-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "4dcbb65f1b3d87671ccaaa52ac4da979d26a9db01831117bb0e2e2f27073fb38",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/glyph-backend-state-run-fnntc2rk-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "3e93bb13f61ab2019249a19834f9dcb6e5291d4fa3c76101bf32fb53d43c84a1",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/glyph-backend-state-run-wr8q__kt-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e28355d372beec93a2d3dca87ecbb1ffed559c440ee4cce392441fd5b266d112",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "research/runtime/glyph-backend-state.md",
+      "before_sha256": null,
+      "after_sha256": "9d9c6bc38942aaca04c6d712c00e40ce04bda62b3c2cedfb3f619d5273be3869",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "tests/glyph-backend-state-probe.S",
+      "before_sha256": null,
+      "after_sha256": "65b6b81ec4088f7396713c649f9a884f14c9fa4cc22d3490e37d9c8d41674995",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "tests/glyph-backend-state-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "d525a452608a331b25cafdba2cc26603258c2cfddc2e26023b28b3a73949fe95",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "tests/glyph-backend-state-test.c",
+      "before_sha256": null,
+      "after_sha256": "873c6ce9b464f41fd0e9ab9286584489de481f462accf8bf61be161e0288696a",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    },
+    {
+      "commit": "550e489",
+      "parent": "5e56515914c80e4816a742cad3abbcec0591d7c5",
+      "path": "tools/test-glyph-backend-state.py",
+      "before_sha256": null,
+      "after_sha256": "c6fb0c4a8c9b2428d7e4987e4940a948f074515752d98ced3368340910786633",
+      "reviews": [
+        "glyph-backend-state-source-accounting-20261010",
+        "continuous-glyph-committed-merge-review-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": []
+}

@@ -4,7 +4,9 @@ namespace mnm::legacy {
 RollingHandoff prepareRollingHandoff(const CanvasProducerStream &stream,
                                      std::size_t cursor,
                                      const std::vector<std::uint8_t> &request,
-                                     unsigned ordinal, unsigned priorRasters) {
+                                     unsigned ordinal, unsigned priorRasters,
+                                     WorldBatchSourcePolicy policy,
+                                     bool encode) {
   if (stream.version != 3 || ordinal < 1 || ordinal > 32 ||
       cursor >= stream.operations.size())
     throw std::invalid_argument(
@@ -45,7 +47,7 @@ RollingHandoff prepareRollingHandoff(const CanvasProducerStream &stream,
   const auto &e = entry->fields;
   result.batch = validateWorldRasterBatch(
       request, ordinal, ordinal, unsigned(stream.operations.size()), e[3], e[5],
-      e[6], priorRasters, rasters);
+      e[6], priorRasters, rasters, policy);
   CanvasProducer checkpoint{};
   checkpoint.fields[0] = 96;
   checkpoint.fields[1] = unsigned(stream.operations.size() + 1);
@@ -71,7 +73,14 @@ RollingHandoff prepareRollingHandoff(const CanvasProducerStream &stream,
   returned.fields[19] = rasters.size();
   returned.fields[20] = 1;
   operations.push_back(returned);
-  result.packet = encodeRollingQueue(operations);
+  if (encode)
+    result.packet = encodeRollingQueue(operations);
+  else {
+    result.stream.version = 3;
+    result.stream.queues = 1;
+    result.stream.operations = std::move(operations);
+    validateRollingQueue(result.stream);
+  }
   return result;
 }
 std::vector<std::uint8_t>

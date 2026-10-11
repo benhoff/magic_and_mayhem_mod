@@ -1,4 +1,5 @@
 #include "../compat/legacy/world_continuous.hpp"
+#include "../protocols/include/mnm/world_continuous_checksum.h"
 #include <QTemporaryDir>
 #include <cassert>
 #include <cstring>
@@ -10,10 +11,7 @@ void put(unsigned char *p, unsigned n, unsigned v) {
   std::memcpy(p + n * 4, &v, 4);
 }
 unsigned fnv(const unsigned char *p, unsigned n) {
-  unsigned h = 2166136261u;
-  while (n--)
-    h = (h ^ *p++) * 16777619u;
-  return h;
+  return mnm_cont_crc32c_portable(p, n);
 }
 void state(unsigned char *p, unsigned v) {
   __atomic_store_n(reinterpret_cast<unsigned *>(p), v, __ATOMIC_RELEASE);
@@ -32,6 +30,15 @@ template <class F> void refuses(F f) {
 }
 } // namespace
 int main() {
+  assert(mnm_cont_crc32c(reinterpret_cast<const unsigned char *>("123456789"),
+                         9) == 0xe3069283u);
+  unsigned char data[8195];
+  for (unsigned i = 0; i < sizeof(data); ++i)
+    data[i] = static_cast<unsigned char>(i * 37);
+  for (unsigned offset = 0; offset < 4; ++offset)
+    for (unsigned n = 0; n < 8192; n += 17)
+      assert(mnm_cont_crc32c(data + offset, n) ==
+             mnm_cont_crc32c_portable(data + offset, n));
   QTemporaryDir dir;
   assert(dir.isValid());
   const auto path = dir.filePath("channel");

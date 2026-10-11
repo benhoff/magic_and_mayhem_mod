@@ -2,64 +2,96 @@
 #include "scene_renderer.hpp"
 #include <QByteArray>
 #include <map>
+#include <memory>
 
 namespace mnm::legacy {
 struct SnapshotRecord {
-    std::uint32_t token=0;
-    std::int32_t depth=0,x=0,y=0,kind=0;
-    std::uint32_t parameters=0,sentinels=0,flags=0;
+  std::uint32_t token = 0;
+  std::int32_t depth = 0, x = 0, y = 0, kind = 0;
+  std::uint32_t parameters = 0, sentinels = 0, flags = 0;
 };
-struct SnapshotFrame { bool indexed=false; QByteArray encoded; };
+struct SnapshotFrame {
+  bool indexed = false;
+  QByteArray encoded;
+  std::shared_ptr<const std::vector<std::uint8_t>> sourceLease{};
+};
 struct SceneSnapshot {
-    std::uint32_t sequence=0,view=0,mode=0,width=0,height=0;
-    std::vector<SnapshotRecord> records;
-    std::vector<SnapshotFrame> frames;
+  std::uint32_t sequence = 0, view = 0, mode = 0, width = 0, height = 0;
+  std::vector<SnapshotRecord> records;
+  std::vector<SnapshotFrame> frames;
 };
-SceneSnapshot decodeSceneSnapshot(const QByteArray&);
-QByteArray frameIdentity(const QByteArray&,bool indexed);
+SceneSnapshot decodeSceneSnapshot(const QByteArray &);
+QByteArray frameIdentity(const QByteArray &, bool indexed);
 // A closed identity can only be constructed by validating/hashing input bytes.
 // Callers cannot attach an arbitrary digest to mutable frame storage.
 class SnapshotFrameIdentity final {
 public:
-    explicit SnapshotFrameIdentity(const SnapshotFrame&);
-    bool indexed() const { return indexed_; }
-    const QByteArray& digest() const { return digest_; }
+  explicit SnapshotFrameIdentity(const SnapshotFrame &);
+  bool indexed() const { return indexed_; }
+  const QByteArray &digest() const { return digest_; }
+
 private:
-    bool indexed_;
-    QByteArray digest_;
+  bool indexed_;
+  QByteArray digest_;
 };
-QByteArray spriteVisualIdentity(const assets::Sprite&,const assets::SpriteFrame&);
-struct BoundFrame { assets::ResourceId resource; std::size_t frame=0; };
-struct SnapshotBindingStats { std::uint64_t visualChecks=0,visualReuses=0; };
+QByteArray spriteVisualIdentity(const assets::Sprite &,
+                                const assets::SpriteFrame &);
+struct BoundFrame {
+  assets::ResourceId resource;
+  std::size_t frame = 0;
+};
+struct SnapshotBindingStats {
+  std::uint64_t visualChecks = 0, visualReuses = 0;
+};
 // Explicit pinned candidate files. Original pointers never become ResourceIds.
 class SnapshotResources final {
 public:
-    SnapshotResources(const assets::AssetStore&,assets::ResourceManager&);
-    void add(const assets::ResourceId&,const std::string& sprite,const QByteArray& expectedSha256);
-    // World retains the pinned decode and indexes visuals only when requested.
-    // Ordinary snapshot addition retains eager indexing and lazy residency.
-    void addPrepared(assets::PreparedResource&&,const QByteArray& expectedSha256);
-    BoundFrame resolve(const SnapshotFrame&,bool ownedColours=false) const;
-    BoundFrame resolve(const SnapshotFrameIdentity&,bool ownedColours=false) const;
-    SnapshotBindingStats stats() const { return stats_; }
+  SnapshotResources(const assets::AssetStore &, assets::ResourceManager &);
+  void add(const assets::ResourceId &, const std::string &sprite,
+           const QByteArray &expectedSha256);
+  // World retains the pinned decode and indexes visuals only when requested.
+  // Ordinary snapshot addition retains eager indexing and lazy residency.
+  void addPrepared(assets::PreparedResource &&,
+                   const QByteArray &expectedSha256);
+  BoundFrame resolve(const SnapshotFrame &, bool ownedColours = false) const;
+  BoundFrame resolve(const SnapshotFrameIdentity &,
+                     bool ownedColours = false) const;
+  SnapshotBindingStats stats() const { return stats_; }
+
 private:
-    struct PinnedFile {QByteArray sha;std::uint64_t revision=0;};
-    struct Candidate {BoundFrame binding;mutable QByteArray visual;mutable std::uint64_t checkedRevision=0;std::shared_ptr<PinnedFile> pinned={};};
-    const assets::AssetStore& store_;
-    assets::ResourceManager& resources_;
-    std::map<QByteArray,std::vector<Candidate>> index_;
-    std::size_t files_=0,frames_=0;
-    mutable SnapshotBindingStats stats_;
-    void index(const assets::ResourceId&,const QByteArray&,const QByteArray&,const assets::Sprite&,std::optional<assets::PreparedResource>&);
+  struct PinnedFile {
+    QByteArray sha;
+    std::uint64_t revision = 0;
+  };
+  struct Candidate {
+    BoundFrame binding;
+    mutable QByteArray visual;
+    mutable std::uint64_t checkedRevision = 0;
+    std::shared_ptr<PinnedFile> pinned = {};
+  };
+  const assets::AssetStore &store_;
+  assets::ResourceManager &resources_;
+  std::map<QByteArray, std::vector<Candidate>> index_;
+  std::size_t files_ = 0, frames_ = 0;
+  mutable SnapshotBindingStats stats_;
+  void index(const assets::ResourceId &, const QByteArray &, const QByteArray &,
+             const assets::Sprite &, std::optional<assets::PreparedResource> &);
 };
 struct SnapshotDisplay {
-    struct Gap {std::size_t record;std::int32_t kind;std::uint32_t token;std::string reason;};
-    std::vector<render::SceneDraw> draws;
-    std::vector<Gap> gaps;
-    std::size_t hidden=0,unsupported=0,unmapped=0,shaded=0;
-    bool complete() const {return !unsupported&&!unmapped;}
+  struct Gap {
+    std::size_t record;
+    std::int32_t kind;
+    std::uint32_t token;
+    std::string reason;
+  };
+  std::vector<render::SceneDraw> draws;
+  std::vector<Gap> gaps;
+  std::size_t hidden = 0, unsupported = 0, unmapped = 0, shaded = 0;
+  bool complete() const { return !unsupported && !unmapped; }
 };
 // Explicit unshaded diagnostic policy. Strict mapping refuses any visible gap;
 // supportedOnly permits a labeled partial preview, preserving relative order.
-SnapshotDisplay snapshotDisplay(const SceneSnapshot&,const SnapshotResources&,bool supportedOnly=false);
-}
+SnapshotDisplay snapshotDisplay(const SceneSnapshot &,
+                                const SnapshotResources &,
+                                bool supportedOnly = false);
+} // namespace mnm::legacy

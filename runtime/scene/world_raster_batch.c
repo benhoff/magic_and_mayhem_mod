@@ -36,10 +36,10 @@ static int batch_start(struct Surface* s){
 static int batch_identity(struct Surface* s){return s&&s==batch_surface&&s->pixels==batch_pixel_base&&s->width==800&&s->height==600&&s->stride==800;}
 static int batch_accept(u32* r,struct Surface* s,u32 entry){
  if(!batch_guard_open||!batch_identity(s)||batch_count>=MNM_WORLD_BATCH_MAX||r[21]>1||r[3]!=s->id)return 0;
- u32* row=batch_rows[batch_count++];row[0]=r[1];row[1]=entry;row[2]=r[21];row[3]=bypass_hash((u8*)r,r[0]);++bypass_completed;return 1;
+ u32* row=batch_rows[batch_count++];row[0]=r[1];row[1]=entry;row[2]=r[21];if(continuous_map){u32 hash=bypass_hash((u8*)r,96);for(u32 k=0;k<4;++k)hash=(hash^((get((u8*)r+r[0])>>(k*8))&255u))*16777619u;row[3]=hash;}else row[3]=bypass_hash((u8*)r,r[0]);++bypass_completed;return 1;
 }
 static void batch_header(u32* h,struct Surface* s){
- zero(h,64);copy(h,MNM_WORLD_BATCH_REQUEST,8);h[2]=3;h[3]=64;h[4]=batch_transfers+1;h[5]=queue;h[6]=sequence;h[7]=s->id;h[8]=s->width;h[9]=s->height;h[10]=s->width;h[11]=batch_count*16;h[12]=bypass_hash((u8*)batch_rows,h[11]);h[13]=1;h[14]=batch_count;h[15]=bypass_completed;
+ zero(h,64);copy(h,MNM_WORLD_BATCH_REQUEST,8);h[2]=continuous_map?5:3;h[3]=64;h[4]=batch_transfers+1;h[5]=queue;h[6]=sequence;h[7]=s->id;h[8]=s->width;h[9]=s->height;h[10]=s->width;h[11]=batch_count*16;h[12]=bypass_hash((u8*)batch_rows,h[11]);h[13]=1;h[14]=batch_count;h[15]=bypass_completed;
 }
 static int batch_restore(void){u32 prior;if(!batch_guard_open)return 0;
  u32 at=batch_guard_base,end=at+batch_guard_bytes;while(at<end){u32 m[7];if(VirtualQuery((void*)at,m,28)!=28||m[4]!=0x1000||m[5]!=1||m[0]+m[3]<=at)return 0;at=m[0]+m[3];}
