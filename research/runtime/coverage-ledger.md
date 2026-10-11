@@ -4396,3 +4396,21 @@ other-scene18.6534FPS failure prevents an arbitrary-scene performance claim.
 The public native menus/campaign route still uses its older graphics bridge;
 its backend-disabled integration,60FPS and full gameplay/semantic Quit remain
 separate outstanding retirement work.
+
+## Public native menus with owned graphics —2026-10-11
+
+The opt-in public Qt Launch/New Game/Region Enter/campaign/Escape/Mini Cancel/
+resume journey passes with composed MnmDraw/MnmMenu/MnmRender, Wine ddraw
+disabled/module absent and no unsupported native method log. Same-thread
+original callbacks/World initialization/resume, native command paints and
+screenshots remain required.227 Qt compiler inputs,8 native PE32 compiler/
+builder sources and1,111 immutable executable/DLL/graphic inputs are bound
+and stable; original manifests pass before/after.18 existing fail-closed report
+checks pass. Builder failure and earlier source-only/provenance increments
+remain separate historical records.
+
+This route retains original CPU drawing and does not claim V4 World-body
+suppression. Public stress throughput/casting/combat/semantic Quit, native
+graphics defaults and the other ordinary OpenGL launch route remain pending.
+The separate selected4,096-frame TITAN V4 run's19.54FPS/zero World pixel
+roundtrip proof remains intact; public basic flow is not a throughput claim.

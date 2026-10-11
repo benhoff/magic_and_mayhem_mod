@@ -277,3 +277,21 @@ full World/animation and simulation replacement remain unvalidated. Before
 registering new execution evidence, generate unique prospective behavior/scenario
 claims with `tools/draft-coverage-claims.py` and pass `--claims` to the test.
 The failed original-clock/yield/overlap/death experiments remain retained.
+
+## Owned native graphics services
+
+The public combined menu/command route can opt in to owned PE32 graphics
+services with `MNM_NATIVE_DRAW=1 ./tools/run-qt-shell.sh --live-menus
+--native-commands`. Its staging composes MnmDraw with MnmMenu and MnmRender,
+redirects the guarded graphics import and both dynamic loader strings, and
+forces Wine ddraw disabled. Original CPU drawing remains active in this route;
+the V4 World-body suppression/zero-pixel-reply work has a separate runner.
+
+The public smoke selects this requirement with `--native-draw` and a prospective
+`--claims` declaration. It requires real module absence, unchanged native DLL,
+no unsupported-method log, resource bounds, the actual Qt compiler dependency
+closure, the PE32 compiler/builder closure and immutable executable/DLL/sprite/
+image input hashes before and after launch. Menu/gameplay/resume callbacks,
+paint counts, screenshots, stress FPS and other requested gameplay assertions
+remain mandatory. Admission or a basic non-stress flow is not a throughput,
+casting/combat, semantic COM teardown or arbitrary-gameplay claim.
