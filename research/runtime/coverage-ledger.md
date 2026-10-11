@@ -4691,3 +4691,18 @@ The141site layout review retains22unanchored CALL locations explicitly; no
 binary function or recovered-range expansion is asserted. The earlier passing
 26body ABI declaration used an unsupported scenario level; its hash-bound
 limitation and the separately declared/rerun final ABI remain distinct.
+
+
+DRAW-01 whole-image candidate/client-alias increment (2026-10-11): opt-in66
+untyped offset128 candidates expand the API-only plan to380 admitted sites; the
+core/API plan remains368with12overlap refusals. Successful exact client creation/
+Surface2 query observations, generation/vtable guards and matching pointer/cleanup
+now support candidate Unlock assignment.91fresh guards and26PE32 ABI bodies pass.
+Original movie-enabled `run-z6gijsyt` closes6439pairs/67sites, stable inputs/source/
+metadata, core absent and exit0.14query aliases and1964closed client intervals
+(one DC/1963CPU,1955candidate Unlocks) leave zero resource gaps/open intervals in
+this cohort. Reviewed phase14image is the faded Quick Battle screen, not final
+Main. All14scenario/four dispatch closure, complete writers/callers and external
+lifetime/failure coverage remain pending. History2a1885c..910e3f7 has26file/13behavior
+exact receipt matches and no missing intermediate versions; old evidence remains.
+See [scope/evidence](draw01-graphics-api-boundaries.md).

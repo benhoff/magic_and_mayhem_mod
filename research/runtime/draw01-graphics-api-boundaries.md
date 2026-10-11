@@ -364,3 +364,41 @@ is substituted. The first surface-ABI declaration used an unsupported scenario
 level despite passing execution. Its report is preserved with
 `drawing-surface-api-abi-declaration-limit-20261011.json`; the final successor
 reran with a new declaration under the supported headless level.
+
+
+## Whole-image candidate observation and client aliases, 2026-10-11
+
+An explicit opt-in byte census adds66 whole-image displacement128 CALL candidates
+outside the selected ranges, for380 total sites and70 offset128 candidates. These
+remain untyped candidates; an offset does not establish a COM method. The API-only
+plan admits380 sites. The simultaneous core/API plan admits368 and retains12
+previous overlap refusals. Existing314-site exports and historical evidence stay
+unchanged.
+
+The client checker now records successful original surface creation and exact
+Surface2 QueryInterface output relationships, with per-run generations and saved
+vtable identities. It assigns a candidate Unlock only after a previously observed
+client identity, equal vtable, readable receiver, actual8-byte cleanup and matching
+borrow pointer (or NULL). Failed queries, other IIDs, changed vtables, terminal
+Release observations and reused creation identities cannot close an old interval.
+This is bounded client accounting, with no external lifetime/destruction claim.
+
+Fresh91 guards and26 real PE32 fixture bodies pass. Original enabled-movie run
+`run-z6gijsyt` closes6439 API pairs at67 sites, zero journal loss/open/IO, stable
+sources/build metadata/binaries, absent core and normal exit0. Fourteen query
+relationships join recorded Surface/Surface2 client identities. The checker closes
+1964 intervals (one DC and1963 CPU), including1955 provenance-assigned candidate
+Unlock calls, with zero resource gaps or terminal open intervals in this cohort.
+The phase14 screenshot was reviewed: it shows the faded Quick Battle screen before
+return/exit, not a final Main-menu image. Journal/action observations establish the
+subsequent normal exit. These observations supersede neither prior report hashes
+nor their retained partial accounting; they are a new, expanded cohort.
+
+Evidence: [91 guards](drawing-api-virtual-guards-20261011.json),
+[26 PE32 bodies](drawing-api-virtual-abi-20261011.json),
+[original movie cohort](drawing-api-virtual-movies-20261011.json) and the separate
+byte census/core/API-only plans. No claim covers all70 candidate executions,
+external ownership/refcounts, all memory writers/pixels, failures/recovery or the
+14 scenario and four dispatch closure obligations. The committed range
+2a1885c..910e3f7 has26 exact file and13 behavior receipts with zero missing
+intermediate versions; this is retrospective accounting, not new validation.

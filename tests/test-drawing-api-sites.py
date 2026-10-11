@@ -4,7 +4,7 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from drawing_api_sites import call_mode, boundary_rows, selected_ranges, instruction_scope
+from drawing_api_sites import call_mode, boundary_rows, selected_ranges, instruction_scope, virtual_candidate
 
 
 def row(raw, operand, address=0x401000):
@@ -69,6 +69,23 @@ class CallBoundaryTests(unittest.TestCase):
         selection = selected_ranges(catalog, inventory)
         self.assertEqual(selection[0]['anchor'], 0x58b660)
         self.assertIsNone(selection[-1]['anchor'])
+
+    def test_virtual_slot_candidate_is_opt_in_and_untyped(self):
+        code={0x401000:row('ff9180000000','DWORD PTR [ecx+0x80]')};inventory={'functions':[],'imports':[]}
+        self.assertEqual(boundary_rows(code,[],inventory),[])
+        candidate=boundary_rows(code,[],inventory,True)[0]
+        self.assertEqual(candidate['semantic_contract'],'unreviewed');self.assertEqual(candidate['discovered_owners'],[])
+        self.assertEqual(candidate['selections'][0]['ranges'],[[0x401000,0x401006]])
+        self.assertEqual(candidate['selections'][0]['kind'],'virtual_slot128_candidate')
+
+    def test_candidate_rejects_other_slots_modes_and_sib(self):
+        for raw in ('ff917f000000','ff9100010000','ff5180','ff1580000000','ff948880000000','2eff9180000000'):
+            self.assertFalse(virtual_candidate(row(raw,'unused')))
+
+    def test_candidate_does_not_duplicate_selected_site(self):
+        code={0x401000:row('ff9180000000','DWORD PTR [ecx+0x80]')};inventory={'functions':[],'imports':[]}
+        result=boundary_rows(code,[{'ranges':[[0x401000,0x401006]],'kind':'window'}],inventory,True)
+        self.assertEqual(len(result),1);self.assertEqual(result[0]['selections'][0]['kind'],'window')
 
     def test_exact_graphics_imports_are_scanned_outside_wrappers(self):
         code = {0x401000: row('ff1508535c00', 'DWORD PTR ds:0x5c5308')}
