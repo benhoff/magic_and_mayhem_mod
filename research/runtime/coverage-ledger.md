@@ -4745,3 +4745,10 @@ Continue/Quit and fresh Main return. Earlier reports and their source hashes rem
 historical; the new record-kind results support current code. Physical viewport
 references remain unsynchronized and full presentation/native battle parity,
 pause/tooltip/picking and real-driver recovery remain pending.
+
+The final integration also preserves concurrent storage fix964393d. Its12guard
+tests pass, including disappearing descendants and refusal of incomplete or
+outside-root measurements. Exact committed-history review covers46file versions
+in b570002..300e423 and e23e99c..964393d with no unresolved receipt gaps. The
+combined source census retains1,729source/build files and1,525explicit behavior
+links; this indexing reconciliation adds no engine validation or status promotion.

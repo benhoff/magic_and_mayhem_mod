@@ -262780,6 +262780,48 @@
       }
     },
     {
+      "behaviors": [],
+      "files": [
+        {
+          "after_sha256": "9389089ef32b8fb2c20f62d0d221d5f5f63add8e26b9a92a80e839f9f115f155",
+          "before_sha256": "c6182c099d3eba57fd0a3f2bd3326aac961762f7e10c1b593c04552c65a8bdb3",
+          "path": "docs/working-retention.md"
+        },
+        {
+          "after_sha256": "6e7af221961cf73f2e447f651e31cbe3a7815d692ebe45c9c93140e13d250bfa",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-storage-integration-20261011.json"
+        },
+        {
+          "after_sha256": "902b393019313fd414cb777c3b4d9eb8cac348b0f8aa529bb39e6840908ffeb3",
+          "before_sha256": "7d1dc6792daf0c1ad170ecbd49ddc9f4c8df2e4038e4f84318dcc7c3720b24cc",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "4fcf360dc5b39de7d52a7a1919fd7d9b8e9719b9a93b9fcd7048bdcad9d657b4",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-storage-race-20261011.json"
+        },
+        {
+          "after_sha256": "e87d3c72b1ab46cbf8d6128a1b253d5d4abf10421aef76352e5510aa6aef28c6",
+          "before_sha256": "9b8701d2afbcbb1229c26be0d60e2ed314c22441fd87ef0dd89dac682e55ff0d",
+          "path": "tests/test-working-retention.py"
+        },
+        {
+          "after_sha256": "48ddf5943c9f17ff2520c859d707e084ed6a3e9c705e3c60f1f890c20f955ca7",
+          "before_sha256": "cf178f82612c0e307ca4e33141ad90550fa62c9faaa37ce743e84ee289e5410d",
+          "path": "tools/working-retention.py"
+        }
+      ],
+      "id": "native-render-storage-inventory-race-20261011",
+      "pending_gaps": [],
+      "reason": "Review disappearing capture replies during concurrent native-render integration: accept only ENOENT diagnostics for descendants with a complete root total; all other measurements fail closed. Budget/reservation/free-space monitor and archive policies remain unchanged. Twelve guard tests pass. Review support files and current source census; committed e23e99c exact history receipts have no gaps.",
+      "validation": {
+        "status": "pending",
+        "reason": "Storage orchestration support change validated by twelve unit tests including disappearing files, outside-root and mixed errors, missing totals, budget boundaries and owned process shutdown. No engine status promotion, original comparison or live replacement claim; historical engine evidence retains its original source pins."
+      }
+    },
+    {
       "behaviors": [
         {
           "after_sha256": "227b508549401bdf534e6b57a833a8df092acd89e3dee3db8edf3b5a4aa896ad",
@@ -268971,6 +269013,70 @@
         "evidence": [
           "NR.drawing-session.runner-native-20261011"
         ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1972ba563c9f4467230022ccf725e7966823d285af17ff9e0bbc30a18726d1a3",
+          "before_sha256": "927067b8d3035e6f5fd5183d48c2dfb3ab8d85c704c981d06764d1f0293f9b77",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9389089ef32b8fb2c20f62d0d221d5f5f63add8e26b9a92a80e839f9f115f155",
+          "before_sha256": "c6182c099d3eba57fd0a3f2bd3326aac961762f7e10c1b593c04552c65a8bdb3",
+          "path": "docs/working-retention.md"
+        },
+        {
+          "after_sha256": "ba9b29153e80dc922d6970ae2d254f9f50836716ec3955a55fed3a646fb06537",
+          "before_sha256": "843bb94c290cacdc4c52a7a6164a0b2d9bf1024b1ec3d9fae5299c4f55405d6c",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "50de1b8de0990fef5f3e9bc397099fddd1401dc7280e99d9c8464b41c6a2af2d",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw02-final-integration-history-20261011.json"
+        },
+        {
+          "after_sha256": "6e7af221961cf73f2e447f651e31cbe3a7815d692ebe45c9c93140e13d250bfa",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-storage-integration-20261011.json"
+        },
+        {
+          "after_sha256": "9f8f4073de64ff9c02b937429973b6461e3be201a060d39200e33c5188f67bdc",
+          "before_sha256": "56d36ea3ba6e227f680f2ac884b65ba9863b3407767ac246f1fc0d40e6b3cdf5",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "1a04ccae4d29196ae77c4af56cc7a320ac6b850ab634d11368bf65433e6259bc",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw02-final-integration-20261011.json"
+        },
+        {
+          "after_sha256": "4fcf360dc5b39de7d52a7a1919fd7d9b8e9719b9a93b9fcd7048bdcad9d657b4",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-storage-race-20261011.json"
+        },
+        {
+          "after_sha256": "e87d3c72b1ab46cbf8d6128a1b253d5d4abf10421aef76352e5510aa6aef28c6",
+          "before_sha256": "9b8701d2afbcbb1229c26be0d60e2ed314c22441fd87ef0dd89dac682e55ff0d",
+          "path": "tests/test-working-retention.py"
+        },
+        {
+          "after_sha256": "48ddf5943c9f17ff2520c859d707e084ed6a3e9c705e3c60f1f890c20f955ca7",
+          "before_sha256": "cf178f82612c0e307ca4e33141ad90550fa62c9faaa37ce743e84ee289e5410d",
+          "path": "tools/working-retention.py"
+        }
+      ],
+      "id": "DRAW02.final-storage-integration-review-20261011",
+      "pending_gaps": [],
+      "reason": "Preserve the concurrent 964393d storage-preflight race fix and its exact receipt; review its strict vanished-descendant handling and twelve passing support tests. Reconcile central source census and append-only review metadata with DRAW-02/DRAW-03; retain all behavior scopes, independent status axes and immutable execution evidence. Review 46 committed file versions without missing exact receipts. No original engine source, drawing admission or replacement status changes in this final integration.",
+      "validation": {
+        "status": "pending",
+        "reason": "Indexing/integration review only. Twelve storage guard tests pass; the combined audit has no errors. Prior DRAW-02 forwarding, original-active journey and failure-trace execution reports remain current at unchanged contract source hashes. All historical evidence hashes and full-presentation, semantic-input and live-driver recovery limitations are preserved; no new engine execution or status promotion is claimed.",
+        "evidence": []
       }
     }
   ],
