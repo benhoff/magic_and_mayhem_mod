@@ -32026,7 +32026,11 @@
         "NR.directdraw-retirement.bound128-functional-20261010",
         "NR.directdraw-retirement.cache128-functional-20261011",
         "NR.directdraw-retirement.cache-cpu-cost-20261011",
-        "NR.directdraw-retirement.cache4096-functional-20261011"
+        "NR.directdraw-retirement.cache4096-functional-20261011",
+        "NR.directdraw-retirement.consumer-death-20261011",
+        "NR.directdraw-retirement.producer-death-20261011",
+        "NR.directdraw-retirement.recovery128-performance-20261011",
+        "NR.directdraw-retirement.recovery4096-performance-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -32291,7 +32295,11 @@
         "NR.directdraw-retirement.final128-functional-20261010",
         "NR.directdraw-retirement.bound128-functional-20261010",
         "NR.directdraw-retirement.cache128-functional-20261011",
-        "NR.directdraw-retirement.cache4096-functional-20261011"
+        "NR.directdraw-retirement.cache4096-functional-20261011",
+        "NR.directdraw-retirement.consumer-death-20261011",
+        "NR.directdraw-retirement.producer-death-20261011",
+        "NR.directdraw-retirement.recovery128-performance-20261011",
+        "NR.directdraw-retirement.recovery4096-performance-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -63598,6 +63606,274 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NR.directdraw-retirement.consumer-death-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-consumer-death-pass-20261011.json",
+      "sha256": "1805abb0567aa25fbfeb467fa653235cc9296876d8fc07ddd36fed5e537f2602",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current backend-disabled native consumer killed at outstanding generation34; expected terminal refusal/no successful completion/stopped owned Wine with unchanged native DLL and diagnostic module absence/resource bounds. No normal performance pass/original pixel/semantic COM quit claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/fault_injected",
+          "equals": true
+        },
+        {
+          "pointer": "/expected_terminal_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_success_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/native_draw_fault/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_fault/ddraw_module_absent",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.producer-death-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-producer-death-pass-20261011.json",
+      "sha256": "1bca04769244b35dfc95a2c45db710f1e4cdf1286a57fefd5ccfb558a0f27159",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current backend-disabled private original Wine producer killed at outstanding generation34; expected terminal refusal/no successful completion/stopped owned Wine with unchanged native DLL and diagnostic module absence/resource bounds. No normal performance pass/original pixel/semantic COM quit claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/fault_injected",
+          "equals": true
+        },
+        {
+          "pointer": "/expected_terminal_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_success_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/native_draw_fault/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_fault/ddraw_module_absent",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.recovery128-performance-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-recovery128-performance-pass-20261011.json",
+      "sha256": "cdbf5cf8d110bd2735fc8f0c8b9b5ddc914336d47b46afd28b6c4d5b0945dd73",
+      "scope": "Fresh private128-frame session after both backend-disabled peer-death controls completes on TITAN RTX with ddraw disabled/absent, zero World pixel roundtrips, all presentations and zero GPU teardown resources. Every unchanged performance gate passes:19.5181 original/19.7385 Qt FPS, median35/p9539/max44ms,cold447.63ms,cache306,RSS growth274,432 bytes. This bounded recovery pass does not prove arbitrary-scene sustained19FPS,60FPS, original pixels or semantic original quit.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/selected_session_directdraw_backend_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/original_returns",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/qt_paints",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/caches",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/original_fps",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/remaining_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.recovery4096-performance-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-recovery4096-performance-pass-20261011.json",
+      "sha256": "79d18a04df4167e49f3861df15f681620a875065ae75900168fe0335e182bbf5",
+      "scope": "Current4096 actual original-engine/TITAN RTX Qt GPU frames with real ddraw disabled/absent and zero World readbacks/replies/writebacks, all4096 presentations and zero GPU teardown resources. Every unchanged budget passes:19.5419 original/19.5453 Qt FPS, warm median36/p9540/max61ms,cold439.45ms,cache366,RSS growth9,068,544 bytes. Prior complex-scene18.6534FPS failure remains; no arbitrary-scene/full gameplay,60FPS, original pixel or semantic COM Quit equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/selected_session_directdraw_backend_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/original_returns",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/qt_paints",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/caches",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/original_fps",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/remaining_surfaces",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -71446,7 +71722,9 @@
         "NR.directdraw-retirement.final128-functional-20261010",
         "NR.directdraw-retirement.bound128-functional-20261010",
         "NR.directdraw-retirement.cache128-functional-20261011",
-        "NR.directdraw-retirement.cache4096-functional-20261011"
+        "NR.directdraw-retirement.cache4096-functional-20261011",
+        "NR.directdraw-retirement.recovery128-performance-20261011",
+        "NR.directdraw-retirement.recovery4096-performance-20261011"
       ]
     },
     {
@@ -71461,6 +71739,26 @@
       ],
       "evidence": [
         "NR.directdraw-import-retirement.dual-loader-20261010"
+      ]
+    },
+    {
+      "id": "native-world-native-draw-peer-failure-20261011",
+      "level": "live_observation",
+      "scope": "Actual pinned original-engine/native Qt GPU source session with real ddraw disabled: kill only the owned consumer or private original Wine producer while generation34 or later is outstanding; require expected terminal refusal, stopped private Wine, no successful completion claim, unchanged native DLL and checked96-byte status showing native startup/module absence/resource bounds. No semantic original quit, independent original pixels, normal FPS pass or full gameplay equivalence.",
+      "behaviors": [
+        "NR.directdraw-retirement",
+        "NR.world-gpu-ack-delivery"
+      ],
+      "tests": [
+        "tools/test-native-world-continuous.py",
+        "tools/capture-scene-game.py",
+        "tools/scene-game-runner.py",
+        "tools/prepare-native-draw.py",
+        "runtime/native-draw/status.h"
+      ],
+      "evidence": [
+        "NR.directdraw-retirement.consumer-death-20261011",
+        "NR.directdraw-retirement.producer-death-20261011"
       ]
     }
   ],
@@ -71799,8 +72097,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-cache-validity-20261011.json",
-    "sha256": "b62871b8666d18389c7234a43b8e4d4e7d153bd8bf815009b9e5317c9dbdd19b"
+    "path": "research/runtime/coverage/source-index-native-draw-peer-failure-20261011.json",
+    "sha256": "726bde4c58b84c272ad02e0a0c47af208c7f7564e66b8f9525af979c5b812f90"
   },
   "claim_bindings_required": true
 }

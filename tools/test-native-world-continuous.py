@@ -17,7 +17,7 @@ def main():
  if a.impossible_budget and not a.normal:p.error('--impossible-budget requires --normal')
  if a.hardware_driver!='zink' and not a.hardware:p.error('--hardware-driver requires --hardware')
  parent=ROOT/'working/tests/native-world-continuous';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
- behaviors=['NR.world-gpu-ack-delivery','NR.directdraw-retirement'] if a.native_draw else ['NR.world-gpu-ack-delivery'] if a.resident else ['NR.world-continuous-normal-performance'] if a.normal else BEHAVIORS;scenario='native-world-native-draw-live-20261010' if a.native_draw else 'native-world-gpu-ack-live-20261010' if a.resident else 'native-world-continuous-normal-20261010' if a.normal else SCENARIO
+ behaviors=['NR.world-gpu-ack-delivery','NR.directdraw-retirement'] if a.native_draw else ['NR.world-gpu-ack-delivery'] if a.resident else ['NR.world-continuous-normal-performance'] if a.normal else BEHAVIORS;scenario=('native-world-native-draw-peer-failure-20261011' if a.mode!='complete' else 'native-world-native-draw-live-20261010') if a.native_draw else 'native-world-gpu-ack-live-20261010' if a.resident else 'native-world-continuous-normal-20261010' if a.normal else SCENARIO
  r=json.loads((ROOT/'research/runtime/coverage/register.json').read_text());bs=[next(b for b in r['behaviors'] if b['id']==bid) for bid in behaviors];s=next(s for s in r['scenarios'] if s['id']==scenario);sources={n:sha(ROOT/n) for n in sorted(set().union(*(required_sources(b) for b in bs)))};claims=[dict(behavior=b['id'],contract_sha256=behavior_contract(b,{x['id']:x for x in r['builds']}),scenarios={scenario:scenario_contract(s)}) for b in bs];assert set(s['tests'])<=set(sources),'Undeclared scenario launch/staging inputs: '+repr(sorted(set(s['tests'])-set(sources)));declaration=out/'claims.json';declaration.write_text(json.dumps(dict(sources=sources,claims=claims),indent=2)+'\n')
  report=dict(success=False,mode=a.mode,normal=a.normal,resident=a.resident,requested_queues=a.queues,native_draw=a.native_draw,sources=sources,claims=claims,original_pixels_used_as_native_inputs=False,independent_original_equivalence=False)
  env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='8');process=None;experiment=None;before=False;gpu_server=None
@@ -107,6 +107,19 @@ def main():
    native=experiment/'native-producers/live-report.json';assert not native.exists() or not json.loads(native.read_text())['success']
    subprocess.run(['wineserver','-w'],env=dict(env,WINEPREFIX=str(experiment/'wineprefix')),check=True,timeout=10)
    report.update(expected_terminal_failure=True,private_wine_stopped=True,completed_success_claimed=False,success=True,capture_log_sha256=sha(out/'capture.log'))
+   if a.native_draw:
+    metadata=json.loads((experiment/'manifest.json').read_text())
+    assert metadata['native_draw'] is True
+    assert sha(experiment/'game/MnmDraw.dll')==metadata['native_draw_sha256'],'Native graphics DLL changed during fault control'
+    raw=(experiment/'native-draw-status.bin').read_bytes()
+    assert len(raw)==96 and raw[:8]==b'MNMDRW01','Native graphics status missing or refusal record'
+    status=struct.unpack('<24I',raw)
+    assert status[2:5]==(2,96,0) and status[19]==status[23]==0,'Real ddraw loaded or malformed graphics status'
+    assert status[9]>0 and status[10]>0 and status[20]>=status[9] and status[22]==0,'Native graphics startup incomplete'
+    assert status[5]<=64 and status[6]<=512 and status[7]<=128 and status[8]<=64
+    assert status[15]<=512 and status[16]<=256*1024*1024 and status[17]<=128 and status[18]<=64
+    report['native_draw_fault']=dict(ddraw_disabled=True,ddraw_module_absent=True,status_sha256=sha(experiment/'native-draw-status.bin'),native_dll_sha256=metadata['native_draw_sha256'],factory_creations=status[9],surface_creations=status[10],peak_surfaces=status[15],peak_bytes=status[16],scope='Terminal peer-death control after native graphics startup and at least33 completed queues, with real ddraw disabled/absent and unchanged DLL. Forced private process stop is not original semantic COM teardown.')
+
   else:
    assert process.returncode==0,'Original/native continuous capture failed; inspect '+str(out/'capture.log')
    capture=json.loads((experiment/'report.json').read_text());native=capture['native_continuous'];assert capture['success'] and native['success'] and int(native['original_returns'])==int(native['native_completions'])==a.queues and native['remaining_surfaces']==native['image_uploads']==native['diagnostic_files']==0
