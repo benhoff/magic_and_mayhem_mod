@@ -7,6 +7,8 @@ API u32 WIN GetFileSize(HANDLE,u32*);
 API u32 WIN GetTickCount(void);
 API u32 WIN GetCurrentThreadId(void);
 API void WIN Sleep(u32);
+API i32 WIN WaitOnAddress(volatile void*,void*,u32,u32);
+API void WIN WakeByAddressAll(void*);
 API HANDLE WIN GetCurrentObject(HANDLE,u32);
 API i32 WIN GetObjectA(HANDLE,i32,void*);
 API i32 WIN GetBitmapBits(HANDLE,i32,void*);

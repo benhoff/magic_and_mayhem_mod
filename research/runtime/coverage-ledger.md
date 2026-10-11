@@ -4441,3 +4441,15 @@ negative result. Prior gameplay/performance evidence retains its original
 hashes and separate scope. The f874d7b parent/current receipt audit covers11
 committed transitions with zero missing receipts; no retrospective execution or
 past gate claim follows. [Details](native-draw-device-surfaces.md).
+
+## Bounded atomic-owner wait fixtures — 2026-10-11
+
+`NR.bounded-copy-order` preserves the50ms policy while replacing contended
+Sleep polling with atomic address wait/release wake. The Kernel32 wake stub
+failure is preserved; KernelBase is used on modern Windows/Wine. Eight fresh
+copy/lock/DC/flip fixtures pass independent complete pixels, return/LastError,
+original call counts, four successful sessions/four expected refusals and native
+cleanup. Live default NVIDIA gameplay is validated separately. Earlier shared
+source results retain their hashes and pending freshness. The eb52c3a commit
+receipt audit covers19 exact transitions, zero missing receipts, without a
+retrospective gate or new execution claim. [Details](opengl-copy-order.md).
