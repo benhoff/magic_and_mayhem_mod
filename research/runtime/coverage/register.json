@@ -30991,7 +30991,8 @@
         "DRAW.census.quick-battle-scenario-guards-20261010",
         "DRAW.census.campaign-effects-guards-20261011",
         "TOOL.drawing-inventory.api-site-guards-20261011",
-        "TOOL.drawing-inventory.postlude-guards-20261011"
+        "TOOL.drawing-inventory.postlude-guards-20261011",
+        "TOOL.drawing-inventory.lock-recovery-guards-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -32731,6 +32732,47 @@
       ],
       "evidence": [
         "DRAW.queue-render-postlude.fixture-20261011"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.canvas-lock-recovery",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Original canvas Lock retry and failure client state",
+      "scope": "Pinned58b660wrapper only with owned mock interfaces and13824selected cells: absent surface, descriptor zero/108size, scripted initial/retry descriptor pitch/pointer, exact lost code, Restore result retained separately from retried Lock result, low16key/ignored key result, zero/callback/sentinel endpoints, ordered release/display/window teardown/global resets and optional auxiliary Unlock. External API/UI/reload bodies are synthetic; object list empty. No real driver/COM/reference ownership, actual pixels/asset reload, populated destructor lists, reentrant/null mutation, native equivalence or full live dispatch/scenario closure.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813856,
+          "scope": "Original Lock wrapper client control flow/state under selected scripted external returns only; external bodies excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/render-drawing-inventory.md",
+        "research/runtime/original-surface-retry.md",
+        "research/runtime/original-surface-sentinel.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/drawing-lock-recovery-reference.cpp",
+        "tools/test-drawing-lock-recovery.py"
+      ],
+      "validation_dependencies": [
+        "tests/surface-retry-reference.cpp",
+        "tools/drawing_census.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "DRAW.canvas-lock-recovery.fixture-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -63470,6 +63512,88 @@
           "equals": 4924800
         }
       ]
+    },
+    {
+      "id": "DRAW.canvas-lock-recovery.fixture-20261011",
+      "kind": "native_integration",
+      "scope": "Unchanged original58b660 Lock wrapper client only: owned mock interfaces,13824unique selected result/callback/key/teardown/early-Unlock cells, descriptor zeroing/size and pitch/pointer writes, absent surface, exact lost code, Restore result retained separately from retryLock result, low16 key, zero/callback/sentinel endpoints, ordered teardown globals and DestroyWindow, optional auxiliary Unlock. External API/key/release/display/UI/sentinel bodies are scripted; list is empty. No real COM/driver recovery, actual pixels/font/asset reload, populated destructor list, reentrancy/null mutation, native equivalence or full scenario/dispatch completion.",
+      "record": "research/runtime/drawing-lock-recovery-client-20261011.json",
+      "sha256": "da20ed3631ec26b1a68a78035c7115ebed079b7e9693a1cb4aa43e333613ca62",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_wrapper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 13824
+        },
+        {
+          "pointer": "/unique_matrix_cells",
+          "equals": 13824
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory.lock-recovery-guards-20261011",
+      "kind": "native_integration",
+      "scope": "Current native offline accounting after exact Lock client caller/effect classifications and new recovered behavior links; no fresh live original execution, real interface/pixels/lifetime or all-writer/scenario closure.",
+      "record": "research/runtime/drawing-inventory-lock-recovery-guards-20261011.json",
+      "sha256": "7a2ca55ba9c9946a3bd22fef4cea7675352ad8337d4e0913bcc26ffe2d2f8b31",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards",
+          "equals": 45
+        },
+        {
+          "pointer": "/api_registered_sites",
+          "equals": 380
+        },
+        {
+          "pointer": "/api_observed_sites",
+          "equals": 101
+        },
+        {
+          "pointer": "/strict_completion_check_exit",
+          "equals": 1
+        },
+        {
+          "pointer": "/completion_blockers",
+          "equals": 18
+        },
+        {
+          "pointer": "/draw01_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -72511,6 +72635,35 @@
       "evidence": [
         "DRAW.queue-client-state.object-variants-fixture-20261011"
       ]
+    },
+    {
+      "id": "original-drawing-lock-recovery-client-20261011",
+      "level": "headless",
+      "scope": "Native integration of unchanged58b660client with owned scripted external interfaces/reload/UI,13824selected success/lost/generic/nonzero result schedules, key/callback/teardown/early-Unlock state. No real driver/pixels/ownership/reentrant destructor or complete live scenario/dispatch proof.",
+      "behaviors": [
+        "DRAW.canvas-lock-recovery"
+      ],
+      "tests": [
+        "tools/test-drawing-lock-recovery.py",
+        "tests/drawing-lock-recovery-reference.cpp"
+      ],
+      "evidence": [
+        "DRAW.canvas-lock-recovery.fixture-20261011"
+      ]
+    },
+    {
+      "id": "drawing-inventory-lock-recovery-guards-20261011",
+      "level": "headless",
+      "scope": "Current native offline accounting after exact Lock client caller/effect classification and new recovered behavior links. No fresh original live execution, real interface lifetime/pixels, complete callers/writers or scenario closure.",
+      "behaviors": [
+        "TOOL.drawing-inventory"
+      ],
+      "tests": [
+        "tests/test-drawing-inventory.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-inventory.lock-recovery-guards-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -72848,8 +73001,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-queue-object-variants-20261011.json",
-    "sha256": "062ba24600e52beb779284b582232fa599b8bc8a395d0b5a20c2e0ff21801577"
+    "path": "research/runtime/coverage/source-index-draw01-lock-recovery-20261011.json",
+    "sha256": "0cbbc5664d4e6d22117ba880d7f3cd3f4cb37de3aa6e3216da013a12a4b77bfb"
   },
   "claim_bindings_required": true
 }

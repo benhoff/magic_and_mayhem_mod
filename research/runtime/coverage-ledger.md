@@ -4790,3 +4790,16 @@ retain historical narrower results. Actual helpers/pixels/arbitrary objects/
 lifetime and14scenario/four dispatch closure remain pending. Recovered native
 implementation/comparison/integration/replacement stay none. Committed
 1fe53d9..b85df54history has15file/86behavior exact receipts and no gaps.
+
+
+DRAW-01 original Lock recovery client (2026-10-11):13824owned unchanged58b660
+scripted-interface cases pass descriptor/pitch/pointer, lost/Restore/retry, key/
+reload endpoints, teardown globals/DestroyWindow and conditional Unlock.1296cells
+distinguish stored Restore from retryLock result;2304return a nonnull scripted
+error descriptor, without asserting real valid storage or driver recovery.
+[Evidence and retained cardinality error](draw01-inventory.md#original-lock-recovery-client-2026-10-11)
+exclude populated/reentrant destructors, physical lifetime/pixels/reload/UI.
+Fourteen exact caller-effect routes are classified;45current offline guards
+account503routes, preserving14scenario/four dispatch closure. Recovered native
+stages remain none. b85df54..d3cd04fhistory has11file/30behavior exact receipts,
+no missing versions; historical live fingerprints are retained.

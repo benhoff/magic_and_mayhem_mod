@@ -458,3 +458,13 @@ low-AX1/high-EAX distinction; row/clip/wave/postlude state passes.
 [Evidence and scope](draw01-inventory.md#original-indexed-and-offset-consumer-states-2026-10-11)
 retain synthetic external helpers and all live/pixel/lifetime/complete-dispatch
 boundaries. Existing historical reports and hashes remain untouched.
+
+
+2026-10-11 Lock client recovery:13824unchanged58b660owned mock-interface cells
+cover absent surface, cleared DDS/pitch/pointer, exact lost/Restore/retry paths,
+key/reload endpoints, teardown globals/DestroyWindow and conditional auxiliary
+Unlock. Stored Restore result is not overwritten by retried Lock result.
+[Evidence and limits](draw01-inventory.md#original-lock-recovery-client-2026-10-11)
+keep actual driver/pixel/reference/reentrant/list-destructor behavior separate.
+Fourteen exact CALL caller-effect routes gain bounded classification;58b75alist
+cleanup remains outside this fixture. No scenario/dispatch or native stage closure.

@@ -641,3 +641,51 @@ the retry waited for its completed declaration. Manifest verification passes
 before/after the successful run and the rejected launch. History1fe53d9..b85df54
 has15file/86behavior exact receipts, no missing intermediate versions, and asserts
 neither a past gate pass nor new graphics validation.
+
+
+## Original Lock recovery client, 2026-10-11
+
+The [13824cell fixture](drawing-lock-recovery-client-20261011.json) executes
+unchanged58b660instructions with owned synthetic interfaces and external result
+schedules. It complements existing [fill/copy scheduling](original-surface-retry.md)
+and [cursor sentinel](original-surface-sentinel.md) evidence; it does not rerun
+or replace those reports. Null object+8 skips calls and returns null after
+clearing the global108byte descriptor. A present interface gets Lock with null
+rectangle/event and flags1; returned pitch is stored at object+18.
+
+Only exact887601c2 triggers Restore and one more Lock. The original wrapper
+retains the Restore result at6f8150 and never replaces that global with the
+retried Lock result.1296selected cells have differing stored/retry results.
+Even failed Restore permits the retry. Successful Restore optionally reapplies
+low16saved source key; key failure is ignored. Object+28 selects none, a callback
+with argument0, or the -1cursor sentinel endpoint. The real sentinel/asset bodies
+are outside this new fixture; their earlier independent evidence remains scoped.
+
+Nonzero stored status triggers selected graphics teardown and DestroyWindow,
+then reads final descriptor pitch/pointer and optionally calls auxiliary Unlock
+through object+4 with that same pointer. Nonexclusive teardown releases the
+held auxiliary interface, while exclusive teardown calls RestoreDisplayMode;
+both release three other selected globals and clear the recorded state globals.
+The object list is explicitly empty, so no populated-list destructor or
+reentrant/null-interface callback behavior is claimed. External Release/display/
+window/Unlock results are synthetic and do not prove physical retirement.
+
+2304cells return a nonnull scripted descriptor pointer with nonzero stored
+status. Mock Lock deliberately supplies controlled outputs on errors, too: this
+is a client continuation observation, not a claim that real drivers supply valid
+pixels after failure or that returned storage survives teardown. Driver loss,
+reference counts, actual reload pixels, UI behavior, concurrency and live recovery
+remain pending. Caller-effect classifications now cover14exact CALL routes in
+this wrapper; list-cleanup CALL58b75aremains unclassified/unexecuted by this fixture.
+No nearest function, universal COM type or full scenario ownership is inferred.
+
+[Retained first attempt](drawing-lock-recovery-attempts-20261011.json) passed all
+actual13824client cells, then failed its erroneous27648count assertion. The
+corrected cardinality has a new contract/source declaration and fresh successful
+execution. Original manifest and sources are stable before/after; instructions
+remain unchanged. Recovered native implementation/comparison/integration/
+replacement stay none. [45current offline guards](drawing-inventory-lock-recovery-guards-20261011.json)
+account503routes with no unknown identities and preserve18completion obligations.
+Changing the catalog preserves old live source hashes and their staleness.
+Historyb85df54..d3cd04fhas11file/30behavior exact receipts and no missing versions;
+retrospective accounting asserts no past gate pass or new validation.
