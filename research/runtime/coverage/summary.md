@@ -7,8 +7,8 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 577 |
-| evidence | 987 |
-| scenarios | 303 |
+| evidence | 988 |
+| scenarios | 304 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
 | incomplete dispatch tables | 22 |
@@ -26,7 +26,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 170 |
 | behaviors without comparison | 475 |
 | behaviors without tests | 1 |
-| stale evidence | 775 |
+| stale evidence | 776 |
 | behavior anchors outside discovered functions | 46 |
 | validation gaps | 717 |
 | retired execution claims | 376 |
@@ -169,7 +169,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | DRAW.queue-dispatch | Original queue branch routing, literal parameters and metadata writes | `0x5002a0`, `0x501184`, `0x501210`, `0x50129c`, `0x4df840`, `0x57e8e0`, `0x57fe10`, `0x580260`, `0x580a90`, `0x581200`, `0x4d8ab0` | scoped | none | none | none | none | stale |
 | DRAW.graphics-api-boundaries | Selected original graphics/movie CALL boundaries and unresolved API target contracts | `0x58b660`, `0x58d1a0`, `0x469830` | partial | none | none | none | none | stale |
 | DRAW.graphics-api-surface-client-layouts | Exact reviewed DirectDraw setup, Surface2 and clipper client CALL layouts | `0x58a9e2`, `0x58aa06`, `0x58aa29`, `0x58aa51`, `0x58aac3`, `0x58aae7`, `0x58ab0a`, `0x58ab3d`, `0x58ab59`, `0x58ab9d`, `0x58abb7`, `0x58abc8`, `0x58abd3`, `0x58abde`, `0x58ac51`, `0x58ac6b`, `0x58ac7c`, `0x58ac87`, `0x58ac92`, `0x58adc2`, `0x58ade3`, `0x58ae33`, `0x58ae4d`, `0x58ae5e`, `0x58ae69`, `0x58ae74`, `0x58aeaa`, `0x58aec4`, `0x58aeee`, `0x58af4e`, `0x58af68`, `0x58af79`, `0x58af84`, `0x58af8f`, `0x58b031`, `0x58b075`, `0x58b08f`, `0x58b0a0`, `0x58b0ab`, `0x58b0b6`, `0x58b0e7`, `0x58b106`, `0x58b11f`, `0x58b16f`, `0x58b189`, `0x58b19a`, `0x58b1a5`, `0x58b1b0`, `0x58b400`, `0x58b40d`, `0x58b423`, `0x58b43c`, `0x58b69d`, `0x58b6d6`, `0x58b702`, `0x58b735`, `0x58b77d`, `0x58b797`, `0x58b7a8`, `0x58b7b3`, `0x58b7be`, `0x58b806`, `0x58bb0a`, `0x58bb30`, `0x58bb5b`, `0x58bc57`, `0x58bc84`, `0x58bcb1`, `0x58bcf2`, `0x58bfcd`, `0x58c03a`, `0x58c05a`, `0x58c084`, `0x58c0ae`, `0x58c0d9`, `0x58c107`, `0x58c1c1`, `0x58c239`, `0x58c252`, `0x58c276`, `0x58c2a4`, `0x58c2cf`, `0x58c2fb`, `0x58c32a`, `0x58c3e0`, `0x58c451`, `0x58c485`, `0x58c51f`, `0x58c597`, `0x58c5bb`, `0x58c5e5`, `0x58c610`, `0x58c63c`, `0x58c66b`, `0x58c90d`, `0x58c988`, `0x58c9ac`, `0x58c9d6`, `0x58ca01`, `0x58ca2d`, `0x58ca5c`, `0x58cb02`, `0x58cb7b`, `0x58cbaf`, `0x58cc01`, `0x58cc60`, `0x58cc8a`, `0x58ccb5`, `0x58cce1`, `0x58cd10`, `0x58d1ec`, `0x58d20a`, `0x58d253`, `0x58d273`, `0x58d2c8`, `0x58d2ee`, `0x58d35f`, `0x58d37f`, `0x58d3a5` | partial | none | none | none | none | current_fingerprints |
-| DRAW.queue-client-state | Original queue client row, auxiliary clip and cleanup state | `0x5002a0` | partial | none | none | none | none | current_fingerprints |
+| DRAW.queue-client-state | Original queue client row, auxiliary clip and cleanup state | `0x5002a0` | partial | none | none | none | none | stale |
 
 ## Gameplay Gaps checklist
 
@@ -1550,6 +1550,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **DRAW.api-expanded.save-load-20261011**: `research/runtime/drawing-inventory.json`
 - **DRAW.api-expanded.quick-battle-20261011**: `research/runtime/drawing-inventory.json`
 - **DRAW.api-expanded.effects-20261011**: `research/runtime/drawing-inventory.json`
+- **DRAW.queue-client-state.fixture-20261011**: `tests/drawing-queue-state-reference.cpp`, `tools/test-drawing-queue-state.py`
 
 ## Checklist gaps
 

@@ -32643,7 +32643,7 @@
       "subsystem": "drawing_inventory",
       "kind": "recovered",
       "title": "Original queue client row, auxiliary clip and cleanup state",
-      "scope": "Pinned5002a0 consumer only, with synthetic clip/backend/cleanup bindings: empty/one/two rows, Video0/1, sentinel/signed first span and changed prior16bit metadata, signed row-y mutation, strict opening clips and auxiliary480/600height thresholds, zero/default/truncated row metadata, raw high/negative backend results, optional final cleanup receiver/arguments and original three-counter reset. Exact original clip/cleanup CALL return PCs distinguish equal argument values. No actual clip/backend/cleanup helper body effects, raster pixels, arbitrary object layouts or live API/lifetime/scenario/complete dispatch closure.",
+      "scope": "Pinned5002a0 consumer only with synthetic clip/backend/cleanup bindings:984960unique cells across all kinds-2..35, empty/one/two rows, Video0/1, direct object marker/ordinary offset, sentinel/signed first span and changed prior16bit metadata, signed row-y mutation, strict opening clips and auxiliary480/600height thresholds, zero/default/truncated row metadata, raw0/1/high/negative backend results and optional final cleanup receiver/arguments/counter reset. Exact original clip/cleanup CALL return PCs distinguish equal argument values. Archive raw/decompressed hashes must match. Indexed/-127 variants, actual helper body effects, raster pixels, arbitrary object layouts, live API/lifetime/scenario and complete dispatch closure remain outside this fixture.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -32668,7 +32668,8 @@
         "research/runtime/coverage/binary-nocd.json"
       ],
       "evidence": [
-        "DRAW.queue-client-state.fixture-20261011"
+        "DRAW.queue-client-state.fixture-20261011",
+        "DRAW.queue-client-state.all-kinds-fixture-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -63260,6 +63261,41 @@
           "equals": 58320
         }
       ]
+    },
+    {
+      "id": "DRAW.queue-client-state.all-kinds-fixture-20261011",
+      "kind": "native_integration",
+      "scope": "Unchanged pinned consumer with synthetic backend/clip/cleanup bindings:984960unique empty/one/two row cells, all kinds-2..35, Video0/1, direct object marker/ordinary offset, sentinel and changed prior metadata, signed spans, strict clip and480/600height branches, raw0/1/high/negative backend results, postlude0/1. Original row/container and counter mutations and exact opaque CALL arguments are checked. Indexed/-127 variants, actual helper side effects, pixels, external objects/graphics and full dispatch/scenario closure remain outside this fixture.",
+      "record": "research/runtime/drawing-queue-all-kinds-state-20261011.json",
+      "sha256": "cdac56bbf1e0dbac0dd84df34e393b29c673c80aa19f1bb023b2667ab46e66f2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_consumer_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 984960
+        },
+        {
+          "pointer": "/unique_matrix_cells",
+          "equals": 984960
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -65377,7 +65413,7 @@
         "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending. Additional984960cell direct-marker/ordinary-offset native fixture covers unchanged original client state for all kinds-2..35, four raw backend results and changed prior metadata. Actual helpers, indexed/-127 changed-prior variants, pixels/objects/live API/lifetime and full dispatch closure remain pending.",
       "complete": false,
       "entries": [
         {
@@ -65385,7 +65421,8 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "RS.world-composition",
-            "RS.world-frame"
+            "RS.world-frame",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65393,7 +65430,8 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "RS.world-composition",
-            "RS.world-frame"
+            "RS.world-frame",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65401,7 +65439,8 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "RS.world-composition",
-            "RS.world-frame"
+            "RS.world-frame",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65409,7 +65448,8 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "RS.world-composition",
-            "RS.world-frame"
+            "RS.world-frame",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65417,7 +65457,8 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "RS.world-composition",
-            "RS.world-frame"
+            "RS.world-frame",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65425,7 +65466,8 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "RS.world-composition",
-            "RS.world-frame"
+            "RS.world-frame",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65433,20 +65475,23 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "RS.world-composition",
-            "RS.world-frame"
+            "RS.world-frame",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 7,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 8,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "RS.world-kind8-virtual"
+            "RS.world-kind8-virtual",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65459,31 +65504,36 @@
         {
           "value": 10,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 11,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 12,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 13,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 14,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65498,7 +65548,8 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "DRAW.world-kind-16",
-            "RS.world-startup-wave"
+            "RS.world-startup-wave",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65506,19 +65557,22 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "DRAW.world-kind-17",
-            "RS.world-startup-wave"
+            "RS.world-startup-wave",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 18,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 19,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65527,13 +65581,15 @@
             "DRAW.queue-dispatch",
             "DRAW.world-kind-20",
             "RS.world-initial-state",
-            "RS.world-startup-wave"
+            "RS.world-startup-wave",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 21,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65541,55 +65597,64 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "RS.world-composition",
-            "RS.world-frame"
+            "RS.world-frame",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 23,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 24,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 25,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 26,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 27,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 28,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 29,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 30,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65597,25 +65662,29 @@
           "behaviors": [
             "DRAW.queue-dispatch",
             "RS.world-composition",
-            "RS.world-frame"
+            "RS.world-frame",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 32,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 33,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 34,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65636,61 +65705,70 @@
         "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending. Additional984960cell direct-marker/ordinary-offset native fixture covers unchanged original client state for all kinds-2..35, four raw backend results and changed prior metadata. Actual helpers, indexed/-127 changed-prior variants, pixels/objects/live API/lifetime and full dispatch closure remain pending.",
       "complete": false,
       "entries": [
         {
           "value": 0,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 1,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 2,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 3,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 4,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 5,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 6,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 7,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 8,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65703,31 +65781,36 @@
         {
           "value": 10,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 11,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 12,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 13,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 14,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65741,117 +65824,136 @@
           "value": 16,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.world-kind-16"
+            "DRAW.world-kind-16",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 17,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.world-kind-17"
+            "DRAW.world-kind-17",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 18,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 19,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 20,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.world-kind-20"
+            "DRAW.world-kind-20",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 21,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 22,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 23,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 24,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 25,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 26,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 27,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 28,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 29,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 30,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 31,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 32,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 33,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 34,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65872,61 +65974,70 @@
         "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending. Separate58320cell native fixture observes original consumer prior-metadata/clip/row/postlude policies for kinds9/15/default with synthetic helpers; actual helper effects, other changed-prior kinds and complete live/pixel/lifetime semantics remain pending. Additional984960cell direct-marker/ordinary-offset native fixture covers unchanged original client state for all kinds-2..35, four raw backend results and changed prior metadata. Actual helpers, indexed/-127 changed-prior variants, pixels/objects/live API/lifetime and full dispatch closure remain pending.",
       "complete": false,
       "entries": [
         {
           "value": 0,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 1,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 2,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 3,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 4,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 5,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 6,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 7,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 8,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65939,31 +66050,36 @@
         {
           "value": 10,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 11,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 12,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 13,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 14,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -65977,117 +66093,136 @@
           "value": 16,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.world-kind-16"
+            "DRAW.world-kind-16",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 17,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.world-kind-17"
+            "DRAW.world-kind-17",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 18,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 19,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 20,
           "behaviors": [
             "DRAW.queue-dispatch",
-            "DRAW.world-kind-20"
+            "DRAW.world-kind-20",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 21,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 22,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 23,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 24,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 25,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 26,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 27,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 28,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 29,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 30,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 31,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 32,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 33,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
           "value": 34,
           "behaviors": [
-            "DRAW.queue-dispatch"
+            "DRAW.queue-dispatch",
+            "DRAW.queue-client-state"
           ]
         },
         {
@@ -72143,6 +72278,21 @@
       "evidence": [
         "DRAW.queue-client-state.fixture-20261011"
       ]
+    },
+    {
+      "id": "original-drawing-queue-all-kinds-state-20261011",
+      "level": "headless",
+      "scope": "Native headless integration executing unchanged original consumer984960unique all-kinds client-state cells, bounded synthetic backends, complete compressed case archive/raw hash comparison. No native recovered implementation or native renderer/original platform comparison, indexed/-127/object/general helper/graphics lifetime/live scenario/full dispatch claim.",
+      "behaviors": [
+        "DRAW.queue-client-state"
+      ],
+      "tests": [
+        "tools/test-drawing-queue-state.py",
+        "tests/drawing-queue-state-reference.cpp"
+      ],
+      "evidence": [
+        "DRAW.queue-client-state.all-kinds-fixture-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -72480,8 +72630,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-queue-state-20261011.json",
-    "sha256": "8a4ad216827e5d645659359eb66833e45f40a7fd770bfe8726b8cebdd842dfcc"
+    "path": "research/runtime/coverage/source-index-draw01-queue-all-kinds-20261011.json",
+    "sha256": "bb766ba58ef0732ffc68b77802ca2e652f6dc0881393fddb04546f40e2ffcf12"
   },
   "claim_bindings_required": true
 }

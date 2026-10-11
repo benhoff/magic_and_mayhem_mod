@@ -532,3 +532,39 @@ validation. The final successor uses a new supported headless declaration and
 runs with required32-bit syscall permissions; no old hash is refreshed.
 Historyc43bfde..0b40de2 has11exact file/21behavior receipts, no missing versions;
 retrospective review asserts neither a past gate pass nor new graphics validation.
+
+
+## All-kinds original consumer client state, 2026-10-11
+
+The widened fixture covers984960unique cells over all kinds-2..35, raw returns
+0/1/12345678/ffffffff, Video0/1, empty/one/two rows, first-span sentinel/signed clip
+boundaries, changed prior metadata and optional cleanup. It uses a direct object
+marker and ordinary offset; earlier indexed/-127 routing evidence remains separate.
+Every original row/container assertion, opening/auxiliary/restoration clip caller,
+strict480/600threshold and cleanup ordering/counter reset passes. Kind9 keeps zero;
+defaults and Video-disabled7/32 preserve prior metadata; ordinary results truncate
+to16bits. Wave kinds15..30 retain literal amplitude kind-14 across primary/auxiliary
+routes. Consumer instructions and original input hashes stay unchanged.
+
+The case archive records93exact original CALL return PCs,1271936clip calls,
+544000wave calls and492480cleanup calls. These are this offline fixture's counts,
+not live runtime frequencies. Fifteen direct backend RET contracts and separate
+opaque/global/virtual bindings remain explicit. Actual helper bodies are synthetic,
+so helper global effects, pixels, arbitrary objects, changed-prior indexed/-127
+branches and complete live API/lifetime/scenario/dispatch closure remain pending.
+The tables link the new client-state contract for every numeric/default entry while
+keeping their completeness flags false and all recovered native implementation/
+comparison/integration/replacement statuses none.
+
+[Fresh result](drawing-queue-all-kinds-state-20261011.json) binds the prospective
+scope/source declaration and984960unique matrix cells. The bounded producer records
+actual process exit/timeout and streams a lossless gzip archive. It hashes the raw
+stream and independently decoded archive:559379392bytes, identical SHA-256
+524f76b1099db750656eaa8494a2fca2d3fef3224bd602fafe999ad9125584de.
+Compressed size16054745bytes avoids retaining duplicate raw storage. Interrupted
+or nonzero runs cannot become successes; native helper/lifetime completion is not
+inferred from compression integrity. The earlier58320cell result and failed/
+intermediate attempts retain all historical fingerprints.
+
+History0b40de2..23bd1c0 has14file/85behavior exact receipts and no missing versions.
+Retrospective accounting does not assert a past gate pass or new graphics result.
