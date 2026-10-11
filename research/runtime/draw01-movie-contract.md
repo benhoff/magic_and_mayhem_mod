@@ -89,3 +89,57 @@ evidence ID for the native host's mapped-image/mock-callback test infrastructure
 It shares the executed report, validates those bindings only, and does not
 promote native movie engine integration. Original findings use the distinct
 isolated-original evidence definition.
+
+
+## Original instruction probes and early end of stream
+
+Fourteen declared SITE probes use the existing metadata ABI without a function
+return-slot substitution. Each requires an explicitly named containing original
+function; signature bytes and all retained direct incoming control-flow targets
+are checked against the whole pinned image. Unknown modes, missing/outside/boolean
+anchors and a legacy interior mislabeled as a function entry are refused.
+Indirect entry into a splice remains unresolved. Relocated CALL instructions
+have an observer-trampoline return PC; unperturbed timing and arbitrary
+return-PC-sensitive external behavior are not asserted.
+
+| Probe addresses | Before-site interpretation |
+|---|---|
+| `469721`, `46974a`, `469777`, `4697a2`, `4697e0` | Selected setup HRESULT failure before the original log CALL |
+| `469872`, `46989e`, `4698c9`, `4698f6`, `469917` | Selected sample acquisition/state HRESULT failure before logging |
+| `469962` | Sample loop before Escape poll; EAX is general diagnostic state |
+| `469981` | Update returned0; before reading original control global |
+| `46998a` | Control0 selected original destination Blt dispatch |
+| `4699b1` | Cleanup entry; EAX is last Update on ordinary loop termination, but needs branch context on other exits |
+
+The first retained83-hook run `run-13j4m4__` has82,328events,41,162paired
+function calls and4SITE events, zero loss/open/IO and normal shutdown. Each intro
+hits the loop once, then cleanup with EAX`00040003`. Neither successful-Update,
+Blt-dispatch nor the ten selected error-log sites fires. This indicates that
+both initial sample Updates ended without producing a sample in this observed
+Wine path; it does not explain the immediate termination or establish audio
+absence, codec failure, all platforms or complete movie playback.
+
+Microsoft defines `00040003` as `MS_S_ENDOFSTREAM`, indicating an ended stream
+with no updated sample. See [multimedia streaming codes](https://learn.microsoft.com/en-us/windows/win32/directshow/multimedia-streaming-error-and-success-codes)
+and [IStreamSample::Update](https://learn.microsoft.com/en-us/previous-versions/ms786825(v=vs.85)).
+The original loop tests result0, so this positive end-of-stream result exits.
+The inferred API meaning is separate from the measured register value.
+
+The decoder retains the wire `calls` identity counter (ENTER plus SITE), and
+adds `paired_calls`/`site_events` separately. `site_eax_counts` are before-site
+register values, not function return values or generally HRESULTs. Corrupt
+pairing, invented SITE callers, loss/open/IO, phases and unknown identities
+still refuse a valid journal. All fourteen scenario closures remain open.
+
+
+The [fresh accounted movie-site repeat](drawing-census-movie-sites-accounted-observation-20261010.json)
+again observes two immediate `MS_S_ENDOFSTREAM` exits:82,316events,41,156paired
+calls and4SITE events; zero loss/open/IO, stable declared sources/binaries and
+exit0. Its catalog projection correctly addresses `/decoded/original_sha256`;
+the earlier record and failed inventory guards remain unchanged. The inventory
+reports123routes,83metadata sites/1refusal,939direct CALL sites and0unaccounted
+activity; all18DRAW-01 closure blockers remain. [54fresh guards](drawing-census-movie-site-guards-20261010.json)
+cover mode/anchor refusal, mixed counters and result separation, exact callers
+and scenario/unknown-route accounting. Source-only decoder/catalog changes leave
+older original reference, ABI and live evidence stale; historical stages/hashes
+are retained without claiming current full original/native equivalence.

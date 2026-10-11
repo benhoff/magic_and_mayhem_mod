@@ -254,7 +254,7 @@ def capture(root, template, journey, claims=None):
         process.wait(timeout=30)
         if report['call_census_enabled']:
             census = trace(root / 'capture/census.bin', json.loads((root / 'census-build.json').read_text()),
-                json.loads((ROOT / 'research/runtime/drawing-callers-movie-expanded-20261010.json').read_text()),
+                json.loads((ROOT / 'research/runtime/drawing-callers-movie-sites-20261010.json').read_text()),
                 json.loads((ROOT / 'research/runtime/coverage/binary-nocd.json').read_text()))
             (root / 'decoded.json').write_text(json.dumps(census, indent=2) + '\n')
             report.update(decoded_sha256=hashlib.sha256((root / 'decoded.json').read_bytes()).hexdigest(),

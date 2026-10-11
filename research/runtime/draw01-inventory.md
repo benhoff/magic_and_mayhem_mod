@@ -375,3 +375,16 @@ baseline and retained flags/registers/x87/SSE/LastError/loss/phase guards. It us
 synthetic bodies; actual69original splice manifests and live observations are
 separate. Committed history5abde11..7bb1f46 has zero missing exact receipts.
 All14scenario closures and4DRAW-01 dispatch obligations remain open.
+
+
+The [fresh accounted movie-site repeat](drawing-census-movie-sites-accounted-observation-20261010.json)
+again observes two immediate `MS_S_ENDOFSTREAM` exits:82,316events,41,156paired
+calls and4SITE events; zero loss/open/IO, stable declared sources/binaries and
+exit0. Its catalog projection correctly addresses `/decoded/original_sha256`;
+the earlier record and failed inventory guards remain unchanged. The inventory
+reports123routes,83metadata sites/1refusal,939direct CALL sites and0unaccounted
+activity; all18DRAW-01 closure blockers remain. [54fresh guards](drawing-census-movie-site-guards-20261010.json)
+cover mode/anchor refusal, mixed counters and result separation, exact callers
+and scenario/unknown-route accounting. Source-only decoder/catalog changes leave
+older original reference, ABI and live evidence stale; historical stages/hashes
+are retained without claiming current full original/native equivalence.

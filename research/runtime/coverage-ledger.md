@@ -4478,3 +4478,35 @@ baseline and retained flags/registers/x87/SSE/LastError/loss/phase guards. It us
 synthetic bodies; actual69original splice manifests and live observations are
 separate. Committed history5abde11..7bb1f46 has zero missing exact receipts.
 All14scenario closures and4DRAW-01 dispatch obligations remain open.
+
+
+### DRAW-01 original movie loop and error-site diagnostics — 2026-10-10
+
+Fourteen explicit original movie SITE probes extend safe metadata coverage to83
+sites (plus the retained unsafe fade refusal),123routes/84entry-or-site identities
+and939exact direct CALL sites. SITE probes require explicit containing original
+function anchors, preserve the return slot, and report before-instruction EAX
+separately from function results and paired-call counts. The first retained
+original run has82,328events/41,162paired calls/4SITE events, no loss/open/IO,
+stable sources/binaries and original exit0. Each intro enters the loop once,
+then cleanup with00040003; no successful Update/Blt-dispatch or selected error
+site fires. This is immediate original end-of-stream in the observed Wine path,
+not full playback. [Interpretation and API source](draw01-movie-contract.md).
+The first inventory guard attempts exposed a missing future evidence record and
+an incorrect build JSON pointer; those failed logs remain retained. Catalog
+projection now addresses the actual nested decoded build, with a fresh accounted
+run pending. Source-only metadata corrections preserve the first run's hashes.
+History7bb1f46..42801df has zero missing exact parent/current receipts.
+
+
+The [fresh accounted movie-site repeat](drawing-census-movie-sites-accounted-observation-20261010.json)
+again observes two immediate `MS_S_ENDOFSTREAM` exits:82,316events,41,156paired
+calls and4SITE events; zero loss/open/IO, stable declared sources/binaries and
+exit0. Its catalog projection correctly addresses `/decoded/original_sha256`;
+the earlier record and failed inventory guards remain unchanged. The inventory
+reports123routes,83metadata sites/1refusal,939direct CALL sites and0unaccounted
+activity; all18DRAW-01 closure blockers remain. [54fresh guards](drawing-census-movie-site-guards-20261010.json)
+cover mode/anchor refusal, mixed counters and result separation, exact callers
+and scenario/unknown-route accounting. Source-only decoder/catalog changes leave
+older original reference, ABI and live evidence stale; historical stages/hashes
+are retained without claiming current full original/native equivalence.
