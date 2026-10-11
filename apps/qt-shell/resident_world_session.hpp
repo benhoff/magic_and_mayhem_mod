@@ -33,5 +33,7 @@ private:
     std::optional<Pending> pending_;
     std::uint64_t completed_=0,imports_=0,returns_=0,rasters_=0;
     std::uint32_t firstTick_=0,lastTick_=0;
+    std::uint64_t profiled_=0;
+    double decodeMs_=0,handoffMs_=0,nativeMs_=0,prepareMs_=0,submitMs_=0,maxNativeMs_=0,producerMs_=0;
     QString error_;
 };

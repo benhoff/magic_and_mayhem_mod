@@ -32,6 +32,26 @@ static void pixels(void* object,u32 newer,u32* output,u32 seed,u32 write){
    if(output)output[y*WIDTH+x]=row[x];}}
  if(((Unlock)table(object)[32])(object,newer?0:(void*)d[9]))ExitProcess(124);
 }
+/* The public tooltip requests a 510x180 offscreen surface with no memory
+ * placement or pixel format. Native policy selects owned system-memory RGB565.
+ * This checks that policy, separately from the unchanged Wine corpus below. */
+static void default_offscreen(Create create){
+ for(u32 i=0;i<4;++i){
+  void *draw=0,*fourth=0,*object=0;u32 d[31],newer=i&1;
+  if(create(0,&draw,0) || ((Query)table(draw)[0])(draw,dd4,&fourth))ExitProcess(157);
+  void* device=newer?fourth:draw;describe(d,newer);d[2]=180;d[3]=510;d[26]=0x800;
+  if(!(i&2)){d[1]=7;for(u32 j=18;j<26;++j)d[j]=0;}
+  if(((i32 (WIN *)(void*,const u32*,void**,void*))table(device)[6])(device,d,&object,0) || !object)ExitProcess(158);
+  describe(d,newer);if(((i32 (WIN *)(void*,u32*))table(object)[22])(object,d) || d[2]!=180 || d[3]!=510 || d[26]!=0x840)ExitProcess(159);
+  for(u32 pass=0;pass<2;++pass){
+   describe(d,newer);if(((Lock)table(object)[25])(object,0,d,1,0) || d[4]!=1024 || d[21]!=16 || d[22]!=0xf800 || d[23]!=0x7e0 || d[24]!=0x1f)ExitProcess(160);
+   for(u32 y=0;y<180;++y){u16* row=(u16*)(d[9]+y*d[4]);
+    for(u32 x=0;x<510;++x){u16 expected=(u16)(i*911+x*811+y*241);if(!pass)row[x]=expected;else if(row[x]!=expected)ExitProcess(161);}}
+   if(((Unlock)table(object)[32])(object,newer?0:(void*)d[9]))ExitProcess(162);
+  }
+  ((Ref)table(object)[2])(object);((Ref)table(fourth)[2])(fourth);((Ref)table(draw)[2])(draw);
+ }
+}
 static void policies(Create create,void* module){
  void *draw=0,*a=0,*b=0,*held[512];u32 d[31],before[WIDTH*HEIGHT],after[WIDTH*HEIGHT];
  if(create(0,&draw,0))ExitProcess(140);describe(d,0);
@@ -51,13 +71,18 @@ static void policies(Create create,void* module){
  if(((Unlock)table(b)[32])(b,(void*)d[9]) || ((Unlock)table(b)[32])(b,0)!=(i32)0x88760248u)ExitProcess(150);
  pixels(b,0,after,0,0);for(u32 i=0;i<WIDTH*HEIGHT;++i)if(before[i]!=after[i])ExitProcess(151);
  ((Ref)table(a)[2])(a);((Ref)table(b)[2])(b);
+ describe(d,0);d[26]=0x1800;void* rejected=(void*)0x1234;
+ if(surface(draw,d,&rejected,0)!=(i32)0x80004001u || rejected)ExitProcess(163);
+ describe(d,0);d[26]=0x800;d[22]=0x7c00;rejected=(void*)0x1234;
+ if(surface(draw,d,&rejected,0)!=(i32)0x80004001u || rejected)ExitProcess(164);
+ default_offscreen(create);
  describe(d,0);d[2]=d[3]=1;
  for(u32 i=0;i<512;++i)if(surface(draw,d,&held[i],0))ExitProcess(152);
  void* denied=(void*)0x1234;if(surface(draw,d,&denied,0)!=(i32)0x8007000eu || denied)ExitProcess(153);
  for(u32 i=0;i<512;++i)((Ref)table(held[i])[2])(held[i]);((Ref)table(draw)[2])(draw);
  typedef u32 (WIN *Count)(void);Count count=(Count)GetProcAddress(module,"NativeDrawSurfaces");if(count())ExitProcess(154);
  count=(Count)GetProcAddress(module,"NativeDrawObjects");if(count())ExitProcess(155);
- u32 policy[4]={8,WIDTH*HEIGHT,512,0},n=0;HANDLE out=CreateFileA("surface-policy.bin",0x40000000,0,0,2,0x80,0);
+ u32 policy[6]={10,WIDTH*HEIGHT,512,0,4,4*510*180},n=0;HANDLE out=CreateFileA("surface-policy.bin",0x40000000,0,0,2,0x80,0);
  if(out==(HANDLE)-1 || !WriteFile(out,policy,sizeof(policy),&n,0) || n!=sizeof(policy))ExitProcess(156);CloseHandle(out);
 }
 void start(void){

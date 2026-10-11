@@ -32,7 +32,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     const int cycles=qMax(1,qEnvironmentVariableIntValue("MNM_CAMPAIGN_MENU_CYCLES"));
     const bool normalQuit=qEnvironmentVariableIntValue("MNM_CAMPAIGN_NORMAL_QUIT")==1;
     const bool castingCombat=qEnvironmentVariableIntValue("MNM_CAMPAIGN_CASTING_COMBAT")==1;
-    struct Run {QString renderer;std::future<void> captureJob;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
+    struct Run {QString renderer;std::future<void> captureJob;int quitPass=0;bool quitAnswered=false;int cycle=0;bool stressRunning=false,stressDone=false;quint64 sampleFrames=0,samplePaints=0;QElapsedTimer sampleClock,snapshotWait;QJsonArray rates;int stage=0;QElapsedTimer diagnosticClock;quint32 thread=0;quint64 frameBase=0;bool done=false;QJsonArray steps;};
     auto run=std::make_shared<Run>();
     auto finish=[run,path,probe,&app,normalQuit](bool success,const QString& reason){
         if(run->done)return;
@@ -141,6 +141,12 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
     QObject::connect(poll,&QTimer::timeout,&window,[run,probe,finish,snapshot,path,stressSeconds,cycles,castingCombat,normalQuit,&session,&window]{
         if(run->done)return;
         const auto p=probe();
+        if(!run->diagnosticClock.isValid() || run->diagnosticClock.elapsed()>=1000){
+            run->diagnosticClock.start();QSaveFile diagnostic(path+".progress.json");
+            if(diagnostic.open(QIODevice::WriteOnly)){
+                diagnostic.write(QJsonDocument(QJsonObject{{"stage",run->stage},{"active",p.active},{"frames",qint64(p.frames)},{"paints",qint64(p.paints)},{"stress_running",run->stressRunning},{"stress_done",run->stressDone},{"error",p.error}}).toJson());diagnostic.commit();
+            }
+        }
         if(p.active&&!p.renderer.isEmpty())run->renderer=p.renderer;
         const auto captureRequest=QFileInfo(path).dir().filePath("capture-request.json");
         if(p.active&&QFileInfo::exists(captureRequest)&&(!run->captureJob.valid()||run->captureJob.wait_for(std::chrono::seconds(0))==std::future_status::ready)){

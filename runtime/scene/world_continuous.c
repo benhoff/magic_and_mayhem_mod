@@ -64,7 +64,10 @@ static int continuous_defer(u32* r,const void* payload,u32 n) {
      (!continuous_public_bind || !raster_world_open || GetCurrentThreadId()==batch_owner))return 0;
   if(!mnm_world_defer_admitted(r,n,batch_surface?batch_surface->id:0,continuous_deferred_count,continuous_deferred_bytes)){continuous_failure(4,r[2]);
     char name[260];path(name,"world-refused-record-",r[2],".bin");HANDLE f=CreateFileA(name,0x40000000,0,0,1,0x80,0);
-    if(f!=(HANDLE)-1){write(f,r,96);CloseHandle(f);}return -1;}
+    if(f!=(HANDLE)-1){write(f,r,96);CloseHandle(f);}
+    u32 bounds[8]={0x444d4e4d,0x31464552,1,batch_surface?batch_surface->id:0,continuous_deferred_count,continuous_deferred_bytes,n,r[2]};
+    path(name,"world-deferred-bounds-",r[2],".bin");f=CreateFileA(name,0x40000000,0,0,1,0x80,0);
+    if(f!=(HANDLE)-1){write(f,bounds,sizeof(bounds));CloseHandle(f);}return -1;}
   if(!continuous_deferred)continuous_deferred=HeapAlloc(producer_heap(),0,CONTINUOUS_DEFERRED_BYTES);
   if(!continuous_deferred){continuous_failure(5,r[2]);return -1;}
   return mnm_world_defer_append(continuous_deferred,&continuous_deferred_bytes,&continuous_deferred_count,r,payload,n,batch_surface?batch_surface->id:0)?1:-1;

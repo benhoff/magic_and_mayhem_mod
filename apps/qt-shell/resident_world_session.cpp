@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QRandomGenerator>
 #include <stdexcept>
+#include <algorithm>
 using namespace mnm::legacy;
 namespace {
 QString create(const QString& path){auto nonce=QRandomGenerator::system()->generate64();if(!nonce)nonce=1;WorldContinuousChannel::create(path,nonce,0,true);return path;}
@@ -40,9 +41,14 @@ void ResidentWorldSession::poll(){
             if(pending_->returned && pending_->imported){completed_=pending_->block.generation;channel_.release(completed_);pending_.reset();if(completed_%64==0)saveReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));}
         }
         if(!pending_){WorldContinuousChannel::Block block;if(channel_.poll(block)){
+            QElapsedTimer timing;timing.start();
             auto stream=decodeCanvasProducers(block.source,false);
+            decodeMs_+=double(timing.nsecsElapsed())/1000000.;timing.restart();
             auto handoff=prepareRollingHandoff(stream,0,block.request,1,0,WorldBatchSourcePolicy::ownedV5,false);
+            handoffMs_+=double(timing.nsecsElapsed())/1000000.;timing.restart();
             auto frame=world_->consumeResident(block.generation,handoff.stream);
+            const auto native=double(timing.nsecsElapsed())/1000000.;nativeMs_+=native;maxNativeMs_=std::max(maxNativeMs_,native);
+            prepareMs_+=world_->profile().prepareMs;submitMs_+=world_->profile().submitMs;producerMs_+=world_->producerWorkMs();++profiled_;
             if(world_->completed()!=block.generation || world_->worldReadbacks() || renderer_->stats().nativeReadbacks || renderer_->stats().rgbaReadbacks)
                 throw std::runtime_error("Resident World completion/readback contract");
             Pending pending{std::move(block),std::move(handoff),std::move(frame),false,false,{}};pending.deadline.start();pending_=std::move(pending);
@@ -63,6 +69,9 @@ QJsonObject ResidentWorldSession::report() const {
         {"world_readbacks",double(world_?world_->worldReadbacks():0)},{"native_readbacks",double(stats.nativeReadbacks)},{"rgba_readbacks",double(stats.rgbaReadbacks)},
         {"nonce",QString::number(channel_.nonce())},{"error",error_},{"pending",bool(pending_)},{"renderer",renderer_?QString::fromStdString(renderer_->driver().renderer):QString()},
         {"reply_bytes_per_world",int(MNM_CONT_ACK_BYTES)},{"world_pixel_reply_bytes",0},
+        {"profiled_worlds",double(profiled_)},{"decode_ms_per_world",profiled_?decodeMs_/profiled_:0.},
+        {"handoff_ms_per_world",profiled_?handoffMs_/profiled_:0.},{"native_ms_per_world",profiled_?nativeMs_/profiled_:0.},
+        {"producer_ms_per_world",profiled_?producerMs_/profiled_:0.},{"prepare_ms_per_world",profiled_?prepareMs_/profiled_:0.},{"submit_ms_per_world",profiled_?submitMs_/profiled_:0.},{"max_native_ms",maxNativeMs_},
         {"engine_fps",returns_>64 && lastTick_!=firstTick_?double(returns_-64)*1000/double(std::uint32_t(lastTick_-firstTick_)):0.}};
 }
 void ResidentWorldSession::saveReport(const QString& path) const {QSaveFile file(path);if(!file.open(QIODevice::WriteOnly) || file.write(QJsonDocument(report()).toJson())<0 || !file.commit())throw std::runtime_error("Resident World report publication");}

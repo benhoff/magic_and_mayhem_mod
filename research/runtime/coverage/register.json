@@ -34923,7 +34923,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native graphics compatibility and real DirectDraw retirement",
-      "scope": "Pending full graphics compatibility and real DirectDraw retirement for the pinned build. The bounded native PE32 slice owns Draw1/2/4 identity and RGB565 Surface1/2/3/4 storage,108/124-byte descriptors, lock/unlock, keys, copy/fill/self overlap, HWND clippers, owned GDI DC leases and independent interface references. Native logical primary/one-backbuffer flip, two565 modes and256MiB host storage budget are policies rather than original physical driver semantics. Limits are64 devices/512 surfaces/128 DCs/64 clippers. Unknown methods terminate with family/interface/slot diagnostics and never forward. Guarded imports and both12-byte dynamic loader strings redirect to MnmDraw.dll, changing24 selected original data bytes and preserving all other section/instruction/IAT bytes. Selected original-engine V4 World sessions run with Wine ddraw disabled/module absent and native Qt GPU presentation, without World pixel exports/replies/writebacks. Local96-byte v2 status counts all factory attempts, successful creations, enumeration and resource bounds; a saved device path may legitimately enumerate zero adapters. The independent16-case startup caller slice covers NULL normal cooperative level and primary Surface3/4 identity; isolated factory/storage/DC caller and full-word comparisons remain separate from whole original-game equivalence. Enumeration entry/thunk are static unassigned inventory gaps. Original outside-World drawing remains active; private process stop is not semantic cleanup. Palettes, clipped Blt/regions/occlusion, unknown routes, arbitrary casting/combat, whole-game original pixel equivalence, semantic quit,19FPS and60FPS remain pending. Retain all historical evidence/claim hashes and source-specific limitations.",
+      "scope": "Pending full graphics compatibility and real DirectDraw retirement for the pinned build. The bounded native PE32 slice owns Draw1/2/4 identity and RGB565 Surface1/2/3/4 storage,108/124-byte descriptors, lock/unlock, keys, copy/fill/self overlap, HWND clippers, owned GDI DC leases and independent interface references. Native logical primary/one-backbuffer flip, two565 modes and256MiB host storage budget are policies rather than original physical driver semantics. Limits are64 devices/512 surfaces/128 DCs/64 clippers. Unknown methods terminate with family/interface/slot diagnostics and never forward. Guarded imports and both12-byte dynamic loader strings redirect to MnmDraw.dll, changing24 selected original data bytes and preserving all other section/instruction/IAT bytes. Selected original-engine V4 World sessions run with Wine ddraw disabled/module absent and native Qt GPU presentation, without World pixel exports/replies/writebacks. Local96-byte v2 status counts all factory attempts, successful creations, enumeration and resource bounds; a saved device path may legitimately enumerate zero adapters. The independent16-case startup caller slice covers NULL normal cooperative level and primary Surface3/4 identity; isolated factory/storage/DC caller and full-word comparisons remain separate from whole original-game equivalence. Enumeration entry/thunk are static unassigned inventory gaps. Original outside-World drawing remains active; private process stop is not semantic cleanup. Palettes, clipped Blt/regions/occlusion, unknown routes, arbitrary casting/combat, whole-game original pixel equivalence, semantic quit,19FPS and60FPS remain pending. Retain all historical evidence/claim hashes and source-specific limitations. First rejected secondary CreateSurface descriptor is captured locally without changing its HRESULT; public camera stress exposedE_NOTIMPL and an original modal error dialog. Exact additional descriptor admission pending.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -34976,7 +34976,9 @@
         "research/runtime/native-master-integration-current-producer-death-pass-20261011.json",
         "research/runtime/native-master-integration-current-consumer-death-pass-20261011.json",
         "research/runtime/native-master-integration-current-recovery128-pass-20261011.json",
-        "research/runtime/native-master-integration-current-world4096-pass-20261011.json"
+        "research/runtime/native-master-integration-current-world4096-pass-20261011.json",
+        "research/runtime/native-default-offscreen-pass-20261011.json",
+        "research/runtime/public-resident-surface-refusal-20261011.json"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
@@ -35267,7 +35269,9 @@
         "NR.directdraw-retirement.master-current-producer-death-20261011",
         "NR.directdraw-retirement.master-current-consumer-death-20261011",
         "NR.directdraw-retirement.master-current-recovery128-20261011",
-        "NR.directdraw-retirement.master-current-world4096-20261011"
+        "NR.directdraw-retirement.master-current-world4096-20261011",
+        "NR.directdraw-retirement.default-offscreen-20261011",
+        "NR.public-resident-world.surface-refusal-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -37590,7 +37594,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Resident World import into public command composition",
-      "scope": "Ordered resident V4 World import and masked post-World RGB565 CPU UI deltas, strict generation/nonce/destination admission and terminal provider handling. Public frontend consumes owned batches with zero pixel reply and independently verifies original returns before reuse. Pinned scene adapter binds the current-thread full Lock after page-guard restoration. Public campaign casting/combat/portrait/menu transitions and performance validation pending; arbitrary HUD destination reads, original pixel/driver equivalence and60FPS remain excluded. Additive545c10 is an ordered native World primitive with pinned wrapper return bytes/low16 AX0; background secondary-surface captures are bounded and deferred outside World traversal. Fresh execution for these branches pending. Owned colour rectangle547d80 via pinned54ab72 return is limited to64x64 canonical RGB565 channels/modes0..3; live validation pending. Public V3 prefixes select the existing owned four-orientation minimap metadata/terrain contract; historical unmarked V3 terrain remains orientation0.",
+      "scope": "Ordered resident V4 World import and masked post-World RGB565 CPU UI deltas, strict generation/nonce/destination admission and terminal provider handling. Public frontend consumes owned batches with zero pixel reply and independently verifies original returns before reuse. Pinned scene adapter binds the current-thread full Lock after page-guard restoration. Public campaign casting/combat/portrait/menu transitions and performance validation pending; arbitrary HUD destination reads, original pixel/driver equivalence and60FPS remain excluded. Additive545c10 is an ordered native World primitive with pinned wrapper return bytes/low16 AX0; background secondary-surface captures are bounded and deferred outside World traversal. Fresh execution for these branches pending. Owned colour rectangle547d80 via pinned54ab72 return is limited to64x64 canonical RGB565 channels/modes0..3; live validation pending. Public V3 prefixes select the existing owned four-orientation minimap metadata/terrain contract; historical unmarked V3 terrain remains orientation0. Resident World discards CPU validity once per complete canvas at entry and executes native World requests only onGPU; subsequent CPU-dependent reads still refuse, GPU copies preserve native ownership. Fresh validation pending.",
       "confidence": "provisional",
       "original": [],
       "implementation": [
@@ -37641,7 +37645,12 @@
         "tests/minimap-producer-test.cpp"
       ],
       "documents": [
-        "research/runtime/public-resident-world.md"
+        "research/runtime/public-resident-world.md",
+        "research/runtime/public-resident-batch-fixtures-20261011.json",
+        "research/runtime/public-resident-surface-refusal-20261011.json",
+        "research/runtime/public-resident-batch-background-copy-failure-20261011.json",
+        "research/runtime/public-resident-cursor-queue-fixtures-20261011.json",
+        "research/runtime/public-resident-cursor-queue-live-failure-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37660,7 +37669,12 @@
       "evidence": [
         "NR.public-resident-world.import-fixture-20261011",
         "NR.public-resident-world.owned-fixtures-20261011",
-        "NR.public-resident-world.campaign-stall-20261011"
+        "NR.public-resident-world.campaign-stall-20261011",
+        "NR.public-resident-world.batch-fixtures-20261011",
+        "NR.public-resident-world.surface-refusal-20261011",
+        "NR.public-resident-world.batch-background-copy-failure-20261011",
+        "NR.public-resident-world.cursor-queue-fixtures-20261011",
+        "NR.public-resident-world.cursor-queue-live-failure-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -75368,6 +75382,186 @@
           "equals": 71
         }
       ]
+    },
+    {
+      "id": "NR.public-resident-world.batch-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Current-source owned resident World batching, bulk CPU validity discard and ordered mixed fixtures. Native reference only; public gameplay and original equivalence pending.",
+      "record": "research/runtime/public-resident-batch-fixtures-20261011.json",
+      "sha256": "c8d9602f99982d243f4243929b492d54589c9de9c7957ba8a87d8a018e0c9a26",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/mixed_world/words_compared",
+          "equals": 1440000
+        },
+        {
+          "pointer": "/mixed_world/delivery_readbacks",
+          "equals": 0
+        }
+      ],
+      "inputs_pointer": "/inputs"
+    },
+    {
+      "id": "NR.directdraw-retirement.default-offscreen-20261011",
+      "kind": "native_integration",
+      "scope": "Default-placement caps0x800 native RGB565 system-memory policy: four510x180 cases on108/124 descriptors. Separate unchanged64-case Wine comparison; no original game pixel equivalence or whole retirement claim.",
+      "record": "research/runtime/native-default-offscreen-pass-20261011.json",
+      "sha256": "f74f43148083806e6b47888d5b7685ee96d7fecc420b766da78453da2f662c29",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatch_words",
+          "equals": []
+        },
+        {
+          "pointer": "/native_policy/default_offscreen_words",
+          "equals": 367200
+        },
+        {
+          "pointer": "/native_remaining_surfaces",
+          "equals": 0
+        }
+      ],
+      "inputs_pointer": "/inputs"
+    },
+    {
+      "id": "NR.public-resident-world.surface-refusal-20261011",
+      "kind": "live_observation",
+      "scope": "Negative captured secondary descriptor refusal and original modal stall. Fix separately proved by storage corpus; not an end-to-end pass.",
+      "record": "research/runtime/public-resident-surface-refusal-20261011.json",
+      "sha256": "9383b8a7793000447874594a4c71ec34d23ddce04b806fbe5dfe281198b25053",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/surface_refusal/caps",
+          "equals": 2048
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.batch-background-copy-failure-20261011",
+      "kind": "live_observation",
+      "scope": "Negative public Titan run after batching:195verified resident Worlds, GPU-only delivery and then background primary-screen cursor copy refused (sourceID1,destination5,WorldID2; record/byte capacity remains the admission failure, no historical counters). Native work~24ms versus prior~35ms; aggregate11.22FPS still below19. No fallback actually presented; legacy flag denotes terminal suspension.",
+      "record": "research/runtime/public-resident-batch-background-copy-failure-20261011.json",
+      "sha256": "91e08c24e8a375da19548d28527ff6de6b80bea5718e505a9b7349c364cf21ad",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_periodic_snapshot/completed",
+          "equals": "195"
+        },
+        {
+          "pointer": "/resident_periodic_snapshot/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/background_copy_refusal/words/4",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.cursor-queue-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Bounded512record secondary cursor-copy burst, exact4MiB byte limit,9refusals and immutable owned bytes, alongside ordered resident reference and ABI fixtures. World source/destination remain prohibited; no public or original equivalence claim.",
+      "record": "research/runtime/public-resident-cursor-queue-fixtures-20261011.json",
+      "sha256": "e284222ab0d0e91a47597408c50aff55da7ff26aa74d16696c5f9984e18e6eb6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/deferred/refusals",
+          "equals": 9
+        },
+        {
+          "pointer": "/deferred/cursor_records",
+          "equals": 512
+        },
+        {
+          "pointer": "/mixed_world/words_compared",
+          "equals": 1440000
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.cursor-queue-live-failure-20261011",
+      "kind": "live_observation",
+      "scope": "Negative Titan route: sustained resident/no-readback production past1100Worlds without deferred refusal; smoke reaches Escape stage4 but Mini does not appear. Aggregate~12FPS fails19FPS. Bounded owned interruption and cleanup, not end-to-end or replacement.",
+      "record": "research/runtime/public-resident-cursor-queue-live-failure-20261011.json",
+      "sha256": "d15f5ba3dd98a852921bf29af89b473a8c48c7d161b85c87010034328e251ad3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_periodic_snapshot/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/smoke_progress/stage",
+          "equals": 4
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -83805,7 +83999,10 @@
         "tools/test-native-campaign.py"
       ],
       "evidence": [
-        "NR.public-resident-world.campaign-stall-20261011"
+        "NR.public-resident-world.campaign-stall-20261011",
+        "NR.public-resident-world.surface-refusal-20261011",
+        "NR.public-resident-world.batch-background-copy-failure-20261011",
+        "NR.public-resident-world.cursor-queue-live-failure-20261011"
       ]
     },
     {
@@ -83819,7 +84016,9 @@
         "tools/test-public-resident-fixtures.py"
       ],
       "evidence": [
-        "NR.public-resident-world.owned-fixtures-20261011"
+        "NR.public-resident-world.owned-fixtures-20261011",
+        "NR.public-resident-world.batch-fixtures-20261011",
+        "NR.public-resident-world.cursor-queue-fixtures-20261011"
       ]
     }
   ],
@@ -84158,8 +84357,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-public-resident-producer-20261011.json",
-    "sha256": "34ca76c5ef2ba5037c61277808a48fd3fa25a29fdee5b2b16c9198710e4c3498"
+    "path": "research/runtime/coverage/source-index-public-resident-cursor-20261011.json",
+    "sha256": "f3a0117153ba53f8bb8cfc2aa552a36973db2655164f052c6ce44ec783d29dd4"
   },
   "claim_bindings_required": true
 }

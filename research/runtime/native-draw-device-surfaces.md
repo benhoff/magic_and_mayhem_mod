@@ -282,3 +282,19 @@ normal original Quit. All requested19FPS checks pass,real ddraw disabled/absent,
 no fallback/recovery/unknown call and current8 native/44 renderer/28 protocol
 inputs are bound. Earlier WriteFile failure remains recorded; no universal
 causal speedup,publicV4fusion,60FPS or semantic COM teardown is claimed.
+
+## Default-placement public offscreen request,2026-10-11
+
+The resident public camera/selection run reaches a108-byte descriptor with
+flags7,510x180 and caps0x800. The previous selected policy rejects this descriptor
+withE_NOTIMPL; historical main-thread snapshots place the original constructor
+0x58ad90 in its error MessageBox after COM slot6. The new native policy selects
+owned system-memory RGB565 for offscreen requests without a placement bit,
+reporting caps0x840. Explicit formats retain strict565 admission.
+
+`native-default-offscreen-pass-20261011.json` retains the prospective source
+claim, unchanged64-case Wine caller/full-word comparison and4native default
+policy cases on108/124-byte descriptors. Unsupported extra caps and RGB555
+remain refused. The policy has no physical driver placement or original-game
+pixel-equivalence claim. Public resident throughput and bounded concurrent
+primary-screen cursor-copy traffic remain pending.
