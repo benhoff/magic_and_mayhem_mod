@@ -222,10 +222,15 @@ def main():
         if args.portrait_stress_seconds or args.spell_cases:
             # Use ordinary ground orders to survive later enemy
             # waves while exercising rendering; no health/position writes.
+            # The starting area is still in the enemy Fireball approach. Move
+            # beyond it toward the tutorial's southwest edge, using the observed
+            # movement basis, and verify arrival before beginning camera stress.
+            retreat_x, retreat_y = max(1, wizard['x'] - 7), wizard['y'] + 8
+            result['retreat_target'] = [retreat_x, retreat_y]
             center()
-            for attempt in range(4):
-                actor=state()[wizard['slot']];dx=wizard['x']-actor['x'];dy=wizard['y']-actor['y']
-                if math.hypot(dx,dy)<5:break
+            for attempt in range(8):
+                actor=state()[wizard['slot']];dx=retreat_x-actor['x'];dy=retreat_y-actor['y']
+                if math.hypot(dx,dy)<3:break
                 if len(calibration)==2:
                     ((ax,ay),(asx,asy)),((bx,by),(bsx,bsy))=calibration;det=ax*by-ay*bx
                     u=(by*dx-bx*dy)/det;v=(ax*dy-ay*dx)/det;sx=asx*u+bsx*v;sy=asy*u+bsy*v
@@ -233,6 +238,9 @@ def main():
                 else:sx,sy=-140,50
                 center();click(400+sx,280+sy,3);time.sleep(3)
                 record('post-combat-retreat',attempt=attempt+1,wizard=state()[wizard['slot']])
+            actor=state()[wizard['slot']]
+            if actor['health']<=0 or math.hypot(retreat_x-actor['x'],retreat_y-actor['y'])>=3:
+                raise RuntimeError('Post-combat ground retreat did not reach its observed waypoint')
             center()
         if args.spell_cases:
             if state()[wizard['slot']]['mana']>=17*256:raise RuntimeError('Insufficient-mana case was not reached through normal casts')

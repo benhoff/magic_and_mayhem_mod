@@ -94,6 +94,10 @@ public:
     void updateRegionRows(SurfaceId surface,int x,int y,const Image& plane,int first,int rows);
     void destroy(SurfaceId surface);
     void update(SurfaceId surface,int x,int y,const Image& patch);
+    // Owned RGB565 source patches with explicit coverage. Uncovered pixels
+    // retain GPU history and do not establish validity or require a CPU read.
+    void updateMasked(SurfaceId,int x,int y,const Image&,
+                      const std::vector<std::uint8_t>& coverage);
     // SRCCOPY at origin to indexed8 (fully installed palette), RGB565 or RGB24/32.
     // Owned application DC regions: nullopt means no clip, empty means no writes.
     // Attached DirectDraw Blt clippers do not constrain this bitmap operation.

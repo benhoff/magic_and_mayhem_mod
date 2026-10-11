@@ -279,7 +279,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
         offsets[k] = signedWord(word(c.bytes(), r[19] + k * 4));
     canvases_.raster(id, *frames_.frame(c, r[17] != 0), signedWord(r[8]),
                      signedWord(r[9]), rect(c), r[14], signedWord(r[15]),
-                     colours, offsets, r[20] == 64 ? r[16] : 16);
+                     colours, offsets, r[20] == 64 ? r[16] : 16, invalidate_);
     break;
   }
   case 14: {
@@ -429,5 +429,13 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
   default:
     throw std::invalid_argument("Unknown producer operation");
   }
+  if (!mirrored_)canvases_.publishWrites();
+}
+void CanvasProducerReplay::invalidateWorld(const CanvasProducer &c) {
+  if (!mirrored_ || c.fields[2] != 9)
+    throw std::invalid_argument("GPU invalidation requires a mirrored World raster");
+  invalidate_ = true;
+  try { apply(c); } catch (...) { invalidate_ = false; throw; }
+  invalidate_ = false;
 }
 } // namespace mnm::legacy

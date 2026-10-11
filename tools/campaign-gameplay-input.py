@@ -14,7 +14,11 @@ def main():
     parser.add_argument('--seconds', type=int, choices=range(10, 121), required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--camera-only',action='store_true',help='Resumed post-combat stress: camera/rotation/hover/HUD/wheel without new ground orders')
+    parser.add_argument('--keep-moving',action='store_true',help='Add observed ordinary ground movement during resumed combat stress')
+    parser.add_argument('--experiment',type=Path)
     args = parser.parse_args()
+    if args.keep_moving and (not args.camera_only or not args.experiment):
+        parser.error('--keep-moving requires --camera-only and --experiment')
     x0, y0, width, height = args.rect
     if width < 320 or height < 240:
         parser.error('Native viewport is too small')
@@ -44,10 +48,31 @@ def main():
         held.add(code); x.XFlush(display); time.sleep(seconds)
         xt.XTestFakeKeyEvent(display, code, 0, 0); held.remove(code); x.XFlush(display)
         record('key', keysym=sym, held_seconds=seconds); time.sleep(.1)
+    movement_count = 0
+    def move_wizard():
+        nonlocal movement_count
+        from campaign_gameplay import read_rows, creatures
+        def wizard():
+            actors=creatures(read_rows(args.experiment/'gameplay-events.bin'))
+            return next(a for a in actors.values() if a['type']==0 and a['owner']==0)
+        for fx,fy in [(.66,.47),(.5,.65),(.34,.47),(.5,.3)]:
+            before=wizard()
+            if before['health']<=0:raise RuntimeError('Player wizard died during resumed stress')
+            motion(.93,.87);button(1);button(1);time.sleep(.75)
+            motion(fx,fy);button(3);time.sleep(3)
+            after=wizard()
+            moved=(before['x'],before['y'])!=(after['x'],after['y'])
+            record('observed-survival-ground-order',before=before,after=after,moved=moved)
+            if after['health']<=0:raise RuntimeError('Player wizard died during resumed ground movement')
+            if moved:
+                movement_count+=1
+                return
+        raise RuntimeError('No observed wizard movement after bounded resumed ground orders')
     try:
         motion(.93, .87); button(1) # ordinary wizard HUD selection
         if not args.camera_only:motion(.5, .45); button(1)
         while time.monotonic()-start < args.seconds:
+            if args.keep_moving:move_wizard()
             for sym in [0xff53, 0xff54, 0xff51, 0xff52]:key(sym, .45)
             for sym in [ord('.'), ord('.'), ord('.'), ord('.'), ord(','), ord(',')]:key(sym, .12)
             for fx, fy, b in [(.46,.44,1),(.58,.49,3),(.65,.35,3),(.48,.6,1)]:
@@ -75,7 +100,8 @@ def main():
         for b in [1,2,3]:xt.XTestFakeButtonEvent(display,b,0,0)
         x.XFlush(display);x.XCloseDisplay(display)
         args.output.write_text(json.dumps(dict(success=completed, seconds=time.monotonic()-start, actions=log,
-            camera_only=args.camera_only,scope='Physical camera keys, rotation, scene/HUD clicks, spell/creature selection and target/source-order attempts, and wheel input. Movement/casting/combat outcomes require separate observation.'),indent=2)+'\n')
+            camera_only=args.camera_only,keep_moving=args.keep_moving,observed_survival_moves=movement_count,
+            scope='Physical camera/rotation/HUD/wheel stress; optional ordinary ground orders require observed living wizard movement. Casting/combat outcomes require separate observation.'),indent=2)+'\n')
 
 
 if __name__ == '__main__':main()

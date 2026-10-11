@@ -32,12 +32,12 @@ def copy_installation(source, game):
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
     if game.is_symlink() or game.resolve()==source:
         raise ValueError('Disposable game copy aliases its source')
-    for name in ['Chaos.exe','MnmScene.dll','MnmMenu.dll','MnmWord.dll','CFG/prefs.cfg']:
+    for name in ['Chaos.exe','MnmScene.dll','MnmMenu.dll','MnmWord.dll','MnmDraw.dll','CFG/prefs.cfg']:
         if not (game/name).resolve().is_relative_to(game.resolve()):
             raise ValueError('Disposable write target escapes the game copy: '+name)
 
 
-def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None,glyph_mode=None):
+def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None,glyph_mode=None,native_draw=False):
     if world_live and not world_frames:raise ValueError('Continuous World needs the World input observer')
     if world_frames and word_mode:raise ValueError('World observation and word takeover use separate experiments')
     if word_mode not in (None,'shadow','takeover','clip-shadow','clip-takeover'):raise ValueError('Unsupported word-sprite mode')
@@ -85,13 +85,21 @@ def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source
     from glyph_backend_launch import stage as stage_glyph
     staged,glyph_metadata=stage_glyph(output,data,staged,glyph_mode,scene_imported=True)
     manifest.update(glyph_metadata)
-    # Every old file-backed code section remains byte-for-byte identical.
+    if native_draw:
+        draw_dll=load('scene_native_draw_build','tools/build-native-draw.py').build(output/'native-draw-build')
+        staged=load('scene_native_draw_stage','tools/prepare-native-draw.py').redirect(staged,enumeration=True)
+        shutil.copy2(draw_dll,game/draw_dll.name)
+        manifest.update(native_draw=True,native_draw_sha256=sha(draw_dll),native_draw_status=str(output/'native-draw-status.bin'))
+        manifest['scope']+='; native owned graphics services, real DirectDraw must be disabled by the runner'
+    # Original code and data bytes remain unchanged except the guarded10-byte
+    # dynamic graphics loader alias when native graphics is explicitly selected.
     import struct
     pe=struct.unpack_from('<I',data,60)[0];count=struct.unpack_from('<H',data,pe+6)[0]
     table=pe+24+struct.unpack_from('<H',data,pe+20)[0]
+    expected=load('scene_native_draw_expected','tools/prepare-native-draw.py').remap_enumerator(data) if native_draw else data
     for i in range(count):
         size,raw=struct.unpack_from('<II',data,table+i*40+16)
-        if staged[raw:raw+size]!=data[raw:raw+size]:
+        if staged[raw:raw+size]!=expected[raw:raw+size]:
             raise ValueError('An original section changed during import staging')
     (game/'Chaos.exe').write_bytes(staged)
     settings=load('scene_settings','tools/run-opengl-game.py')

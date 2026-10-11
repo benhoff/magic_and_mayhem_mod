@@ -37,3 +37,18 @@ The final [comparison](canvas-fade-span-comparison-20261010.json) passes 972 cas
 877,072 physical WORDs plus 861,520 visible WORDs, ten atomic native refusals
 and ASan/UBSan. Entry anchors, corpus/output hashes and prospective source/scenario
 bindings are retained in the immutable report.
+
+## Row damage optimization (2026-10-11)
+
+The cold-frame user-cycle profile exposed repeated `fade` -> `write` -> `dirty`
+work. Native fade now validates the complete visible physical prefix first,
+then halves/masks each visible WORD directly and records damage once per row.
+Pitch padding and partial rows retain the recovered projection; no destination
+image or GPU readback is introduced. The independent original-loop comparison
+passes972 cases/1,738,592 words,126 mirror cases and11 atomic refusals, including
+unknown pixels outside the admitted prefix, with ASan/UBSan. See
+[record](canvas-fade-row-damage-pass-20261011.json). This establishes pixels and
+bounded native mirror behavior; performance is measured separately. The
+[profile failure](native-world-cold-fade-profile-20261011.json) and normalized
+[cold502.5ms failure](native-world-canonical-cold-failure-20261011.json) remain
+recorded with their original source hashes and unchanged500ms gate.

@@ -84,6 +84,24 @@ int main(int argc,char** argv)try{
         require(metadata.stats().frames==1&&!metadata.ready(requests.front()),"Metadata cap ignored");
     }
     {
+        // Metadata pressure preserves a hot neighbour sharing the page.
+        SpriteAtlas atlas(renderer,8192,2);
+        ResourceUploadRequest a{{ResourceKind::ui,"metadata-a"},1,0,{},{},false},b=a,c=a;
+        b.id.name="metadata-b";c.id.name="metadata-c";
+        auto supply=[&](const auto& request,unsigned colour){
+            atlas.supply(request,{{3,1,{colour,colour,colour}},{3,1,{1,1,1}},0,0,{}});
+            std::size_t bytes=24;while(!atlas.advance(request,bytes)){}
+        };
+        supply(a,0x1234);supply(b,0x5678);atlas.draw(a,actual,0,0,{},{});
+        const auto surfaces=renderer.stats().surfaces,uploads=atlas.stats().uploads;
+        supply(c,0xabcd);
+        require(atlas.ready(a)&&!atlas.ready(b)&&atlas.ready(c)&&atlas.stats().frames==2,"Metadata eviction discarded a hot shared-page entry");
+        require(renderer.stats().surfaces==surfaces&&atlas.stats().uploads==uploads+1,"Metadata pressure recreated shared page storage");
+        atlas.draw(a,actual,0,0,{},{});require(renderer.read(actual).pixels[0]==0x1234,"Metadata eviction corrupted retained pixels");
+        atlas.draw(c,actual,0,0,{},{});require(renderer.read(actual).pixels[0]==0xabcd,"Metadata eviction reused stale pixels");
+        atlas.clear();require(!atlas.stats().surfaces&&!atlas.stats().frames&&!atlas.stats().pixels,"Metadata LRU teardown retained ownership");
+    }
+    {
         // Large cold atlas uploads keep the same row budget as standalone planes.
         SpriteAtlas atlas(renderer,1024*1024,4);ResourceUploadRequest r{indexed,1,12,{},{},true};
         SpriteColourTable palette{};palette[0]=0;

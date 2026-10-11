@@ -4074,6 +4074,43 @@ where source edits invalidate current evidence. Original font/text consumer live
 integration, indexed/auxiliary effects, more active battle/camera coverage and
 sustained delivery/recovery remain outstanding.
 
+## Guarded rolling handoff, hardware and gameplay follow-up (2026-10-10)
+
+The original V3 producer now has an adapter to ordered native rolling delivery, preserving its finite32-queue source journal, original destination/entry/caller/AX guards and actual post-writeback checkpoint/return acknowledgement. The new native closing records are anticipated only; source/extent/identity mismatches and missing original returns refuse. A separate GPU/producer entry observer exports owned entry state for independent original checking. Fresh source-bound live recovery passes32 actual guarded returns/45,448 descriptors/1,235 completed checkpoint assertions, zero surfaces/image fallback, warm34.98ms native/91.99ms delivery excluding measured diagnostics and cold320.56ms. Both queue2 peer-death tests terminate and clean up private Wine; the subsequent fresh session recovers. Independent original comparison is tracked separately; no original unbounded or normal-mode stage is promoted.
+
+`NR.world-rolling-hardware.nvidia-20261010` validates512 CPU/GPU completions and ordered ACKs on NVIDIA TITAN RTX EGL with1224 saved checkpoint hashes,480 synthetic continuations/eight changed requests, bounded caches and zero surfaces. Continuation27.55ms median/35.49ms p95/49.82ms max, cold251.82ms and1.5MiB growth pass unchanged limits. Five Debug fixtures pass separately on software Xvfb. This establishes headless hardware completion, not live simulation/widgets/desktop/scanout.
+
+`RS.world-rolling-handoff-equivalence` adds fresh scoped original comparison/headless integration:45,448 exact original raster/low16AX checks/21,815,040,000 canvas WORDs,1,235 checkpoints/557,276,912 WORDs and all32 live reply finals equal native replay, plus five native fixtures. Original destination pixels are never native inputs. Original executable/source/input/frozen dependency proofs are preserved; comparison is limited to captured sources/callers, with original unsupported branches/complete session/uncaptured gameplay still open. Committed d412789 review covers27 exact transitions/zero missing receipts; concurrent d412789..d6e32e9 review covers66 transitions/zero missing receipts and remains separate from this isolated branch.
+
+`HOST.native-campaign.remaining-gameplay-20261010` is a separate fresh native menu/command session with successful summon, player lethal combat, Fireball damage, rejected casts, physical movement,25 portrait recenter cycles, native Mini/resume and normal Quit (exit0).8642 native frames/6478 paints, zero fallback/recovery; portrait interior57.171seconds at20.0101native/paint FPS, worst19.9275FPS, stable face error<=1. This is software Xvfb; original simulation/drawing remain active. Neither that session nor NVIDIA synthetic replay asserts guarded rolling combat or live hardware input cadence. Historical fingerprints remain unchanged.
+
+The guarded rolling implementation commit0659aa5 has26 exact reviewed parent/current file transitions and zero receipt gaps, separately recorded from this new gameplay evidence. No native source changes accompany this increment.
+
+## Rendering branch integration (2026-10-10)
+
+The committed font/auxiliary-clipping branch and guarded rolling branch are reconciled in an isolated integration checkout. Existing evidence bodies and append-only receipts are retained. Shared CanvasSequence/runtime/launcher edits make earlier rolling evidence historical; fresh combined-source execution is required before claiming current validation. Ongoing uncommitted font layout/backend work in the main checkout is outside this merge.
+
+Fresh combined-source evidence validates53,405 original raster/low16AX results and25,634,400,000 WORDs,1,235 checkpoints/557,276,912 WORDs and32 live-native reply finals, with five Debug fixtures. Original pixels remain outside native inputs. NVIDIA512 replay passes warm29.399median/43.525p95/64.519maxms, cold224.723ms andzero retained growth. Both actual peer-death tests refuse queue2 and stop private Wine. Passing complete32 before faults measures native53.660ms/delivery113.516ms/cold298.186ms; a later recovery passes pixels but fails unchanged delivery120ms at146.423ms. This performance failure remains explicit pending readiness. Disposable checkpoint observations now use checked close and atomic no-replace rename; protocol replies/reports retain durable publication. A40-image publication probe measured579ms QSaveFile versus42ms close/rename and40 fdatasync calls, without claiming whole-path pacing. The two committed branch ranges have124 exact receipt transitions andzero gaps. Continuous original delivery and normal full-path latency remain separate next milestones.
+
+A fresh isolated post-fault recovery then passed32 original returns withnative46.349ms/delivery117.736ms/cold303.947ms on unchangedlimits. The146.423ms failure remains preserved; the narrow delivery margin is a normal-path performance concern, not erased by this passing result.
+
+## Fixed-block continuous original producer (2026-10-10)
+
+The explicit continuous adapter uses a35,869,312-byte two-slot mapped protocol,
+source-owned localV3 blocks with64-bit session generation and real original
+checkpoint/return acknowledgement before reuse. Original destination remains
+NOACCESS until the validated reply; CPU/GPU history persists and Qt presents
+the retained GPU canvas directly. Normal diagnostic images/journal/reply files
+are absent. A source-bound64-queue probe passes99,809 rasters,64 native/original
+completions and64 Qtpaints,zero fallback/remaining surfaces. The initial probe
+correctly refused a concurrently reordered startup journal; continuous emission
+now serializes source definitions/references and sequence/byte allocation.
+The4096-queue/death/recovery milestone is still pending, as is normal whole-path
+pacing: late probe queues take93..98ms through capture and native writeback,
+which is too slow for the intended20Hz target. Independent original equivalence
+beyond the separately compared32 prefix remains open. Source changes leave
+prior finite integration proof historical;45 merge first-parent/current exact
+receipt transitions havezero gaps.
 
 ### Glyph backend caller state and cold coverage — 2026-10-10
 
@@ -4104,6 +4141,16 @@ separate scopes. Higher text layout/reset/lifecycle and wider replacement remain
 open.
 
 
+Continuous rendering performance checkpoint (2026-10-10): the fixed source
+channel now has explicit V2 CRC32C/V5 owned-descriptor guards, direct owned native
+queue consumption, optional CPU reference verification, bounded producer scratch
+and native source leases, and a private GPU/Qt full-path profiler. Historical
+finite32 and64-queue results remain historical. Preliminary128 normal queues
+complete correctly but still fail the unchanged19 FPS budget; the earlier4096
+attempt timed out at observed generation3710. No current4096 delivery or normal
+performance milestone is promoted here. See native-world-continuous.md and the
+preserved source-bound experiments. Public campaign, independent original raster
+comparison, physical display/input and uncaptured branches remain separate.
 ### Native glyph entry and x87 kernel — 2026-10-10
 
 `RS.glyph-backend` now implements the guarded RLE/x87 kernel and an actual
@@ -4678,3 +4725,422 @@ temporary 1200 GiB ceiling for this bounded validation, a 0.1 GiB reservation
 and the unchanged 100 GiB free-space floor. The guarded execution passed with
 about 1125 GiB existing working usage and 203 GiB free. The task-local policy
 was retained under working/tests/draw03; the repository default was not changed.
+
+## GPU frame ownership milestone (2026-10-10)
+
+`NR.world-gpu-resident-frame.history-32-20261010` proves native GPU canvas history over 32 retained World queues (66,529 raster requests, 15,360,000 RGB565 words), zero delivery/World readbacks, separate diagnostic comparisons and zero retained surfaces after teardown. The 512-frame synthetic and legacy controls also pass. This is source-only replay against an independently composed native CPU reference, not independent original pixel equivalence or live acknowledgement delivery. Actual original World writebacks and real DirectDraw remain active in the existing live mode.
+
+Fresh shared image, fade and font regressions pass after canvas mirroring. Glyph live shadow/takeover and installed movie-frame decoding pass on the merged source. Enabled startup intros remain pending: the explicit enabled-preferences run-d6sbsph2 produced no media requests and timed out; its report is retained. Historical evidence has not been rewritten. Next milestones are versioned acknowledgement-only live delivery with zero GPU exports/original World writebacks, followed by replacement DirectDraw factory/interface/storage/lifecycle/presentation services with real DirectDraw disabled. The 19 FPS target and whole-session gameplay remain unproved.
+
+## V4 resident delivery checkpoint (2026-10-10)
+
+`NR.world-gpu-ack-delivery` has bounded live observation:4,096 original/native returns and native Qt presentations,6,770,930 raster requests, zero native readbacks/pixel replies/original World writebacks, zero retained surfaces and bounded caches/RSS. Independently owned CPU source patches now use sparse GPU coverage rather than thousands of row uploads. The current512 synthetic/legacy +32 retained-input native CPU/GPU history comparison passes separately; it does not assert independent original pixel equality. Both producer/consumer death at generation34 refuse terminally and a fresh128-queue recovery completes.
+
+Performance remains failed:16.1786FPS,44ms median/58ms p95/664ms maximum original World duration in the long run. Neither19FPS nor60FPS is promoted. Original DirectDraw and outside-World original drawing remain active; the original CPU World canvas is stale after a resident ACK, so arbitrary original pixel reads/picking and whole-session gameplay are separate unproved boundaries. The launcher now admits only the exact selected V3 or V4 immutable envelope and mode. All failure/partial performance reports remain in the experiment-history catalog. The committed597005a first-parent range has174 exact file transitions with matching receipts; its journal is preserved without retrospective test assertions.
+
+The first isolated native PE32 factory proof now passes128 lifetimes/2,176 selected caller words against real Wine DirectDraw with per-interface reference counts and canonical IUnknown identity. The native probe has ddraw disabled, no module loaded, no DirectDraw imports and zero retained factory owners. A null output pointer faults the original Wine factory and is excluded from the common valid-caller corpus; native safe refusal is a separate policy. Native preserves incoming LastError, while this Wine/Xvfb reference exposes1400; that difference is recorded explicitly, not treated as equivalence. Surface methods currently refuse terminally and the factory is not installed in the game. Full real-game DirectDraw retirement remains pending.
+
+## Native DirectDraw retirement preparation —2026-10-10
+
+The native PE32 graphics slice now admits Draw4 and owned offscreen RGB565
+Surface1/2/4 services. The current isolated64-case comparison matches2,048
+caller words and37,440 full pixel words against Wine11.16, with ddraw disabled
+and absent in the native probe. Eight native refusal policies preserve117 words;
+512 simultaneous tiny surfaces enforce the capacity and release all owners.
+Observed eight-byte pitch and per-interface reference counts correct retained
+initial mismatches. This does not execute original game instructions or retire
+its backend. Primary/flip/clipper/DC/palette, native GPU history CPU dependencies,
+actual original-game loaded-module refusal and public gameplay remain pending.
+
+The separate offline import preparation passes four pinned PE32 staging
+compositions, six original-byte mutation guards and four duplicate staging
+refusals. Original sections and graphics IAT bytes/addresses remain unchanged;
+only copied import metadata selects MnmDraw.dll and its anchor. No loaded-module
+or live replacement status follows from this offline preparation. Original
+artifact manifests pass before/after all artifact-consuming checks. The prior
+native GPU4096-frame delivery remains16.18FPS and fails19FPS; no performance
+status is promoted by isolated storage or import preparation.
+
+## Native graphics startup service admission —2026-10-10
+
+Current isolated clipper/DC service comparison passes64 cases,2,048 caller
+fields and22,464 complete COLORREF/RGB565 words against Wine11.16, including
+DC-during-Lock, repeated DC and Lock/refusal, GDI edits, clipper references and
+zero-resource teardown. A separate native primary/backbuffer policy validates
+351 words across flip and surviving child lifetime, plus duplicate primary
+refusal. Current-source128-case factory and64-case storage regressions also
+pass; previous reservation/link failures remain retained. The common PE32
+builder checks complete compiler/builder closure and rejects DirectDraw imports.
+All native probes disable ddraw and verify no module is loaded. This is an
+isolated startup-services milestone, not real game/driver retirement; clipper
+regions/occlusion and clipped Blt, palettes, unknown methods and actual backend-
+disabled game execution remain pending. Logical modes/primary/flip remain native
+policies, independently separated from original driver behavior.19FPS/60FPS
+remain unproved; the earlier4096-frame delivery's16.18FPS still fails19FPS.
+
+## Backend-disabled native graphics session —2026-10-10
+
+The selected128-frame actual original-engine session completes on TITAN RTX
+through MnmDraw owned PE32 RGB565 storage and native Qt GPU presentation, with
+Wine ddraw disabled/module absent and no terminal unknown method. V4 exports
+zero World pixels/readbacks/replies/writebacks. Original outside-World drawing
+continues. Two guarded dynamic loader strings add24 data-byte exceptions to the
+import-only staging; all other original bytes/instructions remain unchanged.
+Fresh offline proof passes eight compositions/ten mutations/eight duplicates.
+The expanded isolated service proof adds16 startup caller cases/256 words
+matching Wine, including NULL normal cooperative level and Surface3/4 identity,
+plus separate mode/memory/status/unknown-route native policies. Earlier isolated
+reports retain their source hashes; fresh regressions are registered separately.
+
+Performance remains failed:17.6600 original FPS,17.8759 Qt FPS,560 peak GPU cache
+frames against512. The39ms median/53ms p95/72ms maximum World durations and
+114,688-byte RSS growth do not excuse the failed FPS/cache gates. Further work
+must reduce actual cost and enforce the cache limit, then repeat long-run and
+peer-death/recovery testing. Original pixel equivalence, adapter-enumeration live
+reachability, palette/clipped blits/unknown contracts, semantic quit, arbitrary
+combat/casting and60FPS remain separate pending boundaries. The real game uses
+saved device settings and does not enumerate adapters in this selected session.
+No whole-engine replacement or performance promotion is asserted.
+
+## Bounded cache and CPU validity performance increment —2026-10-11
+
+The CPU World validity path crops non-shadow opaque invalidation once while
+preserving transparent history;2,940 independent cases cover five modes, three
+backends, signed extremes and clipped/inverted bounds. Eight selected native
+tests pass with94 reviewed canonical compiler inputs. Metadata pressure now
+evicts the least recently drawn sprite entry while retaining hot neighbours
+on shared pages; pixel pressure retains bounded whole-page eviction. Scoped
+World sessions enforce the existing512-frame atlas cap. Fresh512 synthetic and
+512 legacy-control queues plus32 retained game queues match15,360,000 independent
+native CPU words, with zero delivery readbacks and no remaining GPU resources.
+
+The fresh actual128-frame TITAN RTX run completes with ddraw disabled/absent,
+all128 Qt presentations and zero World readbacks/replies/writebacks. Peak cache
+335 passes512; RSS growth1,474,560 bytes passes32MiB. Performance still fails:
+16.9312 original FPS/17.1461 Qt FPS, World median43ms/p9551ms/max61ms. This
+scene has2,108 final-frame rasters versus1,563 in the previous retained run, so
+its20.49ms native consumption is not a controlled speedup comparison. Producer
+capture15ms/9,516 region queries and14ms between-World work remain charged.
+The failed target/build/dependency-label proof attempts are retained separately;
+only the final source-bound pass is current evidence.19FPS,60FPS, backend-disabled
+long-run/death/recovery, full gameplay and semantic quit remain pending.
+
+A separate current-source CPU sample records527 samples/zero lost and3.01percent
+in CanvasSequence::raster. It reaches19.5003 original/19.7034 Qt FPS in another
+scene, but577ms cold delivery fails500ms. This is a retained profiling discovery,
+not a full performance pass; source and scene variation prohibit a controlled
+percentage-speedup claim.
+
+The unprofiled4,096-frame actual DirectDraw-disabled session then completes
+all4,096 original returns/native completions/Qt presentations, with zero World
+readbacks/pixel replies/writebacks and zero native GPU teardown resources. Peak
+cache321, RSS growth9,097,216 bytes, World median38ms/p9544ms/max66ms and
+cold492.16ms pass unchanged bounds.18.6534 original/18.6580 Qt FPS still fail19;
+this is a functional sustained retirement slice, not a performance pass or
+original semantic COM quit proof.
+
+## DirectDraw-disabled peer failure and recovery —2026-10-11
+
+Both private consumer-death and original-producer-death controls pass at
+outstanding generation34 with ddraw disabled. Each requires the expected
+terminal refusal, no successful completion claim, stopped private Wine,
+unchanged MnmDraw.dll and96-byte diagnostics showing native factory/surface
+startup, real module absence and bounded resources. These are forced private
+process controls, not original semantic COM Quit.
+
+A fresh128-frame session after both controls completes all original returns
+and Qt presentations with zero World readbacks/replies/writebacks and zero
+GPU teardown resources. Every unchanged budget passes:19.5181 original/19.7385
+Qt FPS, World median35ms/p9539ms/max44ms,cold447.63ms,cache306 and RSS growth
+274,432 bytes. This establishes bounded fresh-session recovery/performance;
+previous4,096-frame18.6534FPS failure remains retained. Arbitrary-scene sustained
+19FPS,60FPS, original pixel equivalence, semantic Quit and public menu/gameplay
+DirectDraw-disabled coverage remain pending.
+
+The sustained current-source4,096-frame recovery then passes every unchanged
+performance/resource gate:19.5419 original/19.5453 Qt FPS, warm World median36ms/
+p9540ms/max61ms,cold439.45ms,cache366,RSS growth9,068,544 bytes. All4,096
+original returns/native completions/Qt presentations complete with zero World
+readbacks/replies/writebacks and zero GPU teardown resources. This proves the
+selected sustained19FPS milestone with the real backend absent; the retained
+other-scene18.6534FPS failure prevents an arbitrary-scene performance claim.
+The public native menus/campaign route still uses its older graphics bridge;
+its backend-disabled integration,60FPS and full gameplay/semantic Quit remain
+separate outstanding retirement work.
+
+## Public native menus with owned graphics —2026-10-11
+
+The opt-in public Qt Launch/New Game/Region Enter/campaign/Escape/Mini Cancel/
+resume journey passes with composed MnmDraw/MnmMenu/MnmRender, Wine ddraw
+disabled/module absent and no unsupported native method log. Same-thread
+original callbacks/World initialization/resume, native command paints and
+screenshots remain required.227 Qt compiler inputs,8 native PE32 compiler/
+builder sources and1,111 immutable executable/DLL/graphic inputs are bound
+and stable; original manifests pass before/after.18 existing fail-closed report
+checks pass. Builder failure and earlier source-only/provenance increments
+remain separate historical records.
+
+This route retains original CPU drawing and does not claim V4 World-body
+suppression. Public stress throughput/casting/combat/semantic Quit, native
+graphics defaults and the other ordinary OpenGL launch route remain pending.
+The separate selected4,096-frame TITAN V4 run's19.54FPS/zero World pixel
+roundtrip proof remains intact; public basic flow is not a throughput claim.
+
+
+The2026-10-11 [public gameplay proof](native-draw-public-gameplay-pass-20261011.json) completes a difficulty3 campaign through native menus/command presentation with real ddraw disabled and absent. Successful Zombie casting, player melee/lethal enemy depletion, physical movement, blocked spell attempts, player Fireball, nine portrait recenter cycles, Mini/resume and normal original Quit pass. The19FPS aggregate stress gate passes: combat command/paint36.7755/25.6537FPS over115.539seconds; resumed59.8363/34.6316 over60.465seconds. Worst whole-flow window11.9266FPS remains explicit. Stable portrait interior17.99seconds gives20.0111FPS, worst19.2484 and maximum channel error1. Compiler/source/input fingerprints remain stable;18 validator checks and original manifests before/after pass. Forced termination does not supply this normal-Quit proof, and normal Quit does not assert semantic COM reference cleanup.
+
+The new `test-native-campaign.py --hardware` creates and stops a private NVIDIA display and refuses software fallback. [Hardware failures](native-draw-public-hardware-negative-artifacts-20261011.json) remain failures: difficulty1 native and real-DD control both fail summoning with stopped World snapshots; their activation cause is unconfirmed. Difficulty3 advances World but reaches a50ms bounded copy-order timeout (observed64/65ms), invalidates history and refuses GAP/falls back. No native graphics unknown-method record appears; absence alone cannot establish successful gameplay. NVIDIA public gameplay/defaults and the other OpenGL launch route remain pending. This public route still executes original CPU drawing; the independently proven V4 World pixel-roundtrip removal remains a separate selected19.54FPS milestone.
+
+
+2026-10-11 bounded copy contention yielding: `Sleep(1)` preserves50ms refusal/original-once policy and passes eight independent PE32/GPU fixtures (13 full-frame comparisons;4 successful/4 refused sessions). The fresh [private NVIDIA public campaign](native-draw-public-nvidia-gameplay-pass-20261011.json) passes full casting/combat/movement/spells/portrait/Mini/resume/normal Quit with real ddraw disabled/absent, stable sources/compiler/1111 graphics inputs, original manifests before/after and no fallback/recovery. Combat command/paint33.3999/25.1262FPS; resumed59.8223/31.5958. The aggregate19FPS gate passes while worst resumed18.2648FPS remains visible. NVIDIA/zink acceleration is checked by glxinfo; final Qt identity is cleared on normal Quit and should be persisted. Prior hardware failures stay historical. No controlled speedup, universal19/60FPS or native World body/V4 integration claim. Public native defaults and the other OpenGL launcher still require retirement and fresh proofs.
+
+
+2026-10-11 public native menu defaults: native menus+command launches select owned graphics without MNM_NATIVE_DRAW opt-in; explicit0 remains a diagnostic legacy control. The [current default basic TITAN proof](native-draw-public-default-basic-pass-20261011.json) passes Main/Region/campaign/Escape/Mini Cancel/resume, native frames/paints, actual Qt zink/NVIDIA TITAN RTX identity, disabled/absent real ddraw, canonical compiler/input/source stability and original manifests before/after. The smoke automatically saves prospective claims before building/launching when omitted; renderer identity survives test teardown.18 validator checks pass. The [first extended default run](native-draw-public-default-gameplay-defeat-20261011.json) completes casting/combat/portrait but later has an inactive zero-health wizard and fresh Main, correctly failing the required journey; it is not a rendering pass or an engine workaround. Current default stress/normal Quit and the other ordinary OpenGL launcher remain outstanding. Earlier full NVIDIA gameplay remains historical after these source/contract changes; no old hashes are refreshed.
+
+## Default standalone owned graphics startup — 2026-10-11
+
+`NR.directdraw-native-opengl-launch` adds fresh bounded proof through the actual
+standalone OpenGL staging/runner path: default MnmDraw, real ddraw disabled and
+absent,20 native main-menu frames on actual Qt/NVIDIA TITAN RTX, no ordinary GPU
+readback/upload/recovery, compiler/builder/generator/input fingerprints stable
+and consumer resources zero after bounded abort. The native Qt menu/command
+route already defaults to owned graphics. Legacy diagnostic launchers retain
+explicit original comparison support. Gameplay/FPS/movies/normal Quit and
+semantic original COM teardown are not asserted by standalone startup.
+The full default campaign rerun failed presentation/recovery and remains a
+negative result. Prior gameplay/performance evidence retains its original
+hashes and separate scope. The f874d7b parent/current receipt audit covers11
+committed transitions with zero missing receipts; no retrospective execution or
+past gate claim follows. [Details](native-draw-device-surfaces.md).
+
+## Bounded atomic-owner wait fixtures — 2026-10-11
+
+`NR.bounded-copy-order` preserves the50ms policy while replacing contended
+Sleep polling with atomic address wait/release wake. The Kernel32 wake stub
+failure is preserved; KernelBase is used on modern Windows/Wine. Eight fresh
+copy/lock/DC/flip fixtures pass independent complete pixels, return/LastError,
+original call counts, four successful sessions/four expected refusals and native
+cleanup. Live default NVIDIA gameplay is validated separately. Earlier shared
+source results retain their hashes and pending freshness. The eb52c3a commit
+receipt audit covers19 exact transitions, zero missing receipts, without a
+retrospective gate or new execution claim. [Details](opengl-copy-order.md).
+
+## Full default native NVIDIA campaign — 2026-10-11
+
+`NR.directdraw-public-native-menu` has fresh full default (no opt-in) execution
+on actual Qt/NVIDIA TITAN RTX: successful casting/combat/movement, spell refusal
+and Fireball, nine portrait cycles, Mini/resume and normal Quit, real ddraw
+absent and no unknown call/recovery/fallback. The19FPS gate passes with
+25.2133FPS combat paint,31.1704 resumed paint and worst measured gameplay
+window19.9456FPS. Compiler/source/installed inputs remain unchanged. Earlier
+long-ownership failures are retained; stage diagnostics do not establish a
+controlled fix or universal19/60FPS. Original CPU drawing in the public flow
+and separate V4 native World delivery remain distinct. [Fresh evidence](native-draw-public-default-full-nvidia-pass-20261011.json).
+
+The final strict public rerun additionally binds44 rendering compiler/builder
+and28 generator/schema inputs prospectively. Full casting/combat/portrait/resume/
+normal Quit passes with no fallback/recovery/real ddraw and active gameplay paint
+windows >=19.8610FPS. The separate current4096-World result fails full-path FPS:
+40ms median World work plus14ms between World frames,8941 region queries/frame.
+All deliveries and paints complete, but performance remains a failure. These
+milestones are recorded independently. The d29a37c receipt audit covers14 exact
+transitions without gaps or retrospective execution claims.
+
+
+## Fog readability window and current4096 performance (2026-10-11)
+
+Continuous tag45 fog copying resets a checked readable-memory window for each
+admission. It reuses region protection proof only within that synchronous loop,
+with no original callback or retained cross-queue pointer proof. Fog bytes and
+signed comparisons stay unchanged; legacy noncontinuous checks stay per-cell.
+The independent memory fixture admits8192 bytes using2 region queries versus
+8192 fresh checks, and refuses guard/uncommitted/null/overflow boundaries and
+protection changes on the next admission. Assertions and ASan/UBSan pass.
+
+The source-bound [4096 run](research/runtime/native-fog-window-4096-pass-20261011.json) passes all
+unchanged budgets on actual TITAN RTX accelerated Zink:19.8825 original and
+19.8868 painted FPS,cold451.04ms, all-warm4033 World samples median36/p9540/max67ms,
+cache492/512,RSS growth9,388,032 bytes. All4096 returns and paints are checked;
+coalescing, pixel replies, original World writebacks and GPU World readbacks are
+zero. Real ddraw is disabled/absent. Last1023 region queries median7635; differing
+scenes preclude a causal paired speedup claim. The earlier128 run failed its
+unchanged500ms cold limit at535.73ms despite warm19.80/19.98FPS and complete delivery.
+
+A subsequent full public campaign separately fails copy-order admission: its
+surface_lock holder reached105ms and longer. This does not invalidate World
+transport measurements or establish robust public gameplay. Public V4 fusion,
+arbitrary-scene19/60FPS, original pixel equivalence and semantic COM Quit remain
+separate unfinished milestones. Historical hashes and failures are preserved.
+
+The native diagnostic-file increment isolates a reproduced rendering-lease stall
+inside Wine CloseHandle (native status stage5,76..271ms) and moves handle closure
+out of drawing callbacks. One startup-owned handle publishes unchanged96-byte v2
+records under nonwaiting diagnostic writer admission; per-call module checks,
+LastError and terminal error policies remain. Independent1024-overwrite assertions
+and ASan/UBSan pass. Fresh default public TITAN casting/combat/spell/portrait/resume/
+normalQuit passes19FPS with no real ddraw, fallback or recovery. Source-bound
+historical World19.88FPS remains; current4096/fault revalidation and repeated
+transition/copy/DC/flip checks are pending. This does not integrate V4 World into
+the public command path or establish allscene19/60FPS/original equivalence/COM Quit.
+
+Current status-file three-cycle TITAN repeat passes19FPS and normalQuit, with no
+copy timeout/recovery/fallback. Eight current copy/Lock/DC/Flip fixtures preserve
+13 full-frame comparisons and expected50ms refusals, zero ordinary readback/upload/
+teardown surfaces. Actual selftest compiled closure is42 (older stage-fixture
+prose44 was an overcount; immutable mapping retained); production bridge is44.
+64 current native service comparisons preserve2048 caller/22464 pixel words and
+351 policy words against Wine DirectDraw with native ddraw disabled/absent and
+zero native resources. Current World4096/fault revalidation remains pending.
+
+Current source-bound4096 TITAN World delivery after the diagnostic-file fix passes
+all unchanged19FPS/resource gates at19.9697 original/19.9731 painted FPS,cold459.699ms,
+4033 warm World samples median35/p9540/max60ms,RSS growth11,182,080 bytes. All4096
+returns/completions/paints,zero coalescing/World readbacks/pixel replies/writeback/
+native GPU teardown surfaces and real ddraw disabled/absent are checked. Both
+current producer/consumer deaths refuse at generation34; a subsequent fresh128
+session passes19.7653/19.9622FPS,cold472.004ms and all other budgets without slot
+reuse. Actual standalone default OpenGL launcher also passes21 native menu frames
+on actual TITAN Zink,zero ordinary readback/upload/recovery and zero bounded-abort
+consumer resources. Default public native menus/command gameplay has separate
+fresh full casting/combat/spell/portrait/resume/normalQuit and three-cycle proofs.
+The public route still draws World on original CPU; public V4 fusion,full standalone
+gameplay/movies/FPS/normalQuit,allscene19/60FPS,originalpixel equivalence and semantic
+COM cleanup remain separate milestones. The observed original50ms frame cadence
+is still a boundary to unique60FPS World updates. Historical failures/hashes remain.
+
+### Native fade row damage and canonical dependency reporting (2026-10-11)
+
+`NR.canvas-fade-row-damage` records one damage update per affected fade row,
+with complete unknown-pixel prevalidation before any mutation. Independent
+original58ed80 comparison passes972 cases/1,738,592 words;126 mirror projection
+cases,11 atomic refusals and ASan/UBSan pass. Relative prepared-root reporting
+now exposes the102 aggregate compiler/fixture paths previously prechecked;
+earlier94-input prose is corrected, without refreshing historical hashes.
+Normalized4096 cold502.500ms and separate perf cold505.320ms failures remain
+preserved against the unchanged500ms limit. Source changes leave prior World,
+public and standalone proofs historical; fresh performance/integration is
+pending. This does not assert publicV4fusion,60FPS,movies,full DirectDraw API or
+original-driver/semantic COM teardown equivalence.
+
+Fresh102-input Release-O3 TITAN128 World evidence passes all unchanged gates:
+cold450.270ms, original19.6259/Qt19.8767FPS, all-warm65 median39/p9549/max57ms,
+zero World readbacks/replies/writebacks/coalescing and remaining surfaces. See
+[native fade World128](native-fade-row-world128-pass-20261011.json). Longer4096,
+peer-death/recovery and current-source public/standalone regression executions
+remain the next separate milestones; no paired causal speedup is claimed.
+
+### Native DirectDraw retirement: current long-run World milestone (2026-10-11)
+
+Current102-input Release-O3 TITAN4096 passes every unchanged gate: all4096
+original returns/native completions/Qt paints, original19.9362/Qt19.9390FPS,
+cold405.796ms,all-warm4033 median36/p9542/max65ms,RSS growth6,565,888 bytes.
+Zero World readbacks,pixel replies,writebacks/coalescing and teardown surfaces;
+real ddraw disabled/absent. Relative prepared-root reporting exposes the complete
+actual compiler/fixture mapping and all source/frozen/input pins remain stable.
+[Proof](native-fade-row-world4096-pass-20261011.json). This establishes the
+selected long-run no-pixel-roundtrip path and19FPS target, not universal scenes,
+60FPS,publicV4fusion,movies,original pixels or semantic COM teardown. Peer-death
+and fresh recovery,public gameplay and standalone startup regressions remain
+separate current-code milestones. The26-file2d8a57f committed range has complete
+parent/current receipts, with no retrospective execution assertion.
+
+### Current native peer failures and fresh recovery (2026-10-11)
+
+Both current102-input TITAN controls kill the owned producer or consumer at
+outstanding generation34, require the expected terminal refusal and stopped
+private Wine, and forbid a completed-session claim. Real ddraw stays disabled
+and absent with bounded resources. A fresh128 session after both controls passes
+all unchanged budgets: cold386.921ms,original19.6863/Qt19.8794FPS,warm65
+median38/p9545/max58ms,RSS growth4,497,408 bytes;all128 returns/paints and zero
+World readbacks/replies/writebacks/coalescing/remaining surfaces. See
+[producer](native-fade-row-producer-death-pass-20261011.json),
+[consumer](native-fade-row-consumer-death-pass-20261011.json),
+[recovery](native-fade-row-recovery128-pass-20261011.json).
+The6-filede707e7 committed range has exact parent/current receipts with no gaps.
+This is bounded private fault/recovery evidence, not fairness,semantic COM Quit,
+publicV4fusion,full API,movies,60FPS or allscene compatibility.
+
+### Native status mapped view: eliminate drawing file IO (2026-10-11)
+
+Fresh public full campaign fails resumed gameplay after combat/portrait exercise:
+GAP/fallback,BltFast phase3 held82/146ms and native status stage4 oldWriteFile.
+[Failure](native-draw-public-status-write-failure-20261011.json) is preserved.
+`NR.native-draw-status-session-file` now uses a startup-owned96-byte file-backed
+view; admitted callbacks only perform bounded memory snapshots plus unchanged
+per-call module check. Explicit flush/unmap/close occurs only at teardown.
+Independent1024 guarded snapshot/assertion/ASan/UBSan controls pass; actual
+Wine/native64 service cases/22,464 pixels,16 startup cases/256 words and351 policy
+words pass with final96-byte status readability and zero resources. No worker
+or unload-policy change. Crash/concurrent external-read atomicity and OS paging
+latency are excluded. Current public,World4096,peer/fresh recovery and standalone
+proofs are pending after the DLL change; historical statuses/hashes remain.
+The8-file283e9dc committed range has exact parent/current receipts and no gaps.
+
+Mapped-status current-source full default TITAN public campaign passes:
+casting/summon,combat damage,movement,Fireball damage and invalid-target/
+insufficient-mana refusals,nine portraits(maximum channel error1),native Mini
+Quit No/resume and normal original Quit; all requested19FPS gates pass. Native
+PE499bd552 and actual8 native/44 renderer/28 protocol compiler-builder inputs,
+Qt and installed inputs are stable,real ddraw disabled/absent,no unknown method,
+recovery or fallback. [Proof](native-draw-mapped-status-full-nvidia-pass-20261011.json).
+This fresh live execution supports the mapped contract's live_observation stage;
+earlier pending review and WriteFile failure remain historical. It does not
+assert publicV4fusion,60FPS,fullscene pixels,full API or semantic COM teardown.
+
+### Native rendering batch complete: mapped-status final proofs (2026-10-11)
+
+Current mapped-status DDS passes the complete resident World4096 TITAN run:
+engine19.90895/Qt19.91260FPS,all4096 returns/completions/paints,cold499.079784ms
+against the unchanged500ms gate (narrow margin),warm4033 median38/p9544/max66ms,
+RSS growth9,478,144 bytes. Zero World GPU readbacks,pixel replies,writebacks,
+coalescing and remaining surfaces;real ddraw disabled/absent. Both owned peer
+kill controls at generation34 terminate as expected,stop private Wine and make
+no completed-session claim. Fresh128 recovery after both controls passes all
+unchanged gates:cold426.446818ms,engine19.75309/Qt19.96922FPS,warm65 median34/
+p9540/max52ms,RSS growth364,544 bytes. All102 actual compiler/fixture inputs,
+source/frozen/installed inputs and original manifests remain stable. See
+[World4096](native-draw-mapped-status-world4096-pass-20261011.json),
+[producer death](native-draw-mapped-status-producer-death-pass-20261011.json),
+[consumer death](native-draw-mapped-status-consumer-death-pass-20261011.json),
+[recovery128](native-draw-mapped-status-recovery128-pass-20261011.json).
+
+Current default standalone OpenGL startup on actual Qt TITAN reaches20 native
+menu frames/5311 commands with no ordinary GPU/RGBA readbacks,viewport uploads
+or recovery and zero consumer resources at bounded abort.35 actual compiler
+inputs plus the native DDS builder/protocol/installed closure remain stable;
+real ddraw is disabled/absent. A later explicit snapshot is artifact capture,
+not ordinary presentation. [Standalone proof](native-opengl-mapped-status-startup-pass-20261011.json).
+Together with the preceding fresh public casting/combat/spells/portraits/resume/
+normal Quit proof,this completes the current default-native retirement batch.
+Raw final artifacts retain new exact hashes;historical evidence is preserved.
+The14-file8084ee1 committed range has exact parent/current receipts with no gaps.
+
+This is selected-session native policy and bounded execution evidence,not full
+DirectDraw API/movie/original-driver pixel/semantic COM equivalence. Public V4
+resident World fusion remains outstanding:the public frontend still invokes
+original CPU World drawing.60FPS and wider scene coverage remain future work;
+19FPS is proven only for the exercised scenarios,not universally.
+
+### Native render integration into master (2026-10-11)
+
+Combined the native GPU mirror/invalidation route with master's atomic CPU writer preflights and drawing-publication cleanup. The merge preserves both contracts. Master/native committed history is reviewed separately from current source validation; historical records and their hashes remain unchanged. The current integration retains public original CPU World drawing and the20FPS original pacer; public V4 GPU fusion and60FPS remain future milestones.
+
+Current combined-source regression proofs: canonical fade972cases/1738592words with126mirror cases/11atomic refusals and ASan/UBSan; atlas8CTest fixtures; owned GPU32-queue history with512synthetic and512legacy controls; DRAW-03 canonical85 compiled-input session lifecycle/runner plus six expected complete planes99pixels; guarded32-queue live handoff and independent original raster pixel/AX comparison. NVIDIA rolling512-queue hardware proof passes unchanged budgets (warm median29.331464ms, cold287.001429ms). These are scoped independent milestones, not full-frame original driver equivalence.
+
+The first combined public smoke exposed a bounded drawing lease timeout while ordinary diagnostic binary captures were enabled. Normal native sessions now omit those optional lock/blit/update binary exports under the existing explicit archive switch; explicit archive/finite observation remains available. The suite checks the normal session emits none. No lock timeout or performance budget was increased. Later attempts completed summon, melee/lethal combat, Fireball, invalid-target and insufficient-mana refusals and portrait stress without rendering fallback/recovery, but the wizard died in resumed camera stress before Quit. Those full journeys remain failures. The current exercise adds actual observed ordinary ground movement during resumed stress; no game-state, health, AI or balance writes.
+
+The first merged4096 resident proof passed19.85835 engine/19.86225 QtFPS and all resource/roundtrip gates, with cold499.93009ms against500ms. It predates the ordinary archive policy change and is retained as historical. The current source resident proof and full public/standalone launch must supersede it before current integration promotion. The cold margin is narrow; neither60FPS nor broad hardware/scenario performance is established. Compiler-closure refusal attempts and missing-prepared-build setup failures remain preserved with their actual source hashes.
+
+Current merged full public proof is now passed: `native-master-integration-current-public-pass-20261011.json` records actual TITAN summon/melee/lethal combat/movement/Fireball/refusals,9portrait cycles,60-second resumed camera/HUD/rotation/wheel stress with6observed living ordinary ground movements and normal original Quit. Native fallback/recovery are0, optional binary exports empty, private Wine shutdown explicitly verified, sources/compiled inputs/manifests stable. Current standalone20-frame startup, both peer deaths and fresh128 resident recovery also pass independently; recovery warm median41/p9547/max54ms under unchanged gates.
+
+Two current4096 longevity runs remain failures despite sustained19FPS: concurrent warm maximum277ms and separate maximum1070ms exceed150ms. Separate run median35/p9543/cold416.377371ms, engine19.838614/Qt19.842055FPS and roundtrip/resources all pass. The final1024 detailed rows lost the earlier worst sample; this is a diagnostic visibility gap, not permission to waive the full-history maximum. Read-only completed-slot timing observation plus original wait tracing is being used to locate the stall; it does not alter leases, acknowledgements, game rules or budgets. Bounded128 retirement/recovery status and original raster comparisons are independent from4096 latency robustness.
+
+The current untraced4096 TITAN rerun now passes all unchanged gates: engine19.963756/Qt19.969541FPS, warm4033 median35/p9541/max60ms, cold454.810426ms, RSS growth12664832bytes;all4096 returns/completions/paints,zero World readbacks/pixel replies/writebacks/coalescing/remaining surfaces. Read-only double-snapshot timing covers all4096 generations and confirms warm maximum60ms. The selected native residency/retirement milestone is passed for this run. Earlier277/1070ms failures and traced17.6FPS failure remain registered artifacts;root cause and universal concurrency/long-tail robustness are not established. No budget was relaxed. Concurrent master optional DRAW-02 journal admission is included;its default native public/standalone routes are revalidated independently.
+
+Latest-master default native full public and standalone reruns are passed after the optional DRAW-02 admission header change. The full campaign again records casting/combat/Fireball/refusals,9portrait cycles,6observed resumed living ground movements,normal original Quit,zero fallback/recovery,empty ordinary binary archives and verified private Wine shutdown. Current statuses are supported by scoped fresh records;full driver/API/movie/semantic COM equivalence,publicV4 GPU fusion and60FPS remain pending. Prior failed long-tail tests are preserved;the clean4096 success does not establish universal concurrent-load latency.
+
+### Final master-integration accounting and optional legacy reruns (2026-10-11)
+
+The live rolling fade header was already an explicit validation dependency, compiled and SHA-256 pinned in the passing `run-ta3zgqhe` execution. A later duplicate implementation-role link changed only the contract identity. Removing that redundant link preserves the entire required-source set and restores the exact pre-execution contract `50836feb00d6716d16f814d6654efe06b31f969ad6e9a3cad6e650a927ae4294`; no historical result or source fingerprint was refreshed. The hardware target retains its independently reviewed implementation link.
+
+Additional optional legacy software pixel-return reruns are preserved in `native-master-integration-rolling-file-sequence-failure-20261011.json`, `native-master-integration-rolling-delivery-latency-failure-20261011.json`, and `native-master-integration-rolling-independent-latency-failure-20261011.json`. One captured file stream skipped sequence507 (producer file-write race remains a hypothesis); two complete32-queue functional runs exceeded the unchanged120ms delivery median budget at123.243469ms and138.553323ms. No performance budget or historical evidence was altered. These failures leave legacy file-stream robustness and repeatable software-route latency pending; they do not establish universal native performance. Selected default TITAN V4/public gameplay evidence remains separately scoped.

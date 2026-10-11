@@ -243,7 +243,7 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
     if(s->data)__atomic_sub_fetch(&lock_capture_reserved,s->length,__ATOMIC_RELAXED);
     if(slot && result>=0){
         slot->active=0; /* Failed Unlock retains the descriptor for a subsequent application retry. */
-        if(s->data && lock_capture_count<16 && s->length<=64*1024*1024-lock_capture_bytes){
+        if(game_session_archive && s->data && lock_capture_count<16 && s->length<=64*1024*1024-lock_capture_bytes){
             u32 id=++lock_capture_count;lock_capture_bytes+=s->length;
             char* tail=lock_capture_path+lock_capture_path_length;copy(tail,"\\lock-",6);failure_hex(tail+6,id);copy(tail+14,".bin",5);
             HANDLE file=CreateFileA(lock_capture_path,0x40000000,1,0,1,0x80,0);
@@ -255,7 +255,7 @@ static void game_unlock_after(struct GameUnlock* pending,i32 result){
                 if(write_all(file,header,header[3]))write_all(file,s->data,s->length);CloseHandle(file);
             }
             game_update_commands(slot,s,id);
-        }else if(s->data){lock_diagnostic("unlock_recording_limit",pending->object,pending->kind,0,pending->flags,result,pending->owner,0);}
+        }else if(game_session_archive && s->data){lock_diagnostic("unlock_recording_limit",pending->object,pending->kind,0,pending->flags,result,pending->owner,0);}
     }
     /* Diagnostic file budgets never gate checkpoint maintenance or publication. */
     if(slot && result>=0 && s->data){

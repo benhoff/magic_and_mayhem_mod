@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage and launch the pinned game with the DirectDraw frame bridge for Qt."""
+"""Stage and launch the pinned game with owned graphics and the Qt frame bridge."""
 import argparse
 import hashlib
 import importlib.util
@@ -78,7 +78,13 @@ def main():
     parser.add_argument('--capture-locks',action='store_true',help='Capture bounded game-owned Lock/Unlock buffers without extra locks')
     parser.add_argument('--no-readback',action='store_true',help='Diagnostic: log game calls without extra surface locks or Qt frames')
     parser.add_argument('--skip-movies',action='store_true',help='Disable movie playback only in the disposable staged preferences')
+    parser.add_argument('--prefix',type=Path,help='Owned private Wine prefix under working/; default remains this worktree prefix')
     args=parser.parse_args();args.capture_draws |= args.capture_history
+    selection=os.environ.get('MNM_NATIVE_DRAW','1')
+    if selection not in ('0','1'):raise ValueError('Invalid native graphics selection')
+    native_draw=selection=='1'
+    prefix=(args.prefix or REPO/'working/wineprefix-x86_64').resolve()
+    if not prefix.is_relative_to(REPO/'working'):raise ValueError('Native launch prefix must be under working/')
     word_mode=os.environ.get('MNM_WORD_SPRITES','')
     if word_mode not in ('','shadow','takeover','clip-shadow','clip-takeover'):raise ValueError('MNM_WORD_SPRITES must be shadow, takeover, clip-shadow or clip-takeover')
     args.capture_locks |= bool(args.command_channel)
@@ -117,14 +123,25 @@ def main():
         if not voice_path.is_relative_to(REPO/'working'):raise ValueError('Voice channel must be under working/')
         with voice_path.open('rb') as file:
             if voice_path.stat().st_size!=128+16*1024*1024 or file.read(16)!=b'MNMAUD01'+(2).to_bytes(4,'little')+(128+16*1024*1024).to_bytes(4,'little'):raise ValueError('Invalid voice channel')
-    stage=load('shadow_stage','tools/prepare-shadow-experiment.py');source=REPO/'working/game-nocd';data=(source/'Chaos.exe').read_bytes()
+    stage=load('shadow_stage','tools/prepare-shadow-experiment.py');source=(REPO/'working/game-nocd').resolve();data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=stage.HASH:raise ValueError('Unsupported game hash')
     dll=load('render_build','tools/build-render-bridge.py').build()
     parent=REPO/'working/experiments/opengl-render';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));game=root/'game'
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
+    if game.is_symlink() or game.resolve()==source:
+        raise ValueError('Disposable staging aliases its source')
+    for name in ['Chaos.exe','MnmDraw.dll','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
+        if not (game/name).resolve().is_relative_to(game.resolve()):
+            raise ValueError('Disposable write target escapes game copy: '+name)
     if hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest()!=stage.HASH:raise ValueError('Copied game hash changed')
-    patched=stage.add_import(data,dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl')
+    patched=data;draw_dll=None
+    if native_draw:
+        draw_dll=load('native_draw_build','tools/build-native-draw.py').build(root/'native-draw-build')
+        patched=load('native_draw_import','tools/prepare-native-draw.py').redirect(patched,enumeration=True)
+        shutil.copy2(draw_dll,game/draw_dll.name)
+        shutil.copy2(draw_dll.parent/'manifest.json',root/'native-draw-build.json')
+    patched=stage.add_import(patched,dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl')
     word_dll=None
     if word_mode:
         exporter=load('word_site','tools/export-menu-support.py')
@@ -150,6 +167,11 @@ def main():
     cd_edits=disable_cd_music(game)
     metadata={'cd_music_disabled':True,'cd_music_preference_edits':cd_edits,'capture_locks':args.capture_locks,'no_readback':args.no_readback or args.capture_locks,'failure_log':str(root/'surface-failures.log'),'skip_movies':args.skip_movies,'movie_preference_edits':movie_edits,'origin':'directdraw_opengl_presentation','source_sha256':stage.HASH,'stream':str(stream),
               'staged_sha256':hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest(),'capture_history':args.capture_history,'graphics_environment':{key:os.environ.get(key,'') for key in ('LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','WINE_D3D_CONFIG')},'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest()}
+    metadata.update(native_draw=native_draw,native_render=bool(command_path),native_draw_sha256=hashlib.sha256(draw_dll.read_bytes()).hexdigest() if draw_dll else None,native_draw_status=str(root/'native-draw-status.bin') if native_draw else None)
+    if native_draw:
+        metadata['origin']='native_graphics_opengl_presentation'
+        inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx')}
+        (root/'input-fingerprints.json').write_text(json.dumps(inputs,indent=2)+'\n')
     metadata['voice_channel']=str(voice_path) if voice_path else None
     metadata['audio_dll_sha256']=hashlib.sha256(audio_dll.read_bytes()).hexdigest() if audio_dll else None
     metadata['media_channel']=str(media_path) if media_path else None
@@ -200,8 +222,9 @@ def main():
     env.pop('MNM_RENDER_CAPTURE_DIR',None);env.pop('MNM_RENDER_HISTORY',None)
     if args.capture_history:env['MNM_RENDER_HISTORY']='1'
     if args.capture_draws:env['MNM_RENDER_CAPTURE_DIR']='Z:'+str(capture).replace('/','\\')
-    result=subprocess.run([str(REPO/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',str(REPO/'working/wineprefix-x86_64'),'--runner',str(REPO/'tools/render-game-runner.py')],env=env,check=False)
+    result=subprocess.run([str(REPO/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',str(prefix),'--runner',str(REPO/'tools/render-game-runner.py')],env=env,check=False)
     binaries=[('Chaos.exe','staged_sha256'),('MnmRender.dll','dll_sha256')]
+    if draw_dll:binaries.append(('MnmDraw.dll','native_draw_sha256'))
     if word_dll:binaries.append(('MnmWord.dll','word_dll_sha256'))
     if audio_dll:binaries.append(('MnmAudio.dll','audio_dll_sha256'))
     for name,key in binaries:
@@ -209,8 +232,6 @@ def main():
     if hashlib.sha256((source/'Chaos.exe').read_bytes()).hexdigest()!=stage.HASH:raise ValueError('Source game changed')
     return result.returncode
 if __name__=='__main__':
-    if os.environ.get('MNM_WORD_SPRITES'):
-        subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-        try:raise SystemExit(main())
-        finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-    else:raise SystemExit(main())
+    subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
+    try:raise SystemExit(main())
+    finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
