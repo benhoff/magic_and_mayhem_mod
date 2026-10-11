@@ -279,6 +279,19 @@ def clean_environment(root):
     return env
 
 
+def validate_native_draw(experiment):
+    metadata=json.loads((experiment/'manifest.json').read_text())
+    if metadata.get('native_draw') is not True or metadata.get('native_render') is not True:raise ValueError('Owned native graphics were not staged')
+    if sha(experiment/'game/MnmDraw.dll')!=metadata['native_draw_sha256']:raise ValueError('Native graphics DLL changed')
+    if (experiment/'game/native-draw-refusal.bin').exists():raise ValueError('Unadmitted native graphics method')
+    raw=(experiment/'native-draw-status.bin').read_bytes()
+    if len(raw)!=96 or raw[:8]!=b'MNMDRW01':raise ValueError('Native graphics status missing or malformed')
+    q=struct.unpack('<24I',raw)
+    if q[2:5]!=(2,96,0) or q[19] or q[23] or not q[9] or not q[10] or q[20]<q[9] or q[22]:raise ValueError('Native graphics startup or module absence failed')
+    if q[5]>64 or q[6]>512 or q[7]>128 or q[8]>64 or q[15]>512 or q[16]>256*1024*1024 or q[17]>128 or q[18]>64:raise ValueError('Native graphics resources exceeded bounds')
+    return dict(ddraw_disabled=True,ddraw_module_absent=True,native_dll_sha256=metadata['native_draw_sha256'],status_sha256=sha(experiment/'native-draw-status.bin'),factory_creations=q[9],surface_creations=q[10],peak_surfaces=q[15],peak_bytes=q[16],scope='Public native Qt menus and command presentation use owned graphics services with real ddraw disabled/absent; original CPU drawing remains active. No V4 World-body suppression, independent original pixels or semantic COM teardown assertion.')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--stress-seconds', type=int, default=0, help='Exercise physical gameplay input per phase (0 or 10..120)')
@@ -297,6 +310,7 @@ def main():
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
+    parser.add_argument('--native-draw',action='store_true',help='Require owned graphics services with real DirectDraw disabled')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
@@ -326,7 +340,7 @@ def main():
     report = {'schema': 1, 'success': False, 'status': 'running', 'stage': 'build',
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
-              'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
+              'native_draw_required':args.native_draw, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
               'crowded_required':args.crowded_case,'healing_required':args.healing_case,'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
@@ -338,7 +352,11 @@ def main():
             if Path(path).is_absolute() or not (ROOT/path).resolve().is_relative_to(ROOT):raise ValueError('Unsafe declared source')
             if sha(ROOT/path)!=expected:raise ValueError('Declared source changed before execution: '+path)
         report['claims']=declaration['claims'];report['sources'].update(declaration['sources'])
+    if args.native_draw:
+        native_sources=['tools/build-native-draw.py','tools/prepare-native-draw.py']+[str(p.relative_to(ROOT)) for p in (ROOT/'runtime/native-draw').iterdir() if p.suffix in ('.c','.h')]
+        report['sources'].update({p:sha(ROOT/p) for p in native_sources})
     env = clean_environment(out)
+    if args.native_draw:env['MNM_NATIVE_DRAW']='1'
     shell = server = monitor = None
     verified = False
     exit_code = 1
@@ -348,6 +366,19 @@ def main():
                            stdout=log, stderr=subprocess.STDOUT, check=True, timeout=600)
         binary = ROOT / 'working/build/qt-shell/mnm-qt-shell'
         report['shell_sha256'] = sha(binary)
+        if args.native_draw:
+            import shlex
+            closure=set()
+            for dep in (ROOT/'working/build/qt-shell').rglob('*.o.d'):
+                for token in shlex.split(dep.read_text().replace('\\\n',' ')):
+                    path=Path(token)
+                    if not path.is_absolute():continue
+                    path=path.resolve()
+                    if path.is_relative_to(ROOT) and not path.is_relative_to(ROOT/'working'):closure.add(str(path.relative_to(ROOT)))
+            report['compiled_sources']={p:sha(ROOT/p) for p in sorted(closure)}
+            missing=closure-set(report['sources'])
+            if missing:raise ValueError('Undeclared native shell compiler dependencies: '+repr(sorted(missing)))
+
         cache=(ROOT/'working/build/qt-shell/CMakeCache.txt').read_text().splitlines()
         report['native_build_type']=next((v.split('=',1)[1] for v in cache if v.startswith('CMAKE_BUILD_TYPE:STRING=')),None)
         report['stage'] = 'combined-mode-admission'
@@ -454,6 +485,17 @@ def main():
             if len(roots) != 1 or not roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer'):
                 raise RuntimeError('Missing unique menu experiment identity')
             report['experiment'] = str(roots[0])
+            if args.native_draw:
+                report['native_draw']=validate_native_draw(roots[0])
+                native_build=json.loads((roots[0]/'native-draw-build.json').read_text())
+                if native_build.get('directdraw_imports') is not False:raise ValueError('Native graphics DLL imports DirectDraw')
+                for name,digest in native_build['sources'].items():
+                    if report['sources'].get(name)!=digest or sha(ROOT/name)!=digest:raise ValueError('Undeclared or changed native graphics compiler source: '+name)
+                report['native_draw_compiled_sources']=native_build['sources']
+                game_inputs=json.loads((roots[0]/'input-fingerprints.json').read_text())
+                report['inputs']={str(roots[0]/'game'/name):digest for name,digest in game_inputs.items()}
+                report['inputs_stable']=all(sha(Path(name))==digest for name,digest in report['inputs'].items())
+                if not report['inputs_stable']:raise ValueError('Native graphics game inputs changed during smoke')
             report['native_precise_clock']={'enabled':not args.disable_precise_clock,'scope':'Real loaded WinMM timeGetTime uptime in guarded original clock import; game speed and wait target unchanged; full timing/physics equivalence excluded'}
             if not args.disable_precise_clock:
                 log=roots[0]/'lock-capture/lifecycle.log'
