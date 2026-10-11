@@ -229,6 +229,21 @@ def reconcile(root, catalog, register):
             additional_hooks.append({'entry': address(entry), 'source': str(path)})
             if selector_key('entry', entry) not in selectors:
                 unaccounted.append({'selector': 'entry', 'identity': entry, 'activity': 'instrumented_only', 'source': str(path)})
+    for source in catalog.get('caller_sources', []):
+        from drawing_census import validate_callers
+        caller_evidence = evidence[source['evidence']]
+        if caller_evidence['kind'] != 'static':
+            raise ValueError('Supplemental caller census requires static evidence')
+        record = evidence_record(root, caller_evidence, builds)
+        # Existing records use hex ownership strings; supplemental records keep
+        # numeric discovered entries. Ownership is never inferred from proximity.
+        extra = validate_callers(record, build['source_sha256'],
+                                 {identity for kind, identity in selectors if kind == 'entry'})
+        for pc, value in extra.items():
+            value['discovered_owners'] = [hex(address(owner)) for owner in value['discovered_owners']]
+            if pc in returns and (returns[pc]['entry'] != value['entry'] or returns[pc]['call_va'] != value['call_va']):
+                raise ValueError('Conflicting exact drawing caller census')
+            returns[pc] = value
     # Do not infer all indirect flows from an entry's understood outer contract.
     indirect = [{'window': name, 'route': windows[name], **item}
                 for name, items in static['indirect_calls'].items() for item in items]

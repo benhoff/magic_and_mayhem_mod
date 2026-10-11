@@ -50,6 +50,38 @@ remains unassigned. Static call counts and instrumented entries are never live
 activity evidence. Native support decisions are scoped to linked research;
 they do not promote central implementation/comparison/replacement statuses.
 
+## Expanded exact caller census — 2026-10-10
+
+The supplemental [caller export](drawing-callers-expanded-20261010.json) covers
+all 61 registered entry identities across the pinned executable disassembly,
+retaining 909 exact rel32 CALL sites. It complements the historical 24-window
+export without replacing it. The importer verifies each CALL's bytes, target
+and exact return PC, accepts only registered targets, and rejects conflicts.
+Discovered owners come only from containing recorded function ranges; empty
+owner lists remain empty. Instrumented indirect calls still require observed
+callee identities and separately reviewed ownership.
+
+Against the diagnostic preferred-base interpretation of the retained four-return
+journal, 53 of its 63 previously unattributed caller/operation groups have an
+exact static match; ten raster groups still lack one. This is a static crosswalk,
+not fresh process-base evidence or semantic runtime attribution. Historical
+journal evidence retains its original hash and 63-group result. Fourteen scenario
+closures, unknown writers and incomplete dispatch remain pending.
+
+Reproduce in a new output file:
+
+```sh
+python3 -B tools/export-drawing-census.py --executable <pinned-Chaos.exe> \
+  --output <new-report.json>
+python3 -B tests/test-drawing-census.py
+python3 -B tests/test-drawing-inventory.py
+```
+
+The full authorized work targets all fourteen required single-player journeys,
+including sustained battles, interactions, transitions and shutdown. Incremental
+commits do not close this milestone until scenario, caller, graphics-side-effect,
+failure/lifecycle and dispatch evidence supports the strict completion gate.
+
 ## Inspect an existing producer journal
 
 The optional importer reads only 64-byte envelopes and 96-byte record headers,
