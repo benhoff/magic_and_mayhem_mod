@@ -77,6 +77,30 @@ class JourneyTest(unittest.TestCase):
         self.assertTrue(journeys.coverage(changed)['reference_complete'])
         self.assertFalse(journeys.coverage(changed)['draw02_complete'])
 
+    def test_native_error_preserves_admitted_reference_in_suite(self):
+        import tempfile
+        from unittest.mock import patch
+        from drawing_corpus import load_tool,sha,BUILD
+        checker=load_tool('check-drawing-journeys')
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'research/runtime/coverage').mkdir(parents=True)
+            (root/'research/runtime/coverage/register.json').write_text('{}')
+            child={'scenario':'camera-motion','requirements':['pan'],'operations':[],'frames':[{},{}]}
+            (root/'child.json').write_text(json.dumps(child))
+            catalog={'schema':1,'source_sha256':BUILD,'requirements':{s:list(journeys.REQUIREMENTS[s]) for s in journeys.SCENARIOS},
+                     'operation_requirements':list(journeys.OPERATIONS),'cases':[{'id':'camera','adapter':'session',
+                     'catalog':{'path':'child.json','sha256':sha((root/'child.json').read_bytes())},'scope':'Synthetic accounting only'}]}
+            (root/'suite.json').write_text(json.dumps(catalog))
+            with patch('drawing_session.admit',return_value=([],[{},{}],[])),patch('drawing_session.check',side_effect=ValueError('backend failed')):
+                result=checker.run(root,'suite.json',session=Path('/fake/backend'))
+            camera=next(s for s in result['scenarios'] if s['id']=='camera-motion')
+            self.assertEqual(camera['reference_covered'],['pan']);self.assertEqual(camera['native_matching'],[])
+            self.assertTrue(result['cases'][0]['reference_admitted']);self.assertFalse(result['success'])
+            with patch('drawing_session.admit',side_effect=ValueError('original hash mismatch')):
+                result=checker.run(root,'suite.json',session=Path('/fake/backend'))
+            self.assertFalse(result['cases'][0]['reference_admitted'])
+            self.assertTrue(all(not s['reference_covered'] for s in result['scenarios']))
+
     def test_inventory_does_not_assert_execution(self):
         result=journeys.inventory(ROOT)
         self.assertFalse(result['reference_complete']);self.assertFalse(result['draw02_complete'])

@@ -30917,7 +30917,11 @@
       "evidence": [
         "NR.drawing-comparison-corpus.native-20261010",
         "NR.drawing-comparison-corpus.clean-checkout-20261010",
-        "NR.drawing-comparison-corpus.commit-validation-20261010"
+        "NR.drawing-comparison-corpus.commit-validation-20261010",
+        "TOOL.drawing-journeys.native-20261010",
+        "TOOL.drawing-journeys.strict-native-20261010",
+        "TOOL.drawing-journeys.typed-native-20261010",
+        "TOOL.drawing-journeys.draw03-complete-native-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31447,8 +31451,8 @@
       "id": "TOOL.drawing-journeys",
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
-      "title": "DRAW-02 full session acceptance and separate reference/parity accounting",
-      "scope": "Frozen fourteen-journey and twenty-one-operation acceptance denominator; independent reference acquisition and native parity remain separate. Only contiguous action-bound independent presented frames close journey requirements; sampled components and pre-display canvases remain partial. Synthetic accounting guards do not establish original observations, rendering equivalence, full DRAW-02 completion or live replacement. Full acquisition and adapter execution remain pending.",
+      "title": "DRAW-02 full session suite, presented-session ABI and independent reference/parity accounting",
+      "scope": "Frozen14journey/21operation acceptance denominator, suite execution of independent components/composed canvases/full16-queue history, separate reference/parity and strict presentation/continuity/action gates. Versioned oracle-isolated RGB565/RGBA presented-session backend ABI, ordered frame/effect/result comparison and provenance-preserving portable retention have synthetic guards. Invalid reference contributes no coverage; unsupported/native failure preserves admitted references without parity. All actual presented journeys and operation/failure acquisition remain pending; no new original execution or live replacement.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31456,23 +31460,45 @@
         "research/formats/drawing-journey-suite.md"
       ],
       "implementation": [
-        "tools/drawing_journeys.py"
+        "tools/drawing_journeys.py",
+        "tools/check-drawing-journeys.py",
+        "tools/drawing_session.py",
+        "tools/retain-drawing-session.py"
       ],
       "tests": [
         "tests/test-drawing-journeys.py",
+        "tests/test-drawing-session.py",
         "tests/fixtures/drawing-journeys/suite.json"
       ],
       "validation_dependencies": [
-        "tools/drawing_corpus.py",
+        "research/formats/drawing-journey-suite.md",
+        "research/runtime/draw02-full-session.md",
+        "tests/fixtures/drawing-scene/scene.json",
+        "tests/fixtures/drawing-sequence/sequence.json",
         "tests/fixtures/drawing/corpus.json",
-        "tests/fixtures/drawing-scene/scene.json"
+        "tools/check-drawing-corpus.py",
+        "tools/check-drawing-scene.py",
+        "tools/check-drawing-sequence.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_claims.py",
+        "tools/drawing_corpus.py",
+        "tools/drawing_scene_corpus.py",
+        "tools/drawing_sequence.py",
+        "tools/rendering_coverage.py"
       ],
-      "evidence": [],
+      "evidence": [
+        "TOOL.drawing-journeys.native-20261010",
+        "TOOL.drawing-journeys.strict-native-20261010",
+        "TOOL.drawing-journeys.typed-native-20261010",
+        "TOOL.drawing-journeys.draw03-native-20261010",
+        "TOOL.drawing-journeys.draw03-complete-native-20261010",
+        "TOOL.drawing-journeys.draw03-sandbox-failure-20261010"
+      ],
       "status": {
         "understanding": "scoped",
-        "implementation": "partial",
+        "implementation": "scoped",
         "comparison": "none",
-        "integration": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -32031,7 +32057,12 @@
       "evidence": [
         "NR.drawing-sequence.retention-20261010",
         "NR.drawing-sequence.native-20261010",
-        "NR.drawing-sequence.draw03-native-20261010"
+        "NR.drawing-sequence.draw03-native-20261010",
+        "TOOL.drawing-journeys.native-20261010",
+        "TOOL.drawing-journeys.strict-native-20261010",
+        "TOOL.drawing-journeys.typed-native-20261010",
+        "TOOL.drawing-journeys.draw03-native-20261010",
+        "TOOL.drawing-journeys.draw03-complete-native-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -61338,6 +61369,287 @@
           "equals": "not_performed: full history includes original-body suppression"
         }
       ]
+    },
+    {
+      "id": "TOOL.drawing-journeys.native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh suite execution:1077full original plane comparisons,481436912RGB565 pixels, zero mismatches;22synthetic presented-session/journey guards. Source-owned native inputs only. All14presented journeys and21operation/failure acceptance gates remain open. No new original capture or live suppression.",
+      "record": "research/runtime/draw02-suite-native-20261010.json",
+      "sha256": "9d05037e568bb74613d1e94070ed2f55528e72ee87384d1e8607dab92768e0a9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 481436912
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/reference_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/drawing-journeys/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/drawing-session/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/result/pixels_compared",
+          "equals": 4320000
+        },
+        {
+          "pointer": "/cases/2/result/pixels_compared",
+          "equals": 474236912
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-journeys.strict-native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh suite execution:1077full original plane comparisons,481436912RGB565 pixels, zero mismatches;24synthetic presented-session/journey guards. Source-owned native inputs only. All14presented journeys and21operation/failure acceptance gates remain open. No new original capture or live suppression. Strict action/frame metadata allowlists reject oracle hints before backend declaration.",
+      "record": "research/runtime/draw02-suite-strict-native-20261010.json",
+      "sha256": "f31189c9d073b95f4593a7d5c80888c0656afb6a6bc8baf0ba128f41b57c9c93",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 481436912
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/reference_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/drawing-journeys/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/drawing-session/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/result/pixels_compared",
+          "equals": 4320000
+        },
+        {
+          "pointer": "/cases/2/result/pixels_compared",
+          "equals": 474236912
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-journeys.typed-native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh suite execution:1077full original plane comparisons,481436912RGB565 pixels, zero mismatches;26synthetic presented-session/journey guards. Source-owned native inputs only. All14presented journeys and21operation/failure acceptance gates remain open. No new original capture or live suppression. Strict action/frame metadata allowlists reject oracle hints before backend declaration. Typed JSON equality preserves frame/result types.",
+      "record": "research/runtime/draw02-suite-typed-native-20261010.json",
+      "sha256": "0bac105132090466697af06a06ecec025e4baa641b617bda744c3664cd635154",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 481436912
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/reference_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/drawing-journeys/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/drawing-session/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/result/pixels_compared",
+          "equals": 4320000
+        },
+        {
+          "pointer": "/cases/2/result/pixels_compared",
+          "equals": 474236912
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-journeys.draw03-native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh integrated native suite over nine independent component outputs, six source-owned composed startup outputs and all1062 retained startup checkpoints. Native scene transport excludes recorded raster results. Every admitted case matches; typed presented-session/journey guards pass. Full14journey/21operation acquisition and parity gates remain false; no new original execution, actual presented-session backend or live claim.",
+      "record": "research/runtime/draw03-unified-drawing-suite-comparison-20261010.json",
+      "sha256": "35f9f7f9c16242d1c04333e46c7f4901f8ae1ec2384790a5b5e152be0be762ff",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 481436912
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/reference_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/drawing-journeys/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/drawing-session/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/result/pixels_compared",
+          "equals": 4320000
+        },
+        {
+          "pointer": "/cases/2/result/pixels_compared",
+          "equals": 474236912
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-journeys.draw03-complete-native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh execution of the merged suite binds all three current policy contracts: independent surface/World components, complete startup sequence and presented-session acceptance tooling. All nine component, six composed scene and1062startup outputs match;26typed journey/session guards pass. No actual full presented journey, operation/failure closure, new original execution or live replacement.",
+      "record": "research/runtime/draw03-unified-drawing-suite-complete-retry-comparison-20261010.json",
+      "sha256": "a53f798c3b1f02202a691c9fe4a9bcc7783b766adcd268db4e017f85eff336f6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 481436912
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/reference_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/drawing-journeys/success",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/drawing-session/success",
+          "equals": true
+        },
+        {
+          "pointer": "/cases/0/result/pixels_compared",
+          "equals": 4320000
+        },
+        {
+          "pointer": "/cases/2/result/pixels_compared",
+          "equals": 474236912
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-journeys.draw03-sandbox-failure-20261010",
+      "kind": "native_integration",
+      "scope": "Retained failed native execution: sandbox private Xvfb servers aborted for all three admitted original references. No pixels compared, no native parity, no implementation or integration validation claim. Prospective declarations in the report are not registered as supported execution claims. Successful retry is separately registered.",
+      "record": "research/runtime/draw03-unified-drawing-suite-complete-comparison-20261010.json",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 0
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/reference_complete",
+          "equals": false
+        }
+      ],
+      "sha256": "bfdd41eff63e44de737921df94fb8055cb19b4ec450b1f4269a927ddbdd0e9d0"
     }
   ],
   "classifications": [],
@@ -69041,7 +69353,11 @@
       "evidence": [
         "NR.drawing-comparison-corpus.native-20261010",
         "NR.drawing-comparison-corpus.clean-checkout-20261010",
-        "NR.drawing-comparison-corpus.commit-validation-20261010"
+        "NR.drawing-comparison-corpus.commit-validation-20261010",
+        "TOOL.drawing-journeys.native-20261010",
+        "TOOL.drawing-journeys.strict-native-20261010",
+        "TOOL.drawing-journeys.typed-native-20261010",
+        "TOOL.drawing-journeys.draw03-complete-native-20261010"
       ],
       "tests": [
         "tests/test-drawing-corpus.py",
@@ -69119,7 +69435,32 @@
       ],
       "evidence": [
         "NR.drawing-sequence.native-20261010",
-        "NR.drawing-sequence.draw03-native-20261010"
+        "NR.drawing-sequence.draw03-native-20261010",
+        "TOOL.drawing-journeys.native-20261010",
+        "TOOL.drawing-journeys.strict-native-20261010",
+        "TOOL.drawing-journeys.typed-native-20261010",
+        "TOOL.drawing-journeys.draw03-native-20261010",
+        "TOOL.drawing-journeys.draw03-complete-native-20261010"
+      ]
+    },
+    {
+      "id": "DRAW02.full-suite-headless",
+      "scope": "One native suite compares all nine component outputs, six selected composed startup outputs and every1062retained history checkpoint;26synthetic session/journey guards. No actual presented-session capture, original input journey, simulation reconstruction or live bypass.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-journeys"
+      ],
+      "tests": [
+        "tests/test-drawing-journeys.py",
+        "tests/test-drawing-session.py",
+        "tests/fixtures/drawing-journeys/suite.json"
+      ],
+      "evidence": [
+        "TOOL.drawing-journeys.native-20261010",
+        "TOOL.drawing-journeys.strict-native-20261010",
+        "TOOL.drawing-journeys.typed-native-20261010",
+        "TOOL.drawing-journeys.draw03-native-20261010",
+        "TOOL.drawing-journeys.draw03-complete-native-20261010"
       ]
     }
   ],
@@ -69458,8 +69799,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw03-sequence-integration-20261010.json",
-    "sha256": "85795e8e34ee5230dd94bb71bdb488bc66f5e24f1df4c04ff9dee0ae85b63f03"
+    "path": "research/runtime/coverage/source-index-draw03-unified-suite-20261010.json",
+    "sha256": "2f0daaf7e6aee0b68e541d119a5e3aacd1a9c74a75677418d4ae0a05f525a88a"
   },
   "claim_bindings_required": true
 }
