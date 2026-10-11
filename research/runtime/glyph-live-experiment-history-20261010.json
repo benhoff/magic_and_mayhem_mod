@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "runs": [
+    {
+      "record": "research/runtime/glyph-live-first-entry-run-20261010.json",
+      "sha256": "214d4e17a8dcd646611dff5622d7f4e6500e8ca8509383fcd0216b409ac2c699",
+      "success": false,
+      "error": "ValueError('Production entry differs from isolated validated entry')",
+      "sources_stable": true,
+      "scope": "Historical source-bound unsuccessful harness attempt. Preserved native/original checks are not current-source proof."
+    },
+    {
+      "record": "research/runtime/glyph-live-first-shadow-run-20261010.json",
+      "sha256": "4db1c2c9bae70048f6384c8d3709c3029a1b7c4fbab60f99e29b0751296e7177",
+      "success": false,
+      "error": "ValueError('Missing capture run path')",
+      "sources_stable": true,
+      "scope": "Historical source-bound unsuccessful harness attempt. Preserved native/original checks are not current-source proof."
+    },
+    {
+      "record": "research/runtime/glyph-live-second-entry-run-20261010.json",
+      "sha256": "aa42eedb3aa56e33b6d3e66f546d125ae52d48fc64c9f62062d5e81afe598c72",
+      "success": true,
+      "sources_stable": true,
+      "scope": "Successful historical intermediate. Later process admission/alignment/alias and launch-validation changes have new claims; this record is not current-source validation."
+    },
+    {
+      "record": "research/runtime/glyph-live-second-process-run-20261010.json",
+      "sha256": "42ff9159aa36f65ee996f7c86e3d3bdce6b087d0544c95bd8ab12275befd7171",
+      "success": true,
+      "sources_stable": true,
+      "scope": "Successful historical intermediate. Later process admission/alignment/alias and launch-validation changes have new claims; this record is not current-source validation."
+    },
+    {
+      "record": "research/runtime/glyph-live-entry-comparison-20261010.json",
+      "sha256": "9e076d1a532cc6150a76942e4bec05f6587d1317e9baecff3d3332ba3b9a3084",
+      "success": true,
+      "scope": "Final source/contract-bound execution; current evidence IDs registered separately."
+    },
+    {
+      "record": "research/runtime/glyph-live-comparison-20261010.json",
+      "sha256": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+      "success": true,
+      "scope": "Final source/contract-bound execution; current evidence IDs registered separately."
+    }
+  ]
+}

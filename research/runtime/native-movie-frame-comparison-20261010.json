@@ -1,0 +1,449 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "NR.movie-frame-production",
+      "contract_sha256": "7bc0dcabd5cb6239daaacfbdf8a9f95caa086f59220751c7ce8d90724f0fb34e",
+      "scenarios": {
+        "native-movie-frames-20261010": "56a0c91c7cd0c646feb671ac8daf8122479a3a413c055769bc42b1b1ef21dd20"
+      }
+    }
+  ],
+  "sources": {
+    "apps/qt-shell/CMakeLists.txt": "342e859672c631e6db94a7daaf9e5f80751b7814b779152863dc01667f56b56d",
+    "apps/qt-shell/media_cli.cpp": "36bc110a59c06fdc403883a92a343ad207fc3585cecf0a78506a804bb0ff1cd0",
+    "apps/qt-shell/media_cli.hpp": "74dee678693f256a06c538824abfce1c60e443a4c55aad6c6b01ad8f106a2e01",
+    "apps/qt-shell/native_playback.cpp": "3b06cb66d0bb435ebd64b8015010911cb9586d9fb2c41cbe85f8d41d717fb955",
+    "apps/qt-shell/native_playback.hpp": "fa864b25515e391cab7c94448254d48878277762d7c5b557c4d84922fa71ec3c",
+    "protocols/include/mnm/media_v1.h": "4cfd4858739f7b1ba41ec5f26b7e15ac5a44be4fae4288e692c8c5802da53a23",
+    "tests/native-movie-frame-test.cpp": "cf6121d2342e30b6d94e7cf8ade00e4c467961b0b95939d7f264d0fc248001e2",
+    "tests/native-movie-frames/CMakeLists.txt": "fe8efa0ae93e7f394b46aa3bf3a0d9aa5b6b0e5518288c7840b827035b539691",
+    "tools/test-native-movie-frames.py": "853c020528423a1ee0bf6f757c5ebd9bc9ecdb4ad3b76396e3b88428de339d7a"
+  },
+  "scope": "Owned opaque RGBA AVI movie production, all decoded frames, complete playback and bounded cancellation. Exact synthetic RGBA and independent FFmpeg-normalized YUV420P decoded planes with independently calculated limited BT.601 RGB policy for installed Indeo movies. Not original DirectShow/placement/control or live gameplay return equivalence.",
+  "original_pixels_used_as_native_inputs": false,
+  "live_replacement": false,
+  "cases": [
+    {
+      "movie": "working/tests/native-movie-frames/run-kar353a8/synthetic.avi",
+      "frames": 12,
+      "width": 64,
+      "height": 48,
+      "pixels_compared": 36864,
+      "max_channel_difference": 0,
+      "different_channels": 0,
+      "tolerance": 0,
+      "native_rgba_sha256": "62486c0fd285aa849792eadb8190a1724ae9cc912e8f871b654115cd86588728",
+      "container_frame_slots": 12,
+      "reference_rgba_sha256": "62486c0fd285aa849792eadb8190a1724ae9cc912e8f871b654115cd86588728",
+      "playback": {
+        "accepted": true,
+        "all_frames_opaque": true,
+        "audible_output_requested": false,
+        "audio_bytes": 0,
+        "audio_device_available": true,
+        "audio_frames": 0,
+        "audio_s16le_stereo_22050_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "error": "",
+        "first_frame_quadrants": [
+          [
+            80,
+            84,
+            28,
+            255
+          ],
+          [
+            240,
+            84,
+            60,
+            255
+          ],
+          [
+            80,
+            252,
+            52,
+            255
+          ],
+          [
+            240,
+            252,
+            84,
+            255
+          ]
+        ],
+        "first_frame_rgba_sha256": "36b53543fb819d52ad39fc9c41dfcc213cb0b688bffa3c66f4e5b807ad80ae2d",
+        "height": 48,
+        "inactive_after_completion": true,
+        "owned_first_frame_retained": true,
+        "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movie-frames/run-kar353a8/synthetic.avi",
+        "pixel_format": 4,
+        "result": 3,
+        "success": true,
+        "video_frames": 12,
+        "video_rgba_sha256": "62486c0fd285aa849792eadb8190a1724ae9cc912e8f871b654115cd86588728",
+        "width": 64
+      }
+    },
+    {
+      "movie": "working/game-nocd/FMV/Celtic.avi",
+      "frames": 157,
+      "width": 640,
+      "height": 360,
+      "pixels_compared": 36172800,
+      "max_channel_difference": 0,
+      "different_channels": 0,
+      "tolerance": 0,
+      "native_rgba_sha256": "5a509693bf49ee5e9342601e92f5d0a2310b65ddea9f8979890792421a94ecf3",
+      "container_frame_slots": 157,
+      "reference_rgba_sha256": "5a509693bf49ee5e9342601e92f5d0a2310b65ddea9f8979890792421a94ecf3",
+      "playback": {
+        "accepted": true,
+        "all_frames_opaque": true,
+        "audible_output_requested": false,
+        "audio_bytes": 1384896,
+        "audio_device_available": true,
+        "audio_frames": 346224,
+        "audio_s16le_stereo_22050_sha256": "bad5b51531006368e0e8621750d7757fef58317b91ae16a7dd113ea6f7dcb57a",
+        "error": "",
+        "first_frame_quadrants": [
+          [
+            48,
+            38,
+            42,
+            255
+          ],
+          [
+            48,
+            38,
+            42,
+            255
+          ],
+          [
+            21,
+            14,
+            12,
+            255
+          ],
+          [
+            32,
+            27,
+            27,
+            255
+          ]
+        ],
+        "first_frame_rgba_sha256": "d18bc70c53487f676374b8a31628fc3edcca48ce454de7a0fdad11afc7412f68",
+        "height": 360,
+        "inactive_after_completion": true,
+        "owned_first_frame_retained": true,
+        "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/FMV/Celtic.avi",
+        "pixel_format": 13,
+        "result": 3,
+        "success": true,
+        "video_frames": 157,
+        "video_rgba_sha256": "5a509693bf49ee5e9342601e92f5d0a2310b65ddea9f8979890792421a94ecf3",
+        "width": 640
+      }
+    },
+    {
+      "movie": "working/game-nocd/FMV/Greek.avi",
+      "frames": 261,
+      "width": 640,
+      "height": 360,
+      "pixels_compared": 60134400,
+      "max_channel_difference": 0,
+      "different_channels": 0,
+      "tolerance": 0,
+      "native_rgba_sha256": "a4079435d31161a2930ca4f28dd974b35cecc3d3fe3d1315d7a46160e626019a",
+      "container_frame_slots": 266,
+      "reference_rgba_sha256": "a4079435d31161a2930ca4f28dd974b35cecc3d3fe3d1315d7a46160e626019a",
+      "playback": {
+        "accepted": true,
+        "all_frames_opaque": true,
+        "audible_output_requested": false,
+        "audio_bytes": 1466364,
+        "audio_device_available": true,
+        "audio_frames": 366591,
+        "audio_s16le_stereo_22050_sha256": "97bda8742f55dfaf8561cdbe905ecbbffcd7f608c172e27007f0fe22b90b17c7",
+        "error": "",
+        "first_frame_quadrants": [
+          [
+            136,
+            87,
+            57,
+            255
+          ],
+          [
+            163,
+            90,
+            56,
+            255
+          ],
+          [
+            16,
+            10,
+            15,
+            255
+          ],
+          [
+            22,
+            10,
+            17,
+            255
+          ]
+        ],
+        "first_frame_rgba_sha256": "c4d25ec16aa171788c1782ad737646c6279a97cbd7d6c4433e6d83d2b5d3ff7b",
+        "height": 360,
+        "inactive_after_completion": true,
+        "owned_first_frame_retained": true,
+        "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/FMV/Greek.avi",
+        "pixel_format": 13,
+        "result": 3,
+        "success": true,
+        "video_frames": 261,
+        "video_rgba_sha256": "a4079435d31161a2930ca4f28dd974b35cecc3d3fe3d1315d7a46160e626019a",
+        "width": 640
+      }
+    },
+    {
+      "movie": "working/game-nocd/FMV/Intro0.avi",
+      "frames": 1777,
+      "width": 640,
+      "height": 360,
+      "pixels_compared": 409420800,
+      "max_channel_difference": 0,
+      "different_channels": 0,
+      "tolerance": 0,
+      "native_rgba_sha256": "8aef7cbdcd1f75d8dd63dae099d0a7dbc078ce4608696e67fff76ccf57302113",
+      "container_frame_slots": 1795,
+      "reference_rgba_sha256": "8aef7cbdcd1f75d8dd63dae099d0a7dbc078ce4608696e67fff76ccf57302113",
+      "playback": {
+        "accepted": true,
+        "all_frames_opaque": true,
+        "audible_output_requested": false,
+        "audio_bytes": 9907216,
+        "audio_device_available": true,
+        "audio_frames": 2476804,
+        "audio_s16le_stereo_22050_sha256": "b2efc5f5282c2b5da3de2c62fd74419d8103096eb0f12921556bfa674d752916",
+        "error": "",
+        "first_frame_quadrants": [
+          [
+            17,
+            20,
+            54,
+            255
+          ],
+          [
+            152,
+            151,
+            168,
+            255
+          ],
+          [
+            149,
+            148,
+            160,
+            255
+          ],
+          [
+            119,
+            125,
+            153,
+            255
+          ]
+        ],
+        "first_frame_rgba_sha256": "bda99338506e1bdad986fc23bccd1f77a76523c05f55cbe375b648417bdf83a3",
+        "height": 360,
+        "inactive_after_completion": true,
+        "owned_first_frame_retained": true,
+        "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/FMV/Intro0.avi",
+        "pixel_format": 13,
+        "result": 3,
+        "success": true,
+        "video_frames": 1777,
+        "video_rgba_sha256": "8aef7cbdcd1f75d8dd63dae099d0a7dbc078ce4608696e67fff76ccf57302113",
+        "width": 640
+      }
+    },
+    {
+      "movie": "working/game-nocd/FMV/Intro1.avi",
+      "frames": 1004,
+      "width": 640,
+      "height": 360,
+      "pixels_compared": 231321600,
+      "max_channel_difference": 0,
+      "different_channels": 0,
+      "tolerance": 0,
+      "native_rgba_sha256": "31159fd9b4c18fc22f978f8dc5d155ef72a5e257078872b0867e1e34fa990795",
+      "container_frame_slots": 1011,
+      "reference_rgba_sha256": "31159fd9b4c18fc22f978f8dc5d155ef72a5e257078872b0867e1e34fa990795",
+      "playback": {
+        "accepted": true,
+        "all_frames_opaque": true,
+        "audible_output_requested": false,
+        "audio_bytes": 5573132,
+        "audio_device_available": true,
+        "audio_frames": 1393283,
+        "audio_s16le_stereo_22050_sha256": "6b5bc57bfaae15af6941dae08c913d8069da649605fabe6b0a273745597f1631",
+        "error": "",
+        "first_frame_quadrants": [
+          [
+            3,
+            0,
+            3,
+            255
+          ],
+          [
+            1,
+            0,
+            1,
+            255
+          ],
+          [
+            8,
+            0,
+            8,
+            255
+          ],
+          [
+            8,
+            0,
+            6,
+            255
+          ]
+        ],
+        "first_frame_rgba_sha256": "897c377b87446265a31af5b4cb735db186563a1581972a139e04c263c82ae000",
+        "height": 360,
+        "inactive_after_completion": true,
+        "owned_first_frame_retained": true,
+        "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/FMV/Intro1.avi",
+        "pixel_format": 13,
+        "result": 3,
+        "success": true,
+        "video_frames": 1004,
+        "video_rgba_sha256": "31159fd9b4c18fc22f978f8dc5d155ef72a5e257078872b0867e1e34fa990795",
+        "width": 640
+      }
+    },
+    {
+      "movie": "working/game-nocd/FMV/Medieval.avi",
+      "frames": 657,
+      "width": 640,
+      "height": 360,
+      "pixels_compared": 151372800,
+      "max_channel_difference": 0,
+      "different_channels": 0,
+      "tolerance": 0,
+      "native_rgba_sha256": "c697e577ed6ffca2469c16640d8a0436c2433aa15ac0a3b26cf07b264b75b9e2",
+      "container_frame_slots": 672,
+      "reference_rgba_sha256": "c697e577ed6ffca2469c16640d8a0436c2433aa15ac0a3b26cf07b264b75b9e2",
+      "playback": {
+        "accepted": true,
+        "all_frames_opaque": true,
+        "audible_output_requested": false,
+        "audio_bytes": 3711232,
+        "audio_device_available": true,
+        "audio_frames": 927808,
+        "audio_s16le_stereo_22050_sha256": "053593aa5695130c188e149c11f325067d2979869a250369c234dc3775eb44d0",
+        "error": "",
+        "first_frame_quadrants": [
+          [
+            116,
+            65,
+            21,
+            255
+          ],
+          [
+            120,
+            69,
+            30,
+            255
+          ],
+          [
+            50,
+            39,
+            19,
+            255
+          ],
+          [
+            89,
+            12,
+            5,
+            255
+          ]
+        ],
+        "first_frame_rgba_sha256": "b90143df25176c5cdcdb1c10ae026ed371c8ea44de6579e8690d4c0ed0fbb5b1",
+        "height": 360,
+        "inactive_after_completion": true,
+        "owned_first_frame_retained": true,
+        "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/game-nocd/FMV/Medieval.avi",
+        "pixel_format": 13,
+        "result": 3,
+        "success": true,
+        "video_frames": 657,
+        "video_rgba_sha256": "c697e577ed6ffca2469c16640d8a0436c2433aa15ac0a3b26cf07b264b75b9e2",
+        "width": 640
+      }
+    }
+  ],
+  "native_binary_sha256": "74f3b71bc3f933dd814322208e2bf54a6f9c328893b1b4eae25b977353d52eb1",
+  "cancel": {
+    "accepted": true,
+    "all_frames_opaque": true,
+    "audible_output_requested": false,
+    "audio_bytes": 0,
+    "audio_device_available": true,
+    "audio_frames": 0,
+    "audio_s16le_stereo_22050_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "error": "",
+    "first_frame_quadrants": [
+      [
+        80,
+        84,
+        28,
+        255
+      ],
+      [
+        240,
+        84,
+        60,
+        255
+      ],
+      [
+        80,
+        252,
+        52,
+        255
+      ],
+      [
+        240,
+        252,
+        84,
+        255
+      ]
+    ],
+    "first_frame_rgba_sha256": "36b53543fb819d52ad39fc9c41dfcc213cb0b688bffa3c66f4e5b807ad80ae2d",
+    "height": 48,
+    "inactive_after_completion": true,
+    "owned_first_frame_retained": true,
+    "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movie-frames/run-kar353a8/synthetic.avi",
+    "pixel_format": 4,
+    "result": 4,
+    "success": true,
+    "video_frames": 3,
+    "video_rgba_sha256": "11e0588806fec08378ebc9829870949b48739e4de6ec5d597de695f1395f1321",
+    "width": 64
+  },
+  "pixels_compared": 888459264,
+  "video_frames": 3868,
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true,
+  "inputs": {
+    "working/tests/native-movie-frames/run-kar353a8/synthetic.avi": "e6bf5eb2d48638a0b5474abf07462600aaa0228e88ed0774bf41bbfaa7e62744",
+    "working/game-nocd/FMV/Celtic.avi": "62b705b305e3373a8e2bc37317d5c2a477a24bcb69cfce71aac3b10c7ad85bce",
+    "working/game-nocd/FMV/Greek.avi": "0e393dcbd72e712b6d455906cc3757ab71a7b2ce0d7f43b96e48c47b9bfac4b9",
+    "working/game-nocd/FMV/Intro0.avi": "9a6f05f0c9379d03f5b2f7b5f8d026dea33e4644a7c8ae23ddf3e52657f32515",
+    "working/game-nocd/FMV/Intro1.avi": "74ec6aa269e9ae7e4f2c8b3cffb4dc35f02b0a2b40412a5fcd959657a8d37b69",
+    "working/game-nocd/FMV/Medieval.avi": "6f7d47d477f01fde5a8f74382537274d8edc1f3762edff4c574ef7b509181852"
+  },
+  "inputs_stable": true
+}

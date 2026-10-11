@@ -37,8 +37,13 @@ void CanvasSequence::create(std::uint32_t id, int width, int height) {
   const auto count = std::size_t(width) * height;
   surfaces_.emplace(id,
                     Surface{{width, height, std::vector<std::uint32_t>(count)},
-                            std::vector<unsigned char>(count)});
+                            std::vector<unsigned char>(count), {}, {}});
   pixels_ += count;
+  if (mirror_) {
+    auto &s = surface(id);
+    s.dirtyFirst.assign(height, width); s.dirtyEnd.assign(height, 0);
+    mirror_->create(id, width, height);
+  }
 }
 std::size_t CanvasSequence::minimap(std::uint32_t id, int stride,
     const std::function<std::size_t(MinimapPlane &)> &draw) {
@@ -55,7 +60,7 @@ std::size_t CanvasSequence::minimap(std::uint32_t id, int stride,
   for (int y = 0; y < s.image.height; ++y)
     for (int x = 0; x < s.image.width; ++x) {
       const auto from = std::size_t(y) * stride + x, to = std::size_t(y) * s.image.width + x;
-      if (a.words[from] == b.words[from]) { s.image.pixels[to] = a.words[from]; s.defined[to] = 1; }
+      if (a.words[from] == b.words[from]) { write(s, to, a.words[from]); s.defined[to] = 1; }
     }
   return result;
 }
@@ -76,20 +81,30 @@ void CanvasSequence::terrainMap(std::uint32_t id, int rootX, int rootY, int w, i
       const auto cell = std::size_t((startY + row) % h) * w + (startX + col) % w;
       if (!hidden.empty() && hidden.at(cell)) {
         if (!previous) throw std::invalid_argument("Minimap hidden cell lacks owned history");
-        s.image.pixels[at] = old.pixels.at(slot(old, w - 1 - 2 * (row / 2) + col, (row + 1) / 2 + col / 2));
-      } else s.image.pixels[at] = colours.at(cell);
+        write(s, at, old.pixels.at(slot(old, w - 1 - 2 * (row / 2) + col, (row + 1) / 2 + col / 2)));
+      } else write(s, at, colours.at(cell));
       s.defined[at] = 1;
     }
 }
-void CanvasSequence::fade(std::uint32_t id) {
+void CanvasSequence::fade(std::uint32_t id,unsigned stride,
+                          std::optional<std::size_t> physicalWords,std::uint16_t mask) {
   auto &s = surface(id);
-  if (s.image.width % 2) throw std::invalid_argument("Fade requires even packed rows");
-  for (std::size_t i = 0; i < s.image.pixels.size(); ++i) known(s.defined, i);
-  for (auto &p : s.image.pixels) p = (p >> 1) & 0x7bef;
+  if(!stride)stride=s.image.width;
+  const auto count=physicalWords.value_or(s.image.pixels.size());
+  if(stride<unsigned(s.image.width) || stride>4096 || count>std::size_t(stride)*s.image.height)
+    throw std::invalid_argument("Fade span outside canvas storage");
+  // Padding has no cross-WORD influence after the original channel mask. Only
+  // visible pixels in the contiguous physical span require destination reads.
+  for(int y=0;y<s.image.height;++y)for(int x=0;x<s.image.width;++x)
+    if(std::size_t(y)*stride+x<count)known(s.defined,slot(s.image,x,y));
+  for(int y=0;y<s.image.height;++y)for(int x=0;x<s.image.width;++x)
+    if(std::size_t(y)*stride+x<count){auto &p=s.image.pixels[slot(s.image,x,y)];
+      write(s,slot(s.image,x,y),(std::uint16_t(p)>>1)&mask);}
 }
 void CanvasSequence::release(std::uint32_t id) {
   auto &s = surface(id);
   pixels_ -= s.image.pixels.size();
+  if (mirror_) mirror_->release(id);
   surfaces_.erase(id);
 }
 void CanvasSequence::addRgb(std::uint32_t id, Rect r,
@@ -104,9 +119,9 @@ void CanvasSequence::addRgb(std::uint32_t id, Rect r,
       const auto at = slot(s.image, x, y);
       known(s.defined, at);
       const auto old = s.image.pixels[at];
-      s.image.pixels[at] = (std::min(31u, ((old >> 11) & 31) + add[0]) << 11) |
+      write(s, at, (std::min(31u, ((old >> 11) & 31) + add[0]) << 11) |
                            (std::min(63u, ((old >> 5) & 63) + add[1]) << 5) |
-                           std::min(31u, (old & 31) + add[2]);
+                           std::min(31u, (old & 31) + add[2]));
     }
 }
 void CanvasSequence::panel(std::uint32_t id, Rect r, unsigned mode,
@@ -129,7 +144,7 @@ void CanvasSequence::panel(std::uint32_t id, Rect r, unsigned mode,
       else
         v = (v >> 1) + (128u);
     }
-    s.image.pixels[at] = ((c[0] >> 3) << 11) | ((c[1] >> 2) << 5) | (c[2] >> 3);
+    write(s, at, ((c[0] >> 3) << 11) | ((c[1] >> 2) << 5) | (c[2] >> 3));
   };
   if (mode == 17) {
     for (int y = r.top; y < r.bottom; ++y)
@@ -175,7 +190,7 @@ void CanvasSequence::fill(std::uint32_t id, Rect r, std::uint16_t colour) {
     for (int x = std::max(0, r.left); x < std::min(s.image.width, r.right);
          ++x) {
       const auto at = slot(s.image, x, y);
-      s.image.pixels[at] = colour;
+      write(s, at, colour);
       s.defined[at] = 1;
     }
 }
@@ -194,14 +209,15 @@ void CanvasSequence::copy(std::uint32_t source, std::uint32_t destination,
   // Validate every sampled source before any destination write. Same-ID copies
   // retain the source snapshot, matching ordered owned-storage copy semantics.
   for(int row=0;row<height;++row){const auto at=slot(original.image,sx,sy+row);const auto begin=original.defined.begin()+at;
-    if(std::find(begin,begin+width,0)!=begin+width)throw std::runtime_error("Native producer reads undefined canvas pixels");}
+    if(!mirror_ && std::find(begin,begin+width,0)!=begin+width)throw std::runtime_error("Native producer reads undefined canvas pixels");}
   // Distinct IDs own distinct vectors. Only same-ID copies need a snapshot;
   // preflight above still completes before allocation or any destination write.
+  if (mirror_) mirror_->copy(source, destination, {sx, sy, sx+width, sy+height}, dx, dy, key);
   std::optional<Surface> snapshot;if(source==destination)snapshot.emplace(original);
   const auto& src=snapshot?*snapshot:original;
   for(int row=0;row<height;++row){const auto from=slot(src.image,sx,sy+row),to=slot(dst.image,dx,dy+row);
-    if(!key){std::copy_n(src.image.pixels.begin()+from,width,dst.image.pixels.begin()+to);std::fill_n(dst.defined.begin()+to,width,1);}
-    else for(int col=0;col<width;++col){const auto word=src.image.pixels[from+col];if(word!=*key){dst.image.pixels[to+col]=word;dst.defined[to+col]=1;}}
+    if(!key){std::copy_n(src.image.pixels.begin()+from,width,dst.image.pixels.begin()+to);std::copy_n(src.defined.begin()+from,width,dst.defined.begin()+to);}
+    else for(int col=0;col<width;++col){const auto word=src.image.pixels[from+col];if(!src.defined[from+col]){dst.defined[to+col]=0;}else if(word!=*key){dst.image.pixels[to+col]=word;dst.defined[to+col]=1;}}
   }
 }
 void CanvasSequence::update(std::uint32_t id, int x, int y,
@@ -215,12 +231,15 @@ void CanvasSequence::update(std::uint32_t id, int x, int y,
   for (auto word : image.pixels)
     if (word > 65535)
       throw std::invalid_argument("Producer source word exceeds RGB565");
-  for (int j = 0; j < image.height; ++j)
-    for (int i = 0; i < image.width; ++i) {
-      const auto at = slot(s.image, x + i, y + j);
-      s.image.pixels[at] = image.pixels[slot(image, i, j)];
-      s.defined[at] = 1;
-    }
+  // All extents and WORDs are checked before the first write.
+  dirty(s, x, y, image.width, image.height);
+  for (int j = 0; j < image.height; ++j) {
+    const auto from = std::size_t(j) * image.width;
+    const auto to = std::size_t(y + j) * s.image.width + x;
+    std::copy_n(image.pixels.begin() + from, image.width,
+                s.image.pixels.begin() + to);
+    std::fill_n(s.defined.begin() + to, image.width, 1);
+  }
 }
 void CanvasSequence::glyph(std::uint32_t id, const assets::SpriteFrame &f,
                            int x, int y, Rect clip, std::array<unsigned, 3> rgb,
@@ -273,14 +292,14 @@ void CanvasSequence::glyph(std::uint32_t id, const assets::SpriteFrame &f,
       unsigned channel[3];
       for (unsigned k = 0; k < 3; ++k)
         channel[k] = unsigned(d[k] * (1 - weight) + target[k] * weight);
-      s.image.pixels[at] = (channel[0] << 11) | (channel[1] << 5) | channel[2];
+      write(s, at, (channel[0] << 11) | (channel[1] << 5) | channel[2]);
     }
 }
 void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
                             int x, int y, Rect clip, unsigned mode, int backend,
                             const std::array<std::uint16_t, 256> &colours,
                             const std::array<int, 16> &offsets,
-                            unsigned period) {
+                            unsigned period, bool invalidateOnly) {
   frame(f);
   auto &s = surface(id);
   if (mode > 5 || !period || period > 16)
@@ -308,8 +327,9 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
           throw std::invalid_argument(
               "Projected shadow sample outside owned canvas");
         const auto at = slot(s.image, int(dx), int(dy));
+        if (invalidateOnly) { s.defined[at] = 0; continue; }
         known(s.defined, at);
-        s.image.pixels[at] = (s.image.pixels[at] >> 1) & 0x7bef;
+        write(s, at, (s.image.pixels[at] >> 1) & 0x7bef);
       }
     return;
   }
@@ -328,6 +348,7 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
       if (!f.opaqueMask[from])
         continue;
       const auto at = slot(s.image, int(dx), int(dy));
+      if (invalidateOnly) { s.defined[at] = 0; continue; }
       std::uint32_t colour = 0;
       if (const auto *indices =
               std::get_if<std::vector<std::uint8_t>>(&f.pixels))
@@ -355,9 +376,59 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
           colour = s.image.pixels[sample];
         }
       }
-      s.image.pixels[at] = colour;
+      write(s, at, colour);
       s.defined[at] = 1;
     }
+}
+void CanvasSequence::dirty(Surface &s, int x, int y, int width, int height) {
+  if (!mirror_ || !width || !height) return;
+  for (int row=y; row<y+height; ++row) {
+    s.dirtyFirst[row]=std::min(s.dirtyFirst[row],x);
+    s.dirtyEnd[row]=std::max(s.dirtyEnd[row],x+width);
+  }
+}
+void CanvasSequence::write(Surface &s, std::size_t at, std::uint32_t value) {
+  s.image.pixels[at]=value;
+  if (mirror_) dirty(s, int(at%unsigned(s.image.width)),
+                      int(at/unsigned(s.image.width)),1,1);
+}
+void CanvasSequence::publishWrites() {
+  if (!mirror_) return;
+  for (auto &entry : surfaces_) {
+    auto &s=entry.second;
+    int left=s.image.width,right=0,top=s.image.height,bottom=0;
+    for (int y=0;y<s.image.height;++y) if(s.dirtyFirst[y]<s.dirtyEnd[y]) {
+      left=std::min(left,s.dirtyFirst[y]);right=std::max(right,s.dirtyEnd[y]);
+      top=std::min(top,y);bottom=std::max(bottom,y+1);
+    }
+    if (left>=right) continue;
+    auto upload=[&](int x,int y,int width,int height) {
+      Image patch{width,height,{}};patch.pixels.reserve(std::size_t(width)*height);
+      for(int row=y;row<y+height;++row) {
+        const auto at=slot(s.image,x,row);
+        patch.pixels.insert(patch.pixels.end(),s.image.pixels.begin()+at,
+                             s.image.pixels.begin()+at+width);
+      }
+      mirror_->update(entry.first,x,y,patch);
+    };
+    bool full=true;
+    for(int y=top;y<bottom && full;++y) {
+      auto begin=s.defined.begin()+slot(s.image,left,y);
+      full=std::find(begin,begin+right-left,0)==begin+right-left;
+    }
+    if(full) upload(left,top,right-left,bottom-top);
+    else for(int y=top;y<bottom;++y) {
+      int x=s.dirtyFirst[y],end=s.dirtyEnd[y];
+      while(x<end) {
+        while(x<end && !s.defined[slot(s.image,x,y)]) ++x;
+        const auto first=x;
+        while(x<end && s.defined[slot(s.image,x,y)]) ++x;
+        if(first<x)upload(first,y,x-first,1);
+      }
+    }
+    std::fill(s.dirtyFirst.begin(),s.dirtyFirst.end(),s.image.width);
+    std::fill(s.dirtyEnd.begin(),s.dirtyEnd.end(),0);
+  }
 }
 Image CanvasSequence::read(std::uint32_t id) const {
   auto it = surfaces_.find(id);

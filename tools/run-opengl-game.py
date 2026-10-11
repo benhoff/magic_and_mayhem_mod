@@ -117,12 +117,17 @@ def main():
         if not voice_path.is_relative_to(REPO/'working'):raise ValueError('Voice channel must be under working/')
         with voice_path.open('rb') as file:
             if voice_path.stat().st_size!=128+16*1024*1024 or file.read(16)!=b'MNMAUD01'+(2).to_bytes(4,'little')+(128+16*1024*1024).to_bytes(4,'little'):raise ValueError('Invalid voice channel')
-    stage=load('shadow_stage','tools/prepare-shadow-experiment.py');source=REPO/'working/game-nocd';data=(source/'Chaos.exe').read_bytes()
+    stage=load('shadow_stage','tools/prepare-shadow-experiment.py');source=(REPO/'working/game-nocd').resolve();data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=stage.HASH:raise ValueError('Unsupported game hash')
     dll=load('render_build','tools/build-render-bridge.py').build()
     parent=REPO/'working/experiments/opengl-render';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));game=root/'game'
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
+    if game.is_symlink() or game.resolve()==source:
+        raise ValueError('Disposable staging aliases its source')
+    for name in ['Chaos.exe','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
+        if not (game/name).resolve().is_relative_to(game.resolve()):
+            raise ValueError('Disposable write target escapes game copy: '+name)
     if hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest()!=stage.HASH:raise ValueError('Copied game hash changed')
     patched=stage.add_import(data,dll='MnmRender.dll',symbol_name='RenderAnchor',section_name=b'.mnmgl')
     word_dll=None
@@ -142,6 +147,8 @@ def main():
         patched=stage.add_import(patched,dll='MnmAudio.dll',symbol_name='AudioAnchor',section_name=b'.mnmaud')
         shutil.copy2(audio_dll,game/audio_dll.name)
         shutil.copy2(audio_dll.parent/'manifest.json',root/'audio-bridge-build.json')
+    from glyph_backend_launch import stage as stage_glyph,mode_from_environment
+    patched,glyph_metadata=stage_glyph(root,data,patched,mode_from_environment())
     (game/'Chaos.exe').write_bytes(patched)
     shutil.copy2(dll,game/dll.name);shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     movie_edits=skip_movies(game) if args.skip_movies else []
@@ -170,6 +177,7 @@ def main():
     if args.capture_draws:
         capture=root/'draw-capture';capture.mkdir();metadata['draw_capture_directory']=str(capture)
         print(f'Draw capture: {capture}',flush=True)
+    metadata.update(glyph_metadata)
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n');print(f'Render experiment: {root}',flush=True)
     if args.stage_only:return 0
     env=os.environ.copy();env['MNM_RENDER_STREAM']='Z:'+str(stream).replace('/','\\');env['MNM_RENDER_EXPERIMENT']=str(root);env.pop('MNM_RUNNER',None)

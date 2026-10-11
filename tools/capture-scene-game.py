@@ -33,9 +33,12 @@ def main():
     parser.add_argument('--samples',type=int,choices=[*range(1,17),32],default=4)
     parser.add_argument('--map',type=int,choices=range(1,129),default=2)
     parser.add_argument('--magic-items',type=int,choices=range(22),default=0,help='Original Quick Battle item count; nonzero accepts its initial spell assignments through the existing V3 bridge')
+    parser.add_argument('--glyph-backend',choices=['shadow','takeover'],help='Bounded live glyph admission through producer tag10')
     parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow','clip-takeover'],help='Observe the explicit partial direct-word raster experiment')
     parser.add_argument('--world-frames',action='store_true',help='Capture complete effective raster inputs and separate original output oracles')
     parser.add_argument('--world-lifetime',action='store_true',help='Bounded diagnostic canvas identity/initial-content observations from first queue call')
+    parser.add_argument('--continuous-producer-waits',action='store_true',help='Separate bounded original/Wine blocking-syscall trace; never enabled by normal rendering')
+    parser.add_argument('--continuous-producer-profile',action='store_true',help='Separate whole original producer process CPU sampling probe')
     parser.add_argument('--continuous-hardware',action='store_true',help='Explicit private-seat hardware test environment; retain driver selection')
     parser.add_argument('--continuous-verify',action='store_true',help='Retain independent native CPU composition for continuous verification')
     parser.add_argument('--continuous-queues',type=int,default=None,help='Explicit guarded two-block producer test cap (1..4096); no diagnostic journal/oracles')
@@ -64,6 +67,7 @@ def main():
     parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
     if args.continuous_queues is not None and (not 1<=args.continuous_queues<=4096 or not args.world_raster_batch or args.samples!=32 or args.world_raster_prefix!=32 or args.manual_input):parser.error('Continuous queues require isolated guarded prefix32 setup and cap1..4096')
+    if args.glyph_backend and (args.canvas_producers or args.canvas_startup or args.world_frames or args.world_live or args.word_sprites):parser.error('Glyph mode requires a separate experiment')
     if args.minimap_input_fixture and (not args.minimap_owned or args.samples!=16 or args.magic_items):parser.error('Minimap input fixture requires --minimap-owned --samples 16 --magic-items 0')
     if args.minimap_owned and (not args.canvas_producers or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('--minimap-owned requires original-active --canvas-producers')
     if args.producer_oracle_mib!=1024 and not args.canvas_producers:parser.error('--producer-oracle-mib requires --canvas-producers')
@@ -79,7 +83,7 @@ def main():
     verify=args.world_live in ('verify','history-verify')
     if args.canvas_producers:
         if args.world_frames or args.world_live or args.canvas_startup or args.word_sprites:parser.error('Producer capture is an isolated finite pipeline; do not combine World/startup hooks')
-        if args.startup_queues is None:args.startup_queues=args.samples
+        if args.startup_queues is None and args.continuous_queues is None:args.startup_queues=args.samples
     if args.world_live:args.world_frames=True
     if history:
         if args.live_frames>16:parser.error('History target must be 1..16; specify --live-frames 16')
@@ -130,6 +134,7 @@ def main():
     if args.world_raster_batch:
         sources += [ROOT/p for p in ['protocols/include/mnm/world_raster_batch_v3.h','compat/legacy/world_raster_batch.cpp','compat/legacy/world_raster_batch.hpp']]
     if args.word_sprites:sources += [ROOT/p for p in ['renderer/sprites/word_raster.h','renderer/sprites/word_raster.c','runtime/shadow/win32_min.h','tools/build-word-sprites.py','tools/build-shadow-bridge.py','renderer/sprites/word_clipped.c','renderer/sprites/word_clipped.h','reconstruction/rendering/word_backend_state.c','reconstruction/rendering/word_backend_state.h']]
+    if args.glyph_backend:sources += [ROOT/p for p in ['tools/glyph_live_capture.py','tools/glyph_backend_launch.py','tools/build-shadow-bridge.py','reconstruction/rendering/glyph_backend.c','reconstruction/rendering/glyph_backend.h','reconstruction/rendering/glyph_backend_state.c','reconstruction/rendering/glyph_backend_state.h','reconstruction/rendering/glyph_backend_x87.S']]
     fingerprints={str(p.relative_to(ROOT)):sha(p) for p in sources}
     spec=importlib.util.spec_from_file_location('scene_prepare',ROOT/'tools/prepare-scene-observer.py')
     staging=importlib.util.module_from_spec(spec);spec.loader.exec_module(staging)
@@ -145,7 +150,7 @@ def main():
             process=None
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
-        root=staging.prepare(menu=True,word_mode=args.word_sprites,world_frames=args.world_frames,world_live=bool(args.world_live),source_game=args.source_game);print(root,flush=True)
+        root=staging.prepare(menu=True,word_mode=args.word_sprites,world_frames=args.world_frames,world_live=bool(args.world_live),source_game=args.source_game,glyph_mode=args.glyph_backend);print(root,flush=True)
         if args.continuous_queues is not None and not args.continuous_verify:
             from native_render_config import stage_native_draw_cadence
             codecs=[]
@@ -237,7 +242,7 @@ def main():
             trace.append({'screen':screen,'action':action,'argument':argument,'ack':request,'status':reply[0][4]})
 
         with (root/'game.log').open('x') as log:
-            process=subprocess.Popen([str(ROOT/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',env['WINEPREFIX'],
+            process=subprocess.Popen([*(['strace','-qq','-f','-Y','--seccomp-bpf','-k','--stack-trace-frame-limit=12','-ttt','-T','-s','0','-e','trace=pselect6,clock_nanosleep','-o',str(root/'producer-waits.log')] if args.continuous_producer_waits else ['perf','record','-F','99','-g','--call-graph','dwarf','-o',str(root/'producer-perf.data'),'--'] if args.continuous_producer_profile else []),str(ROOT/'tools/run-game.sh'),'launch','--no-gamescope','--prefix',env['WINEPREFIX'],
                 '--runner',str(ROOT/'tools/scene-game-runner.py')],env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
             if not args.manual_input:
                 send(3,1);send(22,4)
@@ -336,6 +341,9 @@ def main():
                 'scope':'Original Single Player battle setup and ordered queue consumer entry. Original simulation/drawing remain active; bounded immutable snapshots, no whole-scene visual equivalence.',
                 'sources':fingerprints,'sources_stable':True,'source_executable_sha256':metadata['source_sha256'],
                 'samples':args.samples,'map_selection':None if args.manual_input else args.map,'manual_input':args.manual_input,'magic_items':None if args.manual_input else args.magic_items,'menu_trace':trace,'snapshots':{str(p.relative_to(root)):sha(p) for p in paths},'experiment':str(root)}
+        if args.glyph_backend:
+            from glyph_live_capture import inspect
+            report['glyph_backend']=inspect(root/'glyph-backend',args.glyph_backend)
         if claims:report['claims']=claims['claims']
         report['window_screenshot_requested']=not args.skip_window_screenshot
         if args.canvas_producers:report['producer_oracle_mib']=args.producer_oracle_mib
@@ -385,7 +393,7 @@ def main():
         if args.continuous_queues is not None:
             native=json.loads((root/'native-producers/live-report.json').read_text())
             if not native['success'] or int(native['original_returns'])!=args.continuous_queues or int(native['native_completions'])!=args.continuous_queues or native['remaining_surfaces'] or native['image_uploads']:raise RuntimeError('Incomplete original/native continuous acknowledgements')
-            if list((root/'capture').glob('producer-oracle-*')) or (root/'capture/canvas-producers.bin').exists() or list((root/'capture').glob('world-batch-*.request')):raise RuntimeError('Continuous path emitted accumulating diagnostics')
+            if any((root/'capture').iterdir()) or (root/'capture/canvas-producers.bin').exists() or list((root/'capture').glob('world-batch-*.request')):raise RuntimeError('Continuous path emitted accumulating diagnostics')
             report.update(native_continuous=native,original_pixels_used_as_native_inputs=False,original_work_bypassed=True,continuous_queues=args.continuous_queues,scope='Actual guarded original producer queues through fixed two-slot owned sources and native CPU/GPU rendering, with original writeback/return acknowledgement; native final CPU/GPU assertions, independent original equivalence remains separate.')
         if args.canvas_producers and args.continuous_queues is None:
             spec=importlib.util.spec_from_file_location('producer_inspector',ROOT/'tools/inspect-canvas-producers.py')

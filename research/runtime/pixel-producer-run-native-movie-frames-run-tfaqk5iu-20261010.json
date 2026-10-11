@@ -1,0 +1,97 @@
+{
+  "success": false,
+  "claims": [
+    {
+      "behavior": "NR.movie-frame-production",
+      "contract_sha256": "7bc0dcabd5cb6239daaacfbdf8a9f95caa086f59220751c7ce8d90724f0fb34e",
+      "scenarios": {}
+    }
+  ],
+  "sources": {
+    "apps/qt-shell/CMakeLists.txt": "342e859672c631e6db94a7daaf9e5f80751b7814b779152863dc01667f56b56d",
+    "apps/qt-shell/media_cli.cpp": "36bc110a59c06fdc403883a92a343ad207fc3585cecf0a78506a804bb0ff1cd0",
+    "apps/qt-shell/media_cli.hpp": "74dee678693f256a06c538824abfce1c60e443a4c55aad6c6b01ad8f106a2e01",
+    "apps/qt-shell/native_playback.cpp": "3b06cb66d0bb435ebd64b8015010911cb9586d9fb2c41cbe85f8d41d717fb955",
+    "apps/qt-shell/native_playback.hpp": "fa864b25515e391cab7c94448254d48878277762d7c5b557c4d84922fa71ec3c",
+    "protocols/include/mnm/media_v1.h": "4cfd4858739f7b1ba41ec5f26b7e15ac5a44be4fae4288e692c8c5802da53a23",
+    "tests/native-movie-frame-test.cpp": "cf6121d2342e30b6d94e7cf8ade00e4c467961b0b95939d7f264d0fc248001e2",
+    "tests/native-movie-frames/CMakeLists.txt": "fe8efa0ae93e7f394b46aa3bf3a0d9aa5b6b0e5518288c7840b827035b539691",
+    "tools/test-native-movie-frames.py": "3124c08baeea06d3fc017b6e00144e7edd279328bed6d5644276cec0ffbd3ab0"
+  },
+  "scope": "Owned opaque RGBA AVI movie production, all decoded frames, complete playback and bounded cancellation. Exact synthetic RGBA and independent FFmpeg-normalized YUV420P decoded planes with independently calculated limited BT.601 RGB policy for installed Indeo movies. Not original DirectShow/placement/control or live gameplay return equivalence.",
+  "original_pixels_used_as_native_inputs": false,
+  "live_replacement": false,
+  "cases": [
+    {
+      "movie": "working/tests/native-movie-frames/run-tfaqk5iu/synthetic.avi",
+      "frames": 12,
+      "width": 64,
+      "height": 48,
+      "pixels_compared": 36864,
+      "max_channel_difference": 0,
+      "different_channels": 0,
+      "tolerance": 0,
+      "native_rgba_sha256": "62486c0fd285aa849792eadb8190a1724ae9cc912e8f871b654115cd86588728",
+      "container_frame_slots": 12,
+      "reference_rgba_sha256": "62486c0fd285aa849792eadb8190a1724ae9cc912e8f871b654115cd86588728",
+      "playback": {
+        "accepted": true,
+        "all_frames_opaque": true,
+        "audible_output_requested": false,
+        "audio_bytes": 0,
+        "audio_device_available": true,
+        "audio_frames": 0,
+        "audio_s16le_stereo_22050_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "error": "",
+        "first_frame_quadrants": [
+          [
+            80,
+            84,
+            28,
+            255
+          ],
+          [
+            240,
+            84,
+            60,
+            255
+          ],
+          [
+            80,
+            252,
+            52,
+            255
+          ],
+          [
+            240,
+            252,
+            84,
+            255
+          ]
+        ],
+        "first_frame_rgba_sha256": "36b53543fb819d52ad39fc9c41dfcc213cb0b688bffa3c66f4e5b807ad80ae2d",
+        "height": 48,
+        "inactive_after_completion": true,
+        "owned_first_frame_retained": true,
+        "path": "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/native-movie-frames/run-tfaqk5iu/synthetic.avi",
+        "pixel_format": 4,
+        "result": 3,
+        "success": true,
+        "video_frames": 12,
+        "video_rgba_sha256": "62486c0fd285aa849792eadb8190a1724ae9cc912e8f871b654115cd86588728",
+        "width": 64
+      }
+    }
+  ],
+  "native_binary_sha256": "74f3b71bc3f933dd814322208e2bf54a6f9c328893b1b4eae25b977353d52eb1",
+  "error": "Celtic exceeds declared RGB tolerance: 13>0",
+  "original_manifest_verified_before_after": true,
+  "sources_stable": false,
+  "inputs": {
+    "working/tests/native-movie-frames/run-tfaqk5iu/synthetic.avi": "e6bf5eb2d48638a0b5474abf07462600aaa0228e88ed0774bf41bbfaa7e62744",
+    "working/game-nocd/FMV/Celtic.avi": "62b705b305e3373a8e2bc37317d5c2a477a24bcb69cfce71aac3b10c7ad85bce",
+    "working/game-nocd/FMV/Greek.avi": "0e393dcbd72e712b6d455906cc3757ab71a7b2ce0d7f43b96e48c47b9bfac4b9",
+    "working/game-nocd/FMV/Intro0.avi": "9a6f05f0c9379d03f5b2f7b5f8d026dea33e4644a7c8ae23ddf3e52657f32515"
+  },
+  "inputs_stable": true
+}

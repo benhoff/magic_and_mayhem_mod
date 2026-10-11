@@ -121,8 +121,11 @@ worldRasterBatchReply(const WorldRasterBatch &b,
     const auto low = std::uint8_t(pixel), high = std::uint8_t(pixel >> 8);
     out[at++] = low;
     out[at++] = high;
-    hash = ((hash ^ low) * 16777619u ^ high) * 16777619u;
+    if (b.header[2] != 5)
+      hash = ((hash ^ low) * 16777619u ^ high) * 16777619u;
   }
+  if (b.header[2] == 5)
+    hash = mnm_cont_crc32c(out.data() + 64, unsigned(out.size() - 64));
   auto h = b.header;
   std::memcpy(h.data(), MNM_WORLD_BATCH_REPLY, 8);
   h[11] = unsigned(out.size() - 64);

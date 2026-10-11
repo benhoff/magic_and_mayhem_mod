@@ -1,0 +1,1390 @@
+{
+  "schema": 1,
+  "scope": "Committed-history only. Parent/current exact file and behavior receipts reviewed separately from uncommitted takeover changes. Append-only journal verified without recursive self-hash. No historical gate or fresh-execution assertion.",
+  "range": {
+    "base": "1abdfe31615247d747186097cd2df77901754203",
+    "head": "59608a47ef825d249e88be5b0b1271096850adb0"
+  },
+  "files": [
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "apps/qt-shell/media_broker.cpp",
+      "before_sha256": "e09603c761d7ea3cb3dc4c9fb5c568c6031b257e8c82d6bac79608a27d4874f7",
+      "after_sha256": "fd2d9c8eadb148ab3519d96a6144947c9312326325614f137d1c1dabbaa8e90a",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "apps/qt-shell/media_cli.cpp",
+      "before_sha256": "f533762ad595145d7c4bf5bc41c4c27de1ef8d92a176d8c4a3b63b9fbccd7410",
+      "after_sha256": "36bc110a59c06fdc403883a92a343ad207fc3585cecf0a78506a804bb0ff1cd0",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "apps/qt-shell/native_playback.cpp",
+      "before_sha256": "ba5080904fa174371fdff245f2ef491863ce59d51be464c7850f8d5b99fe677a",
+      "after_sha256": "3b06cb66d0bb435ebd64b8015010911cb9586d9fb2c41cbe85f8d41d717fb955",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "apps/qt-shell/native_playback.hpp",
+      "before_sha256": "42753b3baddf9456d41ca4d7a58440a831b2aac152bbd20efb7354b977c99cb8",
+      "after_sha256": "fa864b25515e391cab7c94448254d48878277762d7c5b557c4d84922fa71ec3c",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "compat/legacy/canvas_producers.cpp",
+      "before_sha256": "6aaaa122de325939e1bccd4ff7bf544001b4db28ced357d27dba2781bcc83721",
+      "after_sha256": "f428c1033c254b3b703bf03b0ec730fc0e3419b2a62b1e1f0388b4af7b2d2afb",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "compat/legacy/font_layout.cpp",
+      "before_sha256": null,
+      "after_sha256": "d84a50f7f1ec8180f66823fd17f37b68020b982904cd9aa86ff55a63ba3838f2",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "compat/legacy/font_layout.hpp",
+      "before_sha256": null,
+      "after_sha256": "dec22179bcb33493620a50a3b5da51210c350f152a15484a3686475d7a897187",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "353366c7cd07fd90da1d01c01944d9539c001c671a9d91f8cac606cc29e0f1ce",
+      "after_sha256": "11f23f2bf416e375ff31723ddace4ebe2c13bfd3d899df37b4f0fbe8ac2e3bc9",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "reconstruction/rendering/fade_span.hpp",
+      "before_sha256": null,
+      "after_sha256": "3f297ef7cf45a2f3bad3b99bf939ecc4ad82fe0362ec206236586b6ad8a25504",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "reconstruction/rendering/font_layout.cpp",
+      "before_sha256": null,
+      "after_sha256": "9d1a3f9fe5f21f4adf0bd20e3f3b533756ca1c3c4569d31739897b396c8e4a16",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "reconstruction/rendering/font_layout.hpp",
+      "before_sha256": null,
+      "after_sha256": "0b2bfa652f6cf6d3ff1bf9f01a984757b88d90e35ff606c766beaadf8f5c8a35",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "283fc4103ed3a5f38b798bb1b5cda1c6604ce1e746c45e8323497ec454123ee0",
+      "after_sha256": "0141b627e29b386e8e6d0cd3e96ae3e341c3fdeea33f18c6cc1a742e1f54ed40",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "renderer/canvas_sequence.hpp",
+      "before_sha256": "93b70d6c5a5af09c81e1b9e1be673018d29251fda1112691d225c626127e63f5",
+      "after_sha256": "37bfb943de403fb45254a2e93e9ee51450f4e48ab45a59dcff0b73b9e6d7ea56",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/canvas-fade-span-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "6a78d715b48cb8c487469a59965d7c4293b1da48c2c19642a5baf6d8b3fd83c3",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/canvas-fade-span.md",
+      "before_sha256": null,
+      "after_sha256": "f5d8271fe7703a6ea5e440424de89a5ecb4996093b30dd5f6748b6c8fa86a019",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "1ee9baab3ff8f1164251fbc8c11a175d9443b5757ea591e05ff762c9e80c4033",
+      "after_sha256": "144b54aa0a2b01c43bb53e6a44422c7167d51810db320a3837208c0f5658e760",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "152c2b7a162eef9590ca4686b929e93598fc99b767fde93cf0a4f8f320efe3e6",
+      "after_sha256": "c61b36605b17c96d424ef2a5e46d46f0b27e9bcb8d48360640ad43306cdc61eb",
+      "receipts": [],
+      "classification": "append_only_journal"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/coverage/pixel-producers-history-577d293-1abdfe3-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0c9e49a9ecf48613bfa564d0347d9dc648475e525230575071f2d1bff2d232fe",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "97726ca34e1375705a78a18bd2f0f2439dde95bdcfef1a6fdc7777f005661899",
+      "after_sha256": "6462e1e91a0d6a079745e6a222b89af74a79ad143c130013e594fa8ebf20aedf",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/coverage/source-index-pixel-producers-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "364218286110df96d757f36acbfb2097fbf93dd45c551291a50e63bf231ed007",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "cf43cd4af26b8c6ad2e937582072d29eaf650e257e23f7fb40fc314eb5246e54",
+      "after_sha256": "d5e78ab6051c538945a97fcc7d25f6391e8f6506bf65d1ab3714180b716b7e32",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/font-line-layout-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "168a98512a07017653343d0680c7babd283ad48249df0a63b0436958d54d4bf0",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/font-line-layout.md",
+      "before_sha256": null,
+      "after_sha256": "ed906317abc2057338f4968032343637195ca5aa71c91ebc11785463c222116e",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/native-canvas-image-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e307081ead33a1e134e5859e18a23ca0dcb0fd9fadfd25ec9f1e29c5659c723d",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/native-canvas-image-production.md",
+      "before_sha256": null,
+      "after_sha256": "d46e91268439f52acdf3d28755fa341fe4d2e8f56cec0e7ee3dbc8d78e93eeae",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/native-canvas-producers-final-shadow-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/native-canvas-producers.md",
+      "before_sha256": "4f6296183c517f162d917419bb5ab4e23b0af7e2d856da1191db24e953b160e8",
+      "after_sha256": "e5734d0527732513fdd3d70bddb7f0aae54c7d91f52c2f4baf1dfabc6c83f481",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/native-enabled-movie-startup-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/native-enabled-movie-startup.md",
+      "before_sha256": null,
+      "after_sha256": "eb0722fa9a4c680d987c2c8f22027868518497df7ab9c7115a9d89c6f253fa91",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/native-media-producer-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1e7a2c62cc851f768606f4d6b024314076199163e27f9ba7fca0bb77c6d2f172",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/native-movie-frame-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a74dff40db72aa72b241ca3d93543419c169919a51443ddaa90543ba6cdf9a66",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/native-movie-frame-production.md",
+      "before_sha256": null,
+      "after_sha256": "b8b6dbac7d714d35cd144508a2f20dbafe70e5c8030e708c5c4a6e60ed635f59",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d32e3cb72e11eb9bd7dd8a84ad51e36be8a13986251f076362c56ce22b4f68a3",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-canvas-fade-span-run-30w8ni96-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "6a78d715b48cb8c487469a59965d7c4293b1da48c2c19642a5baf6d8b3fd83c3",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-canvas-fade-span-run-qj5c28kg-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "af83c32ced92a7cd6de5905114344e63b7a5f202a13c27da9dab3bbc79692c80",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-canvas-fade-span-run-tnuuh7le-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8db800af54ee2aff7e24bc928ce9aabaf0e4311117c8525def51a3c02194c9b9",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-canvas-fade-span-run-zvh6w0w9-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "455c849b1d923865239886c7fd61c527e545b071a1e7f974119129f2665e8c82",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-canvas-image-producers-run-0mcjz4p5-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d4b9bc252d0d551b70f4425c0fb15d4c708dd18ff2da04017209b9bffc16c9c1",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-canvas-image-producers-run-avvoaj23-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "90ceb54f27ffa9646f833aa82cd02a0f5f7f26693a7d89492748f067658657c6",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-canvas-image-producers-run-c77g8yq4-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e307081ead33a1e134e5859e18a23ca0dcb0fd9fadfd25ec9f1e29c5659c723d",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-canvas-image-producers-run-hwu45wzn-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "afb57280ddcbec5bb58aaa693021b78e016666218e07b6bb5ce4cf288343a818",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-canvas-image-producers-run-tjva0rnb-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ae730e1ab7f6dc03cb6375524af94745fe8be29f83f2470744db3ff04357c6b4",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-font-glyph-live-shadow-run-68qans53-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-font-glyph-live-shadow-run-ri8dzglt-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c157c5019c26baeaa510a97aa3b6dcaf13173079b8c62b4009ab185b0c35286d",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-font-glyph-live-shadow-run-wbgjwym3-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "116167c630f2acee16ea8a5dfe1026bb5af59c5a2b63dcea8e928b20784c4fb8",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-font-line-layout-run-32tcbpda-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "eabff14ca1a5131e9e136eeac13a579404e80ce10cfbd9114eba398d3a0fc30a",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-font-line-layout-run-4bwxtxqi-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "be1d659f59cbd77dae269d5871d6a3a2fac5212278b61c6b900e2e5ba33ef7dc",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-font-line-layout-run-k4ea0efq-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ac7ca1b3c1c461cb89c638cde8e86863a0e5ec5e800a7c422f4cb7a70a2eb474",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-font-line-layout-run-nbqove3o-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "168a98512a07017653343d0680c7babd283ad48249df0a63b0436958d54d4bf0",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-font-line-layout-run-xu7nmm6d-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a0fca9bdcc31855c5e22f8cd90437710fd43c8f2fa6924f105aada505f3a8aaf",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-native-enabled-movies-run-29kknr4m-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ef80e8554827244b2d9f59d300367bfbb1ab260282a0a2fd05471c182ae87417",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-native-enabled-movies-run-8ntcyoj0-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "20a5335c20d9309c5f03b965b6c37530566e98eb727a981ef7c0fe66a266aaf6",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-native-enabled-movies-run-f5gjddgv-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "544707a80c059c90c92e5f342a32bb2cf774005143da27c3edea60f94e7ec197",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-native-enabled-movies-run-j85fv7kd-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-native-enabled-movies-run-vwkp_qzh-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "13a677dd9754a402c0c234725042940a418dc2d69d7fb57702234c4bc59314f9",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-native-movie-frames-run-i_o1xfxk-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "004c860082d9576065376f50b0d9d1b26c755972a3b7e1485d022ea82ebf5262",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-native-movie-frames-run-kar353a8-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a74dff40db72aa72b241ca3d93543419c169919a51443ddaa90543ba6cdf9a66",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "research/runtime/pixel-producer-run-native-movie-frames-run-tfaqk5iu-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e719b40ebea95581493d2025faef56c64a162421e9ebb5bc31b687a2caa855b5",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/canvas-fade-native.cpp",
+      "before_sha256": null,
+      "after_sha256": "cad6c31589552ab7993c97b10127ffa8bcdb4af66efdc9d938c059e9fda6d9bb",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/canvas-fade-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "fdcc8ad114fcfad13367027619df288e7a765d853f566bed3df4b4e89af9d96f",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/canvas-fade-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "ca43ace6551d589dbae41584ccc8a56d869caf0ca576a15eca79bc10dc2a7f44",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/canvas-fade/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "282eaf2ebbd2cfd0b30274ea157ddda782876375909aedd0137e8c7ad96ab9de",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/canvas-image-producer-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "fceb9e2d59f83a22fd4cd096d2e9f0fbc5d70af0260c93b5c3ac79b9d558dcf6",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/canvas-image-producers/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "5fded6ddf988bf56618110f4fc2fcead3e88c0dd303dc1bc6ced7f7aa2b6aa9f",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/font-layout-native.cpp",
+      "before_sha256": null,
+      "after_sha256": "dd17aa0aca4fed5bbdf4678bd4b342b7c386384fb894f11d687ff52667eb425c",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/font-layout-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "6dab58289f0f1ac6d9c4dd0daf1935feab4d13757c9d65f7832814f3f48f020d",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/font-layout-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "b2447477241919bc8d69468b7fe110e06eae6dc696275df7d1430e4eacf30d82",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/font-layout/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "10b871b1f28b7ebcb6008abc6018f40ccdd9efd7ff2c217498e2f6d3d3ede27a",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/native-movie-frame-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "cf6121d2342e30b6d94e7cf8ade00e4c467961b0b95939d7f264d0fc248001e2",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tests/native-movie-frames/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "fe8efa0ae93e7f394b46aa3bf3a0d9aa5b6b0e5518288c7840b827035b539691",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tools/export-font-text-support.py",
+      "before_sha256": null,
+      "after_sha256": "d3f96cb0142f0f11b56eabc28be874463004f602cbc7462e88fcf915514c257a",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tools/test-canvas-fade-span.py",
+      "before_sha256": null,
+      "after_sha256": "093fc11cac38b31fc344e37c6b9fe81faa3bc0e5988b6ee670afd944349bd21c",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tools/test-canvas-image-producers.py",
+      "before_sha256": null,
+      "after_sha256": "677efcdff9bcae77f872109c5b17693d2f0fa7918cfb8c5b0cd7c86178d14339",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tools/test-font-line-layout.py",
+      "before_sha256": null,
+      "after_sha256": "869f27a7a513f036677402c1a72fd4a471426b62df08a876a8af4f7e9af82ccd",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tools/test-native-enabled-movies.py",
+      "before_sha256": null,
+      "after_sha256": "d9ed697fb3799cde85c8f4f2a78be5635c0cf6c620085d5ee600fb3d7f95d801",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "parent": "1abdfe31615247d747186097cd2df77901754203",
+      "path": "tools/test-native-movie-frames.py",
+      "before_sha256": null,
+      "after_sha256": "853c020528423a1ee0bf6f757c5ebd9bc9ecdb4ad3b76396e3b88428de339d7a",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "HOST.media",
+      "before_sha256": "404eb9f4c46a36fa0662b026e5f3ef7ca983bf996d36f40c97f2df26b39156dd",
+      "after_sha256": "8f531412082d6519e2e3c72465d52b4106fb23b717cd19f7d2b50e5c6f7da8a3",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "HOST.native-command-launch",
+      "before_sha256": "c6c467bb50bdd22b546056b3b24fbe5b9db1cfea44aabce3f327087f87602a02",
+      "after_sha256": "463dc9f1a48b0fb554a103b270d277a9c19ee8830343836585dd4d3065114f35",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.canvas-image-production",
+      "before_sha256": null,
+      "after_sha256": "247d26bf2db07b77209e7d9bbe9f713c538cea6398d704e4be87c69f8bd846c1",
+      "receipts": [
+        "pixel-producers-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.canvas-producer-replay",
+      "before_sha256": "cd38958b0f130facc2065888b657ae0535b08e9a827b183f6874b32159b28d06",
+      "after_sha256": "01ce96037babf647aba5b8da78a433f42818100dd963561a4c3c9a198942e00a",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.font-byte-producer",
+      "before_sha256": "1811b31cc3a02058c6d9e5e3939a62bd9882a33fb846adf383cf26f709a2e093",
+      "after_sha256": "7041ad727af99589987393e8663da12cc3c8ac0ce9e471e157808e98b8aae5eb",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.font-glyph-admission",
+      "before_sha256": "37c7358e914eca480e5ae500c6c207ec89b5811a01093ba85fb5fddf399ab3bd",
+      "after_sha256": "605539e71144b53ec8a6e5ac1336799a8e4d1ae6476110da1704b53b292fff6b",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.font-glyph-live-shadow",
+      "before_sha256": "06be5ad0fd1e3cd272a46eefd5d5fc311e43e6d437a57e4e0c20da949255fd00",
+      "after_sha256": "6d8cc404bdaf5db0300cb67436c390ce07b767a912e44c931d8f48f64149d5c9",
+      "receipts": [
+        "pixel-producers-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.live-command-transport",
+      "before_sha256": "b4cc0703cd494ffe8ecc453126c8636051d00335cf0c95bf3b571eb6350adbc4",
+      "after_sha256": "5a64706770f0d5762c7578d51333213816eee624bcf72728b537cfa6e8560102",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.live-drawing-replacement",
+      "before_sha256": "b28cde57527446175186e177f32352bab9b437ef36fd88932a4e13334c9fa1e9",
+      "after_sha256": "c06676073b67ef92550ec52f9e9885531e8a89e035f38852fdeb5c310ebdc73e",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.minimap-input-fixture",
+      "before_sha256": "1407650ccdfa2a2cbc95cfdc56d97d136f56e9d09e18abb913eaf6b1b9b3d4e0",
+      "after_sha256": "97b87ae7c22ce873bfe609d293ae7f066a15b9a851c832f2a1145a0ca24ab962",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.minimap-interactive-presentation",
+      "before_sha256": "6706d96777cb605dbdd6c905872d40d482352ba3e6ea2da25b590e3ef4fc6319",
+      "after_sha256": "7b07620eb43130a0b46149902631fa5a7524134dfc3072385aebea4c0a4ef674",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.minimap-owned-observation",
+      "before_sha256": "4de8d64e1f6e5dfc0597c92d20070db0907e2072f57cdbb385d31fbce41cecaa",
+      "after_sha256": "bc6080fbda2dbf2f6e8f52bc5e05407f9fc32d97f409d9ab2f6bcbcadc67fcd9",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.movie-enabled-startup",
+      "before_sha256": null,
+      "after_sha256": "c986dcfbf2aa34163f92a6a4aa9286b9e392920cb74077c2a0f3a0b306a0f4e9",
+      "receipts": [
+        "glyph-live-retrospective-59608a4-movie-contract-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.movie-frame-production",
+      "before_sha256": null,
+      "after_sha256": "f1bd518ec226de8d6127249a84d15f25872f01ee7985dc3b5c9d60dedffcd463",
+      "receipts": [
+        "pixel-producers-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.offline-render-soak",
+      "before_sha256": "25cf0a2ccf4e770e8a58b090ae85830bbdd97054ffd9d9860b32376af2ad3957",
+      "after_sha256": "46fc4664f32b96cd799ea30188a1419e0b93530f8ba00c567062589b1cebb189",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.real-game-command-shadow",
+      "before_sha256": "67b351a17bda41c4869147f1228b0040331ff9aa4bacc66794a472d60b904f35",
+      "after_sha256": "26ad6c133ea45787d8697ff0295d32510945433b4e946662f00aa7b6eeab3470",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.scene-service",
+      "before_sha256": "8f6e71e520fe995b88a2da6b996f3c7c0bc103331dbcdd24d1bed734aea0d43b",
+      "after_sha256": "e4f69785bb8c03d9709205273051e0792fb135faf143470fbb3a5570919e4617",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.scene-snapshot",
+      "before_sha256": "5e2bdfffd07d65345fb9d09a14849966ffc75f2d5622d1f6b84c53d658c2b2f2",
+      "after_sha256": "29e45118f65565f8e0b1fe5595dac89d74cc935d7f2069bae4fd7a5c624d6bce",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.sprites",
+      "before_sha256": "8e636a361603da42d76fbddea12c583ea2056a1a97cb921f705a992519946393",
+      "after_sha256": "596ca0bde2f03a337f5d7ec1d1e8ed6a539cfa3597abb701351a9ddf094ccc16",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.surface-fixture-corpus",
+      "before_sha256": "1f4878a102d15774bce841319a744a583270f44b9e5611275348faec2add234c",
+      "after_sha256": "787e9c166854bb8f41a934c7ebf2cf6781574b4bcb7fa5cdddf467153bdc41e7",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.word-admission",
+      "before_sha256": "63d9b0d96b69fc4d09962feeb19ef0d5b1c48eaee44e16ec1b21b8173db4fd38",
+      "after_sha256": "0ea2a8a28250f5989105522c9bb9a6578e2ade3eaceb77abeefe3f7482c31c7e",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-admission",
+      "before_sha256": "baef337afff6ce1a2d8728935fbe47f15506f4d779c3fb5582e3353f4bf3c90e",
+      "after_sha256": "f98c13eaa96b2dfc52b856fc513c5e7106fc49655e00875ab9f824e5a89a7c77",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-batch-extended-prefix",
+      "before_sha256": "e3320fb458c689d0fa4ddcdfd5aef6e6c9dc6b8bd1cb49d6feb2e90d94d287ed",
+      "after_sha256": "710d55348e2b50a0a6f313dd13fd2db7c6f117a26f8c883004066d64d8ee2a25",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-batch-profiling",
+      "before_sha256": "3b60d79ce454e139418e2d5142e03ca9e18a981d9b242b5b2951ef5841f336bd",
+      "after_sha256": "c8045b90feaf879f61a9958ab3b1a214d0b54e91ba525fb028565d6fb2c6dab6",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-batch-throughput",
+      "before_sha256": "570e98220538144397a088dffb076a66e7d09bb35b48dd39230dddd7034cf362",
+      "after_sha256": "58e7ff392c4503604a3e178b461d9acfcaa785693d79d96b01b8568c20b95506",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-channel",
+      "before_sha256": "19717f8b12f4f1ac248175ef9a53535a4d658a67531de4c2321f7ebc8ad0b44d",
+      "after_sha256": "4e6e702cc0264c966f3c33f8a02952876020fe4d41d90950490f15f2f1892a08",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-cpu-composition-reuse",
+      "before_sha256": "3792bd053a640b5723e698981897d3e0a76ec240ed5bc2304ac6bd1b2871e768",
+      "after_sha256": "a1aad58047f16a791478b209795894ca720c77039321f4e0809b80fd94c02118",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-frame-identity-cache",
+      "before_sha256": "c0d46d90156156bc6eeae5303c73af2fef81e0051d3826bb52d8163378fe28c5",
+      "after_sha256": "96583fb4cd9ac8e6024a13b8d918584090e2d786e643221614af86db60e1228a",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-interactive-batch-launcher",
+      "before_sha256": "95677a9e75d1c5e35d2b6b82e498605890bebb4b1087e8c6460087366e568c29",
+      "after_sha256": "abe542aa4ed1d85e9cefac8346289accaac423e1f8d3e5820f896b3c7bf5bbae",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-live-view",
+      "before_sha256": "46e92894580e984be317900dcaea6fccb60d048b341193a7b3643b7de413e2d8",
+      "after_sha256": "a6d1295a2d2fec484624dc3e6d09108446df7172e02de876ea31431a6d0574c6",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-prepared-admission",
+      "before_sha256": "98887bbfad05a7e11ab2b8690e528b2e2caa70cbac253abe222046a76437e754",
+      "after_sha256": "945e737e4416fb2d984023ddb98a0e72f3b854ed255cd4cab805e233e49e2eea",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-producer-handoff",
+      "before_sha256": "9372b935243e8968383ff3bf82dd0a8f9cb9c84712a8fb51a36ae8a984a78587",
+      "after_sha256": "ba018bfae187c9b6a7c770a1459f2c6685a359133a416e995d887acf1e843a2d",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-raster-batch-transport",
+      "before_sha256": "f2a5e0fda8bb72ef25c511bc164ff4028e684f08a315203a6edfd57bc5c52d5b",
+      "after_sha256": "bffaa0f43056c79e0c79bc4d8c0ebe20811c069b187921e96a802be5dd55f91e",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-resource-reuse",
+      "before_sha256": "b93aca1dc7a77e681f4e199dac49d5a7e20838b7a7ddb97f772d1d8ca5ee82c7",
+      "after_sha256": "976ec927a515abf5f1cb4a7f1bb1cac0d911e101da0c94f25ff7489c31ee0b43",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-rolling-delivery",
+      "before_sha256": "f115cfe3a2379c5f07a9aeca40a2de8e9c6cbe0e0f549f6a1312428e5b9a293f",
+      "after_sha256": "e16fb73330a3d621837b4bb6782fbbb101ac0ae9760f8b525a827a5d3255491a",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "NR.world-startup-launcher",
+      "before_sha256": "6ce06824dd16af5655063089874edad05c8f2713b3972140c72d809ac6baaea3",
+      "after_sha256": "32fbc1fd072516fc4d1627dddf99882e371604a1768dae69d5755fea76b8e85f",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RI.copies",
+      "before_sha256": "ce1b41fe8f2f920f217e1566429c2b9f39e26a17cdad5cce40e778c0f3492a8b",
+      "after_sha256": "f7e59d298e24eefe31180bfb2f76b6691d0c81c50c11fcb31305aeeae3822e51",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RI.effects",
+      "before_sha256": "429d9ad678f49b90fb4055d1becbe24232c0b14c654a1bbf1f7d53a0d893f54c",
+      "after_sha256": "0af60bb4beace892effd425be0fe8e52b28faa56bd0f84a215c118d14baf6b8f",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RI.fills",
+      "before_sha256": "5a3a0366e301be346264d0b3e45c59ccd54b89c1f76e438cd435dc61f60b1f64",
+      "after_sha256": "ca9cd7bc5603ad92eb5b98d7af2e7711465f614a91f6a85590c811fabda903a2",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RI.gdi-text",
+      "before_sha256": "fe41ae55b09ce435b69c03fd1a6bfeb73a41b0035e612d85ba8718490c74ad6e",
+      "after_sha256": "bf0f572f7f22b9fdb8bce2e644d7b7b3278d779336af3a3662880101640cd40f",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RI.locked-writes",
+      "before_sha256": "6d0b680cd7753b668781d7a5c0a4e340a09e9492691c72fea1efdc004f7997e6",
+      "after_sha256": "1f39727bfa632ad25614eebb45bf26264764c41a815326eaa24280485e379e6f",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RI.movies",
+      "before_sha256": "b84c76baf5f3b7f92502b1968c5638df00958aa43bcec15a4ed2d92492cb747b",
+      "after_sha256": "03aeea1f9eadafc37692bae5e4f8359837fd0573b640eabfdf65b22e1b8764af",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RI.sprites",
+      "before_sha256": "8b90341cb1824a97875cd00eeb6ac55183edccb858515dde8ab8daf92ae51cb0",
+      "after_sha256": "28175db42f09699621ca46d21ed1c0ad36080212868ba17ad3d3ed0b06d10c8b",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RI.terrain",
+      "before_sha256": "94be5314de5450dc0ff810ebe4eb2d3542dc924e4c7f383d78b72c20d26592cd",
+      "after_sha256": "81277b1aa616a22cea4191504bb0a6bba877d19cd758769306234058601726b5",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RI.ui",
+      "before_sha256": "e7459f8ae9060c0e12e4a9600a0c9a7679b54d266cd9f8b39b49eb32601e1f86",
+      "after_sha256": "49f2e34842d8f23fcd28dba820d9137888a37fdafbee58ba5b0e3c16071f0b29",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.canvas-fade-span",
+      "before_sha256": null,
+      "after_sha256": "bd9a8b5fbcb264580d6c0c7e3a7454260934423d363aeb23239d61648001c788",
+      "receipts": [
+        "pixel-producers-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.canvas-producer-sequence",
+      "before_sha256": "823b00ecbee257d0ad93d121195dd1ea84969291b0345b53f3c49efb641eb954",
+      "after_sha256": "1149140f334b6005cb643d3b3f88c35aed20c956c82d40ef59c4c4756077c8af",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.font-byte-consumer",
+      "before_sha256": "1a389c1085158efd4dca78ceb5cdfd9295d9eea70508e2bfd44b302d7c960642",
+      "after_sha256": "52dc0fc0b5157b7be22c2a4e1e2d302201384230cf42706efd437c7add2cc8df",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.font-glyph-raster",
+      "before_sha256": "a10d531566ae7a2a65dca2d49f8d53cb7c2624892371b650bb740714be7eff76",
+      "after_sha256": "8252c82d8979835879d241839eebbbf1868044af33a19438b4d8d08f5a8d5a6a",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.font-line-layout",
+      "before_sha256": null,
+      "after_sha256": "0ef971467e07f8285d378fe224da8445eafba380a7b4a3b73fd07a874f46b96d",
+      "receipts": [
+        "pixel-producers-recorded-contracts-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.word-clipping",
+      "before_sha256": "514968008b205bb50267b1eabd4331f51f3ddb603ccbfcec0df8a004c716dbd7",
+      "after_sha256": "e2cd5e6f7e90b52668062cbc83f56e269c19051519b6e42c8670dc238be5f49a",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.word-raster",
+      "before_sha256": "f5b7428416a32236375f064a8ded34efc59f6e402a124de0b592e853d37b814c",
+      "after_sha256": "bb9af09489e0409b7492e8194a6272d4c4031afdedea7ed83325ff7c862f5ce4",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.word-route",
+      "before_sha256": "b4682b3bff50b08b566437306e21da389208c3e0598c4d28b6f349a9559375b4",
+      "after_sha256": "f0f3de3005e4147f71dbb5d3e0f861aa3aa299b514f3c3b5310dadb1d9388630",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.world-composition",
+      "before_sha256": "c3de2ef98ad224fd1a01581f2b16c5343be8171fc9aca95ea1cee9de7bf7d94e",
+      "after_sha256": "0465839642a23609a670915b96c658f1f71435b95d811d7ae20ce90094bdfbd3",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.world-frame",
+      "before_sha256": "40cf9d25013d18d4b72d4e025733679aaafc26a1520c755c93d53ae90c8642f9",
+      "after_sha256": "1843dd51b1ea785a0b1a64399911d734bd4792dee033f1ed328f563255adecb2",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.world-producer-bypass",
+      "before_sha256": "7c4af91a2df24ce12799f31d09b1b18932ed15fce8301621a4367f20b3fa9381",
+      "after_sha256": "fb850e37dd4b71b548bab1661717d09628a00f4e193c28dda864071609356b45",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.world-raster-batch-return",
+      "before_sha256": "4b515e4418dd4fb10531e1ce27229a3da3623450baf128b8dc0bc0637075b52c",
+      "after_sha256": "5fc1c4a05f8deffc2566539427ef308bbaaee0e91bcd2786ec6f387300ddcc19",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "RS.world-raster-queue-replacement",
+      "before_sha256": "d041fd4997118931568db5e8ebbc3ec4ab5abecc1639f794e9421f63c22e94fc",
+      "after_sha256": "83fe49195c5ccf55caef6a30492a70c19f001f63b4ea02fee594f63eefe75e3d",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "5087dd37a0adcc0eff56b04430a7fea88370c20d67094cfb7b0c4d7b0334e636",
+      "after_sha256": "bc7c5ce0691b68c53fb1a6b55d1a69f30fd6c285b8c9a1d8fee140bea36c0928",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "59608a47ef825d249e88be5b0b1271096850adb0",
+      "id": "TOOL.rendering-coverage",
+      "before_sha256": "247596ada005cb0083e7585c4f6f32e3a023ccf2086248c4ab612389f5234bae",
+      "after_sha256": "92ceaddc8f09dd2c54efa174990b49a9651fcb738377614816c1c20102168cc9",
+      "receipts": [
+        "pixel-producers-source-accounting-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "reviewed_transitions": 76,
+  "reviewed_behavior_transitions": 60,
+  "unresolved_count": 0
+}

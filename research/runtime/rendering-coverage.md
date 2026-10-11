@@ -126,3 +126,12 @@ pixel evidence without increasing the number of families with live bypass.
 The sixteen reporter guards also protect `original/` and `.git/` when those
 directories are symlinked outside an isolated checkout; no input files are
 written by that check. Prior reports retain their recorded source hashes.
+
+
+The opt-in [live glyph increment](glyph-live-backend.md) is now explicitly mapped
+to the existing sprite and UI families, with separate original comparison and
+body-bypass evidence. It widens supported subsets inside those categories; it
+does not add a tenth family or treat glyph admission as complete GDI/text or
+Lock/Unlock-writer replacement. The twelve surface and nine family denominators
+remain unchanged. Use the generated report's current-evidence column as well as
+historical achievements when shared source changes leave older results stale.

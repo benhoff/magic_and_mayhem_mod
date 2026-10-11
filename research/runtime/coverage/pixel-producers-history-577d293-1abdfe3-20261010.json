@@ -1,0 +1,1098 @@
+{
+  "schema": 1,
+  "scope": "Committed history only. Exact parent/current source and behavior SHA-256 receipts reviewed separately from ongoing producer edits. No assertion of historical gate success or new validation.",
+  "range": {
+    "base": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+    "head": "1abdfe31615247d747186097cd2df77901754203"
+  },
+  "files": [
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "4c643a691ac98380c3f55adbb160793444e8591cadf70201b367e656cb2798f1",
+      "after_sha256": "06da58d3b5c7ee3ed0df78cd7186841e81a7d9774b3bd2f73571bd6ed0d795d4",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "reconstruction/rendering/glyph_backend_state.c",
+      "before_sha256": null,
+      "after_sha256": "e10f3ec2ad7df0c9241ec3f2600b7f9b7f3fe64bcf92d17bdbd2302e8770703e",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "reconstruction/rendering/glyph_backend_state.h",
+      "before_sha256": null,
+      "after_sha256": "b58537f01dbaf0ea98ad9ae94b0351ccf416a525ea8bdb801fc0b4ae2f3a2660",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "bf30dd32171573eba585eebab132b6577cbae30de7431a10e248c02a8c24563c",
+      "after_sha256": "9f24015bc81de2e12310bb4f4474e462f7f376a7712a61bc374aa659b6253d1d",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "76611bb97e25e9bd71fba65be6a985af64fca1e318ee3e2862f7d98dab9d65c5",
+      "after_sha256": "423b4de62b54bbcb3de7c8ebf56b8624a316b0a7a924f03df396009fbaa37eec",
+      "classification": "append_only_journal",
+      "receipts": []
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/glyph-backend-state-history-0191a55-577d293-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a3834024dcec8ecd2f885adaeb0d629a3caccac0e7fc0ce6b072510da92d26b5",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "bdb23e6bd1037cb700db970f4ce963898fed7a4bdb7385803cda409f2ed074ee",
+      "after_sha256": "b78ce660c6ba994a6cf5fedb731698b0e2a586a5380c315f609cd2f841462e78",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/source-index-glyph-backend-state-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "858c8dc81bba7ad6cd4cd534ca06fd42ed77cbcdb5c4c258a20d59af387fbf6a",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "6281be1ca7229b8f597171e314ad080afd320f33f714d63532097e17c837bb81",
+      "after_sha256": "bc91bece393da1638f2de54913fc3d55406a067a78e9cae3b98e1dded79bb7b0",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/glyph-backend-state-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c5d90404ef87dcce91395cff12c52ef4877002a49f58bd21a57625986031fe49",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/glyph-backend-state-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "4dcbb65f1b3d87671ccaaa52ac4da979d26a9db01831117bb0e2e2f27073fb38",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/glyph-backend-state-run-fnntc2rk-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "3e93bb13f61ab2019249a19834f9dcb6e5291d4fa3c76101bf32fb53d43c84a1",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/glyph-backend-state-run-wr8q__kt-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e28355d372beec93a2d3dca87ecbb1ffed559c440ee4cce392441fd5b266d112",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "research/runtime/glyph-backend-state.md",
+      "before_sha256": null,
+      "after_sha256": "9d9c6bc38942aaca04c6d712c00e40ce04bda62b3c2cedfb3f619d5273be3869",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "tests/glyph-backend-state-probe.S",
+      "before_sha256": null,
+      "after_sha256": "65b6b81ec4088f7396713c649f9a884f14c9fa4cc22d3490e37d9c8d41674995",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "tests/glyph-backend-state-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "d525a452608a331b25cafdba2cc26603258c2cfddc2e26023b28b3a73949fe95",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "tests/glyph-backend-state-test.c",
+      "before_sha256": null,
+      "after_sha256": "873c6ce9b464f41fd0e9ab9286584489de481f462accf8bf61be161e0288696a",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "path": "tools/test-glyph-backend-state.py",
+      "before_sha256": null,
+      "after_sha256": "c6fb0c4a8c9b2428d7e4987e4940a948f074515752d98ced3368340910786633",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "06da58d3b5c7ee3ed0df78cd7186841e81a7d9774b3bd2f73571bd6ed0d795d4",
+      "after_sha256": "353366c7cd07fd90da1d01c01944d9539c001c671a9d91f8cac606cc29e0f1ce",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "reconstruction/rendering/glyph_backend.c",
+      "before_sha256": null,
+      "after_sha256": "3d6ed57e5d6837e6a0535ecd92c8416d3c57717b22684dacd5e99d0e1b704775",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "reconstruction/rendering/glyph_backend.h",
+      "before_sha256": null,
+      "after_sha256": "93104365980bf04eb6047cdc3f70ffddcc7958449c4c797bcad43c16b0603245",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "reconstruction/rendering/glyph_backend_x87.S",
+      "before_sha256": null,
+      "after_sha256": "fefdf95c806778f7d39fff4e43ff0beed9731e3bc1afd7d1634b4e718951f77a",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "9f24015bc81de2e12310bb4f4474e462f7f376a7712a61bc374aa659b6253d1d",
+      "after_sha256": "1ee9baab3ff8f1164251fbc8c11a175d9443b5757ea591e05ff762c9e80c4033",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "423b4de62b54bbcb3de7c8ebf56b8624a316b0a7a924f03df396009fbaa37eec",
+      "after_sha256": "152c2b7a162eef9590ca4686b929e93598fc99b767fde93cf0a4f8f320efe3e6",
+      "classification": "append_only_journal",
+      "receipts": []
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/coverage/glyph-backend-history-577d293-eb3cd18-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8cd6a57e51f0f9c3b5ff497c58ea54693aa574661a6a10464703a51895308386",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "b78ce660c6ba994a6cf5fedb731698b0e2a586a5380c315f609cd2f841462e78",
+      "after_sha256": "97726ca34e1375705a78a18bd2f0f2439dde95bdcfef1a6fdc7777f005661899",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/coverage/source-index-glyph-backend-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "10426f7beff9ed0064bdc2436cd34ff451e6ed459dd848771ea50dd65e09b8ad",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "bc91bece393da1638f2de54913fc3d55406a067a78e9cae3b98e1dded79bb7b0",
+      "after_sha256": "cf43cd4af26b8c6ad2e937582072d29eaf650e257e23f7fb40fc314eb5246e54",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/glyph-backend-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "859310cd0c934bd826d74117b5409d8ff737474d5c512f891d8bb22377b7ae4f",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/glyph-backend-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0edf64ef02e2eaee63c37b5429be77b4a67ae06ddcb689ff178cddb0f68a5e48",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/glyph-backend-run-2070t9ch-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b0c5d55b35bd137ab1540f2a5f5481870a0d5eae620d6c12abad20d58100a53a",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/glyph-backend-run-9lh29753-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a4e09e846e24596e73707fe688da352d0dae38d97477b3c257f17e2b4b589e53",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/glyph-backend-run-e1emqe2_-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "80fa02e7ae1391000449a452608d02bb2876a87e5ce4008f5e994e08fedeeb3e",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/glyph-backend-run-v0q3f9wh-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a2de2b17331236609f7968a3622eca181ec59f17748f759a9baea587fe8556c3",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/glyph-backend-run-x_rsvcxi-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e60d7e77804525225867ac7911d6a862b0aedf229fc334d02bfa7f9f21d3422b",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "research/runtime/glyph-backend.md",
+      "before_sha256": null,
+      "after_sha256": "7c666535c64ab6ab24b78753c1c97692013707d0d9765fa603ebb07f79b2f117",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "runtime/scene/glyph_entry.S",
+      "before_sha256": null,
+      "after_sha256": "9de083ae284419c71a47a99a4b88e1e192f9eef3c92b17fa16c0dcf0779b778e",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "runtime/scene/glyph_route.c",
+      "before_sha256": null,
+      "after_sha256": "9463e57889e297b6b43920d478bca3ecd5c269030618e7f8f3368a5814239868",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "runtime/scene/glyph_route.h",
+      "before_sha256": null,
+      "after_sha256": "401c70e73d7a63e920de890d0d8278c4224db5d06775372f01764db1a2fcebff",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "tests/glyph-backend-entry-probe.S",
+      "before_sha256": null,
+      "after_sha256": "684a2cf1646344b8ba2c9a5fd56e678e7b0e36ac2db74ac5d6796fdb514f38c5",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "tests/glyph-backend-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "083fbbc828c4c01421446fd9c0ef84369b0eec22f0cdeb16bc9697c95b6e4f0c",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "tests/glyph-backend-test.c",
+      "before_sha256": null,
+      "after_sha256": "bcb164ca55aaa1558960dae5dd6b3731f1f62f5234635a7550ac364580eaceeb",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "path": "tools/test-glyph-backend.py",
+      "before_sha256": null,
+      "after_sha256": "e6143011fbb7f6c6b992896d6aac381f9d259d37d231be0f270f48d9f5d9b5ec",
+      "classification": "exact_receipt_chain",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "HOST.native-command-launch",
+      "before_sha256": "ef57b9b91f073784370b688f90be8bd2007ec74bc8dbccd72fd93f6f0643d1b4",
+      "after_sha256": "05e099ae71570e347388dd48697e02960a57e1496e4c8888668827d154727eb1",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.glyph-backend-state-admission",
+      "before_sha256": null,
+      "after_sha256": "c8ce43c880b002a38d0f08f5d5136ef1aa9c66c2394c0d994badd48af6961551",
+      "receipts": [
+        "glyph-backend-state-recorded-contracts-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.live-command-transport",
+      "before_sha256": "0bdf51772e902851c3cdf7891cf0c47faa37c5bf88056d87f4f54d4faf75088b",
+      "after_sha256": "5758f331664a199cc5ea9a3a07733219cb2eb7127eff5c027fa7181d6013cf2d",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.live-drawing-replacement",
+      "before_sha256": "c7e99445c8658dbd0ffc0a6697f307f0e451eca34b45d02421aa4e4ea3c35365",
+      "after_sha256": "d3fa14e378edde32842f3fb6353357f89a5e622c6dea5e3e10a5f18d65b73b9b",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.real-game-command-shadow",
+      "before_sha256": "1913115b1670e77a84e24bf7338ee8da6f3b6d95175ce224194bdfb04bf67ca7",
+      "after_sha256": "a4b7fe6bfcdf0e039fbcd861e63ecb0ccaa0460628c995b1c7356d27c1248fe1",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.scene-service",
+      "before_sha256": "c6040a93f421b70e4c227d871723d22602a165b51d1648e166705f8672b28a51",
+      "after_sha256": "29c0e7d132d958c462cb5e55546fce397c9cfb95c40e53a64cb11e324ffeea5b",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.scene-snapshot",
+      "before_sha256": "39883409ca00bb0db7402d73f4e82910978de4161f7665b9245ef1a99e3a9db6",
+      "after_sha256": "37299604b528c4cffa69f1ca2185b4f1926e078e197bbfed59b96154865a84a4",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.surface-fixture-corpus",
+      "before_sha256": "2346fd4a05073efc8d1a93c6b70b71cf458259704aa54df643fbff6e20127e58",
+      "after_sha256": "f645d4535ea52e1e9a5c65fc0754e9dcbe520bff994355883cd563fb19de0f00",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.word-admission",
+      "before_sha256": "3f586b8ba7d3695dc4394f3adacc7e403394ea7fbe04c121657f71824f4f14f7",
+      "after_sha256": "0a046297798093ae528c4c013a9af6e722f0e9bb1ec121bc361c53c570bcd28a",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.world-admission",
+      "before_sha256": "609992e78ab2666d9e4e79c5b03d3058cd74966e30cd65e26fcc7f04a20337f0",
+      "after_sha256": "67030eb209aa08bc81d2d787ce5f213341722f3220ccfb10d6882057a3cfc2a2",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.world-channel",
+      "before_sha256": "29a82f51c96d468dad194e62fae0368b2c9eb55a7d94bc999f68f5dbda34bc9b",
+      "after_sha256": "0dbb7587e85e7f7f957b2cf9f17bcf421ffb466bd7a1c7896eebd41279a146a2",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "NR.world-live-view",
+      "before_sha256": "ad35a8bca1d06509c77b830fee2d1845a55ad989e313fe25b18ff90d9a1dac1c",
+      "after_sha256": "5dd6a21cc794adfae9b3106a95df66e95c2ab4d459955af02a43aecbd0b8294d",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.copies",
+      "before_sha256": "8714a758b6848e6c9fddbff430fabd76e11c8c9796f24faf64d5b43c980d9705",
+      "after_sha256": "04482be6a7492b07cceed7bfcb8ff5ae326185fd0cf14e8583dfec68f2502969",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.effects",
+      "before_sha256": "2d579e5da63eff9897a2567c86eddc624f62ded30ae01717ab2455b66801fdad",
+      "after_sha256": "d1140708e8e4904b1ae425323ae3bf9cf734a683872a2dbd1b32330fd2e5b620",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.fills",
+      "before_sha256": "ba680f358606149b1864f5a67b5bf33780eb38b10703d08ff2bed2c427a7dbff",
+      "after_sha256": "3436c9422ff41c151596add4d8e67b15d4a0ac2f5f49a6b394c17005d048b114",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.gdi-text",
+      "before_sha256": "37cd57801432c3c3de4847442ee8a5dafc9108a2be415468178f2f691fc3be79",
+      "after_sha256": "343dee67a09e20d3cc34ccb0a3ba02a8f55e6da4c9bbbead5e8c8357ce8d7ffc",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.locked-writes",
+      "before_sha256": "d1266730a1215a4b58ca9a42397abde106d9491201a8cfdb05b2ce72eb7475e4",
+      "after_sha256": "38e6a80d3ffb9ffba4b4e095d8b87940b0ba4799d5f56b2f821b7571de0380c3",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.movies",
+      "before_sha256": "0115e6c8150e1c64e90123f491d57167677e2767ad2d34c44e611b62b55890eb",
+      "after_sha256": "5692bc4f6dd5b04b6efbb584a98959db72625a6d1198f4129678b818a601b04d",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.sprites",
+      "before_sha256": "61bb68edc7925aa9bb2c91293dc3c6079c58bf751ec39adeeee2e7420113127d",
+      "after_sha256": "ac0adfa91e0cb036bb55387ebdd8a94e17f8bab3eb9ae52ce3db4d22376cae52",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.terrain",
+      "before_sha256": "992de713d15393c85bda15ffa47aaf2f141887d4195ac4a619601e779b3280a2",
+      "after_sha256": "70b58e57f2eea79aa5c9226fcca403183844fbe54342cdc615dc507ea9503a6f",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RI.ui",
+      "before_sha256": "33c87424a77001027d209383ba1a482c8ba7e31ce56964e84aab665826490997",
+      "after_sha256": "bfccbbe60254b29bdd04ee5ffb83c9500b0014055cd716defc3f01af0e66bfdb",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RS.glyph-backend-state",
+      "before_sha256": null,
+      "after_sha256": "cd46bc1037f249169246738139c339c1f922ba0e1537fd98e35ea27eb2b5239e",
+      "receipts": [
+        "glyph-backend-state-recorded-contracts-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RS.word-raster",
+      "before_sha256": "84cd18e5f431d37eb004e22faf7dd02ce3958fd477aca0c606ad61e308901ef0",
+      "after_sha256": "072511296835022cb2da4db8686871dc9c163ed5730f56c54c4b057f952abef1",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RS.word-route",
+      "before_sha256": "de448887e130af13c9987d7b1ae80b25e4dd94645f3432c5ade505938550809d",
+      "after_sha256": "e94b924ced38f8d57fe41ffe3a1c4b2382fa2a4a276ee6718d67024a757e900b",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RS.world-composition",
+      "before_sha256": "8918338b98330af5252fd6eeadb6041a257f6516757899ff267d02e8bb1f52d3",
+      "after_sha256": "f9c2156b9d2803ce94f0c77e25dab2b64b94a255bf3ebe87bdc16871f043981d",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "RS.world-frame",
+      "before_sha256": "61754c011335d31fb7e6b66788e98fda7b0e538844d4e389ea251581ae0306cf",
+      "after_sha256": "3bf6a77b49a3d762b9e2526820699a6ba4dd5887ba544db1289a871f32dcb960",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "33023ef093ff67402971fab0b03e9d401a2ec6ab651336bc1dae13fb2e7cc4c7",
+      "after_sha256": "5a843020a839968c745544bbb91ad2916fd2367c83eea7a12cee5768fb18b77b",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "parent": "577d293d0c14ddad6e119c33b4ca8693b74150b9",
+      "id": "TOOL.rendering-coverage",
+      "before_sha256": "23449a72a285460fc03cf6765dd3d61b0fb2104fa168f1c0e32e2dc63d360793",
+      "after_sha256": "aed2eef61dab1bcad17a1caff59ff39cb7529adbd436e31455172013bb44b17e",
+      "receipts": [
+        "glyph-backend-state-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "HOST.native-command-launch",
+      "before_sha256": "05e099ae71570e347388dd48697e02960a57e1496e4c8888668827d154727eb1",
+      "after_sha256": "c6c467bb50bdd22b546056b3b24fbe5b9db1cfea44aabce3f327087f87602a02",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "NR.glyph-backend-admission",
+      "before_sha256": null,
+      "after_sha256": "678462eab337cbfbcafcc5cea5a89d295eaf0adf18a8483ca101ebe6b75a9c30",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "NR.live-command-transport",
+      "before_sha256": "5758f331664a199cc5ea9a3a07733219cb2eb7127eff5c027fa7181d6013cf2d",
+      "after_sha256": "b4cc0703cd494ffe8ecc453126c8636051d00335cf0c95bf3b571eb6350adbc4",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "NR.live-drawing-replacement",
+      "before_sha256": "d3fa14e378edde32842f3fb6353357f89a5e622c6dea5e3e10a5f18d65b73b9b",
+      "after_sha256": "b28cde57527446175186e177f32352bab9b437ef36fd88932a4e13334c9fa1e9",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "NR.real-game-command-shadow",
+      "before_sha256": "a4b7fe6bfcdf0e039fbcd861e63ecb0ccaa0460628c995b1c7356d27c1248fe1",
+      "after_sha256": "67b351a17bda41c4869147f1228b0040331ff9aa4bacc66794a472d60b904f35",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "NR.scene-service",
+      "before_sha256": "29c0e7d132d958c462cb5e55546fce397c9cfb95c40e53a64cb11e324ffeea5b",
+      "after_sha256": "8f6e71e520fe995b88a2da6b996f3c7c0bc103331dbcdd24d1bed734aea0d43b",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "NR.scene-snapshot",
+      "before_sha256": "37299604b528c4cffa69f1ca2185b4f1926e078e197bbfed59b96154865a84a4",
+      "after_sha256": "5e2bdfffd07d65345fb9d09a14849966ffc75f2d5622d1f6b84c53d658c2b2f2",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "NR.surface-fixture-corpus",
+      "before_sha256": "f645d4535ea52e1e9a5c65fc0754e9dcbe520bff994355883cd563fb19de0f00",
+      "after_sha256": "1f4878a102d15774bce841319a744a583270f44b9e5611275348faec2add234c",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "NR.word-admission",
+      "before_sha256": "0a046297798093ae528c4c013a9af6e722f0e9bb1ec121bc361c53c570bcd28a",
+      "after_sha256": "63d9b0d96b69fc4d09962feeb19ef0d5b1c48eaee44e16ec1b21b8173db4fd38",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "NR.world-admission",
+      "before_sha256": "67030eb209aa08bc81d2d787ce5f213341722f3220ccfb10d6882057a3cfc2a2",
+      "after_sha256": "baef337afff6ce1a2d8728935fbe47f15506f4d779c3fb5582e3353f4bf3c90e",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "NR.world-channel",
+      "before_sha256": "0dbb7587e85e7f7f957b2cf9f17bcf421ffb466bd7a1c7896eebd41279a146a2",
+      "after_sha256": "19717f8b12f4f1ac248175ef9a53535a4d658a67531de4c2321f7ebc8ad0b44d",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "NR.world-live-view",
+      "before_sha256": "5dd6a21cc794adfae9b3106a95df66e95c2ab4d459955af02a43aecbd0b8294d",
+      "after_sha256": "46e92894580e984be317900dcaea6fccb60d048b341193a7b3643b7de413e2d8",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RI.copies",
+      "before_sha256": "04482be6a7492b07cceed7bfcb8ff5ae326185fd0cf14e8583dfec68f2502969",
+      "after_sha256": "ce1b41fe8f2f920f217e1566429c2b9f39e26a17cdad5cce40e778c0f3492a8b",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RI.effects",
+      "before_sha256": "d1140708e8e4904b1ae425323ae3bf9cf734a683872a2dbd1b32330fd2e5b620",
+      "after_sha256": "429d9ad678f49b90fb4055d1becbe24232c0b14c654a1bbf1f7d53a0d893f54c",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RI.fills",
+      "before_sha256": "3436c9422ff41c151596add4d8e67b15d4a0ac2f5f49a6b394c17005d048b114",
+      "after_sha256": "5a3a0366e301be346264d0b3e45c59ccd54b89c1f76e438cd435dc61f60b1f64",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RI.gdi-text",
+      "before_sha256": "343dee67a09e20d3cc34ccb0a3ba02a8f55e6da4c9bbbead5e8c8357ce8d7ffc",
+      "after_sha256": "fe41ae55b09ce435b69c03fd1a6bfeb73a41b0035e612d85ba8718490c74ad6e",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RI.locked-writes",
+      "before_sha256": "38e6a80d3ffb9ffba4b4e095d8b87940b0ba4799d5f56b2f821b7571de0380c3",
+      "after_sha256": "6d0b680cd7753b668781d7a5c0a4e340a09e9492691c72fea1efdc004f7997e6",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RI.movies",
+      "before_sha256": "5692bc4f6dd5b04b6efbb584a98959db72625a6d1198f4129678b818a601b04d",
+      "after_sha256": "b84c76baf5f3b7f92502b1968c5638df00958aa43bcec15a4ed2d92492cb747b",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RI.sprites",
+      "before_sha256": "ac0adfa91e0cb036bb55387ebdd8a94e17f8bab3eb9ae52ce3db4d22376cae52",
+      "after_sha256": "8b90341cb1824a97875cd00eeb6ac55183edccb858515dde8ab8daf92ae51cb0",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RI.terrain",
+      "before_sha256": "70b58e57f2eea79aa5c9226fcca403183844fbe54342cdc615dc507ea9503a6f",
+      "after_sha256": "94be5314de5450dc0ff810ebe4eb2d3542dc924e4c7f383d78b72c20d26592cd",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RI.ui",
+      "before_sha256": "bfccbbe60254b29bdd04ee5ffb83c9500b0014055cd716defc3f01af0e66bfdb",
+      "after_sha256": "e7459f8ae9060c0e12e4a9600a0c9a7679b54d266cd9f8b39b49eb32601e1f86",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RS.glyph-backend",
+      "before_sha256": null,
+      "after_sha256": "6f59858667a6b20cccd76eb7323c25f0da3c8859169971f5f6ee82fddd00ed25",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RS.word-raster",
+      "before_sha256": "072511296835022cb2da4db8686871dc9c163ed5730f56c54c4b057f952abef1",
+      "after_sha256": "f5b7428416a32236375f064a8ded34efc59f6e402a124de0b592e853d37b814c",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RS.word-route",
+      "before_sha256": "e94b924ced38f8d57fe41ffe3a1c4b2382fa2a4a276ee6718d67024a757e900b",
+      "after_sha256": "b4682b3bff50b08b566437306e21da389208c3e0598c4d28b6f349a9559375b4",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RS.world-composition",
+      "before_sha256": "f9c2156b9d2803ce94f0c77e25dab2b64b94a255bf3ebe87bdc16871f043981d",
+      "after_sha256": "c3de2ef98ad224fd1a01581f2b16c5343be8171fc9aca95ea1cee9de7bf7d94e",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "RS.world-frame",
+      "before_sha256": "3bf6a77b49a3d762b9e2526820699a6ba4dd5887ba544db1289a871f32dcb960",
+      "after_sha256": "40cf9d25013d18d4b72d4e025733679aaafc26a1520c755c93d53ae90c8642f9",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "5a843020a839968c745544bbb91ad2916fd2367c83eea7a12cee5768fb18b77b",
+      "after_sha256": "5087dd37a0adcc0eff56b04430a7fea88370c20d67094cfb7b0c4d7b0334e636",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "1abdfe31615247d747186097cd2df77901754203",
+      "parent": "eb3cd1828a3612ea89b945c9c0b95cb6ea103f65",
+      "id": "TOOL.rendering-coverage",
+      "before_sha256": "aed2eef61dab1bcad17a1caff59ff39cb7529adbd436e31455172013bb44b17e",
+      "after_sha256": "247596ada005cb0083e7585c4f6f32e3a023ccf2086248c4ab612389f5234bae",
+      "receipts": [
+        "glyph-backend-source-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    }
+  ],
+  "unresolved": []
+}

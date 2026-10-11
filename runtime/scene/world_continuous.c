@@ -1,6 +1,6 @@
 /* Included after world_raster_batch.c. Pointer-free fixed storage shared with
  * the native owner. The original destination stays NOACCESS while waiting. */
-#include "../../protocols/include/mnm/world_continuous_v2.h"
+#include "../../protocols/include/mnm/world_continuous_v3.h"
 API HANDLE WIN CreateFileMappingA(HANDLE, void *, u32, u32, u32, const char *);
 API void *WIN MapViewOfFile(HANDLE, u32, u32, u32, u32);
 API i32 WIN UnmapViewOfFile(void *);
@@ -42,9 +42,8 @@ static int continuous_next(void) {
   zero(slot + 4, 124);
   put(slot + 8, continuous_generation_low);
   put(slot + 12, continuous_generation_high);
-  for (u32 i = 0; i < source_packet_count; ++i)
-    HeapFree(producer_heap(), 0, source_packets[i].data);
   zero(source_packets, sizeof(source_packets));
+  zero(continuous_source_heads, sizeof(continuous_source_heads));
   source_packet_count = source_packet_bytes = 0;
   sequence = oracle = oracle_bytes = queue = bypass_completed =
       batch_transfers = raster_preparations = 0;
@@ -110,6 +109,14 @@ static int continuous_write(const void *p, u32 n) {
   continuous_written += n;
   return 1;
 }
+static u8* continuous_payload(u32 n) {
+  u8 *slot = continuous_slot();
+  if (continuous_load(slot, 0) != MNM_CONT_WRITING || !n ||
+      continuous_written > MNM_CONT_SOURCE_BYTES ||
+      continuous_written < 64 + 96 || n > continuous_written - 64 - 96)
+    return 0;
+  return slot + MNM_CONT_SLOT_HEADER + continuous_written - n;
+}
 static int continuous_finish(struct Surface *s, const u32 *request) {
   u8 *slot = continuous_slot();
   if (continuous_load(slot, 0) != MNM_CONT_WRITING || !batch_identity(s) ||
@@ -126,6 +133,7 @@ static int continuous_finish(struct Surface *s, const u32 *request) {
   put(slot + 20, request_n);
   put(slot + 24, mnm_cont_crc32c(source, bytes));
   put(slot + 28, mnm_cont_crc32c(wire, request_n));
+  put(slot+84,continuous_region_queries);
   put(slot + 52, continuous_time());
   continuous_store(slot, 0, MNM_CONT_REQUEST);
   if (!continuous_wait(slot, 0, MNM_CONT_REPLY) ||
@@ -146,7 +154,7 @@ static int continuous_finish(struct Surface *s, const u32 *request) {
   for (u32 i = 14; i <= 15; ++i)
     if (h[i] != request[i])
       return 0;
-  if (bypass_hash(reply + 64, batch_pixel_bytes) != h[12] ||
+  if (mnm_cont_crc32c(reply + 64, batch_pixel_bytes) != h[12] ||
       !batch_identity(s) || !batch_restore() ||
       !bypass_writable(s->pixels, batch_pixel_bytes))
     return 0;
@@ -181,9 +189,22 @@ static int continuous_return(void) {
   return continuous_next();
 }
 
+static u32 continuous_screen_start,continuous_screen_ms,continuous_screen_calls;
+static void continuous_mark_screen(int begin) {
+  if(!continuous_map)return;
+  if(begin)continuous_screen_start=continuous_time();
+  else {continuous_screen_ms+=continuous_time()-continuous_screen_start;++continuous_screen_calls;}
+}
 static void continuous_mark_entry(void) {
-  if (continuous_map)
-    put(continuous_slot() + 48, continuous_time());
+  if (continuous_map){
+    u8* slot=continuous_slot();
+    put(slot+48,continuous_time());
+    if(continuous_pacer_mask==3){put(slot+64,continuous_pacer_start);put(slot+68,continuous_pacer_end);put(slot+72,3);}
+    put(slot+76,continuous_screen_ms);put(slot+80,continuous_screen_calls);
+    continuous_pacer_start=continuous_pacer_end=continuous_pacer_mask=0;
+    continuous_screen_ms=continuous_screen_calls=0;
+    continuous_region_queries=0;
+  }
 }
 
 static int continuous_equal(const u8 *a, const u8 *b, u32 n) {

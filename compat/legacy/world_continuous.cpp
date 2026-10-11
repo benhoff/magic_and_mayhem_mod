@@ -110,8 +110,10 @@ bool WorldContinuousChannel::poll(Block &b) {
   require(wide(s, 2) == expected_, "Stale continuous request");
   for (unsigned i : {1u, 9u})
     require(word(s, i) == 0, "Continuous slot reserved");
-  for (unsigned i = 16; i < 32; ++i)
+  for (unsigned i = 22; i < 32; ++i)
     require(word(s, i) == 0, "Continuous slot reserved");
+  require(word(s,18)==0||word(s,18)==3,"Incomplete original pacer observation");
+  require(word(s,18)!=0||(!word(s,16)&&!word(s,17)),"Unexpected original pacer timestamps");
   const unsigned n = word(s, 4), r = word(s, 5);
   require(n >= 64 && n <= MNM_CONT_SOURCE_BYTES && r >= 64 &&
               r <= MNM_CONT_REQUEST_BYTES && !word(s, 8) && !word(s, 10) &&
@@ -180,13 +182,13 @@ void mnm::legacy::WorldContinuousChannel::validate() const {
     require(word(map_, i) == 0, "Continuous header reserved changed");
 }
 
-std::array<std::uint32_t, 4>
+std::array<std::uint32_t, 10>
 mnm::legacy::WorldContinuousChannel::ticks(std::uint64_t g) const {
   validate();
   auto *s = slot(g);
   require(load(s, 0) == MNM_CONT_RETURNED && wide(s, 2) == g,
           "Continuous timing lease");
-  return {word(s, 12), word(s, 13), word(s, 14), word(s, 15)};
+  return {word(s,12),word(s,13),word(s,14),word(s,15),word(s,16),word(s,17),word(s,18),word(s,19),word(s,20),word(s,21)};
 }
 
 bool mnm::legacy::WorldContinuousChannel::returnRecords(

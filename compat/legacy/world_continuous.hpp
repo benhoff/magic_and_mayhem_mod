@@ -1,5 +1,5 @@
 #pragma once
-#include "../../protocols/include/mnm/world_continuous_v2.h"
+#include "../../protocols/include/mnm/world_continuous_v3.h"
 #include <QFile>
 #include <array>
 #include <cstdint>
@@ -27,7 +27,7 @@ public:
   bool returnRecords(std::uint64_t, const std::vector<std::uint8_t> &,
                      std::array<std::uint8_t, 192> &);
   void release(std::uint64_t);
-  std::array<std::uint32_t, 4> ticks(std::uint64_t) const;
+  std::array<std::uint32_t, 10> ticks(std::uint64_t) const;
 
 private:
   QFile file_;
