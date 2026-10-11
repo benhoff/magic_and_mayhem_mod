@@ -48,6 +48,31 @@ changes.
 - Avoid introducing gameplay balance changes while still validating engine
   behavior.
 
+## Working storage budget
+
+- Target at most 1280 GiB (1.25 TiB) under the main checkout's `working/`, including nested
+  worktree output, and retain at least 100 GiB of filesystem free space.
+- Before a storage-producing experiment or large build, use the main checkout's
+  `tools/working-retention.py run --reserve-gib <estimated-output> -- <command>`.
+  If the preflight refuses, review storage or obtain an explicit budget change
+  before proceeding. The guard monitors free space every two seconds and stops
+  its launched process group below the 100 GiB reserve. Reservations are estimates;
+  this is not a filesystem quota and cannot constrain other writers.
+- Use `tools/working-retention.py inventory --output <new-report-path>` to prepare
+  cleanup. Preserve registered worktrees, referenced evidence and `.retain` pins.
+  A review candidate is not permission to delete; inspect dependencies, preserve
+  unique sources and raw evidence, and verify any archive before cleanup.
+- Keep installations and Wine prefixes isolated. Prefer bounded capture counts
+  and completed-run retention over accumulating full disposable copies. Record
+  storage reports under `working/retention/`; do not refresh historical evidence
+  hashes or remove originals to meet the budget.
+- The verified cold archive is `/var/local/magic-and-mayhem-archive` on the second
+  NVMe. Automatic archiving is disabled; cleanup is deferred until explicitly
+  requested. Use `working-retention.py restore <working-path>` before
+  reading archived inputs. Include ignored worktree output only after inspecting
+  its activity; preserve tracked sources, pins and active/recent runs. An archive
+  is storage provenance, not fresh engine comparison or replacement evidence.
+
 ## Reverse-engineering coverage upkeep
 
 Use [binary-to-behavior accounting](research/runtime/coverage/README.md) alongside
