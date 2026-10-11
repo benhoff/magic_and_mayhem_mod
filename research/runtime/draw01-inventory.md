@@ -612,3 +612,32 @@ The committed23bd1c0..1fe53d9range has10file/29behavior exact receipt matches an
 no missing intermediate versions. This history review asserts no past gate pass
 or new graphics validation. Recovered native implementation/comparison/integration/
 replacement remain none; the fixture is bounded original-contract discovery.
+
+
+## Original indexed and offset consumer states, 2026-10-11
+
+The [successor fixture](drawing-queue-object-variants-state-20261011.json) passes
+4924800unique unchanged-original consumer cells, covering direct/indexed object
+markers and ordinary/-127offsets with all kinds-2..35, prior16-bit metadata,
+empty/one/two rows, strict clips/480and600height branches and optional postlude.
+Five raw backend results include12340001, separating high EAX bits from low AX1.
+For Video-enabled indexed/-127kinds0and31, returned metadata normalizes the low
+16-bit comparison to one; other defined routes retain zero/default/truncation
+policies. Every original row/container, opening/auxiliary/restoration clip caller,
+wave amplitude and postlude opaque-argument/reset assertion passes.
+
+Native execution exits0without timeout. The lossless gzip archive independently
+decodes to2972130848bytes with identical raw/decoded SHA-256
+69f3ff36525adae3e3040e7d541a71180a8633e30fd435008405202bf92f06e5.
+There are2462400postlude calls,6359680clip calls and2720000wave calls in this
+fixture, not live frequencies. External backend/clip/postlude bodies remain
+synthetic. Actual helper state/pixels, arbitrary object layouts, graphics lifetime
+and14scenario/four dispatch closure remain pending; native recovered statuses
+remain none. Earlier reports retain their original sources and narrower scopes.
+
+The [first launch](drawing-queue-object-variants-attempts-20261011.json) failed
+before compilation/original execution because declaration creation was unfinished;
+the retry waited for its completed declaration. Manifest verification passes
+before/after the successful run and the rejected launch. History1fe53d9..b85df54
+has15file/86behavior exact receipts, no missing intermediate versions, and asserts
+neither a past gate pass nor new graphics validation.

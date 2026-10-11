@@ -50,7 +50,7 @@ def run(executable, claims):
         process = subprocess.Popen([str(out / 'reference'), str(executable)], stdout=subprocess.PIPE, stderr=log)
         def expire():
             if process.poll() is None: expired[0] = True; process.kill()
-        timer = threading.Timer(90, expire); timer.daemon = True; timer.start()
+        timer = threading.Timer(180, expire); timer.daemon = True; timer.start()
         try:
             with gzip.GzipFile(fileobj=output, mode='wb', compresslevel=1, mtime=0) as archive:
                 while True:
@@ -66,11 +66,11 @@ def run(executable, claims):
         'binary_sha256': hashlib.sha256((out / 'reference').read_bytes()).hexdigest()}, indent=2) + '\n')
     if process.returncode or expired[0]: raise ValueError('Original state fixture exit ' + str(process.returncode) + '; retained attempt: ' + str(out))
     totals, kinds, returns_seen, count = Counter(), Counter(), Counter(), 0
-    axes = {'video': {0, 1}, 'count': {0, 1, 2}, 'postlude': {0, 1}, 'kind': set(range(-2, 36)),
+    axes = {'indexed': {0, 1}, 'offset': {-127, 3}, 'video': {0, 1}, 'count': {0, 1, 2}, 'postlude': {0, 1}, 'kind': set(range(-2, 36)),
         'y': {-20, -12, 0, 1, 100, 468, 480, 588, 600},
         'first': {0x8ad0, 0xfff3, 0xfff4, 0xfff5, 0, 5},
         'prior': {0x8ad0, 0, 1, 0x1234, 0xffff}, 'height_flag': {0, 1},
-        'result': {0, 1, 0x12345678, 0xffffffff}}
+        'result': {0, 1, 0x12340001, 0x12345678, 0xffffffff}}
     seen = set()
     decoded_digest = hashlib.sha256(); decoded_bytes = 0
     with gzip.open(out / 'cases.jsonl.gz', 'rb') as source:
@@ -90,13 +90,13 @@ def run(executable, claims):
                 raise ValueError('Original postlude counter reset differs')
     if decoded_digest.hexdigest() != raw_digest.hexdigest() or decoded_bytes != raw_bytes:
         raise ValueError('Compressed case archive differs from original output')
-    if count != 984960 or kinds != {k: 25920 for k in range(-2, 36)}:
+    if count != 4924800 or kinds != {k: 129600 for k in range(-2, 36)}:
         raise ValueError('Incomplete original state matrix')
     if hashlib.sha256(executable.read_bytes()).hexdigest() != BUILD_SHA256:
         raise ValueError('Original input changed during execution')
     if any(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != h for p, h in sources.items()):
         raise ValueError('Sources changed during execution')
-    report = {'schema': 1, 'success': True, 'scope': 'Unchanged pinned consumer with synthetic backend/clip/cleanup bindings:984960unique empty/one/two row cells, all kinds-2..35, Video0/1, direct object marker/ordinary offset, sentinel and changed prior metadata, signed spans, strict clip and480/600height branches, raw0/1/high/negative backend results, postlude0/1. Original row/container and counter mutations and exact opaque CALL arguments are checked. Indexed/-127 variants, actual helper side effects, pixels, external objects/graphics and full dispatch/scenario closure remain outside this fixture.',
+    report = {'schema': 1, 'success': True, 'scope': 'Unchanged pinned consumer with synthetic backend/clip/cleanup bindings:4924800unique empty/one/two row cells, all kinds-2..35, Video0/1, direct/indexed object markers, ordinary/-127 offsets and AX1/high-EAX=12340001 distinctions, sentinel and changed prior metadata, signed spans, strict clip and480/600height branches, raw0/1/high/negative backend results, postlude0/1. Original row/container and counter mutations and exact opaque CALL arguments are checked. Actual helper side effects, pixels, external objects/graphics and full dispatch/scenario closure remain outside this fixture.',
         'sources': sources, 'claims': declaration['claims'], 'sources_stable': True,
         'original_sha256': BUILD_SHA256, 'input_unchanged': True,
         'original_consumer_instructions_unchanged': True, 'original_cases': count,

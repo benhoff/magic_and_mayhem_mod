@@ -4779,3 +4779,14 @@ exclude actual canvas/font/COM bodies, pixels, lifetime and native equivalence.
 Current45offline guards account503routes with zero unknowns;14scenario/four dispatch
 closure remain pending.23bd1c0..1fe53d9exact committed-history review has10file/29behavior
 receipts and no gaps. Independent recovered native statuses remain none.
+
+
+DRAW-01 original queue object variants (2026-10-11):4924800unique unchanged-original
+client cells pass direct/indexed markers, ordinary/-127offsets, changed prior
+metadata, all kinds, low-AX1/high-EAX distinction and clip/postlude policies.
+The raw/decompressed2972130848byte archive hashes match, native exit0/no timeout;
+[Evidence and rejected pre-execution launch](draw01-inventory.md#original-indexed-and-offset-consumer-states-2026-10-11)
+retain historical narrower results. Actual helpers/pixels/arbitrary objects/
+lifetime and14scenario/four dispatch closure remain pending. Recovered native
+implementation/comparison/integration/replacement stay none. Committed
+1fe53d9..b85df54history has15file/86behavior exact receipts and no gaps.

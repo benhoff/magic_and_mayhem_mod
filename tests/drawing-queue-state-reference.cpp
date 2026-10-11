@@ -44,18 +44,20 @@ int main(int argc,char** argv)try{
         {0x5806f0,8},{0x580a90,12},{0x581200,20},{0x595677,0},{0x4d8ab0,12}})state_bind(item.first,item.second);
     for(auto address:{0x689b78u,0x689b7cu,0x6c4e3cu,0x6903dcu})global(address,state_pointer(state_stub(address,0)));
     std::uint32_t vtable[4]={0,0,0,state_pointer(state_stub(0x8000000c,8))};
-    std::uint32_t object[20]={state_pointer(vtable),16,16,3,4};object[7]=UINT32_MAX;
+    std::uint32_t object[20]={state_pointer(vtable),16,16,3,4};
     using Consumer=void (__attribute__((thiscall)) *)(void*);
     unsigned cases=0;
+    for(unsigned indexed:{0u,1u})for(int offset:{-127,3})
     for(unsigned video:{0u,1u})for(unsigned count:{0u,1u,2u})for(unsigned post:{0u,1u})
     for(int kind=-2;kind<=35;++kind)for(int y:{-20,-12,0,1,100,468,480,588,600})
     for(std::uint16_t first:{std::uint16_t(0x8ad0),std::uint16_t(-13),std::uint16_t(-12),std::uint16_t(-11),std::uint16_t(0),std::uint16_t(5)})
     for(std::uint16_t prior:{std::uint16_t(0x8ad0),std::uint16_t(0),std::uint16_t(1),std::uint16_t(0x1234),std::uint16_t(0xffff)})
-    for(unsigned height_flag:{0u,1u})for(unsigned value:{0u,1u,0x12345678u,0xffffffffu}){
+    for(unsigned height_flag:{0u,1u})for(unsigned value:{0u,1u,0x12340001u,0x12345678u,0xffffffffu}){
+        object[7]=indexed?0:UINT32_MAX;
         std::array<std::uint32_t,18> rows{};
         for(unsigned i=0;i<2;++i){auto* row=rows.data()+i*9;
             row[1]=state_pointer(object);row[2]=120+i;row[3]=std::uint32_t(y+int(i)*3);
-            row[4]=std::uint32_t(3)|(std::uint32_t(7)<<16);row[6]=kind;
+            row[4]=std::uint16_t(offset)|(std::uint32_t(7)<<16);row[6]=kind;
             row[7]=first|(std::uint32_t(prior)<<16);
         }
         const auto original_rows=rows;
@@ -72,7 +74,8 @@ int main(int argc,char** argv)try{
             if(i<count){
                 if(video&&prior!=0x8ad0)expected[i*9+3]=std::uint32_t(y+int(i)*3-int(std::int16_t(prior))+16);
                 const bool defaulted=kind<0||kind>34||(!video&&(kind==7||kind==32));
-                const auto metadata=defaulted?prior:kind==9?0:std::uint16_t(value);
+                const bool normalized=video&&indexed&&offset==-127&&(kind==0||kind==31);
+                const auto metadata=defaulted?prior:kind==9?0:normalized?std::uint16_t(std::uint16_t(value)==1):std::uint16_t(value);
                 expected[i*9+7]=first|(std::uint32_t(metadata)<<16);
             }
             state_check(std::equal(rows.begin()+i*9,rows.begin()+(i+1)*9,expected.begin()+i*9),
@@ -119,7 +122,7 @@ int main(int argc,char** argv)try{
         state_check(restores==expected_restores&&auxiliary_clips==expected_auxiliary_clips,
                     "Auxiliary/full clip restoration count and exact caller");
         state_check(Bytes(consumer,consumer+before.size())==before,"Original consumer instructions changed");
-        std::cout<<"{\"video\":"<<video<<",\"count\":"<<count<<",\"postlude\":"<<post<<",\"kind\":"<<kind
+        std::cout<<"{\"indexed\":"<<indexed<<",\"offset\":"<<offset<<",\"video\":"<<video<<",\"count\":"<<count<<",\"postlude\":"<<post<<",\"kind\":"<<kind
                  <<",\"y\":"<<y<<",\"first\":"<<first<<",\"prior\":"<<prior<<",\"height_flag\":"<<height_flag
                  <<",\"result\":"<<value<<",\"opening_clips\":"<<actual_openings<<",\"rows_after\":[";
         for(unsigned i=0;i<rows.size();++i){if(i)std::cout<<',';std::cout<<(i%9==1?0:rows[i]);}
@@ -133,5 +136,5 @@ int main(int argc,char** argv)try{
             std::cout<<"]}";
         }std::cout<<"]}\n";++cases;
     }
-    state_check(cases==984960,"Case count");return 0;
+    state_check(cases==4924800,"Case count");return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}
