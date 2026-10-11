@@ -4706,3 +4706,22 @@ Main. All14scenario/four dispatch closure, complete writers/callers and external
 lifetime/failure coverage remain pending. History2a1885c..910e3f7 has26file/13behavior
 exact receipt matches and no missing intermediate versions; old evidence remains.
 See [scope/evidence](draw01-graphics-api-boundaries.md).
+
+
+DRAW-01 expanded original API gameplay cohorts (2026-10-11): unchanged380site
+API-only observation completes three new prospectively declared runs, each zero
+journal loss/open/IO/unreadable stack/target, stable sources/binaries/metadata,
+core absent and normal exit0. Campaign/save/load `run-4qxfz709` records33476pairs/
+74sites,128query aliases and8508closed client intervals; original353420byte save
+SHA2ba05e42437c3a81117dbda7ff490d78f2ef3eb447a6f1b52c8370f0bd29adc5 is retained,
+selected and loaded, with after-load World image reviewed. Quick Battle/results
+`run-6vqq61md` has20006pairs/61sites,73aliases and5289closed intervals, reviewed
+Game Over/Continue/second-results/Quit. Campaign effects `run-bs6fnbfw` has29851pairs/
+75sites,115aliases and7313closed intervals, passive original living owned Zombie
+slot4/type14/health90 and reviewed spell/creature image. All three have zero
+resource gaps/terminal open intervals. The four expanded movie/gameplay cohorts
+observe101unique CALL sites and36CPU closing sites;279admitted sites remain
+unexecuted. These are separate cohort counts, not aggregate runtime frequencies.
+All14scenario/four dispatch closure, complete writers/callers, failed/recovery/
+external lifetime paths remain pending. History910e3f7..002633e has18file/12behavior
+exact matches and zero missing receipts. See [evidence/limits](draw01-graphics-api-boundaries.md).
