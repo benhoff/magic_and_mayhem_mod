@@ -11,6 +11,7 @@ struct NdState {struct NdObject first,second,unknown,fourth;u32 refs[4],interfac
 static void* nd_tables[4][28];
 static u32 nd_objects,nd_surfaces,nd_creates,nd_attempts,nd_enumerations,nd_last_create;
 static void nd_status(void);
+static volatile u32 nd_status_phase;
 static const u8 nd_default_guid[16]={0};
 static const u8 nd_unknown[16]={0,0,0,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x46};
 static const u8 nd_draw1[16]={0x80,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
@@ -67,5 +68,7 @@ __declspec(dllexport) u32 WIN NativeDrawClippers(void) {return nc_objects;}
 __declspec(dllexport) u32 WIN NativeDrawDCs(void) {return ns_dcs;}
 __declspec(dllexport) u32 WIN NativeDrawSurfaces(void) {return nd_surfaces;}
 __declspec(dllexport) void WIN NativeDrawAnchor(void) {}
+/* Read-only launch-local diagnostic; never takes loader or drawing locks. */
+__declspec(dllexport) u32 WIN NativeDrawStatusStage(void) {return __atomic_load_n(&nd_status_phase,__ATOMIC_RELAXED);}
 __declspec(dllexport) u32 WIN NativeDrawObjects(void) {return nd_objects;}
-i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;(void)reserved;if(reason==1){nd_init();nd_status_start();}return 1;}
+i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;(void)reserved;if(reason==1){nd_init();nd_status_start();}else if(reason==0)nd_status_finish();return 1;}

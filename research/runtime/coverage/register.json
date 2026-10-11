@@ -15016,7 +15016,13 @@
         "research/runtime/native-copy-address-wait-fixtures-20261011.json",
         "research/runtime/native-copy-address-wait-live-failure-20261011.json",
         "research/runtime/native-copy-address-stage-fixtures-20261011.json",
-        "research/runtime/native-draw-public-lock-holder-failure-20261011.json"
+        "research/runtime/native-draw-public-lock-holder-failure-20261011.json",
+        "research/runtime/native-draw-public-lock-stage-repeated-failure-20261011.json",
+        "research/runtime/native-draw-public-status-close-failure-20261011.json",
+        "research/runtime/native-draw-public-status-file-repeat-pass-20261011.json",
+        "research/runtime/native-copy-status-stage-fixtures-20261011.json",
+        "research/runtime/native-draw-status-artifacts-20261011.json",
+        "research/runtime/native-copy-status-stage-compiled-fixtures-20261011.json"
       ],
       "implementation": [
         "runtime/render/copy_order.h",
@@ -15046,13 +15052,16 @@
         "NR.copy-order.current-stress-20261010",
         "NR.copy-order.fair-wait-20261011",
         "NR.copy-order.address-wait-20261011",
-        "NR.copy-order.address-stage-20261011"
+        "NR.copy-order.address-stage-20261011",
+        "NR.native-draw-status-session-file.repeated-public-20261011",
+        "NR.copy-order.status-stage-20261011",
+        "NR.copy-order.status-stage-compiled-20261011"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "none",
-        "integration": "preview",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "validation_dependencies": [
@@ -31812,7 +31821,12 @@
         "research/runtime/native-draw-final-4096-performance-failure-20261011.json",
         "research/runtime/native-fog-window-128-cold-failure-20261011.json",
         "research/runtime/native-fog-window-4096-pass-20261011.json",
-        "research/runtime/native-fog-window-artifacts-20261011.json"
+        "research/runtime/native-fog-window-artifacts-20261011.json",
+        "research/runtime/native-fog-window-consumer-death-pass-20261011.json",
+        "research/runtime/native-draw-public-lock-stage-repeated-failure-20261011.json",
+        "research/runtime/native-draw-public-status-close-failure-20261011.json",
+        "research/runtime/native-draw-status-services-pass-20261011.json",
+        "research/runtime/native-draw-status-artifacts-20261011.json"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
@@ -32080,7 +32094,9 @@
         "NR.directdraw-retirement.producer-death-20261011",
         "NR.directdraw-retirement.recovery128-performance-20261011",
         "NR.directdraw-retirement.recovery4096-performance-20261011",
-        "NR.minimap-continuous-read-window.live4096-20261011"
+        "NR.minimap-continuous-read-window.live4096-20261011",
+        "NR.directdraw-retirement.fog-consumer-death-20261011",
+        "NR.directdraw-retirement.status-services-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -32103,7 +32119,8 @@
         "research/runtime/native-draw-final-4096-performance-failure-20261011.json",
         "research/runtime/native-fog-window-128-cold-failure-20261011.json",
         "research/runtime/native-fog-window-4096-pass-20261011.json",
-        "research/runtime/native-fog-window-artifacts-20261011.json"
+        "research/runtime/native-fog-window-artifacts-20261011.json",
+        "research/runtime/native-fog-window-consumer-death-pass-20261011.json"
       ],
       "implementation": [
         "protocols/include/mnm/world_continuous_v4.h",
@@ -32354,7 +32371,8 @@
         "NR.directdraw-retirement.producer-death-20261011",
         "NR.directdraw-retirement.recovery128-performance-20261011",
         "NR.directdraw-retirement.recovery4096-performance-20261011",
-        "NR.minimap-continuous-read-window.live4096-20261011"
+        "NR.minimap-continuous-read-window.live4096-20261011",
+        "NR.directdraw-retirement.fog-consumer-death-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -32448,7 +32466,13 @@
         "research/runtime/native-draw-public-default-full-nvidia-pass-20261011.json",
         "research/runtime/native-draw-public-default-full-nvidia-artifacts-20261011.json",
         "research/runtime/native-draw-public-default-full-bound-nvidia-pass-20261011.json",
-        "research/runtime/native-draw-public-lock-holder-failure-20261011.json"
+        "research/runtime/native-draw-public-lock-holder-failure-20261011.json",
+        "research/runtime/native-draw-public-lock-stage-full-nvidia-pass-20261011.json",
+        "research/runtime/native-draw-public-lock-stage-repeated-failure-20261011.json",
+        "research/runtime/native-draw-public-status-close-failure-20261011.json",
+        "research/runtime/native-draw-public-status-file-full-nvidia-pass-20261011.json",
+        "research/runtime/native-draw-public-status-file-repeat-pass-20261011.json",
+        "research/runtime/native-draw-status-artifacts-20261011.json"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -33188,7 +33212,10 @@
         "NR.directdraw-public-native-menu.nvidia-gameplay-20261011",
         "NR.directdraw-public-native-menu.default-basic-20261011",
         "NR.directdraw-public-native-menu.default-full-nvidia-20261011",
-        "NR.directdraw-public-native-menu.default-full-bound-nvidia-20261011"
+        "NR.directdraw-public-native-menu.default-full-bound-nvidia-20261011",
+        "NR.directdraw-public-native-menu.lock-stage-full-nvidia-20261011",
+        "NR.directdraw-public-native-menu.status-file-full-nvidia-20261011",
+        "NR.native-draw-status-session-file.repeated-public-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -33998,6 +34025,48 @@
         "NR.minimap-continuous-read-window.live4096-20261011"
       ],
       "validation_dependencies": [],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.native-draw-status-session-file",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native graphics diagnostic file lifetime outside drawing callbacks",
+      "scope": "Optional fixed96-byte native module/resource status uses one startup-owned file handle, rewinds and overwrites under nonwaiting diagnostic writer admission, and closes only at DLL teardown. Preserve LastError, every-call real-ddraw module check and terminal100/101 refusals. No per-drawing CreateFile/CloseHandle, no status format change. Diagnostic collision can omit a snapshot; native graphics API thread safety, crash durability, fairness, arbitrary-scene19/60FPS and original-driver equivalence are not claimed. Read-only native status stage accessor is launch-local profiling only, resolved once by renderer before drawing.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "implementation": [
+        "runtime/native-draw/status.h",
+        "runtime/native-draw/factory.c",
+        "runtime/render/copy_order.h",
+        "runtime/render/bridge.c"
+      ],
+      "tests": [
+        "tests/native-draw-status-test.cpp",
+        "tools/test-native-draw-status.py",
+        "tools/test-native-campaign.py"
+      ],
+      "documents": [
+        "research/runtime/native-draw-public-status-close-failure-20261011.json",
+        "research/runtime/native-draw-device-surfaces.md",
+        "research/runtime/native-draw-status-fixtures-20261011.json",
+        "research/runtime/native-draw-public-status-file-repeat-pass-20261011.json",
+        "research/runtime/native-draw-status-artifacts-20261011.json"
+      ],
+      "validation_dependencies": [
+        "tools/build-native-draw.py",
+        "runtime/shadow/win32_min.h"
+      ],
+      "evidence": [
+        "NR.native-draw-status-session-file.fixtures-20261011",
+        "NR.native-draw-status-session-file.repeated-public-20261011"
+      ],
       "status": {
         "understanding": "scoped",
         "implementation": "partial",
@@ -66204,6 +66273,446 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.directdraw-retirement.fog-consumer-death-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-fog-window-consumer-death-pass-20261011.json",
+      "sha256": "d396072fa1e2e9bfd209dbb99513949bbae62664e19c99a25456abe4c9d99d63",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current fog-window World source: owned consumer death at outstanding generation34, terminal refusal/private Wine stopped/real ddraw absent/resources bounded. No complete frame/performance or semantic original Quit claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/fault_injected",
+          "equals": true
+        },
+        {
+          "pointer": "/expected_terminal_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_success_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/native_draw_fault/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_fault/ddraw_module_absent",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-public-native-menu.lock-stage-full-nvidia-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-public-lock-stage-full-nvidia-pass-20261011.json",
+      "sha256": "fff41c85a1a36089f1d808b6e9d34a9ef738bc4e5d51c317dc92641cf7ff072c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Full default NVIDIA TITAN campaign passes strict source/compiler/input and19FPS gates with extra surface-lock phase stores: casting/combat/movement/Fireball/refusals/9 portraits/resume/normalQuit,DDdisabled/absent,no recovery/fallback. This source-only diagnostic is not a proven fix for the prior105ms surface-lock holder; retained failure remains.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/nvidia",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/accelerated",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/software_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/spell_cases/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay/enemy_health_depleted",
+          "equals": true
+        },
+        {
+          "pointer": "/minimum_fps",
+          "equals": 19
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/native_draw_default_required",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-draw-status-session-file.fixtures-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-status-fixtures-20261011.json",
+      "sha256": "20c5f5e44b881a3ef4afc06a12579c6f3cf40ecf4048819e0a84bde0235d4ffc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Independent stubbed Win32 sink:1024 full96-byte overwrites,one open/no hot closes/one teardown close,LastError,every-call module check,collision and100/101/102 terminal failures. Assertions and ASan/UBSan with actual compiler status-header inputs. No actual Wine latency or engine/original comparison.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/executions/0/mode",
+          "equals": "assertions"
+        },
+        {
+          "pointer": "/executions/1/mode",
+          "equals": "asan-ubsan"
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-public-native-menu.status-file-full-nvidia-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-public-status-file-full-nvidia-pass-20261011.json",
+      "sha256": "51fe3eb357150bf2510268c337ac0516c9dd62a3fcfa1fba1c22b0826b8c6e4d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Full default TITAN campaign with persistent status handle passes casting/combat/movement/Fireball/refusals/9 portraits/resume/normalQuit and unchanged19FPS. DDdisabled/absent,no recovery/fallback/unknown calls; current Qt/NativeDraw/render compiler/protocol/input closure stable. Earlier CloseHandle-stage76..271ms failures retained. Controlled fixture proves zero hot closes; this run does not prove universal fairness or allscene19/60/publicV4fusion/originalequivalence/semanticCOM cleanup.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/nvidia",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/accelerated",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/software_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/spell_cases/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay/enemy_health_depleted",
+          "equals": true
+        },
+        {
+          "pointer": "/minimum_fps",
+          "equals": 19
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/native_draw_default_required",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.native-draw-status-session-file.repeated-public-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-public-status-file-repeat-pass-20261011.json",
+      "sha256": "a51824ab61933c6154593ca16bc8f660876e7f5e02d3255a33639622196562e5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Three repeated default native menu/gameplay cycles on actual TITAN RTX pass requested19FPS/native paint/source/compiler/input gates,normalQuit,ddrawdisabled/absent,no recovery/fallback/unknown call. Earlier identical repeated route fails inside nd_status CloseHandle; current session-file control eliminates per-drawing closure. No fullcastingcombat assertion for this short repeated run; the separate full-suite record supplies that proof. No universal fairness/allscene19/60/publicV4/originalpixel/semanticCOM claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/nvidia",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/accelerated",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/software_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/minimum_fps",
+          "equals": 19
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/native_draw_default_required",
+          "equals": true
+        },
+        {
+          "pointer": "/menu_cycles",
+          "equals": 3
+        }
+      ]
+    },
+    {
+      "id": "NR.copy-order.status-stage-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/native-copy-status-stage-fixtures-20261011.json",
+      "sha256": "964f333871188c35968069ee11de0b9f0300dcd4fdfdedad349b07223a85c85c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Eight current contention fixtures pass13 complete-frame comparisons and expected50ms refusals. Supplemental direct consumer target maps13 compiler inputs and selftest bridge42/protocol28; linked static renderer compiler metadata is supplemented by the separately registered compiled-closure record. All129 inputs were prospectively bound. No fairness/performance/original-driver claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_rechecked_before_registration",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.status-services-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-status-services-pass-20261011.json",
+      "sha256": "8a7142547742f8d716e11e1f9b22ca4240cd9004b352fd6f7b33c7b9097ca3a3",
+      "scope": "64 unchanged clipper/DC caller cases and complete RGB565/COLORREF outputs against Wine DirectDraw, including DC-during-lock, repeated DC/refusals, GDI writes and teardown. Native ddraw disabled/module absent. Native logical primary/attached flip lifecycle is a separate policy; no driver presentation, clipped blit, palette or real game replacement claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/pixel_words",
+          "equals": 22464
+        },
+        {
+          "pointer": "/caller_words",
+          "equals": 2048
+        },
+        {
+          "pointer": "/native_remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_devices",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_clippers",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_dcs",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_policy/compared_words",
+          "equals": 351
+        },
+        {
+          "pointer": "/native_policy/duplicate_primary_refusals",
+          "equals": 1
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_directdraw_imports",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.copy-order.status-stage-compiled-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/native-copy-status-stage-compiled-fixtures-20261011.json",
+      "sha256": "778b22eb8820ba09e7de04ce3aab8d73e375ba97f2046fab0a1075b46efa2fdd",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Canonical consumer target plus actually linked mnm-renderer static archive closure30, selftest bridge42 and protocol28, all match prospective sources. Native consumer executable identical to prior source-bound record and every previous30 consumer source hash remains current; current synthetic PE bridge is freshly rebuilt. No source/binary mutation between execution and this metadata review.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_rechecked_before_registration",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -74028,7 +74537,8 @@
       "evidence": [
         "NR.directdraw-retirement.services-pass-20261010",
         "NR.directdraw-retirement.startup-services-20261010",
-        "NR.directdraw-retirement.startup-services-current-20261010"
+        "NR.directdraw-retirement.startup-services-current-20261010",
+        "NR.directdraw-retirement.status-services-20261011"
       ]
     },
     {
@@ -74088,7 +74598,8 @@
       ],
       "evidence": [
         "NR.directdraw-retirement.consumer-death-20261011",
-        "NR.directdraw-retirement.producer-death-20261011"
+        "NR.directdraw-retirement.producer-death-20261011",
+        "NR.directdraw-retirement.fog-consumer-death-20261011"
       ]
     },
     {
@@ -74110,7 +74621,9 @@
         "NR.directdraw-public-native-menu.nvidia-gameplay-20261011",
         "NR.directdraw-public-native-menu.default-basic-20261011",
         "NR.directdraw-public-native-menu.default-full-nvidia-20261011",
-        "NR.directdraw-public-native-menu.default-full-bound-nvidia-20261011"
+        "NR.directdraw-public-native-menu.default-full-bound-nvidia-20261011",
+        "NR.directdraw-public-native-menu.lock-stage-full-nvidia-20261011",
+        "NR.directdraw-public-native-menu.status-file-full-nvidia-20261011"
       ]
     },
     {
@@ -74158,7 +74671,9 @@
       ],
       "evidence": [
         "NR.copy-order.address-wait-20261011",
-        "NR.copy-order.address-stage-20261011"
+        "NR.copy-order.address-stage-20261011",
+        "NR.copy-order.status-stage-20261011",
+        "NR.copy-order.status-stage-compiled-20261011"
       ]
     },
     {
@@ -74176,6 +74691,37 @@
       ],
       "evidence": [
         "NR.minimap-continuous-read-window.live4096-20261011"
+      ]
+    },
+    {
+      "id": "native-draw-status-session-file-20261011",
+      "level": "preview",
+      "scope": "Independent stubbed Win32 diagnostic fixture checks complete96-byte records, overwrite/no growth, one startup open, zero hot closes, one teardown close, LastError, every-call module checks, collision and terminal failures. Real Wine/public performance and original comparison separate.",
+      "behaviors": [
+        "NR.native-draw-status-session-file"
+      ],
+      "tests": [
+        "tests/native-draw-status-test.cpp",
+        "tools/test-native-draw-status.py"
+      ],
+      "evidence": [
+        "NR.native-draw-status-session-file.fixtures-20261011"
+      ]
+    },
+    {
+      "id": "native-draw-status-public-20261011",
+      "level": "live_observation",
+      "scope": "Current session-owned diagnostic file and unchanged50ms copy-order admission on actual default native Qt menus/command NVIDIA TITAN campaign; requested repeated transitions or full casting/combat/spells/portraits/normalQuit must be separately asserted. Real ddraw disabled/absent, fresh compiler/input fingerprints, no fallback/recovery/unknown call and unchanged requested19FPS gates. Earlier CloseHandle stage5 failures retained. No causal allscene guarantee, fairness, publicV4fusion,60FPS, original pixel or semantic COM Quit equivalence.",
+      "behaviors": [
+        "NR.native-draw-status-session-file",
+        "NR.directdraw-public-native-menu",
+        "NR.bounded-copy-order"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.native-draw-status-session-file.repeated-public-20261011"
       ]
     }
   ],
@@ -74514,8 +75060,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-fog-window-20261011.json",
-    "sha256": "b998dee8f74485eaf441a47da350ba8a799106e79f887afca79bd08f9fcad446"
+    "path": "research/runtime/coverage/source-index-native-status-file-20261011.json",
+    "sha256": "ab73de1977150e9b9f1e9f3c6bf69aa26405a1fa9ac461ca7395fc97cca57189"
   },
   "claim_bindings_required": true
 }

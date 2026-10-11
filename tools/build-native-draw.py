@@ -13,7 +13,7 @@ IMPORTS = {
     'kernel32': {'GetModuleHandleA': 4, 'GetEnvironmentVariableA': 12, 'GetProcessHeap': 0, 'HeapAlloc': 12, 'HeapFree': 12,
                  'GetLastError': 0, 'SetLastError': 4, 'ExitProcess': 4,
                  'VirtualAlloc': 16, 'VirtualFree': 12, 'CreateFileA': 28,
-                 'WriteFile': 20, 'CloseHandle': 4},
+                 'WriteFile': 20, 'CloseHandle': 4, 'SetFilePointer': 16},
     'user32': {'IsWindow': 4, 'GetClientRect': 8, 'MapWindowPoints': 16,
                'GetSystemMetrics': 4},
     'gdi32': {'CreateCompatibleDC': 4, 'CreateDIBSection': 24, 'SelectObject': 8,
@@ -51,7 +51,8 @@ def build(output, declared=None):
                'NativeDrawClippers': ('NativeDrawClippers', 0),
                'NativeDrawDCs': ('NativeDrawDCs', 0),
                'NativeDrawSurfaces': ('NativeDrawSurfaces', 0),
-               'NativeDrawAnchor': ('NativeDrawAnchor', 0)}
+               'NativeDrawAnchor': ('NativeDrawAnchor', 0),
+               'NativeDrawStatusStage': ('NativeDrawStatusStage', 0)}
     subprocess.run(['lld-link', '/dll', '/machine:x86', '/entry:DllMain@12', '/nodefaultlib',
                     '/safeseh:no', '/timestamp:0', '/out:'+str(dll),
                     *[f'/export:{alias}=_{symbol}@{size}' for alias, (symbol, size) in exports.items()],

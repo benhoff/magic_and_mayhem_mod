@@ -189,3 +189,52 @@ still fails full-path19FPS despite completed delivery/paint and resource bounds.
 Median World40ms, between-World14ms and8941 readability region queries identify
 remaining costs. This performance failure is preserved alongside earlier selected
 passes; neither public UI callback throughput nor GPU readback removal hides it.
+
+## Session-owned diagnostic file (2026-10-11)
+
+Repeated public TITAN transitions reproduced copy-order refusal at the unchanged
+50ms admission budget. Read-only launch-local stage inspection identified the
+holder inside native `nd_status`'s `CloseHandle`: BltFast/original phase3, native
+status stage5, held76/140/205/271ms. A separate earlier run held `surface_lock`
+phase11 for74ms and longer. This locates diagnostic handle closure, not a measured
+GPU raster stall; why the Wine call blocks remains unassigned. Retain the exact
+[close-stage failure](native-draw-public-status-close-failure-20261011.json).
+
+The optional status file now opens once at DLL startup. A nonwaiting diagnostic
+writer lease rewinds and overwrites the same96-byte v2 record; it closes only at
+DLL detach. Each call still checks real ddraw module presence and preserves
+LastError. Open/seek/short-write failures retain terminal100, module presence101,
+oversized path102. A diagnostic collision can omit a snapshot but cannot bypass
+module refusal. This does not add native graphics API thread safety or durability.
+Stage access performs an atomic read only and is resolved once during adapter load.
+
+The [independent sink fixture](native-draw-status-fixtures-20261011.json) verifies
+1024 complete overwrite records, one open, zero hot closes, one teardown close,
+no growth, exact resource/peak/counter fields, LastError, module checks, collisions
+and terminal errors. Assertions and ASan/UBSan pass with actual header dependencies.
+The [current full public run](native-draw-public-status-file-full-nvidia-pass-20261011.json)
+passes default native menus, casting/combat/movement/Fireball/refusals, nine stable
+portrait cycles, resume and original Quit on TITAN RTX. Paints average25.7352FPS
+in combat and31.3169FPS after resume; portrait20.0071FPS/channel error1. No real
+ddraw, unknown call, recovery or fallback. Prior failures remain; repeated
+transition/copy/DC/flip regression and current4096 World/fault revalidation are
+pending before this paragraph is superseded by their source-bound records.
+Original CPU drawing remains in public command mode; public V4 fusion, universal
+19/60FPS, independent original pixels and semantic COM reference cleanup remain
+separate milestones.
+
+The source-bound [three-cycle TITAN repeat](native-draw-public-status-file-repeat-pass-20261011.json)
+now passes the same previously failing transition route,19FPS and normal Quit,
+with zero timeout/recovery/fallback. Its prospective claims include the diagnostic
+file policy, bounded copy admission and default native menu route. The current
+[eight contention fixtures](native-copy-status-stage-fixtures-20261011.json) pass
+13 independent complete-frame comparisons plus expected50ms GAP refusals,
+original counts/HRESULT/LastError and zero ordinary readbacks/uploads/resources.
+Their actual compiler closure is30 native and42 selftest bridge inputs, plus28
+protocol inputs. Older stage-fixture prose said44; its immutable mapping actually
+has42. Production bridge's44-input closure is separately bound by public tests.
+This is a count correction, not a historical hash refresh or new past execution.
+Current [64 services cases](native-draw-status-services-pass-20261011.json) compare
+2048 caller and22464 pixel words against Wine DirectDraw, plus351 native-policy
+words and terminal unknown calls; native module absence and zero resources pass.
+The current4096/fault World revalidation remains pending after diagnostic changes.

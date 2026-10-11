@@ -4500,3 +4500,23 @@ surface_lock holder reached105ms and longer. This does not invalidate World
 transport measurements or establish robust public gameplay. Public V4 fusion,
 arbitrary-scene19/60FPS, original pixel equivalence and semantic COM Quit remain
 separate unfinished milestones. Historical hashes and failures are preserved.
+
+The native diagnostic-file increment isolates a reproduced rendering-lease stall
+inside Wine CloseHandle (native status stage5,76..271ms) and moves handle closure
+out of drawing callbacks. One startup-owned handle publishes unchanged96-byte v2
+records under nonwaiting diagnostic writer admission; per-call module checks,
+LastError and terminal error policies remain. Independent1024-overwrite assertions
+and ASan/UBSan pass. Fresh default public TITAN casting/combat/spell/portrait/resume/
+normalQuit passes19FPS with no real ddraw, fallback or recovery. Source-bound
+historical World19.88FPS remains; current4096/fault revalidation and repeated
+transition/copy/DC/flip checks are pending. This does not integrate V4 World into
+the public command path or establish allscene19/60FPS/original equivalence/COM Quit.
+
+Current status-file three-cycle TITAN repeat passes19FPS and normalQuit, with no
+copy timeout/recovery/fallback. Eight current copy/Lock/DC/Flip fixtures preserve
+13 full-frame comparisons and expected50ms refusals, zero ordinary readback/upload/
+teardown surfaces. Actual selftest compiled closure is42 (older stage-fixture
+prose44 was an overcount; immutable mapping retained); production bridge is44.
+64 current native service comparisons preserve2048 caller/22464 pixel words and
+351 policy words against Wine DirectDraw with native ddraw disabled/absent and
+zero native resources. Current World4096/fault revalidation remains pending.
