@@ -122,3 +122,13 @@ wrapper and DirectX-check branches. The newly observed enumeration entry/thunk
 remain documented gaps rather than fabricated function coverage.
 Fresh source execution reports retain pre-correction contract identities; no
 historical claim hashes are refreshed to hide this accounting correction.
+
+The2026-10-11 cache/validity increment preserves
+`native-draw-cache128-performance-failure-20261011.json`:128 DirectDraw-disabled
+frames complete on TITAN RTX, cache335 and RSS growth1,474,560 bytes pass, but
+16.9312 original FPS/17.1461 Qt FPS still fail19FPS. Cropped CPU opaque validity
+and metadata-LRU atlas changes pass independent native pixel/refusal/teardown
+checks and retained32-queue GPU history comparisons; they do not prove original
+pixel equivalence or semantic game teardown. Actual scene raster counts differ
+between launches, so cross-run stage medians are observations, not controlled
+speedup measurements.

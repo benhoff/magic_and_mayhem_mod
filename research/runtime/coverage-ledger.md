@@ -4330,3 +4330,40 @@ reachability, palette/clipped blits/unknown contracts, semantic quit, arbitrary
 combat/casting and60FPS remain separate pending boundaries. The real game uses
 saved device settings and does not enumerate adapters in this selected session.
 No whole-engine replacement or performance promotion is asserted.
+
+## Bounded cache and CPU validity performance increment —2026-10-11
+
+The CPU World validity path crops non-shadow opaque invalidation once while
+preserving transparent history;2,940 independent cases cover five modes, three
+backends, signed extremes and clipped/inverted bounds. Eight selected native
+tests pass with94 reviewed canonical compiler inputs. Metadata pressure now
+evicts the least recently drawn sprite entry while retaining hot neighbours
+on shared pages; pixel pressure retains bounded whole-page eviction. Scoped
+World sessions enforce the existing512-frame atlas cap. Fresh512 synthetic and
+512 legacy-control queues plus32 retained game queues match15,360,000 independent
+native CPU words, with zero delivery readbacks and no remaining GPU resources.
+
+The fresh actual128-frame TITAN RTX run completes with ddraw disabled/absent,
+all128 Qt presentations and zero World readbacks/replies/writebacks. Peak cache
+335 passes512; RSS growth1,474,560 bytes passes32MiB. Performance still fails:
+16.9312 original FPS/17.1461 Qt FPS, World median43ms/p9551ms/max61ms. This
+scene has2,108 final-frame rasters versus1,563 in the previous retained run, so
+its20.49ms native consumption is not a controlled speedup comparison. Producer
+capture15ms/9,516 region queries and14ms between-World work remain charged.
+The failed target/build/dependency-label proof attempts are retained separately;
+only the final source-bound pass is current evidence.19FPS,60FPS, backend-disabled
+long-run/death/recovery, full gameplay and semantic quit remain pending.
+
+A separate current-source CPU sample records527 samples/zero lost and3.01percent
+in CanvasSequence::raster. It reaches19.5003 original/19.7034 Qt FPS in another
+scene, but577ms cold delivery fails500ms. This is a retained profiling discovery,
+not a full performance pass; source and scene variation prohibit a controlled
+percentage-speedup claim.
+
+The unprofiled4,096-frame actual DirectDraw-disabled session then completes
+all4,096 original returns/native completions/Qt presentations, with zero World
+readbacks/pixel replies/writebacks and zero native GPU teardown resources. Peak
+cache321, RSS growth9,097,216 bytes, World median38ms/p9544ms/max66ms and
+cold492.16ms pass unchanged bounds.18.6534 original/18.6580 Qt FPS still fail19;
+this is a functional sustained retirement slice, not a performance pass or
+original semantic COM quit proof.

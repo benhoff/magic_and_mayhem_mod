@@ -29,6 +29,14 @@ void SpriteAtlas::evict(){
     }
     erasePage(&*std::min_element(pages_.begin(),pages_.end(),[](const auto& a,const auto& b){return a.used<b.used;}));
 }
+void SpriteAtlas::evictEntry(){
+    if(entries_.empty())throw std::runtime_error("No atlas metadata to evict");
+    auto victim=std::min_element(entries_.begin(),entries_.end(),[](const auto& a,const auto& b){return a.second.used<b.second.used;});
+    auto* page=victim->second.page;
+    if(page)--page->entries;
+    entries_.erase(victim);--stats_.frames;++stats_.evictions;
+    if(page&&!page->entries)erasePage(page);
+}
 void SpriteAtlas::supply(const ResourceUploadRequest& r,PreparedSpriteFrame prepared){
     const auto& p=prepared.pixels;const auto& m=prepared.mask;
     if(p.width<0||p.height<0||p.width>2048||p.height>2048||(p.width==0)!=(p.height==0)||p.width!=m.width||p.height!=m.height||
@@ -45,8 +53,8 @@ void SpriteAtlas::supply(const ResourceUploadRequest& r,PreparedSpriteFrame prep
         }else ++it;
     }
     for(auto it=pages_.begin();it!=pages_.end();){auto* page=&*it++;if(!page->entries)erasePage(page);}
-    while(stats_.frames>=frameLimit_)evict();
-    Entry entry;entry.originX=prepared.originX;entry.originY=prepared.originY;entry.palette=prepared.palette;
+    while(stats_.frames>=frameLimit_)evictEntry();
+    Entry entry;entry.used=++clock_;entry.originX=prepared.originX;entry.originY=prepared.originY;entry.palette=prepared.palette;
     if(p.width){
         Page* selected=nullptr;int x=0,y=0;
         for(auto& page:pages_){
@@ -89,7 +97,7 @@ bool SpriteAtlas::advance(const ResourceUploadRequest& r,std::size_t& bytes){
 }
 void SpriteAtlas::draw(const ResourceUploadRequest& r,SurfaceId destination,int anchorX,int anchorY,std::optional<Rect> viewport,const SpriteComposite& composite){
     const auto it=entries_.find(key(r));if(it==entries_.end()||it->second.pending)throw std::runtime_error("Atlas frame not ready");
-    auto& e=it->second;++stats_.hits;if(!e.page)return;e.page->used=++clock_;
+    auto& e=it->second;++stats_.hits;e.used=++clock_;if(!e.page)return;e.page->used=e.used;
     const auto x=std::int64_t(anchorX)-e.originX,y=std::int64_t(anchorY)-e.originY;
     const auto w=e.region.right-e.region.left,h=e.region.bottom-e.region.top;
     std::int64_t left=x,top=y,right=x+w,bottom=y+h;
