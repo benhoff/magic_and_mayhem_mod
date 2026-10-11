@@ -532,6 +532,13 @@ def main():
                 for name,digest in native_build['sources'].items():
                     if report['sources'].get(name)!=digest or sha(ROOT/name)!=digest:raise ValueError('Undeclared or changed native graphics compiler source: '+name)
                 report['native_draw_compiled_sources']=native_build['sources']
+                render_build=json.loads((roots[0]/'render-bridge-build.json').read_text())
+                if not render_build.get('compiled_sources'):raise ValueError('Missing rendering bridge compiler provenance')
+                for field in ('compiled_sources','protocol_sources'):
+                    for name,digest in render_build[field].items():
+                        if report['sources'].get(name)!=digest or sha(ROOT/name)!=digest:raise ValueError('Undeclared or changed rendering bridge input: '+name)
+                report['render_bridge_compiled_sources']=render_build['compiled_sources']
+                report['render_bridge_protocol_sources']=render_build['protocol_sources']
                 game_inputs=json.loads((roots[0]/'input-fingerprints.json').read_text())
                 report['inputs']={str(roots[0]/'game'/name):digest for name,digest in game_inputs.items()}
                 report['inputs_stable']=all(sha(Path(name))==digest for name,digest in report['inputs'].items())

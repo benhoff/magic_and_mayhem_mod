@@ -15014,7 +15014,8 @@
         "research/runtime/native-tracker-investigation.md",
         "research/runtime/native-copy-address-wait-kernel32-failure-20261011.json",
         "research/runtime/native-copy-address-wait-fixtures-20261011.json",
-        "research/runtime/native-copy-address-wait-live-failure-20261011.json"
+        "research/runtime/native-copy-address-wait-live-failure-20261011.json",
+        "research/runtime/native-copy-address-stage-fixtures-20261011.json"
       ],
       "implementation": [
         "runtime/render/copy_order.h",
@@ -15043,7 +15044,8 @@
         "NR.tracker.ordering-synthetic-20261007",
         "NR.copy-order.current-stress-20261010",
         "NR.copy-order.fair-wait-20261011",
-        "NR.copy-order.address-wait-20261011"
+        "NR.copy-order.address-wait-20261011",
+        "NR.copy-order.address-stage-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31804,7 +31806,8 @@
         "research/runtime/native-gpu-frame-ownership.md",
         "research/runtime/native-draw-device-surfaces.md",
         "research/runtime/native-draw-services-20261010.md",
-        "research/runtime/native-draw-startup-check-discovery-20261010.json"
+        "research/runtime/native-draw-startup-check-discovery-20261010.json",
+        "research/runtime/native-draw-final-4096-performance-failure-20261011.json"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
@@ -32090,7 +32093,8 @@
       "original": [],
       "confidence": "provisional",
       "documents": [
-        "research/runtime/native-gpu-frame-ownership.md"
+        "research/runtime/native-gpu-frame-ownership.md",
+        "research/runtime/native-draw-final-4096-performance-failure-20261011.json"
       ],
       "implementation": [
         "protocols/include/mnm/world_continuous_v4.h",
@@ -32399,7 +32403,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owned graphics in the public native menus and command presentation route",
-      "scope": "Public native Qt Main/Region/campaign/Mini Cancel/resume flow with composed MnmMenu/MnmRender/MnmDraw imports, guarded two12-byte graphics loader strings, real Wine ddraw disabled and module absent, unchanged original callbacks and bounded owned graphics resources. Native Qt menus and command presentation remain mandatory; unknown native methods or visible original fallback must fail. Original CPU drawing remains active; this route does not assert V4 World-body suppression, independent original pixels, arbitrary gameplay, semantic COM teardown or60FPS. Selected gameplay stress must retain its declared FPS floor. Native menu+command launches now select owned graphics by default with no environment opt-in; explicit MNM_NATIVE_DRAW=0 is a diagnostic legacy control only. Default proof must leave that environment selection unset, assert owned staging/module absence and retain actual Qt NVIDIA renderer identity through normal Quit when hardware is requested.",
+      "scope": "Public native Qt Main/Region/campaign/Mini Cancel/resume flow with composed MnmMenu/MnmRender/MnmDraw imports, guarded two12-byte graphics loader strings, real Wine ddraw disabled and module absent, unchanged original callbacks and bounded owned graphics resources. Native Qt menus and command presentation remain mandatory; unknown native methods or visible original fallback must fail. Original CPU drawing remains active; this route does not assert V4 World-body suppression, independent original pixels, arbitrary gameplay, semantic COM teardown or60FPS. Selected gameplay stress must retain its declared FPS floor. Native menu+command launches now select owned graphics by default with no environment opt-in; explicit MNM_NATIVE_DRAW=0 is a diagnostic legacy control only. Default proof must leave that environment selection unset, assert owned staging/module absence and retain actual Qt NVIDIA renderer identity through normal Quit when hardware is requested. Current full proofs require actual rendering bridge compiler/builder and protocol-generator/schema inputs to match prelaunch declarations; standalone native command startup uses the same120second initial publication allowance as native menus.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -32430,7 +32434,10 @@
         "research/runtime/native-draw-public-default-gameplay-defeat-20261011.json",
         "research/runtime/native-draw-public-default-contention-failure-20261011.json",
         "research/runtime/native-draw-public-default-repeated-contention-failure-20261011.json",
-        "research/runtime/native-copy-address-wait-live-failure-20261011.json"
+        "research/runtime/native-copy-address-wait-live-failure-20261011.json",
+        "research/runtime/native-draw-public-default-full-nvidia-pass-20261011.json",
+        "research/runtime/native-draw-public-default-full-nvidia-artifacts-20261011.json",
+        "research/runtime/native-draw-public-default-full-bound-nvidia-pass-20261011.json"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -33155,13 +33162,22 @@
         "tools/run-qt-shell.sh",
         "tools/test-live-campaign-mini.py",
         "tools/test-native-clock.py",
-        "tools/test-native-pacer.py"
+        "tools/test-native-pacer.py",
+        "protocols/schemas/frame-v1.json",
+        "protocols/schemas/input-v1.json",
+        "protocols/schemas/media-v1.json",
+        "protocols/schemas/render_commands-v1.json",
+        "protocols/schemas/render_control-v1.json",
+        "protocols/schemas/render_commands-v2.json",
+        "protocols/schemas/render_stream-v2.json"
       ],
       "evidence": [
         "NR.directdraw-public-native-menu.bound-flow-20261011",
         "NR.directdraw-public-native-menu.gameplay-20261011",
         "NR.directdraw-public-native-menu.nvidia-gameplay-20261011",
-        "NR.directdraw-public-native-menu.default-basic-20261011"
+        "NR.directdraw-public-native-menu.default-basic-20261011",
+        "NR.directdraw-public-native-menu.default-full-nvidia-20261011",
+        "NR.directdraw-public-native-menu.default-full-bound-nvidia-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -65851,6 +65867,207 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.directdraw-public-native-menu.default-full-nvidia-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-public-default-full-nvidia-pass-20261011.json",
+      "sha256": "599adedde6b198db4d93efb797e38bd44fa80c7595b0ff50f720ad49afc45f13",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh default owned-graphics native Qt menu campaign on actual Qt/NVIDIA TITAN RTX, no MNM_NATIVE_DRAW opt-in; successful casting/combat/movement/Fireball and refusals,9 portrait cycles, Mini/resume and normal original Quit. Declared19FPS gate passes; active measured gameplay windows all >=19.9456 painted FPS. Real ddraw disabled/absent, no unknown call/recovery/fallback,227 Qt+8 native graphics compiler/builder sources,719 declared sources and1111 immutable inputs stable. Address-wait critical-section diagnostics have no timeout in this selected journey; prior long BltFast failures remain failures, with no controlled causal speedup/fairness/all-scene19/60FPS claim. Public campaign still executes original CPU drawing; V4 GPU-resident World is separately proved.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/nvidia",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/accelerated",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/software_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/spell_cases/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay/enemy_health_depleted",
+          "equals": true
+        },
+        {
+          "pointer": "/minimum_fps",
+          "equals": 19
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/native_draw_default_required",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-public-native-menu.default-full-bound-nvidia-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-public-default-full-bound-nvidia-pass-20261011.json",
+      "sha256": "a1521e0c6a3675c3855391a1428f56e517581685a082056915dca0f4a6dbb663",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Full default owned graphics campaign with actual Qt/NVIDIA TITAN RTX; casting/combat/movement/Fireball/refusals,9 portraits, Mini/resume and normal Quit. Real ddraw disabled/absent, no unknown call/recovery/fallback, strict44 rendering compiler/builder and28 protocol-generator/schema inputs plus227 Qt/8 native graphics inputs match prospective726 sources. All1111 installed inputs stable. Selected19FPS stress policy passes; long ownership failures are retained and no controlled scheduling fix, universal19/60FPS, V4/public integration or semantic COM release claim. Standalone shell now uses120second initial-publication allowance; pure startup proof remains separately scoped.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/nvidia",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/accelerated",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/software_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/spell_cases/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay/enemy_health_depleted",
+          "equals": true
+        },
+        {
+          "pointer": "/minimum_fps",
+          "equals": 19
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/native_draw_default_required",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.copy-order.address-stage-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/native-copy-address-stage-fixtures-20261011.json",
+      "sha256": "2c70e5a628873d6db38a7c70262ef9f02e1c37bf7f4099f43fc77d926d8be4b6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Fresh eight address-wait cross-copy/lock/DC/flip and expected50ms refusal fixtures after stage diagnostics. Independent full pixels, original counts/HRESULT/LastError and resource cleanup;30 native and44 bridge compiler/builder sources bound to129 prospective inputs. No live scheduling root cause/fairness/performance assertion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_rechecked_before_registration",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -73755,7 +73972,9 @@
         "NR.directdraw-public-native-menu.bound-flow-20261011",
         "NR.directdraw-public-native-menu.gameplay-20261011",
         "NR.directdraw-public-native-menu.nvidia-gameplay-20261011",
-        "NR.directdraw-public-native-menu.default-basic-20261011"
+        "NR.directdraw-public-native-menu.default-basic-20261011",
+        "NR.directdraw-public-native-menu.default-full-nvidia-20261011",
+        "NR.directdraw-public-native-menu.default-full-bound-nvidia-20261011"
       ]
     },
     {
@@ -73802,7 +74021,8 @@
         "tools/test-render-mutations.py"
       ],
       "evidence": [
-        "NR.copy-order.address-wait-20261011"
+        "NR.copy-order.address-wait-20261011",
+        "NR.copy-order.address-stage-20261011"
       ]
     }
   ],
@@ -74141,8 +74361,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-copy-address-wait-20261011.json",
-    "sha256": "38372cffeccfea8285f8060830a6979aef55fcc07bd7bb5380c1d3118cdac613"
+    "path": "research/runtime/coverage/source-index-native-default-bound-stage-20261011.json",
+    "sha256": "848b8e1b993ae65aa1f02759376ca6d8061da51e70115742aef3ed1f94708c45"
   },
   "claim_bindings_required": true
 }
