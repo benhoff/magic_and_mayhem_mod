@@ -337,12 +337,16 @@ def main():
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
     parser.add_argument('--native-draw',action='store_true',help='Require owned graphics services with real DirectDraw disabled')
+    parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
     parser.add_argument('--hardware',action='store_true',help='Use a private no-monitor TITAN/NVIDIA display; refuse software fallback')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
+    if args.native_draw and args.legacy_directdraw:parser.error('Owned graphics and legacy DirectDraw are separate routes')
+    explicit_native_draw=args.native_draw
+    args.native_draw=not args.legacy_directdraw
     if args.hardware and args.display:parser.error('--hardware and --display are separate display routes')
     if args.crowded_case:
         if args.healing_case:parser.error('Select only one Quick Battle case')
@@ -368,12 +372,15 @@ def main():
     report = {'schema': 1, 'success': False, 'status': 'running', 'stage': 'build',
               'required_mode': ['native-menus', 'native-command-presentation'],
               'launch_requested': False, 'game_entry_verified': False, 'flow_completed': False, 'movement_verified': False,
-              'native_draw_required':args.native_draw, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
+              'native_draw_required':args.native_draw,'native_draw_default_required':args.native_draw and not explicit_native_draw, 'complete_drawing_replacement': False, 'cleanup': 'bounded private-session termination',
               'casting_combat_required':args.require_casting_combat,'casting_verified':False,'combat_verified':False,
               'portrait_stress_seconds':args.portrait_stress_seconds,
               'crowded_required':args.crowded_case,'healing_required':args.healing_case,'spell_cases_required':args.spell_cases,'normal_quit_required':args.normal_quit,
               'difficulty': args.difficulty, 'stress_seconds_per_phase': args.stress_seconds, 'menu_cycles': args.menu_cycles, 'minimum_fps': args.min_fps,
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
+    if args.native_draw and not args.claims:
+        args.claims=out/'prospective-claims.json'
+        subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.directdraw-public-native-menu','--scenario','native-draw-public-menu-campaign-20261011','--output',str(args.claims)],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     if args.claims:
         declaration=json.loads(args.claims.read_text())
         for path,expected in declaration['sources'].items():
@@ -384,7 +391,8 @@ def main():
         native_sources=['tools/build-native-draw.py','tools/prepare-native-draw.py']+[str(p.relative_to(ROOT)) for p in (ROOT/'runtime/native-draw').iterdir() if p.suffix in ('.c','.h')]
         report['sources'].update({p:sha(ROOT/p) for p in native_sources})
     env = clean_environment(out)
-    if args.native_draw:env['MNM_NATIVE_DRAW']='1'
+    if args.legacy_directdraw:env['MNM_NATIVE_DRAW']='0'
+    elif explicit_native_draw:env['MNM_NATIVE_DRAW']='1'
     shell = server = monitor = None
     verified = False
     exit_code = 1
@@ -499,6 +507,7 @@ def main():
                     raise RuntimeError('Public campaign flow exceeded its deadline')
             flow = json.loads((out / 'flow.json').read_text())
             report['flow'] = flow
+            if args.hardware and ('NVIDIA' not in flow.get('renderer','') or any(x in flow['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Actual Qt renderer did not retain NVIDIA hardware identity')
             if not (args.healing_case or args.crowded_case):validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
             if args.stress_seconds and not (args.healing_case or args.crowded_case):
                 for cycle in range(args.menu_cycles+1):

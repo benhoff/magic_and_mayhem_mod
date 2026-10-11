@@ -281,7 +281,7 @@ The failed original-clock/yield/overlap/death experiments remain retained.
 ## Owned native graphics services
 
 The public combined menu/command route can opt in to owned PE32 graphics
-services with `MNM_NATIVE_DRAW=1 ./tools/run-qt-shell.sh --live-menus
+services by default with `./tools/run-qt-shell.sh --live-menus
 --native-commands`. Its staging composes MnmDraw with MnmMenu and MnmRender,
 redirects the guarded graphics import and both dynamic loader strings, and
 forces Wine ddraw disabled. Original CPU drawing remains active in this route;
@@ -295,3 +295,6 @@ image input hashes before and after launch. Menu/gameplay/resume callbacks,
 paint counts, screenshots, stress FPS and other requested gameplay assertions
 remain mandatory. Admission or a basic non-stress flow is not a throughput,
 casting/combat, semantic COM teardown or arbitrary-gameplay claim.
+
+
+Owned graphics is now the default for native menus plus native command presentation. `--native-draw` remains an explicit smoke-test alias; `--legacy-directdraw` is an explicit diagnostic control and does not prove retirement. The default smoke prepares its registered prospective behavior/scenario/source declaration before building or launching when `--claims` is omitted. Hardware validation uses `--hardware`, owns a private NVIDIA display, refuses software fallback, and requires the actual Qt renderer identity to survive normal Quit. Normal Quit and gameplay survival remain separate checks: the first default difficulty3 journey completed casting/combat/portrait but died before the complete flow and is retained as a failed run.

@@ -32359,7 +32359,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Owned graphics in the public native menus and command presentation route",
-      "scope": "Public native Qt Main/Region/campaign/Mini Cancel/resume flow with composed MnmMenu/MnmRender/MnmDraw imports, guarded two12-byte graphics loader strings, real Wine ddraw disabled and module absent, unchanged original callbacks and bounded owned graphics resources. Native Qt menus and command presentation remain mandatory; unknown native methods or visible original fallback must fail. Original CPU drawing remains active; this route does not assert V4 World-body suppression, independent original pixels, arbitrary gameplay, semantic COM teardown or60FPS. Selected gameplay stress must retain its declared FPS floor.",
+      "scope": "Public native Qt Main/Region/campaign/Mini Cancel/resume flow with composed MnmMenu/MnmRender/MnmDraw imports, guarded two12-byte graphics loader strings, real Wine ddraw disabled and module absent, unchanged original callbacks and bounded owned graphics resources. Native Qt menus and command presentation remain mandatory; unknown native methods or visible original fallback must fail. Original CPU drawing remains active; this route does not assert V4 World-body suppression, independent original pixels, arbitrary gameplay, semantic COM teardown or60FPS. Selected gameplay stress must retain its declared FPS floor. Native menu+command launches now select owned graphics by default with no environment opt-in; explicit MNM_NATIVE_DRAW=0 is a diagnostic legacy control only. Default proof must leave that environment selection unset, assert owned staging/module absence and retain actual Qt NVIDIA renderer identity through normal Quit when hardware is requested.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -32386,7 +32386,8 @@
         "research/runtime/native-draw-public-hardware-summon-failure-20261011.json",
         "research/runtime/native-draw-public-hardware-legacy-control-failure-20261011.json",
         "research/runtime/native-draw-public-hardware-ordering-failure-20261011.json",
-        "research/runtime/native-draw-public-nvidia-gameplay-artifacts-20261011.json"
+        "research/runtime/native-draw-public-nvidia-gameplay-artifacts-20261011.json",
+        "research/runtime/native-draw-public-default-gameplay-defeat-20261011.json"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -33097,6 +33098,7 @@
         "tools/campaign_spell.py",
         "tools/coverage_claims.py",
         "tools/decode-cfg.py",
+        "tools/draft-coverage-claims.py",
         "tools/encode-cfg.py",
         "tools/glyph_backend_launch.py",
         "tools/menu_preferences_store.py",
@@ -33115,7 +33117,8 @@
       "evidence": [
         "NR.directdraw-public-native-menu.bound-flow-20261011",
         "NR.directdraw-public-native-menu.gameplay-20261011",
-        "NR.directdraw-public-native-menu.nvidia-gameplay-20261011"
+        "NR.directdraw-public-native-menu.nvidia-gameplay-20261011",
+        "NR.directdraw-public-native-menu.default-basic-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -64894,6 +64897,65 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.directdraw-public-native-menu.default-basic-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-public-default-basic-pass-20261011.json",
+      "sha256": "1cb1609f2b65dbe3ca6f81550b45899de72ae821038e703f746694f9eb5a4f3f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current default native Qt Main/Region/campaign/Escape/Mini Cancel/resume flow without MNM_NATIVE_DRAW opt-in. Automatic prospective declaration precedes build/launch, canonical227 Qt and8 native PE32 compiler/builder sources are checked,1111 immutable graphics inputs stable, native diagnostics require real ddraw disabled/absent and no unknown call. Actual Qt zink/NVIDIA TITAN RTX identity retained. Basic only: no current stress19/60FPS/casting/combat/normal Quit/V4 integration/semantic COM cleanup claim. Failed extended default journey is retained with inactive zero-health wizard and fresh Main.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_default_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/nvidia",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/software_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -72784,7 +72846,7 @@
     {
       "id": "native-draw-public-menu-campaign-20261011",
       "level": "live_observation",
-      "scope": "Public native Qt Launch/New Game/Region Enter/campaign/Escape/Mini Cancel/resume with real ddraw disabled and owned services. Require same-thread original callback/tick trace, native menus/command paints/screenshots, unchanged sources/DLL, checked96-byte diagnostics and no native graphics refusal log. Stress throughput/casting/combat/normal Quit are only claimed when separately requested and asserted by the report; no V4 or original pixel equivalence.",
+      "scope": "Public native Qt Launch/New Game/Region Enter/campaign/Escape/Mini Cancel/resume with real ddraw disabled and owned services. Require same-thread original callback/tick trace, native menus/command paints/screenshots, unchanged sources/DLL, checked96-byte diagnostics and no native graphics refusal log. Stress throughput/casting/combat/normal Quit are only claimed when separately requested and asserted by the report; no V4 or original pixel equivalence. Default owned-graphics launches are separately asserted by an unset native-draw selection; hardware runs must retain actual Qt NVIDIA identity after Quit, with software fallback refused.",
       "behaviors": [
         "NR.directdraw-public-native-menu"
       ],
@@ -72797,7 +72859,8 @@
       "evidence": [
         "NR.directdraw-public-native-menu.bound-flow-20261011",
         "NR.directdraw-public-native-menu.gameplay-20261011",
-        "NR.directdraw-public-native-menu.nvidia-gameplay-20261011"
+        "NR.directdraw-public-native-menu.nvidia-gameplay-20261011",
+        "NR.directdraw-public-native-menu.default-basic-20261011"
       ]
     },
     {
@@ -73151,8 +73214,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-copy-fair-wait-20261011.json",
-    "sha256": "783aee5532b9289928365e00ac75776e1fe410f2c6e9cd6ca951f9f198eb3853"
+    "path": "research/runtime/coverage/source-index-native-draw-public-default-20261011.json",
+    "sha256": "a4a0b05f06d52469f08fdf80eb8a9709bcadc93223f7f795c8aab4e09fca11f7"
   },
   "claim_bindings_required": true
 }
