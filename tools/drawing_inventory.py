@@ -107,9 +107,10 @@ def project(record, definition):
             entry, hits = address(row['entry']), count(row['count'])
             if observed_phase == phase: counts[entry] += hits
         return sorted(counts.items())
-    if kind == 'api_site_rows':
+    if kind in {'api_site_rows', 'cpu_site_rows'}:
         phase = definition['phase']
-        if type(phase) is not int or not 0 <= phase <= 14 or definition['selector'] != 'api_site' or not isinstance(data, list):
+        expected_selector = 'cpu_site' if kind == 'cpu_site_rows' else 'api_site'
+        if type(phase) is not int or not 0 <= phase <= 14 or definition['selector'] != expected_selector or not isinstance(data, list):
             raise ValueError('Invalid API site phase/projection')
         counts = Counter()
         for row in data:
@@ -130,7 +131,7 @@ def project(record, definition):
 
 
 def selector_key(kind, identity):
-    if kind in {'entry', 'api_site'}:
+    if kind in {'entry', 'api_site', 'cpu_site'}:
         return kind, address(identity)
     if kind == 'draw_kind':
         value = int(identity, 0) if isinstance(identity, str) else identity
@@ -175,8 +176,10 @@ def reconcile(root, catalog, register):
     if static['source_sha256'] != build['source_sha256']:
         raise ValueError('Static inventory build mismatch')
     returns = caller_returns(static)
-    api_sites = {}
-    for source in catalog.get('api_site_sources', []):
+    api_sites, cpu_sites = {}, {}
+    site_sources = [(source, api_sites) for source in catalog.get('api_site_sources', [])]
+    site_sources += [(source, cpu_sites) for source in catalog.get('cpu_site_sources', [])]
+    for source, destination in site_sources:
         ev = evidence[source['evidence']]
         if ev['kind'] != 'static':
             raise ValueError('API site census requires static evidence')
@@ -196,14 +199,23 @@ def reconcile(root, catalog, register):
             mode = call_mode({'address': site, 'mnemonic': 'call', 'bytes': row['bytes'], 'operand': row['operand']})
             if mode['kind'] == 'unresolved_indirect' or mode != row['target_mode']:
                 raise ValueError('API CALL target mode differs from exact bytes')
+            if destination is cpu_sites:
+                from drawing_cpu_sites import SLOTS
+                if not (mode['kind'] == 'absolute_memory' and mode['address'] in SLOTS or
+                        site == 0x59d98a and raw == b'\xff\xd0' and mode == {'kind': 'register', 'register': 'eax'}):
+                    raise ValueError('CPU site is outside reviewed global/CRT CALL namespace')
+                if row.get('exact_import') or row.get('semantic_contract') != 'unreviewed':
+                    raise ValueError('CPU diagnostic site cannot claim an imported or typed client')
             imported = row.get('exact_import')
             if imported and (mode['kind'] != 'absolute_memory' or address(imported['iat_va']) != mode['address']):
                 raise ValueError('API import differs from exact CALL slot')
             for owner in row['discovered_owners']:
                 address(owner)
-            if site in api_sites and api_sites[site] != row:
+            if site in destination and destination[site] != row:
                 raise ValueError('Conflicting static API CALL site')
-            api_sites[site] = row
+            destination[site] = row
+    if api_sites.keys() & cpu_sites.keys():
+        raise ValueError('CPU and graphics CALL namespaces overlap')
     from drawing_api_clients import reviewed_clients
     api_clients = reviewed_clients(root, catalog.get('api_layout_sources', []), evidence, builds, build, api_sites)
     windows = {}
@@ -222,6 +234,17 @@ def reconcile(root, catalog, register):
             raise ValueError('Route lacks side effects or support rationale')
         if not route['documents']:
             raise ValueError('Route lacks research')
+        if 'observation_profile' in route:
+            if route['observation_profile'] != 'terminal_flow' or 'entry' not in route or route.get('selectors') != [{'kind': 'entry', 'identity': address(route['entry'])}]:
+                raise ValueError('Invalid opt-in terminal entry route')
+            if 'DRAW.terminal-canvas-wrappers' not in route['behaviors']:
+                raise ValueError('Terminal profile needs its original wrapper contract')
+        if 'cpu_site' in route:
+            point = address(route['cpu_site'])
+            if any(k in route for k in ('entry', 'api_site', 'client_contract')) or route.get('selectors') != [{'kind': 'cpu_site', 'identity': point}] or point not in cpu_sites:
+                raise ValueError('CPU site needs a separate exact diagnostic CALL route')
+            if route['classification'] != 'unresolved' or route['support']['decision'] != 'original_only':
+                raise ValueError('CPU diagnostic CALL does not establish a callee contract or native admission')
         if 'api_site' in route:
             point = address(route['api_site'])
             if 'entry' in route or route.get('selectors') != [{'kind': 'api_site', 'identity': point}] or point not in api_sites:
@@ -263,6 +286,9 @@ def reconcile(root, catalog, register):
             if selector['kind'] == 'api_site':
                 if 'entry' in route or 'api_site' not in route or key[1] != address(route['api_site']) or key[1] not in api_sites:
                     raise ValueError('API site needs an exact static CALL route, separate from function entries')
+            if selector['kind'] == 'cpu_site':
+                if 'cpu_site' not in route or key[1] != address(route['cpu_site']) or key[1] not in cpu_sites:
+                    raise ValueError('CPU selector differs from exact diagnostic CALL route')
             if key in selectors:
                 raise ValueError('Ambiguous route selector')
             selectors[key] = route['id']
@@ -271,16 +297,21 @@ def reconcile(root, catalog, register):
     for site in api_sites:
         if selector_key('api_site', site) not in selectors:
             raise ValueError('Static API CALL lacks reviewed route: ' + hex(site))
+    for site in cpu_sites:
+        if selector_key('cpu_site', site) not in selectors:
+            raise ValueError('Static CPU CALL lacks reviewed route: ' + hex(site))
     activities = []
     unaccounted = []
     for source in sources.values():
         for projection in source['projections']:
             if projection['activity'] not in {'live_original_active', 'live_takeover', 'live_observation'}:
                 raise ValueError('Unreviewed activity classification')
-            if projection['selector'] == 'api_site':
+            if projection['selector'] in {'api_site', 'cpu_site'}:
                 api = records[source['id']].get('api', {})
                 if api.get('journal_integrity') is not True or api.get('original_sha256') != build['source_sha256']:
                     raise ValueError('API activity needs an intact build-bound journal')
+                if projection['selector'] == 'cpu_site' and records[source['id']].get('call_boundary_role') != 'cpu_backend_dispatch':
+                    raise ValueError('CPU activity needs an explicit CPU observer role')
             for identity, hits in project(records[source['id']], projection):
                 key = selector_key(projection['selector'], identity)
                 route = selectors.get(key)
@@ -401,6 +432,7 @@ def reconcile(root, catalog, register):
             'static_callers': static['callers'], 'static_caller_returns': {hex(k): v for k, v in returns.items()},
             'static_indirect_calls': indirect, 'static_computed_jumps': jumps, 'dispatch_tables': tables,
             'static_api_sites': list(api_sites.values()), 'reviewed_api_clients': list(api_clients.values()),
+            'static_cpu_sites': list(cpu_sites.values()),
             'hook_entries': hooks, 'additional_hook_entries': additional_hooks,
             'metadata_hook_entries': metadata_hooks, 'metadata_hook_refusals': metadata_refusals,
             'completion_blockers': blockers, 'draw01_complete': not blockers,
@@ -409,6 +441,9 @@ def reconcile(root, catalog, register):
                        'metadata_instrumented_entries': len({row['entry'] for row in metadata_hooks}),
                        'metadata_refused_entries': len({row['entry'] for row in metadata_refusals}),
                        'api_registered_sites': len(api_sites),
+                       'cpu_registered_sites': len(cpu_sites),
+                       'cpu_observed_sites': len({a['identity'] for a in activities if a['selector'] == 'cpu_site' and a['count']}),
+                       'terminal_profile_entries': sum(r.get('observation_profile') == 'terminal_flow' for r in routes.values()),
                        'api_reviewed_clients': len(api_clients),
                        'api_unreviewed_clients': len(api_sites) - len(api_clients),
                        'api_observed_sites': len({a['identity'] for a in activities if a['selector'] == 'api_site' and a['count']}),

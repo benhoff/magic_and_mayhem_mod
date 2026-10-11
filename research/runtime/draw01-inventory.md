@@ -1060,3 +1060,36 @@ python3 tools/prepare-drawing-terminal-census.py --source-game working/game-nocd
   --cpu-plan working/tests/new-terminal-cpu-plan.json \
   --cpu-plan-sha256 <reviewed-sha256>
 ```
+
+
+## CPU dispatch and terminal profile route accounting (2026-10-11)
+
+The reviewed catalog now contains 636 routes: the prior 503, 128 exact CPU
+CALL sites and five terminal wrapper entries. CPU sites have a separate
+`cpu_site` selector, restricted to the four reviewed raster globals and the
+exact CRT CALL at 0x59d98a. They retain unknown semantic contracts and original
+forwarding; they cannot claim COM client layouts or native admission. The
+retained original menu journal projects six observed CPU sites; the other 122
+remain unexecuted. Graphics accounting retains 380 sites, 141 reviewed client
+contracts and 101 observed sites.
+
+Terminal entry routes link the bounded original wrapper contract and use an
+explicit `terminal_flow` observation profile. The default core builder excludes
+these five entries; the separate terminal builder appends them after its 83
+safe default entries. Fresh native planning over the current catalog retains
+83 default entries and one unsafe fade refusal, or 88 opt-in entries beside
+128 CPU CALL probes. Neither planning nor reprojecting retained observations
+repeats original rendering or renews earlier source fingerprints.
+
+Reproduce accounting with `python3 tests/test-drawing-inventory.py` (59 guards)
+and `python3 tools/report-drawing-inventory.py --require-accounted`. The fresh
+terminal CPU plan is `drawing-cpu-terminal-catalog-splices-static-20261011.json`;
+use its exact reviewed SHA with the explicit terminal preparation command.
+The prior 88-entry plan remains historical after this catalog/default-builder
+source change and must not be relabeled fresh.
+
+All 14 scenario closures and four dispatch gates remain open. The catalog
+accounts for reviewed identities, while complete pointer writers, dynamic
+callee ownership, pixels, failure/recovery branches, registrations and physical
+resource lifetimes still need their own evidence. Native planning receipts do
+not imply renewed original execution or transparency validation.

@@ -4897,3 +4897,15 @@ callbacks, physical lifetime and all writer/API/side-effect/14scenario/four
 dispatch closure remain pending. All raw artifacts/binaries survive stopped
 disposable cleanup.034ce79..40a16e0history has28file/51behavior exact receipts and
 zero missing intermediate versions.
+
+
+DRAW-01 CPU/terminal route accounting (2026-10-11): reviewed inventory expands
+from 503 to 636 routes with separate exact128CPU selectors and five explicitly
+opt-in terminal lifecycle entries. Current59native guards and retained original
+menu phase projections account for all reviewed inputs without promoting any
+scenario/dispatch gate: 14+4 remain. Six CPU sites observed/122 unexecuted;
+380graphics sites/141reviewed clients/101observed remain separate. Current
+native planning preserves default83safe/one unsafe fade refusal and opt-in
+88core/128CPU. Source/catalog changes intentionally leave earlier original
+observer plans/journals historical; new native planning does not renew ABI,
+original execution, full writer/caller/side-effect/lifetime or live equivalence.

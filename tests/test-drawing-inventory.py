@@ -109,6 +109,76 @@ class DrawingInventoryTest(unittest.TestCase):
              'selector': 'entry', 'activity': 'live_original_active'}]
         self.write_record('live', self.record)
 
+    def cpu(self):
+        self.api()
+        site = self.api_record['calls'][0]['site']
+        row = self.api_record['calls'][0]
+        row.update(bytes='ff15dc036900', operand='DWORD PTR ds:0x6903dc',
+                   target_mode={'kind': 'absolute_memory', 'address': 0x6903dc},
+                   semantic_contract='unreviewed')
+        self.write_record('api-static', self.api_record)
+        self.catalog['cpu_site_sources'] = self.catalog.pop('api_site_sources')
+        route = self.catalog['routes'][-1]
+        route.pop('api_site'); route.update(cpu_site=site, classification='unresolved',
+            support={'decision':'original_only','reason':'Diagnostic original CALL only'},
+            selectors=[{'kind':'cpu_site','identity':site}])
+        self.catalog['observations'][0]['projections'] = [{
+            'kind':'cpu_site_rows','pointer':'/api/targets','phase':3,
+            'selector':'cpu_site','activity':'live_original_active'}]
+        self.record['call_boundary_role'] = 'cpu_backend_dispatch'
+        self.record['api'] = {'journal_integrity':True,'original_sha256':self.original,
+            'targets':[{'phase':3,'site':site,'count':4,'target_state':2,
+                        'target_slot':0x6903dc,'target_value':0x596cb8}]}
+        self.write_record('live', self.record)
+
+    def test_cpu_selector_is_separate_and_does_not_close_scenarios(self):
+        self.cpu(); r = self.report()
+        self.assertEqual(r['counts']['cpu_registered_sites'], 1)
+        self.assertEqual(r['counts']['cpu_observed_sites'], 1)
+        self.assertEqual(r['counts']['api_registered_sites'], 0)
+        self.assertEqual(r['activities'][0]['selector'], 'cpu_site')
+        self.assertFalse(r['draw01_complete'])
+
+    def test_cpu_site_namespace_and_unknown_contract_are_required(self):
+        self.cpu()
+        for changes in [{'bytes':'ff15e0036900','operand':'DWORD PTR ds:0x6903e0','target_mode':{'kind':'absolute_memory','address':0x6903e0}}, {'semantic_contract':'unlock'}]:
+            old = copy.deepcopy(self.api_record['calls'][0]); self.api_record['calls'][0].update(changes)
+            self.write_record('api-static', self.api_record)
+            with self.assertRaises(ValueError): self.report()
+            self.api_record['calls'][0] = old
+
+    def test_cpu_site_cannot_claim_typed_client_or_native_admission(self):
+        self.cpu(); route = self.catalog['routes'][-1]
+        for key,value in [('client_contract',{}),('classification','surface_access'),('support',{'decision':'scoped_native','reason':'Not earned'})]:
+            before=copy.deepcopy(route); route[key]=value
+            with self.assertRaises(ValueError): self.report()
+            route.clear(); route.update(before)
+
+    def test_cpu_activity_requires_role_and_intact_journal(self):
+        self.cpu()
+        for key,value in [('call_boundary_role','graphics_api'),('api',{'journal_integrity':False,'original_sha256':self.original})]:
+            before=copy.deepcopy(self.record[key]);self.record[key]=value;self.write_record('live',self.record)
+            with self.assertRaises(ValueError):self.report()
+            self.record[key]=before
+
+    def test_cpu_unknown_live_site_remains_unaccounted(self):
+        self.cpu(); self.record['api']['targets'][0]['site']+=16;self.write_record('live',self.record)
+        self.assertEqual(self.report()['unaccounted'][0]['selector'],'cpu_site')
+
+    def test_cpu_excluded_phase_is_still_validated(self):
+        self.cpu();self.record['api']['targets'][0].update(phase=14,target_state=0);self.write_record('live',self.record)
+        with self.assertRaises(ValueError):self.report()
+
+    def test_cpu_static_calls_require_every_route(self):
+        self.cpu();self.catalog['routes'].pop()
+        with self.assertRaises(ValueError):self.report()
+
+    def test_terminal_profile_requires_original_wrapper_contract(self):
+        route=self.catalog['routes'][0];route['observation_profile']='terminal_flow'
+        with self.assertRaises(ValueError):self.report()
+        route['observation_profile']='unknown'
+        with self.assertRaises(ValueError):self.report()
+
     def test_metadata_phase_projection_keeps_cohorts_separate(self):
         self.metadata(); r = self.report()
         self.assertEqual([(a['identity'], a['count']) for a in r['activities']], [(0x401000, 6)])
