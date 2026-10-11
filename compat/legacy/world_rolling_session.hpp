@@ -1,12 +1,13 @@
 #pragma once
 #include "canvas_world.hpp"
 #include "world_rolling_packet.hpp"
+#include "../../renderer/gpu_canvas_mirror.hpp"
 #include <optional>
 namespace mnm::legacy {
 class WorldRollingSession final {
 public:
   WorldRollingSession(render::GlBlitter &, const assets::AssetStore &,
-                      bool verify = true);
+                      bool verify = true, bool resident = false);
   render::Image consume(
       std::uint64_t sequence, const std::vector<std::uint8_t> &,
       const std::function<void(const CanvasProducer &, const render::Image &)>
@@ -15,6 +16,9 @@ public:
           &entry = {});
   render::Image consumeOwned(std::uint64_t sequence,
                              const CanvasProducerStream &);
+  render::GpuFrame consumeResident(std::uint64_t, const CanvasProducerStream &);
+  render::Image diagnosticReadResident(render::GlBlitter &);
+  std::uint64_t worldReadbacks() const { return world_.readbacks(); }
   render::GpuFrame presentGpu() {
     if (failed_ || !completed_)
       throw std::logic_error("Rolling GPU presentation before completion");
@@ -41,10 +45,11 @@ private:
           &checkpoint,
       const std::function<void(const CanvasProducer &, const render::Image &)>
           &entry);
+  std::unique_ptr<render::GpuCanvasMirror> mirror_;
   CanvasProducerReplay producer_;
   CanvasWorld world_;
   std::uint64_t completed_ = 0;
-  bool failed_ = false, verify_ = true;
+  bool failed_ = false, verify_ = true, resident_ = false;
   double nativeMs_ = 0, assertionMs_ = 0;
   std::vector<std::uint8_t> cachedBytes_;
   std::optional<CanvasProducerStream> cached_;

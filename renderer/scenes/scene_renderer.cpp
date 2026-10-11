@@ -12,7 +12,17 @@ SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resour
     background_=renderer_.create(background,spriteFormat);
     try{canvas_=renderer_.create(background,spriteFormat);}catch(...){renderer_.destroy(background_);throw;}
 }
-SceneRenderer::~SceneRenderer(){cache_.clear();renderer_.destroy(canvas_);renderer_.destroy(background_);}
+SceneRenderer::SceneRenderer(GlBlitter& renderer,assets::ResourceManager& resources,
+                             SurfaceId canvas,int width,int height,SceneLimits limits)
+    :renderer_(renderer),resources_(resources),cache_(renderer,resources,limits.cache),limits_(limits),
+     canvas_(canvas),ownsCanvas_(false),viewport_{0,0,width,height},thread_(std::this_thread::get_id()){
+    if(!limits.draws||limits.draws>65536||width<1||height<1||width>2048||height>2048)
+        throw std::invalid_argument("Borrowed scene limits");
+    const auto frame=renderer_.presentGpu(canvas);
+    if(frame.size()!=QSize(width,height))throw std::invalid_argument("Borrowed scene canvas extent");
+    valid_=true;
+}
+SceneRenderer::~SceneRenderer(){cache_.clear();if(ownsCanvas_)renderer_.destroy(canvas_);if(background_)renderer_.destroy(background_);}
 void SceneRenderer::checkThread() const{
     if(std::this_thread::get_id()!=thread_)throw std::runtime_error("SceneRenderer used from another thread");
 }
@@ -75,6 +85,7 @@ void SceneRenderer::beginFrame(const std::vector<SceneDraw>& draws,SceneStart st
     checkThread();if(draws.size()>limits_.draws)throw std::invalid_argument("Scene draw budget exceeded");
     if(drawing_)throw std::runtime_error("Previous scene frame is incomplete");
     if(start!=SceneStart::background&&start!=SceneStart::retainedCanvas)throw std::invalid_argument("Unsupported scene start");
+    if(start==SceneStart::background&&!background_)throw std::invalid_argument("Borrowed scene has no background");
     if(start==SceneStart::retainedCanvas&&!valid_)throw std::runtime_error("No complete native canvas to retain");
     for(const auto& draw:draws)validate(draw);
     // Admission errors preserve the previous completed frame. An execution error

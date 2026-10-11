@@ -91,12 +91,31 @@ void CanvasWorld::beginRolling(const CanvasProducer &c,
   rolling_ = true;
   rollingSequence_ = sequence;
 }
+void CanvasWorld::beginResident(const CanvasProducer &c,render::SurfaceId native,
+                                 std::uint64_t sequence) {
+  const auto &r=c.fields;
+  if(active_ || (scene_ && (!resident_ || residentSurface_!=native || pending_.width!=r[5] || pending_.height!=r[6])) || !sequence ||
+     rollingCompleted_==std::numeric_limits<std::uint64_t>::max() ||
+     sequence!=rollingCompleted_+1 || r[2]!=MNM_PRODUCER_QUEUE_ENTRY ||
+     r[14]!=1 || !r[3] || (canvas_ && canvas_!=r[3]))
+    throw std::invalid_argument("Resident World identity or sequence");
+  profile_={};
+  if(!scene_) {
+    residentSurface_=native;
+    render::SceneLimits limits;limits.cache.indexedAtlas=true;
+    scene_=std::make_unique<render::SceneRenderer>(renderer_,resources_,native,
+                                                    int(r[5]),int(r[6]),limits);
+  }
+  pending_={r[14],r[5],r[6],r[5],{}};
+  queue_=1;canvas_=r[3];queueDraws_=0;checked_=false;active_=true;
+  rolling_=resident_=true;rollingSequence_=sequence;
+}
 void CanvasWorld::beginFrame(const CanvasProducer &c,
                              const render::Image &native) {
   profile_ = {};
   const auto started = Clock::now();
   const auto &r = c.fields;
-  if (active_ || r[2] != MNM_PRODUCER_QUEUE_ENTRY || !r[3] ||
+  if (resident_ || active_ || r[2] != MNM_PRODUCER_QUEUE_ENTRY || !r[3] ||
       (canvas_ && canvas_ != r[3]) || native.width != int(r[5]) ||
       native.height != int(r[6]))
     throw std::invalid_argument(
@@ -148,7 +167,11 @@ render::Image CanvasWorld::complete(const render::Image &reference) {
   return completeFrame(&reference);
 }
 render::Image CanvasWorld::completeNormal() { return completeFrame(nullptr); }
-render::Image CanvasWorld::completeFrame(const render::Image *reference) {
+void CanvasWorld::completeResident() {
+  if(!resident_)throw std::logic_error("Pixel-return World cannot complete as resident");
+  completeFrame(nullptr,false);
+}
+render::Image CanvasWorld::completeFrame(const render::Image *reference, bool exportPixels) {
   if (!active_ || readbacks_ == std::numeric_limits<std::uint64_t>::max())
     throw std::runtime_error("No native producer/World queue to complete or "
                              "readback counter exhausted");
@@ -198,6 +221,7 @@ render::Image CanvasWorld::completeFrame(const render::Image *reference) {
     profile_.cacheFrames = cacheAfter.frames;
     profile_.cacheSurfaces = cacheAfter.surfaces;
   }
+  if(!exportPixels) { checked_=true; return {}; }
   auto started = Clock::now();
   auto native = scene_->read();
   profile_.readbackMs += milliseconds(started);

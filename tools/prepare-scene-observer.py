@@ -37,10 +37,11 @@ def copy_installation(source, game):
             raise ValueError('Disposable write target escapes the game copy: '+name)
 
 
-def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None):
+def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source_game=None,glyph_mode=None):
     if world_live and not world_frames:raise ValueError('Continuous World needs the World input observer')
     if world_frames and word_mode:raise ValueError('World observation and word takeover use separate experiments')
     if word_mode not in (None,'shadow','takeover','clip-shadow','clip-takeover'):raise ValueError('Unsupported word-sprite mode')
+    if glyph_mode and (world_frames or world_live or word_mode):raise ValueError('Glyph mode requires a separate experiment')
     source=(Path(source_game) if source_game else ROOT/'working/game-nocd').resolve()
     data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=HASH:
@@ -81,6 +82,9 @@ def prepare(menu=False,word_mode=None,world_frames=False,world_live=False,source
         staged=patch(staged,'MnmMenu.dll','MenuAnchor',b'.mnmenu')
         shutil.copy2(menu_dll,game/menu_dll.name)
         manifest['menu_dll_sha256']=sha(menu_dll)
+    from glyph_backend_launch import stage as stage_glyph
+    staged,glyph_metadata=stage_glyph(output,data,staged,glyph_mode,scene_imported=True)
+    manifest.update(glyph_metadata)
     # Every old file-backed code section remains byte-for-byte identical.
     import struct
     pe=struct.unpack_from('<I',data,60)[0];count=struct.unpack_from('<H',data,pe+6)[0]

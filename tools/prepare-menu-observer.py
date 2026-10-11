@@ -14,12 +14,17 @@ def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False):
     if experimental_mini and not actions:raise ValueError("Experimental Mini Menu requires action staging")
-    source=REPO/'working/game-nocd';data=(source/'Chaos.exe').read_bytes()
+    source=(REPO/'working/game-nocd').resolve();data=(source/'Chaos.exe').read_bytes()
     if hashlib.sha256(data).hexdigest()!=HASH:raise ValueError('Unsupported executable; refusing staging')
     dll=module('menu_build','tools/build-menu-observer.py').build(experimental_mini=experimental_mini)
     parent=REPO/'working/experiments/menu-observer';parent.mkdir(parents=True,exist_ok=True)
     root=Path(tempfile.mkdtemp(prefix='run-',dir=parent));game=root/'game'
     subprocess.run(['cp','-a','--reflink=auto',str(source),str(game)],check=True)
+    if game.is_symlink() or game.resolve()==source:
+        raise ValueError('Disposable staging aliases its source')
+    for name in ['Chaos.exe','MnmRender.dll','MnmMenu.dll','MnmScene.dll','MnmWord.dll','MnmAudio.dll','CFG/prefs.cfg','CFG/Encrypted/prefs.cfg']:
+        if not (game/name).resolve().is_relative_to(game.resolve()):
+            raise ValueError('Disposable write target escapes game copy: '+name)
     if hashlib.sha256((game/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Copy hash mismatch')
     patched=module('menu_import','tools/prepare-shadow-experiment.py').add_import(data,'MnmMenu.dll','MenuAnchor',b'.mnmenu')
     render_dll=None
@@ -30,6 +35,8 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         shutil.copy2(render_dll,game/render_dll.name)
         shutil.copy2(render_dll.parent/'manifest.json',root/'render-bridge-build.json')
         (root/'lock-capture').mkdir()
+    from glyph_backend_launch import stage as stage_glyph,mode_from_environment
+    patched,glyph_metadata=stage_glyph(root,data,patched,mode_from_environment())
     (game/'Chaos.exe').write_bytes(patched);shutil.copy2(dll,game/dll.name)
     preferences=module('menu_preferences','tools/run-opengl-game.py')
     stored=None
@@ -54,6 +61,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'native_render':native_render,'render_dll_sha256':hashlib.sha256(render_dll.read_bytes()).hexdigest() if render_dll else None,
               'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
+    metadata.update(glyph_metadata)
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
     if hashlib.sha256((source/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Source executable changed')

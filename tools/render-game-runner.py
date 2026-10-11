@@ -20,6 +20,9 @@ if metadata.get('word_dll_sha256'):
     if directory!=root.resolve()/'word-sprites' or any(directory.iterdir()):raise ValueError('Word-sprite capture directory must be fresh')
     os.environ['MNM_WORD_SPRITES']=metadata['word_sprites_mode']
     os.environ['MNM_WORD_DIRECTORY']='Z:'+str(directory).replace('/','\\')
+from glyph_backend_launch import authorize as authorize_glyph
+authorize_glyph(root,metadata,os.environ)
+os.environ.pop('MNM_SCENE_DIR',None)
 os.chdir(game)
 if metadata.get('capture_locks'):
     timing=root/'presentation-rate.jsonl'

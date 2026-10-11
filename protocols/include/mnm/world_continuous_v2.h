@@ -15,7 +15,8 @@
 #define MNM_CONT_BYTES (MNM_CONT_HEADER + 2u * MNM_CONT_SLOT_BYTES)
 /* Continuous requests/replies use batch version5 inside the V1 envelope.
  * Descriptor source digest is FNV(canonical96-byte header || little-endian
- * CRC32C(exact owned payload)); legacy finite batch V3 remains distinct. */
+ * CRC32C(exact owned payload)); inner V5 reply pixel digest is CRC32C.
+ * Legacy finite batch V3 remains distinct with its FNV pixel digest. */
 #define MNM_CONT_BATCH_VERSION 5u
 #define MNM_CONT_FREE 0u
 #define MNM_CONT_WRITING 1u

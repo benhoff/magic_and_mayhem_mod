@@ -10,14 +10,17 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def summary(values):
  v=sorted(values);return dict(samples=len(v),median=statistics.median(v),p95=v[min(len(v)-1,int(len(v)*.95))],maximum=max(v)) if v else None
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--profile',action='store_true',help='Separate CPU sampling probe; timings remain charged to the full-path budget');p.add_argument('--hardware',action='store_true',help='Private no-monitor NVIDIA seat using Mesa Zink; refuse software fallback');p.add_argument('--impossible-budget',action='store_true',help='Negative control: require warm median <=0.001ms');p.add_argument('--normal',action='store_true',help='Measured normal path without CPU reference composition');p.add_argument('--queues',type=int,default=4096);p.add_argument('--mode',choices=['complete','consumer-death','producer-death'],default='complete');p.add_argument('--prepared',type=Path);a=p.parse_args();assert 1<=a.queues<=4096
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--profile-producer',action='store_true');p.add_argument('--profile-waits',action='store_true');p.add_argument('--profile',action='store_true',help='Separate CPU sampling probe; timings remain charged to the full-path budget');p.add_argument('--hardware',action='store_true',help='Private no-monitor NVIDIA seat; refuse software fallback');p.add_argument('--hardware-driver',choices=['zink','nvidia'],default='zink');p.add_argument('--impossible-budget',action='store_true',help='Negative control: require warm median <=0.001ms');p.add_argument('--normal',action='store_true',help='Measured normal path without CPU reference composition');p.add_argument('--queues',type=int,default=4096);p.add_argument('--mode',choices=['complete','consumer-death','producer-death'],default='complete');p.add_argument('--prepared',type=Path);a=p.parse_args();assert 1<=a.queues<=4096
+ if a.profile_producer and a.profile_waits:p.error('Choose one producer profiler')
+ if a.impossible_budget and not a.normal:p.error('--impossible-budget requires --normal')
+ if a.hardware_driver!='zink' and not a.hardware:p.error('--hardware-driver requires --hardware')
  parent=ROOT/'working/tests/native-world-continuous';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
  behaviors=['NR.world-continuous-normal-performance'] if a.normal else BEHAVIORS;scenario='native-world-continuous-normal-20261010' if a.normal else SCENARIO
  r=json.loads((ROOT/'research/runtime/coverage/register.json').read_text());bs=[next(b for b in r['behaviors'] if b['id']==bid) for bid in behaviors];s=next(s for s in r['scenarios'] if s['id']==scenario);sources={n:sha(ROOT/n) for n in sorted(set().union(*(required_sources(b) for b in bs)))};claims=[dict(behavior=b['id'],contract_sha256=behavior_contract(b,{x['id']:x for x in r['builds']}),scenarios={scenario:scenario_contract(s)}) for b in bs];declaration=out/'claims.json';declaration.write_text(json.dumps(dict(sources=sources,claims=claims),indent=2)+'\n')
  report=dict(success=False,mode=a.mode,normal=a.normal,requested_queues=a.queues,sources=sources,claims=claims,original_pixels_used_as_native_inputs=False,independent_original_equivalence=False)
  env=dict(os.environ,QT_QPA_PLATFORM='xcb',LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='8');process=None;experiment=None;before=False;gpu_server=None
  def run(name,cmd,**kw):
-  with (out/(name+'.log')).open('x') as log:return subprocess.run([str(x) for x in cmd],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=600,**kw)
+  with (out/(name+'.log')).open('x') as log:return subprocess.run([str(x) for x in cmd],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=kw.pop('timeout',600),**kw)
  try:
   run('original-before',[ROOT/'tools/original-manifest.sh','verify'],check=True);before=True
   frozen=out/'source';configured={n for n in subprocess.check_output(['git','ls-files','-z'],cwd=ROOT).decode().split('\0') if n and (Path(n).suffix in ('.cpp','.hpp','.c','.h','.S','.cmake') or Path(n).name=='CMakeLists.txt')}
@@ -25,20 +28,27 @@ def main():
    target=frozen/n;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/n,target)
   report['frozen_sources']={n:sha(frozen/n) for n in configured|set(sources)};build=out/'build';dependency_root=frozen
   if a.prepared:
-   previous=json.loads((a.prepared/'report.json').read_text());assert (previous['success'] or (previous.get('completed',{}).get('success') and previous.get('completed',{}).get('native_continuous',{}).get('success') and previous.get('inputs_stable')) or (previous.get('channel_fixtures_passed') and previous.get('hash_fixtures_passed') and previous.get('experiment') in (None,'None') and 'completed' not in previous)) and previous['sources_stable'] and previous['frozen_sources_stable'];build=a.prepared/'build';dependency_root=a.prepared/'source'
+   previous=json.loads((a.prepared/'report.json').read_text());assert previous.get('memory_fixtures_passed') and previous.get('channel_fixtures_passed') and previous.get('hash_fixtures_passed') and previous.get('normal_fixtures_passed') and previous['sources_stable'] and previous['frozen_sources_stable'];build=a.prepared/'build';dependency_root=a.prepared/'source'
    assert sha(build/'mnm-world-continuous')==previous['native_binary_sha256']
    for n,h in previous['compiled_dependency_review']['sources'].items():assert sha(ROOT/n)==sha(dependency_root/n)==h,n
    report['prepared_report_sha256']=sha(a.prepared/'report.json')
+   for n in ['compat/legacy/world-rolling/CMakeLists.txt','renderer/CMakeLists.txt','renderer/scenes/CMakeLists.txt','renderer/resources/CMakeLists.txt','assets/CMakeLists.txt','assets/resources/CMakeLists.txt','compat/legacy/canvas-producers/CMakeLists.txt']:
+    assert sha(ROOT/n)==sha(dependency_root/n),n
   else:
-   run('configure',['cmake','-S',frozen/'compat/legacy/world-rolling','-B',build,'-DCMAKE_BUILD_TYPE=RelWithDebInfo','-DBUILD_TESTING=ON'],check=True)
-   run('build',['cmake','--build',build,'--target','mnm-world-continuous','world-continuous-channel-test','world-continuous-hash-test','-j4'],check=True)
+   run('configure',['cmake','-S',frozen/'compat/legacy/world-rolling','-B',build,'-DCMAKE_BUILD_TYPE=Release','-DCMAKE_CXX_FLAGS_RELEASE=-O3 -DNDEBUG -g','-DBUILD_TESTING=ON'],check=True)
+   run('build',['cmake','--build',build,'--target','world-continuous-memory-test','mnm-world-continuous','world-continuous-channel-test','world-continuous-hash-test','world-continuous-normal-test','-j4'],check=True)
+  cache=(build/'CMakeCache.txt').read_text().splitlines()
+  assert 'CMAKE_BUILD_TYPE:STRING=Release' in cache and 'CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG -g' in cache,'Prepared build differs from production compiler policy'
+  report['compiler_policy']=dict(build_type='Release',flags='-O3 -DNDEBUG -g',cache_sha256=sha(build/'CMakeCache.txt'))
   compiled=set()
   for dep in build.rglob('*.o.d'):
    for token in dep.read_text().replace('\\\n',' ').split():
     path=Path(token).resolve()
     if path.is_file() and path.is_relative_to(dependency_root):compiled.add(path.relative_to(dependency_root).as_posix())
   missing=sorted(compiled-set(sources));report['compiled_dependency_review']=dict(sources={n:sha(dependency_root/n) for n in sorted(compiled)},undeclared_dependencies=missing);assert not missing,missing
+  run('memory-fixtures',[build/'world-continuous-memory-test'],check=True);report['memory_fixtures_passed']=True
   run('channel-fixtures',[build/'world-continuous-channel-test'],check=True);report['channel_fixtures_passed']=True;run('hash-fixtures',[build/'world-continuous-hash-test'],check=True);report['hash_fixtures_passed']=True;report['native_binary_sha256']=sha(build/'mnm-world-continuous');report['channel_fixture_sha256']=sha(build/'world-continuous-channel-test')
+  run('normal-fixtures',['xvfb-run','-a','-s','-screen 0 1280x1024x24',build/'world-continuous-normal-test'],check=True);report['normal_fixtures_passed']=True
   if a.hardware:
    import re
    gpu=subprocess.check_output(['nvidia-smi','--query-gpu=pci.bus_id','--format=csv,noheader'],text=True).strip().splitlines()[0]
@@ -52,10 +62,15 @@ def main():
     assert gpu_server.poll() is None and time.monotonic()<until,'Private GPU X server failed'
     time.sleep(.1)
    for key in ['LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','WAYLAND_DISPLAY']:env.pop(key,None)
-   env.update(DISPLAY=f':{display}',MESA_LOADER_DRIVER_OVERRIDE='zink',GALLIUM_DRIVER='zink')
-   run('hardware-driver',['glxinfo','-B'],check=True);driver=(out/'hardware-driver.log').read_text();assert 'NVIDIA' in driver and 'Accelerated: yes' in driver and 'llvmpipe' not in driver and 'lavapipe' not in driver,'Hardware fallback refused'
-   report['hardware_environment']={k:env[k] for k in ['DISPLAY','MESA_LOADER_DRIVER_OVERRIDE','GALLIUM_DRIVER']};report['hardware_driver_log_sha256']=sha(out/'hardware-driver.log')
+   env['DISPLAY']=f':{display}'
+   for key in ['MESA_LOADER_DRIVER_OVERRIDE','GALLIUM_DRIVER','QT_XCB_GL_INTEGRATION']:env.pop(key,None)
+   if a.hardware_driver=='zink':env.update(MESA_LOADER_DRIVER_OVERRIDE='zink',GALLIUM_DRIVER='zink')
+   else:env.update(__GLX_VENDOR_LIBRARY_NAME='nvidia',__EGL_VENDOR_LIBRARY_FILENAMES='/usr/share/glvnd/egl_vendor.d/10_nvidia.json',QT_XCB_GL_INTEGRATION='xcb_glx')
+   run('hardware-driver',['glxinfo','-B'],check=True,timeout=20);driver=(out/'hardware-driver.log').read_text();assert 'NVIDIA' in driver and 'Accelerated: yes' in driver and 'llvmpipe' not in driver and 'lavapipe' not in driver,'Hardware fallback refused'
+   report['hardware_driver']=a.hardware_driver;report['hardware_environment']={k:env[k] for k in ['DISPLAY','MESA_LOADER_DRIVER_OVERRIDE','GALLIUM_DRIVER','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','QT_XCB_GL_INTEGRATION'] if k in env};report['hardware_driver_log_sha256']=sha(out/'hardware-driver.log')
   command=['xvfb-run' ,'-a','-s','-screen 0 1280x1024x24','python3',ROOT/'tools/capture-scene-game.py','--canvas-producers','--world-producer-handoff','--samples','32','--world-raster-prefix','32','--world-raster-batch','--skip-window-screenshot','--map','2','--magic-items','0','--producer-live',build/'mnm-world-continuous','--continuous-queues',str(a.queues),'--claims',declaration,*([] if a.normal else ['--continuous-verify'])]
+  if a.profile_producer:command.append('--continuous-producer-profile')
+  if a.profile_waits:command.append('--continuous-producer-waits')
   if a.profile:
    wrapper=out/'profile-native';wrapper.write_text('#!/usr/bin/env python3\nimport os,sys\nos.execvp("perf",["perf","record","-F","99","-g","--call-graph","dwarf","-o",'+repr(str(out/'native-perf.data'))+',"--",'+repr(str(build/'mnm-world-continuous'))+',*sys.argv[1:]])\n');wrapper.chmod(0o700)
    command[command.index('--producer-live')+1]=wrapper
@@ -92,10 +107,18 @@ def main():
    capture=json.loads((experiment/'report.json').read_text());native=capture['native_continuous'];assert capture['success'] and native['success'] and int(native['original_returns'])==int(native['native_completions'])==a.queues and native['remaining_surfaces']==native['image_uploads']==native['diagnostic_files']==0
    assert native['verify']==(not a.normal) and int(native['cpu_reference_queues'])==(0 if a.normal else a.queues)
    assert native['channel_bytes']==35869312 and native['peak_source_bytes']<=16*1024*1024 and len(native['samples'])<=1024
-   report.update(completed=capture,profile={k:summary([row[k] for row in native['samples'][1:] if int(row['generation'])>=64 and k in row]) for k in ['producer_capture_ms','producer_wait_writeback_ms','producer_whole_world_ms','source_acquire_ms','prepare_ms','native_consume_ms','request_to_reply_ms','qt_paint_ms']},success=True)
+   report.update(completed=capture,profile={k:summary([row[k] for row in native['samples'][1:] if int(row['generation'])>=64 and k in row]) for k in ['producer_region_queries','engine_between_world_ms','original_frame_interval_ms','engine_pacer_ms','engine_screen_copy_ms','engine_screen_copy_calls','producer_capture_ms','producer_wait_writeback_ms','producer_whole_world_ms','source_acquire_ms','prepare_ms','native_consume_ms','request_to_reply_ms','qt_paint_ms']},success=True)
    if a.normal:
-    world=report['profile']['producer_whole_world_ms'];growth=native['rss_maximum_bytes']-native['rss_warm_bytes'];limit=.001 if a.impossible_budget else 50
-    checks=dict(warm_median=world is not None and world['median']<=limit,warm_p95=world is not None and world['p95']<=75,warm_maximum=world is not None and world['maximum']<=150,cold=native['cold_delivery_ms']<=500,original_fps=native['warm_original_fps']>=19,qt_paint_fps=native['warm_qt_paint_fps']>=19,rss=native['rss_warm_bytes']>0 and growth<=32*1024*1024,caches=native['producer_cache_maximum_bytes']<=64*1024*1024 and native['gpu_cache_maximum_frames']<=512,no_coalescing=int(native['coalesced_presentations'])==0)
+    hist=native['all_warm_world_ms'];counts=[int(x) for x in hist['histogram']];count=int(hist['count']);assert len(counts)==151 and sum(counts)==count==a.queues-63 and hist['maximum']<=0xffffffff
+    def rank(n):
+     seen=0
+     for ms,number in enumerate(counts):
+      seen+=number
+      if seen>n:return ms
+     raise ValueError('Histogram rank outside samples')
+    world=dict(samples=count,median=(rank((count-1)//2)+rank(count//2))/2,p95=rank(min(count-1,int(count*.95))),maximum=hist['maximum'],scope='All completed original queues from generation64; last1024 rows only for stage detail')
+    report['profile']['producer_whole_world_ms']=world;growth=native['rss_maximum_bytes']-native['rss_warm_bytes'];limit=.001 if a.impossible_budget else 50
+    checks=dict(warm_median=world is not None and world['median']<=limit,warm_p95=world is not None and world['p95']<=75,warm_maximum=world is not None and world['maximum']<=150,cold=native['cold_delivery_ms']<=500,original_fps=native['warm_original_fps']>=19,qt_paint_fps=native['warm_qt_paint_fps']>=19,rss=native['rss_warm_bytes']>0 and growth<=32*1024*1024,caches=native['producer_cache_maximum_bytes']<=64*1024*1024 and native['gpu_cache_maximum_frames']<=512,no_coalescing=int(native['coalesced_presentations'])==0,all_presentations=int(native['qt_paints'])==a.queues)
     report['performance_budget']=dict(passed=all(checks.values()),checks=checks,warm_world=world,median_limit_ms=limit,p95_limit_ms=75,maximum_limit_ms=150,cold_limit_ms=500,fps_minimum=19,rss_growth_bytes=growth,rss_limit_bytes=32*1024*1024,impossible_negative_control=a.impossible_budget)
     if not all(checks.values()):report.update(success=False,error='Full-path performance budget exceeded')
    if a.hardware:

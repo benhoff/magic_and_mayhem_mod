@@ -65,13 +65,16 @@ int main(int argc, char **argv) {
                 lastPainted = 0;
   std::size_t peakBlock = 0, peakPacket = 0;
   QJsonArray samples;
+  std::array<std::uint64_t, 151> warmHistogram{};
+  std::uint64_t warmCount = 0;
+  std::uint32_t warmMaximum = 0;
   QString error;
   QJsonObject driver;
   auto lastProgress = Clock::now();
   Clock::time_point sessionStart;
   Clock::time_point requestedPaint;
   std::uint64_t presentation = 0;
-  std::uint32_t warmFirstTick = 0, warmLastTick = 0;
+  std::uint32_t warmFirstTick = 0, warmLastTick = 0, previousReturnTick = 0, previousStartTick = 0;
   std::uint64_t warmFirstPaint = 0;
   Clock::time_point warmFirstPaintTime, warmLastPaintTime;
   std::uint64_t warmPaints = 0;
@@ -166,8 +169,13 @@ int main(int argc, char **argv) {
           const auto t = channel.ticks(returned);
           if (returned == 64)
             warmFirstTick = t[0];
-          if (returned >= 64)
+          if (returned >= 64) {
             warmLastTick = t[3];
+            const auto duration = std::uint32_t(t[3] - t[0]);
+            ++warmHistogram[std::min(duration, 150u)];
+            ++warmCount;
+            warmMaximum = std::max(warmMaximum, duration);
+          }
           if (returned % 64 == 0) {
             auto resident = rss();
             if (returned == 64)
@@ -177,6 +185,16 @@ int main(int argc, char **argv) {
           producerCacheMax =
               std::max(producerCacheMax, session->producerCacheStats().bytes);
           gpuFramesMax = std::max(gpuFramesMax, session->profile().cacheFrames);
+          if(returned>1){
+            row["engine_between_world_ms"]=double(std::uint32_t(t[0]-previousReturnTick));
+            row["original_frame_interval_ms"]=double(std::uint32_t(t[0]-previousStartTick));
+          }
+          row["producer_region_queries"]=double(t[9]);
+          row["engine_pacer_ms"]=t[6]==3?double(std::uint32_t(t[5]-t[4])):0.;
+          row["engine_pacer_observed"]=t[6]==3;
+          row["engine_screen_copy_ms"]=double(t[7]);
+          row["engine_screen_copy_calls"]=double(t[8]);
+          previousReturnTick=t[3];previousStartTick=t[0];
           row["producer_capture_ms"] = double(std::uint32_t(t[1] - t[0]));
           row["producer_wait_writeback_ms"] =
               double(std::uint32_t(t[2] - t[1]));
@@ -245,7 +263,8 @@ int main(int argc, char **argv) {
       if (channel.finished()) {
         if (awaiting || !target || returned != target)
           throw std::runtime_error("Premature original continuous finish");
-        app.quit();
+        if (lastPainted == returned)
+          app.quit();
       }
     } catch (const std::exception &e) {
       error = QString::fromUtf8(e.what());
@@ -264,6 +283,9 @@ int main(int argc, char **argv) {
   const auto completed = session ? session->completed() : 0;
   session.reset();
   const auto remaining = renderer ? renderer->stats().surfaces : 0;
+  QJsonArray histogram;
+  for (auto count : warmHistogram)
+    histogram.append(QString::number(count));
   save(QDir(output).filePath("live-report.json"),
        {{"success", error.isEmpty() && target && returned == target &&
                         completed == target},
@@ -301,6 +323,8 @@ int main(int argc, char **argv) {
         {"remaining_surfaces", double(remaining)},
         {"image_uploads", double(viewport.imageUploads())},
         {"samples", samples},
+        {"all_warm_world_ms", QJsonObject{{"histogram", histogram},
+           {"count", QString::number(warmCount)}, {"maximum", double(warmMaximum)}}},
         {"original_pixels_used_as_native_inputs", false}});
   return error.isEmpty() && target && returned == target ? 0 : 1;
 }

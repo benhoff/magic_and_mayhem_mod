@@ -101,4 +101,14 @@ int main() {
   auto reply =
       worldRasterBatchReply(batch, std::vector<std::uint16_t>(480000, 0x1234));
   assert(reply[8] == 5 && reply.size() == 960064);
+  std::vector<std::uint16_t> pixels(800 * 600, 0xabcd);
+  reply = worldRasterBatchReply(batch, pixels);
+  const unsigned digest = unsigned(reply[48]) | unsigned(reply[49]) << 8 |
+                          unsigned(reply[50]) << 16 | unsigned(reply[51]) << 24;
+  assert(digest == mnm_cont_crc32c_portable(reply.data() + 64, unsigned(reply.size()-64)));
+  batch.header[2] = 3;
+  const auto legacy = worldRasterBatchReply(batch, pixels);
+  const unsigned oldDigest = unsigned(legacy[48]) | unsigned(legacy[49]) << 8 |
+                            unsigned(legacy[50]) << 16 | unsigned(legacy[51]) << 24;
+  assert(oldDigest == worldBatchHash({legacy.begin()+64, legacy.end()}));
 }

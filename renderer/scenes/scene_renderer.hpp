@@ -35,6 +35,10 @@ enum class SceneStart { background, retainedCanvas };
 class SceneRenderer final {
 public:
     SceneRenderer(GlBlitter&,assets::ResourceManager&,const Image& background,SceneLimits limits={});
+    // Borrow a fully defined native GPU canvas. Owner outlives the scene; no
+    // CPU image is imported and background-start frames are forbidden.
+    SceneRenderer(GlBlitter&,assets::ResourceManager&,SurfaceId canvas,
+                  int width,int height,SceneLimits limits={});
     ~SceneRenderer();
     SceneRenderer(const SceneRenderer&)=delete;
     SceneRenderer& operator=(const SceneRenderer&)=delete;
@@ -66,6 +70,7 @@ private:
     ResourceCache cache_;
     SceneLimits limits_;
     SurfaceId background_=0,canvas_=0;
+    bool ownsCanvas_=true;
     Rect viewport_;
     bool valid_=false;
     std::thread::id thread_;

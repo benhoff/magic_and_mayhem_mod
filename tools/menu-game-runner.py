@@ -50,5 +50,8 @@ if os.environ.get('MNM_MENU_NATIVE_RENDER')=='1':
     if os.environ.get('MNM_CAMPAIGN_PACER_YIELD','0')=='1':os.environ['MNM_RENDER_PACER_YIELD']='1'
     if os.environ.get('MNM_CAMPAIGN_PRECISE_CLOCK','1')=='1':os.environ['MNM_RENDER_PRECISE_CLOCK']='1'
     os.environ.update(MNM_RENDER_CONTINUOUS='1',MNM_RENDER_PALETTE_RESOURCES='1',MNM_RENDER_OWNED_SESSION='1',MNM_RENDER_NO_READBACK='1',MNM_RENDER_ORDERED_COPIES='1')
+from glyph_backend_launch import authorize as authorize_glyph
+authorize_glyph(root,metadata,os.environ)
+os.environ.pop('MNM_SCENE_DIR',None)
 os.chdir(game)
 os.execvp('wine',['wine','explorer','/desktop=MagicMayhem,800x600',str(game/'Chaos.exe'),*sys.argv[2:]])

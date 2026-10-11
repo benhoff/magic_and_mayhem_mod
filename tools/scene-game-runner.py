@@ -36,7 +36,7 @@ if metadata.get('world_continuous'):
     if channel!=root/'world-continuous.bin' or not channel.is_file() or not 1<=metadata.get('continuous_queues',0)<=4096:raise ValueError('Invalid continuous producer session')
     import struct
     with channel.open('rb') as f:header=f.read(128)
-    if len(header)!=128 or header[:8]!=b'MNMCON02' or struct.unpack_from('<II',header,8)!=(2,128) or struct.unpack_from('<4I',header,32)!=(1,0,0,0) or struct.unpack_from('<Q',header,48)[0]!=metadata['continuous_queues']:raise ValueError('Stale or mismatched continuous session')
+    if len(header)!=128 or header[:8]!=b'MNMCON03' or struct.unpack_from('<II',header,8)!=(3,128) or struct.unpack_from('<4I',header,32)!=(1,0,0,0) or struct.unpack_from('<Q',header,48)[0]!=metadata['continuous_queues']:raise ValueError('Stale or mismatched continuous session')
     if channel.stat().st_size!=struct.unpack_from('<I',header,16)[0]:raise ValueError('Continuous session extent')
     os.environ['MNM_WORLD_CONTINUOUS']='Z:'+str(channel).replace('/','\\')
 if any((root/'capture').iterdir()):
@@ -47,5 +47,7 @@ if metadata['menu_driver']:
     os.environ['MNM_MENU_CHANNEL']='Z:'+str(root/'channel.bin').replace('/','\\')
     if (root/'events.bin').exists() or not (root/'channel.bin').exists():
         raise ValueError('Stale or absent menu observation channel')
+from glyph_backend_launch import authorize as authorize_glyph
+authorize_glyph(root,metadata,os.environ)
 os.chdir(game)
 os.execvp('wine',['wine','explorer','/desktop=SceneObserver,800x600',str(game/'Chaos.exe'),*sys.argv[2:]])

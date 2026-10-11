@@ -4151,3 +4151,112 @@ attempt timed out at observed generation3710. No current4096 delivery or normal
 performance milestone is promoted here. See native-world-continuous.md and the
 preserved source-bound experiments. Public campaign, independent original raster
 comparison, physical display/input and uncaptured branches remain separate.
+### Native glyph entry and x87 kernel — 2026-10-10
+
+`RS.glyph-backend` now implements the guarded RLE/x87 kernel and an actual
+owned-context handled entry with RET16. Unchanged pinned original comparisons
+match 28,142 executions and 22,656,678 canvas WORDs: 27,966 native handles,
+eight two-active-stack original-once fallbacks and 168 targeted guard forwards.
+Pixels, tables, volatile/callee registers, rewritten arguments, stack guards,
+defined flags/DF, x87 CW/full status/TOP/tag/occupied values and XMM/MXCSR match.
+The native helper reproduces cold coverage and arithmetic under all twelve
+precision/rounding controls, including upward cold coverage aboveone.
+
+`NR.glyph-backend-admission` records 24 atomic ASan/UBSan refusals, seven-slot
+physical FP admission, strict warm coverage and explicit owned context. Native
+PE32 linkage needs only the embedding original-trampoline symbol, with no CRT.
+[Results and preserved experiment versions](glyph-backend.md) distinguish
+implementation, headless original comparison and pending live replacement.
+Committed range `577d293..eb3cd18` has 18 file and 28 behavior transitions with
+zero unresolved receipts. No live hook is installed: process-memory/lifetime
+admission, bounded live capture/replay, GPU glyph takeover and higher text
+layout/reset/lifecycle remain open.
+
+
+### 2026-10-10 other pixel producers
+
+- `RS.font-line-layout`: unchanged NoCD rectangle text4a5ce0, height-limited
+  text4a6190 and measurement4a6630 match16,480fixtures and135,004,160RGB565words,
+  full cursor/contour state, line triples and consumed pointers. Source/object/
+  padding guards and9atomic native refusals pass withASan/UBSan. Owned SFT
+  composition stages whole text operations. Bounded malformed-source admission
+  is native policy; allocation/lifetime, arbitrary ABI/FP and higher-text live
+  bypass remain pending. See [text layout](font-line-layout.md).
+- `NR.canvas-image-production`: memory-DIB cropping now matches frozen independent
+  Wine DC output instead of refusing smaller canvases. Positioned BMP uses the
+  same owned quantization/cropping helper.288fixtures/5,387,712words and288atomic
+  malformed-format refusals pass. This is current native integration against
+  historical driver pixels, not fresh wrapper/driver execution or live bypass.
+  See [image production](native-canvas-image-production.md).
+- `RS.canvas-fade-span`: original58ed80 ignores pitch and modifies exactly
+  2*floor(width/2)*height contiguousWORDs; formatzero selects565, nonzero555.
+  Native physical-plane reconstruction and logical canvas projection match
+  972fixtures/1,738,592physical+visiblewords.10atomic refusals andASan/UBSan pass.
+  Private Lock/Unlock adapters bound the comparison; real driver failures,
+  wrapper ABI and native writeback/suppression remain pending. See [fade](canvas-fade-span.md).
+- `NR.movie-frame-production`: owned opaqueRGBA and full sequence hashes,
+  explicit limitedBT.601YUV420P conversion, full playback and cancellation pass
+  against independent source decoding:3,868frames/888,459,264pixels, zero channel
+  differences, all five installed movies plus changing synthetic alpha frames.
+  Reference normalization policy is explicit; other colorspaces/ranges,
+  original DirectShow/placement/control and audible devices are excluded.
+  See [movie pixels](native-movie-frame-production.md).
+- `NR.movie-enabled-startup`: fixed native broker admission for original
+  `.\fmv/intro0.avi`/intro1 paths; a single leading current-directory component
+  is accepted while traversal/interior dot components remain refused. Both
+  enabled intros complete natively (1,777+1,004frames), followed by at least
+  three original published frames. Native media completion/skip/path/ABI
+  regressions also pass. This is bounded live observation; original post-movie
+  drawing, active World transition and full-session ownership remain separate.
+  See [enabled intros](native-enabled-movie-startup.md).
+
+Prospective source/contract/scenario bindings accompany the execution reports.
+Failed and superseded experiments are preserved separately. Current comparisons
+supersede only their declared scopes; shared-source edits leave older unrelated
+surface/world/media evidence historical, without implying current equivalence.
+The committed-history review from577d293through1abdfe3 checks43file transitions
+and56affected behavior transitions, with no missing exact receipts. Complete
+live drawing replacement remains unavailable: unclassified writers, wider
+player journeys, admitted suppression/state preservation, recovery and sustained
+World delivery remain explicit boundaries in [the replacement plan](../../docs/live-drawing-replacement.md).
+
+The final source-bound [live producer shadow](native-canvas-producers-final-shadow-20261010.json)
+passes four startup World returns, 954 completed canvases/422875312RGB565pixels,
+2002 positive glyph calls and allGPUmirrors, zero differences. It exercises
+source BMP/JPEG/PCX, copies, panels, fades, HUD rasters, minimap and markers.
+Original producer bodies remain active; higher text state is isolated-comparison
+only, and memory-DIB/positioned-image branches retain their separate corpus scope.
+
+
+### Opt-in live glyph process route — 2026-10-10
+
+`RS.glyph-live-route` supplies bounded original-active shadow and guarded
+native glyph body bypass through the existing producer tag10. The final automatic
+Quick Battle startup records1,817 admitted calls and39 original forwards per
+mode, zero adapter errors, and four World returns. Six complete captured inputs
+per mode independently match unchanged-original/native pixels, coverage and
+selected caller/FP state across1,684,800 RGB565 WORDs. Retained inputs are cold,
+black interior glyphs under PC53/round-nearest with empty x87; do not infer other
+live tints/clips/controls from isolated coverage.
+
+`NR.glyph-live-admission` separately implements per-call private ownership,
+every-region read/write permission checks, original frame/canvas/table/argument
+nonaliasing, aligned trial storage, format/clip/source/coverage/background
+rechecks, thread/busy guards and a65,536-call budget. Production memory/refusal
+fixtures and both normal/native-menu launch staging paths pass. Policy has no
+original malformed/failure-equivalence or replacement status.
+
+The fresh kernel/shared-entry regression passes28,142 original/native executions,
+27,966 native handles and24 atomic ASan/UBSan refusals; historical records retain
+their original source hashes. [Scope, wires, reports and launch](glyph-live-backend.md).
+Activate explicitly with `MNM_GLYPH_BACKEND=shadow|takeover` before the Qt launcher.
+Other rendering and higher text layout remain original. Whole Qt gameplay,
+font/DC lifecycle, broader glyph live inputs, GPU-owned text/window composition,
+sustained recovery and performance remain pending. Shared scene/launcher edits
+leave unrelated historical evidence stale; no unrelated stages are promoted.
+
+## GPU frame ownership milestone (2026-10-10)
+
+`NR.world-gpu-resident-frame.history-32-20261010` proves native GPU canvas history over 32 retained World queues (66,529 raster requests, 15,360,000 RGB565 words), zero delivery/World readbacks, separate diagnostic comparisons and zero retained surfaces after teardown. The 512-frame synthetic and legacy controls also pass. This is source-only replay against an independently composed native CPU reference, not independent original pixel equivalence or live acknowledgement delivery. Actual original World writebacks and real DirectDraw remain active in the existing live mode.
+
+Fresh shared image, fade and font regressions pass after canvas mirroring. Glyph live shadow/takeover and installed movie-frame decoding pass on the merged source. Enabled startup intros remain pending: the explicit enabled-preferences run-d6sbsph2 produced no media requests and timed out; its report is retained. Historical evidence has not been rewritten. Next milestones are versioned acknowledgement-only live delivery with zero GPU exports/original World writebacks, followed by replacement DirectDraw factory/interface/storage/lifecycle/presentation services with real DirectDraw disabled. The 19 FPS target and whole-session gameplay remain unproved.

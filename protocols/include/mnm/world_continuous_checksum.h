@@ -18,6 +18,17 @@ static inline unsigned mnm_cont_crc32c_portable(const unsigned char *p,
 static inline unsigned mnm_cont_crc32c_hardware(const unsigned char *p,
                                                 unsigned n) {
   unsigned h = ~0u;
+#if defined(__x86_64__)
+  unsigned long long wide = h;
+  while (n >= 8) {
+    unsigned long long w = 0;
+    __builtin_memcpy(&w, p, sizeof(w));
+    __asm__("crc32q %1, %0" : "+r"(wide) : "r"(w));
+    p += 8;
+    n -= 8;
+  }
+  h = (unsigned)wide;
+#endif
   while (n >= 4) {
     const unsigned w = p[0] | (unsigned)p[1] << 8 | (unsigned)p[2] << 16 |
                        (unsigned)p[3] << 24;

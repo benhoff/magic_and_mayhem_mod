@@ -1,8 +1,9 @@
 /* Bounded closed producer inputs. Original destination bytes are oracle files. */
 #include "../shadow/win32_min.h"
+#include "glyph_live.h"
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
-#include "../../protocols/include/mnm/world_continuous_v2.h"
+#include "../../protocols/include/mnm/world_continuous_v3.h"
 #define HOOKS 52
 #define MAX_SURFACES 128
 #define MAX_FRAMES 128
@@ -73,9 +74,11 @@ static u8* continuous_map;
 static int continuous_init(void);
 static int continuous_equal(const u8*,const u8*,u32);
 static int continuous_write(const void*,u32);
+static u8* continuous_payload(u32);
 static void continuous_cancel(void);
 static int continuous_return(void);
 static void continuous_mark_entry(void);
+static void continuous_mark_screen(int);
 /* Batch observation owns a separate heap; canvas guard pages include the
  * original allocation metadata and must never be relaxed for observer buffers. */
 static HANDLE producer_record_heap;
@@ -97,7 +100,11 @@ static void copy(void* d,const void* s,u32 n){u8* a=d;const u8* b=s;
  while(n--)*a++=*b++;
 }
 static void zero(void* p,u32 n){u8* b=p;while(n--)*b++=0;}
-static int readable(u32 p,u32 n){u32 end=p+n;if(!p||end<p)return 0;while(p<end){u32 m[7];if(VirtualQuery((void*)p,m,28)!=28||m[4]!=0x1000||(m[5]&0x101)||!(m[5]&0xee))return 0;u32 next=m[0]+m[3];if(next<=p)return 0;p=next<end?next:end;}return 1;}
+static u32 continuous_region_queries;
+static u32 producer_region_query(u32 p,u32* m){if(continuous_map)++continuous_region_queries;return VirtualQuery((void*)p,m,28);}
+#define MNM_REGION_QUERY(p,m) producer_region_query(p,m)
+#include "readable_extent.h"
+static int readable(u32 p,u32 n){return mnm_readable_extent(p,n,0);}
 static int write(HANDLE f,const void* p,u32 n){u32 at=0;while(at<n){u32 done=0;if(!WriteFile(f,(const u8*)p+at,n-at,&done,0)||!done||done>n-at)return 0;at+=done;}return 1;}
 static void path(char* out,const char* name,u32 number,const char* suffix){u32 i=0;while(directory[i]){out[i]=directory[i];++i;}out[i++]='\\';while(*name)out[i++]=*name++;for(u32 d=1000;d;d/=10)out[i++]=(char)('0'+number/d%10);while(*suffix)out[i++]=*suffix++;out[i]=0;}
 /* V3 guarded writes are bounded and flushed at protocol barriers. Keep the
@@ -111,26 +118,40 @@ static int journal_write(const void* data,u32 n){
  if(!journal_buffer){journal_buffer=HeapAlloc(producer_heap(),0,65536);if(!journal_buffer){journal_failed=1;return 0;}}
  const u8* p=data;while(n){u32 count=65536-journal_used;if(count>n)count=n;copy(journal_buffer+journal_used,p,count);journal_used+=count;p+=count;n-=count;if(journal_used==65536&&!journal_flush())return 0;}return 1;
 }
-void canvas_producers_close(void){continuous_cancel();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
+int canvas_producers_continuous(void){return continuous_map!=0;}
+void canvas_producers_close(void){continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
 static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_map)||stopped)return;if(sequence>=(limit>16?MNM_PRODUCER_V3_MAX_RECORDS:minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS)||bytes>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-96||n>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){canvas_producers_close();return;}bytes+=96+n;}
 /* V3 source snapshots live on the private producer heap. No original pointers
  * or destination pixels enter this cache; equality includes every state byte. */
-static struct SourcePacket {u32 sequence,kind,tag,size,hash,original_frame;u8* data;} source_packets[MNM_PRODUCER_V3_SOURCES];
+static struct SourcePacket {u32 sequence,kind,tag,size,hash,original_frame,next;u8* data;} source_packets[MNM_PRODUCER_V3_SOURCES];
 #include "../../protocols/include/mnm/world_continuous_checksum.h"
 static u32 source_packet_count,source_packet_bytes;
+static u32 continuous_source_heads[1024];
 static void emit_unlocked(u32* r,const void* payload,u32 n){
  if(limit<=16||(r[2]!=8&&r[2]!=9)||!n){emit_raw(r,payload,n);return;}
  const u8* data=payload;u32 hash=2166136261u;u32 original_frame=continuous_map?get((u8*)r+96+n):0;
  if(!continuous_map)for(u32 i=0;i<n;++i)hash=(hash^data[i])*16777619u;
  struct SourcePacket* source=0;
- for(u32 i=0;i<source_packet_count;++i){struct SourcePacket* s=source_packets+i;if(s->kind!=r[2]||s->tag!=r[17]||s->size!=n||(continuous_map?s->original_frame!=original_frame:s->hash!=hash))continue;
+ const u32 bucket=((original_frame>>4)*2654435761u)&1023u;
+ u32 cursor=continuous_map?continuous_source_heads[bucket]:source_packet_count?1:0;
+ while(cursor){const u32 i=cursor-1;struct SourcePacket* s=source_packets+i;cursor=continuous_map?s->next:cursor<source_packet_count?cursor+1:0;if(s->kind!=r[2]||s->tag!=r[17]||s->size!=n||(continuous_map?s->original_frame!=original_frame:s->hash!=hash))continue;
   if(continuous_map){if(continuous_equal(s->data+r[19],data+r[19],r[20])&&continuous_equal(s->data,data,r[19])){source=s;break;}}
   else{u32 j=0;while(j<n&&s->data[j]==data[j])++j;if(j==n){source=s;break;}}}
  if(continuous_map){if(source)hash=source->hash;else hash=mnm_cont_crc32c(data,n);put((u8*)r+96+n,hash);}
  if(!source&&source_packet_count<MNM_PRODUCER_V3_SOURCES&&n<=MNM_PRODUCER_V3_SOURCE_BYTES-source_packet_bytes){
-  u8* owned=HeapAlloc(producer_heap(),0,n);
-  if(owned){copy(owned,data,n);u32 definition[24]={0};definition[2]=MNM_PRODUCER_PAYLOAD_SOURCE;definition[14]=r[2];definition[17]=r[17];definition[19]=r[19];definition[20]=r[20];emit_raw(definition,owned,n);
-   source=source_packets+source_packet_count++;source->sequence=definition[1];source->kind=r[2];source->tag=r[17];source->size=n;source->hash=hash;source->original_frame=original_frame;source->data=owned;source_packet_bytes+=n;}
+  u8* owned=continuous_map?0:HeapAlloc(producer_heap(),0,n);
+  if(continuous_map||owned){
+   u32 definition[24]={0};definition[2]=MNM_PRODUCER_PAYLOAD_SOURCE;definition[14]=r[2];definition[17]=r[17];definition[19]=r[19];definition[20]=r[20];
+   if(continuous_map){
+    emit_raw(definition,data,n);
+    if(stopped)return;
+    // Append-only payload bytes are owned by this WRITING slot until the
+    // checked original return/release. No allocation or pointer crosses wire.
+    owned=continuous_payload(n);
+    if(!owned){canvas_producers_close();return;}
+   }else{copy(owned,data,n);emit_raw(definition,owned,n);}
+   source=source_packets+source_packet_count++;source->sequence=definition[1];source->kind=r[2];source->tag=r[17];source->size=n;source->hash=hash;source->original_frame=original_frame;source->data=owned;source_packet_bytes+=n;if(continuous_map){source->next=continuous_source_heads[bucket];continuous_source_heads[bucket]=source_packet_count;}
+  }
  }
  if(!source){emit_raw(r,payload,n);return;} /* Cache exhaustion keeps raw input. */
  u32 wire[24];copy(wire,r,96);wire[4]=source->sequence;emit_raw(wire,0,0);
@@ -239,8 +260,9 @@ static u8* request(const struct Frame* f){
   i32 producer=hooks[tag].raster;u32 frame,x,y,shade=0,ordinal=0;
   if(tag==10||tag==11||(producer>=4&&producer<=7)||producer==10){frame=f->ecx;x=f->edx;y=f->args[0];shade=f->args[1];ordinal=f->args[2];}
   else{frame=f->args[0];x=f->args[1];y=f->args[2];if(producer>0&&producer<4){shade=f->args[3];ordinal=f->args[4];}}
-  if(!readable(frame,40)){fail(9,tag);return 0;}u32 size=get((void*)frame),indexed=get((void*)(frame+28))!=0xffffffff;
-  if(size<40||size>1048576||!readable(frame,size)){fail(14,tag);return 0;}
+  u32 frame_base=0,frame_through=0;
+  if(!(continuous_map?mnm_readable_window(frame,40,&frame_base,&frame_through):readable(frame,40))){fail(9,tag);return 0;}u32 size=get((void*)frame),indexed=get((void*)(frame+28))!=0xffffffff;
+  if(size<40||size>1048576||!(continuous_map?mnm_readable_in_window(frame,size,frame_base,frame_through):readable(frame,size))){fail(14,tag);return 0;}
   r[8]=x;r[9]=y;r[14]=producer==4?1:producer==5?4:producer==6?2:producer==7||producer==9?3:producer==10?5:0;r[15]=(u32)producer;r[16]=shade;r[17]=indexed;r[19]=size;r[20]=tag==10?272:producer==7||producer==9?64:indexed?512:0;
   u32 total=96+size+r[20];u32 allocation=total+(continuous_map?4:0);u8* out;
   if(f->scratch){
@@ -256,10 +278,32 @@ static u8* request(const struct Frame* f){
   if(tag==10){put(out+15*4,shade);put(out+16*4,ordinal);put(out+17*4,f->args[3]);}
   else if(r[20]==512){
    if(producer==0||producer==10)zero(colours,512);
-   else{u32 node=get((void*)(frame+28));if(ordinal>18)goto palette_fail;for(u32 i=0;i<ordinal;++i){if(!readable(node,12))goto palette_fail;node=get((void*)node);}if(!readable(node,12))goto palette_fail;u32 shift=get((void*)(node+4)),neutral=get((void*)(node+8));if(shift>7||neutral>127)goto palette_fail;i32 q=(i32)shade>>shift;if(q<0&&shift)++q;i32 table=(i32)neutral+q;u32 step=producer==2?4:2;if(table<0||table>254||!readable(node+12+(u32)table*256*step,256*step))goto palette_fail;for(u32 i=0;i<256;++i){colours[i*2]=*(u8*)(node+12+(u32)table*256*step+i*step);colours[i*2+1]=*(u8*)(node+13+(u32)table*256*step+i*step);}}
+   else{
+    u32 node=get((void*)(frame+28)),node_base=frame_base,node_end=frame_through;
+    if(ordinal>18)goto palette_fail;
+    for(u32 i=0;i<=ordinal;++i){
+     if(continuous_map){
+      if(!node||node<node_base||node>node_end||12>node_end-node){
+       if(!mnm_readable_window(node,12,&node_base,&node_end))goto palette_fail;
+      }
+     }else if(!readable(node,12))goto palette_fail;
+     if(i<ordinal)node=get((void*)node);
+    }
+    u32 shift=get((void*)(node+4)),neutral=get((void*)(node+8));
+    if(shift>7||neutral>127)goto palette_fail;
+    i32 q=(i32)shade>>shift;if(q<0&&shift)++q;
+    i32 table=(i32)neutral+q;u32 step=producer==2?4:2;
+    if(table<0||table>254)goto palette_fail;
+    u32 offset=12+(u32)table*256*step;
+    if(offset>~0u-node)goto palette_fail;
+    u32 palette=node+offset;
+    if(!(continuous_map?mnm_readable_in_window(palette,256*step,node_base,node_end):readable(palette,256*step)))goto palette_fail;
+    if(continuous_map&&step==2)copy(colours,(void*)palette,512);
+    else for(u32 i=0;i<256;++i){colours[i*2]=*(u8*)(palette+i*step);colours[i*2+1]=*(u8*)(palette+1+i*step);}
+   }
   }
   return out;
- palette_fail:HeapFree(producer_heap(),0,out);fail(15,tag);return 0;
+ palette_fail:raster_release(out);fail(15,tag);return 0;
  }
  else return 0;
  u8* out=HeapAlloc(producer_heap(),0,96);if(!out){fail(7,tag);return 0;}r[0]=96;copy(out,r,96);return out;
@@ -272,13 +316,15 @@ static void raster_state(u8* record,u32 tag){u32* r=(u32*)record;if(r[2]!=MNM_PR
 }
 static void frame_enter(u32* registers,u32 tag){
  u32* args=registers+9;struct Frame f={0};f.tag=tag;f.caller=args[0];f.ecx=registers[6];f.edx=registers[5];f.sp=(u32)args+4+(tag==100?0:hooks[tag].pop);for(u32 i=0;i<6;++i)f.args[i]=args[i+1];
+ if(tag==7&&f.caller==0x46ba01)continuous_mark_screen(1);
  if(tag!=100){f.primitive=tag==10||hooks[tag].raster>=0;if(!f.primitive||!depth)f.record=request(&f);if(f.primitive)++depth;}
  for(u32 i=0;i<MAX_FRAMES;++i)if(!frames[i].sp){frames[i]=f;args[0]=(u32)producer_leave;return;}
  if(f.record)HeapFree(producer_heap(),0,f.record);fail(16,tag);canvas_producers_close();
 }
 #include "world_producer_bypass.c"
-int producer_enter_observe(u32* registers,u32 tag){
+int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();
+ if(tag==10){int handled=glyph_live_enter(registers,fx);SetLastError(error);if(handled)return 1;}
  if(enabled&&!stopped){
   if(batch_guard_open&&hooks[tag].raster<0&&tag!=4){fail(45,tag);ExitProcess(95);}
   if(!depth&&((bypass_limit&&queue==bypass_queue&&bypass_completed<bypass_limit&&(tag==13||tag==14))||(raster_active()&&hooks[tag].raster>=0))){
@@ -311,6 +357,7 @@ void canvas_producers_protect(void){u32 error=GetLastError();if(enabled&&!stoppe
 void producer_leave_observe(u32* registers){
  u32 error=GetLastError(),sp=(u32)registers+40;
  for(u32 i=0;i<MAX_FRAMES;++i)if(frames[i].sp==sp){struct Frame f=frames[i];frames[i].sp=0;registers[9]=f.caller;
+  if(f.tag==7&&f.caller==0x46ba01)continuous_mark_screen(0);
   if(f.primitive&&depth)--depth;
   if(!stopped){
    if(f.tag==0){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}for(u32 j=0;j<MAX_SURFACES;++j)if(!surfaces[j].object){s=surfaces+j;s->object=f.ecx;s->id=++next_id;s->width=get((void*)(f.ecx+16));s->height=get((void*)(f.ecx+20));s->stride=get((void*)(f.ecx+24))/2;u32 r[24]={0};r[2]=MNM_PRODUCER_CREATE;extent(r,s);r[14]=f.args[0];r[21]=registers[7];r[22]=f.caller;emit(r,0,0);break;}}
@@ -332,6 +379,20 @@ void producer_leave_observe(u32* registers){
  ExitProcess(94);
 }
 int canvas_producers_install(void){
+ int glyph=glyph_live_configure();if(glyph<0)return 0;
+ if(glyph){
+  if((u32)GetModuleHandleA(0)!=0x400000)return 0;
+  struct Hook* h=hooks+10;if(!readable(h->address,h->length))return 0;
+  for(u32 j=0;j<h->length;++j)if(*(u8*)(h->address+j)!=h->bytes[j])return 0;
+  /* Guard constants as well as entry signature before enabling original bypass. */
+  if(!readable(0x5c7860,4)||get((void*)0x5c7860)!=0x3c820821||!readable(0x59bee0,6))return 0;
+  const u8 truncation[6]={0x55,0x8b,0xec,0x83,0xc4,0xf4};for(u32 j=0;j<6;++j)if(*(u8*)(0x59bee0+j)!=truncation[j])return 0;
+  u8* t=VirtualAlloc(0,h->length+5,0x3000,0x40);if(!t)return 0;copy(t,(void*)h->address,h->length);t[h->length]=0xe9;put(t+h->length+1,h->address+h->length-(u32)t-h->length-5);producer_trampolines[10]=(u32)t;
+  u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;
+  u8 patch[7]={0xe9,0,0,0,0,0x90,0x90};put(patch+1,(u32)h->entry-h->address-5);copy((void*)h->address,patch,7);
+  int flushed=FlushInstructionCache(GetCurrentProcess(),(void*)h->address,7);int protected=VirtualProtect((void*)h->address,7,old,&unused);if(!flushed||!protected)return 0;
+  glyph_live_installed();return 1;
+ }
  char flag[2],number[8];if(!GetEnvironmentVariableA("MNM_CANVAS_PRODUCERS",flag,2))return 1;
  if(GetEnvironmentVariableA("MNM_CANVAS_STARTUP",flag,2)||GetEnvironmentVariableA("MNM_SCENE_WORLD",flag,2))return 0;
 #ifndef MNM_SCENE_SELFTEST

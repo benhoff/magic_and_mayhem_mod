@@ -63,8 +63,9 @@ all source/request/reply bytes. The CPUID-gated SSE4.2 path matches an independe
 portable bitwise reference, including known vector123456789, unaligned starts,
 tails and varied extents. V1 sessions are refused. Continuous batchV5 binds the
 canonical96-byte raster header to little-endian CRC32C(exact owned payload),
-while finite batchV3 retains its historical hash contract and whole reply pixel
-FNV guard. Per-request private checksum storage prevents cross-thread descriptor
+and uses CRC32C for the inner V5 reply pixel guard. Finite batchV3 retains its
+historical hash contract and whole reply pixel FNV guard. The host uses checked
+8-byte CRC instructions on x86_64; the PE32 producer uses the 4-byte path. Per-request private checksum storage prevents cross-thread descriptor
 hash reuse. Native guards finish before rendering or reply publication.
 
 The original destination remains NOACCESS while native rendering completes.
@@ -90,3 +91,9 @@ and an impossible0.001ms budget control remain pending. The limits remain50ms
 median,75ms p95,150ms maximum warm whole-World time,500ms cold delivery,19 FPS
 original/Qt paints and32MiB retained memory growth. Final integrated public native
 casting/combat/portrait readiness remains a separate source-bound rerun.
+
+All warm queues, starting at generation64, enter a fixed151-bin latency histogram
+with a separate maximum. The last1024 rows provide stage detail only. Completion
+waits for the final Qt paint; normal admission requires one paint per queue.
+
+The timing increment uses protocol V3 (MNMCON03), preserving the fixed channel extent and rejecting V2 peers. Completed original pacing entry/commit clocks and the selected final screen-copy duration precede each queue; native rows also record actual inter-World gaps. These observations preserve actual clock values, original wait targets and simulation rules. Direct NVIDIA GLX on the private headless seat failed with NV-GLX BadWindow; that result is retained and accelerated Zink remains the admitted hardware path. Frame attribution and sustained throughput are pending fresh execution.

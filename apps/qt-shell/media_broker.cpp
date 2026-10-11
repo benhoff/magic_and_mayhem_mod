@@ -29,6 +29,9 @@ void MediaBroker::respond(unsigned id,unsigned status){
 QString MediaBroker::asset(const QByteArray& path,unsigned operation) const{
     for(auto c:path)if(uchar(c)<32 || uchar(c)>126)return {};
     auto parts=QString::fromLatin1(path).replace('\\','/').split('/',Qt::SkipEmptyParts);
+    // Original startup passes .\fmv/intro*.avi. Admit that single harmless
+    // current-directory prefix; later dot/traversal components still refuse.
+    if(!parts.isEmpty() && parts.first()==".")parts.removeFirst();
     if(parts.size()<2 || parts.contains("..") || parts.contains("."))return {};
     const auto directory=operation==MNM_MEDIA_V1_OPERATION_MOVIE?QStringLiteral("FMV"):QStringLiteral("Sounds");
     const auto extension=operation==MNM_MEDIA_V1_OPERATION_MOVIE?QStringLiteral("avi"):QStringLiteral("wav");

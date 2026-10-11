@@ -63,6 +63,11 @@ int main() {
   auto *req = src + MNM_CONT_SOURCE_BYTES;
   std::memset(src, 3, 64);
   std::memset(req, 4, 64);
+  // V3 timing admits complete observations and natural uptime wrap.
+  put(s,16,0xfffffff0u);put(s,17,3);put(s,18,3);put(s,19,7);put(s,20,1);
+  put(s,22,1);state(s,MNM_CONT_REQUEST);
+  refuses([&]{native.poll(b);});put(s,22,0);
+  put(s,18,1);refuses([&]{native.poll(b);});put(s,18,3);
   put(s, 6, fnv(src, 64));
   put(s, 7, fnv(req, 64));
   state(s, MNM_CONT_REQUEST);
@@ -95,6 +100,9 @@ int main() {
          WEXITSTATUS(status) == 0);
   std::vector<unsigned char> closed;
   assert(native.returned(1, closed) && closed.size() == 256 && closed[64] == 5);
+  const auto timing=native.ticks(1);
+  assert(timing[4]==0xfffffff0u&&timing[5]==3&&timing[6]==3&&
+         std::uint32_t(timing[5]-timing[4])==19&&timing[7]==7&&timing[8]==1);
   native.release(1);
   assert(load(s) == MNM_CONT_FREE);
   // The next block uses the second slot; a published stale first-slot request
@@ -116,5 +124,11 @@ int main() {
   WorldContinuousChannel::create(fresh, 103, 0);
   WorldContinuousChannel recovered(fresh);
   assert(!recovered.cancelled() && recovered.target() == 0);
+  const auto legacy=dir.filePath("legacy");
+  WorldContinuousChannel::create(legacy,104,0);
+  QFile old(legacy);assert(old.open(QIODevice::ReadWrite));
+  auto* oldMap=old.map(0,MNM_CONT_BYTES);assert(oldMap);
+  std::memcpy(oldMap,"MNMCON02",8);put(oldMap,2,2);
+  refuses([&]{WorldContinuousChannel wrongVersion(legacy);});assert(old.unmap(oldMap));
   return 0;
 }
