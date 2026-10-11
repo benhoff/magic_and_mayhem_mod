@@ -18,7 +18,9 @@ static struct GameCopyLease game_copy_enter(void* target){
             __atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);game_pixel_missed(target);
             lock_diagnostic("copy_order_timeout",target,0,owner,GetTickCount()-start,0,0,0);break;
         }
-        waited=1;Sleep(0);
+        /* Let the holder run instead of repeatedly yielding to runnable peers.
+         * The original50ms tick deadline and conservative timeout stay intact. */
+        waited=1;Sleep(1);
     }
  done:SetLastError(error);return lease;
 }

@@ -256751,6 +256751,371 @@
         "evidence": [],
         "reason": "Other linked HOST/graphics behavior contracts were not predeclared for this execution. NVIDIA public gameplay still refuses on ordering timeout; defaults, other OpenGL launch and semantic COM cleanup remain pending. No universal19/60FPS or World V4 integration claim."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "f0e86518c156aaba432c4ca6043695aba9c7c49fed9c1716c8cb3475b44807f1",
+          "before_sha256": "f548cd8d63a7721f9a5be352aab44ad06404baec838363978d4062d47e04785d",
+          "id": "NR.bounded-copy-order"
+        },
+        {
+          "after_sha256": "381673a918ddcfe03806ee8a631ad45746e3459df6afadfe8228dbb22149ecee",
+          "before_sha256": "8a0d9e33674346e898bbc6b93c12ea6c02267d324d2ba313d8ff29d16780817d",
+          "id": "NR.directdraw-public-native-menu"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "ffe29d81f5c063a6f101fdee80c3e6bc82b69f12d33b837e42c94453a1fec34f",
+          "before_sha256": "39c08a4df25e72627259f6f4d7326e85d6edff356c595b3804dee78559b7716d",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "e262f6f8323cf1964e60bf912261dd39ae71388d3f9054fca51d4438ed6583d1",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-draw-public-gameplay-20261011.json"
+        },
+        {
+          "after_sha256": "db18971a52fc554341fa43243949654017439c4e1a6ab4a3c5b2aaf706e256ee",
+          "before_sha256": "2b08dbb6dd637a66fde96b2ce884132f62bc2d55e4c3d42fd6ac0e89f6ee5b7f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "783aee5532b9289928365e00ac75776e1fe410f2c6e9cd6ca951f9f198eb3853",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-copy-fair-wait-20261011.json"
+        },
+        {
+          "after_sha256": "9bea991ca547acf0ac17506ab4c13cb8fab3aaadaf68b5fd41f212237b764812",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-copy-fair-wait-20261011.md"
+        },
+        {
+          "after_sha256": "71e9593e27229d51e658c3142986e6e72be432d2dad5814b7c6f987afb7cc8a6",
+          "before_sha256": null,
+          "path": "research/runtime/native-copy-contention-yield-fixtures-20261011.json"
+        },
+        {
+          "after_sha256": "d5c6eac8570792b9f1c8be47f200dacafad89986628b63463eac30eeca0ba163",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-public-nvidia-gameplay-artifacts-20261011.json"
+        },
+        {
+          "after_sha256": "18a00ffe63e17767d3954dada465003c8a7d4081ba986ff5827b26bc1029847a",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-public-nvidia-gameplay-pass-20261011.json"
+        },
+        {
+          "after_sha256": "1c90feaacc189fee63b7ceccac27d0cb0fed8444464bf0f9e3db59669222d0f1",
+          "before_sha256": "37f1e422b609e8bdc2d55cdadc69b5fb6693def8c17137d863eb37e8b2d45183",
+          "path": "research/runtime/opengl-copy-order.md"
+        },
+        {
+          "after_sha256": "978734d3b800fd9ee64c36741132c1f4558d45ad43db7ef65a354d0538f82f85",
+          "before_sha256": "7fce0c71de373f4496fceb4e50185a3061be8a91377c2a7dabb287b0ce7d6ebf",
+          "path": "runtime/render/copy_order.h"
+        }
+      ],
+      "id": "change-ebd90c93bef20c29-proved-wait-and-gameplay",
+      "pending_gaps": [],
+      "reason": "Review Sleep(1) solely in the contended copy-lease acquisition loop; preserve immediate/reentrant behavior, original50ms budget and conservative original-once timeout. Review independent fixtures and source/compiler/input-bound full public NVIDIA campaign. Retain failed prior runs and exact8c02d16 parent/current receipts; no original clock/balance policy changes.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.copy-order.fair-wait-20261011",
+          "NR.directdraw-public-native-menu.nvidia-gameplay-20261011"
+        ],
+        "reason": "Eight synthetic PE32/native GPU fixtures pass13 independent full-frame comparisons,4 successful sessions and4 expected GAP refusals;30 compiler inputs match725 prospective sources. Fresh run-m8qxmb7l passes full casting/combat/movement/spells/portrait/Mini/resume/normal Quit and aggregate19FPS with real ddraw disabled/absent, no fallback/recovery and stable native compiler/source/1111 input closure. glxinfo confirms private NVIDIA/zink acceleration; final Qt identity is lost on Quit. No controlled speedup or universal19/60FPS claim."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "c5e569d9aebdc02a78bda3ce11b6433c115e0a5a0ebf1950e6bf36a8166066e7",
+          "before_sha256": "7f6aa27a0620ac8390bf39e04d77358809dd6a5e9f5dac9d7415ebfa6bcb499d",
+          "id": "HOST.native-campaign-capture-retry"
+        },
+        {
+          "after_sha256": "cb43490d76e0ad96ce219fad699b886e0fb463592b2be4fbbe5ea4173fcc2faf",
+          "before_sha256": "fd1733514410f2cdf15e83a55a53477ae1d4c81954735b23a4292950d98daffd",
+          "id": "HOST.native-campaign-casting-combat"
+        },
+        {
+          "after_sha256": "3c7d996559f5cc78411b7a2ba505ddd5097771bcf8383249a4c1a5a9487a7b98",
+          "before_sha256": "0f46a690eec9c00c42b4a5315c1894839e1ce152666323093b2425348aa2b769",
+          "id": "HOST.native-campaign-dialogue-readiness"
+        },
+        {
+          "after_sha256": "d57f9668a72cf18a49eab928d1f83c53d885a6e592f569c50bbcafad45ab88d6",
+          "before_sha256": "50cb89423198428f212a89470feb0644804243b2726fe2a67a8253d73be215b8",
+          "id": "HOST.native-campaign-movement-probes"
+        },
+        {
+          "after_sha256": "0d4be39365c994600873068ee372f2a6b2cf6e26432289467f3a636946f86166",
+          "before_sha256": "f0b0494df1fc244b6116659c3a3020bc65bf1dc7017a791e7a8b5b3da77d4724",
+          "id": "HOST.native-campaign-normal-quit"
+        },
+        {
+          "after_sha256": "0c0db5bc5088ffe53a77b1c0a510c9f31d434d30f73cbdeb4bb3472c45832150",
+          "before_sha256": "c270235c1862feb2eb099ae0e65ecc91f79220e58483af9670c7ca8045a3002d",
+          "id": "HOST.native-campaign-session"
+        },
+        {
+          "after_sha256": "80c964c0594ce6d2fc4fde5325bf360b885f8b75cbeea7ef1d407f28bcca0cb3",
+          "before_sha256": "1db5fb242d8a7485959f22f70ddff8652b9510a9abdf4360f17745c948731d34",
+          "id": "HOST.native-campaign-spell-cases"
+        },
+        {
+          "after_sha256": "f15b821671985e13c612979ad777ce499771020f5c09583826dc06ee4634e09d",
+          "before_sha256": "46bc31eb6384991974c2973eff69497c4cb690eca64f3a2d658d3839d2516903",
+          "id": "HOST.native-campaign-spell-observation"
+        },
+        {
+          "after_sha256": "cafc85d0206ae29c77bed13617d85141a82672c02b8c7391569fe2f04007b2ad",
+          "before_sha256": "cddd1c39dca61597a53ba20228549980dbfba07b9ca8937e34d9bd42f1ebc3c5",
+          "id": "HOST.native-crowded-battle-stress"
+        },
+        {
+          "after_sha256": "61bd1e240bfbe2395b6a99fa0f7826c82070ade5a67337af006008eba76f17ac",
+          "before_sha256": "7532d4503eb500ab824dfe6c707d3f04e3c646c7c8dabafb665bb58ca09a542b",
+          "id": "HOST.native-healing-loadout"
+        },
+        {
+          "after_sha256": "f0e86518c156aaba432c4ca6043695aba9c7c49fed9c1716c8cb3475b44807f1",
+          "before_sha256": "f548cd8d63a7721f9a5be352aab44ad06404baec838363978d4062d47e04785d",
+          "id": "NR.bounded-copy-order"
+        },
+        {
+          "after_sha256": "2c84c76f7dd71d4c48fbcc28599bf5dbfafeb6c38098349dcec407dd2df6578b",
+          "before_sha256": "432bec2d8ed7855eaa9dcd4bc35fa922b932b297f25d494c2ce2730b7a0b34a3",
+          "id": "NR.continuous-mutations"
+        },
+        {
+          "after_sha256": "381673a918ddcfe03806ee8a631ad45746e3459df6afadfe8228dbb22149ecee",
+          "before_sha256": "8a0d9e33674346e898bbc6b93c12ea6c02267d324d2ba313d8ff29d16780817d",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "9abe554d1c25c45de08ef7358c4b5022fb37b428909e7c54f7342e31fe64dfbd",
+          "before_sha256": "99053a4d3106c4541faa2da1f4fe4259b7397720889881103b8049ec4479dc71",
+          "id": "NR.draw-startup-order"
+        },
+        {
+          "after_sha256": "88ddf41e10d13f7dd46d466ec6007e526972f1b1172450b8e572913e09064c37",
+          "before_sha256": "b771181204ce9c9dd21403648e645db8b3423b19532673afa6fabba5091c6a7a",
+          "id": "NR.drawing-recovery"
+        },
+        {
+          "after_sha256": "e97392d205e4a69a78b7e7e16d612d74173865b338c2e1413d64047b74a0771e",
+          "before_sha256": "42330414ea2282cf3148ea9f2b6adfcffb6ed279eebb70e6c66841068e00b957",
+          "id": "NR.glyph-live-admission"
+        },
+        {
+          "after_sha256": "e8b841f9285ddc4428f16ed5ea009c81ba41fcb36cf6304a703d01c483db2d0a",
+          "before_sha256": "a14dc3243c96904bb9b4ccce181fe3c6f2c5e2dbd6ec715e138d0215d4f8cf89",
+          "id": "NR.lifecycle-races"
+        },
+        {
+          "after_sha256": "02bbb4cbcd124bda505f776f59fdf27b84dc5922318dad6e2621f368424683c4",
+          "before_sha256": "cba4000bcdf2457c2dd08cb9e7c347ee6784832812d068c0e5bde5c0096c82ce",
+          "id": "NR.lifetime-order"
+        },
+        {
+          "after_sha256": "16503403a64db34dd6fd41216b6abb4eb797a9f8d5c774b8175ad894ba11a99a",
+          "before_sha256": "4d2b0851b9c81c14370bba57c1be67163148fb2bf1f580dddb15a0f4151457ed",
+          "id": "NR.metadata-order"
+        },
+        {
+          "after_sha256": "0f0f5ff5bef5a41eda43a5e1ef4fe8d5ccb92384284432c9dab698642ee24efa",
+          "before_sha256": "923bb2e6cc2c84b0ac1f55ef9012664eb6ec9279173d5069de09b717b1fb392e",
+          "id": "NR.movie-enabled-startup"
+        },
+        {
+          "after_sha256": "a0609c788e1088b1b857b8d98608c0cf3fbb03d9f287b5191308bebf0c6c9e5c",
+          "before_sha256": "ab631a9828d028928d27e5a5a5d455bdcda7b5d0ca41b1cfd5aef02f93fa8865",
+          "id": "NR.observed-metadata-idempotence"
+        },
+        {
+          "after_sha256": "cffc25eb8cdf9890cb6cb7f364438929cc1ee8d3d0253b2df7982c6ae86f1520",
+          "before_sha256": "dab96f5196e5937935673f2644bf1b0abf821618da6fd74327c6f4535c10e103",
+          "id": "NR.real-game-command-shadow"
+        },
+        {
+          "after_sha256": "2927916111f4205acbbb4bfb33ee889a28ab7d77f70cfa04957a98e65c555adb",
+          "before_sha256": "a39afcff83416efa39dcb14de6ff709f5454e32ec87c75a9e57bda6a18442a65",
+          "id": "RI.copies"
+        },
+        {
+          "after_sha256": "f6c144db22cf100f3406b1c831b28080b6af68bc1c52f9e814039aa64263f6df",
+          "before_sha256": "54bc7e2cbb9affc0318700f9281e4b8be4713f3135907ee6997d03c984f307c1",
+          "id": "RS.glyph-live-route"
+        },
+        {
+          "after_sha256": "fbc0aa5cae5f8f85dc61ea03b4e6077e07ec4350f8e901424561dfa1fc94f6d1",
+          "before_sha256": "ce36851bbe549d3dfa6ac6604c4fd9d0eccfa65bba281df0da86377317cbb397",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "ffe29d81f5c063a6f101fdee80c3e6bc82b69f12d33b837e42c94453a1fec34f",
+          "before_sha256": "39c08a4df25e72627259f6f4d7326e85d6edff356c595b3804dee78559b7716d",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "e262f6f8323cf1964e60bf912261dd39ae71388d3f9054fca51d4438ed6583d1",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-draw-public-gameplay-20261011.json"
+        },
+        {
+          "after_sha256": "db18971a52fc554341fa43243949654017439c4e1a6ab4a3c5b2aaf706e256ee",
+          "before_sha256": "2b08dbb6dd637a66fde96b2ce884132f62bc2d55e4c3d42fd6ac0e89f6ee5b7f",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "783aee5532b9289928365e00ac75776e1fe410f2c6e9cd6ca951f9f198eb3853",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-copy-fair-wait-20261011.json"
+        },
+        {
+          "after_sha256": "9bea991ca547acf0ac17506ab4c13cb8fab3aaadaf68b5fd41f212237b764812",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-copy-fair-wait-20261011.md"
+        },
+        {
+          "after_sha256": "71e9593e27229d51e658c3142986e6e72be432d2dad5814b7c6f987afb7cc8a6",
+          "before_sha256": null,
+          "path": "research/runtime/native-copy-contention-yield-fixtures-20261011.json"
+        },
+        {
+          "after_sha256": "d5c6eac8570792b9f1c8be47f200dacafad89986628b63463eac30eeca0ba163",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-public-nvidia-gameplay-artifacts-20261011.json"
+        },
+        {
+          "after_sha256": "18a00ffe63e17767d3954dada465003c8a7d4081ba986ff5827b26bc1029847a",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-public-nvidia-gameplay-pass-20261011.json"
+        },
+        {
+          "after_sha256": "1c90feaacc189fee63b7ceccac27d0cb0fed8444464bf0f9e3db59669222d0f1",
+          "before_sha256": "37f1e422b609e8bdc2d55cdadc69b5fb6693def8c17137d863eb37e8b2d45183",
+          "path": "research/runtime/opengl-copy-order.md"
+        },
+        {
+          "after_sha256": "978734d3b800fd9ee64c36741132c1f4558d45ad43db7ef65a354d0538f82f85",
+          "before_sha256": "7fce0c71de373f4496fceb4e50185a3061be8a91377c2a7dabb287b0ce7d6ebf",
+          "path": "runtime/render/copy_order.h"
+        }
+      ],
+      "id": "change-ebd90c93bef20c29-shared-historical-pending",
+      "pending_gaps": [
+        "stale_evidence:0222a77ceef13d8b80f7e1c067c09cd2376198d534b916b4176937181a31a9eb",
+        "stale_evidence:05bb568482dffbd2afe62899129087060ef7dcf0fc6ba8333f4569b2bf710901",
+        "stale_evidence:06b81783a9231642cc741f2ee85e8bbf0b12e5c37b8f4971ba460771affa3edd",
+        "stale_evidence:0af8e28d383837bb1191083e5eaeebd5d93a2137a410066125dc84ee889f0733",
+        "stale_evidence:0bbaeca13ad05dd6c182bb781c9dca4e37929fd179f115c93a807bc794e7e749",
+        "stale_evidence:112a6dd834a4be97db857076bedfc1c2bc14494f2b1fa52eac6728caeb97f59f",
+        "stale_evidence:17538624c99ded2985519c10a9009be10434144e21cb738f1219a8ccd88d6427",
+        "stale_evidence:18c2a1affc2d2318ddcf2e475c7748273e9244cecc23a6acb2bcdef8094f788b",
+        "stale_evidence:1acc340e8a44dd59ce7ef7aed8c3c1cdd4d4eddb8ff6e07e38984e94cf94bc5e",
+        "stale_evidence:1e6ea0a760a1193ee4c016419e240948fda95f635a440671616d948411fa852a",
+        "stale_evidence:1efc04647f2ee37613b22bf076848b24c59ba7d5fb331fb7bd99dc9de8beb092",
+        "stale_evidence:245dfffc226dcc2149f880e284eaa1570e85400b7f99f3871ca4b1b33801ae42",
+        "stale_evidence:2898dbaf7ec6ec87b9439f2ef818e0ed8839c830fa042c8b2af12b366ae99ca8",
+        "stale_evidence:32729610cf94dd1c9be31bc722a4dcc5d4213476d9fd9584722c1dfd1c5a358d",
+        "stale_evidence:3aad29732c06cc7ad54bdf13a2f9b42cbcde7a0e8d93819beceb96226a58854d",
+        "stale_evidence:3fc4238c0803fd96fa19f2e911043d9eb6a8f24e3d75cf3e06618891df7cd359",
+        "stale_evidence:43e0e6d6ab43e8f02f66ba0c0eaac29f64556f9c7b0f59c91b4ee6640208ff92",
+        "stale_evidence:454383af0f229d12f975b4bf6d03239d59344f18556e5f6671b3db60382acdfa",
+        "stale_evidence:4ac7af0049a4390c79196e6b77004dc2ed5f1d6b1c07f43236249f51e9a5ce85",
+        "stale_evidence:4debe6175d9249e663029a9815779448353f96e54f6ede5c0740bbba60d65398",
+        "stale_evidence:4ed20204b7513aefa5a6a984c210ff79ca32a22b0e4c1ad94e338af3dfad91f4",
+        "stale_evidence:5114c66f6133e45aba9df15f48d90d6295b4e88f63a76cb75fca2a018071063d",
+        "stale_evidence:5165cf8915fc7a03c38d97cfbcd1a65518fd8d72316d348d5f06508425c1657f",
+        "stale_evidence:5218d559ac323148151f5a74ea7cd4873cb8de4009f8f1297204fb33a872a559",
+        "stale_evidence:54e0e3bef27c4592984ff22dfe9d5aaf785766f70c3bfb1984e331a6308387e6",
+        "stale_evidence:55bdbb2a4ce3c1a5dac847597821303b392e75eebc354f153dd0357de650eaf0",
+        "stale_evidence:584678b588566a864b55343b6181c60bc594dfca90aceacf32aa26377a19c168",
+        "stale_evidence:5b1a091d575643ed9b0e099f61c8205c3352f256a332c002182aefceed98489b",
+        "stale_evidence:5f3531abbd9f5210720d57521a3649c0adc85c92548beb241db6f2f9643c9741",
+        "stale_evidence:63c63236591ca35c67674db43560f9ba2917dc2e86a16c26d58f46c034b8f0d9",
+        "stale_evidence:655dfcdbd2aa0561d87b24670ab18a5f0ebf7dfa8c12c400540c3974e32e2f0b",
+        "stale_evidence:66b8f5f660ff415946c73b69f4828a5134a106f85c85d99a2fcb2f8b1a0ee4dd",
+        "stale_evidence:6a0f8f86b146daa6443dd13413a649f870e85728c4a6459c838fdf67a2566206",
+        "stale_evidence:6acd0bc689e521336520b86e48ae6150cbbe7687bf331386ffc1fe73284d0102",
+        "stale_evidence:6e24522816d87eae80aa7c215de0b8846c374a698ac5ef9ff4f3d1afe15efdc5",
+        "stale_evidence:6fcd5d545ae2a2edc5835075ffb9c4ecf8c0e7c609c963acdd8ae97fb9308f36",
+        "stale_evidence:70d62383c910af2bf95795a870e26bd02e01317f4b1eb9d32fce2de84c62ce64",
+        "stale_evidence:7331acb406d8cc97c97eec128f28c80d487ec456da88b596cc4d9296d7362654",
+        "stale_evidence:762566e5fd77fab9605f2a12dc0eefeec44ee060f4438c3d914518f4a0273b4e",
+        "stale_evidence:7640e190511af012b215802536ec0bfd3b56a5898a2a55063ae3fe02315a7861",
+        "stale_evidence:79bb0a52acd1a6e30bc4ae2289c4dc6347bfe1f8af07977d40f13fc1eafdf327",
+        "stale_evidence:7ab1d62b9e08ba7cdb7bd7bea7f16ec33cfd3975286d0420460703437436dec0",
+        "stale_evidence:7b719e2c7d849917d4d4cd11f18290074a0829ec10b2a69d55a42a0def6eec62",
+        "stale_evidence:7fcc8939ff64f3d81e5ea6c2d5eaaf1b93459a7cfccf519a17df8c73ae8ae508",
+        "stale_evidence:81312dbaad4c51e853a1549b1cff9b95d356da47eac63c02dadd6d70fc38547a",
+        "stale_evidence:81e90d971df77f032993e9676afa79e13483434e8a4d53d9fdf91a225a70fb66",
+        "stale_evidence:83c8ef161e6b3eab30fd13bf1021f07a65ddc2e1dc7db8bfba1d7dd951a64e9c",
+        "stale_evidence:88f9d592c5204c28aeff5c60e31d71ee3c0ef4e3fa403fed957b098329dc4ad1",
+        "stale_evidence:8c1bb05b0b71a65b7e2e3213d9c7d668d686a560b412955b5fbec31a100cdce8",
+        "stale_evidence:91856e20d50789e6e5b3b483f08b544093472d8e4387c0b494089c691bd46fa3",
+        "stale_evidence:9700c952012d6dd0501c20ecf8c761d35bc12995db0d3c49c667111626305699",
+        "stale_evidence:9785d5fe090b541560b4eba315f3022394ecf7f2b5880b49d60d6d0c8f8dfc02",
+        "stale_evidence:9a08f1986e9e3ebfee8bedd3a79551f255e2883e4c8bfdf790fcbbd2cd49d389",
+        "stale_evidence:9c7a07e172c7908fc49eb73b21153a387349e15aebf058003c8916dbd826f41b",
+        "stale_evidence:9d2cff447f610ed6b14fe60f8421335143c8789e3800bdda4f16e28e985ff475",
+        "stale_evidence:a0302a4b5b39ea540329839dd41c426d2e6e8ee2e01c814567e95f2602faceb2",
+        "stale_evidence:a10715f31f7138754fd17ae84b7ebfd9c868c7e70a3e93a20515d8239e1bdd3f",
+        "stale_evidence:a3097a74d57add2bf0c846a6c9bc8f21667fdecfdebcb6a0ccdb850aa2ee79a2",
+        "stale_evidence:a420270d0a574dd90a8ed46485210317741b367130321d92b931df0eb51d1713",
+        "stale_evidence:a87c55b7c655d03f14cc9014d53a140a9fa3f26f5fa22bafd8ec7aa6f0c2b884",
+        "stale_evidence:abad6aaaf1fac102ebd6693b087e07b5f5af677ad252c14a3fdb6b18af8be9c2",
+        "stale_evidence:af0665897d51df0584522f0bce6fc9caf28923f131104d00499ce9cea18d01ad",
+        "stale_evidence:af25d1ed4d5bb9652e7ce78192cecc6e71d67bd61718c5f19f7cdcc8c9de3ebf",
+        "stale_evidence:bf0036d91bad3bd71531ba857102741342ad401465ce4348247d3b49322b0971",
+        "stale_evidence:bff489cdf124032272323be4982cfa6b3efe4a486015ab7caa1b7af58e22614b",
+        "stale_evidence:c3abcfe3e03db54bc7c10bcf9010f1844271d8f0cebec9e7ac43f6a344166491",
+        "stale_evidence:c7233c6c86a842256cbc2615b72a6cef92e6c143591fd88bc8154b45f27b1f7c",
+        "stale_evidence:c8bc3c69415bd90eb4e4f3ecbae288e64d3aafa55b9a3950285f89801d7c96ad",
+        "stale_evidence:cb1fd0a8548f74a42b998ccafdd5ba536071a4e3d33e0501a26c9ffb1a9a4a70",
+        "stale_evidence:cd01418a9f4cecc3c53bb4ede411a0ca1e6f30d0589e01dc3768f145f2ad27c9",
+        "stale_evidence:cd10bd35f6d8def088cdbf108fd3a9e20a176ae278feabc54e3b504a0bf2c391",
+        "stale_evidence:cedef2eb3977e2817692e60a15ef9037d0e6faf873c62cb5f2535f1fbbfc0cc8",
+        "stale_evidence:d1f6ea7bc83f183e064917ee2fca0d86c29b6f36ab6b9c6528295b86549ff7f5",
+        "stale_evidence:d25f670c3a4bf6d86fe12ad3595b3c5c1c941da127a48d5762173b261e06a228",
+        "stale_evidence:d32ed2326535b602508f7d79c375375fdc2f134f1b7155866a096fed06f55450",
+        "stale_evidence:d7e1a02f811b394b61cb94214f21d96471098cb5fbc893b370211ebb14d95491",
+        "stale_evidence:d8c9c72b7449ee34f4e6a784ee295770fcbd10e68395b94eaec95af2c711fbaf",
+        "stale_evidence:dcb05d03c9d430ce8657326656f58899ae0b6fb546f0f5e72b41b9eb42fd8a30",
+        "stale_evidence:df9a33186ea23604c439e47fc22eb8be03060cac61db400cf37500d4c79228da",
+        "stale_evidence:e01b3c53c0725bb501145106fdbf8ede6ed3409d898889640bc220bcf1bc635b",
+        "stale_evidence:e227c035d96f76418f9e31158211d0d3263dcaa6b3dfe1e78572251bb4a8ebb2",
+        "stale_evidence:e2b7887875131b3cdb0a914963d35b8c410cb0891759bf3cfe07a80bdd80e1dc",
+        "stale_evidence:e5249f8c21fcfd9f9603f8bd4f12cd5b448813d84f3f859b6779d0c3418028a5",
+        "stale_evidence:e56a70c08e91d41de3545b02085023ca5a993f198cd26568f90fac5ed2fefe6c",
+        "stale_evidence:e6d4ebd7a250af05fe1b7f8e9ca1a4732e68ed9adcefaa887da16ab94411bb15",
+        "stale_evidence:e914173354bbbcbde93370e9fa7e4069a22a386ff18289b79bc90537f715a9c0",
+        "stale_evidence:eafa636bd9ce1549aaa2df37abf37b075d800118436ea56e2c0e0964d5c297a6",
+        "stale_evidence:ed91823de6dbdeab87ebcdacf477fa968e7aa773a97a377e3463adb5a8856895",
+        "stale_evidence:ee32c7751041684a7eead84d3863536b0042d51b1ba776fb459d4f00ba6050a5",
+        "stale_evidence:eecc2d69e6bdb62248ce6de2dac7061d4c93259cec796ef9f27438290fdd27f3",
+        "stale_evidence:f6adf8d955182a88c05fd26505ed7a95c9794e00e8ec60c6c7786704bdd531db",
+        "stale_evidence:f9680fe5d4ec8f1e0a022dc421c22687e73ce3a576efd0efe532b3cc5537a758",
+        "stale_evidence:fa421d4945268867fa330ae3a337868c6f9d683780004440d42b63a294f498e7",
+        "stale_evidence:fd23383fb96363ad19cfa556f70b37cdb14f0d978a67cfe383063c9046ac706a",
+        "stale_evidence:fd3238d373b24395c8be7675b73ee3718a962e36adefc4646ec2902644edd29d",
+        "stale_evidence:fdbb1ce9db9c00812c48e3acf4c8dd8c2ca98dc8a0565eb5ea5418e443f2d747",
+        "stale_evidence:fe0ab0b424d8d9b58b801ef61613f02c1720f12b731ede910b7c971655386bc5",
+        "stale_evidence:fe50d2937ec5bd48855926367fb9db1e774d442810b935c3493eae6a025d84b4"
+      ],
+      "reason": "Review changed shared copy-order header and metadata links across all affected behaviors. Preserve exact historical evidence and source hashes; account new scope-change/staleness gap identities without asserting other advanced callback, driver, shutdown or World-performance validations.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "The shared wait-policy edit leaves unrelated original comparisons/integration/performance evidence historical. Selected fixtures validate four representative wait families and refusal; broader driver/lifecycle concurrency and V4 World performance after this source change remain pending. Public native defaults/other launcher/actual Qt identity persistence remain outstanding."
+      }
     }
   ]
 }
