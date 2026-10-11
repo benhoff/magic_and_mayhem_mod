@@ -17,16 +17,16 @@ int main(int argc,char** argv){
     try{
         check(argc==2,"args: observation directory");QDir dir(QString::fromLocal8Bit(argv[1]));
         GlViewport viewport;viewport.resize(800,600);viewport.move(900,0);viewport.show();app.processEvents();check(viewport.ready(),"GPU ready");
-        LiveCommandSession session(viewport);check(session.create(dir.filePath("commands.bin"),123,2),"session create");
+        LiveCommandSession session(viewport);check(session.create(dir.filePath("commands.bin"),123,2,120000),"session create");
         QElapsedTimer elapsed;elapsed.start();unsigned frames=0,lastRequest=0,snapshots=0;bool attached=false;
         const auto status=[&]{
-            auto result=session.result();return QJsonObject{{"state",int(session.state())},{"error",session.error()},{"frames",int(frames)},{"recoveries",int(session.recoveries())},{"ms",int(elapsed.elapsed())},{"width",viewport.frameSize().width()},{"height",viewport.frameSize().height()},{"commands",result?int(result->commands):0},{"live_surfaces",result?int(result->liveSurfaces):0},{"live_palettes",result?int(result->livePalettes):0},{"ordinary_native_readbacks",result?int(result->stats.nativeReadbacks):0},{"ordinary_rgba_readbacks",result?int(result->stats.rgbaReadbacks):0},{"viewport_uploads",int(viewport.imageUploads())},{"explicit_framebuffer_captures",int(snapshots)}};
+            auto result=session.result();return QJsonObject{{"renderer",result?QString::fromStdString(result->driver.renderer):QString()},{"state",int(session.state())},{"error",session.error()},{"frames",int(frames)},{"recoveries",int(session.recoveries())},{"ms",int(elapsed.elapsed())},{"width",viewport.frameSize().width()},{"height",viewport.frameSize().height()},{"commands",result?int(result->commands):0},{"live_surfaces",result?int(result->liveSurfaces):0},{"live_palettes",result?int(result->livePalettes):0},{"ordinary_native_readbacks",result?int(result->stats.nativeReadbacks):0},{"ordinary_rgba_readbacks",result?int(result->stats.rgbaReadbacks):0},{"viewport_uploads",int(viewport.imageUploads())},{"explicit_framebuffer_captures",int(snapshots)}};
         };
         session.framePresented=[&]{++frames;check(!viewport.imageUploads() && session.result() && !session.result()->stats.nativeReadbacks && !session.result()->stats.rgbaReadbacks,"ordinary readback/upload");save(dir.filePath("progress.json"),status());};
         QTimer timer;QObject::connect(&timer,&QTimer::timeout,[&]{
             try{
                 if(!attached && QFile::exists(dir.filePath("attach"))){attached=true;elapsed.restart();}
-                if(attached)session.poll();
+                if(attached)check(session.poll(),session.error().toStdString().c_str());
                 QFile request(dir.filePath("request.json"));
                 if(request.open(QIODevice::ReadOnly)){
                     check(request.size()<=1024,"request budget");auto value=QJsonDocument::fromJson(request.readAll()).object();unsigned id=value["id"].toInt();

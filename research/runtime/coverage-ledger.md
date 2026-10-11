@@ -4425,3 +4425,19 @@ The new `test-native-campaign.py --hardware` creates and stops a private NVIDIA 
 
 
 2026-10-11 public native menu defaults: native menus+command launches select owned graphics without MNM_NATIVE_DRAW opt-in; explicit0 remains a diagnostic legacy control. The [current default basic TITAN proof](native-draw-public-default-basic-pass-20261011.json) passes Main/Region/campaign/Escape/Mini Cancel/resume, native frames/paints, actual Qt zink/NVIDIA TITAN RTX identity, disabled/absent real ddraw, canonical compiler/input/source stability and original manifests before/after. The smoke automatically saves prospective claims before building/launching when omitted; renderer identity survives test teardown.18 validator checks pass. The [first extended default run](native-draw-public-default-gameplay-defeat-20261011.json) completes casting/combat/portrait but later has an inactive zero-health wizard and fresh Main, correctly failing the required journey; it is not a rendering pass or an engine workaround. Current default stress/normal Quit and the other ordinary OpenGL launcher remain outstanding. Earlier full NVIDIA gameplay remains historical after these source/contract changes; no old hashes are refreshed.
+
+## Default standalone owned graphics startup — 2026-10-11
+
+`NR.directdraw-native-opengl-launch` adds fresh bounded proof through the actual
+standalone OpenGL staging/runner path: default MnmDraw, real ddraw disabled and
+absent,20 native main-menu frames on actual Qt/NVIDIA TITAN RTX, no ordinary GPU
+readback/upload/recovery, compiler/builder/generator/input fingerprints stable
+and consumer resources zero after bounded abort. The native Qt menu/command
+route already defaults to owned graphics. Legacy diagnostic launchers retain
+explicit original comparison support. Gameplay/FPS/movies/normal Quit and
+semantic original COM teardown are not asserted by standalone startup.
+The full default campaign rerun failed presentation/recovery and remains a
+negative result. Prior gameplay/performance evidence retains its original
+hashes and separate scope. The f874d7b parent/current receipt audit covers11
+committed transitions with zero missing receipts; no retrospective execution or
+past gate claim follows. [Details](native-draw-device-surfaces.md).

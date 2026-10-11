@@ -22,17 +22,23 @@ def build(selftest=False):
     source=REPO/'runtime/render'
     flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror']
     if selftest:flags+=['-DMNM_RENDER_SELFTEST']
-    subprocess.run(flags+['-c',str(source/'bridge.c'),'-o',str(root/'bridge.obj')],check=True)
+    subprocess.run(flags+['-MD','-MF',str(root/'bridge.d'),'-c',str(source/'bridge.c'),'-o',str(root/'bridge.obj')],check=True)
     exports=['/export:RenderInstallForTest=_RenderInstallForTest@8','/export:RenderCaptureGuardForTest=_RenderCaptureGuardForTest@4','/export:RenderCaptureWaitsForTest=_RenderCaptureWaitsForTest@0','/export:RenderCreateForTest=_RenderCreateForTest@16','/export:RenderInputForTest=_RenderInputForTest@12','/export:RenderMediaForTest=_RenderMediaForTest@12'] if selftest else []
     if selftest:exports+=['/export:RenderLifecyclePauseForTest=_RenderLifecyclePauseForTest@4','/export:RenderLifecycleGuardForTest=_RenderLifecycleGuardForTest@4','/export:RenderAliasSameForTest=_RenderAliasSameForTest@8','/export:RenderQueueForTest=_RenderQueueForTest@12']
     exports+=['/export:RenderStop=_RenderStop@4','/export:RenderShutdown=_RenderShutdown@4','/export:RenderStartup=_RenderStartup@0','/export:RenderRecover=_RenderRecover@4']
     if selftest:exports+=['/export:RenderStopStateForTest=_RenderStopStateForTest@4','/export:RenderRecoveryStorageForTest=_RenderRecoveryStorageForTest@4','/export:RenderExitInstallForTest=_RenderExitInstallForTest@4','/export:RenderRecoveryStateForTest=_RenderRecoveryStateForTest@4']
     dll=root/'MnmRender.dll'
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{dll}',str(root/'bridge.obj'),str(root/'kernel32.lib'),str(root/'gdi32.lib')],check=True)
+    closure={'tools/build-render-bridge.py','tools/build-shadow-bridge.py','protocols/generate.py'}
+    for token in (root/'bridge.d').read_text().replace('\\\n',' ').split():
+        path=Path(token).resolve()
+        if path.is_file() and path.is_relative_to(REPO) and not path.is_relative_to(REPO/'working'):
+            closure.add(path.relative_to(REPO).as_posix())
     protocol_headers=sorted((REPO/'protocols/include/mnm').glob('*_v1.h'))+sorted((REPO/'protocols/include/mnm').glob('*_v2.h'))+[REPO/'protocols/include/mnm/render_command_ring.h']
     protocol_sources=protocol_headers+sorted((REPO/'protocols/schemas').glob('*-v1.json'))+sorted((REPO/'protocols/schemas').glob('*-v2.json'))+[REPO/'protocols/generate.py']
     (root/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
         'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()},
+        'compiled_sources':{name:hashlib.sha256((REPO/name).read_bytes()).hexdigest() for name in sorted(closure)},
         'protocol_sources':{str(p.relative_to(REPO)):hashlib.sha256(p.read_bytes()).hexdigest() for p in protocol_sources}},indent=2)+'\n')
     if selftest:
         definition=root/'render.def';definition.write_text('LIBRARY MnmRender.dll\nEXPORTS\nRenderInstallForTest@8\nRenderCaptureGuardForTest@4\nRenderCaptureWaitsForTest@0\nRenderCreateForTest@16\nRenderInputForTest@12\nRenderMediaForTest@12\nRenderStop@4\nRenderStopStateForTest@4\nRenderShutdown@4\nRenderStartup@0\nRenderRecover@4\nRenderRecoveryStateForTest@4\nRenderRecoveryStorageForTest@4\nRenderExitInstallForTest@4\nRenderQueueForTest@12\nRenderAliasSameForTest@8\nRenderLifecycleGuardForTest@4\nRenderLifecyclePauseForTest@4\n')
