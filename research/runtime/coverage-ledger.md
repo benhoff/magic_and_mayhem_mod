@@ -4752,3 +4752,25 @@ outside-root measurements. Exact committed-history review covers46file versions
 in b570002..300e423 and e23e99c..964393d with no unresolved receipt gaps. The
 combined source census retains1,729source/build files and1,525explicit behavior
 links; this indexing reconciliation adds no engine validation or status promotion.
+
+## 2026-10-11 DRAW-02 native physical presented-session backend
+
+A strict owned-history backend now implements the independent session ABI through
+source-only native composition and an application GPU viewport. It acquires complete
+X11 screen pixels after buffer swap, with zero viewport QImage uploads and native
+surfaces released. All65,536RGB565 colours and three menu/loading/results frames
+match independent synthetic expectations. Seven executed controls include physical
+screen containment, non-X11 refusal, unsupported caller effects, oracle-field
+refusal and preservation of existing outputs; fourteen protocol guard methods pass.
+All103retained startup frames match historical original primary readbacks through
+actual native X11 presentation:49,440,000pixels,zero mismatches. Source claims are
+prospective and stable; original manifests pass before/after. Earlier failed context
+sharing, asset case-directory and undersized-Xvfb attempts remain in working.
+
+The original references retain their observed_primary_blt boundary; this does not
+assert new synchronized original physical acquisition, complete semantic input,
+general battle/save/load ownership, native caller effects or real-driver recovery.
+DRAW-02 fourteen-journey/twenty-one-operation gates remain open. The final prior
+integration range300e423..9df6aa3 has nine exact file-version receipts and no gaps.
+See [owned presentation protocol](../formats/drawing-presented-session.md) and
+[immutable execution report](draw02-native-physical-session-20261011.json).
