@@ -1,3 +1,5 @@
+/* Optional native-owned diagnostic getter, resolved once during adapter load. */
+static u32 (WIN *game_copy_native_stage)(void);
 /* Intentional opt-in native scheduling, not recovered driver ordering.
  * Never hold the tracker while waiting or calling the original. Same-thread
  * callbacks keep generation guards; timeout forwards and invalidates both sides
@@ -16,7 +18,7 @@ static struct GameCopyLease game_copy_enter_at(void* target,u32 site){
         if(GetTickCount()-start>=GAME_COPY_WAIT_MS){
             lease.observe=0;if(history_current())__atomic_store_n(&history_invalid,1,__ATOMIC_RELEASE);
             __atomic_add_fetch(&game_lock_epoch,1,__ATOMIC_RELAXED);game_pixel_missed(target);
-            u32 values[19]={(u32)target,thread,owner,GetTickCount()-start,GetTickCount()-__atomic_load_n(&game_copy_started,__ATOMIC_RELAXED),__atomic_load_n(&game_copy_site,__ATOMIC_RELAXED),site,__atomic_load_n(&game_copy_phase,__ATOMIC_RELAXED)};
+            u32 values[19]={(u32)target,thread,owner,GetTickCount()-start,GetTickCount()-__atomic_load_n(&game_copy_started,__ATOMIC_RELAXED),__atomic_load_n(&game_copy_site,__ATOMIC_RELAXED),site,__atomic_load_n(&game_copy_phase,__ATOMIC_RELAXED),game_copy_native_stage?game_copy_native_stage():0};
             lock_diagnostic_values("copy_order_timeout",values);break;
         }
         /* Wait only while this observed owner remains unchanged. Release wakes

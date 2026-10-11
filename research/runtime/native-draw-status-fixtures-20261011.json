@@ -1,0 +1,77 @@
+{
+  "success": true,
+  "scope": "Isolated stubbed Win32 status sink and failure contract only; no real Wine/API latency or original engine equivalence.",
+  "sources": {
+    "runtime/native-draw/factory.c": "66308a0b534d06151e3aff73433916a44e47f2580f74bff68de7079d62953079",
+    "runtime/native-draw/status.h": "a27bee61d1f666beb511f33dba39633d9bf384a80885c41061330e95a2ba9202",
+    "runtime/render/bridge.c": "c0fcaf42547e0ff181737e04ba74f92f1c02460af93290ba506c1b15daffe398",
+    "runtime/render/copy_order.h": "cb474a8e41c9e2f3f0938e508cacd38f09fb864c6f294e67d29dfe5884b4d3cf",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/native-draw-status-test.cpp": "63b61f90595fc51d8a212bdaca1a97df348676c19c3a56ada8442979b4f1ace3",
+    "tools/build-native-draw.py": "19f07cb61d207cad80c57f25bdd6ceaba8236a455ded8e8d75d4b5d7393d326b",
+    "tools/test-native-campaign.py": "4749166efa4f48ac6529145d99a1ea3bac8962abed864d4545d7a0479379b50a",
+    "tools/test-native-draw-status.py": "59fe338e0ed0b096507609e4b8cabd129774e09e5b8895c5673c3464d34196d0"
+  },
+  "claims": [
+    {
+      "behavior": "NR.native-draw-status-session-file",
+      "contract_sha256": "41012af518b4b8ace233059701283769b0e2d505c6bd8a9cd9815af80047f7aa",
+      "scenarios": {
+        "native-draw-status-session-file-20261011": "9599478c644236a6b23a769ca7ee49999a05b0de6d0b396b5b7c52b57f7b6ee0"
+      }
+    }
+  ],
+  "executions": [
+    {
+      "mode": "assertions",
+      "command": [
+        "clang++",
+        "-std=c++17",
+        "-UNDEBUG",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+        "-MD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-status/run-4pf0_wca/assertions.d",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/tests/native-draw-status-test.cpp",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-status/run-4pf0_wca/assertions"
+      ],
+      "compiler_inputs": {
+        "tests/native-draw-status-test.cpp": "63b61f90595fc51d8a212bdaca1a97df348676c19c3a56ada8442979b4f1ace3",
+        "runtime/native-draw/status.h": "a27bee61d1f666beb511f33dba39633d9bf384a80885c41061330e95a2ba9202"
+      },
+      "executable_sha256": "9e6c4628f01a85a51a6dc70a88792525acedaf42e2d0e92e9d188e84db45ebcc",
+      "output": "status sink: 1024 complete overwrites, every-call module checks, LastError, collision and terminal failures PASS\n"
+    },
+    {
+      "mode": "asan-ubsan",
+      "command": [
+        "clang++",
+        "-std=c++17",
+        "-UNDEBUG",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-MD",
+        "-MF",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-status/run-4pf0_wca/asan-ubsan.d",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/tests/native-draw-status-test.cpp",
+        "-o",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-status/run-4pf0_wca/asan-ubsan"
+      ],
+      "compiler_inputs": {
+        "tests/native-draw-status-test.cpp": "63b61f90595fc51d8a212bdaca1a97df348676c19c3a56ada8442979b4f1ace3",
+        "runtime/native-draw/status.h": "a27bee61d1f666beb511f33dba39633d9bf384a80885c41061330e95a2ba9202"
+      },
+      "executable_sha256": "c7885223fcafb21ed9631b250ec5a0da001361d038becca23b0b99f7047c3781",
+      "output": "status sink: 1024 complete overwrites, every-call module checks, LastError, collision and terminal failures PASS\n"
+    }
+  ],
+  "sources_stable": true
+}
