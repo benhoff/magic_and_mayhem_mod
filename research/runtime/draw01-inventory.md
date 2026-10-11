@@ -835,3 +835,29 @@ incoming continuation. The breakpoint preserves those bytes. The plan has zero
 refused CPU sites; compilation, actual target capture and integration remain
 pending. Both export/planning experiments verify all 2,927 immutable inputs
 before and after reading the pinned binary.
+
+## Original CPU before-CALL target observation, 2026-10-11
+
+`--cpu-observation` prepares a separate approved 128-site CPU/global/CRT target
+cohort beside the 83 safe original-active core hooks. It reuses the existing
+native CALL forwarder and V2 wire with unknown formal layouts and no COM output
+snapshots. The private CPU builder selects its own immutable plan; the graphics
+builder's default plans remain separate. Explicit `cpu_backend_dispatch` role
+validation rejects graphics/core-absent/mixed admission; twelve role guards pass.
+No original body, argument or result is replaced.
+
+Original menu cohort `run-0q3q92uc` closes 25,071 CPU CALL pairs and 42,008 core
+pairs with zero loss/open/IO, unreadable stack/target or unassigned phase. Both
+per-run allocation maps agree on the actual core module and named leave pointer.
+Sources, prepared metadata and binaries stay stable; exit0 and both 2,927-input
+manifest checks pass. The phase14 screenshot shows the original rendered Main.
+
+Five observed menu CALL sites capture 24,825 before-target values `596cb8` from
+`6903dc`. The CRT site captures 246 completed callbacks with 177 distinct targets;
+those targets remain observations, not newly recovered functions or drawing
+roles. Six of the 128 CPU sites are observed; 122 remain unexecuted. There is no
+graphics API cohort in this experiment, and no formal CPU/COM signature, permanent
+or atomic pointer binding, side-effect/pixel/lifetime or scenario/dispatch closure
+is inferred. Physical core caller records remain intact; their new target-side
+crosswalk still requires exact thread/stack/flow review. All raw artifacts and
+staged binaries are retained; the stopped private game/prefix is removed.

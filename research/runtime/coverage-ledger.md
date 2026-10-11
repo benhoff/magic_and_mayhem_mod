@@ -4840,3 +4840,12 @@ are static store facts; before-CALL target values, branch execution, alias write
 raster semantics and integration of these additional128sites remain pending.
 This does not close any of the14scenario/four dispatch gates or promote native
 implementation/comparison/replacement of the recovered initializer.
+
+DRAW-01's separate original-active128site CPU target observer now passes its
+12admission guards and an original menu cohort:25071CPU pairs/42008core pairs,
+zero loss/open/unreadable/IO/unassigned phase, matching core/API-wire allocation
+identities, stable sources/metadata/binaries and normal exit0. Five menu sites
+observe24825before-target values596cb8 through6903dc; the CRT site observes246
+callbacks with177distinct targets.122CPU sites remain unexecuted. Graphics API
+coverage, permanent/atomic bindings, caller crosswalk, aliases/lifetimes and all
+14scenario/four dispatch closure gates remain independent and pending.

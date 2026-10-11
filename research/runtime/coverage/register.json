@@ -32953,6 +32953,65 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.drawing-cpu-observer",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Separate original-active CPU global and CRT CALL target observer",
+      "scope": "Compile the approved128site CPU CALL plan with the existing exact V2 native CALL forwarder using a private builder module/plan selection. Require original-active core,128untyped formal layouts and no COM output snapshots; preserve the graphics builder plans and original source bytes. Explicit cpu_backend_dispatch role cannot be graphics API or core-absent evidence. Prepared core/CPU capture validates independent closed journals, byte allocation maps, actual before-CALL target snapshots and per-run source/metadata/binary stability. Pointer snapshots are bounded observations, not permanent/atomic target, raster/pixel/side-effect/lifetime proof or complete caller/writer/scenario/dispatch closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "tools/build-drawing-cpu-census.py",
+        "tools/prepare-drawing-census.py",
+        "tools/capture-drawing-census-game.py",
+        "tools/drawing_api_cohorts.py"
+      ],
+      "tests": [
+        "tests/test-drawing-cpu-cohort.py",
+        "tests/test-drawing-api-cohorts.py"
+      ],
+      "validation_dependencies": [
+        "tools/build-drawing-api-census.py",
+        "runtime/drawing-api-census/observer.c",
+        "runtime/drawing-api-census/entry.S",
+        "runtime/drawing-api-census/exception_i386.h",
+        "runtime/shadow/win32_min.h",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "tools/drawing_api_contracts.py",
+        "tools/drawing_api_surface_contracts.py",
+        "tools/drawing_api_journal.py",
+        "tools/drawing_api_pairs.py",
+        "tools/drawing_api_sites.py",
+        "tools/drawing_api_details.py",
+        "tools/drawing_api_resources.py",
+        "tools/drawing_api_bindings.py",
+        "research/runtime/drawing-surface-api-layouts-20261011.json",
+        "research/runtime/drawing-cpu-core-splices-static-20261011.json",
+        "tools/drawing_census.py",
+        "tools/drawing_census_bindings.py",
+        "tools/drawing_census_callers.py",
+        "tools/build-drawing-census.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-cpu-observer.role-guards-20261011",
+        "DRAW.cpu-observer.original-menu-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -64124,6 +64183,136 @@
           "equals": 18
         }
       ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-observer.role-guards-20261011",
+      "kind": "native_integration",
+      "scope": "Native offline CPU/graphics/core role guards and early builder/staging refusals; no original targets/body execution or graphics/COM/lifetime/scenario proof.",
+      "record": "research/runtime/drawing-cpu-observer-role-guards-20261011.json",
+      "sha256": "c7e1f220818886cfa25c040b8a551c272bec0366f092d37946cb67a3ea03e6af",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards",
+          "equals": 12
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW.cpu-observer.original-menu-20261011",
+      "kind": "live_observation",
+      "scope": "Original menu/preferences/setup/shutdown:25071CPU CALL pairs (24825raster/246exit callbacks),42008core pairs, exact per-run allocation maps and role/source/binary/metadata validation.177distinct exit callback targets/122unexecuted CPU sites retained; before-pointer snapshots only, no permanent/atomic target, full caller/writer/graphics/COM/lifetime/scene or DRAW-01 closure.",
+      "record": "research/runtime/drawing-cpu-observer-original-menu-20261011.json",
+      "sha256": "c5b244220bb1ba3bd94f525040e4fc854197d633ec9c9bbabeaec05613255caf",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/metadata_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/call_boundary_role",
+          "equals": "cpu_backend_dispatch"
+        },
+        {
+          "pointer": "/graphics_api_cohort_enabled",
+          "equals": false
+        },
+        {
+          "pointer": "/physical_and_core_bindings_agree",
+          "equals": true
+        },
+        {
+          "pointer": "/api/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/api/paired_calls",
+          "equals": 25071
+        },
+        {
+          "pointer": "/api/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/api/open_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/api/io_failure",
+          "equals": 0
+        },
+        {
+          "pointer": "/api/unassigned_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/api/unreadable_stack_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/api/unreadable_target_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/cpu_raster_pairs",
+          "equals": 24825
+        },
+        {
+          "pointer": "/cpu_exit_callback_pairs",
+          "equals": 246
+        },
+        {
+          "pointer": "/cpu_exit_callback_distinct_targets",
+          "equals": 177
+        },
+        {
+          "pointer": "/cpu_observed_sites",
+          "equals": 6
+        },
+        {
+          "pointer": "/cpu_unexecuted_sites",
+          "equals": 122
+        },
+        {
+          "pointer": "/decoded/paired_calls",
+          "equals": 42008
+        },
+        {
+          "pointer": "/scenario_closure",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -73317,6 +73506,37 @@
       "evidence": [
         "TOOL.drawing-cpu-sites.export-20261011"
       ]
+    },
+    {
+      "id": "drawing-cpu-observer-role-guards-20261011",
+      "title": "drawing-cpu-observer-role-guards-20261011",
+      "scope": "Explicit CPU/graphics/core role and builder/staging refusal before original access; historical structural cohorts retain their defaults. No original rendering/targets.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-cpu-observer"
+      ],
+      "tests": [
+        "tests/test-drawing-cpu-cohort.py",
+        "tests/test-drawing-api-cohorts.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-cpu-observer.role-guards-20261011"
+      ]
+    },
+    {
+      "id": "drawing-cpu-observer-original-menu-20261011",
+      "title": "drawing-cpu-observer-original-menu-20261011",
+      "scope": "Original menu/preferences/setup/shutdown with the128site CPU target observer beside83core hooks. Bounded before-target snapshots and independent closed journal/map/ABI metadata only; no permanent/atomic global binding or graphics API/lifetime/complete scene/dispatch proof.",
+      "level": "live_observation",
+      "behaviors": [
+        "TOOL.drawing-cpu-observer"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.cpu-observer.original-menu-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -73654,8 +73874,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-cpu-sites-20261011.json",
-    "sha256": "dcd65e0c6cac839255a5924bc87f4ce11418b1cdcb32f356417b1661a3ee582f"
+    "path": "research/runtime/coverage/source-index-draw01-cpu-observer-20261011.json",
+    "sha256": "3fabc72f5650b11986316bf2eacf7f6a76e0d82b40b9bed4a775f48fa24a4338"
   },
   "claim_bindings_required": true
 }

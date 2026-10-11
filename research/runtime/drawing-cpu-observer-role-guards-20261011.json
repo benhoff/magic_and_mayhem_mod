@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources_stable": true,
+  "sources": {
+    "protocols/include/mnm/drawing_api_bindings_v1.h": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+    "protocols/include/mnm/drawing_api_journal_v1.h": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+    "protocols/include/mnm/drawing_api_journal_v2.h": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+    "research/runtime/drawing-cpu-core-splices-static-20261011.json": "5554492d37878a97e2aa1b079bcebbdd2299783f616e622530c4938a55274313",
+    "research/runtime/drawing-surface-api-layouts-20261011.json": "2248a9dfdd1a96ec8d5cecd6288097f872194406480d881c0a698c774e805f2c",
+    "runtime/drawing-api-census/entry.S": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+    "runtime/drawing-api-census/exception_i386.h": "74f1351bf921e9bc3c5991df046f12210113106009246cb5aa354b28ea7d7a93",
+    "runtime/drawing-api-census/observer.c": "1e684458322b7c930eeccc5341eeca375cf8fe3225f96215cba8f113f1704358",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/test-drawing-api-cohorts.py": "6cb4aab6c0a2fe3acc316f0396ff4c102515040605ba4862a519e2d25a1b2801",
+    "tests/test-drawing-cpu-cohort.py": "340efa99b59f027914e9262a409a58c10b50bc29019b3ba233d0075cf6bef8bb",
+    "tools/build-drawing-api-census.py": "cb9057b9ad7f94c824f873eacc1551106ad2ed1043af63758a97ddc821071619",
+    "tools/build-drawing-census.py": "6cea420d0324aed0f74f933552829d5541c35a33b190ad55989b12b97c5f950b",
+    "tools/build-drawing-cpu-census.py": "4853b714395cb7febf4091310ec596ec00257e942c6208b9385c1f2ed93c5453",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/capture-drawing-census-game.py": "102237a4f94071e88bd5f948b5b3e4a52873ef9d85c65368b28356bdd0713f54",
+    "tools/drawing_api_bindings.py": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+    "tools/drawing_api_cohorts.py": "5b7c865d68fff9986ec66410bbb77daae9d7d98edcaf0da92a82d56e4be70196",
+    "tools/drawing_api_contracts.py": "d3df6ef14428054ae83d803345db5ce26f2b42ee1d46aa28ddc07f4a1bd23664",
+    "tools/drawing_api_details.py": "0e77554ce71fcc66049c3f06326356325765acb99e2cb0fafce711cc4a380169",
+    "tools/drawing_api_journal.py": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+    "tools/drawing_api_pairs.py": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+    "tools/drawing_api_resources.py": "ef36288e39cc2a7c10b2a7cd5b9d08c411f99457970aadefdda7b46e0a89e5a2",
+    "tools/drawing_api_sites.py": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+    "tools/drawing_api_surface_contracts.py": "f25d18d5ec322ca3df72e407b6631de3de459b1e8b055b23b4d4babe3c60b1ca",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_census_bindings.py": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+    "tools/drawing_census_callers.py": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/prepare-drawing-census.py": "b5ba57bdbd150c727ec75728fa21bcb7dccfd73423fd4e5f3509fd4a6cc7bc91"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-cpu-observer",
+      "contract_sha256": "4393f96e845558a090cf9039b33c5d659c3eef012dc9952996eb3ccb90295a9f",
+      "scenarios": {
+        "drawing-cpu-observer-role-guards-20261011": "cfe184fffde0634588eb21a2ed13d55aa88619fd3d8eb72842c7829a24ee17ca",
+        "drawing-cpu-observer-original-menu-20261011": "1066eedcdab1c6423d8bb97c91d25d03fe830e16cb2d922dc3ab5cb6fda8f343"
+      }
+    }
+  ],
+  "guards": 12,
+  "cpu_role_guards": 5,
+  "historical_cohort_guards": 7,
+  "original_renderer_executed": false,
+  "scope": "Native offline CPU/graphics/core role guards and early builder/staging refusals; no original targets/body execution or graphics/COM/lifetime/scenario proof.",
+  "artifacts": {
+    "working/tests/draw01-cpu-observer-role-guards-20261011.log": {
+      "sha256": "4c979c0d06f0e9e2109df48cae7f69ac5d403754045b4cfe404fe744e7390b47",
+      "bytes": 103
+    },
+    "working/tests/draw01-cpu-observer-cohort-guards-20261011.log": {
+      "sha256": "fe836cbecd3b6b4f70bec51b58d30c3e45ad72ae7fb3cb63421a0f7337e651ae",
+      "bytes": 105
+    }
+  }
+}
