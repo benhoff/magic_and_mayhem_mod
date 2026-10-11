@@ -14999,7 +14999,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in bounded scheduling across hooked original copies",
-      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending.",
+      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending. Contending copy-lease callers now Sleep(1) between unsuccessful atomic acquisition attempts, retaining the50ms tick budget, immediate successful admission, nonwaiting same-thread reentry and original-once conservative timeout. This is intentional native scheduling; hardware improvement, fair ownership and bounded wall-time overshoot remain unproven.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -15038,7 +15038,8 @@
         "NR.tracker.user-investigation-20261007",
         "NR.tracker.paired-observation-20261007",
         "NR.tracker.ordering-synthetic-20261007",
-        "NR.copy-order.current-stress-20261010"
+        "NR.copy-order.current-stress-20261010",
+        "NR.copy-order.fair-wait-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -32384,7 +32385,8 @@
         "research/runtime/native-draw-public-hardware-negative-artifacts-20261011.json",
         "research/runtime/native-draw-public-hardware-summon-failure-20261011.json",
         "research/runtime/native-draw-public-hardware-legacy-control-failure-20261011.json",
-        "research/runtime/native-draw-public-hardware-ordering-failure-20261011.json"
+        "research/runtime/native-draw-public-hardware-ordering-failure-20261011.json",
+        "research/runtime/native-draw-public-nvidia-gameplay-artifacts-20261011.json"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -33112,7 +33114,8 @@
       ],
       "evidence": [
         "NR.directdraw-public-native-menu.bound-flow-20261011",
-        "NR.directdraw-public-native-menu.gameplay-20261011"
+        "NR.directdraw-public-native-menu.gameplay-20261011",
+        "NR.directdraw-public-native-menu.nvidia-gameplay-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -64769,6 +64772,128 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.copy-order.fair-wait-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/native-copy-contention-yield-fixtures-20261011.json",
+      "sha256": "71e9593e27229d51e658c3142986e6e72be432d2dad5814b7c6f987afb7cc8a6",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Eight actual synthetic PE32 cross-thread Blt, writable Lock, DC and Flip fixtures plus each bounded-timeout refusal after Sleep(1) copy-lease yielding.13 independent complete native/GPU frame comparisons,4 END/ACK/retired-resource sessions and4 expected GAP refusals. Original-once counts, fixture HRESULT/LastError, zero ordinary native readbacks/viewport uploads checked.30 canonical compiled native consumer dependencies bind to725 prospective sources. No original-driver ordering, fairness or hardware performance equivalence.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/source_rechecked_for_registration",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 13
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 4
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 4
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-public-native-menu.nvidia-gameplay-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-public-nvidia-gameplay-pass-20261011.json",
+      "sha256": "18a00ffe63e17767d3954dada465003c8a7d4081ba986ff5827b26bc1029847a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Current full public difficulty3 native campaign with owned graphics, real ddraw disabled/absent and private accelerated NVIDIA/zink display checked by glxinfo. Successful casting/combat/lethal enemy depletion/movement, spell refusal/Fireball,9 stable portrait cycles, Mini/resume and normal Quit pass. Declared aggregate19FPS stress gate passes, with worst resumed window18.2648FPS. Final Qt renderer identity is cleared on Quit; persisted actual Qt identity is pending. No arbitrary scene19/60FPS, controlled speedup, V4 integration or semantic COM release claim.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/nvidia",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/accelerated",
+          "equals": true
+        },
+        {
+          "pointer": "/hardware_driver/software_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/spell_cases/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay/enemy_health_depleted",
+          "equals": true
+        },
+        {
+          "pointer": "/minimum_fps",
+          "equals": 19
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -72671,7 +72796,23 @@
       ],
       "evidence": [
         "NR.directdraw-public-native-menu.bound-flow-20261011",
-        "NR.directdraw-public-native-menu.gameplay-20261011"
+        "NR.directdraw-public-native-menu.gameplay-20261011",
+        "NR.directdraw-public-native-menu.nvidia-gameplay-20261011"
+      ]
+    },
+    {
+      "id": "NR.copy-order.fair-wait-20261011",
+      "level": "preview",
+      "scope": "Independent PE32/CPU/GPU fixtures for cross-thread Blt, writable Lock, DC and Flip admission and each50ms timeout refusal after Sleep(1) contention yielding. Original-once/HRESULT/LastError and complete native pixel comparisons remain mandatory. No fairness, original-driver or hardware performance equivalence.",
+      "behaviors": [
+        "NR.bounded-copy-order"
+      ],
+      "tests": [
+        "runtime/render/mutation_selftest.h",
+        "tools/test-render-mutations.py"
+      ],
+      "evidence": [
+        "NR.copy-order.fair-wait-20261011"
       ]
     }
   ],
@@ -73010,8 +73151,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-draw-public-gameplay-20261011.json",
-    "sha256": "c3e634fe02ffb593cccec9101cf2f0f4636f428d34e12433879c58b27e8be4e2"
+    "path": "research/runtime/coverage/source-index-native-copy-fair-wait-20261011.json",
+    "sha256": "783aee5532b9289928365e00ac75776e1fe410f2c6e9cd6ca951f9f198eb3853"
   },
   "claim_bindings_required": true
 }
