@@ -130,3 +130,39 @@ copy burst. Fresh full owned fixtures are retained in
 1100resident Worlds without a deferred refusal but stops at smoke Escape stage4
 (Mini does not appear) and misses19FPS; negative report
 `public-resident-cursor-queue-live-failure-20261011.json`. No status promotion.
+
+## Guarded owner permission-query epoch
+
+`NR.world-source-region-epoch` is an intentional public-resident policy. The
+original World owner caches at most64committed readable region answers after
+installing the NOACCESS guard. Both guard boundaries discard the cache; other
+threads and nonresident routes still query freshly. Headers,caller bytes,palette
+and frame bytes are copied/checked per request; byte identities are never
+trusted by pointer. Unknown,guarded,uncommitted and overflowing region answers
+do not become proofs. This differs from `readable_extent.h`'s original fresh
+synchronous admission policy: external permission changes during the guarded
+World epoch are excluded. Original permission/pixel equivalence is pending.
+
+The actual-query counter remains the existing wire field; the shell reports its
+per-World average. Fresh fixtures in
+`public-resident-region-epoch-fixtures-20261011.json` prove10000queries collapse
+to2,64region capacity/eviction,epoch permission revalidation and the existing
+owned reference/ABI/strict-defer corpus. The prelaunch undeclared-test dependency
+refusal is preserved separately; subsequent declarations name both policies.
+
+The default tutorial negative reaches~26actual queries/World and~18FPS with
+zero delivery readbacks, a large improvement over thousands of physical queries
+and~12FPS. This still fails19FPS and does not reachMini. The earlier inspected
+native image shows a SummonZombie tutorial popup; native physical Escape
+generation was forwarded but the tutorial route is not an ordinary campaign
+pause/resume proof. The physical Escape helper now holds250ms instead of80ms
+to span slower engine polls; this changes test stimulus,not input semantics.
+Ordinary difficulty1 casting/combat,spell/portrait,Mini/quit and sustained19FPS
+proof is running separately.60FPS and full original equivalence remain pending.
+
+The ordinary difficulty1 Titan run reaches225verified Worlds at19.7667aggregate
+FPS before a projected-shadow bounds refusal. Actual memory queries average29.82
+per World, with zero World/native/RGBA delivery readbacks. This is negative
+evidence (`public-resident-region-epoch-shadow-failure-20261011.json`), not a
+sustained19FPS or completed casting/combat/portrait/quit proof. The next bounded
+fix investigates the right-edge shadow against actual opaque samples.

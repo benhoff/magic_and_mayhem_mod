@@ -105,7 +105,19 @@ static void copy(void* d,const void* s,u32 n){u8* a=d;const u8* b=s;
 }
 static void zero(void* p,u32 n){u8* b=p;while(n--)*b++=0;}
 static u32 continuous_region_queries;
-static u32 producer_region_query(u32 p,u32* m){if(continuous_map)++continuous_region_queries;return VirtualQuery((void*)p,m,28);}
+API u32 WIN GetCurrentThreadId(void);
+static u32 producer_uncached_region_query(u32 p,u32* m){if(continuous_map)++continuous_region_queries;return VirtualQuery((void*)p,m,28);}
+#define MNM_WORLD_REGION_QUERY(p,m) producer_uncached_region_query(p,m)
+#include "world_source_regions.h"
+static struct MnmWorldSourceRegions continuous_source_regions;
+static u32 continuous_source_region_owner;
+static void producer_source_region_begin(u32 owner);
+static void producer_source_region_end(void);
+static u32 producer_region_query(u32 p,u32* m){
+ if(__atomic_load_n(&continuous_source_region_owner,__ATOMIC_ACQUIRE)==GetCurrentThreadId())
+  return mnm_world_source_regions_query(&continuous_source_regions,p,m);
+ return producer_uncached_region_query(p,m);
+}
 #define MNM_REGION_QUERY(p,m) producer_region_query(p,m)
 #include "readable_extent.h"
 static int readable(u32 p,u32 n){return mnm_readable_extent(p,n,0);}
@@ -344,6 +356,15 @@ static void frame_enter(u32* registers,u32 tag){
  if(f.record)HeapFree(producer_heap(),0,f.record);fail(16,tag);canvas_producers_close();
 }
 #include "world_producer_bypass.c"
+static void producer_source_region_begin(u32 owner){
+ mnm_world_source_regions_reset(&continuous_source_regions);
+ __atomic_store_n(&continuous_source_region_owner,continuous_map && continuous_resident && continuous_public_bind?owner:0,__ATOMIC_RELEASE);
+}
+static void producer_source_region_end(void){
+ __atomic_store_n(&continuous_source_region_owner,0,__ATOMIC_RELEASE);
+ mnm_world_source_regions_reset(&continuous_source_regions);
+}
+
 #include "drawing_publication.h"
 int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();

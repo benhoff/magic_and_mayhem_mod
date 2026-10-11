@@ -35,7 +35,7 @@ void ResidentWorldSession::poll(){
                 if(channel_.returnRecords(pending_->block.generation,pending_->block.source,actual)){
                     verifyRollingHandoffReturn(pending_->handoff,close(actual,0),close(actual,96),true);
                     pending_->returned=true;++returns_;rasters_+=pending_->handoff.batch.header[14];
-                    const auto ticks=channel_.ticks(pending_->block.generation);if(returns_==64)firstTick_=ticks[0];if(returns_>=64)lastTick_=ticks[3];
+                    const auto ticks=channel_.ticks(pending_->block.generation);regionQueries_+=ticks[9];if(returns_==64)firstTick_=ticks[0];if(returns_>=64)lastTick_=ticks[3];
                 }
             }
             if(pending_->returned && pending_->imported){completed_=pending_->block.generation;channel_.release(completed_);pending_.reset();if(completed_%64==0)saveReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));}
@@ -69,7 +69,7 @@ QJsonObject ResidentWorldSession::report() const {
         {"world_readbacks",double(world_?world_->worldReadbacks():0)},{"native_readbacks",double(stats.nativeReadbacks)},{"rgba_readbacks",double(stats.rgbaReadbacks)},
         {"nonce",QString::number(channel_.nonce())},{"error",error_},{"pending",bool(pending_)},{"renderer",renderer_?QString::fromStdString(renderer_->driver().renderer):QString()},
         {"reply_bytes_per_world",int(MNM_CONT_ACK_BYTES)},{"world_pixel_reply_bytes",0},
-        {"profiled_worlds",double(profiled_)},{"decode_ms_per_world",profiled_?decodeMs_/profiled_:0.},
+        {"actual_region_queries_per_world",returns_?double(regionQueries_)/returns_:0.},{"profiled_worlds",double(profiled_)},{"decode_ms_per_world",profiled_?decodeMs_/profiled_:0.},
         {"handoff_ms_per_world",profiled_?handoffMs_/profiled_:0.},{"native_ms_per_world",profiled_?nativeMs_/profiled_:0.},
         {"producer_ms_per_world",profiled_?producerMs_/profiled_:0.},{"prepare_ms_per_world",profiled_?prepareMs_/profiled_:0.},{"submit_ms_per_world",profiled_?submitMs_/profiled_:0.},{"max_native_ms",maxNativeMs_},
         {"engine_fps",returns_>64 && lastTick_!=firstTick_?double(returns_-64)*1000/double(std::uint32_t(lastTick_-firstTick_)):0.}};

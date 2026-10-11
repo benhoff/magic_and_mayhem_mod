@@ -25,7 +25,7 @@ def main():
   for path in (a.channel,a.assets,a.prefix):
    if not path.resolve().is_relative_to(ROOT/'working'):raise ValueError('Require owned retained test inputs')
   run([str(ROOT/'tools/original-manifest.sh'),'verify'])
-  run(['python3','tools/draft-coverage-claims.py','--behavior','NR.public-resident-world','--scenario','NR.public-resident-world.owned-fixtures','--output',str(out/'claims.json')])
+  run(['python3','tools/draft-coverage-claims.py','--behavior','NR.public-resident-world','--behavior','NR.world-source-region-epoch','--scenario','NR.public-resident-world.owned-fixtures','--output',str(out/'claims.json')])
   claims=json.loads((out/'claims.json').read_text());report.update(claims=claims['claims'],sources=claims['sources'])
   for directory in ('apps','assets','audio','compat','reconstruction','renderer','runtime','protocols'):
    for source in (ROOT/directory).rglob('*'):
@@ -37,13 +37,14 @@ def main():
   leaf=run(['python3','tools/test-resident-leaf-abi.py','--prefix',str(a.prefix.resolve())]);leafpath=Path(next(line[8:] for line in leaf.splitlines() if line.startswith('Report: ')))
   report['leaf_abi']=json.loads(leafpath.read_text());assert report['leaf_abi']['success'] and report['leaf_abi']['sources_unchanged']
   run(['cmake','-S','apps/qt-shell','-B','working/build/qt-shell','-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
-  targets=['resident-public-block-replay','render-resident-world-test','world-deferred-test','world-raster-batch-test','minimap-producer-test']
+  targets=['resident-public-block-replay','render-resident-world-test','world-deferred-test','world-source-regions-test','world-raster-batch-test','minimap-producer-test']
   run(['cmake','--build','working/build/qt-shell','--target',*targets,'-j','8'])
   build=ROOT/'working/build/qt-shell';sub=build/'world-rolling/canvas-producers'
   run(['xvfb-run','-a',str(build/'world-rolling/resident-public-block-replay'),str(a.channel.resolve()),str(a.assets.resolve()),str(out/'mixed.json')],True)
   report['mixed_world']=json.loads((out/'mixed.json').read_text())
   output=run(['xvfb-run','-a',str(build/'renderer/render-resident-world-test')],True);report['import_hud']=json.loads(next(line for line in output.splitlines() if line.startswith('{')))
   report['deferred']=json.loads(run([str(build/'world-rolling/world-deferred-test')]))
+  report['source_regions']=json.loads(run([str(build/'world-rolling/world-source-regions-test')]))
   report['strict_batch']=run([str(sub/'world-raster-batch-test')]).strip()
   report['minimap']=run([str(sub/'minimap-producer-test')]).strip()
   report['executables']={str(binary.relative_to(ROOT)):sha(binary) for binary in [build/'world-rolling/resident-public-block-replay',build/'renderer/render-resident-world-test',build/'world-rolling/world-deferred-test',sub/'world-raster-batch-test',sub/'minimap-producer-test']}
