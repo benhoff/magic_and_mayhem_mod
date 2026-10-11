@@ -23,6 +23,7 @@ public:
     bool request(quint32 action,const State& state,quint32 argument=0,const std::array<int,17>* rules=nullptr);
     bool finishSpells(const State&,const std::array<int,63>& assignments);
     bool requestPreferences(quint32 action,const State&,const std::array<int,7>& values,quint32 slider=0);
+    quint32 requestedSequence() const { return request_; }
     void retire();
 private:
     QFile file_;

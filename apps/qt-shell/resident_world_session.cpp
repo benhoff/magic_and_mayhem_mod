@@ -19,16 +19,22 @@ CanvasProducer close(const std::array<std::uint8_t,192>& bytes,unsigned offset){
 ResidentWorldSession::ResidentWorldSession(GlViewport& viewport,const QString& path,const QString& game):viewport_(viewport),channel_(create(path)),game_(game){}
 ResidentWorldSession::~ResidentWorldSession(){channel_.cancel();}
 void ResidentWorldSession::abort(const QString& error){error_=error;channel_.cancel();}
-void ResidentWorldSession::poll(){
+void ResidentWorldSession::poll(bool acceptedNormalQuit){
     try {
         if(!error_.isEmpty())throw std::runtime_error(error_.toStdString());
+        if(normalQuitRetired_)return;
+        if(channel_.cancelled()){
+            if(acceptedNormalQuit && !pending_ && completed_==imports_ && completed_==returns_){
+                normalQuitRetired_=true;saveReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));return;
+            }
+            throw std::runtime_error("Resident World producer cancelled");
+        }
         if(!viewport_.ready())return;
         if(!world_){
             renderer_=std::make_unique<mnm::render::GlBlitter>(viewport_.context());auto store=mnm::assets::AssetStore::create(game_.toStdString());
             if(auto* e=std::get_if<mnm::assets::Error>(&store))throw std::runtime_error(e->detail);
             world_=std::make_unique<WorldRollingSession>(*renderer_,std::get<mnm::assets::AssetStore>(std::move(store)),false,true);
         }
-        if(channel_.cancelled())throw std::runtime_error("Resident World producer cancelled");
         if(pending_){
             if(pending_->deadline.elapsed()>120000)throw std::runtime_error("Resident World import/return deadline");
             if(!pending_->returned){std::array<std::uint8_t,192> actual{};
@@ -59,7 +65,7 @@ void ResidentWorldSession::poll(){
     }catch(const std::exception& e){error_=e.what();channel_.cancel();throw;}
 }
 mnm::render::GpuFrame ResidentWorldSession::import(std::uint64_t generation,std::uint64_t nonce){
-    if(!error_.isEmpty() || !pending_ || pending_->imported || generation!=pending_->block.generation || nonce!=channel_.nonce())
+    if(!error_.isEmpty() || normalQuitRetired_ || !pending_ || pending_->imported || generation!=pending_->block.generation || nonce!=channel_.nonce())
         throw std::runtime_error("Resident World command/import identity");
     pending_->imported=true;++imports_;return pending_->frame;
 }
@@ -67,7 +73,7 @@ QJsonObject ResidentWorldSession::report() const {
     const auto stats=renderer_?renderer_->stats():mnm::render::RenderStats{};
     return {{"completed",QString::number(completed_)},{"imports",QString::number(imports_)},{"verified_returns",QString::number(returns_)},{"rasters",QString::number(rasters_)},
         {"world_readbacks",double(world_?world_->worldReadbacks():0)},{"native_readbacks",double(stats.nativeReadbacks)},{"rgba_readbacks",double(stats.rgbaReadbacks)},
-        {"nonce",QString::number(channel_.nonce())},{"error",error_},{"pending",bool(pending_)},{"renderer",renderer_?QString::fromStdString(renderer_->driver().renderer):QString()},
+        {"nonce",QString::number(channel_.nonce())},{"error",error_},{"pending",bool(pending_)},{"normal_quit_retired",normalQuitRetired_},{"renderer",renderer_?QString::fromStdString(renderer_->driver().renderer):QString()},
         {"reply_bytes_per_world",int(MNM_CONT_ACK_BYTES)},{"world_pixel_reply_bytes",0},
         {"actual_region_queries_per_world",returns_?double(regionQueries_)/returns_:0.},{"profiled_worlds",double(profiled_)},{"decode_ms_per_world",profiled_?decodeMs_/profiled_:0.},
         {"handoff_ms_per_world",profiled_?handoffMs_/profiled_:0.},{"native_ms_per_world",profiled_?nativeMs_/profiled_:0.},

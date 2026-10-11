@@ -60,6 +60,11 @@ void drawMinimapTerrain(MinimapPlane &destination, const MinimapTerrain &t,
       }
       writes.push_back({index, colour});
     }
-  for (const auto &write : writes) destination.words[write.index] = write.colour;
+  if (destination.writeCandidates)
+    destination.writeCandidates->reserve(destination.writeCandidates->size() + writes.size());
+  for (const auto &write : writes) {
+    if (destination.writeCandidates) destination.writeCandidates->push_back(write.index);
+    destination.words[write.index] = write.colour;
+  }
 }
 }

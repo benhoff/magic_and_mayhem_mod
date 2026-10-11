@@ -34,7 +34,11 @@ std::pair<int, int> project(const MinimapOverlayView &v, int x, int y) {
 }
 struct Write { std::size_t index; std::uint16_t colour; };
 void commit(MinimapPlane &p, const std::vector<Write> &writes) {
-  for (const auto &w : writes) p.words[w.index] = w.colour;
+  if (p.writeCandidates) p.writeCandidates->reserve(p.writeCandidates->size() + writes.size());
+  for (const auto &w : writes) {
+    if (p.writeCandidates) p.writeCandidates->push_back(w.index);
+    p.words[w.index] = w.colour;
+  }
 }
 }
 std::size_t drawMinimapCellMarker(MinimapPlane &p, const MinimapOverlayView &v,

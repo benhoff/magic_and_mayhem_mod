@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <cstddef>
 #include <vector>
 
 namespace mnm::render {
@@ -7,6 +8,8 @@ namespace mnm::render {
 struct MinimapPlane {
   int width, height, stride;
   std::vector<std::uint16_t> words;
+  // Optional owned service write receipt; never a wire or game pointer.
+  std::vector<std::size_t>* writeCandidates = nullptr;
 };
 struct MinimapTerrain {
   int width, height, centerX, centerY, rootX, rootY;

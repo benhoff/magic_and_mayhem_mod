@@ -5447,3 +5447,46 @@ self CPU samples to full-canvas dual-background minimap composition; attribution
 is diagnostic,not pure GPU time. Retained artifacts/source/binary hashes:
 `public-resident-cpu-profile-20261011.json`. Normal acknowledged shutdown handling,
 minimap candidate comparison and uninstrumented fulljourney/FPS proof are next.
+
+Two native policies are seeded before execution. `NR.minimap-write-candidates`
+retains two freshly distinct backgrounds and compares the union of fully admitted
+owned service writes,including sentinel-equal words and duplicates. Arbitrary
+callbacks retain the full-canvas scan; no destination oracle/CPU World read is
+introduced. `NR.resident-normal-shutdown` accepts cancellation only after the
+exact same-thread Main Quit callback ACK, no pending lease, balanced completed/
+import/return counters and no prior error; imports after retirement refuse.
+Unexpected cancellation remains terminal. The first owned attempt already
+compares7.68Mwords across16padded/four-view terrain/overlay cases, with19396unique
+service words and four atomic/undefined refusals; its shutdown fixture wrongly
+tries to create a second native channel owner and is correctly refused. Retained
+negative:`public-resident-candidates-quit-fixture-role-refusal-20261011.json`.
+The fixture now simulates producer cancellation through a separate owned header
+mapping. Fresh complete fixtures/original comparisons and Titan proof are pending.
+
+Corrected complete owned execution passes with source/input stability:
+`public-resident-minimap-shutdown-fixtures-20261011.json`.16four-view/padded terrain
+and overlay cases compare7.68Mwords, with19396unique committed service words;
+sentinel-equal values, duplicates, generic callback full scans, atomic rejection
+and unknown CPU validity are preserved. Five Main Quit ACK variants, three clean
+retirement cases and eight cancellation/import refusals pass; repeated retirement
+is idempotent. Existing1.44MWorld-word/import565/ownership/shadow/upload/defer/query/
+ABI/minimap wire and Preferences tests pass. The two new native policies reach
+headless integration only. Original comparisons and fresh uninstrumented Titan
+normal-Quit/19FPS proof remain pending; no original driver/fullUI equivalence.
+
+Fresh isolated original comparisons after optional write receipts pass:
+1360terrain cases/35,486,800words and4752overlay cases/53,312,088words,including
+four views,padded storage,RGB565/RGB555overlay words,returned cell offsets and
+creature/camera metadata. Sanitizers and source/original stability pass. Reports:
+`public-resident-minimap-terrain-current-20261011.json` and
+`public-resident-minimap-overlays-current-20261011.json`. These renew selected
+pixel-library semantics; traced canvas composition remains a separately proved
+native policy. Full machine state/driver/broad live equivalence stay pending.
+
+Shared canvas changes are followed by fresh selected distortion and projected
+shadow comparisons,including both GPU backends and complete owned canvas words:
+`public-displacement-after-minimap-20261011.json` and
+`public-shadow-after-minimap-20261011.json`. Both remain exact against the scoped
+unmodified original leaves, with stable sources/inputs and zero delivery readbacks.
+Historical reports/hashes remain intact. Fresh unprofiled full Titan proof is
+running; no19FPS/completed normalQuit assertion is made from headless fixtures.
