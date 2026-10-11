@@ -4642,3 +4642,39 @@ Five parser guards pass. Actual game interaction, complete global presentation,
 semantic input outcomes, real driver loss/Restore and native scene parity remain
 separate; callback faults are never labeled real engine recovery.
 See `draw02-interactive-session.md` and `NR.drawing-session-api`.
+
+## 2026-10-11 DRAW-02 interactive accounting and failure results
+
+The opt-in common API observer now serializes metadata/publication across original
+threads without holding its journal mutex across driver readbacks. Eight synthetic
+second-thread readback callbacks and all32 success/lost/busy/generic-error cases
+pass with exact results, LastError/x87 and eight full planes. Surface3 GUID and
+Surface7 factory ABI are corrected; tagged metadata/input-only sessions explicitly
+exclude full readbacks. Seven strict admission guards and eight caller/fault guards
+pass. Historical evidence is retained with its original fingerprints.
+
+Extra primary driver readbacks perturbed live gameplay in diagnostics. The
+interactive default uses metadata-only observation, which restored sustained
+original gameplay in matched-schedule controls. The fresh bound original-active
+run records2,444input calls, nine accepted original menu requests and19independent
+physical viewport PNGs with journal-byte fences. It observes63creature sample ticks,
+376movement records,112health-reduction samples and16original melee returns.
+Original Results Continue/Quit and Quick Back return to fresh Main. Original
+drawing/simulation remain active. Screenshots are explicitly unsynchronized with
+an exact original frame; no complete presented pixel parity is asserted. Tooltip,
+picking, complete selection/pause semantics, broader combat and global presentation
+routes remain pending. Full-readback mode is diagnostic until interference closes.
+
+The separate recovered failure comparison matches all4,480retained unchanged-original
+scripted COM wrapper traces. Its1,536two-draw exhaustions preserve exact original
+prefixes and cannot masquerade as successful return; invalid budgets are refused.
+HRESULT/LastError comparison is independent of pixel equality and checks recorded
+flags/entry identities; complete pointer-backed call-input identity remains open.
+The native GL restoration policy additionally passes30known/unknown-content,
+partial-write, explicit-reload and exhausted-recovery checks. Controlled faults
+and native unknown-content policy do not validate true live driver loss/Restore,
+restored palettes or whole-game recovery. The14journey/21operation gates remain open.
+
+See [interactive acquisition](draw02-interactive-session.md),
+[caller results](draw02-caller-results.md) and their immutable execution reports.
+Committed-history review covers53bdc4a..49c337d,16exact file versions with no gaps.

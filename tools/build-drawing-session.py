@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def build(selftest=False):
     s=importlib.util.spec_from_file_location('shadow',ROOT/'tools/build-shadow-bridge.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
     root=ROOT/'working/build'/('drawing-session-selftest' if selftest else 'drawing-session');root.mkdir(parents=True,exist_ok=True)
-    imports=dict(m.IMPORTS,GetProcAddress=8,GetCurrentThreadId=0,GetTickCount=0)
+    imports=dict(m.IMPORTS,GetProcAddress=8,GetCurrentThreadId=0,GetTickCount=0,InitializeCriticalSection=4,EnterCriticalSection=4,LeaveCriticalSection=4,VirtualFree=12,CreateThread=24,WaitForSingleObject=8)
     definition=root/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{k}@{v}\n' for k,v in imports.items()))
     subprocess.run(['llvm-dlltool','-m','i386','--kill-at','-d',str(definition),'-l',str(root/'kernel32.lib')],check=True)
     flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror']

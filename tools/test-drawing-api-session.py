@@ -19,14 +19,14 @@ def main():
         with (run/'wineboot.log').open('x') as f:subprocess.run(['wineboot','-u'],env=env,stdout=f,stderr=subprocess.STDOUT,check=True,timeout=90)
         execution=subprocess.run(['wine',str(binary)],cwd=dll.parent,env=env,capture_output=True,timeout=90);(run/'fixture.log').write_bytes(execution.stdout+execution.stderr);execution.check_returncode()
         observed=inspect(capture)
-        if len(observed['calls'])!=32 or len(observed['frames'])!=8 or len(observed['actions'])!=2:raise ValueError('Fixture failed exact fault/route/phase accounting')
+        if len(observed['calls'])!=32 or len(observed['frames'])!=8 or len(observed['actions'])!=18:raise ValueError('Fixture failed exact fault/route/phase accounting')
         faults=[0,0x887601c2,0x887601ae,0x80004005]
         for i,c in enumerate(observed['calls']):
             if c['hresult']&0xffffffff!=faults[i%4] or c['last_error']!=0xa000+i//4 or c['entry_error']!=0xbeef:raise ValueError('Original callback result/error was changed')
         expected=b''.join(((i*997)&65535).to_bytes(2,'little') for i in range(48))
         if any(f['sha256']!=sha(expected) for f in observed['frames']):raise ValueError('Full-plane observer mismatch')
         if any(sha((ROOT/n).read_bytes())!=h for n,h in sources.items()):raise ValueError('Fixture sources changed during execution')
-        report={'schema':1,'success':True,'sources':sources,'sources_stable':True,'scripted_com_cases':32,'primary_planes':8,'menu_phases':2,'hresult_last_error_x87_preserved':True,'original_game_executed':False,'scope':'Synthetic PE32 COM callbacks at eight primary mutator methods with success/lost/busy/generic failure; exact original callback result/LastError/x87 and single application call, independent unthrottled full-plane readback. No actual engine/driver failure or physical/global presentation equivalence.','binary_sha256':sha(binary.read_bytes()),'dll_sha256':sha(dll.read_bytes()),'artifacts':str(run.relative_to(ROOT)),'observation':observed}
+        report={'schema':1,'success':True,'sources':sources,'sources_stable':True,'scripted_com_cases':32,'primary_planes':8,'menu_phases':18,'driver_reentrant_threads':8,'hresult_last_error_x87_preserved':True,'original_game_executed':False,'scope':'Synthetic PE32 COM callbacks at eight primary mutator methods with success/lost/busy/generic failure; exact original callback result/LastError/x87 and single application call, independent unthrottled full-plane readback. No actual engine/driver failure or physical/global presentation equivalence.','binary_sha256':sha(binary.read_bytes()),'dll_sha256':sha(dll.read_bytes()),'artifacts':str(run.relative_to(ROOT)),'observation':observed}
         if claims:report['claims']=claims['claims']
         a.report.parent.mkdir(parents=True,exist_ok=True);a.report.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'success':True,'scripted_com_cases':32,'primary_planes':8}))
     finally:subprocess.run(['wineserver','-k'],env=env,check=False,timeout=10)

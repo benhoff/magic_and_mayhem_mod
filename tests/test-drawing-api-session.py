@@ -12,6 +12,17 @@ def fixture():
 class TestSession(unittest.TestCase):
     def test_valid_partial_boundary(self):
         r=decode(fixture(),lambda n:bytes(96));self.assertEqual(r['pixels_observed'],48);self.assertFalse(r['all_global_presentation_routes_observed']);self.assertFalse(r['semantic_input_outcomes_complete'])
+    def test_metadata_mode_never_admits_pixel_readback(self):
+        b=bytearray(fixture());struct.pack_into('<I',b,32,1)
+        with self.assertRaises(ValueError):decode(b)
+        struct.pack_into('<I',b,64+48,0);struct.pack_into('<I',b,64+52,2);struct.pack_into('<I',b,64+120,0)
+        struct.pack_into('<I',b,192+88,0);struct.pack_into('<I',b,192+100,0)
+        result=decode(b);self.assertFalse(result['driver_readbacks_enabled']);self.assertEqual(result['boundary'],'api_results_without_driver_readbacks')
+        struct.pack_into('<I',b,32,0)
+        with self.assertRaises(ValueError):decode(b)
+    def test_input_only_mode_refuses_surface_calls(self):
+        b=bytearray(fixture());struct.pack_into('<I',b,32,2)
+        with self.assertRaises(ValueError):decode(b)
     def test_terminal_required(self):
         with self.assertRaises(ValueError):decode(fixture()[:-128])
     def test_typed_frame_method_results_loss_order(self):
