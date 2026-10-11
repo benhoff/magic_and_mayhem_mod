@@ -37,8 +37,9 @@ struct Awaiting {
 int main(int argc, char **argv) {
   QApplication app(argc, argv);
   const auto args = app.arguments();
+  const bool resident = args.size() == 6 && args[5] == "--resident";
   const bool verify = args.size() == 6 && args[5] == "--verify";
-  if (args.size() != 5 && !verify)
+  if (args.size() != 5 && !verify && !resident)
     return 2;
   bool okay = false;
   const auto target = args[4].toULongLong(&okay);
@@ -52,7 +53,7 @@ int main(int argc, char **argv) {
   auto nonce = QRandomGenerator::system()->generate64();
   if (!nonce)
     nonce = 1;
-  WorldContinuousChannel::create(path, nonce, target);
+  WorldContinuousChannel::create(path, nonce, target, resident);
   WorldContinuousChannel channel(path);
   GlViewport viewport;
   viewport.resize(800, 600);
@@ -127,7 +128,7 @@ int main(int argc, char **argv) {
           throw std::runtime_error(e->detail);
         session = std::make_unique<WorldRollingSession>(
             *renderer, std::get<mnm::assets::AssetStore>(std::move(store)),
-            verify);
+            verify, resident);
         save(QDir(output).filePath("ready"),
              {{"pid", qint64(QCoreApplication::applicationPid())},
               {"nonce", QString::number(nonce)}});
@@ -161,7 +162,7 @@ int main(int argc, char **argv) {
               throw std::runtime_error("Malformed continuous closing record");
             return c;
           };
-          verifyRollingHandoffReturn(awaiting->handoff, close(0), close(96));
+          verifyRollingHandoffReturn(awaiting->handoff, close(0), close(96), resident);
           rasters += awaiting->handoff.batch.header[14];
           returned = awaiting->block.generation;
           auto row = samples.last().toObject();
@@ -219,7 +220,13 @@ int main(int argc, char **argv) {
           const auto prepared = ms(started);
           peakPacket = std::max(peakPacket, block.source.size() + 192);
           viewport.makeCurrent();
-          auto image = session->consumeOwned(block.generation, handoff.stream);
+          mnm::render::Image image;
+          const auto beforeReadbacks = renderer->stats().nativeReadbacks;
+          if (resident)session->consumeResident(block.generation, handoff.stream);
+          else image = session->consumeOwned(block.generation, handoff.stream);
+          if (resident && (renderer->stats().nativeReadbacks != beforeReadbacks ||
+                           session->worldReadbacks()))
+            throw std::runtime_error("Resident delivery exported GPU pixels");
           const auto consumed = ms(started);
           if (presentation && lastPainted != presentation)
             ++unpainted;
@@ -230,8 +237,12 @@ int main(int argc, char **argv) {
            * then adapt the checked image to that local request identity. */
           if (session->completed() != block.generation)
             throw std::runtime_error("Continuous native generation mismatch");
-          auto reply = rollingHandoffReply(
-              handoff, RollingCompletion{1, std::move(image)});
+          std::vector<std::uint8_t> reply;
+          if(resident) {
+            reply.resize(MNM_CONT_ACK_BYTES);
+            mnm_ack_encode(reply.data(),block.request.data(),unsigned(block.generation),
+                           unsigned(block.generation>>32),unsigned(nonce),unsigned(nonce>>32));
+          } else reply = rollingHandoffReply(handoff, RollingCompletion{1, std::move(image)});
           channel.reply(block.generation, reply);
           if (block.generation == 1)
             coldDeliveryMs = ms(started);
@@ -298,6 +309,12 @@ int main(int argc, char **argv) {
         {"coalesced_presentations", QString::number(unpainted)},
         {"elapsed_ms", elapsed},
         {"verify", verify},
+        {"resident", resident},
+        {"world_readbacks", double(renderer ? renderer->stats().nativeReadbacks : 0)},
+        {"native_gpu_uploads", double(renderer ? renderer->stats().uploads : 0)},
+        {"pixel_replies", resident ? QString("0") : QString::number(returned)},
+        {"original_world_writebacks", resident ? QString("0") : QString::number(returned)},
+        {"checked_resident_returns", resident ? QString::number(returned) : QString("0")},
         {"cpu_reference_queues",
          verify ? QString::number(completed) : QString("0")},
         {"cold_delivery_ms", coldDeliveryMs},

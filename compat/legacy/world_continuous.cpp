@@ -37,7 +37,7 @@ constexpr unsigned requestAt = MNM_CONT_SLOT_HEADER + MNM_CONT_SOURCE_BYTES;
 constexpr unsigned replyAt = requestAt + MNM_CONT_REQUEST_BYTES;
 } // namespace
 void WorldContinuousChannel::create(const QString &path, std::uint64_t nonce,
-                                    std::uint64_t target) {
+                                    std::uint64_t target, bool resident) {
   require(nonce != 0, "Zero continuous session nonce");
   QFile f(path);
   require(f.open(QIODevice::ReadWrite | QIODevice::NewOnly),
@@ -46,8 +46,9 @@ void WorldContinuousChannel::create(const QString &path, std::uint64_t nonce,
   auto *p = f.map(0, MNM_CONT_BYTES);
   require(p, "Cannot map continuous channel");
   std::memset(p, 0, MNM_CONT_HEADER);
-  std::memcpy(p, MNM_CONT_MAGIC, 8);
-  put(p, 2, MNM_CONT_VERSION);
+  std::memcpy(p, resident ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8);
+  put(p, 2, resident ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION);
+  put(p, 5, resident ? MNM_CONT_RESIDENT_MODE : 0);
   put(p, 3, MNM_CONT_HEADER);
   put(p, 4, MNM_CONT_BYTES);
   put(p, 6, unsigned(nonce));
@@ -63,12 +64,13 @@ WorldContinuousChannel::WorldContinuousChannel(const QString &path)
   map_ = file_.map(0, MNM_CONT_BYTES);
   require(map_, "Continuous channel mapping");
   try {
+    resident_ = !std::memcmp(map_, MNM_CONT_RESIDENT_MAGIC, 8);
     nonce_ = nonce();
     target_ = target();
-    require(!std::memcmp(map_, MNM_CONT_MAGIC, 8) &&
-                word(map_, 2) == MNM_CONT_VERSION &&
+    require(!std::memcmp(map_, resident_ ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8) &&
+                word(map_, 2) == (resident_ ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION) &&
                 word(map_, 3) == MNM_CONT_HEADER &&
-                word(map_, 4) == MNM_CONT_BYTES && word(map_, 5) == 0 &&
+                word(map_, 4) == MNM_CONT_BYTES && word(map_, 5) == (resident_ ? MNM_CONT_RESIDENT_MODE : 0) &&
                 nonce() != 0,
             "Continuous channel header");
     for (unsigned i = 14; i < 32; ++i)
@@ -138,8 +140,12 @@ void WorldContinuousChannel::reply(std::uint64_t g,
   require(!cancelled(), "Continuous session cancelled");
   auto *s = slot(g);
   require(load(s, 0) == MNM_CONT_PROCESSING && wide(s, 2) == g &&
-              bytes.size() == MNM_CONT_REPLY_BYTES,
+              bytes.size() == (resident_ ? MNM_CONT_ACK_BYTES : MNM_CONT_REPLY_BYTES),
           "Continuous reply lease/extent");
+  if (resident_)
+    require(mnm_ack_valid(bytes.data(), unsigned(bytes.size()), s + requestAt,
+                          unsigned(g), unsigned(g >> 32), unsigned(nonce_),
+                          unsigned(nonce_ >> 32)), "Continuous acknowledgement identity");
   std::memcpy(s + replyAt, bytes.data(), bytes.size());
   put(s, 10, unsigned(bytes.size()));
   put(s, 11, checksum(bytes.data(), bytes.size()));
@@ -171,10 +177,10 @@ void WorldContinuousChannel::release(std::uint64_t g) {
 } // namespace mnm::legacy
 
 void mnm::legacy::WorldContinuousChannel::validate() const {
-  require(!std::memcmp(map_, MNM_CONT_MAGIC, 8) &&
-              word(map_, 2) == MNM_CONT_VERSION &&
+  require(!std::memcmp(map_, resident_ ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8) &&
+              word(map_, 2) == (resident_ ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION) &&
               word(map_, 3) == MNM_CONT_HEADER &&
-              word(map_, 4) == MNM_CONT_BYTES && word(map_, 5) == 0 &&
+              word(map_, 4) == MNM_CONT_BYTES && word(map_, 5) == (resident_ ? MNM_CONT_RESIDENT_MODE : 0) &&
               nonce() == nonce_ && target() == target_ && load(map_, 8) == 1 &&
               load(map_, 9) <= 1 && load(map_, 10) <= 1 && load(map_, 11) <= 1,
           "Continuous immutable envelope changed");

@@ -37,6 +37,7 @@ def main():
     parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow','clip-takeover'],help='Observe the explicit partial direct-word raster experiment')
     parser.add_argument('--world-frames',action='store_true',help='Capture complete effective raster inputs and separate original output oracles')
     parser.add_argument('--world-lifetime',action='store_true',help='Bounded diagnostic canvas identity/initial-content observations from first queue call')
+    parser.add_argument('--continuous-resident',action='store_true',help='Explicit V4 native GPU acknowledgement delivery')
     parser.add_argument('--continuous-producer-waits',action='store_true',help='Separate bounded original/Wine blocking-syscall trace; never enabled by normal rendering')
     parser.add_argument('--continuous-producer-profile',action='store_true',help='Separate whole original producer process CPU sampling probe')
     parser.add_argument('--continuous-hardware',action='store_true',help='Explicit private-seat hardware test environment; retain driver selection')
@@ -66,6 +67,8 @@ def main():
     parser.add_argument('--minimap-owned',action='store_true',help='Observe owned four-view minimap inputs in producer journal V2; original drawing stays active')
     parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
+    if args.continuous_resident and (args.continuous_queues is None or args.continuous_verify):
+        parser.error('--continuous-resident requires continuous queues and excludes pixel verification')
     if args.continuous_queues is not None and (not 1<=args.continuous_queues<=4096 or not args.world_raster_batch or args.samples!=32 or args.world_raster_prefix!=32 or args.manual_input):parser.error('Continuous queues require isolated guarded prefix32 setup and cap1..4096')
     if args.glyph_backend and (args.canvas_producers or args.canvas_startup or args.world_frames or args.world_live or args.word_sprites):parser.error('Glyph mode requires a separate experiment')
     if args.minimap_input_fixture and (not args.minimap_owned or args.samples!=16 or args.magic_items):parser.error('Minimap input fixture requires --minimap-owned --samples 16 --magic-items 0')
@@ -166,13 +169,13 @@ def main():
             (root/'capture-policy.json').write_text(json.dumps(policy,indent=2)+'\n')
         if args.producer_live:
             viewer_log=(root/'native-producers.log').open('x')
-            viewer=subprocess.Popen([str(args.producer_live.resolve()),str(root/'capture/canvas-producers.bin'),str(root/'game'),str(root/'native-producers'),*([str(args.continuous_queues),*(['--verify'] if args.continuous_verify else [])] if args.continuous_queues is not None else [*(['--world-handoff'] if args.world_producer_handoff else []),*(['--world-batch'] if args.world_raster_batch else [])])],env={**os.environ,'QT_QPA_PLATFORM':'xcb',**({} if args.continuous_hardware else {'LIBGL_ALWAYS_SOFTWARE':'1'})},stdout=viewer_log,stderr=subprocess.STDOUT)
+            viewer=subprocess.Popen([str(args.producer_live.resolve()),str(root/'capture/canvas-producers.bin'),str(root/'game'),str(root/'native-producers'),*([str(args.continuous_queues),*(['--resident'] if args.continuous_resident else ['--verify'] if args.continuous_verify else [])] if args.continuous_queues is not None else [*(['--world-handoff'] if args.world_producer_handoff else []),*(['--world-batch'] if args.world_raster_batch else [])])],env={**os.environ,'QT_QPA_PLATFORM':'xcb',**({} if args.continuous_hardware else {'LIBGL_ALWAYS_SOFTWARE':'1'})},stdout=viewer_log,stderr=subprocess.STDOUT)
         if args.continuous_queues is not None:
             ready=root/'native-producers/ready';until=time.monotonic()+60
             while not ready.exists():
                 if viewer.poll() is not None or time.monotonic()>until:raise RuntimeError('Continuous native initialization failed')
                 time.sleep(.02)
-            metadata=json.loads((root/'manifest.json').read_text());metadata['world_continuous']=str(root/'world-continuous.bin');metadata['continuous_queues']=args.continuous_queues;metadata['continuous_verify']=args.continuous_verify;(root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
+            metadata=json.loads((root/'manifest.json').read_text());metadata['world_continuous']=str(root/'world-continuous.bin');metadata['continuous_queues']=args.continuous_queues;metadata['continuous_verify']=args.continuous_verify;metadata['continuous_resident']=args.continuous_resident;(root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
         if args.world_live:
             create(root/'world-channel.bin',verify,args.live_frames if history else 0)
             viewer_log=(root/'native-world.log').open('x')

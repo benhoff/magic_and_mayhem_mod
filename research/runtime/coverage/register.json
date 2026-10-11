@@ -31613,6 +31613,7 @@
         "compat/legacy/../../protocols/include/mnm/scene_snapshot_v1.h",
         "compat/legacy/../../protocols/include/mnm/world_continuous_checksum.h",
         "compat/legacy/../../protocols/include/mnm/world_continuous_v3.h",
+        "compat/legacy/../../protocols/include/mnm/world_continuous_v4.h",
         "compat/legacy/../../protocols/include/mnm/world_frame_v1.h",
         "compat/legacy/../../protocols/include/mnm/world_raster_batch_v3.h",
         "compat/legacy/../../protocols/include/mnm/world_rolling_v1.h",
@@ -31651,6 +31652,7 @@
         "compat/legacy/world_rolling_packet.hpp",
         "compat/legacy/world_rolling_session.cpp",
         "compat/legacy/world_rolling_session.hpp",
+        "protocols/include/mnm/world_continuous_v4.h",
         "renderer/../assets/asset_file.hpp",
         "renderer/../assets/path_resolver.hpp",
         "renderer/../assets/sprite_loader.hpp",
@@ -31720,13 +31722,14 @@
       ],
       "validation_domain": "Selected bounded startup World/HUD history. Unknown CPU-dependent history reads must refuse; no historical source/pixel proof is reused for this new ownership policy.",
       "evidence": [
-        "NR.world-gpu-resident-frame.history-32-20261010"
+        "NR.world-gpu-resident-frame.history-32-20261010",
+        "NR.world-gpu-resident-frame.masked-history-32-20261010"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "headless",
         "replacement": "none"
       }
     },
@@ -31741,16 +31744,286 @@
       "documents": [
         "research/runtime/native-gpu-frame-ownership.md"
       ],
-      "implementation": [],
-      "tests": [],
-      "validation_dependencies": [],
+      "implementation": [
+        "runtime/native-draw/factory.c"
+      ],
+      "tests": [
+        "tests/native-draw-factory-probe.c",
+        "tools/test-native-draw-factory.py"
+      ],
+      "validation_dependencies": [
+        "runtime/shadow/win32_min.h",
+        "tools/capture-original-surface-keys.py"
+      ],
       "validation_domain": "Selected bounded startup World/HUD history. Unknown CPU-dependent history reads must refuse; no historical source/pixel proof is reused for this new ownership policy.",
-      "evidence": [],
+      "evidence": [
+        "NR.directdraw-retirement.factory-isolated-20261010"
+      ],
       "status": {
         "understanding": "partial",
-        "implementation": "none",
+        "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.world-gpu-ack-delivery",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Versioned live GPU acknowledgement without pixel replies",
+      "scope": "Selected NoCD World delivery using explicit continuous V4 resident mode and checked80-byte acknowledgements bound to immutable session nonce, u64 generation, exact request identities, destination extents and draw totals. Preserve owned source checksums, guarded original destination until acceptance, actual checkpoint/return, cancellation, peer death and fresh-session recovery. Native GPU delivery must export zero pixels and original World writebacks must remain zero. Independently compare GPU history only in separate diagnostic tests. Original outside-World drawing and DirectDraw services remain active until a separate retirement milestone; arbitrary CPU pixel reads/picking and whole-session equivalence are pending.",
+      "original": [],
+      "confidence": "provisional",
+      "documents": [
+        "research/runtime/native-gpu-frame-ownership.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/world_continuous_v4.h",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "apps/qt-shell/world_continuous_main.cpp",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/canvas_producers.c"
+      ],
+      "tests": [
+        "tests/world-gpu-ack-test.cpp",
+        "tools/test-native-world-continuous.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/world_continuous_main.cpp",
+        "apps/qt-shell/world_rolling_main.cpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/precise_clock.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/glyph_entry.S",
+        "runtime/scene/glyph_leave.S",
+        "runtime/scene/glyph_live.c",
+        "runtime/scene/glyph_live.h",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/readable_extent.h",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_continuous_clock.c",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/native-world-rolling.cpp",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/resource-fixtures.hpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-continuous-channel-test.cpp",
+        "tests/world-continuous-hash-test.cpp",
+        "tests/world-continuous-memory-test.cpp",
+        "tests/world-continuous-normal-test.cpp",
+        "tests/world-gpu-ack-test.cpp",
+        "tests/world-gpu-resident-replay.cpp",
+        "tests/world-gpu-resident-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-scene-game.py",
+        "tools/coverage_claims.py",
+        "tools/decode-cfg.py",
+        "tools/encode-cfg.py",
+        "tools/export-menu-support.py",
+        "tools/glyph_backend_launch.py",
+        "tools/glyph_live_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/native_render_config.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-opengl-game.py",
+        "tools/test-native-world-rolling-live.py",
+        "tools/test-native-world-rolling.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py"
+      ],
+      "evidence": [
+        "NR.world-gpu-ack-delivery.live-4096-20261010",
+        "NR.world-gpu-ack-delivery.consumer-death-20261010",
+        "NR.world-gpu-ack-delivery.producer-death-20261010",
+        "NR.world-gpu-ack-delivery.recovery-128-20261010"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -61704,6 +61977,300 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.world-gpu-ack-delivery.live-4096-20261010",
+      "kind": "live_observation",
+      "record": "research/runtime/native-gpu-ack-masked-4096-20261010.json",
+      "sha256": "94985747e81a4b88d5f242a7682fcefd084699cba0aca92fa2b837eb05544f63",
+      "scope": "Bounded V4 acknowledgement delivery/failure/recovery on private NVIDIA TITAN RTX through admitted Zink, zero framebuffer transfers, actual original returns and native presentations. Full performance budget failed and is not promoted; original DirectDraw and outside-World drawing still active. No independent original pixel equivalence or arbitrary gameplay read/picking claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/success",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/checked_resident_returns",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.world-gpu-ack-delivery.consumer-death-20261010",
+      "kind": "live_observation",
+      "record": "research/runtime/native-gpu-ack-consumer-death-20261010.json",
+      "sha256": "723ed2e81ec4cbc83ce4c0a0d0ffb5d50a299293575c5c5e9e915a1c58a175db",
+      "scope": "Bounded V4 acknowledgement delivery/failure/recovery on private NVIDIA TITAN RTX through admitted Zink, zero framebuffer transfers, actual original returns and native presentations. Full performance budget failed and is not promoted; original DirectDraw and outside-World drawing still active. No independent original pixel equivalence or arbitrary gameplay read/picking claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/expected_terminal_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_success_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/fault_generation",
+          "equals": 34
+        }
+      ]
+    },
+    {
+      "id": "NR.world-gpu-ack-delivery.producer-death-20261010",
+      "kind": "live_observation",
+      "record": "research/runtime/native-gpu-ack-producer-death-20261010.json",
+      "sha256": "2196ec9bea5de30360b398eab8b042a3513a8550df8b855324aa956d656fa673",
+      "scope": "Bounded V4 acknowledgement delivery/failure/recovery on private NVIDIA TITAN RTX through admitted Zink, zero framebuffer transfers, actual original returns and native presentations. Full performance budget failed and is not promoted; original DirectDraw and outside-World drawing still active. No independent original pixel equivalence or arbitrary gameplay read/picking claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/expected_terminal_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/completed_success_claimed",
+          "equals": false
+        },
+        {
+          "pointer": "/fault_generation",
+          "equals": 34
+        }
+      ]
+    },
+    {
+      "id": "NR.world-gpu-ack-delivery.recovery-128-20261010",
+      "kind": "live_observation",
+      "record": "research/runtime/native-gpu-ack-recovery-20261010.json",
+      "sha256": "e08c9ee1d21deb321e79a5526e3c96b02bc2599f3fcd4a0c5085341eb8ef04b2",
+      "scope": "Bounded V4 acknowledgement delivery/failure/recovery on private NVIDIA TITAN RTX through admitted Zink, zero framebuffer transfers, actual original returns and native presentations. Full performance budget failed and is not promoted; original DirectDraw and outside-World drawing still active. No independent original pixel equivalence or arbitrary gameplay read/picking claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/success",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/checked_resident_returns",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.world-gpu-resident-frame.masked-history-32-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-gpu-frame-masked-history-20261010.json",
+      "sha256": "8c614af52f3e4666e583b9d79784549274b3c4676073c365a7a16be90b319f79",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/synthetic_512_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_512_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/resident/queues",
+          "equals": 32
+        },
+        {
+          "pointer": "/resident/delivery_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident/remaining_surfaces",
+          "equals": 0
+        }
+      ],
+      "scope": "Current V4 build: native masked source patches preserve GPU-only pixels and establish only covered validity, malformed masks refuse;512 synthetic/legacy and32 retained original-input queues match independent native CPU reference, zero delivery exports and zero resources after teardown. This is not independent original pixel equivalence, live delivery or a performance proof."
+    },
+    {
+      "id": "NR.directdraw-retirement.factory-isolated-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-factory-pass-20261010.json",
+      "sha256": "0b7d3c9ef59a5a947cdf9e6ff0be205276ccf4c50a00778c359875a125cefa0d",
+      "scope": "128 isolated default native factory lifetimes with exact selected HRESULT/identity/per-interface reference/failure outputs versus real Wine DirectDraw. Native preserves incoming LastError as an explicit policy; Wine incidental error values are retained separately, not claimed equivalent. Original null-output creation fault is excluded from the common valid-caller corpus; native safe null-output refusal is a separate policy. Native enumeration is an explicit single-adapter policy. Native probe disables ddraw and verifies no module loads. Surface methods, real game integration, GPU presentation and DirectDraw retirement remain pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_directdraw_imports",
+          "equals": false
+        },
+        {
+          "pointer": "/native_remaining_objects",
+          "equals": 0
+        },
+        {
+          "pointer": "/caller_words",
+          "equals": 2176
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -69441,7 +70008,41 @@
         "tests/world-continuous-normal-test.cpp"
       ],
       "evidence": [
-        "NR.world-gpu-resident-frame.history-32-20261010"
+        "NR.world-gpu-resident-frame.history-32-20261010",
+        "NR.world-gpu-resident-frame.masked-history-32-20261010"
+      ]
+    },
+    {
+      "id": "native-world-gpu-ack-live-20261010",
+      "level": "live_observation",
+      "scope": "Bounded guarded original World producer with V4 native GPU delivery, actual original return, no pixel replies/writebacks/readbacks, native Qt presentations and unchanged19FPS performance threshold. Separate peer-death controls and fresh-session recovery.",
+      "behaviors": [
+        "NR.world-gpu-ack-delivery"
+      ],
+      "tests": [
+        "tools/test-native-world-continuous.py",
+        "tests/world-gpu-ack-test.cpp"
+      ],
+      "evidence": [
+        "NR.world-gpu-ack-delivery.live-4096-20261010",
+        "NR.world-gpu-ack-delivery.consumer-death-20261010",
+        "NR.world-gpu-ack-delivery.producer-death-20261010",
+        "NR.world-gpu-ack-delivery.recovery-128-20261010"
+      ]
+    },
+    {
+      "id": "native-draw-factory-20261010",
+      "level": "headless",
+      "scope": "Isolated native PE32 factory identity/refcount/QueryInterface and default enumeration. Compare selected caller results with real Wine DirectDraw; prove the native probe runs with ddraw disabled and no module loaded. Surface creation, game integration and full retirement remain pending.",
+      "behaviors": [
+        "NR.directdraw-retirement"
+      ],
+      "tests": [
+        "tests/native-draw-factory-probe.c",
+        "tools/test-native-draw-factory.py"
+      ],
+      "evidence": [
+        "NR.directdraw-retirement.factory-isolated-20261010"
       ]
     }
   ],
@@ -69780,8 +70381,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-gpu-ownership-20261010.json",
-    "sha256": "399680b423ce41c1b57a331fe108e4e2eb4d51d6e779a980f789eca08dc04224"
+    "path": "research/runtime/coverage/source-index-gpu-ack-factory-20261010.json",
+    "sha256": "a6df331fec5c59e5e369d56dab78f92004451effef06b95b532458f7e5d7836a"
   },
   "claim_bindings_required": true
 }

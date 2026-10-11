@@ -100,7 +100,7 @@ rollingHandoffReply(const RollingHandoff &handoff,
 }
 void verifyRollingHandoffReturn(const RollingHandoff &handoff,
                                 const CanvasProducer &checkpoint,
-                                const CanvasProducer &returned) {
+                                const CanvasProducer &returned, bool resident) {
   const auto &h = handoff.batch.header;
   const auto &c = checkpoint.fields;
   const auto &r = returned.fields;
@@ -109,7 +109,7 @@ void verifyRollingHandoffReturn(const RollingHandoff &handoff,
       c[6] != h[9] || c[7] != h[10] || c[15] != 4 || c[16] != h[5] ||
       r[2] != 12 || r[1] != c[1] + 1 || r[3] != h[7] || r[5] != h[8] ||
       r[6] != h[9] || r[7] != h[10] || r[14] != h[5] || r[15] != h[15] ||
-      r[17] != h[4] || r[19] != h[14] || r[20] != 1)
+      r[17] != h[4] || r[19] != h[14] || r[20] != (resident ? 2u : 1u))
     throw std::invalid_argument(
         "Original guarded World did not acknowledge the rolling handoff");
 }

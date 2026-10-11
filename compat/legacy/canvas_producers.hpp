@@ -70,6 +70,7 @@ public:
       render::CanvasMirror *mirror = nullptr)
       : canvases_(mirror), mirrored_(mirror != nullptr), source_(std::move(source)) {}
   void apply(const CanvasProducer &);
+  void publishWrites() { canvases_.publishWrites(); }
   void invalidateWorld(const CanvasProducer &);
   CanvasFrameCacheStats frameCacheStats() const { return frames_.stats(); }
   mnm::render::Image read(std::uint32_t id) const { return canvases_.read(id); }

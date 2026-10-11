@@ -212,7 +212,7 @@ void CanvasSequence::copy(std::uint32_t source, std::uint32_t destination,
     if(!mirror_ && std::find(begin,begin+width,0)!=begin+width)throw std::runtime_error("Native producer reads undefined canvas pixels");}
   // Distinct IDs own distinct vectors. Only same-ID copies need a snapshot;
   // preflight above still completes before allocation or any destination write.
-  if (mirror_) mirror_->copy(source, destination, {sx, sy, sx+width, sy+height}, dx, dy, key);
+  if (mirror_) { publishWrites(); mirror_->copy(source, destination, {sx, sy, sx+width, sy+height}, dx, dy, key); }
   std::optional<Surface> snapshot;if(source==destination)snapshot.emplace(original);
   const auto& src=snapshot?*snapshot:original;
   for(int row=0;row<height;++row){const auto from=slot(src.image,sx,sy+row),to=slot(dst.image,dx,dy+row);
@@ -417,14 +417,15 @@ void CanvasSequence::publishWrites() {
       full=std::find(begin,begin+right-left,0)==begin+right-left;
     }
     if(full) upload(left,top,right-left,bottom-top);
-    else for(int y=top;y<bottom;++y) {
-      int x=s.dirtyFirst[y],end=s.dirtyEnd[y];
-      while(x<end) {
-        while(x<end && !s.defined[slot(s.image,x,y)]) ++x;
-        const auto first=x;
-        while(x<end && s.defined[slot(s.image,x,y)]) ++x;
-        if(first<x)upload(first,y,x-first,1);
+    else {
+      Image patch{right-left,bottom-top,{}};
+      patch.pixels.resize(std::size_t(patch.width)*patch.height);
+      std::vector<std::uint8_t> coverage(patch.pixels.size());
+      for(int y=top;y<bottom;++y)for(int x=s.dirtyFirst[y];x<s.dirtyEnd[y];++x) {
+        const auto from=slot(s.image,x,y),to=std::size_t(y-top)*patch.width+x-left;
+        if(s.defined[from]){patch.pixels[to]=s.image.pixels[from];coverage[to]=1;}
       }
+      mirror_->updateMasked(entry.first,left,top,patch,coverage);
     }
     std::fill(s.dirtyFirst.begin(),s.dirtyFirst.end(),s.image.width);
     std::fill(s.dirtyEnd.begin(),s.dirtyEnd.end(),0);

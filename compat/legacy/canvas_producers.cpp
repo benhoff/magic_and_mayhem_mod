@@ -429,7 +429,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
   default:
     throw std::invalid_argument("Unknown producer operation");
   }
-  canvases_.publishWrites();
+  if (!mirrored_)canvases_.publishWrites();
 }
 void CanvasProducerReplay::invalidateWorld(const CanvasProducer &c) {
   if (!mirrored_ || c.fields[2] != 9)
