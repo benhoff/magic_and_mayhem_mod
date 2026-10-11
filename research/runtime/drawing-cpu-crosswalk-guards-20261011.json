@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources_stable": true,
+  "guards": 16,
+  "original_renderer_executed": false,
+  "scope": "Synthetic exact CPU/core pairing, full-cardinality repeat order, no subset pairing, target/thread/stack/physical neighbor gaps and register/flags/LastError/argument/cleanup/phase/readability/role/namespace/maps/build/binding/loss/active-count refusal. No original execution.",
+  "sources": {
+    "protocols/include/mnm/drawing_api_bindings_v1.h": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+    "protocols/include/mnm/drawing_api_journal_v2.h": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+    "protocols/include/mnm/drawing_census_bindings_v1.h": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-callers-movie-sites-20261010.json": "9bee999ddfbf3159c992399abd6d6308ffae0207c3536bed46ace94d17b18ac3",
+    "tests/test-drawing-cpu-crosswalk.py": "b04cb76131b031cbc7554f4102e7c2ce3e28de0ae7a782ed9bbb5dd6b3ddaf95",
+    "tools/drawing_api_bindings.py": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+    "tools/drawing_api_cohorts.py": "5b7c865d68fff9986ec66410bbb77daae9d7d98edcaf0da92a82d56e4be70196",
+    "tools/drawing_api_contracts.py": "d3df6ef14428054ae83d803345db5ce26f2b42ee1d46aa28ddc07f4a1bd23664",
+    "tools/drawing_api_details.py": "0e77554ce71fcc66049c3f06326356325765acb99e2cb0fafce711cc4a380169",
+    "tools/drawing_api_journal.py": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+    "tools/drawing_api_pairs.py": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+    "tools/drawing_api_sites.py": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_census_bindings.py": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+    "tools/drawing_census_callers.py": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52",
+    "tools/drawing_cpu_crosswalk.py": "2ad32ceee0b64f8f5d20f29069a023db3d1c08d275be870f86c5962405900d08",
+    "tools/drawing_cpu_sites.py": "3e480307240f93eabc190b63f04cdb3b4f8ccfdbcc851edf357a5bd5bc946178",
+    "tools/review-drawing-cpu-crosswalk.py": "02faaec5ec1583aafbc8cf26cb4984cf5464e67593e1e8a5ecceef72410e6fd9"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-cpu-crosswalk",
+      "contract_sha256": "45e13d1a682e74cf17084caf57a46da732582e0ace92ae6c8630b6896bf5da14",
+      "scenarios": {
+        "drawing-cpu-crosswalk-guards-20261011": "c778475081a5f119b857d0631d2807c36d2159984d2879b081dbe7ce0e4c6af9",
+        "drawing-cpu-crosswalk-original-replay-20261011": "ff1fc6cf2d553d28c2b7d8fde35a350acd6d08e3a45a91771def8a67bfb834e4"
+      }
+    }
+  ],
+  "artifacts": {
+    "working/tests/draw01-cpu-crosswalk-guards-path-corrected-20261011.log": {
+      "sha256": "12be2192df9700849283d9dfb1068e1a3ad6cc14b2021e7ef6c118c48871eb47",
+      "bytes": 115
+    },
+    "working/tests/draw01-cpu-crosswalk-claims-path-corrected-20261011.json": {
+      "sha256": "6a07c125c207f084f0a34ff7c9989bfb1423589fcc62550d71b6df25d1b2ad6c",
+      "bytes": 2832
+    }
+  }
+}
