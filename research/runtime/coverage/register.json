@@ -15075,7 +15075,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Opt-in bounded scheduling across hooked original copies",
-      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending. Contending copy-lease callers now Sleep(1) between unsuccessful atomic acquisition attempts, retaining the50ms tick budget, immediate successful admission, nonwaiting same-thread reentry and original-once conservative timeout. This is intentional native scheduling; hardware improvement, fair ownership and bounded wall-time overshoot remain unproven. Contended acquisition now waits on the atomic owner address and wakes all on release (Windows8/modern Wine contract), retaining50ms admission budget, immediate CAS and same-thread reentry, original-once/conservative timeout. LastError is preserved across release wake. Holder/source-line timing diagnostics separate long ownership from waiter scheduling; no fairness or all-scene performance assertion. Imports use KernelBase address-wait exports; Wine Kernel32 wake exports are observed stubs and deliberately not used. Nonarchived continuous native presentation omits bounded lock/blit/update diagnostic binary exports while retaining owned snapshots,commands,original-once calls,tracker checks and50ms ordering budget; explicit archive/finite observations retain their diagnostic exports. No zero-I/O or paging/scheduling guarantee.",
+      "scope": "Continuous-only opt-in process-local Blt/BltFast lease spans admission, original call, commit and capture. Cross-thread waiting is bounded to50ms tick budget; same-thread reentry never waits, timeout forwards exactly once and invalidates before/after via pixel epoch and target misses. Existing generation guards and resource limits remain. No whole-API concurrency, original-driver read-order equivalence, abnormal owner-thread termination or default enablement claim. Opt-in copy scheduling now also spans CPU Lock/Unlock callbacks, retaining borrowed-interval and uncertainty checks. Source-bound bounded tracker provenance observes copy-commit holds beyond8ms; exact historical missed requester and broader mutation concurrency remain pending. Continuous opt-in callback scheduling now also spans DC acquisition/release and Flip; timed-out flips invalidate both metadata/pixel epochs before/after original forwarding. Borrowed intervals and other families remain separately guarded. No original-driver or default replacement claim. Continuous opt-in callback admission now also spans palette capabilities/entry reads/bindings/updates/Initialize and surface source-key/clipper setters. Metadata epochs invalidate before/after timed-out forwarding. Lifetime and other metadata callbacks remain pending; no original-driver or default enablement claim. Continuous opt-in admission now also spans QueryInterface, CreateSurface/CreatePalette and surface/palette Release; timed-out lifetime forwarding resets alias provenance and metadata before/after original calls. DirectDrawCreate, other metadata callbacks, borrowed intervals and dedicated palette lifetime races remain pending. Continuous opt-in admission now includes GetSurfaceDesc/GetAttachedSurface, attachment add/delete, Restore and BltBatch. Timeouts invalidate metadata/pixels before/after original-once forwarding; successful unsupported mutations still invalidate. Original driver/live validation of this extension and startup/borrowed interval ownership remain pending. Continuous opt-in admission now spans DirectDrawCreate startup, original factory and returned-interface installation. Timeout resets alias provenance/metadata before and after original-once forwarding, leaving returned interfaces uninstalled. First/nested creation and delayed initial consumer binding are synthetically validated; original-driver startup and external startup/shutdown/recovery races remain pending. Startup/shutdown now serialize whole transitions through the recovery-shared lifecycle word. Ordered-mode shutdown obtains bounded callback quiescence before capture closure; timeout/reentry refuses without invalidating an active stream. Completed shutdown returns its cached result before quiescence. External recovery collisions, abandoned owners, simultaneous long joins and original lifecycle equivalence remain pending. Contending copy-lease callers now Sleep(1) between unsuccessful atomic acquisition attempts, retaining the50ms tick budget, immediate successful admission, nonwaiting same-thread reentry and original-once conservative timeout. This is intentional native scheduling; hardware improvement, fair ownership and bounded wall-time overshoot remain unproven. Contended acquisition now waits on the atomic owner address and wakes all on release (Windows8/modern Wine contract), retaining50ms admission budget, immediate CAS and same-thread reentry, original-once/conservative timeout. LastError is preserved across release wake. Holder/source-line timing diagnostics separate long ownership from waiter scheduling; no fairness or all-scene performance assertion. Imports use KernelBase address-wait exports; Wine Kernel32 wake exports are observed stubs and deliberately not used. Nonarchived continuous native presentation omits bounded lock/blit/update diagnostic binary exports while retaining owned snapshots,commands,original-once calls,tracker checks and50ms ordering budget; explicit archive/finite observations retain their diagnostic exports. No zero-I/O or paging/scheduling guarantee. Owner-qualified Unlock and tracker-release phase diagnostics narrow fresh hardware failures without changing the50ms deadline or original-once conservative timeout; cleanup/mapped-I/O attribution and live continuity remain pending.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -15101,7 +15101,8 @@
         "research/runtime/native-copy-status-stage-compiled-fixtures-20261011.json",
         "research/runtime/native-draw-mapped-status-full-nvidia-pass-20261011.json",
         "research/runtime/native-master-integration-current-public-pass-20261011.json",
-        "research/runtime/native-master-integration-latest-master-public-pass-20261011.json"
+        "research/runtime/native-master-integration-latest-master-public-pass-20261011.json",
+        "research/runtime/resident-drawing-history-gap.md"
       ],
       "implementation": [
         "runtime/render/copy_order.h",
@@ -15137,7 +15138,8 @@
         "NR.copy-order.status-stage-compiled-20261011",
         "NR.native-draw-status-session-file.mapped-full-nvidia-20261011",
         "NR.native-draw-status-session-file.master-current-public-20261011",
-        "NR.native-draw-status-session-file.latest-master-public-20261011"
+        "NR.native-draw-status-session-file.latest-master-public-20261011",
+        "NR.bounded-copy-order.history-diagnostics-fixtures-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -15274,6 +15276,9 @@
         "renderer/surface_access.hpp",
         "renderer/capture.hpp",
         "renderer/capture.cpp"
+      ],
+      "remaining_gaps": [
+        "Fresh instrumented camera/menu capture records Unlock phase33 at325ms holder age before epoch GAP; cleanup/free/diagnostic/pump attribution remains pending. Separate World bind tracker timeout bypasses callback/copy admission; repair and fresh continuity proof pending."
       ]
     },
     {
@@ -37844,7 +37849,8 @@
         "research/runtime/public-resident-master-combat-diversion-negative-20261011.json",
         "research/runtime/public-resident-master-final-campaign-20261011.json",
         "research/runtime/public-resident-master-final-fixtures-20261011.json",
-        "research/runtime/public-resident-profile-gap-negative-20261011.json"
+        "research/runtime/public-resident-profile-gap-negative-20261011.json",
+        "research/runtime/resident-drawing-history-gap.md"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37895,7 +37901,10 @@
         "NR.public-resident-world.master-combat-diversion-negative-20261011",
         "NR.public-resident-world.master-final-campaign-20261011",
         "NR.public-resident-world.master-final-fixtures-20261011",
-        "NR.public-resident-world.profile-gap-negative-20261011"
+        "NR.public-resident-world.profile-gap-negative-20261011",
+        "NR.public-resident-world.history-combat-retreat-negative-20261011",
+        "NR.public-resident-world.history-unlock-cleanup-gap-negative-20261011",
+        "NR.public-resident-world.history-bind-tracker-refusal-negative-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -37905,7 +37914,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Serialized stage-profile/capture Apprentice campaign reaches2423 balanced Worlds then native command drawing-history GAP reason2 with one pending World. Repeats an earlier profiled GAP without concurrent coverage; failing source/read/transition and instrumentation contribution remain unclassified. Full uninstrumented regression attribution and complete capture/normal Quit at current profiler remain pending."
+        "Serialized stage-profile/capture Apprentice campaign reaches2423 balanced Worlds then native command drawing-history GAP reason2 with one pending World. Repeats an earlier profiled GAP without concurrent coverage; failing source/read/transition and instrumentation contribution remain unclassified. Full uninstrumented regression attribution and complete capture/normal Quit at current profiler remain pending.",
+        "Fresh diagnostic camera/menu attempt reaches651 balanced Worlds then public bind tracker admission expires at observed16ms under cursor-copy ownership, cancelling the resident producer. Serialize bind with callback/copy ownership and prove bounded live continuity; phase33 Unlock GAP suboperation remains unresolved."
       ]
     },
     {
@@ -85671,6 +85681,106 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NR.public-resident-world.history-combat-retreat-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Instrumented isolated TITAN resident history investigation; failed journey and source/cleanup/original provenance retained, no completed campaign or repaired-continuity claim.",
+      "record": "research/runtime/resident-history-combat-retreat-negative-20261011.json",
+      "sha256": "f77644c1b1731edb7450d45da351818ff49290ce9dbae4982ff233273d03285d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.history-unlock-cleanup-gap-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Instrumented isolated TITAN resident history investigation; failed journey and source/cleanup/original provenance retained, no completed campaign or repaired-continuity claim.",
+      "record": "research/runtime/resident-history-unlock-cleanup-gap-negative-20261011.json",
+      "sha256": "76ae8eab88f44288626826fb032a46f375bf8773dc1516926ae04932865a3b88",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.history-bind-tracker-refusal-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Instrumented isolated TITAN resident history investigation; failed journey and source/cleanup/original provenance retained, no completed campaign or repaired-continuity claim.",
+      "record": "research/runtime/resident-history-bind-tracker-refusal-negative-20261011.json",
+      "sha256": "bb05c41eccd65a86e6d1a6fd1fb56e0cded03abfd7c2b27af9cd3658d08b7c9a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.bounded-copy-order.history-diagnostics-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Six independent PE32/GPU diagnostic regressions:209 full frames, four valid sessions and two intentionally timed-out GAP sessions; original counts/results/LastError and source stability checked. No live continuity repair or original-driver equivalence.",
+      "record": "research/runtime/resident-history-diagnostic-fixtures-20261011.json",
+      "sha256": "1522edf93adbfff1d1668824f95abdb9e7e3b9db1f57864c82f635138fe87e8f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 209
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 4
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 2
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -94638,7 +94748,8 @@
         "NR.copy-order.address-wait-20261011",
         "NR.copy-order.address-stage-20261011",
         "NR.copy-order.status-stage-20261011",
-        "NR.copy-order.status-stage-compiled-20261011"
+        "NR.copy-order.status-stage-compiled-20261011",
+        "NR.bounded-copy-order.history-diagnostics-fixtures-20261011"
       ]
     },
     {
@@ -96470,8 +96581,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-resident-profile-measurement-20261011.json",
-    "sha256": "c9c0ad565ce9f80d0e1448f28c6852983e39c0f908e4211a9885ea84f32fa0ce"
+    "path": "research/runtime/coverage/source-index-resident-history-diagnostics-20261011.json",
+    "sha256": "62f5ed561c2204f98cf2cbb4dc136df4c5c6565cf8e47a570ef123236577bc6c"
   },
   "claim_bindings_required": true
 }

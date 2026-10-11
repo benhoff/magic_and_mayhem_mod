@@ -60,6 +60,7 @@ static i32 WIN input_cooperative(void* object,void* window,u32 flags){
 }
 #include "command_channel.h"
 #include "draw_capture.h"
+static void game_copy_stage(u32);
 #include "lock_lifecycle.h"
 #include "lock_flip.h"
 #include "lock_dc.h"
@@ -306,14 +307,21 @@ static i32 WIN surface_unlock(void* object,void* rect){
     COMMAND_CALLBACK(command_borrow_release(object,1,0,((Unlock)lookup(object)->original[32])(object,rect)));
     struct GameCopyLease copy_lease __attribute__((cleanup(game_copy_leave)))=game_copy_enter(object);
     if(!copy_lease.observe){i32 result=command_borrow_release(object,1,0,((Unlock)lookup(object)->original[32])(object,rect));game_copy_unobserved(object);return result;}
+    game_copy_stage(20);
     u32 error=GetLastError();int token=history_enter();struct Snapshot pending;zero(&pending,sizeof(pending));
     struct Table* t=lookup(object);
+    game_copy_stage(21);
     struct GameUnlock game_pending;game_unlock_before(object,t->kind,rect,&game_pending);
+    game_copy_stage(22);
     if(token)history_unlock_before(object,rect,&pending);SetLastError(error);
+    game_copy_stage(23);
     i32 status=command_borrow_release(object,1,0,((Unlock)t->original[32])(object,rect));error=GetLastError();
+    game_copy_stage(24);
     game_unlock_after(&game_pending,status);
+    game_copy_stage(25);
     render_failure("application_unlock",status,object,t->kind,0);
     if(token)history_unlock_after(object,&pending,status);
+    game_copy_stage(26);
     draw_event(5,(u32)__builtin_return_address(0),object,0,0,status,0,0);history_leave(token);SetLastError(error);return status;
 }
 static i32 WIN surface_restore(void* object){
