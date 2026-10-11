@@ -44,6 +44,7 @@ def main():
     parser.add_argument('--world-raster-batch',action='store_true',help='Guard the original destination and complete selected raster queues with one native canvas reply')
     parser.add_argument('--world-producer-bypass',type=int,choices=range(1,9),help='Replace this many selected generic raster entries in the final captured queue')
     parser.add_argument('--canvas-producers',action='store_true',help='Capture owned menu/loading/font/raster inputs and completed canvases through each sampled World return')
+    parser.add_argument('--drawing-publication',action='store_true',help='Observe actual opaque-copy COM results and independent primary readbacks through the final World/HUD publication')
     parser.add_argument('--producer-oracle-mib',type=int,choices=range(1,3073),default=1024,metavar='1..3072',help='Bounded original completion storage in MiB (default: 1024)')
     parser.add_argument('--skip-window-screenshot',action='store_true',help='Skip the diagnostic desktop screenshot; raw completion comparisons remain independent')
     parser.add_argument('--manual-input',action='store_true',help='Bounded producer/batch session controlled through the original window; closing either window cancels')
@@ -61,6 +62,7 @@ def main():
     parser.add_argument('--minimap-owned',action='store_true',help='Observe owned four-view minimap inputs in producer journal V2; original drawing stays active')
     parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
+    if args.drawing_publication and (not args.canvas_producers or args.producer_live or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('--drawing-publication requires original-active producer capture without live bypass/viewer')
     if args.glyph_backend and (args.canvas_producers or args.canvas_startup or args.world_frames or args.world_live or args.word_sprites):parser.error('Glyph mode requires a separate experiment')
     if args.minimap_input_fixture and (not args.minimap_owned or args.samples!=16 or args.magic_items):parser.error('Minimap input fixture requires --minimap-owned --samples 16 --magic-items 0')
     if args.minimap_owned and (not args.canvas_producers or args.world_producer_bypass or args.world_raster_queue or args.world_raster_prefix):parser.error('--minimap-owned requires original-active --canvas-producers')
@@ -105,6 +107,7 @@ def main():
         parser.error('Run under xvfb-run -a -s "-screen 0 1280x1024x24"')
     sources=[*sorted((ROOT/'runtime/scene').glob('*.[chS]')),ROOT/'protocols/include/mnm/scene_snapshot_v1.h',
              ROOT/'runtime/shadow/win32_min.h',ROOT/'tools/build-scene-observer.py',ROOT/'tools/prepare-scene-observer.py',ROOT/'tools/capture-scene-game.py',ROOT/'tools/scene-game-runner.py',ROOT/'protocols/include/mnm/world_frame_v1.h',ROOT/'protocols/include/mnm/world_channel_v1.h',ROOT/'protocols/include/mnm/world_channel_v2.h',ROOT/'tools/world_channel.py']
+    if args.drawing_publication:sources.append(ROOT/'tools/drawing_publication.py')
     if args.startup_queues:sources.append(ROOT/'tools/inspect-startup-queues.py')
     if args.kind8_objects:sources.append(ROOT/'tools/inspect-kind8.py')
     if history:sources.append(ROOT/'tools/world_refusal.py')
@@ -167,6 +170,7 @@ def main():
         if args.canvas_startup:env['MNM_CANVAS_STARTUP']='1'
         if args.minimap_owned:env['MNM_MINIMAP_OWNED']='1'
         if args.minimap_input_fixture:env['MNM_MINIMAP_INPUT_FIXTURE']='1'
+        if args.drawing_publication:env['MNM_DRAW02_PUBLICATION']='1'
         if args.canvas_producers:env.update(MNM_CANVAS_PRODUCERS='1',MNM_CANVAS_ORACLE_MIB=str(args.producer_oracle_mib))
         if args.world_producer_bypass:env['MNM_WORLD_PRODUCER_BYPASS']=str(args.world_producer_bypass)
         if args.startup_queues:env['MNM_STARTUP_QUEUES']=str(args.startup_queues)
@@ -362,7 +366,12 @@ def main():
         if args.canvas_producers:
             spec=importlib.util.spec_from_file_location('producer_inspector',ROOT/'tools/inspect-canvas-producers.py')
             inspector=importlib.util.module_from_spec(spec);spec.loader.exec_module(inspector)
-            report['canvas_producers']=inspector.analyze(root/'capture')
+            if args.drawing_publication:
+                from drawing_publication import analyze
+                report.update(original_pixels_used_as_native_inputs=False,original_oracles_read_by_native=False,original_work_bypassed=False)
+                report['drawing_publication']=analyze(root/'capture')
+                report['canvas_producers']=report['drawing_publication']['producers']
+            else:report['canvas_producers']=inspector.analyze(root/'capture')
             if args.producer_live:
                 native=json.loads((root/'native-producers/live-report.json').read_text())
                 checks=native['checkpoints'];original=report['canvas_producers']['checkpoints']
