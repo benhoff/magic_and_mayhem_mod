@@ -4,6 +4,7 @@ import argparse
 from collections import Counter
 import gzip
 import json
+import lzma
 from pathlib import Path
 import struct
 
@@ -18,7 +19,7 @@ def frame_key(raw, indexed):
     return sha(bytes([bool(indexed)]) + raw[:28] + bytes(4) + raw[32:])
 
 
-def retain(destination):
+def retain(destination, *, sequence=BOUNDARY_SEQUENCE, oracles=ORACLES, scope=None, frames=None, historical_root=ROOT):
     from rendering_coverage import evidence_record
     register = json.loads((ROOT / 'research/runtime/coverage/register.json').read_text())
     ev = next(e for e in register['evidence'] if e['id'] == EVIDENCE)
@@ -33,7 +34,7 @@ def retain(destination):
     game = capture.parent / 'game'
 
     def pinned(name):
-        data = local(ROOT, name).read_bytes()
+        data = local(historical_root, name).read_bytes()
         if inputs.get(name) != sha(data):
             raise ValueError('Historical input changed: ' + name)
         return data
@@ -41,33 +42,38 @@ def retain(destination):
     raw = pinned(stream_path)
     inspector = load_tool('inspect-canvas-producers')
     _, all_records = inspector.decode(raw)
-    records = all_records[:BOUNDARY_SEQUENCE]
+    records = all_records[:sequence]
     end = 64 + sum(r[0] for r, _ in records)
     prefix = raw[:end]
     _, decoded = inspector.decode(prefix, complete=False)
-    if decoded != records or records[-1][0][2] != 10 or records[-1][0][14] != 920:
+    if decoded != records or records[-1][0][2] != 10 or records[-1][0][14] not in oracles:
         raise ValueError('Declared startup boundary changed')
     prepared = []
 
-    def pack(label, data, historical=None):
-        packed = gzip.compress(data, mtime=0)
-        path = destination / (label + '.gz')
-        entry = {'path': path.relative_to(ROOT).as_posix(), 'encoding': 'gzip',
+    def pack(label, data, historical=None, encoding='gzip'):
+        packed = gzip.compress(data, mtime=0) if encoding == 'gzip' else lzma.compress(data)
+        path = destination / (label + ('.gz' if encoding == 'gzip' else '.xz'))
+        entry = {'path': path.relative_to(ROOT).as_posix(), 'encoding': encoding,
                  'sha256': sha(packed), 'raw_sha256': sha(data)}
         if historical:
             entry['historical_path'] = historical
         prepared.append((path, packed))
         return entry
 
-    catalog = {'schema': 1, 'build': ev['build'], 'source_sha256': BUILD,
+    input_entry = pack('startup-input', prefix) if len(prefix) <= 32 * 1024 * 1024 else {
+        'raw_sha256': sha(prefix), 'chunks': [pack(f'input-{i//(24*1024*1024):03}', prefix[i:i+24*1024*1024], encoding='xz') for i in range(0,len(prefix),24*1024*1024)]}
+    queues = sum(r[2] == 12 for r, _ in records)
+    catalog = {'schema': 2 if frames else 1, 'build': ev['build'], 'source_sha256': BUILD,
                'retention_sources': {n: sha((ROOT / n).read_bytes()) for n in ('tools/retain-drawing-scene.py', 'tools/drawing_corpus.py', 'tools/inspect-canvas-producers.py', 'tools/rendering_coverage.py')},
                'historical_report_sha256': ev['sha256'], 'original_inputs_verified': True,
-               'evidence': EVIDENCE, 'scope': 'Quick Battle map2 first complete 800x600 pre-display-copy canvas: contiguous native startup history, World queue1, HUD, minimap/markers and cursor. Physical presentation and original consumer/driver side effects excluded.',
-               'boundary': {'sequence': BOUNDARY_SEQUENCE, 'queues': 1, 'canvas': 2, 'width': 800, 'height': 600},
+               'evidence': EVIDENCE, 'scope': scope or 'Quick Battle map2 first complete 800x600 pre-display-copy canvas: contiguous native startup history, World queue1, HUD, minimap/markers and cursor. Physical presentation and original consumer/driver side effects excluded.',
+               'boundary': {'sequence': sequence, 'queues': queues, 'canvas': records[-1][0][3], 'width': records[-1][0][5], 'height': records[-1][0][6]},
                'historical_stream': {'path': stream_path, 'sha256': sha(raw), 'prefix_bytes': end},
-               'input': pack('startup-input', prefix), 'assets': [], 'checkpoints': [],
+               'input': input_entry, 'assets': [], 'checkpoints': [],
                'producer_counts': dict(sorted(Counter(str(r[2]) for r, _ in records).items())),
                'remaining': ['Physical display copy/Flip and driver/error semantics', 'Original World consumer non-pixel state and readbacks beyond admitted native composition', 'General HUD/tooltips, picking/hotspots and source-state generation', 'Camera actions, active battles, alternate dispatch and unbounded sessions']}
+    if frames:
+        catalog['frames'] = frames
     encoded = {p[:-1].decode('ascii') for r, p in records if r[2] in (7, 20)}
     candidates = {Path(p).relative_to(game).as_posix().casefold(): p for p in inputs if Path(p).is_relative_to(game)}
     selected = {}
@@ -114,7 +120,7 @@ def retain(destination):
     native = {c['oracle']: c for c in report['native']['checkpoints']}
     comparisons = {c['oracle']: c for c in report['checkpoints']}
     for r, _ in records:
-        if r[2] != 10 or r[14] not in ORACLES:
+        if r[2] != 10 or r[14] not in oracles:
             continue
         historical = (capture / f'producer-oracle-{r[14]:04}.565').as_posix()
         original = pinned(historical)

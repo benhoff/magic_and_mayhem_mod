@@ -31070,7 +31070,174 @@
       "evidence": [
         "NR.drawing-scene.retention-20261010",
         "NR.drawing-scene.native-20261010",
-        "NR.drawing-scene.native-reviewed-20261010"
+        "NR.drawing-scene.native-reviewed-20261010",
+        "NR.drawing-scene.persistent-native-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.drawing-journey",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native ordered multi-frame publication with retained source-owned history",
+      "scope": "Native policy over build-specific owned producer records: explicit frame boundaries publish complete RGB565 GPU output while retaining source-only canvas and World history. Further records invalidate current service output; old GPU leases retain their immutable complete frame. Zero-World menu boundaries, strictly ordered frames, terminal sealing, poisoning and cleanup are admitted. Portable pinned map2 startup fixture through44927 has two queue-zero completions and fifteen post-World HUD/minimap/marker/cursor canvases with full independent original planes; bounded XZ fragments preserve exact source history. Physical display/driver semantics, enabled-movie composition, World destination/extent transitions, camera/combat/picking/consumer state, full campaign/Quick Battle journeys, recovery and live bypass remain pending.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw03-native-journeys.md",
+        "research/formats/drawing-scene-corpus.md"
+      ],
+      "implementation": [
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene_main.cpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "tools/drawing_scene_corpus.py",
+        "tools/check-drawing-scene.py",
+        "tools/retain-drawing-scene.py",
+        "tools/retain-drawing-journey.py"
+      ],
+      "tests": [
+        "tests/drawing-scene-test.cpp",
+        "tests/test-drawing-scene.py",
+        "tests/resource-fixtures.hpp",
+        "tests/test-drawing-journey.py",
+        "tests/fixtures/drawing-journey/asset-001.gz",
+        "tests/fixtures/drawing-journey/asset-002.gz",
+        "tests/fixtures/drawing-journey/asset-003.gz",
+        "tests/fixtures/drawing-journey/asset-004.gz",
+        "tests/fixtures/drawing-journey/asset-005.gz",
+        "tests/fixtures/drawing-journey/asset-006.gz",
+        "tests/fixtures/drawing-journey/asset-007.gz",
+        "tests/fixtures/drawing-journey/asset-008.gz",
+        "tests/fixtures/drawing-journey/asset-009.gz",
+        "tests/fixtures/drawing-journey/asset-010.gz",
+        "tests/fixtures/drawing-journey/asset-011.gz",
+        "tests/fixtures/drawing-journey/asset-012.gz",
+        "tests/fixtures/drawing-journey/asset-013.gz",
+        "tests/fixtures/drawing-journey/asset-014.gz",
+        "tests/fixtures/drawing-journey/asset-015.gz",
+        "tests/fixtures/drawing-journey/asset-016.gz",
+        "tests/fixtures/drawing-journey/input-000.xz",
+        "tests/fixtures/drawing-journey/input-001.xz",
+        "tests/fixtures/drawing-journey/input-002.xz",
+        "tests/fixtures/drawing-journey/oracle-0002.gz",
+        "tests/fixtures/drawing-journey/oracle-0907.gz",
+        "tests/fixtures/drawing-journey/oracle-0920.gz",
+        "tests/fixtures/drawing-journey/oracle-0930.gz",
+        "tests/fixtures/drawing-journey/oracle-0940.gz",
+        "tests/fixtures/drawing-journey/oracle-0950.gz",
+        "tests/fixtures/drawing-journey/oracle-0960.gz",
+        "tests/fixtures/drawing-journey/oracle-0970.gz",
+        "tests/fixtures/drawing-journey/oracle-0980.gz",
+        "tests/fixtures/drawing-journey/oracle-0990.gz",
+        "tests/fixtures/drawing-journey/oracle-1000.gz",
+        "tests/fixtures/drawing-journey/oracle-1011.gz",
+        "tests/fixtures/drawing-journey/oracle-1021.gz",
+        "tests/fixtures/drawing-journey/oracle-1031.gz",
+        "tests/fixtures/drawing-journey/oracle-1041.gz",
+        "tests/fixtures/drawing-journey/oracle-1051.gz",
+        "tests/fixtures/drawing-journey/oracle-1061.gz",
+        "tests/fixtures/drawing-journey/scene.json"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tools/coverage_audit.py",
+        "tools/drawing_corpus.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/rendering_coverage.py"
+      ],
+      "validation_domain": "Seventeen full800x600 RGB565 pre-display-copy canvases from contiguous retained original-active startup history, plus synthetic multi-frame/menu/surface generation/stale output/poisoning/cleanup and portable fragment/frame/oracle separation guards.",
+      "evidence": [
+        "NR.drawing-journey.retention-20261010",
+        "NR.drawing-journey.persistent-native-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -59757,6 +59924,146 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.drawing-journey.retention-20261010",
+      "kind": "static",
+      "scope": "Static exact contiguous startup retention from unchanged original-active comparison: two queue-zero and fifteen post-World composed canvases, independently hash-verified source/output provenance. No new original execution or full-session validation.",
+      "record": "tests/fixtures/drawing-journey/scene.json",
+      "sha256": "f23ebdf852dcbf1d2de953a0f017300e58496f94e55e9a75d49e192e0b749db4",
+      "sources_pointer": "/retention_sources",
+      "assertions": [
+        {
+          "pointer": "/schema",
+          "equals": 2
+        },
+        {
+          "pointer": "/boundary/sequence",
+          "equals": 44927
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-scene.persistent-native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh current-source native persistent frame order/refusal/cleanup and portable admission guards, followed by full independent original canvas comparison. 2880000 RGB565 checkpoint pixels match; publication outputs are independently compared too. Pre-display-copy startup only; full Quick Battle/campaign journeys, consumer/picking state, physical presentation, live delivery and bypass excluded.",
+      "record": "research/runtime/draw03-persistent-scene-comparison-20261010.json",
+      "sha256": "fc61909a294a6db66057578ecff36dc4db2b064520e43f14985d9b033a1ceb60",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 2880000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/declared_canvas_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/draw03_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/native_scene",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/portable_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-journey.persistent-native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh current-source native persistent frame order/refusal/cleanup and portable admission guards, followed by full independent original canvas comparison. 8160000 RGB565 checkpoint pixels match; publication outputs are independently compared too. Pre-display-copy startup only; full Quick Battle/campaign journeys, consumer/picking state, physical presentation, live delivery and bypass excluded.",
+      "record": "research/runtime/draw03-persistent-journey-comparison-20261010.json",
+      "sha256": "71194e7e126d7a2948fa8a323aae328cb8924506a54e83a11dd6a3b730683332",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 8160000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/declared_canvas_complete",
+          "equals": true
+        },
+        {
+          "pointer": "/draw03_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_oracles_read_by_native",
+          "equals": false
+        },
+        {
+          "pointer": "/tests/native_scene",
+          "equals": true
+        },
+        {
+          "pointer": "/tests/portable_guards",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/frames_published",
+          "equals": 17
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -67477,13 +67784,31 @@
       ],
       "evidence": [
         "NR.drawing-scene.native-20261010",
-        "NR.drawing-scene.native-reviewed-20261010"
+        "NR.drawing-scene.native-reviewed-20261010",
+        "NR.drawing-scene.persistent-native-20261010"
       ],
       "tests": [
         "tests/drawing-scene-test.cpp",
         "tests/test-drawing-scene.py",
         "tools/check-drawing-scene.py",
         "tests/fixtures/drawing-scene/scene.json"
+      ]
+    },
+    {
+      "id": "DRAW03.startup-composed-frames",
+      "scope": "Native ordered publication of two queue-zero completions and fifteen post-World composed canvases from retained contiguous startup inputs, independent full-plane comparison plus multi-frame refusal/cleanup guards. Not physical or full-session evidence.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-journey"
+      ],
+      "evidence": [
+        "NR.drawing-journey.persistent-native-20261010"
+      ],
+      "tests": [
+        "tests/drawing-scene-test.cpp",
+        "tests/test-drawing-journey.py",
+        "tools/check-drawing-scene.py",
+        "tests/fixtures/drawing-journey/scene.json"
       ]
     }
   ],
@@ -67822,8 +68147,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw03-reviewed-20261010.json",
-    "sha256": "96bee8f3545127cd1cb3ba9e373885af17fb8e6d44adfa3b2f0f40c3d8b315b8"
+    "path": "research/runtime/coverage/source-index-draw03-persistent-20261010.json",
+    "sha256": "2bdd7bd278bc5705122de9992dbd29c576a16a032075177c742cc7a0ad67756e"
   },
   "claim_bindings_required": true
 }

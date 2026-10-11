@@ -39,6 +39,39 @@ int main(int argc,char **argv)try{
     }
     require(renderer.stats().surfaces==0,"Sealed scene cleanup leaked storage");
     {
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);
+        scene.publish({scene.sequence(),0,7,5,3});
+        const auto menu=scene.read().pixels;auto menuLease=scene.presentGpu();
+        require(menuLease.valid()&&scene.frames()==1,"Menu-only publication failed");
+        world(scene);rejected([&]{scene.read();});rejected([&]{scene.presentGpu();});
+        auto hud=fill(7,0x4321);hud.fields[12]=1;hud.fields[13]=1;submit(scene,hud);
+        scene.publish({scene.sequence(),1,7,5,3});const auto first=scene.read().pixels;
+        require(first[0]==0x4321&&first!=menu&&menuLease.valid(),"First frame or prior lease changed");
+        auto secondEntry=entry();secondEntry.fields[14]=2;submit(scene,secondEntry);
+        submit(scene,raster());auto returned=secondEntry;returned.fields[2]=12;submit(scene,returned);
+        auto patch=fill(7,0x5678);patch.fields[10]=1;patch.fields[11]=1;patch.fields[12]=2;patch.fields[13]=2;submit(scene,patch);
+        scene.publish({scene.sequence(),2,7,5,3});
+        const auto second=scene.read().pixels;
+        require(second[0]==first[0]&&second[6]==0x5678&&scene.frames()==3,"Native history did not survive frame boundaries");
+        scene.seal({scene.sequence(),2,7,5,3});require(scene.frames()==3,"Seal republished the terminal frame");
+    }
+    {
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);scene.publish({scene.sequence(),0,7,5,3});
+        auto release=create(7);release.fields[2]=2;submit(scene,release);rejected([&]{scene.read();});
+        submit(scene,create(8));submit(scene,fill(8,0xabcd));scene.publish({scene.sequence(),0,8,5,3});
+        require(scene.read().pixels==std::vector<std::uint32_t>(15,0xabcd),"Menu surface generation transition failed");
+    }
+    {
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);scene.publish({scene.sequence(),0,7,5,3});
+        rejected([&]{scene.publish({scene.sequence(),0,7,5,3});});rejected([&]{scene.read();});
+    }
+    {
+        legacy::DrawingScene scene(renderer,input,source);startup(scene);scene.publish({scene.sequence(),0,7,5,3});
+        auto bad=fill(7,0);bad.fields[1]=scene.sequence()+2;bad.fields[0]=96;
+        rejected([&]{scene.apply(bad);});rejected([&]{scene.presentGpu();});
+    }
+    require(renderer.stats().surfaces==0,"Journey publication or refusal cleanup leaked storage");
+    {
         legacy::DrawingScene scene(renderer,input,source);submit(scene,create(7));auto partial=fill(7,0);partial.fields[12]=1;submit(scene,partial);
         rejected([&]{submit(scene,entry());});rejected([&]{scene.seal({scene.sequence(),1,7,5,3});});rejected([&]{scene.presentGpu();});
     }

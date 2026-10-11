@@ -25,6 +25,11 @@ public:
     DrawingScene &operator=(const DrawingScene &) = delete;
     // Consume normalized closed records from decodeCanvasProducers.
     std::optional<DrawingCheckpoint> apply(const CanvasProducer &);
+    // Publish an explicitly complete frame while retaining native history for
+    // subsequent frames. Any next producer invalidates this service's output;
+    // previously returned GPU leases retain their complete immutable frame.
+    // Menu-only boundaries may have zero completed World queues.
+    void publish(DrawingBoundary);
     void seal(DrawingBoundary);
     render::Image read();
     render::GpuFrame presentGpu();
@@ -32,13 +37,15 @@ public:
     unsigned queues() const { return world_.completedQueues(); }
     std::uint64_t worldDraws() const { return world_.draws(); }
     unsigned checkpoints() const { return checkpoints_; }
+    unsigned frames() const { return frames_; }
 private:
-    void requireSealed() const;
+    void requirePublished() const;
     render::GlBlitter &renderer_;
     CanvasProducerReplay replay_;
     CanvasWorld world_;
     render::SurfaceId output_=0;
-    unsigned sequence_=0,checkpoints_=0;
+    unsigned sequence_=0,checkpoints_=0,publishedSequence_=0,frames_=0;
+    DrawingBoundary published_{};
     bool poisoned_=false,sealed_=false;
 };
 }

@@ -28,6 +28,7 @@ def sources():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--corpus', default=CATALOG)
+    parser.add_argument('--retention', default='NR.drawing-scene.retention-20261010')
     parser.add_argument('--executable', type=Path, required=True)
     parser.add_argument('--headless', action='store_true')
     parser.add_argument('--test-executable', type=Path, help='Defaults to drawing-scene-test beside the replay executable')
@@ -59,9 +60,15 @@ def main():
         guards = subprocess.run(['python3', '-B', str(ROOT / 'tests/test-drawing-scene.py')], capture_output=True, timeout=60)
         if guards.returncode:
             raise ValueError('Scene corpus guards failed: ' + guards.stderr.decode(errors='replace'))
-        result = check(catalog_path=args.corpus, executable=args.executable, headless=args.headless)
+        if args.retention == 'NR.drawing-journey.retention-20261010':
+            journey_guards = subprocess.run(['python3', '-B', str(ROOT / 'tests/test-drawing-journey.py')], capture_output=True, timeout=60)
+            if journey_guards.returncode:
+                raise ValueError('Journey corpus guards failed: ' + journey_guards.stderr.decode(errors='replace'))
+        result = check(catalog_path=args.corpus, executable=args.executable, headless=args.headless, retention=args.retention)
         result['tests'] = {'native_scene': True, 'portable_guards': True, 'test_binary_sha256': test_hash,
                            'native_output': native_tests.stdout.decode(errors='replace'), 'guard_output': guards.stderr.decode(errors='replace')}
+        if args.retention == 'NR.drawing-journey.retention-20261010':
+            result['tests']['journey_guards'] = journey_guards.stderr.decode(errors='replace')
         if any(sha((ROOT / name).read_bytes()) != h for name, h in hashes.items()):
             raise ValueError('Scene comparison sources changed during execution')
         result.update(sources=hashes, sources_stable=True, inputs_stable=True)
