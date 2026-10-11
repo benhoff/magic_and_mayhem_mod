@@ -1093,3 +1093,26 @@ accounts for reviewed identities, while complete pointer writers, dynamic
 callee ownership, pixels, failure/recovery branches, registrations and physical
 resource lifetimes still need their own evidence. Native planning receipts do
 not imply renewed original execution or transparency validation.
+
+
+Inherited terminal edge review (2026-10-11):14current native guards and a
+source-bound replay of the retained88entry original menu journal verify all six
+observed inherited transfers to58b3e0: four fixed/one-shot wrapper tails and two
+outer4a37d0 tails. Original full-body bytes and per-run core bindings remain
+pinned; the active same-thread/RET0 return slot, fixed receiver, bounded
+MOV/TEST/OR register/flags/error effects and identical child/parent return state
+are checked. Each outer tail requires exactly one preceding original CALL at
+4a37ef, receiver642000, stack one word below the parent, and its actual returned
+state reaching the641fc8 tail at4a37f9. Optional CloseHandle effects are not
+assumed to preserve outer entry registers. Raw physical callers remain intact;
+a tail transfer never becomes an original CALL edge.
+
+Reproduce with `python3 tests/test-drawing-terminal-edges.py`, then the
+`tools/review-drawing-terminal-edges.py` CLI with a new prospective declaration,
+retained `run-_pwj3is8` and a new output path. Both original manifest checks pass
+2927files; sources/artifacts stay stable. No original execution is repeated.
+Zero remaining inherited edges in this journal is a bounded transfer result,
+not complete semantic caller ownership. Diagnostic stack consistency does not
+prove readability. Initial flag/handle state, callback registrations, the third
+outer root,242other callback invocations, all pointer/writer/API effects and
+physical lifetimes remain pending. All14scenario/four dispatch gates remain open.

@@ -1,0 +1,203 @@
+{
+  "schema": 1,
+  "integrity": true,
+  "reviewed_terminal_tail_edges": 6,
+  "edges": [
+    {
+      "parent_call_id": 41382,
+      "child_call_id": 41384,
+      "parent_entry": 4863952,
+      "tail_site": 4863993,
+      "tail_target": 5813216,
+      "fixed_receiver": 6561736,
+      "one_shot_bit": 0,
+      "first_cleanup_call_id": 41383,
+      "parent_physical_caller": 5601622,
+      "child_physical_caller": 2004560240,
+      "original_return_slot": 2292096,
+      "thread": 396,
+      "phase": 14,
+      "classification": "reviewed_original_tail_transfer",
+      "original_call_edge_to_tail_child": false
+    },
+    {
+      "parent_call_id": 41385,
+      "child_call_id": 41387,
+      "parent_entry": 4863952,
+      "tail_site": 4863993,
+      "tail_target": 5813216,
+      "fixed_receiver": 6561736,
+      "one_shot_bit": 0,
+      "first_cleanup_call_id": 41386,
+      "parent_physical_caller": 5152238,
+      "child_physical_caller": 2004560240,
+      "original_return_slot": 2290004,
+      "thread": 396,
+      "phase": 14,
+      "classification": "reviewed_original_tail_transfer",
+      "original_call_edge_to_tail_child": false
+    },
+    {
+      "parent_call_id": 41444,
+      "child_call_id": 41445,
+      "parent_entry": 4971792,
+      "tail_site": 4971797,
+      "tail_target": 5813216,
+      "fixed_receiver": 6965728,
+      "one_shot_bit": 0,
+      "first_cleanup_call_id": null,
+      "parent_physical_caller": 39124994,
+      "child_physical_caller": 2004560240,
+      "original_return_slot": 2293412,
+      "thread": 396,
+      "phase": 14,
+      "classification": "reviewed_original_tail_transfer",
+      "original_call_edge_to_tail_child": false
+    },
+    {
+      "parent_call_id": 41446,
+      "child_call_id": 41447,
+      "parent_entry": 4971696,
+      "tail_site": 4971701,
+      "tail_target": 5813216,
+      "fixed_receiver": 6967264,
+      "one_shot_bit": 0,
+      "first_cleanup_call_id": null,
+      "parent_physical_caller": 39124994,
+      "child_physical_caller": 2004560240,
+      "original_return_slot": 2293412,
+      "thread": 396,
+      "phase": 14,
+      "classification": "reviewed_original_tail_transfer",
+      "original_call_edge_to_tail_child": false
+    },
+    {
+      "parent_call_id": 41448,
+      "child_call_id": 41449,
+      "parent_entry": 4861808,
+      "tail_site": 4861833,
+      "tail_target": 5813216,
+      "fixed_receiver": 6561792,
+      "one_shot_bit": 2,
+      "first_cleanup_call_id": null,
+      "parent_physical_caller": 39124994,
+      "child_physical_caller": 2004560240,
+      "original_return_slot": 2293412,
+      "thread": 396,
+      "phase": 14,
+      "classification": "reviewed_original_tail_transfer",
+      "original_call_edge_to_tail_child": false
+    },
+    {
+      "parent_call_id": 41450,
+      "child_call_id": 41451,
+      "parent_entry": 4861696,
+      "tail_site": 4861721,
+      "tail_target": 5813216,
+      "fixed_receiver": 6561736,
+      "one_shot_bit": 1,
+      "first_cleanup_call_id": null,
+      "parent_physical_caller": 39124994,
+      "child_physical_caller": 2004560240,
+      "original_return_slot": 2293412,
+      "thread": 396,
+      "phase": 14,
+      "classification": "reviewed_original_tail_transfer",
+      "original_call_edge_to_tail_child": false
+    }
+  ],
+  "journal_sha256": "cc4a8b1c3f71db019f7b923231a42ca3de1f1e9ae6c374a19dd6695f16e69dd4",
+  "bindings_sha256": "aee2090dc3bc1a59450acf218f4e1e7350385c5733bff2d2de4478e54ff146ec",
+  "original_range_proof_sha256": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+  "remaining_inherited_edges": 0,
+  "pending": [],
+  "diagnostic_stack_readability_proven": false,
+  "initial_flag_byte_observed": false,
+  "caller_attribution_complete": false,
+  "draw01_complete": false,
+  "scope": "Source-current native replay of exact original wrapper tail transfers: actual core leave, active same-thread/RET0 slot parent, fixed receiver, bounded TEST/OR register/flag effects, exact outer first CALL return-to-tail state and identical child/parent return state. Diagnostic word consistency is not a readability proof. No CALL edge is invented for a tail; unknown initial flags, handle state, callback registration, other cleanup targets, physical lifetime, full writers/callers/side effects or scenario/dispatch closure remain pending.",
+  "sources": {
+    "protocols/include/mnm/drawing_api_bindings_v1.h": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+    "protocols/include/mnm/drawing_api_journal_v2.h": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+    "protocols/include/mnm/drawing_census_bindings_v1.h": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-callers-movie-sites-20261010.json": "9bee999ddfbf3159c992399abd6d6308ffae0207c3536bed46ace94d17b18ac3",
+    "research/runtime/drawing-canvas-release-original-range-20261011.json": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+    "research/runtime/drawing-terminal-callers-static-20261011.json": "149d5cb0fc1755f4d39a5c76d3ff02892ea517be79a19e43b7134dae325980c7",
+    "research/runtime/drawing-terminal-observer-original-menu-20261011.json": "d8d59ed92c9b8cc7c5d65e07d4b884fe6970f580ac07f22122f47502f1e015c1",
+    "tests/test-drawing-terminal-edges.py": "8eafd48e57e327e4d106a3087eba7832295c1dd71f0b6ba7893b4e44d2c4038b",
+    "tools/drawing_api_bindings.py": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+    "tools/drawing_api_cohorts.py": "5b7c865d68fff9986ec66410bbb77daae9d7d98edcaf0da92a82d56e4be70196",
+    "tools/drawing_api_contracts.py": "d3df6ef14428054ae83d803345db5ce26f2b42ee1d46aa28ddc07f4a1bd23664",
+    "tools/drawing_api_details.py": "0e77554ce71fcc66049c3f06326356325765acb99e2cb0fafce711cc4a380169",
+    "tools/drawing_api_journal.py": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+    "tools/drawing_api_pairs.py": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+    "tools/drawing_api_sites.py": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_census_bindings.py": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+    "tools/drawing_census_callers.py": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52",
+    "tools/drawing_cpu_crosswalk.py": "2ad32ceee0b64f8f5d20f29069a023db3d1c08d275be870f86c5962405900d08",
+    "tools/drawing_cpu_sites.py": "3e480307240f93eabc190b63f04cdb3b4f8ccfdbcc851edf357a5bd5bc946178",
+    "tools/drawing_terminal_crosswalk.py": "4177f22bbd5bfe9e60a390062166e6bdf2e69315e1c7bab5a085028a7ae4562b",
+    "tools/drawing_terminal_edges.py": "49edc05c1fd76bd66fbdd14a00fad3edf6fcf36df8f1daeea4f31df297155322",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/review-drawing-terminal-crosswalk.py": "c2c5079a986c99094cb18bc3dcc0b763b11ad968fa8fb5dccd565b9e2f41dbaf",
+    "tools/review-drawing-terminal-edges.py": "8864059c1c408edc207bff26630c5aa7654e38a6f9b1cf6ca734d46a4af050fa"
+  },
+  "sources_stable": true,
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-terminal-edges",
+      "contract_sha256": "5e713ae6c553825e853dc0ec3ed89668f0826f397334ea4e1c79e61b8fbd5c49",
+      "scenarios": {
+        "drawing-terminal-edges-guards-20261011": "e2469d0e5e8924dfe142f829404fb34e90f342fc873c2e9631dab48fc309c4a5",
+        "drawing-terminal-edges-retained-menu-20261011": "819feeb0795a9778cb9e0198479d91e871043225432bf6fc9ebe43dc02de9528"
+      }
+    }
+  ],
+  "artifacts": {
+    "working/experiments/drawing-census/run-_pwj3is8/capture/census.bin": {
+      "sha256": "cc4a8b1c3f71db019f7b923231a42ca3de1f1e9ae6c374a19dd6695f16e69dd4",
+      "bytes": 10611584
+    },
+    "working/experiments/drawing-census/run-_pwj3is8/capture/core-bindings.bin": {
+      "sha256": "aee2090dc3bc1a59450acf218f4e1e7350385c5733bff2d2de4478e54ff146ec",
+      "bytes": 8640
+    },
+    "working/experiments/drawing-census/run-_pwj3is8/census-build.json": {
+      "sha256": "236abf604cf3d04b910c5417dbd23193d2b044f123bd9ed77691cc54a7eaed74",
+      "bytes": 20952
+    },
+    "working/experiments/drawing-census/run-_pwj3is8/manifest.json": {
+      "sha256": "fd6e7b900b6d460f54af39f59229e6332eb82a05df5b5654241ed6554bff479c",
+      "bytes": 1684
+    },
+    "working/experiments/drawing-census/run-_pwj3is8/journey.json": {
+      "sha256": "98e3f5213a5119aa5281e2baf14326eb14446786ec052d3121b4cbf9ca12e9f2",
+      "bytes": 319115
+    },
+    "working/experiments/drawing-census/run-_pwj3is8/staged-binary-artifacts/Chaos.exe": {
+      "sha256": "e14c0e8a1082b875280043267097b8a0423fc2fcad2ada9e9c371ccb75d6f44a",
+      "bytes": 2093056
+    },
+    "research/runtime/drawing-canvas-release-original-range-20261011.json": {
+      "sha256": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+      "bytes": 22609
+    },
+    "research/runtime/drawing-terminal-callers-static-20261011.json": {
+      "sha256": "149d5cb0fc1755f4d39a5c76d3ff02892ea517be79a19e43b7134dae325980c7",
+      "bytes": 159103
+    },
+    "research/runtime/coverage/binary-nocd.json": {
+      "sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+      "bytes": 4880221
+    },
+    "working/tests/draw01-terminal-edges-claims-20261011.json": {
+      "sha256": "b3caa7a05a2f2e688b618c49a165a81deb93ff4c3e6322e0456baab95a89b197",
+      "bytes": 3703
+    }
+  },
+  "original_execution_repeated": false,
+  "original_execution_provenance": "research/runtime/drawing-terminal-observer-original-menu-20261011.json"
+}
