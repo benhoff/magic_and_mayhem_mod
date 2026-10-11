@@ -1,12 +1,12 @@
 {
-  "schema": 1,
-  "scope": "Initial movement checklist; deliberately incomplete whole-game inventory. Original comparisons are historical scoped evidence; freshness is audited independently.",
-  "builds": [
+  "api_bindings": [
     {
-      "id": "nocd-40209ca7",
-      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
-      "inventory": "research/runtime/coverage/binary-nocd.json",
-      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+      "build": "nocd-40209ca7",
+      "iat_va": 6050444,
+      "behaviors": [
+        "INPUT.camera-minimap-orientation-update"
+      ],
+      "scope": "Static selected unassigned key-handler trace at46c070 calls MapVirtualKeyA(VK,0) before comma/period request branches. Conversion only; full handler ownership, dispatch equivalence and other keys remain unresolved."
     }
   ],
   "behaviors": [
@@ -32862,6 +32862,128 @@
       "validation_domain": "All103independently retained full primary planes through16World returns from the guarded opaque publication sites. V2 raw journal266MiB in9bounded chunks;17encoded source assets. Original World views0..3 and applied menu phase identities retained, while viewport boundaries, alternate routes and full journey/operation semantics remain pending."
     },
     {
+      "id": "NR.drawing-session",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native drawing session, segment and immutable frame lifecycle",
+      "scope": "Thread-confined native DrawingScene orchestration with strictly increasing session IDs, contiguous segment/frame identities, source-local sequence/queue histories and native stage labels. Explicit transition discards prior history and starts undefined storage; terminal completion requires a current complete frame. Running mutation faults/budget exhaustion discard presentation and resources; restart requires a fresh ID/history. Stale frame queries refuse without poisoning current state. Native caps64segments/8192frames/1048576records; external immutable GPU leases retire independently. Owned synthetic pixel/lifecycle fixtures only; no original action, transition, failure, full presented journey, media, picking or live replacement claim. Owned native session v1 CLI admits bounded contained/hash-bound producer streams and encoded assets; canonical exact 64-bit token, closed field/number/stage admission, increasing complete boundaries, explicit nonterminal cancellation, immutable source recheck and new-only RGB565 frame/identity report outputs. Runner caps4MiBmanifest/512assets32MiBeach512MiBaggregate/512MiBproducer1GiBaggregate/2048extent in addition to session/wire caps. No DRAW-02 presented-session ABI claim. All SPR catalogue inputs require contained declared asset bindings, checked before/after execution despite WorldResources reading them independently.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw03-native-session.md",
+        "research/formats/drawing-native-session-v1.md"
+      ],
+      "implementation": [
+        "compat/legacy/drawing_session.cpp",
+        "compat/legacy/drawing_session.hpp",
+        "compat/legacy/drawing_session_main.cpp"
+      ],
+      "tests": [
+        "tests/drawing-session-test.cpp",
+        "tools/test-native-drawing-session.py",
+        "tools/test-native-drawing-session-runner.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/resource-fixtures.hpp"
+      ],
+      "evidence": [
+        "NR.drawing-session.lifecycle-native-20261011",
+        "NR.drawing-session.runner-native-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
       "id": "NR.drawing-session-api",
       "subsystem": "native_rendering",
       "kind": "native_policy",
@@ -32891,7 +33013,9 @@
       "evidence": [
         "NR.drawing-session-api.forwarding-native-20261011",
         "NR.drawing-session-api.concurrent-forwarding-native-20261011",
-        "NR.drawing-interactive-acquisition.original-active-20261011"
+        "NR.drawing-interactive-acquisition.original-active-20261011",
+        "NR.drawing-session-api.record-kind-native-20261011",
+        "NR.drawing-interactive-acquisition.record-kind-original-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -32912,7 +33036,8 @@
       ],
       "evidence": [
         "NR.drawing-interactive-acquisition.original-active-20261011",
-        "NR.drawing-interactive-acquisition.retention-static-20261011"
+        "NR.drawing-interactive-acquisition.retention-static-20261011",
+        "NR.drawing-interactive-acquisition.record-kind-original-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -32997,7 +33122,8 @@
         "research/runtime/draw02-caller-results.md"
       ],
       "evidence": [
-        "NR.drawing-result-comparison.native-20261011"
+        "NR.drawing-result-comparison.native-20261011",
+        "NR.drawing-result-comparison.record-kind-native-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -33025,6 +33151,2571 @@
         "reconstruction/rendering/surface_retry.hpp"
       ],
       "validation_domain": "Native CPU scheduling versus retained independent original/scripted COM references plus comparator refusal guards; no real driver executed."
+    }
+  ],
+  "builds": [
+    {
+      "id": "nocd-40209ca7",
+      "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+      "inventory": "research/runtime/coverage/binary-nocd.json",
+      "inventory_sha256": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929"
+    }
+  ],
+  "claim_bindings_required": true,
+  "classifications": [],
+  "code_index": {
+    "path": "research/runtime/coverage/source-index-draw02-draw03-strict-20261011.json",
+    "sha256": "eb1864ba5362cd65e7d2df57387193b1cc69aae10ba771633a94aed694cdd854"
+  },
+  "dispatch_tables": [
+    {
+      "id": "movement-animation-events",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5312092,
+        "relation": "data",
+        "scope": "Documented motion event jump table; entry values below are a selected behavioral checklist."
+      },
+      "document": "research/runtime/native-ani-motion.md",
+      "complete": false,
+      "scope": "Event 0/2 integrated; event 1/3/4/5/6 consumers pending. Table completeness, default and stop paths are not claimed.",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "MV.event-0"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "MV.event-1"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "MV.event-2"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "MV.event-3"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "MV.event-4"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "MV.event-5"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "MV.event-6"
+          ]
+        },
+        {
+          "value": "default-or-stop",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "spell-effects",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4763888,
+        "scope": "Selected static effect-switch case inventory; semantic coverage pending."
+      },
+      "document": "research/runtime/spell-dispatch-inventory.md",
+      "complete": false,
+      "scope": "104 configuration IDs; explicit effect labels linked, absent labels retain mapping debt. This is not the full runtime dispatch domain.",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "SP.000"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "SP.001"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "SP.002"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "SP.003"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "SP.004"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "SP.005"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "SP.006"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "SP.007"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "SP.008"
+          ]
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "SP.009"
+          ]
+        },
+        {
+          "value": 10,
+          "behaviors": [
+            "SP.010"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "SP.011"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "SP.012"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "SP.013"
+          ]
+        },
+        {
+          "value": 14,
+          "behaviors": [
+            "SP.014"
+          ]
+        },
+        {
+          "value": 15,
+          "behaviors": [
+            "SP.015"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "SP.016"
+          ]
+        },
+        {
+          "value": 17,
+          "behaviors": [
+            "SP.017"
+          ]
+        },
+        {
+          "value": 18,
+          "behaviors": [
+            "SP.018"
+          ]
+        },
+        {
+          "value": 19,
+          "behaviors": [
+            "SP.019"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "SP.020"
+          ]
+        },
+        {
+          "value": 21,
+          "behaviors": [
+            "SP.021"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "SP.022"
+          ]
+        },
+        {
+          "value": 23,
+          "behaviors": [
+            "SP.023"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "SP.024"
+          ]
+        },
+        {
+          "value": 25,
+          "behaviors": [
+            "SP.025"
+          ]
+        },
+        {
+          "value": 26,
+          "behaviors": [
+            "SP.026"
+          ]
+        },
+        {
+          "value": 27,
+          "behaviors": []
+        },
+        {
+          "value": 28,
+          "behaviors": []
+        },
+        {
+          "value": 29,
+          "behaviors": []
+        },
+        {
+          "value": 30,
+          "behaviors": []
+        },
+        {
+          "value": 31,
+          "behaviors": []
+        },
+        {
+          "value": 32,
+          "behaviors": []
+        },
+        {
+          "value": 33,
+          "behaviors": [
+            "SP.033"
+          ]
+        },
+        {
+          "value": 34,
+          "behaviors": [
+            "SP.034"
+          ]
+        },
+        {
+          "value": 35,
+          "behaviors": [
+            "SP.035"
+          ]
+        },
+        {
+          "value": 36,
+          "behaviors": []
+        },
+        {
+          "value": 37,
+          "behaviors": []
+        },
+        {
+          "value": 38,
+          "behaviors": [
+            "SP.038"
+          ]
+        },
+        {
+          "value": 39,
+          "behaviors": []
+        },
+        {
+          "value": 40,
+          "behaviors": []
+        },
+        {
+          "value": 41,
+          "behaviors": [
+            "SP.041"
+          ]
+        },
+        {
+          "value": 42,
+          "behaviors": [
+            "SP.042"
+          ]
+        },
+        {
+          "value": 43,
+          "behaviors": [
+            "SP.043"
+          ]
+        },
+        {
+          "value": 44,
+          "behaviors": [
+            "SP.044"
+          ]
+        },
+        {
+          "value": 45,
+          "behaviors": []
+        },
+        {
+          "value": 46,
+          "behaviors": [
+            "SP.046"
+          ]
+        },
+        {
+          "value": 47,
+          "behaviors": []
+        },
+        {
+          "value": 48,
+          "behaviors": []
+        },
+        {
+          "value": 49,
+          "behaviors": []
+        },
+        {
+          "value": 50,
+          "behaviors": [
+            "SP.050"
+          ]
+        },
+        {
+          "value": 51,
+          "behaviors": []
+        },
+        {
+          "value": 52,
+          "behaviors": [
+            "SP.052"
+          ]
+        },
+        {
+          "value": 53,
+          "behaviors": []
+        },
+        {
+          "value": 54,
+          "behaviors": [
+            "SP.054"
+          ]
+        },
+        {
+          "value": 55,
+          "behaviors": []
+        },
+        {
+          "value": 56,
+          "behaviors": []
+        },
+        {
+          "value": 57,
+          "behaviors": []
+        },
+        {
+          "value": 58,
+          "behaviors": [
+            "SP.058"
+          ]
+        },
+        {
+          "value": 59,
+          "behaviors": []
+        },
+        {
+          "value": 60,
+          "behaviors": [
+            "SP.060"
+          ]
+        },
+        {
+          "value": 61,
+          "behaviors": []
+        },
+        {
+          "value": 62,
+          "behaviors": [
+            "SP.062"
+          ]
+        },
+        {
+          "value": 63,
+          "behaviors": []
+        },
+        {
+          "value": 64,
+          "behaviors": []
+        },
+        {
+          "value": 65,
+          "behaviors": [
+            "SP.065"
+          ]
+        },
+        {
+          "value": 66,
+          "behaviors": []
+        },
+        {
+          "value": 67,
+          "behaviors": []
+        },
+        {
+          "value": 68,
+          "behaviors": [
+            "SP.068"
+          ]
+        },
+        {
+          "value": 69,
+          "behaviors": [
+            "SP.069"
+          ]
+        },
+        {
+          "value": 70,
+          "behaviors": [
+            "SP.070"
+          ]
+        },
+        {
+          "value": 71,
+          "behaviors": [
+            "SP.071"
+          ]
+        },
+        {
+          "value": 72,
+          "behaviors": [
+            "SP.072"
+          ]
+        },
+        {
+          "value": 73,
+          "behaviors": []
+        },
+        {
+          "value": 74,
+          "behaviors": [
+            "SP.074"
+          ]
+        },
+        {
+          "value": 75,
+          "behaviors": [
+            "SP.075"
+          ]
+        },
+        {
+          "value": 76,
+          "behaviors": [
+            "SP.076"
+          ]
+        },
+        {
+          "value": 77,
+          "behaviors": [
+            "SP.077"
+          ]
+        },
+        {
+          "value": 78,
+          "behaviors": [
+            "SP.078"
+          ]
+        },
+        {
+          "value": 79,
+          "behaviors": [
+            "SP.079"
+          ]
+        },
+        {
+          "value": 80,
+          "behaviors": [
+            "SP.080"
+          ]
+        },
+        {
+          "value": 81,
+          "behaviors": [
+            "SP.081"
+          ]
+        },
+        {
+          "value": 82,
+          "behaviors": [
+            "SP.082"
+          ]
+        },
+        {
+          "value": 83,
+          "behaviors": [
+            "SP.083"
+          ]
+        },
+        {
+          "value": 84,
+          "behaviors": [
+            "SP.084"
+          ]
+        },
+        {
+          "value": 85,
+          "behaviors": [
+            "SP.085"
+          ]
+        },
+        {
+          "value": 86,
+          "behaviors": [
+            "SP.086"
+          ]
+        },
+        {
+          "value": 87,
+          "behaviors": [
+            "SP.087"
+          ]
+        },
+        {
+          "value": 88,
+          "behaviors": [
+            "SP.088"
+          ]
+        },
+        {
+          "value": 89,
+          "behaviors": [
+            "SP.089"
+          ]
+        },
+        {
+          "value": 90,
+          "behaviors": []
+        },
+        {
+          "value": 91,
+          "behaviors": [
+            "SP.091"
+          ]
+        },
+        {
+          "value": 92,
+          "behaviors": [
+            "SP.092"
+          ]
+        },
+        {
+          "value": 93,
+          "behaviors": [
+            "SP.093"
+          ]
+        },
+        {
+          "value": 94,
+          "behaviors": [
+            "SP.094"
+          ]
+        },
+        {
+          "value": 95,
+          "behaviors": [
+            "SP.095"
+          ]
+        },
+        {
+          "value": 96,
+          "behaviors": [
+            "SP.096"
+          ]
+        },
+        {
+          "value": 97,
+          "behaviors": [
+            "SP.097"
+          ]
+        },
+        {
+          "value": 98,
+          "behaviors": [
+            "SP.098"
+          ]
+        },
+        {
+          "value": 99,
+          "behaviors": [
+            "SP.099"
+          ]
+        },
+        {
+          "value": 100,
+          "behaviors": []
+        },
+        {
+          "value": 101,
+          "behaviors": [
+            "SP.101"
+          ]
+        },
+        {
+          "value": 102,
+          "behaviors": [
+            "SP.102"
+          ]
+        },
+        {
+          "value": 103,
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "preferences.vtable",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6055052,
+        "relation": "data",
+        "scope": "Recovered Preferences vtable; selected behavioral links only"
+      },
+      "document": "research/runtime/preferences-engine-contract.md",
+      "complete": false,
+      "scope": "Enter/leave/tick/control building links; other slots and caller branches remain separately unrecovered or retained original.",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "PR.main-entry"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "PR.display-rebuild"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "PR.main-entry"
+          ]
+        },
+        {
+          "value": 36,
+          "behaviors": [
+            "PR.control-admission"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "effect-type-setup",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4812548,
+        "relation": "data",
+        "scope": "Type-setup dispatch table, 89 indices admitted by 00494ab0"
+      },
+      "document": "research/runtime/effect-record-placement.md",
+      "complete": false,
+      "scope": "Type writes observed; all child setup behaviors remain pending; fixture callback defers this dispatch",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 10,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 14,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 15,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 17,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 18,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 19,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 21,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 23,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 25,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 26,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 27,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 28,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 29,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 30,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 31,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 32,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 33,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 34,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 35,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 36,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 37,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 38,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 39,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 40,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 41,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 42,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 43,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 44,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 45,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 46,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 47,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 48,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 49,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 50,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 51,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 52,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 53,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 54,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 55,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 56,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 57,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 58,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 59,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 60,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 61,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 62,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 63,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 64,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 65,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 66,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 67,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 68,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 69,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 70,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 71,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 72,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 73,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 74,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 75,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 76,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 77,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 78,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 79,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 80,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 81,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 82,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 83,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 84,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 85,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 86,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 87,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        },
+        {
+          "value": 88,
+          "behaviors": [
+            "TL.effect-type-setup"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campaign.realm-vtable-prefix",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6056544,
+        "relation": "data",
+        "scope": "Six reviewed slots only"
+      },
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "complete": false,
+      "scope": "Only selected lifecycle and input branches observed; later slots and resource initialization not recovered",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "CP.realm-navigation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campaign.region-entry-prefix",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6055548,
+        "relation": "data",
+        "scope": "Ten static targets; selected branches only"
+      },
+      "document": "research/runtime/region-entry-engine-contract.md",
+      "complete": false,
+      "scope": "Common tick observed; enter/leave/input/build static; callbacks and deferred request isolated; full availability/destination dispatch pending",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "CP.region-entry-observation"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 28,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 32,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        },
+        {
+          "value": 36,
+          "behaviors": [
+            "CP.region-entry-actions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campaign.gameplay-mini-callback",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4924400,
+        "scope": "Callback entry only; local actions 3 and 4 admitted",
+        "recovered_range": "campaign-mini-entry-4b23f0"
+      },
+      "document": "research/runtime/campaign-mini-quit-engine-bridge.md",
+      "complete": false,
+      "scope": "Five campaign cases; Cancel 4 and Quit 3 linked; Load/Save/Preferences 0..2 pending",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": []
+        },
+        {
+          "value": 1,
+          "behaviors": []
+        },
+        {
+          "value": 2,
+          "behaviors": []
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "CP.campaign-mini-quit"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "CP.campaign-mini-cancel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campaign.gameplay-mini-confirmation",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4924656,
+        "scope": "Entry prefix only; UI answers 0 and 1 in campaign mode 2/context 5",
+        "recovered_range": "campaign-mini-quit-entry-4b24f0"
+      },
+      "document": "research/runtime/campaign-mini-quit-engine-bridge.md",
+      "complete": false,
+      "scope": "Yes 0 and No 1 observed; noncanonical nonzero answers, mode 4, other contexts and helper internals pending",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "CP.campaign-mini-quit"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "CP.campaign-mini-quit"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "effect-animation-kind-selection",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4756624,
+        "relation": "data",
+        "scope": "103-kind byte mapping to 30 target pointers at 00489418 within whole 00489200; outside-kind fallback and type6/7 override are separately described in the behavior"
+      },
+      "document": "research/runtime/effect-animation-selection.md",
+      "complete": true,
+      "scope": "All 103 compressed kind entries and all 30 action targets compared as exact original bytes and executed in the scoped whole selector; no parent type-dispatch/animation attachment completion claim",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 10,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 14,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 15,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 17,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 18,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 19,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 21,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 23,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 25,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 26,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 27,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 28,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 29,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 30,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 31,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 32,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 33,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 34,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 35,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 36,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 37,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 38,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 39,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 40,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 41,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 42,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 43,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 44,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 45,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 46,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 47,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 48,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 49,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 50,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 51,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 52,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 53,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 54,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 55,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 56,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 57,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 58,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 59,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 60,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 61,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 62,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 63,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 64,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 65,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 66,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 67,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 68,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 69,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 70,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 71,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 72,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 73,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 74,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 75,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 76,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 77,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 78,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 79,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 80,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 81,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 82,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 83,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 84,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 85,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 86,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 87,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 88,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 89,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 90,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 91,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 92,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 93,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 94,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 95,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 96,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 97,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 98,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 99,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 100,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 101,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        },
+        {
+          "value": 102,
+          "behaviors": [
+            "TL.effect-animation-selection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campaign.quit-defeat-ok",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4671392,
+        "scope": "Original registered OK callback; local index 21 in selected fresh Quit defeat report"
+      },
+      "document": "research/runtime/campaign-defeat-engine-bridge.md",
+      "complete": false,
+      "scope": "Selected report OK receiver/index 21 only; other report outcomes/contexts and direct noncanonical callback arguments pending",
+      "entries": [
+        {
+          "value": 21,
+          "behaviors": [
+            "CP.campaign-defeat-report"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campaign.preferences-buttons",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 4888640,
+        "scope": "Selected Preferences button receiver and local0 OK/local1 Cancel",
+        "recovered_range": "campaign-preferences-entry-4a9840"
+      },
+      "document": "research/runtime/campaign-preferences-engine-bridge.md",
+      "complete": false,
+      "scope": "Selected fresh campaign caller only; all other callers and noncanonical callback values pending",
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "CP.campaign-mini-preferences"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "CP.campaign-mini-preferences"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RI.queue-draw-00501184",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5247364,
+        "relation": "data",
+        "scope": "First consumer computed jump at 0x5003fc; selected raster links only, complete table semantics not claimed."
+      },
+      "document": "research/runtime/render-drawing-inventory.md",
+      "scope": "Selected first consumer path links recovered from static calls and bounded effective raster capture. Other values, default branches, alternate tables and complete consumer state/readback semantics remain unresolved.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 31,
+          "behaviors": [
+            "RS.world-frame",
+            "RS.world-composition"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "RS.world-initial-state",
+            "RS.world-startup-wave"
+          ]
+        },
+        {
+          "value": "other-or-default",
+          "behaviors": []
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "RS.world-startup-wave"
+          ]
+        },
+        {
+          "value": 17,
+          "behaviors": [
+            "RS.world-startup-wave"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "RS.world-kind8-virtual"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RI.queue-draw-00501210",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5247504,
+        "relation": "data",
+        "scope": "Static computed jump at 0x50093d; table semantics unclassified."
+      },
+      "document": "research/runtime/render-drawing-inventory.md",
+      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
+      "complete": false,
+      "entries": []
+    },
+    {
+      "id": "RI.queue-draw-0050129c",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5247644,
+        "relation": "data",
+        "scope": "Static computed jump at 0x500d69; table semantics unclassified."
+      },
+      "document": "research/runtime/render-drawing-inventory.md",
+      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
+      "complete": false,
+      "entries": []
+    },
+    {
+      "id": "kind8-vtable-5c7420",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059040,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-additive"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "kind8-vtable-5c73f0",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6058992,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-additive"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "kind8-vtable-5c7408",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059016,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-additive"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "kind8-vtable-5c7494",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059156,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-colour"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "kind8-vtable-5c74b0",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059184,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-colour"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "kind8-vtable-5c74cc",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 6059212,
+        "relation": "data",
+        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
+      },
+      "document": "research/runtime/native-world-kind8.md",
+      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.world-kind8-noop"
+          ]
+        },
+        {
+          "value": "other-slots",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "world-complete-raster-admission-20261008",
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5243552,
+        "scope": "Selected observed outer raster routes within retained World traversal."
+      },
+      "document": "research/runtime/native-world-raster-queue.md",
+      "scope": "Build-pinned13-entry observed caller admission; unknown caller/mode and unobserved routes retained. No complete dispatcher recovery.",
+      "complete": false,
+      "entries": [
+        {
+          "value": "0x595677",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x5947b2",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x59521a",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x595b47",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x59603e",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x57de00",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x57ec90",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x57f0f0",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x57f5f0",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x5806f0",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x596490",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x5968a4",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "0x57e540",
+          "behaviors": [
+            "RS.world-raster-queue-replacement"
+          ]
+        },
+        {
+          "value": "unknown-or-unobserved-caller-mode",
+          "behaviors": []
+        }
+      ]
+    },
+    {
+      "id": "minimap-terrain-orientations",
+      "document": "research/runtime/native-minimap-terrain.md",
+      "scope": "Four fog orientation entries; companion non-fog table554820; pixel branch classification only, driver/caller semantics pending.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "RS.minimap-terrain-raster"
+          ]
+        },
+        {
+          "value": "out-of-range",
+          "behaviors": []
+        }
+      ],
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5589008,
+        "relation": "data",
+        "scope": "Fog-enabled four-entry orientation table; companion fog-disabled table at554820."
+      }
+    },
+    {
+      "id": "minimap-camera-outline-call-sites",
+      "document": "research/runtime/native-minimap-live.md",
+      "scope": "Static selected four-slot caller table only; repeats5527a0, no5532f0 call. Original caller-state generation, other call sites and out-of-range branch remain unresolved.",
+      "complete": false,
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "INPUT.camera-minimap-orientation-update"
+          ]
+        },
+        {
+          "value": "out-of-range",
+          "behaviors": []
+        }
+      ],
+      "original": {
+        "build": "nocd-40209ca7",
+        "address": 5594632,
+        "relation": "data",
+        "scope": "Four raw dispatch slots at555e08, mapped to three direct call sites; not global minimap orientation dispatch equivalence."
+      }
     }
   ],
   "evidence": [
@@ -62940,6 +65631,92 @@
       ]
     },
     {
+      "id": "NR.drawing-session.lifecycle-native-20261011",
+      "kind": "native_integration",
+      "scope": "12real native/OpenGL owned synthetic session lifecycle cases and underlying scene regression. Exact session/segment/frame ordering, fresh undefined generations, interruption, source failures, bounded recovery, terminal frame, immutable GPU lease lifetime and cleanup pass. No original execution, recovered transition policy, full journey or live replacement.",
+      "record": "research/runtime/draw03-native-session-lifecycle-20261011.json",
+      "sha256": "c2374340dae182b80137da53bf8f68b635d15d8466d477ef86ecd889e6566652",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/execution_performed",
+          "equals": true
+        },
+        {
+          "pointer": "/scene_regression",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_execution",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-session.runner-native-20261011",
+      "kind": "native_integration",
+      "scope": "Executed12native lifecycle cases, existing scene regression and30owned native CLI cases. Six independently expected RGB565 planes/99pixels across6segments, real synthetic SPR/BMP composition, interrupted World cancellation,29input/hash/catalogue/path/schema/boundary/result-contamination/refusal checks and zero native surfaces after actual failures/cleanup. No original execution/equivalence, physical presentation or live replacement.",
+      "record": "research/runtime/draw03-native-session-runner-20261011.json",
+      "sha256": "cb29e0316e86a16bbb5cb8a563ed5727b871a135a1ddc4ffb46386e4dea380cc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/execution_performed",
+          "equals": true
+        },
+        {
+          "pointer": "/scene_regression",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/runner/success",
+          "equals": true
+        },
+        {
+          "pointer": "/runner/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/runner/complete_native_frames",
+          "equals": 6
+        },
+        {
+          "pointer": "/runner/compared_native_pixels",
+          "equals": 99
+        }
+      ]
+    },
+    {
       "id": "NR.drawing-session-api.forwarding-native-20261011",
       "kind": "native_integration",
       "scope": "Fresh synthetic PE32 eight-route32case forwarding/error/x87 and eight full primary reference planes; no original game or real driver failure equivalence.",
@@ -63112,2568 +65889,437 @@
         }
       ],
       "sources_pointer": "/sources"
+    },
+    {
+      "id": "NR.drawing-session-api.record-kind-native-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh prospective execution after V1 undefined record-kind admission was tightened; declared scopes and limitations remain unchanged.",
+      "record": "research/runtime/draw02-api-record-kind-native-20261011.json",
+      "sha256": "038b65607a85b9812328896c2204df21621640406435c204e601a9102d4e4ca2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/driver_reentrant_threads",
+          "equals": 8
+        },
+        {
+          "pointer": "/scripted_com_cases",
+          "equals": 32
+        },
+        {
+          "pointer": "/primary_planes",
+          "equals": 8
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-interactive-acquisition.record-kind-original-20261011",
+      "kind": "live_observation",
+      "scope": "Fresh prospective execution after V1 undefined record-kind admission was tightened; declared scopes and limitations remain unchanged.",
+      "record": "research/runtime/draw02-interactive-record-kind-original-20261011.json",
+      "sha256": "224a621bff62e242294eb62ef8c52788e2c6daa80e1b382b321b2597f4e3b69a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/observation/drops",
+          "equals": 0
+        },
+        {
+          "pointer": "/observation/unclassified_interfaces_or_routes",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_gameplay_observation/world_exit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/original_gameplay_observation/sustained_gameplay_observed",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-result-comparison.record-kind-native-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh prospective execution after V1 undefined record-kind admission was tightened; declared scopes and limitations remain unchanged.",
+      "record": "research/runtime/draw02-failure-record-kind-native-20261011.json",
+      "sha256": "563626ed2a600a0accd930d97cb5ae1caaf3e769aa02a81db98db92bdf0a4816",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/complete/matching",
+          "equals": true
+        },
+        {
+          "pointer": "/complete/cases",
+          "equals": 4480
+        },
+        {
+          "pointer": "/bounded/budget_exhaustions",
+          "equals": 1536
+        }
+      ]
     }
   ],
-  "classifications": [],
-  "api_bindings": [
+  "recovered_ranges": [
     {
+      "id": "motion-action",
       "build": "nocd-40209ca7",
-      "iat_va": 6050444,
-      "behaviors": [
-        "INPUT.camera-minimap-orientation-update"
-      ],
-      "scope": "Static selected unassigned key-handler trace at46c070 calls MapVirtualKeyA(VK,0) before comma/period request branches. Conversion only; full handler ownership, dispatch equivalence and other keys remain unresolved."
+      "start": 5309616,
+      "end": 5312058,
+      "document": "research/runtime/native-creature-fine-motion.md",
+      "evidence": "NS05.composition",
+      "anchors_pointer": "/original_composition/record/anchors"
+    },
+    {
+      "id": "preferences-entry-4a75c0",
+      "build": "nocd-40209ca7",
+      "start": 4879808,
+      "end": 4879816,
+      "document": "research/runtime/preferences-engine-contract.md",
+      "evidence": "UI23.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "preferences-entry-4a9700",
+      "build": "nocd-40209ca7",
+      "start": 4888320,
+      "end": 4888328,
+      "document": "research/runtime/preferences-engine-contract.md",
+      "evidence": "UI23.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "preferences-entry-4a9840",
+      "build": "nocd-40209ca7",
+      "start": 4888640,
+      "end": 4888648,
+      "document": "research/runtime/preferences-engine-contract.md",
+      "evidence": "UI23.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "preferences-entry-4a8af0",
+      "build": "nocd-40209ca7",
+      "start": 4885232,
+      "end": 4885240,
+      "document": "research/runtime/preferences-engine-contract.md",
+      "evidence": "UI22.enter",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-4a75c0",
+      "build": "nocd-40209ca7",
+      "start": 4879808,
+      "end": 4879816,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-5517a0",
+      "build": "nocd-40209ca7",
+      "start": 5576608,
+      "end": 5576616,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-552310",
+      "build": "nocd-40209ca7",
+      "start": 5579536,
+      "end": 5579544,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-552210",
+      "build": "nocd-40209ca7",
+      "start": 5579280,
+      "end": 5579288,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-entry-54fd20",
+      "build": "nocd-40209ca7",
+      "start": 5569824,
+      "end": 5569832,
+      "document": "research/runtime/campaign-menu-engine-contract.md",
+      "evidence": "UI26.original",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-mini-entry-4b23f0",
+      "build": "nocd-40209ca7",
+      "start": 4924400,
+      "end": 4924408,
+      "document": "research/runtime/campaign-mini-cancel-engine-bridge.md",
+      "evidence": "UI31.fixture",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-mini-entry-5595d0",
+      "build": "nocd-40209ca7",
+      "start": 5608912,
+      "end": 5608920,
+      "document": "research/runtime/campaign-mini-cancel-engine-bridge.md",
+      "evidence": "UI31.fixture",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-mini-quit-entry-4b24f0",
+      "build": "nocd-40209ca7",
+      "start": 4924656,
+      "end": 4924664,
+      "document": "research/runtime/campaign-mini-quit-engine-bridge.md",
+      "evidence": "UI32.fixture",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "campaign-preferences-entry-4a9700",
+      "build": "nocd-40209ca7",
+      "start": 4888320,
+      "end": 4888328,
+      "document": "research/runtime/campaign-preferences-engine-bridge.md",
+      "evidence": "UI34.fixture",
+      "anchors_pointer": "/fixture/anchors"
+    },
+    {
+      "id": "campaign-preferences-entry-4a9840",
+      "build": "nocd-40209ca7",
+      "start": 4888640,
+      "end": 4888648,
+      "document": "research/runtime/campaign-preferences-engine-bridge.md",
+      "evidence": "UI34.fixture",
+      "anchors_pointer": "/fixture/anchors"
+    },
+    {
+      "id": "world-copy-reference-entry-57e1b0",
+      "build": "nocd-40209ca7",
+      "start": 5759408,
+      "end": 5759416,
+      "document": "research/runtime/native-world-frame-rendering.md",
+      "evidence": "RS.world-shadow.history-original-20261007",
+      "anchors_pointer": "/entry_anchors"
+    },
+    {
+      "id": "canvas-producer-entry-58c6a0",
+      "build": "nocd-40209ca7",
+      "start": 5818016,
+      "end": 5818032,
+      "document": "research/runtime/native-canvas-producers.md",
+      "evidence": "NR.canvas-producers.comparison-20261008",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "canvas-producer-entry-58cd50",
+      "build": "nocd-40209ca7",
+      "start": 5819728,
+      "end": 5819744,
+      "document": "research/runtime/native-canvas-producers.md",
+      "evidence": "NR.canvas-producers.comparison-20261008",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "canvas-producer-entry-58cf20",
+      "build": "nocd-40209ca7",
+      "start": 5820192,
+      "end": 5820208,
+      "document": "research/runtime/native-canvas-producers.md",
+      "evidence": "NR.canvas-producers.comparison-20261008",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "kind8-draw-wrapper-54ab00",
+      "build": "nocd-40209ca7",
+      "start": 5548800,
+      "end": 5548825,
+      "document": "research/runtime/native-world-kind8.md",
+      "evidence": "RS.world-kind8.original-20261008",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "kind8-colour-wrapper-54ab60",
+      "build": "nocd-40209ca7",
+      "start": 5548896,
+      "end": 5548917,
+      "document": "research/runtime/native-world-kind8.md",
+      "evidence": "RS.world-kind8.original-20261008",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "kind8-owner-wrapper-546540",
+      "build": "nocd-40209ca7",
+      "start": 5530944,
+      "end": 5531010,
+      "document": "research/runtime/native-world-kind8.md",
+      "evidence": "RS.world-kind8.original-20261008",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "kind8-noop-wrapper-54ac00",
+      "build": "nocd-40209ca7",
+      "start": 5549056,
+      "end": 5549066,
+      "document": "research/runtime/native-world-kind8.md",
+      "evidence": "RS.world-kind8.original-20261008",
+      "anchors_pointer": "/anchors"
+    },
+    {
+      "id": "minimap-outline-view3-5532f0",
+      "build": "nocd-40209ca7",
+      "start": 5583600,
+      "end": 5584572,
+      "document": "research/runtime/native-minimap-overlays.md",
+      "evidence": "RS.minimap-camera-corners.comparison-range-20261009",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "font-byte-draw-4a59e0",
+      "build": "nocd-40209ca7",
+      "start": 4872672,
+      "end": 4872777,
+      "document": "research/runtime/font-byte-producer.md",
+      "evidence": "RS.font-byte-consumer.comparison-range-20261010",
+      "anchors_pointer": "/original_entry_anchors"
     }
   ],
-  "dispatch_tables": [
+  "register_imports": [
     {
-      "id": "movement-animation-events",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 5312092,
-        "relation": "data",
-        "scope": "Documented motion event jump table; entry values below are a selected behavioral checklist."
-      },
-      "document": "research/runtime/native-ani-motion.md",
-      "complete": false,
-      "scope": "Event 0/2 integrated; event 1/3/4/5/6 consumers pending. Table completeness, default and stop paths are not claimed.",
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "MV.event-0"
-          ]
-        },
-        {
-          "value": 1,
-          "behaviors": [
-            "MV.event-1"
-          ]
-        },
-        {
-          "value": 2,
-          "behaviors": [
-            "MV.event-2"
-          ]
-        },
-        {
-          "value": 3,
-          "behaviors": [
-            "MV.event-3"
-          ]
-        },
-        {
-          "value": 4,
-          "behaviors": [
-            "MV.event-4"
-          ]
-        },
-        {
-          "value": 5,
-          "behaviors": [
-            "MV.event-5"
-          ]
-        },
-        {
-          "value": 6,
-          "behaviors": [
-            "MV.event-6"
-          ]
-        },
-        {
-          "value": "default-or-stop",
-          "behaviors": []
-        }
-      ]
+      "path": "research/runtime/preferences-coverage-register.json",
+      "sha256": "4e7b92835b2f38e1a7194d7bc1a2844396f09c00b9c3236662e9410dc133270e",
+      "scope": "Reviewed Preferences focused-register snapshot consolidated into the central register; subsequent focused edits require explicit reconciliation."
     },
     {
-      "id": "spell-effects",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 4763888,
-        "scope": "Selected static effect-switch case inventory; semantic coverage pending."
-      },
-      "document": "research/runtime/spell-dispatch-inventory.md",
-      "complete": false,
-      "scope": "104 configuration IDs; explicit effect labels linked, absent labels retain mapping debt. This is not the full runtime dispatch domain.",
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "SP.000"
-          ]
-        },
-        {
-          "value": 1,
-          "behaviors": [
-            "SP.001"
-          ]
-        },
-        {
-          "value": 2,
-          "behaviors": [
-            "SP.002"
-          ]
-        },
-        {
-          "value": 3,
-          "behaviors": [
-            "SP.003"
-          ]
-        },
-        {
-          "value": 4,
-          "behaviors": [
-            "SP.004"
-          ]
-        },
-        {
-          "value": 5,
-          "behaviors": [
-            "SP.005"
-          ]
-        },
-        {
-          "value": 6,
-          "behaviors": [
-            "SP.006"
-          ]
-        },
-        {
-          "value": 7,
-          "behaviors": [
-            "SP.007"
-          ]
-        },
-        {
-          "value": 8,
-          "behaviors": [
-            "SP.008"
-          ]
-        },
-        {
-          "value": 9,
-          "behaviors": [
-            "SP.009"
-          ]
-        },
-        {
-          "value": 10,
-          "behaviors": [
-            "SP.010"
-          ]
-        },
-        {
-          "value": 11,
-          "behaviors": [
-            "SP.011"
-          ]
-        },
-        {
-          "value": 12,
-          "behaviors": [
-            "SP.012"
-          ]
-        },
-        {
-          "value": 13,
-          "behaviors": [
-            "SP.013"
-          ]
-        },
-        {
-          "value": 14,
-          "behaviors": [
-            "SP.014"
-          ]
-        },
-        {
-          "value": 15,
-          "behaviors": [
-            "SP.015"
-          ]
-        },
-        {
-          "value": 16,
-          "behaviors": [
-            "SP.016"
-          ]
-        },
-        {
-          "value": 17,
-          "behaviors": [
-            "SP.017"
-          ]
-        },
-        {
-          "value": 18,
-          "behaviors": [
-            "SP.018"
-          ]
-        },
-        {
-          "value": 19,
-          "behaviors": [
-            "SP.019"
-          ]
-        },
-        {
-          "value": 20,
-          "behaviors": [
-            "SP.020"
-          ]
-        },
-        {
-          "value": 21,
-          "behaviors": [
-            "SP.021"
-          ]
-        },
-        {
-          "value": 22,
-          "behaviors": [
-            "SP.022"
-          ]
-        },
-        {
-          "value": 23,
-          "behaviors": [
-            "SP.023"
-          ]
-        },
-        {
-          "value": 24,
-          "behaviors": [
-            "SP.024"
-          ]
-        },
-        {
-          "value": 25,
-          "behaviors": [
-            "SP.025"
-          ]
-        },
-        {
-          "value": 26,
-          "behaviors": [
-            "SP.026"
-          ]
-        },
-        {
-          "value": 27,
-          "behaviors": []
-        },
-        {
-          "value": 28,
-          "behaviors": []
-        },
-        {
-          "value": 29,
-          "behaviors": []
-        },
-        {
-          "value": 30,
-          "behaviors": []
-        },
-        {
-          "value": 31,
-          "behaviors": []
-        },
-        {
-          "value": 32,
-          "behaviors": []
-        },
-        {
-          "value": 33,
-          "behaviors": [
-            "SP.033"
-          ]
-        },
-        {
-          "value": 34,
-          "behaviors": [
-            "SP.034"
-          ]
-        },
-        {
-          "value": 35,
-          "behaviors": [
-            "SP.035"
-          ]
-        },
-        {
-          "value": 36,
-          "behaviors": []
-        },
-        {
-          "value": 37,
-          "behaviors": []
-        },
-        {
-          "value": 38,
-          "behaviors": [
-            "SP.038"
-          ]
-        },
-        {
-          "value": 39,
-          "behaviors": []
-        },
-        {
-          "value": 40,
-          "behaviors": []
-        },
-        {
-          "value": 41,
-          "behaviors": [
-            "SP.041"
-          ]
-        },
-        {
-          "value": 42,
-          "behaviors": [
-            "SP.042"
-          ]
-        },
-        {
-          "value": 43,
-          "behaviors": [
-            "SP.043"
-          ]
-        },
-        {
-          "value": 44,
-          "behaviors": [
-            "SP.044"
-          ]
-        },
-        {
-          "value": 45,
-          "behaviors": []
-        },
-        {
-          "value": 46,
-          "behaviors": [
-            "SP.046"
-          ]
-        },
-        {
-          "value": 47,
-          "behaviors": []
-        },
-        {
-          "value": 48,
-          "behaviors": []
-        },
-        {
-          "value": 49,
-          "behaviors": []
-        },
-        {
-          "value": 50,
-          "behaviors": [
-            "SP.050"
-          ]
-        },
-        {
-          "value": 51,
-          "behaviors": []
-        },
-        {
-          "value": 52,
-          "behaviors": [
-            "SP.052"
-          ]
-        },
-        {
-          "value": 53,
-          "behaviors": []
-        },
-        {
-          "value": 54,
-          "behaviors": [
-            "SP.054"
-          ]
-        },
-        {
-          "value": 55,
-          "behaviors": []
-        },
-        {
-          "value": 56,
-          "behaviors": []
-        },
-        {
-          "value": 57,
-          "behaviors": []
-        },
-        {
-          "value": 58,
-          "behaviors": [
-            "SP.058"
-          ]
-        },
-        {
-          "value": 59,
-          "behaviors": []
-        },
-        {
-          "value": 60,
-          "behaviors": [
-            "SP.060"
-          ]
-        },
-        {
-          "value": 61,
-          "behaviors": []
-        },
-        {
-          "value": 62,
-          "behaviors": [
-            "SP.062"
-          ]
-        },
-        {
-          "value": 63,
-          "behaviors": []
-        },
-        {
-          "value": 64,
-          "behaviors": []
-        },
-        {
-          "value": 65,
-          "behaviors": [
-            "SP.065"
-          ]
-        },
-        {
-          "value": 66,
-          "behaviors": []
-        },
-        {
-          "value": 67,
-          "behaviors": []
-        },
-        {
-          "value": 68,
-          "behaviors": [
-            "SP.068"
-          ]
-        },
-        {
-          "value": 69,
-          "behaviors": [
-            "SP.069"
-          ]
-        },
-        {
-          "value": 70,
-          "behaviors": [
-            "SP.070"
-          ]
-        },
-        {
-          "value": 71,
-          "behaviors": [
-            "SP.071"
-          ]
-        },
-        {
-          "value": 72,
-          "behaviors": [
-            "SP.072"
-          ]
-        },
-        {
-          "value": 73,
-          "behaviors": []
-        },
-        {
-          "value": 74,
-          "behaviors": [
-            "SP.074"
-          ]
-        },
-        {
-          "value": 75,
-          "behaviors": [
-            "SP.075"
-          ]
-        },
-        {
-          "value": 76,
-          "behaviors": [
-            "SP.076"
-          ]
-        },
-        {
-          "value": 77,
-          "behaviors": [
-            "SP.077"
-          ]
-        },
-        {
-          "value": 78,
-          "behaviors": [
-            "SP.078"
-          ]
-        },
-        {
-          "value": 79,
-          "behaviors": [
-            "SP.079"
-          ]
-        },
-        {
-          "value": 80,
-          "behaviors": [
-            "SP.080"
-          ]
-        },
-        {
-          "value": 81,
-          "behaviors": [
-            "SP.081"
-          ]
-        },
-        {
-          "value": 82,
-          "behaviors": [
-            "SP.082"
-          ]
-        },
-        {
-          "value": 83,
-          "behaviors": [
-            "SP.083"
-          ]
-        },
-        {
-          "value": 84,
-          "behaviors": [
-            "SP.084"
-          ]
-        },
-        {
-          "value": 85,
-          "behaviors": [
-            "SP.085"
-          ]
-        },
-        {
-          "value": 86,
-          "behaviors": [
-            "SP.086"
-          ]
-        },
-        {
-          "value": 87,
-          "behaviors": [
-            "SP.087"
-          ]
-        },
-        {
-          "value": 88,
-          "behaviors": [
-            "SP.088"
-          ]
-        },
-        {
-          "value": 89,
-          "behaviors": [
-            "SP.089"
-          ]
-        },
-        {
-          "value": 90,
-          "behaviors": []
-        },
-        {
-          "value": 91,
-          "behaviors": [
-            "SP.091"
-          ]
-        },
-        {
-          "value": 92,
-          "behaviors": [
-            "SP.092"
-          ]
-        },
-        {
-          "value": 93,
-          "behaviors": [
-            "SP.093"
-          ]
-        },
-        {
-          "value": 94,
-          "behaviors": [
-            "SP.094"
-          ]
-        },
-        {
-          "value": 95,
-          "behaviors": [
-            "SP.095"
-          ]
-        },
-        {
-          "value": 96,
-          "behaviors": [
-            "SP.096"
-          ]
-        },
-        {
-          "value": 97,
-          "behaviors": [
-            "SP.097"
-          ]
-        },
-        {
-          "value": 98,
-          "behaviors": [
-            "SP.098"
-          ]
-        },
-        {
-          "value": 99,
-          "behaviors": [
-            "SP.099"
-          ]
-        },
-        {
-          "value": 100,
-          "behaviors": []
-        },
-        {
-          "value": 101,
-          "behaviors": [
-            "SP.101"
-          ]
-        },
-        {
-          "value": 102,
-          "behaviors": [
-            "SP.102"
-          ]
-        },
-        {
-          "value": 103,
-          "behaviors": []
-        }
-      ]
+      "path": "research/runtime/effect-lighting-coverage.json",
+      "sha256": "b1722a275deb6efa76c85346e13490a8a82a754aeeea7a9c9edb21a830d451c9",
+      "scope": "Reviewed effects table loader/policy/gap, whole-loader comparison and headless installed asset/cycle scenario reconciled into central register; historical records unchanged"
     },
     {
-      "id": "preferences.vtable",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 6055052,
-        "relation": "data",
-        "scope": "Recovered Preferences vtable; selected behavioral links only"
-      },
-      "document": "research/runtime/preferences-engine-contract.md",
-      "complete": false,
-      "scope": "Enter/leave/tick/control building links; other slots and caller branches remain separately unrecovered or retained original.",
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "PR.main-entry"
-          ]
-        },
-        {
-          "value": 4,
-          "behaviors": [
-            "PR.display-rebuild"
-          ]
-        },
-        {
-          "value": 16,
-          "behaviors": [
-            "PR.main-entry"
-          ]
-        },
-        {
-          "value": 36,
-          "behaviors": [
-            "PR.control-admission"
-          ]
-        },
-        {
-          "value": "other-slots",
-          "behaviors": []
-        }
-      ]
+      "path": "research/runtime/effect-record-placement-coverage.json",
+      "sha256": "d4f34c9cd976c249ac50a36a55662b03dfbb30417e0c36c329cda18a892a2922",
+      "scope": "Reviewed common placement, owned policy, creation/type/movement gaps, incomplete 89-entry type dispatch and renewed installed table evidence reconciled into central register"
     },
     {
-      "id": "effect-type-setup",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 4812548,
-        "relation": "data",
-        "scope": "Type-setup dispatch table, 89 indices admitted by 00494ab0"
-      },
-      "document": "research/runtime/effect-record-placement.md",
-      "complete": false,
-      "scope": "Type writes observed; all child setup behaviors remain pending; fixture callback defers this dispatch",
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 1,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 2,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 3,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 4,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 5,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 6,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 7,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 8,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 9,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 10,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 11,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 12,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 13,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 14,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 15,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 16,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 17,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 18,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 19,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 20,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 21,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 22,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 23,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 24,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 25,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 26,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 27,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 28,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 29,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 30,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 31,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 32,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 33,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 34,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 35,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 36,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 37,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 38,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 39,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 40,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 41,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 42,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 43,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 44,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 45,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 46,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 47,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 48,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 49,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 50,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 51,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 52,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 53,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 54,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 55,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 56,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 57,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 58,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 59,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 60,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 61,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 62,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 63,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 64,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 65,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 66,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 67,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 68,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 69,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 70,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 71,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 72,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 73,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 74,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 75,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 76,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 77,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 78,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 79,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 80,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 81,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 82,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 83,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 84,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 85,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 86,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 87,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        },
-        {
-          "value": 88,
-          "behaviors": [
-            "TL.effect-type-setup"
-          ]
-        }
-      ]
+      "path": "research/runtime/effect-trajectory-coverage.json",
+      "sha256": "d4a2977762505b62c7f8593e65af81fa9d59b5535402124aacf55ecb2f5ee200",
+      "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
     },
     {
-      "id": "campaign.realm-vtable-prefix",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 6056544,
-        "relation": "data",
-        "scope": "Six reviewed slots only"
-      },
-      "document": "research/runtime/campaign-menu-engine-contract.md",
-      "complete": false,
-      "scope": "Only selected lifecycle and input branches observed; later slots and resource initialization not recovered",
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "CP.realm-navigation"
-          ]
-        },
-        {
-          "value": 4,
-          "behaviors": [
-            "CP.realm-navigation"
-          ]
-        },
-        {
-          "value": 8,
-          "behaviors": [
-            "CP.realm-navigation"
-          ]
-        },
-        {
-          "value": 12,
-          "behaviors": [
-            "CP.realm-navigation"
-          ]
-        },
-        {
-          "value": 16,
-          "behaviors": [
-            "CP.realm-navigation"
-          ]
-        },
-        {
-          "value": 20,
-          "behaviors": [
-            "CP.realm-navigation"
-          ]
-        }
-      ]
+      "path": "research/runtime/campaign-menu-coverage-register.json",
+      "sha256": "95eba80f4a3f499ad478d5ce0db0bbe21e393b2fdfc5182e7ac6d78791c7a0b2",
+      "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
     },
     {
-      "id": "campaign.region-entry-prefix",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 6055548,
-        "relation": "data",
-        "scope": "Ten static targets; selected branches only"
-      },
-      "document": "research/runtime/region-entry-engine-contract.md",
-      "complete": false,
-      "scope": "Common tick observed; enter/leave/input/build static; callbacks and deferred request isolated; full availability/destination dispatch pending",
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "CP.region-entry-actions"
-          ]
-        },
-        {
-          "value": 4,
-          "behaviors": [
-            "CP.region-entry-actions"
-          ]
-        },
-        {
-          "value": 8,
-          "behaviors": [
-            "CP.region-entry-actions"
-          ]
-        },
-        {
-          "value": 12,
-          "behaviors": [
-            "CP.region-entry-actions"
-          ]
-        },
-        {
-          "value": 16,
-          "behaviors": [
-            "CP.region-entry-observation"
-          ]
-        },
-        {
-          "value": 20,
-          "behaviors": [
-            "CP.region-entry-actions"
-          ]
-        },
-        {
-          "value": 24,
-          "behaviors": [
-            "CP.region-entry-actions"
-          ]
-        },
-        {
-          "value": 28,
-          "behaviors": [
-            "CP.region-entry-actions"
-          ]
-        },
-        {
-          "value": 32,
-          "behaviors": [
-            "CP.region-entry-actions"
-          ]
-        },
-        {
-          "value": 36,
-          "behaviors": [
-            "CP.region-entry-actions"
-          ]
-        }
-      ]
+      "path": "research/runtime/effect-same-cell-projection-coverage.json",
+      "sha256": "e033a4f20f1d149a0c355a085affe9296fdc0a5aa439bfa6f50bad7700aed580",
+      "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
-      "id": "campaign.gameplay-mini-callback",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 4924400,
-        "scope": "Callback entry only; local actions 3 and 4 admitted",
-        "recovered_range": "campaign-mini-entry-4b23f0"
-      },
-      "document": "research/runtime/campaign-mini-quit-engine-bridge.md",
-      "complete": false,
-      "scope": "Five campaign cases; Cancel 4 and Quit 3 linked; Load/Save/Preferences 0..2 pending",
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": []
-        },
-        {
-          "value": 1,
-          "behaviors": []
-        },
-        {
-          "value": 2,
-          "behaviors": []
-        },
-        {
-          "value": 3,
-          "behaviors": [
-            "CP.campaign-mini-quit"
-          ]
-        },
-        {
-          "value": 4,
-          "behaviors": [
-            "CP.campaign-mini-cancel"
-          ]
-        }
-      ]
+      "path": "research/runtime/effect-cell-transitions-coverage.json",
+      "sha256": "55345e80f9a2514f28469de54f6fd21d49ce9b9a20ec455cb61521c3519316a3",
+      "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
     },
     {
-      "id": "campaign.gameplay-mini-confirmation",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 4924656,
-        "scope": "Entry prefix only; UI answers 0 and 1 in campaign mode 2/context 5",
-        "recovered_range": "campaign-mini-quit-entry-4b24f0"
-      },
-      "document": "research/runtime/campaign-mini-quit-engine-bridge.md",
-      "complete": false,
-      "scope": "Yes 0 and No 1 observed; noncanonical nonzero answers, mode 4, other contexts and helper internals pending",
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "CP.campaign-mini-quit"
-          ]
-        },
-        {
-          "value": 1,
-          "behaviors": [
-            "CP.campaign-mini-quit"
-          ]
-        }
-      ]
+      "path": "research/runtime/effect-cell-cleanup-coverage.json",
+      "sha256": "059d54851a1ee23c5347e0fc67395eb7a7add0e1250503c6f839479e5a253690",
+      "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
     },
     {
-      "id": "effect-animation-kind-selection",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 4756624,
-        "relation": "data",
-        "scope": "103-kind byte mapping to 30 target pointers at 00489418 within whole 00489200; outside-kind fallback and type6/7 override are separately described in the behavior"
-      },
-      "document": "research/runtime/effect-animation-selection.md",
-      "complete": true,
-      "scope": "All 103 compressed kind entries and all 30 action targets compared as exact original bytes and executed in the scoped whole selector; no parent type-dispatch/animation attachment completion claim",
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 1,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 2,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 3,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 4,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 5,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 6,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 7,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 8,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 9,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 10,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 11,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 12,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 13,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 14,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 15,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 16,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 17,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 18,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 19,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 20,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 21,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 22,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 23,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 24,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 25,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 26,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 27,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 28,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 29,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 30,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 31,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 32,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 33,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 34,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 35,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 36,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 37,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 38,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 39,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 40,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 41,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 42,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 43,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 44,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 45,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 46,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 47,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 48,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 49,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 50,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 51,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 52,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 53,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 54,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 55,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 56,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 57,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 58,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 59,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 60,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 61,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 62,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 63,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 64,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 65,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 66,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 67,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 68,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 69,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 70,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 71,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 72,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 73,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 74,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 75,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 76,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 77,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 78,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 79,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 80,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 81,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 82,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 83,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 84,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 85,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 86,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 87,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 88,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 89,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 90,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 91,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 92,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 93,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 94,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 95,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 96,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 97,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 98,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 99,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 100,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 101,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        },
-        {
-          "value": 102,
-          "behaviors": [
-            "TL.effect-animation-selection"
-          ]
-        }
-      ]
+      "path": "research/runtime/effect-blocked-destinations-coverage.json",
+      "sha256": "86c4c6a3b0b1fda5acd6fbf8a2fb2d5781a684df5d982d3d492f220f151c890a",
+      "scope": "Reviewed complete-parent blocked destination partial state and return 1, ordinary/cleanup reruns, native lifecycle refusal and remaining height/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
-      "id": "campaign.quit-defeat-ok",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 4671392,
-        "scope": "Original registered OK callback; local index 21 in selected fresh Quit defeat report"
-      },
-      "document": "research/runtime/campaign-defeat-engine-bridge.md",
-      "complete": false,
-      "scope": "Selected report OK receiver/index 21 only; other report outcomes/contexts and direct noncanonical callback arguments pending",
-      "entries": [
-        {
-          "value": 21,
-          "behaviors": [
-            "CP.campaign-defeat-report"
-          ]
-        }
-      ]
+      "path": "research/runtime/effect-height-exits-coverage.json",
+      "sha256": "a8a52c7fa8c1c4a811d7707f0282279dc63fd03085b493b519a2c3bdbf3ea133",
+      "scope": "Reviewed complete-parent height exit partial state and return 2, ordinary/blocked/cleanup reruns, native resumption admission and remaining membership/collision/scheduling gaps; historical fingerprints preserved"
     },
     {
-      "id": "campaign.preferences-buttons",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 4888640,
-        "scope": "Selected Preferences button receiver and local0 OK/local1 Cancel",
-        "recovered_range": "campaign-preferences-entry-4a9840"
-      },
-      "document": "research/runtime/campaign-preferences-engine-bridge.md",
-      "complete": false,
-      "scope": "Selected fresh campaign caller only; all other callers and noncanonical callback values pending",
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "CP.campaign-mini-preferences"
-          ]
-        },
-        {
-          "value": 1,
-          "behaviors": [
-            "CP.campaign-mini-preferences"
-          ]
-        }
-      ]
+      "path": "research/runtime/effect-membership-disabled-coverage.json",
+      "sha256": "67109882b83e0b967c58ebbf65719a0b3c4c56fcd03ed968f4266def341398ee",
+      "scope": "Reviewed complete-parent disabled-membership movement and preserved graph/flags, ordinary/blocked/height/cleanup reruns and native reconciliation admission; remaining occupied collision/setup/lifecycle gaps and historical fingerprints preserved"
     },
     {
-      "id": "RI.queue-draw-00501184",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 5247364,
-        "relation": "data",
-        "scope": "First consumer computed jump at 0x5003fc; selected raster links only, complete table semantics not claimed."
-      },
-      "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "Selected first consumer path links recovered from static calls and bounded effective raster capture. Other values, default branches, alternate tables and complete consumer state/readback semantics remain unresolved.",
-      "complete": false,
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
-          ]
-        },
-        {
-          "value": 1,
-          "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
-          ]
-        },
-        {
-          "value": 2,
-          "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
-          ]
-        },
-        {
-          "value": 3,
-          "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
-          ]
-        },
-        {
-          "value": 4,
-          "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
-          ]
-        },
-        {
-          "value": 5,
-          "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
-          ]
-        },
-        {
-          "value": 6,
-          "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
-          ]
-        },
-        {
-          "value": 22,
-          "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
-          ]
-        },
-        {
-          "value": 31,
-          "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
-          ]
-        },
-        {
-          "value": 20,
-          "behaviors": [
-            "RS.world-initial-state",
-            "RS.world-startup-wave"
-          ]
-        },
-        {
-          "value": "other-or-default",
-          "behaviors": []
-        },
-        {
-          "value": 16,
-          "behaviors": [
-            "RS.world-startup-wave"
-          ]
-        },
-        {
-          "value": 17,
-          "behaviors": [
-            "RS.world-startup-wave"
-          ]
-        },
-        {
-          "value": 8,
-          "behaviors": [
-            "RS.world-kind8-virtual"
-          ]
-        }
-      ]
+      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
+      "sha256": "2577978905a6f5461ded12d552a8e98baf563bd32bae07780bf0b5143929bcfb",
+      "scope": "Reviewed complete-parent terrain occupancy bitmap/cache-gated sampling, hit ordering and both membership modes with fresh prior-contract reruns; remaining creature/special-type/catalog/lifecycle gaps and historical fingerprints preserved"
     },
     {
-      "id": "RI.queue-draw-00501210",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 5247504,
-        "relation": "data",
-        "scope": "Static computed jump at 0x50093d; table semantics unclassified."
-      },
-      "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
-      "complete": false,
-      "entries": []
+      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
+      "sha256": "3d3efd29790bc4bff4dd0f5e46f2392cb8f1c9209240bfc2129d3b473d7bfc72",
+      "scope": "Reviewed complete 004e1200 creature footprint lookup and owned read-only storage, independent rectangle tests and raw-height wrapping; original candidate/parent/initializer/capture/live work remains separate and historical effect proofs are preserved"
     },
     {
-      "id": "RI.queue-draw-0050129c",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 5247644,
-        "relation": "data",
-        "scope": "Static computed jump at 0x500d69; table semantics unclassified."
-      },
-      "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
-      "complete": false,
-      "entries": []
+      "path": "research/runtime/creature-footprint-initializer-coverage.json",
+      "sha256": "b1908fecaf49e67979fec70ccee379e106532a2219f3be300929d47b1b2480e6",
+      "scope": "Reviewed complete 004e1260 footprint initializer, original/native guarded overwrite and query composition; creature construction parent/capture/live remain separate"
     },
     {
-      "id": "kind8-vtable-5c7420",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 6059040,
-        "relation": "data",
-        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
-      },
-      "document": "research/runtime/native-world-kind8.md",
-      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
-      "complete": false,
-      "entries": [
-        {
-          "value": 3,
-          "behaviors": [
-            "RS.world-kind8-additive"
-          ]
-        },
-        {
-          "value": "other-slots",
-          "behaviors": []
-        }
-      ]
+      "path": "research/runtime/effect-creature-collision-coverage.json",
+      "sha256": "2ed5c68f8ac19e506e2f5fa2c74aa4e8edce7060bd29148785e364763e049c05",
+      "scope": "Reviewed selected whole 004883f0 creature candidates and collision integration, refreshed ordered snapshots, raw coordinate/query composition, creator and status filters, first-hit and type3 continuation; installed capture/live remain separate"
     },
     {
-      "id": "kind8-vtable-5c73f0",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 6058992,
-        "relation": "data",
-        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
-      },
-      "document": "research/runtime/native-world-kind8.md",
-      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
-      "complete": false,
-      "entries": [
-        {
-          "value": 3,
-          "behaviors": [
-            "RS.world-kind8-additive"
-          ]
-        },
-        {
-          "value": "other-slots",
-          "behaviors": []
-        }
-      ]
+      "path": "research/runtime/effect-trajectory-initializer-coverage.json",
+      "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
+      "sha256": "f001c99ad1115f78457b1385c1288afb2f5b8ac8482bea7eec9fe8c13de2505e"
     },
     {
-      "id": "kind8-vtable-5c7408",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 6059016,
-        "relation": "data",
-        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
-      },
-      "document": "research/runtime/native-world-kind8.md",
-      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
-      "complete": false,
-      "entries": [
-        {
-          "value": 3,
-          "behaviors": [
-            "RS.world-kind8-additive"
-          ]
-        },
-        {
-          "value": "other-slots",
-          "behaviors": []
-        }
-      ]
+      "path": "research/runtime/effect-motion-initializer-coverage.json",
+      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
+      "sha256": "436113d174fe2d9759b1ba3b6071940d35c5b617f284bf1d7010c3be49c7beaf"
     },
     {
-      "id": "kind8-vtable-5c7494",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 6059156,
-        "relation": "data",
-        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
-      },
-      "document": "research/runtime/native-world-kind8.md",
-      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
-      "complete": false,
-      "entries": [
-        {
-          "value": 3,
-          "behaviors": [
-            "RS.world-kind8-colour"
-          ]
-        },
-        {
-          "value": "other-slots",
-          "behaviors": []
-        }
-      ]
+      "path": "research/runtime/effect-animation-selection-coverage.json",
+      "scope": "Whole read-only 00489200 animation selector: raw type/kind words, owned 103-kind metadata, valid creature ordinal and owned descriptor class when required, special type6/7 overrides, exact 103-kind compressed/30-target dispatch, default -1 and all metadata/type/descriptor branches; native missing-reference refusals separate, no installed metadata provenance, animation attachment/full type setup or live replacement",
+      "sha256": "c18407f8b91efc1d200f11bac09f21983c775e8e027c5c94a2a9f7c9b704a188"
     },
     {
-      "id": "kind8-vtable-5c74b0",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 6059184,
-        "relation": "data",
-        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
-      },
-      "document": "research/runtime/native-world-kind8.md",
-      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
-      "complete": false,
-      "entries": [
-        {
-          "value": 3,
-          "behaviors": [
-            "RS.world-kind8-colour"
-          ]
-        },
-        {
-          "value": "other-slots",
-          "behaviors": []
-        }
-      ]
+      "path": "research/runtime/effect-animation-binding-coverage.json",
+      "scope": "Owned effect animation metadata binding from static 00494be3..00494c26: selected 16-byte entry, ANI asset/sequence, retained raw property/opaque words and copied sequence into existing forward player. Original comparison executes whole 00464ca0 bind, 00464cb0 forward start and 00464ec0 forward ticks on valid authored normalized ANI; no execution of caller metadata-resolution window, full creation dispatch, installed provenance, reverse playback, effect drawing or live replacement",
+      "sha256": "857bf312a2fc1593a52d88d5b5f0b0f8b5d1321590cd12e944d65b96f9664f46"
     },
     {
-      "id": "kind8-vtable-5c74cc",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 6059212,
-        "relation": "data",
-        "scope": "Observed pinned class vtable; slot3selected pixel/flag behavior only."
-      },
-      "document": "research/runtime/native-world-kind8.md",
-      "scope": "Selected draw method identity only. Other slots, construction/update/destruction, writers and other classes remain unclassified.",
-      "complete": false,
-      "entries": [
-        {
-          "value": 3,
-          "behaviors": [
-            "RS.world-kind8-noop"
-          ]
-        },
-        {
-          "value": "other-slots",
-          "behaviors": []
-        }
-      ]
+      "path": "research/runtime/effect-animation-catalog-coverage.json",
+      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement.",
+      "sha256": "0da1fa845b8058b81833537c6ea9bcaefcf0b379db61daf2e8b1019356507139"
     },
     {
-      "id": "world-complete-raster-admission-20261008",
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 5243552,
-        "scope": "Selected observed outer raster routes within retained World traversal."
-      },
-      "document": "research/runtime/native-world-raster-queue.md",
-      "scope": "Build-pinned13-entry observed caller admission; unknown caller/mode and unobserved routes retained. No complete dispatcher recovery.",
-      "complete": false,
-      "entries": [
-        {
-          "value": "0x595677",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x5947b2",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x59521a",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x595b47",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x59603e",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x57de00",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x57ec90",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x57f0f0",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x57f5f0",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x5806f0",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x596490",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x5968a4",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "0x57e540",
-          "behaviors": [
-            "RS.world-raster-queue-replacement"
-          ]
-        },
-        {
-          "value": "unknown-or-unobserved-caller-mode",
-          "behaviors": []
-        }
-      ]
-    },
-    {
-      "id": "minimap-terrain-orientations",
-      "document": "research/runtime/native-minimap-terrain.md",
-      "scope": "Four fog orientation entries; companion non-fog table554820; pixel branch classification only, driver/caller semantics pending.",
-      "complete": false,
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "RS.minimap-terrain-raster"
-          ]
-        },
-        {
-          "value": 1,
-          "behaviors": [
-            "RS.minimap-terrain-raster"
-          ]
-        },
-        {
-          "value": 2,
-          "behaviors": [
-            "RS.minimap-terrain-raster"
-          ]
-        },
-        {
-          "value": 3,
-          "behaviors": [
-            "RS.minimap-terrain-raster"
-          ]
-        },
-        {
-          "value": "out-of-range",
-          "behaviors": []
-        }
-      ],
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 5589008,
-        "relation": "data",
-        "scope": "Fog-enabled four-entry orientation table; companion fog-disabled table at554820."
-      }
-    },
-    {
-      "id": "minimap-camera-outline-call-sites",
-      "document": "research/runtime/native-minimap-live.md",
-      "scope": "Static selected four-slot caller table only; repeats5527a0, no5532f0 call. Original caller-state generation, other call sites and out-of-range branch remain unresolved.",
-      "complete": false,
-      "entries": [
-        {
-          "value": 0,
-          "behaviors": [
-            "INPUT.camera-minimap-orientation-update"
-          ]
-        },
-        {
-          "value": 1,
-          "behaviors": [
-            "INPUT.camera-minimap-orientation-update"
-          ]
-        },
-        {
-          "value": 2,
-          "behaviors": [
-            "INPUT.camera-minimap-orientation-update"
-          ]
-        },
-        {
-          "value": 3,
-          "behaviors": [
-            "INPUT.camera-minimap-orientation-update"
-          ]
-        },
-        {
-          "value": "out-of-range",
-          "behaviors": []
-        }
-      ],
-      "original": {
-        "build": "nocd-40209ca7",
-        "address": 5594632,
-        "relation": "data",
-        "scope": "Four raw dispatch slots at555e08, mapped to three direct call sites; not global minimap orientation dispatch equivalence."
-      }
+      "path": "research/runtime/effect-animation-metadata-coverage.json",
+      "scope": "Executed original 0049c6e2..0049c735 file-count parse/clamp and 0049c836..0049caae metadata loop with authored stack/register/allocation preconditions, checked ASCII profile-output callback and unchanged CRT calls; explicit seeded word retention, prefix atoi, exact case-insensitive references/printer codes and Data1. All 222 installed entries and bounded malformed fixtures compare against owned reconstructed model. Native complete-entry catalog differences remain deliberate policy; no whole loader, Windows profile/file API, allocation/SEH/cache/lifecycle, dispatcher/render/live equivalence.",
+      "sha256": "9920106740c0e397b8ebf37abf2259608b28a43db0b5d53c56022cfb296e5689"
     }
   ],
   "scenarios": [
@@ -70976,6 +71622,37 @@
       ]
     },
     {
+      "id": "DRAW03.native-session-lifecycle",
+      "scope": "Real OpenGL execution of12owned synthetic native session lifecycle cases, including asset-backed World completion, menu/World generation changes, interruption, stale identities, budgets, fresh restart, source failure and immutable GPU lease cleanup; underlying scene regression. No original capture or full journey. Current combined execution includes the native-owned CLI separately; initial lifecycle-only evidence remains historical after source/contract changes.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-session"
+      ],
+      "evidence": [
+        "NR.drawing-session.lifecycle-native-20261011",
+        "NR.drawing-session.runner-native-20261011"
+      ],
+      "tests": [
+        "tests/drawing-session-test.cpp",
+        "tools/test-native-drawing-session.py"
+      ]
+    },
+    {
+      "id": "DRAW03.native-session-runner",
+      "scope": "Owned native v1 CLI execution: six independently expected complete RGB565 planes across six source generations with repeated publication, real synthetic World raster and interrupted World cancellation;29input/hash/path/catalogue/schema/boundary/contaminated-result/refusal checks, actual failure cleanup and existing-output preservation. No original action, session equivalence, physical presentation or live replacement.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-session"
+      ],
+      "evidence": [
+        "NR.drawing-session.runner-native-20261011"
+      ],
+      "tests": [
+        "tools/test-native-drawing-session.py",
+        "tools/test-native-drawing-session-runner.py"
+      ]
+    },
+    {
       "id": "DRAW02.api-forwarding-fault-fixture",
       "scope": "Eight common primary mutators x four scripted callback outcomes; full observer planes and actual callback return/error/x87. No real original game/driver execution. Eight driver readbacks invoke paired callbacks on a second thread; timeout/deadlock, dropped calls or incomplete phases refuse success.",
       "behaviors": [
@@ -70988,7 +71665,8 @@
       ],
       "evidence": [
         "NR.drawing-session-api.forwarding-native-20261011",
-        "NR.drawing-session-api.concurrent-forwarding-native-20261011"
+        "NR.drawing-session-api.concurrent-forwarding-native-20261011",
+        "NR.drawing-session-api.record-kind-native-20261011"
       ],
       "level": "headless"
     },
@@ -71005,7 +71683,8 @@
         "tests/fixtures/surfaces/original-retry.json.gz"
       ],
       "evidence": [
-        "NR.drawing-result-comparison.native-20261011"
+        "NR.drawing-result-comparison.native-20261011",
+        "NR.drawing-result-comparison.record-kind-native-20261011"
       ],
       "level": "headless"
     },
@@ -71022,348 +71701,12 @@
         "tests/fixtures/drawing-journeys/interactive-schedule.json"
       ],
       "evidence": [
-        "NR.drawing-interactive-acquisition.original-active-20261011"
+        "NR.drawing-interactive-acquisition.original-active-20261011",
+        "NR.drawing-interactive-acquisition.record-kind-original-20261011"
       ],
       "level": "live_observation"
     }
   ],
-  "recovered_ranges": [
-    {
-      "id": "motion-action",
-      "build": "nocd-40209ca7",
-      "start": 5309616,
-      "end": 5312058,
-      "document": "research/runtime/native-creature-fine-motion.md",
-      "evidence": "NS05.composition",
-      "anchors_pointer": "/original_composition/record/anchors"
-    },
-    {
-      "id": "preferences-entry-4a75c0",
-      "build": "nocd-40209ca7",
-      "start": 4879808,
-      "end": 4879816,
-      "document": "research/runtime/preferences-engine-contract.md",
-      "evidence": "UI23.original",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "preferences-entry-4a9700",
-      "build": "nocd-40209ca7",
-      "start": 4888320,
-      "end": 4888328,
-      "document": "research/runtime/preferences-engine-contract.md",
-      "evidence": "UI23.original",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "preferences-entry-4a9840",
-      "build": "nocd-40209ca7",
-      "start": 4888640,
-      "end": 4888648,
-      "document": "research/runtime/preferences-engine-contract.md",
-      "evidence": "UI23.original",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "preferences-entry-4a8af0",
-      "build": "nocd-40209ca7",
-      "start": 4885232,
-      "end": 4885240,
-      "document": "research/runtime/preferences-engine-contract.md",
-      "evidence": "UI22.enter",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "campaign-entry-4a75c0",
-      "build": "nocd-40209ca7",
-      "start": 4879808,
-      "end": 4879816,
-      "document": "research/runtime/campaign-menu-engine-contract.md",
-      "evidence": "UI26.original",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "campaign-entry-5517a0",
-      "build": "nocd-40209ca7",
-      "start": 5576608,
-      "end": 5576616,
-      "document": "research/runtime/campaign-menu-engine-contract.md",
-      "evidence": "UI26.original",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "campaign-entry-552310",
-      "build": "nocd-40209ca7",
-      "start": 5579536,
-      "end": 5579544,
-      "document": "research/runtime/campaign-menu-engine-contract.md",
-      "evidence": "UI26.original",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "campaign-entry-552210",
-      "build": "nocd-40209ca7",
-      "start": 5579280,
-      "end": 5579288,
-      "document": "research/runtime/campaign-menu-engine-contract.md",
-      "evidence": "UI26.original",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "campaign-entry-54fd20",
-      "build": "nocd-40209ca7",
-      "start": 5569824,
-      "end": 5569832,
-      "document": "research/runtime/campaign-menu-engine-contract.md",
-      "evidence": "UI26.original",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "campaign-mini-entry-4b23f0",
-      "build": "nocd-40209ca7",
-      "start": 4924400,
-      "end": 4924408,
-      "document": "research/runtime/campaign-mini-cancel-engine-bridge.md",
-      "evidence": "UI31.fixture",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "campaign-mini-entry-5595d0",
-      "build": "nocd-40209ca7",
-      "start": 5608912,
-      "end": 5608920,
-      "document": "research/runtime/campaign-mini-cancel-engine-bridge.md",
-      "evidence": "UI31.fixture",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "campaign-mini-quit-entry-4b24f0",
-      "build": "nocd-40209ca7",
-      "start": 4924656,
-      "end": 4924664,
-      "document": "research/runtime/campaign-mini-quit-engine-bridge.md",
-      "evidence": "UI32.fixture",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "campaign-preferences-entry-4a9700",
-      "build": "nocd-40209ca7",
-      "start": 4888320,
-      "end": 4888328,
-      "document": "research/runtime/campaign-preferences-engine-bridge.md",
-      "evidence": "UI34.fixture",
-      "anchors_pointer": "/fixture/anchors"
-    },
-    {
-      "id": "campaign-preferences-entry-4a9840",
-      "build": "nocd-40209ca7",
-      "start": 4888640,
-      "end": 4888648,
-      "document": "research/runtime/campaign-preferences-engine-bridge.md",
-      "evidence": "UI34.fixture",
-      "anchors_pointer": "/fixture/anchors"
-    },
-    {
-      "id": "world-copy-reference-entry-57e1b0",
-      "build": "nocd-40209ca7",
-      "start": 5759408,
-      "end": 5759416,
-      "document": "research/runtime/native-world-frame-rendering.md",
-      "evidence": "RS.world-shadow.history-original-20261007",
-      "anchors_pointer": "/entry_anchors"
-    },
-    {
-      "id": "canvas-producer-entry-58c6a0",
-      "build": "nocd-40209ca7",
-      "start": 5818016,
-      "end": 5818032,
-      "document": "research/runtime/native-canvas-producers.md",
-      "evidence": "NR.canvas-producers.comparison-20261008",
-      "anchors_pointer": "/original_entry_anchors"
-    },
-    {
-      "id": "canvas-producer-entry-58cd50",
-      "build": "nocd-40209ca7",
-      "start": 5819728,
-      "end": 5819744,
-      "document": "research/runtime/native-canvas-producers.md",
-      "evidence": "NR.canvas-producers.comparison-20261008",
-      "anchors_pointer": "/original_entry_anchors"
-    },
-    {
-      "id": "canvas-producer-entry-58cf20",
-      "build": "nocd-40209ca7",
-      "start": 5820192,
-      "end": 5820208,
-      "document": "research/runtime/native-canvas-producers.md",
-      "evidence": "NR.canvas-producers.comparison-20261008",
-      "anchors_pointer": "/original_entry_anchors"
-    },
-    {
-      "id": "kind8-draw-wrapper-54ab00",
-      "build": "nocd-40209ca7",
-      "start": 5548800,
-      "end": 5548825,
-      "document": "research/runtime/native-world-kind8.md",
-      "evidence": "RS.world-kind8.original-20261008",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "kind8-colour-wrapper-54ab60",
-      "build": "nocd-40209ca7",
-      "start": 5548896,
-      "end": 5548917,
-      "document": "research/runtime/native-world-kind8.md",
-      "evidence": "RS.world-kind8.original-20261008",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "kind8-owner-wrapper-546540",
-      "build": "nocd-40209ca7",
-      "start": 5530944,
-      "end": 5531010,
-      "document": "research/runtime/native-world-kind8.md",
-      "evidence": "RS.world-kind8.original-20261008",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "kind8-noop-wrapper-54ac00",
-      "build": "nocd-40209ca7",
-      "start": 5549056,
-      "end": 5549066,
-      "document": "research/runtime/native-world-kind8.md",
-      "evidence": "RS.world-kind8.original-20261008",
-      "anchors_pointer": "/anchors"
-    },
-    {
-      "id": "minimap-outline-view3-5532f0",
-      "build": "nocd-40209ca7",
-      "start": 5583600,
-      "end": 5584572,
-      "document": "research/runtime/native-minimap-overlays.md",
-      "evidence": "RS.minimap-camera-corners.comparison-range-20261009",
-      "anchors_pointer": "/original_entry_anchors"
-    },
-    {
-      "id": "font-byte-draw-4a59e0",
-      "build": "nocd-40209ca7",
-      "start": 4872672,
-      "end": 4872777,
-      "document": "research/runtime/font-byte-producer.md",
-      "evidence": "RS.font-byte-consumer.comparison-range-20261010",
-      "anchors_pointer": "/original_entry_anchors"
-    }
-  ],
-  "register_imports": [
-    {
-      "path": "research/runtime/preferences-coverage-register.json",
-      "sha256": "4e7b92835b2f38e1a7194d7bc1a2844396f09c00b9c3236662e9410dc133270e",
-      "scope": "Reviewed Preferences focused-register snapshot consolidated into the central register; subsequent focused edits require explicit reconciliation."
-    },
-    {
-      "path": "research/runtime/effect-lighting-coverage.json",
-      "sha256": "b1722a275deb6efa76c85346e13490a8a82a754aeeea7a9c9edb21a830d451c9",
-      "scope": "Reviewed effects table loader/policy/gap, whole-loader comparison and headless installed asset/cycle scenario reconciled into central register; historical records unchanged"
-    },
-    {
-      "path": "research/runtime/effect-record-placement-coverage.json",
-      "sha256": "d4f34c9cd976c249ac50a36a55662b03dfbb30417e0c36c329cda18a892a2922",
-      "scope": "Reviewed common placement, owned policy, creation/type/movement gaps, incomplete 89-entry type dispatch and renewed installed table evidence reconciled into central register"
-    },
-    {
-      "path": "research/runtime/effect-trajectory-coverage.json",
-      "sha256": "d4a2977762505b62c7f8593e65af81fa9d59b5535402124aacf55ecb2f5ee200",
-      "scope": "Reviewed whole trajectory leaf comparison, authored-state headless continuation and explicit unimplemented parent/recount boundary; historical effect evidence preserved"
-    },
-    {
-      "path": "research/runtime/campaign-menu-coverage-register.json",
-      "sha256": "95eba80f4a3f499ad478d5ce0db0bbe21e393b2fdfc5182e7ac6d78791c7a0b2",
-      "scope": "Campaign contract recovery only; no native engine implementation, comparison equivalence, integration or replacement."
-    },
-    {
-      "path": "research/runtime/effect-same-cell-projection-coverage.json",
-      "sha256": "e033a4f20f1d149a0c355a085affe9296fdc0a5aa439bfa6f50bad7700aed580",
-      "scope": "Reviewed bounded complete-parent same-cell motion/recount, owned atomic refusals, headless source-lighting composition and remaining lifecycle gap; historical fingerprints preserved"
-    },
-    {
-      "path": "research/runtime/effect-cell-transitions-coverage.json",
-      "sha256": "55345e80f9a2514f28469de54f6fd21d49ce9b9a20ec455cb61521c3519316a3",
-      "scope": "Reviewed complete-parent membership-on nonzero-empty-terrain cell transitions, chain/cache/terrain updates, owned atomic refusals, moving light composition and remaining lifecycle gap; historical fingerprints preserved"
-    },
-    {
-      "path": "research/runtime/effect-cell-cleanup-coverage.json",
-      "sha256": "059d54851a1ee23c5347e0fc67395eb7a7add0e1250503c6f839479e5a253690",
-      "scope": "Reviewed ordinal-zero cleanup query/unlink and empty-world parent transitions, owned table policy and remaining lifecycle gaps; historical fingerprints preserved"
-    },
-    {
-      "path": "research/runtime/effect-blocked-destinations-coverage.json",
-      "sha256": "86c4c6a3b0b1fda5acd6fbf8a2fb2d5781a684df5d982d3d492f220f151c890a",
-      "scope": "Reviewed complete-parent blocked destination partial state and return 1, ordinary/cleanup reruns, native lifecycle refusal and remaining height/collision/scheduling gaps; historical fingerprints preserved"
-    },
-    {
-      "path": "research/runtime/effect-height-exits-coverage.json",
-      "sha256": "a8a52c7fa8c1c4a811d7707f0282279dc63fd03085b493b519a2c3bdbf3ea133",
-      "scope": "Reviewed complete-parent height exit partial state and return 2, ordinary/blocked/cleanup reruns, native resumption admission and remaining membership/collision/scheduling gaps; historical fingerprints preserved"
-    },
-    {
-      "path": "research/runtime/effect-membership-disabled-coverage.json",
-      "sha256": "67109882b83e0b967c58ebbf65719a0b3c4c56fcd03ed968f4266def341398ee",
-      "scope": "Reviewed complete-parent disabled-membership movement and preserved graph/flags, ordinary/blocked/height/cleanup reruns and native reconciliation admission; remaining occupied collision/setup/lifecycle gaps and historical fingerprints preserved"
-    },
-    {
-      "path": "research/runtime/effect-terrain-occupancy-coverage.json",
-      "sha256": "2577978905a6f5461ded12d552a8e98baf563bd32bae07780bf0b5143929bcfb",
-      "scope": "Reviewed complete-parent terrain occupancy bitmap/cache-gated sampling, hit ordering and both membership modes with fresh prior-contract reruns; remaining creature/special-type/catalog/lifecycle gaps and historical fingerprints preserved"
-    },
-    {
-      "path": "research/runtime/creature-occupancy-lookup-coverage.json",
-      "sha256": "3d3efd29790bc4bff4dd0f5e46f2392cb8f1c9209240bfc2129d3b473d7bfc72",
-      "scope": "Reviewed complete 004e1200 creature footprint lookup and owned read-only storage, independent rectangle tests and raw-height wrapping; original candidate/parent/initializer/capture/live work remains separate and historical effect proofs are preserved"
-    },
-    {
-      "path": "research/runtime/creature-footprint-initializer-coverage.json",
-      "sha256": "b1908fecaf49e67979fec70ccee379e106532a2219f3be300929d47b1b2480e6",
-      "scope": "Reviewed complete 004e1260 footprint initializer, original/native guarded overwrite and query composition; creature construction parent/capture/live remain separate"
-    },
-    {
-      "path": "research/runtime/effect-creature-collision-coverage.json",
-      "sha256": "2ed5c68f8ac19e506e2f5fa2c74aa4e8edce7060bd29148785e364763e049c05",
-      "scope": "Reviewed selected whole 004883f0 creature candidates and collision integration, refreshed ordered snapshots, raw coordinate/query composition, creator and status filters, first-hit and type3 continuation; installed capture/live remain separate"
-    },
-    {
-      "path": "research/runtime/effect-trajectory-initializer-coverage.json",
-      "scope": "Whole 004df3a0 initializer including 004df260 XY helper, disjoint owned 14-word receiver/counter, authored raw coordinates/period globals/multiplier: independent signed wrap choices, preserved word3, wrapped XY/Z direction/error production and counter reset, followed by 32 original/native steps; no effect creation parent, installed input provenance or live replacement",
-      "sha256": "f001c99ad1115f78457b1385c1288afb2f5b8ac8482bea7eec9fe8c13de2505e"
-    },
-    {
-      "path": "research/runtime/effect-motion-initializer-coverage.json",
-      "scope": "Whole 0048a950 motion creation helper with original 004df230/004df3a0/004df260: disjoint owned record/movement/startup words, valid authored start/raw destination, nine cache sentinels, complete trajectory reset/initialization, separate startup units, cell and terrain pointer-to-ordinal selection, unchanged unrelated record/cell/catalog bytes, and chained stepping; no full type dispatch, ownership, installed input provenance, membership or live replacement",
-      "sha256": "436113d174fe2d9759b1ba3b6071940d35c5b617f284bf1d7010c3be49c7beaf"
-    },
-    {
-      "path": "research/runtime/effect-animation-selection-coverage.json",
-      "scope": "Whole read-only 00489200 animation selector: raw type/kind words, owned 103-kind metadata, valid creature ordinal and owned descriptor class when required, special type6/7 overrides, exact 103-kind compressed/30-target dispatch, default -1 and all metadata/type/descriptor branches; native missing-reference refusals separate, no installed metadata provenance, animation attachment/full type setup or live replacement",
-      "sha256": "c18407f8b91efc1d200f11bac09f21983c775e8e027c5c94a2a9f7c9b704a188"
-    },
-    {
-      "path": "research/runtime/effect-animation-binding-coverage.json",
-      "scope": "Owned effect animation metadata binding from static 00494be3..00494c26: selected 16-byte entry, ANI asset/sequence, retained raw property/opaque words and copied sequence into existing forward player. Original comparison executes whole 00464ca0 bind, 00464cb0 forward start and 00464ec0 forward ticks on valid authored normalized ANI; no execution of caller metadata-resolution window, full creation dispatch, installed provenance, reverse playback, effect drawing or live replacement",
-      "sha256": "857bf312a2fc1593a52d88d5b5f0b0f8b5d1321590cd12e944d65b96f9664f46"
-    },
-    {
-      "path": "research/runtime/effect-animation-catalog-coverage.json",
-      "scope": "Native complete-entry policy for installed effectani.cfg and owned ANI catalog, all 222 base-sequence entries and 13 paired ANI/SPR frame-bound checks, selector-to-catalog forward binding and copied player ownership. Static 0049c5b0 producer windows establish field/printer/path mapping only; no original loader execution, Windows profile equivalence, full creation dispatch, direction variants, Data1 interpretation, effect drawing, scheduling or live replacement.",
-      "sha256": "0da1fa845b8058b81833537c6ea9bcaefcf0b379db61daf2e8b1019356507139"
-    },
-    {
-      "path": "research/runtime/effect-animation-metadata-coverage.json",
-      "scope": "Executed original 0049c6e2..0049c735 file-count parse/clamp and 0049c836..0049caae metadata loop with authored stack/register/allocation preconditions, checked ASCII profile-output callback and unchanged CRT calls; explicit seeded word retention, prefix atoi, exact case-insensitive references/printer codes and Data1. All 222 installed entries and bounded malformed fixtures compare against owned reconstructed model. Native complete-entry catalog differences remain deliberate policy; no whole loader, Windows profile/file API, allocation/SEH/cache/lifecycle, dispatcher/render/live equivalence.",
-      "sha256": "9920106740c0e397b8ebf37abf2259608b28a43db0b5d53c56022cfb296e5689"
-    }
-  ],
-  "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-interactive-retained-20261011.json",
-    "sha256": "6852a7dd8dfe096fd2332e3949bcfbdf16e512aaa3d30c26f079f9a220b40e11"
-  },
-  "claim_bindings_required": true
+  "schema": 1,
+  "scope": "Initial movement checklist; deliberately incomplete whole-game inventory. Original comparisons are historical scoped evidence; freshness is audited independently."
 }

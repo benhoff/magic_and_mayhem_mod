@@ -4631,6 +4631,54 @@ and caller-result/failure/recovery coverage remains pending. Thirteen corpus
 guards and the added suite boundary guard prevent oracle inputs, malformed traces,
 wrong provenance and premature completion claims.
 
+## DRAW-03 native session lifecycle — 2026-10-11
+
+`NR.drawing-session` adds widget-free native session/segment/frame orchestration
+over `DrawingScene`. Explicit transitions start undefined source histories;
+complete frames carry generation identities and independent GPU leases. Running
+faults discard owned resources, terminal completion and idempotent shutdown are
+separate, and fresh recovery cannot reuse an old session ID. Native bounded
+lifecycle fixtures and the scene regression have their own execution evidence;
+they do not validate original gameplay actions, transition/failure behavior or
+full Quick Battle/campaign journeys. DRAW-01/02 collectors and acceptance gates
+are unchanged. The changed shared scene build file makes earlier build-bound
+evidence historical; existing source hashes and receipts remain unchanged.
+
+### DRAW-03 owned native session runner (2026-10-11)
+
+`NR.drawing-session` now exposes a reproducible, widget-free owned-input runner
+over the native session controller. `mnm-drawing-session-replay` admits the
+intentional native v1 declaration, closed producer streams, encoded source asset
+hashes and every independently read SPR catalogue source. It executes ordered
+native stages, publishes complete RGB565 frames with immutable session identities,
+refuses malformed or contaminated input, rechecks sources and shuts down storage.
+This is a native lifecycle policy; it does not implement the distinct DRAW-02
+presented-session ABI, original actions/caller-state, movie composition or live
+replacement. The fourteen-journey and twenty-one-operation gates remain open.
+
+Fresh `NR.drawing-session.runner-native-20261011` records 12 actual OpenGL lifecycle
+cases, the existing scene regression, and 30 owned CLI cases: six complete native
+planes/99 pixels across six segments, independently expected synthetic SPR/BMP
+composition, repeated publication, interrupted World cancellation, 29 binding,
+catalogue, schema, identity, boundary, containment and result-contamination
+refusals. Cleanup and actual execution failure paths leave zero native surfaces.
+Source/binary/log hashes and prospective scope/scenario claims are retained.
+The earlier lifecycle evidence is preserved unchanged and is historical after
+the runner/build/contract changes; neither result claims original equivalence.
+
+Reviewed committed range `53bdc4a..9b15da3` is retained separately from the new
+uncommitted source review, with no unresolved exact-receipt gaps. Shared scene
+CMake edits leave previously bound drawing evidence historical; fresh native
+policy execution does not refresh those original results. The source census and
+new links are reviewed without changing the discovered binary inventory.
+
+The main checkout gained a working-storage guard concurrently. Its default
+200 GiB preflight refused existing usage; the user explicitly authorized a
+temporary 1200 GiB ceiling for this bounded validation, a 0.1 GiB reservation
+and the unchanged 100 GiB free-space floor. The guarded execution passed with
+about 1125 GiB existing working usage and 203 GiB free. The task-local policy
+was retained under working/tests/draw03; the repository default was not changed.
+
 ## 2026-10-11 DRAW-02 common API session forwarding
 
 The separate original-active session observer intercepts common surface methods0..35,
@@ -4678,3 +4726,22 @@ restored palettes or whole-game recovery. The14journey/21operation gates remain 
 See [interactive acquisition](draw02-interactive-session.md),
 [caller results](draw02-caller-results.md) and their immutable execution reports.
 Committed-history review covers53bdc4a..49c337d,16exact file versions with no gaps.
+
+### DRAW-02 integration review and strict record-kind refresh
+
+DRAW-02 source/evidence commits49c337d/b570002 are reconciled with the independent
+DRAW-03 session lifecycle/runner and storage commits9b15da3/2768aa3/e23e99c.
+Combined accounting retains all existing scopes, statuses, evidence and receipts.
+The committed-history review covers90file versions and appends22exact captured-output
+receipts without asserting new execution or a past gate pass.
+
+Final parser review rejects undefined V1 record kind6. Eight admission and eight
+caller/fault guard methods pass. New prospectively declared executions retain
+32forwarding cases/eight second-thread callbacks/eight full synthetic planes and
+all4,480native failure schedules/1,536explicit budget stops. The fresh original-active
+metadata run records2,756input calls,68gameplay sample ticks,531movement samples,
+265health-reduction samples and3original melee returns, then verifies Results
+Continue/Quit and fresh Main return. Earlier reports and their source hashes remain
+historical; the new record-kind results support current code. Physical viewport
+references remain unsynchronized and full presentation/native battle parity,
+pause/tooltip/picking and real-driver recovery remain pending.
