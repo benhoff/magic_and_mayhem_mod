@@ -11,8 +11,8 @@ from drawing_api_journal import trampoline
 
 STRUCT='struct ApiHook {u32 address,length,code_length,rest,reloc_count,after_offset,mode,reg,operand;u8 signature[20],code[64];u32 reloc[8];void(*before)(void);void(*after)(void);};'
 REGISTERS={'edi':0,'esi':1,'ebp':2,'ebx':4,'edx':5,'ecx':6,'eax':7,'esp':9}
-PLAN=ROOT/'research/runtime/drawing-api-splices-accounted-static-20261011.json'
-PLAN_SHA256='2d4de7bb63316866d656a44f3a80b82123c76d82a1836aebe11f2fed23af0da6'
+PLAN=ROOT/'research/runtime/drawing-api-splices-export-checked-static-20261011.json'
+PLAN_SHA256='77db2b7406c2687d0a268a92d155f2d42f955377482c08c704160ef7d907beca'
 
 
 def load(name, path):

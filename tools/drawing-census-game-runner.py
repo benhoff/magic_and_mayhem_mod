@@ -10,8 +10,12 @@ import sys
 root = Path(os.environ['MNM_DRAW_CENSUS_EXPERIMENT']).resolve()
 metadata = json.loads((root / 'manifest.json').read_text()); game = root / 'game'
 if metadata['origin'] != 'drawing_census_observation': raise ValueError('Unsupported experiment')
+expected = {'Chaos.exe', 'MnmDrawingCensus.dll', 'MnmMenu.dll'}
+if metadata.get('api_observation_enabled', False):
+    if not metadata.get('call_census_enabled', True): raise ValueError('API observation requires core census')
+    expected.add('MnmDrawingApiCensus.dll')
+if set(metadata['binaries']) != expected: raise ValueError('Missing/unreviewed staged binary identities')
 for name, digest in metadata['binaries'].items():
-    if name not in ('Chaos.exe', 'MnmDrawingCensus.dll', 'MnmMenu.dll'): raise ValueError('Unreviewed binary identity')
     if hashlib.sha256((game / name).read_bytes()).hexdigest() != digest: raise ValueError('Staged binary changed: ' + name)
 capture = root / 'capture'
 if capture.is_symlink() or sorted(p.name for p in capture.iterdir()) != ['census-control.bin']:
@@ -25,6 +29,7 @@ for key in list(os.environ):
 def windows(path): return 'Z:' + str(path).replace('/', '\\')
 os.environ.update(MNM_DRAW_CENSUS_DIR=windows(capture), MNM_MENU_OBSERVE=windows(root / 'events.bin'),
                   MNM_MENU_CHANNEL=windows(root / 'channel.bin'))
+if metadata.get('api_observation_enabled', False): os.environ['MNM_DRAW_API_DIR'] = windows(capture)
 if metadata.get('gameplay_observation_enabled', False):
     os.environ.update(MNM_MENU_GAMEPLAY_OBSERVE=windows(root / 'gameplay-events.bin'),
                       MNM_MENU_SPELL_OBSERVE=windows(root / 'spell-events.bin'))

@@ -4602,3 +4602,24 @@ fingerprints remain preserved with current validation limits. Original API
 journals,64refused sites, outputs/borrow lifetimes and all14scenario/four dispatch
 closure remain pending. Committed history34ce28f..dc626c7 is separately reviewed
 for exact intermediate receipts without asserting retrospective validation.
+
+### DRAW-01 first original separate API journal and export fix — 2026-10-11
+
+The [original cohort](drawing-api-menu-observation-20261011.json) retains
+81,680core events/40,840pairs and7,876API events/3,938pairs at27API sites.
+Both journals and the live allocation map close cleanly; no loss/open/IO or
+unreadable API data, stable binaries/sources and normal original exit0.
+Actual cleanup includes52bytes, exceeding the initial eight-word diagnostic
+stack; formal full arguments and outputs are still pending. The final Main
+screenshot is inspected; startup's phase2 snapshot is black, with no pixel
+comparison claim.
+
+Actual export inspection caught a missing assembly-symbol export despite its
+annotated declaration. The earlier callback ABI report is retained unchanged
+with an [explicit visibility limitation](drawing-census-export-declaration-limit-20261011.json).
+Explicit linker export/table guards and a [fresh ABI](drawing-census-export-checked-abi-20261011.json)
+now verify the name; current re-exported splices remain250accepted/64refused.
+Historydc626c7..6e85d84 has exact intermediate receipts and separately names the
+export semantic gap; no retrospective gate pass or original validation is
+asserted. All14scenario/four dispatch, remaining callers/API contracts,
+outputs/resource borrowing and failure/recovery closure remain open.

@@ -152,3 +152,44 @@ retains250accepted/64refused sites and additionally pins the immutable approved
 splice-plan SHA256. Older source/claim fingerprints remain unchanged and their
 current validation limitations are retained. Actual original journals and
 all14scenario/four dispatch closures remain pending.
+
+## Corrected export link and first original API journal — 2026-10-11
+
+A post-run export-table inspection found that annotating the declaration of the
+assembly-defined census leave stub did not actually export it. The [explicit
+limitation](drawing-census-export-declaration-limit-20261011.json) retains the
+prior binary/report hashes and exported names: the earlier ABI validates callback
+forwarding, not symbol visibility. Core DLL and fixture links now pass
+`/export:census_leave` and refuse a missing name in the actual PE export table.
+The [fresh export-checked ABI](drawing-census-export-checked-abi-20261011.json)
+passes with `named_leave_export_checked=true`. The original-site plan is
+[re-exported with current source fingerprints](drawing-api-splices-export-checked-static-20261011.json);
+250accepted/64refused sites remain unchanged. Older plans/results are preserved.
+The committed dc626c7..6e85d84 history review retains this semantic limitation
+separately from its exact receipt matches.
+
+The explicit `--api-observation` staging option enables the separate observer
+alongside the core census; menu-only controls reject it. It pins all staged
+binaries and preserves original section bytes. The original runner uses the
+same phase control and decodes independent core/API terminals and the exact
+allocation map. Changed staged binaries or sources invalidate success.
+
+The [first original menu/preferences/setup/shutdown journal](drawing-api-menu-observation-20261011.json)
+records81,680core events/40,840paired calls and7,876API events/3,938paired calls
+at27selected API sites. There is zero loss/open/IO, zero unassigned API phase or
+unreadable stack/target, normal original exit0 and stable staged binaries/sources.
+All three loaded instrumentation modules and the actual exported leave pointer
+are recorded anew. None of this cohort's112physical core caller PCs belongs to
+those prepared instrumentation ranges/returns; that fact does not override the
+independent discovered original owner and unresolved caller accounting.
+
+Actual API cleanup includes52bytes. This first wire's eight stack words are
+explicit diagnostics and cannot supply all13arguments for such a call.
+Formal argument/type/output snapshots, original helper/API semantics, resource
+creation/ownership/borrow intervals and failure/recovery remain pending.
+The initial phase2 screenshot is black at startup; the reviewed phase14 image
+shows the original rendered Main menu. No frame/pixel equivalence is inferred.
+All raw journals/maps, decoded projections, screenshots/logs and actually staged
+binaries remain retained; only the stopped disposable game/prefix copies are
+removed. All14scenario/four dispatch closures and64API admission refusals remain
+open.

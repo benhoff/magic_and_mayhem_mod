@@ -127,14 +127,18 @@ def build(executable):
         subprocess.run([*flags, '-c', str(source), '-o', str(output / (name + '.obj'))], check=True)
     dll = output / 'MnmDrawingCensus.dll'
     subprocess.run(['lld-link', '/dll', '/machine:x86', '/entry:DllMain@12', '/nodefaultlib',
-                    '/safeseh:no', '/timestamp:0', '/out:' + str(dll), str(output / 'observer.obj'),
+                    '/safeseh:no', '/timestamp:0', '/export:census_leave', '/out:' + str(dll), str(output / 'observer.obj'),
                     str(output / 'entry.obj'), str(output / 'kernel32.lib')], check=True)
+    exports = subprocess.check_output(['objdump', '-p', str(dll)], text=True)
+    if not re.search(r'^\s*\[\s*\d+\].*\bcensus_leave\s*$', exports, re.M):
+        raise ValueError('Built census DLL does not expose the named native leave stub')
     paths = ['tools/build-drawing-census.py', 'tools/drawing_census.py', 'tools/build-shadow-bridge.py',
              'tools/export-menu-support.py', 'runtime/drawing-census/observer.c', 'runtime/drawing-census/entry.S',
              'runtime/shadow/win32_min.h', 'runtime/scene/canvas_producers.c',
              'protocols/include/mnm/drawing_census_v1.h', 'research/runtime/drawing-inventory.json',
              'research/runtime/coverage/binary-nocd.json']
     report = {'schema': 1, 'original_sha256': BUILD_SHA256, 'dll_sha256': hashlib.sha256(dll.read_bytes()).hexdigest(),
+              'named_leave_export_checked': True,
               'hooks': rows, 'unhookable': refused, 'sources': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths},
               'scope': 'Observation-only entry/return metadata. Safe splices only; refused entries remain explicit. '
                        'No writer completeness, side-effect equivalence, full dispatch or scenario closure assertion.'}
