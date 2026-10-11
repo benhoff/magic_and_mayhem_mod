@@ -1,5 +1,5 @@
 /* Observe game-owned writable locks. Never Lock, Unlock, Query or retain COM objects. */
-struct GameLock {void* object;u32 owner,generation,epoch,active,kind,flags,desc[31];void* rectangle;struct Rect region;struct Snapshot base;};
+struct GameLock {void* object;u32 owner,generation,epoch,active,kind,flags,resident,desc[31];void* rectangle;struct Rect region;struct Snapshot base;};
 static struct GameLock game_locks[32];
 static volatile i32 game_locks_busy;
 static u32 game_locks_owner,game_tracker_wait_ms=8,game_tracker_wait_count;
@@ -20,7 +20,7 @@ static void game_lock_clear(struct GameLock* slot){
     if(slot->base.data)__atomic_sub_fetch(&lock_capture_reserved,slot->base.length,__ATOMIC_RELAXED);
     free_snapshot(&slot->base);zero(slot,sizeof(*slot));
 }
-static u32 game_copy_order_enabled;
+static u32 game_copy_order_enabled,game_resident_world;
 static u32 game_session_enabled,game_session_presentations,game_session_continuous,game_session_archive,game_session_palette_resources;
 struct GameSurface;struct GameBlit;struct GamePalette;
 static void game_session_palette_retire(struct GamePalette*);
@@ -43,6 +43,7 @@ static void init_lock_lifecycle(void){
     char session[8];game_session_enabled=GetEnvironmentVariableA("MNM_RENDER_OWNED_SESSION",session,8)==1 && session[0]=='1';
     game_session_continuous=GetEnvironmentVariableA("MNM_RENDER_CONTINUOUS",session,8)==1 && session[0]=='1';
     if(game_session_continuous)game_session_enabled=1;
+    game_resident_world=game_session_continuous && GetEnvironmentVariableA("MNM_PUBLIC_RESIDENT_WORLD",session,8)==1 && session[0]=='1';
     command_gate_enabled=game_session_continuous;
     game_copy_order_enabled=game_session_continuous && GetEnvironmentVariableA("MNM_RENDER_ORDERED_COPIES",session,8)==1 && session[0]=='1';
     char resources[8];game_session_palette_resources=game_session_continuous &&

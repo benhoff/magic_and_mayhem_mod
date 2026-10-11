@@ -40,7 +40,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         QSaveFile file(path);
         const QJsonObject result{{"success",success},{"normal_quit",normalQuit&&success&&run->stage==11},{"error",reason},{"steps",run->steps},
             {"native_command_frames",qint64(p.frames)},{"native_painted_frames",qint64(p.paints)},{"native_presentation_pixels",qint64(p.presentationPixels)},{"native_recoveries",int(p.recoveries)},{"native_error",p.error},{"renderer",p.renderer.isEmpty()?run->renderer:p.renderer},{"gameplay_rates",run->rates},{"native_command_fallback",p.fallback},
-            {"movement_verified",false},{"original_drawing_retained",true},
+            {"movement_verified",false},{"original_drawing_retained",qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")!="1"},{"original_ui_drawing_retained",true},{"original_simulation_retained",true},{"resident_world_requested",qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1"},
             {"scope","Native Qt New Game/Enter, native command presentation, Escape/Mini/Cancel and resumed presentation; no movement, pixel equivalence or complete drawing replacement claim"}};
         const bool saved=file.open(QIODevice::WriteOnly)&&file.write(QJsonDocument(result).toJson())>0&&file.commit();
         std::fprintf(stderr,"Campaign smoke %s: %s\n",success&&saved?"complete":"failed",qPrintable(reason));

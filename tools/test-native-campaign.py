@@ -289,7 +289,7 @@ def validate_native_draw(experiment):
     q=struct.unpack('<24I',raw)
     if q[2:5]!=(2,96,0) or q[19] or q[23] or not q[9] or not q[10] or q[20]<q[9] or q[22]:raise ValueError('Native graphics startup or module absence failed')
     if q[5]>64 or q[6]>512 or q[7]>128 or q[8]>64 or q[15]>512 or q[16]>256*1024*1024 or q[17]>128 or q[18]>64:raise ValueError('Native graphics resources exceeded bounds')
-    return dict(ddraw_disabled=True,ddraw_module_absent=True,native_dll_sha256=metadata['native_draw_sha256'],status_sha256=sha(experiment/'native-draw-status.bin'),factory_creations=q[9],surface_creations=q[10],peak_surfaces=q[15],peak_bytes=q[16],scope='Public native Qt menus and command presentation use owned graphics services with real ddraw disabled/absent; original CPU drawing remains active. No V4 World-body suppression, independent original pixels or semantic COM teardown assertion.')
+    return dict(ddraw_disabled=True,ddraw_module_absent=True,native_dll_sha256=metadata['native_draw_sha256'],status_sha256=sha(experiment/'native-draw-status.bin'),factory_creations=q[9],surface_creations=q[10],peak_surfaces=q[15],peak_bytes=q[16],scope='Public native Qt menus and command presentation use owned graphics services with real ddraw disabled/absent; World-body suppression requires the separate resident proof. No V4 World-body suppression, independent original pixels or semantic COM teardown assertion.')
 
 
 def start_native_hardware(out,env):
@@ -336,6 +336,7 @@ def main():
     parser.add_argument('--normal-quit',action='store_true',help='Require native Mini Quit No/Yes, native report/Main and original normal process exit')
     parser.add_argument('--spell-cases', action='store_true', help='Require invalid-target and insufficient-mana refusal plus player Fireball damage through native gameplay input')
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
+    parser.add_argument('--resident-world',action='store_true',help='Require GPU-resident World delivery and ordered public UI composition with no pixel return')
     parser.add_argument('--native-draw',action='store_true',help='Require owned graphics services with real DirectDraw disabled')
     parser.add_argument('--legacy-directdraw',action='store_true',help='Explicit diagnostic control using real DirectDraw; native default retirement proof is disabled')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
@@ -380,7 +381,7 @@ def main():
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
     if args.native_draw and not args.claims:
         args.claims=out/'prospective-claims.json'
-        subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.directdraw-public-native-menu','--scenario','native-draw-public-menu-campaign-20261011','--output',str(args.claims)],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
+        subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     if args.claims:
         declaration=json.loads(args.claims.read_text())
         for path,expected in declaration['sources'].items():
@@ -390,7 +391,17 @@ def main():
     if args.native_draw:
         native_sources=['tools/build-native-draw.py','tools/prepare-native-draw.py']+[str(p.relative_to(ROOT)) for p in (ROOT/'runtime/native-draw').iterdir() if p.suffix in ('.c','.h')]
         report['sources'].update({p:sha(ROOT/p) for p in native_sources})
+    if args.resident_world:
+        if not args.native_draw:raise ValueError('Resident World requires native drawing')
+        # Declare the complete repository compiler-input superset before launch;
+        # retain exact current bytes rather than claiming old renderer evidence.
+        for directory in ('apps','assets','audio','compat','reconstruction','renderer','runtime','protocols'):
+            for source in (ROOT/directory).rglob('*'):
+                if source.is_file() and (source.suffix in ('.cpp','.hpp','.h','.c','.S','.py') or source.name=='CMakeLists.txt'):
+                    report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
+        report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    if args.resident_world:env['MNM_PUBLIC_RESIDENT_WORLD']='1'
     if args.legacy_directdraw:env['MNM_NATIVE_DRAW']='0'
     elif explicit_native_draw:env['MNM_NATIVE_DRAW']='1'
     shell = server = monitor = None
@@ -422,6 +433,7 @@ def main():
         # invalid combination currently exits 2; never silently retry one mode.
         probe_env = dict(env, QT_QPA_PLATFORM='offscreen')
         command = [str(binary), '--repo', str(ROOT), '--live-menus', '--native-commands', '--smoke-test']
+        if args.resident_world:command.append('--resident-world')
         with (out / 'mode-probe.log').open('w') as log:
             probe = subprocess.run(command, cwd=ROOT, env=probe_env, stdout=log,
                                    stderr=subprocess.STDOUT, timeout=20)
@@ -486,6 +498,7 @@ def main():
             command = [str(ROOT / 'tools/run-qt-shell.sh'), '--live-menus', '--native-commands',
                        '--live-menu-test', str(out / 'flow.json')]
             report['launch_command'] = command
+            if args.resident_world:command.append('--resident-world')
             with (out / 'shell.log').open('w') as log:
                 shell = subprocess.Popen(command, cwd=ROOT, env=env, stdout=log,
                                          stderr=subprocess.STDOUT, start_new_session=True)
@@ -507,6 +520,7 @@ def main():
                     raise RuntimeError('Public campaign flow exceeded its deadline')
             flow = json.loads((out / 'flow.json').read_text())
             report['flow'] = flow
+            if flow.get('success') is not True:raise ValueError(flow.get('error') or 'Campaign flow failed')
             if args.hardware and ('NVIDIA' not in flow.get('renderer','') or any(x in flow['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Actual Qt renderer did not retain NVIDIA hardware identity')
             if not (args.healing_case or args.crowded_case):validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)
             if args.stress_seconds and not (args.healing_case or args.crowded_case):
@@ -525,6 +539,15 @@ def main():
             if len(roots) != 1 or not roots[0].is_relative_to(ROOT / 'working/experiments/menu-observer'):
                 raise RuntimeError('Missing unique menu experiment identity')
             report['experiment'] = str(roots[0])
+            if args.resident_world:
+                resident=json.loads((roots[0]/'resident-world-report.json').read_text())
+                if resident['error'] or min(int(resident[k]) for k in ('completed','imports','verified_returns'))<64 or any(resident[k] for k in ('world_readbacks','native_readbacks','rgba_readbacks')):
+                    raise ValueError('Resident World completion/import/no-readback proof failed: '+repr(resident))
+                if resident['engine_fps']<args.min_fps:raise ValueError('Resident World engine FPS below target: '+str(resident['engine_fps']))
+                if args.hardware and ('NVIDIA' not in resident['renderer'] or any(x in resident['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Resident World did not use NVIDIA hardware')
+                report['resident_world']=resident
+                scene=json.loads((roots[0]/'scene-bridge-build.json').read_text())
+                report['scene_bridge_build']=scene
             if args.native_draw:
                 report['native_draw']=validate_native_draw(roots[0])
                 native_build=json.loads((roots[0]/'native-draw-build.json').read_text())

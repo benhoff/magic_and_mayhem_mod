@@ -4,11 +4,12 @@
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include "../../protocols/include/mnm/world_continuous_v3.h"
-#define HOOKS 52
+#define HOOKS 53
 #define MAX_SURFACES 128
 #define MAX_FRAMES 128
 #define E(n) extern void producer_enter_##n(void)
 E(0);E(1);E(2);E(3);E(4);E(5);E(6);E(7);E(8);E(9);E(10);E(11);E(12);E(13);E(14);E(15);E(16);E(17);E(18);E(19);E(20);E(21);E(22);E(23);E(24);E(25);E(26);E(27);E(28);E(29);E(30);E(31);E(32);E(33);E(34);E(35);E(36);E(37);E(38);E(39);E(40);E(41);E(42);E(43);E(44);E(45);E(46);E(47);E(48);E(49);E(50);E(51);
+extern void producer_enter_52(void);
 extern void producer_leave(void);
 u32 producer_trampolines[HOOKS];
 /* pop is the original RET immediate, independent of compiler calling labels. */
@@ -64,7 +65,8 @@ static struct Hook {u32 address,length,pop;u8 bytes[10];void(*entry)(void);i32 r
  {0x553850,5,0,{0x83,0xec,8,0x53,0x55},producer_enter_48,-1},
  {0x552b50,6,0,{0x83,0xec,0x28,0x53,0x55,0x56},producer_enter_49,-1},
  {0x552f20,6,0,{0x83,0xec,0x28,0x53,0x55,0x56},producer_enter_50,-1},
- {0x5532f0,6,0,{0x83,0xec,0x28,0x53,0x55,0x56},producer_enter_51,-1}
+ {0x5532f0,6,0,{0x83,0xec,0x28,0x53,0x55,0x56},producer_enter_51,-1},
+ {0x547d80,8,8,{0x83,0xec,0x24,0xa1,0x88,0x1f,0x6e,0},producer_enter_52,-1}
 };
 static struct Surface {u32 object,id,pixels,width,height,stride,dirty,sampled;} surfaces[MAX_SURFACES];
 static struct Frame {u32 sp,tag,caller,ecx,edx,args[6],primitive,scratch;u8* record;} frames[MAX_FRAMES];
@@ -76,6 +78,8 @@ static int continuous_equal(const u8*,const u8*,u32);
 static int continuous_write(const void*,u32);
 static u8* continuous_payload(u32);
 static void continuous_cancel(void);
+static void continuous_failure(u32,u32);
+static int continuous_defer(u32*,const void*,u32);
 static int continuous_return(void);
 static void continuous_mark_entry(void);
 static void continuous_mark_screen(int);
@@ -120,8 +124,8 @@ static int journal_write(const void* data,u32 n){
 }
 int canvas_producers_continuous(void){return continuous_map!=0;}
 static void publication_close(void);
-void canvas_producers_close(void){publication_close();continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
-static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_map)||stopped)return;if(sequence>=(limit>16?MNM_PRODUCER_V3_MAX_RECORDS:minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS)||bytes>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-96||n>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){canvas_producers_close();return;}bytes+=96+n;}
+void canvas_producers_close(void){continuous_failure(1,(u32)__builtin_return_address(0));publication_close();continuous_cancel();glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
+static void emit_raw(u32* r,const void* payload,u32 n){if((!file&&!continuous_map)||stopped)return;if(continuous_map){int deferred=continuous_defer(r,payload,n);if(deferred){if(deferred<0)canvas_producers_close();return;}}if(continuous_map && r[2]==MNM_PRODUCER_CHECKPOINT)r[14]=++oracle;if(sequence>=(limit>16?MNM_PRODUCER_V3_MAX_RECORDS:minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS)||bytes>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-96||n>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){continuous_failure(2,r[2]);canvas_producers_close();return;}bytes+=96+n;}
 /* V3 source snapshots live on the private producer heap. No original pointers
  * or destination pixels enter this cache; equality includes every state byte. */
 static struct SourcePacket {u32 sequence,kind,tag,size,hash,original_frame,next;u8* data;} source_packets[MNM_PRODUCER_V3_SOURCES];
@@ -166,7 +170,7 @@ static void emit(u32* r,const void* payload,u32 n){
  emit_unlocked(r,payload,n);
  __sync_lock_release(&continuous_emit_lock);
 }
-static void fail(u32 why,u32 detail){++failures;u32 r[24]={0};r[2]=MNM_PRODUCER_FAILURE;r[14]=why;r[15]=detail;emit(r,0,0);}
+static void fail(u32 why,u32 detail){continuous_failure(100+why,detail);++failures;u32 r[24]={0};r[2]=MNM_PRODUCER_FAILURE;r[14]=why;r[15]=detail;emit(r,0,0);}
 static struct Surface* object(u32 p){for(u32 i=0;i<MAX_SURFACES;++i)if(surfaces[i].object==p&&p)return surfaces+i;return 0;}
 static struct Surface* bound(void){u32 p=get((void*)0x658174);for(u32 i=0;i<MAX_SURFACES;++i)if(surfaces[i].object&&surfaces[i].pixels==p&&p)return surfaces+i;return 0;}
 static void extent(u32* r,struct Surface* s){if(s){r[3]=s->id;r[5]=s->width;r[6]=s->height;r[7]=s->stride;}}
@@ -175,7 +179,7 @@ static void checkpoint(struct Surface* s,u32 reason){
  if(!s||!s->pixels||!s->dirty||s->dirty==s->sampled)return;
  if(!s->width||s->width>2048||!s->height||s->height>2048||s->stride<s->width||s->stride>4096||!readable(s->pixels,s->stride*s->height*2)){fail(10,s->id);return;}
  u32 n=s->width*s->height*2;if(oracle>=9999||oracle_bytes>oracle_byte_limit||n>oracle_byte_limit-oracle_bytes){fail(11,s->id);return;}
- if(continuous_map){++oracle;s->sampled=s->dirty;u32 r[24]={0};r[2]=MNM_PRODUCER_CHECKPOINT;extent(r,s);r[14]=oracle;r[15]=reason;r[16]=queue;emit(r,0,0);return;}
+ if(continuous_map){s->sampled=s->dirty;u32 r[24]={0};r[2]=MNM_PRODUCER_CHECKPOINT;extent(r,s);r[14]=oracle;r[15]=reason;r[16]=queue;emit(r,0,0);return;}
  char name[260];path(name,"producer-oracle-",++oracle,".565");HANDLE f=CreateFileA(name,0x40000000,0,0,1,0x80,0);
  if(f==(HANDLE)-1){fail(12,s->id);return;}
  int okay=1;if(s->stride==s->width)okay=write(f,(void*)s->pixels,n);else for(u32 y=0;y<s->height;++y)if(!write(f,(void*)(s->pixels+y*s->stride*2),s->width*2)){okay=0;break;}if(!CloseHandle(f))okay=0;
@@ -225,7 +229,7 @@ static void raster_release(u8* p){
 }
 static u8* request(const struct Frame* f){
  u32 r[24]={0};r[22]=f->caller;u32 tag=f->tag;
- if(tag>=46)return minimap_owned?owned_map_overlay(f):map_points(f);
+ if(tag>=46 && tag<=51)return minimap_owned?owned_map_overlay(f):map_points(f);
  if(tag==3){r[2]=MNM_PRODUCER_BIND;struct Surface* s=0;for(u32 i=0;i<MAX_SURFACES;++i)if(surfaces[i].object&&surfaces[i].pixels==f->ecx){s=surfaces+i;break;}if(!s){fail(1,f->caller);return 0;}extent(r,s);r[7]=f->edx;r[14]=f->args[0];}
  else if(tag==4){r[2]=MNM_PRODUCER_CLIP;r[10]=f->edx;r[11]=f->ecx;r[12]=f->args[0];r[13]=f->args[1];}
  else if(tag==5||tag==6){r[2]=MNM_PRODUCER_FILL;struct Surface* s=object(f->ecx);if(!s){fail(2,f->caller);return 0;}extent(r,s);r[14]=f->args[tag==5?0:1]&0xffff;if(tag==5){r[12]=s->width;r[13]=s->height;}else{if(!readable(f->args[0],16)){fail(3,tag);return 0;}for(u32 i=0;i<4;++i)r[10+i]=get((void*)(f->args[0]+i*4));}}
@@ -252,6 +256,23 @@ static u8* request(const struct Frame* f){
  }
  else if(tag>=27&&tag<=29){
   struct Surface* s=object(f->ecx);if(!s||!readable(f->args[0],16)){fail(19,tag);return 0;}r[2]=tag==27?MNM_PRODUCER_BEVEL:tag==28?MNM_PRODUCER_HALO:MNM_PRODUCER_WASH;extent(r,s);for(u32 i=0;i<4;++i)r[10+i]=get((void*)(f->args[0]+i*4));if(tag==27){u32 ox=get((void*)(f->ecx+32)),oy=get((void*)(f->ecx+36));r[10]-=ox;r[12]-=ox;r[11]-=oy;r[13]-=oy;r[14]=f->args[1];r[15]=f->args[2];r[16]=f->args[3];}r[17]=get((void*)0x6e1f88);
+ }
+ else if(tag==52){
+  struct Surface* s=bound();u32 shape=f->ecx;
+  if(!s || !readable(shape,22) || get((void*)0x6e1f88)){fail(18,tag);return 0;}
+  u32 mode=get((void*)shape);i32 w=(i32)get((void*)(shape+4)),h=(i32)get((void*)(shape+8));
+  if(mode>3 || w<=0 || h<=0)return 0;
+  if(w>64 || h>64){fail(18,tag);return 0;}
+  u32 plane=get((void*)(shape+18)),pixels=(u32)w*(u32)h;
+  if(plane && !readable(plane,pixels*6)){fail(18,tag);return 0;}
+  r[2]=MNM_PRODUCER_COLOUR_RECT;extent(r,s);clip(r);r[8]=f->args[0];r[9]=f->args[1];
+  r[15]=mode;r[19]=w;r[20]=h;r[18]=pixels*2;r[0]=96+r[18];
+  u8* out=HeapAlloc(producer_heap(),0,r[0]);if(!out){fail(7,tag);return 0;}copy(out,r,96);
+  for(u32 i=0;i<pixels;++i){const u8* rgb=(const u8*)(plane?plane+i*6:shape+12);
+   u32 red=rgb[0]|(u32)rgb[1]<<8,green=rgb[2]|(u32)rgb[3]<<8,blue=rgb[4]|(u32)rgb[5]<<8;
+   if(red>31 || green>63 || blue>31){HeapFree(producer_heap(),0,out);fail(18,tag);return 0;}
+   u32 value=red<<11|green<<5|blue;out[96+i*2]=value;out[97+i*2]=value>>8;
+  }return out;
  }
  else if(tag==26){
   struct Surface* s=bound();if(!s||!readable(f->ecx,20)){fail(18,tag);return 0;}r[2]=MNM_PRODUCER_RGB_ADD;extent(r,s);clip(r);r[8]=f->args[0];r[9]=f->args[1];r[14]=get((void*)0x6e1f88);u8* out=HeapAlloc(producer_heap(),0,116);if(!out){fail(7,tag);return 0;}r[0]=116;r[18]=20;copy(out,r,96);copy(out+96,(void*)f->ecx,20);return out;
@@ -319,7 +340,7 @@ static void frame_enter(u32* registers,u32 tag){
  u32* args=registers+9;struct Frame f={0};f.tag=tag;f.caller=args[0];f.ecx=registers[6];f.edx=registers[5];f.sp=(u32)args+4+(tag==100?0:hooks[tag].pop);for(u32 i=0;i<6;++i)f.args[i]=args[i+1];
  if(tag==7&&f.caller==0x46ba01)continuous_mark_screen(1);
  if(tag!=100){f.primitive=tag==10||hooks[tag].raster>=0;if(!f.primitive||!depth)f.record=request(&f);if(f.primitive)++depth;}
- for(u32 i=0;i<MAX_FRAMES;++i)if(!frames[i].sp){frames[i]=f;args[0]=(u32)producer_leave;return;}
+ for(u32 i=0;i<MAX_FRAMES;++i)if(__sync_bool_compare_and_swap(&frames[i].sp,0,0xffffffffu)){u32 sp=f.sp;f.sp=0xffffffffu;frames[i]=f;__atomic_store_n(&frames[i].sp,sp,__ATOMIC_RELEASE);args[0]=(u32)producer_leave;return;}
  if(f.record)HeapFree(producer_heap(),0,f.record);fail(16,tag);canvas_producers_close();
 }
 #include "world_producer_bypass.c"
@@ -327,10 +348,27 @@ static void frame_enter(u32* registers,u32 tag){
 int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();
  if(tag==10){int handled=glyph_live_enter(registers,fx);SetLastError(error);if(handled)return 1;}
+ if(tag==52 && !(continuous_public_bind && batch_guard_open)){SetLastError(error);return 0;}
  if(enabled&&!stopped){
-  if(batch_guard_open&&hooks[tag].raster<0&&tag!=4){fail(45,tag);ExitProcess(95);}
+  if(batch_guard_open && continuous_public_bind && GetCurrentThreadId()!=batch_owner){
+   int copy_tag=tag==7||tag==8||tag==37||tag==38||tag==39||tag==41||tag==42||tag==43;
+   struct Surface* destination=copy_tag?object((registers+9)[1]):
+     (tag==1||tag==2||tag==5||tag==6||tag==9||tag==27||tag==28||tag==29||tag==32||tag==33||tag==35||tag==40||tag==44)?object(registers[6]):0;
+   struct Surface* source=copy_tag?object(registers[6]):0;
+   if((tag==0 && registers[6]==batch_surface->object) ||
+      (tag!=0 && (!destination || destination==batch_surface)) ||
+      source==batch_surface || (copy_tag&&!source)){fail(45,tag);ExitProcess(95);}
+  }else if(batch_guard_open&&hooks[tag].raster<0&&tag!=4 && !(continuous_public_bind && (tag==26 || tag==52))){fail(45,tag);ExitProcess(95);}
+  if(continuous_public_bind && batch_guard_open && (tag==26 || tag==52)){
+   if(GetCurrentThreadId()!=batch_owner || !raster_caller((registers+9)[0],tag)){fail(43,tag);ExitProcess(95);}
+   struct Frame f={0};f.tag=tag;f.caller=(registers+9)[0];f.ecx=registers[6];f.edx=registers[5];
+   for(u32 i=0;i<6;++i)f.args[i]=(registers+9)[i+1];
+   u8* data=request(&f);if(!data && tag==52 && readable(f.ecx,22) && (get((void*)f.ecx)>3 || (i32)get((void*)(f.ecx+4))<=0 || (i32)get((void*)(f.ecx+8))<=0)){registers[7]=0;SetLastError(error);return 1;}if(!data || ((u32*)data)[2]!=(tag==26?MNM_PRODUCER_RGB_ADD:MNM_PRODUCER_COLOUR_RECT) || ((u32*)data)[3]!=batch_surface->id){fail(40,tag);ExitProcess(95);}
+   ((u32*)data)[21]=0;emit((u32*)data,data+96,((u32*)data)[18]);HeapFree(producer_heap(),0,data);
+   ++batch_surface->dirty;registers[7]=0;SetLastError(error);return 1;
+  }
   if(!depth&&((bypass_limit&&queue==bypass_queue&&bypass_completed<bypass_limit&&(tag==13||tag==14))||(raster_active()&&hooks[tag].raster>=0))){
-   if(raster_active()&&(!raster_caller((registers+9)[0],tag)||bypass_completed>=MNM_WORLD_RASTER_MAX)){fail(43,tag);ExitProcess(95);}
+   if(raster_active()&&(!raster_caller((registers+9)[0],tag)||bypass_completed>=MNM_WORLD_RASTER_MAX)){u32 refusal[24]={0};refusal[2]=MNM_PRODUCER_FAILURE;refusal[14]=43;refusal[15]=tag;refusal[22]=(registers+9)[0];++failures;emit(refusal,0,0);ExitProcess(95);}
    if(raster_active()&&tag==21&&get((void*)0x5f14d0)==0x7d00){
     /* Preserve original non-drawing lazy table preparation, on a zero-size frame. */
     u32 empty[11]={44,0,0};typedef u32 (__attribute__((fastcall)) *Wave)(void*,u32,u32,u32);((Wave)producer_trampolines[21])(empty,0,0,1);++raster_preparations;
@@ -358,14 +396,14 @@ void canvas_producers_queue(u32* registers){u32 error=GetLastError();if(enabled&
 void canvas_producers_protect(void){u32 error=GetLastError();if(enabled&&!stopped&&batch_enabled&&raster_active()&&!batch_start(bound())){fail(46,batch_reject);ExitProcess(95);}SetLastError(error);}
 void producer_leave_observe(u32* registers){
  u32 error=GetLastError(),sp=(u32)registers+40;
- for(u32 i=0;i<MAX_FRAMES;++i)if(frames[i].sp==sp){struct Frame f=frames[i];frames[i].sp=0;registers[9]=f.caller;
+ for(u32 i=0;i<MAX_FRAMES;++i)if(__atomic_load_n(&frames[i].sp,__ATOMIC_ACQUIRE)==sp){struct Frame f=frames[i];__atomic_store_n(&frames[i].sp,0,__ATOMIC_RELEASE);registers[9]=f.caller;
   if(f.tag==7&&f.caller==0x46ba01)continuous_mark_screen(0);
   if(f.primitive&&depth)--depth;
   if(!stopped){
    if(f.tag==0){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}for(u32 j=0;j<MAX_SURFACES;++j)if(!surfaces[j].object){s=surfaces+j;s->object=f.ecx;s->id=++next_id;s->width=get((void*)(f.ecx+16));s->height=get((void*)(f.ecx+20));s->stride=get((void*)(f.ecx+24))/2;u32 r[24]={0};r[2]=MNM_PRODUCER_CREATE;extent(r,s);r[14]=f.args[0];r[21]=registers[7];r[22]=f.caller;emit(r,0,0);break;}}
    else if(f.tag==1){struct Surface* s=object(f.ecx);if(s){u32 r[24]={0};r[2]=MNM_PRODUCER_RELEASE;extent(r,s);emit(r,0,0);zero(s,sizeof(*s));}}
    else if(f.tag==2){struct Surface* s=object(f.ecx);if(s){s->pixels=registers[7];s->stride=get((void*)(f.ecx+24))/2;checkpoint(s,3);}}
-   else if(f.tag==100){struct Surface* s=bound();if(batch_enabled&&raster_active()&&!batch_finish(s)){fail(47,queue);ExitProcess(95);}checkpoint(s,4);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_RETURN;extent(r,s);r[14]=queue;if(raster_active()){r[15]=bypass_completed;r[16]=raster_preparations;if(batch_enabled){r[17]=batch_transfers;r[19]=batch_count;r[20]=continuous_map&&continuous_resident?2:1;}}emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}raster_world_open=0;if(continuous_map){if(!continuous_return()){continuous_cancel();ExitProcess(95);}}else if(queue>=limit&&!publication_enabled){canvas_producers_close();if(journal_failed)ExitProcess(95);char name[260];u32 n=0;while(directory[n]){name[n]=directory[n];++n;}const char* suffix="\\canvas-producers.done";while(*suffix)name[n++]=*suffix++;name[n]=0;HANDLE done=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(done!=(HANDLE)-1){u32 mark[8]={0};copy(mark,"MNMPDONE",8);mark[2]=1;mark[3]=queue;mark[4]=sequence;mark[5]=failures;mark[6]=oracle;mark[7]=bytes;write(done,mark,32);CloseHandle(done);}}}
+   else if(f.tag==100){struct Surface* s=bound();if(batch_enabled&&raster_active()&&!batch_finish(s)){fail(47,queue);ExitProcess(95);}checkpoint(s,4);u32 r[24]={0};r[2]=MNM_PRODUCER_QUEUE_RETURN;extent(r,s);r[14]=queue;if(raster_active()){r[15]=bypass_completed;r[16]=raster_preparations;if(batch_enabled){r[17]=batch_transfers;r[19]=batch_count;r[20]=continuous_map&&continuous_resident?2:1;}}emit(r,0,0);if(!journal_flush()){canvas_producers_close();ExitProcess(95);}if(!continuous_map)raster_world_open=0;if(continuous_map){if(!continuous_return()){continuous_cancel();ExitProcess(95);}}else if(queue>=limit&&!publication_enabled){canvas_producers_close();if(journal_failed)ExitProcess(95);char name[260];u32 n=0;while(directory[n]){name[n]=directory[n];++n;}const char* suffix="\\canvas-producers.done";while(*suffix)name[n++]=*suffix++;name[n]=0;HANDLE done=CreateFileA(name,0x40000000,0,0,1,0x80,0);if(done!=(HANDLE)-1){u32 mark[8]={0};copy(mark,"MNMPDONE",8);mark[2]=1;mark[3]=queue;mark[4]=sequence;mark[5]=failures;mark[6]=oracle;mark[7]=bytes;write(done,mark,32);CloseHandle(done);}}}
    if(f.record){u32* r=(u32*)f.record;r[21]=registers[7];
     if(minimap_owned&&f.tag==45)r[19]=get((void*)(f.ecx+0xff));
     if(minimap_owned&&f.tag==47){struct Surface* d=map_destination(f.ecx);if(!d||registers[7]<d->pixels||(registers[7]-d->pixels)%2){fail(35,f.tag);}else r[21]=(registers[7]-d->pixels)/2;}
@@ -382,7 +420,7 @@ void producer_leave_observe(u32* registers){
    u32 mark[8]={0};copy(mark,"MNMPDONE",8);mark[2]=1;mark[3]=queue;mark[4]=sequence;mark[5]=failures;mark[6]=oracle;mark[7]=bytes;
    if(!write(done,mark,32)||!CloseHandle(done))ExitProcess(95);
   }
-  if(f.tag==45)for(u32 k=0;k<MAX_FRAMES;++k)if(frames[k].sp&&(frames[k].tag==46||frames[k].tag>=49)&&frames[k].record){u32* q=(u32*)frames[k].record;if(minimap_owned){q[19]=get((void*)(frames[k].ecx+0xf7));q[20]=get((void*)(frames[k].ecx+0xfb));}emit(q,frames[k].record+96,q[18]);struct Surface* dst=map_destination(frames[k].ecx);if(dst)++dst->dirty;HeapFree(producer_heap(),0,frames[k].record);frames[k].record=0;break;}
+  if(f.tag==45)for(u32 k=0;k<MAX_FRAMES;++k)if(frames[k].sp&&(frames[k].tag==46||(frames[k].tag>=49 && frames[k].tag<=51))&&frames[k].record){u32* q=(u32*)frames[k].record;if(minimap_owned){q[19]=get((void*)(frames[k].ecx+0xf7));q[20]=get((void*)(frames[k].ecx+0xfb));}emit(q,frames[k].record+96,q[18]);struct Surface* dst=map_destination(frames[k].ecx);if(dst)++dst->dirty;HeapFree(producer_heap(),0,frames[k].record);frames[k].record=0;break;}
   if(f.record)HeapFree(producer_heap(),0,f.record);if(f.tag==100&&minimap_pace&&queue<limit)Sleep(250);SetLastError(error);return;
  }
  ExitProcess(94);
@@ -416,7 +454,8 @@ int canvas_producers_install(void){
  limit=1;u32 n=GetEnvironmentVariableA("MNM_SCENE_SAMPLES",number,8);if(n){if(n>=sizeof(number))return 0;limit=0;for(u32 i=0;i<n;++i){if(number[i]<'0'||number[i]>'9')return 0;limit=limit*10+number[i]-'0';}if(!limit||(limit>16&&limit!=MNM_PRODUCER_V3_QUEUES))return 0;}
  if(!bypass_init(limit)||!raster_init(limit)||(bypass_limit&&raster_first))return 0;
  if(!batch_init()||!continuous_init())return 0;
- if(limit>16&&(!batch_enabled||minimap_owned||raster_first!=1||raster_last!=limit))return 0;
+ if(continuous_public_bind)minimap_owned=1;
+ if(limit>16&&(!batch_enabled||(minimap_owned&&!continuous_public_bind)||raster_first!=1||raster_last!=limit))return 0;
  n=GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory))return 0;
  for(u32 i=0;i<HOOKS;++i){struct Hook* h=hooks+i;if(!readable(h->address,h->length))return 0;for(u32 j=0;j<h->length;++j)if(*(u8*)(h->address+j)!=h->bytes[j])return 0;u8* t=VirtualAlloc(0,h->length+5,0x3000,0x40);if(!t)return 0;copy(t,(void*)h->address,h->length);if(i==9)put(t+5,0x58b660-(u32)t-9);t[h->length]=0xe9;put(t+h->length+1,h->address+h->length-(u32)t-h->length-5);producer_trampolines[i]=(u32)t;}
  char name[260];u32 i=0;while(directory[i]){name[i]=directory[i];++i;}const char* suffix="\\canvas-producers.bin";while(*suffix)name[i++]=*suffix++;name[i]=0;if(!continuous_map){file=CreateFileA(name,0x40000000,3,0,1,0x80,0);if(file==(HANDLE)-1){file=0;return 0;}}

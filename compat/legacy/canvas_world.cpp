@@ -1,5 +1,5 @@
 #include "canvas_world.hpp"
-#include "../../protocols/include/mnm/canvas_producers_v1.h"
+#include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include <chrono>
 #include <cstring>
 #include <limits>
@@ -25,6 +25,26 @@ unsigned word(const std::vector<std::uint8_t> &b, std::size_t at) {
 } // namespace
 WorldDraw producerWorldDraw(const CanvasProducer &c) {
   const auto &r = c.fields;
+  if(r[2]==MNM_PRODUCER_COLOUR_RECT){
+    if(r[14] || r[15]>3 || !r[19] || r[19]>64 || !r[20] || r[20]>64 || c.bytes().size()!=r[19]*r[20]*2)
+      throw std::invalid_argument("Unclosed colour World request");
+    WorldDraw draw;draw.x=signedWord(r[8]);draw.y=signedWord(r[9]);draw.backend=12;
+    draw.clip={signedWord(r[10]),signedWord(r[11]),signedWord(r[12]),signedWord(r[13])};
+    render::Image pixels{int(r[19]),int(r[20]),{}};pixels.pixels.reserve(r[19]*r[20]);
+    for(unsigned i=0;i<r[19]*r[20];++i)pixels.pixels.push_back(c.bytes()[i*2]|unsigned(c.bytes()[i*2+1])<<8);
+    draw.colourRectangle=render::ColourRectangle{std::move(pixels)};
+    draw.composite.mode=r[15]==0?render::CompositeMode::copy:r[15]==1?render::CompositeMode::quarterDestination:r[15]==2?render::CompositeMode::half:render::CompositeMode::quarterSource;
+    return draw;
+  }
+  if(r[2]==MNM_PRODUCER_RGB_ADD){
+    if(r[14] || c.bytes().size()!=20 || word(c.bytes(),0)>2048 || word(c.bytes(),4)>2048)
+      throw std::invalid_argument("Unclosed additive World request");
+    WorldDraw draw;draw.x=signedWord(r[8]);draw.y=signedWord(r[9]);
+    draw.clip={signedWord(r[10]),signedWord(r[11]),signedWord(r[12]),signedWord(r[13])};
+    render::AdditiveRectangle rectangle;rectangle.width=int(word(c.bytes(),0));rectangle.height=int(word(c.bytes(),4));
+    for(unsigned i=0;i<3;++i)rectangle.channels[i]=std::uint16_t(word(c.bytes(),8+i*4));
+    draw.additive=rectangle;draw.backend=11;return draw;
+  }
   if (r[2] != MNM_PRODUCER_RASTER || r[14] > 5 || r[15] > 10 || r[17] > 1 ||
       r[19] < 40 || r[19] > 1048576 || c.bytes().size() != r[19] + r[20] ||
       word(c.bytes(), 0) != r[19] || word(c.bytes(), 28) ||
@@ -145,6 +165,8 @@ void CanvasWorld::append(const CanvasProducer &c) {
   ++queueDraws_;
   ++totalDraws_;
   checked_ = false;
+  if(draw.colourRectangle){pending_.draws.push_back(std::move(draw));++profile_.visibleDraws;return;}
+  if(draw.additive){if(draw.additive->width && draw.additive->height){pending_.draws.push_back(std::move(draw));++profile_.visibleDraws;}return;}
   const auto &bytes = c.bytes();
   const auto width = word(bytes, 4), height = word(bytes, 8);
   const auto left = std::int64_t(draw.x) - signedWord(word(bytes, 12));

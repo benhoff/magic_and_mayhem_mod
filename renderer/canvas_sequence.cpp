@@ -129,18 +129,19 @@ void CanvasSequence::release(std::uint32_t id) {
   surfaces_.erase(id);
 }
 void CanvasSequence::addRgb(std::uint32_t id, Rect r,
-                            std::array<unsigned, 3> add) {
+                            std::array<unsigned, 3> add, bool invalidateOnly) {
   auto &s = surface(id);
-  if (add[0] > 31 || add[1] > 63 || add[2] > 31)
+  if (!invalidateOnly && (add[0] > 31 || add[1] > 63 || add[2] > 31))
     throw std::invalid_argument(
         "RGB addition outside recovered unsigned channels");
   for (int y = std::max(0, r.top); y < std::min(s.image.height, r.bottom); ++y)
     for (int x = std::max(0, r.left); x < std::min(s.image.width, r.right); ++x)
-      known(s.defined, slot(s.image, x, y));
+      if(!invalidateOnly)known(s.defined, slot(s.image, x, y));
   for (int y = std::max(0, r.top); y < std::min(s.image.height, r.bottom); ++y)
     for (int x = std::max(0, r.left); x < std::min(s.image.width, r.right);
          ++x) {
       const auto at = slot(s.image, x, y);
+      if(invalidateOnly){s.defined[at]=0;continue;}
       const auto old = s.image.pixels[at];
       write(s, at, (std::min(31u, ((old >> 11) & 31) + add[0]) << 11) |
                            (std::min(63u, ((old >> 5) & 63) + add[1]) << 5) |

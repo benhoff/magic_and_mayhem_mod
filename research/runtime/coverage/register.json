@@ -37590,7 +37590,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Resident World import into public command composition",
-      "scope": "Versioned ordered World reference and same-size RGB565 shared-GPU import;strict generation/nonce/destination admission and terminal missing-provider handling. Runtime CPU baseline separation,HUD composition,menu transitions and live replacement/performance pending. No original pixel/driver equivalence or60FPS assertion.",
+      "scope": "Ordered resident V4 World import and masked post-World RGB565 CPU UI deltas, strict generation/nonce/destination admission and terminal provider handling. Public frontend consumes owned batches with zero pixel reply and independently verifies original returns before reuse. Pinned scene adapter binds the current-thread full Lock after page-guard restoration. Public campaign casting/combat/portrait/menu transitions and performance validation pending; arbitrary HUD destination reads, original pixel/driver equivalence and60FPS remain excluded. Additive545c10 is an ordered native World primitive with pinned wrapper return bytes/low16 AX0; background secondary-surface captures are bounded and deferred outside World traversal. Fresh execution for these branches pending. Owned colour rectangle547d80 via pinned54ab72 return is limited to64x64 canonical RGB565 channels/modes0..3; live validation pending. Public V3 prefixes select the existing owned four-orientation minimap metadata/terrain contract; historical unmarked V3 terrain remains orientation0.",
       "confidence": "provisional",
       "original": [],
       "implementation": [
@@ -37600,19 +37600,67 @@
         "renderer/commands.cpp",
         "renderer/commands.hpp",
         "renderer/command_state.hpp",
-        "renderer/command_consumer.cpp"
+        "renderer/command_consumer.cpp",
+        "apps/qt-shell/resident_world_session.cpp",
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/live_command_renderer.cpp",
+        "apps/qt-shell/live_command_renderer.hpp",
+        "apps/qt-shell/live_command_session.cpp",
+        "apps/qt-shell/live_command_session.hpp",
+        "apps/qt-shell/main.cpp",
+        "apps/qt-shell/live_menu_session.cpp",
+        "runtime/render/owned_session.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/canvas_producers.c",
+        "compat/legacy/world_raster_batch.cpp",
+        "apps/qt-shell/campaign_smoke_test.cpp",
+        "runtime/scene/world_raster_batch.c",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_producers.cpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "runtime/scene/canvas_producers.S",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "tools/inspect-canvas-producers.py",
+        "runtime/scene/world_deferred.h"
       ],
       "tests": [
-        "tests/render-resident-world-test.cpp"
+        "tests/render-resident-world-test.cpp",
+        "tools/test-native-campaign.py",
+        "tests/resident-public-block-replay.cpp",
+        "tests/resident-leaf-abi.c",
+        "tests/resident-leaf-abi.S",
+        "tools/test-resident-leaf-abi.py",
+        "tests/world-raster-batch-test.cpp",
+        "tools/test-public-resident-fixtures.py",
+        "tests/world-deferred-test.cpp",
+        "tests/minimap-producer-test.cpp"
       ],
       "documents": [
         "research/runtime/public-resident-world.md"
       ],
       "validation_dependencies": [
-        "renderer/CMakeLists.txt"
+        "renderer/CMakeLists.txt",
+        "apps/qt-shell/CMakeLists.txt",
+        "tools/prepare-menu-observer.py",
+        "tools/menu-game-runner.py",
+        "tools/build-render-bridge.py",
+        "tools/build-scene-observer.py",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "tools/inspect-world-raster-callers.py",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/canvas-producers/CMakeLists.txt"
       ],
       "evidence": [
-        "NR.public-resident-world.import-fixture-20261011"
+        "NR.public-resident-world.import-fixture-20261011",
+        "NR.public-resident-world.owned-fixtures-20261011",
+        "NR.public-resident-world.campaign-stall-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -75249,6 +75297,77 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NR.public-resident-world.owned-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Owned headless shared-context import/HUD/copy, mixed primitive reference, rotated minimap and deferred capture/leaf ABI assertions. Public campaign performance/complete replacement and independent original pixel equivalence remain pending.",
+      "record": "research/runtime/public-resident-owned-fixtures-20261011.json",
+      "sha256": "1216e737b37c3fc315fecfa3db18f05fd5be9c582b6e127783a0d723faa13a2f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "inputs_pointer": "/inputs",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/mixed_world/words_compared",
+          "equals": 1440000
+        },
+        {
+          "pointer": "/mixed_world/delivery_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/mixed_world/mixed_primitives",
+          "equals": 6
+        },
+        {
+          "pointer": "/deferred/refusals",
+          "equals": 8
+        },
+        {
+          "pointer": "/leaf_abi/trampolines",
+          "equals": 2
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.campaign-stall-20261011",
+      "kind": "live_observation",
+      "scope": "Negative public Titan campaign:71resident Worlds observed, then physical gameplay stress stalls before Mini and misses sustained19FPS/deadline. No end-to-end, original equivalence or replacement pass.",
+      "record": "research/runtime/public-resident-campaign-stall-20261011.json",
+      "sha256": "6836d010a7fbf50adb557f403c08ed80c77d00a59798cf517ef8786bf092eea1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_periodic_snapshot/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/observation/last_completed_generation_observed",
+          "equals": 71
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -83674,6 +83793,34 @@
       "evidence": [
         "NR.public-resident-world.import-fixture-20261011"
       ]
+    },
+    {
+      "id": "NR.public-resident-world.campaign",
+      "scope": "Public native menu campaign handoff, physical gameplay and Mini Cancel return, resident World ACK and ordered command imports with zero World/native/RGBA readbacks. Casting/combat,portrait and normal Quit apply only when explicitly exercised; independent World/HUD equivalence and60FPS excluded.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.public-resident-world"
+      ],
+      "tests": [
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.public-resident-world.campaign-stall-20261011"
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.owned-fixtures",
+      "scope": "Exhaustive shared-context565 import and masked HUD/copy; two retained public source queues plus a mixed sprite/additive/four-colour-mode queue, malformed colour/batch/deferred-source refusal, owned deferred immutable bytes and production additive/colour leaf ABI. Native CPU reference, no public gameplay or original pixel equivalence claim.",
+      "level": "headless",
+      "behaviors": [
+        "NR.public-resident-world"
+      ],
+      "tests": [
+        "tools/test-public-resident-fixtures.py"
+      ],
+      "evidence": [
+        "NR.public-resident-world.owned-fixtures-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -84011,8 +84158,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-public-resident-import-20261011.json",
-    "sha256": "7976c14e33cacbd8798f9d2bcdc9a903c617c28ea1336bec55e743a806ef264e"
+    "path": "research/runtime/coverage/source-index-public-resident-producer-20261011.json",
+    "sha256": "34ca76c5ef2ba5037c61277808a48fd3fa25a29fdee5b2b16c9198710e4c3498"
   },
   "claim_bindings_required": true
 }

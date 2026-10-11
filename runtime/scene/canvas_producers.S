@@ -33,7 +33,7 @@ _producer_enter_\tag:
     ret $16
 .elseif \tag == 11 || \tag == 18 || \tag == 19 || \tag == 20
     ret $12
-.elseif \tag == 21
+.elseif \tag == 21 || \tag == 26 || \tag == 52
     ret $8
 .elseif \tag == 25
     ret $4
@@ -93,6 +93,7 @@ observe 48
 observe 49
 observe 50
 observe 51
+observe 52
 .globl _producer_leave
 _producer_leave:
     leal -4(%esp), %esp

@@ -126,7 +126,7 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
     if (result.operations.size() >= word(b, 20) ||
         r[18] > (ownedMinimap ? 512u : 128u) * 1024 * 1024 - 96 || r[0] != 96 + r[18] ||
         r[0] > b.size() - at || r[1] != result.operations.size() + 1 ||
-        r[2] < 1 || r[2] > (extendedWorld ? 25u : ownedMinimap ? 24u : 23u) || (r[2]==24 && !ownedMinimap) || r[23])
+        r[2] < 1 || r[2] > (extendedWorld ? 26u : ownedMinimap ? 24u : 23u) || (r[2]==24 && !ownedMinimap && !extendedWorld) || r[23])
       throw std::invalid_argument("Invalid producer record");
     c.payload.assign(b.begin() + at + 96, b.begin() + at + r[0]);
     const auto wireSize = r[0];
@@ -171,7 +171,7 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
     } else if (r[2] == 23) {
       if (r[14] > 16384 || r[18] != r[14] * 12) throw std::invalid_argument("Invalid point requests");
     } else if (r[2] == 22) {
-      if (!r[14] || r[14] > 256 || r[14] % 2 || !r[15] || r[15] > 256 || r[16] > (ownedMinimap ? 3u : 0u) || (ownedMinimap && r[19] != 0xfffffffeu) || r[17] > 1 || r[18] != r[14] * r[15] * 3)
+      if (!r[14] || r[14] > 256 || r[14] % 2 || !r[15] || r[15] > 256 || r[16] > (ownedMinimap || (extendedWorld && r[19]==0xfffffffeu) ? 3u : 0u) || (ownedMinimap && r[19] != 0xfffffffeu) || r[17] > 1 || r[18] != r[14] * r[15] * 3)
         throw std::invalid_argument("Invalid closed minimap terrain input");
     } else if (r[2] == 19) {
       if (r[19] < 40 || r[19] > 1064 || r[20] > 2097152 || r[18] != r[19] + r[20])
@@ -180,6 +180,9 @@ void appendCanvasProducers(CanvasProducerStream &result,const std::vector<std::u
       if (r[19] < 128 || r[19] > 1048576 || r[20] != 768 ||
           r[18] != r[19] + 768 || r[17])
         throw std::invalid_argument("Invalid PCX producer input");
+    } else if (r[2] == 26) {
+      if(!extendedWorld || r[14] || r[15]>3 || !r[19] || r[19]>64 || !r[20] || r[20]>64 || r[18]!=r[19]*r[20]*2)
+        throw std::invalid_argument("Invalid owned colour rectangle input");
     } else if (r[2] == 14) {
       if (r[18] != 20 || r[14])
         throw std::invalid_argument("Invalid RGB addition input");
@@ -282,6 +285,17 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
                      colours, offsets, r[20] == 64 ? r[16] : 16, invalidate_);
     break;
   }
+  case 26: {
+    if(r[14] || r[15]>3 || !r[19] || r[19]>64 || !r[20] || r[20]>64 || c.bytes().size()!=r[19]*r[20]*2)
+      throw std::invalid_argument("Invalid owned colour rectangle input");
+    assets::SpriteFrame frame{};frame.width=r[19];frame.height=r[20];frame.opaqueMask.assign(r[19]*r[20],1);
+    std::vector<std::uint16_t> pixels;pixels.reserve(r[19]*r[20]);
+    for(unsigned i=0;i<r[19]*r[20];++i)pixels.push_back(c.bytes()[i*2]|unsigned(c.bytes()[i*2+1])<<8);
+    frame.pixels=std::move(pixels);std::array<std::uint16_t,256> colours{};std::array<int,16> offsets{};
+    const unsigned mode=r[15]==0?0:r[15]==1?4:r[15]==2?1:2;
+    canvases_.raster(id,frame,signedWord(r[8]),signedWord(r[9]),rect(c),mode,8,colours,offsets,16,invalidate_);
+    break;
+  }
   case 14: {
     if (r[14] || c.bytes().size() != 20)
       throw std::invalid_argument(
@@ -299,7 +313,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
     area.bottom = std::min(area.bottom, int(std::int64_t(y) + height));
     canvases_.addRgb(id, area,
                      {word(c.bytes(), 8) & 0xffff, word(c.bytes(), 12) & 0xffff,
-                      word(c.bytes(), 16) & 0xffff});
+                      word(c.bytes(), 16) & 0xffff},invalidate_);
     break;
   }
   case 15:
@@ -432,7 +446,7 @@ void CanvasProducerReplay::apply(const CanvasProducer &c) {
   if (!mirrored_)canvases_.publishWrites();
 }
 void CanvasProducerReplay::invalidateWorld(const CanvasProducer &c) {
-  if (!mirrored_ || c.fields[2] != 9)
+  if (!mirrored_ || (c.fields[2] != 9 && c.fields[2] != 14 && c.fields[2] != 26))
     throw std::invalid_argument("GPU invalidation requires a mirrored World raster");
   invalidate_ = true;
   try { apply(c); } catch (...) { invalidate_ = false; throw; }

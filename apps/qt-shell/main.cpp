@@ -61,11 +61,12 @@
 #include <cstdio>
 #include <exception>
 #include "campaign_smoke_test.hpp"
+#include "resident_world_session.hpp"
 
 class Shell final:public QMainWindow {
     quint64 nativeCommandFrames_=0,nativePaintedFrames_=0;
 public:
-    CampaignPresentationProbe campaignPresentation() const{return {nativeCommandFrames_,commands_&&commands_->state()==LiveCommandSession::State::Active,nativeFallback_,nativePaintedFrames_,commands_?commands_->recoveries():0,commands_?commands_->error():QString(),commands_&&commands_->result()?QString::fromStdString(commands_->result()->driver.renderer):QString(),commands_&&commands_->result()?commands_->result()->stats.presentationPixels:0};}
+    CampaignPresentationProbe campaignPresentation() const{return {nativeCommandFrames_,commands_&&commands_->state()==LiveCommandSession::State::Active,nativeFallback_,nativePaintedFrames_,commands_?commands_->recoveries():0,(!residentWorldError_.isEmpty()?residentWorldError_:commands_?commands_->error():QString()),commands_&&commands_->result()?QString::fromStdString(commands_->result()->driver.renderer):QString(),commands_&&commands_->result()?commands_->result()->stats.presentationPixels:0};}
     void showPresentation(){if(presentation_)presentation_->show();else show();}
     explicit Shell(QString repository,bool opengl=false,bool captureDraws=false,bool captureHistory=false,bool skipMovies=false,bool noReadback=false,bool captureLocks=false,bool nativeMedia=false,bool nativeVoices=false,bool liveMenus=false,bool nativeCommands=false,PresentationOptions presentation={}):repo_(std::move(repository)),opengl_(opengl),captureDraws_(captureDraws),captureHistory_(captureHistory),skipMovies_(skipMovies),noReadback_(noReadback),captureLocks_(captureLocks),nativeMedia_(nativeMedia),nativeVoices_(nativeVoices),nativeCommands_(nativeCommands) {
         setWindowTitle("Magic & Mayhem Workshop");resize(1100,850);
@@ -177,10 +178,15 @@ public:
             if(!stream_ || (media_ && media_->movieActive()))return;
             if(!gl_->error().isEmpty()){frames_.stop();commandDrain_.stop();statusBar()->showMessage("OpenGL initialization failed: "+gl_->error());return;}
             if(commands_){
+                if(residentWorld_){try{residentWorld_->poll();}catch(const std::exception& e){
+                    residentWorldError_=e.what();log_->appendPlainText(QString("Resident World refused: ")+e.what());
+                    residentWorld_->saveReport(residentWorldReport_);commands_->abort();frames_.stop();commandDrain_.stop();poll_.stop();retry_->setEnabled(false);input_->suspend(true);nativeFallback_=true;return;
+                }}
                 if(!commands_->ended() && commands_->error().isEmpty()){
                     if(!commands_->poll()){
                         log_->appendPlainText("Native command session refused: "+commands_->error());
-                        useOriginalPresentation();
+                        if(residentWorld_){residentWorldError_=commands_->error();residentWorld_->abort(residentWorldError_);residentWorld_->saveReport(residentWorldReport_);commands_->abort();frames_.stop();commandDrain_.stop();poll_.stop();retry_->setEnabled(false);input_->suspend(true);nativeFallback_=true;}
+                        else useOriginalPresentation();
                     }else if(commands_->ended()){
                         input_->suspend(true);statusBar()->showMessage("Native preview finished. Continue in the original game window.");
                     }else if(commands_->hasPendingCommands()){
@@ -262,8 +268,15 @@ private:
             arguments={"--stream",path,"--input",inputPath};elapsed_.restart();
             if(nativeCommands_){
                 commands_=std::make_unique<LiveCommandSession>(*gl_);
+                if(liveMenus_ && qEnvironmentVariable("MNM_PUBLIC_RESIDENT_WORLD")=="1"){
+                    if(!continuous){statusBar()->showMessage("Resident World requires continuous commands.");return false;}
+                    const auto directory=QFileInfo(commandPath).dir();residentWorldReport_=directory.filePath("resident-world-report.json");
+                    try{residentWorld_=std::make_unique<ResidentWorldSession>(*gl_,directory.filePath("world-continuous.bin"),directory.filePath("game"));}
+                    catch(const std::exception& e){statusBar()->showMessage(e.what());return false;}
+                    commands_->residentWorld=[this](auto generation,auto nonce){return residentWorld_->import(generation,nonce);};frames_.setInterval(1);
+                }
                 commands_->stateChanged=[this](LiveCommandSession::State state){if(state==LiveCommandSession::State::Stopping){input_->suspend(true);return;}if(state==LiveCommandSession::State::Recovering || state==LiveCommandSession::State::WaitingFrame){input_->suspend(true);gl_->hide();placeholder_->setText("Recovering native presentation. Original game window remains available.");placeholder_->show();statusBar()->showMessage("Recovering native presentation.");}};
-                commands_->framePresented=[this]{++nativeCommandFrames_;input_->suspend((media_ && media_->movieActive()) || (menuStack_&&menuStack_->currentWidget()!=viewport_));placeholder_->hide();gl_->show();statusBar()->showMessage("Native command presentation active. Original rendering retained.");};
+                commands_->framePresented=[this]{++nativeCommandFrames_;input_->suspend((media_ && media_->movieActive()) || (menuStack_&&menuStack_->currentWidget()!=viewport_));placeholder_->hide();gl_->show();statusBar()->showMessage(residentWorld_?"Native World presentation active.":"Native command presentation active. Original rendering retained.");};
                 if(!commands_->create(commandPath,(QRandomGenerator::global()->generate()&0x7fffffffu)|1u,continuous?2:1,120000)){const auto error=commands_->error();statusBar()->showMessage(error);return false;}
                 arguments.append({"--command-channel",commandPath});
                 if(continuous){input_->suspend(true);arguments.append({"--render-control",commandPath+".control"});}
@@ -273,7 +286,7 @@ private:
     }
     void start(bool check){
         if(process_.state()!=QProcess::NotRunning||(liveMenus_&&liveMenus_->running()))return;
-        nativeFallback_=false;
+        nativeFallback_=false;residentWorldError_.clear();
         if(opengl_){detach_->hide();retry_->hide();}
         if(liveMenus_&&!check){
             excluded_=host_.windows();launch_->setEnabled(false);check_->setEnabled(false);fallback_->setEnabled(true);
@@ -335,7 +348,9 @@ private:
         if(elapsed_.elapsed()>(liveMenus_?120000:30000)){poll_.stop();retry_->setEnabled(true);statusBar()->showMessage("Window not found yet. Check the launch log, then click Attach game.");}
     }
     void finished(){
+        if(residentWorld_){try{residentWorld_->saveReport(residentWorldReport_);}catch(const std::exception& e){log_->appendPlainText(e.what());residentWorld_->saveReport(residentWorldReport_);}}
         if(commands_){if(!commands_->finishProducer())log_->appendPlainText("Native command producer stopped: "+commands_->error());commands_.reset();}
+        residentWorld_.reset();
         voices_.reset();media_.reset();if(input_)input_->suspend(false);
         if(input_)input_->setTarget(0);
         if(input_)input_->setState(nullptr);
@@ -354,7 +369,7 @@ private:
     SpellboxWidget* liveSpells_=nullptr;std::unique_ptr<LiveSpellMenuController> spellMenus_;
     std::unique_ptr<LiveBattleMenuController> battleMenus_;
     std::unique_ptr<LiveMenuSession> liveMenus_;QStackedWidget* menuStack_=nullptr;MainMenuWidget* liveMain_=nullptr;QuickBattleMenuWidget* liveQuick_=nullptr;QPushButton* fallback_=nullptr;bool menuAssetsLoaded_=false,closeAfterGame_=false;
-    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false,nativeFallback_=false;std::unique_ptr<LiveCommandSession> commands_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_,commandDrain_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
+    QString repo_;bool opengl_=false,captureDraws_=false,captureHistory_=false,skipMovies_=false,noReadback_=false,captureLocks_=false,nativeMedia_=false,nativeVoices_=false,nativeCommands_=false,nativeFallback_=false;std::unique_ptr<LiveCommandSession> commands_;std::unique_ptr<ResidentWorldSession> residentWorld_;QString residentWorldReport_,residentWorldError_;GlViewport* gl_=nullptr;std::unique_ptr<FrameStream> stream_;QTimer frames_,commandDrain_;WindowHost host_;std::unique_ptr<InputState> inputState_;std::unique_ptr<InputForwarder> input_;std::unique_ptr<MediaBroker> media_;std::unique_ptr<mnm::audio::VoiceBroker> voices_;QTimer inputTimer_;QProcess process_;QTimer poll_;QElapsedTimer elapsed_;
     QSet<xcb_window_t> excluded_;bool checking_=false;
     QWidget* viewport_=nullptr;QVBoxLayout* layout_=nullptr;QLabel* placeholder_=nullptr;
     QWidget* container_=nullptr;QWindow* foreign_=nullptr;xcb_window_t windowId_=0;
@@ -404,6 +419,7 @@ int main(int argc,char** argv){
                     "  --media FILE          Preview AVI/WAV media without the game\n"
                     "  --media-test          Decode a preview silently and write --media-report FILE\n"
                     "  --software-rendering  Use Mesa software rendering for Qt and Wine\n"
+                    "  --resident-world      Resident GPU World with --live-menus --native-commands\n"
                     "  --native-commands     Native command/GPU presentation (default for game launches)\n"
                     "  --frame-readback      Present frames copied from the original renderer instead\n"
                     "  --fullscreen          Start OpenGL presentation fullscreen; F9 toggles\n"
@@ -467,6 +483,7 @@ int main(int argc,char** argv){
     parser.addOption({"renderer","Presentation backend: opengl or native.","backend","opengl"});
     parser.addOption({"fullscreen","Start the OpenGL viewport fullscreen; F9 toggles."});
     parser.addOption({"scaling","Display scaling: sharp, smooth or integer; preserves game resolution.","mode","sharp"});
+    parser.addOption({"resident-world","Use resident GPU World delivery with public native menus and command presentation; requires --live-menus --native-commands."});
     parser.addOption({"native-commands","Native command presentation (default for ordinary OpenGL game launches); implies capture-locks. MNM_RENDER_CONTINUOUS=0 selects the bounded diagnostic sample."});
     parser.addOption({"frame-readback","Present original-renderer frames captured from game-owned buffers; implies capture-locks."});
     parser.addOption({"capture-locks","Capture bounded game-owned locks; disables observer readback."});
@@ -668,6 +685,10 @@ int main(int argc,char** argv){
     // Explicit capture/readback diagnostics retain their existing launch policy.
     const bool captureDiagnostic=parser.isSet("capture-draws") || parser.isSet("capture-history") || parser.isSet("capture-locks") || parser.isSet("no-readback");
     const bool nativeCommands=parser.isSet("native-commands") || (renderer=="opengl" && !parser.isSet("embedding-test") && !parser.isSet("frame-readback") && !captureDiagnostic);
+    if(parser.isSet("resident-world")){
+        if(!parser.isSet("live-menus") || !nativeCommands || qEnvironmentVariable("MNM_RENDER_CONTINUOUS")=="0" || qEnvironmentVariable("MNM_NATIVE_DRAW")=="0")parser.showHelp(2);
+        qputenv("MNM_PUBLIC_RESIDENT_WORLD","1");
+    }
     const bool captureLocks=parser.isSet("capture-locks") || nativeCommands || parser.isSet("frame-readback");
     Shell shell(QDir(parser.value("repo")).absolutePath(),renderer=="opengl" && !parser.isSet("embedding-test"),parser.isSet("capture-draws") || parser.isSet("capture-history"),parser.isSet("capture-history"),parser.isSet("skip-movies"),parser.isSet("no-readback"),captureLocks,parser.isSet("native-media"),parser.isSet("native-voices"),parser.isSet("live-menus"),nativeCommands,presentation);shell.showPresentation();
     if(parser.isSet("live-menu-test")){

@@ -1,4 +1,4 @@
-#include "../../protocols/include/mnm/render_stream_v2.h"
+#include "../../protocols/include/mnm/render_stream_v4.h"
 #include "dirty_region.h"
 /* Ordered opt-in production, independent of bounded diagnostic archives.
  * Every entry point holds game_locks_busy; pixels are owned snapshots only. */
@@ -74,7 +74,7 @@ static int session_start(void){
         command_channel_fail(MNM_RENDER_COMMANDS_V1_REASON_INVALID);
         lock_diagnostic("session_continuous_requires_v2",0,0,0,0,0,0,0);return 0;
     }
-    u32 header[4];copy(header,game_session_palette_resources?MNM_RENDER_STREAM_V2_MAGIC:"MNMCMD01",8);header[2]=game_session_palette_resources?2:1;header[3]=16;
+    u32 header[4];copy(header,game_resident_world?MNM_RENDER_STREAM_V4_MAGIC:game_session_palette_resources?MNM_RENDER_STREAM_V2_MAGIC:"MNMCMD01",8);header[2]=game_resident_world?4:game_session_palette_resources?2:1;header[3]=16;
     if(game_session_archive){
         char path[544];copy(path,lock_capture_path,lock_capture_path_length);copy(path+lock_capture_path_length,"\\session-00000001.bin",22);failure_hex(path+lock_capture_path_length+9,session_archive_id);
         session_file=CreateFileA(path,0x40000000,1,0,1,0x80,0);
@@ -162,6 +162,43 @@ static struct SessionSurface* session_surface(void* object,const struct Snapshot
     s->r=pixels->r;s->g=pixels->g;s->b=pixels->b;s->used=session_sequence;session_pixels+=count;
     u32 fields[7]={s->id,s->width,s->height,s->bits,s->r,s->g,s->b};
     if(!session_record(1,fields,28,pixels->data,pixels->length))return 0;return s;
+}
+/* Called by the fixed-build scene adapter after its validated ACK restores the
+ * original page guard, before any post-World UI drawing. Only the already-owned
+ * current-thread full Lock may supply the opaque identity and private baseline.
+ * No COM calls and no original/native World pixels are returned here. */
+__declspec(dllexport) int WIN RenderResidentWorldV1(u32 pixels,u32 width,u32 height,u32 stride,
+    u32 generation_low,u32 generation_high,u32 nonce_low,u32 nonce_high){
+    u32 error=GetLastError();int ok=0;
+    if(!game_resident_world || width!=800 || height!=600 || stride!=800 ||
+       (!generation_low&&!generation_high) || (!nonce_low&&!nonce_high))return 0;
+    if(!game_tracker_acquire())return 0;game_surface_sync();
+    struct GameLock* lock=0;
+    for(u32 i=0;i<32;++i){struct GameLock* candidate=game_locks+i;
+        if(candidate->active && candidate->owner==GetCurrentThreadId() &&
+           candidate->epoch==__atomic_load_n(&game_lock_epoch,__ATOMIC_RELAXED) &&
+           !candidate->rectangle && candidate->desc[9]==pixels){if(lock)goto done;lock=candidate;}}
+    if(!lock || lock->resident || lock->desc[3]!=width || lock->desc[2]!=height ||
+       lock->desc[4]!=stride*2 || lock->desc[21]!=16 || lock->desc[19]!=0x40 ||
+       lock->desc[22]!=0xf800 || lock->desc[23]!=0x7e0 || lock->desc[24]!=31 ||
+       !readable((void*)pixels,width*height*2))goto done;
+    u32 length=width*height*2;
+    if(!lock->base.data){
+        u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
+        if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved)goto done;
+        lock->base.data=HeapAlloc(GetProcessHeap(),0,length);if(!lock->base.data)goto done;
+        lock->base.length=length;__atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
+    }
+    if(lock->base.length!=length)goto done;
+    lock->base.width=width;lock->base.height=height;lock->base.bits=16;lock->base.flags=0x40;
+    lock->base.r=0xf800;lock->base.g=0x7e0;lock->base.b=31;
+    copy(lock->base.data,(void*)pixels,length);
+    struct SessionSurface* surface=session_surface(lock->object,&lock->base,0);if(!surface)goto done;
+    u32 fields[5]={surface->id,generation_low,generation_high,nonce_low,nonce_high};
+    if(!session_record(MNM_RENDER_STREAM_V4_OPERATION_WORLD,fields,20,0,0))goto done;
+    lock->resident=1;ok=1;lock_diagnostic("resident_world_bound",lock->object,lock->kind,generation_low,generation_high,0,0,0);
+ done:
+    if(!ok)game_session_gap(4);game_tracker_release();SetLastError(error);return ok;
 }
 static struct SessionPalette* session_palette_find(struct GamePalette* p){
     for(u32 i=0;i<32;++i)if(session_palettes[i].id && session_palettes[i].generation==p->identity_generation)return session_palettes+i;
@@ -323,6 +360,28 @@ static int session_unlock_region(struct SessionSurface* s,const struct Snapshot*
     return ok;
 }
 
+static int session_resident_unlock(struct SessionSurface* surface,const struct Snapshot* before,const struct Snapshot* after){
+    if(!before->data || before->width!=after->width || before->height!=after->height ||
+       before->length!=after->length || before->bits!=16 || after->bits!=16){game_session_gap(4);return 0;}
+    u32 regions[COMMAND_DIRTY_REGIONS][4];
+    u32 count=command_dirty_regions(before->data,after->data,after->width,after->height,2,regions);
+    for(u32 i=0;i<count;++i){u32 width=regions[i][2]-regions[i][0],height=regions[i][3]-regions[i][1];
+        /* Bound record/scratch bytes even for a dense full-canvas UI write. */
+        for(u32 row=0;row<height;row+=32){u32 rows=height-row;if(rows>32)rows=32;u32 pixels=width*rows,length=pixels*3;
+            u32 reserved=__atomic_load_n(&lock_capture_reserved,__ATOMIC_RELAXED);
+            if(reserved>GAME_SURFACE_LIMIT-game_surface_bytes || after->length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved ||
+               length>GAME_SURFACE_LIMIT-game_surface_bytes-reserved-after->length){game_session_gap(2);return 0;}
+            u8* packed=HeapAlloc(GetProcessHeap(),0,length);if(!packed){game_session_gap(4);return 0;}
+            __atomic_add_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);
+            u32 fields[5]={surface->id,regions[i][0],regions[i][1]+row,width,rows};
+            for(u32 y=0;y<rows;++y)for(u32 x=0;x<width;++x){u32 at=(fields[2]+y)*after->width+fields[1]+x,p=y*width+x;
+                copy(packed+p*2,after->data+at*2,2);packed[pixels*2+p]=!same(before->data+at*2,after->data+at*2,2);}
+            int ok=session_record(MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE,fields,20,packed,length);
+            HeapFree(GetProcessHeap(),0,packed);__atomic_sub_fetch(&lock_capture_reserved,length,__ATOMIC_RELAXED);if(!ok)return 0;
+        }
+    }
+    return 1;
+}
 static void game_session_unlock(struct GameLock* lock,const struct Snapshot* after,u32 primary){
     if(!game_session_enabled)return;
     struct SessionSurface* s=session_find(lock->object);int existing=s!=0;
@@ -335,6 +394,7 @@ static void game_session_unlock(struct GameLock* lock,const struct Snapshot* aft
         game_session_retire(lock->object);existing=0;
     }
     s=session_surface(lock->object,lock->rectangle?&lock->base:after,0);if(!s)return;
+    if(lock->resident){if(!existing || !session_resident_unlock(s,&lock->base,after))return;goto present;}
     if(lock->rectangle || existing){
         struct Rect r={0,0,(i32)after->width,(i32)after->height};if(lock->rectangle)copy(&r,&lock->region,16);
         if(lock->rectangle && !session_check(s,&lock->base))return;

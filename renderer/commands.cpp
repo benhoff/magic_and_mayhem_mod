@@ -31,6 +31,11 @@ SurfaceCommand decodeRecord(const QByteArray& record,detail::CommandState& state
             c.image=pixels(p,28,c.words[1],c.words[2],c.format.bits);
         }else if(c.operation==2){
             fields(5);const auto& s=state.get(c.words[0]);c.image=pixels(p,20,c.words[3],c.words[4],s.format.bits);
+        }else if(c.operation==MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE){
+            fields(5);const auto& s=state.get(c.words[0]);const auto count=std::size_t(c.words[3])*c.words[4];
+            require(version==4 && s.format.bits==16 && count<=2048u*2048u && length==20+count*3,"Invalid masked RGB565 patch length");
+            c.image=pixels(p.first(20+qsizetype(count)*2),20,c.words[3],c.words[4],16);
+            c.coverage.reserve(count);for(std::size_t i=0;i<count;++i)c.coverage.push_back(static_cast<std::uint8_t>(p[20+count*2+i]));
         }else if(c.operation==3){fields(10);require(length==40,"Invalid copy length");
         }else if(c.operation==11){fields(2);require(length==8,"Invalid swap length");
         }else if(c.operation==4){

@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 import struct
 
-NAMES = {1:'create',2:'release',3:'bind',4:'clip',5:'fill',6:'copy',7:'jpeg',8:'font',9:'raster',10:'checkpoint',11:'queue_entry',12:'queue_return',13:'failure',14:'rgb_add',15:'bevel',16:'halo',17:'wash',18:'pcx',19:'dib',20:'bmp',21:'fade',22:'minimap',23:'points',24:'minimap_owned_overlay',25:'owned_payload_source'}
+NAMES = {1:'create',2:'release',3:'bind',4:'clip',5:'fill',6:'copy',7:'jpeg',8:'font',9:'raster',10:'checkpoint',11:'queue_entry',12:'queue_return',13:'failure',14:'rgb_add',15:'bevel',16:'halo',17:'wash',18:'pcx',19:'dib',20:'bmp',21:'fade',22:'minimap',23:'points',24:'minimap_owned_overlay',25:'owned_payload_source',26:'colour_rectangle'}
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -24,7 +24,7 @@ def decode(raw, complete=True):
     while at<len(raw):
         if len(records)>=h[5] or len(raw)-at<96:raise ValueError('Truncated/over-budget producer record')
         r=struct.unpack_from('<24I',raw,at)
-        if r[0]!=96+r[18] or r[0]>len(raw)-at or r[1]!=len(records)+1 or r[2] not in NAMES or (r[2]==24 and not owned) or (r[2]==25 and not extended) or r[23]:
+        if r[0]!=96+r[18] or r[0]>len(raw)-at or r[1]!=len(records)+1 or r[2] not in NAMES or (r[2]==24 and not (owned or extended)) or (r[2] in (25,26) and not extended) or r[23]:
             raise ValueError('Invalid producer record bounds/sequence/operation')
         payload=raw[at+96:at+r[0]]
         wire_size=r[0]
@@ -49,11 +49,13 @@ def decode(raw, complete=True):
         elif r[2]==23:
             if r[14]>16384 or r[18]!=r[14]*12:raise ValueError('Invalid point requests')
         elif r[2]==22:
-            if not 1<=r[14]<=256 or r[14]%2 or not 1<=r[15]<=256 or r[16]>(3 if owned else 0) or (owned and r[19]!=0xfffffffe) or r[17]>1 or r[18]!=r[14]*r[15]*3 or any(payload[2::3][i]>1 for i in range(r[14]*r[15])):raise ValueError('Invalid minimap terrain input')
+            if not 1<=r[14]<=256 or r[14]%2 or not 1<=r[15]<=256 or r[16]>(3 if owned or (extended and r[19]==0xfffffffe) else 0) or (owned and r[19]!=0xfffffffe) or r[17]>1 or r[18]!=r[14]*r[15]*3 or any(payload[2::3][i]>1 for i in range(r[14]*r[15])):raise ValueError('Invalid minimap terrain input')
         elif r[2]==19:
             if not 40<=r[19]<=1064 or r[20]>2097152 or r[18]!=r[19]+r[20]:raise ValueError('Invalid closed DIB input')
         elif r[2]==18:
             if not 128<=r[19]<=1048576 or r[20]!=768 or r[18]!=r[19]+768 or r[17]:raise ValueError('Invalid PCX producer input')
+        elif r[2]==26:
+            if not extended or r[14] or r[15]>3 or not 1<=r[19]<=64 or not 1<=r[20]<=64 or r[18]!=r[19]*r[20]*2:raise ValueError('Invalid owned colour rectangle')
         elif r[2]==14:
             if r[18]!=20 or r[14]:raise ValueError('Invalid RGB addition input')
         elif payload:raise ValueError('Unexpected producer payload')

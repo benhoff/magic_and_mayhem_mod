@@ -20,7 +20,7 @@ public:
   void release(std::uint32_t);
   void panel(std::uint32_t, Rect, unsigned mode, unsigned percent = 0,
              bool pressed = false, bool reverse = true);
-  void addRgb(std::uint32_t, Rect, std::array<unsigned, 3>);
+  void addRgb(std::uint32_t, Rect, std::array<unsigned, 3>, bool invalidateOnly = false);
   void fill(std::uint32_t, Rect, std::uint16_t);
   void copy(std::uint32_t source, std::uint32_t destination, Rect, int x, int y,
             std::optional<std::uint16_t> key = {});

@@ -79,7 +79,7 @@ render::Image WorldRollingSession::consumeStream(
     for (const auto &c : stream.operations) {
       const auto &r = c.fields;
       const auto start = std::chrono::steady_clock::now();
-      if (resident_ && world_.active() && r[2] == 9)
+      if (resident_ && world_.active() && (r[2] == 9 || r[2] == 14 || r[2] == 26))
         producer_.invalidateWorld(c);
       else if (verify_ || !world_.active() || r[2] != 9)
         producer_.apply(c);
@@ -103,7 +103,7 @@ render::Image WorldRollingSession::consumeStream(
         }
         world_.beginRolling(c, history, sequence);
       } else if (world_.active()) {
-        if (r[2] == 9)
+        if (r[2] == 9 || r[2] == 14 || r[2] == 26)
           world_.append(c);
         else if (r[2] == 10 && r[3] == canvas && resident_)
           world_.completeResident();

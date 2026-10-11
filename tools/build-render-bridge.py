@@ -27,7 +27,7 @@ def build(selftest=False):
     subprocess.run(flags+['-MD','-MF',str(root/'bridge.d'),'-c',str(source/'bridge.c'),'-o',str(root/'bridge.obj')],check=True)
     exports=['/export:RenderInstallForTest=_RenderInstallForTest@8','/export:RenderCaptureGuardForTest=_RenderCaptureGuardForTest@4','/export:RenderCaptureWaitsForTest=_RenderCaptureWaitsForTest@0','/export:RenderCreateForTest=_RenderCreateForTest@16','/export:RenderInputForTest=_RenderInputForTest@12','/export:RenderMediaForTest=_RenderMediaForTest@12'] if selftest else []
     if selftest:exports+=['/export:RenderLifecyclePauseForTest=_RenderLifecyclePauseForTest@4','/export:RenderLifecycleGuardForTest=_RenderLifecycleGuardForTest@4','/export:RenderAliasSameForTest=_RenderAliasSameForTest@8','/export:RenderQueueForTest=_RenderQueueForTest@12']
-    exports+=['/export:RenderStop=_RenderStop@4','/export:RenderShutdown=_RenderShutdown@4','/export:RenderStartup=_RenderStartup@0','/export:RenderRecover=_RenderRecover@4']
+    exports+=['/export:RenderResidentWorldV1=_RenderResidentWorldV1@32','/export:RenderStop=_RenderStop@4','/export:RenderShutdown=_RenderShutdown@4','/export:RenderStartup=_RenderStartup@0','/export:RenderRecover=_RenderRecover@4']
     if selftest:exports+=['/export:RenderStopStateForTest=_RenderStopStateForTest@4','/export:RenderRecoveryStorageForTest=_RenderRecoveryStorageForTest@4','/export:RenderExitInstallForTest=_RenderExitInstallForTest@4','/export:RenderRecoveryStateForTest=_RenderRecoveryStateForTest@4']
     dll=root/'MnmRender.dll'
     subprocess.run(['lld-link',*exports,'/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{dll}',str(root/'bridge.obj'),str(root/'kernel32.lib'),str(root/'kernelbase.lib'),str(root/'gdi32.lib')],check=True)
@@ -36,7 +36,7 @@ def build(selftest=False):
         path=Path(token).resolve()
         if path.is_file() and path.is_relative_to(REPO) and not path.is_relative_to(REPO/'working'):
             closure.add(path.relative_to(REPO).as_posix())
-    protocol_headers=sorted((REPO/'protocols/include/mnm').glob('*_v1.h'))+sorted((REPO/'protocols/include/mnm').glob('*_v2.h'))+[REPO/'protocols/include/mnm/render_command_ring.h']
+    protocol_headers=sorted((REPO/'protocols/include/mnm').glob('*_v1.h'))+sorted((REPO/'protocols/include/mnm').glob('*_v2.h'))+[REPO/'protocols/include/mnm/render_stream_v3.h',REPO/'protocols/include/mnm/render_stream_v4.h',REPO/'protocols/include/mnm/render_command_ring.h']
     protocol_sources=protocol_headers+sorted((REPO/'protocols/schemas').glob('*-v1.json'))+sorted((REPO/'protocols/schemas').glob('*-v2.json'))+[REPO/'protocols/generate.py']
     (root/'manifest.json').write_text(json.dumps({'architecture':'PE32 i386','sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),
         'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()},
