@@ -36,6 +36,8 @@ def main():
     parser.add_argument('--word-sprites',choices=['shadow','takeover','clip-shadow','clip-takeover'],help='Observe the explicit partial direct-word raster experiment')
     parser.add_argument('--world-frames',action='store_true',help='Capture complete effective raster inputs and separate original output oracles')
     parser.add_argument('--world-lifetime',action='store_true',help='Bounded diagnostic canvas identity/initial-content observations from first queue call')
+    parser.add_argument('--continuous-hardware',action='store_true',help='Explicit private-seat hardware test environment; retain driver selection')
+    parser.add_argument('--continuous-verify',action='store_true',help='Retain independent native CPU composition for continuous verification')
     parser.add_argument('--continuous-queues',type=int,default=None,help='Explicit guarded two-block producer test cap (1..4096); no diagnostic journal/oracles')
     parser.add_argument('--producer-live',type=Path,help='Native Qt closed-producer consumer executable, starts before original launch')
     parser.add_argument('--world-producer-handoff',action='store_true',help='Use reconstructed producer history in native GPU World drawing')
@@ -144,18 +146,28 @@ def main():
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
         root=staging.prepare(menu=True,word_mode=args.word_sprites,world_frames=args.world_frames,world_live=bool(args.world_live),source_game=args.source_game);print(root,flush=True)
+        if args.continuous_queues is not None and not args.continuous_verify:
+            from native_render_config import stage_native_draw_cadence
+            codecs=[]
+            for name in ['encode','decode']:
+                spec_cfg=importlib.util.spec_from_file_location(name+'_cfg',ROOT/('tools/'+name+'-cfg.py'));module_cfg=importlib.util.module_from_spec(spec_cfg);spec_cfg.loader.exec_module(module_cfg);codecs.append(module_cfg)
+            cadence=stage_native_draw_cadence(root/'game',lambda text:codecs[0].encode(text,codecs[1])[0],lambda raw:codecs[1].decode(raw)[1])
+            metadata=json.loads((root/'manifest.json').read_text());metadata['continuous_draw_cadence']=cadence;(root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
+        if args.continuous_queues is not None:
+            fingerprints_input={p.relative_to(root/'game').as_posix():sha(p) for p in (root/'game').rglob('*') if p.is_file() and p.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx')}
+            (root/'input-fingerprints.json').write_text(json.dumps(fingerprints_input,indent=2)+'\n')
         if args.canvas_producers:
             policy={'producer_oracle_mib':args.producer_oracle_mib,'window_screenshot_requested':not args.skip_window_screenshot}
             (root/'capture-policy.json').write_text(json.dumps(policy,indent=2)+'\n')
         if args.producer_live:
             viewer_log=(root/'native-producers.log').open('x')
-            viewer=subprocess.Popen([str(args.producer_live.resolve()),str(root/'capture/canvas-producers.bin'),str(root/'game'),str(root/'native-producers'),*([str(args.continuous_queues)] if args.continuous_queues is not None else [*(['--world-handoff'] if args.world_producer_handoff else []),*(['--world-batch'] if args.world_raster_batch else [])])],env={**os.environ,'QT_QPA_PLATFORM':'xcb','LIBGL_ALWAYS_SOFTWARE':'1'},stdout=viewer_log,stderr=subprocess.STDOUT)
+            viewer=subprocess.Popen([str(args.producer_live.resolve()),str(root/'capture/canvas-producers.bin'),str(root/'game'),str(root/'native-producers'),*([str(args.continuous_queues),*(['--verify'] if args.continuous_verify else [])] if args.continuous_queues is not None else [*(['--world-handoff'] if args.world_producer_handoff else []),*(['--world-batch'] if args.world_raster_batch else [])])],env={**os.environ,'QT_QPA_PLATFORM':'xcb',**({} if args.continuous_hardware else {'LIBGL_ALWAYS_SOFTWARE':'1'})},stdout=viewer_log,stderr=subprocess.STDOUT)
         if args.continuous_queues is not None:
             ready=root/'native-producers/ready';until=time.monotonic()+60
             while not ready.exists():
                 if viewer.poll() is not None or time.monotonic()>until:raise RuntimeError('Continuous native initialization failed')
                 time.sleep(.02)
-            metadata=json.loads((root/'manifest.json').read_text());metadata['world_continuous']=str(root/'world-continuous.bin');metadata['continuous_queues']=args.continuous_queues;(root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
+            metadata=json.loads((root/'manifest.json').read_text());metadata['world_continuous']=str(root/'world-continuous.bin');metadata['continuous_queues']=args.continuous_queues;metadata['continuous_verify']=args.continuous_verify;(root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
         if args.world_live:
             create(root/'world-channel.bin',verify,args.live_frames if history else 0)
             viewer_log=(root/'native-world.log').open('x')
@@ -165,6 +177,7 @@ def main():
         env.update(MNM_SCENE_EXPERIMENT=str(root),MNM_SCENE_SAMPLES=str(args.samples),WINEDEBUG='-all',
                    WINEPREFIX=str(root/'wineprefix'))
         env.update(MNM_SCENE_SKIP=str(args.skip_queues),MNM_SCENE_INTERVAL=str(args.interval))
+        if args.continuous_queues is not None and not args.continuous_verify:env['MNM_CONTINUOUS_PRECISE_CLOCK']='1'
         if args.world_raster_queue:env['MNM_WORLD_RASTER_QUEUE']=str(args.world_raster_queue)
         if args.world_raster_prefix:env['MNM_WORLD_RASTER_PREFIX']=str(args.world_raster_prefix)
         if args.world_raster_batch:env['MNM_WORLD_RASTER_BATCH']='1'

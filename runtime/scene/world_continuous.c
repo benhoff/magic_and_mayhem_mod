@@ -1,6 +1,6 @@
 /* Included after world_raster_batch.c. Pointer-free fixed storage shared with
  * the native owner. The original destination stays NOACCESS while waiting. */
-#include "../../protocols/include/mnm/world_continuous_v1.h"
+#include "../../protocols/include/mnm/world_continuous_v2.h"
 API HANDLE WIN CreateFileMappingA(HANDLE, void *, u32, u32, u32, const char *);
 API void *WIN MapViewOfFile(HANDLE, u32, u32, u32, u32);
 API i32 WIN UnmapViewOfFile(void *);
@@ -24,7 +24,7 @@ static int continuous_wait(u8 *p, u32 n, u32 value) {
     if (continuous_load(continuous_map, 10) ||
         (u32)(GetTickCount() - start) >= MNM_WORLD_BYPASS_TIMEOUT)
       return 0;
-    Sleep(1);
+    Sleep(0);
   }
   return !continuous_load(continuous_map, 10);
 }
@@ -61,6 +61,8 @@ static int continuous_next(void) {
   copy(slot + MNM_CONT_SLOT_HEADER, h, 64);
   return 1;
 }
+#include "world_continuous_clock.c"
+static u32 continuous_time(void) { return pacer_precise_tick ? continuous_clock_read() : GetTickCount(); }
 static int continuous_init(void) {
   char name[260];
   u32 n = GetEnvironmentVariableA("MNM_WORLD_CONTINUOUS", name, sizeof(name));
@@ -85,7 +87,7 @@ static int continuous_init(void) {
   if (!continuous_map)
     return 0;
   u8 *h = continuous_map;
-  if (!bypass_equal(h, MNM_CONT_MAGIC, 8) || get(h + 8) != 1 ||
+  if (!bypass_equal(h, MNM_CONT_MAGIC, 8) || get(h + 8) != MNM_CONT_VERSION ||
       get(h + 12) != MNM_CONT_HEADER || get(h + 16) != MNM_CONT_BYTES ||
       get(h + 20) || (!get(h + 24) && !get(h + 28)) ||
       continuous_load(h, 8) != 1 || continuous_load(h, 9) ||
@@ -96,7 +98,7 @@ static int continuous_init(void) {
       return 0;
   if (!__sync_bool_compare_and_swap((u32 *)(h + 36), 0, 1))
     return 0;
-  return continuous_next();
+  return continuous_clock_install() && continuous_next();
 }
 static int continuous_write(const void *p, u32 n) {
   u8 *s = continuous_slot();
@@ -122,9 +124,9 @@ static int continuous_finish(struct Surface *s, const u32 *request) {
   copy(wire + 64, batch_rows, request[11]);
   put(slot + 16, bytes);
   put(slot + 20, request_n);
-  put(slot + 24, bypass_hash(source, bytes));
-  put(slot + 28, bypass_hash(wire, request_n));
-  put(slot + 52, GetTickCount());
+  put(slot + 24, mnm_cont_crc32c(source, bytes));
+  put(slot + 28, mnm_cont_crc32c(wire, request_n));
+  put(slot + 52, continuous_time());
   continuous_store(slot, 0, MNM_CONT_REQUEST);
   if (!continuous_wait(slot, 0, MNM_CONT_REPLY) ||
       get(slot + 8) != continuous_generation_low ||
@@ -134,8 +136,8 @@ static int continuous_finish(struct Surface *s, const u32 *request) {
   u8 *reply = wire + MNM_CONT_REQUEST_BYTES;
   u32 h[16];
   copy(h, reply, 64);
-  if (bypass_hash(reply, MNM_CONT_REPLY_BYTES) != get(slot + 44) ||
-      !bypass_equal(h, MNM_WORLD_BATCH_REPLY, 8) || h[2] != 3 || h[3] != 64 ||
+  if (mnm_cont_crc32c(reply, MNM_CONT_REPLY_BYTES) != get(slot + 44) ||
+      !bypass_equal(h, MNM_WORLD_BATCH_REPLY, 8) || h[2] != MNM_CONT_BATCH_VERSION || h[3] != 64 ||
       h[11] != batch_pixel_bytes || h[13] != 1)
     return 0;
   for (u32 i = 4; i <= 10; ++i)
@@ -150,7 +152,7 @@ static int continuous_finish(struct Surface *s, const u32 *request) {
     return 0;
   copy((void *)s->pixels, reply + 64, batch_pixel_bytes);
   ++batch_transfers;
-  put(slot + 56, GetTickCount());
+  put(slot + 56, continuous_time());
   /* Return records may now be appended, but the source slot stays exclusively
    * original-owned until it publishes the actual return. */
   continuous_store(slot, 0, MNM_CONT_WRITING);
@@ -162,7 +164,7 @@ static int continuous_return(void) {
       bytes != get(slot + 16) + 192 || failures)
     return 0;
   put(slot + 32, bytes);
-  put(slot + 60, GetTickCount());
+  put(slot + 60, continuous_time());
   continuous_store(slot, 0, MNM_CONT_RETURNED);
   const u32 low = get(continuous_map + 48), high = get(continuous_map + 52);
   if ((low || high) && low == continuous_generation_low &&
@@ -181,5 +183,21 @@ static int continuous_return(void) {
 
 static void continuous_mark_entry(void) {
   if (continuous_map)
-    put(continuous_slot() + 48, GetTickCount());
+    put(continuous_slot() + 48, continuous_time());
+}
+
+static int continuous_equal(const u8 *a, const u8 *b, u32 n) {
+  while (n >= 16) {
+    if (get(a) != get(b) || get(a + 4) != get(b + 4) ||
+        get(a + 8) != get(b + 8) || get(a + 12) != get(b + 12))
+      return 0;
+    a += 16;
+    b += 16;
+    n -= 16;
+  }
+  while (n--) {
+    if (*a++ != *b++)
+      return 0;
+  }
+  return 1;
 }

@@ -4139,3 +4139,15 @@ versions and the final prospectively declared execution. Committed history
 Existing glyph pixels, byte production and live shadow evidence retain their
 separate scopes. Higher text layout/reset/lifecycle and wider replacement remain
 open.
+
+
+Continuous rendering performance checkpoint (2026-10-10): the fixed source
+channel now has explicit V2 CRC32C/V5 owned-descriptor guards, direct owned native
+queue consumption, optional CPU reference verification, bounded producer scratch
+and native source leases, and a private GPU/Qt full-path profiler. Historical
+finite32 and64-queue results remain historical. Preliminary128 normal queues
+complete correctly but still fail the unchanged19 FPS budget; the earlier4096
+attempt timed out at observed generation3710. No current4096 delivery or normal
+performance milestone is promoted here. See native-world-continuous.md and the
+preserved source-bound experiments. Public campaign, independent original raster
+comparison, physical display/input and uncaptured branches remain separate.

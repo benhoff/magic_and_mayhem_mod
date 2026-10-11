@@ -29162,7 +29162,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded original-to-native continuous World source delivery",
-      "scope": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Native final CPU/GPU checks and direct retained-GPU Qt presentation remain active; no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone.",
+      "scope": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Verification runs retain final native CPU/GPU comparisons and direct retained-GPU Qt presentation. Continuous batchV5 binds the full canonical96-byte header to the exact owned-payload CRC32C; every distinct payload is hashed andbyte-checked, with native private caching only under an owned block lease. No cross-launch original pointer stability is assumed. no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone. Continuous mode copies nonoverlapping owned buffers with x86 REP MOVSD, preserving every byte and flags across the observer boundary; it consumes the checked owned stream directly without intermediate packet serialization. Hardware validation uses a private no-monitor/no-input NVIDIA seat with accelerated Mesa Zink, records the actual Qt GL renderer, and refuses software fallback. Staged executables, bridge DLLs and native image/sprite inputs are fingerprinted before launch and checked after execution. Per-call private checksum storage avoids cross-thread descriptor hash reuse. Normal mode uses the existing disposable native draw-cadence configuration to disable legacy DEBUG draw skipping without changing selected game speed; verification mode retains baseline skipping. V2 owned source, request and reply blocks use standard CRC32C for full-byte corruption detection; batch V5 source digest binds canonical96-byte header plus little-endian CRC32C(exact owned payload). V1/V3/V4 channels are refused by this explicit mode. CPUID-gated x86 SSE4.2 acceleration and the portable reflected Castagnoli reference must match; checks finish before GPU consumption or reply publication. Channel waits cooperate with Sleep(0) under the same real-uptime deadline instead of incurring coarse Sleep(1) scheduling; performance telemetry uses actual WinMM uptime when the guarded precision policy is active, without changing game wait targets or simulation rules. Continuous raster requests use one bounded private scratch allocation exclusively leased across the whole immediate observer request/emit/descriptor interval; raw and legacy requests retain owned allocations. Native World draws retain immutable shared source leases instead of copying encoded frames for every raster; identity lookup memoization is frame-local by owned lease/tag/extent, while the persistent cache still owns and checks full encoded bytes.",
       "original": [],
       "confidence": "provisional",
       "documents": [
@@ -29182,7 +29182,10 @@
         "tools/capture-scene-game.py",
         "tools/scene-game-runner.py",
         "tools/build-scene-observer.py",
-        "compat/legacy/world-rolling/CMakeLists.txt"
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_resources.cpp"
       ],
       "tests": [
         "tests/world-continuous-channel-test.cpp",
@@ -29318,6 +29321,8 @@
         "runtime/menu/results.h",
         "runtime/menu/spell_selftest.h",
         "runtime/menu/spells.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/precise_clock.h",
         "runtime/scene/canvas_producers.S",
         "runtime/scene/canvas_startup.S",
         "runtime/scene/canvas_startup.c",
@@ -29329,6 +29334,7 @@
         "runtime/scene/word_entry.S",
         "runtime/scene/word_route.c",
         "runtime/scene/word_workspace.h",
+        "runtime/scene/world_continuous_clock.c",
         "runtime/scene/world_entry.S",
         "runtime/scene/world_kinds.h",
         "runtime/scene/world_lifetime.c",
@@ -29344,6 +29350,7 @@
         "tests/native-world-rolling/CMakeLists.txt",
         "tests/resource-fixtures.hpp",
         "tests/sprite-atlas-test.cpp",
+        "tests/world-continuous-hash-test.cpp",
         "tests/world-raster-batch-test.cpp",
         "tests/world-rolling-channel-test.cpp",
         "tests/world-rolling-handoff-test.cpp",
@@ -29360,9 +29367,14 @@
         "tools/test-native-world-rolling-live.py",
         "tools/test-native-world-rolling.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "tools/native_render_config.py",
+        "tools/encode-cfg.py",
+        "tools/decode-cfg.py",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_checksum.h"
       ],
-      "validation_domain": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Native final CPU/GPU checks and direct retained-GPU Qt presentation remain active; no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone.",
+      "validation_domain": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Verification runs retain final native CPU/GPU comparisons and direct retained-GPU Qt presentation. Continuous batchV4 binds the full canonical96-byte header to the exact owned-payload FNV; every distinct payload is hashed andbyte-checked, with native private caching only under an owned block lease. No cross-launch original pointer stability is assumed. no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone.",
       "evidence": [
         "NR.world-continuous-source.probe64-20261010"
       ],
@@ -29379,7 +29391,7 @@
       "subsystem": "rendering",
       "kind": "recovered",
       "title": "Original World caller return through continuous native writeback",
-      "scope": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Native final CPU/GPU checks and direct retained-GPU Qt presentation remain active; no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone.",
+      "scope": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Verification runs retain final native CPU/GPU comparisons and direct retained-GPU Qt presentation. Continuous batchV5 binds the full canonical96-byte header to the exact owned-payload CRC32C; every distinct payload is hashed andbyte-checked, with native private caching only under an owned block lease. No cross-launch original pointer stability is assumed. no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone. Continuous mode copies nonoverlapping owned buffers with x86 REP MOVSD, preserving every byte and flags across the observer boundary; it consumes the checked owned stream directly without intermediate packet serialization. Hardware validation uses a private no-monitor/no-input NVIDIA seat with accelerated Mesa Zink, records the actual Qt GL renderer, and refuses software fallback. Staged executables, bridge DLLs and native image/sprite inputs are fingerprinted before launch and checked after execution. Per-call private checksum storage avoids cross-thread descriptor hash reuse. Normal mode uses the existing disposable native draw-cadence configuration to disable legacy DEBUG draw skipping without changing selected game speed; verification mode retains baseline skipping. V2 owned source, request and reply blocks use standard CRC32C for full-byte corruption detection; batch V5 source digest binds canonical96-byte header plus little-endian CRC32C(exact owned payload). V1/V3/V4 channels are refused by this explicit mode. CPUID-gated x86 SSE4.2 acceleration and the portable reflected Castagnoli reference must match; checks finish before GPU consumption or reply publication. Channel waits cooperate with Sleep(0) under the same real-uptime deadline instead of incurring coarse Sleep(1) scheduling; performance telemetry uses actual WinMM uptime when the guarded precision policy is active, without changing game wait targets or simulation rules. Continuous raster requests use one bounded private scratch allocation exclusively leased across the whole immediate observer request/emit/descriptor interval; raw and legacy requests retain owned allocations. Native World draws retain immutable shared source leases instead of copying encoded frames for every raster; identity lookup memoization is frame-local by owned lease/tag/extent, while the persistent cache still owns and checks full encoded bytes.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -29475,7 +29487,10 @@
         "tools/capture-scene-game.py",
         "tools/scene-game-runner.py",
         "tools/build-scene-observer.py",
-        "compat/legacy/world-rolling/CMakeLists.txt"
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_resources.cpp"
       ],
       "tests": [
         "tests/world-continuous-channel-test.cpp",
@@ -29611,6 +29626,8 @@
         "runtime/menu/results.h",
         "runtime/menu/spell_selftest.h",
         "runtime/menu/spells.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/precise_clock.h",
         "runtime/scene/canvas_producers.S",
         "runtime/scene/canvas_startup.S",
         "runtime/scene/canvas_startup.c",
@@ -29622,6 +29639,7 @@
         "runtime/scene/word_entry.S",
         "runtime/scene/word_route.c",
         "runtime/scene/word_workspace.h",
+        "runtime/scene/world_continuous_clock.c",
         "runtime/scene/world_entry.S",
         "runtime/scene/world_kinds.h",
         "runtime/scene/world_lifetime.c",
@@ -29637,6 +29655,7 @@
         "tests/native-world-rolling/CMakeLists.txt",
         "tests/resource-fixtures.hpp",
         "tests/sprite-atlas-test.cpp",
+        "tests/world-continuous-hash-test.cpp",
         "tests/world-raster-batch-test.cpp",
         "tests/world-rolling-channel-test.cpp",
         "tests/world-rolling-handoff-test.cpp",
@@ -29653,9 +29672,14 @@
         "tools/test-native-world-rolling-live.py",
         "tools/test-native-world-rolling.py",
         "tools/world_channel.py",
-        "tools/world_refusal.py"
+        "tools/world_refusal.py",
+        "tools/native_render_config.py",
+        "tools/encode-cfg.py",
+        "tools/decode-cfg.py",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_checksum.h"
       ],
-      "validation_domain": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Native final CPU/GPU checks and direct retained-GPU Qt presentation remain active; no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone.",
+      "validation_domain": "Actual pinned original World producer delivery through a fixed two-slot source-owned channel, local V3 ordinal1 separately bound to u64 generation. Mandatory800x600 RGB565 original NOACCESS guard until validated native reply, exact canonical entry/AX/extent/hash and actual original checkpoint/return checked before block reuse.4096 actual queues, stable source/input provenance, bounded source/cache/report storage, zero dropped/superseded queues and zero teardown surfaces/image fallback; separate original/native peer death beyond32 and fresh-session recovery. Verification runs retain final native CPU/GPU comparisons and direct retained-GPU Qt presentation. Continuous batchV4 binds the full canonical96-byte header to the exact owned-payload FNV; every distinct payload is hashed andbyte-checked, with native private caching only under an owned block lease. No cross-launch original pointer stability is assumed. no original destination input or per-frame diagnostic files. No independent original equivalence beyond separately compared finite prefix, uncaptured gameplay/hardware scanout or unlimited duration claim. Full-path performance is a separate measured milestone.",
       "evidence": [
         "NR.world-continuous-source.probe64-20261010"
       ],
@@ -29770,6 +29794,235 @@
           "pixel operation",
           "FP/live admission"
         ]
+      }
+    },
+    {
+      "id": "NR.world-continuous-normal-performance",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Normal continuous native World full-path performance",
+      "scope": "Normal actual original-to-native continuous4096-queue delivery without CPU reference raster composition or diagnostic files/mirror uploads. Retain owned source/header/descriptor/entry/AX/destination guards andmandatory finalGPU readback/original writeback andactual return. Source/transport/nativeGPU/Qtpaint costs measured separately; bounded1024 timing rows,source/cache/storage/memory caps,zero dropped queues/image fallback/teardown surfaces. Guarded actual WinMM uptime precision policy retains original wait target/preferences andLastError; no fabricated/scaled clock or full timer/physics equivalence assertion. Prospective warm fullWorld median50ms,p9575ms,max150ms,cold delivery500ms,steady original/Qtpaint19FPS,retained growth32MiB limits. Performance failure mustfail withcorrect pixels; impossible0.001ms negative control. Separate4096 verification run andrefusal/death/recovery cases; headless hardware/physical scanout/input cadence anduncaptured gameplay remain outside scope. Continuous mode copies nonoverlapping owned buffers with x86 REP MOVSD, preserving every byte and flags across the observer boundary; it consumes the checked owned stream directly without intermediate packet serialization. Hardware validation uses a private no-monitor/no-input NVIDIA seat with accelerated Mesa Zink, records the actual Qt GL renderer, and refuses software fallback. Staged executables, bridge DLLs and native image/sprite inputs are fingerprinted before launch and checked after execution. Per-call private checksum storage avoids cross-thread descriptor hash reuse. Normal mode uses the existing disposable native draw-cadence configuration to disable legacy DEBUG draw skipping without changing selected game speed; verification mode retains baseline skipping. V2 owned source, request and reply blocks use standard CRC32C for full-byte corruption detection; batch V5 source digest binds canonical96-byte header plus little-endian CRC32C(exact owned payload). V1/V3/V4 channels are refused by this explicit mode. CPUID-gated x86 SSE4.2 acceleration and the portable reflected Castagnoli reference must match; checks finish before GPU consumption or reply publication. Channel waits cooperate with Sleep(0) under the same real-uptime deadline instead of incurring coarse Sleep(1) scheduling; performance telemetry uses actual WinMM uptime when the guarded precision policy is active, without changing game wait targets or simulation rules. Continuous raster requests use one bounded private scratch allocation exclusively leased across the whole immediate observer request/emit/descriptor interval; raw and legacy requests retain owned allocations. Native World draws retain immutable shared source leases instead of copying encoded frames for every raster; identity lookup memoization is frame-local by owned lease/tag/extent, while the persistent cache still owns and checks full encoded bytes.",
+      "original": [],
+      "confidence": "provisional",
+      "documents": [
+        "research/runtime/native-world-continuous.md"
+      ],
+      "implementation": [
+        "protocols/include/mnm/world_continuous_v1.h",
+        "runtime/scene/world_continuous.c",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "apps/qt-shell/world_continuous_main.cpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/world_raster_batch.c",
+        "tools/capture-scene-game.py",
+        "tools/scene-game-runner.py",
+        "tools/build-scene-observer.py",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_resources.cpp"
+      ],
+      "tests": [
+        "tests/world-continuous-channel-test.cpp",
+        "tools/test-native-world-continuous.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/world_rolling_main.cpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/precise_clock.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_continuous_clock.c",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
+        "runtime/shadow/win32_min.h",
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/native-world-rolling.cpp",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/resource-fixtures.hpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-continuous-hash-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/coverage_claims.py",
+        "tools/export-menu-support.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-opengl-game.py",
+        "tools/test-native-world-rolling-live.py",
+        "tools/test-native-world-rolling.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py",
+        "tools/native_render_config.py",
+        "tools/encode-cfg.py",
+        "tools/decode-cfg.py",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_checksum.h"
+      ],
+      "validation_domain": "Normal actual original-to-native continuous4096-queue delivery without CPU reference raster composition or diagnostic files/mirror uploads. Retain owned source/header/descriptor/entry/AX/destination guards andmandatory finalGPU readback/original writeback andactual return. Source/transport/nativeGPU/Qtpaint costs measured separately; bounded1024 timing rows,source/cache/storage/memory caps,zero dropped queues/image fallback/teardown surfaces. Guarded actual WinMM uptime precision policy retains original wait target/preferences andLastError; no fabricated/scaled clock or full timer/physics equivalence assertion. Prospective warm fullWorld median50ms,p9575ms,max150ms,cold delivery500ms,steady original/Qtpaint19FPS,retained growth32MiB limits. Performance failure mustfail withcorrect pixels; impossible0.001ms negative control. Separate4096 verification run andrefusal/death/recovery cases; headless hardware/physical scanout/input cadence anduncaptured gameplay remain outside scope.",
+      "evidence": [
+        "NR.world-continuous-normal-performance.profile-failure128-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
       }
     }
   ],
@@ -57509,6 +57762,55 @@
           "equals": ""
         }
       ]
+    },
+    {
+      "id": "NR.world-continuous-normal-performance.profile-failure128-20261010",
+      "kind": "live_observation",
+      "scope": "128 actual V2 original source queues complete with zero normal CPU reference rasters, no dropped/coalesced queues, native retained-GPU Qt paints and full input/source/compiler provenance. The unchanged full-path FPS/performance budget fails. This is a recorded profiling failure, not4096 normal performance readiness.",
+      "record": "research/runtime/native-world-continuous-profile-failure128-20261010.json",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": false
+        },
+        {
+          "pointer": "/completed/native_continuous/success",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/cpu_reference_queues",
+          "equals": "0"
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ],
+      "sha256": "9283da2665689500a814927ecec0d36c64a79585ec1c47a012360933fdcc2370",
+      "claims_pointer": "/claims",
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
     }
   ],
   "classifications": [],
@@ -65043,6 +65345,21 @@
       "tests": [
         "tools/test-glyph-backend-state.py"
       ]
+    },
+    {
+      "id": "native-world-continuous-normal-20261010",
+      "scope": "Normal actual original-to-native continuous4096-queue delivery without CPU reference raster composition or diagnostic files/mirror uploads. Retain owned source/header/descriptor/entry/AX/destination guards andmandatory finalGPU readback/original writeback andactual return. Source/transport/nativeGPU/Qtpaint costs measured separately; bounded1024 timing rows,source/cache/storage/memory caps,zero dropped queues/image fallback/teardown surfaces. Guarded actual WinMM uptime precision policy retains original wait target/preferences andLastError; no fabricated/scaled clock or full timer/physics equivalence assertion. Prospective warm fullWorld median50ms,p9575ms,max150ms,cold delivery500ms,steady original/Qtpaint19FPS,retained growth32MiB limits. Performance failure mustfail withcorrect pixels; impossible0.001ms negative control. Separate4096 verification run andrefusal/death/recovery cases; headless hardware/physical scanout/input cadence anduncaptured gameplay remain outside scope.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.world-continuous-normal-performance"
+      ],
+      "tests": [
+        "tests/world-continuous-channel-test.cpp",
+        "tools/test-native-world-continuous.py"
+      ],
+      "evidence": [
+        "NR.world-continuous-normal-performance.profile-failure128-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -65380,8 +65697,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-continuous-glyph-merge-20261010.json",
-    "sha256": "09aa42daa8f0758ac657a3e237f762561903036df40af2bbdfc4b10c88a5615f"
+    "path": "research/runtime/coverage/source-index-continuous-performance-checkpoint-20261010.json",
+    "sha256": "f9d0ee497109fc188cfca9e1a96b59819154c6aed753c727f957d1ad74c6fdd0"
   },
   "claim_bindings_required": true
 }

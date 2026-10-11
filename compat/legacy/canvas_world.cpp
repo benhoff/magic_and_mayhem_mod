@@ -1,142 +1,232 @@
 #include "canvas_world.hpp"
 #include "../../protocols/include/mnm/canvas_producers_v1.h"
-#include <cstring>
-#include <stdexcept>
 #include <chrono>
+#include <cstring>
 #include <limits>
+#include <stdexcept>
 namespace mnm::legacy {
 namespace {
-using Clock=std::chrono::steady_clock;
-double milliseconds(Clock::time_point start){return std::chrono::duration<double,std::milli>(Clock::now()-start).count();}
-int signedWord(unsigned w){std::int32_t v;std::memcpy(&v,&w,4);return v;}
-unsigned word(const std::vector<std::uint8_t>& b,std::size_t at){
-  if(at>b.size()||b.size()-at<4)throw std::invalid_argument("Truncated World producer source");
-  return b[at]|unsigned(b[at+1])<<8|unsigned(b[at+2])<<16|unsigned(b[at+3])<<24;
+using Clock = std::chrono::steady_clock;
+double milliseconds(Clock::time_point start) {
+  return std::chrono::duration<double, std::milli>(Clock::now() - start)
+      .count();
 }
+int signedWord(unsigned w) {
+  std::int32_t v;
+  std::memcpy(&v, &w, 4);
+  return v;
 }
-WorldDraw producerWorldDraw(const CanvasProducer &c){
-  const auto &r=c.fields;
-  if(r[2]!=MNM_PRODUCER_RASTER||r[14]>5||r[15]>10||r[17]>1||
-     r[19]<40||r[19]>1048576||c.bytes().size()!=r[19]+r[20]||
-     word(c.bytes(),0)!=r[19]||word(c.bytes(),28)||
-     r[20]!=(r[14]==3?64u:r[17]?512u:0u))
+unsigned word(const std::vector<std::uint8_t> &b, std::size_t at) {
+  if (at > b.size() || b.size() - at < 4)
+    throw std::invalid_argument("Truncated World producer source");
+  return b[at] | unsigned(b[at + 1]) << 8 | unsigned(b[at + 2]) << 16 |
+         unsigned(b[at + 3]) << 24;
+}
+} // namespace
+WorldDraw producerWorldDraw(const CanvasProducer &c) {
+  const auto &r = c.fields;
+  if (r[2] != MNM_PRODUCER_RASTER || r[14] > 5 || r[15] > 10 || r[17] > 1 ||
+      r[19] < 40 || r[19] > 1048576 || c.bytes().size() != r[19] + r[20] ||
+      word(c.bytes(), 0) != r[19] || word(c.bytes(), 28) ||
+      r[20] != (r[14] == 3 ? 64u
+                : r[17]    ? 512u
+                           : 0u))
     throw std::invalid_argument("Unclosed native World producer request");
   WorldDraw draw;
-  draw.frame={bool(r[17]),QByteArray(reinterpret_cast<const char*>(c.bytes().data()),r[19])};
+  if (c.ownedPayload) {
+    draw.frame = {bool(r[17]),
+                  QByteArray::fromRawData(
+                      reinterpret_cast<const char *>(c.bytes().data()), r[19]),
+                  c.ownedPayload};
+  } else
+    draw.frame = {
+        bool(r[17]),
+        QByteArray(reinterpret_cast<const char *>(c.bytes().data()), r[19])};
   // Closed frame bounds and pointer normalization are checked above. Identity
   // hashing belongs to WorldIdentityCache, which retains the digest for reuse.
-  draw.x=signedWord(r[8]);draw.y=signedWord(r[9]);
-  draw.clip={signedWord(r[10]),signedWord(r[11]),signedWord(r[12]),signedWord(r[13])};
-  draw.backend=r[15];draw.composite.mode=render::CompositeMode(r[14]);
-  if(r[14]==3){
-    draw.composite.rowPeriod=r[16];
-    if(!r[16]||r[16]>16)throw std::invalid_argument("Native World displacement period");
-    for(unsigned i=0;i<16;++i){draw.composite.rowOffsets[i]=signedWord(word(c.bytes(),r[19]+i*4));
-      if(draw.composite.rowOffsets[i]<0||draw.composite.rowOffsets[i]>16)
-        throw std::invalid_argument("Native World displacement offset");}
-  }else if(r[17]){
+  draw.x = signedWord(r[8]);
+  draw.y = signedWord(r[9]);
+  draw.clip = {signedWord(r[10]), signedWord(r[11]), signedWord(r[12]),
+               signedWord(r[13])};
+  draw.backend = r[15];
+  draw.composite.mode = render::CompositeMode(r[14]);
+  if (r[14] == 3) {
+    draw.composite.rowPeriod = r[16];
+    if (!r[16] || r[16] > 16)
+      throw std::invalid_argument("Native World displacement period");
+    for (unsigned i = 0; i < 16; ++i) {
+      draw.composite.rowOffsets[i] = signedWord(word(c.bytes(), r[19] + i * 4));
+      if (draw.composite.rowOffsets[i] < 0 || draw.composite.rowOffsets[i] > 16)
+        throw std::invalid_argument("Native World displacement offset");
+    }
+  } else if (r[17]) {
     render::SpriteColourTable colours{};
-    for(unsigned i=0;i<256;++i)colours[i]=std::uint16_t(c.bytes()[r[19]+i*2]|unsigned(c.bytes()[r[19]+i*2+1])<<8);
-    draw.colours=colours;
+    for (unsigned i = 0; i < 256; ++i)
+      colours[i] = std::uint16_t(c.bytes()[r[19] + i * 2] |
+                                 unsigned(c.bytes()[r[19] + i * 2 + 1]) << 8);
+    draw.colours = colours;
   }
   return draw;
 }
-CanvasWorld::CanvasWorld(render::GlBlitter &renderer,const assets::AssetStore &store)
-  :renderer_(renderer),store_(store),resources_(store_),bindings_(store_,resources_){}
-void CanvasWorld::begin(const CanvasProducer &c,const render::Image &native){
-  if(rolling_||completed_==std::numeric_limits<unsigned>::max()||c.fields[14]!=completed_+1)
-    throw std::invalid_argument("Native producer/World sequence gap, exhaustion or mixed delivery mode");
-  beginFrame(c,native);
+CanvasWorld::CanvasWorld(render::GlBlitter &renderer,
+                         const assets::AssetStore &store)
+    : renderer_(renderer), store_(store), resources_(store_),
+      bindings_(store_, resources_) {}
+void CanvasWorld::begin(const CanvasProducer &c, const render::Image &native) {
+  if (rolling_ || completed_ == std::numeric_limits<unsigned>::max() ||
+      c.fields[14] != completed_ + 1)
+    throw std::invalid_argument("Native producer/World sequence gap, "
+                                "exhaustion or mixed delivery mode");
+  beginFrame(c, native);
 }
-void CanvasWorld::beginRolling(const CanvasProducer& c,const render::Image& native,std::uint64_t sequence){
-  if((completed_&&!rolling_)||rollingCompleted_==std::numeric_limits<std::uint64_t>::max()||sequence!=rollingCompleted_+1||c.fields[14]!=1)
-    throw std::invalid_argument("Rolling World sequence gap, exhaustion or mixed delivery mode");
-  beginFrame(c,native);rolling_=true;rollingSequence_=sequence;
+void CanvasWorld::beginRolling(const CanvasProducer &c,
+                               const render::Image &native,
+                               std::uint64_t sequence) {
+  if ((completed_ && !rolling_) ||
+      rollingCompleted_ == std::numeric_limits<std::uint64_t>::max() ||
+      sequence != rollingCompleted_ + 1 || c.fields[14] != 1)
+    throw std::invalid_argument(
+        "Rolling World sequence gap, exhaustion or mixed delivery mode");
+  beginFrame(c, native);
+  rolling_ = true;
+  rollingSequence_ = sequence;
 }
-void CanvasWorld::beginFrame(const CanvasProducer &c,const render::Image &native){
-  profile_={};const auto started=Clock::now();
-  const auto &r=c.fields;
-  if(active_||r[2]!=MNM_PRODUCER_QUEUE_ENTRY||!r[3]||
-     (canvas_&&canvas_!=r[3])||native.width!=int(r[5])||native.height!=int(r[6]))
-    throw std::invalid_argument("Native producer/World handoff identity or sequence gap");
-  if(!scene_){
-    render::SceneLimits limits;limits.cache.indexedAtlas=true;
-    scene_=std::make_unique<render::SceneRenderer>(renderer_,resources_,native,limits);
+void CanvasWorld::beginFrame(const CanvasProducer &c,
+                             const render::Image &native) {
+  profile_ = {};
+  const auto started = Clock::now();
+  const auto &r = c.fields;
+  if (active_ || r[2] != MNM_PRODUCER_QUEUE_ENTRY || !r[3] ||
+      (canvas_ && canvas_ != r[3]) || native.width != int(r[5]) ||
+      native.height != int(r[6]))
+    throw std::invalid_argument(
+        "Native producer/World handoff identity or sequence gap");
+  if (!scene_) {
+    render::SceneLimits limits;
+    limits.cache.indexedAtlas = true;
+    scene_ = std::make_unique<render::SceneRenderer>(renderer_, resources_,
+                                                     native, limits);
   }
   scene_->adoptNativeCanvas(native);
-  pending_={r[14],r[5],r[6],r[5],{}};
-  queue_=r[14];canvas_=r[3];queueDraws_=0;checked_=false;active_=true;
-  profile_.adoptMs=milliseconds(started);
+  pending_ = {r[14], r[5], r[6], r[5], {}};
+  queue_ = r[14];
+  canvas_ = r[3];
+  queueDraws_ = 0;
+  checked_ = false;
+  active_ = true;
+  profile_.adoptMs = milliseconds(started);
 }
-void CanvasWorld::append(const CanvasProducer &c){
-  if(!active_||c.fields[3]!=canvas_||c.fields[5]!=pending_.width||c.fields[6]!=pending_.height||queueDraws_>=12320||totalDraws_==std::numeric_limits<std::uint64_t>::max())
-    throw std::invalid_argument("World producer changed destination or exceeded queue budget");
-  auto draw=producerWorldDraw(c);++queueDraws_;++totalDraws_;checked_=false;
-  const auto &bytes=c.bytes();
-  const auto width=word(bytes,4),height=word(bytes,8);
-  const auto left=std::int64_t(draw.x)-signedWord(word(bytes,12));
-  const auto top=std::int64_t(draw.y)-signedWord(word(bytes,16));
-  if((draw.backend==0||draw.backend==9)&&(left<draw.clip.left||left+width>=draw.clip.right))return;
-  const auto coverageTop=top+(draw.composite.mode==render::CompositeMode::projectedShadow?height/2:0);
-  if(!width||!height||left>=draw.clip.right||left+width<=draw.clip.left||coverageTop>=draw.clip.bottom||coverageTop+height<=draw.clip.top)return;
+void CanvasWorld::append(const CanvasProducer &c) {
+  if (!active_ || c.fields[3] != canvas_ || c.fields[5] != pending_.width ||
+      c.fields[6] != pending_.height || queueDraws_ >= 12320 ||
+      totalDraws_ == std::numeric_limits<std::uint64_t>::max())
+    throw std::invalid_argument(
+        "World producer changed destination or exceeded queue budget");
+  auto draw = producerWorldDraw(c);
+  ++queueDraws_;
+  ++totalDraws_;
+  checked_ = false;
+  const auto &bytes = c.bytes();
+  const auto width = word(bytes, 4), height = word(bytes, 8);
+  const auto left = std::int64_t(draw.x) - signedWord(word(bytes, 12));
+  const auto top = std::int64_t(draw.y) - signedWord(word(bytes, 16));
+  if ((draw.backend == 0 || draw.backend == 9) &&
+      (left < draw.clip.left || left + width >= draw.clip.right))
+    return;
+  const auto coverageTop =
+      top + (draw.composite.mode == render::CompositeMode::projectedShadow
+                 ? height / 2
+                 : 0);
+  if (!width || !height || left >= draw.clip.right ||
+      left + width <= draw.clip.left || coverageTop >= draw.clip.bottom ||
+      coverageTop + height <= draw.clip.top)
+    return;
   pending_.draws.push_back(std::move(draw));
   ++profile_.visibleDraws;
 }
-render::Image CanvasWorld::complete(const render::Image &reference){
-  if(!active_||readbacks_==std::numeric_limits<std::uint64_t>::max())throw std::runtime_error("No native producer/World queue to complete or readback counter exhausted");
-  if(!pending_.draws.empty()){
-    const auto bindingsBefore=bindings_.bindingStats();const auto cacheBefore=scene_->cacheStats();
-    const auto identitiesBefore=bindings_.identityStats();
-    auto started=Clock::now();
-    const auto draws=bindings_.display(pending_);
-    const auto bindingsAfter=bindings_.bindingStats();
-    const auto identitiesAfter=bindings_.identityStats();
-    profile_.identityHashes+=identitiesAfter.hashes-identitiesBefore.hashes;
-    profile_.identityHits+=identitiesAfter.hits-identitiesBefore.hits;
-    profile_.identityEvictions+=identitiesAfter.evictions-identitiesBefore.evictions;
-    profile_.identityBypasses+=identitiesAfter.bypasses-identitiesBefore.bypasses;
-    profile_.identityFrames=identitiesAfter.frames;profile_.identityBytes=identitiesAfter.bytes;
-    profile_.visualChecks+=bindingsAfter.visualChecks-bindingsBefore.visualChecks;
-    profile_.visualReuses+=bindingsAfter.visualReuses-bindingsBefore.visualReuses;
-    profile_.prepareMs+=milliseconds(started);started=Clock::now();
+render::Image CanvasWorld::complete(const render::Image &reference) {
+  return completeFrame(&reference);
+}
+render::Image CanvasWorld::completeNormal() { return completeFrame(nullptr); }
+render::Image CanvasWorld::completeFrame(const render::Image *reference) {
+  if (!active_ || readbacks_ == std::numeric_limits<std::uint64_t>::max())
+    throw std::runtime_error("No native producer/World queue to complete or "
+                             "readback counter exhausted");
+  if (!pending_.draws.empty()) {
+    const auto bindingsBefore = bindings_.bindingStats();
+    const auto cacheBefore = scene_->cacheStats();
+    const auto identitiesBefore = bindings_.identityStats();
+    auto started = Clock::now();
+    const auto draws = bindings_.display(pending_);
+    const auto bindingsAfter = bindings_.bindingStats();
+    const auto identitiesAfter = bindings_.identityStats();
+    profile_.identityHashes += identitiesAfter.hashes - identitiesBefore.hashes;
+    profile_.identityHits += identitiesAfter.hits - identitiesBefore.hits;
+    profile_.identityEvictions +=
+        identitiesAfter.evictions - identitiesBefore.evictions;
+    profile_.identityBypasses +=
+        identitiesAfter.bypasses - identitiesBefore.bypasses;
+    profile_.identityFrames = identitiesAfter.frames;
+    profile_.identityBytes = identitiesAfter.bytes;
+    profile_.visualChecks +=
+        bindingsAfter.visualChecks - bindingsBefore.visualChecks;
+    profile_.visualReuses +=
+        bindingsAfter.visualReuses - bindingsBefore.visualReuses;
+    profile_.prepareMs += milliseconds(started);
+    started = Clock::now();
     // This bounded completion already runs synchronously. Keep the private GL
     // context for the whole queue; drawNext's nested batches retain draw order.
-    const auto rendererBefore=renderer_.stats();
-    renderer_.batch([&]{
-      scene_->beginFrame(draws,render::SceneStart::retainedCanvas);
-      while(!scene_->drawNext(32)){}
+    const auto rendererBefore = renderer_.stats();
+    renderer_.batch([&] {
+      scene_->beginFrame(draws, render::SceneStart::retainedCanvas);
+      while (!scene_->drawNext(32)) {
+      }
     });
-    const auto rendererAfter=renderer_.stats();
-    profile_.copyBatches+=rendererAfter.copyBatches-rendererBefore.copyBatches;
-    profile_.snapshotPixels+=rendererAfter.snapshotPixels-rendererBefore.snapshotPixels;
-    profile_.scratchAllocations+=rendererAfter.scratchAllocations-rendererBefore.scratchAllocations;
+    const auto rendererAfter = renderer_.stats();
+    profile_.copyBatches +=
+        rendererAfter.copyBatches - rendererBefore.copyBatches;
+    profile_.snapshotPixels +=
+        rendererAfter.snapshotPixels - rendererBefore.snapshotPixels;
+    profile_.scratchAllocations +=
+        rendererAfter.scratchAllocations - rendererBefore.scratchAllocations;
     pending_.draws.clear();
-    profile_.submitMs+=milliseconds(started);
-    const auto cacheAfter=scene_->cacheStats();
-    profile_.cacheUploads+=cacheAfter.uploads-cacheBefore.uploads;
-    profile_.cacheHits+=cacheAfter.hits-cacheBefore.hits;
-    profile_.cacheEvictions+=cacheAfter.evictions-cacheBefore.evictions;
-    profile_.cacheFrames=cacheAfter.frames;profile_.cacheSurfaces=cacheAfter.surfaces;
+    profile_.submitMs += milliseconds(started);
+    const auto cacheAfter = scene_->cacheStats();
+    profile_.cacheUploads += cacheAfter.uploads - cacheBefore.uploads;
+    profile_.cacheHits += cacheAfter.hits - cacheBefore.hits;
+    profile_.cacheEvictions += cacheAfter.evictions - cacheBefore.evictions;
+    profile_.cacheFrames = cacheAfter.frames;
+    profile_.cacheSurfaces = cacheAfter.surfaces;
   }
-  auto started=Clock::now();
-  auto native=scene_->read();
-  profile_.readbackMs+=milliseconds(started);started=Clock::now();
+  auto started = Clock::now();
+  auto native = scene_->read();
+  profile_.readbackMs += milliseconds(started);
+  started = Clock::now();
   ++readbacks_;
-  if(native.width!=reference.width||native.height!=reference.height||native.pixels!=reference.pixels)
-    throw std::runtime_error("Native GPU World differs from independent native producer composition");
-  profile_.compareMs+=milliseconds(started);checked_=true;return native;
+  if (reference &&
+      (native.width != reference->width || native.height != reference->height ||
+       native.pixels != reference->pixels))
+    throw std::runtime_error("Native GPU World differs from independent native "
+                             "producer composition");
+  profile_.compareMs += milliseconds(started);
+  checked_ = true;
+  return native;
 }
-void CanvasWorld::end(const CanvasProducer &c){
-  if(!active_||!checked_||!queueDraws_||c.fields[2]!=MNM_PRODUCER_QUEUE_RETURN||
-     c.fields[14]!=queue_||c.fields[3]!=canvas_||!pending_.draws.empty())
+void CanvasWorld::end(const CanvasProducer &c) {
+  if (!active_ || !checked_ || !queueDraws_ ||
+      c.fields[2] != MNM_PRODUCER_QUEUE_RETURN || c.fields[14] != queue_ ||
+      c.fields[3] != canvas_ || !pending_.draws.empty())
     throw std::invalid_argument("Incomplete native World return");
-  if(rolling_)rollingCompleted_=rollingSequence_;
-  else completed_=queue_;
-  active_=false;
+  if (rolling_)
+    rollingCompleted_ = rollingSequence_;
+  else
+    completed_ = queue_;
+  active_ = false;
 }
-}
+} // namespace mnm::legacy
 
-mnm::render::GpuFrame mnm::legacy::CanvasWorld::presentGpu(){
- if(active_||!checked_||!scene_)throw std::logic_error("World GPU presentation before completion");
- return scene_->presentGpu();
+mnm::render::GpuFrame mnm::legacy::CanvasWorld::presentGpu() {
+  if (active_ || !checked_ || !scene_)
+    throw std::logic_error("World GPU presentation before completion");
+  return scene_->presentGpu();
 }

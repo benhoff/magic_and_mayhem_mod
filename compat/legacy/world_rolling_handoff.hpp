@@ -7,13 +7,16 @@ namespace mnm::legacy {
 // publication.
 struct RollingHandoff {
   WorldRasterBatch batch;
+  CanvasProducerStream stream;
   std::vector<std::uint8_t> packet;
   unsigned checkpointSequence = 0, checkpointOracle = 0;
 };
-RollingHandoff prepareRollingHandoff(const CanvasProducerStream &,
-                                     std::size_t cursor,
-                                     const std::vector<std::uint8_t> &request,
-                                     unsigned ordinal, unsigned priorRasters);
+RollingHandoff prepareRollingHandoff(
+    const CanvasProducerStream &, std::size_t cursor,
+    const std::vector<std::uint8_t> &request, unsigned ordinal,
+    unsigned priorRasters,
+    WorldBatchSourcePolicy policy = WorldBatchSourcePolicy::canonicalV3,
+    bool encode = true);
 std::vector<std::uint8_t> rollingHandoffReply(const RollingHandoff &,
                                               const RollingCompletion &);
 void verifyRollingHandoffReturn(const RollingHandoff &,
