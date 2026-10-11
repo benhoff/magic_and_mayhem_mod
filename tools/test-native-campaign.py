@@ -362,6 +362,7 @@ def main():
     parser.add_argument('--require-casting-combat', action='store_true', help='Require successful native-viewport summon and player-versus-enemy melee damage observation')
     parser.add_argument('--portrait-stress-seconds', type=int, default=0, help='Repeat portrait recentering after verified combat (0 or 10..120)')
     parser.add_argument('--disable-precise-clock',action='store_true',help='Diagnostic control: retain original coarse GetTickCount uptime')
+    parser.add_argument('--trace-engine-cadence',action='store_true',help='Memory-only original simulation/animation/World cadence trace; flush at normal process exit')
     pacer=parser.add_mutually_exclusive_group()
     pacer.add_argument('--enable-pacer-yield',dest='pacer_yield',action='store_true',help='Experimental opt-in cooperative Sleep0 wait; has no demonstrated portrait performance benefit')
     pacer.add_argument('--disable-pacer-yield',dest='pacer_yield',action='store_false')
@@ -423,6 +424,7 @@ def main():
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
         if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride','--behavior','HOST.native-campaign-dialogue-readiness','--behavior','HOST.native-campaign-spell-cases','--behavior','NR.minimap-write-candidates','--behavior','NR.resident-normal-shutdown'])
         if args.profile_resident:declaration_command.extend(['--behavior','NR.resident-stage-profiling','--scenario','NR.resident-stage-profiling.live'])
+        if args.trace_engine_cadence:declaration_command.extend(['--behavior','NR.engine-cadence-observation','--scenario','NR.engine-cadence-observation.live'])
         subprocess.run(declaration_command,cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     if args.claims:
         declaration=json.loads(args.claims.read_text())
@@ -452,6 +454,9 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
+    if args.trace_engine_cadence:
+        if not args.resident_world or not args.normal_quit:raise ValueError('Engine cadence requires resident World and normal Quit')
+        env['MNM_ENGINE_CADENCE_TRACE']='1'
     if args.resident_world:
         env['MNM_PUBLIC_RESIDENT_WORLD']='1'
         env['MNM_RESIDENT_POLL_TIMING']='1'
