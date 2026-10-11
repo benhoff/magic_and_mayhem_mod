@@ -1,0 +1,1120 @@
+{
+  "schema": 1,
+  "scope": "Committed-history only. Parent/current exact file and behavior receipts reviewed separately from uncommitted takeover changes. Append-only journal verified without recursive self-hash. No historical gate or fresh-execution assertion.",
+  "range": {
+    "base": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+    "head": "95c1f934460aab6d73e77dc715de162e6c4c172a"
+  },
+  "files": [
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "compat/legacy/canvas-producers/CMakeLists.txt",
+      "before_sha256": "db2bbcd48c3c4be25d798281ee5cdc6dd35cf61fbc2383c580c46b3a715a6cf1",
+      "after_sha256": "b757215e6815d1b4910ee2a389bdb2f4ecb4ee67ee4bae86592f83d111f8465f",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "6792b1c36dde67a16565ce19e7218d141330ee1b15c5ec33350f7181eed220a8",
+      "after_sha256": "5d3c1ef8c920f75c1bcfd7c36458c1c8ee1b35020db0688acc5bbff90a1fe3cc",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "reconstruction/rendering/fade_kernel.c",
+      "before_sha256": null,
+      "after_sha256": "6bb06acf26a2f11e287310fef9a14a690fcc703b6e07b424759f8b750f26b725",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "reconstruction/rendering/fade_kernel.h",
+      "before_sha256": null,
+      "after_sha256": "1ec396a3a408732329996a82a34cc5f81476dfa4ce33faae03731960ef0e0675",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "renderer/canvas_sequence.cpp",
+      "before_sha256": "0141b627e29b386e8e6d0cd3e96ae3e341c3fdeea33f18c6cc1a742e1f54ed40",
+      "after_sha256": "99175c1bbd6706b30f51163ffbf9f1e45a9e847c79a09535c10b592c089b8548",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/canvas-fade-span-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0494ba7d11d24b7242b08c16e7f8d1f2e9298bc29354084a602e940ec318956d",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/canvas-image-producer-regression-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "91fd73711556207360a7ae65a60c5b141de6bc4d44613e00f75f408a8875cf93",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/canvas-writer-admission-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9eb92722e8c5dd1fb70f167d9677ca2b0751b54c97e805e201085d1eeee15cd6",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "7cc11a12096d557d48944943016bc750438d90964032815bb52841005cda58a3",
+      "after_sha256": "ae04791da04f0b21a65775ecf8c45c715067572fea44fe63294b3aff3653490c",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/coverage/change-reviews.json",
+      "before_sha256": "45c60ee29e9b892b3a9d1dcba88fde7dc74c1ca3000b102b5bc7178161cf2086",
+      "after_sha256": "652fb2a6363c0e820c6b892687f04919bbcc5c55d83ba07c63b27ce21be3cf31",
+      "receipts": [],
+      "classification": "append_only_journal"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/coverage/other-producer-history-a47ad55-1fc60f4-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d20ab76f3fdb300d5241e75f11687d6bc01f4c34bf0b338538957cfa0d0e9649",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "2e4d4d1ce5c34719fb2b70612db05519b741b285ce3dcfcb5b5ae1b66f8a4f45",
+      "after_sha256": "faa6c8bfe7a53f383aa05e78d262ca7d52576e1497e854ba0f35f1684fd77741",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/coverage/source-index-other-producers-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9baafd3a47821259077e3fb6f8e3ec8f24d9c9220f3adbd6c13b83184266c094",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/coverage/source-index-other-producers-final-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e81668fe0cf2d619499947d440a6f4623f79cd723b28a31896e96c44b7281165",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/coverage/source-index-other-producers-staged-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c5bb6b53ee614fe13a7e06a3863635a4437f6a9e2dc59391b878f97a83518bac",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "6e24d26a49b297db2065ad41bbb7f8c071f0852dea60555e23cbc600ce535aef",
+      "after_sha256": "56e5e061a5fce85c167999e033bbd03259ad64ce37faacdddbd456adaa6c346c",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/fade-loop-state-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "84c1bc8a745f5de875818a343d6c3efbea4870c2ab2556b8b0e6649f9e5e6feb",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/fade-loop-takeover.md",
+      "before_sha256": null,
+      "after_sha256": "eb587ec87d000f2dc4bca08c868519b9429da17e80f83fd64099ca47cdb7b7f2",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/fade-writer-live-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "328af98fcf9fc0ceae485b7e049f266df3aa551ae5adcff423e568798ba7b8d4",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/other-producer-checkpoints-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9b612c58d7c2a873f2c3a3145dc0fefa5f871ba7ff609c6169453ba44d19e645",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/other-producer-experiment-history-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ea1732f10f7db2e172b444b27eb6c1ad88f35869b1fc9dccd62dd061ae8d5941",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/other-writer-admission.md",
+      "before_sha256": null,
+      "after_sha256": "04c43bef062f9a0d1e1d8d20f771d9a8b23a3c5801926a15fc1c820bec46f26d",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/panel-domain-comparison-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "34126f66a5633803833a71ad8de397dd1012474f6d152f3c73f9024445a72485",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/panel-domain.md",
+      "before_sha256": null,
+      "after_sha256": "89fb22a42d2a41046af25d6cc60c1d419f78c11f7a47a2d869614f23dcede78f",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/rendering-coverage-other-producers-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0a31fb5b3aa775cb5acd8988e9116289ab5b62714c75f4c6a5d00f35c1769403",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/rendering-coverage-other-producers-final-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8faaa2db98aa1b8b96c3504149691bbe5c6656f9b41f472a8fd41a81ce1348b6",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/rendering-coverage-scope.json",
+      "before_sha256": "12f8b636cba4f2250913360182ebd1d250250eeb0a84de66c63965a80d3d1b9c",
+      "after_sha256": "8a01e535a6247f14f21b8a7013291643a41b65a62542152bdbc7f904149be0ac",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "research/runtime/rendering-coverage.md",
+      "before_sha256": "c7f833d59dc4782d17441e2b182c4f461bd995314bbcb52468569842eb88684b",
+      "after_sha256": "8a989ab43067b001c541ffc690330b030aa189f64eb4017ebe9ee2726c0b76e2",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "runtime/canvas-writers/bridge.c",
+      "before_sha256": null,
+      "after_sha256": "0d4d243f016509767bdc6d89381a57d4b7c75cc1fda7996b0b828f2025044c45",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "runtime/canvas-writers/fade_entry.S",
+      "before_sha256": null,
+      "after_sha256": "07800eb25990a9a7996e2971876ba1891e1d0ee8a9f8971a5b06c5bab2fac0aa",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "runtime/canvas-writers/fade_finish.S",
+      "before_sha256": null,
+      "after_sha256": "0cd8a96eb0954f2f47aa40aad8f8dccf47fc3a176c138d114856c6c8c7ebd1ff",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "runtime/canvas-writers/fade_route.c",
+      "before_sha256": null,
+      "after_sha256": "ee166bf0a3abeaba5d5c03e841285b0fbae91071d7ce5f674893d8c8e1ad44a9",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "runtime/canvas-writers/fade_route.h",
+      "before_sha256": null,
+      "after_sha256": "c5b1d6429d51adc0d7a6d561356956334b64ce85fbbed1cfcf80ca0b16b17263",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tests/canvas-writers-selftest.c",
+      "before_sha256": null,
+      "after_sha256": "f0c05abbb8e1b34655bfa60010cd06ee993114d7acc66002f1cf30f4cc2f4afe",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tests/fade-kernel-test.c",
+      "before_sha256": null,
+      "after_sha256": "9ede6c9657fec3eef76a0d94b97346c72263276593ec9ccd33e3ebcd17f82088",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tests/fade-loop-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "741079b2a6cf1137bce0a5eadb08379360e07938fa9a56fef88d7972fff0a2d4",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tests/fade-loop-state-probe.S",
+      "before_sha256": null,
+      "after_sha256": "26eae8ba8edaec4f7544ebcac6e14e08d6fd0d5579074c04ea1fa91d9b49d939",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tests/other-writer-atomic-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "e0c5fa2b65abaef7a1b17f685dbbc87ae1d1153ac9a48ac146ed6040af031a06",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tests/panel-domain-native.cpp",
+      "before_sha256": null,
+      "after_sha256": "fc0780277d779320beca925f27f851b3f71a13835d9536f67f520ec7e7993ef6",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tests/panel-domain-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "843cf9bcc51e91a2a264ce6d6db275409abefa89c4a9ae1df0760e52bded0f04",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tests/test-fade-live-capture.py",
+      "before_sha256": null,
+      "after_sha256": "5059f736820cbbd1d3df73202faeaa63eb81581f41a8d407d1fe9a134366d2a6",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tools/build-canvas-writers.py",
+      "before_sha256": null,
+      "after_sha256": "dc8460cd0aef18db38eead9960f2ba06208f516253f681ebbee5d95d8042c1ed",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tools/canvas-writer-game-runner.py",
+      "before_sha256": null,
+      "after_sha256": "1944e8203fb27fba4b6790c9e9dcd572a7768103d2e6e498a8a3d2d2414a196e",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tools/capture-fade-writer-game.py",
+      "before_sha256": null,
+      "after_sha256": "05a40640dffbf342ff8f2c433f2e5888584109f5ad9cc3134590a04f9c90bdcc",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tools/fade_live_capture.py",
+      "before_sha256": null,
+      "after_sha256": "3f3550823b7b03193a0c157d592c92998d923f82137dd35075ba42ae9169f028",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tools/test-canvas-writer-admission.py",
+      "before_sha256": null,
+      "after_sha256": "3067674e988c99ad7f8606d0ae6562fc1faf17a6aecff61ceeded3b4959f0f26",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tools/test-fade-loop.py",
+      "before_sha256": null,
+      "after_sha256": "d2eab7d61f650c86f46586dee17cd3a3ac5b117b940fa25fe59918ef6ed6140f",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tools/test-other-producer-checkpoints.py",
+      "before_sha256": null,
+      "after_sha256": "10cda53306ac9ae0250ffabfe93848d23fee09a45d4e4dcc2ee49b0fb09442f6",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "parent": "1fc60f40798c20f54103dbf86f30fd175e867c82",
+      "path": "tools/test-panel-domain.py",
+      "before_sha256": null,
+      "after_sha256": "b7e3b109624b3b7e5747c1d2fcc0b52035d2415e58888d158dd9af45f48511f1",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ],
+      "classification": "exact_receipt_chain"
+    }
+  ],
+  "behaviors": [
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "HOST.native-command-launch",
+      "before_sha256": "3d1177afb8a8e62385f77daf79eb71cf1d45fb2dc44396a4b68a96804f0d2729",
+      "after_sha256": "85c866c9f316684a781e7d0bbdeea6b5464c39637e13e305efcf699d59ac9420",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.canvas-image-production",
+      "before_sha256": "247d26bf2db07b77209e7d9bbe9f713c538cea6398d704e4be87c69f8bd846c1",
+      "after_sha256": "5ffc401b556b088d8148791e1a6e2fb570136eacc22689bcf5e140dbf5b9c3e8",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.canvas-producer-replay",
+      "before_sha256": "01ce96037babf647aba5b8da78a433f42818100dd963561a4c3c9a198942e00a",
+      "after_sha256": "9e2557183fb5888e06db6f150e21e42cbee8ffec0cfeb4f8d0975d87d5cde318",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.canvas-writer-admission",
+      "before_sha256": null,
+      "after_sha256": "b48521d93a863a201ef2064cc4b4f6178c655d081566826158d7c328609f400f",
+      "receipts": [
+        "other-producers-scoped-execution-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.font-byte-producer",
+      "before_sha256": "7041ad727af99589987393e8663da12cc3c8ac0ce9e471e157808e98b8aae5eb",
+      "after_sha256": "e5d116468ee3f555314ac14187f86f229182942639a0834b45842315d9a3e1d7",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.font-glyph-admission",
+      "before_sha256": "605539e71144b53ec8a6e5ac1336799a8e4d1ae6476110da1704b53b292fff6b",
+      "after_sha256": "8f35243aa4bffe6ee76b27039102438002bebe7d9f37bb8f1bef57b4fc54e88a",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.font-glyph-live-shadow",
+      "before_sha256": "bf8e597d1621749dcb6913fb2bc9eba486bf7023cf7eb34ba313705c73a7550e",
+      "after_sha256": "eb867dd54d8eb648b10933d44f641e008e87fb0a654cd1df1e43dc297a30fda5",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.live-command-transport",
+      "before_sha256": "ee6dc6b64532aa187800f6abcc410c0fbf80c50e7f1265fa370ac04cd00ba32e",
+      "after_sha256": "199beb52ad39cc6ac91f81c6a40f693c1a40e163e74884dc57a6c5f761420c89",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.live-drawing-replacement",
+      "before_sha256": "1a358eeb9f278160cd6444c81bab2ff92985223153d85d414da1a3272ebebd77",
+      "after_sha256": "aa9d7fa6d4d294bb0de2ebe46e6d310e098f53ade689bac5996591b0f0e5ec03",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.minimap-input-fixture",
+      "before_sha256": "5bf84683e44d01c7a4346cbf0fb1f4084512272fcae0db90f6c339e8f36e7ddd",
+      "after_sha256": "a406dad59cabdba9bdfbcdb641e317c01aa3e6c4f5605a53166c1ebd4519a3d4",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.minimap-interactive-presentation",
+      "before_sha256": "9166bed70632f3fc3f87d477c29e35d5ffb9eb2de71c2211b8cf6832bafae1ba",
+      "after_sha256": "99610c280c8a32b091d779606b4d976b9f601abf58d5337b6c065347fc5d9b43",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.minimap-owned-observation",
+      "before_sha256": "8ab30ce99c9cf899873aadf8447886c567dd829263558853bdd95ddb558cafd9",
+      "after_sha256": "dcfef878fcc25178065483b9075b6c37e7a009cc137d810c6e691d1130df2c24",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.offline-render-soak",
+      "before_sha256": "f746d78ef79382eaa3c8f28e9cd253e672f3ce4ebf9372ebfc1a498c863092e4",
+      "after_sha256": "ec43a5131c0da06edb7466d7dd77765921aa090beafdc53c7469c4115fca2d31",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.other-producer-checkpoints",
+      "before_sha256": null,
+      "after_sha256": "c84c3869f48d8433e0f14b39d6f855e80a7502e5cd413cdb5a5f5e526d15697f",
+      "receipts": [
+        "other-producers-scoped-execution-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.other-writer-atomic-admission",
+      "before_sha256": null,
+      "after_sha256": "cb9d5bb38b75d5fdadaeeb7e5257358e83afdf541053dd2e0d92b3fc71ac27a7",
+      "receipts": [
+        "other-producers-scoped-execution-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.panel-atomic-admission",
+      "before_sha256": null,
+      "after_sha256": "30914431a8f36716c10640c3ffb7887589977a72caee00a3a043750e7ca047f6",
+      "receipts": [
+        "other-producers-scoped-execution-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.real-game-command-shadow",
+      "before_sha256": "dab96f5196e5937935673f2644bf1b0abf821618da6fd74327c6f4535c10e103",
+      "after_sha256": "0a4b000d1d536fd1473a3b5ff0f08c4c39efe952cf79ccdb0cc9e792087d325d",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.scene-service",
+      "before_sha256": "051acfd0aa9855ddb3fe0f8e6a32d2bb99292e551032033108d2342239d36341",
+      "after_sha256": "8292c4307d5011bca4afd568e6735042ddd62b2bbe86d59b03cc66e1ef80ffb5",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.scene-snapshot",
+      "before_sha256": "1aa75c72d11143dbcbbb10eb35e77454b86a52069eb0ad7254446414947bda43",
+      "after_sha256": "5abb3afead32d9c56f4fbe372b5c129ed43a435ba612581081ba52c309039cee",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.sprites",
+      "before_sha256": "596ca0bde2f03a337f5d7ec1d1e8ed6a539cfa3597abb701351a9ddf094ccc16",
+      "after_sha256": "56127b8dd5aae87bbbb97a82dc3b97eba92135a5e72903bb3e4475cb20093c4f",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.surface-fixture-corpus",
+      "before_sha256": "90d88886ff2c535c68056fe91aa8605c46a0106585c40cec1d82e51b748c00b6",
+      "after_sha256": "940ed35a12650eae3b6b9d5f025fa4284593fe2d8aed3adb96421aa54b551949",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.word-admission",
+      "before_sha256": "5df397224b2e331361f5583d56e16b024589e0c7de5d277dda7911158c749a14",
+      "after_sha256": "7fa5b97babf7d1dc4430154cc6949afa09b63c5ac1c357d9b5d628846a3eb3e0",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-admission",
+      "before_sha256": "1e4135bb4272c316401bc39c4cccdae2d334828acf9999f3d4df093907e007e7",
+      "after_sha256": "2ec3d302f60235368236214b00fec400820423d7fc3455144b0b76d27464ef85",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-batch-extended-prefix",
+      "before_sha256": "bf9a0a1985d2eba6e6e0134858a9e601444bc5036a1d87a9c7be6fbec617e712",
+      "after_sha256": "397277517bcb3a9afc6500bcb725bb8ae8f45cff964d464f03bd695edf3495a0",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-batch-profiling",
+      "before_sha256": "23738cb1ee02709b264a035f206857fe12ec1f94969e74da573890fb47ab4fe8",
+      "after_sha256": "c6e600fcf9eae4bf935e1c5b60a77747b9151183b6aa0fbf3f0c7b0fcc80f192",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-batch-throughput",
+      "before_sha256": "95ddb44d977ffdb680d2a525b978eac812067194f2a5efe0e8656df83502ce8b",
+      "after_sha256": "319d76d3cd16f0986280725a7acfc2660e406a5693234d5972dd249ef26426ac",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-channel",
+      "before_sha256": "e03017ed181df02fccdf1b9881473204283c95ca1631a2bde894d019b99c6b2e",
+      "after_sha256": "a29bc65aa4f56b93602c52ce82c7b5f46ec364ba16c3cece617bb7b762d957ef",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-cpu-composition-reuse",
+      "before_sha256": "a1aad58047f16a791478b209795894ca720c77039321f4e0809b80fd94c02118",
+      "after_sha256": "05793cd4265a69f800a105a415a2a528567049906f59afbd010124ad4cce293c",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-frame-identity-cache",
+      "before_sha256": "96583fb4cd9ac8e6024a13b8d918584090e2d786e643221614af86db60e1228a",
+      "after_sha256": "6ad67a943f837c6aa4195b171587a1d41652c63d93db48541dd072489cdbf07e",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-interactive-batch-launcher",
+      "before_sha256": "9d4d6d90b8484e5d8f9b80fd1ed7e584727ebb467d1be579b12b081a6d3df996",
+      "after_sha256": "1186572adabf02e6e49546fe50d2a7d6a07e10df0047155679c7edfac03914db",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-live-view",
+      "before_sha256": "280d356545f58d96c4fd4f526528be9bfe4726393cc75c889470b48310f96a8a",
+      "after_sha256": "d94dedc6693e609f6fb79a00f32b5faf926b6384190b644021b134a7523186af",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-prepared-admission",
+      "before_sha256": "945e737e4416fb2d984023ddb98a0e72f3b854ed255cd4cab805e233e49e2eea",
+      "after_sha256": "d73a35298418ad1e28f88c60e73001c30b1ca61a4982ea26c5ad1e43947d20e7",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-producer-handoff",
+      "before_sha256": "105687a333590a8b3e0e7a4965d80d1210fec6b1c7097b4b8cd933243ff2dcf6",
+      "after_sha256": "30a6bd6755f7bad29cb59c06e3798bb4898941b8776a7bb99c52d458ab24361b",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-raster-batch-transport",
+      "before_sha256": "84d18b8b2bf72a7d3179d10f198bde6b5b435df54b9e2080a127379c2a91004b",
+      "after_sha256": "4bae9cfc725930a4311b1b68972af84f520a5625a17212ab815e27d57b8d3c29",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-resource-reuse",
+      "before_sha256": "daa1c5ab6e736116b29f0fd55f53b3f2dfde67212dc586c6a358c2ee5174eb77",
+      "after_sha256": "b98dd24bb43ad62c1fe876236907e898517183f94039d9f0f2f0910c9643641e",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-rolling-delivery",
+      "before_sha256": "e16fb73330a3d621837b4bb6782fbbb101ac0ae9760f8b525a827a5d3255491a",
+      "after_sha256": "346a74c5f837023aea18a5dcde8c9252fb37e7c427479bdc8a6e3d5cf76402ee",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "NR.world-startup-launcher",
+      "before_sha256": "6f03105c93cb7784ed09142a1bc393eb41472c66e250cfc9d45c27bfd09b268f",
+      "after_sha256": "5959bb99b6738584b68aa68c6b3e394b0e7c2f31fbe1a2be597766e8342c6406",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RI.copies",
+      "before_sha256": "a39afcff83416efa39dcb14de6ff709f5454e32ec87c75a9e57bda6a18442a65",
+      "after_sha256": "272ab9e1c9a3bb2ae1fc22d88f98058ca1d231200c5b0eb219ed724648ca4a6e",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RI.effects",
+      "before_sha256": "4103ad2101bdf91d14b235e3315495b53bb28a123df148dd5ca5a92e41599037",
+      "after_sha256": "fba2e5c71a308f389978ee5d90f75bad53e644c156b5ab12f49be6a2c36f3739",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RI.fills",
+      "before_sha256": "6916a739bbe2a646c4d1c42c14ad1c7c047e2cabd836f2bce457c69520302f57",
+      "after_sha256": "eabc04423b976009d35abe8aff9c849d38f0dfad00ec29fc9ac30eb8f35655cf",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RI.gdi-text",
+      "before_sha256": "d500aff980012b66e366c1a191c3a5762579d5ea2f8a4aa4f948e81dbb1a2908",
+      "after_sha256": "0811508fe018ffff3a85ae883b07d5ccf4a1b58c16ab2ec9d124157fff84411a",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RI.locked-writes",
+      "before_sha256": "6d7d3ffc7c16c871be83d119df07a74162cb756a6ebdea13021987b7cefe699a",
+      "after_sha256": "d7726a22c8abe0ee2cf6054a9504b3c3f849153d875b6280571f1e9c5da813b1",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RI.movies",
+      "before_sha256": "ef379866c615345ed22ada06b8415ca9bfe7a0c858e6f4f102937cf59073da53",
+      "after_sha256": "2a13d98b78cd6702db5b01f5e79ba799ac672a4f8598fcf13ab6c802e1bde68b",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RI.sprites",
+      "before_sha256": "244760ecbc2bfa01f80aa1716f836fcf541cf3aa72ee1d770e08370487d6faa2",
+      "after_sha256": "84cf64a1bba135cc38a5ce078c3e309d1aeb88b8e8f8f670f7da68535e5e69e0",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RI.terrain",
+      "before_sha256": "f495735d0b9e77a6a761c21fb3d2bcec1e1beb598ce4e247d8b0bbcfc113b646",
+      "after_sha256": "bdcb9990339c1f8427082c2f66b0d8b232c4e72d70655b1f2db9a36cd9cabe53",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RI.ui",
+      "before_sha256": "6c21195457e4195e8840481e8d0c5f6fe6a6761c38287152a278bf7f583ed85a",
+      "after_sha256": "42956bcbec2829169e8990deb545c2b39c55250faed80f861b495c155df93755",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.canvas-fade-span",
+      "before_sha256": "bd9a8b5fbcb264580d6c0c7e3a7454260934423d363aeb23239d61648001c788",
+      "after_sha256": "490c8c5e92ee34364db683e3bda8c85186b878c05b9e64d49e8e4c78f03d2181",
+      "receipts": [
+        "other-producers-scoped-execution-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.fade-live-pixels",
+      "before_sha256": null,
+      "after_sha256": "3cab3e20e2ea8a17a39a5f5887ef72c4b3a0b878299f554910d5bf448063f73a",
+      "receipts": [
+        "other-producers-scoped-execution-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.fade-loop-state",
+      "before_sha256": null,
+      "after_sha256": "40905a3dddd7392bcec32f4228755eab96ec4bb45cd9cf6d992c773e9ed7a547",
+      "receipts": [
+        "other-producers-scoped-execution-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.font-byte-consumer",
+      "before_sha256": "52dc0fc0b5157b7be22c2a4e1e2d302201384230cf42706efd437c7add2cc8df",
+      "after_sha256": "b77a2b10bf75bb52c10e32a8789536a24bd0d9e76078f3dc32d4a7a5c8e4933a",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.font-glyph-raster",
+      "before_sha256": "8252c82d8979835879d241839eebbbf1868044af33a19438b4d8d08f5a8d5a6a",
+      "after_sha256": "cc11a437993a9e87bf09cd813e222fc25d700a78a9282924b0832bf56f054479",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.font-line-layout",
+      "before_sha256": "0ef971467e07f8285d378fe224da8445eafba380a7b4a3b73fd07a874f46b96d",
+      "after_sha256": "87d90540a1873517be9f261d1f2fa3c50ecc49d539bd818960238a858d74fb0f",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.panel-pixel-domain",
+      "before_sha256": null,
+      "after_sha256": "ed3a383f41a39ddce375936265ea4283289f4eef0f981f2f6c83289fb7ef39e2",
+      "receipts": [
+        "other-producers-scoped-execution-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.word-clipping",
+      "before_sha256": "e2cd5e6f7e90b52668062cbc83f56e269c19051519b6e42c8670dc238be5f49a",
+      "after_sha256": "1ef4ee5f177fb07fdcd1d99aa0f195440f7ea4584cc2f8207c1df1e455a9b07e",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.word-raster",
+      "before_sha256": "f0f332a52c43609940148bdab685c70cfd575ac5c948ebd8785a785dd800002f",
+      "after_sha256": "4de5215e74aeb73c752c040f6af5c2a52d08edf8e646a7f8447c1e2c72743f68",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.word-route",
+      "before_sha256": "993d14bef2419282fe134ae9d83ecedf9e245b4551af3bef6645d99023d0ddfa",
+      "after_sha256": "46051a67cba3e1dac7dbefc2491e8960eec01d81c081ed672f21e76ebd62f11d",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.world-composition",
+      "before_sha256": "a1f636f96dfc35ae1018c15cb9f092b35050dfb61fd8d90b8578eef2c83bcd74",
+      "after_sha256": "d462123710b248297eeb08f752b82565ea3379a28e189f85ccba0291d36a12e3",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.world-frame",
+      "before_sha256": "2c8d7311748612c2c5047813fb5ea6ffb1c4fc92a0a074b2183c1bae0ffb453d",
+      "after_sha256": "b6139d077064aca7b3ba6baf88ace67a772811b6190771d4a2841111ee370562",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.world-producer-bypass",
+      "before_sha256": "bde08d907e4371e228c27a0a2f8902a492e80b2d2705a0084c23b36255992ec7",
+      "after_sha256": "47dccfab6b0ce4dd7747c69ce5d924e2771f64352c11035e104a251321c24558",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.world-raster-batch-return",
+      "before_sha256": "ad6f37357d6ea0e1f1c28a8a9ccb976735d96f26a4108bc27c6d19a6cd682492",
+      "after_sha256": "71a50dd75c3caf7b81f0354bc86b997f1f2d1164eeebfe7bcb174236022c3cc3",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "RS.world-raster-queue-replacement",
+      "before_sha256": "661dd853ca31037a40484cf563c04a69aac46ada6acdc82df54f477ea4ed609e",
+      "after_sha256": "596123a6130877699ab8a0c3f90e55521a4af2811d28338563fa264c6a7e2cfb",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "d337e0c18548da07fd36bee120bdfb565fd7ddf23195c430b08fbe357469d7c4",
+      "after_sha256": "853a4130fad7848be2c5773485a744767d081f22979643ff6418792c12c9840c",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    },
+    {
+      "commit": "95c1f934460aab6d73e77dc715de162e6c4c172a",
+      "id": "TOOL.rendering-coverage",
+      "before_sha256": "0c1e714a791f4f2cfe001a827b259c442307e28bd0b90b7cee879d28884249b4",
+      "after_sha256": "726096951e56ddb6b7e275d865d7f79d0fea4d56b7b8a5903f4dd9bd7e50e515",
+      "receipts": [
+        "other-producers-exact-accounting-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "reviewed_transitions": 49,
+  "reviewed_behavior_transitions": 63,
+  "unresolved_count": 0
+}

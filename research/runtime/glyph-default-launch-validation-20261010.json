@@ -1,0 +1,410 @@
+{
+  "schema": 1,
+  "success": true,
+  "claims": [
+    {
+      "behavior": "NR.glyph-default-launch",
+      "contract_sha256": "d41acaa1aa5a15514beea791dcaeac73e5eee832af4a0581ade7af28a3854cf2",
+      "scenarios": {
+        "glyph-default-launch-headless-20261010": "c2b94f409c2ea2a59e72adb3054dba70013b2ea1fbb39a718ecb3c0462882ccd"
+      }
+    }
+  ],
+  "sources": {
+    "protocols/include/mnm/canvas_producers_v1.h": "5a644332be8e73853cda426477835aed3e330d68acdb88f1ad3004e8a00da52c",
+    "protocols/include/mnm/canvas_producers_v2.h": "c94a25cfe470eecaa0781aba576ee7fb0009a627e60ac8690e8ea6f4efc0b48f",
+    "protocols/include/mnm/canvas_producers_v3.h": "30f373b1d4556847534e5fc444604c1a409a657b9ee25343e3222586c3dee8d7",
+    "protocols/include/mnm/menu_v1.h": "4ca01eaee53df22b9b9c4db1f66497f1923086235fb52332c982786b65d8e4d6",
+    "protocols/include/mnm/menu_v2.h": "5f9db9ded1e1653411cdd542ff045070a79f8b9b3c93d05227d94edaf3da3881",
+    "protocols/include/mnm/menu_v3.h": "f0baf53e4b11455c7bef129aafad06a80984ba13ce37e877d088dd7c7ed74dd6",
+    "protocols/include/mnm/scene_snapshot_v1.h": "dfa1ac6b5ab27c2b4124397c8b1386f9914dc76381cdf3bb71558e9ccd6f9e13",
+    "protocols/include/mnm/world_channel_v1.h": "4d54a0c54862184a6b75224adf9b10b3deba1122ff11c26df3d00ef38221b08c",
+    "protocols/include/mnm/world_channel_v2.h": "7950078b61ef26403a9661981c5dd4ae9553bc582c232c8782f0f1b7ce1504f4",
+    "protocols/include/mnm/world_frame_v1.h": "b9b2f78c8e5b513232f803d2a0ec6643626974a8909db18611e87262a22f83b5",
+    "protocols/python/mnm_protocols/__init__.py": "01e58b281dad111b375ae7baebfe62c936bff96318872bc2f947bccba47f9a6e",
+    "protocols/python/mnm_protocols/frame_v1.py": "056632cb57c0f2f5fd64edd76c25aa3a63276811b863060f60e5e38a2404c8d3",
+    "protocols/python/mnm_protocols/input_v1.py": "8ca75b7dfc142083ed015abe558034a8eeeb4113ff5db5aa5698ade300f2e7bb",
+    "protocols/python/mnm_protocols/media_v1.py": "37d123d240c3a7975a30cb5a024d0a97914a44adbedc30f6e76980d6cea26f9e",
+    "protocols/python/mnm_protocols/render_commands_v1.py": "17d3c1fcea8d55d2d9ae146c50ad8d56d820ffc24f86770b9a3f50be4e17b256",
+    "protocols/python/mnm_protocols/render_commands_v2.py": "101a8efa81e63dc4f0eff660b15aca9b2c924d77ac537b868780f8c3be11e007",
+    "protocols/python/mnm_protocols/render_control_v1.py": "56463ab7211bedd358943ae2154a9ec19c7a56f334f9730600951f7db6671716",
+    "protocols/python/mnm_protocols/render_stream_v2.py": "3dcdc025048173b2f40c4d2b8c47a60fa38e47d8944bf957322328123c266b21",
+    "protocols/python/mnm_protocols/render_stream_v3.py": "b6394c3928b5b52ec135c066c71718aed55018611e101fb42fd890701f63df8a",
+    "reconstruction/rendering/glyph_backend.c": "3d6ed57e5d6837e6a0535ecd92c8416d3c57717b22684dacd5e99d0e1b704775",
+    "reconstruction/rendering/glyph_backend.h": "93104365980bf04eb6047cdc3f70ffddcc7958449c4c797bcad43c16b0603245",
+    "reconstruction/rendering/glyph_backend_state.c": "e10f3ec2ad7df0c9241ec3f2600b7f9b7f3fe64bcf92d17bdbd2302e8770703e",
+    "reconstruction/rendering/glyph_backend_state.h": "b58537f01dbaf0ea98ad9ae94b0351ccf416a525ea8bdb801fc0b4ae2f3a2660",
+    "reconstruction/rendering/glyph_backend_x87.S": "fefdf95c806778f7d39fff4e43ff0beed9731e3bc1afd7d1634b4e718951f77a",
+    "runtime/menu/battle.h": "698af142d264defb5aa69fd8c6156d779674189377b5a57b2c805f2382c742a4",
+    "runtime/menu/battle_selftest.h": "b564c86f50d26033a53f0f0f35b33f759df8f61e330312533087d1ad24b023de",
+    "runtime/menu/campaign_defeat.h": "88a3458879eab8bf7dbccda9b4fd5aecec31b63568f9e8054fd2fa13a9ddeaee",
+    "runtime/menu/campaign_gameplay_observe.h": "6969d3d3ccd673045dd8122ed535891b451572f37ef3ba594c4b882965d30a1c",
+    "runtime/menu/campaign_mini_observe.h": "b5bc18fade86356582d0abb95ed7e2d1d7c2f84a17d7db15469b19ad5d1cf45e",
+    "runtime/menu/campaign_observe.h": "a220db2c27e263f7fc29fc41fd98876051de0f02839b2bde48fddb04d55950b4",
+    "runtime/menu/campaign_quit_observe.h": "f85b7bbf6c6282221e72be5e3deca50eb7e0c9b88c761a2f06fd766e09100cd9",
+    "runtime/menu/campaign_spell_observe.h": "1020a7a459db112a3521ea6859061914a78ceda776d0f2a5aa75d7b5d3a00f7a",
+    "runtime/menu/campaign_world_observe.h": "16b5d6c8f84c9ab9e804dd6415ecb01c5f719f777fb6610a0fc589726f15a2f2",
+    "runtime/menu/channel.h": "1c583e5a6ad000e07760aa016d6ba129aadacabb45f8a0b0130212bcfd9310e5",
+    "runtime/menu/channel_selftest.h": "1104046daa23c138c71ce2acc6367546e27e8bcadf17981660b7ae250890ef3e",
+    "runtime/menu/contract_selftest.S": "84176be48f1f2f2f91ef0204604e6449e58aa6b05b47441d1bfbd89f33c7c88c",
+    "runtime/menu/contract_selftest.c": "a41c0188b16e4275333e4f5c7e963614ad0c43d3759150fd297410a649b273e7",
+    "runtime/menu/mini.h": "3ea065c404242019bd85fb4de8a5bce593652bdc7a35719a18d058484f3a3a41",
+    "runtime/menu/mini_selftest.h": "fd216b052a33f7848a887053a7b8db8dc37209523181f175f325d50d56b3e69c",
+    "runtime/menu/observer.c": "a1af55ad3377720ce7cfd005af5bdaf43e8c577d29efa66eb380064edabce06a",
+    "runtime/menu/preferences.h": "17354816d0856d74119979362585dea942789adc29be824f8492e129406c3a30",
+    "runtime/menu/preferences_display.h": "60a7f61c7bd734b017c831c6ee3159cd751bf9b2df4a2c1e17b103628872a2cc",
+    "runtime/menu/preferences_selftest.h": "23fdb505194ba16ca9997a701396e1070ab7fe17e17804674c580ec9ba693b21",
+    "runtime/menu/region_entry.h": "df429ae4125d71982471f814a946c43a5d0e46762e607e09478212546c236b7e",
+    "runtime/menu/region_entry_observe.h": "370d126b7e105048a0aee6d839c440bc0901273e0d928d9d5a5a86196846c1ff",
+    "runtime/menu/result_selftest.h": "c1d842b63dca4b1d1dd8f39d2dd4265f71bcde7e7d1c0b87d3b8a7c99088ad2b",
+    "runtime/menu/results.h": "04a9914e770b00bad485874e768386be2abfa48dfe086207f0f8dad21751e24d",
+    "runtime/menu/spell_selftest.h": "89ff48ce6eb09d3056e1bb64685a6fde4ce24e29ac4a25b2b2213c2952d7a496",
+    "runtime/menu/spells.h": "c6d9ad27c48eb6c52abaf78779090e38944e3ed7a0bd9264b4a7da65f22920bf",
+    "runtime/render/adapter_startup.h": "52457ffc947fbbf242a6949d4a871779a171aaafc8e0ae741868f33a20374192",
+    "runtime/render/application_stop_selftest.h": "b7e2d77f1a04ce94c56db14d87a02baf5105fd5432c4896428535c8807de8aa0",
+    "runtime/render/backpressure_selftest.h": "c007732548f9791058bdcd1b1778a1674f734f540077a477ea67f1818185380e",
+    "runtime/render/bootstrap_selftest.h": "3fca231aeeb189832182d36fe85a8ed58adab8f6a133499c48a5f5b1311215c7",
+    "runtime/render/bridge.c": "25a75ceeb2014b028f340c5cb32223e6a5fb27102636452d8cb7aaea42093080",
+    "runtime/render/checkpoint_selftest.h": "e0320f879bd79b43ca6d563b342fcf02edd5323fcb97c085a650c11351c751a4",
+    "runtime/render/command_application_stop.h": "c7027ada062b5157e31918bb67a9f497c4e9b0406ac64713e93a8f70e097004c",
+    "runtime/render/command_channel.h": "3c0a2e177987cc499f4375deb662896bd320bacdaadce7d9d6537511027f0ebb",
+    "runtime/render/command_control.h": "876ed2c234ab8068169bc0402f680c454f3fbed226f66c49444f343e32977fda",
+    "runtime/render/command_gate.h": "6f746ad652a52f5ef0ecd7f48438c854cda40e20c6ad0989927addea2234f272",
+    "runtime/render/command_idle_selftest.h": "efc9a0be0823c894a5693f748d7f171866e0d3efdc6bd1bf7888ceb3afb96c0b",
+    "runtime/render/command_lifecycle.h": "db8dcb65784bc123a463bb672efdf653f0d765cc1858dfb2dc42c88b892e8521",
+    "runtime/render/command_queue.h": "d96f125aa7a712f96d0745a993b48a19820a10470257a629ef0960e29c736877",
+    "runtime/render/command_recovery.h": "6fb515b02faffb12afec48d08cc231675068f091e73307d22997e7a68408684a",
+    "runtime/render/command_scheduler.h": "ef2fc8751a9a2f5a1e67d08a98eb687b333c474f6ee1d5123db725db7893e224",
+    "runtime/render/continuous_selftest.h": "5cff6f7811f19a5303fb10c0a4bcb87147c3514de1951194d4fc3785ebeb6e44",
+    "runtime/render/copy_order.h": "7fce0c71de373f4496fceb4e50185a3061be8a91377c2a7dabb287b0ce7d6ebf",
+    "runtime/render/dc_selftest.h": "123bf310df0197f17a63df26349e14a5e5757b9a903c8924ef9ac711ee7ef13c",
+    "runtime/render/dirty_region.h": "b83297212f9991546eacdee84dee2a97cffe32105af08c6061db05829bcb0040",
+    "runtime/render/draw_capture.h": "7b6e113cc86c0015f855711fdd893fc6efc83d0fa4287f91d829847b9612b868",
+    "runtime/render/draw_selftest.h": "03799a2bd9c3df1ac3b426c85b34b7f1d25b36791947ca95ac2af687d177d24f",
+    "runtime/render/draw_startup_selftest.h": "c9622c9d870884a6179f0835bec379f5add8ebc46835b7ad328eed1b34e07f5f",
+    "runtime/render/drawing_recovery_selftest.h": "dadebb93b1dd2d70439bf469b9760d83c869516fb36c1badfb1d202180d8ee95",
+    "runtime/render/failure_diagnostics.h": "97d72ef8174e01c80c4b3eb57f4fa80cedfd8f56f25f7b77904121d0996baf11",
+    "runtime/render/flip_history.h": "4c1910ed299700ba95e9b49923710b54817ab8dd2d2cba823b40ccf4dbc388d8",
+    "runtime/render/flip_selftest.h": "f46d45004a39a82283021903e468730b365825c6efec1cbebe61d2fd875eb03b",
+    "runtime/render/frame_pixels.h": "671110ec34e214010c51d2a13838cd56e08869ecebdf7d38c8aaaae9156109be",
+    "runtime/render/history_selftest.h": "077d923f30ff81d927fa770f6b841e0461a345e4fc4310ab3048fa284ec3bdb5",
+    "runtime/render/host_recovery_selftest.h": "7981baf6069b7caab473461f33e49798d26ad6cc5bcb07731d4916d00f873024",
+    "runtime/render/indexed_copy_selftest.h": "9d3fc4c7a0d8f66a7ba765172c920cb4889301b63dea02556c7eeb3ef5e45fb6",
+    "runtime/render/indexed_owned_selftest.h": "7ab70e041a806281903ec11a5708fa9b3e69fe2e5bd6a54baa131793b19ba723",
+    "runtime/render/input_polling.h": "95d53d43f99b3de9390b07a150db112ae7d280e7bb112ba5957e3ce62dca736c",
+    "runtime/render/input_selftest.h": "78d5c31ec213d5bd06daa667e38320671807a5700903a392fbb78f8cfeb9abab",
+    "runtime/render/lifecycle_race_selftest.h": "7efb30260c04e28444b09acf87b298a76ddbc580862a749516e951ec2c30833d",
+    "runtime/render/lifecycle_selftest.h": "f68113110b83b034ec94e89660df4a3feb3d283f7ae0e9844790c8cf4b785bcb",
+    "runtime/render/lock_aliases.h": "df4a344c6f010b8f8022c99ec1a1ce04cd708564248d18a3362d2ad165745a95",
+    "runtime/render/lock_blit_selftest.h": "e0083a9c20400e058e0a914f80b9bcda79d13f81c070e39aa34f36bec59b64fa",
+    "runtime/render/lock_dc.h": "c039565519593443bd2c00f17c305b59d19aa5c4583d2d1cd7a5dc7918977456",
+    "runtime/render/lock_diagnostics.h": "e21d9134b6f2d0a9d7624a017a2ea0b52ee05aae6a249a1c84ccf8740959b5a0",
+    "runtime/render/lock_flip.h": "112c1a33cf20c0318d0b19289aba5dd2d9d0903013151d5c5759a86144cf8bf5",
+    "runtime/render/lock_lifecycle.h": "eb1c2aa105c5d5a2b54f15e028122272acc24e190f076645f352be37708468d1",
+    "runtime/render/lock_lifecycle_selftest.h": "ebdfe7dd2773746496a1b138e6309b0250e2207b67d4e2ba6f05f24843bcb406",
+    "runtime/render/lock_palette.h": "4215170fa390fb87b75877fd2af90b917514075abbc35ef192f75f220850d18d",
+    "runtime/render/lock_surfaces.h": "bf66750b14827bab3cfa2b4aaf10ef082a6253843b16e9ecc55ef4af5c23dc06",
+    "runtime/render/lock_updates.h": "4fd32d69ac6b2a8f6557e9bb3cc5ddd5540e4f6ea942fbebaf9b43f9725c78a3",
+    "runtime/render/media_bridge.h": "dc7e64883ef491ac42f42a2f10c36dda1ca5a04eda993cdab04e9645df572e6f",
+    "runtime/render/media_selftest.h": "9f9592dc30aeed9b8d0f7fa622c4335fd9fc6357b84d67eb5077ff795143e4b0",
+    "runtime/render/mutation_selftest.h": "e22304bbcd997c8423abf4d04baf720280999f0ed9514c60bed66f81319dceea",
+    "runtime/render/owned_dc_selftest.h": "69ea01ac97f58887f9fd63614418974c9d8c925cbdde26c71117b2738fe34407",
+    "runtime/render/owned_session.h": "e9fcadd83938455a551fb48ab82ce3ee5dcc2b0414c4d967390e037f997032cc",
+    "runtime/render/owned_session_selftest.h": "a3ec9a32d9ca45919eb5c04b3362b4f1904b3a0e1b30174588f77eef5ae0e188",
+    "runtime/render/pacer_yield.h": "0d0d05d4144a10561d0987b7d87145ef36c27f219c40f9746ee0eb3a1a31c423",
+    "runtime/render/palette_history.h": "d298ee386d6a70c406dd3ec248eb071e79a0688daf5c7da8f91a43bc4a2cad72",
+    "runtime/render/palette_selftest.h": "5d7e6f9c254d9ed634f4656b0256dda811adbc6cfe1f0c768abc8242aa43b73d",
+    "runtime/render/partial_lock_selftest.h": "0fba2e0a483a03f62c07f4dc4ad7933e3a020b3706a78982940382dd1eaf7e6e",
+    "runtime/render/precise_clock.h": "107c627b0aa1698c6b59b21a4a87d90a090796e999e4bd69b5ef4a70e360845c",
+    "runtime/render/recovery_race_selftest.h": "f8fa8b3cdb19d9ab038b2452de54159c41ed62bed45b49f7fe5f9b331b1edda1",
+    "runtime/render/recovery_selftest.h": "1ae7096f1e0fb935e1c5143001b5308fcaa4a4817cbe271cda030e874dd95048",
+    "runtime/render/resource_selftest.h": "69f5e270595583ea566bbe3e06a4a6b9a534fa42e255f8e342987b94b0f49942",
+    "runtime/render/selftest.c": "48499b295725fe5b67c5dd84e7c4ad05fd981100e6a8eae6bce050161ee55662",
+    "runtime/render/surface_commands.h": "2353c4a1d704bef43594c0042c97d3f0c65927fb8d14abb60a10ec0b4c4bb8cf",
+    "runtime/render/surface_history.h": "63976b18f13b5db96ca4385c30d6783769a7f25f32656888023171ce111ffa7d",
+    "runtime/render/working_set_selftest.h": "f6bbfcc44991193fa608e54b07cf79ea18d3ea8e34853946608b1bc6dcea733b",
+    "runtime/scene/canvas_producers.S": "9b7f9c4ff9c099796ec8391477901adbd97a0b28a3ec7e3697ed02a101c1fdb2",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "runtime/scene/canvas_startup.S": "baffd6acba69a9cbb7206457802d8feb2788d1affb3f01e1283f3e0a3332143c",
+    "runtime/scene/canvas_startup.c": "d6e8f97de9d6149a4c5cbaa18cbc6e0988576f0f09ed4d42ec7e306070636b6e",
+    "runtime/scene/entry.S": "5ea971466dfcb55bd90b52a2a3c2159fd07db60d5db2e62cea021ed1c5a89633",
+    "runtime/scene/glyph_entry.S": "9de083ae284419c71a47a99a4b88e1e192f9eef3c92b17fa16c0dcf0779b778e",
+    "runtime/scene/glyph_leave.S": "dd4657c0638ab9426386197617132b65f25dc0aed44a1b9e097afd5138c617e9",
+    "runtime/scene/glyph_live.c": "9ee0981cfd5f551c93a00a135f8183060bdef888ac1d31487c486aba45c22a47",
+    "runtime/scene/glyph_live.h": "b9c1930ef9fb4f3cfaf83e3e1d27ccd1d614cf91823f5c4136f10ce3a0854527",
+    "runtime/scene/glyph_route.c": "cdc2b537e1ba7a16412c6d26524ccf0b0db8136ede19b7e5e723a80d0b17c2be",
+    "runtime/scene/glyph_route.h": "84b23b94c20d3761fc5db0566438f8de7e120fa47f85bffeb498dd93e8fc6fb9",
+    "runtime/scene/kind8_observer.c": "2446b756aa890f91a87fa4ae2d7a434c9f247c43b0ff7fabad994c75fa1f6563",
+    "runtime/scene/observer.c": "63b70695b7ecd53ec17322dbc949ae571ee1b153c9b22b523c1ddab6c6489071",
+    "runtime/scene/selftest.c": "89b6d3b4a21616a404ff8ede840066c2525d38a5555c9c6dba73f757ebb6f88b",
+    "runtime/scene/startup_queue.c": "466d66d8343dbaac7e196129cca7ff0d6a2e8cb60a2c9faed1bb75ee7c96d6a5",
+    "runtime/scene/word_entry.S": "23d72e078069edba6c1beed0dee47b1f3c8c1faf395bf6f36c9c06b92b450beb",
+    "runtime/scene/word_route.c": "d0a3ebcaf73d2df6451162dbf7e1aa224612953b4b40514c66cd4ed01acccf55",
+    "runtime/scene/word_workspace.h": "8d506de1ed50bbc9b2a5c01777761b245a948a16cef15f6164a3c95c68351c4a",
+    "runtime/scene/world_entry.S": "48ce2eeaaa4ec8446e7b8804aefb0fa561a8f872a00f41e1e8b32c7500256cf1",
+    "runtime/scene/world_kinds.h": "dad1ab93f175db036c7b53fb3ee8f4f65259d016ae2ba3627a133e2685f87e4b",
+    "runtime/scene/world_lifetime.c": "16f92ead217742f2cdc1c996d38893b02cb101a321dfb968d45525a18e054b88",
+    "runtime/scene/world_producer_bypass.c": "98eec5d46516454ad224fe760922231d7b5c345ef5336422c8aedae30ef13e57",
+    "runtime/scene/world_raster_batch.c": "e53cf0826f8452525b0a1d53437ec2b95eb640dca93fa1cdaf11f270b709e7f5",
+    "runtime/scene/world_raster_callers.h": "d2a2c29e4ff60c213bd8fc2e4a2a12f0f3a5b6de7c8e1a1038da3a94b571daf7",
+    "runtime/scene/world_stream.c": "0f55cc0856779977a4b4c9a7795e4b5622fa6c16f00db06cc631fd0e12a48a60",
+    "runtime/scene/world_stream_selftest.c": "2828bc32ae8e1ff3a3675fd11d863d8d73729d07e12f48dc1b173c8b57d6ef29",
+    "runtime/scene/world_trace.c": "a2a40f336e007898f3bf44c60a25efda1b18d8466bdd69460bafa727cc752f4d",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/glyph-backend-entry-probe.S": "684a2cf1646344b8ba2c9a5fd56e678e7b0e36ac2db74ac5d6796fdb514f38c5",
+    "tests/glyph-backend-state-probe.S": "65b6b81ec4088f7396713c649f9a884f14c9fa4cc22d3490e37d9c8d41674995",
+    "tests/glyph-backend-test.c": "bcb164ca55aaa1558960dae5dd6b3731f1f62f5234635a7550ac364580eaceeb",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/build-render-bridge.py": "3873455feffcf93af8a253f20de21f75a183068da6128bf58fb4c27577b5510c",
+    "tools/build-scene-observer.py": "ee0f7e1a7d723b554e0eb7b2351ba92cb4f3cb863e8afb981243c440d17a6336",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/capture-scene-game.py": "a38674a8febde5dc1259b8d3dc8b50b586d0551300c9e983bc95149772753cd1",
+    "tools/decode-cfg.py": "acf3c809fa12e2227ab1b9aad20119491855b39f3becf558d90229861763e27e",
+    "tools/encode-cfg.py": "e918845eee3ec4ce355a4864bf6b4d9b6e15df79807e0d96a35875033134c77c",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/glyph_backend_launch.py": "94cb37af6021d5b6be038ab7e2a797ecd40ec8cb7dd34909488de528c035868e",
+    "tools/glyph_live_capture.py": "ffe58afd7a3087b427abb49a769c52dd23cdffb786c897bc850ba7111f9b7246",
+    "tools/menu-game-runner.py": "ca338b36ca0c7d66bc7b4c11beff19b44b997e4f6c3578f76c2aedc51e58a149",
+    "tools/menu_preferences_store.py": "d59426b1079bd7bc8a8f5b975ccc493051dd08f6b10f452fb5f06842d9e09fb7",
+    "tools/native_render_config.py": "0fdfc78b89750fad4b6fa468de1cd11fed60a01dabb20e3d0850b8b0984ea9c3",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-menu-observer.py": "cc78c6dee2f89c8afe65155eabaa525c9832bc2f2c1bf9ddf7b4674223c11d42",
+    "tools/prepare-scene-observer.py": "fb28af7a20f861ff91f18bd4ece59365af607b3a33c7a41c03d67133743c6184",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/render-game-runner.py": "47c99bd2226be7c54480093b87ba95595a99c2ccce81fa8b4f3f68c329083903",
+    "tools/run-game.sh": "a0c1f33f375b1ab640a29224e6e7df750e5f9d9d80bb60447b73e8a91e4fe983",
+    "tools/run-opengl-game.py": "1f93ba28de3b5bd062ab256ffb8ce6fb99d4c1814f986d8cbbb533799135548c",
+    "tools/run-qt-shell.sh": "78bd8cfc8a0ea69e73d6072a530b7fa7c08d730ef1de253acdf6c07d3b2fcbbf",
+    "tools/scene-game-runner.py": "b3cf334c6dc3eda7cd53d150f1bb6c7d4a4cb8b1bb994ebda36f1363d5d1d019",
+    "tools/test-glyph-backend-state.py": "c6fb0c4a8c9b2428d7e4987e4940a948f074515752d98ced3368340910786633",
+    "tools/test-glyph-default-launch.py": "5a2d660b36774a2abd8faf9647744e2bd364591a19b22e560ceff7be31d104b2",
+    "tools/world_channel.py": "7a29c9710c7552a399b9ae6424505402f605785adb5dc53aae2d595a1d064db0",
+    "tools/world_refusal.py": "d7fcdf8fe47036e738781d97319eb32c9929cb0fccbef824eb63cdd9e072717c"
+  },
+  "scope": "Public run-qt-shell.sh default/overrides and both private staging/authorization routes. No interactive Qt gameplay or new pixel/ABI equivalence claim.",
+  "selection": {
+    "default": {
+      "exported": "takeover",
+      "staged_mode": "takeover"
+    },
+    "off": {
+      "exported": "off",
+      "staged_mode": null
+    },
+    "shadow": {
+      "exported": "shadow",
+      "staged_mode": "shadow"
+    },
+    "takeover": {
+      "exported": "takeover",
+      "staged_mode": "takeover"
+    },
+    "empty": {
+      "exported": "",
+      "staged_mode": null
+    }
+  },
+  "diagnostic_default_original": true,
+  "off_does_not_stage_or_authorize": true,
+  "public_staging": {
+    "default-menu": {
+      "experiment": "working/experiments/menu-observer/run-u9buer7k",
+      "mode": "takeover",
+      "manifest_sha256": "97fcc6801e4f8c34579b9bd3754c01eb5842d3723191cddbaa5eb4e82925afb2",
+      "interactive_qt_gameplay_validated": false
+    },
+    "default-normal": {
+      "experiment": "working/experiments/opengl-render/run-1r66bfj7",
+      "mode": "takeover",
+      "manifest_sha256": "a41c7fdf8466531b342df8f4cad7884eb91bedae08fe64e9446dc51364252c34",
+      "interactive_qt_gameplay_validated": false
+    },
+    "off-menu": {
+      "experiment": "working/experiments/menu-observer/run-c5krx36d",
+      "mode": null,
+      "manifest_sha256": "019ee775d2db6063707788f8585833950e2afd849d5f447368df37434e4cecc9",
+      "interactive_qt_gameplay_validated": false
+    },
+    "off-normal": {
+      "experiment": "working/experiments/opengl-render/run-0nym_al7",
+      "mode": null,
+      "manifest_sha256": "2e63145966aacccc86a9cec382b3d9c0a4b6389d2ea0818e2fe0ed7c31148cfb",
+      "interactive_qt_gameplay_validated": false
+    },
+    "shadow-menu": {
+      "experiment": "working/experiments/menu-observer/run-_dvc7x9n",
+      "mode": "shadow",
+      "manifest_sha256": "d94be7c3cfc7a5d07a5574586667d39a0d0b880c76af5a83036721f7a273a6a5",
+      "interactive_qt_gameplay_validated": false
+    },
+    "shadow-normal": {
+      "experiment": "working/experiments/opengl-render/run-shvjqc1z",
+      "mode": "shadow",
+      "manifest_sha256": "c98717b2dc2fdc0399fb69546cf28c6ba2e3825fd5d87a6442005820a44e829b",
+      "interactive_qt_gameplay_validated": false
+    }
+  },
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true,
+  "commands": [
+    {
+      "label": "wrapper-default",
+      "argv": [
+        "bash",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-default-launch/run-tv_ssf9y/launcher/tools/run-qt-shell.sh",
+        "--live-menus",
+        "--native-commands"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/wrapper-default.log",
+      "sha256": "8405edb55970c2dc65ccc6c5c910a98bc86a2820b4e1c93b57921ab72ed9dde9"
+    },
+    {
+      "label": "wrapper-off",
+      "argv": [
+        "bash",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-default-launch/run-tv_ssf9y/launcher/tools/run-qt-shell.sh",
+        "--live-menus",
+        "--native-commands"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/wrapper-off.log",
+      "sha256": "954797de0b998f44039135e228c02094ad113cb938d0f24a135fc21d15711651"
+    },
+    {
+      "label": "wrapper-shadow",
+      "argv": [
+        "bash",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-default-launch/run-tv_ssf9y/launcher/tools/run-qt-shell.sh",
+        "--live-menus",
+        "--native-commands"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/wrapper-shadow.log",
+      "sha256": "a84cb16a5e6a10d6f5639398623dfc611448ce910f2f4457c8fe764a05a02644"
+    },
+    {
+      "label": "wrapper-takeover",
+      "argv": [
+        "bash",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-default-launch/run-tv_ssf9y/launcher/tools/run-qt-shell.sh",
+        "--live-menus",
+        "--native-commands"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/wrapper-takeover.log",
+      "sha256": "8405edb55970c2dc65ccc6c5c910a98bc86a2820b4e1c93b57921ab72ed9dde9"
+    },
+    {
+      "label": "wrapper-empty",
+      "argv": [
+        "bash",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-default-launch/run-tv_ssf9y/launcher/tools/run-qt-shell.sh",
+        "--live-menus",
+        "--native-commands"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/wrapper-empty.log",
+      "sha256": "7812eb88a9deaf3c9713896cb2cd153807d8dbdedbeec61efb66a4dcae34b45d"
+    },
+    {
+      "label": "manifest-before",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/manifest-before.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    },
+    {
+      "label": "default-menu",
+      "argv": [
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/prepare-menu-observer.py",
+        "--actions",
+        "--native-render"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/default-menu.log",
+      "sha256": "1186b934a575416577cd2944c2464bb5c7c431e3fd971621170cc61535ca8b96"
+    },
+    {
+      "label": "default-normal",
+      "argv": [
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/run-opengl-game.py",
+        "--stream",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-default-launch/run-tv_ssf9y/frame.bin",
+        "--skip-movies",
+        "--stage-only"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/default-normal.log",
+      "sha256": "ed764a5d7f176534f40173dfe4761933dc951518715ed222e8f7a72eafed2bb5"
+    },
+    {
+      "label": "off-menu",
+      "argv": [
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/prepare-menu-observer.py",
+        "--actions",
+        "--native-render"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/off-menu.log",
+      "sha256": "6f5fa1e38d0be948bdc8d6875ddcf1465d6ffca849d62a513d2e96b93352c304"
+    },
+    {
+      "label": "off-normal",
+      "argv": [
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/run-opengl-game.py",
+        "--stream",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-default-launch/run-tv_ssf9y/frame.bin",
+        "--skip-movies",
+        "--stage-only"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/off-normal.log",
+      "sha256": "526f12f25901ae1a53158cba271f6ad1e30c41efe5bcc850797fb7c439ed7939"
+    },
+    {
+      "label": "shadow-menu",
+      "argv": [
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/prepare-menu-observer.py",
+        "--actions",
+        "--native-render"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/shadow-menu.log",
+      "sha256": "75c966919fbe7e631166cc5362159f4d9ec6689c50e4423787b2917ba6e4b395"
+    },
+    {
+      "label": "shadow-normal",
+      "argv": [
+        "python3",
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/run-opengl-game.py",
+        "--stream",
+        "/home/hoff/swdev/magic_and_mayhem_mod/working/tests/glyph-default-launch/run-tv_ssf9y/frame.bin",
+        "--skip-movies",
+        "--stage-only"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/shadow-normal.log",
+      "sha256": "a9e2215310a7d2abd47266c8960a7ead03c5ad988e3d90a63aa026e3840e76b3"
+    },
+    {
+      "label": "manifest-after",
+      "argv": [
+        "/home/hoff/swdev/magic_and_mayhem_mod/tools/original-manifest.sh",
+        "verify"
+      ],
+      "returncode": 0,
+      "log": "working/tests/glyph-default-launch/run-tv_ssf9y/manifest-after.log",
+      "sha256": "65eb398ea4c6cebbd100d20811b300a54a69df7fff1280477b14e19becbe7994"
+    }
+  ]
+}

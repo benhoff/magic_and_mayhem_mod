@@ -1,4 +1,4 @@
-# Opt-in live glyph backend
+# Live glyph backend
 
 The fixed No-CD glyph entry at `0x581ec0` is installed through existing producer
 tag10. Other drawing and higher text layout remain original. Admission and
@@ -28,16 +28,21 @@ ordinary sessions flush counters periodically and at DLL detach. This is a
 bounded correctness experiment with per-call full-canvas copies, not a measured
 performance improvement or full rendering replacement.
 
-Enable explicitly for the normal or live-menu Qt launch:
+The public Qt launcher enables guarded takeover by default for normal and
+live-menu native sessions:
 
 ```sh
-MNM_GLYPH_BACKEND=takeover ./tools/run-qt-shell.sh --live-menus --native-commands
+./tools/run-qt-shell.sh --live-menus --native-commands
 ```
 
-Use `shadow` for original-active comparison. Launch game, then choose a game in
+Set `MNM_GLYPH_BACKEND=off` for the original glyph path, or `shadow` for
+original-active comparison. An explicitly empty variable also preserves the
+original path. Launch game, then choose a game in
 the native menu. Each launch creates a fresh `glyph-backend` evidence directory
-beside its staged installation. Omit the environment variable for the default
-original glyph path. Conflicting producer/World/startup/word experiments refuse
+beside its staged installation. Standalone observation/comparison launchers and
+direct shell-binary invocation retain explicit mode selection; the default is
+owned by `tools/run-qt-shell.sh`. The original `tools/run-game.sh` path does not
+stage this adapter. Conflicting producer/World/startup/word experiments refuse
 activation. Source executable hashes and entry/helper signatures are checked.
 Public interactive gameplay equivalence and performance remain pending.
 
@@ -120,7 +125,7 @@ printed report path for another directory; the first shared-entry aggregate
 check failed because raw stack identities were compared across processes. Final
 runs correct those harness checks and rerun the changed admission sources.
 
-Default activation, longer sessions/font resets, public interactive gameplay,
+Longer sessions/font resets, public interactive gameplay,
 other drawing families, general device recovery/concurrency and a measured
 performance improvement remain open. This adapter copies/rechecks full canvas
 prefixes per glyph; optimize that only with new independent execution evidence.
@@ -129,3 +134,14 @@ Quota exhaustion, nested/concurrent calls, allocation or recheck failures and
 long-running font/DC/device transitions are implemented refusal boundaries but
 were not induced by the final live fixture. A shadow mismatch ends the diagnostic
 process with exit96; it cannot establish equivalence by continuing silently.
+
+## Default launch policy — 2026-10-10
+
+[The source-bound launch validation](glyph-default-launch-validation-20261010.json)
+executes the real public wrapper with substituted build/Qt commands and checks
+unset/off/shadow/takeover/empty selection. Both real private staging routes pass
+for default, off and shadow, including pinned active DLLs and no glyph import
+when off. `NR.glyph-default-launch` records headless integration only. The
+explicit-off helper change makes the older source closures stale; earlier
+pixel/ABI evidence remains historical until rerun. No interactive Qt gameplay
+or performance validation follows from these launch checks.
