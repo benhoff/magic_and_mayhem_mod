@@ -547,6 +547,33 @@ void GlBlitter::update(SurfaceId id,int x,int y,const Image& patch){
     g.glTexSubImage2D(GL_TEXTURE_2D,0,x,y,patch.width,patch.height,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.pixels.data());
     p.check();s.validity.define({x,y,x+patch.width,y+patch.height});p.damage(s,{x,y,x+patch.width,y+patch.height});++p.counters.uploads;
 }
+void GlBlitter::updateMasked(SurfaceId id,int x,int y,const Image& patch,const std::vector<std::uint8_t>& coverage){
+    auto& p=*impl_;p.thread();auto& s=p.get(id);validateImage(patch,16);
+    if(s.format.bits!=16 || s.format.masks!=std::array<std::uint32_t,3>{0xf800,0x7e0,0x1f} ||
+       x<0 || y<0 || x>s.width-patch.width || y>s.height-patch.height ||
+       coverage.size()!=patch.pixels.size() || patch.pixels.size()>2*1024*1024 ||
+       std::any_of(coverage.begin(),coverage.end(),[](auto v){return v>1;}))
+        throw std::invalid_argument("Invalid owned masked RGB565 patch");
+    if(std::find(coverage.begin(),coverage.end(),1)==coverage.end())return;
+    std::vector<std::uint32_t> pixels(patch.pixels.size()),mask(coverage.begin(),coverage.end());
+    for(std::size_t i=0;i<pixels.size();++i)if(coverage[i])pixels[i]=patch.pixels[i];
+    p.flushCopies();Current current(p.context,&p.surface);GLuint colour=0,selection=0;
+    try{
+        colour=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.width,patch.height,pixels.data());
+        selection=p.texture(GL_R32UI,GL_RED_INTEGER,GL_UNSIGNED_INT,patch.width,patch.height,mask.data());
+        p.copyTexture(colour,selection,s,{0,0,patch.width,patch.height},x,y,std::nullopt,UINT32_MAX);
+        p.flushCopies();p.check();
+        p.gl.glDeleteTextures(1,&selection);selection=0;p.gl.glDeleteTextures(1,&colour);colour=0;
+    }catch(...){p.flushCopies();if(selection)p.gl.glDeleteTextures(1,&selection);if(colour)p.gl.glDeleteTextures(1,&colour);throw;}
+    for(int row=0;row<patch.height;++row){
+        int col=0;while(col<patch.width){
+            while(col<patch.width&&!coverage[std::size_t(row)*patch.width+col])++col;
+            const auto first=col;while(col<patch.width&&coverage[std::size_t(row)*patch.width+col])++col;
+            if(first<col)s.validity.define({x+first,y+row,x+col,y+row+1});
+        }
+    }
+    ++p.counters.uploads;
+}
 void GlBlitter::reloadDib(SurfaceId id,const DibInput& dib,const std::optional<std::vector<Rect>>& dcRegions){
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);
     const bool indexed=s.format.bits==8;

@@ -21,5 +21,5 @@ std::vector<std::uint8_t> rollingHandoffReply(const RollingHandoff &,
                                               const RollingCompletion &);
 void verifyRollingHandoffReturn(const RollingHandoff &,
                                 const CanvasProducer &checkpoint,
-                                const CanvasProducer &returned);
+                                const CanvasProducer &returned, bool resident = false);
 } // namespace mnm::legacy

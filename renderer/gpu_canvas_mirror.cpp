@@ -30,6 +30,10 @@ void GpuCanvasMirror::update(std::uint32_t id, int x, int y,
                               const Image &patch) {
   renderer_.update(surface(id), x, y, patch);
 }
+void GpuCanvasMirror::updateMasked(std::uint32_t id,int x,int y,const Image& patch,
+                                  const std::vector<std::uint8_t>& coverage) {
+  renderer_.updateMasked(surface(id),x,y,patch,coverage);
+}
 void GpuCanvasMirror::copy(std::uint32_t source, std::uint32_t destination,
                            Rect rect, int x, int y,
                            std::optional<std::uint16_t> key) {

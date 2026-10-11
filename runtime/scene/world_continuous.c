@@ -1,10 +1,11 @@
 /* Included after world_raster_batch.c. Pointer-free fixed storage shared with
  * the native owner. The original destination stays NOACCESS while waiting. */
-#include "../../protocols/include/mnm/world_continuous_v3.h"
+#include "../../protocols/include/mnm/world_continuous_v4.h"
 API HANDLE WIN CreateFileMappingA(HANDLE, void *, u32, u32, u32, const char *);
 API void *WIN MapViewOfFile(HANDLE, u32, u32, u32, u32);
 API i32 WIN UnmapViewOfFile(void *);
 static HANDLE continuous_file, continuous_mapping;
+static u32 continuous_resident, continuous_nonce_low, continuous_nonce_high;
 static u32 continuous_written;
 static u32 continuous_generation_low = 1, continuous_generation_high,
            continuous_slot_index;
@@ -86,15 +87,18 @@ static int continuous_init(void) {
   if (!continuous_map)
     return 0;
   u8 *h = continuous_map;
-  if (!bypass_equal(h, MNM_CONT_MAGIC, 8) || get(h + 8) != MNM_CONT_VERSION ||
+  continuous_resident = bypass_equal(h, MNM_CONT_RESIDENT_MAGIC, 8);
+  if (!bypass_equal(h, continuous_resident ? MNM_CONT_RESIDENT_MAGIC : MNM_CONT_MAGIC, 8) ||
+      get(h + 8) != (continuous_resident ? MNM_CONT_RESIDENT_VERSION : MNM_CONT_VERSION) ||
       get(h + 12) != MNM_CONT_HEADER || get(h + 16) != MNM_CONT_BYTES ||
-      get(h + 20) || (!get(h + 24) && !get(h + 28)) ||
+      get(h + 20) != (continuous_resident ? MNM_CONT_RESIDENT_MODE : 0) || (!get(h + 24) && !get(h + 28)) ||
       continuous_load(h, 8) != 1 || continuous_load(h, 9) ||
       continuous_load(h, 10) || continuous_load(h, 11))
     return 0;
   for (u32 i = 14; i < 32; ++i)
     if (get(h + i * 4))
       return 0;
+  continuous_nonce_low=get(h+24);continuous_nonce_high=get(h+28);
   if (!__sync_bool_compare_and_swap((u32 *)(h + 36), 0, 1))
     return 0;
   return continuous_clock_install() && continuous_next();
@@ -139,9 +143,26 @@ static int continuous_finish(struct Surface *s, const u32 *request) {
   if (!continuous_wait(slot, 0, MNM_CONT_REPLY) ||
       get(slot + 8) != continuous_generation_low ||
       get(slot + 12) != continuous_generation_high ||
-      get(slot + 40) != MNM_CONT_REPLY_BYTES)
+      get(slot + 40) != (continuous_resident ? MNM_CONT_ACK_BYTES : MNM_CONT_REPLY_BYTES))
     return 0;
   u8 *reply = wire + MNM_CONT_REQUEST_BYTES;
+  if (continuous_resident) {
+    if (!bypass_equal(continuous_map, MNM_CONT_RESIDENT_MAGIC, 8) ||
+        get(continuous_map + 8) != MNM_CONT_RESIDENT_VERSION ||
+        get(continuous_map + 20) != MNM_CONT_RESIDENT_MODE ||
+        get(continuous_map + 24) != continuous_nonce_low ||
+        get(continuous_map + 28) != continuous_nonce_high ||
+        mnm_cont_crc32c(reply, MNM_CONT_ACK_BYTES) != get(slot + 44) ||
+        !mnm_ack_valid(reply, get(slot + 40), (const u8*)request,
+                       continuous_generation_low, continuous_generation_high,
+                       continuous_nonce_low, continuous_nonce_high) ||
+        !batch_identity(s) || !batch_restore())return 0;
+    /* Completion count remains the local batch ordinal. No pixel copy occurs. */
+    ++batch_transfers;
+    put(slot + 56, continuous_time());
+    continuous_store(slot, 0, MNM_CONT_WRITING);
+    return 1;
+  }
   u32 h[16];
   copy(h, reply, 64);
   if (mnm_cont_crc32c(reply, MNM_CONT_REPLY_BYTES) != get(slot + 44) ||

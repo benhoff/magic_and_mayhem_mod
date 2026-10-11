@@ -82,6 +82,23 @@ int main(int argc, char **argv) try {
     shadow.fill(91,{0,0,2,1},0x5555);shadow.publishWrites();
     require(shadow.read(91).pixels==renderer.read(mirror.surface(91)).pixels,"Known CPU overwrite did not restore GPU history");
   }
+  {
+    const auto target=renderer.allocate(4,2,{16,{0xf800,0x7e0,0x1f}});
+    const render::Image patch{4,2,{1,2,3,4,5,6,7,8}};
+    const auto before=renderer.stats();
+    rejected([&]{renderer.updateMasked(target,0,0,patch,{1});});
+    rejected([&]{renderer.updateMasked(target,0,0,patch,{1,1,1,1,1,1,1,2});});
+    require(renderer.stats().uploads==before.uploads,"Malformed mask changed GPU state");
+    renderer.updateMasked(target,0,0,patch,{1,0,1,0,0,1,0,1});
+    rejected([&]{renderer.read(target);});
+    renderer.updateMasked(target,0,0,patch,{0,1,0,1,1,0,1,0});
+    require(renderer.read(target).pixels==patch.pixels,"Sparse patches did not establish exact validity");
+    const auto exports=renderer.stats().nativeReadbacks;
+    renderer.updateMasked(target,0,0,{4,2,{9,10,11,12,13,14,15,16}},{1,0,1,0,0,1,0,1});
+    require(renderer.stats().nativeReadbacks==exports,"Masked patch exported GPU history");
+    require(renderer.read(target).pixels==std::vector<std::uint32_t>({9,2,11,4,5,14,7,16}),"Masked update overwrote uncovered GPU history");
+    renderer.destroy(target);
+  }
   require(renderer.stats().surfaces==0,"GPU resources retained after teardown");
   std::cout<<"512 resident synthetic queues: independent CPU-verified pixels, retained HUD history, zero normal World readbacks, explicit separate diagnostic reads, legacy mode and zero teardown surfaces\n";
   return 0;

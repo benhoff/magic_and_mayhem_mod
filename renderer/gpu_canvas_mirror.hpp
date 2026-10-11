@@ -11,6 +11,8 @@ public:
   void create(std::uint32_t, int, int) override;
   void release(std::uint32_t) override;
   void update(std::uint32_t, int, int, const Image &) override;
+  void updateMasked(std::uint32_t,int,int,const Image&,
+                    const std::vector<std::uint8_t>&) override;
   void copy(std::uint32_t, std::uint32_t, Rect, int, int,
             std::optional<std::uint16_t>) override;
   SurfaceId surface(std::uint32_t) const;

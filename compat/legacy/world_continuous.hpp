@@ -1,5 +1,5 @@
 #pragma once
-#include "../../protocols/include/mnm/world_continuous_v3.h"
+#include "../../protocols/include/mnm/world_continuous_v4.h"
 #include <QFile>
 #include <array>
 #include <cstdint>
@@ -12,10 +12,11 @@ public:
     std::vector<std::uint8_t> source, request;
   };
   static void create(const QString &, std::uint64_t nonce,
-                     std::uint64_t target);
+                     std::uint64_t target, bool resident = false);
   explicit WorldContinuousChannel(const QString &);
   ~WorldContinuousChannel();
   WorldContinuousChannel(const WorldContinuousChannel &) = delete;
+  bool resident() const { return resident_; }
   bool cancelled() const;
   bool finished() const;
   std::uint64_t target() const;
@@ -33,6 +34,7 @@ private:
   QFile file_;
   std::uint8_t *map_ = nullptr;
   std::uint64_t expected_ = 1, nonce_ = 0, target_ = 0;
+  bool resident_ = false;
   void validate() const;
   std::uint8_t *slot(std::uint64_t) const;
 };

@@ -89,6 +89,7 @@ render::Image WorldRollingSession::consumeStream(
       if (r[2] == 11) {
         canvas = r[3];
         if(resident_) {
+          producer_.publishWrites();
           world_.beginResident(c,mirror_->surface(canvas),sequence);
           continue;
         }

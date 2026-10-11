@@ -1,0 +1,36 @@
+{
+  "success": false,
+  "sources": {
+    "runtime/native-draw/factory.c": "da51c8b492af35d0911189ab65ef5e32a3817075b7bc8a12585a93d1882582d9",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/native-draw-factory-probe.c": "5fee67b6fe845d01cc7b9ae347e903c4387eddb6b13633b2cba0a4be0b896480",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/test-native-draw-factory.py": "45b7d2dfd566bffb022f604353ed33c949f0a22291e2b451c232d4c17f6c4c36"
+  },
+  "claims": [
+    {
+      "behavior": "NR.directdraw-retirement",
+      "contract_sha256": "c1da35cce1548deabc0885f98eebb37b2190839e317a33b3935ee980fa8ffdbd",
+      "scenarios": {
+        "native-draw-factory-20261010": "b96e4e4cb15cd4b35bd2bb1bcf1950a537173b104541802d76df628cdc748682"
+      }
+    }
+  ],
+  "scope": "128 isolated default native factory lifetimes with exact selected caller/identity/reference/failure outputs versus real Wine DirectDraw. Native enumeration is an explicit single-adapter policy. Native probe disables ddraw and verifies no module loads. Surface methods, real game integration, GPU presentation and DirectDraw retirement remain pending.",
+  "real_game_directdraw_retired": false,
+  "wine_version": "wine-11.16",
+  "compiled_sources": {
+    "runtime/native-draw/factory.c": "da51c8b492af35d0911189ab65ef5e32a3817075b7bc8a12585a93d1882582d9",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/native-draw-factory-probe.c": "5fee67b6fe845d01cc7b9ae347e903c4387eddb6b13633b2cba0a4be0b896480"
+  },
+  "error": "[Errno 2] No such file or directory: '/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-factory/run-vuviwtjl/original/factory-results.bin'",
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true,
+  "inputs": {
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-factory/run-vuviwtjl/wineprefix/drive_c/windows/syswow64/ddraw.dll": "24c8c8fbbe0bac100efa5a716ebc78506e0f42e80d2af019b641911c0847ab28",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-factory/run-vuviwtjl/MnmDraw.dll": "15da9d560848ee843750defb7b83a7d635cbc38f4508d09388ea1c6355c6c8ca",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/tests/native-draw-factory/run-vuviwtjl/probe.exe": "e6df38f56b3afc2fd7c2c73be3ff6f84238dd49791dc35094debf5f9a7983d8f"
+  },
+  "inputs_stable": true
+}
