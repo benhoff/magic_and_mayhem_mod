@@ -5333,3 +5333,32 @@ unrelated/generated inputs are excluded and missing linked object/archive
 receipts refuse. New durable result `public-resident-linked-provenance-fixtures-20261011.json`
 is source bound; the earlier negative is preserved separately. New validation
 metadata does not promote engine gameplay or original equivalence.
+
+### Physical-stride distortion discovery,2026-10-11
+
+`RS.displacement-linear-stride` records selected original596490/5968a4 forward
+source loads crossing from right-edge x into the next physical row. The ordinary
+Titan run passes the prior shadow edge but stops after268Worlds/19.7216aggregate
+FPS at this missing branch, with zero delivery readbacks. Initial isolated
+unmodified leaf execution proves10wrapped samples/960000canvas words; native
+implementation and current comparison/live milestones remain independent.
+Native storage uses bounded tight-stride row conversion; out-of-allocation and
+padded/negative-offset cases remain excluded. Historical source hashes retained.
+
+Fresh `public-displacement-linear-comparison-20261011.json` compares both
+unmodified original leaves with the analytical tight-stride model, then native
+CPU and both GPU backends.960000canvas words match, with551covered/10wrapped
+samples, zero delivery readbacks, two atomic scene/one CPU allocation refusals,
+19existing atomic refusals and the canvas regression. Sources/inputs remain
+unchanged and both executables are hashed. Only the new scoped behavior's
+comparison status is recorded; public integration/replacement and whole
+original failure/state equivalence remain pending.
+
+Full current owned fixtures pass in `public-resident-linear-full-fixtures-20261011.json`.
+The ordinary Titan follow-up passes326Worlds then refuses genuine covered
+projected-shadow overflow;17.2778aggregateFPS fails19, with zero World/native/
+RGBA delivery readbacks. `public-resident-linear-pass-shadow-write-failure-20261011.json`
+preserves this negative. Next work must investigate original shadow destination
+stride semantics before extending native admission, then profile sustained
+gameplay. No public integration/replacement promotion. The committed
+b1f4ff1..884d263 audit reviews22exact file versions and finds no receipt gaps.

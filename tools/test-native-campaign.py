@@ -410,7 +410,7 @@ def main():
     if args.native_draw and not args.claims:
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
-        if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch'])
+        if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride'])
         subprocess.run(declaration_command,cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     if args.claims:
         declaration=json.loads(args.claims.read_text())
@@ -543,6 +543,11 @@ def main():
                     raise RuntimeError('Public campaign flow exceeded its deadline')
             flow = json.loads((out / 'flow.json').read_text())
             report['flow'] = flow
+            if args.resident_world and len(roots)==1 and roots[0].is_relative_to(ROOT/'working/experiments/menu-observer'):
+                resident_path=roots[0]/'resident-world-report.json'
+                if resident_path.exists():
+                    report['resident_world']=json.loads(resident_path.read_text());report['experiment']=str(roots[0])
+                    if report['resident_world']['error']:raise ValueError('Resident World rendering stopped: '+report['resident_world']['error'])
             if flow.get('success') is not True:raise ValueError(flow.get('error') or 'Campaign flow failed')
             if args.hardware and ('NVIDIA' not in flow.get('renderer','') or any(x in flow['renderer'].lower() for x in ('llvmpipe','lavapipe','softpipe'))):raise ValueError('Actual Qt renderer did not retain NVIDIA hardware identity')
             if not (args.healing_case or args.crowded_case):validate_flow(flow, args.menu_cycles,normal_quit=args.normal_quit)

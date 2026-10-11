@@ -37656,7 +37656,10 @@
         "research/runtime/public-resident-region-epoch-fixtures-20261011.json",
         "research/runtime/public-resident-region-epoch-tutorial-failure-20261011.json",
         "research/runtime/public-resident-shadow-fixtures-20261011.json",
-        "research/runtime/public-resident-linked-provenance-fixtures-20261011.json"
+        "research/runtime/public-resident-linked-provenance-fixtures-20261011.json",
+        "research/runtime/public-resident-shadow-pass-displacement-failure-20261011.json",
+        "research/runtime/public-resident-linear-full-fixtures-20261011.json",
+        "research/runtime/public-resident-linear-pass-shadow-write-failure-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37685,7 +37688,10 @@
         "NR.world-source-region-epoch.tutorial-failure-20261011",
         "NR.world-source-region-epoch.shadow-failure-20261011",
         "NR.public-resident-world.shadow-fixtures-20261011",
-        "NR.public-resident-world.linked-provenance-fixtures-20261011"
+        "NR.public-resident-world.linked-provenance-fixtures-20261011",
+        "NR.public-resident-world.displacement-failure-20261011",
+        "NR.public-resident-world.linear-full-fixtures-20261011",
+        "NR.public-resident-world.shadow-write-failure-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -37733,6 +37739,60 @@
         "understanding": "scoped",
         "implementation": "partial",
         "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.displacement-linear-stride",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Selected distortion physical-stride source sampling",
+      "scope": "Selected nocd596490/5968a4 distortion leaves read forward from linear RGB565 canvas memory; covered right-edge samples continue into the next physical row. Captured tight800WORD stride gen269request980 has10 such samples, max logical sample x803. Negative/backward offsets, padded/non-tight native storage, memory beyond owned canvas, arbitrary other raster families and full live replacement remain excluded. Disassembly establishes address calculation; isolated original execution and native implementation are separate pending milestones. Native GPU freezes the complete needed row span on rare edge crossings and converts linear addresses to(x,y), with no CPU readback. Native CPU samples the same owned linear word index. Conservative nominal source-read envelopes crossing the final allocation still refuse, including transparent tails; arbitrary tightness/padding and original out-of-allocation behavior are not claimed.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5858448,
+          "scope": "Selected forward WORD output from original linear DWORD source load and strict unprojected horizontal refusal; complete ABI/function/global state not claimed."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5859492,
+          "scope": "Selected forward WORD output from original linear DWORD source load and strict unprojected horizontal refusal; complete ABI/function/global state not claimed."
+        }
+      ],
+      "implementation": [
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/scenes/scene_renderer.cpp"
+      ],
+      "tests": [
+        "tests/displacement-linear-reference.cpp",
+        "tools/test-displacement-linear.py",
+        "tests/displacement-linear-test.cpp",
+        "tests/other-writer-atomic-test.cpp",
+        "tests/canvas-sequence-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/public-resident-world.md",
+        "research/runtime/public-displacement-linear-comparison-20261011.json"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "tests/resource-fixtures.hpp"
+      ],
+      "evidence": [
+        "RS.displacement-linear-stride.original-20261011",
+        "RS.displacement-linear-stride.native-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "recorded",
         "integration": "none",
         "replacement": "none"
       }
@@ -75750,6 +75810,151 @@
           "equals": 2
         }
       ]
+    },
+    {
+      "id": "NR.public-resident-world.displacement-failure-20261011",
+      "kind": "live_observation",
+      "scope": "Negative ordinary Titan run after shadow fix:268Worlds,19.7216aggregateFPS before displacement bounds refusal;30.22queries/World and zero delivery readback. Not sustained19FPS or completed gameplay. Capturedgen269980 leads to separately scoped original linear-read discovery.",
+      "record": "research/runtime/public-resident-shadow-pass-displacement-failure-20261011.json",
+      "sha256": "6b027e6b91e48f03b1aad1312e5af387cb777bfdd4cf166783f385b2f9150ac3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_failure_snapshot/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_failure_snapshot/error",
+          "equals": "Scene displacement samples outside canvas"
+        }
+      ]
+    },
+    {
+      "id": "RS.displacement-linear-stride.original-20261011",
+      "kind": "isolated_original",
+      "scope": "Captured gen269request980 physical-stride forward sampling on pinned unmodified596490/5968a4; analytical gradient comparison960000words,551covered/10wrapped samples. Two selected leaves and tight800x600storage only; no whole ABI/live replacement.",
+      "record": "research/runtime/public-displacement-linear-comparison-20261011.json",
+      "sha256": "4ca676b56a4f35cd7c0367a49b274ebc2d11f4176efd4f69810e95582fed1748",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original/success",
+          "equals": true
+        },
+        {
+          "pointer": "/original/wrapped_samples",
+          "equals": 10
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/inputs/~1home~1hoff~1swdev~1magic_and_mayhem_mod~1working~1native-render-continuous~1working~1game-nocd-owned-20261010~1Chaos.exe"
+    },
+    {
+      "id": "RS.displacement-linear-stride.native-20261011",
+      "kind": "native_integration",
+      "scope": "Same captured request compares native CPU/two GPU backends with both original leaves:960000GPU/CPU words and exact original native canvas match, zero delivery readback; past-allocation atomic scene2/CPU1 refusals plus19historical atomic checks and canvas regression. Tight native storage, offsets0..16, no public replacement or arbitrary original failure equivalence.",
+      "record": "research/runtime/public-displacement-linear-comparison-20261011.json",
+      "sha256": "4ca676b56a4f35cd7c0367a49b274ebc2d11f4176efd4f69810e95582fed1748",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_native_pixels_match",
+          "equals": true
+        },
+        {
+          "pointer": "/native/delivery_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/native/atomic_cpu_refusals",
+          "equals": 1
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.linear-full-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh complete owned corpus after linear displacement implementation:1.44Mreference words/import/shadow two backends/upload/defer/region/ABI; native reference only, no new full original/live equivalence.",
+      "record": "research/runtime/public-resident-linear-full-fixtures-20261011.json",
+      "sha256": "205cf378750cd1338918ba12c3fbf6447b3e4fad1299d72cfb52738b6ddb9037",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.shadow-write-failure-20261011",
+      "kind": "live_observation",
+      "scope": "Negative ordinary Titan run reaches326Worlds with new displacement support, then actual covered projected-shadow overflow.17.2778aggregateFPS misses19. Zero delivery readbacks; no completed combat/portrait/stress/quit or public replacement proof.",
+      "record": "research/runtime/public-resident-linear-pass-shadow-write-failure-20261011.json",
+      "sha256": "4428a334a6d7799f8797278de4f477bab4d1a342a7ff65823da7ec53f2c84752",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_world/error",
+          "equals": "Projected shadow sample outside owned canvas"
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -84182,7 +84387,8 @@
       "level": "live_observation",
       "behaviors": [
         "NR.public-resident-world",
-        "NR.world-source-region-epoch"
+        "NR.world-source-region-epoch",
+        "RS.displacement-linear-stride"
       ],
       "tests": [
         "tools/test-native-campaign.py"
@@ -84193,7 +84399,9 @@
         "NR.public-resident-world.batch-background-copy-failure-20261011",
         "NR.public-resident-world.cursor-queue-live-failure-20261011",
         "NR.world-source-region-epoch.tutorial-failure-20261011",
-        "NR.world-source-region-epoch.shadow-failure-20261011"
+        "NR.world-source-region-epoch.shadow-failure-20261011",
+        "NR.public-resident-world.displacement-failure-20261011",
+        "NR.public-resident-world.shadow-write-failure-20261011"
       ]
     },
     {
@@ -84213,7 +84421,23 @@
         "NR.public-resident-world.cursor-queue-fixtures-20261011",
         "NR.world-source-region-epoch.fixtures-20261011",
         "NR.public-resident-world.shadow-fixtures-20261011",
-        "NR.public-resident-world.linked-provenance-fixtures-20261011"
+        "NR.public-resident-world.linked-provenance-fixtures-20261011",
+        "NR.public-resident-world.linear-full-fixtures-20261011"
+      ]
+    },
+    {
+      "id": "RS.displacement-linear-stride.owned-comparison",
+      "scope": "Captured ordinary gen269request980 compared against both unmodified distortion leaves and native CPU/two GPU backends on an independently generated800x600gradient; ten row-crossing samples, genuine allocation/validity refusals, zero delivery readbacks. No live equivalence/replacement.",
+      "level": "headless",
+      "behaviors": [
+        "RS.displacement-linear-stride"
+      ],
+      "tests": [
+        "tools/test-displacement-linear.py"
+      ],
+      "evidence": [
+        "RS.displacement-linear-stride.original-20261011",
+        "RS.displacement-linear-stride.native-20261011"
       ]
     }
   ],
@@ -84552,8 +84776,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-public-resident-shadow-provenance-20261011.json",
-    "sha256": "69b1bc3c285f7191d4a30741073cfa9d76bc10f0117c4af4084f5770d5b10e34"
+    "path": "research/runtime/coverage/source-index-public-displacement-linear-20261011.json",
+    "sha256": "dd0194c6cb9a3c82323270b57a7b138141970e6b906690d8bf59ccdd17c2fc1d"
   },
   "claim_bindings_required": true
 }

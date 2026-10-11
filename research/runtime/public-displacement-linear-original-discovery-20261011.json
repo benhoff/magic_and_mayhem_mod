@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "sources": {
+    "tests/displacement-linear-reference.cpp": "67d011e92666a5f7591c92f77d638941fd328ad278588873c4b7a3f53ce14d09",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/test-displacement-linear.py": "f109c510f4f37b21a9ed66b7958a5e3a0250d0bc029567aab65b70dad41cca2e"
+  },
+  "claims": [
+    {
+      "behavior": "RS.displacement-linear-stride",
+      "contract_sha256": "d3531557c884c44dd32b35b9709d48592e70a4344b25a4c01f2492df0157d25c",
+      "scenarios": {}
+    }
+  ],
+  "inputs": {
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/native-render-continuous/working/game-nocd-owned-20261010/Chaos.exe": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/tests/displacement-linear-input.bin": "894a738274d25b7eb223f58f56c66ab76584ba4fea43c4c55b4f2107b1064c81"
+  },
+  "original": {
+    "success": true,
+    "original_entries": 2,
+    "canvas_words_compared": 960000,
+    "covered_samples": 551,
+    "wrapped_samples": 10,
+    "live_replacement": false
+  },
+  "reference_sha256": "09616af89f0772dbc0797c7b2f2b2b9d60a938413bc8eb094be8ec4118009f88",
+  "sources_unchanged": true,
+  "inputs_unchanged": true,
+  "original_manifest_verified_after": true
+}

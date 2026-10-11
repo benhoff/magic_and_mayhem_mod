@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "reviewed_range": "b1f4ff1714dc8911bda0ea798e40d8526aff4546..884d263763d57e82e0940bc947495db0770f7497",
+  "scope": "Committed resident shadow/provenance milestone exact parent/current source SHA-256 and receipt audit. Separate from pending public frontend wiring; no retrospective execution or gate assertion.",
+  "commits": [
+    "884d263763d57e82e0940bc947495db0770f7497"
+  ],
+  "files": [
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "renderer/blit.cpp",
+      "before_sha256": "0e12ebca934bd564b923b09e0ec142f2e20ed9e9feae19fc67e73fd766c78a6c",
+      "after_sha256": "62fdbf6757a36868147fe782177f3eb25c574dbf92b22e6c9c4d05f875b41555",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "renderer/blit.hpp",
+      "before_sha256": "c19be18f31384d68632b8428b5084b10528facaf11f2b9f3615c85d5704fb8bb",
+      "after_sha256": "c71bc632a851fa363864e13dd964a3428e3aa5603631e0fc56eb30357b2f5125",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "renderer/resources/resource_cache.cpp",
+      "before_sha256": "24e9100239d39dbc3677a016b16babe33653e186892b7907028fe2a509a8fb36",
+      "after_sha256": "246cde96f7ff7ff55141ed9fe516521dbf3c5049bb41bf172c9da0287dedf7b5",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "renderer/resources/resource_cache.hpp",
+      "before_sha256": "b14e18f3dc0fdbd3ab1665eb03e73048d0e82295220bd98b6a58ea0531c6434c",
+      "after_sha256": "3e61d8836fff51ae3c04311958f748c574da4636d9332b6afb929729e8cedff6",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "renderer/scenes/scene_renderer.cpp",
+      "before_sha256": "c08de45ed2710855523c94ba011bbcc14d453addeb335983ca140a8f10bae226",
+      "after_sha256": "1760f34b32ce7ce2538d4285e02d7d9efe11e21e6a924d2d09770aa1b1fd918b",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "232bbc558f5dffefd7cb18b1b4b760112ed38a4f23df74c9ea5e266902a1169b",
+      "after_sha256": "bcb371abc47a32ef71b9e8406e1bd2fcf32a4128271195f024d636536fab717d",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/coverage/history-resident-region-epoch-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f1d10ba5dac7eb296360736836639e808d0d57c3ce3f6cd75d5a23db58b0db4d",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "6cb87f58f8accdb8d365d43cd2e18aef6f029564ea3ff302b67202118e965a65",
+      "after_sha256": "235b0dc2061b59ac58b5083909f09fa39056086e8947d81e551fcc85e040e254",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/coverage/source-index-public-resident-shadow-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "09006f61c929d0b7c5b4115c8849798228d07b057ffd979dc2db82fc64507adc",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/coverage/source-index-public-resident-shadow-provenance-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "69b1bc3c285f7191d4a30741073cfa9d76bc10f0117c4af4084f5770d5b10e34",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "068a81d27b99f09a39032fe1d4a3790849136783d312102db99e96ab472bb4e7",
+      "after_sha256": "fa1a229d1108637d11239ee5cfa76af605f8e6054a80415ef02fe1e746b18a29",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/public-resident-linked-provenance-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "dbffa76f9f01cbdc71e0ce7800c771a52a69a6fcba3be690387cf883328ec22a",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/public-resident-shadow-fixture-path-refusal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ca60bceccaec53b8618ba181a01b38de87637984d3dfff1c1cfffa9b350f6e83",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/public-resident-shadow-fixture-recipe-refusal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "de2a2f80314aea7ff4dd78e95dd97d9a6835f1d5f93cd77e5ed4b246d2b831a4",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/public-resident-shadow-fixture-report-error-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2b2d83739e3f2272dc678d157c9ba027b23212fff6dc3ed2e14b847bb8b32d1a",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/public-resident-shadow-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b2407aef4423f9e24080fdc3e148333747c5f5511735dff38268236d38908348",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/public-resident-shadow-prelaunch-provenance-refusal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4a862b67151a43acc88dabdb5c19a908271af18499e04de382dfabba6ae3d8d8",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "research/runtime/public-resident-world.md",
+      "before_sha256": "abf125adcf1651535db7a4c14d019d091845956d052a944d4d2621e95492bd91",
+      "after_sha256": "d478cf7699345dbd3878ee16cce755c05e97069ab9a45154d1f541c0a579c83d",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "tests/native-shell-provenance-test.py",
+      "before_sha256": null,
+      "after_sha256": "ded15c2e7cbfeda50e3dda456322aa6f2428269f7dd497da83c73b11bc5dc02d",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "tests/scene-renderer-test.cpp",
+      "before_sha256": "af23f181c57868a683d12864ef1ae097adbd542b5b59d1057a42ba964961fc8b",
+      "after_sha256": "3d95f2dd56d498aa051105dd6a17af2137fc692401002f71ea2cb453dbbac853",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "ad139831b82dcede3783ad5ec348bf6bff35c5d6eb8a78f8e973e7bd814947c5",
+      "after_sha256": "3e9a4af699fef9dc42f3d362eb47706b4aeff4248f2fa87f0c055bf6ec6ece96",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    },
+    {
+      "commit": "884d263763d57e82e0940bc947495db0770f7497",
+      "parent": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "path": "tools/test-public-resident-fixtures.py",
+      "before_sha256": "1d1bd0dd4786c4ca4f72e007fd50ac0a5521c7b0a4fb992892c20e343e9e6260",
+      "after_sha256": "4e070301059efb3644d1b7e41f7d8a55ad6b40d7e43025fb24ec4340bd9aab34",
+      "matching_review": "public-resident-shadow-and-linked-provenance-20261011"
+    }
+  ],
+  "unresolved_gaps": []
+}
