@@ -25268,7 +25268,8 @@
       "original": [],
       "documents": [
         "research/runtime/native-campaign-extended-gameplay.md",
-        "research/runtime/native-resident-dialogue-owned-oracles-20261011.json"
+        "research/runtime/native-resident-dialogue-owned-oracles-20261011.json",
+        "research/runtime/public-resident-campaign-complete-20261011.json"
       ],
       "implementation": [
         "tools/campaign-combat-input.py"
@@ -25282,13 +25283,14 @@
         "HOST.native-campaign.adept-ranged-negative-20261010",
         "HOST.native-campaign.normal-quit-passed-20261010",
         "HOST.native-campaign.adept-party-defeat-20261010",
-        "HOST.native-campaign-dialogue-readiness.resident-owned-oracles-20261011"
+        "HOST.native-campaign-dialogue-readiness.resident-owned-oracles-20261011",
+        "HOST.native-campaign-dialogue-readiness.resident-campaign-complete-20261011"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       },
       "validation_dependencies": [
@@ -37605,7 +37607,7 @@
       "kind": "native_policy",
       "title": "Resident World import into public command composition",
       "scope": "Ordered resident V4 World import and masked post-World RGB565 CPU UI deltas, strict generation/nonce/destination admission and terminal provider handling. Public frontend consumes owned batches with zero pixel reply and independently verifies original returns before reuse. Pinned scene adapter binds the current-thread full Lock after page-guard restoration. Public campaign casting/combat/portrait/menu transitions and performance validation pending; arbitrary HUD destination reads, original pixel/driver equivalence and60FPS remain excluded. Additive545c10 is an ordered native World primitive with pinned wrapper return bytes/low16 AX0; background secondary-surface captures are bounded and deferred outside World traversal. Fresh execution for these branches pending. Owned colour rectangle547d80 via pinned54ab72 return is limited to64x64 canonical RGB565 channels/modes0..3; live validation pending. Public V3 prefixes select the existing owned four-orientation minimap metadata/terrain contract; historical unmarked V3 terrain remains orientation0. Resident World discards CPU validity once per complete canvas at entry and executes native World requests only onGPU; subsequent CPU-dependent reads still refuse, GPU copies preserve native ownership. Fresh validation pending.",
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "original": [],
       "implementation": [
         "protocols/include/mnm/render_stream_v4.h",
@@ -37682,7 +37684,9 @@
         "research/runtime/public-resident-cpu-profile-20261011.json",
         "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json",
         "research/runtime/public-resident-render-provenance-negative-20261011.json",
-        "research/runtime/public-resident-combat-placement-negative-20261011.json"
+        "research/runtime/public-resident-combat-placement-negative-20261011.json",
+        "research/runtime/public-resident-complete-window-negative-20261011.json",
+        "research/runtime/public-resident-campaign-complete-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37722,13 +37726,15 @@
         "NR.public-resident-world.profile-quit-negative-20261011",
         "NR.public-resident-world.minimap-shutdown-fixtures-20261011",
         "NR.public-resident-world.render-provenance-negative-20261011",
-        "NR.public-resident-world.combat-placement-negative-20261011"
+        "NR.public-resident-world.combat-placement-negative-20261011",
+        "NR.public-resident-world.complete-window-negative-20261011",
+        "NR.public-resident-world.resident-campaign-complete-20261011"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     },
@@ -37738,7 +37744,7 @@
       "kind": "native_policy",
       "title": "Guarded World owner permission-query epoch",
       "scope": "Opt-in public resident capture caches at most64 committed readable VirtualQuery region answers only on the original World owner thread between successful NOACCESS guard installation and restoration. New World/launch resets all proofs, background threads and nonresident routes query freshly, unknown/guarded/uncommitted/overflowing answers are not cached. Every caller signature, frame header and source/palette byte is still checked/copied on each request; content identities are never trusted by address. This is an intentional permission policy, not recovered original validation: external permission changes within a guarded World epoch are excluded, original frame byte/pixel equivalence and live throughput remain pending.",
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "original": [],
       "implementation": [
         "runtime/scene/world_source_regions.h",
@@ -37754,7 +37760,8 @@
         "research/runtime/public-resident-world.md",
         "research/runtime/public-resident-region-epoch-fixtures-20261011.json",
         "research/runtime/public-resident-region-epoch-tutorial-failure-20261011.json",
-        "research/runtime/public-resident-region-epoch-provenance-refusal-20261011.json"
+        "research/runtime/public-resident-region-epoch-provenance-refusal-20261011.json",
+        "research/runtime/public-resident-campaign-complete-20261011.json"
       ],
       "validation_dependencies": [
         "runtime/scene/readable_extent.h",
@@ -37764,13 +37771,14 @@
       "evidence": [
         "NR.world-source-region-epoch.fixtures-20261011",
         "NR.world-source-region-epoch.tutorial-failure-20261011",
-        "NR.world-source-region-epoch.shadow-failure-20261011"
+        "NR.world-source-region-epoch.shadow-failure-20261011",
+        "NR.world-source-region-epoch.resident-campaign-complete-20261011"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "none",
+        "integration": "live_observation",
         "replacement": "none"
       }
     },
@@ -37916,17 +37924,19 @@
       "documents": [
         "research/runtime/public-resident-world.md",
         "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json",
-        "research/runtime/public-resident-render-provenance-negative-20261011.json"
+        "research/runtime/public-resident-render-provenance-negative-20261011.json",
+        "research/runtime/public-resident-campaign-complete-20261011.json"
       ],
       "evidence": [
         "NR.minimap-write-candidates.minimap-shutdown-fixtures-20261011",
-        "NR.public-resident-world.render-provenance-negative-20261011"
+        "NR.public-resident-world.render-provenance-negative-20261011",
+        "NR.minimap-write-candidates.resident-campaign-complete-20261011"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       }
     },
@@ -37963,17 +37973,19 @@
         "research/runtime/public-resident-world.md",
         "research/runtime/public-resident-candidates-quit-fixture-role-refusal-20261011.json",
         "research/runtime/public-resident-minimap-shutdown-fixtures-20261011.json",
-        "research/runtime/public-resident-render-provenance-negative-20261011.json"
+        "research/runtime/public-resident-render-provenance-negative-20261011.json",
+        "research/runtime/public-resident-campaign-complete-20261011.json"
       ],
       "evidence": [
         "NR.resident-normal-shutdown.minimap-shutdown-fixtures-20261011",
-        "NR.public-resident-world.render-provenance-negative-20261011"
+        "NR.public-resident-world.render-provenance-negative-20261011",
+        "NR.resident-normal-shutdown.resident-campaign-complete-20261011"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       }
     }
@@ -76865,6 +76877,280 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "NR.public-resident-world.complete-window-negative-20261011",
+      "kind": "live_observation",
+      "scope": "Corrected combat journey completes casting,Fireball,Zombie melee and party lethal,blocked casts,5portrait cycles,Mini/resume/normal Quit and4574balanced GPUreturns/19.1442aggregate engineFPS with realDDraw absent/noWorld readbacks. Complete test refuses intro cycle0 window1.256s/1frame,below9.5FPS worst-window floor. No completed performance/integration promotion.",
+      "record": "research/runtime/public-resident-complete-window-negative-20261011.json",
+      "sha256": "ca97ffff5b8ef6d035e2c5b1a847c33f270ce5ac615fd289f7dad9310b2eac28",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.resident-campaign-complete-20261011",
+      "kind": "live_observation",
+      "scope": "Fresh private TITAN complete resident campaign: casting,original Fireball damage,Zombie melee/party lethal,invalid-target/insufficient-mana refusals,5portrait cycles,physical movement,Mini Cancel/resume,Quit No/Yes/Main and clean original exit. Aggregate engine19.3897FPS and unchanged phase/portrait/worst-window gates pass; balanced GPU deliveries,zero World/native/RGBA delivery readbacks and realDirectDraw absent. Native live observation within this journey only; earlier long-tail failures remain, no universal latency,full World/UI/driver equivalence,60FPS or replacement claim.",
+      "record": "research/runtime/public-resident-campaign-complete-20261011.json",
+      "sha256": "58a60ed6151184374a01dbed57aa8e70334b22ca9871b1d3fee4029598e2da85",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.world-source-region-epoch.resident-campaign-complete-20261011",
+      "kind": "live_observation",
+      "scope": "Fresh private TITAN complete resident campaign: casting,original Fireball damage,Zombie melee/party lethal,invalid-target/insufficient-mana refusals,5portrait cycles,physical movement,Mini Cancel/resume,Quit No/Yes/Main and clean original exit. Aggregate engine19.3897FPS and unchanged phase/portrait/worst-window gates pass; balanced GPU deliveries,zero World/native/RGBA delivery readbacks and realDirectDraw absent. Native live observation within this journey only; earlier long-tail failures remain, no universal latency,full World/UI/driver equivalence,60FPS or replacement claim.",
+      "record": "research/runtime/public-resident-campaign-complete-20261011.json",
+      "sha256": "58a60ed6151184374a01dbed57aa8e70334b22ca9871b1d3fee4029598e2da85",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.minimap-write-candidates.resident-campaign-complete-20261011",
+      "kind": "live_observation",
+      "scope": "Fresh private TITAN complete resident campaign: casting,original Fireball damage,Zombie melee/party lethal,invalid-target/insufficient-mana refusals,5portrait cycles,physical movement,Mini Cancel/resume,Quit No/Yes/Main and clean original exit. Aggregate engine19.3897FPS and unchanged phase/portrait/worst-window gates pass; balanced GPU deliveries,zero World/native/RGBA delivery readbacks and realDirectDraw absent. Native live observation within this journey only; earlier long-tail failures remain, no universal latency,full World/UI/driver equivalence,60FPS or replacement claim.",
+      "record": "research/runtime/public-resident-campaign-complete-20261011.json",
+      "sha256": "58a60ed6151184374a01dbed57aa8e70334b22ca9871b1d3fee4029598e2da85",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.resident-normal-shutdown.resident-campaign-complete-20261011",
+      "kind": "live_observation",
+      "scope": "Fresh private TITAN complete resident campaign: casting,original Fireball damage,Zombie melee/party lethal,invalid-target/insufficient-mana refusals,5portrait cycles,physical movement,Mini Cancel/resume,Quit No/Yes/Main and clean original exit. Aggregate engine19.3897FPS and unchanged phase/portrait/worst-window gates pass; balanced GPU deliveries,zero World/native/RGBA delivery readbacks and realDirectDraw absent. Native live observation within this journey only; earlier long-tail failures remain, no universal latency,full World/UI/driver equivalence,60FPS or replacement claim.",
+      "record": "research/runtime/public-resident-campaign-complete-20261011.json",
+      "sha256": "58a60ed6151184374a01dbed57aa8e70334b22ca9871b1d3fee4029598e2da85",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "HOST.native-campaign-dialogue-readiness.resident-campaign-complete-20261011",
+      "kind": "live_observation",
+      "scope": "Fresh private TITAN complete resident campaign: casting,original Fireball damage,Zombie melee/party lethal,invalid-target/insufficient-mana refusals,5portrait cycles,physical movement,Mini Cancel/resume,Quit No/Yes/Main and clean original exit. Aggregate engine19.3897FPS and unchanged phase/portrait/worst-window gates pass; balanced GPU deliveries,zero World/native/RGBA delivery readbacks and realDirectDraw absent. Native live observation within this journey only; earlier long-tail failures remain, no universal latency,full World/UI/driver equivalence,60FPS or replacement claim.",
+      "record": "research/runtime/public-resident-campaign-complete-20261011.json",
+      "sha256": "58a60ed6151184374a01dbed57aa8e70334b22ca9871b1d3fee4029598e2da85",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_world/normal_quit_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -85323,7 +85609,13 @@
         "NR.public-resident-world.retreat-edge-negative-20261011",
         "NR.public-resident-world.profile-quit-negative-20261011",
         "NR.public-resident-world.render-provenance-negative-20261011",
-        "NR.public-resident-world.combat-placement-negative-20261011"
+        "NR.public-resident-world.combat-placement-negative-20261011",
+        "NR.public-resident-world.complete-window-negative-20261011",
+        "NR.public-resident-world.resident-campaign-complete-20261011",
+        "NR.world-source-region-epoch.resident-campaign-complete-20261011",
+        "NR.minimap-write-candidates.resident-campaign-complete-20261011",
+        "NR.resident-normal-shutdown.resident-campaign-complete-20261011",
+        "HOST.native-campaign-dialogue-readiness.resident-campaign-complete-20261011"
       ]
     },
     {
@@ -85740,8 +86032,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-resident-combat-placement-20261011.json",
-    "sha256": "6c9dfb8991d5680c5c01996d165ae6afa6fa0e183ec5fc79e8b20232bcebb9fb"
+    "path": "research/runtime/coverage/source-index-resident-campaign-complete-20261011.json",
+    "sha256": "1c9318d6d4d4e2d199ad44a12995efbfa4097e37d9d820f20b7bd090bf16fbd7"
   },
   "claim_bindings_required": true
 }
