@@ -4670,3 +4670,24 @@ all14scenario/four dispatch closures remain pending. Older evidence fingerprints
 are preserved. History `defa681..a69697f` has17exact file/11behavior receipt matches
 with no missing intermediate versions, separate from this uncommitted increment.
 See [V2 evidence and limits](draw01-graphics-api-boundaries.md).
+
+
+DRAW-01 exact client layouts/borrows (2026-10-11): contract revision2 adds141
+reviewed DirectDraw/Surface2/clipper CALL layouts while excluding20reload
+callbacks and preserving legacy revision1 V2 decoding.68fresh guards and26real
+PE32 cases pass. Original movie-enabled API-only run `run-12h9dfva` closes4559
+pairs/53sites, stable sources/metadata, core absent and exit0.42interface-output
+observations/40client Releases and one successful DC interval are retained;
+1992CPU-overlap,8unobserved/alias Unlock-origin and9Release-with-open-borrow gaps,
+plus5terminal open intervals remain explicit. The first false DDSD_LPSURFACE
+output prerequisite and its original report hashes are preserved separately.
+Successful Lock returns a pointer with flags100f. Full-code static review finds
+70offset128candidates; their independent receiver/alias review and expanded
+coverage are next. Complete writers, resource ownership/failures and14scenario/
+four dispatch closure remain pending. History a69697f..2a1885c has28file/20behavior
+exact matches with no missing versions. See [evidence/limits](draw01-graphics-api-boundaries.md).
+
+The141site layout review retains22unanchored CALL locations explicitly; no
+binary function or recovered-range expansion is asserted. The earlier passing
+26body ABI declaration used an unsupported scenario level; its hash-bound
+limitation and the separately declared/rerun final ABI remain distinct.

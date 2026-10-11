@@ -311,3 +311,56 @@ core/API and API-only static plans. Capture also freezes staged build metadata;
 a changed manifest invalidates success. The common pair validator retains V1
 rules; the two prior closed V1 menu/movie journals were re-decoded with identical
 JSON projections. This offline parity check supplies no new original execution.
+
+
+## Exact graphics client layouts and partial borrow accounting, 2026-10-11
+
+Contract revision2 adds141 exact byte-bound client layouts from reviewed original
+receiver/global/stack flows. Setup's DirectDraw globals, canvas Surface2 at+8 and
+clipper global6f98d0 remain distinct from20 offset-zero reload callbacks. These
+callbacks stay unreviewed and are not QueryInterface calls. Fixed descriptors,
+DC outputs, clipper HWNDs, color keys, rectangles and DDBLTFX bytes now supplement
+the earlier import/movie layouts. Revision1 remains available for retained V2
+journals: expanding a review never changes an older capture's formal declaration.
+The [layout record](drawing-surface-api-layouts-20261011.json) names every exact
+CALL, signature, scope, receiver evidence and primary SDK fingerprint. It does
+not identify an external callee implementation or recover a complete function.
+
+The interval checker admits only successful, readable selected client borrows.
+Failed acquisitions/releases cannot create or close a lease, wrong ReleaseDC
+handles stay open, overlapping successful acquisitions remain unresolved, and
+Release observations never assert unique ownership or destruction. Interface
+output snapshots remain raw on failure. A successful original Lock returns a
+nonnull descriptor pointer at word9 with flags100f: DDSD_LPSURFACE is not an output
+prerequisite. The first incorrect flag check, its completed source-stable original
+journal and its hash-bound [limitation](drawing-surface-api-lock-flag-limitation-20261011.json)
+are preserved. The corrected68guard/26body/original results use new declarations.
+
+Fresh `run-12h9dfva` closes4559API pairs at53sites, zero journal loss/open/IO,
+normal original exit0, stable sources/metadata/binaries and absent core. It
+records42interface-output observations and40client Releases. One successful
+GetDC/ReleaseDC interval closes. CPU accounting deliberately retains1992overlap
+observations,8unobserved/alias Unlock origins,9Release-with-open-borrow gaps and
+5terminal open client intervals. Those counts diagnose incomplete selected
+boundaries; they do not indicate a closed CPU lifetime census. The final Main
+screenshot was viewed. The independent full-code review finds70offset128 CALL
+candidates, including CPU writers outside the selected graphics ranges; exact
+receiver/type and Surface/Surface2 alias review are required before admitting
+these as Unlocks. Pixel/DC ownership, writes, failures/recovery, caller and all14
+scenario/four dispatch closures remain pending.
+
+Evidence: [68guards](drawing-surface-api-reviewed-guards-20261011.json),
+[26real PE32 cases](drawing-surface-api-final-abi-20261011.json) and
+[original selected client journal](drawing-surface-api-movies-20261011.json).
+The former67guard report and pre-flag original report retain their historical
+source fingerprints and explicit analysis limitation. The a69697f..2a1885c
+committed range has28file/20behavior exact receipts with zero missing versions.
+
+
+Twenty-two reviewed client CALLs in undiscovered graphics/WORD ranges remain
+explicit unanchored sites in the register's validation domain. Their exact bytes
+remain documented; no nearest function or expanded historical16-byte exception
+is substituted. The first surface-ABI declaration used an unsupported scenario
+level despite passing execution. Its report is preserved with
+`drawing-surface-api-abi-declaration-limit-20261011.json`; the final successor
+reran with a new declaration under the supported headless level.

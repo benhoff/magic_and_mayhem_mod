@@ -13,11 +13,12 @@ MAX_RECORDS=1048576
 class Details:
     def __init__(self,manifest):
         if type(manifest.get('synthetic_fixture',False)) is not bool:raise ValueError('V2 synthetic namespace flag must be boolean')
+        if type(manifest.get('contract_revision',1)) is not int or manifest.get('contract_revision',1) not in (1,2):raise ValueError('V2 contract revision invalid')
         self.hooks={row['tag']:row for row in manifest['hooks']};self.frames={}
         self.layouts=Counter();self.buffers=Counter();self.receiver_calls=0
         for hook in self.hooks.values():
             validate(hook['details'])
-            if not manifest.get('synthetic_fixture',False) and hook['details']!=contract(hook):
+            if not manifest.get('synthetic_fixture',False) and hook['details']!=contract(hook,manifest.get('contract_revision',1)):
                 raise ValueError('V2 metadata differs from reviewed exact CALL contract')
 
     def accept(self,row):
