@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources_stable": true,
+  "sources": {
+    "protocols/include/mnm/drawing_census_bindings_v1.h": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-inventory.json": "a89137b0b7d218b4db57712444082e5187e98d5efba56914625d99436f1b08d4",
+    "runtime/drawing-census/entry.S": "44f19762a5232669ddd22633cde8a19072fe43f11f0dabb929149c36a256de1e",
+    "runtime/drawing-census/observer.c": "1b6f3b1b267c62b6c6762db8750dc6602d4c88bcd985637fdf2dc759b837b7d7",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tests/drawing-census-abi.c": "9d950cee41a53318b7c92d2f2ae33be5afe11d9490e674f05e895a46930a97b7",
+    "tests/test-drawing-census-bindings.py": "57a5371ba8b2392dea0d263a4c1b8ac02059aae9f43b522886d52b4bf837ba82",
+    "tests/test-drawing-census-build.py": "21450df88d773dc04d5cc43e44d5315ca27534a6631b00f6f43d617b94b4be5e",
+    "tests/test-drawing-census-trace.py": "70cca9c032b480314684046df00a6987cc538260ea5c87960283f4b56725c92c",
+    "tools/build-drawing-census.py": "6cea420d0324aed0f74f933552829d5541c35a33b190ad55989b12b97c5f950b",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/capture-drawing-census-game.py": "0d119bfa303495f554cdfa94293e01e3e2a93b798203002db4d1544cbb54a58a",
+    "tools/drawing-census-game-runner.py": "60678fe5c79c815337234ec8bb626efb296e01ce36da6ac672cef09ab786d9eb",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_census_bindings.py": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/prepare-drawing-census.py": "9efc0b162a4f2eea19d05110fbff18a13a7ea0d488eb4c2c8a6d9b88fee535f9",
+    "tools/prepare-scene-observer.py": "fb28af7a20f861ff91f18bd4ece59365af607b3a33c7a41c03d67133743c6184",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/run-opengl-game.py": "1f93ba28de3b5bd062ab256ffb8ce6fb99d4c1814f986d8cbbb533799135548c",
+    "tools/test-drawing-census-abi.py": "305a362da8c9d8d0a9c8d78dad409a0b98b0d62aacbe657bbac513982baa676e"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-core-bindings",
+      "contract_sha256": "82f066ecd39cb5e38de6ff0d9ae435beb0346c3df9f40fc21b71de6dd2e695f9",
+      "scenarios": {
+        "drawing-core-bindings-guards-20261011": "a332cf3223c86689b4d8f6fadc11d1aa9eab0be5e1f076713ede0e98f6902df8",
+        "drawing-core-bindings-abi-20261011": "18d2aa3bfaf8b42868f698edb3b379df5187d7665a75ad8e91fda5b3d987c390",
+        "drawing-core-bindings-original-menu-20261011": "b3fd3cd6010a3cd44ab862ee1ee21fb26e93a278628796e4a8c1c9b69f53e3c2"
+      }
+    },
+    {
+      "behavior": "DRAW.census.call-journal",
+      "contract_sha256": "8ddda6e5626a8ce1852cdd72b286208d489b9bbc3a234b110b48d786580cdf87",
+      "scenarios": {
+        "drawing-core-bindings-abi-20261011": "18d2aa3bfaf8b42868f698edb3b379df5187d7665a75ad8e91fda5b3d987c390",
+        "drawing-core-bindings-original-menu-20261011": "b3fd3cd6010a3cd44ab862ee1ee21fb26e93a278628796e4a8c1c9b69f53e3c2"
+      }
+    }
+  ],
+  "binding_guards": 13,
+  "related_guards": 24,
+  "original_renderer_executed": false,
+  "artifacts": {
+    "working/tests/draw01-core-bindings-guards-20261011.log": {
+      "sha256": "f41f027eb8de778295ce32988da832be6619310d72b84bd0c842ca544e1496d2",
+      "bytes": 112
+    },
+    "working/tests/draw01-core-bindings-build-guards-20261011.log": {
+      "sha256": "33060fd73862c5e1af97335504d5b45211fce6d229657f556d8deceeadc52ce4",
+      "bytes": 101
+    },
+    "working/tests/draw01-core-bindings-trace-guards-20261011.log": {
+      "sha256": "60bb849356ffbc091f601e17fc6ae0b2eb5e26d734d433da020c6e775efbf97f",
+      "bytes": 106
+    },
+    "working/tests/draw01-core-bindings-caller-guards-20261011.log": {
+      "sha256": "c6b9b1f09add0403cc07e90bfdf272129b1ddfa2f8f7675ea8218862f2516371",
+      "bytes": 104
+    },
+    "working/tests/draw01-core-bindings-cohort-guards-20261011.log": {
+      "sha256": "fe836cbecd3b6b4f70bec51b58d30c3e45ad72ae7fb3cb63421a0f7337e651ae",
+      "bytes": 105
+    }
+  },
+  "scope": "Offline synthetic exact binding admission, relocation and nonsemantic physical classification. Related core build/trace/caller and cohort guards retained; no original instructions/API lifetimes/scenario closure."
+}

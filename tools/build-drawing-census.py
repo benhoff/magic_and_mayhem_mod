@@ -101,7 +101,7 @@ def build(executable):
     rows, refused = hook_rows(executable)
     output = ROOT / 'working/build/drawing-census'; output.mkdir(parents=True, exist_ok=True)
     imports = dict(load('census_imports', 'tools/build-shadow-bridge.py').IMPORTS,
-                   GetCurrentThreadId=0, GetTickCount=0, Sleep=4, CreateFileMappingA=24,
+                   GetProcAddress=8, GetCurrentThreadId=0, GetTickCount=0, Sleep=4, CreateFileMappingA=24,
                    MapViewOfFile=20, UnmapViewOfFile=4)
     definition = output / 'kernel32.def'
     definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n' + ''.join(f'{name}@{size}\n' for name, size in imports.items()))
@@ -135,7 +135,7 @@ def build(executable):
     paths = ['tools/build-drawing-census.py', 'tools/drawing_census.py', 'tools/build-shadow-bridge.py',
              'tools/export-menu-support.py', 'runtime/drawing-census/observer.c', 'runtime/drawing-census/entry.S',
              'runtime/shadow/win32_min.h', 'runtime/scene/canvas_producers.c',
-             'protocols/include/mnm/drawing_census_v1.h', 'research/runtime/drawing-inventory.json',
+             'protocols/include/mnm/drawing_census_v1.h', 'protocols/include/mnm/drawing_census_bindings_v1.h', 'research/runtime/drawing-inventory.json',
              'research/runtime/coverage/binary-nocd.json']
     report = {'schema': 1, 'original_sha256': BUILD_SHA256, 'dll_sha256': hashlib.sha256(dll.read_bytes()).hexdigest(),
               'named_leave_export_checked': True,

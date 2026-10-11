@@ -9,7 +9,8 @@ import re
 from pathlib import Path
 import subprocess
 import tempfile
-from drawing_census import ROOT
+from drawing_census import ROOT, BUILD_SHA256
+from drawing_census_bindings import decode as decode_bindings
 
 
 def main():
@@ -22,7 +23,8 @@ def main():
     paths = ['tools/test-drawing-census-abi.py', 'tests/drawing-census-abi.c', 'tests/canvas-startup-call.S',
              'runtime/drawing-census/entry.S', 'runtime/drawing-census/observer.c',
              'runtime/shadow/win32_min.h', 'protocols/include/mnm/drawing_census_v1.h',
-             'tools/build-menu-observer.py']
+             'tools/build-menu-observer.py', 'tools/drawing_census_bindings.py',
+             'protocols/include/mnm/drawing_census_bindings_v1.h']
     sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}
     claims = json.loads(args.claims.read_text()) if args.claims else None
     if claims:
@@ -30,11 +32,11 @@ def main():
             if hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != digest: raise ValueError('Changed declaration source: ' + p)
             sources[p] = digest
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
-    env.update(WINEPREFIX=str(out / 'wineprefix'), WINEDEBUG='-all', WINEDLLOVERRIDES='mscoree,mshtml=d')
+    env.update(WINEPREFIX=str(out / 'wineprefix'), WINEDEBUG='-all', WINEDLLOVERRIDES='mscoree,mshtml=d', MNM_CORE_BINDINGS_TEST_DIR='Z:'+str(out).replace('/','\\'))
     spec = importlib.util.spec_from_file_location('abi_imports', ROOT / 'tools/build-menu-observer.py')
     module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
     (out / 'kernel32.def').write_text('LIBRARY KERNEL32.dll\nEXPORTS\n' + ''.join(
-        '%s@%d\n' % item for item in module.IMPORTS.items()))
+        '%s@%d\n' % item for item in dict(module.IMPORTS, GetProcAddress=8).items()))
     def run(name, command, seconds=90):
         with (out / (name + '.log')).open('x') as log:
             subprocess.run([str(v) for v in command], env=env, stdout=log, stderr=subprocess.STDOUT,
@@ -43,11 +45,17 @@ def main():
                     '-l', out / 'kernel32.lib', '--kill-at'])
     declarations = ['#define CENSUS_HOOKS 9',
         'struct Hook {u32 address,length,pop,site,relocs;u8 bytes[16];u32 reloc[3];void(*entry)(void);};',
-        'static const u8 original_sha256[32]={0};']
+        'static const u8 original_sha256[32]={'+','.join(str(v) for v in bytes.fromhex(BUILD_SHA256))+'};']
     declarations += ['extern void census_enter_%d(void);' % tag for tag in range(9)]
+    hooks=[]
+    for tag,pop in enumerate([0,4,8,12,20,24,0,8,16]):
+        entry=0x500100+tag*0x100
+        signature=bytes([0xe8 if tag==0 else 0xe9])+((0x500900-entry-5)&0xffffffff).to_bytes(4,'little') if tag<2 else b'\x90'*5
+        hooks.append({'tag':tag,'entry':entry,'length':5,'pop':pop,'site':tag==6,'signature':signature.hex(),'relocations':[0] if tag<2 else []})
     declarations += ['static const struct Hook hooks[9]={'] + [
-        '{%d,5,%d,%d,0,{0},{0},census_enter_%d},' % (0x500100 + tag * 0x100, pop, tag == 6, tag)
-        for tag, pop in enumerate([0, 4, 8, 12, 20, 24, 8, 8, 16])] + ['};']
+        '{%d,5,%d,%d,%d,{%s},{0},census_enter_%d},' % (r['entry'],r['pop'],r['site'],len(r['relocations']),','.join(str(v) for v in bytes.fromhex(r['signature'])),r['tag']) for r in hooks] + ['};']
+    binding_manifest={'schema':1,'original_sha256':BUILD_SHA256,'hooks':hooks}
+    (out/'binding-manifest.json').write_text(json.dumps(binding_manifest,indent=2)+'\n')
     (out / 'hooks.inc').write_text('\n'.join(declarations) + '\n')
     (out / 'entry.S').write_text((ROOT / 'runtime/drawing-census/entry.S').read_text() + '\n' +
                                 '\n'.join('census_entry %d' % tag for tag in range(9)) + '\n')
@@ -66,6 +74,9 @@ def main():
     run('prefix-copy', ['cp', '-a', '--reflink=auto', args.prefix_template.resolve(), out / 'wineprefix'])
     run('forwarding', ['xvfb-run', '-a', 'wine', out / 'fixture.exe'])
     run('stop-prefix', ['wineserver', '-k'], 10)
+    bindings=decode_bindings(out/'core-bindings.bin',binding_manifest)
+    (out/'core-bindings.json').write_text(json.dumps(bindings,indent=2)+'\n')
+    if len(bindings['hooks'][0]['relocated_calls'])!=1 or bindings['hooks'][1]['relocated_calls']:raise ValueError('Native E8/E9 binding round trip mismatch')
     if sources != {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in sources}:
         raise ValueError('ABI sources changed during execution')
     report = {'schema': 1, 'success': True, 'sources': sources, 'sources_stable': True,
@@ -73,6 +84,8 @@ def main():
               'same_stack_tail_unwind': True, 'interior_no_return_slot_change': True,
               'invalid_host_phase_refused': True,
               'named_leave_export_checked': True,
+              'actual_core_binding_writer_decoder_round_trip': True, 'core_binding_hooks':len(bindings['hooks']),
+              'core_binding_sha256':bindings['sha256'], 'exact_relocated_e8_and_noncall_e9':True,
               'frame_exhaustion_forwards_and_records_loss': True, 'original_renderer_executed': False}
     if claims: report['claims'] = claims['claims']
     (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n')

@@ -1,0 +1,162 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/test-drawing-census-abi.py": "305a362da8c9d8d0a9c8d78dad409a0b98b0d62aacbe657bbac513982baa676e",
+    "tests/drawing-census-abi.c": "9d950cee41a53318b7c92d2f2ae33be5afe11d9490e674f05e895a46930a97b7",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "runtime/drawing-census/entry.S": "44f19762a5232669ddd22633cde8a19072fe43f11f0dabb929149c36a256de1e",
+    "runtime/drawing-census/observer.c": "1b6f3b1b267c62b6c6762db8750dc6602d4c88bcd985637fdf2dc759b837b7d7",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/drawing_census_bindings.py": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+    "protocols/include/mnm/drawing_census_bindings_v1.h": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-inventory.json": "a89137b0b7d218b4db57712444082e5187e98d5efba56914625d99436f1b08d4",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "tests/test-drawing-census-bindings.py": "57a5371ba8b2392dea0d263a4c1b8ac02059aae9f43b522886d52b4bf837ba82",
+    "tests/test-drawing-census-build.py": "21450df88d773dc04d5cc43e44d5315ca27534a6631b00f6f43d617b94b4be5e",
+    "tests/test-drawing-census-trace.py": "70cca9c032b480314684046df00a6987cc538260ea5c87960283f4b56725c92c",
+    "tools/build-drawing-census.py": "6cea420d0324aed0f74f933552829d5541c35a33b190ad55989b12b97c5f950b",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/capture-drawing-census-game.py": "0d119bfa303495f554cdfa94293e01e3e2a93b798203002db4d1544cbb54a58a",
+    "tools/drawing-census-game-runner.py": "60678fe5c79c815337234ec8bb626efb296e01ce36da6ac672cef09ab786d9eb",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/prepare-drawing-census.py": "9efc0b162a4f2eea19d05110fbff18a13a7ea0d488eb4c2c8a6d9b88fee535f9",
+    "tools/prepare-scene-observer.py": "fb28af7a20f861ff91f18bd4ece59365af607b3a33c7a41c03d67133743c6184",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/run-opengl-game.py": "1f93ba28de3b5bd062ab256ffb8ce6fb99d4c1814f986d8cbbb533799135548c"
+  },
+  "sources_stable": true,
+  "callee_pop_bytes": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24
+  ],
+  "register_flags_x87_sse_last_error_preserved": true,
+  "same_stack_tail_unwind": true,
+  "interior_no_return_slot_change": true,
+  "invalid_host_phase_refused": true,
+  "named_leave_export_checked": true,
+  "actual_core_binding_writer_decoder_round_trip": true,
+  "core_binding_hooks": 9,
+  "core_binding_sha256": "b6efb3e6ec15b78c8f178b294d28dee35cd0434c96718436f94e3cb66dec4a67",
+  "exact_relocated_e8_and_noncall_e9": true,
+  "frame_exhaustion_forwards_and_records_loss": true,
+  "original_renderer_executed": false,
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-core-bindings",
+      "contract_sha256": "82f066ecd39cb5e38de6ff0d9ae435beb0346c3df9f40fc21b71de6dd2e695f9",
+      "scenarios": {
+        "drawing-core-bindings-guards-20261011": "a332cf3223c86689b4d8f6fadc11d1aa9eab0be5e1f076713ede0e98f6902df8",
+        "drawing-core-bindings-abi-20261011": "18d2aa3bfaf8b42868f698edb3b379df5187d7665a75ad8e91fda5b3d987c390",
+        "drawing-core-bindings-original-menu-20261011": "b3fd3cd6010a3cd44ab862ee1ee21fb26e93a278628796e4a8c1c9b69f53e3c2"
+      }
+    },
+    {
+      "behavior": "DRAW.census.call-journal",
+      "contract_sha256": "8ddda6e5626a8ce1852cdd72b286208d489b9bbc3a234b110b48d786580cdf87",
+      "scenarios": {
+        "drawing-core-bindings-abi-20261011": "18d2aa3bfaf8b42868f698edb3b379df5187d7665a75ad8e91fda5b3d987c390",
+        "drawing-core-bindings-original-menu-20261011": "b3fd3cd6010a3cd44ab862ee1ee21fb26e93a278628796e4a8c1c9b69f53e3c2"
+      }
+    }
+  ],
+  "artifacts": {
+    "working/tests/drawing-census-abi/run-vswm1kwz/report.json": {
+      "sha256": "cd01e24e5a0d3ce198b7a019dfec962219f8f953f2e8481638f845f6ce58162d",
+      "bytes": 4476
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/core-bindings.json": {
+      "sha256": "8f37bd5e8771093ee53b00e92b7fd9d433172a62c65b275930ca38db5cbf0bc5",
+      "bytes": 2757
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/stop-prefix.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/core-bindings.bin": {
+      "sha256": "b6efb3e6ec15b78c8f178b294d28dee35cd0434c96718436f94e3cb66dec4a67",
+      "bytes": 1056
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/forwarding.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/prefix-copy.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/export-table.txt": {
+      "sha256": "bd7b3aa43c380f1a2a17e8730a6faca0317e701e12e387a04bd11f0c9653bdf3",
+      "bytes": 17437
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/fixture.exe": {
+      "sha256": "8b0fba29d7d77edb4270a04395320f55eabb4450e6dbb336a64d50d67534dc00",
+      "bytes": 12800
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/fixture.lib": {
+      "sha256": "d8c7b70d103b03b0add7f77a674f9be91b9b28efcc148bbf38e8fbf21a3aadc6",
+      "bytes": 1576
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/link.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/part2.obj": {
+      "sha256": "223e45aca97d78545dd6b522ba44201d1d8ac8f265821684000951bf31e9426d",
+      "bytes": 1325
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/compile2.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/part1.obj": {
+      "sha256": "3d0c824c43e4ba34f7503ff8cb86c3f5389b9e1e5edc3ae79a100aa9a570b938",
+      "bytes": 440
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/compile1.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/part0.obj": {
+      "sha256": "e00491bc35e372ee973e8a98a51ddd27f182a3a3ce17213c7fce1938ea072012",
+      "bytes": 15526
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/compile0.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/entry.S": {
+      "sha256": "9009b2b6301354df1d4263c3b7e73827b871c8ede2f79ab463e7023e5ebcc9bd",
+      "bytes": 875
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/hooks.inc": {
+      "sha256": "ac088df084d50164be4118203722f7ee7f671552a461e33f73df8e0e189c6389",
+      "bytes": 1149
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/binding-manifest.json": {
+      "sha256": "930d1f50644a8fb861b0a2f167beb23b342fefcd9028a0be607fb1e7953f20cd",
+      "bytes": 1655
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/kernel32.lib": {
+      "sha256": "da3591ffc185292874c35025f7c4778ed5be75ef7ab9bd5d456414fea4a87d75",
+      "bytes": 5620
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/imports.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "working/tests/drawing-census-abi/run-vswm1kwz/kernel32.def": {
+      "sha256": "46fafa8808eba6fd90b08d4886abab54093d4bdfcf916fb5a81b478e6d6cbd08",
+      "bytes": 388
+    }
+  }
+}

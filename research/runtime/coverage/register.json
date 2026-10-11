@@ -31086,7 +31086,7 @@
       "subsystem": "drawing_inventory",
       "kind": "native_policy",
       "title": "Original-active drawing entry and return metadata census",
-      "scope": "Opt-in PE32 metadata at signature-pinned safe splices, with verified actual preferred module base, bounded buffered entry/return journal, register/flags/x87/SSE/LastError forwarding, thread and stack pairing including same-stack tail unwind, readonly host phase control, and explicit loss/open/IO refusal. Sixty legacy safe catalog sites plus seven explicitly discovered queue helper/cleanup entries and two original movie setup/sample entries; fade interior58edb0 is refused because original backedge58edde enters58edb1. Signatures are checked before patching and original bodies run. Partial installation refuses process startup; abrupt teardown/busy detach lacks a valid terminal. Metadata snapshots do not establish pixel/side-effect equivalence, exhaustive writers, lifetime/borrowed API coverage or DRAW-01 scenario closure. Dynamic DLL unload is unsupported. Explicit movie interior SITE probes require a named containing original function and do not acquire/replace a function return slot. Before-site EAX counts remain separate from paired function results. The named native census_leave export supplies exact per-run physical address identity only; no inferred original/logical caller ownership.",
+      "scope": "Opt-in PE32 metadata at signature-pinned safe splices, with verified actual preferred module base, bounded buffered entry/return journal, register/flags/x87/SSE/LastError forwarding, thread and stack pairing including same-stack tail unwind, readonly host phase control, and explicit loss/open/IO refusal. Sixty legacy safe catalog sites plus seven explicitly discovered queue helper/cleanup entries and two original movie setup/sample entries; fade interior58edb0 is refused because original backedge58edde enters58edb1. Signatures are checked before patching and original bodies run. Partial installation refuses process startup; abrupt teardown/busy detach lacks a valid terminal. Metadata snapshots do not establish pixel/side-effect equivalence, exhaustive writers, lifetime/borrowed API coverage or DRAW-01 scenario closure. Dynamic DLL unload is unsupported. Explicit movie interior SITE probes require a named containing original function and do not acquire/replace a function return slot. Before-site EAX counts remain separate from paired function results. The named native census_leave export supplies exact per-run physical address identity only; no inferred original/logical caller ownership. A separate version1 core binding sidecar records actual module/named leave and each prepared allocation with exact original/relocated prefix and continuation bytes; a closed map supplies allocation identity, not installation or logical caller proof.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31098,13 +31098,15 @@
         "protocols/include/mnm/drawing_census_v1.h",
         "tools/build-drawing-census.py",
         "tools/prepare-drawing-census.py",
-        "tools/drawing-census-game-runner.py"
+        "tools/drawing-census-game-runner.py",
+        "protocols/include/mnm/drawing_census_bindings_v1.h"
       ],
       "tests": [
         "tests/drawing-census-abi.c",
         "tools/test-drawing-census-abi.py",
         "tests/test-drawing-census-trace.py",
-        "tests/test-drawing-census-build.py"
+        "tests/test-drawing-census-build.py",
+        "tests/test-drawing-census-bindings.py"
       ],
       "validation_dependencies": [
         "tools/drawing_census.py",
@@ -31118,7 +31120,8 @@
         "tools/run-opengl-game.py",
         "runtime/scene/canvas_producers.c",
         "research/runtime/drawing-inventory.json",
-        "research/runtime/coverage/binary-nocd.json"
+        "research/runtime/coverage/binary-nocd.json",
+        "tools/drawing_census_bindings.py"
       ],
       "evidence": [
         "DRAW.census.journal-guards-20261010",
@@ -31143,7 +31146,9 @@
         "DRAW.census.named-export-abi-20261011",
         "DRAW.api-menu.observation-20261011",
         "DRAW.census.export-checked-abi-20261011",
-        "DRAW.api-breakpoint.menu-20261011"
+        "DRAW.api-breakpoint.menu-20261011",
+        "DRAW.core-bindings.abi-20261011",
+        "DRAW.core-bindings.original-menu-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -32781,6 +32786,50 @@
       "status": {
         "understanding": "partial",
         "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-core-bindings",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Exact per-run core relocation bytes and physical CALL identities",
+      "scope": "Strict independent startup binding metadata for each safe core splice: actual module size/named leave, entry stub, allocation extent, exact copied original bytes, E8/E9 relocation offsets and complete continuation bytes. Validate pinned build/schema/tag/RET/SITE/reserved/terminal fields, exact native bytes and disjoint allocations/stubs. Only relocated E8 return identities map to exact original call/return/target; E9, module membership and neighboring addresses stay unassigned. Binding closure does not prove successful hook installation, logical tail caller, original owner, side effects, API lifetime or DRAW-01 completion. Synthetic native ABI and original journals remain separate.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "tools/drawing_census_bindings.py",
+        "protocols/include/mnm/drawing_census_bindings_v1.h"
+      ],
+      "tests": [
+        "tests/test-drawing-census-bindings.py",
+        "tests/drawing-census-abi.c",
+        "tools/test-drawing-census-abi.py"
+      ],
+      "validation_dependencies": [
+        "runtime/drawing-census/observer.c",
+        "runtime/drawing-census/entry.S",
+        "runtime/shadow/win32_min.h",
+        "tools/drawing_census.py",
+        "tools/build-drawing-census.py",
+        "tools/capture-drawing-census-game.py",
+        "tests/canvas-startup-call.S",
+        "tools/build-menu-observer.py",
+        "protocols/include/mnm/drawing_census_v1.h"
+      ],
+      "evidence": [
+        "TOOL.drawing-core-bindings.guards-20261011",
+        "DRAW.core-bindings.abi-20261011",
+        "DRAW.core-bindings.original-menu-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -63649,6 +63698,127 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "TOOL.drawing-core-bindings.guards-20261011",
+      "kind": "native_integration",
+      "scope": "Offline synthetic exact binding admission, relocation and nonsemantic physical classification. Related core build/trace/caller and cohort guards retained; no original instructions/API lifetimes/scenario closure.",
+      "record": "research/runtime/drawing-core-bindings-guards-20261011.json",
+      "sha256": "f5b56cae996944b83cda47ea9afe326d5912c59e2534f2512c48f464f65f2908",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/binding_guards",
+          "equals": 13
+        },
+        {
+          "pointer": "/related_guards",
+          "equals": 24
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW.core-bindings.abi-20261011",
+      "kind": "native_integration",
+      "scope": "drawing-core-bindings-abi-20261011",
+      "record": "research/runtime/drawing-core-bindings-abi-20261011.json",
+      "sha256": "460ccdddf915aa3dd40ac7eb16318465789f5a1feb2779c17eece14e3b6ffb74",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_core_binding_writer_decoder_round_trip",
+          "equals": true
+        },
+        {
+          "pointer": "/core_binding_hooks",
+          "equals": 9
+        },
+        {
+          "pointer": "/exact_relocated_e8_and_noncall_e9",
+          "equals": true
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW.core-bindings.original-menu-20261011",
+      "kind": "live_observation",
+      "scope": "Original menu/preferences/setup/shutdown with 83 actual core allocation byte bindings and 42021 closed pairs; exact relocated physical caller identities only, no logical tail/complete writer/caller/side effects/scenario closure.",
+      "record": "research/runtime/drawing-core-bindings-original-menu-20261011.json",
+      "sha256": "06ccd8b92e70123b307f09effd66c7c45cb3eacaf249f6d4b73522d8f5c2e6c3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/metadata_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/core_bindings/integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/paired_calls",
+          "equals": 42021
+        },
+        {
+          "pointer": "/decoded/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/open_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/scenario_closure",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -72733,6 +72903,54 @@
       "evidence": [
         "TOOL.drawing-inventory.reviewed-api-client-guards-20261011"
       ]
+    },
+    {
+      "id": "drawing-core-bindings-guards-20261011",
+      "title": "drawing-core-bindings-guards-20261011",
+      "scope": "Offline exact-byte core binding mutations and nonsemantic physical classification; no original execution.",
+      "behaviors": [
+        "TOOL.drawing-core-bindings"
+      ],
+      "tests": [
+        "tests/test-drawing-census-bindings.py"
+      ],
+      "level": "headless",
+      "evidence": [
+        "TOOL.drawing-core-bindings.guards-20261011"
+      ]
+    },
+    {
+      "id": "drawing-core-bindings-abi-20261011",
+      "title": "drawing-core-bindings-abi-20261011",
+      "scope": "Actual native core binding writer/strict decoder round trip and existing PE32 callback forwarding/phase/tail/exhaustion checks on synthetic bodies. No original rendering/platform or original splice execution.",
+      "behaviors": [
+        "TOOL.drawing-core-bindings",
+        "DRAW.census.call-journal"
+      ],
+      "tests": [
+        "tools/test-drawing-census-abi.py",
+        "tests/drawing-census-abi.c"
+      ],
+      "level": "headless",
+      "evidence": [
+        "DRAW.core-bindings.abi-20261011"
+      ]
+    },
+    {
+      "id": "drawing-core-bindings-original-menu-20261011",
+      "title": "drawing-core-bindings-original-menu-20261011",
+      "scope": "Original-active isolated startup/menu/preferences/setup/shutdown with exact core per-run binding bytes and independent closed metadata journal; no caller/side-effect/scenario closure.",
+      "behaviors": [
+        "TOOL.drawing-core-bindings",
+        "DRAW.census.call-journal"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "level": "live_observation",
+      "evidence": [
+        "DRAW.core-bindings.original-menu-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -73070,8 +73288,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-reviewed-api-clients-20261011.json",
-    "sha256": "5ad7e4ae21470ea2d3778d5da2b0d3c3c9220d0568b13e83c6e3bcfac911fa88"
+    "path": "research/runtime/coverage/source-index-draw01-core-bindings-20261011.json",
+    "sha256": "6a80f042ed41a6afaf11bc713c8ae7b3548f6d4da8bee73ea4fbc530a68179a0"
   },
   "claim_bindings_required": true
 }
