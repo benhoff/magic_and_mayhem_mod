@@ -968,3 +968,40 @@ python3 tools/draft-coverage-claims.py --behavior DRAW.canvas-release-client \
 python3 tools/test-drawing-canvas-release.py --executable working/game-nocd/Chaos.exe \
   --claims working/tests/new-canvas-release-claims.json
 ```
+
+## Reviewed terminal CPU/core tail crosswalk, 2026-10-11
+
+The current native replay now matches all four observed CRT wrapper-to-core
+tails in retained `run-0q3q92uc`. It verifies the exact original 10/31-byte
+wrapper ranges from the new pinned execution proof against the retained staged
+executable (whose prepared binary hash also matches). Independent closed
+journals/maps and the direct raster crosswalk are checked first. No original
+execution is repeated and physical callers remain intact.
+
+Complete thread/stack/observed-wrapper groups must agree in count and independent
+entry order. Each match has the exact CRT CALL return, target from preserved EAX,
+fixed receiver, RET0 stack, saved phase, unchanged EDX/LastError/six diagnostic
+words and identical callee/CPU AFTER registers. Unconditional MOV ECX/JMP wrappers
+preserve flags/EAX. Conditional TEST/OR wrappers replace low EAX with bit1/2;
+non-arithmetic flags are preserved and CF/OF/ZF are clear at the tail. PF/SF
+depend on the uncaptured initial byte; AF is undefined. The initial flag byte
+remains explicitly unobserved even when a tail is matched. Twelve synthetic
+state/group/byte/proof/refusal guards pass.
+
+Together with 24,825 direct raster matches, four wrapper tails are matched; 242
+other CPU callback pairs retain their pending classification. The two original
+outer cleanup root continuations still need their own parent-flow evidence.
+This does not establish callback registration, permanent/atomic targets,
+physical reference/storage lifetimes, all callers/writers/side effects, or any
+14-scenario/four-dispatch closure. Both 2,927-input manifests pass during replay.
+
+```sh
+python3 tests/test-drawing-terminal-crosswalk.py
+python3 tools/draft-coverage-claims.py --behavior TOOL.drawing-terminal-crosswalk \
+  --scenario drawing-terminal-crosswalk-original-replay-20261011 \
+  --output working/tests/new-terminal-crosswalk-claims.json
+python3 tools/review-drawing-terminal-crosswalk.py \
+  --run working/experiments/drawing-census/run-0q3q92uc \
+  --claims working/tests/new-terminal-crosswalk-claims.json \
+  --output working/tests/new-terminal-crosswalk-result.json
+```
