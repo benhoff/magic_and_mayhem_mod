@@ -222573,6 +222573,150 @@
           "NR.font-glyph-live-shadow.live-producers-20261010"
         ]
       }
+    },
+    {
+      "id": "live-drawing-plan-doc-accuracy-20261010",
+      "reason": "Reconcile the capability overview and DRAW-02..05 summaries with committed source-only producer history, bounded word/World bypass, text/image/fade comparisons, owned minimap motion and enabled native intros. Clarify the historical World-only background gap, finite startup limits and CPU composition/GPU mirrors. Retain every recorded evidence hash and status; no implementation or execution claim is promoted. The matching source census remains unchanged because this edit touches only a design document. Concurrent engine/register work is excluded from this receipt.",
+      "files": [
+        {
+          "path": "docs/live-drawing-replacement.md",
+          "before_sha256": "11f23f2bf416e375ff31723ddace4ebe2c13bfd3d899df37b4f0fbe8ac2e3bc9",
+          "after_sha256": "b4c288627441ead8c6ab89a6700dbc63b4e3fa22cb6d909b303c1f190df8bdcd"
+        }
+      ],
+      "behaviors": [
+        {
+          "id": "HOST.native-command-launch",
+          "before_sha256": "463dc9f1a48b0fb554a103b270d277a9c19ee8830343836585dd4d3065114f35",
+          "after_sha256": "a417a17e5c3b2d93a65f3df8db022a0c21202967c93663201c4ca78e8ffb146c"
+        },
+        {
+          "id": "NR.live-command-transport",
+          "before_sha256": "5a64706770f0d5762c7578d51333213816eee624bcf72728b537cfa6e8560102",
+          "after_sha256": "312d0249b2761bf4306ad21663b8e830a6e9f96d1133e50874a3e0921058edea"
+        },
+        {
+          "id": "NR.live-drawing-replacement",
+          "before_sha256": "c06676073b67ef92550ec52f9e9885531e8a89e035f38852fdeb5c310ebdc73e",
+          "after_sha256": "9125600e9dd977e54a7787081e371350e8393a70ebf913241eec7e7f39ee8250"
+        },
+        {
+          "id": "NR.real-game-command-shadow",
+          "before_sha256": "26ad6c133ea45787d8697ff0295d32510945433b4e946662f00aa7b6eeab3470",
+          "after_sha256": "f0f688aeaa289a931d5b65c96866640ab3931ff9f332341c965dc24099e08ebe"
+        },
+        {
+          "id": "NR.scene-service",
+          "before_sha256": "e4f69785bb8c03d9709205273051e0792fb135faf143470fbb3a5570919e4617",
+          "after_sha256": "74121f36515f24b1c3585022b1c2e7160547773f4459cacb592766346f6dd436"
+        },
+        {
+          "id": "NR.scene-snapshot",
+          "before_sha256": "29e45118f65565f8e0b1fe5595dac89d74cc935d7f2069bae4fd7a5c624d6bce",
+          "after_sha256": "bde9e38b733430a6d0937c8f6bbb235c76f09009fa95335d2e7b3e050cbd368a"
+        },
+        {
+          "id": "NR.surface-fixture-corpus",
+          "before_sha256": "787e9c166854bb8f41a934c7ebf2cf6781574b4bcb7fa5cdddf467153bdc41e7",
+          "after_sha256": "6d6040ce55390307f0e2cb114b9277e1380d45af0d12c79cd05b34ac937c924b"
+        },
+        {
+          "id": "NR.word-admission",
+          "before_sha256": "0ea2a8a28250f5989105522c9bb9a6578e2ade3eaceb77abeefe3f7482c31c7e",
+          "after_sha256": "b93e9db6e34c17eedbd22ec95d7c57ad4d6542ad332a0c4673f8c1f15e0fe155"
+        },
+        {
+          "id": "NR.world-admission",
+          "before_sha256": "f98c13eaa96b2dfc52b856fc513c5e7106fc49655e00875ab9f824e5a89a7c77",
+          "after_sha256": "cdb1e15ff808f4d88fb961e24f35e653269f20c4ab1ec9fbe9adebeca156f1ed"
+        },
+        {
+          "id": "NR.world-channel",
+          "before_sha256": "4e6e702cc0264c966f3c33f8a02952876020fe4d41d90950490f15f2f1892a08",
+          "after_sha256": "9ab40542189eb55ddf19962b01d4d9ee083dc1d4e86c76be4467e825453d47a3"
+        },
+        {
+          "id": "NR.world-live-view",
+          "before_sha256": "a6d1295a2d2fec484624dc3e6d09108446df7172e02de876ea31431a6d0574c6",
+          "after_sha256": "3ddd9b06d4f51c7aa64139acb2b9e26164bd86e3a75d87598fc22c8f21ef9187"
+        },
+        {
+          "id": "RI.copies",
+          "before_sha256": "f7e59d298e24eefe31180bfb2f76b6691d0c81c50c11fcb31305aeeae3822e51",
+          "after_sha256": "d28fecef2cab64f9f1c582a8f0f9b182f0af3a30ba03c0d620dfa1e0917ca948"
+        },
+        {
+          "id": "RI.effects",
+          "before_sha256": "0af60bb4beace892effd425be0fe8e52b28faa56bd0f84a215c118d14baf6b8f",
+          "after_sha256": "805b978e4274884f7af8906c19f6238143ae9476fe2adc3121fc91d815171050"
+        },
+        {
+          "id": "RI.fills",
+          "before_sha256": "ca9cd7bc5603ad92eb5b98d7af2e7711465f614a91f6a85590c811fabda903a2",
+          "after_sha256": "1cc34daeab1f8b4eb3f03032f525181b730678c8f55070d349d8ff832ed88a38"
+        },
+        {
+          "id": "RI.gdi-text",
+          "before_sha256": "bf0f572f7f22b9fdb8bce2e644d7b7b3278d779336af3a3662880101640cd40f",
+          "after_sha256": "5c87efd8cab9eb15d70edfbaaaab430b88bf37b294e75132b0ea73ab9e01d659"
+        },
+        {
+          "id": "RI.locked-writes",
+          "before_sha256": "1f39727bfa632ad25614eebb45bf26264764c41a815326eaa24280485e379e6f",
+          "after_sha256": "6ec4e2bd6eff49a7d88735f9efd67e64aec96bfcd10c83311532d9579939d408"
+        },
+        {
+          "id": "RI.movies",
+          "before_sha256": "03aeea1f9eadafc37692bae5e4f8359837fd0573b640eabfdf65b22e1b8764af",
+          "after_sha256": "8ace52f3f8886cb3ee97696dc3a4428dac0e32833a61a3fce9eaeff39d6125e4"
+        },
+        {
+          "id": "RI.sprites",
+          "before_sha256": "28175db42f09699621ca46d21ed1c0ad36080212868ba17ad3d3ed0b06d10c8b",
+          "after_sha256": "425ea7e0261c594bd82ab5b31c115653a72a58127f3648ecb1a2e03863c402b4"
+        },
+        {
+          "id": "RI.terrain",
+          "before_sha256": "81277b1aa616a22cea4191504bb0a6bba877d19cd758769306234058601726b5",
+          "after_sha256": "c27ed04bff5c8bcdcb426e0f86bdf82190d7006c7a88663238033fb8af207cb5"
+        },
+        {
+          "id": "RI.ui",
+          "before_sha256": "49f2e34842d8f23fcd28dba820d9137888a37fdafbee58ba5b0e3c16071f0b29",
+          "after_sha256": "d328b4607b68078643d6d9c1177857ca361dc8c98ed91604e9498647e22e5173"
+        },
+        {
+          "id": "RS.word-raster",
+          "before_sha256": "bb9af09489e0409b7492e8194a6272d4c4031afdedea7ed83325ff7c862f5ce4",
+          "after_sha256": "39004341e4abac2ab7abbda2f6a315b9a76dead0fe4b12a71b984bb474d01b25"
+        },
+        {
+          "id": "RS.word-route",
+          "before_sha256": "f0f3de3005e4147f71dbb5d3e0f861aa3aa299b514f3c3b5310dadb1d9388630",
+          "after_sha256": "fc8d3b714f9be37252a937c6a5bff2bf9abfa57ac78b36b55b8e866577acf9e6"
+        },
+        {
+          "id": "RS.world-composition",
+          "before_sha256": "0465839642a23609a670915b96c658f1f71435b95d811d7ae20ce90094bdfbd3",
+          "after_sha256": "edc78c7e529979d79dd7bf28d8d6c8ec141401a28302717219e926d8238e51e2"
+        },
+        {
+          "id": "RS.world-frame",
+          "before_sha256": "1843dd51b1ea785a0b1a64399911d734bd4792dee033f1ed328f563255adecb2",
+          "after_sha256": "33d1d8950378a1da62ede1173dca377cc9250333ac166a234edd6aaba050571a"
+        },
+        {
+          "id": "TOOL.rendering-coverage",
+          "before_sha256": "92ceaddc8f09dd2c54efa174990b49a9651fcb738377614816c1c20102168cc9",
+          "after_sha256": "4d99a68a9bfd5dfa3a53ef112b0e71ef7470f23c6e5b4b61af8e3964f47244b1"
+        }
+      ],
+      "pending_gaps": [],
+      "validation": {
+        "status": "pending",
+        "reason": "Documentation-only reconciliation against committed subsystem research and coverage-ledger evidence through59608a4. All39relative links/anchors resolve and the document diff has no whitespace errors. No engine execution is performed; historical comparison/replacement evidence remains at its recorded source hashes and requires its own rerun after affected code changes. Full-session suppression, unbounded delivery, manual startup gaps, caller/DC/font lifetime, recovery and active World return remain pending.",
+        "evidence": []
+      }
     }
   ]
 }

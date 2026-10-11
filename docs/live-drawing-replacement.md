@@ -18,8 +18,10 @@ The [binary/API coverage reconciliation](../research/runtime/rendering-coverage.
 and `python3 tools/report-rendering-coverage.py` report scoped implementation,
 independent original/driver comparison and actual bypass against reviewed
 denominators. Categories with some support are not complete categories. No
-overall effort/completion percentage is inferred. The newer World queue/batch
-proofs below supersede the older next-step prose for their bounded scopes only.
+overall effort/completion percentage is inferred. The World queue/batch and
+other-producer results below supersede older next-step prose for their bounded
+scopes only. Counts describe recorded executions at their pinned source hashes;
+they do not establish current-code equivalence after later shared-source edits.
 
 ## Meaning of complete replacement
 
@@ -60,9 +62,11 @@ The native surface backend, SPR drawing, resource cache, scene service and GPU
 presentation provide useful implementation foundations. Their scoped offline
 and preview results do not establish a live drawing takeover. The live surface
 bridge still forwards original calls and uploads snapshots of application-held
-pixels. The scene observer exports bounded display records and forwards the
-original queue consumer; its native adapter requires unshaded replay and can
-explicitly permit partial previews.
+pixels. The earlier scene snapshot adapter requires unshaded replay and can
+explicitly permit partial previews. The owned World and producer-history paths
+below have separate admission and comparison contracts. Ordinary observation
+forwards original drawing; the explicit word and World raster experiments bypass
+only their admitted routines.
 
 The [owned World frame path](../research/runtime/native-world-frame-rendering.md)
 extends that boundary with effective primitive order, actual colours and clips,
@@ -72,23 +76,30 @@ own strict adapter; the earlier snapshot preview retains its unshaded policy.
 The [continuous World shadow viewer](../research/runtime/native-world-live-rendering.md)
 now publishes owned requests through a bounded two-slot channel and draws finite
 batches into the Qt GPU viewport. Ordinary mode performs no CPU pixel readback.
-The [initial-canvas gap](../research/runtime/native-world-live-background-gap.md),
-later HUD/window composition and complete consumer bypass remain separate
-milestones. Complete delivery and native presentation do not establish baseline
-equivalence for an unknown initial canvas.
+The [initial-canvas gap](../research/runtime/native-world-live-background-gap.md)
+remains relevant to this stateless newest-frame viewer. The later producer-history
+path reconstructs selected startup and HUD pixels from owned inputs. Complete
+consumer bypass and wider window/session composition remain separate milestones.
 
 The [native canvas history increment](../research/runtime/native-world-canvas-history.md)
 adds contiguous source admission and owned GPU canvas retention. Before/after
 original diagnostics establish retained pre-consumer pixels for selected failing
 frames. An explicitly zero-initialized native history chain matches private
-original execution. Startup already has nonzero canvas contents and refused
-drawing paths; its producers/ownership are still unresolved. Continuous history
-requires every intervening queue despite publication drops and superseding.
+original execution. That historical World-only capture begins with nonzero
+contents and refused drawing paths. The later
+[producer-history reconstruction](../research/runtime/native-canvas-producers.md)
+accounts for menu/loading/HUD pixels in the bounded automatic Quick Battle
+startup; it supplies owned canvas generations without original destination seeds.
+The [public startup launcher](../research/runtime/native-world-startup-launcher.md)
+verifies this finite history through 16 World queues while original drawing stays
+active. Manual startup gaps, general allocation/recovery and unbounded history
+remain unresolved. Continuous history requires every intervening queue despite
+publication drops and superseding in the ordinary viewer.
 
 The [direct-word sprite MVP](../research/runtime/native-word-sprite-mvp.md) adds
 an explicit partial CPU raster route at the two selected original word-backend
 entries. Fully in-bounds admitted SPR draws can bypass those original routines;
-Unsupported draws retain their original path. Original caller-side
+unsupported draws retain their original path. Original caller-side
 auxiliary passes, indexed World sprites and the other frame producers remain
 active. Its bounded shadow/takeover comparisons are scoped primitive evidence,
 not a complete scene or supported-session milestone. A separate
@@ -97,36 +108,45 @@ not a complete scene or supported-session milestone. A separate
 compares complete workspace/arguments and selected original ABI in 4,448 fixtures.
 It fixes existing unclipped workspace/C1 compatibility and validates a fresh
 finite startup takeover. [Guarded clipped takeover](../research/runtime/word-clip-takeover.md)
-now admits bounded main-word clipping under explicit mode4, with22,000 isolated
-native positives and13,312 reported Wine bypasses including705 clipped. Eight
+now admits bounded main-word clipping under explicit mode 4, with 22,000 isolated
+native positives and 13,312 reported Wine bypasses including 705 clipped. Eight
 distinct captures independently match original pixels/workspace; this cohort
 comparison does not establish every reported bypass or whole-session equivalence.
-Auxiliary effects,indexed routes,complete Win32/FP exceptions and default
+Auxiliary effects, indexed routes, complete Win32/FP exceptions and default
 admission remain separate open boundaries.
 
 The [complete startup World raster queue](../research/runtime/native-world-raster-queue.md)
 and [guarded batch return](../research/runtime/native-world-raster-batch.md)
 now have actual original-body suppression and independent comparisons across
-queues1..16. Ten of thirteen admitted entries are exercised in the scalar and
+queues 1..16. Ten of thirteen admitted entries are exercised in the scalar and
 initial batch proofs. A later identity-cache batch exercises nine. Each run
 retains its source fingerprints. The newer owned-source batch extends the
-independent comparison to queues1..32: 63,124 precise raster canvases and AX
+independent comparison to queues 1..32: 63,124 precise raster canvases and AX
 results, 1,224 completed checkpoints and 32 live finals match original execution.
 Ten admitted entries are exercised. Its software-Mesa median queue time of
 223.83 ms leaves real-time continuous delivery unvalidated. Longer gameplay,
 outside-World producers and complete consumer side effects remain open.
 
+The [other-producer extension](../research/runtime/native-canvas-producers.md#2026-10-10-producer-extension)
+adds higher text layout, source-image cropping and physical fade spans with their
+own isolated comparisons. Its final four-return original-active shadow matches
+954 completed canvases / 422,875,312 RGB565 pixels, including 2,002 glyph calls
+and checked GPU mirrors. BMP/JPEG/PCX, copies, panels, fades, HUD rasters, minimap
+and markers are exercised; higher text state, memory-DIB and positioned-image
+branches retain their separate isolated corpus scopes. This is native CPU
+composition with GPU mirroring, while original producer bodies remain active.
+
 | Area | Current boundary | Work required for complete replacement |
 | --- | --- | --- |
-| Copies and fills | Native operations and selected original/driver comparisons exist; live hooks still call original drawing. | Route admitted operations directly to native storage, preserving clipping, keys, flags, partial writes and caller-visible results. |
-| CPU pixel writes | Capture reads game-held Lock/Unlock buffers after original CPU work. Most producer callers remain unclassified. | Identify and replace active raster producers above raw memory writes; provide compatible owned read/write access where gameplay requires it. |
-| GDI and text | The bridge checkpoints original held-DC bitmap output. | Supply native image/text composition and compatible DC/access semantics where required; remove dependence on original GDI painting. |
-| Scene input and resources | Bounded queue snapshots map selected SPR identities to native resources. | Complete resource binding, draw-kind dispatch, camera/viewport state, ordering and required consumer side effects. |
-| Terrain and background | Native ordinary/generated terrain previews cover selected contracts. | Feed the live map/background, objects, overlays and water routes; complete camera and visibility behavior. |
-| Sprites and palettes | Native SPR drawing and selected animation/shading contracts exist. | Integrate live animation, attachments, clipping, palette remaps/cycling and all required sprite backends. |
-| Effects and lighting | Selected effect state, animation and lighting contracts are reconstructed offline. | Connect live effect inputs to complete draw admission, blending/shading and ordered raster output. |
-| HUD and cursor | Native menus, fonts and cursor assets have separate scoped implementations. | Render the complete in-game HUD, minimap, tooltips and cursor; preserve hotspots, logical coordinates and picking. |
-| Movies and transitions | Optional Qt media routes and native menu bridges have bounded coverage. | Integrate enabled media, screen ownership and return to World without original graphics fallback in complete mode. |
+| Copies and fills | Native surface operations have selected original/driver comparisons. Producer-history replay composes selected fills and opaque/keyed copies from owned inputs; original live copy/fill bodies remain active. | Admit live suppression with clipping, keys, flags, partial writes, failures and caller-visible results preserved; cover stretched and alternate routes. |
+| CPU pixel writes | Selected startup/HUD writers are attributed and replayed from owned inputs. Word and World raster experiments bypass admitted bodies; broader Lock/Unlock writers and alternate paths remain unresolved. | Attribute remaining active writers, preserve destination dependencies and provide owned access/readbacks before extending bypass. |
+| GDI, images and text | Source BMP/JPEG/PCX and SFT glyphs compose native canvases in bounded original-active shadow. Higher text layout and the guarded glyph entry have isolated original comparisons; DIB/BMP cropping uses frozen driver/placement references. | Validate font/DC lifetime, wrapper ABI and failure semantics; admit live text/image suppression and complete remaining callers. |
+| Scene input and resources | Owned World inputs carry effective order, colours, clips and complete admitted resource bindings. Guarded batch comparison/suppression reaches startup queues 1..32. | Cover alternate dispatch, resource lifetimes, camera/viewport transitions and complete consumer side effects beyond the admitted prefix. |
+| Terrain and background | Ordinary/generated terrain contracts and selected World rasters have native implementations. Producer history reconstructs selected menu/loading/HUD background pixels without destination seeds. | Cover general live map/background, objects, overlays, water, visibility and camera behavior; close manual/history gaps. |
+| Sprites and palettes | Native SPR modes use owned colours/effect tables. Direct-word interior/clipped takeover and selected World raster bypass have bounded evidence; caller auxiliary passes remain original. | Cover indexed/auxiliary routes, live animation/attachments, palette remaps/cycling and all required sprite backends and caller state. |
+| Effects and lighting | Selected effect state, animation and lighting contracts are reconstructed offline; admitted World rasters consume effective shading/blend inputs. | Complete effect-to-pixel attribution, live inputs, dispatch and ordered output across active battles. |
+| HUD and cursor | Producer shadow reproduces selected startup HUD/cursor rasters and minimap/markers. The finite owned minimap viewer compares four orientations and camera pan. Original drawing/input remain active. | Cover broader HUD, tooltip and cursor journeys, hotspots, picking and source-state generation; validate producer suppression. |
+| Movies and transitions | Owned native decoding compares all 3,868 frames in the installed/synthetic corpus. Both enabled intros complete natively, then original frame publication resumes. | Validate legacy controls/placement, active World return and complete screen ownership across transitions. |
 | Surface lifecycle and recovery | Native ownership/storage and transport recovery have scoped tests. | Integrate aliases, palettes, clip state, borrowed intervals, reads, flips, loss/Restore, transitions and coherent recovery while original raster work is bypassed. |
 
 The [owned minimap viewer](../research/runtime/native-minimap-interactive.md)
@@ -144,17 +164,18 @@ CPU raster, GDI or live takeover work.
 
 ## Implementation order and milestone gates
 
-These milestones are planned work. Foundation and observation evidence exists;
-no milestone below currently establishes complete live replacement. Surface
+These milestones define the complete-replacement gates. Bounded implementation,
+comparison, observation and scoped takeover evidence exists; no milestone below
+currently establishes complete live replacement. Surface
 research's historical milestone numbers retain their local meaning.
 
 | Milestone | Deliverable | Current state | Exit gate |
 | --- | --- | --- | --- |
 | DRAW-01 Drawing coverage | Scenario-tagged inventory of active producers, consumers and graphics side effects. | Partial static and bounded live inventory. | Every encountered route has a behavior ID, owner, classification and explicit support decision; unresolved indirect flows remain visible. |
-| DRAW-02 Independent comparison | Original-output corpus for surfaces and complete scenes, with frame/input identities. | Full World consumer inputs and independent whole-canvas comparisons added; broader session corpus remains open. | Native output is compared with independent original output for the selected scenario; oracle pixels never drive native rendering. |
-| DRAW-03 Native scene completeness | Asset-backed rendering for the admitted draw kinds, backgrounds, shading and UI. | Six raster modes, actual colours, clips and strict complete World resource binding implemented. Whole-consumer side effects and later HUD/window output remain open. | The declared scene is complete, including required side effects; diagnostic backgrounds, omitted draws and unshaded approximations cannot pass baseline comparison. |
-| DRAW-04 Continuous scene delivery | Versioned live drawing inputs from original simulation to native services. | Owned World two-slot delivery and GPU shadow presentation exist; original initialization and complete intervening history remain open. | Complete frame admission, identity/lifetime, backpressure and transitions pass without sourcing dynamic frames from original raster output. |
-| DRAW-05 Scoped live takeover | Bypass original drawing for one validated route or complete scene, with explicit mode identity. | Direct-word sprite MVP and complete admitted raster-body suppression across startup World queues1..32 have bounded independent takeover proof. Whole-session and complete consumer takeover remain outstanding. | Independent live comparison and counters prove the selected original work was skipped; caller-visible behavior, readbacks and cleanup pass. |
+| DRAW-02 Independent comparison | Original-output corpus for surfaces and complete scenes, with frame/input identities. | Independent World raster/whole-canvas and producer-history comparisons exist, with separate text, glyph, fade, image and movie corpora. Broader session coverage remains open. | Native output is compared with independent original output for the selected scenario; oracle pixels never drive native rendering. |
+| DRAW-03 Native scene completeness | Asset-backed rendering for the admitted draw kinds, backgrounds, shading and UI. | Six raster modes and strict World resource binding combine with source-only startup/HUD history in finite experiments. General HUD/window composition, alternate producers and whole-consumer side effects remain open. | The declared scene is complete, including required side effects; diagnostic backgrounds, omitted draws and unshaded approximations cannot pass baseline comparison. |
+| DRAW-04 Continuous scene delivery | Versioned live drawing inputs from original simulation to native services. | Owned two-slot World shadow delivery and finite producer-history startup through 16 queues exist; guarded batch experiments reach 32. Unbounded contiguous history, transitions and real-time delivery remain open. | Complete frame admission, identity/lifetime, backpressure and transitions pass without sourcing dynamic frames from original raster output. |
+| DRAW-05 Scoped live takeover | Bypass original drawing for one validated route or complete scene, with explicit mode identity. | Direct-word interior/clipped takeover and admitted raster-body suppression across startup World queues 1..32 have bounded independent proof at recorded hashes. Glyph/text/image/fade live bypass, whole-session and complete consumer takeover remain outstanding. | Independent live comparison and counters prove the selected original work was skipped; caller-visible behavior, readbacks and cleanup pass. |
 | DRAW-06 Supported session coverage | Expand takeover to every required drawing route and scenario. | Outstanding. | Full-session corpus, failure/recovery and supported physical-driver checks pass; every fallback or unsupported route is reported as a separate outcome. |
 | DRAW-07 Complete launcher mode | Expose a capability-checked complete-replacement option. | Unavailable. | All completion criteria below pass for the declared build/scenario scope, and the register records the appropriate replacement evidence. |
 
@@ -163,12 +184,13 @@ The initial implementation path is `runtime/scene/`, `compat/legacy/` and
 effective draw order/clips and complete original batch output for finite
 comparison. The continuous World shadow viewer supplies bounded immutable publication,
 backpressure and Qt GPU presentation. Source-only startup/HUD reconstruction and
-bounded complete raster-body suppression now support selected queues1..32.
+bounded complete raster-body suppression now support selected queues 1..32.
 The selected other-producer increment now implements exact higher text layout,
 source-image cropping, odd/padded fades and full native movie frame production.
 Current work priority is live admission/suppression for those contracts, broader
-HUD/minimap/cursor journeys and attribution of remaining CPU writers. World delivery beyond queue32 remains
-a separate pending integration milestone. Extend the DRAW-02 corpus with camera
+HUD/minimap/cursor journeys and attribution of remaining CPU writers. Sustained
+World delivery beyond queue 32 remains a separate pending integration milestone.
+Extend the DRAW-02 corpus with camera
 actions and active battles while classifying additional draw kinds and required
 consumer side effects before complete scene takeover.
 
@@ -181,9 +203,9 @@ previews and captured-destination uploads cannot satisfy the bypass step.
 
 | Order | Producer work | Concrete completion boundary |
 | --- | --- | --- |
-| 1 | SFT tinted glyph raster and original text consumers | Dedicated [glyph pixels](../research/runtime/font-glyph-raster.md) and [byte spacing/cursor chains](../research/runtime/font-byte-producer.md) match original code; the [bounded live glyph shadow](../research/runtime/font-glyph-live-shadow.md) matches source-only completed canvases. The [guarded glyph entry/kernel](../research/runtime/glyph-backend.md) now matches28,142 isolated executions, including native x87 effects and RET16. Process-memory/lifetime admission and bounded live bypass/replay remain pending. [Higher rectangle/height-limited layout and measurement](../research/runtime/font-line-layout.md) now match 16,480 isolated cases, including full line/cursor state and 135,004,160 words. Font allocation/lifetime, arbitrary machine state and live higher-text bypass remain separate. |
+| 1 | SFT tinted glyph raster and original text consumers | Dedicated [glyph pixels](../research/runtime/font-glyph-raster.md) and [byte spacing/cursor chains](../research/runtime/font-byte-producer.md) match original code; the [bounded live glyph shadow](../research/runtime/font-glyph-live-shadow.md) matches source-only completed canvases. The [guarded glyph entry/kernel](../research/runtime/glyph-backend.md) matches 28,142 isolated executions, including native x87 effects and RET16. Process-memory/lifetime admission and bounded live bypass/replay remain pending. [Higher rectangle/height-limited layout and measurement](../research/runtime/font-line-layout.md) match 16,480 isolated cases, including full line/cursor state and 135,004,160 words. Font allocation/lifetime, arbitrary machine state and live higher-text bypass remain separate. |
 | 2 | BMP/DIB/PCX/JPEG source image writers and panel/fade operations | [Memory-DIB and positioned BMP](../research/runtime/native-canvas-image-production.md) now pass 288 source-only cases against frozen independent DC pixels/placement oracles. [Odd/padded RGB565/RGB555 fades](../research/runtime/canvas-fade-span.md) match 972 unchanged-original fixtures. Caller/DC lifetime, original wrapper ABI/failures and live producer suppression remain pending. |
-| 3 | HUD, tooltips, minimap and cursor | Attribute active callers and compose complete output from owned state/resources. Existing minimap four-view comparisons and native cursor/menu assets are foundations; validate live updates, hotspots, picking and producer suppression. |
+| 3 | HUD, tooltips, minimap and cursor | Selected startup HUD/cursor rasters and minimap/markers already match in [producer-history shadow](../research/runtime/native-canvas-producers.md); [owned minimap motion](../research/runtime/native-minimap-interactive.md) covers four orientations and same-orientation pan. Attribute broader callers and source-state generation; validate tooltips, hotspots, picking, sustained updates and producer suppression. |
 | 4 | Remaining Lock/Unlock writers and alternate dispatch | Attribute unclassified writes and effect-to-pixel routes; recover their inputs, destination dependence and required side effects. Keep unknown routes visible and outside replacement admission. |
 | 5 | Enabled movies and screen transitions | [Owned movie production](../research/runtime/native-movie-frame-production.md) now compares every pixel of 3,868 frames, including completion/cancellation. [Enabled intro startup](../research/runtime/native-enabled-movie-startup.md) completes both movies natively and resumes original frame publication. Active World return and full native screen ownership remain pending. |
 
