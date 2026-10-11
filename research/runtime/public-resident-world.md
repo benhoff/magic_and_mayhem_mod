@@ -256,3 +256,50 @@ preserves this negative. Next work must investigate original shadow destination
 stride semantics before extending native admission, then profile sustained
 gameplay. No public integration/replacement promotion. The committed
 b1f4ff1..884d263 audit reviews22exact file versions and finds no receipt gaps.
+
+## Correction: whole projected-shadow envelope refusal
+
+The first isolated57e540 replay contradicts the linear-shadow-write hypothesis.
+The original computes `left+sourceWidth+floor(sourceHeight/2)` before vertical
+clipping and refuses the entire draw when it exceeds `clip.right`; equality is
+admitted. Gen327680's813projected extent and gen2261115's805extent both trigger
+this refusal, regardless of actual opaque coverage. The previous native CPU
+model considered only unprojected width, so the transparent-padding milestone
+allowed a shadow the original skips. Its positive evidence compared only native
+implementations; no original equivalence was claimed. Historical reports and
+hashes are retained, with this correction explicitly superseding the admission
+rule. The failed initial original model is preserved separately.
+
+`RS.shadow-linear-stride` now owns the corrected projected-envelope branch.
+Native CPU, World append, Scene request/preflight and ResourceCache draw all
+apply the full projected extent before vertical clipping. This avoids the
+reported edge failure without wrapping or inventing destination pixels. New
+original/native fixtures must cover both captured cases, exact projected edge
+equality and vertical clipping that cannot relax the complete source envelope.
+
+Fresh `public-shadow-projected-envelope-comparison-20261011.json` proves both
+captured shapes against unmodified57e540, native CPU and two GPU backends.
+2.88Moriginal/5.76Mnative canvas words compare across whole refusal, exact-edge
+admission and vertical crop preserving the full source envelope. Sources/inputs
+unchanged; no delivery readback. Only the scoped shadow comparison is recorded.
+Public gameplay/performance,RGB555,complete ABI/failure state and full live
+replacement remain pending. Prior native-reference padding results are
+historical and superseded for baseline admission.
+
+Fresh post-correction distortion replay remains exact against both selected
+original leaves (`public-displacement-linear-after-shadow-20261011.json`); the
+complete owned fixture corpus passes (`public-resident-shadow-envelope-fixtures-20261011.json`).
+The ordinary TITAN public run reaches448completed/imported/verified Worlds with
+no renderer error and zero delivery readbacks, but17.7943aggregateFPS misses19.
+Native dialogue clears while CPU diagnostic pixels retain Hermes text; the
+bounded dual-image readiness check stops before casting/combat. Report:
+`public-resident-shadow-envelope-dialogue-negative-20261011.json`. Whether the
+CPU oracle is stale or UI lifetime is lost remains pending, as do full spells,
+portrait/stress/menu/quit and sustained19FPS. No public replacement promotion.
+
+The57e540 address-link scope was corrected from the initial linear-write
+hypothesis to the recovered projected envelope rule. Both captured geometries
+were rerun prospectively against that final contract. Fresh report:
+`public-shadow-envelope-final-scope-comparison-20261011.json`; earlier execution
+hashes and scope-bound limitations are preserved. Only the final scoped original
+comparison is current; broad gameplay/UI/ABI/RGB555 equivalence remains pending.

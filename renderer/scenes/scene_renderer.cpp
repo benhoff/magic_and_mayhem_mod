@@ -60,7 +60,7 @@ void SceneRenderer::validate(const SceneDraw& draw){
     if(draw.composite.mode==CompositeMode::projectedShadow){
         const auto* sprite=std::get_if<assets::Sprite>(&resource.image);if(!sprite||!draw.clip)throw std::invalid_argument("Projected shadow requires clipped SPR input");
         const auto r=draw.viewport.value_or(viewport_);const auto top=y+height/2;
-        if(x>=r.left&&x+width<=r.right&&top<r.bottom&&top+height>r.top){
+        if(x>=r.left&&x+width+height/2<=r.right&&top<r.bottom&&top+height>r.top){
             const int first=int(std::max<std::int64_t>(0,r.top-top)),last=int(std::min(height,std::int64_t(r.bottom)-top));
             if(width+last/2>2048)throw std::invalid_argument("Projected shadow exceeds storage");
             validateShadowStorage(sprite->frames[draw.frame],x,top,{first,last},{viewport_.right,viewport_.bottom});
@@ -108,7 +108,7 @@ std::optional<ResourceUploadRequest> SceneRenderer::request(const SceneDraw& dra
     const auto& f=std::get<assets::Sprite>(resources_.resident(draw.resource).image).frames.at(draw.frame);
     const auto r=draw.viewport.value_or(viewport_);
     const auto left=std::int64_t(draw.anchorX)-f.originX,top=std::int64_t(draw.anchorY)-f.originY+f.height/2;
-    if(!f.width||!f.height||left<r.left||left+f.width>r.right||top>=r.bottom||top+f.height<=r.top)return {};
+    if(!f.width||!f.height||left<r.left||left+f.width+f.height/2>r.right||top>=r.bottom||top+f.height<=r.top)return {};
     const int first=int(std::max<std::int64_t>(0,r.top-top)),last=int(std::min<std::int64_t>(f.height,r.bottom-top));
     if(first>=last)return {};
     return cache_.request(draw.resource,draw.frame,nullptr,ShadowRows{first,last});

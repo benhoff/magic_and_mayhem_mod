@@ -37659,7 +37659,9 @@
         "research/runtime/public-resident-linked-provenance-fixtures-20261011.json",
         "research/runtime/public-resident-shadow-pass-displacement-failure-20261011.json",
         "research/runtime/public-resident-linear-full-fixtures-20261011.json",
-        "research/runtime/public-resident-linear-pass-shadow-write-failure-20261011.json"
+        "research/runtime/public-resident-linear-pass-shadow-write-failure-20261011.json",
+        "research/runtime/public-resident-shadow-envelope-fixtures-20261011.json",
+        "research/runtime/public-resident-shadow-envelope-dialogue-negative-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37691,7 +37693,9 @@
         "NR.public-resident-world.linked-provenance-fixtures-20261011",
         "NR.public-resident-world.displacement-failure-20261011",
         "NR.public-resident-world.linear-full-fixtures-20261011",
-        "NR.public-resident-world.shadow-write-failure-20261011"
+        "NR.public-resident-world.shadow-write-failure-20261011",
+        "NR.public-resident-world.shadow-envelope-fixtures-20261011",
+        "NR.public-resident-world.shadow-envelope-dialogue-negative-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -37778,7 +37782,8 @@
       ],
       "documents": [
         "research/runtime/public-resident-world.md",
-        "research/runtime/public-displacement-linear-comparison-20261011.json"
+        "research/runtime/public-displacement-linear-comparison-20261011.json",
+        "research/runtime/public-displacement-linear-after-shadow-20261011.json"
       ],
       "validation_dependencies": [
         "tests/sprite-binary-reference.cpp",
@@ -37787,7 +37792,61 @@
       ],
       "evidence": [
         "RS.displacement-linear-stride.original-20261011",
-        "RS.displacement-linear-stride.native-20261011"
+        "RS.displacement-linear-stride.native-20261011",
+        "RS.displacement-linear-stride.after-shadow-original-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "recorded",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.shadow-linear-stride",
+      "subsystem": "native_rendering",
+      "kind": "recovered",
+      "title": "Projected shadow whole horizontal envelope refusal",
+      "scope": "Pinned57e540 computes left+sourceWidth+floor(sourceHeight/2) before vertical clipping and refuses the entire shadow when that complete projected extent exceeds clip.right, including transparent padding. Equality remains admitted. Captured gen327680 nominal813/coveredmax801 and gen2261115 nominal805/coveredmax786 both therefore leave original destination unchanged. Prior native unprojected-width-only admission was wrong; initial linear-write hypothesis is retained as failed original replay. Native CPU/World/GPU/request culling now use the full projected envelope. RGB555, full original failure/ABI/state and broad live equivalence remain excluded.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5760320,
+          "scope": "Selected full projected horizontal envelope refusal before vertical cropping and exact boundary equality at57e540; full ABI/global state/RGB555 not claimed."
+        }
+      ],
+      "implementation": [
+        "renderer/canvas_sequence.cpp",
+        "compat/legacy/canvas_world.cpp",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/scenes/scene_renderer.cpp"
+      ],
+      "tests": [
+        "tests/shadow-linear-reference.cpp",
+        "tools/test-shadow-linear.py",
+        "tests/shadow-linear-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/other-writer-atomic-test.cpp",
+        "tests/canvas-sequence-test.cpp"
+      ],
+      "documents": [
+        "research/runtime/public-resident-world.md",
+        "research/runtime/public-shadow-projected-envelope-comparison-20261011.json",
+        "research/runtime/public-shadow-linear-model-refusal-20261011.json",
+        "research/runtime/public-shadow-envelope-final-scope-comparison-20261011.json"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "tests/resource-fixtures.hpp"
+      ],
+      "evidence": [
+        "RS.shadow-linear-stride.original-20261011",
+        "RS.shadow-linear-stride.native-20261011",
+        "RS.shadow-linear-stride.final-scope-original-20261011",
+        "RS.shadow-linear-stride.final-scope-native-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -75955,6 +76014,197 @@
           "equals": "Projected shadow sample outside owned canvas"
         }
       ]
+    },
+    {
+      "id": "RS.shadow-linear-stride.original-20261011",
+      "kind": "isolated_original",
+      "scope": "Two captured projected-shadow envelopes: nominal813/covered801 and nominal805/covered786. Both whole draws refuse in original and native. Exact projected edge equality draws; vertical crop cannot relax full-source envelope. Original2.88Mwords/native CPU+two GPU backends5.76Mwords with zero delivery readback. Complete ABI/RGB555/live replacement excluded.",
+      "record": "research/runtime/public-shadow-projected-envelope-comparison-20261011.json",
+      "sha256": "61675d8973b113cf948fac6ee3d256f8a7647ea6fbf18b17ecafd94272ccd11d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_native_pixels_match",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RS.shadow-linear-stride.native-20261011",
+      "kind": "native_integration",
+      "scope": "Two captured projected-shadow envelopes: nominal813/covered801 and nominal805/covered786. Both whole draws refuse in original and native. Exact projected edge equality draws; vertical crop cannot relax full-source envelope. Original2.88Mwords/native CPU+two GPU backends5.76Mwords with zero delivery readback. Complete ABI/RGB555/live replacement excluded.",
+      "record": "research/runtime/public-shadow-projected-envelope-comparison-20261011.json",
+      "sha256": "61675d8973b113cf948fac6ee3d256f8a7647ea6fbf18b17ecafd94272ccd11d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_native_pixels_match",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RS.displacement-linear-stride.after-shadow-original-20261011",
+      "kind": "isolated_original",
+      "scope": "Fresh selected distortion original/native comparison after shadow envelope correction; original2leaves and native2backends retain scoped owned linear sampling. Complete live equivalence excluded.",
+      "record": "research/runtime/public-displacement-linear-after-shadow-20261011.json",
+      "sha256": "75642250df7564964173ff4411013da32a6f4869e558deea9d29de4192d23293",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_native_pixels_match",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/inputs/~1home~1hoff~1swdev~1magic_and_mayhem_mod~1working~1native-render-continuous~1working~1game-nocd-owned-20261010~1Chaos.exe"
+    },
+    {
+      "id": "NR.public-resident-world.shadow-envelope-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh complete owned corpus after recovered shadow correction; native reference, import/defer/query/batch/minimap/ABI fixtures only. No broad original/live equivalence.",
+      "record": "research/runtime/public-resident-shadow-envelope-fixtures-20261011.json",
+      "sha256": "6ea6fec08a5d93fb6e432ef5d98cce7d56e421e0715b05ab82769164d74da5fc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.shadow-envelope-dialogue-negative-20261011",
+      "kind": "live_observation",
+      "scope": "Negative ordinary Titan public run:448completed/imported/verified Worlds, no renderer error, zero delivery readbacks;17.7943aggregateFPS misses19. Native dialogue clears while CPU diagnostic image retains Hermes text; bounded readiness check stops before successful cast/combat. Dialogue oracle/UI lifetime cause pending. No replacement promotion.",
+      "record": "research/runtime/public-resident-shadow-envelope-dialogue-negative-20261011.json",
+      "sha256": "238dc0d3f2f91a48ce032cdcc41f687f791aa0fecf04c53dddf51e1a2d80310d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_world/error",
+          "equals": ""
+        }
+      ]
+    },
+    {
+      "id": "RS.shadow-linear-stride.final-scope-original-20261011",
+      "kind": "isolated_original",
+      "scope": "Two captured projected-shadow envelopes: nominal813/covered801 and nominal805/covered786. Both whole draws refuse in original and native. Exact projected edge equality draws; vertical crop cannot relax full-source envelope. Original2.88Mwords/native CPU+two GPU backends5.76Mwords with zero delivery readback. Complete ABI/RGB555/live replacement excluded.",
+      "record": "research/runtime/public-shadow-envelope-final-scope-comparison-20261011.json",
+      "sha256": "3b0c2cd7564bb127f9da456f1b7f85be3c74f33794d77cdd3b0be9a2ac75a298",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_native_pixels_match",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RS.shadow-linear-stride.final-scope-native-20261011",
+      "kind": "native_integration",
+      "scope": "Two captured projected-shadow envelopes: nominal813/covered801 and nominal805/covered786. Both whole draws refuse in original and native. Exact projected edge equality draws; vertical crop cannot relax full-source envelope. Original2.88Mwords/native CPU+two GPU backends5.76Mwords with zero delivery readback. Complete ABI/RGB555/live replacement excluded.",
+      "record": "research/runtime/public-shadow-envelope-final-scope-comparison-20261011.json",
+      "sha256": "3b0c2cd7564bb127f9da456f1b7f85be3c74f33794d77cdd3b0be9a2ac75a298",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_native_pixels_match",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -84378,7 +84628,8 @@
         "tests/render-resident-world-test.cpp"
       ],
       "evidence": [
-        "NR.public-resident-world.import-fixture-20261011"
+        "NR.public-resident-world.import-fixture-20261011",
+        "NR.public-resident-world.shadow-envelope-fixtures-20261011"
       ]
     },
     {
@@ -84388,7 +84639,8 @@
       "behaviors": [
         "NR.public-resident-world",
         "NR.world-source-region-epoch",
-        "RS.displacement-linear-stride"
+        "RS.displacement-linear-stride",
+        "RS.shadow-linear-stride"
       ],
       "tests": [
         "tools/test-native-campaign.py"
@@ -84422,7 +84674,8 @@
         "NR.world-source-region-epoch.fixtures-20261011",
         "NR.public-resident-world.shadow-fixtures-20261011",
         "NR.public-resident-world.linked-provenance-fixtures-20261011",
-        "NR.public-resident-world.linear-full-fixtures-20261011"
+        "NR.public-resident-world.linear-full-fixtures-20261011",
+        "NR.public-resident-world.shadow-envelope-fixtures-20261011"
       ]
     },
     {
@@ -84437,7 +84690,25 @@
       ],
       "evidence": [
         "RS.displacement-linear-stride.original-20261011",
-        "RS.displacement-linear-stride.native-20261011"
+        "RS.displacement-linear-stride.native-20261011",
+        "RS.displacement-linear-stride.after-shadow-original-20261011"
+      ]
+    },
+    {
+      "id": "RS.shadow-linear-stride.owned-comparison",
+      "scope": "Both captured shadow edge shapes compare unchanged original/native canvases on whole projected refusal; exact edge equality is drawn, vertical crop cannot relax full-source envelope. Independently generated tight800x600gradient, CPU/two GPU backends, no delivery readback/live replacement.",
+      "level": "headless",
+      "behaviors": [
+        "RS.shadow-linear-stride"
+      ],
+      "tests": [
+        "tools/test-shadow-linear.py"
+      ],
+      "evidence": [
+        "RS.shadow-linear-stride.original-20261011",
+        "RS.shadow-linear-stride.native-20261011",
+        "RS.shadow-linear-stride.final-scope-original-20261011",
+        "RS.shadow-linear-stride.final-scope-native-20261011"
       ]
     }
   ],
@@ -84776,8 +85047,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-public-displacement-linear-20261011.json",
-    "sha256": "dd0194c6cb9a3c82323270b57a7b138141970e6b906690d8bf59ccdd17c2fc1d"
+    "path": "research/runtime/coverage/source-index-public-shadow-envelope-20261011.json",
+    "sha256": "c4f709f7d8623f6be562ecc9afe5ea61581347d889d01bbbf01ad2f1333511fb"
   },
   "claim_bindings_required": true
 }

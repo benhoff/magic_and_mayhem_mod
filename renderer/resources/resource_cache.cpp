@@ -134,7 +134,7 @@ void ResourceCache::draw(const assets::ResourceId& id,std::size_t frame,SurfaceI
         const auto& f=sprite->frames[frame];if(!f.width||!f.height)return;
         const auto left=std::int64_t(x)-f.originX,top=std::int64_t(y)-f.originY+f.height/2;
         // The original shadow route refuses horizontal clipping as a whole.
-        if(left<viewport->left||left+f.width>viewport->right||top>=viewport->bottom||top+f.height<=viewport->top)return;
+        if(left<viewport->left||left+f.width+f.height/2>viewport->right||top>=viewport->bottom||top+f.height<=viewport->top)return;
         const int first=int(std::max<std::int64_t>(0,viewport->top-top));
         const int last=int(std::min<std::int64_t>(f.height,viewport->bottom-top));
         if(first>=last)return;
