@@ -32860,6 +32860,124 @@
         "tools/rendering_coverage.py"
       ],
       "validation_domain": "All103independently retained full primary planes through16World returns from the guarded opaque publication sites. V2 raw journal266MiB in9bounded chunks;17encoded source assets. Original World views0..3 and applied menu phase identities retained, while viewport boundaries, alternate routes and full journey/operation semantics remain pending."
+    },
+    {
+      "id": "NR.drawing-session",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Native drawing session, segment and immutable frame lifecycle",
+      "scope": "Thread-confined native DrawingScene orchestration with strictly increasing session IDs, contiguous segment/frame identities, source-local sequence/queue histories and native stage labels. Explicit transition discards prior history and starts undefined storage; terminal completion requires a current complete frame. Running mutation faults/budget exhaustion discard presentation and resources; restart requires a fresh ID/history. Stale frame queries refuse without poisoning current state. Native caps64segments/8192frames/1048576records; external immutable GPU leases retire independently. Owned synthetic pixel/lifecycle fixtures only; no original action, transition, failure, full presented journey, media, picking or live replacement claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw03-native-session.md"
+      ],
+      "implementation": [
+        "compat/legacy/drawing_session.cpp",
+        "compat/legacy/drawing_session.hpp"
+      ],
+      "tests": [
+        "tests/drawing-session-test.cpp",
+        "tools/test-native-drawing-session.py"
+      ],
+      "validation_dependencies": [
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/drawing-scene/CMakeLists.txt",
+        "compat/legacy/drawing_scene.cpp",
+        "compat/legacy/drawing_scene.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/resource-fixtures.hpp"
+      ],
+      "evidence": [
+        "NR.drawing-session.lifecycle-native-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -62773,6 +62891,41 @@
           "equals": 530876912
         }
       ]
+    },
+    {
+      "id": "NR.drawing-session.lifecycle-native-20261011",
+      "kind": "native_integration",
+      "scope": "12real native/OpenGL owned synthetic session lifecycle cases and underlying scene regression. Exact session/segment/frame ordering, fresh undefined generations, interruption, source failures, bounded recovery, terminal frame, immutable GPU lease lifetime and cleanup pass. No original execution, recovered transition policy, full journey or live replacement.",
+      "record": "research/runtime/draw03-native-session-lifecycle-20261011.json",
+      "sha256": "c2374340dae182b80137da53bf8f68b635d15d8466d477ef86ecd889e6566652",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/execution_performed",
+          "equals": true
+        },
+        {
+          "pointer": "/scene_regression",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_execution",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -70635,6 +70788,21 @@
         "TOOL.drawing-publication-corpus.native-20261011",
         "TOOL.drawing-publication-corpus.reviewed-native-20261011"
       ]
+    },
+    {
+      "id": "DRAW03.native-session-lifecycle",
+      "scope": "Real OpenGL execution of12owned synthetic native session lifecycle cases, including asset-backed World completion, menu/World generation changes, interruption, stale identities, budgets, fresh restart, source failure and immutable GPU lease cleanup; underlying scene regression. No original capture or full journey.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-session"
+      ],
+      "evidence": [
+        "NR.drawing-session.lifecycle-native-20261011"
+      ],
+      "tests": [
+        "tests/drawing-session-test.cpp",
+        "tools/test-native-drawing-session.py"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -70972,8 +71140,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw02-publication-reviewed-20261011.json",
-    "sha256": "fba806826c114b5beee8c110615f36159670f78b4527c0ec0feed1d69a8c072a"
+    "path": "research/runtime/coverage/source-index-draw03-session-lifecycle-20261011.json",
+    "sha256": "a8267a04ac64896e79b3158fa279b2370d3c5b5f64293b8fb0a3f7dc7d96a72f"
   },
   "claim_bindings_required": true
 }

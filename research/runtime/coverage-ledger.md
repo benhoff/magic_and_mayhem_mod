@@ -4630,3 +4630,16 @@ journey and21operation/failure requirements. Full route/input/viewport/transitio
 and caller-result/failure/recovery coverage remains pending. Thirteen corpus
 guards and the added suite boundary guard prevent oracle inputs, malformed traces,
 wrong provenance and premature completion claims.
+
+## DRAW-03 native session lifecycle — 2026-10-11
+
+`NR.drawing-session` adds widget-free native session/segment/frame orchestration
+over `DrawingScene`. Explicit transitions start undefined source histories;
+complete frames carry generation identities and independent GPU leases. Running
+faults discard owned resources, terminal completion and idempotent shutdown are
+separate, and fresh recovery cannot reuse an old session ID. Native bounded
+lifecycle fixtures and the scene regression have their own execution evidence;
+they do not validate original gameplay actions, transition/failure behavior or
+full Quick Battle/campaign journeys. DRAW-01/02 collectors and acceptance gates
+are unchanged. The changed shared scene build file makes earlier build-bound
+evidence historical; existing source hashes and receipts remain unchanged.
