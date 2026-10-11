@@ -56,7 +56,14 @@ MOVIE={
 }
 
 
-def contract(item):
+def contract(item,revision=1):
+    if type(revision) is not int or revision not in (1,2):raise ValueError('Unsupported exact contract revision')
+    if revision==2:
+        from drawing_api_surface_contracts import surface_contract
+        result=surface_contract(item)
+        if result is not None:
+            validate(result)
+            return result
     imported=item.get('exact_import')
     key=(imported['dll'].lower(),imported['name']) if imported else None
     if key in IMPORTS:
@@ -72,7 +79,7 @@ def contract(item):
 
 
 def validate(value):
-    if not isinstance(value,dict) or set(value)!={'name','formal_words','snapshots','origin'} or not isinstance(value['name'],str) or not value['name'] or value['origin'] not in ('exact_import','exact_original_movie_site','unreviewed','synthetic_fixture'):
+    if not isinstance(value,dict) or set(value)!={'name','formal_words','snapshots','origin'} or not isinstance(value['name'],str) or not value['name'] or value['origin'] not in ('exact_import','exact_original_movie_site','exact_original_graphics_site','unreviewed','synthetic_fixture'):
         raise ValueError('Invalid reviewed contract identity')
     words=value['formal_words'];slots=value['snapshots']
     if type(words) is not int or words!=UNKNOWN_WORDS and not 0<=words<=16 or not isinstance(slots,list) or len(slots)>4:

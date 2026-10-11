@@ -31145,7 +31145,7 @@
       "subsystem": "drawing_inventory",
       "kind": "native_policy",
       "title": "Isolated original DRAW-01 menu, campaign and Quick Battle census journeys",
-      "scope": "Fresh disposable signature-pinned drawing/menu imports, private Xvfb display and Wine prefix, original acknowledged menu actions, heartbeat and explicit host scenario phases, original Main quit and strict terminal decoding. Retain every failed attempt, source and staged binary stability, and commands. Menu readiness/phase labels do not prove exhaustive scenario coverage. Campaign input automation remains under live validation; save/load, later map transitions, effects, results, movies and graphics API failure/recovery need further fixtures. No original bodies bypassed or gameplay balance changed. Optional menu-only diagnostic staging leaves original drawing entries unpatched and explicitly reports that no call journal is enabled; no synthetic events or terminal are inferred. Quick Battle fixture selects the second original offered map, preserves original setup rules and offered spell assignments, uses bounded camera/HUD/cursor inputs, verifies original Escape-to-results, Continue-to-World and second Escape/results/Quit/Quick/Main/shutdown. Existing original contexts1/2 bypass ordinary Mini; experimental Quick Mini stays disabled. Unassigned loadout is retained as unassigned. Inputs alone do not prove semantic tooltip, spell/effect, camera movement, all-writer or lifetime coverage. Opt-in campaign-effects fixture uses existing signature-pinned passive original gameplay/spell hooks, original mouse dialogue dismissal and physical cast, then requires a newly living owned type14Zombie in sampled original pool before counting summon success. Inputs are recorded; complete pool/spell trace decoding and normal exit are required. No engine rules, mana/health, AI or positions are patched, and no effect-to-pixel/all-tick/lifetime completeness is inferred. Explicit opt-in separate API observation additionally decodes its independent closed journal and per-run bindings, preserving physical-only caller classification. Stable staged binaries are required for success; no logical/API/output/borrow lifetime closure is inferred. Explicit API-only cohort stages only menu/API imports, verifies actual core module/leave absence, and does not create, decode or claim a core call journal. It remains separate from the original-active core/API and menu-control cohorts.",
+      "scope": "Fresh disposable signature-pinned drawing/menu imports, private Xvfb display and Wine prefix, original acknowledged menu actions, heartbeat and explicit host scenario phases, original Main quit and strict terminal decoding. Retain every failed attempt, source and staged binary stability, and commands. Menu readiness/phase labels do not prove exhaustive scenario coverage. Campaign input automation remains under live validation; save/load, later map transitions, effects, results, movies and graphics API failure/recovery need further fixtures. No original bodies bypassed or gameplay balance changed. Optional menu-only diagnostic staging leaves original drawing entries unpatched and explicitly reports that no call journal is enabled; no synthetic events or terminal are inferred. Quick Battle fixture selects the second original offered map, preserves original setup rules and offered spell assignments, uses bounded camera/HUD/cursor inputs, verifies original Escape-to-results, Continue-to-World and second Escape/results/Quit/Quick/Main/shutdown. Existing original contexts1/2 bypass ordinary Mini; experimental Quick Mini stays disabled. Unassigned loadout is retained as unassigned. Inputs alone do not prove semantic tooltip, spell/effect, camera movement, all-writer or lifetime coverage. Opt-in campaign-effects fixture uses existing signature-pinned passive original gameplay/spell hooks, original mouse dialogue dismissal and physical cast, then requires a newly living owned type14Zombie in sampled original pool before counting summon success. Inputs are recorded; complete pool/spell trace decoding and normal exit are required. No engine rules, mana/health, AI or positions are patched, and no effect-to-pixel/all-tick/lifetime completeness is inferred. Explicit opt-in separate API observation additionally decodes its independent closed journal and per-run bindings, preserving physical-only caller classification. Stable staged binaries are required for success; no logical/API/output/borrow lifetime closure is inferred. Explicit API-only cohort stages only menu/API imports, verifies actual core module/leave absence, and does not create, decode or claim a core call journal. It remains separate from the original-active core/API and menu-control cohorts. Contract revision2 adds141exact reviewed graphics client layouts, preserving legacy revision1 decoding; post-processing keeps successful selected client borrow intervals and unresolved origins/aliases separate.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31227,7 +31227,11 @@
         "tools/drawing_api_cohorts.py",
         "tools/drawing_api_pairs.py",
         "tools/drawing_api_details.py",
-        "tools/drawing_api_contracts.py"
+        "tools/drawing_api_contracts.py",
+        "tools/drawing_api_surface_contracts.py",
+        "research/runtime/drawing-surface-api-layouts-20261011.json",
+        "tools/drawing_api_resources.py",
+        "tests/test-drawing-api-resources.py"
       ],
       "evidence": [
         "DRAW.census.menu-observation-20261010",
@@ -31247,7 +31251,8 @@
         "DRAW.api-menu.observation-20261011",
         "DRAW.api-breakpoint.menu-20261011",
         "DRAW.api-only.movies-20261011",
-        "DRAW.api-v2.movies-20261011"
+        "DRAW.api-v2.movies-20261011",
+        "DRAW.surface-api.movies-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31552,7 +31557,8 @@
         "DRAW.api-breakpoint.static-20261011",
         "DRAW.api-cohort.core-static-20261011",
         "DRAW.api-cohort.only-static-20261011",
-        "DRAW.api-v2.guards-20261011"
+        "DRAW.api-v2.guards-20261011",
+        "DRAW.surface-api.guards-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31567,7 +31573,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Separate original CALL before/after forwarding observer",
-      "scope": "Opt-in PE32 observer for 302 core/API or314 API-only selected exact original CALL sites. Save/restore registers/flags/x87/SSE/LastError, capture pre-CALL stack/target and post-CALL actual ESP/result, forward original CALL and remainder without replacing an argument or return slot. Retain12core/API overlap refusals; API-only is a separate core-absent selection and abort startup on signature/protection/flush failure. Explicit journal loss/open/IO/terminal and control phase guards. Synthetic ABI tests and actual original runs remain separate; no universal transparency, caller-PC-sensitive/timing equivalence, original API/output/COM/GDI/borrow lifetime or complete writer/scenario/DRAW-01 closure claim. Adds an opt-in single-byte INT3 forwarding mode for safe whole-CALL signatures; the PE32 vectored handler changes only saved EIP for an exact owned breakpoint, forwarding foreign/mismatched exceptions. Successor and operand bytes are untouched. Wine/Windows XP+ observation policy, not a recovered Win98 engine contract; dynamic unload remains unsupported. Emits independent V2 records with sixteen-word maximum formal/diagnostic stacks and four separately reviewed bounded buffers. AFTER uses saved BEFORE pointers; Release has no snapshots and receiver candidates remain byte equality, not COM type inference.",
+      "scope": "Opt-in PE32 observer for 302 core/API or314 API-only selected exact original CALL sites. Save/restore registers/flags/x87/SSE/LastError, capture pre-CALL stack/target and post-CALL actual ESP/result, forward original CALL and remainder without replacing an argument or return slot. Retain12core/API overlap refusals; API-only is a separate core-absent selection and abort startup on signature/protection/flush failure. Explicit journal loss/open/IO/terminal and control phase guards. Synthetic ABI tests and actual original runs remain separate; no universal transparency, caller-PC-sensitive/timing equivalence, original API/output/COM/GDI/borrow lifetime or complete writer/scenario/DRAW-01 closure claim. Adds an opt-in single-byte INT3 forwarding mode for safe whole-CALL signatures; the PE32 vectored handler changes only saved EIP for an exact owned breakpoint, forwarding foreign/mismatched exceptions. Successor and operand bytes are untouched. Wine/Windows XP+ observation policy, not a recovered Win98 engine contract; dynamic unload remains unsupported. Emits independent V2 records with sixteen-word maximum formal/diagnostic stacks and four separately reviewed bounded buffers. AFTER uses saved BEFORE pointers; Release has no snapshots and receiver candidates remain byte equality, not COM type inference. Contract revision2 adds141exact reviewed graphics client layouts, preserving legacy revision1 decoding; post-processing keeps successful selected client borrow intervals and unresolved origins/aliases separate.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31600,7 +31606,11 @@
         "protocols/include/mnm/drawing_api_journal_v2.h",
         "tools/drawing_api_contracts.py",
         "tools/drawing_api_details.py",
-        "tests/drawing-api-detail-call.S"
+        "tests/drawing-api-detail-call.S",
+        "tools/drawing_api_surface_contracts.py",
+        "research/runtime/drawing-surface-api-layouts-20261011.json",
+        "tools/drawing_api_resources.py",
+        "tests/test-drawing-api-resources.py"
       ],
       "evidence": [
         "DRAW.api-observer.build-20261011",
@@ -31614,7 +31624,10 @@
         "DRAW.api-v2.abi-20261011",
         "DRAW.api-v2.movies-20261011",
         "DRAW.api-v2.core-static-20261011",
-        "DRAW.api-v2.only-static-20261011"
+        "DRAW.api-v2.only-static-20261011",
+        "DRAW.surface-api.abi-20261011",
+        "DRAW.surface-api.movies-20261011",
+        "DRAW.surface-api.final-abi-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31663,7 +31676,11 @@
         "DRAW.api-only.movies-20261011",
         "DRAW.api-v2.guards-20261011",
         "DRAW.api-v2.abi-20261011",
-        "DRAW.api-v2.movies-20261011"
+        "DRAW.api-v2.movies-20261011",
+        "DRAW.surface-api.guards-20261011",
+        "DRAW.surface-api.abi-20261011",
+        "DRAW.surface-api.movies-20261011",
+        "DRAW.surface-api.final-abi-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31678,7 +31695,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Original-active separate API journal journey staging and strict completion",
-      "scope": "Explicit opt-in API observer alongside original-active core/menu journeys in fresh private installations. Hash-pin observer and original section bytes, use shared readonly phase control, retain/decode independent closed API and core journals plus per-run allocation bindings, and require stable binaries/sources and normal original exit. Core/API admits302sites with12overlap refusals; separate API-only selects all314boundaries; diagnostic physical addresses/outcomes/cleanup do not infer logical callers, COM/GDI/output/borrowing/pixels, complete writers or DRAW-01 scenario closure. Menu-only controls cannot enable API observation. Explicit API-only cohort stages only menu/API imports, verifies actual core module/leave absence, and does not create, decode or claim a core call journal. It remains separate from the original-active core/API and menu-control cohorts. V1/V2 decoding is explicit; freeze staged experiment/build metadata as well as binaries/sources. Synthetic namespace is rejected for original runs. No version silently reinterprets V1 records.",
+      "scope": "Explicit opt-in API observer alongside original-active core/menu journeys in fresh private installations. Hash-pin observer and original section bytes, use shared readonly phase control, retain/decode independent closed API and core journals plus per-run allocation bindings, and require stable binaries/sources and normal original exit. Core/API admits302sites with12overlap refusals; separate API-only selects all314boundaries; diagnostic physical addresses/outcomes/cleanup do not infer logical callers, COM/GDI/output/borrowing/pixels, complete writers or DRAW-01 scenario closure. Menu-only controls cannot enable API observation. Explicit API-only cohort stages only menu/API imports, verifies actual core module/leave absence, and does not create, decode or claim a core call journal. It remains separate from the original-active core/API and menu-control cohorts. V1/V2 decoding is explicit; freeze staged experiment/build metadata as well as binaries/sources. Synthetic namespace is rejected for original runs. No version silently reinterprets V1 records. Contract revision2 adds141exact reviewed graphics client layouts, preserving legacy revision1 decoding; post-processing keeps successful selected client borrow intervals and unresolved origins/aliases separate.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31770,13 +31787,18 @@
         "protocols/include/mnm/drawing_api_journal_v2.h",
         "tools/drawing_api_contracts.py",
         "tools/drawing_api_details.py",
-        "tests/drawing-api-detail-call.S"
+        "tests/drawing-api-detail-call.S",
+        "tools/drawing_api_surface_contracts.py",
+        "research/runtime/drawing-surface-api-layouts-20261011.json",
+        "tools/drawing_api_resources.py",
+        "tests/test-drawing-api-resources.py"
       ],
       "evidence": [
         "DRAW.api-menu.observation-20261011",
         "DRAW.api-breakpoint.menu-20261011",
         "DRAW.api-only.movies-20261011",
-        "DRAW.api-v2.movies-20261011"
+        "DRAW.api-v2.movies-20261011",
+        "DRAW.surface-api.movies-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31807,7 +31829,8 @@
       "evidence": [
         "DRAW.api-cohort.guards-20261011",
         "DRAW.api-only.movies-20261011",
-        "DRAW.api-v2.movies-20261011"
+        "DRAW.api-v2.movies-20261011",
+        "DRAW.surface-api.movies-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31822,7 +31845,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Reviewed formal API arguments and bounded buffer snapshots",
-      "scope": "Independent V2 API diagnostic wire and exact import/original-movie-site stack layouts, including13StretchDIBits arguments and explicit bounded input/output buffers. Unknown sites remain16diagnostic words, not inferred COM interfaces. Null/unreadable/unavailable buffers and failing API raw outputs do not imply object validity; Release never dereferences a released object. Strict V2 metadata/pair/argument/pointer/extent/padding checks; actual runtime validation remains independent; no universal ABI, complete graphics API semantics/outputs/lifetimes or DRAW-01 closure.",
+      "scope": "Independent V2 API diagnostic wire and exact import/original-movie-site stack layouts, including13StretchDIBits arguments and explicit bounded input/output buffers. Unknown sites remain16diagnostic words, not inferred COM interfaces. Null/unreadable/unavailable buffers and failing API raw outputs do not imply object validity; Release never dereferences a released object. Strict V2 metadata/pair/argument/pointer/extent/padding checks; actual runtime validation remains independent; no universal ABI, complete graphics API semantics/outputs/lifetimes or DRAW-01 closure. Contract revision2 adds141exact reviewed graphics client layouts, preserving legacy revision1 decoding; post-processing keeps successful selected client borrow intervals and unresolved origins/aliases separate.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31842,12 +31865,20 @@
         "research/runtime/draw01-movie-contract.md",
         "tools/drawing_api_pairs.py",
         "tools/drawing_api_journal.py",
-        "tools/drawing_census.py"
+        "tools/drawing_census.py",
+        "tools/drawing_api_surface_contracts.py",
+        "research/runtime/drawing-surface-api-layouts-20261011.json",
+        "tools/drawing_api_resources.py",
+        "tests/test-drawing-api-resources.py"
       ],
       "evidence": [
         "DRAW.api-v2.guards-20261011",
         "DRAW.api-v2.abi-20261011",
-        "DRAW.api-v2.movies-20261011"
+        "DRAW.api-v2.movies-20261011",
+        "DRAW.surface-api.guards-20261011",
+        "DRAW.surface-api.abi-20261011",
+        "DRAW.surface-api.movies-20261011",
+        "DRAW.surface-api.final-abi-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31855,6 +31886,698 @@
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-api-resources",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Reviewed formal API arguments and bounded buffer snapshots",
+      "scope": "Native post-processing policy for exact reviewed graphics CALL layouts and successful client GetDC/ReleaseDC and Lock/Unlock intervals, concrete interface output/Release observations, descriptor/clip/key snapshots. Run-local identities only; incomplete capture/borrow origins and external reference ownership/destruction remain explicit. No broad COM inference, all writers/pixels, concurrent lifetime or DRAW-01 closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-graphics-api-boundaries.md"
+      ],
+      "implementation": [
+        "tools/drawing_api_resources.py"
+      ],
+      "tests": [
+        "tests/test-drawing-api-resources.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_surface_contracts.py",
+        "tools/drawing_api_contracts.py",
+        "tools/drawing_api_details.py",
+        "tools/drawing_api_pairs.py",
+        "tools/drawing_api_journal.py",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "research/runtime/drawing-surface-api-layouts-20261011.json"
+      ],
+      "evidence": [
+        "DRAW.surface-api.guards-20261011",
+        "DRAW.surface-api.movies-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.graphics-api-surface-client-layouts",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Exact reviewed DirectDraw setup, Surface2 and clipper client CALL layouts",
+      "scope": "141exact byte-bound original CALL layouts with receiver/global/stack data-flow review: setup globals/QueryInterface/creation, canvas+8 Surface2, clipper6f98d0, restore/key/palette/draw/DC/Lock/Unlock/release. Twenty offset-zero reload callbacks remain excluded. Formal client layouts and fixed buffer roles only; no universal runtime type, external implementation/reference lifetime, pointer validity on failure, concurrent mutation, allwriters/pixels/scenario closure or live replacement. Twenty-two exact CALL locations lack discovered function anchors and remain explicit validation-domain gaps; their static bytes/layouts remain in the layout metadata without function recovery.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810658,
+          "scope": "IDirectDraw.SetCooperativeLevel exact CALL bytes ff5150; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810694,
+          "scope": "IUnknown.QueryInterface exact CALL bytes ff12; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810729,
+          "scope": "IUnknown.QueryInterface exact CALL bytes ff11; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810769,
+          "scope": "IDirectDraw2.SetDisplayMode exact CALL bytes ff5254; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810883,
+          "scope": "IDirectDraw.SetCooperativeLevel exact CALL bytes ff5150; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810919,
+          "scope": "IUnknown.QueryInterface exact CALL bytes ff12; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5810954,
+          "scope": "IUnknown.QueryInterface exact CALL bytes ff11; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811005,
+          "scope": "IDirectDraw2.CreateClipper exact CALL bytes ff5210; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811033,
+          "scope": "IDirectDrawClipper.SetHWnd exact CALL bytes ff5120; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811101,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811127,
+          "scope": "IDirectDraw2.RestoreDisplayMode exact CALL bytes ff514c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811144,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811155,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811166,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811281,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811307,
+          "scope": "IDirectDraw2.RestoreDisplayMode exact CALL bytes ff524c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811324,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811335,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811346,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811650,
+          "scope": "IDirectDraw2.CreateSurface exact CALL bytes ff5118; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811683,
+          "scope": "IUnknown.QueryInterface exact CALL bytes ff11; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811763,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811789,
+          "scope": "IDirectDraw2.RestoreDisplayMode exact CALL bytes ff514c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811806,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811817,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811828,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811882,
+          "scope": "IDirectDrawSurface2.PageLock exact CALL bytes ff9194000000; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811908,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff526c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5811950,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5174; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812046,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812072,
+          "scope": "IDirectDraw2.RestoreDisplayMode exact CALL bytes ff524c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812089,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812100,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812111,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812273,
+          "scope": "IDirectDraw2.CreatePalette exact CALL bytes ff5114; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812341,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812367,
+          "scope": "IDirectDraw2.RestoreDisplayMode exact CALL bytes ff524c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812384,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812395,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812406,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812455,
+          "scope": "IDirectDrawSurface2.SetPalette exact CALL bytes ff517c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812486,
+          "scope": "IDirectDrawSurface2.SetClipper exact CALL bytes ff5170; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812511,
+          "scope": "IDirectDrawSurface2.GetSurfaceDesc exact CALL bytes ff5158; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812591,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812617,
+          "scope": "IDirectDraw2.RestoreDisplayMode exact CALL bytes ff514c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812634,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812645,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5812656,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813248,
+          "scope": "IDirectDrawSurface2.PageUnlock exact CALL bytes ff9198000000; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813261,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813283,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813308,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813917,
+          "scope": "IDirectDrawSurface2.Lock exact CALL bytes ff5164; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813974,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff516c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814018,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5274; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814069,
+          "scope": "IDirectDrawSurface2.Lock exact CALL bytes ff5164; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814141,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814167,
+          "scope": "IDirectDraw2.RestoreDisplayMode exact CALL bytes ff514c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814184,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814195,
+          "scope": "IUnknown.Release exact CALL bytes ff5108; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814206,
+          "scope": "IUnknown.Release exact CALL bytes ff5208; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5814278,
+          "scope": "IDirectDrawSurface2.Unlock exact CALL bytes ff9280000000; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815050,
+          "scope": "IDirectDrawSurface2.Blt exact CALL bytes ff5114; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815088,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff516c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815131,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5274; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815383,
+          "scope": "IDirectDrawSurface2.Blt exact CALL bytes ff5114; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815428,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff516c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815473,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5274; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5815538,
+          "scope": "IDirectDrawSurface2.Blt exact CALL bytes ff5114; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816269,
+          "scope": "IDirectDrawClipper.GetHWnd exact CALL bytes ff5110; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816378,
+          "scope": "IDirectDrawSurface2.Blt exact CALL bytes ff5214; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816410,
+          "scope": "IDirectDrawSurface2.BltFast exact CALL bytes ff521c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816452,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff526c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816494,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5174; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816537,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff516c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816583,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5274; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816769,
+          "scope": "IDirectDrawClipper.GetHWnd exact CALL bytes ff5110; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816889,
+          "scope": "IDirectDrawSurface2.Blt exact CALL bytes ff5214; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816914,
+          "scope": "IDirectDrawSurface2.Blt exact CALL bytes ff5214; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816950,
+          "scope": "IDirectDrawSurface2.BltFast exact CALL bytes ff521c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5816996,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff526c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817039,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5174; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817083,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff516c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817130,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5274; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817312,
+          "scope": "IDirectDrawClipper.GetHWnd exact CALL bytes ff5110; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817425,
+          "scope": "IDirectDrawSurface2.Blt exact CALL bytes ff5214; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817477,
+          "scope": "IDirectDrawSurface2.BltFast exact CALL bytes ff521c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817631,
+          "scope": "IDirectDrawClipper.GetHWnd exact CALL bytes ff5110; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817751,
+          "scope": "IDirectDrawSurface2.Blt exact CALL bytes ff5214; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817787,
+          "scope": "IDirectDrawSurface2.BltFast exact CALL bytes ff521c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817829,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff526c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817872,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5174; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817916,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff516c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5817963,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5274; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818637,
+          "scope": "IDirectDrawClipper.GetHWnd exact CALL bytes ff5110; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818760,
+          "scope": "IDirectDrawSurface2.Blt exact CALL bytes ff5214; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818796,
+          "scope": "IDirectDrawSurface2.BltFast exact CALL bytes ff521c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818838,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff526c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818881,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5174; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818925,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff516c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5818972,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5274; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819138,
+          "scope": "IDirectDrawClipper.GetHWnd exact CALL bytes ff5210; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819259,
+          "scope": "IDirectDrawSurface2.Blt exact CALL bytes ff5114; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819311,
+          "scope": "IDirectDrawSurface2.BltFast exact CALL bytes ff511c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819393,
+          "scope": "IDirectDrawClipper.GetHWnd exact CALL bytes ff5110; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819488,
+          "scope": "IDirectDrawSurface2.Blt exact CALL bytes ff5214; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819530,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff526c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819573,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5174; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819617,
+          "scope": "IDirectDrawSurface2.Restore exact CALL bytes ff516c; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5819664,
+          "scope": "IDirectDrawSurface2.SetColorKey exact CALL bytes ff5274; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5820908,
+          "scope": "IDirectDrawSurface2.GetDC exact CALL bytes ff5144; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5820938,
+          "scope": "IDirectDrawSurface2.ReleaseDC exact CALL bytes ff5168; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821011,
+          "scope": "IDirectDrawSurface2.GetDC exact CALL bytes ff5144; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821043,
+          "scope": "IDirectDrawSurface2.ReleaseDC exact CALL bytes ff5168; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821128,
+          "scope": "IDirectDrawSurface2.GetDC exact CALL bytes ff5144; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821166,
+          "scope": "IDirectDrawSurface2.ReleaseDC exact CALL bytes ff5168; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821279,
+          "scope": "IDirectDrawSurface2.Unlock exact CALL bytes ff9180000000; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821311,
+          "scope": "IDirectDrawSurface2.GetDC exact CALL bytes ff5144; stated layout only, not whole containing function or target implementation."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5821349,
+          "scope": "IDirectDrawSurface2.ReleaseDC exact CALL bytes ff5068; stated layout only, not whole containing function or target implementation."
+        }
+      ],
+      "documents": [
+        "research/runtime/drawing-surface-api-layouts-20261011.json",
+        "research/runtime/draw01-graphics-api-boundaries.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/test-drawing-api-resources.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_surface_contracts.py",
+        "tools/drawing_api_contracts.py"
+      ],
+      "evidence": [
+        "DRAW.surface-api.layouts-static-20261011"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "validation_domain": {
+        "unanchored_exact_call_sites_pending": [
+          "0x58c6e3",
+          "0x58c7ad",
+          "0x58c7c9",
+          "0x58c7f4",
+          "0x58c820",
+          "0x58c84f",
+          "0x58cdbc",
+          "0x58ce27",
+          "0x58ce3a",
+          "0x58ce52",
+          "0x58ce7d",
+          "0x58cea9",
+          "0x58ced8",
+          "0x58cf8c",
+          "0x58cff4",
+          "0x58d005",
+          "0x58d01d",
+          "0x58d048",
+          "0x58d074",
+          "0x58d0a3",
+          "0x58d487",
+          "0x58d494"
+        ],
+        "scope": "22CALL identities remain documented in exact layout metadata without a discovered function or whole-range anchor. Do not substitute nearest functions or expand historical16byte range exceptions."
       }
     }
   ],
@@ -61939,6 +62662,124 @@
           "equals": 314
         }
       ]
+    },
+    {
+      "id": "DRAW.surface-api.layouts-static-20261011",
+      "kind": "static",
+      "scope": "Reviewed exact CALL layouts from original receiver/global/stack data flow, existing recovered Surface2 wrapper evidence and primary PE32 SDK prototypes. Not offset-only or universal dynamic type inference, new original execution, semantic buffer validity or closure.",
+      "record": "research/runtime/drawing-surface-api-layout-static-review-20261011.json",
+      "sha256": "9265877584c21acec7cafc3a51ab02d9b27f4b7bbbdba0e1b020c06ebf0e6df9",
+      "assertions": [
+        {
+          "pointer": "/original_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "DRAW.surface-api.guards-20261011",
+      "kind": "native_integration",
+      "scope": "68synthetic strict V1/V2 guards, legacy/current exact argument revisions, exact141site and20callback exclusions, selected borrow intervals, failure/null/overlap/unknown-origin/resource-release guards. Successful Lock output does not require DDSD_LPSURFACE; no original execution/external lifetime/writers/pixels/closure.",
+      "record": "research/runtime/drawing-surface-api-reviewed-guards-20261011.json",
+      "sha256": "8f9c63eb31a6e44c602d8b6f889ddd1909cf8af6c63ab79c59ed6900f9466190",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.surface-api.abi-20261011",
+      "kind": "native_integration",
+      "scope": "Real separate CALL stubs/observer/dynamic splices and binding writer/decoder round trip against26synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.",
+      "record": "research/runtime/drawing-surface-api-abi-20261011.json",
+      "sha256": "8a1bdaf2f07923bd5e4b71776691552fd4c646e7c264be9967cdb4cd7e4932a3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.surface-api.movies-20261011",
+      "kind": "live_observation",
+      "scope": "Selected successful original client API borrow intervals only. Failure outputs remain raw; open/overlapping/unobserved origins, external aliases/reference ownership, concurrent use, memory writers and actual destruction remain unresolved. No pixel/caller/scenario/DRAW-01 closure.",
+      "record": "research/runtime/drawing-surface-api-movies-20261011.json",
+      "sha256": "42c52114ac52f63ea58e6296d87c6a14753e3f97cb560a24c6a2e2a17526495e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/metadata_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/call_census_enabled",
+          "equals": false
+        },
+        {
+          "pointer": "/api/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/api_resources/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/api_bindings/core_leave",
+          "equals": 0
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "DRAW.surface-api.final-abi-20261011",
+      "kind": "native_integration",
+      "scope": "Real separate CALL stubs/observer/dynamic splices and binding writer/decoder round trip against26synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.",
+      "record": "research/runtime/drawing-surface-api-final-abi-20261011.json",
+      "sha256": "872f8b08561b213d568927037c25ba8e737f0ac34036fce58a6262478ddb81d9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -70607,6 +71448,64 @@
       "evidence": [
         "DRAW.api-v2.movies-20261011"
       ]
+    },
+    {
+      "id": "drawing-api-surface-layout-guards-20261011",
+      "level": "headless",
+      "scope": "68synthetic exact-layout, version-preservation, strict V1/V2/binding and selected resource interval guards. No original execution/external lifetime/graphics completeness.",
+      "behaviors": [
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-bindings"
+      ],
+      "tests": [
+        "tests/test-drawing-api-contracts.py",
+        "tests/test-drawing-api-details.py",
+        "tests/test-drawing-api-journal.py",
+        "tests/test-drawing-api-bindings.py",
+        "tests/test-drawing-api-resources.py"
+      ],
+      "evidence": [
+        "DRAW.surface-api.guards-20261011"
+      ]
+    },
+    {
+      "id": "original-drawing-api-surface-movies-20261011",
+      "level": "live_observation",
+      "scope": "Original movie-enabled selected314API-only startup/menu/shutdown with revision2 exact client layouts, closed journal, stable sources/metadata and selected completed borrows. Unobserved origins, complete Lock intervals, outputs/types/external lifetimes, allwriters/pixels/failures and14scenario/four dispatch closure remain pending.",
+      "behaviors": [
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-cohorts",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.surface-api.movies-20261011"
+      ]
+    },
+    {
+      "id": "drawing-api-surface-layout-abi-20261011",
+      "level": "headless",
+      "scope": "Current revision2 builder/details/resource dependencies with26real synthetic PE32 forwarding bodies and actual native V2/binding writers. Not original141site/API/lifetime execution.",
+      "behaviors": [
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-bindings"
+      ],
+      "tests": [
+        "tools/test-drawing-api-census-abi.py"
+      ],
+      "evidence": [
+        "DRAW.surface-api.abi-20261011",
+        "DRAW.surface-api.final-abi-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -70944,8 +71843,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-api-v2-20261011.json",
-    "sha256": "f14dbb2557fe6a37ae0bd097b3d6d85498fd5e52d3bb031df7e93cc747ecaa9f"
+    "path": "research/runtime/coverage/source-index-draw01-surface-api-20261011.json",
+    "sha256": "f5bf4d111d47c533c83b6dcff5246a5b44160416b8555711da4d3f128aab3301"
   },
   "claim_bindings_required": true
 }

@@ -17,6 +17,7 @@ import time
 from drawing_census import ROOT, trace
 from drawing_api_journal import trace as api_trace
 from drawing_api_details import trace as api_detail_trace
+from drawing_api_resources import trace as api_resource_trace
 from drawing_api_bindings import decode as api_bindings, physical as api_physical
 from campaign_gameplay import read_rows, creatures
 from campaign_spell import read_spell_rows
@@ -44,7 +45,7 @@ def capture(root, template, journey, claims=None):
     source_paths = ['tools/capture-drawing-census-game.py', 'tools/drawing_census.py', 'tools/drawing-census-game-runner.py',
                     'tools/campaign_gameplay.py', 'tools/campaign_spell.py']
     source_paths += ['tools/drawing_api_cohorts.py']
-    if manifest.get('api_observation_enabled', False): source_paths += ['tools/drawing_api_journal.py', 'tools/drawing_api_pairs.py', 'tools/drawing_api_details.py', 'tools/drawing_api_contracts.py', 'tools/drawing_api_bindings.py']
+    if manifest.get('api_observation_enabled', False): source_paths += ['tools/drawing_api_journal.py', 'tools/drawing_api_pairs.py', 'tools/drawing_api_details.py','tools/drawing_api_resources.py', 'tools/drawing_api_contracts.py','tools/drawing_api_surface_contracts.py','research/runtime/drawing-surface-api-layouts-20261011.json', 'tools/drawing_api_bindings.py']
     frozen_sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in source_paths}
     if declaration: frozen_sources.update(declaration['sources'])
     prefix = root / 'wineprefix'
@@ -389,6 +390,9 @@ def capture(root, template, journey, claims=None):
             if api_manifest.get('synthetic_fixture',False):raise RuntimeError('Original journey cannot use synthetic API namespace')
             bindings = api_bindings(root / 'capture/api-bindings.bin', api_manifest)
             api = (api_detail_trace if api_manifest.get('journal_version')==2 else api_trace)(root / 'capture/api-calls.bin', api_manifest)
+            if api_manifest.get('journal_version')==2:
+                report['api_resources']=api_resource_trace(root / 'capture/api-calls.bin',api_manifest)
+                (root/'decoded-api-resources.json').write_text(json.dumps(report['api_resources'],indent=2)+'\n')
             if not api['paired_calls']: raise RuntimeError('No selected original API CALL was observed')
             require_bindings(bindings,selected)
             (root / 'decoded-api-bindings.json').write_text(json.dumps(bindings, indent=2) + '\n')
