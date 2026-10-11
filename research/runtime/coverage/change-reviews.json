@@ -267882,6 +267882,268 @@
         ],
         "reason": "Fresh source-current102-input controls independently kill producer/consumer at generation34; expected terminal refusal,stopped private Wine,no completed claim and backend absence/bounds pass. Fresh128 recovery after both passes every unchanged gate,cold386.921ms,19.6863/19.8794FPS,warm median38/p9545/max58,RSS growth4,497,408 bytes,all128 returns/paints and zero World readbacks/replies/writebacks/coalescing/remaining surfaces. Scoped private fault/recovery only."
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "4be6b6b63af46622a3063a875198a52bea57fc6a45484064fccb68cd4a06a677",
+          "before_sha256": "a99cfa66879773d1991f646872ce3d99b02f23f59d82ba87723b59c1895e83d0",
+          "id": "NR.bounded-copy-order"
+        },
+        {
+          "after_sha256": "78e0d733b2727eff38095c46ba804f9b7483a86d26325e1d9a8ba3b1450ebd97",
+          "before_sha256": "3624a45497f31982153d8d33f1c1397db96c01e7ff0158ee1f67686a67a1b800",
+          "id": "NR.canvas-fade-row-damage"
+        },
+        {
+          "after_sha256": "225491ff5832b5683dc6ee11f2a34855ed85a86073cae9f687306a0044310fa5",
+          "before_sha256": "74f757d6af54461b16af0a69ba8b46197596e89b3b9609fdf1eebb5ae795761f",
+          "id": "NR.directdraw-import-retirement"
+        },
+        {
+          "after_sha256": "ba9587c0ecdebf7ccdca9c2c72b914b8ac7f5f39f48462c8d17af0f5504cc9a0",
+          "before_sha256": "9e2f1d0b7b298e90a2863489b2d57e31e3a251c9d38ab517f8957a3d963a9593",
+          "id": "NR.directdraw-native-opengl-launch"
+        },
+        {
+          "after_sha256": "4662ca4bb27e078dcfee22415edc8bd328eabd2614642cd49747d9f5d0f7338d",
+          "before_sha256": "ca78a40d85ea9cb1799bde0596d66528e3e10b4eb5caee205881b653c2060b75",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "d8193b24eafeb71fc1146fe5cfbfb526f99ff9ec16819bc0f3162355c2ca8c79",
+          "before_sha256": "18bd21c97115f33579dc042b0871e5e81893bdc8ae55950370181b9376b712bd",
+          "id": "NR.directdraw-retirement"
+        },
+        {
+          "after_sha256": "fbb69f5e3c092cb3a11a2de71fcc1eac73369035d4492a2d424f7ae292febf2f",
+          "before_sha256": "135bd9a87f3dd1d6eb10ea29a1628cd6f045d31c6dbc8bb23d47270fbe4eb7b6",
+          "id": "NR.native-draw-status-session-file"
+        },
+        {
+          "after_sha256": "f8035ce6bb2916417a72ba2c3e817838c4cf956cb26b9bdc1d1039d1ff24490a",
+          "before_sha256": "501473889b70f18d33a09dd4f48a7eed980a9553d81e514326552d2b1f288637",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "086bf25754eec239b498aa3a1b152a8435017f92cd3ee7fec7c16a24e2f972f5",
+          "before_sha256": "6fd0ebe5715c141b5e49f20d8a0cfb9daaa55118a09c1a070f164e71791bc95c",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "56e89017c6e2aad673232c5fe2e5af073e91fcfa6c0ff199692be1ab68b48152",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-fade-recovery-20261011.json"
+        },
+        {
+          "after_sha256": "f60328593933fce721d8682fca86b564d2ef201b6e0c6fd2729cadc4e5023171",
+          "before_sha256": "c2abfca75b6d6873ac2eb56ab0895b4ffb1b2abeebe5fba3e5a2c2927e172a58",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "22f32cfc6ddb454895df054c561c2f01a79d8bcb0b789abf1f9556af869ab6d8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-mapped-status-20261011.json"
+        },
+        {
+          "after_sha256": "a28904b07d0c9fd441f072cd51e7222a10fcc9174ce7861e65736aa1e97edcff",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-mapped-status-full2-20261011.md"
+        },
+        {
+          "after_sha256": "4ca1bc26a890489a510388cedb8ce706def354a4de04c7468be24fba9906c204",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-mapped-status-pending-20261011.md"
+        },
+        {
+          "after_sha256": "73bcac3e6081a6d3a693e128ac0c20023e7a87231121fa96468cb09699e60104",
+          "before_sha256": "5934f7acc1eeea9d649f3fc78770aee7a1ad3b0d5f1a0b09ae90150c0e1b3cd7",
+          "path": "research/runtime/native-draw-device-surfaces.md"
+        },
+        {
+          "after_sha256": "44580e847acbdf3d7b8fb2a1be35ea9bdf9d80a9fe9d3401afb7d63797ef2f8c",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-mapped-status-fixtures-20261011.json"
+        },
+        {
+          "after_sha256": "669de3f8211c6c3d2f12fc57af66c0369f8a26ab036691ce2c4e01bacd7fb6b0",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-mapped-status-full-nvidia-pass-20261011.json"
+        },
+        {
+          "after_sha256": "1e4492f74833d9070509a06186cfdff800e02847117486678d1d3a0f3b02cc47",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-mapped-status-services-20261011.json"
+        },
+        {
+          "after_sha256": "61c83c49f84a4eb56b7915b262b50f907830fd88c02d860325259e790f13d5d9",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-public-status-write-failure-20261011.json"
+        },
+        {
+          "after_sha256": "0b02ccf127b1193c368b2d80a765ff8cbf2d85c2ed7bb2dcd97120d118df60bc",
+          "before_sha256": "a27bee61d1f666beb511f33dba39633d9bf384a80885c41061330e95a2ba9202",
+          "path": "runtime/native-draw/status.h"
+        },
+        {
+          "after_sha256": "ccbef95fca6ee762ad3c87fe3e6e3933cc90ab41831ebc054a1ca08f22cbf925",
+          "before_sha256": "63b61f90595fc51d8a212bdaca1a97df348676c19c3a56ada8442979b4f1ace3",
+          "path": "tests/native-draw-status-test.cpp"
+        },
+        {
+          "after_sha256": "5791d97ffa126a832fd6d73b2a873cbaaa2153c922f8ac7fc4b118a657042149",
+          "before_sha256": "19f07cb61d207cad80c57f25bdd6ceaba8236a455ded8e8d75d4b5d7393d326b",
+          "path": "tools/build-native-draw.py"
+        }
+      ],
+      "id": "native-mapped-status-file-io-review-20261011",
+      "pending_gaps": [
+        "stale_evidence:084fed1d27d74e94d007212afcb3f49d49b8a8bb95c32c13eb771457c5c22ac8",
+        "stale_evidence:096477fda6fda8f154efcf56fb3e1dfd713fab3a8a90f804dc3e8047ff6ce78e",
+        "stale_evidence:0c1888d1f4c64325a9601929543dc666fc4b9cb32a7e677cc2177475b4ab9867",
+        "stale_evidence:18d947bcf9d22dc2a6e7a55913fe0b2238ac1028cea614f7f560e26c4ceb0cfd",
+        "stale_evidence:307d434f5342f669b7ce27ba98c70cf9b899ecb213cafc91c01daa93faa1faab",
+        "stale_evidence:37e9297a0ae3ef0937efbee774fc606e6687335669969b054aa7ae3e8f78649f",
+        "stale_evidence:41b5c265c8b27163f0052db5bf1f4773fd55d35e4cbed1d0afe2ab0f877304e8",
+        "stale_evidence:4593f5d05f19ad37c7a7a9e1fa25a6e1f504ff53c3005160f54b36d0805b4e9e",
+        "stale_evidence:56d140acceca9642a87fda25339b4cb082a4134398bf0937835945253a47de51",
+        "stale_evidence:5e14cba5d0f65dc11ea59566c68edea0c6632e6dbc07d617af8c66d619b2b1ce",
+        "stale_evidence:70a291bb53050f577b58e2eebe699e6d2669cf8f5da2a83f18cfdd102c41d560",
+        "stale_evidence:711c43af4f78d6f9e658d5bd8ab1eb562f59188b88ecdd80b28565ce5e96ac6f",
+        "stale_evidence:73093b4a3cdf5cc4506a8007db5ee06023fd767d59ef759d40e9ad305b934998",
+        "stale_evidence:7a16dd909aa21c2dd7426d40cd59347f26af3a0c13c2e005ffb1fcdb7f169a84",
+        "stale_evidence:7d10a37538592f71d3bdf03728507f54f250de370c8ae59353e42980b7b6e0f0",
+        "stale_evidence:80bc38d8502fb20e078e75fdc745408c3a5630f4fb1242545da5464b5902194b",
+        "stale_evidence:87b26526395bf84d7c7f6438cbaacea116363d44d0bc578943418250f5e89249",
+        "stale_evidence:8852efb9fcd2e678cc93ba45285a0bb5cdceb733d679e6eb08559d4e4afc87c9",
+        "stale_evidence:96083f70d07933ac7be56514ca8a1d7f724cf48ba2c0627f5599bd4dbc228052",
+        "stale_evidence:9df5b3a1eaf2764978b7ce9250c754a5c4f98e236fe00ca15fda903169939602",
+        "stale_evidence:9e9e259d5ae1f041521ce359585a874deabb66001cf123b29b92fed4b1ca0bcd",
+        "stale_evidence:bd5be4ab8f344a8ee98ff107a0b312b577a74fddb934fcd6fe0fd930ad8c3366",
+        "stale_evidence:c2162ac7ff0495bccf2d2e17ed9a2c3156dc6809f2f0b46cc7e075f90072b438",
+        "stale_evidence:db062902998cd8cfc2d7b331fd071cf5df95c835bc41e23405c1b9939baaf650",
+        "stale_evidence:de23738897f5724a16245bbe4b4a31628df06bc13d0244182aa5a00a80fc56d8",
+        "stale_evidence:e2045e433821a73427537d904c854e3de7ee541934e2a03ebc97a1e937859d95",
+        "stale_evidence:f033ceb65df2095bba70238a3ad8a473e3a4a40ee2ebb45abd7e2f7ef97220dd",
+        "stale_evidence:f24af5e099fef1a8f7e371d21e68bea6f1d9eb2b2b35256e103474e1d4623b89",
+        "stale_evidence:f2eecf97ce4ebfa628d89f80c6082c78d75d46be1d598c43a9266ae90f12a302",
+        "stale_evidence:f7700fa6b5f5d3e306925a22a69e07485657a3f7979e734c4f8c0c93fd2f55ef",
+        "validation_gaps:6d484c77d4508d07ca5ca97b5095b0605b897da9572710b3ae2ee412cd685c30",
+        "validation_gaps:8862becac662aa69411a46b97ed5b4009afd0511759c61c36f3bf22589c0a746",
+        "validation_gaps:8f150ffaa99c919e040f45b0861b3242d974fd859f48ab867be432b8db92fd13",
+        "validation_gaps:99786df475fd4ec5f43d00755dab84621da25244928bc77f9fbc4cb25b552916",
+        "validation_gaps:c95ecb510cf04f9f4224b47340333937cd514d78d70bdb89a69f3c650295ecdc"
+      ],
+      "reason": "Reviewed reproduced resumed-public GAP: old WriteFile stage4 held82/146ms in BltFast phase3. Replace admitted-drawing diagnostic file calls with startup-owned96-byte file-backed view,24 bounded memory stores under nonwaiting admission; flush/unmap/close only teardown. Preserve v2 fields/LastError/every-call module check/terminal refusals and50ms ordering unchanged. No async worker or unload changes. Independent guarded sink and actual Wine/native file readability/teardown/unknown-refusal comparisons pass. Reviewed8-file283e9dc exact receipts; census and central mappings reviewed without refreshing old hashes.",
+      "validation": {
+        "status": "pending",
+        "evidence": [],
+        "reason": "Fresh guarded fixtures/services and full public execution are registered; selected live status/public/copy-order validation is recorded separately below. Native Draw DLL change leaves historical World/fault/recovery/standalone fingerprints stale; fresh executions pending. Preserve all old failures/statuses/scopes and explicit new retired/stale gaps. No OS paging latency,crash/external-read atomicity,publicV4fusion,60FPS,full API or semantic COM equivalence."
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "4be6b6b63af46622a3063a875198a52bea57fc6a45484064fccb68cd4a06a677",
+          "before_sha256": "a99cfa66879773d1991f646872ce3d99b02f23f59d82ba87723b59c1895e83d0",
+          "id": "NR.bounded-copy-order"
+        },
+        {
+          "after_sha256": "4662ca4bb27e078dcfee22415edc8bd328eabd2614642cd49747d9f5d0f7338d",
+          "before_sha256": "ca78a40d85ea9cb1799bde0596d66528e3e10b4eb5caee205881b653c2060b75",
+          "id": "NR.directdraw-public-native-menu"
+        },
+        {
+          "after_sha256": "fbb69f5e3c092cb3a11a2de71fcc1eac73369035d4492a2d424f7ae292febf2f",
+          "before_sha256": "135bd9a87f3dd1d6eb10ea29a1628cd6f045d31c6dbc8bb23d47270fbe4eb7b6",
+          "id": "NR.native-draw-status-session-file"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "086bf25754eec239b498aa3a1b152a8435017f92cd3ee7fec7c16a24e2f972f5",
+          "before_sha256": "6fd0ebe5715c141b5e49f20d8a0cfb9daaa55118a09c1a070f164e71791bc95c",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "56e89017c6e2aad673232c5fe2e5af073e91fcfa6c0ff199692be1ab68b48152",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-fade-recovery-20261011.json"
+        },
+        {
+          "after_sha256": "f60328593933fce721d8682fca86b564d2ef201b6e0c6fd2729cadc4e5023171",
+          "before_sha256": "c2abfca75b6d6873ac2eb56ab0895b4ffb1b2abeebe5fba3e5a2c2927e172a58",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "22f32cfc6ddb454895df054c561c2f01a79d8bcb0b789abf1f9556af869ab6d8",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-mapped-status-20261011.json"
+        },
+        {
+          "after_sha256": "a28904b07d0c9fd441f072cd51e7222a10fcc9174ce7861e65736aa1e97edcff",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-mapped-status-full2-20261011.md"
+        },
+        {
+          "after_sha256": "4ca1bc26a890489a510388cedb8ce706def354a4de04c7468be24fba9906c204",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/summary-native-mapped-status-pending-20261011.md"
+        },
+        {
+          "after_sha256": "73bcac3e6081a6d3a693e128ac0c20023e7a87231121fa96468cb09699e60104",
+          "before_sha256": "5934f7acc1eeea9d649f3fc78770aee7a1ad3b0d5f1a0b09ae90150c0e1b3cd7",
+          "path": "research/runtime/native-draw-device-surfaces.md"
+        },
+        {
+          "after_sha256": "44580e847acbdf3d7b8fb2a1be35ea9bdf9d80a9fe9d3401afb7d63797ef2f8c",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-mapped-status-fixtures-20261011.json"
+        },
+        {
+          "after_sha256": "669de3f8211c6c3d2f12fc57af66c0369f8a26ab036691ce2c4e01bacd7fb6b0",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-mapped-status-full-nvidia-pass-20261011.json"
+        },
+        {
+          "after_sha256": "1e4492f74833d9070509a06186cfdff800e02847117486678d1d3a0f3b02cc47",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-mapped-status-services-20261011.json"
+        },
+        {
+          "after_sha256": "61c83c49f84a4eb56b7915b262b50f907830fd88c02d860325259e790f13d5d9",
+          "before_sha256": null,
+          "path": "research/runtime/native-draw-public-status-write-failure-20261011.json"
+        },
+        {
+          "after_sha256": "0b02ccf127b1193c368b2d80a765ff8cbf2d85c2ed7bb2dcd97120d118df60bc",
+          "before_sha256": "a27bee61d1f666beb511f33dba39633d9bf384a80885c41061330e95a2ba9202",
+          "path": "runtime/native-draw/status.h"
+        },
+        {
+          "after_sha256": "ccbef95fca6ee762ad3c87fe3e6e3933cc90ab41831ebc054a1ca08f22cbf925",
+          "before_sha256": "63b61f90595fc51d8a212bdaca1a97df348676c19c3a56ada8442979b4f1ace3",
+          "path": "tests/native-draw-status-test.cpp"
+        },
+        {
+          "after_sha256": "5791d97ffa126a832fd6d73b2a873cbaaa2153c922f8ac7fc4b118a657042149",
+          "before_sha256": "19f07cb61d207cad80c57f25bdd6ceaba8236a455ded8e8d75d4b5d7393d326b",
+          "path": "tools/build-native-draw.py"
+        }
+      ],
+      "id": "native-mapped-status-full-public-validation-20261011",
+      "pending_gaps": [],
+      "reason": "Reviewed reproduced resumed-public GAP: old WriteFile stage4 held82/146ms in BltFast phase3. Replace admitted-drawing diagnostic file calls with startup-owned96-byte file-backed view,24 bounded memory stores under nonwaiting admission; flush/unmap/close only teardown. Preserve v2 fields/LastError/every-call module check/terminal refusals and50ms ordering unchanged. No async worker or unload changes. Independent guarded sink and actual Wine/native file readability/teardown/unknown-refusal comparisons pass. Reviewed8-file283e9dc exact receipts; census and central mappings reviewed without refreshing old hashes.",
+      "validation": {
+        "status": "recorded",
+        "evidence": [
+          "NR.native-draw-status-session-file.mapped-fixtures-20261011",
+          "NR.native-draw-status-session-file.mapped-full-nvidia-20261011"
+        ],
+        "reason": "Fresh source-current1024 guarded mapped snapshots prove exact fields/bounds/LastError/every-call module checks/collision and mapping/flush/unmap refusals,zero admitted-drawing file calls with asserts+ASan/UBSan. Full default actual TITAN native public campaign/current PE499bd552 passes casting/combat/movement,Fireball and invalid/insufficient-mana refusals,nine portraits(error<=1),resume and normal original Quit,all requested19FPS gates,no recovery/fallback/ddraw/unknown. Eight native,44 renderer,28 protocol,227 Qt and1111 installed inputs bound and stable. Fresh live evidence supports live_observation; no broader equivalence/performance claim."
+      }
     }
   ]
 }
