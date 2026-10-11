@@ -381,7 +381,9 @@ def main():
               'sources': {p: sha(ROOT / p) for p in SOURCES}}
     if args.native_draw and not args.claims:
         args.claims=out/'prospective-claims.json'
-        subprocess.run(['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
+        declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
+        if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch'])
+        subprocess.run(declaration_command,cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     if args.claims:
         declaration=json.loads(args.claims.read_text())
         for path,expected in declaration['sources'].items():

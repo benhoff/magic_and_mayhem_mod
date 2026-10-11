@@ -5283,3 +5283,26 @@ copy burst. Fresh full owned fixtures are retained in
 1100resident Worlds without a deferred refusal but stops at smoke Escape stage4
 (Mini does not appear) and misses19FPS; negative report
 `public-resident-cursor-queue-live-failure-20261011.json`. No status promotion.
+
+### Resident World permission epoch milestone,2026-10-11
+
+Native policy `NR.world-source-region-epoch` caches bounded readable-region
+answers only for the guarded original World owner and resets both boundaries.
+Other threads and nonresident routes remain fresh; source bytes/signatures still
+copy/check each request. External permission changes within that guarded epoch
+are excluded from this policy, separately from original equivalence. Fresh
+10000-to2query,64region/permission-reset and full owned fixtures pass in
+`public-resident-region-epoch-fixtures-20261011.json`. Actual Titan query counts
+fall to~26/World and throughput rises to~18FPS, still below19. The default
+tutorial Escape/Mini negative and prelaunch provenance refusal are retained
+separately. Ordinary difficulty1 casting/combat/portrait/quit proof remains
+pending; original comparison,live replacement and60FPS are not promoted.
+The committed0063d12..b04ffef receipt audit reviews28exact file versions with
+zero missing receipts; no retrospective gate or execution assertion.
+
+The ordinary difficulty1 Titan run reaches225verified Worlds at19.7667aggregate
+FPS before a projected-shadow bounds refusal. Actual memory queries average29.82
+per World, with zero World/native/RGBA delivery readbacks. This is negative
+evidence (`public-resident-region-epoch-shadow-failure-20261011.json`), not a
+sustained19FPS or completed casting/combat/portrait/quit proof. The next bounded
+fix investigates the right-edge shadow against actual opaque samples.

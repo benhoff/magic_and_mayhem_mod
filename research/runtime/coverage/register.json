@@ -37650,7 +37650,9 @@
         "research/runtime/public-resident-surface-refusal-20261011.json",
         "research/runtime/public-resident-batch-background-copy-failure-20261011.json",
         "research/runtime/public-resident-cursor-queue-fixtures-20261011.json",
-        "research/runtime/public-resident-cursor-queue-live-failure-20261011.json"
+        "research/runtime/public-resident-cursor-queue-live-failure-20261011.json",
+        "research/runtime/public-resident-region-epoch-fixtures-20261011.json",
+        "research/runtime/public-resident-region-epoch-tutorial-failure-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37674,7 +37676,52 @@
         "NR.public-resident-world.surface-refusal-20261011",
         "NR.public-resident-world.batch-background-copy-failure-20261011",
         "NR.public-resident-world.cursor-queue-fixtures-20261011",
-        "NR.public-resident-world.cursor-queue-live-failure-20261011"
+        "NR.public-resident-world.cursor-queue-live-failure-20261011",
+        "NR.world-source-region-epoch.fixtures-20261011",
+        "NR.world-source-region-epoch.tutorial-failure-20261011",
+        "NR.world-source-region-epoch.shadow-failure-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.world-source-region-epoch",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Guarded World owner permission-query epoch",
+      "scope": "Opt-in public resident capture caches at most64 committed readable VirtualQuery region answers only on the original World owner thread between successful NOACCESS guard installation and restoration. New World/launch resets all proofs, background threads and nonresident routes query freshly, unknown/guarded/uncommitted/overflowing answers are not cached. Every caller signature, frame header and source/palette byte is still checked/copied on each request; content identities are never trusted by address. This is an intentional permission policy, not recovered original validation: external permission changes within a guarded World epoch are excluded, original frame byte/pixel equivalence and live throughput remain pending.",
+      "confidence": "provisional",
+      "original": [],
+      "implementation": [
+        "runtime/scene/world_source_regions.h",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/world_raster_batch.c"
+      ],
+      "tests": [
+        "tests/world-source-regions-test.cpp",
+        "tools/test-public-resident-fixtures.py",
+        "tools/test-native-campaign.py"
+      ],
+      "documents": [
+        "research/runtime/public-resident-world.md",
+        "research/runtime/public-resident-region-epoch-fixtures-20261011.json",
+        "research/runtime/public-resident-region-epoch-tutorial-failure-20261011.json",
+        "research/runtime/public-resident-region-epoch-provenance-refusal-20261011.json"
+      ],
+      "validation_dependencies": [
+        "runtime/scene/readable_extent.h",
+        "runtime/scene/world_continuous.c",
+        "compat/legacy/world-rolling/CMakeLists.txt"
+      ],
+      "evidence": [
+        "NR.world-source-region-epoch.fixtures-20261011",
+        "NR.world-source-region-epoch.tutorial-failure-20261011",
+        "NR.world-source-region-epoch.shadow-failure-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -75562,6 +75609,91 @@
           "equals": 4
         }
       ]
+    },
+    {
+      "id": "NR.world-source-region-epoch.fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Current-source scoped permission epoch fixture:10000queries/twoactual queries,64region bound, reset/revalidate permissions,guard/uncommitted/overflow refusal. Alongside resident1440000word reference,512cursor records and leaf ABI; no original permission/pixel equivalence or public throughput pass.",
+      "record": "research/runtime/public-resident-region-epoch-fixtures-20261011.json",
+      "sha256": "d2f2109eb739464364373267a0b7d5fc34d2f14cc950234fbcfe1c19f1fe6a9d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/source_regions/physical_queries",
+          "equals": 2
+        },
+        {
+          "pointer": "/source_regions/epoch_permission_revalidated",
+          "equals": true
+        },
+        {
+          "pointer": "/mixed_world/words_compared",
+          "equals": 1440000
+        }
+      ]
+    },
+    {
+      "id": "NR.world-source-region-epoch.tutorial-failure-20261011",
+      "kind": "live_observation",
+      "scope": "Negative default tutorial diagnostic after permission-epoch optimization:~26actual queries/World and~18FPS, no delivery readback, no public19FPS pass. Native screenshot shows SummonZombie tutorial popup; Escape does not reachMini. Interrupted only owned process, sourcesstable. Next intended proof uses ordinary difficulty1 campaign.",
+      "record": "research/runtime/public-resident-region-epoch-tutorial-failure-20261011.json",
+      "sha256": "298835ec9e4f3c5a660dd97c634af262f262df2d90e85c014668f0ddfaabb89a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_periodic_snapshot/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/smoke_progress/stage",
+          "equals": 4
+        }
+      ]
+    },
+    {
+      "id": "NR.world-source-region-epoch.shadow-failure-20261011",
+      "kind": "live_observation",
+      "scope": "Negative ordinary difficulty1 Titan casting/combat run:225 verified resident Worlds,19.7667 aggregate FPS before projected-shadow bounds refusal;29.82 physical queries/World and zero delivery readbacks. Not a sustained19FPS or completed gameplay proof. Sources unchanged; original manifest verified before/after.",
+      "record": "research/runtime/public-resident-region-epoch-shadow-failure-20261011.json",
+      "sha256": "84d16607764c134bb0a4d38c4270e82cc1cd60fd8665c91903121a23b15e4b32",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_failure_snapshot/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident_failure_snapshot/error",
+          "equals": "Projected shadow exceeds storage"
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -83993,7 +84125,8 @@
       "scope": "Public native menu campaign handoff, physical gameplay and Mini Cancel return, resident World ACK and ordered command imports with zero World/native/RGBA readbacks. Casting/combat,portrait and normal Quit apply only when explicitly exercised; independent World/HUD equivalence and60FPS excluded.",
       "level": "live_observation",
       "behaviors": [
-        "NR.public-resident-world"
+        "NR.public-resident-world",
+        "NR.world-source-region-epoch"
       ],
       "tests": [
         "tools/test-native-campaign.py"
@@ -84002,7 +84135,9 @@
         "NR.public-resident-world.campaign-stall-20261011",
         "NR.public-resident-world.surface-refusal-20261011",
         "NR.public-resident-world.batch-background-copy-failure-20261011",
-        "NR.public-resident-world.cursor-queue-live-failure-20261011"
+        "NR.public-resident-world.cursor-queue-live-failure-20261011",
+        "NR.world-source-region-epoch.tutorial-failure-20261011",
+        "NR.world-source-region-epoch.shadow-failure-20261011"
       ]
     },
     {
@@ -84010,7 +84145,8 @@
       "scope": "Exhaustive shared-context565 import and masked HUD/copy; two retained public source queues plus a mixed sprite/additive/four-colour-mode queue, malformed colour/batch/deferred-source refusal, owned deferred immutable bytes and production additive/colour leaf ABI. Native CPU reference, no public gameplay or original pixel equivalence claim.",
       "level": "headless",
       "behaviors": [
-        "NR.public-resident-world"
+        "NR.public-resident-world",
+        "NR.world-source-region-epoch"
       ],
       "tests": [
         "tools/test-public-resident-fixtures.py"
@@ -84018,7 +84154,8 @@
       "evidence": [
         "NR.public-resident-world.owned-fixtures-20261011",
         "NR.public-resident-world.batch-fixtures-20261011",
-        "NR.public-resident-world.cursor-queue-fixtures-20261011"
+        "NR.public-resident-world.cursor-queue-fixtures-20261011",
+        "NR.world-source-region-epoch.fixtures-20261011"
       ]
     }
   ],
@@ -84357,8 +84494,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-public-resident-cursor-20261011.json",
-    "sha256": "f3a0117153ba53f8bb8cfc2aa552a36973db2655164f052c6ce44ec783d29dd4"
+    "path": "research/runtime/coverage/source-index-public-resident-region-shadow-failure-20261011.json",
+    "sha256": "5efec74f1a95d0a27670d00ac2b36f7f7e2b8418200542a46d67c31906b0bf65"
   },
   "claim_bindings_required": true
 }

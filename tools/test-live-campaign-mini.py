@@ -46,7 +46,7 @@ def main():
   x=c.CDLL('libX11.so.6');xt=c.CDLL('libXtst.so.6');x.XOpenDisplay.argtypes=[c.c_char_p];x.XOpenDisplay.restype=c.c_void_p;x.XFlush.argtypes=x.XCloseDisplay.argtypes=[c.c_void_p];x.XKeysymToKeycode.argtypes=[c.c_void_p,c.c_ulong];x.XKeysymToKeycode.restype=c.c_uint;xt.XTestFakeKeyEvent.argtypes=[c.c_void_p,c.c_uint,c.c_int,c.c_ulong]
   d=x.XOpenDisplay(os.environ['DISPLAY'].encode())
   if not d:raise RuntimeError('No isolated input display')
-  key=x.XKeysymToKeycode(d,0xff1b);xt.XTestFakeKeyEvent(d,key,1,0);x.XFlush(d);time.sleep(.08);xt.XTestFakeKeyEvent(d,key,0,0);x.XFlush(d);x.XCloseDisplay(d);return
+  key=x.XKeysymToKeycode(d,0xff1b);xt.XTestFakeKeyEvent(d,key,1,0);x.XFlush(d);time.sleep(.25);xt.XTestFakeKeyEvent(d,key,0,0);x.XFlush(d);x.XCloseDisplay(d);return
  if args.validate_run:validate(args.validate_run,args);return
  harness=load('region_live_harness','tools/test-live-menus.py');harness.validate=lambda root,unused:validate(root,args)
  os.environ['MNM_LIVE_MENU_TEST_CAMPAIGN_MINI']='1';sys.argv=[sys.argv[0],'--exit-from','main','--shell',str(args.shell)];harness.main()
