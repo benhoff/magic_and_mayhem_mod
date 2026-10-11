@@ -226,10 +226,10 @@ def main():
         if args.portrait_stress_seconds or args.spell_cases:
             # Use ordinary ground orders to survive later enemy
             # waves while exercising rendering; no health/position writes.
-            # The starting area is still in the enemy Fireball approach. Move
-            # beyond it toward the tutorial's southwest edge, using the observed
-            # movement basis, and verify arrival before beginning camera stress.
-            retreat_x, retreat_y = max(1, wizard['x'] - 7), wizard['y'] + 8
+            # Return to a previously occupied ground tile after the opening
+            # enemies have been depleted. A guessed offset near the map edge
+            # can overshoot when HUD centering clamps the camera.
+            retreat_x, retreat_y = wizard['x'], wizard['y']
             result['retreat_target'] = [retreat_x, retreat_y]
             center()
             # Long retreats can need more than eight bounded steps at native
