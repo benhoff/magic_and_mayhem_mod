@@ -5,7 +5,7 @@ from pathlib import Path
 import sys
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from drawing_census import calls_for, direct_call, instructions, validate_callers
+from drawing_census import calls_for, direct_call, instructions, validate_callers, splice_conflicts
 
 
 class CensusTests(unittest.TestCase):
@@ -30,6 +30,13 @@ class CensusTests(unittest.TestCase):
         self.assertEqual(calls_for(rows, {0x401100}, self.inventory)[0]['discovered_owners'], [0x400ff0])
         self.inventory['functions'][0]['ranges'][0][1] = 0x401000
         self.assertEqual(calls_for(rows, {0x401100}, self.inventory)[0]['discovered_owners'], [])
+
+    def test_interior_branch_and_call_refuse_entry_splices(self):
+        rows = instructions('  58eddd: eb d2  jmp 0x58edb1\n'
+                            '  401000: e8 ac dd 18 00  call 0x58edb1\n')
+        self.assertEqual(len(splice_conflicts(0x58edb0, 6, rows)), 2)
+        self.assertEqual(splice_conflicts(0x58edb1, 6, rows), [])
+        self.assertEqual(splice_conflicts(0x58edb0, 1, rows), [])
 
     def test_parser_preserves_exact_call(self):
         rows = instructions('  401000:\te8 fb 00 00 00       \tcall   0x401100\n')

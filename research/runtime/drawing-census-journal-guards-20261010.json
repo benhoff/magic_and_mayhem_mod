@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/test-drawing-census-abi.py": "6ba192c7af5b153e1872d093ec3e790f9a6dbf1911edbf560b87743e4c013837",
+    "tests/drawing-census-abi.c": "d10598a011626ab2824e88a945b8c44fd6716bb7110ccab84991d25e6034650a",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "runtime/drawing-census/entry.S": "44f19762a5232669ddd22633cde8a19072fe43f11f0dabb929149c36a256de1e",
+    "runtime/drawing-census/observer.c": "95a308c446fb7bec135dc77f148c1fb7428d50e8aeb74d0512952f28be061319",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-callers-expanded-20261010.json": "c0d173ff5c726fcd22ebd47e9d423f421842cd3cc2fe3c06e836e2af3a6c0bba",
+    "research/runtime/drawing-inventory.json": "a1d7e5c0c64557d6643425ee4260c0b54fbf02b3b9f2c89cc8164f306ccd23b2",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "tests/test-drawing-census-trace.py": "974fd6acf85b6f3a8b2ddb56e201e892db9cbd516349adeef929fff2f93dac63",
+    "tests/test-drawing-census.py": "444734c84523a54d8b48b57a237163f3ab5f48e5105fe2fd55a34268f1652467",
+    "tests/test-drawing-inventory.py": "b099a6e21849ebd5985646e1fbb31f5d1348da437a4d840c228f02f81ec4c1ed",
+    "tools/build-drawing-census.py": "f0e234a54671b61840ed766bf8dfacfb364ae15b8d6efc4923f272647f03cedf",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/coverage_audit.py": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/drawing-census-game-runner.py": "626722d4bdf62ec4767cd18e65e1feb080de4768b1ea2098bdb6c4ef7e0fdd76",
+    "tools/drawing_census.py": "f4a4977e4b7ce633ffad69608e38cec0fed7ff8f6b391bba71e576d14c4ba6a0",
+    "tools/drawing_inventory.py": "749888348c1cac84e5637a529831154f5c04f393f21863ca9430940a2a1fef1a",
+    "tools/export-drawing-census.py": "59bf8dd81c177b83d2d9c60c9fd38993588980688a6db1087c422e9d4cd3126f",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/prepare-drawing-census.py": "805ce67923f276eb0342bfed7e6fea2d3ad5c1c141dfd1a73d67a656942b3c8f",
+    "tools/prepare-scene-observer.py": "fb28af7a20f861ff91f18bd4ece59365af607b3a33c7a41c03d67133743c6184",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/rendering_coverage.py": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+    "tools/run-opengl-game.py": "1f93ba28de3b5bd062ab256ffb8ce6fb99d4c1814f986d8cbbb533799135548c"
+  },
+  "sources_stable": true,
+  "callee_pop_bytes": [
+    0,
+    8,
+    24
+  ],
+  "register_flags_x87_sse_last_error_preserved": true,
+  "same_stack_tail_unwind": true,
+  "interior_no_return_slot_change": true,
+  "frame_exhaustion_forwards_and_records_loss": true,
+  "original_renderer_executed": false,
+  "claims": [
+    {
+      "behavior": "DRAW.census.call-journal",
+      "contract_sha256": "b73b42b2f32bf276c942a82ce0f5bd3b9d23a4ebb4e83a09c5b4688b59b8bb2c",
+      "scenarios": {}
+    },
+    {
+      "behavior": "TOOL.drawing-census",
+      "contract_sha256": "b21799ee554cc42879111729dada7e2f7e786889e5c3f2f72c9a6a5acad4c733",
+      "scenarios": {}
+    }
+  ],
+  "scope": "Actual synthetic PE32 callback/trampoline ABI and strict journal/splice guards; no original raster equivalence or complete DRAW-01 census.",
+  "abi_report": {
+    "path": "working/tests/drawing-census-abi/run-dv0vw9q2/report.json",
+    "sha256": "03465bfe7b040d42eff66091d603afd6d3c39c02212b9b791d826f3c6b3cacd6"
+  },
+  "guard_executions": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-drawing-census.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-drawing-census-trace.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.004s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-drawing-inventory.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "...............................\n----------------------------------------------------------------------\nRan 31 tests in 0.206s\n\nOK\n"
+    }
+  ]
+}

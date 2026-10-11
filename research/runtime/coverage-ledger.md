@@ -4341,3 +4341,20 @@ static matches; ten indirect raster groups still need observed callee identities
 This does not establish a fresh runtime module base or refresh historical journal
 evidence. Source changes leave older tool results historical until fresh guard
 execution is registered. No original drawing body is suppressed.
+
+
+### DRAW-01 original-active call journal increment — 2026-10-10
+
+The isolated `draw01-full-census` branch adds a bounded, original-active PE32
+entry/return metadata journal, strict decoder and private menu/campaign journey
+driver. All original drawing work is forwarded. Sixty catalog splices are
+accepted; `58edb0` is refused because original backedge `58edde -> 58edb1` enters
+overwritten bytes. Failed attempts are retained. Actual callbacks/trampolines
+pass synthetic register/flags/x87/SSE/error, callee-pop and same-stack tail
+unwind checks; closed menu/shutdown metadata demonstrates a verified runtime
+base and paired calls only. Scenario closure, caller ownership/indirect chains,
+all writers, API/borrowed access, pixel/side-effect equivalence, recovery and
+full dispatch remain independent pending obligations. Existing evidence hashes
+and rendering status are preserved. See `draw01-inventory.md` and the new exact
+scope-bound census evidence. History `98b4524..8764d90` was reviewed separately
+from uncommitted journal changes, with exact receipt coverage retained.
