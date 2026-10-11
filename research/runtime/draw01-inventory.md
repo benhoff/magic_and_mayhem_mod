@@ -222,6 +222,34 @@ classify observer/bridge return PCs as original direct callers. Pixels, arbitrar
 writers, borrowed API intervals, resource generations, failures/recovery,
 save/load and later map transitions remain independent obligations.
 
+## Phase projection and enabled movie requests — 2026-10-10
+
+The checker now projects retained entry/caller-group counts by exact host phase
+within a single closed metadata cohort. Campaign phases 2/3/5/6/9/10/13/14 are
+linked to their declared scenarios. Counts from different experiments remain
+separate. The recorded hook manifest is reviewed independently from hits: 67
+accepted entry/checkpoint sites and one explicitly refused fade interior. These
+do not replace the 52 legacy producer hooks or establish writer completeness.
+The [fresh guards](drawing-inventory-phase-guards-20261010.json) cover phase
+filtering, malformed excluded rows, unknown entries, duplicate hook identities
+and route conflicts. All 37 checks pass; the report still has 18 closure blockers.
+
+The [enabled original movie-request cohort](drawing-census-enabled-movie-requests-20261010.json)
+retains 84,752 events / 42,376 paired calls and normal original shutdown, with
+zero loss/open/IO and stable sources/binaries. Both original startup calls reach
+`469a00`; their returns are 1 after 313 and 189 milliseconds. This is a fast
+return path, not evidence of full movie playback. The wrapper's return boolean
+does not independently establish stream creation or sample decoding. Original
+stream setup/playback/failure paths, controls, destination placement and graphics
+side effects remain pending. The movie-enabled fixture's successful journal
+must not be presented as successful audiovisual playback or scenario closure.
+
+```sh
+python3 -B tools/prepare-drawing-census.py --source-game <pinned-installation> --movies
+python3 -B tools/capture-drawing-census-game.py <fresh-experiment> \
+  --prefix-template <stopped-Wine-prefix> --journey movies
+```
+
 ## Inspect an existing producer journal
 
 The optional importer reads only 64-byte envelopes and 96-byte record headers,

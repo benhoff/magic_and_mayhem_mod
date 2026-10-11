@@ -100,6 +100,61 @@ class DrawingInventoryTest(unittest.TestCase):
         self.assertEqual(r['unaccounted'][0]['identity'], '0x401100')
         self.assertEqual(r['unaccounted'][0]['activity'], 'instrumented_only')
 
+    def metadata(self):
+        self.record['metadata'] = [{'phase': 3, 'entry': 0x401000, 'count': 4},
+                                   {'phase': 3, 'entry': 0x401000, 'count': 2},
+                                   {'phase': 5, 'entry': 0x401000, 'count': 8}]
+        self.catalog['observations'][0]['projections'] = [
+            {'kind': 'census_entry_rows', 'pointer': '/metadata', 'phase': 3,
+             'selector': 'entry', 'activity': 'live_original_active'}]
+        self.write_record('live', self.record)
+
+    def test_metadata_phase_projection_keeps_cohorts_separate(self):
+        self.metadata(); r = self.report()
+        self.assertEqual([(a['identity'], a['count']) for a in r['activities']], [(0x401000, 6)])
+        self.assertFalse(r['scenarios'][0]['closed_route_census'])
+
+    def test_metadata_unknown_entry_is_unaccounted(self):
+        self.metadata(); self.record['metadata'][0]['entry'] = 0x401100
+        self.write_record('live', self.record)
+        self.assertEqual(self.report()['unaccounted'][0]['identity'], 0x401100)
+
+    def test_metadata_projection_rejects_invalid_even_excluded_rows(self):
+        self.metadata()
+        for field, value in [('phase', True), ('phase', 15), ('entry', False), ('count', -1)]:
+            with self.subTest(field=field, value=value):
+                row = self.record['metadata'][2]; before = row[field]; row[field] = value
+                self.write_record('live', self.record)
+                with self.assertRaises(ValueError): self.report()
+                row[field] = before
+
+    def metadata_hooks(self):
+        self.record['hooks'] = [{'tag': 0, 'entry': 0x401000, 'route': 'entry'}]
+        self.record['refusals'] = []
+        self.catalog['metadata_hook_cohorts'] = [{'observation': 'cohort',
+            'pointer': '/hooks', 'refused_pointer': '/refusals'}]
+        self.write_record('live', self.record)
+
+    def test_metadata_hooks_are_recorded_instrumentation_not_activity(self):
+        self.metadata_hooks(); r = self.report()
+        self.assertEqual(r['counts']['metadata_instrumented_entries'], 1)
+        self.assertEqual(r['metadata_hook_entries'][0]['activity'], 'recorded_instrumentation_only')
+        self.assertFalse(r['draw01_complete'])
+
+    def test_metadata_new_hook_is_unaccounted_and_bad_route_refuses(self):
+        self.metadata_hooks(); self.record['hooks'][0]['route'] = 'inferred'
+        self.write_record('live', self.record)
+        with self.assertRaisesRegex(ValueError, 'route identity'): self.report()
+        self.record['hooks'][0]['entry'] = 0x401100; self.write_record('live', self.record)
+        self.assertEqual(self.report()['unaccounted'][0]['activity'], 'metadata_instrumented_only')
+
+    def test_metadata_hook_duplicate_tag_or_entry_refuses(self):
+        self.metadata_hooks(); self.record['hooks'].append(dict(self.record['hooks'][0]))
+        self.write_record('live', self.record)
+        with self.assertRaisesRegex(ValueError, 'tags'): self.report()
+        self.record['hooks'][1]['tag'] = 1; self.write_record('live', self.record)
+        with self.assertRaisesRegex(ValueError, 'Duplicate'): self.report()
+
     def supplemental(self):
         self.catalog['caller_sources'] = [{'evidence': 'extra'}]
         self.register['evidence'].append({'id': 'extra', 'record': 'extra.json', 'kind': 'static',

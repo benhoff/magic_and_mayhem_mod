@@ -4398,3 +4398,21 @@ integration or replacement promotion is asserted. History `4d28021..18d24f6`
 was separately reviewed with 24 changed/link-reviewed files, 63 affected behaviors
 and zero missing exact receipts. See the campaign observation and phase/ABI
 evidence for exact source/contract bindings.
+
+### DRAW-01 phase accounting and original movie-request path — 2026-10-10
+
+Eight exact campaign host phases now contribute bounded entry activity to their
+declared scenario inventories. Recorded metadata instrumentation is counted
+separately: 67 accepted sites and one refused fade interior, alongside the 52
+legacy producer hooks. Fresh 37-guard accounting checks pass without closing
+any scenario or dispatch obligation. Historical observation hashes remain fixed.
+
+An explicitly movie-enabled original run records both startup movie-wrapper
+calls, followed by Main/setup and normal shutdown: 84,752 events / 42,376 paired
+calls, zero loss/open/IO and stable binaries/sources. Wrapper returns1 after
+313/189ms establish a fast return path only; complete original movie playback,
+stream failure semantics, placement, controls and graphics side effects are not
+validated. A successful metadata journal is not successful playback. All 18
+DRAW-01 closure blockers remain. Committed history `18d24f6..f240927` was
+reviewed separately with 12 changed/link-reviewed files, 13 affected behaviors
+and zero missing receipts.
