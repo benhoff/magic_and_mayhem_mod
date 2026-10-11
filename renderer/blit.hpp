@@ -31,6 +31,7 @@ struct Blit {
 };
 void validate(const Blit& command);
 struct Driver {std::string vendor, renderer, version;};
+struct GpuTiming {std::uint64_t sequence=0;double timelineMs=0;};
 using SurfaceId=std::uint64_t;
 struct PixelFormat {unsigned bits=0;std::array<std::uint32_t,3> masks{};};
 enum class CompositeMode {copy,half,quarterSource,displace,quarterDestination,projectedShadow};
@@ -83,6 +84,13 @@ public:
     // Nested batches are allowed. Release builds check GL errors at the outer
     // boundary; allocation checks and Debug operation checks remain immediate.
     void batch(const std::function<void()>& operations);
+    // Opt-in diagnostic timestamps in the renderer's own context. At most 64
+    // outstanding pairs; a full ring still executes operations and returns
+    // false. Poll never waits for query results. Time includes GPU idle gaps
+    // during CPU submission; it is a GPU timeline interval, not GPU busy time.
+    bool profileBatch(std::uint64_t sequence,const std::function<void()>& operations);
+    std::vector<GpuTiming> pollGpuTimings();
+    std::size_t pendingGpuTimings() const;
     // Persistent, renderer-owned surfaces: max 2048x2048, 64 handles, 16M pixels.
     // Copies retain textures; read/present are explicit synchronization points.
     SurfaceId create(const Image& image,PixelFormat format);

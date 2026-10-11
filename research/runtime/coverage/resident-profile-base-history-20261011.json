@@ -1,0 +1,2888 @@
+{
+  "schema": 1,
+  "reviewed_range": "e1e9553..c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+  "scope": "First-parent merged-master exact committed file versions and receipts; incoming ancestry separately covered by retained resident incoming-master report. Not a new execution or retrospective gate assertion.",
+  "files": [
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": ".github/workflows/re-coverage.yml",
+      "before_sha256": "f116c24c882b10cf34f5306eeab17abe7a3627e563513803d5ef983d24a709b4",
+      "after_sha256": "48f0ec450c14c564ebd38ac624576b70402023b2dd816fd879fb576154ac4e6c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "apps/drawing-session/CMakeLists.txt",
+      "before_sha256": null,
+      "after_sha256": "1134ed05493acb47fe09a1d78f3b8f941ba0a2ff209d5af8f4a4e3045e715992",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "apps/drawing-session/main.cpp",
+      "before_sha256": null,
+      "after_sha256": "cb5308a86a7da50bad500be0e015810caae2fa7f01e3f4e9b87e795cbb910de6",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "apps/drawing-session/observe.cpp",
+      "before_sha256": null,
+      "after_sha256": "feb834e6f83be617aa6f7518573b1239d5b88406f432812d3d5fed965d8bb934",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "apps/qt-shell/campaign_smoke_test.cpp",
+      "before_sha256": "62462dd414ed0848fbfdbd33d1567ea3280bbe26add94b8a2205cc74751d3c4f",
+      "after_sha256": "f0ebfa2b82889810ba579a92e2380ed1c9ccf21c304e57083a3849c9b2328965",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "apps/qt-shell/main.cpp",
+      "before_sha256": "c4c3b12dd81b914f9c72f0f7f55b9e359d2892e8fb4ef21a60fe8d41206eb54b",
+      "after_sha256": "2a71dbb54e405201548d9c0fec980bc977b033d6fd0a0ee9cdddefea015f900a",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "c93ba4d06b4b240f61642d205ffbb75d3e1942c14c2a7e5632a3dcfad60c40a3",
+      "after_sha256": "259a35d67bc7bbad7b4326c9841e2ecafb37d57e35ad88e93f33e8c3f0e516a6",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "protocols/include/mnm/drawing_api_bindings_v1.h",
+      "before_sha256": null,
+      "after_sha256": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "protocols/include/mnm/drawing_api_journal_v1.h",
+      "before_sha256": null,
+      "after_sha256": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "protocols/include/mnm/drawing_api_journal_v2.h",
+      "before_sha256": null,
+      "after_sha256": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "protocols/include/mnm/drawing_census_bindings_v1.h",
+      "before_sha256": null,
+      "after_sha256": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "protocols/include/mnm/drawing_census_v1.h",
+      "before_sha256": null,
+      "after_sha256": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/formats/drawing-physical-fence.md",
+      "before_sha256": null,
+      "after_sha256": "fed154a5a9a53d10bdd2ca7fbd0c427e4ef9deef78b924f01b3e73a8132e52d3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/formats/drawing-presented-session.md",
+      "before_sha256": null,
+      "after_sha256": "f1866586468780481545851b8a782981d8c3f537aef0d466042a906ce25d9bec",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "62ddb7a8f4780ee4c0c143265832bbed9d017890af62ab8218f6b9eb21f7b0c7",
+      "after_sha256": "d35f483d856f77fea35e025928f90949daa26c0ddfb9ef6996ae902806b13887",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-002633e-c43bfde-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5c884e2b28ffd02a88aa8eeb3f374cbe93106cd39923e69499c35b3f6424983e",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-02addc6-e3ee037-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "79065fff3389673b91fb5b29dcb0628ec8b68dcaf916710ddd8bcdafb45cabf9",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-034ce79-40a16e0-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "719815d5458344c8d0a045b92f95c5326cc8ebf4ca4bb5cc2ee1cd8aae700703",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-0845059-9ce39fb-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3bcecd497e8abd9a69b26d73a875ba8552f96f329b9c1004edf81646f7a366a9",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-0b40de2-23bd1c0-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "abdb9721da62e9bf7c52046ac5f7bc043a47d3b952921e5f23b3ff995c6f15a0",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-18d24f6-f240927-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "76c92c5217195e93e16715f9a632a83c52584255972b289146b802eb001b5ca2",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-1fe53d9-b85df54-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0cca8728c61773fbf9c8e8a0b56a07fbafb693bfafb4317ea5d7d97573c367cc",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-23bd1c0-1fe53d9-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "18c3269f76e47dd47af4f530c1254753ef8cbc23cd9f9f86ae064e1adf27c9fd",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-2a1885c-910e3f7-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5bcc69b766177f5af179b0c79bf68bfd8ae71ae9d934b800205610bbdd0be9f0",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-34ce28f-dc626c7-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "78ec004bc88124924a1e53f1bd0b43c828d22cfd06b04e76d721f1c6515a5375",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-3766bfb-3b50e67-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "8bc8dc482c600842a8f194f79bbcde7b91f636dcf04f4be4627a242c4b3d9ea0",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-3b50e67-02addc6-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c08abdc10af7419bda6861cdf025c19ac6b009e7ad665555897ebb058b16c4ac",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-40a16e0-63b6d06-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "db34358b83d485be88410f59e8e61944fecad9466cc6edff5d72fb7e386cbe87",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-42801df-4878427-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e7bbf78e00b14a5cc93052220075568954c3604e14c587aea594fdc0c039ddaa",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-4878427-92295c9-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "57ae930fa59eaf27af0d666cadb06553d2aa4573ac7550743d80306a23481251",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-48ca294-98b4524-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "30f8451782100dd5a25e6230c761489cf8dabd55f74da5749e521f66435f70bc",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-4d28021-18d24f6-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2dad4fea56a74b07efc2bf67b0e46a898eea353b04494d8b432cd3a0aea3e421",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-50674a8-defa681-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e6b62a67ab63183b64a6d5e4d1b9823e6a4b9463961fcb53b40d1834c11fb570",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-5abde11-7bb1f46-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "05b5177f4fbe7092f9c936d79a7eb94981b9a23552c5d87f9dd0842e25c53820",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-63b6d06-0845059-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "60b6b2aa385a314015dfd0b7a69bc52ea1381c1ec0e462db372ca4314d559215",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-6e85d84-50674a8-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3cc1285340c1149ce19f44ebd646c1320899657a5deb5182a3db5c55e5842057",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-7bb1f46-42801df-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c260f7015f24099a145586798c78f552527e692422ff251eb92acbbc10f69f72",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-8764d90-4d28021-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "bc118b5c90ff181df7d3957e9308a1e633cf70ffad5c3e654918bbad2ebcee21",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-910e3f7-002633e-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c404cff676ed78757bdad084758a96895b558b1eacb5a536c3f23948951d76cb",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-92295c9-e4be448-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0d84834b3e1f00abc2ee1697e5562b1775b371f128d1933bec1c06ec886e4152",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-98b4524-8764d90-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8bfc6d6ef1098c439f4deaaa3f8d3959f0b3e7ceef5ce97b0cce77a3c50813e5",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-a67ecea-3766bfb-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a4d4febe5974f6b6a2f143e1f6cc378076c459ffff65f1b81e5119245a9e79ab",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-a69697f-2a1885c-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1fdb5ae5164a20c6100d2dbe5d086fb22b99863dc52e4cdc111f29404f1a5fea",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-b85df54-d3cd04f-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2223cb177c2f5ceb0b2cd40a07ee9e238afdbcd886c38a8d52354bdf0865554d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-c43bfde-0b40de2-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "45f3373d35de6f5bcf11a89ea41842cb3269a931c63b4d4287b7a8d644085e57",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-c44885f-034ce79-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f38c890e8d7c061b82b701d8d3b8609f9ff3f1e82bd2a6ac6f174644878697da",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-d3cd04f-f30b3b6-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "06cb483246ea52e57fe1381eeca467fa98d35deb94f0f581e771d64696c089d7",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-dc626c7-6e85d84-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c89460c27171b324bed68e3e74cd6d099efbeecc4236042f990a905c952d3f29",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-defa681-a69697f-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f3b0b165a0db60783bb6a22cccf4769fa047bd9ad30e2dc02066f64a92ee8fc5",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-e3ee037-c44885f-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0c57bde2a19c6a2305a536c55ce09d0378bbc049baa73ee34e3bd414685d51f9",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-e4be448-f2d858b-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5e3da429cdfe89e7a666e35c6ebba6707e4d5f4b03233ca92e6f7677da42ea23",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-f240927-5abde11-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8bf875a974ef5ce36aeb3887b2aa1723cb168966948c98aaed636f59fa84d307",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-f2d858b-34ce28f-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ba38fdd0fa826c8cd57163934e53108ee3568e1fe77dd75a06f70c86591d8f9f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-history-f30b3b6-a67ecea-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "cb4b77b9dcebdb78481f943bf9c50de17bf6ee89befe1154dd669ff369e6dd96",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw01-master-merge-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2cb41c2ae74e2e8ec79a0fd424de80af630111f26e0acfa537223e15266e35b7",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw02-draw01-physical-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "857ecc8df3f7b9c8ce72ec778d89ad8bee5f7c9b34fb37a78cad07551320460c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw02-fenced-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "76a11a344abc727bdb5c1f78ec2f25381b9f389a3378ca60b6a18a4b3c1b766f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw02-physical-integration-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "fe0e535c671cbc101714dc0c523520cec9b2ae50bda00b4870369516e081ec52",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/draw02-presented-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "fd75e4acf5dd874a752db3367898f9afe0adb9f6f90ef82ce7a708d1e9a6af0c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/history-resident-complete-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "849a02e11839734fd9522bace0ae3b15461304b2ab6da09336eb35914f71812f",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/history-resident-incoming-master-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "bec6dcc3e0fefe3ad82b86a5920bbb1e93597d5fc26a0ad63309d2cff60dfd14",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "4237fcf9944693c676bca0e5838651f308ce4ec1966d772c94e4f6847c5e597b",
+      "after_sha256": "679f61dc5887568847719cf2b9b7d43a071ab071054286b91222ef252244d510",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-api-bindings-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b944187d48db1c8d272d7a1417f8b62e6339f31eca406da0bdc55f82bb83df36",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-api-breakpoint-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "82afa42a33400247c50529f6401ab1429cae1665982807eb0b710d1317c75514",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-api-expanded-gameplay-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1008b009576703645ed10e8a63a125d0c5e9a20c62d8e07f17d83fce183d803d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-api-inventory-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7ec628ad06674d04423a03364b1489f5d954f040ac849d09aa6f355d0d3dd911",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-api-journal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5e430153616b98c1e38d0dea54d019a8d776d815715fa7b366193e4348bb5e0d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-api-menu-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7ad21c9374a4a6546933118e11b2bb823857f2a590e33698782be370919e4b3d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-api-observer-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9cd8f5292dd31db7b122e05ede769802d9b5c4bb427700daa83df04ad29a6b92",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-api-only-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "310faa2383cbaefbb84269515a1c54f0b8e6dbb3591ffab7345a814591c970fc",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-api-sites-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ebacda8eda0d934485c82fedb8f11f2d489d8882eabbab1547200a18664c8ffe",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-api-v2-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f14dbb2557fe6a37ae0bd097b3d6d85498fd5e52d3bb031df7e93cc747ecaa9f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-api-virtual-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1008b009576703645ed10e8a63a125d0c5e9a20c62d8e07f17d83fce183d803d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-callers-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "fe056d8ec94fe1ce1ce1982770605291b581d2f38f8e6d98e772959a548d86db",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-campaign-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "21a8eb6aca89ebf3084dd50be2b052ecb58fd743104feef2034e8cf4170e5fef",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-campaign-effects-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "47fc22f4bb1dd102d36e9363a307e8083a3048501f90892f310cc311b6fdf25b",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-canvas-release-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ee90230b433dab4df0221241b20b047760dba1f92c7e2b01322fe12b8ec7ee89",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-canvas-release-range-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c8d02316bc6bde97c1241a13752d2ced26da3067ab4744001768f01c865e7429",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-compact-cpu-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "d6a89c9792daf5dff543eb9b28b03dfdd6b146b6ac3abce7b852bfb6a6b16dd7",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-core-bindings-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6a80f042ed41a6afaf11bc713c8ae7b3548f6d4da8bee73ea4fbc530a68179a0",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-core-callers-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9efa58aa5cfe400490cc2f3f3d44f46768b378dc822f73fa3af0bc3b2a56d703",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-cpu-crosswalk-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "30de2292caf9736afd2b988fc23a2f241f493c52e99fea6e5619f8de698c0a53",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-cpu-observer-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3fabc72f5650b11986316bf2eacf7f6a76e0d82b40b9bed4a775f48fa24a4338",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-cpu-sites-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "dcd65e0c6cac839255a5924bc87f4ce11418b1cdcb32f356417b1661a3ee582f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-cpu-terminal-routes-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "29249c2cad895bc7354bca9a63191c8162a2eda8042ee1fdf54a90676b3e28ba",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-dispatch-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "aabf8c9b1828b46c51f3ec13da5b65305c71eb6240dd7718883c3f7d237d34aa",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-journal-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "4ac931fb78ed0d8fdfc8f99095d74453cf3e4e50721de1475ad0d032012978ae",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-lock-recovery-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0cbbc5664d4e6d22117ba880d7f3cd3f4cb37de3aa6e3216da013a12a4b77bfb",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-master-merge-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "76383e816fc291126bf7f8e7ae1f73bdf7ac9134c94f4c4b31d24e4b86a650c5",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-movie-order-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "4fb9b4e9d22295f3a886efd8dce75bbccdc44f764de01b19ad93396b70a8815b",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-movie-sites-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "6c7c66759a2863fa52b31432f45f9eaf574dd45d6acdec3709a02dc2a925e7dd",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-movies-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "56bca331043d95128610c944fd9404432f2501f0645268bbfdf06feaa95d7b24",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-phase-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "32dc4c83faa8af52bff673d080dd2fd4a9cc4e13ad8b4ac9c8b4ca6ce5c8ef23",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-postlude-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "204b1dba5af012c9b3643dfadc61afdae2f1b5e7fc4aa81069f4b80ae55b2476",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-queue-all-kinds-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "bb766ba58ef0732ffc68b77802ca2e652f6dc0881393fddb04546f40e2ffcf12",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-queue-object-variants-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "062ba24600e52beb779284b582232fa599b8bc8a395d0b5a20c2e0ff21801577",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-queue-state-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "8a4ad216827e5d645659359eb66833e45f40a7fd770bfe8726b8cebdd842dfcc",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-quick-battle-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "07c5f612fdbba5d1f80db97a3d8fe14a4b7ca22383df8300a9a2527f8ece0625",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-reviewed-api-clients-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5ad7e4ae21470ea2d3778d5da2b0d3c3c9220d0568b13e83c6e3bcfac911fa88",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-save-load-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d6636ee374af112f0e4505ab0cbf67c2debf4f1587f04dc59dd1480e47d1183f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-surface-api-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f5bf4d111d47c533c83b6dcff5246a5b44160416b8555711da4d3f128aab3301",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-terminal-crosswalk-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4b46031cc4a49893423a3c7b8800ca4bff1615454cf354676a96dacdafde110d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-terminal-edges-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3883a42dd6cb98829117e30e21d792e3533289d25b9b85507a7f03f960797d4c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw01-terminal-observer-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "85cfbae7fa4e51919896bdc3392ccd966eb6f3681024af0ec4d22df2f0fc37d8",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw02-draw01-physical-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f6a1e6f6056f0c147fa2e0b6fa055606358f20315666e4fbc40a2cb130fbcf13",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw02-fenced-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4314342df4938ebd82b72cfde4624e493e7bef6e9db6382e96f855f26810deed",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw02-physical-integration-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0f0ff29569819178768f3609500c163e001fc4d201ceae8e256f0580d4f0e131",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-draw02-presented-session-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1c03ec9486159bcfed4b1e5f0eeecb7b273044416bedb96ca8aa21d0bd3cf6e1",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-resident-master-final-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e36a5826a7454d2c94515088b76dbf71afe82c66fea1b1ac18614a409b9d1c02",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/source-index-resident-master-integration-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "40d77d3babcf76e92f5ca73e8fe821e6bf62e50ecdc050326ac5298abeca0e49",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "e14f4b099398d52b3e27dfa70a387a9cb548d64b76c5d8c61b42ad0fafff8e38",
+      "after_sha256": "63847c1468156a383c4beed8c2d58618213bdc319a07535b4d76be8490451c6f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw01-graphics-api-boundaries.md",
+      "before_sha256": null,
+      "after_sha256": "187787ded341f54c208c4e0c59bf1f048e4da905b5b88061f6f01dc7284ff389",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw01-inventory.md",
+      "before_sha256": "6a92c8e0308c00abf0280f3bc8f89073247bffa627d635c26ea64ccc0c12c803",
+      "after_sha256": "1c4ae572fe23a3feb47fb73884c9d3b5f7e4882c3948c7244c63cf94ab099a98",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw01-movie-contract.md",
+      "before_sha256": null,
+      "after_sha256": "3376a28c6a20ec2d895567c15a03395f69bf1f1108c547599cd37206f13929f6",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw02-fenced-original-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "85eb77bed9496720fd3286c56c081d197ce0b78dfe20e2ef2f2916d889100305",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw02-fenced-screen-comparison-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b32bca5bdae73bd302463a4594d30f89cc4981e6d9d8e8c11e3adbfa4843ebd3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw02-integrated-fenced-comparison-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c438026821b9703b96c72afb4936c38c657aaac1eed10aa7b48e59e2dade999a",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw02-integrated-fenced-original-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7ffc36681c8be5693ba2152dac682ac2666aa62744d26134feafd506a0c46735",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw02-integrated-native-physical-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "06302073627202df3e896221eb4eaeb1a2317afb27aa9586d60716f341647272",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw02-native-normalized-physical-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5592e47903d3c6d13b82af212ddfbe02d733741f24bde2ce7867b5587d9f450a",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw02-native-physical-session-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3fc92d2d618fd700c57ea4750fc1fb11abf0258e6fad61a709958be582d06654",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw02-resident-master-diagnostic-budget-negative-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9d47153c7f0099153bd5a09abbe45be2ceac84b673c4b1bee58d436dd922d440",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw02-resident-master-fenced-comparison-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2d41bd677640502395564f59e2ac1e2e140d7cc004c3c0d7abf684934cab3ad5",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw02-resident-master-fenced-original-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1f1514b4151ba7bc2f0a2c05ab1bc87b498b3955fe39e21fe1fbdfae61bff0dc",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/draw02-resident-master-native-physical-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6cb0c27f0fbf7570edbf02344f1975525c604d47d2e3050784c55ba9495029f2",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-bindings-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "023dafffe296d8974fa522c863de337e05d519d71ac0c9cb7df6a27753c30db9",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-breakpoint-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ba8fe3c5af4b5d72ca44594da77f382a607d17e7f5f87c2ff3ce8f1b87f9a029",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-breakpoint-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "adbf5ce87c72b8c4cde0b4b0dca97808f2b82c9336b781bac0f460b38c67b369",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-breakpoint-menu-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f457bf98debe3cfb887ae4ecc57521902137f0a2441020d7cfcfd7bdcc2df848",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-breakpoints-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7e5c141ca7e2e3137a85b3ae0bd1b7324a18b8aec753b613d57c8c93555dd53d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-cohort-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "d3ddfbec3f34106db49a9ec22b8eb5639c1e0cee137306569d6708f7c54998a0",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-core-cohort-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9ac31ecfb21aeadcfd1aec1acaf6a3a699407d105f183d8c4d21ddd8f32dcad2",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-expanded-effects-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e9432a4965dcbfa904966f28a7276696831c0a514bd326f493bb5299dcf1a689",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-expanded-quick-battle-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9c9725f0370f8fe2b1e2769c8d9799c170c1c2b8356ad80a80deb39fc30fa23b",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-expanded-save-load-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "19be3fb608f453b1c40e10739cf94ff076a7214fbd008f6539482f7e67a7158f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-journal-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "55b7256a3725c37560c6b485a2623b8606691a3f3f94df1856869a5e23665d2c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-menu-observation-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "34642e0f6c14d50b4bdc5adcf5e5e8c6eba004d8e706a853d9aba5d9646e92aa",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-observer-bindings-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "20fde336607e547f638880fc97b02364d6a7953ee61889d87c9e7e7738efac3c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-observer-bindings-build-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "be8b4c7aef29469752c2efefa99933e55ad8bd709b6c5cdba8794234d7f943ff",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-observer-build-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2d4a0aa6ce69a111caf084bfe809cd259150d4c5d650051601a5363ef56008e0",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-observer-synthetic-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ee897fc41942fbffb63b043731ac58d78247f5aa9bca872fa2ba88b2e6b02e13",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-only-cohort-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c113e403a33880d6a0e30a3126f55ef9956f9dbd64653635706522e239714c54",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-only-movies-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7042ab20b1058ad841f00c4ab310effb8c13db14b74250ca011f73972dd70b24",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-sites-expanded-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1484165cd3535efe629a0243285bf798c2afcc01b76d7e131c8944a10e8cb73b",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-sites-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "78c831b641c535aceb5af436dfa4912b71899df8980e4d1da8373396188d1aa3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-splices-accounted-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2d4de7bb63316866d656a44f3a80b82123c76d82a1836aebe11f2fed23af0da6",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-splices-export-checked-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "77db2b7406c2687d0a268a92d155f2d42f955377482c08c704160ef7d907beca",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-splices-source-mutation-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "188214ec0e9cf4d124130e5b85ff0631ce4bc1b9b1f390cf9114c44af81c1a49",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-splices-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "45220fe273467f2ebe94a1e02710e9e3e019f642b006c1d53668a26e1c6aedf3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-v2-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0238efb2e0397f88afa5b9c931434b8b88c51520fb155e8817f2b313b44a17ad",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-v2-core-plan-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "16cb948e61e4f9eed276cc00a962e700a82279ab6c6da73722ea14128174adfe",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-v2-fixture-attempts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3c56fb9250661d3e638378bdb4a2f2e98fe9921ab77772d4f984332e04267ba6",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-v2-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "56d6ed16ce5f303248076f7dd13e5ecc2fac5fb2a619ceaa0c50278c75f87283",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-v2-movies-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "8a9ba29e601a369c91a3cfd9e828107f37a3b9a0baca398f859c42dd0dc617ac",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-v2-only-plan-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "8788e8e66d34f1afe93986466b3e2200418e1dc342e1b753d7cc32b52488b1ea",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-virtual-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "827a27699114feff2c154e6cf4a9127e660f114bc9e60e7feed8e8cab9e6d413",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-virtual-candidates-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "bdfb0e01bd250ba885c748159c0c9f3f5f21628324be12b0515dcb2e43d41ef1",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-virtual-core-splices-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9314a6621ef6172c3fade2bf3954e8d3a9f7ea758fe934b1d5582b57c03879ba",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-virtual-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6ab78f10063652c7d9de21205f55c4ff79519c571cad20375a529290d76fbd18",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-virtual-movies-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5160e1d03868e37c72e1349f4719b109f9388282e5ba89d4bf95b2719da99eb2",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-api-virtual-only-splices-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "09c2f679e68fd74a5248e60d1a8e6ec8cc8945139e30e08b500926d5c19d34c8",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-callers-dispatch-expanded-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e59d85a6d0ef4ea1f3af29724a10a5e7f7f8ce0e3a544e4dfcac256bf6b535d3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-callers-expanded-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c0d173ff5c726fcd22ebd47e9d423f421842cd3cc2fe3c06e836e2af3a6c0bba",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-callers-movie-expanded-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "29d0a95178c2099f1227fe1029f50e8c5d6a27186b7e0ab6a3d8d1fa4ce873d2",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-callers-movie-sites-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "9bee999ddfbf3159c992399abd6d6308ffae0207c3536bed46ace94d17b18ac3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-canvas-release-original-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4b6d912a39e16371e679491c22e4457c21e7e0187fec08e353519ecfb41340e5",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-canvas-release-original-range-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-canvas-release-route-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "dbc46b9e699c7e72bd308a3b470716924d18b2067a359fb40087a319e3fdb66d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-caller-source-abi-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "1995d5ba3ecdea3e0297be0c76f0aea866f33f4ca1db2977882691fe445eec2f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-callers-guards-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b842cea9cbba8b52f91b32b0619ed8fa4f5c539787bfe34697e7d86f16b653a5",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-campaign-effects-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "aff29a9f4a6ff1c4d86f0fe9b92d71790a2782491d9111e300ac95d47131e62b",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-campaign-effects-observation-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4e38873606dafe392f66df158f6cfd3d0400bde1b2f5c6bd29c4132b65a9ab31",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-campaign-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "780cb390236f0973ab3717fe381321dfd1e3fc9de6671fbb8382415ad5489a41",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-enabled-movie-requests-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "91a1c7f7adf6f040a1f1b734ffb081f762b63c678289d6cc7c464a72f1a1f6d0",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-expanded-abi-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "20a167e4aa1075d938aa4143c5931f1ee54e6c7450c471baef69b1523a463bf2",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-export-checked-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "245144706b9148717a4218cb9e36045a9a80ed965f0fc2618714538322190c05",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-export-declaration-limit-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4ac01b59317696591ccfd644e3899e8200fe80587d834473873828c5e8cca1d8",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-journal-guards-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "23a80cf15a44095fcc0417d1456f978ca18b0f6d9de488f2a1d081de008432b0",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-menu-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "64f826169e9215765fa3367bfc9de7aa5d476493dd2d9edce78de1618b3a3c88",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-movie-helpers-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "5a1f521b8da58904868ea3cfb2c1f6a214b3dc1f4bac19941b83c6693fe7869d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-movie-pop16-abi-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "c48594a2bf5e158a161b97f79f536a691af1056a086b06a90c4a2e1332e11d73",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-movie-site-guards-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a7f8d4853e92b1162aa5f8539721ee403705fe7f6159bfec708cd6d72c155c9e",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-movie-sites-accounted-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "3b64b3c5d7d85ca0cce52901931fe455033ac9c08dcc6e6164e86add8cf4d1c4",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-movie-sites-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "31979d1bfffca9733c3e8b8ada799e37728e579fb0e7c83607b3998b1eddbd61",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-named-export-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "42eefb0ada541bbdba78fcd9f5e5b6587aacf88f686c10d8f07e44d3f5c87cff",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-phase-abi-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "2a19dbe9d6148bd561c660a3166620b57dd8c1709b9d217417042c9115abe064",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-quick-battle-accounted-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "7a75af418371f1c31e0bff3a12690cce79fa5c4b0a69192d55a00eae6f4bc4bf",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-quick-battle-guards-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d34f96d46b5af238d157c9c32ce826bc97477eb0be3803dfaa5baf0759f44b1a",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-quick-battle-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "478e46726c2d5ff54da99814f846ca987d970f002f94ab874bced5436edff8f0",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-quick-battle-scenario-guards-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "237362bc8eeafd61ee7b3531da6ebc458e1641245947139624a924602665ea13",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-quick-battle-transition-fault-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "628bf171c4675d3b50619e13d84ba08ccdd38b5ed77fb1195c4fb4f93172a4cb",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-save-load-fault-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "93d701b82f66ee33e0c7c50ecd342a4071d52e4dc3707001882e9971dd5b7ad0",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-save-load-menu-only-fault-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "13c231805216246da831f1161aff90c36b509bac137d1db36ed7239a6cae870a",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-save-load-menu-only-success-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e4abbb8e4d536cf957753988c60b68037fd02b9135d7a17db1e5d5d1444e61a6",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-census-save-load-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8622871f9659a306adb9a0c87849e5bb7c2c5101a1d57b5d37850eb25a8d0a00",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-compact-cpu-compact-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6d8553f8fd2885039b8d6ad66958d4d4bb06c2b7e781cdf7ad00627e982728cf",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-compact-cpu-default-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1ef7c9c5913da74b647921074e4d873fe4fa43775319b3b93833d2cfe449bef9",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-compact-cpu-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b5a55f58baae809a0e68a0afa93c0e16c54d0059fc69ad5c64f9770bcdf4bdc9",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-compact-cpu-plan-compile-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "74a6ce80badacda1eff93e503e2c3c18114880e9edabe17095ad6000e282a9da",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-core-bindings-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "460ccdddf915aa3dd40ac7eb16318465789f5a1feb2779c17eece14e3b6ffb74",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-core-bindings-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f5b56cae996944b83cda47ea9afe326d5912c59e2534f2512c48f464f65f2908",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-core-bindings-original-menu-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "06ccd8b92e70123b307f09effd66c7c45cb3eacaf249f6d4b73522d8f5c2e6c3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-core-caller-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "60c2947c502744063022440153aa5f4fb244b5cfb45450a620d9b22af0cf6bee",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-core-caller-original-replay-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "d8d2afdf0b4b5e2d538aac03f904802bd6781be08aa985831419a0e30650efda",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-core-default-catalog-profile-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7875bbc91d6f7381ea6d1d7a33ec46299fc07c0e89f3dadd17b7756772d35d14",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-cpu-compact-terminal-splices-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "cc8bd5d8648fb29e0b080c782a95f6d27458ca8736eda77da06c166917b358a8",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-cpu-core-splices-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5554492d37878a97e2aa1b079bcebbdd2299783f616e622530c4938a55274313",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-cpu-crosswalk-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "18fcf45a7e5832f3e73cc1d238a684e654f017fa284d1c2947a047b66ed1885c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-cpu-crosswalk-original-replay-path-corrected-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "28fa8240aeb954ee4694b01575e6c044fcc3efba4c18996f8a53cd0cb598ba50",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-cpu-observer-original-menu-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c5b244220bb1ba3bd94f525040e4fc854197d633ec9c9bbabeaec05613255caf",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-cpu-observer-role-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c7e1f220818886cfa25c040b8a551c272bec0366f092d37946cb67a3ea03e6af",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-cpu-sites-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c3f65c83560e3271bae3224c91b4bc1ea949c98c46e77cdffe18ffe1ceed3b32",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-cpu-sites-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "02d0fd599c15b0da272a6cc052bfe0e16b9384a04e6b961e443c9be251234628",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-cpu-sites-static-review-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6d12917a8d9532d862918fc599129d3dd5b4c081d84b744db81b672a82f90a41",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-cpu-terminal-catalog-splices-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3bbe94d4c87622823cb65970bc2d6c9af6d37468612796f2459fe3baae7dcb5f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-cpu-terminal-splices-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9df58c9652a035b5f1f1d82bcb5dd8124d794bbdcfd1b14e8aae32a1ceda9294",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-dispatch-anchors-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "abd0820123ee842bd5afce8f69ba0c0239d34b8f7e1fefa1305b8283df7a4632",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-dispatch-arguments-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0ee8c42c07da2ee6f854835cbcdd24be18a0befe9c33a313589bf886eca0b307",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-dispatch-wave-kinds-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e87cf316eadbb5c6ffa951aac98558da640d6015d64a75185347c19bbb08b155",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-inventory-api-site-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "d18fec52a9d1caf9df640cbc9457cac554e6f1dc1400400f00c846bf4389fdde",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-inventory-cpu-terminal-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2cf76efb7a44fd76a250d3feb1a1cbed7e18ade2de7d710acdde98d4cabe13f5",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-inventory-lock-recovery-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7a2ca55ba9c9946a3bd22fef4cea7675352ad8337d4e0913bcc26ffe2d2f8b31",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-inventory-phase-guards-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a56734662cc39316111e51898600c3d84f45bf0ee0d0cd4c56b4d3d4950fbcfa",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-inventory-postlude-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b3edd2aca010be8dfc14f86dd511fd2a86c92f89fa2868b857c43269c7b1a722",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-inventory-reviewed-api-client-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "462055cc4155ba2f24bda1ae34c209610627f73ecec58cb0c3feb6d87754eb6b",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-inventory.json",
+      "before_sha256": "369bf9f1e38d4edd4b09f060d6b6040392423744e2937ce4afdee22db302ed5c",
+      "after_sha256": "36a3106a0bf55396d80de197f91eb81180336f76b16dbb404fc8215610d5caef",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-lock-recovery-attempts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3ad4d44805100be275e3fb78cdfa8909755785964523b3ae25198a01855af08d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-lock-recovery-client-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "da20ed3631ec26b1a68a78035c7115ebed079b7e9693a1cb4aa43e333613ca62",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-movie-original-contract-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "3ffa7cd96d600cc4dbf3ce12b66f6bee205f705a91f705880d6e4c161953c6ab",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-movie-original-write-order-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "86fc7d2a5010b0e006021e2c2c76750a97e29e80a65f37656ea420650bcfb78b",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-movie-scoped-original-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d222945b4bbd49d1980d5267f35a5956a855cd2ebf4ca2d197f914213d76ad32",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-queue-all-kinds-state-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "cdac56bbf1e0dbac0dd84df34e393b29c673c80aa19f1bb023b2667ab46e66f2",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-queue-client-state-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "d5bb6e1c0b668ab485ad8a747426145928b19dfa7cdb06c238ec86965993ca6e",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-queue-client-state-attempts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a56466d9df61c85abba73d57d2ee1d12f43197b4edb389619d0eae3528f32278",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-queue-object-variants-attempts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "553eb016f74c72db9b37b93cd0aced3d97d84e0f86312f2f5b23e11788a6b9d8",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-queue-object-variants-state-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7abf8c732aae4a28d2c9eafdfdb0c73e5b405e7f9310722a070adaa52e5e0965",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-render-postlude-attempts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2d45cb73eba086919dbf8fc450de4f6468ccc54300a6ead68b87cc4ff36ffefd",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-render-postlude-client-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7b1806551f8d41c867c9746a4b60ff64e07f51b9c653b74855e2e2bb9b7cf83e",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-surface-api-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "8a1bdaf2f07923bd5e4b71776691552fd4c646e7c264be9967cdb4cd7e4932a3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-surface-api-abi-declaration-limit-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4100dbf4cd33b5934cc2bf3fdb6b1453ad93ea8c0fe74e6239438a8e8d035080",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-surface-api-final-abi-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "872f8b08561b213d568927037c25ba8e737f0ac34036fce58a6262478ddb81d9",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-surface-api-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "06fa5c44df658adeb9ff5ed999225766400238daf88f6c51969263cf2d5edceb",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-surface-api-layout-static-review-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9265877584c21acec7cafc3a51ab02d9b27f4b7bbbdba0e1b020c06ebf0e6df9",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-surface-api-layouts-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "2248a9dfdd1a96ec8d5cecd6288097f872194406480d881c0a698c774e805f2c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-surface-api-lock-flag-limitation-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6624dda065fa197e7828c379d3f35b9391f2d7cc5cebb318b1fa7fcfd2328cf0",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-surface-api-movies-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "42c52114ac52f63ea58e6296d87c6a14753e3f97cb560a24c6a2e2a17526495e",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-surface-api-pre-flag-review-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b69b8995834e8dc8a36df43604915f7625b059726b684ed84e5c0475fcdf3c70",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-surface-api-reviewed-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "8f9c63eb31a6e44c602d8b6f889ddd1909cf8af6c63ab79c59ed6900f9466190",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-terminal-callers-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "149d5cb0fc1755f4d39a5c76d3ff02892ea517be79a19e43b7134dae325980c7",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-terminal-catalog-profile-plan-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e6a81d24b87dd26e4710982e5b1b565c1257dd0686f3da9742ee67d15efbba5c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-terminal-crosswalk-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4dceca48138298f332ca94b65ec94cbd6c059511bff37223fdc9d74761143c56",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-terminal-crosswalk-original-replay-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "273338f020ced209034ea5e1b51219c9ecc06aa6ef5fdc41ce34dabce19e667b",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-terminal-edges-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3139b5c64b4b5eca9b639cc696756cd3edbce25e460c2f84a4681eaf2cc05f24",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-terminal-edges-retained-menu-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a207d04fd751051519cc2daab74d87c1dfc426fb48e6a831080908d5530f2e99",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-terminal-observer-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9fb901a1a5280fa08a343eebc554845f203735435579ce09d50e696d21b382c3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-terminal-observer-original-menu-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "d8d59ed92c9b8cc7c5d65e07d4b884fe6970f580ac07f22122f47502f1e015c1",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/drawing-terminal-observer-plan-compile-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f07098bd946af8955e363ae1cf6405f5ac5a996f1655b719cac3d7d41e5088e7",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/public-displacement-master-final-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c25e89c76b0c9ceb2d5d5e4f4149c7f35b21c8c4402fed54e083326e8bec8159",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/public-resident-master-combat-deadline-negative-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e63ed11aca4f3ea8930749adc3c42670193e72c386661c72d7ff77755b0b4a23",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/public-resident-master-combat-diversion-negative-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "8d48079e0d7207b92b09fe9f2976956044f21f0ed8f009650cde5598009a9cca",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/public-resident-master-final-campaign-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0c5fcb1d82336ce42f33fee17a88dc8f8637cd93cbbfb4abdd7b0b59ca9cca93",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/public-resident-master-final-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "1e598b7f073dabd02d951bf7072dc59ff267ed7904c2e78f1fb5f581bddeb444",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/public-resident-master-integration-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5911bedb738f8907dfe94d8ad3363611892533ca8fb7394fa9e75416173735df",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/public-resident-master-window-negative-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "bb7d37c9d35b948f5b5710fe31ecaab814cf4f81d4e318aefc192c10ae37b93d",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/public-resident-world.md",
+      "before_sha256": "8fa390bdb7c4113035b1cd2f8813f124addfd9ecfb5c04c1f2bcdd82fc15646e",
+      "after_sha256": "9dabc147703660ae93bc8f6dae880d6dadca84dccab0489b183ef744fd7c3c78",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/public-shadow-master-final-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "543483727471da1331288238e029ea66f5d445b1fcf2830bdeb94b6253b2a30e",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/qt-native-media.md",
+      "before_sha256": "b26048d960ef52bea48ba17fdce713b8eb53b839cab7a0d3c02580416d7d9aa3",
+      "after_sha256": "4944f59f1f4d978e936d49a18ffe0019b66d7959cdbb1bfc78fa32fde2f8f797",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "research/runtime/render-drawing-inventory.md",
+      "before_sha256": "4c3a28a446a0f4f80a18fc2584bd4045d13a798fbd186d5f1ca03c2a6e7c65b9",
+      "after_sha256": "887049365250de3c999b5b36c379aae422b9909732f627a7084d757b25fc9b6c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "runtime/drawing-api-census/entry.S",
+      "before_sha256": null,
+      "after_sha256": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "runtime/drawing-api-census/exception_i386.h",
+      "before_sha256": null,
+      "after_sha256": "74f1351bf921e9bc3c5991df046f12210113106009246cb5aa354b28ea7d7a93",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "runtime/drawing-api-census/observer.c",
+      "before_sha256": null,
+      "after_sha256": "02f82898b8c44ec040e0faff74f6c4a4a8c4c9db344444276587ff29fbed59b3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "runtime/drawing-census/entry.S",
+      "before_sha256": null,
+      "after_sha256": "44f19762a5232669ddd22633cde8a19072fe43f11f0dabb929149c36a256de1e",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "runtime/drawing-census/observer.c",
+      "before_sha256": null,
+      "after_sha256": "1b6f3b1b267c62b6c6762db8750dc6602d4c88bcd985637fdf2dc759b837b7d7",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "runtime/scene/drawing_physical.h",
+      "before_sha256": null,
+      "after_sha256": "a7e963d9983a4aee34058dcc3a7e014dd020527e470f75f6955f963826ef5acd",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "runtime/scene/drawing_publication.h",
+      "before_sha256": "3c38fc68e2dcde0552cb181a509275d0f8288128efee2eb88ecd410d9764a834",
+      "after_sha256": "f2311cb7a86fc842beba616cef943285b3d914b172cba98bb106a312db3299e6",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/drawing-api-census-abi.c",
+      "before_sha256": null,
+      "after_sha256": "7260f9032d866f3bc2c096bc4fd4428792732cb20723e81f139ef3dece4d15be",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/drawing-api-detail-call.S",
+      "before_sha256": null,
+      "after_sha256": "703373a9d236a04a841e685496c03af7a50b1e5db4286a6f469f40dc6a047b55",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/drawing-canvas-release-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "064b43af2bcc45f38a9f2563a5869566b5b05577bc5ca8f6b04c29452a362968",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/drawing-census-abi.c",
+      "before_sha256": null,
+      "after_sha256": "9d950cee41a53318b7c92d2f2ae33be5afe11d9490e674f05e895a46930a97b7",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/drawing-dispatch-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "d70d2297bc233857a298740c5eadf819f20fd394b8fa871976dda1bc1fe84f19",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/drawing-lock-recovery-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "e875258691d7ab96ba3f5ea61f28d733e78598e516ae71ae8f79167da5282780",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/drawing-movie-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "9a2a69a81f41890adeb67f0abf7ffbc25ae194b51b6780260c74c1595e8c7d91",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/drawing-postlude-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "4bc4276cbab6b1db72d09f2975509c6dc5e78c1eaa627e44b8a3618b0b33c0e3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/drawing-queue-state-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "d41fa75ac178b619718828c94d4f340e538bcdba4f81f2d27396ae7222f3d792",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-api-bindings.py",
+      "before_sha256": null,
+      "after_sha256": "c348778917c239d51c8a35e03cea792e5b701b3847613241c41ad5a21fb73187",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-api-cohorts.py",
+      "before_sha256": null,
+      "after_sha256": "6cb4aab6c0a2fe3acc316f0396ff4c102515040605ba4862a519e2d25a1b2801",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-api-contracts.py",
+      "before_sha256": null,
+      "after_sha256": "2b898fe1c3b4f4dcbd32519afe1348cac7baa9ac6e14c4983421adf61e2c126f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-api-details.py",
+      "before_sha256": null,
+      "after_sha256": "b5a381cc3ae3458eb3f4dedada07d5756dc98a2f5480004be950ff31146a9f31",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-api-journal.py",
+      "before_sha256": null,
+      "after_sha256": "7db0b1f406070ebe1c46d2c4488c3fcbf010a99d192c933993e42b75954c725c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-api-resources.py",
+      "before_sha256": null,
+      "after_sha256": "a42fd314f84f8405d0aaf79fb4b76aec6470f0a3219775b5f157e004360ac08d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-api-sites.py",
+      "before_sha256": null,
+      "after_sha256": "80542dce074566c59ff5750f70f4cdea5b06502016d51cdb14ee0fb070dc3983",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-census-bindings.py",
+      "before_sha256": null,
+      "after_sha256": "57a5371ba8b2392dea0d263a4c1b8ac02059aae9f43b522886d52b4bf837ba82",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-census-build.py",
+      "before_sha256": null,
+      "after_sha256": "21450df88d773dc04d5cc43e44d5315ca27534a6631b00f6f43d617b94b4be5e",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-census-callers.py",
+      "before_sha256": null,
+      "after_sha256": "a829e6581052a410ee4bd67a4f5f02e9d358419eea70487a9e9f165caa3cfbb5",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-census-trace.py",
+      "before_sha256": null,
+      "after_sha256": "70cca9c032b480314684046df00a6987cc538260ea5c87960283f4b56725c92c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-census.py",
+      "before_sha256": null,
+      "after_sha256": "444734c84523a54d8b48b57a237163f3ab5f48e5105fe2fd55a34268f1652467",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-compact-cpu.py",
+      "before_sha256": null,
+      "after_sha256": "df067dc04b9f15fb97d31b8507f35eae284f6c560849bf60d2496ce27a8fdda3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-cpu-cohort.py",
+      "before_sha256": null,
+      "after_sha256": "340efa99b59f027914e9262a409a58c10b50bc29019b3ba233d0075cf6bef8bb",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-cpu-crosswalk.py",
+      "before_sha256": null,
+      "after_sha256": "4e0516d87f4e29ba61af57ea6996509f2039b8e95754893f60b2ff19d695b625",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-cpu-sites.py",
+      "before_sha256": null,
+      "after_sha256": "47d6eba21c58fc276711b11a48b1e7761eb34272271dad51138c3cd986383359",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-dispatch.py",
+      "before_sha256": null,
+      "after_sha256": "07a17ed97b03e77b964b3fa7d0a75d722e8a51b203321f9824bae5a0832522a8",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-inventory.py",
+      "before_sha256": "d948e784d8411f012a69669d012bdf3cb514423074b8c1a08245b0b4268d3192",
+      "after_sha256": "92b057b929a3fbb8e0b89adbcef469af09e2e4207f401091e92840c042ec72a5",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-physical.py",
+      "before_sha256": null,
+      "after_sha256": "5b4694f1142b1be44adbe92e7663b111d7e37c8ceebe37184b5cc7e359cbbe71",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-presented-session.py",
+      "before_sha256": null,
+      "after_sha256": "3f73dfa1bb2ea073009334a56e2129eb154c3297092427e0901bab76df352128",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-terminal-crosswalk.py",
+      "before_sha256": null,
+      "after_sha256": "0752fa3cf5883906ac9858795a97e3d9b68d16dc19cb501c2375318540426f5e",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-terminal-edges.py",
+      "before_sha256": null,
+      "after_sha256": "8eafd48e57e327e4d106a3087eba7832295c1dd71f0b6ba7893b4e44d2c4038b",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tests/test-drawing-terminal-observer.py",
+      "before_sha256": null,
+      "after_sha256": "b0fed1e14e69f6a7342e63c4541f4e97bfbb603dbac4ac2a9b2860f2d299153b",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/build-drawing-api-census.py",
+      "before_sha256": null,
+      "after_sha256": "85b622c29cb61b3e62a48c77363c6c55cf983c079f8a7e1fcd20ece52f356352",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/build-drawing-census.py",
+      "before_sha256": null,
+      "after_sha256": "b8fe1ad7b2371eeb4b84836d90263a2d283cd9add1b1b0739ec5052f5dbc3de1",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/build-drawing-cpu-census.py",
+      "before_sha256": null,
+      "after_sha256": "4853b714395cb7febf4091310ec596ec00257e942c6208b9385c1f2ed93c5453",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/build-drawing-terminal-census.py",
+      "before_sha256": null,
+      "after_sha256": "f9945800ca6bc39224838111c9074dd0860a845d7883e659513d7779718a47b4",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/campaign-combat-input.py",
+      "before_sha256": "433b212bc3f01aab43aae4eebff17ad624f3570c269b39ec82777f62dd764ccc",
+      "after_sha256": "38283a76fded52907d342686e120161f62d1cd8aded53cd463ccfe17d5e65c81",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/capture-drawing-census-game.py",
+      "before_sha256": null,
+      "after_sha256": "4621507c60c4a1825485c5f6cddd30cae22cd5c10be78f4c9540cac30bf5fe79",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/capture-scene-game.py",
+      "before_sha256": "0343610b38e3ead7228a54aa2d5b6bab981d226b9072c89a1a233ea539ac7c78",
+      "after_sha256": "52c41d2b33b143d79f18be920bfc7d335246bd760ae9da4672eee1424c008e24",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing-census-game-runner.py",
+      "before_sha256": null,
+      "after_sha256": "60678fe5c79c815337234ec8bb626efb296e01ce36da6ac672cef09ab786d9eb",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_api_bindings.py",
+      "before_sha256": null,
+      "after_sha256": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_api_clients.py",
+      "before_sha256": null,
+      "after_sha256": "6e49df5ee177cc57d1fbad0ad1a8fcc30399ac4dbbea26c0660e9b88317c4ee8",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_api_cohorts.py",
+      "before_sha256": null,
+      "after_sha256": "1f2e71f79ce13a1d0954c5489a9477e3fb7e271af3abccc8920af5ea4fb26d7d",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_api_contracts.py",
+      "before_sha256": null,
+      "after_sha256": "d3df6ef14428054ae83d803345db5ce26f2b42ee1d46aa28ddc07f4a1bd23664",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_api_details.py",
+      "before_sha256": null,
+      "after_sha256": "0e77554ce71fcc66049c3f06326356325765acb99e2cb0fafce711cc4a380169",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_api_journal.py",
+      "before_sha256": null,
+      "after_sha256": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_api_pairs.py",
+      "before_sha256": null,
+      "after_sha256": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_api_resources.py",
+      "before_sha256": null,
+      "after_sha256": "ef36288e39cc2a7c10b2a7cd5b9d08c411f99457970aadefdda7b46e0a89e5a2",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_api_sites.py",
+      "before_sha256": null,
+      "after_sha256": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_api_surface_contracts.py",
+      "before_sha256": null,
+      "after_sha256": "f25d18d5ec322ca3df72e407b6631de3de459b1e8b055b23b4d4babe3c60b1ca",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_census.py",
+      "before_sha256": null,
+      "after_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_census_bindings.py",
+      "before_sha256": null,
+      "after_sha256": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_census_callers.py",
+      "before_sha256": null,
+      "after_sha256": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_cpu_crosswalk.py",
+      "before_sha256": null,
+      "after_sha256": "1b11b13354fef1bb632fbf7c814a584c55369168f314de6fd1d7a067f4d987f6",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_cpu_sites.py",
+      "before_sha256": null,
+      "after_sha256": "3e480307240f93eabc190b63f04cdb3b4f8ccfdbcc851edf357a5bd5bc946178",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_dispatch.py",
+      "before_sha256": null,
+      "after_sha256": "6ef1855c906089203fa36745166dac2c10603b8a79539849d3d257d752370ef7",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_inventory.py",
+      "before_sha256": "1bf184bde3a17e2b7f685090b5f0d07ce1627123820fc5231829d13d21c24e89",
+      "after_sha256": "a43e65c67b81212c4006b699930d221fe1e33018ee2c1ec01f0a4102de8e0a56",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_physical.py",
+      "before_sha256": null,
+      "after_sha256": "6455763c8608c38618f54efb05aefd630a55b1f302d3f8367d4eed023728856c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_presented_session.py",
+      "before_sha256": null,
+      "after_sha256": "c479214b5865f215cb0c5b0837ad778e98bafa13889f86cf78fe259075e6c677",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_terminal_crosswalk.py",
+      "before_sha256": null,
+      "after_sha256": "ac6f85ee31a8a62b387c45cdea80789af9fe7ebc87ec762152b63bf7839d33bc",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/drawing_terminal_edges.py",
+      "before_sha256": null,
+      "after_sha256": "49edc05c1fd76bd66fbdd14a00fad3edf6fcf36df8f1daeea4f31df297155322",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/export-drawing-api-sites.py",
+      "before_sha256": null,
+      "after_sha256": "954700524914c22d70f666e40eb819dcb9c58adc1c6f10a2cbe911d2955aa30c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/export-drawing-api-splices.py",
+      "before_sha256": null,
+      "after_sha256": "1a5e5a2b9df06a5a6fc91c2e610961fbfd05058d24d95c7f993220507460a317",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/export-drawing-census.py",
+      "before_sha256": null,
+      "after_sha256": "59bf8dd81c177b83d2d9c60c9fd38993588980688a6db1087c422e9d4cd3126f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/export-drawing-cpu-sites.py",
+      "before_sha256": null,
+      "after_sha256": "0dade10e0f41d85a66988e58c7e086a368e31ca67a79a8072556972df5d91ece",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/export-drawing-terminal-callers.py",
+      "before_sha256": null,
+      "after_sha256": "8e44911ace3f07ba3f95b082ef8e43902a175a2f76bc8cf12ba465dc6a6766d3",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/export-drawing-terminal-plan.py",
+      "before_sha256": null,
+      "after_sha256": "7bb864f06328dc3282a6966bef5604ae01fa70cee73b32041e8f0a0bd5c8a750",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/prepare-drawing-census.py",
+      "before_sha256": null,
+      "after_sha256": "b5ba57bdbd150c727ec75728fa21bcb7dccfd73423fd4e5f3509fd4a6cc7bc91",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/prepare-drawing-terminal-census.py",
+      "before_sha256": null,
+      "after_sha256": "30e7f07bbaa91959e569eb55754978a357d1d1599d5f5af542d5eb83f195543c",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/profile-render-stream.py",
+      "before_sha256": "a8139737b1ee5ff9d71740c378d8243ae96feec64a369c88dbb48bbd6ff11069",
+      "after_sha256": "6f4a53c1352e68374666bb76b111a492528e895f48ad79014355150f2501447e",
+      "matching_review": "resident-master-closure-master-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/replay-drawing-presented-session.py",
+      "before_sha256": null,
+      "after_sha256": "ef2a27b6e9aa9b996c0bc1e4ed0a067d36c3728a95a25f37e9e7fd3b7692976e",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/review-drawing-cpu-crosswalk.py",
+      "before_sha256": null,
+      "after_sha256": "02faaec5ec1583aafbc8cf26cb4984cf5464e67593e1e8a5ecceef72410e6fd9",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/review-drawing-terminal-crosswalk.py",
+      "before_sha256": null,
+      "after_sha256": "c2c5079a986c99094cb18bc3dcc0b763b11ad968fa8fb5dccd565b9e2f41dbaf",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/review-drawing-terminal-edges.py",
+      "before_sha256": null,
+      "after_sha256": "8864059c1c408edc207bff26630c5aa7654e38a6f9b1cf6ca734d46a4af050fa",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/test-drawing-api-census-abi.py",
+      "before_sha256": null,
+      "after_sha256": "fe5436cf68daa680251d5c398f93ac4875b0ca7b409b21f1745f3c330a7b1400",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/test-drawing-canvas-release.py",
+      "before_sha256": null,
+      "after_sha256": "f3df2ebdf95973bcf4d7d56693318becfe7b734edb50ff3928294585348f5164",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/test-drawing-census-abi.py",
+      "before_sha256": null,
+      "after_sha256": "305a362da8c9d8d0a9c8d78dad409a0b98b0d62aacbe657bbac513982baa676e",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/test-drawing-dispatch.py",
+      "before_sha256": null,
+      "after_sha256": "90739b8f450c95e791064f2e7ef8f40b4ae38c6dcf3bc6bc72693f16ddf032a7",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/test-drawing-lock-recovery.py",
+      "before_sha256": null,
+      "after_sha256": "271774b6fb3af91c2bade3d3e70ebaf3fc540e8dfd17c29ea4486b8e6f2f9907",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/test-drawing-movie.py",
+      "before_sha256": null,
+      "after_sha256": "bc1a8f353eb8499dc75aef9447a4ce119c0f1f0ad89e8d9af84cf9185288bc8f",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/test-drawing-physical.py",
+      "before_sha256": null,
+      "after_sha256": "7a37d46b0a47ffbe4826bf9530d51e0852037cdde1511481a2377f510f67f68e",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/test-drawing-postlude.py",
+      "before_sha256": null,
+      "after_sha256": "ca3cfa3f4ab07c7285419e0048f27ac34196597edadc7cd6fda8546140334376",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/test-drawing-presented-session.py",
+      "before_sha256": null,
+      "after_sha256": "6d53947c9237ebe84ba3f6f8b341e7bf117fa0c549c48b5116fa95a386318bc2",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/test-drawing-queue-state.py",
+      "before_sha256": null,
+      "after_sha256": "248779c792c0556276c470b00e18f40777eb215b862929242030d749e02e0194",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    },
+    {
+      "commit": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "parent": "e1e95535e6cc0abaeac3613d08045c7004e7f04f",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "72bc71acf4c4862bc2b7537a5f95cb9bfbde33da40e72adc9533dde4e5a1c81e",
+      "after_sha256": "688aa84b7db6c47ee8f9470463d0200b8f6772f551e37d6531066df6a9faa212",
+      "matching_review": "resident-master-closure-head-review-20261011"
+    }
+  ],
+  "unresolved_gaps": []
+}

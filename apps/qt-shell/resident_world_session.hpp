@@ -4,6 +4,8 @@
 #include "../../compat/legacy/world_rolling_handoff.hpp"
 #include <QElapsedTimer>
 #include <QJsonObject>
+#include <QJsonArray>
+#include <QFile>
 #include <optional>
 class GlViewport;
 // Application service: strictly pairs a completed native World with an ordered
@@ -38,4 +40,11 @@ private:
     double decodeMs_=0,handoffMs_=0,nativeMs_=0,prepareMs_=0,submitMs_=0,maxNativeMs_=0,producerMs_=0;
     QString error_;
     bool normalQuitRetired_=false;
+    bool stageProfile_=false,captureTruncated_=false;
+    QJsonArray stageSamples_;
+    std::unique_ptr<QFile> capture_;
+    std::uint64_t captureBytes_=0,capturedWorlds_=0,gpuDropped_=0,samplesDropped_=0;
+    std::uint32_t previousStart_=0,previousReturn_=0;
+    QElapsedTimer profileClock_;
+    void collectGpuTimings();
 };

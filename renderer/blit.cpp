@@ -203,6 +203,9 @@ struct GlBlitter::Impl {
     QSize viewport;
     bool scissor=false;
     unsigned batchDepth=0;
+    struct PendingTiming {std::uint64_t sequence;std::array<GLuint,2> queries;};
+    std::vector<PendingTiming> gpuTimings;
+    bool profiling=false;
     struct CopyUniforms {GLint hasMask,sourceOrigin,destinationOrigin,hasKey,sourceKey,keyMask,indexed,palette;} copyUniforms{},instanceUniforms{};
     GLint copyCanvasSize=-1;
     struct CopyInstance {std::array<GLint,4> rectangle;std::array<GLint,2> source;GLint palette=0;};
@@ -453,6 +456,7 @@ struct GlBlitter::Impl {
     ~Impl(){
         if(context.isValid() && surface.isValid()){
             try {Current current(context,&surface);for(auto& pair:surfaces)release(pair.second);
+                for(const auto& timing:gpuTimings)gl.glDeleteQueries(2,timing.queries.data());
                 deleteTextures(1,&scratch);deleteTextures(1,&paletteBank);gl.glDeleteBuffers(1,&copyBuffer);copying.reset();importing.reset();program.reset();presentation.reset();compositing.reset();gl.glDeleteVertexArrays(1,&vao);gl.glDeleteFramebuffers(1,&fbo);}
             catch(const std::exception&){}
         }
@@ -501,6 +505,43 @@ void GlBlitter::batch(const std::function<void()>& operations){
     --p.batchDepth;if(!p.batchDepth)p.flushCopies();p.check();
 }
 RenderStats GlBlitter::stats() const{impl_->thread();auto result=impl_->counters;result.surfaces=impl_->surfaces.size();return result;}
+bool GlBlitter::profileBatch(std::uint64_t sequence,const std::function<void()>& operations){
+    auto& p=*impl_;p.thread();
+    if(!sequence || !operations || p.profiling ||
+       std::any_of(p.gpuTimings.begin(),p.gpuTimings.end(),[&](const auto& t){return t.sequence==sequence;}))
+        throw std::runtime_error("Invalid GPU timing identity or nested profile");
+    if(p.gpuTimings.size()==64){batch(operations);return false;}
+    bool recorded=false;
+    batch([&]{
+        p.flushCopies();std::array<GLuint,2> queries{};p.gl.glGenQueries(2,queries.data());
+        p.profiling=true;
+        try {
+            p.gl.glQueryCounter(queries[0],GL_TIMESTAMP);
+            operations();p.flushCopies();p.gl.glQueryCounter(queries[1],GL_TIMESTAMP);
+            p.gl.glFlush();p.check(true);
+            p.gpuTimings.push_back({sequence,queries});recorded=true;p.profiling=false;
+        }catch(...){p.profiling=false;p.gl.glDeleteQueries(2,queries.data());throw;}
+    });
+    return recorded;
+}
+std::vector<GpuTiming> GlBlitter::pollGpuTimings(){
+    auto& p=*impl_;p.thread();Current current(p.context,&p.surface);
+    std::vector<GpuTiming> result;
+    while(!p.gpuTimings.empty()){
+        const auto& t=p.gpuTimings.front();GLuint available=0;
+        p.gl.glGetQueryObjectuiv(t.queries[1],GL_QUERY_RESULT_AVAILABLE,&available);
+        if(!available)break;
+        GLuint64 start=0,end=0;
+        p.gl.glGetQueryObjectui64v(t.queries[0],GL_QUERY_RESULT,&start);
+        p.gl.glGetQueryObjectui64v(t.queries[1],GL_QUERY_RESULT,&end);
+        p.gl.glDeleteQueries(2,t.queries.data());
+        const auto sequence=t.sequence;p.gpuTimings.erase(p.gpuTimings.begin());
+        if(end<start)throw std::runtime_error("GPU timestamps regressed");
+        result.push_back({sequence,double(end-start)/1000000.});
+    }
+    p.check(true);return result;
+}
+std::size_t GlBlitter::pendingGpuTimings() const{impl_->thread();return impl_->gpuTimings.size();}
 SurfaceId GlBlitter::create(const Image& image,PixelFormat format){
     validateFormat(format);validateImage(image,format.bits);auto& p=*impl_;p.thread();p.flushCopies();
     if(image.width>p.maxTexture || image.height>p.maxTexture)throw std::runtime_error("Surface exceeds the OpenGL texture limit");
