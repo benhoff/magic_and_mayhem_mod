@@ -47,4 +47,24 @@ int main(){
  regions[0].protection=1;assert(!mnm_readable_extent(4100,40,&through));
  regions[0].protection=4;assert(mnm_readable_extent(4100,40,&through));
  assert(mnm_readable_tail(4100,40,0));
+ // A single fog-state admission visits many cells in two readable regions.
+ // Compare the unchanged per-cell checker and require constant query counts;
+ // neither checker is permitted to reuse a proof for another admission.
+ regions={{4096,4096,0x1000,4},{8192,4096,0x1000,2}};
+ std::vector<unsigned> states;for(unsigned i=0;i<8192;++i)states.push_back((i<4096?4096u:8192u)+(i%2048));
+ probes=0;for(auto p:states)assert(mnm_readable_extent(p,1,0));assert(probes==8192);
+ base=end=probes=0;for(auto p:states)assert(mnm_readable_refresh_window(p,1,&base,&end));assert(probes==2);
+ // Lower boundary, end boundary, guard/hole, overflow and new admission.
+ assert(!mnm_readable_refresh_window(4095,1,&base,&end)&&!base&&!end);
+ assert(mnm_readable_refresh_window(8192,1,&base,&end));
+ assert(!mnm_readable_refresh_window(12288,1,&base,&end)&&!base&&!end);
+ assert(!mnm_readable_refresh_window(~0u,1,&base,&end));
+ assert(!mnm_readable_refresh_window(0,1,&base,&end));
+ base=end=0;regions[0].protection=0x104;assert(!mnm_readable_refresh_window(4096,1,&base,&end));
+ regions[0].protection=4;regions[0].state=0;assert(!mnm_readable_refresh_window(4096,1,&base,&end));
+ regions[0].state=0x1000;assert(mnm_readable_refresh_window(4096,1,&base,&end));
+ base=end=0;regions[0].protection=1;assert(!mnm_readable_refresh_window(4096,1,&base,&end));
+ regions[0].protection=4;regions[1].protection=1;base=end=0;
+ assert(!mnm_readable_refresh_window(8100,200,&base,&end));
+ regions[1].protection=2;assert(mnm_readable_refresh_window(8100,200,&base,&end)&&!base&&!end);
 }

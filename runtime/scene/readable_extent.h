@@ -41,4 +41,12 @@ static int mnm_readable_in_window(unsigned p,unsigned n,unsigned base,unsigned e
   if(base&&p>=base&&p<=end&&n<=end-p)return 1;
   return mnm_readable_extent(p,n,0);
 }
+/* Refreshable proof for several related pointers during one synchronous input
+ * copy. Caller owns/reset these bounds for each admission; never retain them
+ * across an original callback or external memory writer. */
+static inline int mnm_readable_refresh_window(unsigned p,unsigned n,unsigned *base,unsigned *end) {
+  if(!p||n>~0u-p){*base=*end=0;return 0;}
+  if(*base&&p>=*base&&p<=*end&&n<=*end-p)return 1;
+  return mnm_readable_window(p,n,base,end);
+}
 #endif
