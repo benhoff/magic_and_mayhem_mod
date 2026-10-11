@@ -262779,6 +262779,48 @@
         "evidence": [],
         "reason": "The committed DRAW-03 merge passes the coverage gate against its actual former master base. Retained DRAW-03 execution reports remain unchanged; no new original, native or live experiment is claimed. The uncommitted storage support changes retain their previous WORKING validation boundaries. Shared AGENTS.md changes leave gameplay/coverage contracts pending for current execution; census reconciliation is indexing review only, with all historical evidence hashes and milestones preserved. Working-tree audit and gate are checked separately after this receipt."
       }
+    },
+    {
+      "behaviors": [],
+      "files": [
+        {
+          "after_sha256": "9389089ef32b8fb2c20f62d0d221d5f5f63add8e26b9a92a80e839f9f115f155",
+          "before_sha256": "c6182c099d3eba57fd0a3f2bd3326aac961762f7e10c1b593c04552c65a8bdb3",
+          "path": "docs/working-retention.md"
+        },
+        {
+          "after_sha256": "6e7af221961cf73f2e447f651e31cbe3a7815d692ebe45c9c93140e13d250bfa",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/history-native-storage-integration-20261011.json"
+        },
+        {
+          "after_sha256": "902b393019313fd414cb777c3b4d9eb8cac348b0f8aa529bb39e6840908ffeb3",
+          "before_sha256": "7d1dc6792daf0c1ad170ecbd49ddc9f4c8df2e4038e4f84318dcc7c3720b24cc",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "4fcf360dc5b39de7d52a7a1919fd7d9b8e9719b9a93b9fcd7048bdcad9d657b4",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-native-storage-race-20261011.json"
+        },
+        {
+          "after_sha256": "e87d3c72b1ab46cbf8d6128a1b253d5d4abf10421aef76352e5510aa6aef28c6",
+          "before_sha256": "9b8701d2afbcbb1229c26be0d60e2ed314c22441fd87ef0dd89dac682e55ff0d",
+          "path": "tests/test-working-retention.py"
+        },
+        {
+          "after_sha256": "48ddf5943c9f17ff2520c859d707e084ed6a3e9c705e3c60f1f890c20f955ca7",
+          "before_sha256": "cf178f82612c0e307ca4e33141ad90550fa62c9faaa37ce743e84ee289e5410d",
+          "path": "tools/working-retention.py"
+        }
+      ],
+      "id": "native-render-storage-inventory-race-20261011",
+      "pending_gaps": [],
+      "reason": "Review disappearing capture replies during concurrent native-render integration: accept only ENOENT diagnostics for descendants with a complete root total; all other measurements fail closed. Budget/reservation/free-space monitor and archive policies remain unchanged. Twelve guard tests pass. Review support files and current source census; committed e23e99c exact history receipts have no gaps.",
+      "validation": {
+        "status": "pending",
+        "reason": "Storage orchestration support change validated by twelve unit tests including disappearing files, outside-root and mixed errors, missing totals, budget boundaries and owned process shutdown. No engine status promotion, original comparison or live replacement claim; historical engine evidence retains its original source pins."
+      }
     }
   ]
 }

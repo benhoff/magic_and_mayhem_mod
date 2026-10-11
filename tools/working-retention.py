@@ -50,9 +50,25 @@ def usage(working, depth=None):
         raise ValueError('working must be a real directory')
     command = ['du', '-x', '-B1', '--null']
     command += ['-s'] if depth is None else ['--max-depth=' + str(depth)]
-    output = subprocess.check_output(command + ['--', str(working)])
-    return {os.fsdecode(p): int(n) for row in output.split(b'\0') if row
-            for n, p in [row.split(b'\t', 1)]}
+    result = subprocess.run(command + ['--', str(working)], capture_output=True,
+                            env=dict(os.environ, LC_ALL='C'))
+    if result.returncode:
+        # Active captures unlink replies while du traverses them. Accept only
+        # those disappeared descendants; permission, I/O and all other failures
+        # still refuse measurement. du must also provide its final root total.
+        diagnostics = result.stderr.decode(errors='replace').splitlines()
+        vanished = [re.fullmatch(r"du: cannot access '(.+)': No such file or directory", line)
+                    for line in diagnostics]
+        if result.returncode != 1 or not vanished or any(
+                match is None or working not in Path(match[1]).parents for match in vanished):
+            raise subprocess.CalledProcessError(result.returncode, result.args,
+                                                output=result.stdout, stderr=result.stderr)
+        print('Storage inventory: temporary descendants disappeared during scan.', file=sys.stderr)
+    sizes = {os.fsdecode(p): int(n) for row in result.stdout.split(b'\0') if row
+             for n, p in [row.split(b'\t', 1)]}
+    if str(working) not in sizes:
+        raise ValueError('Storage inventory did not produce a root total')
+    return sizes
 
 
 def pressure(total, free, rules, reserve=0):
