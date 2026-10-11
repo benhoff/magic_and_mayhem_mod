@@ -4306,3 +4306,27 @@ regions/occlusion and clipped Blt, palettes, unknown methods and actual backend-
 disabled game execution remain pending. Logical modes/primary/flip remain native
 policies, independently separated from original driver behavior.19FPS/60FPS
 remain unproved; the earlier4096-frame delivery's16.18FPS still fails19FPS.
+
+## Backend-disabled native graphics session —2026-10-10
+
+The selected128-frame actual original-engine session completes on TITAN RTX
+through MnmDraw owned PE32 RGB565 storage and native Qt GPU presentation, with
+Wine ddraw disabled/module absent and no terminal unknown method. V4 exports
+zero World pixels/readbacks/replies/writebacks. Original outside-World drawing
+continues. Two guarded dynamic loader strings add24 data-byte exceptions to the
+import-only staging; all other original bytes/instructions remain unchanged.
+Fresh offline proof passes eight compositions/ten mutations/eight duplicates.
+The expanded isolated service proof adds16 startup caller cases/256 words
+matching Wine, including NULL normal cooperative level and Surface3/4 identity,
+plus separate mode/memory/status/unknown-route native policies. Earlier isolated
+reports retain their source hashes; fresh regressions are registered separately.
+
+Performance remains failed:17.6600 original FPS,17.8759 Qt FPS,560 peak GPU cache
+frames against512. The39ms median/53ms p95/72ms maximum World durations and
+114,688-byte RSS growth do not excuse the failed FPS/cache gates. Further work
+must reduce actual cost and enforce the cache limit, then repeat long-run and
+peer-death/recovery testing. Original pixel equivalence, adapter-enumeration live
+reachability, palette/clipped blits/unknown contracts, semantic quit, arbitrary
+combat/casting and60FPS remain separate pending boundaries. The real game uses
+saved device settings and does not enumerate adapters in this selected session.
+No whole-engine replacement or performance promotion is asserted.

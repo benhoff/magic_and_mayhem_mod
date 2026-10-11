@@ -12,9 +12,21 @@ metadata=json.loads((root/'manifest.json').read_text())
 if metadata['origin']!='scene_observation_only':
     raise ValueError('Unsupported experiment')
 game=root/'game'
-for name,key in [('Chaos.exe','staged_sha256'),('MnmScene.dll','scene_dll_sha256')]+([('MnmMenu.dll','menu_dll_sha256')] if metadata['menu_driver'] else [])+([('MnmWord.dll','word_dll_sha256')] if metadata.get('word_dll_sha256') else []):
+for name,key in [('Chaos.exe','staged_sha256'),('MnmScene.dll','scene_dll_sha256')]+([('MnmMenu.dll','menu_dll_sha256')] if metadata['menu_driver'] else [])+([('MnmWord.dll','word_dll_sha256')] if metadata.get('word_dll_sha256') else [])+([('MnmDraw.dll','native_draw_sha256')] if metadata.get('native_draw') else []):
     if hashlib.sha256((game/name).read_bytes()).hexdigest()!=metadata[key]:
         raise ValueError('Staged binary hash mismatch: '+name)
+os.environ.pop('MNM_NATIVE_DRAW_STATUS',None)
+if type(metadata.get('native_draw',False)) is not bool:raise ValueError('Invalid native graphics mode')
+if metadata.get('native_draw'):
+    status=Path(metadata['native_draw_status']).resolve()
+    if status!=root/'native-draw-status.bin' or status.exists():raise ValueError('Stale or escaped native graphics status')
+    overrides=[]
+    for group in os.environ.get('WINEDLLOVERRIDES','').split(';'):
+        names,separator,value=group.partition('=')
+        kept=[n for n in names.split(',') if n.lower()!='ddraw']
+        if separator and kept:overrides.append(','.join(kept)+'='+value)
+    os.environ['WINEDLLOVERRIDES']=';'.join([*overrides,'ddraw='])
+    os.environ['MNM_NATIVE_DRAW_STATUS']='Z:'+str(status).replace('/','\\')
 os.environ.pop('MNM_WORD_DIRECTORY',None)
 os.environ.pop('MNM_WORD_SPRITES',None)
 os.environ.pop('MNM_SCENE_WORLD',None)

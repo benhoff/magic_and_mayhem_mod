@@ -49,7 +49,19 @@ def layout(data):
     raise ValueError('Unbounded import directory')
 
 
-def redirect(data):
+def remap_enumerator(data):
+    """Redirect both pinned legacy LoadLibrary string; no code byte changes."""
+    _, offset, _ = layout(data)
+    result = bytearray(data)
+    for rva, expected in [(0x1f1a84, b'ddraw.dll\0\0\0'), (0x1e1264, b'DDRAW.DLL\0\0\0')]:
+        at = offset(rva, 12)
+        if data[at:at+12] != expected:
+            raise ValueError('Expected pinned dynamic graphics loader string')
+        result[at:at+12] = b'MnmDraw.dll\0'
+    return bytes(result)
+
+
+def redirect(data, enumeration=False):
     """Guard all original section bytes, then preserve old lookup/IAT addresses."""
     sections, offset, descriptors = layout(data)
     for name, expected in SECTIONS.items():
@@ -78,4 +90,4 @@ def redirect(data):
     struct.pack_into('<I', result, new_descriptors[3]+12, new_name)
     if struct.unpack_from('<I', result, new_descriptors[3]+16)[0] != iat:
         raise ValueError('Original graphics IAT moved')
-    return bytes(result)
+    return remap_enumerator(bytes(result)) if enumeration else bytes(result)
