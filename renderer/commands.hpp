@@ -13,6 +13,7 @@ struct SurfaceCommand {
     unsigned operation=0,sequence=0,version=1;
     std::array<std::uint32_t,13> words{};
     Image image;
+    std::vector<std::uint8_t> coverage;
     PixelFormat format;
     std::vector<Rgb> colors;
     std::vector<Rect> regions;

@@ -5,6 +5,7 @@ LiveCommandSession::~LiveCommandSession(){abort();}
 void LiveCommandSession::change(State state){state_=state;if(stateChanged)stateChanged(state);}
 bool LiveCommandSession::fresh(const QString& path,quint32 session){
     renderer_=std::make_unique<LiveCommandRenderer>(viewport_);
+    renderer_->residentWorld=residentWorld;
     renderer_->framePresented=[this]{if(state_==State::WaitingFrame)change(State::Active);if(state_!=State::Stopping && framePresented)framePresented();};
     if(!renderer_->create(path,session,version_))return fail(renderer_->error());
     return true;
@@ -23,6 +24,7 @@ bool LiveCommandSession::attachCheckpoint(){
     return recover(true);
 }
 bool LiveCommandSession::recover(bool checkpoint){
+    if(residentWorld)return fail("Resident World session requires a fresh producer after failure: "+renderer_->error());
     if(version_!=2 || retries_>=MNM_RENDER_CONTROL_V1_MAX_RECOVERIES || session_==std::numeric_limits<quint32>::max()){
         const auto cause=renderer_?renderer_->error():QString();
         return fail("Rendering recovery unavailable or exhausted"+(cause.isEmpty()?QString():": "+cause));

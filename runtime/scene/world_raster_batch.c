@@ -3,9 +3,10 @@
 #include "../../protocols/include/mnm/world_raster_batch_v3.h"
 API void* WIN AddVectoredExceptionHandler(u32,void*);
 API HANDLE WIN HeapCreate(u32,u32,u32);
+API u32 WIN GetCurrentThreadId(void);
 static u32 batch_enabled,batch_count,batch_transfers,batch_pixel_base,batch_pixel_bytes;
 static u32 batch_guard_base,batch_guard_bytes,batch_guard_old,batch_guard_open;
-static u32 batch_reject;
+static u32 batch_reject,batch_owner;
 static u32 batch_rows[MNM_WORLD_BATCH_MAX][4];
 static struct Surface* batch_surface;
 struct BatchExceptionRecord {u32 code,flags,record,address,count,information[15];};
@@ -29,7 +30,7 @@ static int batch_start(struct Surface* s){
  u32 m[7],end[7];batch_reject=4;if(VirtualQuery((void*)p,m,28)!=28||VirtualQuery((void*)(p+n-1),end,28)!=28||m[1]!=end[1]||m[5]!=end[5]||(m[5]!=4&&m[5]!=8))return 0;
  batch_guard_base=p&~4095u;batch_guard_bytes=((p+n+4095u)&~4095u)-batch_guard_base;
  batch_reject=5;if(batch_guard_base<m[0]||batch_guard_bytes>m[3]-(batch_guard_base-m[0]))return 0;
- batch_count=0;batch_surface=s;batch_pixel_base=p;batch_pixel_bytes=n;
+ batch_count=0;batch_owner=GetCurrentThreadId();batch_surface=s;batch_pixel_base=p;batch_pixel_bytes=n;
  batch_reject=6;if(!VirtualProtect((void*)batch_guard_base,batch_guard_bytes,1,&batch_guard_old))return 0;
  batch_guard_open=1;batch_reject=0;return 1;
 }

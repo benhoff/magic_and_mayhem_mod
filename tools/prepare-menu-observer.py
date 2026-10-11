@@ -12,7 +12,8 @@ REPO=Path(__file__).resolve().parents[1]
 HASH='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,REPO/path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
-def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False):
+def prepare(actions=False,experimental_mini=False,preferences_store=None,campaign_observe=False,native_render=False,native_draw=False,resident_world=False):
+    if resident_world and not (native_render and native_draw and actions):raise ValueError("Resident World requires native menus, commands and owned drawing")
     if native_draw and not (native_render and actions):raise ValueError('Native graphics requires native menus and command presentation')
     if experimental_mini and not actions:raise ValueError("Experimental Mini Menu requires action staging")
     source=(REPO/'working/game-nocd').resolve();data=(source/'Chaos.exe').read_bytes()
@@ -43,7 +44,14 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         shutil.copy2(render_dll.parent/'manifest.json',root/'render-bridge-build.json')
         (root/'lock-capture').mkdir()
     from glyph_backend_launch import stage as stage_glyph,mode_from_environment
-    patched,glyph_metadata=stage_glyph(root,data,patched,mode_from_environment())
+    patched,glyph_metadata=stage_glyph(root,data,patched,None if resident_world else mode_from_environment())
+    resident_metadata={}
+    if resident_world:
+        scene=module('public_world_scene_build','tools/build-scene-observer.py').build()
+        patched=module('public_world_scene_import','tools/prepare-shadow-experiment.py').add_import(patched,'MnmScene.dll','SceneAnchor',b'.mnworld')
+        shutil.copy2(scene,game/'MnmScene.dll');shutil.copy2(scene.parent/'manifest.json',root/'scene-bridge-build.json')
+        (root/'resident-world').mkdir()
+        resident_metadata=dict(resident_world=True,resident_scene_sha256=hashlib.sha256(scene.read_bytes()).hexdigest())
     (game/'Chaos.exe').write_bytes(patched);shutil.copy2(dll,game/dll.name)
     preferences=module('menu_preferences','tools/run-opengl-game.py')
     stored=None
@@ -69,7 +77,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'native_render':native_render,'render_dll_sha256':hashlib.sha256(render_dll.read_bytes()).hexdigest() if render_dll else None,
               'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
-    metadata.update(glyph_metadata)
+    metadata.update(glyph_metadata);metadata.update(resident_metadata)
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     if native_draw:
         immutable_inputs={q.relative_to(game).as_posix():hashlib.sha256(q.read_bytes()).hexdigest() for q in game.rglob('*') if q.is_file() and q.suffix.lower() in ('.exe','.dll','.spr','.bmp','.jpg','.jpeg','.pcx')}
@@ -84,9 +92,10 @@ if __name__=='__main__':
     parser.add_argument("--preferences-store",type=Path,help="Import only exposed Preferences settings into the disposable copy")
     parser.add_argument('--campaign-observe',action='store_true',help='Observe original Realm custom tick in a separate bounded diagnostic log')
     parser.add_argument('--native-render',action='store_true',help='Stage native command rendering alongside native menus')
+    parser.add_argument('--resident-world',action='store_true',help='Bind resident GPU World completion to the public command stream')
     parser.add_argument('--native-draw',action='store_true',help='Use owned native graphics services with real DirectDraw disabled')
     args=parser.parse_args()
     if args.experimental_mini and not args.actions:parser.error("--experimental-mini requires --actions")
     subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)
-    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw)}',flush=True)
+    try:print(f'Evidence directory: {prepare(args.actions,args.experimental_mini,args.preferences_store,args.campaign_observe,args.native_render,args.native_draw,args.resident_world)}',flush=True)
     finally:subprocess.run([str(REPO/'tools/original-manifest.sh'),'verify'],check=True)

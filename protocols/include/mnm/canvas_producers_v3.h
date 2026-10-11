@@ -9,5 +9,12 @@
 // with word4 !=0 and no wire payload references that earlier definition sequence.
 // Canonical decode restores word4=0 and full extents before batch hashing.
 #define MNM_PRODUCER_PAYLOAD_SOURCE 25u
+// Public V3 prefix may carry the V2 owned four-orientation minimap
+// operation24 and terrain operation22 marked with word19=0xfffffffe.
+// Unmarked historical V3 terrain retains the orientation-zero policy.
+// V3 operation26 owns a bounded RGB565 colour rectangle: word14 format0,
+// word15 mode0..3, words19/20 width/height1..64; tight WORD pixels.
+// No source pointers cross the channel. V1/V2 continue to refuse this operation.
+#define MNM_PRODUCER_COLOUR_RECT 26u
 #define MNM_PRODUCER_V3_SOURCES 2048u
 #define MNM_PRODUCER_V3_SOURCE_BYTES (16u*1024u*1024u)

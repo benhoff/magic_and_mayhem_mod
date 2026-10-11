@@ -1,0 +1,46 @@
+{
+  "scope": "Historical negative control reproduces missing RET8; positive corrected additive-only production trampoline. Later colour extension has a separate fresh fixture. Source hashes are preserved.",
+  "negative": {
+    "success": false,
+    "scope": "Exercise the production additive entry trampoline against a callee-pop control.\n\nSynthetic callback; proves stack, registers and x87/SSE restoration, without\noriginal binaries or a claim about the production primitive admission handler.\n",
+    "sources": {
+      "runtime/scene/canvas_producers.S": "9b7f9c4ff9c099796ec8391477901adbd97a0b28a3ec7e3697ed02a101c1fdb2",
+      "tests/resident-leaf-abi.c": "cb883f2227964dbf0a5eb3159c01096e0bd8030f8829ec65cae518a3d4c33a80",
+      "tests/resident-leaf-abi.S": "15f7ce952fb39bce88e45fada155b750b4fc2ee72ee7d2d54c0fa290cbdab7f1",
+      "tests/world-producer-bypass-call.S": "a853b13197f69c7beb864b725a9b4aaade4138fc9d4968a34c789638c8cc3640",
+      "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+      "tools/test-resident-leaf-abi.py": "9e71dadb98909c92b1a6df2fefd9d2eb2ceeebb3e42922d83a134ef0d3310cdd",
+      "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33"
+    },
+    "prefix": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/tests/native-campaign/run-j3btyx6q/wineprefix",
+    "exit_code": 96,
+    "stderr": "",
+    "exe_sha256": "815cc1a9c07aa68a3dac33824be8c86bcf091e3ceb9b62141d76993e736635ac",
+    "error": "Production leaf ABI mismatch",
+    "cleanup_exit_code": 1,
+    "sources_unchanged": true
+  },
+  "positive": {
+    "success": true,
+    "scope": "Exercise the production additive entry trampoline against a callee-pop control.\n\nSynthetic callback; proves stack, registers and x87/SSE restoration, without\noriginal binaries or a claim about the production primitive admission handler.\n",
+    "sources": {
+      "runtime/scene/canvas_producers.S": "9ce4128166cf19b1a105dd5a6035fd8696558ce371f8fd9848bb6aa7a022ef85",
+      "tests/resident-leaf-abi.c": "cb883f2227964dbf0a5eb3159c01096e0bd8030f8829ec65cae518a3d4c33a80",
+      "tests/resident-leaf-abi.S": "15f7ce952fb39bce88e45fada155b750b4fc2ee72ee7d2d54c0fa290cbdab7f1",
+      "tests/world-producer-bypass-call.S": "a853b13197f69c7beb864b725a9b4aaade4138fc9d4968a34c789638c8cc3640",
+      "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+      "tools/test-resident-leaf-abi.py": "9e71dadb98909c92b1a6df2fefd9d2eb2ceeebb3e42922d83a134ef0d3310cdd",
+      "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33"
+    },
+    "prefix": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/tests/native-campaign/run-j3btyx6q/wineprefix",
+    "exit_code": 0,
+    "stderr": "",
+    "exe_sha256": "db561f3ae62df51087be2d32dda746a29221c1bd2c58199147ebb2ff99077dcf",
+    "registers": 8,
+    "fx_bytes": 512,
+    "callee_pop_bytes": 8,
+    "output_sha256": "11cf274f3856a37e829faab9289c5b4a55b0c28528c3a9a6b759a4f12cc14a4c",
+    "cleanup_exit_code": 1,
+    "sources_unchanged": true
+  }
+}

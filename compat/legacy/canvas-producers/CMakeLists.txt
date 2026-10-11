@@ -31,7 +31,7 @@ if(BUILD_TESTING)
  add_test(NAME native-other-writer-atomic COMMAND other-writer-atomic-test)
  add_executable(world-raster-batch-test ../../../tests/world-raster-batch-test.cpp)
  target_link_libraries(world-raster-batch-test PRIVATE mnm-canvas-producers)
- target_compile_options(world-raster-batch-test PRIVATE -Wall -Wextra -Werror -pedantic)
+ target_compile_options(world-raster-batch-test PRIVATE -UNDEBUG -Wall -Wextra -Werror -pedantic)
  add_test(NAME native-world-raster-batch COMMAND world-raster-batch-test)
 endif()
 

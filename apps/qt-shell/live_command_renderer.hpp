@@ -14,6 +14,7 @@ public:
     bool finishProducer();
     void abort();
     std::function<void()> framePresented;
+    std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;
     bool ended() const{return ended_;}
     bool hasPendingCommands() const{return !closed_ && (cursor_<pending_.size() || !channel_.drained());}
     QString error() const{return error_;}

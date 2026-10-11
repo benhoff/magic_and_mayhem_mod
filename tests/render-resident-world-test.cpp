@@ -32,7 +32,7 @@ void fixture(GlViewport& viewport){
     QByteArray stream("MNMCMD04",8);word(stream,4);word(stream,16);
     record(stream,1,1,create(1));record(stream,2,1,create(2));
     record(stream,3,19,fields({1,1,0,0x12345678,0x98765432}));
-    auto patch=fields({1,19,37,1,1});patch.append(char(0xe0));patch.append(char(0x07));record(stream,4,2,patch);
+    auto patch=fields({1,19,37,2,1});patch.append(char(0xe0));patch.append(char(0x07));patch.append(char(0xcd));patch.append(char(0xab));patch.append(char(1));patch.append(char(0));record(stream,4,20,patch);
     record(stream,5,3,fields({1,2,0,0,800,600,0,0,0,0}));record(stream,6,6,fields({2}));
     record(stream,7,7,fields({1}));record(stream,8,7,fields({2}));record(stream,9,8,{});
     auto commands=decodeCommands(stream);unsigned imports=0,presents=0;

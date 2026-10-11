@@ -5234,3 +5234,25 @@ public producer binding, CPU baseline separation, native menu transitions,
 casting/combat and live performance are explicitly pending. No original
 comparison or replacement status is promoted. Historical renderer evidence
 is retained with its previous source hashes and may be stale for these edits.
+
+### Public resident producer wiring and refusal discovery,2026-10-11
+
+The opt-in public adapter imports acknowledged World leases before exact masked
+CPU UI deltas; original simulation and CPU UI remain. Public owned-graphics
+staging disables DirectDraw. Actual Titan execution reached71verified/imported/
+released Worlds with no World pixel reply or World/native/RGBA delivery readback.
+The campaign stress then stalls before Mini readiness and fails its deadline;
+early35..41painted FPS is not sustained19FPS proof. Durable negative:
+`public-resident-campaign-stall-20261011.json`. Casting/combat, menu resume/quit,
+performance and arbitrary CPU UI destination-read equivalence remain pending.
+
+Newly reached raw WORD, additive and owned colour leaves, rotated minimap prefixes
+and concurrent secondary bitmap/copy work are explicitly scoped in
+`public-resident-world.md`. Deferred captures forbid World source/destination and
+retain64record/4MiB limits. The missing additive RET8 was reproduced and corrected;
+its historical negative/positive source hashes are preserved in
+`public-resident-leaf-stack-regression-20261011.json`. Fresh native-reference and
+ABI fixtures are distinct from historical original kind8/minimap comparisons.
+No original-comparison, integration or live-replacement status is promoted for
+the incomplete public campaign. Updated sources may stale older evidence;
+historical hashes are preserved rather than refreshed.

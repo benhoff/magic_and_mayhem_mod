@@ -21,6 +21,7 @@ public:
     const mnm::render::CommandResult* result() const{return renderer_?renderer_->result():nullptr;}
     unsigned recoveries() const{return retries_;}
     std::function<void()> framePresented;
+    std::function<mnm::render::GpuFrame(std::uint64_t,std::uint64_t)> residentWorld;
     std::function<void(State)> stateChanged;
 private:
     bool fresh(const QString& path,quint32 session);

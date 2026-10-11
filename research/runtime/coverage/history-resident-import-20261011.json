@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "reviewed_range": "8ed531782372919def6704935cf4ba1c9ca64c92..a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+  "scope": "Committed GPU import milestone exact parent/current source SHA-256 and receipt audit. Separate from pending public frontend wiring; no retrospective execution or gate assertion.",
+  "commits": [
+    "a5ebae615e4ce7f400712bb8de21efdbcb71a54b"
+  ],
+  "files": [
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "protocols/include/mnm/render_stream_v4.h",
+      "before_sha256": null,
+      "after_sha256": "7967c6d1c4d79ad3eca29610ba1c9a1420b65aba0248d79184fb56a224955de7",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "renderer/CMakeLists.txt",
+      "before_sha256": "588be24c5f2f2f3ab15080814b9a91ce646084e419c19901ae69db361bc4a646",
+      "after_sha256": "1ebc49ab3239f2404380018e885545c57ff6c5090798067ada6116f5e7299ec0",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "renderer/blit.cpp",
+      "before_sha256": "dfcf6cb7f3b62ad6b175df4a9a84635e4f0418bac2f00cda5078305f3b064a12",
+      "after_sha256": "0e12ebca934bd564b923b09e0ec142f2e20ed9e9feae19fc67e73fd766c78a6c",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "renderer/blit.hpp",
+      "before_sha256": "5e2d0b4118837b657b09d85a35816c6474743422d68104cca04d0e774a271a78",
+      "after_sha256": "c19be18f31384d68632b8428b5084b10528facaf11f2b9f3615c85d5704fb8bb",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "renderer/command_consumer.cpp",
+      "before_sha256": "9c6189b0493f2b4818e9c37215ca7612e98588d5b24cce6f8b831ac9b472ea9a",
+      "after_sha256": "3748f2d42ed2734a163c47e4be0850f483d36bac63ccd27663b46c905c6393cd",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "renderer/command_state.hpp",
+      "before_sha256": "c83e47361566d29d5ba1a28b5c651e488801ca13dc1d065860139c1116bac6f5",
+      "after_sha256": "f069e98172057f68e0d119981fc75774093bb06e5a33634b17294a21ffdb353f",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "renderer/commands.cpp",
+      "before_sha256": "03f414ad8707f347350da33be535f149a6f982e7e21382cac57b39855fd33ae2",
+      "after_sha256": "b9ce877973e2c8d289d8534a01a59c714c55e9db0791bbf98f5421aedae98532",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "renderer/commands.hpp",
+      "before_sha256": "e3528050981bee033cdb4d2e048ee6e1afb5d091874e2f76b57830e46aac1253",
+      "after_sha256": "381762706e7118fbea3899a855612015d8601a76e4f8547a087daf5491e70d24",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "406b6d38538ed347749eb5c092e308bce7d1ab8c90ce6abe78bde777ce036540",
+      "after_sha256": "133c782a1a778529580486ea9e729bb4f5166082a4cc6d0844caba792f8ee46e",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "research/runtime/coverage/public-resident-base-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "3490208bdaa89c0c21d8253d0e4a50a216dca7a7cabc3c8917e8bb5ff6258697",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "3b185b0001c236851cd9f727c0e3f3e04f5a6e9c46db52c08e1e7f41dc73c4b2",
+      "after_sha256": "fe4aa87099df7fc30556db71a11caa1cf11c170f6db12228b2cc040e34e6354c",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "research/runtime/coverage/source-index-public-resident-import-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7976c14e33cacbd8798f9d2bcdc9a903c617c28ea1336bec55e743a806ef264e",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "research/runtime/public-resident-import-fixture-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "83dbb343cbb6b12812cc9de8cbbab471fada4f86be7ab235f9a792c4050f9fb2",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "research/runtime/public-resident-world.md",
+      "before_sha256": null,
+      "after_sha256": "805edb9dc267cffd35ae5dbf1d43ac2ccb614ac2daa27d79d1d49821f6cef995",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    },
+    {
+      "commit": "a5ebae615e4ce7f400712bb8de21efdbcb71a54b",
+      "parent": "8ed531782372919def6704935cf4ba1c9ca64c92",
+      "path": "tests/render-resident-world-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "5f3025674028e82e4d8c1f529b61ed6d1300410b2529c9ab38a2540459f6ae3b",
+      "matching_review": "REVIEW.public-resident-import-20261011"
+    }
+  ],
+  "unresolved_gaps": []
+}

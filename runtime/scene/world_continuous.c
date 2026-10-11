@@ -6,6 +6,10 @@ API void *WIN MapViewOfFile(HANDLE, u32, u32, u32, u32);
 API i32 WIN UnmapViewOfFile(void *);
 static HANDLE continuous_file, continuous_mapping;
 static u32 continuous_resident, continuous_nonce_low, continuous_nonce_high;
+API void* WIN GetProcAddress(HANDLE,const char*);
+API u32 WIN GetCurrentThreadId(void);
+typedef int (WIN *ResidentWorldBind)(u32,u32,u32,u32,u32,u32,u32,u32);
+static ResidentWorldBind continuous_public_bind;
 static u32 continuous_written;
 static u32 continuous_generation_low = 1, continuous_generation_high,
            continuous_slot_index;
@@ -19,12 +23,26 @@ static u8 *continuous_slot(void) {
   return continuous_map + MNM_CONT_HEADER +
          continuous_slot_index * MNM_CONT_SLOT_BYTES;
 }
+/* Preserve a bounded terminal diagnostic even when the slot is no longer
+ * WRITING and therefore cannot accept a producer failure record. */
+static void continuous_failure(u32 reason,u32 detail) {
+  if(!continuous_map)return;
+  u32 diagnostic[12]={0};copy(diagnostic,"MNMCTERM",8);
+  diagnostic[2]=reason;diagnostic[3]=detail;
+  diagnostic[4]=continuous_generation_low;diagnostic[5]=continuous_generation_high;
+  diagnostic[6]=continuous_load(continuous_slot(),0);diagnostic[7]=sequence;
+  diagnostic[8]=bytes;diagnostic[9]=GetTickCount();diagnostic[10]=GetCurrentThreadId();
+  char name[260];path(name,"world-terminal-",reason,".bin");
+  HANDLE f=CreateFileA(name,0x40000000,0,0,1,0x80,0);
+  if(f!=(HANDLE)-1){write(f,diagnostic,sizeof(diagnostic));CloseHandle(f);}
+}
 static int continuous_wait(u8 *p, u32 n, u32 value) {
   u32 start = GetTickCount();
   while (continuous_load(p, n) != value) {
     if (continuous_load(continuous_map, 10) ||
-        (u32)(GetTickCount() - start) >= MNM_WORLD_BYPASS_TIMEOUT)
-      return 0;
+        (u32)(GetTickCount() - start) >= MNM_WORLD_BYPASS_TIMEOUT){
+      continuous_failure(3,start);return 0;
+    }
     Sleep(0);
   }
   return !continuous_load(continuous_map, 10);
@@ -33,13 +51,34 @@ static void continuous_cancel(void) {
   if (continuous_map)
     continuous_store(continuous_map, 10, 1);
 }
+/* Background offscreen bitmap draws may overlap the immutable World lease.
+ * Capture only independently addressed admitted secondary-surface records;
+ * preserve their owned bytes as the next slot's prefix. World access still
+ * faults under the mandatory page guard. Storage is bounded independently. */
+#include "world_deferred.h"
+#define CONTINUOUS_DEFERRED_BYTES MNM_WORLD_DEFERRED_BYTES
+static u8* continuous_deferred;
+static u32 continuous_deferred_bytes,continuous_deferred_count;
+static int continuous_defer(u32* r,const void* payload,u32 n) {
+  if(continuous_load(continuous_slot(),0)==MNM_CONT_WRITING &&
+     (!continuous_public_bind || !raster_world_open || GetCurrentThreadId()==batch_owner))return 0;
+  if(!mnm_world_defer_admitted(r,n,batch_surface?batch_surface->id:0,continuous_deferred_count,continuous_deferred_bytes)){continuous_failure(4,r[2]);
+    char name[260];path(name,"world-refused-record-",r[2],".bin");HANDLE f=CreateFileA(name,0x40000000,0,0,1,0x80,0);
+    if(f!=(HANDLE)-1){write(f,r,96);CloseHandle(f);}return -1;}
+  if(!continuous_deferred)continuous_deferred=HeapAlloc(producer_heap(),0,CONTINUOUS_DEFERRED_BYTES);
+  if(!continuous_deferred){continuous_failure(5,r[2]);return -1;}
+  return mnm_world_defer_append(continuous_deferred,&continuous_deferred_bytes,&continuous_deferred_count,r,payload,n,batch_surface?batch_surface->id:0)?1:-1;
+}
 static int continuous_next(void) {
   u8 *slot = continuous_slot();
   if (!continuous_wait(slot, 0, MNM_CONT_FREE))
     return 0;
+  while(__sync_lock_test_and_set(&continuous_emit_lock,1))Sleep(0);
   if (!__sync_bool_compare_and_swap((u32 *)slot, MNM_CONT_FREE,
-                                    MNM_CONT_WRITING))
-    return 0;
+                                    MNM_CONT_WRITING)){
+    __sync_lock_release(&continuous_emit_lock);return 0;
+  }
+  raster_world_open=0;
   zero(slot + 4, 124);
   put(slot + 8, continuous_generation_low);
   put(slot + 12, continuous_generation_high);
@@ -59,7 +98,10 @@ static int continuous_next(void) {
   h[5] = MNM_PRODUCER_V3_MAX_RECORDS;
   h[6] = 32;
   copy(slot + MNM_CONT_SLOT_HEADER, h, 64);
-  return 1;
+  for(u32 at=0;at<continuous_deferred_bytes;){u32* r=(u32*)(continuous_deferred+at);u32 n=r[18];emit_raw(r,(u8*)r+96,n);at+=96+n;}
+  continuous_deferred_bytes=continuous_deferred_count=0;
+  __sync_lock_release(&continuous_emit_lock);
+  return !stopped;
 }
 #include "world_continuous_clock.c"
 static u32 continuous_time(void) { return pacer_precise_tick ? continuous_clock_read() : GetTickCount(); }
@@ -101,6 +143,12 @@ static int continuous_init(void) {
   continuous_nonce_low=get(h+24);continuous_nonce_high=get(h+28);
   if (!__sync_bool_compare_and_swap((u32 *)(h + 36), 0, 1))
     return 0;
+  char public_mode[2];u32 public_n=GetEnvironmentVariableA("MNM_PUBLIC_RESIDENT_WORLD",public_mode,2);
+  if(public_n){
+    if(public_n!=1 || public_mode[0]!='1' || !continuous_resident)return 0;
+    HANDLE module=GetModuleHandleA("MnmRender.dll");
+    if(!module || !(continuous_public_bind=(ResidentWorldBind)GetProcAddress(module,"RenderResidentWorldV1")))return 0;
+  }
   return continuous_clock_install() && continuous_next();
 }
 static int continuous_write(const void *p, u32 n) {
@@ -157,6 +205,8 @@ static int continuous_finish(struct Surface *s, const u32 *request) {
                        continuous_generation_low, continuous_generation_high,
                        continuous_nonce_low, continuous_nonce_high) ||
         !batch_identity(s) || !batch_restore())return 0;
+    if(continuous_public_bind && !continuous_public_bind(s->pixels,s->width,s->height,s->stride,
+       continuous_generation_low,continuous_generation_high,continuous_nonce_low,continuous_nonce_high))return 0;
     /* Completion count remains the local batch ordinal. No pixel copy occurs. */
     ++batch_transfers;
     put(slot + 56, continuous_time());
@@ -218,6 +268,7 @@ static void continuous_mark_screen(int begin) {
 }
 static void continuous_mark_entry(void) {
   if (continuous_map){
+    batch_owner=GetCurrentThreadId();
     u8* slot=continuous_slot();
     put(slot+48,continuous_time());
     if(continuous_pacer_mask==3){put(slot+64,continuous_pacer_start);put(slot+68,continuous_pacer_end);put(slot+72,3);}

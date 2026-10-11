@@ -31,7 +31,7 @@ RollingHandoff prepareRollingHandoff(const CanvasProducerStream &stream,
     else if (entry) {
       if (r[2] == 9)
         rasters.push_back(&c);
-      else if (r[2] != 4 && r[2] != 25)
+      else if (r[2] != 4 && r[2] != 25 && !(policy==WorldBatchSourcePolicy::ownedV5 && (r[2]==14 || r[2]==26) && r[3]==entry->fields[3]))
         throw std::invalid_argument("Rolling handoff unexpected World writer");
     }
     operations.push_back(c);

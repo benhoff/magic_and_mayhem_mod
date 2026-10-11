@@ -17,7 +17,7 @@ bool admitted(unsigned entry, unsigned backend) {
   constexpr std::pair<unsigned, unsigned> entries[] = {
       {0x595677, 0}, {0x5947b2, 1}, {0x59521a, 1}, {0x595b47, 2}, {0x59603e, 2},
       {0x57de00, 3}, {0x57ec90, 4}, {0x57f0f0, 5}, {0x57f5f0, 6}, {0x5806f0, 7},
-      {0x596490, 9}, {0x5968a4, 9}, {0x57e540, 10}};
+      {0x597086, 8}, {0x596cb8, 8}, {0x596490, 9}, {0x5968a4, 9}, {0x57e540, 10}};
   return std::any_of(std::begin(entries), std::end(entries), [&](auto p) {
     return p.first == entry && p.second == backend;
   });

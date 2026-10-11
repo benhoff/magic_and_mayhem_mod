@@ -49,6 +49,14 @@ void CommandState::accept(const SurfaceCommand& c){
         const auto& s=get(w[0]);imageValid(c.image,w[3],w[4],s.format.bits);
         require(w[3]<=unsigned(s.width) && w[4]<=unsigned(s.height) && w[1]<=unsigned(s.width)-w[3] && w[2]<=unsigned(s.height)-w[4],"Update outside surface");
         payload=20+c.image.pixels.size()*(s.format.bits/8);break;}
+    case MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE:{
+        const auto& s=get(w[0]);require(c.version==4 && s.format.bits==16 &&
+          s.format.masks==std::array<std::uint32_t,3>{0xf800,0x7e0,31},"Masked update requires resident RGB565 stream");
+        imageValid(c.image,w[3],w[4],16);
+        require(w[3]<=unsigned(s.width) && w[4]<=unsigned(s.height) && w[1]<=unsigned(s.width)-w[3] && w[2]<=unsigned(s.height)-w[4] &&
+          c.coverage.size()==c.image.pixels.size(),"Masked update outside surface or incomplete coverage");
+        for(auto mask:c.coverage)require(mask<=1,"Nonbinary update coverage");
+        payload=20+c.image.pixels.size()*3;break;}
     case 3:{
         const auto& s=get(w[0]);const auto& d=get(w[1]);
         require(w[0]!=w[1] && s.format.bits==d.format.bits && s.format.masks==d.format.masks,"Aliased or incompatible copy");
@@ -183,6 +191,8 @@ struct CommandConsumer::Impl {
             if(options.diagnostics==CommandDiagnostics::Verify){require(output.lastCopySequence==w[0] && output.lastCopy.hresult==w[1],"Captured HRESULT disagrees with surface copy replay");++output.resultChecks;}
             else ++output.skippedResultChecks;
             break;
+        case MNM_RENDER_STREAM_V4_OPERATION_MASKED_UPDATE:
+            renderer.updateMasked(handles.at(w[0]),int(w[1]),int(w[2]),c.image,c.coverage);break;
         case MNM_RENDER_STREAM_V4_OPERATION_WORLD:
             require(bool(options.residentWorld),"Resident World provider unavailable");
             renderer.importGpu565(handles.at(w[0]),options.residentWorld(admission.worldGeneration,admission.worldNonce));

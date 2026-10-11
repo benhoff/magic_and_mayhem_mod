@@ -57,6 +57,7 @@ bool LiveMenuSession::start(){
     process_.setProcessEnvironment(env);process_.setWorkingDirectory(repo_);preparing_=true;
     QStringList arguments{"--actions"};if(nativeCommandsEnabled)arguments.append("--native-render");if(preferencesMenusEnabled)arguments.append({"--preferences-store",preferencesStorePath});if(MNM_MENU_MINI_EXPERIMENTAL)arguments.append("--experimental-mini");
     if(nativeCommandsEnabled&&env.value("MNM_NATIVE_DRAW",QStringLiteral("1"))!=QStringLiteral("0"))arguments.append("--native-draw");
+    if(nativeCommandsEnabled&&env.value("MNM_PUBLIC_RESIDENT_WORLD")=="1")arguments.append("--resident-world");
     process_.start(QDir(repo_).filePath("tools/prepare-menu-observer.py"),arguments);return true;
 }
 bool LiveMenuSession::running() const{return preparing_||process_.state()!=QProcess::NotRunning;}

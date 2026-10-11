@@ -68,5 +68,20 @@ if os.environ.get('MNM_MENU_NATIVE_RENDER')=='1':
 from glyph_backend_launch import authorize as authorize_glyph
 authorize_glyph(root,metadata,os.environ)
 os.environ.pop('MNM_SCENE_DIR',None)
+if metadata.get('resident_world'):
+    if not native_draw or not metadata.get('native_render'):raise ValueError('Resident World requires owned native presentation')
+    if hashlib.sha256((game/'MnmScene.dll').read_bytes()).hexdigest()!=metadata['resident_scene_sha256']:raise ValueError('Resident scene DLL changed')
+    directory=root/'resident-world'
+    if directory.is_symlink() or not directory.is_dir() or any(directory.iterdir()):raise ValueError('Resident World outputs must be fresh and owned')
+    world=root/'world-continuous.bin'
+    import struct
+    with world.open('rb') as f:header=f.read(128)
+    if len(header)!=128 or header[:8]!=b'MNMCON04' or struct.unpack_from('<I',header,8)[0]!=4 or any(header[36:]):raise ValueError('Resident World channel must be fresh V4')
+    def winepath(path):return 'Z:'+str(path).replace('/',chr(92))
+    os.environ.update(MNM_PUBLIC_RESIDENT_WORLD='1',MNM_CANVAS_PRODUCERS='1',MNM_SCENE_SAMPLES='32',MNM_WORLD_RASTER_PREFIX='32',MNM_WORLD_RASTER_BATCH='1',MNM_WORLD_CONTINUOUS=winepath(world),MNM_SCENE_DIR=winepath(directory))
+    # Keep post-World hooks distinct from the finite legacy glyph observer.
+    os.environ.pop('MNM_GLYPH_BACKEND',None);os.environ.pop('MNM_GLYPH_DIR',None)
+else:
+    os.environ.pop('MNM_PUBLIC_RESIDENT_WORLD',None)
 os.chdir(game)
 os.execvp('wine',['wine','explorer','/desktop=MagicMayhem,800x600',str(game/'Chaos.exe'),*sys.argv[2:]])

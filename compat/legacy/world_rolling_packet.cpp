@@ -42,7 +42,7 @@ void validateRollingQueue(const CanvasProducerStream &stream) {
           !checks || !draws)
         throw std::invalid_argument("Rolling queue return invalid");
     } else if (entries && !returns) {
-      if (r[2] != 4 && r[2] != 9 && r[2] != 10 && r[2] != 25)
+      if (r[2] != 4 && r[2] != 9 && r[2] != 10 && r[2] != 25 && !((r[2]==14 || r[2]==26) && r[3]==canvas))
         throw std::invalid_argument(
             "Unsupported producer inside rolling World");
       if (r[2] == 9) {
