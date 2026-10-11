@@ -4849,3 +4849,14 @@ observe24825before-target values596cb8 through6903dc; the CRT site observes246
 callbacks with177distinct targets.122CPU sites remain unexecuted. Graphics API
 coverage, permanent/atomic bindings, caller crosswalk, aliases/lifetimes and all
 14scenario/four dispatch closure gates remain independent and pending.
+
+DRAW-01's current native CPU/core crosswalk now matches all24825menu raster
+pairs using exact actual CALL return, thread, target, stack/cleanup, six diagnostic
+words and BEFORE/AFTER registers/flags/LastError.16synthetic guards pass; current
+replay preserves both independent journal orders/full group cardinalities and
+all historical hashes without new original execution.246exit callbacks retain
+unreviewed wrapper/non-core flow, including four observed core wrapper entries;
+ordinary direct calls are outside this CPU-only crosswalk, and two outer cleanup
+continuations still need transfer review. No typed CPU signature, atomic target,
+writer/lifetime/pixel or14scenario/four dispatch closure is claimed. Committed
+02addc6..e3ee037history has36file/89behavior exact receipts with zero missing.

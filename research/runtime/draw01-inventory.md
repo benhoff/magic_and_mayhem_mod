@@ -861,3 +861,48 @@ or atomic pointer binding, side-effect/pixel/lifetime or scenario/dispatch closu
 is inferred. Physical core caller records remain intact; their new target-side
 crosswalk still requires exact thread/stack/flow review. All raw artifacts and
 staged binaries are retained; the stopped private game/prefix is removed.
+
+## Direct CPU/core crosswalk, 2026-10-11
+
+The current native reviewer independently closes both retained journals and
+decodes their actual allocation maps before admitting a direct crosswalk. The
+CPU role, exact four-global/CRT namespace and unknown formal layout are required.
+The independently recorded core module/leave pointers must agree, and core/CPU
+allocations must not overlap. Physical PCs remain unchanged.
+
+Within each exact thread/site/before-stack/observed-target group, both complete
+cardinalities must agree. Pairing follows each journal's own entry order;
+subsets and shared sequence numbers are never inferred. Every admitted pair
+has the exact CPU trampoline CALL return, core entry equal to the before-target,
+original return slot/cleanup equality, readable six diagnostic words, equal
+BEFORE and AFTER ECX/EDX/EAX/flags/LastError, and matching saved phase. This
+establishes bounded direct call identity, not typed raster arguments or atomic
+pointer reads. Sixteen synthetic matching/corruption/refusal guards pass.
+
+Current replay of `run-0q3q92uc` matches all 24,825 menu raster pairs at five
+sites to `596cb8` through `6903dc`. The 246 CPU exit callback pairs retain their
+actual target groups and remain outside direct matching. Of the 42,008 core
+pairs, 17,183 are outside this direct CPU crosswalk, including ordinary direct
+calls handled by the separate core caller reviewer. Four CRT-to-core wrapper
+continuations remain explicit target/stack-group gaps; no tail CALL is invented.
+The two original outer cleanup continuations also remain separate flow review.
+
+The new native replay fingerprints all input journals/maps/build manifests and
+the historical journey. It does not repeat original execution or refresh old
+evidence hashes. The first CLI attempt failed before decoding because a relative
+input was compared with an absolute root; its traceback/declaration/guard pass
+remain under `working/tests`. After path normalization, a new declaration,
+guard log and immutable replay result record the successful execution. Writer,
+pixel/side-effect/borrow-lifetime and 14-scenario/four-dispatch closure remain
+pending.
+
+```sh
+python3 tests/test-drawing-cpu-crosswalk.py
+python3 tools/draft-coverage-claims.py --behavior TOOL.drawing-cpu-crosswalk \
+  --scenario drawing-cpu-crosswalk-original-replay-20261011 \
+  --output working/tests/new-cpu-crosswalk-claims.json
+python3 tools/review-drawing-cpu-crosswalk.py \
+  --run working/experiments/drawing-census/run-0q3q92uc \
+  --claims working/tests/new-cpu-crosswalk-claims.json \
+  --output working/tests/new-cpu-crosswalk-result.json
+```

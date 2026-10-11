@@ -33012,6 +33012,55 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.drawing-cpu-crosswalk",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Exact direct CPU CALL to core journal crosswalk",
+      "scope": "Independently closed V1 core and V2 CPU journals and actual per-run allocation maps. Admit only reviewed raster-global/CRT CALL namespace and explicit CPU/core role. Direct pairs require exact physical CALL return, thread, target, original return-slot/cleanup equality, readable six diagnostic stack words, BEFORE and AFTER ECX/EDX/EAX/flags/LastError equality and full per-thread/site/stack/target group cardinality and order. Reject corrupt/mismatched maps, overlapping allocations, unreadable direct stacks, phase/cleanup/register mismatch. Never pair subsets or assert shared cross-journal sequence/atomic target snapshots. Keep wrapper/tail/non-core callbacks, unrelated core calls and missing groups explicit; no typed CPU arguments, pixels, writer/lifetime/semantic or scenario/dispatch completeness.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "tools/drawing_cpu_crosswalk.py",
+        "tools/review-drawing-cpu-crosswalk.py"
+      ],
+      "tests": [
+        "tests/test-drawing-cpu-crosswalk.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_bindings.py",
+        "tools/drawing_api_details.py",
+        "tools/drawing_api_pairs.py",
+        "tools/drawing_api_contracts.py",
+        "tools/drawing_api_cohorts.py",
+        "tools/drawing_api_journal.py",
+        "tools/drawing_api_sites.py",
+        "tools/drawing_cpu_sites.py",
+        "tools/drawing_census.py",
+        "tools/drawing_census_bindings.py",
+        "tools/drawing_census_callers.py",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "protocols/include/mnm/drawing_census_bindings_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "research/runtime/drawing-callers-movie-sites-20261010.json",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "TOOL.drawing-cpu-crosswalk.guards-20261011",
+        "TOOL.drawing-cpu-crosswalk.original-replay-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -64313,6 +64362,88 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-crosswalk.guards-20261011",
+      "kind": "native_integration",
+      "scope": "Synthetic exact CPU/core pairing, full-cardinality repeat order, no subset pairing, target/thread/stack/physical neighbor gaps and register/flags/LastError/argument/cleanup/phase/readability/role/namespace/maps/build/binding/loss/active-count refusal. No original execution.",
+      "record": "research/runtime/drawing-cpu-crosswalk-guards-20261011.json",
+      "sha256": "18fcf45a7e5832f3e73cc1d238a684e654f017fa284d1c2947a047b66ed1885c",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards",
+          "equals": 16
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-crosswalk.original-replay-20261011",
+      "kind": "native_integration",
+      "scope": "Closed independent CPU/core journals and matching actual allocation maps. Direct pairs require exact physical CALL return, thread, target, original return slot, cleanup, readable six diagnostic words, preserved registers/flags/LastError and full group cardinality/order. No cross-journal shared sequence or atomic target read is asserted. Wrapper/tail targets, unmatched groups and non-core callbacks remain pending; no typed CPU arguments, pixels, lifetime, all writers or scenario/dispatch closure.",
+      "record": "research/runtime/drawing-cpu-crosswalk-original-replay-path-corrected-20261011.json",
+      "sha256": "28fa8240aeb954ee4694b01575e6c044fcc3efba4c18996f8a53cd0cb598ba50",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/matched_direct_cpu_pairs",
+          "equals": 24825
+        },
+        {
+          "pointer": "/matched_direct_core_pairs",
+          "equals": 24825
+        },
+        {
+          "pointer": "/pending_cpu_pairs",
+          "equals": 246
+        },
+        {
+          "pointer": "/core_paired_calls",
+          "equals": 42008
+        },
+        {
+          "pointer": "/cpu_paired_calls",
+          "equals": 25071
+        },
+        {
+          "pointer": "/core_pairs_outside_direct_cpu_crosswalk",
+          "equals": 17183
+        },
+        {
+          "pointer": "/caller_attribution_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/draw01_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_execution_repeated",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -73537,6 +73668,36 @@
       "evidence": [
         "DRAW.cpu-observer.original-menu-20261011"
       ]
+    },
+    {
+      "id": "drawing-cpu-crosswalk-guards-20261011",
+      "title": "drawing-cpu-crosswalk-guards-20261011",
+      "scope": "Synthetic exact direct CPU/core matching and corruption/refusal checks; no original execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-cpu-crosswalk"
+      ],
+      "tests": [
+        "tests/test-drawing-cpu-crosswalk.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-cpu-crosswalk.guards-20261011"
+      ]
+    },
+    {
+      "id": "drawing-cpu-crosswalk-original-replay-20261011",
+      "title": "drawing-cpu-crosswalk-original-replay-20261011",
+      "scope": "Current native crosswalk consumes retained original menu CPU/core journals and independent allocation maps. Original execution remains historical; no new original run, pixels, semantic/lifetime or scenario/dispatch closure.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-cpu-crosswalk"
+      ],
+      "tests": [
+        "tests/test-drawing-cpu-crosswalk.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-cpu-crosswalk.original-replay-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -73874,8 +74035,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-cpu-observer-20261011.json",
-    "sha256": "3fabc72f5650b11986316bf2eacf7f6a76e0d82b40b9bed4a775f48fa24a4338"
+    "path": "research/runtime/coverage/source-index-draw01-cpu-crosswalk-20261011.json",
+    "sha256": "30de2292caf9736afd2b988fc23a2f241f493c52e99fea6e5619f8de698c0a53"
   },
   "claim_bindings_required": true
 }
