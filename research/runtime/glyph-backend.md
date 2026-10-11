@@ -2,8 +2,10 @@
 
 The next bounded step after [caller-state recovery](glyph-backend-state.md)
 implements native RLE traversal and x87 blending, an explicit owned-context
-route, and a handled entry with RET16. This adapter is not installed in the game.
-Process-memory discovery, read/write admission and context lifetime remain open.
+route, and a handled entry with RET16. Its original evidence is isolated.
+The subsequent [opt-in live adapter](glyph-live-backend.md) supplies separate
+process-memory admission, per-call ownership and bounded live evidence; this
+page preserves the earlier kernel/entry comparison and its original scope.
 
 ## Contract and admission
 

@@ -14,6 +14,7 @@ ORIGINAL='40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--producer-entry',action='store_true',help='Also compare the actual shared live producer RET16 entry')
     parser.add_argument('--claims',type=Path,required=True)
     parser.add_argument('--corpus',type=Path,required=True)
     parser.add_argument('--index',type=Path,required=True)
@@ -55,11 +56,30 @@ def main():
             for p in dependency.read_text().replace('\\\n',' ').split(':',1)[1].split():
                 if p.startswith(str(ROOT)+'/'):closure.add(str(Path(p).resolve().relative_to(ROOT)))
         closure.add('tests/glyph-backend-test.c')
+        if args.producer_entry:closure.update(['runtime/scene/canvas_producers.S','tests/glyph-producer-entry.c'])
         if closure-sources.keys():raise ValueError('Unbound compiler/source dependencies: '+repr(sorted(closure-sources.keys())))
         report['compiled_project_sources']=sorted(closure)
+        producer_reference=None
+        if args.producer_entry:
+            producer_objects=[]
+            for name in ['runtime/scene/canvas_producers.S','tests/glyph-producer-entry.c']:
+                obj=out/(Path(name).stem+'-producer.o');run(obj.stem,['gcc','-m32','-O2','-fno-pie','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-c',ROOT/name,'-o',obj]);producer_objects.append(obj)
+            producer_reference=out/'glyph-producer-reference'
+            run('producer-reference',['g++','-m32','-O2','-std=c++17','-fno-pie','-no-pie','-Wall','-Wextra','-Werror','-DMNM_GLYPH_PRODUCER_TEST',ROOT/'tests/glyph-backend-reference.cpp',*objects,*producer_objects,'-o',producer_reference])
         cases=json.loads(args.index.read_text());data=args.corpus.read_bytes()
         if data[:8]!=b'MNMGLS01' or struct.unpack_from('<I',data,8)[0]!=len(cases):raise ValueError('Corpus/index count')
         result=out/'results.bin';run('original-native-entry',[reference,executable,args.corpus,result])
+        if producer_reference:
+            producer_result=out/'producer-results.bin';run('original-native-producer-entry',[producer_reference,executable,args.corpus,producer_result])
+            a=result.read_bytes();b=producer_result.read_bytes()
+            if len(a)!=len(b):raise ValueError('Production entry result extent')
+            for offset in range(12,len(a),64):
+                original=struct.unpack_from('<16I',a,offset);production=struct.unpack_from('<16I',b,offset)
+                # Separate executions have distinct ASLR stack addresses and
+                # ADD ESP flags. Each probe compares those against its own
+                # original; never compare raw process identities across runs.
+                if production[0]!=255 or original[:10]!=production[:10] or original[14:]!=production[14:] or production[10]!=production[11] or production[12]!=production[13]:raise ValueError('Production entry differs from independent original at record '+str((offset-12)//64))
+            report['shared_producer_entry_exact']=True
         data=result.read_bytes();assert data[:8]==b'MNMGLBK1' and struct.unpack_from('<I',data,8)[0]==64 and len(data)==12+64*(len(cases)+168)
         counts=Counter();failures=[];placements=Counter();controls=Counter()
         executions=(len(data)-12)//64

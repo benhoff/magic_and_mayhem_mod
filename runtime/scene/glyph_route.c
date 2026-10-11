@@ -1,14 +1,13 @@
 #include "glyph_route.h"
 MnmGlyphRouteContext *mnm_glyph_route_context;
-int mnm_glyph_route(uint32_t *saved,uint8_t *fx){
-    MnmGlyphRouteContext *context=mnm_glyph_route_context;
+int mnm_glyph_route_owned(uint32_t *saved,uint8_t *fx,MnmGlyphRouteContext *context,uint32_t frame_identity){
     if(!context)return 0;
     MnmGlyphBackend request;
     /* A large aggregate assignment imports memcpy on the PE32 target. Keep
      * the adapter freestanding without supplying a CRT helper. */
     for(uint32_t i=0;i<sizeof request;++i)((uint8_t *)&request)[i]=((const volatile uint8_t *)&context->backend)[i];
     uint8_t outgoing[512] __attribute__((aligned(16)));
-    if((uint32_t)(uintptr_t)request.state.frame!=saved[6]){++context->forwarded;return 0;}
+    if(frame_identity!=saved[6]){++context->forwarded;return 0;}
     request.state.frame_address=saved[6];
     request.state.entry_sp=(uint32_t)(uintptr_t)(saved+9);
     request.state.incoming_flags=saved[8];
@@ -23,4 +22,9 @@ int mnm_glyph_route(uint32_t *saved,uint8_t *fx){
     for(uint32_t i=0;i<512;++i)fx[i]=outgoing[i];
     ++context->handled;
     return 1;
+}
+
+int mnm_glyph_route(uint32_t *saved,uint8_t *fx){
+    MnmGlyphRouteContext *context=mnm_glyph_route_context;
+    return mnm_glyph_route_owned(saved,fx,context,context?(uint32_t)(uintptr_t)context->backend.state.frame:0);
 }

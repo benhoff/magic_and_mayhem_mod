@@ -107,7 +107,7 @@ __declspec(dllexport) int WIN SceneInstallForTest(u32 base){return install(base)
 #endif
 int WIN DllMain(void* instance,u32 reason,void* reserved){
     (void)instance;(void)reserved;if(reason==0){canvas_producers_close();canvas_startup_close();world_lifetime_close();world_stream_close();return 1;}if(reason!=1)return 1;
-    u32 n=GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory));if(!n||n>=sizeof(directory))return 1;
+    u32 n=GetEnvironmentVariableA("MNM_SCENE_DIR",directory,sizeof(directory));if(!n)return canvas_producers_install();if(n>=sizeof(directory))return 0;
     startup_queue_init();kind8_init();
     char number[8];kind8_samples=GetEnvironmentVariableA("MNM_SCENE_KIND8_SAMPLES",number,8)!=0;
     n=GetEnvironmentVariableA("MNM_SCENE_SAMPLES",number,8);

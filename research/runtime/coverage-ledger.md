@@ -4179,3 +4179,31 @@ passes four startup World returns, 954 completed canvases/422875312RGB565pixels,
 source BMP/JPEG/PCX, copies, panels, fades, HUD rasters, minimap and markers.
 Original producer bodies remain active; higher text state is isolated-comparison
 only, and memory-DIB/positioned-image branches retain their separate corpus scope.
+
+
+### Opt-in live glyph process route — 2026-10-10
+
+`RS.glyph-live-route` supplies bounded original-active shadow and guarded
+native glyph body bypass through the existing producer tag10. The final automatic
+Quick Battle startup records1,817 admitted calls and39 original forwards per
+mode, zero adapter errors, and four World returns. Six complete captured inputs
+per mode independently match unchanged-original/native pixels, coverage and
+selected caller/FP state across1,684,800 RGB565 WORDs. Retained inputs are cold,
+black interior glyphs under PC53/round-nearest with empty x87; do not infer other
+live tints/clips/controls from isolated coverage.
+
+`NR.glyph-live-admission` separately implements per-call private ownership,
+every-region read/write permission checks, original frame/canvas/table/argument
+nonaliasing, aligned trial storage, format/clip/source/coverage/background
+rechecks, thread/busy guards and a65,536-call budget. Production memory/refusal
+fixtures and both normal/native-menu launch staging paths pass. Policy has no
+original malformed/failure-equivalence or replacement status.
+
+The fresh kernel/shared-entry regression passes28,142 original/native executions,
+27,966 native handles and24 atomic ASan/UBSan refusals; historical records retain
+their original source hashes. [Scope, wires, reports and launch](glyph-live-backend.md).
+Activate explicitly with `MNM_GLYPH_BACKEND=shadow|takeover` before the Qt launcher.
+Other rendering and higher text layout remain original. Whole Qt gameplay,
+font/DC lifecycle, broader glyph live inputs, GPU-owned text/window composition,
+sustained recovery and performance remain pending. Shared scene/launcher edits
+leave unrelated historical evidence stale; no unrelated stages are promoted.

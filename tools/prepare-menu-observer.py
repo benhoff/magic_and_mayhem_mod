@@ -30,6 +30,8 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
         shutil.copy2(render_dll,game/render_dll.name)
         shutil.copy2(render_dll.parent/'manifest.json',root/'render-bridge-build.json')
         (root/'lock-capture').mkdir()
+    from glyph_backend_launch import stage as stage_glyph,mode_from_environment
+    patched,glyph_metadata=stage_glyph(root,data,patched,mode_from_environment())
     (game/'Chaos.exe').write_bytes(patched);shutil.copy2(dll,game/dll.name)
     preferences=module('menu_preferences','tools/run-opengl-game.py')
     stored=None
@@ -54,6 +56,7 @@ def prepare(actions=False,experimental_mini=False,preferences_store=None,campaig
               'native_render':native_render,'render_dll_sha256':hashlib.sha256(render_dll.read_bytes()).hexdigest() if render_dll else None,
               'native_draw_cadence':native_cadence,
               'patch':'Additional DLL import; original callback bytes unchanged; in-memory guarded observation hooks'}
+    metadata.update(glyph_metadata)
     shutil.copy2(dll.parent/'manifest.json',root/'bridge-build.json')
     (root/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
     if hashlib.sha256((source/'Chaos.exe').read_bytes()).hexdigest()!=HASH:raise ValueError('Source executable changed')

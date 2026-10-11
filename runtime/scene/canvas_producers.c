@@ -1,5 +1,6 @@
 /* Bounded closed producer inputs. Original destination bytes are oracle files. */
 #include "../shadow/win32_min.h"
+#include "glyph_live.h"
 #include "../../protocols/include/mnm/canvas_producers_v2.h"
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
 #define HOOKS 52
@@ -98,7 +99,7 @@ static int journal_write(const void* data,u32 n){
  if(!journal_buffer){journal_buffer=HeapAlloc(producer_heap(),0,65536);if(!journal_buffer){journal_failed=1;return 0;}}
  const u8* p=data;while(n){u32 count=65536-journal_used;if(count>n)count=n;copy(journal_buffer+journal_used,p,count);journal_used+=count;p+=count;n-=count;if(journal_used==65536&&!journal_flush())return 0;}return 1;
 }
-void canvas_producers_close(void){if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
+void canvas_producers_close(void){glyph_live_close();if(file){journal_flush();CloseHandle(file);file=0;}stopped=1;}
 static void emit_raw(u32* r,const void* payload,u32 n){if(!file||stopped)return;if(sequence>=(limit>16?MNM_PRODUCER_V3_MAX_RECORDS:minimap_owned?MNM_PRODUCER_V2_MAX_RECORDS:MNM_PRODUCER_MAX_RECORDS)||bytes>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-96||n>(minimap_owned?MNM_PRODUCER_V2_MAX_BYTES:MNM_PRODUCER_MAX_BYTES)-bytes-96){canvas_producers_close();return;}r[0]=96+n;r[1]=++sequence;r[18]=n;if(!journal_write(r,96)||(n&&!journal_write(payload,n))){canvas_producers_close();return;}bytes+=96+n;}
 /* V3 source snapshots live on the private producer heap. No original pointers
  * or destination pixels enter this cache; equality includes every state byte. */
@@ -236,8 +237,9 @@ static void frame_enter(u32* registers,u32 tag){
  if(f.record)HeapFree(producer_heap(),0,f.record);fail(16,tag);canvas_producers_close();
 }
 #include "world_producer_bypass.c"
-int producer_enter_observe(u32* registers,u32 tag){
+int producer_enter_observe(u32* registers,u32 tag,u8* fx){
  u32 error=GetLastError();
+ if(tag==10){int handled=glyph_live_enter(registers,fx);SetLastError(error);if(handled)return 1;}
  if(enabled&&!stopped){
   if(batch_guard_open&&hooks[tag].raster<0&&tag!=4){fail(45,tag);ExitProcess(95);}
   if(!depth&&((bypass_limit&&queue==bypass_queue&&bypass_completed<bypass_limit&&(tag==13||tag==14))||(raster_active()&&hooks[tag].raster>=0))){
@@ -290,6 +292,20 @@ void producer_leave_observe(u32* registers){
  ExitProcess(94);
 }
 int canvas_producers_install(void){
+ int glyph=glyph_live_configure();if(glyph<0)return 0;
+ if(glyph){
+  if((u32)GetModuleHandleA(0)!=0x400000)return 0;
+  struct Hook* h=hooks+10;if(!readable(h->address,h->length))return 0;
+  for(u32 j=0;j<h->length;++j)if(*(u8*)(h->address+j)!=h->bytes[j])return 0;
+  /* Guard constants as well as entry signature before enabling original bypass. */
+  if(!readable(0x5c7860,4)||get((void*)0x5c7860)!=0x3c820821||!readable(0x59bee0,6))return 0;
+  const u8 truncation[6]={0x55,0x8b,0xec,0x83,0xc4,0xf4};for(u32 j=0;j<6;++j)if(*(u8*)(0x59bee0+j)!=truncation[j])return 0;
+  u8* t=VirtualAlloc(0,h->length+5,0x3000,0x40);if(!t)return 0;copy(t,(void*)h->address,h->length);t[h->length]=0xe9;put(t+h->length+1,h->address+h->length-(u32)t-h->length-5);producer_trampolines[10]=(u32)t;
+  u32 old,unused;if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;
+  u8 patch[7]={0xe9,0,0,0,0,0x90,0x90};put(patch+1,(u32)h->entry-h->address-5);copy((void*)h->address,patch,7);
+  int flushed=FlushInstructionCache(GetCurrentProcess(),(void*)h->address,7);int protected=VirtualProtect((void*)h->address,7,old,&unused);if(!flushed||!protected)return 0;
+  glyph_live_installed();return 1;
+ }
  char flag[2],number[8];if(!GetEnvironmentVariableA("MNM_CANVAS_PRODUCERS",flag,2))return 1;
  if(GetEnvironmentVariableA("MNM_CANVAS_STARTUP",flag,2)||GetEnvironmentVariableA("MNM_SCENE_WORLD",flag,2))return 0;
 #ifndef MNM_SCENE_SELFTEST

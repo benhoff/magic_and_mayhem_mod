@@ -10,10 +10,13 @@ _producer_enter_\tag:
     andl $-16, %esp
     fxsave (%esp)
     cld
+    movl %esp, %eax
+    subl $4, %esp
+    pushl %eax
     pushl $\tag
     pushl %ebx
     call _producer_enter_observe
-    addl $8, %esp
+    addl $16, %esp
     testl %eax, %eax
     jnz 1f
     fxrstor (%esp)
@@ -26,7 +29,9 @@ _producer_enter_\tag:
     movl %ebx, %esp
     popal
     popfl
-.if \tag == 11 || \tag == 18 || \tag == 19 || \tag == 20
+.if \tag == 10
+    ret $16
+.elseif \tag == 11 || \tag == 18 || \tag == 19 || \tag == 20
     ret $12
 .elseif \tag == 21
     ret $8
