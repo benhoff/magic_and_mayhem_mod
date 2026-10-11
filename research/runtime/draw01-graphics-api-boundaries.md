@@ -121,3 +121,34 @@ lifetimes. Their original-renderer and original-splice-manifest execution flags
 are explicitly false. The stopped fixture prefix was removed after preserving
 binaries, generated hooks, logs and hash-bound report. Actual original API
 journals and the64refused-site observer boundaries remain pending.
+
+## Exact per-run allocation/module bindings — 2026-10-11
+
+`drawing_api_bindings_v1.h` adds a separate128-byte header/48-byte row/64-byte
+terminal map. It records each prepared trampoline's exact original site/CALL
+return, physical trampoline CALL return, fixed continuation and stub PCs, plus
+API/core/menu module bounds and the named native `census_leave` export. Those
+identities are read anew per launch; no address stability is assumed. A closed
+map proves prepared allocations, not that every hook installed. The independent
+closed API journal and original process exit remain necessary.
+
+[12 mutation guards](drawing-api-bindings-guards-20261011.json) reject changed
+extents/tags/instruction identities, reserved/terminal fields, module/stub bounds,
+overlapping allocations and alias stubs. Exact trampoline returns map to exact
+original CALL sites; other module/allocation membership remains diagnostic and
+logical ownership remains unassigned. An exact census leave address retains
+pending stack/thread/tail-flow review. Original unassigned caller windows are
+not assigned to the nearest discovered function.
+
+The [fresh real writer/decoder round trip](drawing-api-observer-bindings-abi-20261011.json)
+passes all10synthetic ABI bodies again and decodes the actual C-written binding
+file against an explicit synthetic hook manifest. Its API module is the fixture
+EXE and core/menu modules are explicitly absent; it executes no original splice
+manifest or graphics API. The [fresh census ABI](drawing-census-named-export-abi-20261011.json)
+checks current-source0–24cleanup, site/tail/phase/exhaustion and selected machine
+state forwarding after the named export. That ABI fixture does not establish
+original logical caller ownership. [The current DLL build](drawing-api-observer-bindings-build-20261011.json)
+retains250accepted/64refused sites and additionally pins the immutable approved
+splice-plan SHA256. Older source/claim fingerprints remain unchanged and their
+current validation limitations are retained. Actual original journals and
+all14scenario/four dispatch closures remain pending.

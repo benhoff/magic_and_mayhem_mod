@@ -4588,3 +4588,17 @@ still forward the synthetic body through a fixed continuation. This fixture
 executes no original graphics API or original splice manifest; actual original
 installation/shutdown/journals, refused-site handling and output/resource/borrow
 lifetimes remain pending. All14scenario/four dispatch closures remain open.
+
+### DRAW-01 exact per-run API bindings — 2026-10-11
+
+The [native writer/decoder round trip](drawing-api-observer-bindings-abi-20261011.json)
+passes all10synthetic probes and records exact original/trampoline return PCs,
+continuations and stub/module bounds. [12mutation guards](drawing-api-bindings-guards-20261011.json)
+check physical identity and refuse overlap/alias/corruption. The named native
+census leave export has a [fresh synthetic ABI](drawing-census-named-export-abi-20261011.json).
+Physical module membership does not assign original/logical ownership, and
+prepared allocations do not prove hook installation. Earlier source/claim
+fingerprints remain preserved with current validation limits. Original API
+journals,64refused sites, outputs/borrow lifetimes and all14scenario/four dispatch
+closure remain pending. Committed history34ce28f..dc626c7 is separately reviewed
+for exact intermediate receipts without asserting retrospective validation.

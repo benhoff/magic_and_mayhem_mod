@@ -63,5 +63,13 @@ void start(void){
  reset();u32 regs[17]={0};api_observe(regs,0,1);api_observe(regs,1,1);api_observe(regs,0,2);require(lost==1&&active==2&&serial==2&&sequence==2,34);
  reset();api_observe(regs,0,1);api_observe(regs,0,1);api_observe(regs,0,2);api_observe(regs,0,2);require(!lost&&!active&&serial==2&&sequence==4,35);
  reset();api_observe(regs,0,2);require(lost==1&&!active&&!serial&&!sequence,36);
+ /* Exercise the actual startup binding writer with this synthetic EXE's
+  * module/stubs and prepared allocations. The test manifest is an explicit
+  * 64-byte record, not a dumped native ApiHook object layout. */
+ char directory[220],name[260];u32 n=GetEnvironmentVariableA("MNM_API_ABI_DIR",directory,sizeof(directory));require(n&&n<sizeof(directory),37);
+ module_base=(u32)GetModuleHandleA(0);require(write_bindings(directory),38);
+ require(path(name,directory,"\\abi-hooks.bin"),39);HANDLE file=CreateFileA(name,0x40000000,1,0,1,0x80,0);require(file!=(HANDLE)-1,40);
+ for(u32 i=0;i<API_HOOKS;++i){const struct ApiHook* h=api_hooks+i;u32 row[16]={h->address,h->length,h->after_offset-1,h->mode,h->reg,h->operand};copy(row+6,h->signature,h->length);require(write_binding(file,row,64),41);}
+ require(CloseHandle(file),42);
  ExitProcess(0);
 }
