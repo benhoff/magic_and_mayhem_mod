@@ -220,3 +220,16 @@ Observe without changing scheduling or calling game methods from Qt:
 Do not promote these addresses to replacement hooks until entry bytes/ABI,
 live call order, lifetimes and failure behavior are validated. A Qt session
 command drain point is now a concrete research target, not an approved ABI.
+
+## Bounded live cadence observation,2026-10-11
+
+The earlier static recovery remains historical. The separate intentional native
+[engine cadence observer](engine-cadence.md) now measures unchanged No-CD public
+TITAN gameplay.4355 complete advancing windows each increment the counter once,
+execute eight global ANI controllers and one budget scheduler, and produce one
+World queue under50 ms target.189 non-advancing windows produce one queue without
+those selected steps or creature maintenance. This confirms bounded update/draw
+coupling and the existence of a non-advancing draw path. Complete pause/mode policy,
+other world/effect/interface updates and safe repeated draw-only invocation remain
+unrecovered. The mode field is observed as a low byte; no universal simulation
+frequency, native tick equivalent or original comparison is promoted.
