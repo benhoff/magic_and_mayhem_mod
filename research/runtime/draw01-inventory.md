@@ -418,3 +418,42 @@ python3 -B tools/capture-drawing-census-game.py <fresh-experiment> \
 ```
 
 The prospectively registered [repeat](drawing-census-quick-battle-accounted-observation-20261010.json) retains2,447,382events/1,223,691pairs, zero loss/open calls, stable sources/binaries and exit0. Both original Game Over headings were checked. Each phase projection stays a bounded cohort; all18closure blockers remain.
+
+## Original campaign summon and effect cohort — 2026-10-11
+
+The [campaign effects cohort](drawing-census-campaign-effects-observation-20261011.json)
+uses the existing opt-in signature-pinned original creature/spell observers with
+original drawing active. After bounded OCR checks and original mouse dismissal
+of introductory Hermes dialogues, a physical Zombie cast must create a newly
+living, player-owned type14 creature in the sampled original pool. Failed casts
+cannot satisfy the fixture merely by returning an EAX value. The inspected
+screenshot shows the summon effect and original `1/15` HUD count. Later bounded
+hover/animation/camera/cursor inputs precede original Mini/Preferences/World,
+Quit confirmation/defeat/Main and normal shutdown.
+
+The retained original spell callback records the same player wizard's type14
+cast and a raw mana debit of 4,352 within the sampled creation interval. The
+existing `campaign_spell.validate_spell_observation` validator was applied
+read-only after the run; its result and explicit post-run scope are retained
+separately inside the cohort report. The 514 creature samples and 12 spell rows
+have checked framing/sequences and retained hashes. These auxiliary formats have
+no journal terminal/loss counter: they do not prove every tick, callback,
+resource generation or lifetime. Earlier scripted Fireball/damage records belong
+to their actual source/target identities; they are not assigned to the player's
+physical Zombie cast. Effect-to-queue-to-pixel attribution remains pending.
+
+The drawing journal closes with 4,184,314 events / 2,092,157 paired calls,
+zero loss/open calls and stable binaries/sources. This is close to the fixed
+4,194,304-record budget; larger journeys must be bounded explicitly, and any loss
+invalidates the journal. The opt-in adds passive original hooks only; no orders,
+AI, health, mana, positions or balance rules are patched. Scenario phase7 covers
+the physical summon and later animation interval; phase8 records HUD/minimap
+hover intent. Neither projection closes a scenario census.
+
+```sh
+python3 -B tools/prepare-drawing-census.py --source-game <pinned-installation> \
+  --gameplay-observation
+python3 -B tools/capture-drawing-census-game.py <fresh-experiment> \
+  --prefix-template <stopped-Wine-prefix> --journey campaign-effects \
+  --claims <fresh-prospective-claims.json>
+```

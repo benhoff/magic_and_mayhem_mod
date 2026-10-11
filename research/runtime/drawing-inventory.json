@@ -542,6 +542,38 @@
           "activity": "live_original_active"
         }
       ]
+    },
+    {
+      "id": "campaign-effects-call-phase-07",
+      "evidence": "DRAW.census.campaign-effects-observation-20261011",
+      "scenario": "creatures-effects",
+      "scope": "Original drawing-entry metadata while fixture casts and observes newly living owned Zombie through passive original pool. Phase7 also includes bounded later animation. No full effect-to-queue-to-pixel, caller/side-effect/API/lifetime or scenario closure.",
+      "build_pointer": "/decoded/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 7,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
+    },
+    {
+      "id": "campaign-effects-call-phase-08",
+      "evidence": "DRAW.census.campaign-effects-observation-20261011",
+      "scenario": "hud-minimap-tooltips",
+      "scope": "Bounded original HUD/spell/minimap hover inputs after observed summon; semantic tooltip and complete all-writer/pixel/caller/API/lifetime coverage remain pending.",
+      "build_pointer": "/decoded/original_sha256",
+      "projections": [
+        {
+          "kind": "census_entry_rows",
+          "pointer": "/decoded/entry_counts",
+          "phase": 8,
+          "selector": "entry",
+          "activity": "live_original_active"
+        }
+      ]
     }
   ],
   "routes": [

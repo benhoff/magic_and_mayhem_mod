@@ -30982,7 +30982,8 @@
         "RI.drawing-callers-movie-sites-20261010",
         "DRAW.census.movie-site-guards-20261010",
         "DRAW.census.quick-battle-guards-20261010",
-        "DRAW.census.quick-battle-scenario-guards-20261010"
+        "DRAW.census.quick-battle-scenario-guards-20261010",
+        "DRAW.census.campaign-effects-guards-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31056,7 +31057,8 @@
         "RI.drawing-callers-movie-sites-20261010",
         "DRAW.census.movie-site-guards-20261010",
         "DRAW.census.quick-battle-guards-20261010",
-        "DRAW.census.quick-battle-scenario-guards-20261010"
+        "DRAW.census.quick-battle-scenario-guards-20261010",
+        "DRAW.census.campaign-effects-guards-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31122,7 +31124,9 @@
         "DRAW.census.quick-battle-transition-fault-20261010",
         "DRAW.census.quick-battle-observation-20261010",
         "DRAW.census.quick-battle-accounted-observation-20261010",
-        "DRAW.census.quick-battle-scenario-guards-20261010"
+        "DRAW.census.quick-battle-scenario-guards-20261010",
+        "DRAW.census.campaign-effects-observation-20261011",
+        "DRAW.census.campaign-effects-guards-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31137,7 +31141,7 @@
       "subsystem": "drawing_inventory",
       "kind": "native_policy",
       "title": "Isolated original DRAW-01 menu, campaign and Quick Battle census journeys",
-      "scope": "Fresh disposable signature-pinned drawing/menu imports, private Xvfb display and Wine prefix, original acknowledged menu actions, heartbeat and explicit host scenario phases, original Main quit and strict terminal decoding. Retain every failed attempt, source and staged binary stability, and commands. Menu readiness/phase labels do not prove exhaustive scenario coverage. Campaign input automation remains under live validation; save/load, later map transitions, effects, results, movies and graphics API failure/recovery need further fixtures. No original bodies bypassed or gameplay balance changed. Optional menu-only diagnostic staging leaves original drawing entries unpatched and explicitly reports that no call journal is enabled; no synthetic events or terminal are inferred. Quick Battle fixture selects the second original offered map, preserves original setup rules and offered spell assignments, uses bounded camera/HUD/cursor inputs, verifies original Escape-to-results, Continue-to-World and second Escape/results/Quit/Quick/Main/shutdown. Existing original contexts1/2 bypass ordinary Mini; experimental Quick Mini stays disabled. Unassigned loadout is retained as unassigned. Inputs alone do not prove semantic tooltip, spell/effect, camera movement, all-writer or lifetime coverage.",
+      "scope": "Fresh disposable signature-pinned drawing/menu imports, private Xvfb display and Wine prefix, original acknowledged menu actions, heartbeat and explicit host scenario phases, original Main quit and strict terminal decoding. Retain every failed attempt, source and staged binary stability, and commands. Menu readiness/phase labels do not prove exhaustive scenario coverage. Campaign input automation remains under live validation; save/load, later map transitions, effects, results, movies and graphics API failure/recovery need further fixtures. No original bodies bypassed or gameplay balance changed. Optional menu-only diagnostic staging leaves original drawing entries unpatched and explicitly reports that no call journal is enabled; no synthetic events or terminal are inferred. Quick Battle fixture selects the second original offered map, preserves original setup rules and offered spell assignments, uses bounded camera/HUD/cursor inputs, verifies original Escape-to-results, Continue-to-World and second Escape/results/Quit/Quick/Main/shutdown. Existing original contexts1/2 bypass ordinary Mini; experimental Quick Mini stays disabled. Unassigned loadout is retained as unassigned. Inputs alone do not prove semantic tooltip, spell/effect, camera movement, all-writer or lifetime coverage. Opt-in campaign-effects fixture uses existing signature-pinned passive original gameplay/spell hooks, original mouse dialogue dismissal and physical cast, then requires a newly living owned type14Zombie in sampled original pool before counting summon success. Inputs are recorded; complete pool/spell trace decoding and normal exit are required. No engine rules, mana/health, AI or positions are patched, and no effect-to-pixel/all-tick/lifetime completeness is inferred.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31211,7 +31215,9 @@
         "protocols/include/mnm/menu_v10.h",
         "protocols/include/mnm/menu_v11.h",
         "protocols/include/mnm/menu_v12.h",
-        "research/runtime/drawing-callers-movie-sites-20261010.json"
+        "research/runtime/drawing-callers-movie-sites-20261010.json",
+        "tools/campaign_gameplay.py",
+        "tools/campaign_spell.py"
       ],
       "evidence": [
         "DRAW.census.menu-observation-20261010",
@@ -31226,7 +31232,8 @@
         "DRAW.census.movie-sites-accounted-observation-20261010",
         "DRAW.census.quick-battle-transition-fault-20261010",
         "DRAW.census.quick-battle-observation-20261010",
-        "DRAW.census.quick-battle-accounted-observation-20261010"
+        "DRAW.census.quick-battle-accounted-observation-20261010",
+        "DRAW.census.campaign-effects-observation-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -60788,6 +60795,76 @@
           "equals": 54
         }
       ]
+    },
+    {
+      "id": "DRAW.census.campaign-effects-observation-20261011",
+      "kind": "live_observation",
+      "scope": "Prospectively registered bounded original campaign summon/effect phase and HUD inputs with sampled pool success. No complete effect-to-pixel, writer/caller/API/lifetime or scenario closure.",
+      "record": "research/runtime/drawing-census-campaign-effects-observation-20261011.json",
+      "sha256": "4e38873606dafe392f66df158f6cfd3d0400bde1b2f5c6bd29c4132b65a9ab31",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/open_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_summon/observed",
+          "equals": true
+        },
+        {
+          "pointer": "/retained_spell_review/observed_mana_debit",
+          "equals": 4352
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.campaign-effects-guards-20261011",
+      "kind": "native_integration",
+      "scope": "Current-source headless drawing inventory/exact caller/strict journal/site-anchor guards only. No new original pixels or scenario closure.",
+      "record": "research/runtime/drawing-census-campaign-effects-guards-20261011.json",
+      "sha256": "aff29a9f4a6ff1c4d86f0fe9b92d71790a2782491d9111e300ac95d47131e62b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/total_cases",
+          "equals": 54
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -69204,7 +69281,23 @@
         "tests/test-drawing-census-build.py"
       ],
       "evidence": [
-        "DRAW.census.quick-battle-scenario-guards-20261010"
+        "DRAW.census.quick-battle-scenario-guards-20261010",
+        "DRAW.census.campaign-effects-guards-20261011"
+      ]
+    },
+    {
+      "id": "original-drawing-census-campaign-effects-20261011",
+      "level": "live_observation",
+      "scope": "Original Adept campaign entry/dialogue dismissal, physical Zombie cast confirmed by passive original creature pool, bounded creature animation/HUD/cursor inputs and Mini/Preferences/Quit/defeat/Main/shutdown. Complete bounded drawing journal only, no all-effect/all-writer/pixel/API/lifetime or complete scenario census.",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.census.campaign-effects-observation-20261011"
       ]
     }
   ],
@@ -69543,8 +69636,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-quick-battle-20261010.json",
-    "sha256": "07c5f612fdbba5d1f80db97a3d8fe14a4b7ca22383df8300a9a2527f8ece0625"
+    "path": "research/runtime/coverage/source-index-draw01-campaign-effects-20261011.json",
+    "sha256": "47fc22f4bb1dd102d36e9363a307e8083a3048501f90892f310cc311b6fdf25b"
   },
   "claim_bindings_required": true
 }
