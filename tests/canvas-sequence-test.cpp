@@ -116,6 +116,34 @@ void ownedPacketReferences() {
   bounded.ownedPayloadBytes=0;for(unsigned i=0;i<2048;++i)bounded.ownedPayloads.emplace(i,create);
   refuses([&]{legacy::appendCanvasProducers(bounded,{wire.begin(),wire.begin()+start});});
 }
+void rasterInvalidation() {
+  using namespace mnm;
+  assets::SpriteFrame frame;frame.width=6;frame.height=5;frame.originX=2;frame.originY=1;
+  frame.pixels=std::vector<std::uint16_t>(30,0xffff);
+  for(unsigned i=0;i<30;++i)frame.opaqueMask.push_back(i%4==0?0:i%4==1?1:i%4==2?2:255);
+  std::array<std::uint16_t,256> colours{};unsigned cases=0;
+  for(unsigned mode=0;mode<5;++mode)for(int backend:{0,8,9})
+    for(int x:{INT32_MIN,-9,-2,0,3,9,INT32_MAX})for(int y:{INT32_MIN,-7,-1,0,2,7,INT32_MAX})
+      for(render::Rect clip: {render::Rect{0,0,9,7},{1,2,7,5},{-2,-1,12,9},{7,5,1,2}}) {
+        render::CanvasSequence canvas;canvas.create(1,9,7);canvas.create(2,1,1);
+        canvas.fill(1,{0,0,9,7},0x1234);canvas.fill(2,{0,0,1,1},0x1234);
+        // Independent source-coordinate oracle; no production crop helper.
+        std::vector<unsigned char> known(63,1);
+        const auto left=std::int64_t(x)-2,top=std::int64_t(y)-1;
+        if(!((backend==0||backend==9)&&(left<clip.left||left+6>=clip.right)))
+          for(unsigned row=0;row<5;++row)for(unsigned col=0;col<6;++col) {
+            auto dx=left+col,dy=top+row;
+            if(dx>=0&&dy>=0&&dx<9&&dy<7&&dx>=clip.left&&dx<clip.right&&dy>=clip.top&&dy<clip.bottom&&frame.opaqueMask[row*6+col])known[std::size_t(dy)*9+dx]=0;
+          }
+        canvas.raster(1,frame,x,y,clip,mode,backend,colours,{},16,true);
+        for(int row=0;row<7;++row)for(int col=0;col<9;++col) {
+          bool admitted=true;try{canvas.copy(1,2,{col,row,col+1,row+1},0,0);}catch(const std::runtime_error&){admitted=false;}
+          expect(admitted==bool(known[row*9+col]));expect(canvas.read(2).pixels[0]==0x1234);
+        }
+        ++cases;
+      }
+  expect(cases==2940);
+}
 void rasterSampling() {
   using namespace mnm;
   const render::Image initial{6, 2, {0xffff,0xf800,0x07e0,0x001f,0x1234,0x5678,
@@ -165,7 +193,7 @@ int main() {
   try {
     using namespace mnm;
     decodedFrameCache();
-    ownedPacketReferences(); rasterSampling();
+    ownedPacketReferences(); rasterSampling(); rasterInvalidation();
     render::CanvasSequence canvases;
     canvases.create(1, 4, 2);
     refuses([&] { canvases.read(1); });

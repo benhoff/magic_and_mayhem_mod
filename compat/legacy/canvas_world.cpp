@@ -102,7 +102,7 @@ void CanvasWorld::beginResident(const CanvasProducer &c,render::SurfaceId native
   profile_={};
   if(!scene_) {
     residentSurface_=native;
-    render::SceneLimits limits;limits.cache.indexedAtlas=true;
+    render::SceneLimits limits;limits.cache.indexedAtlas=true;limits.cache.atlasFrames=512;
     scene_=std::make_unique<render::SceneRenderer>(renderer_,resources_,native,
                                                     int(r[5]),int(r[6]),limits);
   }
@@ -122,7 +122,7 @@ void CanvasWorld::beginFrame(const CanvasProducer &c,
         "Native producer/World handoff identity or sequence gap");
   if (!scene_) {
     render::SceneLimits limits;
-    limits.cache.indexedAtlas = true;
+    limits.cache.indexedAtlas = true;limits.cache.atlasFrames=512;
     scene_ = std::make_unique<render::SceneRenderer>(renderer_, resources_,
                                                      native, limits);
   }

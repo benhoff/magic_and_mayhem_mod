@@ -20645,7 +20645,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded sprite atlas pages and value-owned shader palettes",
-      "scope": "Opt-in native resource cache packs indexed indices or RGB565 words and coverage into bounded integer atlas pages. Indexed frame identity excludes palette values; owned RGB565 palette uniforms select colours independently. Ordered row transfers retain byte budgets; page LRU eviction, revision invalidation, release, clipping and cleanup remain bounded. No new original draw-kind admission, producer startup equivalence, context-loss recovery or live replacement. Validation covers synthetic admission failures, integer pixels against expanded words, and closed captured queues replayed cold/warm with explicit native zero initialization; installed live scheduling and initial-canvas equivalence remain separate.",
+      "scope": "Opt-in native resource cache packs indexed indices or RGB565 words and coverage into bounded integer atlas pages. Indexed frame identity excludes palette values; owned RGB565 palette uniforms select colours independently. Ordered row transfers retain byte budgets; page LRU eviction, revision invalidation, release, clipping and cleanup remain bounded. No new original draw-kind admission, producer startup equivalence, context-loss recovery or live replacement. Validation covers synthetic admission failures, integer pixels against expanded words, and closed captured queues replayed cold/warm with explicit native zero initialization; installed live scheduling and initial-canvas equivalence remain separate. Metadata pressure now retires only the least-recently-drawn entry, preserving hot neighbours on a shared page. Retired texel holes remain bounded by existing page storage; pixel pressure still retires a whole LRU page. Scoped World sessions cap atlas metadata at512 entries. A separate shared-page test checks readiness, no page reallocation, exact retained/new pixels and zero teardown.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -20694,7 +20694,8 @@
       "evidence": [
         "NR.sprite-atlas.native-20261008",
         "NR.sprite-atlas.kind8-regressions-20261008",
-        "NR.sprite-atlas.commit-regressions-20261008"
+        "NR.sprite-atlas.commit-regressions-20261008",
+        "NR.sprite-atlas.metadata-lru-validity-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31723,7 +31724,8 @@
       "validation_domain": "Selected bounded startup World/HUD history. Unknown CPU-dependent history reads must refuse; no historical source/pixel proof is reused for this new ownership policy.",
       "evidence": [
         "NR.world-gpu-resident-frame.history-32-20261010",
-        "NR.world-gpu-resident-frame.masked-history-32-20261010"
+        "NR.world-gpu-resident-frame.masked-history-32-20261010",
+        "NR.world-gpu-resident-frame.cache-validity-history-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -32021,7 +32023,10 @@
         "NR.directdraw-retirement.startup-surfaces-current-20261010",
         "NR.directdraw-retirement.startup-services-current-20261010",
         "NR.directdraw-retirement.final128-functional-20261010",
-        "NR.directdraw-retirement.bound128-functional-20261010"
+        "NR.directdraw-retirement.bound128-functional-20261010",
+        "NR.directdraw-retirement.cache128-functional-20261011",
+        "NR.directdraw-retirement.cache-cpu-cost-20261011",
+        "NR.directdraw-retirement.cache4096-functional-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -32284,7 +32289,9 @@
         "NR.world-gpu-ack-delivery.recovery-128-20261010",
         "NR.directdraw-retirement.resident128-functional-20261010",
         "NR.directdraw-retirement.final128-functional-20261010",
-        "NR.directdraw-retirement.bound128-functional-20261010"
+        "NR.directdraw-retirement.bound128-functional-20261010",
+        "NR.directdraw-retirement.cache128-functional-20261011",
+        "NR.directdraw-retirement.cache4096-functional-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -63337,6 +63344,260 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.sprite-atlas.metadata-lru-validity-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/native-gpu-cache-validity-pass-20261011.json",
+      "scope": "Current prospective native metadata-LRU cache policy, full shared-page pixels and teardown, plus2940 independent CPU cropped-opaque validity cases; eight selected native checks and94 canonical compiler inputs pass. No original/live/FPS equivalence.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/ctests_passed",
+          "equals": 8
+        }
+      ],
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "sha256": "0abb0facbb6f3a88add07d74b6c88e9680cf87447af44371432e63559f431525"
+    },
+    {
+      "id": "NR.world-gpu-resident-frame.cache-validity-history-20261011",
+      "kind": "native_integration",
+      "record": "research/runtime/native-gpu-cache-history-pass-20261011.json",
+      "sha256": "25e22fb2c2873604ac28741c47b512bca77b756e1af5d9def96de3e65015a2c3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/synthetic_512_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/legacy_512_passed",
+          "equals": true
+        },
+        {
+          "pointer": "/resident/queues",
+          "equals": 32
+        },
+        {
+          "pointer": "/resident/delivery_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/resident/remaining_surfaces",
+          "equals": 0
+        }
+      ],
+      "scope": "Current CPU validity fast path and bounded512 World atlas policy:512 synthetic/legacy queues and32 retained original-input queues match15,360,000 independent native CPU words with zero delivery readbacks and teardown. No original pixel equivalence/live/FPS claim."
+    },
+    {
+      "id": "NR.directdraw-retirement.cache128-functional-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-cache128-performance-failure-20261011.json",
+      "sha256": "da52da590c665445800fd68b25bdf513ca535309923ccb354b84c0da52a2f5ed",
+      "scope": "Current128 actual original-engine/native Qt GPU frames on TITAN RTX with real ddraw disabled/absent, zero World readbacks/replies/writebacks; cache bound passes at335 frames and all128 presentations. Overall19FPS still fails at16.9312FPS; no original pixel/semantic quit/full gameplay/60FPS equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/selected_session_directdraw_backend_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/original_returns",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/qt_paints",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": false
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/performance_budget/checks/caches",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/original_fps",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.cache-cpu-cost-20261011",
+      "kind": "static",
+      "record": "research/runtime/native-draw-cache-cpu-cost-discovery-20261011.json",
+      "sha256": "c3ad71a9fc103a2a48076ea0a0ddf44af6628feee6df6723819f5002bf3f41aa",
+      "sources_pointer": "/sources",
+      "scope": "Native CPU sampling discovery only:527 samples, zero lost, cropped validity raster3.01percent current CPU cost. Original scene counts vary;19.5FPS sampling run fails577ms cold budget. No original equivalence/status/performance promotion.",
+      "assertions": [
+        {
+          "pointer": "/samples",
+          "equals": 527
+        },
+        {
+          "pointer": "/lost_samples",
+          "equals": 0
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.cache4096-functional-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-cache4096-performance-failure-20261011.json",
+      "sha256": "b8bb86022d4d795413b84ef22e4522c8eaefdc4fff5e4a418434971a43c21804",
+      "scope": "Current4096 actual original-engine/TITAN RTX Qt GPU frames with ddraw disabled and absent. Zero World readbacks/replies/writebacks, all4096 presentations and zero GPU teardown resources. Cache321/RSS growth9,097,216 bytes/warm median38/p9544/max66ms/cold492.16ms pass;18.6534 original/18.6580 Qt FPS fail19. No full gameplay/original pixel/semantic COM quit/60FPS equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/selected_session_directdraw_backend_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/original_returns",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/qt_paints",
+          "equals": "4096"
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": false
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/performance_budget/checks/caches",
+          "equals": true
+        },
+        {
+          "pointer": "/performance_budget/checks/original_fps",
+          "equals": false
+        },
+        {
+          "pointer": "/completed/native_continuous/remaining_surfaces",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -69907,18 +70168,20 @@
     {
       "id": "native-sprite-atlas",
       "level": "headless",
-      "scope": "Synthetic shader-versus-expanded integer sprite pixels, palette changes, clips, composite modes, cold/warm upload counters, row budgets, page eviction, revision/release and terminal storage bounds. Installed captured queue replay is separate.",
+      "scope": "Synthetic shader-versus-expanded integer sprite pixels, palette changes, clips, composite modes, cold/warm upload counters, row budgets, page eviction, revision/release and terminal storage bounds. Installed captured queue replay is separate. Metadata-LRU pressure preserves hot shared-page entries and complete pixels; page storage/teardown remain bounded. CPU validity dependency checks cover cropped opaque invalidation without synthesizing World pixels.",
       "behaviors": [
         "NR.sprite-atlas"
       ],
       "tests": [
         "tests/sprite-atlas-test.cpp",
-        "tools/test-sprite-atlas.py"
+        "tools/test-sprite-atlas.py",
+        "tests/canvas-sequence-test.cpp"
       ],
       "evidence": [
         "NR.sprite-atlas.native-20261008",
         "NR.sprite-atlas.kind8-regressions-20261008",
-        "NR.sprite-atlas.commit-regressions-20261008"
+        "NR.sprite-atlas.commit-regressions-20261008",
+        "NR.sprite-atlas.metadata-lru-validity-20261011"
       ]
     },
     {
@@ -71075,7 +71338,8 @@
       ],
       "evidence": [
         "NR.world-gpu-resident-frame.history-32-20261010",
-        "NR.world-gpu-resident-frame.masked-history-32-20261010"
+        "NR.world-gpu-resident-frame.masked-history-32-20261010",
+        "NR.world-gpu-resident-frame.cache-validity-history-20261011"
       ]
     },
     {
@@ -71180,7 +71444,9 @@
       "evidence": [
         "NR.directdraw-retirement.resident128-functional-20261010",
         "NR.directdraw-retirement.final128-functional-20261010",
-        "NR.directdraw-retirement.bound128-functional-20261010"
+        "NR.directdraw-retirement.bound128-functional-20261010",
+        "NR.directdraw-retirement.cache128-functional-20261011",
+        "NR.directdraw-retirement.cache4096-functional-20261011"
       ]
     },
     {
@@ -71533,8 +71799,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-draw-startup-bound-20261010.json",
-    "sha256": "8f79ae984290d82b5f182d803354087484fde52e35e66803580c04b9f2b7a1a2"
+    "path": "research/runtime/coverage/source-index-native-cache-validity-20261011.json",
+    "sha256": "b62871b8666d18389c7234a43b8e4d4e7d153bd8bf815009b9e5317c9dbdd19b"
   },
   "claim_bindings_required": true
 }

@@ -333,6 +333,23 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
       }
     return;
   }
+  if (invalidateOnly) {
+    // Crop once. CPU validity changes only at visible opaque samples; no CPU
+    // World pixels are synthesized and transparent history remains known.
+    const auto firstX = std::max<std::int64_t>({0, -left, std::int64_t(clip.left) - left});
+    const auto lastX = std::min<std::int64_t>({f.width, std::int64_t(s.image.width) - left, std::int64_t(clip.right) - left});
+    const auto firstY = std::max<std::int64_t>({0, -top, std::int64_t(clip.top) - top});
+    const auto lastY = std::min<std::int64_t>({f.height, std::int64_t(s.image.height) - top, std::int64_t(clip.bottom) - top});
+    if (firstX >= lastX || firstY >= lastY) return;
+    const auto count = std::size_t(lastX - firstX);
+    for (auto row = firstY; row < lastY; ++row) {
+      auto *defined = s.defined.data() + slot(s.image, int(left + firstX), int(top + row));
+      const auto *mask = f.opaqueMask.data() + std::size_t(row) * f.width + firstX;
+      for (std::size_t i = 0; i < count; ++i)
+        defined[i] &= static_cast<unsigned char>(mask[i] == 0);
+    }
+    return;
+  }
   // Blends sample only their own destination. Displacement offsets are admitted
   // only in [0,16], so this left-to-right traversal samples the current pixel or
   // a pixel not yet written in this row. Both preserve pre-draw sample semantics
