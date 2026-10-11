@@ -186,3 +186,12 @@ readbacks/replies/writebacks/coalescing/resources,real ddraw disabled/absent and
 all102 canonical compiler/fixture inputs/source/frozen/installed pins current.
 See [record](native-fade-row-world4096-pass-20261011.json). No paired causal
 speedup or arbitrary-scene/60FPS/publicV4fusion claim follows from this result.
+
+After the current4096 pass,both current102-input owned peer-death controls pass
+at generation34 with expected refusal,no completed-session claim and stopped
+private Wine. Fresh128 recovery after both passes cold386.921ms,
+original19.6863/Qt19.8794FPS,warm65 median38/p9545/max58ms and every unchanged
+timing/resource/no-roundtrip check. See
+[producer](native-fade-row-producer-death-pass-20261011.json),
+[consumer](native-fade-row-consumer-death-pass-20261011.json),
+[recovery](native-fade-row-recovery128-pass-20261011.json).
