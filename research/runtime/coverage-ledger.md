@@ -4289,3 +4289,20 @@ or live replacement status follows from this offline preparation. Original
 artifact manifests pass before/after all artifact-consuming checks. The prior
 native GPU4096-frame delivery remains16.18FPS and fails19FPS; no performance
 status is promoted by isolated storage or import preparation.
+
+## Native graphics startup service admission —2026-10-10
+
+Current isolated clipper/DC service comparison passes64 cases,2,048 caller
+fields and22,464 complete COLORREF/RGB565 words against Wine11.16, including
+DC-during-Lock, repeated DC and Lock/refusal, GDI edits, clipper references and
+zero-resource teardown. A separate native primary/backbuffer policy validates
+351 words across flip and surviving child lifetime, plus duplicate primary
+refusal. Current-source128-case factory and64-case storage regressions also
+pass; previous reservation/link failures remain retained. The common PE32
+builder checks complete compiler/builder closure and rejects DirectDraw imports.
+All native probes disable ddraw and verify no module is loaded. This is an
+isolated startup-services milestone, not real game/driver retirement; clipper
+regions/occlusion and clipped Blt, palettes, unknown methods and actual backend-
+disabled game execution remain pending. Logical modes/primary/flip remain native
+policies, independently separated from original driver behavior.19FPS/60FPS
+remain unproved; the earlier4096-frame delivery's16.18FPS still fails19FPS.

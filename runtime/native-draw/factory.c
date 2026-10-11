@@ -5,8 +5,9 @@
 #define ND_INVALID ((i32)0x80070057u)
 #define ND_NOINTERFACE ((i32)0x80004002u)
 struct NdState;
+struct NsState;
 struct NdObject {void** table;struct NdState* state;u32 kind;};
-struct NdState {struct NdObject first,second,unknown,fourth;u32 refs[4],interfaces;void* window;u32 coop,width,height,depth;};
+struct NdState {struct NdObject first,second,unknown,fourth;u32 refs[4],interfaces;void* window;u32 coop,width,height,depth;struct NsState* primary;};
 static void* nd_tables[4][28];
 static u32 nd_objects,nd_surfaces;
 static const u8 nd_unknown[16]={0,0,0,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x46};
@@ -37,6 +38,7 @@ static u32 WIN nd_release(struct NdObject* self) {
 static i32 WIN nd_unadmitted(struct NdObject* self) {
   (void)self;ExitProcess(97);return ND_NOINTERFACE;
 }
+#include "clipper.h"
 #include "surfaces.h"
 __declspec(dllexport) i32 WIN NativeDrawCreate(void* guid,void** out,void* outer) {
   u32 error=GetLastError();
@@ -57,6 +59,8 @@ __declspec(dllexport) i32 WIN NativeDrawEnumerateA(NdEnumCallback callback,void*
   if(!callback)return ND_INVALID;
   u32 error=GetLastError();callback(0,"Native owned RGB565","native",context);SetLastError(error);return 0;
 }
+__declspec(dllexport) u32 WIN NativeDrawClippers(void) {return nc_objects;}
+__declspec(dllexport) u32 WIN NativeDrawDCs(void) {return ns_dcs;}
 __declspec(dllexport) u32 WIN NativeDrawSurfaces(void) {return nd_surfaces;}
 __declspec(dllexport) void WIN NativeDrawAnchor(void) {}
 __declspec(dllexport) u32 WIN NativeDrawObjects(void) {return nd_objects;}

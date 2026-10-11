@@ -31738,7 +31738,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native graphics compatibility and real DirectDraw retirement",
-      "scope": "Pending replacement of supported pinned-build graphics factory, surface, lock/copy/palette/DC/lifecycle services and presentation. Real DirectDraw backend must be disabled during final supported-scenario execution, independent native frame and caller/side-effect comparisons must pass, and all unknown routes must be refused explicitly. Existing forwarded original DirectDraw observation and faster native rendering do not establish retirement. The isolated compatibility slice admits DirectDraw4 identity and explicit owned offscreen RGB565 Surface1/2/4 storage, lock/unlock, keys, copy/fill/self overlap and lifecycle; logical mode policy is separate from recovered driver behavior. Primary/flip/DC/palette and game integration remain pending. Selected native refusal and no-partial-mutation policies plus512-surface capacity are tested separately from independent original caller comparisons.",
+      "scope": "Pending replacement of supported pinned-build graphics factory, surface, lock/copy/palette/DC/lifecycle services and presentation. Real DirectDraw backend must be disabled during final supported-scenario execution, independent native frame and caller/side-effect comparisons must pass, and all unknown routes must be refused explicitly. Existing forwarded original DirectDraw observation and faster native rendering do not establish retirement. The isolated compatibility slice admits DirectDraw4 identity and explicit owned offscreen RGB565 Surface1/2/4 storage, lock/unlock, keys, copy/fill/self overlap and lifecycle; logical mode policy is separate from recovered driver behavior. Primary/flip/DC/palette and game integration remain pending. Selected native refusal and no-partial-mutation policies plus512-surface capacity are tested separately from independent original caller comparisons. The next selected slice adds bounded HWND clippers, owned RGB565 GDI DC leases, implicit format requests and logical primary/attached flip storage. Clipped Blt, region/occlusion, palettes, actual presentation and game admission remain unvalidated and explicitly refused. Primary/mode/flip are native storage policies, not original driver semantics.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -31754,17 +31754,23 @@
       "confidence": "provisional",
       "documents": [
         "research/runtime/native-gpu-frame-ownership.md",
-        "research/runtime/native-draw-device-surfaces.md"
+        "research/runtime/native-draw-device-surfaces.md",
+        "research/runtime/native-draw-services-20261010.md"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
-        "runtime/native-draw/surfaces.h"
+        "runtime/native-draw/surfaces.h",
+        "runtime/native-draw/clipper.h",
+        "runtime/native-draw/dc.h",
+        "tools/build-native-draw.py"
       ],
       "tests": [
         "tests/native-draw-factory-probe.c",
         "tools/test-native-draw-factory.py",
         "tests/native-draw-surface-probe.c",
-        "tools/test-native-draw-surfaces.py"
+        "tools/test-native-draw-surfaces.py",
+        "tests/native-draw-services-probe.c",
+        "tools/test-native-draw-services.py"
       ],
       "validation_dependencies": [
         "runtime/shadow/win32_min.h",
@@ -31773,7 +31779,10 @@
       "validation_domain": "Selected bounded startup World/HUD history. Unknown CPU-dependent history reads must refuse; no historical source/pixel proof is reused for this new ownership policy.",
       "evidence": [
         "NR.directdraw-retirement.factory-isolated-20261010",
-        "NR.directdraw-retirement.surfaces-isolated-20261010"
+        "NR.directdraw-retirement.surfaces-isolated-20261010",
+        "NR.directdraw-retirement.services-pass-20261010",
+        "NR.directdraw-retirement.services-factory-pass-20261010",
+        "NR.directdraw-retirement.services-surfaces-pass-20261010"
       ],
       "status": {
         "understanding": "partial",
@@ -62415,6 +62424,175 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.directdraw-retirement.services-pass-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-services-pass-20261010.json",
+      "sha256": "6c70bbaf1aedd32aac3b91d830d1b12396c6d8faccdf9326b204a28afc135b8c",
+      "scope": "64 unchanged clipper/DC caller cases and complete RGB565/COLORREF outputs against Wine DirectDraw, including DC-during-lock, repeated DC/refusals, GDI writes and teardown. Native ddraw disabled/module absent. Native logical primary/attached flip lifecycle is a separate policy; no driver presentation, clipped blit, palette or real game replacement claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/pixel_words",
+          "equals": 22464
+        },
+        {
+          "pointer": "/caller_words",
+          "equals": 2048
+        },
+        {
+          "pointer": "/native_remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_devices",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_clippers",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_dcs",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_policy/compared_words",
+          "equals": 351
+        },
+        {
+          "pointer": "/native_policy/duplicate_primary_refusals",
+          "equals": 1
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_directdraw_imports",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.services-factory-pass-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-services-factory-pass-20261010.json",
+      "sha256": "289b247f396f857492531800e3558be7e6cdf8171d33b0dd60a0042603b9a2c3",
+      "scope": "128 isolated default native factory lifetimes with exact selected HRESULT/identity/per-interface reference/failure outputs versus real Wine DirectDraw. Native preserves incoming LastError as an explicit policy; Wine incidental error values are retained separately, not claimed equivalent. Original null-output creation fault is excluded from the common valid-caller corpus; native safe null-output refusal is a separate policy. Native enumeration is an explicit single-adapter policy. Native probe disables ddraw and verifies no module loads. Surface methods, real game integration, GPU presentation and DirectDraw retirement remain pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/caller_words",
+          "equals": 2176
+        },
+        {
+          "pointer": "/native_remaining_objects",
+          "equals": 0
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_directdraw_imports",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.services-surfaces-pass-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-services-surfaces-pass-20261010.json",
+      "sha256": "865d34074f076c330214d7a2a91c302a4216d4d1fe1fb24f4c2ab66b4b1cac82",
+      "scope": "64 unchanged caller cases using DirectDraw1/4 and Surface1/2/4, odd-pitch system-memory RGB565, key/copy/fill/overlap and full native words against real Wine DirectDraw. Native run disables ddraw and checks no module loads; device modes are logical native policies. Primary/flip/DC/palette services, real game integration and GPU history read dependencies remain pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/pixel_words",
+          "equals": 37440
+        },
+        {
+          "pointer": "/caller_words",
+          "equals": 2048
+        },
+        {
+          "pointer": "/native_remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_devices",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_policy/refusals",
+          "equals": 8
+        },
+        {
+          "pointer": "/native_policy/surface_capacity",
+          "equals": 512
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_directdraw_imports",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -70186,7 +70364,8 @@
         "tools/test-native-draw-factory.py"
       ],
       "evidence": [
-        "NR.directdraw-retirement.factory-isolated-20261010"
+        "NR.directdraw-retirement.factory-isolated-20261010",
+        "NR.directdraw-retirement.services-factory-pass-20261010"
       ]
     },
     {
@@ -70201,7 +70380,8 @@
         "tools/test-native-draw-surfaces.py"
       ],
       "evidence": [
-        "NR.directdraw-retirement.surfaces-isolated-20261010"
+        "NR.directdraw-retirement.surfaces-isolated-20261010",
+        "NR.directdraw-retirement.services-surfaces-pass-20261010"
       ]
     },
     {
@@ -70216,6 +70396,21 @@
       ],
       "evidence": [
         "NR.directdraw-import-retirement.offline-20261010"
+      ]
+    },
+    {
+      "id": "native-draw-services-20261010",
+      "level": "headless",
+      "scope": "64 unchanged isolated clipper HWND/reference and RGB565 DC lease caller cases with full GDI COLORREF/native words versus Wine DirectDraw. Native-only logical primary/flip/attachment/duplicate refusal and surviving child lifecycle. ddraw disabled/module absent; no original game or driver presentation claim.",
+      "behaviors": [
+        "NR.directdraw-retirement"
+      ],
+      "tests": [
+        "tests/native-draw-services-probe.c",
+        "tools/test-native-draw-services.py"
+      ],
+      "evidence": [
+        "NR.directdraw-retirement.services-pass-20261010"
       ]
     }
   ],
@@ -70554,8 +70749,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-draw-surfaces-20261010.json",
-    "sha256": "e2cb468d06dd76daba191691a1bd95336ac290a85445af8acf1772c7ff5d8fdc"
+    "path": "research/runtime/coverage/source-index-native-draw-services-20261010.json",
+    "sha256": "b0f972c261657594ce83b2510ddf30c3f8afd433cba98becbdb0dadd2071f6cf"
   },
   "claim_bindings_required": true
 }
