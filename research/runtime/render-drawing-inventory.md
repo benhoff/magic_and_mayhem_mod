@@ -450,3 +450,11 @@ remain preserved.12288owned original-client fixture cells pass, with actual
 synthetic. See [postlude evidence and limits](draw01-inventory.md#original-optional-render-postlude-2026-10-11).
 No actual pixels, COM lifetime, native equivalence or complete scenario/dispatch
 closure is implied.57dcc0scatter getter remains unassigned.
+
+
+2026-10-11 original consumer object variants:4924800unique cells now cover
+changed-prior direct/indexed markers and ordinary/-127offsets, all kinds and
+low-AX1/high-EAX distinction; row/clip/wave/postlude state passes.
+[Evidence and scope](draw01-inventory.md#original-indexed-and-offset-consumer-states-2026-10-11)
+retain synthetic external helpers and all live/pixel/lifetime/complete-dispatch
+boundaries. Existing historical reports and hashes remain untouched.

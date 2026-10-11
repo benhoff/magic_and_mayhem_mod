@@ -7,8 +7,8 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 578 |
-| evidence | 990 |
-| scenarios | 306 |
+| evidence | 991 |
+| scenarios | 307 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
 | incomplete dispatch tables | 22 |
@@ -26,7 +26,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 171 |
 | behaviors without comparison | 476 |
 | behaviors without tests | 1 |
-| stale evidence | 777 |
+| stale evidence | 778 |
 | behavior anchors outside discovered functions | 46 |
 | validation gaps | 717 |
 | retired execution claims | 376 |
@@ -1553,6 +1553,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **DRAW.api-expanded.effects-20261011**: `research/runtime/drawing-inventory.json`
 - **TOOL.drawing-inventory.api-site-guards-20261011**: `research/runtime/drawing-inventory.json`
 - **DRAW.queue-client-state.fixture-20261011**: `tests/drawing-queue-state-reference.cpp`, `tools/test-drawing-queue-state.py`
+- **DRAW.queue-client-state.all-kinds-fixture-20261011**: `tests/drawing-queue-state-reference.cpp`, `tools/test-drawing-queue-state.py`
 
 ## Checklist gaps
 
