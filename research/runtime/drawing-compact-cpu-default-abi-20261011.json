@@ -1,0 +1,1398 @@
+{
+  "schema": 1,
+  "scope": "Real separate CALL stubs/observer/dynamic splices and binding writer/decoder round trip against26synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.",
+  "success": true,
+  "sources": {
+    "protocols/include/mnm/drawing_api_bindings_v1.h": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+    "protocols/include/mnm/drawing_api_journal_v1.h": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+    "protocols/include/mnm/drawing_api_journal_v2.h": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-api-virtual-core-splices-static-20261011.json": "9314a6621ef6172c3fade2bf3954e8d3a9f7ea758fe934b1d5582b57c03879ba",
+    "research/runtime/drawing-api-virtual-only-splices-static-20261011.json": "09c2f679e68fd74a5248e60d1a8e6ec8cc8945139e30e08b500926d5c19d34c8",
+    "research/runtime/drawing-canvas-release-original-range-20261011.json": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+    "research/runtime/drawing-cpu-sites-static-20261011.json": "02d0fd599c15b0da272a6cc052bfe0e16b9384a04e6b961e443c9be251234628",
+    "research/runtime/drawing-inventory.json": "36a3106a0bf55396d80de197f91eb81180336f76b16dbb404fc8215610d5caef",
+    "research/runtime/drawing-surface-api-layouts-20261011.json": "2248a9dfdd1a96ec8d5cecd6288097f872194406480d881c0a698c774e805f2c",
+    "research/runtime/drawing-terminal-callers-static-20261011.json": "149d5cb0fc1755f4d39a5c76d3ff02892ea517be79a19e43b7134dae325980c7",
+    "runtime/drawing-api-census/entry.S": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+    "runtime/drawing-api-census/exception_i386.h": "74f1351bf921e9bc3c5991df046f12210113106009246cb5aa354b28ea7d7a93",
+    "runtime/drawing-api-census/observer.c": "02f82898b8c44ec040e0faff74f6c4a4a8c4c9db344444276587ff29fbed59b3",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tests/drawing-api-census-abi.c": "7260f9032d866f3bc2c096bc4fd4428792732cb20723e81f139ef3dece4d15be",
+    "tests/drawing-api-detail-call.S": "703373a9d236a04a841e685496c03af7a50b1e5db4286a6f469f40dc6a047b55",
+    "tests/test-drawing-api-resources.py": "a42fd314f84f8405d0aaf79fb4b76aec6470f0a3219775b5f157e004360ac08d",
+    "tests/test-drawing-compact-cpu.py": "df067dc04b9f15fb97d31b8507f35eae284f6c560849bf60d2496ce27a8fdda3",
+    "tests/test-drawing-cpu-crosswalk.py": "4e0516d87f4e29ba61af57ea6996509f2039b8e95754893f60b2ff19d695b625",
+    "tests/test-drawing-terminal-crosswalk.py": "0752fa3cf5883906ac9858795a97e3d9b68d16dc19cb501c2375318540426f5e",
+    "tests/test-drawing-terminal-observer.py": "b0fed1e14e69f6a7342e63c4541f4e97bfbb603dbac4ac2a9b2860f2d299153b",
+    "tools/build-drawing-api-census.py": "85b622c29cb61b3e62a48c77363c6c55cf983c079f8a7e1fcd20ece52f356352",
+    "tools/build-drawing-terminal-census.py": "f9945800ca6bc39224838111c9074dd0860a845d7883e659513d7779718a47b4",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/capture-drawing-census-game.py": "4621507c60c4a1825485c5f6cddd30cae22cd5c10be78f4c9540cac30bf5fe79",
+    "tools/drawing_api_bindings.py": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+    "tools/drawing_api_cohorts.py": "1f2e71f79ce13a1d0954c5489a9477e3fb7e271af3abccc8920af5ea4fb26d7d",
+    "tools/drawing_api_contracts.py": "d3df6ef14428054ae83d803345db5ce26f2b42ee1d46aa28ddc07f4a1bd23664",
+    "tools/drawing_api_details.py": "0e77554ce71fcc66049c3f06326356325765acb99e2cb0fafce711cc4a380169",
+    "tools/drawing_api_journal.py": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+    "tools/drawing_api_pairs.py": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+    "tools/drawing_api_resources.py": "ef36288e39cc2a7c10b2a7cd5b9d08c411f99457970aadefdda7b46e0a89e5a2",
+    "tools/drawing_api_sites.py": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+    "tools/drawing_api_surface_contracts.py": "f25d18d5ec322ca3df72e407b6631de3de459b1e8b055b23b4d4babe3c60b1ca",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_census_bindings.py": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+    "tools/drawing_census_callers.py": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52",
+    "tools/drawing_cpu_crosswalk.py": "1b11b13354fef1bb632fbf7c814a584c55369168f314de6fd1d7a067f4d987f6",
+    "tools/drawing_cpu_sites.py": "3e480307240f93eabc190b63f04cdb3b4f8ccfdbcc851edf357a5bd5bc946178",
+    "tools/drawing_terminal_crosswalk.py": "ac6f85ee31a8a62b387c45cdea80789af9fe7ebc87ec762152b63bf7839d33bc",
+    "tools/drawing_terminal_edges.py": "49edc05c1fd76bd66fbdd14a00fad3edf6fcf36df8f1daeea4f31df297155322",
+    "tools/export-drawing-api-sites.py": "954700524914c22d70f666e40eb819dcb9c58adc1c6f10a2cbe911d2955aa30c",
+    "tools/export-drawing-terminal-plan.py": "7bb864f06328dc3282a6966bef5604ae01fa70cee73b32041e8f0a0bd5c8a750",
+    "tools/prepare-drawing-terminal-census.py": "30e7f07bbaa91959e569eb55754978a357d1d1599d5f5af542d5eb83f195543c",
+    "tools/test-drawing-api-census-abi.py": "fe5436cf68daa680251d5c398f93ac4875b0ca7b409b21f1745f3c330a7b1400"
+  },
+  "sources_stable": true,
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-compact-cpu",
+      "contract_sha256": "8d0d3dcb6f67ef25b17d7685e030dbb6087296eaa7520c53dca9734ef9c29c4b",
+      "scenarios": {
+        "drawing-compact-cpu-guards-20261011": "2fb7cfb1eac45571f26ddd15de04bcba98d260f5c9e25e859ba67c37a02e5a40",
+        "drawing-compact-cpu-abi-20261011": "c7b646cfd57ef414cf802302502158c60216d977066deaaa95881b99a3c60893",
+        "drawing-compact-cpu-plan-compile-20261011": "674f6a6d0bf3fd4da959a3cefd807bb78cfb1337bed5ca78328a11fb7f6adda3",
+        "drawing-compact-cpu-original-menu-20261011": "c46f3f0d9b62b2449be1e4b03c883bf45999afb6a679f1f625b45ea23e7a385b"
+      }
+    },
+    {
+      "behavior": "TOOL.drawing-api-observer",
+      "contract_sha256": "ff1717747253a5b1b0b7482c6ec0d7bfcd1c9d6cbafe6f37b9352b0b40a3c453",
+      "scenarios": {
+        "drawing-compact-cpu-abi-20261011": "c7b646cfd57ef414cf802302502158c60216d977066deaaa95881b99a3c60893"
+      }
+    }
+  ],
+  "callee_pop_bytes": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    52
+  ],
+  "call_modes": [
+    "absolute_memory",
+    "register",
+    "register_memory",
+    "direct_relative"
+  ],
+  "synthetic_bodies": 26,
+  "register_flags_x87_sse_last_error_preserved": true,
+  "pre_call_stack_and_target_checked": true,
+  "negative_eax_actual_cleanup_checked": true,
+  "short_conditional_remainder_executed": true,
+  "frame_exhaustion_phase_record_cap_io_failure_forward": true,
+  "same_thread_lifo_and_mismatch_loss_checked": true,
+  "one_byte_breakpoint_cases": 13,
+  "foreign_exception_forwarding_checked": true,
+  "call_operand_and_successor_unchanged_checked": true,
+  "callee_entry_flags_registers_last_error_checked_bodies": 22,
+  "full_thirteen_argument_stack_checked": true,
+  "null_unreadable_before_after_output_buffers_checked": true,
+  "candidate_object_no_access_after_call_checked": true,
+  "v2_native_writer_decoder_round_trip": true,
+  "details": {
+    "schema": 2,
+    "scope": "Closed V2 API diagnostic pairs with reviewed exact layouts and bounded raw buffers. Receiver candidates are byte equality only; failed outputs, external object lifetime, full semantics/graphics/API/writer/scenario closure are not inferred.",
+    "journal_integrity": true,
+    "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "journal_sha256": "49868ac410845c15cb46769d18b7eb063cdbea6e834b0ee21e366e8d825f2e0b",
+    "events": 52,
+    "paired_calls": 26,
+    "lost_events": 0,
+    "open_calls": 0,
+    "io_failure": 0,
+    "unassigned_calls": 0,
+    "unreadable_stack_calls": 0,
+    "unreadable_target_calls": 0,
+    "phase_calls": {
+      "2": 26
+    },
+    "targets": [
+      {
+        "phase": 2,
+        "site": 3801091,
+        "target_state": 2,
+        "target_slot": 4537624,
+        "target_value": 4209936,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 3932166,
+        "target_state": 2,
+        "target_slot": 4537628,
+        "target_value": 4210032,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 4063241,
+        "target_state": 2,
+        "target_slot": 4537632,
+        "target_value": 4210128,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 8519692,
+        "target_state": 2,
+        "target_slot": 4537636,
+        "target_value": 4210224,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 8650767,
+        "target_state": 2,
+        "target_slot": 4537640,
+        "target_value": 4210320,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 8781842,
+        "target_state": 2,
+        "target_slot": 4537644,
+        "target_value": 4210416,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 8912917,
+        "target_state": 2,
+        "target_slot": 4537648,
+        "target_value": 4210512,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9043982,
+        "target_state": 1,
+        "target_slot": 0,
+        "target_value": 4210128,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9175054,
+        "target_state": 2,
+        "target_slot": 4537656,
+        "target_value": 4210128,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9306121,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4210128,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9437187,
+        "target_state": 2,
+        "target_slot": 4537664,
+        "target_value": 4209936,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9568262,
+        "target_state": 2,
+        "target_slot": 4537668,
+        "target_value": 4210032,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9699337,
+        "target_state": 2,
+        "target_slot": 4537672,
+        "target_value": 4210128,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9830412,
+        "target_state": 2,
+        "target_slot": 4537676,
+        "target_value": 4210224,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9961487,
+        "target_state": 2,
+        "target_slot": 4537680,
+        "target_value": 4210320,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10092562,
+        "target_state": 2,
+        "target_slot": 4537684,
+        "target_value": 4210416,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10223637,
+        "target_state": 2,
+        "target_slot": 4537688,
+        "target_value": 4210512,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10354702,
+        "target_state": 1,
+        "target_slot": 0,
+        "target_value": 4210128,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10485774,
+        "target_state": 2,
+        "target_slot": 4537696,
+        "target_value": 4210128,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10616841,
+        "target_state": 4,
+        "target_slot": 0,
+        "target_value": 4210128,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10747946,
+        "target_state": 2,
+        "target_slot": 4537704,
+        "target_value": 4213792,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10879018,
+        "target_state": 2,
+        "target_slot": 4537708,
+        "target_value": 4213792,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 11010069,
+        "target_state": 2,
+        "target_slot": 4537712,
+        "target_value": 4218624,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 11141141,
+        "target_state": 2,
+        "target_slot": 4537716,
+        "target_value": 4218624,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 11337742,
+        "target_state": 2,
+        "target_slot": 4537720,
+        "target_value": 4218672,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 11468814,
+        "target_state": 2,
+        "target_slot": 4537724,
+        "target_value": 4218672,
+        "count": 1
+      }
+    ],
+    "outcomes": [
+      {
+        "phase": 2,
+        "site": 3801091,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 3932166,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 4063241,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 8519692,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 8650767,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 8781842,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 8912917,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9043982,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9175054,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9306121,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9437187,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9568262,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9699337,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9830412,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 9961487,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10092562,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10223637,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10354702,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10485774,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10616841,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10747946,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 10879018,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 11010069,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 11141141,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 11337742,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      },
+      {
+        "phase": 2,
+        "site": 11468814,
+        "eax": 2289434624,
+        "last_error": 2345,
+        "count": 1
+      }
+    ],
+    "observed_cleanup": [
+      {
+        "site": 3801091,
+        "bytes": 0,
+        "count": 1
+      },
+      {
+        "site": 3932166,
+        "bytes": 4,
+        "count": 1
+      },
+      {
+        "site": 4063241,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 8519692,
+        "bytes": 12,
+        "count": 1
+      },
+      {
+        "site": 8650767,
+        "bytes": 16,
+        "count": 1
+      },
+      {
+        "site": 8781842,
+        "bytes": 20,
+        "count": 1
+      },
+      {
+        "site": 8912917,
+        "bytes": 24,
+        "count": 1
+      },
+      {
+        "site": 9043982,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 9175054,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 9306121,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 9437187,
+        "bytes": 0,
+        "count": 1
+      },
+      {
+        "site": 9568262,
+        "bytes": 4,
+        "count": 1
+      },
+      {
+        "site": 9699337,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 9830412,
+        "bytes": 12,
+        "count": 1
+      },
+      {
+        "site": 9961487,
+        "bytes": 16,
+        "count": 1
+      },
+      {
+        "site": 10092562,
+        "bytes": 20,
+        "count": 1
+      },
+      {
+        "site": 10223637,
+        "bytes": 24,
+        "count": 1
+      },
+      {
+        "site": 10354702,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 10485774,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 10616841,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 10747946,
+        "bytes": 52,
+        "count": 1
+      },
+      {
+        "site": 10879018,
+        "bytes": 52,
+        "count": 1
+      },
+      {
+        "site": 11010069,
+        "bytes": 24,
+        "count": 1
+      },
+      {
+        "site": 11141141,
+        "bytes": 24,
+        "count": 1
+      },
+      {
+        "site": 11337742,
+        "bytes": 8,
+        "count": 1
+      },
+      {
+        "site": 11468814,
+        "bytes": 8,
+        "count": 1
+      }
+    ],
+    "details": {
+      "receiver_candidate_calls": 2,
+      "argument_layouts": [
+        {
+          "phase": 2,
+          "site": 3801091,
+          "formal_words": 0,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 3932166,
+          "formal_words": 1,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 4063241,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 8519692,
+          "formal_words": 3,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 8650767,
+          "formal_words": 4,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 8781842,
+          "formal_words": 5,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 8912917,
+          "formal_words": 6,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 9043982,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 9175054,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 9306121,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 9437187,
+          "formal_words": 0,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 9568262,
+          "formal_words": 1,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 9699337,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 9830412,
+          "formal_words": 3,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 9961487,
+          "formal_words": 4,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 10092562,
+          "formal_words": 5,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 10223637,
+          "formal_words": 6,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 10354702,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 10485774,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 10616841,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 10747946,
+          "formal_words": 13,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 10879018,
+          "formal_words": 13,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 11010069,
+          "formal_words": 6,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 11141141,
+          "formal_words": 6,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 11337742,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        },
+        {
+          "phase": 2,
+          "site": 11468814,
+          "formal_words": 2,
+          "arguments_read": true,
+          "calls": 1
+        }
+      ],
+      "buffer_snapshots": [
+        {
+          "phase": 2,
+          "site": 11010069,
+          "event": 1,
+          "slot": 0,
+          "address": 4471800,
+          "requested_bytes": 8,
+          "state": 1,
+          "data": "7856341288776655",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11010069,
+          "event": 1,
+          "slot": 1,
+          "address": 0,
+          "requested_bytes": 4,
+          "state": 2,
+          "data": "",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11010069,
+          "event": 1,
+          "slot": 2,
+          "address": 4294967280,
+          "requested_bytes": 8,
+          "state": 3,
+          "data": "",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11010069,
+          "event": 1,
+          "slot": 3,
+          "address": 4471804,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "88776655",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11010069,
+          "event": 2,
+          "slot": 0,
+          "address": 4471800,
+          "requested_bytes": 8,
+          "state": 1,
+          "data": "ddccbbaa44332211",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11010069,
+          "event": 2,
+          "slot": 1,
+          "address": 0,
+          "requested_bytes": 4,
+          "state": 2,
+          "data": "",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11010069,
+          "event": 2,
+          "slot": 2,
+          "address": 4294967280,
+          "requested_bytes": 8,
+          "state": 3,
+          "data": "",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11010069,
+          "event": 2,
+          "slot": 3,
+          "address": 4471804,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "44332211",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11141141,
+          "event": 1,
+          "slot": 0,
+          "address": 4471800,
+          "requested_bytes": 8,
+          "state": 1,
+          "data": "7856341288776655",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11141141,
+          "event": 1,
+          "slot": 1,
+          "address": 0,
+          "requested_bytes": 4,
+          "state": 2,
+          "data": "",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11141141,
+          "event": 1,
+          "slot": 2,
+          "address": 4294967280,
+          "requested_bytes": 8,
+          "state": 3,
+          "data": "",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11141141,
+          "event": 1,
+          "slot": 3,
+          "address": 4471804,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "88776655",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11141141,
+          "event": 2,
+          "slot": 0,
+          "address": 4471800,
+          "requested_bytes": 8,
+          "state": 1,
+          "data": "ddccbbaa44332211",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11141141,
+          "event": 2,
+          "slot": 1,
+          "address": 0,
+          "requested_bytes": 4,
+          "state": 2,
+          "data": "",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11141141,
+          "event": 2,
+          "slot": 2,
+          "address": 4294967280,
+          "requested_bytes": 8,
+          "state": 3,
+          "data": "",
+          "count": 1
+        },
+        {
+          "phase": 2,
+          "site": 11141141,
+          "event": 2,
+          "slot": 3,
+          "address": 4471804,
+          "requested_bytes": 4,
+          "state": 1,
+          "data": "44332211",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "exact_binding_round_trip": true,
+  "bindings": {
+    "schema": 1,
+    "scope": "Prepared exact per-run allocations/module/physical CALL identities only; no installed-hook success or inferred original/logical/API/COM ownership.",
+    "integrity": true,
+    "sha256": "2edafccc7eaa021ad31b1c8719899b62d92fd940580f4be9807688357b952d1f",
+    "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "modules": {
+      "api": {
+        "base": 4194304,
+        "size": 348160
+      },
+      "core": {
+        "base": 0,
+        "size": 0
+      },
+      "menu": {
+        "base": 0,
+        "size": 0
+      }
+    },
+    "core_leave": 0,
+    "hooks": [
+      {
+        "tag": 0,
+        "site": 3801091,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 3866624,
+        "trampoline_size": 16,
+        "remainder": 3866635,
+        "before_stub": 4219264,
+        "after_stub": 4219309,
+        "physical_call_return": 3866630,
+        "original_call_return": 3801097
+      },
+      {
+        "tag": 1,
+        "site": 3932166,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 3997696,
+        "trampoline_size": 16,
+        "remainder": 3997707,
+        "before_stub": 4219354,
+        "after_stub": 4219399,
+        "physical_call_return": 3997702,
+        "original_call_return": 3932172
+      },
+      {
+        "tag": 2,
+        "site": 4063241,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 4128768,
+        "trampoline_size": 16,
+        "remainder": 4128779,
+        "before_stub": 4219444,
+        "after_stub": 4219489,
+        "physical_call_return": 4128774,
+        "original_call_return": 4063247
+      },
+      {
+        "tag": 3,
+        "site": 8519692,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 8585216,
+        "trampoline_size": 16,
+        "remainder": 8585227,
+        "before_stub": 4219534,
+        "after_stub": 4219579,
+        "physical_call_return": 8585222,
+        "original_call_return": 8519698
+      },
+      {
+        "tag": 4,
+        "site": 8650767,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 8716288,
+        "trampoline_size": 16,
+        "remainder": 8716299,
+        "before_stub": 4219624,
+        "after_stub": 4219669,
+        "physical_call_return": 8716294,
+        "original_call_return": 8650773
+      },
+      {
+        "tag": 5,
+        "site": 8781842,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 8847360,
+        "trampoline_size": 16,
+        "remainder": 8847371,
+        "before_stub": 4219714,
+        "after_stub": 4219759,
+        "physical_call_return": 8847366,
+        "original_call_return": 8781848
+      },
+      {
+        "tag": 6,
+        "site": 8912917,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 8978432,
+        "trampoline_size": 16,
+        "remainder": 8978443,
+        "before_stub": 4219804,
+        "after_stub": 4219849,
+        "physical_call_return": 8978438,
+        "original_call_return": 8912923
+      },
+      {
+        "tag": 7,
+        "site": 9043982,
+        "length": 6,
+        "call_length": 2,
+        "trampoline": 9109504,
+        "trampoline_size": 20,
+        "remainder": 9109511,
+        "before_stub": 4219894,
+        "after_stub": 4219939,
+        "physical_call_return": 9109506,
+        "original_call_return": 9043984
+      },
+      {
+        "tag": 8,
+        "site": 9175054,
+        "length": 5,
+        "call_length": 2,
+        "trampoline": 9240576,
+        "trampoline_size": 15,
+        "remainder": 9240583,
+        "before_stub": 4219984,
+        "after_stub": 4220029,
+        "physical_call_return": 9240578,
+        "original_call_return": 9175056
+      },
+      {
+        "tag": 9,
+        "site": 9306121,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 9371648,
+        "trampoline_size": 15,
+        "remainder": 9371658,
+        "before_stub": 4220074,
+        "after_stub": 4220119,
+        "physical_call_return": 9371653,
+        "original_call_return": 9306126
+      },
+      {
+        "tag": 10,
+        "site": 9437187,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 9502720,
+        "trampoline_size": 16,
+        "remainder": 9502731,
+        "before_stub": 4220164,
+        "after_stub": 4220209,
+        "physical_call_return": 9502726,
+        "original_call_return": 9437193
+      },
+      {
+        "tag": 11,
+        "site": 9568262,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 9633792,
+        "trampoline_size": 16,
+        "remainder": 9633803,
+        "before_stub": 4220254,
+        "after_stub": 4220299,
+        "physical_call_return": 9633798,
+        "original_call_return": 9568268
+      },
+      {
+        "tag": 12,
+        "site": 9699337,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 9764864,
+        "trampoline_size": 16,
+        "remainder": 9764875,
+        "before_stub": 4220344,
+        "after_stub": 4220389,
+        "physical_call_return": 9764870,
+        "original_call_return": 9699343
+      },
+      {
+        "tag": 13,
+        "site": 9830412,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 9895936,
+        "trampoline_size": 16,
+        "remainder": 9895947,
+        "before_stub": 4220434,
+        "after_stub": 4220479,
+        "physical_call_return": 9895942,
+        "original_call_return": 9830418
+      },
+      {
+        "tag": 14,
+        "site": 9961487,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 10027008,
+        "trampoline_size": 16,
+        "remainder": 10027019,
+        "before_stub": 4220524,
+        "after_stub": 4220569,
+        "physical_call_return": 10027014,
+        "original_call_return": 9961493
+      },
+      {
+        "tag": 15,
+        "site": 10092562,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 10158080,
+        "trampoline_size": 16,
+        "remainder": 10158091,
+        "before_stub": 4220614,
+        "after_stub": 4220659,
+        "physical_call_return": 10158086,
+        "original_call_return": 10092568
+      },
+      {
+        "tag": 16,
+        "site": 10223637,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 10289152,
+        "trampoline_size": 16,
+        "remainder": 10289163,
+        "before_stub": 4220704,
+        "after_stub": 4220749,
+        "physical_call_return": 10289158,
+        "original_call_return": 10223643
+      },
+      {
+        "tag": 17,
+        "site": 10354702,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 10420224,
+        "trampoline_size": 12,
+        "remainder": 10420231,
+        "before_stub": 4220794,
+        "after_stub": 4220839,
+        "physical_call_return": 10420226,
+        "original_call_return": 10354704
+      },
+      {
+        "tag": 18,
+        "site": 10485774,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 10551296,
+        "trampoline_size": 12,
+        "remainder": 10551303,
+        "before_stub": 4220884,
+        "after_stub": 4220929,
+        "physical_call_return": 10551298,
+        "original_call_return": 10485776
+      },
+      {
+        "tag": 19,
+        "site": 10616841,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 10682368,
+        "trampoline_size": 15,
+        "remainder": 10682378,
+        "before_stub": 4220974,
+        "after_stub": 4221019,
+        "physical_call_return": 10682373,
+        "original_call_return": 10616846
+      },
+      {
+        "tag": 20,
+        "site": 10747946,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 10813440,
+        "trampoline_size": 16,
+        "remainder": 10813451,
+        "before_stub": 4221064,
+        "after_stub": 4221109,
+        "physical_call_return": 10813446,
+        "original_call_return": 10747952
+      },
+      {
+        "tag": 21,
+        "site": 10879018,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 10944512,
+        "trampoline_size": 16,
+        "remainder": 10944523,
+        "before_stub": 4221154,
+        "after_stub": 4221199,
+        "physical_call_return": 10944518,
+        "original_call_return": 10879024
+      },
+      {
+        "tag": 22,
+        "site": 11010069,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 11075584,
+        "trampoline_size": 16,
+        "remainder": 11075595,
+        "before_stub": 4221244,
+        "after_stub": 4221289,
+        "physical_call_return": 11075590,
+        "original_call_return": 11010075
+      },
+      {
+        "tag": 23,
+        "site": 11141141,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 11206656,
+        "trampoline_size": 16,
+        "remainder": 11206667,
+        "before_stub": 4221334,
+        "after_stub": 4221379,
+        "physical_call_return": 11206662,
+        "original_call_return": 11141147
+      },
+      {
+        "tag": 24,
+        "site": 11337742,
+        "length": 5,
+        "call_length": 2,
+        "trampoline": 11403264,
+        "trampoline_size": 15,
+        "remainder": 11403271,
+        "before_stub": 4221424,
+        "after_stub": 4221469,
+        "physical_call_return": 11403266,
+        "original_call_return": 11337744
+      },
+      {
+        "tag": 25,
+        "site": 11468814,
+        "length": 2,
+        "call_length": 2,
+        "trampoline": 11534336,
+        "trampoline_size": 12,
+        "remainder": 11534343,
+        "before_stub": 4221514,
+        "after_stub": 4221559,
+        "physical_call_return": 11534338,
+        "original_call_return": 11468816
+      }
+    ]
+  },
+  "original_renderer_executed": false,
+  "original_splice_manifest_executed": false,
+  "binaries": {
+    "fixture.exe": "0d5818200eaa0cab16d62222cc59e38dd83495085371517fd9b01341979d3486",
+    "part0.obj": "d8ce325e6a20de0aea533803fa10c4ff7c2cae8a8af20f63984ab916cea4595b",
+    "part1.obj": "6722b3f57e136339b7df4edaea335300f82a831771204c52af350e627ff261fa",
+    "part2.obj": "3d29c43882b7e78386840470e7b7a401a77fd2749b25d687de4eb69baa9a6e20"
+  },
+  "logs": {
+    "compile0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "forwarding.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "imports.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prefix-copy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stop-prefix.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "journal_version": 2,
+  "compact_cpu_journal": false
+}

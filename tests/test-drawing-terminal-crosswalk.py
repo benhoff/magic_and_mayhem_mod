@@ -31,6 +31,15 @@ class TerminalTests(unittest.TestCase):
             self.assertEqual(r['matched_wrapper_tail_pairs'],1);self.assertEqual(x['observed_wrapper_target'],target);self.assertEqual(x['reviewed_tail_target'],0x58b3e0)
             self.assertEqual(x['original_cpu_call_site'],0x59d98a);self.assertFalse(x['initial_flag_byte_observed'])
 
+    def test_compact_wrapper_cpu_rows_need_no_fabricated_formals(self):
+        for target in WRAPPERS:
+            p,c = pair(target);p = tuple(row[:32] for row in p)
+            self.assertEqual(self.run_pair(p,c)['matched_wrapper_tail_pairs'],1)
+
+    def test_malformed_compact_wrapper_record_extent_refuses(self):
+        p,c = pair();p = tuple(row[:31] for row in p)
+        with self.assertRaises(ValueError):self.run_pair(p,c)
+
     def test_unknown_receiver_and_stack_thread_or_pc_stay_pending(self):
         for index in [5,7,8,9]:
             p,c=pair();c[0][index]+=4;self.assertEqual(self.run_pair(p,c)['matched_wrapper_tail_pairs'],0)

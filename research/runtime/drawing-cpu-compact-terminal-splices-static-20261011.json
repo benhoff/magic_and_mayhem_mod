@@ -1,0 +1,4299 @@
+{
+  "schema": 1,
+  "scope": "Static exact original CALL splice plan in explicit core/API cohort. No actual hook execution, API result/ABI/output/ownership/borrowing or DRAW-01 closure.",
+  "cohort": "core_api",
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "sources_stable": true,
+  "hooks": [
+    {
+      "site": 4235547,
+      "signature": "ff157c9b6800",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6855548
+      },
+      "call": {
+        "address": 4235547,
+        "bytes": "ff157c9b6800",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 0,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4235547,
+              4235553
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 4235625,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 4235625,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 1,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4235625,
+              4235631
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4235600
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 4235720,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 4235720,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 2,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4235720,
+              4235726
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4235600
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 4235781,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 4235781,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 3,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4235781,
+              4235787
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4235760
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 4235866,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 4235866,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 4,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4235866,
+              4235872
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4235760
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 4730041,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 4730041,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 5,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4730041,
+              4730047
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4730016
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 4730130,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 4730130,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 6,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4730130,
+              4730136
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4730016
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 4737639,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 4737639,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 7,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              4737639,
+              4737645
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        4737328
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5015302,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5015302,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 8,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5015302,
+              5015308
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5012144
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5015320,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5015320,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 9,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5015320,
+              5015326
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5012144
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5027405,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5027405,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 10,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5027405,
+              5027411
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5027232
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5027516,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5027516,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 11,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5027516,
+              5027522
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5027232
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5027534,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5027534,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 12,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5027534,
+              5027540
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5027232
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5030557,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5030557,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 13,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5030557,
+              5030563
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5030578,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5030578,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 14,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5030578,
+              5030584
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5030677,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5030677,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 15,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5030677,
+              5030683
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5030731,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5030731,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 16,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5030731,
+              5030737
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5037753,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5037753,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 17,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5037753,
+              5037759
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5037771,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5037771,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 18,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5037771,
+              5037777
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5041392,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5041392,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 19,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041392,
+              5041398
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5041445,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5041445,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 20,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041445,
+              5041451
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5041538,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5041538,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 21,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041538,
+              5041544
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5041562,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5041562,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 22,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041562,
+              5041568
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5041612,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5041612,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 23,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041612,
+              5041618
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5041636,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5041636,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 24,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5041636,
+              5041642
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5048600,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5048600,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 25,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5048600,
+              5048606
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5048618,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5048618,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 26,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5048618,
+              5048624
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5057234,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5057234,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 27,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5057234,
+              5057240
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5057088
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5057252,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5057252,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 28,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5057252,
+              5057258
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5057088
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5058441,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5058441,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 29,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058441,
+              5058447
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5058461,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5058461,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 30,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058461,
+              5058467
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5058554,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5058554,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 31,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058554,
+              5058560
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5058574,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5058574,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 32,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058574,
+              5058580
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5058666,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5058666,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 33,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058666,
+              5058672
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5058686,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5058686,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 34,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5058686,
+              5058692
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5058128
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5061941,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5061941,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 35,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5061941,
+              5061947
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5061959,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5061959,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 36,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5061959,
+              5061965
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5062043,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5062043,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 37,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062043,
+              5062049
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5062061,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5062061,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 38,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062061,
+              5062067
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5062145,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5062145,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 39,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062145,
+              5062151
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5062167,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5062167,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 40,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062167,
+              5062173
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5062244,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5062244,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 41,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062244,
+              5062250
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5062266,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5062266,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 42,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5062266,
+              5062272
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5061776
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5063723,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5063723,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 43,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063723,
+              5063729
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5063741,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5063741,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 44,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063741,
+              5063747
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5063796,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5063796,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 45,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063796,
+              5063802
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5063814,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5063814,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 46,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063814,
+              5063820
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5063909,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5063909,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 47,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063909,
+              5063915
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5063927,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5063927,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 48,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5063927,
+              5063933
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5064001,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5064001,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 49,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5064001,
+              5064007
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5064047,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5064047,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 50,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5064047,
+              5064053
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5064065,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5064065,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 51,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5064065,
+              5064071
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5064122,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5064122,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 52,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5064122,
+              5064128
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5064140,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5064140,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 53,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5064140,
+              5064146
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5078926,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5078926,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 54,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5078926,
+              5078932
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5078832
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5078942,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5078942,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 55,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5078942,
+              5078948
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5078832
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5094459,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5094459,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 56,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094459,
+              5094465
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5094477,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5094477,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 57,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094477,
+              5094483
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5094614,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5094614,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 58,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094614,
+              5094620
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5094631,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5094631,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 59,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094631,
+              5094637
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5094763,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5094763,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 60,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094763,
+              5094769
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5094781,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5094781,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 61,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094781,
+              5094787
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5094912,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5094912,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 62,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094912,
+              5094918
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5094931,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5094931,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 63,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5094931,
+              5094937
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5095069,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5095069,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 64,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095069,
+              5095075
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5095087,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5095087,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 65,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095087,
+              5095093
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5095188,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5095188,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 66,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095188,
+              5095194
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5095204,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5095204,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 67,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095204,
+              5095210
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5095294,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5095294,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 68,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095294,
+              5095300
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5095311,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5095311,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 69,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095311,
+              5095317
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5095398,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5095398,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 70,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095398,
+              5095404
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5095417,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5095417,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 71,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5095417,
+              5095423
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5093984
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5098455,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5098455,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 72,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5098455,
+              5098461
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5098160
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5098473,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5098473,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 73,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5098473,
+              5098479
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5098160
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5101552,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5101552,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 74,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5101552,
+              5101558
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5101248
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5101570,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5101570,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 75,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5101570,
+              5101576
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5101248
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5103096,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5103096,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 76,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5103096,
+              5103102
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5102944
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5103112,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5103112,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 77,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5103112,
+              5103118
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5102944
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5243843,
+      "signature": "ff157c9b6800",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6855548
+      },
+      "call": {
+        "address": 5243843,
+        "bytes": "ff157c9b6800",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 78,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5243843,
+              5243849
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5244017,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5244017,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 79,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5244017,
+              5244023
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5244172,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5244172,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 80,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5244172,
+              5244178
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5244369,
+      "signature": "ff15789b6800",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6855544
+      },
+      "call": {
+        "address": 5244369,
+        "bytes": "ff15789b6800",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 81,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5244369,
+              5244375
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5244991,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5244991,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 82,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5244991,
+              5244997
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5245184,
+      "signature": "ff157c9b6800",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6855548
+      },
+      "call": {
+        "address": 5245184,
+        "bytes": "ff157c9b6800",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 83,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5245184,
+              5245190
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5245280,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5245280,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 84,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5245280,
+              5245286
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5245361,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5245361,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 85,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5245361,
+              5245367
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5245431,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5245431,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 86,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5245431,
+              5245437
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5245512,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5245512,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 87,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5245512,
+              5245518
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5246188,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5246188,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 88,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5246188,
+              5246194
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5246362,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5246362,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 89,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5246362,
+              5246368
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5246446,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5246446,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 90,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5246446,
+              5246452
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5246530,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5246530,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 91,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5246530,
+              5246536
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5246706,
+      "signature": "ff15789b6800",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6855544
+      },
+      "call": {
+        "address": 5246706,
+        "bytes": "ff15789b6800",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 92,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5246706,
+              5246712
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5247257,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5247257,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 93,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5247257,
+              5247263
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5243552
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5542701,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5542701,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 94,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5542701,
+              5542707
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5542734,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5542734,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 95,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5542734,
+              5542740
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5543885,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5543885,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 96,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5543885,
+              5543891
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5543918,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5543918,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 97,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5543918,
+              5543924
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5545021,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5545021,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 98,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5545021,
+              5545027
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5545054,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5545054,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 99,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5545054,
+              5545060
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5547267,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5547267,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 100,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5547267,
+              5547273
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5547357,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5547357,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 101,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5547357,
+              5547363
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5572609,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5572609,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 102,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5572609,
+              5572615
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5572256
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5572627,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5572627,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 103,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5572627,
+              5572633
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5572256
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5573640,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5573640,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 104,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5573640,
+              5573646
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5572976
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5573658,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5573658,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 105,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5573658,
+              5573664
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5572976
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5594542,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5594542,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 106,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5594542,
+              5594548
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5593488
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5594560,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5594560,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 107,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5594560,
+              5594566
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5593488
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5738973,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5738973,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 108,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5738973,
+              5738979
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5738991,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5738991,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 109,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5738991,
+              5738997
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5739047,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5739047,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 110,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739047,
+              5739053
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5739065,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5739065,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 111,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739065,
+              5739071
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5739160,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5739160,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 112,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739160,
+              5739166
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5739178,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5739178,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 113,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739178,
+              5739184
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5739252,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5739252,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 114,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739252,
+              5739258
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5739295,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5739295,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 115,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739295,
+              5739301
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5739313,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5739313,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 116,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5739313,
+              5739319
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5761063,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5761063,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 117,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761063,
+              5761069
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5761134,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5761134,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 118,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761134,
+              5761140
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5761269,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5761269,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 119,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761269,
+              5761275
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5761248
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5761338,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5761338,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 120,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761338,
+              5761344
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5761248
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5761510,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5761510,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 121,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761510,
+              5761516
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5761248
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5761571,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5761571,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 122,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761571,
+              5761577
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5761248
+      ],
+      "exact_import": null
+    },
+    {
+      "site": 5761771,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5761771,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 123,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761771,
+              5761777
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5761852,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5761852,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 124,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5761852,
+              5761858
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5762004,
+      "signature": "ff15dc036900",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 6882268
+      },
+      "call": {
+        "address": 5762004,
+        "bytes": "ff15dc036900",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 125,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5762004,
+              5762010
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5762085,
+      "signature": "ff153c4e6c00",
+      "length": 6,
+      "call_length": 6,
+      "target_mode": {
+        "kind": "absolute_memory",
+        "address": 7097916
+      },
+      "call": {
+        "address": 5762085,
+        "bytes": "ff153c4e6c00",
+        "transfer": null
+      },
+      "remainder": [],
+      "tag": 126,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5762085,
+              5762091
+            ]
+          ],
+          "kind": "exact_cpu_global_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [],
+      "exact_import": null
+    },
+    {
+      "site": 5888394,
+      "signature": "ffd0",
+      "length": 2,
+      "call_length": 2,
+      "target_mode": {
+        "kind": "register",
+        "register": "eax"
+      },
+      "patch_mode": "breakpoint",
+      "patch_bytes": 1,
+      "call": {
+        "address": 5888394,
+        "bytes": "ffd0",
+        "transfer": null
+      },
+      "remainder": [],
+      "five_byte_refusal": "Incoming original direct flow enters overwritten interior",
+      "tag": 127,
+      "selections": [
+        {
+          "anchor": null,
+          "ranges": [
+            [
+              5888394,
+              5888396
+            ]
+          ],
+          "kind": "exact_exit_callback_call",
+          "scope": "One exact original CALL; no surrounding function/COM/target lifetime recovery."
+        }
+      ],
+      "discovered_owners": [
+        5888312
+      ],
+      "exact_import": null
+    }
+  ],
+  "refused": [],
+  "core_hook_count": 88,
+  "core_refused": [
+    {
+      "entry": 5828016,
+      "route": "DRAW.entry.0058edb0",
+      "reason": "Original branch enters overwritten interior bytes: [{'site': 5828062, 'target': 5828017}]"
+    }
+  ],
+  "counts": {
+    "selected": 128,
+    "planned": 128,
+    "refused": 0
+  },
+  "sources": {
+    "tools/export-drawing-api-splices.py": "1a5e5a2b9df06a5a6fc91c2e610961fbfd05058d24d95c7f993220507460a317",
+    "tools/drawing_api_journal.py": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+    "tools/drawing_api_pairs.py": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+    "tools/drawing_api_sites.py": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/build-drawing-census.py": "b8fe1ad7b2371eeb4b84836d90263a2d283cd9add1b1b0739ec5052f5dbc3de1",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "research/runtime/drawing-inventory.json": "36a3106a0bf55396d80de197f91eb81180336f76b16dbb404fc8215610d5caef",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-cpu-sites-static-20261011.json": "02d0fd599c15b0da272a6cc052bfe0e16b9384a04e6b961e443c9be251234628",
+    "tools/export-drawing-terminal-plan.py": "7bb864f06328dc3282a6966bef5604ae01fa70cee73b32041e8f0a0bd5c8a750",
+    "tools/build-drawing-terminal-census.py": "f9945800ca6bc39224838111c9074dd0860a845d7883e659513d7779718a47b4",
+    "tools/drawing_terminal_crosswalk.py": "ac6f85ee31a8a62b387c45cdea80789af9fe7ebc87ec762152b63bf7839d33bc",
+    "research/runtime/drawing-canvas-release-original-range-20261011.json": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181"
+  },
+  "terminal_flow_observation": true
+}

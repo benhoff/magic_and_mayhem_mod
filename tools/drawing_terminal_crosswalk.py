@@ -5,6 +5,7 @@ import struct
 from drawing_api_bindings import decode
 from drawing_census import BUILD_SHA256
 from drawing_cpu_crosswalk import review as direct_review, _rows
+from drawing_api_cohorts import cpu_journal_words
 
 WRAPPERS = {0x4bdd10:(0x6a49e0,0), 0x4bdcb0:(0x6a4fe0,0),
             0x4a2f00:(0x641fc8,1), 0x4a2f70:(0x642000,2)}
@@ -53,7 +54,9 @@ def match(cpu_calls, core_calls, physical_return, wrapper_contracts):
         cpu_group.sort(key=lambda pair:pair[0][0]);core_group.sort(key=lambda pair:pair[0][0])
         receiver,bit=wrapper_contracts[key[2]];samples=[]
         for (ps,pe),(cs,ce) in zip(cpu_group,core_group):
-            if tuple(ps[14:17])!=(1,0,key[2]) or ps[10]!=key[2] or not ps[17] or not ps[34]:
+            if len(ps) not in (32,200) or len(pe)!=len(ps):
+                raise ValueError('Wrapper crosswalk CPU record extent is invalid')
+            if tuple(ps[14:17])!=(1,0,key[2]) or ps[10]!=key[2] or not ps[17] or len(ps)==200 and not ps[34]:
                 raise ValueError('Wrapper crosswalk lacks exact readable register CALL target')
             if cs[4]!=ps[4] or pe[7]!=ps[7] or ce[8]!=cs[8] or cs[8]!=ps[7]:
                 raise ValueError('Wrapper phase/RET0/stack mismatch')
@@ -102,7 +105,7 @@ def review(core_path, core_manifest, core_binding_path, cpu_path, cpu_manifest,
     # Core SITE records are possible; use the validated terminal's event count.
     with core_path.open('rb') as source:source.seek(-64,2);events=struct.unpack('<16I',source.read(64))[3]
     core=pairs(core_path,32,events)
-    cpu=pairs(cpu_path,200,direct['cpu_paired_calls']*2)
+    cpu=pairs(cpu_path,cpu_journal_words(cpu_manifest),direct['cpu_paired_calls']*2)
     result=match(cpu,core,exact[0]['physical_call_return'],wrapper_contracts)
     paths=(core_path,cpu_path,cpu_binding_path,core_binding_path)
     expected=(direct['core_journal_sha256'],direct['cpu_journal_sha256'],direct['cpu_bindings_sha256'],direct['core_bindings_sha256'])

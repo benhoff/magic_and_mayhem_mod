@@ -12,10 +12,11 @@ import tempfile
 from drawing_census import ROOT,BUILD_SHA256
 from drawing_api_bindings import decode,physical
 from drawing_api_details import trace as detail_trace
+from drawing_api_journal import trace as compact_trace
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--prefix-template',type=Path,required=True);parser.add_argument('--claims',type=Path,required=True);args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--prefix-template',type=Path,required=True);parser.add_argument('--claims',type=Path,required=True);parser.add_argument('--compact-cpu',action='store_true');args=parser.parse_args()
     claims=json.loads(args.claims.read_text());sources=claims['sources']
     if any(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()!=digest for p,digest in sources.items()):raise ValueError('Prospective ABI sources changed')
     parent=ROOT/'working/tests/drawing-api-census-abi';parent.mkdir(parents=True,exist_ok=True);out=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(out,flush=True)
@@ -32,7 +33,7 @@ def main():
     (out/'api-hooks.inc').write_text('\n'.join(header)+'\n');(out/'entry.S').write_text((ROOT/'runtime/drawing-api-census/entry.S').read_text()+'\n'+'\n'.join(f'api_pair {tag}' for tag in range(26))+'\n')
     objects=[]
     for index,source in enumerate([ROOT/'tests/drawing-api-census-abi.c',ROOT/'tests/drawing-api-detail-call.S',out/'entry.S']):
-        obj=out/(f'part{index}.obj');objects.append(obj);run(f'compile{index}',['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I',out,'-c',source,'-o',obj])
+        obj=out/(f'part{index}.obj');objects.append(obj);run(f'compile{index}',['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror',*(['-DMNM_COMPACT_CPU_JOURNAL=1'] if args.compact_cpu else []),'-I',out,'-c',source,'-o',obj])
     run('link',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/base:0x400000','/dynamicbase:no','/safeseh:no','/timestamp:0','/out:'+str(out/'fixture.exe'),*objects,out/'kernel32.lib'])
     run('prefix-copy',['cp','-a','--reflink=auto',args.prefix_template.resolve(),out/'wineprefix'])
     try:run('forwarding',['xvfb-run','-a','wine',out/'fixture.exe'])
@@ -58,19 +59,25 @@ def main():
         if tag==7:rest=[{'address':site+2,'bytes':'85c0','transfer':None},{'address':site+4,'bytes':'7502','transfer':{'kind':'conditional','target':site+8,'condition':5}}]
         if tag in (8,24):rest=[{'address':site+2,'bytes':'85c0','transfer':None},{'address':site+4,'bytes':'90','transfer':None}]
         synthetic.append({'details':{'name':f'fixture{tag}','origin':'synthetic_fixture','formal_words':formal_words,'snapshots':snapshots},'patch_mode':'breakpoint' if patch_bytes==1 else 'jump','patch_bytes':patch_bytes,'tag':tag,'site':site,'length':length,'call_length':call_length,'signature':signature.hex(),'target_mode':target,'call':call,'remainder':rest})
-    synthetic_manifest={'journal_version':2,'synthetic_fixture':True,'original_sha256':BUILD_SHA256,'hooks':synthetic,'scope':'Synthetic ABI only; no original splice execution.'}
+    synthetic_manifest={'journal_version':1 if args.compact_cpu else 2,'synthetic_fixture':True,'original_sha256':BUILD_SHA256,'hooks':synthetic,'scope':'Synthetic ABI only; no original splice execution.'}
     (out/'synthetic-manifest.json').write_text(json.dumps(synthetic_manifest,indent=2)+'\n')
     bindings=decode(out/'api-bindings.bin',synthetic_manifest)
     for item in bindings['hooks']:
         mapped=physical(item['physical_call_return'],bindings)
         if mapped.get('original_call_site')!=item['site'] or mapped.get('tag')!=item['tag']:raise ValueError('Synthetic exact binding classification failed')
-    details=detail_trace(out/'abi-api.bin',synthetic_manifest)
-    if details['paired_calls']!=26 or details['details']['receiver_candidate_calls']!=2:raise ValueError('Native V2 writer/decoder pair/candidate mismatch')
+    details=(compact_trace if args.compact_cpu else detail_trace)(out/'abi-api.bin',synthetic_manifest)
+    if details['paired_calls']!=26 or not args.compact_cpu and details['details']['receiver_candidate_calls']!=2:raise ValueError('Native writer/decoder pair/candidate mismatch')
     (out/'decoded-api.json').write_text(json.dumps(details,indent=2)+'\n')
     (out/'decoded-bindings.json').write_text(json.dumps(bindings,indent=2)+'\n')
     stable=all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==digest for p,digest in sources.items())
     if not stable:raise ValueError('ABI inputs changed during execution')
     report={'schema':1,'scope':'Real separate CALL stubs/observer/dynamic splices and binding writer/decoder round trip against26synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.','success':True,'sources':sources,'sources_stable':stable,'claims':claims['claims'],'callee_pop_bytes':[0,4,8,12,16,20,24,52],'call_modes':['absolute_memory','register','register_memory','direct_relative'],'synthetic_bodies':26,'register_flags_x87_sse_last_error_preserved':True,'pre_call_stack_and_target_checked':True,'negative_eax_actual_cleanup_checked':True,'short_conditional_remainder_executed':True,'frame_exhaustion_phase_record_cap_io_failure_forward':True,'same_thread_lifo_and_mismatch_loss_checked':True,'one_byte_breakpoint_cases':13,'foreign_exception_forwarding_checked':True,'call_operand_and_successor_unchanged_checked':True,'callee_entry_flags_registers_last_error_checked_bodies':22,'full_thirteen_argument_stack_checked':True,'null_unreadable_before_after_output_buffers_checked':True,'candidate_object_no_access_after_call_checked':True,'v2_native_writer_decoder_round_trip':True,'details':details,'exact_binding_round_trip':True,'bindings':bindings,'original_renderer_executed':False,'original_splice_manifest_executed':False,'binaries':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [out/'fixture.exe',out/'part0.obj',out/'part1.obj',out/'part2.obj']},'logs':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(out.glob('*.log'))}}
+    report.update(journal_version=synthetic_manifest['journal_version'],compact_cpu_journal=args.compact_cpu)
+    if args.compact_cpu:
+        report.update(v2_native_writer_decoder_round_trip=False,v1_native_writer_decoder_round_trip=True,
+            formal_arguments_recorded=False,buffer_snapshots_recorded=False,
+            null_unreadable_before_after_output_buffers_checked=False,
+            opaque_output_and_no_access_callee_forwarding_checked=True)
     (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'success':True,'report':str(out/'report.json')}),flush=True)
 
 

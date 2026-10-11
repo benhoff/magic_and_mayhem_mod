@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources_stable": true,
+  "core_hooks": 88,
+  "cpu_hooks": 128,
+  "journal_version": 1,
+  "record_bytes": 128,
+  "cpu_record_budget": 4194304,
+  "formal_arguments_recorded": false,
+  "buffer_snapshots_recorded": false,
+  "original_renderer_executed": false,
+  "sources": {
+    "protocols/include/mnm/drawing_api_bindings_v1.h": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+    "protocols/include/mnm/drawing_api_journal_v1.h": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+    "protocols/include/mnm/drawing_api_journal_v2.h": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-api-virtual-core-splices-static-20261011.json": "9314a6621ef6172c3fade2bf3954e8d3a9f7ea758fe934b1d5582b57c03879ba",
+    "research/runtime/drawing-api-virtual-only-splices-static-20261011.json": "09c2f679e68fd74a5248e60d1a8e6ec8cc8945139e30e08b500926d5c19d34c8",
+    "research/runtime/drawing-canvas-release-original-range-20261011.json": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+    "research/runtime/drawing-cpu-sites-static-20261011.json": "02d0fd599c15b0da272a6cc052bfe0e16b9384a04e6b961e443c9be251234628",
+    "research/runtime/drawing-inventory.json": "36a3106a0bf55396d80de197f91eb81180336f76b16dbb404fc8215610d5caef",
+    "research/runtime/drawing-surface-api-layouts-20261011.json": "2248a9dfdd1a96ec8d5cecd6288097f872194406480d881c0a698c774e805f2c",
+    "research/runtime/drawing-terminal-callers-static-20261011.json": "149d5cb0fc1755f4d39a5c76d3ff02892ea517be79a19e43b7134dae325980c7",
+    "runtime/drawing-api-census/entry.S": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+    "runtime/drawing-api-census/exception_i386.h": "74f1351bf921e9bc3c5991df046f12210113106009246cb5aa354b28ea7d7a93",
+    "runtime/drawing-api-census/observer.c": "02f82898b8c44ec040e0faff74f6c4a4a8c4c9db344444276587ff29fbed59b3",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tests/drawing-api-census-abi.c": "7260f9032d866f3bc2c096bc4fd4428792732cb20723e81f139ef3dece4d15be",
+    "tests/drawing-api-detail-call.S": "703373a9d236a04a841e685496c03af7a50b1e5db4286a6f469f40dc6a047b55",
+    "tests/test-drawing-api-resources.py": "a42fd314f84f8405d0aaf79fb4b76aec6470f0a3219775b5f157e004360ac08d",
+    "tests/test-drawing-compact-cpu.py": "df067dc04b9f15fb97d31b8507f35eae284f6c560849bf60d2496ce27a8fdda3",
+    "tests/test-drawing-cpu-crosswalk.py": "4e0516d87f4e29ba61af57ea6996509f2039b8e95754893f60b2ff19d695b625",
+    "tests/test-drawing-terminal-crosswalk.py": "0752fa3cf5883906ac9858795a97e3d9b68d16dc19cb501c2375318540426f5e",
+    "tests/test-drawing-terminal-observer.py": "b0fed1e14e69f6a7342e63c4541f4e97bfbb603dbac4ac2a9b2860f2d299153b",
+    "tools/build-drawing-api-census.py": "85b622c29cb61b3e62a48c77363c6c55cf983c079f8a7e1fcd20ece52f356352",
+    "tools/build-drawing-terminal-census.py": "f9945800ca6bc39224838111c9074dd0860a845d7883e659513d7779718a47b4",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/capture-drawing-census-game.py": "4621507c60c4a1825485c5f6cddd30cae22cd5c10be78f4c9540cac30bf5fe79",
+    "tools/drawing_api_bindings.py": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+    "tools/drawing_api_cohorts.py": "1f2e71f79ce13a1d0954c5489a9477e3fb7e271af3abccc8920af5ea4fb26d7d",
+    "tools/drawing_api_contracts.py": "d3df6ef14428054ae83d803345db5ce26f2b42ee1d46aa28ddc07f4a1bd23664",
+    "tools/drawing_api_details.py": "0e77554ce71fcc66049c3f06326356325765acb99e2cb0fafce711cc4a380169",
+    "tools/drawing_api_journal.py": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+    "tools/drawing_api_pairs.py": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+    "tools/drawing_api_resources.py": "ef36288e39cc2a7c10b2a7cd5b9d08c411f99457970aadefdda7b46e0a89e5a2",
+    "tools/drawing_api_sites.py": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+    "tools/drawing_api_surface_contracts.py": "f25d18d5ec322ca3df72e407b6631de3de459b1e8b055b23b4d4babe3c60b1ca",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_census_bindings.py": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+    "tools/drawing_census_callers.py": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52",
+    "tools/drawing_cpu_crosswalk.py": "1b11b13354fef1bb632fbf7c814a584c55369168f314de6fd1d7a067f4d987f6",
+    "tools/drawing_cpu_sites.py": "3e480307240f93eabc190b63f04cdb3b4f8ccfdbcc851edf357a5bd5bc946178",
+    "tools/drawing_terminal_crosswalk.py": "ac6f85ee31a8a62b387c45cdea80789af9fe7ebc87ec762152b63bf7839d33bc",
+    "tools/drawing_terminal_edges.py": "49edc05c1fd76bd66fbdd14a00fad3edf6fcf36df8f1daeea4f31df297155322",
+    "tools/export-drawing-api-sites.py": "954700524914c22d70f666e40eb819dcb9c58adc1c6f10a2cbe911d2955aa30c",
+    "tools/export-drawing-terminal-plan.py": "7bb864f06328dc3282a6966bef5604ae01fa70cee73b32041e8f0a0bd5c8a750",
+    "tools/prepare-drawing-terminal-census.py": "30e7f07bbaa91959e569eb55754978a357d1d1599d5f5af542d5eb83f195543c",
+    "tools/test-drawing-api-census-abi.py": "fe5436cf68daa680251d5c398f93ac4875b0ca7b409b21f1745f3c330a7b1400",
+    "tools/build-drawing-census.py": "b8fe1ad7b2371eeb4b84836d90263a2d283cd9add1b1b0739ec5052f5dbc3de1",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "runtime/drawing-census/observer.c": "1b6f3b1b267c62b6c6762db8750dc6602d4c88bcd985637fdf2dc759b837b7d7",
+    "runtime/drawing-census/entry.S": "44f19762a5232669ddd22633cde8a19072fe43f11f0dabb929149c36a256de1e",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "protocols/include/mnm/drawing_census_bindings_v1.h": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+    "research/runtime/drawing-cpu-compact-terminal-splices-static-20261011.json": "cc8bd5d8648fb29e0b080c782a95f6d27458ca8736eda77da06c166917b358a8"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-compact-cpu",
+      "contract_sha256": "8d0d3dcb6f67ef25b17d7685e030dbb6087296eaa7520c53dca9734ef9c29c4b",
+      "scenarios": {
+        "drawing-compact-cpu-guards-20261011": "2fb7cfb1eac45571f26ddd15de04bcba98d260f5c9e25e859ba67c37a02e5a40",
+        "drawing-compact-cpu-abi-20261011": "c7b646cfd57ef414cf802302502158c60216d977066deaaa95881b99a3c60893",
+        "drawing-compact-cpu-plan-compile-20261011": "674f6a6d0bf3fd4da959a3cefd807bb78cfb1337bed5ca78328a11fb7f6adda3",
+        "drawing-compact-cpu-original-menu-20261011": "c46f3f0d9b62b2449be1e4b03c883bf45999afb6a679f1f625b45ea23e7a385b"
+      }
+    },
+    {
+      "behavior": "TOOL.drawing-api-observer",
+      "contract_sha256": "ff1717747253a5b1b0b7482c6ec0d7bfcd1c9d6cbafe6f37b9352b0b40a3c453",
+      "scenarios": {
+        "drawing-compact-cpu-abi-20261011": "c7b646cfd57ef414cf802302502158c60216d977066deaaa95881b99a3c60893"
+      }
+    }
+  ],
+  "scope": "Current original-byte128CPU/88core planning and actual PE32 compilation/staging with explicit reviewed planSHA, unknown formals/no buffer snapshots and compact V1 declaration. Compilation alone proves no original execution, universal ABI, lifetime/writer/caller or scenario/dispatch closure. Subsequent original capture hit filesystem quota before closed journals/valid final report; original runtime validation remains pending.",
+  "artifacts": {
+    "working/experiments/drawing-census/run-3zug99fn/census-build.json": {
+      "sha256": "25fa9fd6d20fbb3c70e6194d1581fecad2e472fe8ea01d9804ff0ab9dcb59f9c",
+      "bytes": 20952
+    },
+    "working/experiments/drawing-census/run-3zug99fn/api-build.json": {
+      "sha256": "80e4004c284cdb968914a5ccb97f8c21a29382105dd9e619adb08eabce2ab40a",
+      "bytes": 119790
+    },
+    "working/experiments/drawing-census/run-3zug99fn/manifest.json": {
+      "sha256": "84a7073c2e9cefe88bd453b01826b8df5046d2ff6bfe93eb0cce0189f47ee126",
+      "bytes": 1723
+    },
+    "working/experiments/drawing-census/run-3zug99fn/game/Chaos.exe": {
+      "sha256": "e14c0e8a1082b875280043267097b8a0423fc2fcad2ada9e9c371ccb75d6f44a",
+      "bytes": 2093056
+    },
+    "working/experiments/drawing-census/run-3zug99fn/game/MnmDrawingCensus.dll": {
+      "sha256": "1e03f28bb88f3bca81f0993a6409065a94bb39694a937956c30ad51e0fe123fe",
+      "bytes": 18432
+    },
+    "working/experiments/drawing-census/run-3zug99fn/game/MnmMenu.dll": {
+      "sha256": "c53508fe75e59c4e8fda5dd39627be8a3c17e2d2b77459586313d0faf09340a6",
+      "bytes": 48640
+    },
+    "working/experiments/drawing-census/run-3zug99fn/game/MnmDrawingApiCensus.dll": {
+      "sha256": "fe8ac25d3a03ce7dd5186739db355ae81d35627e7a5e74948bacb82ff1b671bd",
+      "bytes": 49664
+    }
+  }
+}
