@@ -24,6 +24,7 @@ jobs:
           python3 -B tests/test-drawing-inventory.py
           python3 -B tests/test-drawing-census.py
           python3 -B tests/test-drawing-census-trace.py
+          python3 -B tests/test-drawing-dispatch.py
           python3 tools/report-drawing-inventory.py --require-accounted
       - name: Check every change against its actual base
         shell: bash

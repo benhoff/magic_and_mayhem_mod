@@ -4,6 +4,7 @@ import argparse
 import configparser
 import ctypes as c
 import hashlib
+from PIL import ImageGrab
 import json
 import mmap
 import os
@@ -23,10 +24,13 @@ def capture(root, template, journey, claims=None):
     if declaration:
         for p, digest in declaration['sources'].items():
             if hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != digest: raise ValueError('Changed declaration source: ' + p)
+    source_paths = ['tools/capture-drawing-census-game.py', 'tools/drawing_census.py', 'tools/drawing-census-game-runner.py']
+    frozen_sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in source_paths}
+    if declaration: frozen_sources.update(declaration['sources'])
     prefix = root / 'wineprefix'
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
     env.pop('WAYLAND_DISPLAY', None)
-    env.update(WINEPREFIX=str(prefix), WINEDEBUG='-all', LIBGL_ALWAYS_SOFTWARE='1',
+    env.update(WINEPREFIX=str(prefix), WINEDEBUG='-all', LIBGL_ALWAYS_SOFTWARE='1', WINEDLLOVERRIDES='mscoree,mshtml=d',
                MNM_DRAW_CENSUS_EXPERIMENT=str(root))
     report = {'schema': 1, 'journey': journey, 'success': False, 'actions': [], 'phases': [],
               'scenario_closure': False, 'original_work_forwarded': True}
@@ -80,6 +84,7 @@ def capture(root, template, journey, claims=None):
             struct.pack_into('<I', control, 20, value)
             struct.pack_into('<I', control, 16, phase_sequence)
             report['phases'].append({'phase': value, 'purpose': purpose, 'time': time.monotonic()})
+            ImageGrab.grab(xdisplay=env['DISPLAY']).save(root / ('phase-%02d-%02d.png' % (value, len(report['phases']))))
         def send(screen, action, argument=0, rules=None):
             nonlocal heartbeat, sequence, request
             row = wait(screen); heartbeat += 1; sequence += 2; request += 1
@@ -99,6 +104,29 @@ def capture(root, template, journey, claims=None):
         xt.XTestFakeButtonEvent.argtypes = xt.XTestFakeKeyEvent.argtypes = [c.c_void_p, c.c_uint, c.c_int, c.c_ulong]
         display = x.XOpenDisplay(env['DISPLAY'].encode())
         if not display: raise RuntimeError('No private input display')
+        x.XDefaultRootWindow.argtypes = [c.c_void_p]; x.XDefaultRootWindow.restype = c.c_ulong
+        x.XQueryTree.argtypes = [c.c_void_p, c.c_ulong, c.POINTER(c.c_ulong), c.POINTER(c.c_ulong), c.POINTER(c.POINTER(c.c_ulong)), c.POINTER(c.c_uint)]
+        x.XFetchName.argtypes = [c.c_void_p, c.c_ulong, c.POINTER(c.c_void_p)]; x.XFree.argtypes = [c.c_void_p]
+        x.XSetInputFocus.argtypes = [c.c_void_p, c.c_ulong, c.c_int, c.c_ulong]
+        def focus_game():
+            pending = [x.XDefaultRootWindow(display)]; seen = set(); names = []
+            while pending:
+                window = pending.pop()
+                if window in seen: continue
+                seen.add(window)
+                if len(seen) > 512: raise RuntimeError('Private X11 window budget')
+                name = c.c_void_p(); label = ''
+                if x.XFetchName(display, window, c.byref(name)) and name.value:
+                    label = c.string_at(name.value).decode(errors='replace'); x.XFree(name)
+                names.append({'window': window, 'label': label})
+                if any(token in label.lower() for token in ['magic', 'mayhem', 'chaos']):
+                    x.XSetInputFocus(display, window, 2, 0); x.XFlush(display)
+                    report['input_window'] = {'window': window, 'label': label}; return
+                parent = c.c_ulong(); returned = c.c_ulong(); children = c.POINTER(c.c_ulong)(); count = c.c_uint()
+                if x.XQueryTree(display, window, c.byref(returned), c.byref(parent), c.byref(children), c.byref(count)):
+                    pending.extend(children[i] for i in range(count.value))
+                    if children: x.XFree(children)
+            raise RuntimeError('Original game input window absent: ' + str(names))
         def click(px, py):
             xt.XTestFakeMotionEvent(display, -1, px, py, 0); x.XFlush(display); hold(.2)
             xt.XTestFakeButtonEvent(display, 1, 1, 0); x.XFlush(display); hold(.12)
@@ -110,7 +138,7 @@ def capture(root, template, journey, claims=None):
             click((r[0] + r[2]) // 2, (r[1] + r[3]) // 2)
         def key(sym):
             code = x.XKeysymToKeycode(display, sym)
-            xt.XTestFakeKeyEvent(display, code, 1, 0); x.XFlush(display); hold(.12)
+            xt.XTestFakeKeyEvent(display, code, 1, 0); x.XFlush(display); hold(.35)
             xt.XTestFakeKeyEvent(display, code, 0, 0); x.XFlush(display); hold(.3)
         log = (root / 'game.log').open('x')
         process = subprocess.Popen([str(ROOT / 'tools/run-game.sh'), 'launch', '--no-gamescope',
@@ -125,21 +153,25 @@ def capture(root, template, journey, claims=None):
         if journey == 'campaign':
             phase(3, 'Fresh campaign ingress and all four difficulty choices')
             send(3, 22); wait(18)
-            for choice in [1, 2, 3, 0]: send(18, 23, choice); hold(.4)
-            send(18, 25); phase(5, 'Original campaign world active'); hold(10)
+            for choice in [0, 2, 3, 1]: send(18, 23, choice); hold(.4)
+            send(18, 25); hold(6); focus_game(); phase(5, 'Original campaign world active'); click(400, 300); hold(2)
             phase(6, 'Camera arrow input')
             for sym in [0xff51, 0xff53, 0xff52, 0xff54]: key(sym)
             phase(9, 'Cursor movement and world click'); click(350, 300); click(420, 350)
-            phase(10, 'Original campaign Mini and Preferences')
-            for attempt in range(8):
-                key(0xff1b)
-                try: wait(17, seconds=1); break
-                except RuntimeError:
-                    if process.poll() is not None: raise
-            else: raise RuntimeError('Campaign Mini not ready')
-            send(17, 14); wait(10); hold(1); send(10, 20); wait(17)
-            send(17, 13); hold(2); key(0xff1b); wait(17)
-            send(17, 15); click(265, 395); wait(3)
+            phase(10, 'Original campaign Mini and Preferences'); focus_game()
+            def open_mini():
+                focus_game()
+                for attempt in range(8):
+                    key(0xff1b)
+                    try: return wait(17, seconds=1)
+                    except RuntimeError:
+                        if process.poll() is not None: raise
+                raise RuntimeError('Campaign Mini not ready')
+            open_mini()
+            send(17, 14); wait(10); hold(1); send(10, 20); hold(2)
+            ImageGrab.grab(xdisplay=env['DISPLAY']).save(root / 'after-campaign-preferences.png')
+            open_mini()
+            send(17, 15); click(265, 395); wait(6); phase(13, 'Original campaign defeat result and return'); send(6, 26); wait(3)
         phase(14, 'Original Main quit and DLL terminal flush')
         # Quit can finish before its acknowledgement is published.
         row = wait(3); sequence += 2; request += 1
@@ -155,6 +187,9 @@ def capture(root, template, journey, claims=None):
             (root / 'decoded.json').read_bytes()).hexdigest(), events=census['events'], calls=census['calls'])
     except Exception as error:
         report['error'] = str(error)
+        if display:
+            ImageGrab.grab(xdisplay=env['DISPLAY']).save(root / 'failure.png')
+            report['failure_menu_state'] = list(state()) if state() else None
         raise
     finally:
         if display: x.XCloseDisplay(display)
@@ -172,13 +207,10 @@ def capture(root, template, journey, claims=None):
             if resource is not None: resource.close()
         report['inputs_unchanged'] = all(hashlib.sha256((root / 'game' / name).read_bytes()).hexdigest() == digest
                                         for name, digest in manifest['binaries'].items())
-        report['sources'] = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in
-            ['tools/capture-drawing-census-game.py', 'tools/drawing_census.py', 'tools/drawing-census-game-runner.py']}
-        if declaration:
-            report['claims'] = declaration['claims']
-            report['sources'].update(declaration['sources'])
-            report['sources_stable'] = all(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == digest for p, digest in report['sources'].items())
-            if not report['sources_stable']: report['success'] = False
+        report['sources'] = frozen_sources
+        report['sources_stable'] = all(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == digest for p, digest in frozen_sources.items())
+        if declaration: report['claims'] = declaration['claims']
+        if not report['sources_stable']: report['success'] = False
         (root / 'journey.json').write_text(json.dumps(report, indent=2) + '\n')
         subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
     return report

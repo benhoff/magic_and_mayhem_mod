@@ -30717,18 +30717,21 @@
     },
     {
       "id": "DRAW.world-kind-16",
-      "title": "Unclassified original World input kind16",
-      "scope": "Raw input kind16 is observed in the retained automatic Quick Battle startup queue rows. The closed producer stream captures selected lower-level rasters; this does not recover high-level kind semantics, default behavior or assign it to a particular dispatch table.",
+      "title": "Original World kind16 wave call routing",
+      "scope": "Original consumer table branches for kind16 call5806f0 with amplitude2 in primary, selected secondary auxiliary span and Video0 paths. Isolated full-consumer matrix verifies literal amplitude/selected coordinates and metadata return truncation. This classifies queue call routing only; downstream wave pixels, helper global effects, clip/changed-prior-metadata branches and live scenario completeness remain outside this scope.",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5243552,
-          "scope": "Consumer receives raw kind16; only activity/input identity is linked, branch semantics remain unclassified."
+          "scope": "Original consumer table branches for kind16 call5806f0 with amplitude2 in primary, selected secondary auxiliary span and Video0 paths. Isolated full-consumer matrix verifies literal amplitude/selected coordinates and metadata return truncation. This classifies queue call routing only; downstream wave pixels, helper global effects, clip/changed-prior-metadata branches and live scenario completeness remain outside this scope."
         }
       ],
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "evidence": [
-        "NR.canvas-producers.live-20261008"
+        "NR.canvas-producers.live-20261008",
+        "DRAW.queue-dispatch.arguments-20261010",
+        "DRAW.queue-dispatch.wave-kinds-20261010",
+        "DRAW.queue-dispatch.anchors-20261010"
       ],
       "subsystem": "drawing_inventory",
       "kind": "recovered",
@@ -30738,29 +30741,43 @@
         "research/runtime/render-drawing-inventory.md"
       ],
       "implementation": [],
-      "tests": [],
+      "tests": [
+        "tools/test-drawing-dispatch.py",
+        "tests/drawing-dispatch-reference.cpp"
+      ],
       "status": {
-        "understanding": "unknown",
+        "understanding": "scoped",
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "tools/drawing_dispatch.py",
+        "tools/drawing_census.py",
+        "tools/inspect-world-dispatch.py",
+        "tests/sprite-binary-reference.cpp",
+        "tests/test-drawing-dispatch.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ]
     },
     {
       "id": "DRAW.world-kind-17",
-      "title": "Unclassified original World input kind17",
-      "scope": "Raw input kind17 is observed in the retained automatic Quick Battle startup queue rows. The closed producer stream captures selected lower-level rasters; this does not recover high-level kind semantics, default behavior or assign it to a particular dispatch table.",
+      "title": "Original World kind17 wave call routing",
+      "scope": "Original consumer table branches for kind17 call5806f0 with amplitude3 in primary, selected secondary auxiliary span and Video0 paths. Isolated full-consumer matrix verifies literal amplitude/selected coordinates and metadata return truncation. This classifies queue call routing only; downstream wave pixels, helper global effects, clip/changed-prior-metadata branches and live scenario completeness remain outside this scope.",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5243552,
-          "scope": "Consumer receives raw kind17; only activity/input identity is linked, branch semantics remain unclassified."
+          "scope": "Original consumer table branches for kind17 call5806f0 with amplitude3 in primary, selected secondary auxiliary span and Video0 paths. Isolated full-consumer matrix verifies literal amplitude/selected coordinates and metadata return truncation. This classifies queue call routing only; downstream wave pixels, helper global effects, clip/changed-prior-metadata branches and live scenario completeness remain outside this scope."
         }
       ],
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "evidence": [
-        "NR.canvas-producers.live-20261008"
+        "NR.canvas-producers.live-20261008",
+        "DRAW.queue-dispatch.arguments-20261010",
+        "DRAW.queue-dispatch.wave-kinds-20261010",
+        "DRAW.queue-dispatch.anchors-20261010"
       ],
       "subsystem": "drawing_inventory",
       "kind": "recovered",
@@ -30770,29 +30787,43 @@
         "research/runtime/render-drawing-inventory.md"
       ],
       "implementation": [],
-      "tests": [],
+      "tests": [
+        "tools/test-drawing-dispatch.py",
+        "tests/drawing-dispatch-reference.cpp"
+      ],
       "status": {
-        "understanding": "unknown",
+        "understanding": "scoped",
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "tools/drawing_dispatch.py",
+        "tools/drawing_census.py",
+        "tools/inspect-world-dispatch.py",
+        "tests/sprite-binary-reference.cpp",
+        "tests/test-drawing-dispatch.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ]
     },
     {
       "id": "DRAW.world-kind-20",
-      "title": "Unclassified original World input kind20",
-      "scope": "Raw input kind20 is observed in the retained automatic Quick Battle startup queue rows. The closed producer stream captures selected lower-level rasters; this does not recover high-level kind semantics, default behavior or assign it to a particular dispatch table.",
+      "title": "Original World kind20 wave call routing",
+      "scope": "Original consumer table branches for kind20 call5806f0 with amplitude6 in primary, selected secondary auxiliary span and Video0 paths. Isolated full-consumer matrix verifies literal amplitude/selected coordinates and metadata return truncation. This classifies queue call routing only; downstream wave pixels, helper global effects, clip/changed-prior-metadata branches and live scenario completeness remain outside this scope.",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5243552,
-          "scope": "Consumer receives raw kind20; only activity/input identity is linked, branch semantics remain unclassified."
+          "scope": "Original consumer table branches for kind20 call5806f0 with amplitude6 in primary, selected secondary auxiliary span and Video0 paths. Isolated full-consumer matrix verifies literal amplitude/selected coordinates and metadata return truncation. This classifies queue call routing only; downstream wave pixels, helper global effects, clip/changed-prior-metadata branches and live scenario completeness remain outside this scope."
         }
       ],
-      "confidence": "provisional",
+      "confidence": "high_within_scope",
       "evidence": [
-        "NR.canvas-producers.live-20261008"
+        "NR.canvas-producers.live-20261008",
+        "DRAW.queue-dispatch.arguments-20261010",
+        "DRAW.queue-dispatch.wave-kinds-20261010",
+        "DRAW.queue-dispatch.anchors-20261010"
       ],
       "subsystem": "drawing_inventory",
       "kind": "recovered",
@@ -30802,14 +30833,25 @@
         "research/runtime/render-drawing-inventory.md"
       ],
       "implementation": [],
-      "tests": [],
+      "tests": [
+        "tools/test-drawing-dispatch.py",
+        "tests/drawing-dispatch-reference.cpp"
+      ],
       "status": {
-        "understanding": "unknown",
+        "understanding": "scoped",
         "implementation": "none",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
-      }
+      },
+      "validation_dependencies": [
+        "tools/drawing_dispatch.py",
+        "tools/drawing_census.py",
+        "tools/inspect-world-dispatch.py",
+        "tests/sprite-binary-reference.cpp",
+        "tests/test-drawing-dispatch.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ]
     },
     {
       "id": "TOOL.drawing-inventory",
@@ -30922,7 +30964,10 @@
       "evidence": [
         "RI.drawing-callers-expanded-20261010",
         "TOOL.drawing-census.callers-guards-20261010",
-        "DRAW.census.journal-guards-20261010"
+        "DRAW.census.journal-guards-20261010",
+        "DRAW.census.expanded-abi-20261010",
+        "RI.drawing-callers-dispatch-expanded-20261010",
+        "DRAW.census.caller-source-abi-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -30937,7 +30982,7 @@
       "subsystem": "drawing_inventory",
       "kind": "native_policy",
       "title": "Original-active drawing entry and return metadata census",
-      "scope": "Opt-in PE32 metadata at signature-pinned safe splices, with verified actual preferred module base, bounded buffered entry/return journal, register/flags/x87/SSE/LastError forwarding, thread and stack pairing including same-stack tail unwind, readonly host phase control, and explicit loss/open/IO refusal. Sixty current safe catalog sites; fade interior58edb0 is refused because original backedge58edde enters58edb1. Signatures are checked before patching and original bodies run. Partial installation refuses process startup; abrupt teardown/busy detach lacks a valid terminal. Metadata snapshots do not establish pixel/side-effect equivalence, exhaustive writers, lifetime/borrowed API coverage or DRAW-01 scenario closure. Dynamic DLL unload is unsupported.",
+      "scope": "Opt-in PE32 metadata at signature-pinned safe splices, with verified actual preferred module base, bounded buffered entry/return journal, register/flags/x87/SSE/LastError forwarding, thread and stack pairing including same-stack tail unwind, readonly host phase control, and explicit loss/open/IO refusal. Sixty legacy safe catalog sites plus seven explicitly discovered queue helper/cleanup entries; fade interior58edb0 is refused because original backedge58edde enters58edb1. Signatures are checked before patching and original bodies run. Partial installation refuses process startup; abrupt teardown/busy detach lacks a valid terminal. Metadata snapshots do not establish pixel/side-effect equivalence, exhaustive writers, lifetime/borrowed API coverage or DRAW-01 scenario closure. Dynamic DLL unload is unsupported.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -30972,7 +31017,9 @@
       ],
       "evidence": [
         "DRAW.census.journal-guards-20261010",
-        "DRAW.census.menu-observation-20261010"
+        "DRAW.census.menu-observation-20261010",
+        "DRAW.census.expanded-abi-20261010",
+        "DRAW.census.caller-source-abi-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31023,6 +31070,141 @@
       ],
       "evidence": [
         "DRAW.census.menu-observation-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.queue-dispatch",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Original queue branch routing, literal parameters and metadata writes",
+      "scope": "Pinned5002a0 consumer numeric0..34 table branch slices for all three tables, with shared exits and opaque call operands preserved. Isolated unmodified consumer tests Video0/1, selected auxiliary span, indexed/direct marker, -127/ordinary offset, kinds-2/-1/0..35 and AX0/1/1234/ffff; verify wave amplitude kind-14, literal colour arguments and zero/default/boolean/truncated metadata policies. Backends are synthetic bindings with independently checked original RET contracts. Original raster pixels, concrete virtual objects, helper global side effects, changed prior metadata, auxiliary clip boundaries and live API/lifetime behavior remain pending.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5243552,
+          "scope": "Unmodified consumer branch routing and selected metadata/parameter policies only; backend raster execution excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5247364,
+          "relation": "data",
+          "scope": "Exact35numeric targets and branch-local control flow; downstream pixels and full consumer prelude/postlude effects excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5247504,
+          "relation": "data",
+          "scope": "Exact35numeric targets and branch-local control flow; downstream pixels and full consumer prelude/postlude effects excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5247644,
+          "relation": "data",
+          "scope": "Exact35numeric targets and branch-local control flow; downstream pixels and full consumer prelude/postlude effects excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5109824,
+          "scope": "Exact consumer CALL target and independently checked discovered RET contract only. Downstream helper body pixels/global effects are excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5761248,
+          "scope": "Exact consumer CALL target and independently checked discovered RET contract only. Downstream helper body pixels/global effects are excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5766672,
+          "scope": "Exact consumer CALL target and independently checked discovered RET contract only. Downstream helper body pixels/global effects are excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5767776,
+          "scope": "Exact consumer CALL target and independently checked discovered RET contract only. Downstream helper body pixels/global effects are excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5769872,
+          "scope": "Exact consumer CALL target and independently checked discovered RET contract only. Downstream helper body pixels/global effects are excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5771776,
+          "scope": "Exact consumer CALL target and independently checked discovered RET contract only. Downstream helper body pixels/global effects are excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5081776,
+          "scope": "Exact consumer CALL target and independently checked discovered RET contract only. Downstream helper body pixels/global effects are excluded."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/drawing-inventory.json"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/drawing-dispatch-reference.cpp",
+        "tests/test-drawing-dispatch.py",
+        "tools/test-drawing-dispatch.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_dispatch.py",
+        "tools/drawing_census.py",
+        "tools/inspect-world-dispatch.py",
+        "tests/sprite-binary-reference.cpp",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "DRAW.queue-dispatch.arguments-20261010",
+        "DRAW.queue-dispatch.wave-kinds-20261010",
+        "DRAW.queue-dispatch.anchors-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-dispatch-slices",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Exact queue branch slicing with explicit shared exits",
+      "scope": "Traverse both conditional arms on retained instruction boundaries, preserve direct and opaque CALL identities, stop at reviewed common exits, and refuse unresolved indirect jumps or missing instruction boundaries. Preserve cycles and numeric0..34 table entries. This mechanical call-flow inventory does not supply native pixel admission or complete consumer semantics.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "tools/drawing_dispatch.py"
+      ],
+      "tests": [
+        "tests/test-drawing-dispatch.py",
+        "tools/test-drawing-dispatch.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_census.py",
+        "tools/inspect-world-dispatch.py",
+        "tests/drawing-dispatch-reference.cpp",
+        "tests/sprite-binary-reference.cpp",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "DRAW.queue-dispatch.arguments-20261010",
+        "DRAW.queue-dispatch.wave-kinds-20261010",
+        "DRAW.queue-dispatch.anchors-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -59543,6 +59725,141 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW.queue-dispatch.arguments-20261010",
+      "kind": "isolated_original",
+      "scope": "Unmodified pinned consumer with synthetic backend bindings: 0..34 kinds and -2/-1/35 defaults, Video0/1, selected auxiliary span, palette-marker and -127/ordinary offset variants, AX0/1/1234/ffff. Check metadata zero/default/boolean/truncation policies and literal wave/colour arguments. All105 raw branch slices retained. Downstream pixels, arbitrary virtual objects, helper global effects, changed prior metadata, clip-boundary auxiliary paths and live graphics API/lifetime equivalence are excluded.",
+      "record": "research/runtime/drawing-dispatch-arguments-20261010.json",
+      "sha256": "0ee8c42c07da2ee6f854835cbcdd24be18a0befe9c33a313589bf886eca0b307",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_consumer_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 2432
+        },
+        {
+          "pointer": "/table_entries",
+          "equals": 105
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "DRAW.queue-dispatch.wave-kinds-20261010",
+      "kind": "isolated_original",
+      "scope": "Unmodified pinned consumer with synthetic backend bindings: 0..34 kinds and -2/-1/35 defaults, Video0/1, selected auxiliary span, palette-marker and -127/ordinary offset variants, AX0/1/1234/ffff. Check metadata zero/default/boolean/truncation policies and literal wave/colour arguments. All105 raw branch slices retained. Downstream pixels, arbitrary virtual objects, helper global effects, changed prior metadata, clip-boundary auxiliary paths and live graphics API/lifetime equivalence are excluded.",
+      "record": "research/runtime/drawing-dispatch-wave-kinds-20261010.json",
+      "sha256": "e87cf316eadbb5c6ffa951aac98558da640d6015d64a75185347c19bbb08b155",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "DRAW.census.expanded-abi-20261010",
+      "kind": "native_integration",
+      "scope": "Actual observation callbacks/assembly with six recovered callee-pop sizes; no original raster execution.",
+      "record": "research/runtime/drawing-census-expanded-abi-20261010.json",
+      "sha256": "20a167e4aa1075d938aa4143c5931f1ee54e6c7450c471baef69b1523a463bf2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "RI.drawing-callers-dispatch-expanded-20261010",
+      "kind": "static",
+      "scope": "Exact direct CALL sites to registered drawing entries across pinned objdump output. Ownership uses containing discovered ranges only. No runtime module-base, indirect-target, function-completeness or scenario-closure assertion.",
+      "record": "research/runtime/drawing-callers-dispatch-expanded-20261010.json",
+      "sha256": "e59d85a6d0ef4ea1f3af29724a10a5e7f7f8ce0e3a544e4dfcac256bf6b535d3",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/source_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.queue-dispatch.anchors-20261010",
+      "kind": "isolated_original",
+      "scope": "Unmodified pinned consumer with synthetic backend bindings: 0..34 kinds and -2/-1/35 defaults, Video0/1, selected auxiliary span, palette-marker and -127/ordinary offset variants, AX0/1/1234/ffff. Check metadata zero/default/boolean/truncation policies and literal wave/colour arguments. All105 raw branch slices retained. Downstream pixels, arbitrary virtual objects, helper global effects, changed prior metadata, clip-boundary auxiliary paths and live graphics API/lifetime equivalence are excluded.",
+      "record": "research/runtime/drawing-dispatch-anchors-20261010.json",
+      "sha256": "abd0820123ee842bd5afce8f69ba0c0239d34b8f7e1fefa1305b8283df7a4632",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "DRAW.census.caller-source-abi-20261010",
+      "kind": "native_integration",
+      "scope": "Actual observer callbacks and assembly under six recovered callee-pop sizes; current expanded catalog sources; original raster bodies excluded.",
+      "record": "research/runtime/drawing-census-caller-source-abi-20261010.json",
+      "sha256": "1995d5ba3ecdea3e0297be0c76f0aea866f33f4ca1db2977882691fe445eec2f",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -61657,102 +61974,252 @@
         "build": "nocd-40209ca7",
         "address": 5247364,
         "relation": "data",
-        "scope": "First consumer computed jump at 0x5003fc; selected raster links only, complete table semantics not claimed."
+        "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "Selected first consumer path links recovered from static calls and bounded effective raster capture. Other values, default branches, alternate tables and complete consumer state/readback semantics remain unresolved.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending.",
       "complete": false,
       "entries": [
         {
           "value": 0,
           "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
+            "DRAW.queue-dispatch",
+            "RS.world-composition",
+            "RS.world-frame"
           ]
         },
         {
           "value": 1,
           "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
+            "DRAW.queue-dispatch",
+            "RS.world-composition",
+            "RS.world-frame"
           ]
         },
         {
           "value": 2,
           "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
+            "DRAW.queue-dispatch",
+            "RS.world-composition",
+            "RS.world-frame"
           ]
         },
         {
           "value": 3,
           "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
+            "DRAW.queue-dispatch",
+            "RS.world-composition",
+            "RS.world-frame"
           ]
         },
         {
           "value": 4,
           "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
+            "DRAW.queue-dispatch",
+            "RS.world-composition",
+            "RS.world-frame"
           ]
         },
         {
           "value": 5,
           "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
+            "DRAW.queue-dispatch",
+            "RS.world-composition",
+            "RS.world-frame"
           ]
         },
         {
           "value": 6,
           "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
+            "DRAW.queue-dispatch",
+            "RS.world-composition",
+            "RS.world-frame"
           ]
         },
         {
-          "value": 22,
+          "value": 7,
           "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
+            "DRAW.queue-dispatch"
           ]
         },
         {
-          "value": 31,
+          "value": 8,
           "behaviors": [
-            "RS.world-frame",
-            "RS.world-composition"
+            "DRAW.queue-dispatch",
+            "RS.world-kind8-virtual"
           ]
         },
         {
-          "value": 20,
+          "value": 9,
           "behaviors": [
-            "RS.world-initial-state",
-            "RS.world-startup-wave"
+            "DRAW.queue-dispatch"
           ]
         },
         {
-          "value": "other-or-default",
-          "behaviors": []
+          "value": 10,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 14,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 15,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
         },
         {
           "value": 16,
           "behaviors": [
+            "DRAW.queue-dispatch",
+            "DRAW.world-kind-16",
             "RS.world-startup-wave"
           ]
         },
         {
           "value": 17,
           "behaviors": [
+            "DRAW.queue-dispatch",
+            "DRAW.world-kind-17",
             "RS.world-startup-wave"
           ]
         },
         {
-          "value": 8,
+          "value": 18,
           "behaviors": [
-            "RS.world-kind8-virtual"
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 19,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "DRAW.queue-dispatch",
+            "DRAW.world-kind-20",
+            "RS.world-initial-state",
+            "RS.world-startup-wave"
+          ]
+        },
+        {
+          "value": 21,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "DRAW.queue-dispatch",
+            "RS.world-composition",
+            "RS.world-frame"
+          ]
+        },
+        {
+          "value": 23,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 25,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 26,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 27,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 28,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 29,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 30,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 31,
+          "behaviors": [
+            "DRAW.queue-dispatch",
+            "RS.world-composition",
+            "RS.world-frame"
+          ]
+        },
+        {
+          "value": 32,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 33,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 34,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": "other-or-default",
+          "behaviors": [
+            "DRAW.queue-dispatch"
           ]
         }
       ]
@@ -61763,12 +62230,232 @@
         "build": "nocd-40209ca7",
         "address": 5247504,
         "relation": "data",
-        "scope": "Static computed jump at 0x50093d; table semantics unclassified."
+        "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending.",
       "complete": false,
-      "entries": []
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 10,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 14,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 15,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "DRAW.queue-dispatch",
+            "DRAW.world-kind-16"
+          ]
+        },
+        {
+          "value": 17,
+          "behaviors": [
+            "DRAW.queue-dispatch",
+            "DRAW.world-kind-17"
+          ]
+        },
+        {
+          "value": 18,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 19,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "DRAW.queue-dispatch",
+            "DRAW.world-kind-20"
+          ]
+        },
+        {
+          "value": 21,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 23,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 25,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 26,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 27,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 28,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 29,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 30,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 31,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 32,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 33,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 34,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": "other-or-default",
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        }
+      ]
     },
     {
       "id": "RI.queue-draw-0050129c",
@@ -61776,12 +62463,232 @@
         "build": "nocd-40209ca7",
         "address": 5247644,
         "relation": "data",
-        "scope": "Static computed jump at 0x500d69; table semantics unclassified."
+        "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending."
       },
       "document": "research/runtime/render-drawing-inventory.md",
-      "scope": "Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.",
+      "scope": "All35numeric targets and both-arm branch-local direct/opaque CALL slices recovered. Full-consumer2432case matrix verifies selected metadata/wave/colour arguments with synthetic backends. Complete helper side effects, auxiliary clip/prior-metadata and live graphics/lifetime semantics remain pending.",
       "complete": false,
-      "entries": []
+      "entries": [
+        {
+          "value": 0,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 1,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 2,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 3,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 4,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 5,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 6,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 7,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 8,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 9,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 10,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 11,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 12,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 13,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 14,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 15,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 16,
+          "behaviors": [
+            "DRAW.queue-dispatch",
+            "DRAW.world-kind-16"
+          ]
+        },
+        {
+          "value": 17,
+          "behaviors": [
+            "DRAW.queue-dispatch",
+            "DRAW.world-kind-17"
+          ]
+        },
+        {
+          "value": 18,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 19,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 20,
+          "behaviors": [
+            "DRAW.queue-dispatch",
+            "DRAW.world-kind-20"
+          ]
+        },
+        {
+          "value": 21,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 22,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 23,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 24,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 25,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 26,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 27,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 28,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 29,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 30,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 31,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 32,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 33,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": 34,
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        },
+        {
+          "value": "other-or-default",
+          "behaviors": [
+            "DRAW.queue-dispatch"
+          ]
+        }
+      ]
     },
     {
       "id": "kind8-vtable-5c7420",
@@ -67587,8 +68494,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-journal-20261010.json",
-    "sha256": "4ac931fb78ed0d8fdfc8f99095d74453cf3e4e50721de1475ad0d032012978ae"
+    "path": "research/runtime/coverage/source-index-draw01-dispatch-20261010.json",
+    "sha256": "aabf8c9b1828b46c51f3ec13da5b65305c71eb6240dd7718883c3f7d237d34aa"
   },
   "claim_bindings_required": true
 }
