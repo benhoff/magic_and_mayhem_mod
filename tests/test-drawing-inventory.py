@@ -1,0 +1,319 @@
+#!/usr/bin/env python3
+"""DRAW-01 census guards: unknowns, false closure and malformed journals."""
+import copy
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import struct
+import sys
+import tempfile
+import unittest
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
+from drawing_inventory import (ROOT, build_report, caller_returns, hook_entries,
+                               producer_trace, reconcile, route_digest, selector_key)
+
+spec = importlib.util.spec_from_file_location('drawing_report', ROOT / 'tools/report-drawing-inventory.py')
+cli = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(cli)
+
+
+class DrawingInventoryTest(unittest.TestCase):
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+        self.original = '40209ca7' + '0' * 56
+        (self.root / 'research.md').write_text('Selected route; other callers remain unknown.\n')
+        (self.root / 'hooks.c').write_text('#define HOOKS 1\n{0x401000,5,0,{0x55},producer_enter_0,-1}\n')
+        self.static = {'source_sha256': self.original, 'image_base': '0x400000',
+                       'ranges': {'selected': [0x401000, 0x401020]},
+                       'callers': {'selected': [{'call_va': '0x402000', 'discovered_owners': [],
+                                                'context': [' 402000:\te8 fb ef ff ff \tcall 0x401000']}]},
+                       'indirect_calls': {'selected': [{'site': '0x401008', 'instruction': 'call eax', 'discovered_owners': []}]},
+                       'computed_jumps': {'selected': [{'site': '0x401010', 'instruction': 'jmp eax'}]}, 'success': True}
+        self.record = {'success': True, 'original': self.original, 'counts': {'copy': 4},
+                       'entries': {'0x401000': 4}, 'rows': [{'queue': 1, 'status': 0, 'capacity': 16, 'draw_count': 4, 'rows_captured': 4, 'kind_counts': {'-2': 1, '33': 3}}]}
+        self.register = {'builds': [{'id': 'build', 'source_sha256': self.original}],
+                         'behaviors': [{'id': 'route', 'original': [{'build': 'build', 'address': 0x401000}],
+                                        'status': {'replacement': 'none'}}], 'evidence': [],
+                         'dispatch_tables': [{'id': 'table', 'scope': 'Unresolved default', 'complete': False, 'entries': []}]}
+        for eid, value, kind in [('static', self.static, 'static'), ('live', self.record, 'live_observation')]:
+            self.register['evidence'].append({'id': eid, 'record': eid + '.json', 'kind': kind,
+                                             'assertions': [{'pointer': '/success', 'equals': True}]})
+            self.write_record(eid, value)
+        entry = {'id': 'entry', 'entry': 0x401000, 'behaviors': ['route'], 'owner': 'runtime/scene',
+                 'classification': 'producer', 'scope': 'Selected entry', 'confidence': 'high_within_scope',
+                 'support': {'decision': 'scoped_native', 'reason': 'Selected corpus only'},
+                 'side_effects': ['Pixel and caller state'], 'remaining': 'Other callers remain unknown',
+                 'documents': ['research.md'], 'static_windows': ['selected'],
+                 'selectors': [{'kind': 'entry', 'identity': '0x401000'}]}
+        operation = copy.deepcopy(entry)
+        operation.update(id='operation', static_windows=[], selectors=[{'kind': 'operation', 'identity': 'copy'}])
+        operation.pop('entry')
+        hidden = copy.deepcopy(operation)
+        hidden.update(id='hidden', selectors=[{'kind': 'draw_kind', 'identity': -2}])
+        visible = copy.deepcopy(hidden)
+        visible.update(id='visible', selectors=[{'kind': 'draw_kind', 'identity': 33}])
+        self.catalog = {'schema': 1, 'build': 'build', 'source_sha256': self.original, 'scope': 'Bounded fixture',
+                        'static_source': {'evidence': 'static'}, 'hook_source': 'hooks.c', 'dispatch_tables': ['table'],
+                        'producer_operations': {'6': 'copy', '10': 'checkpoint', '11': 'queue_entry', '12': 'queue_return'},
+                        'routes': [entry, operation, hidden, visible],
+                        'scenarios': [{'id': 'startup', 'required': True, 'scope': 'Startup only', 'remaining': 'Complete caller census pending', 'census_review': None},
+                                      {'id': 'save-load', 'required': True, 'scope': 'Save/load', 'remaining': 'No drawing census', 'census_review': None}],
+                        'observations': [{'id': 'cohort', 'evidence': 'live', 'scenario': 'startup', 'scope': 'One bounded cohort',
+                                          'build_pointer': '/original', 'projections': [
+                                              {'kind': 'counts', 'pointer': '/counts', 'selector': 'operation', 'activity': 'live_original_active'},
+                                              {'kind': 'counts', 'pointer': '/entries', 'selector': 'entry', 'activity': 'live_original_active'},
+                                              {'kind': 'kind_rows', 'pointer': '/rows', 'selector': 'draw_kind', 'activity': 'live_original_active'}]}]}
+
+    def write_record(self, eid, value):
+        data = json.dumps(value).encode()
+        (self.root / (eid + '.json')).write_bytes(data)
+        e = next(e for e in self.register['evidence'] if e['id'] == eid)
+        e['sha256'] = hashlib.sha256(data).hexdigest()
+
+    def report(self):
+        return reconcile(self.root, self.catalog, self.register)
+
+    def test_inventory_support_does_not_promote_replacement_or_completion(self):
+        before = copy.deepcopy(self.register)
+        r = self.report()
+        self.assertFalse(r['draw01_complete'])
+        self.assertFalse(r['scenarios'][1]['closed_route_census'])
+        self.assertEqual(r['unaccounted'], [])
+        self.assertEqual(self.register, before)
+
+    def test_new_entry_operation_and_draw_kind_remain_unaccounted(self):
+        self.record['counts']['new_operation'] = 2
+        self.record['entries']['0x401100'] = 3
+        self.record['rows'][0].update(draw_count=5, rows_captured=5, kind_counts={'-2': 1, '33': 3, '77': 1})
+        self.write_record('live', self.record)
+        r = self.report()
+        self.assertEqual({x['identity'] for x in r['unaccounted']}, {'new_operation', '0x401100', '77'})
+        self.assertFalse(r['draw01_complete'])
+
+    def test_new_hook_entry_has_no_implicit_owner(self):
+        (self.root / 'hooks.c').write_text('#define HOOKS 2\n{0x401000,5,0,{0x55},producer_enter_0,-1}\n{0x401100,5,0,{0x55},producer_enter_1,-1}\n')
+        r = self.report()
+        self.assertEqual(r['unaccounted'][0]['identity'], '0x401100')
+        self.assertEqual(r['unaccounted'][0]['activity'], 'instrumented_only')
+
+    def test_hook_parser_refuses_changed_shape_duplicate_and_missing_tag(self):
+        for text in ('#define HOOKS 1\nunknown_initializer', '#define HOOKS 2\n{0x401000,5,0,{0x55},producer_enter_0,-1}\n{0x401000,5,0,{0x55},producer_enter_1,-1}', '#define HOOKS 1\n{0x401000,5,0,{0x55},producer_enter_9,-1}'):
+            with self.subTest(text=text), self.assertRaises(ValueError):
+                hook_entries(text)
+
+    def interior(self, entry=0x401010):
+        data = json.dumps({'source_sha256': self.original, 'functions': [{'entry': 0x401000, 'ranges': [[0x401000, 0x401020]]}]}).encode()
+        (self.root / 'binary.json').write_bytes(data)
+        self.register['builds'][0].update(inventory='binary.json', inventory_sha256=hashlib.sha256(data).hexdigest())
+        row = copy.deepcopy(self.catalog['routes'][0]);row.update(id='interior', entry=entry, original_anchor=0x401000,
+                                                                static_windows=[], selectors=[{'kind': 'entry', 'identity': hex(entry)}])
+        self.catalog['routes'].append(row)
+
+    def test_interior_hook_uses_explicit_function_anchor_not_nearest_function(self):
+        self.interior()
+        self.assertTrue(self.report()['inventory_valid'])
+        self.catalog['routes'][-1]['original_anchor'] = 0x401001
+        with self.assertRaisesRegex(ValueError, 'original behavior anchor'):
+            self.report()
+
+    def test_out_of_body_interior_hook_and_changed_binary_inventory_refuse(self):
+        self.interior(0x401030)
+        with self.assertRaisesRegex(ValueError, 'outside explicitly'):
+            self.report()
+        self.catalog['routes'][-1].update(entry=0x401010, selectors=[{'kind': 'entry', 'identity': '0x401010'}])
+        (self.root / 'binary.json').write_text('{}')
+        with self.assertRaisesRegex(ValueError, 'inventory changed'):
+            self.report()
+
+    def test_additional_patch_census_preserves_new_entry_and_rejects_parser_drift(self):
+        self.catalog['additional_hook_sources'] = [{'path': 'patch.c', 'kind': 'interior_jump'}]
+        (self.root / 'patch.c').write_text('jump((u8*)0x401111, entry,6);')
+        self.assertEqual(self.report()['unaccounted'][0]['identity'], '0x401111')
+        (self.root / 'patch.c').write_text('different_patch_mechanism();')
+        with self.assertRaisesRegex(ValueError, 'declaration changed'):
+            self.report()
+
+    def test_static_window_census_cannot_disappear(self):
+        self.catalog['routes'][0]['static_windows'] = []
+        with self.assertRaisesRegex(ValueError, 'census changed'):
+            self.report()
+
+    def test_return_pc_uses_exact_call_length_and_preserves_missing_owner(self):
+        r = caller_returns(self.static)
+        self.assertEqual(r[0x402005], {'entry': 0x401000, 'call_va': 0x402000, 'discovered_owners': []})
+        self.static['callers']['selected'][0]['context'] = ['402000: e8 00 call 0x401111']
+        with self.assertRaisesRegex(ValueError, 'exact CALL bytes'):
+            caller_returns(self.static)
+
+    def test_invalid_route_links_ownership_effects_and_decisions_refuse(self):
+        for change in ({'owner': ''}, {'behaviors': ['missing']}, {'side_effects': []}, {'classification': 'guessed'}, {'support': {'decision': 'complete', 'reason': 'guess'}}, {'entry': 0x401001}):
+            original = copy.deepcopy(self.catalog)
+            self.catalog['routes'][0].update(change)
+            with self.subTest(change=change), self.assertRaises((ValueError, KeyError)):
+                self.report()
+            self.catalog = original
+
+    def test_ambiguous_selectors_refuse(self):
+        row = copy.deepcopy(self.catalog['routes'][1]); row['id'] = 'duplicate'
+        self.catalog['routes'].append(row)
+        with self.assertRaisesRegex(ValueError, 'Ambiguous'):
+            self.report()
+
+    def test_record_hash_and_original_build_must_match(self):
+        (self.root / 'live.json').write_text('{}')
+        with self.assertRaisesRegex(ValueError, 'changed evidence'):
+            self.report()
+        self.record['original'] = 'wrong'; self.write_record('live', self.record)
+        with self.assertRaisesRegex(ValueError, 'build mismatch'):
+            self.report()
+
+    def test_offline_or_static_activity_cannot_count_as_live(self):
+        for kind in ('static', 'isolated_original', 'native_integration'):
+            self.register['evidence'][1]['kind'] = kind
+            with self.subTest(kind=kind), self.assertRaisesRegex(ValueError, 'Offline fixture'):
+                self.report()
+
+    def test_incomplete_draw_rows_and_boolean_counts_refuse(self):
+        self.record['rows'][0]['rows_captured'] = 3; self.write_record('live', self.record)
+        with self.assertRaisesRegex(ValueError, 'Incomplete original'):
+            self.report()
+        self.record['rows'][0]['rows_captured'] = 4; self.record['counts']['copy'] = True; self.write_record('live', self.record)
+        with self.assertRaisesRegex(ValueError, 'nonnegative integers'):
+            self.report()
+
+    def test_hidden_signed_kind_is_preserved(self):
+        self.assertEqual(selector_key('draw_kind', '-2'), selector_key('draw_kind', '0xfffffffe'))
+        self.assertEqual(next(x for x in self.report()['activities'] if x['identity'] == '-2')['route'], 'hidden')
+
+    def close_startup(self):
+        self.catalog['scenarios'][0]['census_review'] = {'observation': 'cohort', 'pointer': '/census', 'reason': 'Exact scoped trace reviewed'}
+        self.record['census'] = {'complete': True, 'caller_attribution_complete': True, 'side_effect_inventory_complete': True,
+                                 'owner_classification_complete': True, 'lost_events': 0, 'unknown_routes': 0,
+                                 'route_census_sha256': route_digest(self.catalog)}
+        self.write_record('live', self.record)
+
+    def test_pixel_success_and_closed_journal_do_not_close_scenario(self):
+        self.assertTrue(self.record['success'])
+        self.assertFalse(self.report()['scenarios'][0]['closed_route_census'])
+        self.close_startup()
+        self.assertTrue(self.report()['scenarios'][0]['closed_route_census'])
+        self.assertFalse(self.report()['draw01_complete'])  # save/load and dispatch still open
+
+    def test_false_stale_or_lost_event_closure_refuses(self):
+        for field, value in [('lost_events', 1), ('unknown_routes', 1), ('complete', False), ('route_census_sha256', 'old')]:
+            self.close_startup(); self.record['census'][field] = value; self.write_record('live', self.record)
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                self.report()
+
+    def test_route_edit_invalidates_exact_census_closure(self):
+        self.close_startup(); self.catalog['routes'][0]['remaining'] = 'New failure branch'
+        with self.assertRaisesRegex(ValueError, 'exact reviewed'):
+            self.report()
+
+    def test_all_required_closures_and_dispatch_are_needed_for_completion(self):
+        self.close_startup()
+        self.catalog['scenarios'] = self.catalog['scenarios'][:1]
+        self.register['dispatch_tables'][0]['complete'] = True
+        self.assertTrue(self.report()['draw01_complete'])
+        self.catalog['routes'][0]['support']['decision'] = 'unresolved'
+        self.record['census']['route_census_sha256'] = route_digest(self.catalog)
+        self.write_record('live', self.record)
+        self.assertFalse(self.report()['draw01_complete'])
+
+    def test_forged_activity_classification_refuses(self):
+        self.catalog['observations'][0]['projections'][0]['activity'] = 'complete_replacement'
+        with self.assertRaisesRegex(ValueError, 'activity classification'):
+            self.report()
+
+    def test_incomplete_dispatch_and_indirect_flows_stay_visible(self):
+        r = self.report()
+        self.assertEqual(r['dispatch_tables'][0]['entries'], [])
+        self.assertEqual(r['static_indirect_calls'][0]['discovered_owners'], [])
+        self.assertEqual(len(r['static_computed_jumps']), 1)
+
+    def test_missing_scenario_research_and_protected_paths_refuse(self):
+        self.catalog['observations'][0]['scenario'] = 'missing'
+        with self.assertRaisesRegex(ValueError, 'scenario'):
+            self.report()
+        self.catalog['observations'][0]['scenario'] = 'startup'
+        self.catalog['routes'][0]['documents'] = ['../research.md']
+        with self.assertRaisesRegex(ValueError, 'research'):
+            self.report()
+        for path in (ROOT / 'original/unsafe.json', ROOT / '.git/unsafe.json'):
+            with self.subTest(path=path), self.assertRaises(ValueError):
+                cli.output_paths([path])
+
+    def journal(self, version=1, caller=0x402005, op=6):
+        header = bytearray(64);header[:8] = ('MNMPRO0' + str(version)).encode()
+        struct.pack_into('<5I', header, 8, version, 64, int(self.original[:8], 16), 65536, 1)
+        entry = [0] * 24;entry[0] = 96;entry[1] = 1;entry[2] = 11;entry[14] = 1
+        first = [0] * 24;first[0] = 96;first[1] = 2;first[2] = op;first[22] = caller
+        final = [0] * 24;final[0] = 96;final[1] = 3;final[2] = 12;final[14] = 1
+        data = bytes(header) + struct.pack('<24I', *entry) + struct.pack('<24I', *first) + struct.pack('<24I', *final)
+        stream = self.root / 'producer.bin';stream.write_bytes(data)
+        done = self.root / 'producer.done';done.write_bytes(b'MNMPDONE' + struct.pack('<6I', 1, 1, 3, 0, 0, len(data)))
+        return stream, done
+
+    def parse(self, stream, done, runtime='0x400000'):
+        return producer_trace(stream, done, hashlib.sha256(stream.read_bytes()).hexdigest(), 'startup', runtime, self.report())
+
+    def test_closed_journals_and_relocated_exact_caller(self):
+        for version in (1, 2, 3):
+            stream, done = self.journal(version, caller=0x702005)
+            r = self.parse(stream, done, '0x700000')
+            self.assertTrue(r['closed_journal'])
+            self.assertEqual(next(x for x in r['rows'] if x['operation'] == 'copy')['entry_route'], 'entry')
+            self.assertEqual(r['unattributed_callers'], [])
+
+    def test_nearby_and_external_callers_never_get_nearest_entry(self):
+        for caller in (0x402006, 0x1000, 0xffffffff):
+            stream, done = self.journal(caller=caller)
+            r = self.parse(stream, done)
+            self.assertEqual(r['unattributed_callers'][0]['caller_va'], hex(caller))
+            self.assertIsNone(r['unattributed_callers'][0]['entry_route'])
+
+    def test_unknown_opcode_is_retained_not_silently_dropped(self):
+        stream, done = self.journal(op=77)
+        r = self.parse(stream, done)
+        self.assertIn('unknown-op-77', {row['operation'] for row in r['unaccounted_operations']})
+
+    def test_truncated_out_of_order_wrong_build_or_payload_journals_refuse(self):
+        for offset, value in [(4, 1), (16, 0), (68, 99), (64, 100), (64 + 23 * 4, 1), (64 + 2 * 96 + 14 * 4, 2), (64 + 2 * 4, 6)]:
+            stream, done = self.journal();data = bytearray(stream.read_bytes());struct.pack_into('<I', data, offset, value);stream.write_bytes(data)
+            with self.subTest(offset=offset), self.assertRaises(ValueError):
+                self.parse(stream, done)
+        stream, done = self.journal();stream.write_bytes(stream.read_bytes()[:-1])
+        with self.assertRaises(ValueError):
+            self.parse(stream, done)
+
+    def test_missing_failed_or_mismatched_completion_and_hash_refuse(self):
+        for offset, value in [(12, 2), (16, 1), (20, 1), (28, 0)]:
+            stream, done = self.journal();data = bytearray(done.read_bytes());struct.pack_into('<I', data, offset, value);done.write_bytes(data)
+            with self.subTest(offset=offset), self.assertRaises(ValueError):
+                self.parse(stream, done)
+        stream, done = self.journal()
+        with self.assertRaisesRegex(ValueError, 'hash mismatch'):
+            producer_trace(stream, done, 'wrong', 'startup', '0x400000', self.report())
+
+    def test_output_paths_never_overwrite(self):
+        target = self.root / 'existing.json';target.write_text('{}')
+        for paths in ([target], [self.root / 'new', self.root / 'new']):
+            with self.subTest(paths=paths), self.assertRaises(ValueError):
+                cli.output_paths(paths)
+
+    def test_repository_census_and_required_journeys(self):
+        r = build_report()
+        self.assertEqual(r['counts']['static_windows'], 24)
+        self.assertEqual(r['counts']['instrumented_entries'], 52)
+        self.assertEqual(r['counts']['required_scenarios'], 14)
+        self.assertFalse(r['draw01_complete'])
+        self.assertEqual(r['unaccounted'], [])
+        self.assertTrue({'save-load', 'map-transitions', 'battle-results', 'shutdown'} <= {s['id'] for s in r['scenarios']})
+
+
+if __name__ == '__main__':
+    unittest.main()

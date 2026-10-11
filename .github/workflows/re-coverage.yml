@@ -21,6 +21,8 @@ jobs:
         run: |
           python3 -B tests/test-re-coverage.py
           python3 -B tests/test-coverage-gate.py
+          python3 -B tests/test-drawing-inventory.py
+          python3 tools/report-drawing-inventory.py --require-accounted
       - name: Check every change against its actual base
         shell: bash
         run: |
