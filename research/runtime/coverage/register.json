@@ -32379,7 +32379,12 @@
       "confidence": "high_within_scope",
       "documents": [
         "research/runtime/native-draw-device-surfaces.md",
-        "tests/native-campaign-smoke.md"
+        "tests/native-campaign-smoke.md",
+        "research/runtime/native-draw-public-gameplay-artifacts-20261011.json",
+        "research/runtime/native-draw-public-hardware-negative-artifacts-20261011.json",
+        "research/runtime/native-draw-public-hardware-summon-failure-20261011.json",
+        "research/runtime/native-draw-public-hardware-legacy-control-failure-20261011.json",
+        "research/runtime/native-draw-public-hardware-ordering-failure-20261011.json"
       ],
       "implementation": [
         "apps/qt-shell/live_menu_session.cpp",
@@ -33106,7 +33111,8 @@
         "tools/test-native-pacer.py"
       ],
       "evidence": [
-        "NR.directdraw-public-native-menu.bound-flow-20261011"
+        "NR.directdraw-public-native-menu.bound-flow-20261011",
+        "NR.directdraw-public-native-menu.gameplay-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -64688,6 +64694,81 @@
           "equals": 12
         }
       ]
+    },
+    {
+      "id": "NR.directdraw-public-native-menu.gameplay-20261011",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-public-gameplay-pass-20261011.json",
+      "sha256": "2e83da821eaa6c836605360b723310ca4d5c9b921adc077362d9a679a36f2b36",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "scope": "Source/compiler/input-bound private software public native campaign with owned graphics and real ddraw disabled/absent: successful Zombie, player combat/lethal enemy health depletion, physical movement, invalid-target/insufficient-mana refusals, player Fireball, nine stable portrait cycles, Mini/resume and normal original Quit. Declared19 FPS stress gate passes with worst whole-flow paint window11.9266 FPS and portrait worst19.2484; no universal19/60 FPS or NVIDIA gameplay assertion. Original CPU drawing remains active; no V4 body suppression or semantic COM release assertion.",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw_required",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/casting_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/combat_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/movement_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/spell_cases/verified",
+          "equals": true
+        },
+        {
+          "pointer": "/gameplay/enemy_health_depleted",
+          "equals": true
+        },
+        {
+          "pointer": "/minimum_fps",
+          "equals": 19
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/flow/native_recoveries",
+          "equals": 0
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -72589,7 +72670,8 @@
         "apps/qt-shell/live_menu_session.cpp"
       ],
       "evidence": [
-        "NR.directdraw-public-native-menu.bound-flow-20261011"
+        "NR.directdraw-public-native-menu.bound-flow-20261011",
+        "NR.directdraw-public-native-menu.gameplay-20261011"
       ]
     }
   ],
@@ -72928,8 +73010,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-draw-public-menu-20261011.json",
-    "sha256": "795d8f45170ac30f122925f640a8b56297fc091f170db6a7eddf0e3982e392ac"
+    "path": "research/runtime/coverage/source-index-native-draw-public-gameplay-20261011.json",
+    "sha256": "c3e634fe02ffb593cccec9101cf2f0f4636f428d34e12433879c58b27e8be4e2"
   },
   "claim_bindings_required": true
 }
