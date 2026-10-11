@@ -1,4 +1,5 @@
 #include "drawing_scene.hpp"
+#include "world_raster_batch.hpp"
 #include "../../protocols/include/mnm/canvas_producers_v3.h"
 #include <limits>
 #include <stdexcept>
@@ -11,6 +12,7 @@ DrawingScene::~DrawingScene(){if(output_)renderer_.destroy(output_);}
 std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
     if(poisoned_||sealed_)throw std::runtime_error("Drawing scene is poisoned or sealed");
     try{
+        rasterResult_.reset();
         if(output_){renderer_.destroy(output_);output_=0;}
         const auto &r=c.fields;
         if(sequence_==std::numeric_limits<unsigned>::max()||r[1]!=sequence_+1||
@@ -45,7 +47,12 @@ std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
             world_->beginRolling(normalized,replay_.read(r[3]),++worldSequence_);
             activeQueue_=r[14];worldWidth_=r[5];worldHeight_=r[6];
         }else if(world_->active()){
-            if(r[2]==MNM_PRODUCER_RASTER){world_->append(c);++worldDraws_;}
+            if(r[2]==MNM_PRODUCER_RASTER){
+                world_->append(c);++worldDraws_;
+                // Recorded original EAX (field21) never supplies this result.
+                rasterResult_=DrawingRasterResult{r[1],activeQueue_,r[3],r[15],
+                    r[15]==8?std::nullopt:std::optional<unsigned>(worldRasterAX(c))};
+            }
             else if((r[2]==MNM_PRODUCER_CHECKPOINT&&r[3]==world_->canvas())||r[2]==MNM_PRODUCER_QUEUE_RETURN){
                 replay_.commitNativeWorld(world_->canvas(),world_->complete(replay_.read(world_->canvas())));
                 if(r[2]==MNM_PRODUCER_QUEUE_RETURN){
@@ -69,6 +76,10 @@ std::optional<DrawingCheckpoint> DrawingScene::apply(const CanvasProducer &c){
         }
         sequence_=r[1];return completed;
     }catch(...){poisoned_=true;throw;}
+}
+std::optional<DrawingRasterResult> DrawingScene::rasterResult() const {
+    if(poisoned_)throw std::runtime_error("Drawing scene is poisoned");
+    return rasterResult_;
 }
 void DrawingScene::publish(DrawingBoundary boundary){
     if(poisoned_||sealed_)throw std::runtime_error("Drawing scene is poisoned or sealed");

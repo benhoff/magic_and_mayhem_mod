@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "scope": "Committed exact parent/current file and behavior hashes reviewed with current accounting code. Uncommitted work excluded. Does not assert a historical gate pass or new execution.",
+  "range": {
+    "base": "7127121ded1084d468f602b094c532d642dcb7f8",
+    "head": "fb790786ad91ebcd75811884598a27d33567790f"
+  },
+  "changes": {
+    "files": [
+      {
+        "path": "compat/legacy/drawing_scene.cpp",
+        "before_sha256": "7c4a547e1f836b42495005be66a9e1cad5234c7558d946898ea7d233523cd062",
+        "after_sha256": "7839e1ddf4ee7b717ef3193544d0b5abecb8c34bcff066e6cf4771c5e833b07e",
+        "behaviors": [
+          "NR.drawing-journey",
+          "NR.drawing-scene"
+        ],
+        "role": "code",
+        "change": "modified"
+      },
+      {
+        "path": "compat/legacy/drawing_scene.hpp",
+        "before_sha256": "1488083854310beffd502c9e3e2eda96603c7d768c8779a0ab77d4c7b04bea6d",
+        "after_sha256": "8104af6c513693b21cb451a33dfe3ea9e16bfd0beb1eac23855062b2941ca1c1",
+        "behaviors": [
+          "NR.drawing-journey",
+          "NR.drawing-scene"
+        ],
+        "role": "code",
+        "change": "modified"
+      },
+      {
+        "path": "research/runtime/coverage-ledger.md",
+        "before_sha256": "07ba06baa8ee351ee903583259ded1e43e6a3a9d117e45f2c5525add9322366f",
+        "after_sha256": "1d2d432b9116b38d4bb16933cede68bf11386f6ba53fdd0216e54bc3fb1fa1e7",
+        "behaviors": [
+          "TOOL.coverage-accounting"
+        ],
+        "role": "research",
+        "change": "modified"
+      },
+      {
+        "path": "research/runtime/coverage/draw03-history-3b6785a-7127121-20261010.json",
+        "before_sha256": null,
+        "after_sha256": "3cd321e2c4af8b7fbe31705f21634031fa337595d14edbe8e8e48356a99a8c66",
+        "behaviors": [],
+        "role": "research",
+        "change": "added"
+      },
+      {
+        "path": "research/runtime/coverage/register.json",
+        "before_sha256": "9fd5a1b881df4544bbae36969862ede45ee9fb6dbae7025203b5f3d425e7a7af",
+        "after_sha256": "09a28040c74753cd87d253c77d5dc85b5d3d7af431b798e5027cacaf7fe371cd",
+        "behaviors": [],
+        "role": "research",
+        "change": "modified"
+      },
+      {
+        "path": "research/runtime/coverage/source-index-draw03-transitions-20261010.json",
+        "before_sha256": null,
+        "after_sha256": "9acd06787f85f12c37277ee6e545d4ea8b3e580cc1914aeb01d97019c2b52504",
+        "behaviors": [],
+        "role": "research",
+        "change": "added"
+      },
+      {
+        "path": "research/runtime/coverage/summary.md",
+        "before_sha256": "c6fd46bb0e425c4720f2fe31570e850a0b40f3a55517e5df94e42d00957e9da2",
+        "after_sha256": "d14a78b163fe84ca5b2a54930ba69ff1747139544e0f3703345461b2fc1e29b0",
+        "behaviors": [],
+        "role": "research",
+        "change": "modified"
+      },
+      {
+        "path": "research/runtime/draw03-native-journeys.md",
+        "before_sha256": "49ba1eaf9ec35b6076fec708e0332a1d6f1e3988004947e8f9fe4fef802b0845",
+        "after_sha256": "1b5741ae09b0abe0dcf09cee8e498a4676bff0d61be73dba1fc060006ed01c9f",
+        "behaviors": [
+          "NR.drawing-journey"
+        ],
+        "role": "research",
+        "change": "modified"
+      },
+      {
+        "path": "research/runtime/draw03-transitions-journey-comparison-20261010.json",
+        "before_sha256": null,
+        "after_sha256": "280f7cbad5bb9e1c06914053de4f4adfd8001af6882d72037babddce8c217467",
+        "behaviors": [],
+        "role": "research",
+        "change": "added"
+      },
+      {
+        "path": "research/runtime/draw03-transitions-scene-comparison-20261010.json",
+        "before_sha256": null,
+        "after_sha256": "9260576025a77b5b9d30f0c8ef511da29f3edb622901545295f026fd4e8b674c",
+        "behaviors": [],
+        "role": "research",
+        "change": "added"
+      },
+      {
+        "path": "tests/drawing-scene-test.cpp",
+        "before_sha256": "ab5b0354481d89feaf6d7c64ca7b35a05c9134c32d32b551eb25d050f1d007bd",
+        "after_sha256": "eb7b53defd2457e534c90d53942783671396d7548d071785339d4c9bfa881a08",
+        "behaviors": [
+          "NR.drawing-journey",
+          "NR.drawing-scene"
+        ],
+        "role": "test",
+        "change": "modified"
+      }
+    ],
+    "behaviors": [
+      {
+        "id": "NR.drawing-journey",
+        "before_sha256": "e91ed147d74f4d672081990f10a769cdb304f574504842a3b178c947ca0b7adf",
+        "after_sha256": "ebbbb778dde49fbfbbdf5743c2fe34af5ab0659f0d234462cbd7a2a9cce583cd"
+      },
+      {
+        "id": "NR.drawing-scene",
+        "before_sha256": "8ce3b6f2fa07ca20f2d4f31852afd93cd66dad91bdea35421f63f85e1d3ebfec",
+        "after_sha256": "09326e9c4069ee0db2cf2a997cc8d545201ca69eab4b3627df42ad5b6a043d44"
+      },
+      {
+        "id": "TOOL.coverage-accounting",
+        "before_sha256": "28b3a5960295f019c18eeabae7e53e0cd587a55a91d7cbdc88ab903c22592d95",
+        "after_sha256": "e2892f9a0f1c168771db6976174322fd9d01298be9ac3933f778550ab14c874b"
+      }
+    ],
+    "new_gaps": {
+      "stale_evidence:0065aab632a48df703216f1b4846c57222bec2f4800fc2eba68ed474c1f3f398": {
+        "kind": "stale_evidence",
+        "identity": {
+          "id": "NR.drawing-journey.persistent-native-20261010",
+          "source": "compat/legacy/drawing_scene.cpp"
+        }
+      },
+      "stale_evidence:19df954f0c38112327492b22b2428be6476763802d95505aad529ee53364ae4a": {
+        "kind": "stale_evidence",
+        "identity": {
+          "id": "NR.drawing-journey.persistent-native-20261010",
+          "source": "compat/legacy/drawing_scene.hpp"
+        }
+      },
+      "stale_evidence:6810f7b249b797251eb95bbdba549cf99e9530f3d40e5abe6ebe1f18ada1a344": {
+        "kind": "stale_evidence",
+        "identity": {
+          "id": "NR.drawing-journey.persistent-native-20261010",
+          "source": "tests/drawing-scene-test.cpp"
+        }
+      },
+      "stale_evidence:c51b0286eac81b73c8eadd6c3b3eaf73f708f6393203cc2eac6f188acb965792": {
+        "kind": "stale_evidence",
+        "identity": {
+          "id": "NR.drawing-scene.persistent-native-20261010",
+          "source": "tests/drawing-scene-test.cpp"
+        }
+      },
+      "stale_evidence:e84c6aea96979aa68998d68fdb56f94ab5ee322ea875b367fc754e0a6f2475ad": {
+        "kind": "stale_evidence",
+        "identity": {
+          "id": "NR.drawing-scene.persistent-native-20261010",
+          "source": "compat/legacy/drawing_scene.cpp"
+        }
+      },
+      "stale_evidence:f6423d18e82d028b2fc41e3fd5889e6ca386233fff62c0557c85315b4502939d": {
+        "kind": "stale_evidence",
+        "identity": {
+          "id": "NR.drawing-scene.persistent-native-20261010",
+          "source": "compat/legacy/drawing_scene.hpp"
+        }
+      }
+    }
+  },
+  "receipt_chains": {},
+  "errors": [],
+  "warnings": [
+    "Recorded evidence fingerprints older source; historical claims are retained, current validation is not implied.",
+    "Pinned recovered code exists outside Ghidra function bodies; explicit range links preserve this discovery gap.",
+    "Historical stages are retained; current validation requires exact execution claims, complete provenance and matching scenarios."
+  ]
+}

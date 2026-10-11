@@ -7,6 +7,12 @@ struct DrawingCheckpoint {
     unsigned sequence, ordinal, canvas;
     render::Image image;
 };
+// Low16 return only, for the sampled World raster domain. Unsupported return
+// contracts are explicit; this is not the complete consumer/picking state.
+struct DrawingRasterResult {
+    unsigned sequence, queue, canvas, backend;
+    std::optional<unsigned> ax;
+};
 // Explicit end of a declared finite scene, independent of diagnostic checkpoint
 // numbers or legacy presentation. A caller must supply the complete producer
 // prefix through this boundary, including UI work after World returns.
@@ -33,6 +39,7 @@ public:
     void seal(DrawingBoundary);
     render::Image read();
     render::GpuFrame presentGpu();
+    std::optional<DrawingRasterResult> rasterResult() const;
     unsigned sequence() const { return sequence_; }
     unsigned queues() const { return completedQueues_; }
     std::uint64_t worldDraws() const { return worldDraws_; }
@@ -44,6 +51,7 @@ private:
     assets::AssetStore store_;
     CanvasProducerReplay replay_;
     std::unique_ptr<CanvasWorld> world_;
+    std::optional<DrawingRasterResult> rasterResult_;
     render::SurfaceId output_=0;
     unsigned sequence_=0,checkpoints_=0,publishedSequence_=0,frames_=0;
     DrawingBoundary published_{};

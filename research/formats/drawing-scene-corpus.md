@@ -50,3 +50,19 @@ one complete stream with no trailing bytes, at most128MiB dictionary memory
 and32MiB output; concatenation requires at most eight fragments,128MiB total and
 the exact prefix SHA-256. This packaging preserves the original wire bytes and
 does not reset producer, queue, checkpoint or canvas identities between chunks.
+
+
+## Native raster-result separation
+
+Portable artifacts preserve their immutable captured bytes. Before native replay,
+the comparator zeroes record field21 (offset84) for kind9 rasters, including
+owned-source references, without changing other wire bytes. It retains original
+observations externally. Font and minimap source/state fields have separate
+contracts and are not part of this raster return claim.
+
+The native runner rejects nonzero raster field21. `raster-results.tsv` contains
+one line per World raster: decimal source sequence, global queue, canvas,
+backend, and low16 AX or `unknown`, separated by tabs. Its count, SHA-256 and
+unknown count accompany the report. Count/order/identity errors refuse; unknown
+or different returns fail the separate result comparison. Captured return state
+at/after a recorded native bypass cannot establish original-state equivalence.
