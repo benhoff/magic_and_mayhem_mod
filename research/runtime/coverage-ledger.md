@@ -5306,3 +5306,30 @@ per World, with zero World/native/RGBA delivery readbacks. This is negative
 evidence (`public-resident-region-epoch-shadow-failure-20261011.json`), not a
 sustained19FPS or completed casting/combat/portrait/quit proof. The next bounded
 fix investigates the right-edge shadow against actual opaque samples.
+
+### Right-edge projected shadow admission,2026-10-11
+
+Gen226's nominal shadow extends to805 while actual opaque coverage ends at786.
+Native preflight checks projected coverage on bounding overflow, rejects real
+covered overflow atomically, and crops unused GPU padding to owned storage.
+Recovered shadow row selection/whole horizontal refusal remain separate from
+this native storage policy. Fresh fixture and ordinary Titan gameplay results
+are required before claiming this code validated; full original comparison and
+sustained19/60FPS remain independent pending milestones.
+
+Fresh complete `public-resident-shadow-fixtures-20261011.json` passes both
+shadow backends, atomic genuine overflow refusal, cropped rows/whole horizontal
+refusal, owned metadata without readback and existing1.44Mword/import/defer/ABI
+fixtures. Sources/inputs are unchanged and all executed native fixture binaries
+are hashed. This is native integration evidence, not original pixel equivalence
+or a public gameplay/performance pass.
+
+The campaign prelaunch compiler check formerly scanned all built test targets;
+this correctly refused undeclared test inputs but incorrectly treated them as
+shell dependencies. It now follows the shell's linked objects/local archives
+and requires their exact compiler receipts.287actual repository source/header
+dependencies are found on this build. Synthetic linked-target fixtures prove
+unrelated/generated inputs are excluded and missing linked object/archive
+receipts refuse. New durable result `public-resident-linked-provenance-fixtures-20261011.json`
+is source bound; the earlier negative is preserved separately. New validation
+metadata does not promote engine gameplay or original equivalence.

@@ -796,6 +796,9 @@ QImage GlBlitter::present(SurfaceId id){
     g.glReadPixels(0,0,s.width,s.height,GL_RGBA_INTEGER,GL_UNSIGNED_BYTE,out.bits());
     p.check(true);++p.counters.presentations;++p.counters.rgbaReadbacks;return out;
 }
+QSize GlBlitter::dimensions(SurfaceId id) const{
+    auto& p=*impl_;p.thread();const auto& s=p.get(id);return {s.width,s.height};
+}
 GpuFrame GlBlitter::presentGpu(SurfaceId id){
     auto& p=*impl_;p.thread();p.flushCopies();auto& s=p.get(id);s.validity.require({0,0,s.width,s.height});Current current(p.context,&p.surface);auto& g=p.gl;
     auto frame=s.gpu.lock();

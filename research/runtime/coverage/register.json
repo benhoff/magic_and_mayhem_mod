@@ -18050,7 +18050,7 @@
       "subsystem": "native_rendering",
       "kind": "recovered",
       "title": "Selected native integer World raster composition",
-      "scope": "Actual RGB565 colour tables and separate coverage; selected indexed copy, half/quarter-source/quarter-destination, nonnegative rightward displacement and alternating-row projected shadow. Six-mode clipped fixtures and captured indexed World requests; full original raster family, RGB555, negative displacement, palette generation and direct-word live World routes remain outside scope. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: selected retained pre-consumer pixels are confirmed; upstream initialization/ownership remains unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence.",
+      "scope": "Actual RGB565 colour tables and separate coverage; selected indexed copy, half/quarter-source/quarter-destination, nonnegative rightward displacement and alternating-row projected shadow. Six-mode clipped fixtures and captured indexed World requests; full original raster family, RGB555, negative displacement, palette generation and direct-word live World routes remain outside scope. Continuous delivery/presentation is accounted separately in NR.world-channel/NR.world-live-view. Current retained live mismatch agrees with independent zero-background original replay but differs from live output: selected retained pre-consumer pixels are confirmed; upstream initialization/ownership remains unresolved; broad equivalence/replacement not promoted. Native retained-destination history is compared on an explicitly zero-initialized contiguous six-mode chain; diagnostic before-state comparisons confirm retained initial pixels for selected failing frames. Startup initialization and unpublished-queue history are not recovered. Current source-split regression/comparison evidence is recorded separately; historical capture, live runs and startup observations retain their original source hashes and do not imply current live equivalence. Native projected-shadow storage preflight now inspects covered samples when transparent padding exceeds canvas bounds; clipping removes only uncovered padding. Actual covered overflow still refuses before scene mutation. Captured ordinary gen226 geometry nominal805/opaque786 motivates this native admission fix; no new original execution equivalence claim.",
       "confidence": "high_within_scope",
       "original": [
         {
@@ -37642,7 +37642,9 @@
         "tests/world-raster-batch-test.cpp",
         "tools/test-public-resident-fixtures.py",
         "tests/world-deferred-test.cpp",
-        "tests/minimap-producer-test.cpp"
+        "tests/minimap-producer-test.cpp",
+        "tests/scene-renderer-test.cpp",
+        "tests/native-shell-provenance-test.py"
       ],
       "documents": [
         "research/runtime/public-resident-world.md",
@@ -37652,7 +37654,9 @@
         "research/runtime/public-resident-cursor-queue-fixtures-20261011.json",
         "research/runtime/public-resident-cursor-queue-live-failure-20261011.json",
         "research/runtime/public-resident-region-epoch-fixtures-20261011.json",
-        "research/runtime/public-resident-region-epoch-tutorial-failure-20261011.json"
+        "research/runtime/public-resident-region-epoch-tutorial-failure-20261011.json",
+        "research/runtime/public-resident-shadow-fixtures-20261011.json",
+        "research/runtime/public-resident-linked-provenance-fixtures-20261011.json"
       ],
       "validation_dependencies": [
         "renderer/CMakeLists.txt",
@@ -37679,7 +37683,9 @@
         "NR.public-resident-world.cursor-queue-live-failure-20261011",
         "NR.world-source-region-epoch.fixtures-20261011",
         "NR.world-source-region-epoch.tutorial-failure-20261011",
-        "NR.world-source-region-epoch.shadow-failure-20261011"
+        "NR.world-source-region-epoch.shadow-failure-20261011",
+        "NR.public-resident-world.shadow-fixtures-20261011",
+        "NR.public-resident-world.linked-provenance-fixtures-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -75694,6 +75700,56 @@
           "equals": "Projected shadow exceeds storage"
         }
       ]
+    },
+    {
+      "id": "NR.public-resident-world.shadow-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Fresh native integration fixtures: transparent projected-shadow padding on separate-surface and atlas backends, covered overflow atomic refusal, cropped rows/whole horizontal refusal, owned metadata without readback, existing1.44Mreference words/import/defer/ABI corpus. Full source/input fingerprints and executable hashes unchanged. Native analytical/reference comparison, not new original execution or public replacement.",
+      "record": "research/runtime/public-resident-shadow-fixtures-20261011.json",
+      "sha256": "b2407aef4423f9e24080fdc3e148333747c5f5511735dff38268236d38908348",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/mixed_world/delivery_readbacks",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.linked-provenance-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Owned compiler-provenance traversal fixture: two linked source dependencies, unrelated target/generated source exclusion, missing object/archive receipt refusals. Native test tooling integration only, no engine execution/original equivalence.",
+      "record": "research/runtime/public-resident-linked-provenance-fixtures-20261011.json",
+      "sha256": "dbffa76f9f01cbdc71e0ce7800c771a52a69a6fcba3be690387cf883328ec22a",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/result/missing_receipts_refused",
+          "equals": 2
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -84155,7 +84211,9 @@
         "NR.public-resident-world.owned-fixtures-20261011",
         "NR.public-resident-world.batch-fixtures-20261011",
         "NR.public-resident-world.cursor-queue-fixtures-20261011",
-        "NR.world-source-region-epoch.fixtures-20261011"
+        "NR.world-source-region-epoch.fixtures-20261011",
+        "NR.public-resident-world.shadow-fixtures-20261011",
+        "NR.public-resident-world.linked-provenance-fixtures-20261011"
       ]
     }
   ],
@@ -84494,8 +84552,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-public-resident-region-shadow-failure-20261011.json",
-    "sha256": "5efec74f1a95d0a27670d00ac2b36f7f7e2b8418200542a46d67c31906b0bf65"
+    "path": "research/runtime/coverage/source-index-public-resident-shadow-provenance-20261011.json",
+    "sha256": "69b1bc3c285f7191d4a30741073cfa9d76bc10f0117c4af4084f5770d5b10e34"
   },
   "claim_bindings_required": true
 }

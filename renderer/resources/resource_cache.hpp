@@ -30,6 +30,9 @@ struct ResourceUploadRequest {
     }
 };
 PreparedSpriteFrame prepareResourceUpload(const assets::VisualResource&,const ResourceUploadRequest&,const std::function<void()>& checkpoint={});
+// Transparent projected padding may exceed storage; covered samples may not.
+void validateShadowStorage(const assets::SpriteFrame&,std::int64_t left,std::int64_t top,
+                           ShadowRows,QSize storage);
 struct ResourceCacheStats {
     std::size_t frames=0, surfaces=0;
     std::uint64_t pixels=0, hits=0, uploads=0, evictions=0;

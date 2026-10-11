@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "reviewed_range": "b04ffefc61fe5b8194f00b23027f7981bcf5596f..b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+  "scope": "Committed resident permission-epoch milestone exact parent/current source SHA-256 and receipt audit. Separate from pending public frontend wiring; no retrospective execution or gate assertion.",
+  "commits": [
+    "b1f4ff1714dc8911bda0ea798e40d8526aff4546"
+  ],
+  "files": [
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "apps/qt-shell/resident_world_session.cpp",
+      "before_sha256": "40dfce13bae0be96039d2b15dd9301a21ed755ff0ca5a4aad00e08c1bed844b8",
+      "after_sha256": "a1d7e461e42b777ad3592ecb78bc1dce43e22f4005ad7cd5798c3770c1155286",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "apps/qt-shell/resident_world_session.hpp",
+      "before_sha256": "008fab28154444e0377c3482ce2c30382afbf5da2fa28e878b0de60a352dd121",
+      "after_sha256": "262d33659d769b460f1623fad62a2407028da412d11d6a138b3784a7fc99ecbd",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "compat/legacy/world-rolling/CMakeLists.txt",
+      "before_sha256": "0d3a3600445f4ca4efc0d74d55eec6ccd1835405c6094f086728f69def2b2eff",
+      "after_sha256": "af2e23fe3bfac759e1c7adadc287cda59bf7d5a5106be3d8da1ccc10e6963cb7",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "fdcf5d08bb39b76218a5f937b8a1f412ec30c99f48faf25ecfed182096c2a750",
+      "after_sha256": "232bbc558f5dffefd7cb18b1b4b760112ed38a4f23df74c9ea5e266902a1169b",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "research/runtime/coverage/history-resident-batch-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f6832b642ed51aa82cd31e0e5325e7c96f2b7e6d2fa0da4a5a3e64d32aa9f319",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "961436f4344eaf71608b7d421edef266c355811be44fd6926af41bfdef2628e3",
+      "after_sha256": "6cb87f58f8accdb8d365d43cd2e18aef6f029564ea3ff302b67202118e965a65",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "research/runtime/coverage/source-index-public-resident-region-epoch-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5efec74f1a95d0a27670d00ac2b36f7f7e2b8418200542a46d67c31906b0bf65",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "research/runtime/coverage/source-index-public-resident-region-shadow-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5efec74f1a95d0a27670d00ac2b36f7f7e2b8418200542a46d67c31906b0bf65",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "3f7587fc706ad574ffe7aafda95736ccbce9c935f645df18db436491ba9ddd27",
+      "after_sha256": "068a81d27b99f09a39032fe1d4a3790849136783d312102db99e96ab472bb4e7",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "research/runtime/public-resident-region-epoch-fixtures-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "d2f2109eb739464364373267a0b7d5fc34d2f14cc950234fbcfe1c19f1fe6a9d",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "research/runtime/public-resident-region-epoch-provenance-refusal-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e75d75f393023e6be7fddaf5eb6be50e9629de65d72216fd9c2bec2ce23a7355",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "research/runtime/public-resident-region-epoch-shadow-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "84d16607764c134bb0a4d38c4270e82cc1cd60fd8665c91903121a23b15e4b32",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "research/runtime/public-resident-region-epoch-tutorial-failure-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "298835ec9e4f3c5a660dd97c634af262f262df2d90e85c014668f0ddfaabb89a",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "research/runtime/public-resident-world.md",
+      "before_sha256": "e49c417f1da321b8bb1e08b7f3b60965b74c2a5bb2ddc6c01f5ee61b779b1d38",
+      "after_sha256": "abf125adcf1651535db7a4c14d019d091845956d052a944d4d2621e95492bd91",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "runtime/scene/canvas_producers.c",
+      "before_sha256": "593a8ecc0d0deea476b702f893ddcc8ae1a2418c56caacbd36a49a5287e64d50",
+      "after_sha256": "1c1a507fc46bedb7fec96594221b7b538a067212b0232e29266b43c739d937ec",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "runtime/scene/world_raster_batch.c",
+      "before_sha256": "01af7cbc89cdd05aed5f334c5de179ff54f626ef9f64dda72ef49da7a8b9fd25",
+      "after_sha256": "3b30011a6e28bbe4ba241f3e411f9407a404c1fabc99f3a8bc508a0323e58524",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "runtime/scene/world_source_regions.h",
+      "before_sha256": null,
+      "after_sha256": "b0c33c178073882529ef3bfe1ff59b7550353db45b38c122d392a620b7c8b68b",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "tests/world-source-regions-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "f7858653a2da870b8ff832eb300bf1086d7591a31c893b0851f5c048536569aa",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "tools/test-live-campaign-mini.py",
+      "before_sha256": "886050526ad714e82965cbaedcf9e834d7202c2e5ffa5016794177a6697459ee",
+      "after_sha256": "38f07dfc45081a799708100db73e72c4dc3c4039fd953cf323dca918004aa362",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "5fb67171cd90f5a69dd64a44258a0ebfe0a51fc44a697c0867c22d66ce905afa",
+      "after_sha256": "ad139831b82dcede3783ad5ec348bf6bff35c5d6eb8a78f8e973e7bd814947c5",
+      "matching_review": "public-resident-region-epoch-20261011"
+    },
+    {
+      "commit": "b1f4ff1714dc8911bda0ea798e40d8526aff4546",
+      "parent": "b04ffefc61fe5b8194f00b23027f7981bcf5596f",
+      "path": "tools/test-public-resident-fixtures.py",
+      "before_sha256": "5333602572bdca2447e8efd74da6880f72691a8d0ba506076bba1af9b4a968aa",
+      "after_sha256": "1d1bd0dd4786c4ca4f72e007fd50ac0a5521c7b0a4fb992892c20e343e9e6260",
+      "matching_review": "public-resident-region-epoch-20261011"
+    }
+  ],
+  "unresolved_gaps": []
+}

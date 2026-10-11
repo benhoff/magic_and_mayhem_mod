@@ -37,7 +37,7 @@ def main():
   leaf=run(['python3','tools/test-resident-leaf-abi.py','--prefix',str(a.prefix.resolve())]);leafpath=Path(next(line[8:] for line in leaf.splitlines() if line.startswith('Report: ')))
   report['leaf_abi']=json.loads(leafpath.read_text());assert report['leaf_abi']['success'] and report['leaf_abi']['sources_unchanged']
   run(['cmake','-S','apps/qt-shell','-B','working/build/qt-shell','-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
-  targets=['resident-public-block-replay','render-resident-world-test','world-deferred-test','world-source-regions-test','world-raster-batch-test','minimap-producer-test']
+  targets=['resident-public-block-replay','render-resident-world-test','world-deferred-test','world-source-regions-test','world-raster-batch-test','minimap-producer-test','scene-renderer-test','scene-upload-test']
   run(['cmake','--build','working/build/qt-shell','--target',*targets,'-j','8'])
   build=ROOT/'working/build/qt-shell';sub=build/'world-rolling/canvas-producers'
   run(['xvfb-run','-a',str(build/'world-rolling/resident-public-block-replay'),str(a.channel.resolve()),str(a.assets.resolve()),str(out/'mixed.json')],True)
@@ -45,9 +45,11 @@ def main():
   output=run(['xvfb-run','-a',str(build/'renderer/render-resident-world-test')],True);report['import_hud']=json.loads(next(line for line in output.splitlines() if line.startswith('{')))
   report['deferred']=json.loads(run([str(build/'world-rolling/world-deferred-test')]))
   report['source_regions']=json.loads(run([str(build/'world-rolling/world-source-regions-test')]))
+  report['shadow_scene']=run(['xvfb-run','-a',str(sub/'scenes/scene-renderer-test')],True).strip()
+  report['shadow_upload']=run(['xvfb-run','-a',str(sub/'scenes/scene-upload-test')],True).strip()
   report['strict_batch']=run([str(sub/'world-raster-batch-test')]).strip()
   report['minimap']=run([str(sub/'minimap-producer-test')]).strip()
-  report['executables']={str(binary.relative_to(ROOT)):sha(binary) for binary in [build/'world-rolling/resident-public-block-replay',build/'renderer/render-resident-world-test',build/'world-rolling/world-deferred-test',sub/'world-raster-batch-test',sub/'minimap-producer-test']}
+  report['executables']={str(binary.relative_to(ROOT)):sha(binary) for binary in [build/'world-rolling/resident-public-block-replay',build/'renderer/render-resident-world-test',build/'world-rolling/world-deferred-test',build/'world-rolling/world-source-regions-test',sub/'world-raster-batch-test',sub/'minimap-producer-test',sub/'scenes/scene-renderer-test',sub/'scenes/scene-upload-test']}
   report['success']=True
  except (OSError,ValueError,RuntimeError,subprocess.SubprocessError,AssertionError) as e:report['error']=str(e)
  finally:

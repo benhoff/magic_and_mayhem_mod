@@ -4,6 +4,19 @@
 #include <iostream>
 using namespace mnm;
 using namespace resource_test;
+Bytes shadowSprite(bool overflow){
+    constexpr unsigned width=68,height=38,header=40+height*8;
+    const unsigned frameBytes=header+height*3+height*2;
+    Bytes b(28+frameBytes,0);word(b,0,0x00525053);word(b,4,b.size());word(b,8,4);word(b,12,1);
+    word(b,28,frameBytes);word(b,32,width);word(b,36,height);word(b,40,unsigned(-18));word(b,44,unsigned(-23));word(b,56,0xffffffff);
+    for(unsigned y=0;y<height;++y){
+        const auto delta=header+y*3,pixel=header+height*3+y*2;
+        word(b,28+40+y*8,delta);word(b,28+44+y*8,pixel);
+        const unsigned col=overflow&&y==0?67:49;
+        b[28+delta]=col;b[28+delta+1]=1;b[28+delta+2]=width-col-1;
+    }
+    return b;
+}
 int main(int argc,char** argv)try{
     QGuiApplication app(argc,argv);QTemporaryDir directory;require(directory.isValid(),"Fixture root failed");
     const auto root=std::filesystem::path(directory.path().toStdString());populate(root);
@@ -13,6 +26,29 @@ int main(int argc,char** argv)try{
     recipe=spr("indexed.spr");recipe.animation="body.ani";resources.bind(indexed,recipe);
     resources.bind(bitmap,{assets::ResourceImageFormat::bmp,"ui.bmp",{},{},{}});
     render::GlBlitter renderer;const render::Image background{5,3,std::vector<std::uint32_t>(15,0x1234)};
+    // Captured failure geometry: nominal projection reaches805, transparent
+    // right padding only. Distinct opaque rows make clipping/row selection observable.
+    for(const bool atlas:{false,true}){
+        const assets::ResourceId shadow{assets::ResourceKind::ui,"edge-shadow"},bad{assets::ResourceKind::ui,"overflow-shadow"};
+        write(root,"edge-shadow.spr",shadowSprite(false));write(root,"overflow-shadow.spr",shadowSprite(true));
+        resources.bind(shadow,spr("edge-shadow.spr"));resources.bind(bad,spr("overflow-shadow.spr"));
+        const render::Image base{800,600,std::vector<std::uint32_t>(480000,0xffff)};
+        render::SceneLimits limits;limits.cache.indexedAtlas=atlas;
+        render::SceneRenderer scene(renderer,resources,base,limits);
+        render::SceneDraw draw{shadow,0,700,179};draw.viewport=render::Rect{0,0,800,312};draw.composite.mode=render::CompositeMode::projectedShadow;
+        const auto before=renderer.stats();scene.draw({draw});const auto after=renderer.stats();
+        require(before.nativeReadbacks==after.nativeReadbacks&&before.rgbaReadbacks==after.rgbaReadbacks,"Edge shadow delivery readback");
+        auto expected=base;for(int row=0;row<19;++row)expected.pixels[(221+row)*800+786-row]=0x7bef;
+        require(scene.read().pixels==expected.pixels,"Transparent projected padding altered covered shadow samples");
+        draw.resource=bad;rejected([&]{scene.draw({draw});});require(scene.read().pixels==expected.pixels,"Actual shadow overflow mutated completed frame");
+        draw.resource=shadow;draw.viewport=render::Rect{0,230,800,258};scene.draw({draw});
+        expected=base;for(int row=0;row<14;++row)expected.pixels[(230+row)*800+785-row]=0x7bef;
+        require(scene.read().pixels==expected.pixels,"Odd cropped shadow source rows differ");
+        draw.anchorX=720;scene.draw({draw});require(scene.read().pixels==base.pixels,"Whole horizontal shadow refusal changed");
+        const auto surface=renderer.allocate(3,2,render::spriteFormat);const auto stats=renderer.stats();
+        require(renderer.dimensions(surface)==QSize(3,2),"Undefined surface metadata unavailable");
+        require(renderer.stats().nativeReadbacks==stats.nativeReadbacks&&renderer.stats().rgbaReadbacks==stats.rgbaReadbacks,"Metadata read pixels");renderer.destroy(surface);
+    }
     {
         render::SceneRenderer scene(renderer,resources,background,{4,{2,12}});
         rejected([&]{scene.read();});rejected([&]{scene.present();});

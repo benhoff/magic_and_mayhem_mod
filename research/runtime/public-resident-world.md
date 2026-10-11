@@ -166,3 +166,50 @@ per World, with zero World/native/RGBA delivery readbacks. This is negative
 evidence (`public-resident-region-epoch-shadow-failure-20261011.json`), not a
 sustained19FPS or completed casting/combat/portrait/quit proof. The next bounded
 fix investigates the right-edge shadow against actual opaque samples.
+
+## Projected shadow transparent-padding admission
+
+The ordinary campaign gen226 request1115 has68x38source geometry,origin(-18,-23),
+anchor(700,179),clip(0,0,800,312). Its nominal projected right limit is805, but
+decoded opaque samples reach only786. The old rectangular preflight therefore
+refused safe coverage. Native preflight now checks actual projected samples only
+when the bounding rectangle exceeds storage; covered overflow still refuses
+before destination mutation. GPU cropping removes only transparent padding at
+the owned canvas boundary. The original unprojected horizontal refusal and
+vertical/alternating-row rules remain. No pixel readback or destination seed is
+introduced. `GlBlitter::dimensions` reads owned metadata without resolving or
+fencing a presentation. Direct ResourceCache draws also check covered storage.
+
+The scene regression uses this geometry with analytically placed opaque samples,
+checks exact darkened pixels, odd vertical cropping, whole horizontal refusal,
+actual covered overflow preserving the previous frame, and undefined-surface
+metadata without readback. This is native admission evidence; independent
+original execution equivalence and completed public gameplay remain separate.
+
+Two fixture setup refusals are preserved under the shadow fixture path/recipe
+reports: incorrect CMake executable location, then a standalone SPR declared
+as an effect without its required ANI. Neither is gameplay or original
+equivalence evidence. Corrected execution uses standalone UI resource recipes
+and runs both atlas and separate-surface shadow backends.
+
+The first complete shadow execution passed both backends and the upload/reference
+corpus, but executable hash reporting raised an internal type error afterward.
+Its report is retained separately as `public-resident-shadow-fixture-report-error-20261011.json`;
+this incomplete result is not promoted to a successful fixture report.
+
+Fresh complete `public-resident-shadow-fixtures-20261011.json` passes both
+shadow backends, atomic genuine overflow refusal, cropped rows/whole horizontal
+refusal, owned metadata without readback and existing1.44Mword/import/defer/ABI
+fixtures. Sources/inputs are unchanged and all executed native fixture binaries
+are hashed. This is native integration evidence, not original pixel equivalence
+or a public gameplay/performance pass.
+
+The campaign prelaunch compiler check formerly scanned all built test targets;
+this correctly refused undeclared test inputs but incorrectly treated them as
+shell dependencies. It now follows the shell's linked objects/local archives
+and requires their exact compiler receipts.287actual repository source/header
+dependencies are found on this build. Synthetic linked-target fixtures prove
+unrelated/generated inputs are excluded and missing linked object/archive
+receipts refuse. New durable result `public-resident-linked-provenance-fixtures-20261011.json`
+is source bound; the earlier negative is preserved separately. New validation
+metadata does not promote engine gameplay or original equivalence.

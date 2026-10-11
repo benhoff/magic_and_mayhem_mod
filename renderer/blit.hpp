@@ -131,6 +131,8 @@ public:
     void importGpu565(SurfaceId destination,const GpuFrame& frame);
     void setPalette(SurfaceId surface,unsigned first,const std::vector<Rgb>& colors);
     Image read(SurfaceId surface);
+    // Owned metadata only; does not flush, resolve, fence or read pixels.
+    QSize dimensions(SurfaceId surface) const;
     QImage present(SurfaceId surface);
     GpuFrame presentGpu(SurfaceId surface);
     RenderStats stats() const;
