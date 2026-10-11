@@ -28773,7 +28773,8 @@
         "tests/sprite-binary-reference.cpp"
       ],
       "evidence": [
-        "NR.canvas-image-production.native-20261010"
+        "NR.canvas-image-production.native-20261010",
+        "NR.canvas-image-production.regression-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -29446,13 +29447,61 @@
       ],
       "evidence": [
         "RS.canvas-fade-span.comparison-20261010",
-        "RS.canvas-fade-span.native-20261010"
+        "RS.canvas-fade-span.native-20261010",
+        "RS.canvas-fade-span.regression-original-20261010",
+        "RS.canvas-fade-span.regression-native-20261010"
       ],
       "status": {
         "understanding": "scoped",
         "implementation": "scoped",
         "comparison": "recorded",
         "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "RS.fade-loop-state",
+      "kind": "recovered",
+      "subsystem": "rendering",
+      "title": "NoCD fade loop caller state and preserved wrapper callbacks",
+      "scope": "Positive bounded 58edb0..58ede5 fade pixel-loop splice under unchanged 58ed80 wrapper Lock/Unlock. Native contiguous word kernel, full physical words, wrapper arguments/callback trace, GPR/defined EFLAGS/DF, stack and selected full FX state. Explicit writable live lease admission; refusal forwards original loop once. No image/panel/glyph takeover, failed original Lock dereference recovery or complete renderer replacement.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5827968,
+          "scope": "Positive fade wrapper pixel loop and callback/caller state."
+        }
+      ],
+      "documents": [
+        "research/runtime/fade-loop-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/fade_kernel.c",
+        "reconstruction/rendering/fade_kernel.h",
+        "runtime/canvas-writers/fade_route.c",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/fade_entry.S",
+        "runtime/canvas-writers/fade_finish.S"
+      ],
+      "tests": [
+        "tests/fade-loop-reference.cpp",
+        "tests/fade-loop-state-probe.S",
+        "tests/fade-kernel-test.c",
+        "tools/test-fade-loop.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh"
+      ],
+      "evidence": [
+        "RS.fade-loop-state.original-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "none",
         "replacement": "none"
       }
     },
@@ -29897,6 +29946,507 @@
           "public interactive gameplay equivalence",
           "performance benefit"
         ]
+      }
+    },
+    {
+      "id": "RS.fade-live-pixels",
+      "subsystem": "rendering",
+      "title": "Installed native fade interior-loop physical pixels",
+      "kind": "recovered",
+      "scope": "Opt-in fixed NoCD fade loop native suppression under unchanged original Lock/Unlock. Single owner thread, positive bounded readable/writable original leases. Full physical before/after diagnostics through Main/Single Player/Quick Battle/Map/startup; independently replay every admitted input through the unchanged original loop. Full pixel equality and evidence of interior original loop bypass only. Synthetic caller/FX validation separately RS.fade-loop-state. Not independent native surface ownership, GPU frame takeover, failed original Lock behavior, arbitrary gameplay or other writers.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5827968,
+          "scope": "Positive bounded fade pixel loop with original wrapper callbacks"
+        }
+      ],
+      "documents": [
+        "research/runtime/fade-loop-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/fade_kernel.c",
+        "reconstruction/rendering/fade_kernel.h",
+        "runtime/canvas-writers/fade_route.c",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/fade_entry.S",
+        "runtime/canvas-writers/fade_finish.S",
+        "runtime/canvas-writers/bridge.c"
+      ],
+      "tests": [
+        "tools/capture-fade-writer-game.py",
+        "tools/fade_live_capture.py",
+        "tests/test-fade-live-capture.py",
+        "tests/canvas-fade-reference.cpp"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/build-canvas-writers.py",
+        "tools/build-shadow-bridge.py",
+        "tools/build-menu-observer.py",
+        "tools/canvas-writer-game-runner.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/encode-cfg.py",
+        "tools/decode-cfg.py",
+        "tools/run-game.sh",
+        "tools/original-manifest.sh",
+        "runtime/shadow/win32_min.h",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h"
+      ],
+      "evidence": [
+        "RS.fade-live-pixels.original-20261010",
+        "RS.fade-live-pixels.live-20261010",
+        "RS.fade-live-pixels.takeover-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "live_equivalence",
+        "replacement": "scoped_live"
+      }
+    },
+    {
+      "id": "RS.panel-pixel-domain",
+      "subsystem": "rendering",
+      "title": "Native panel pixel domain",
+      "kind": "recovered",
+      "scope": "Bounded zero-origin RGB565 58ddf0/58d8c0/58e2c0 physical pixels, inclusive/half-open/asymmetric corner ordering, degenerate and edge rectangles, percent0..1000, both pressed/reverse booleans, initial channel extremes/exhaustive whitewash words and padded rows. External Lock/Unlock success adapters. No live takeover, caller/FX state, nonzero origin clipping or RGB555 panels.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5823984,
+          "scope": "Bounded zero-origin RGB565 panel pixels under external Lock/Unlock adapters"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5822656,
+          "scope": "Bounded zero-origin RGB565 panel pixels under external Lock/Unlock adapters"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5825216,
+          "scope": "Bounded zero-origin RGB565 panel pixels under external Lock/Unlock adapters"
+        }
+      ],
+      "documents": [
+        "research/runtime/panel-domain.md"
+      ],
+      "implementation": [
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp"
+      ],
+      "tests": [
+        "tests/panel-domain-native.cpp",
+        "tests/panel-domain-reference.cpp",
+        "tools/test-panel-domain.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh",
+        "renderer/blit.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.hpp"
+      ],
+      "evidence": [
+        "RS.panel-pixel-domain.original-20261010",
+        "NR.panel-domain.native-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "recorded",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.panel-atomic-admission",
+      "subsystem": "rendering",
+      "title": "Atomic native panel footprint admission",
+      "kind": "native_policy",
+      "scope": "Complete ordered panel footprint validation before mutation; late undefined destination or out-of-range panel refuses without altering earlier defined pixels. Whitewash admits half-open full-canvas extents; halo and bevel retain their distinct inclusive bounds. Owned native RGB565 history only; no original unsafe memory/failure equivalence or live suppression claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/panel-domain.md"
+      ],
+      "implementation": [
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp"
+      ],
+      "tests": [
+        "tests/panel-domain-native.cpp",
+        "tests/panel-domain-reference.cpp",
+        "tools/test-panel-domain.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/original-manifest.sh",
+        "renderer/blit.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "assets/sprite_loader.hpp",
+        "assets/asset_file.hpp",
+        "assets/path_resolver.hpp"
+      ],
+      "evidence": [
+        "NR.panel-domain.native-20261010",
+        "RS.panel-pixel-domain.original-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.canvas-writer-admission",
+      "subsystem": "rendering",
+      "title": "Guarded opt-in native canvas writer lease admission",
+      "kind": "native_policy",
+      "scope": "Independent fixed-build native fade splice under original Lock/Unlock; explicit default-off and mode/source-byte admission, phase/local Lock pointer and bounded complete physical writable lease preflight, owner-thread and nested refusal, LastError/FX preservation, 128-record/256MiB diagnostic caps. Refusal before pixel mutation; unsupported original loop forwards once. Synthetic Win32 page and budget tests; no arbitrary DirectDraw lifetime, thread races, failure recovery, complete renderer or other writer suppression claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/fade-loop-takeover.md"
+      ],
+      "implementation": [
+        "reconstruction/rendering/fade_kernel.c",
+        "reconstruction/rendering/fade_kernel.h",
+        "runtime/canvas-writers/fade_route.c",
+        "runtime/canvas-writers/fade_route.h",
+        "runtime/canvas-writers/fade_entry.S",
+        "runtime/canvas-writers/fade_finish.S",
+        "runtime/canvas-writers/bridge.c"
+      ],
+      "tests": [
+        "tests/canvas-writers-selftest.c",
+        "tools/test-canvas-writer-admission.py",
+        "tools/fade_live_capture.py",
+        "tests/test-fade-live-capture.py"
+      ],
+      "validation_dependencies": [
+        "tools/build-canvas-writers.py",
+        "tools/build-shadow-bridge.py",
+        "runtime/shadow/win32_min.h"
+      ],
+      "evidence": [
+        "NR.canvas-writer-admission.native-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.other-producer-checkpoints",
+      "subsystem": "rendering",
+      "title": "Saved source-only other-producer CPU/GPU checkpoint regression",
+      "kind": "native_policy",
+      "scope": "Fresh Debug native replay of the pinned saved original four-return startup/HUD source-only producer journal. All completed native CPU canvases and GPU mirrors independently compare with saved original checkpoint bytes. Covers observed image/copy/panel/fade/HUD/minimap/marker operations and retained font inputs. Native receives no original completed destination images. Exact original capture/code/encoded-input and native compiler/build closure are bound. No fresh live capture, glyph backend takeover, unobserved pixel writer attribution, broader HUD/cursor journey, live suppression or whole-renderer equivalence claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/panel-domain.md",
+        "research/runtime/native-canvas-producers.md",
+        "research/runtime/other-writer-admission.md"
+      ],
+      "implementation": [
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/canvas_producer_main.cpp"
+      ],
+      "tests": [
+        "tools/test-other-producer-checkpoints.py",
+        "tests/canvas-sequence-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tests/other-writer-atomic-test.cpp"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/CMakeLists.txt",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/CMakeLists.txt",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/minimap/overlays/CMakeLists.txt",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/word-clipped/CMakeLists.txt",
+        "renderer/sprites/word-raster/CMakeLists.txt",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tools/inspect-canvas-producers.py",
+        "tools/original-manifest.sh",
+        "tools/test-native-canvas-producers.py"
+      ],
+      "evidence": [
+        "NR.other-producer-checkpoints.native-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "NR.other-writer-atomic-admission",
+      "subsystem": "rendering",
+      "title": "Atomic native RGB/blend/wave/shadow/minimap history admission",
+      "kind": "native_policy",
+      "scope": "Complete preflight before destination mutation for native RGB addition, blend modes1/2/4, displacement mode3 and projected shadow mode5, plus legacy terrainMap hidden-cell history. Selected late undefined destination/sample, invalid offset/position, shadow overflow, missing/projected-outside minimap history refusals; source-only opaque initialization and cropped unused row positives. Retain existing success pixel rules. No arbitrary original failure/state equivalence, driver lease/lifetime, glyph hook changes, unknown writers or complete live replacement.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/other-writer-admission.md"
+      ],
+      "implementation": [
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp"
+      ],
+      "tests": [
+        "tests/other-writer-atomic-test.cpp",
+        "tools/test-other-producer-checkpoints.py"
+      ],
+      "validation_dependencies": [
+        "apps/qt-shell/canvas_producer_main.cpp",
+        "apps/qt-shell/canvas_producer_session.cpp",
+        "apps/qt-shell/canvas_producer_session.hpp",
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/CMakeLists.txt",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/CMakeLists.txt",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/minimap/overlays/CMakeLists.txt",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/sprites/word-clipped/CMakeLists.txt",
+        "renderer/sprites/word-raster/CMakeLists.txt",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "tests/canvas-sequence-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tools/inspect-canvas-producers.py",
+        "tools/original-manifest.sh",
+        "tools/test-native-canvas-producers.py"
+      ],
+      "evidence": [
+        "NR.other-producer-checkpoints.native-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
       }
     }
   ],
@@ -57745,6 +58295,358 @@
           "equals": 16
         }
       ]
+    },
+    {
+      "id": "RS.fade-loop-state.original-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/fade-loop-state-comparison-20261010.json",
+      "sha256": "84c1bc8a745f5de875818a343d6c3efbea4870c2ab2556b8b0e6649f9e5e6feb",
+      "scope": "Positive bounded 58edb0..58ede5 fade pixel-loop splice under unchanged 58ed80 wrapper Lock/Unlock. Native contiguous word kernel, full physical words, wrapper arguments/callback trace, GPR/defined EFLAGS/DF, stack and selected full FX state. Explicit writable live lease admission; refusal forwards original loop once. No image/panel/glyph takeover, failed original Lock dereference recovery or complete renderer replacement.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/execution_count",
+          "equals": 19440
+        },
+        {
+          "pointer": "/native_handled",
+          "equals": 3888
+        },
+        {
+          "pointer": "/original_once_fallbacks",
+          "equals": 15552
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.fade-live-pixels.original-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/fade-writer-live-comparison-20261010.json",
+      "sha256": "328af98fcf9fc0ceae485b7e049f266df3aa551ae5adcff423e568798ba7b8d4",
+      "scope": "Opt-in fixed NoCD fade loop native suppression under unchanged original Lock/Unlock. Single owner thread, positive bounded readable/writable original leases. Full physical before/after diagnostics through Main/Single Player/Quick Battle/Map/startup; independently replay every admitted input through the unchanged original loop. Full pixel equality and evidence of interior original loop bypass only. Synthetic caller/FX validation separately RS.fade-loop-state. Not independent native surface ownership, GPU frame takeover, failed original Lock behavior, arbitrary gameplay or other writers.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 25
+        },
+        {
+          "pointer": "/forwarded_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/source_input_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "RS.fade-live-pixels.live-20261010",
+      "kind": "live_equivalence",
+      "record": "research/runtime/fade-writer-live-comparison-20261010.json",
+      "sha256": "328af98fcf9fc0ceae485b7e049f266df3aa551ae5adcff423e568798ba7b8d4",
+      "scope": "Opt-in fixed NoCD fade loop native suppression under unchanged original Lock/Unlock. Single owner thread, positive bounded readable/writable original leases. Full physical before/after diagnostics through Main/Single Player/Quick Battle/Map/startup; independently replay every admitted input through the unchanged original loop. Full pixel equality and evidence of interior original loop bypass only. Synthetic caller/FX validation separately RS.fade-loop-state. Not independent native surface ownership, GPU frame takeover, failed original Lock behavior, arbitrary gameplay or other writers.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 25
+        },
+        {
+          "pointer": "/forwarded_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/source_input_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/live_equivalence"
+    },
+    {
+      "id": "RS.fade-live-pixels.takeover-20261010",
+      "kind": "live_replacement",
+      "record": "research/runtime/fade-writer-live-comparison-20261010.json",
+      "sha256": "328af98fcf9fc0ceae485b7e049f266df3aa551ae5adcff423e568798ba7b8d4",
+      "scope": "Opt-in fixed NoCD fade loop native suppression under unchanged original Lock/Unlock. Single owner thread, positive bounded readable/writable original leases. Full physical before/after diagnostics through Main/Single Player/Quick Battle/Map/startup; independently replay every admitted input through the unchanged original loop. Full pixel equality and evidence of interior original loop bypass only. Synthetic caller/FX validation separately RS.fade-loop-state. Not independent native surface ownership, GPU frame takeover, failed original Lock behavior, arbitrary gameplay or other writers.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 25
+        },
+        {
+          "pointer": "/forwarded_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/source_input_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256",
+      "equivalence_pointer": "/live_equivalence",
+      "bypass_pointer": "/original_work_bypassed"
+    },
+    {
+      "id": "NR.canvas-writer-admission.native-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/canvas-writer-admission-comparison-20261010.json",
+      "sha256": "9eb92722e8c5dd1fb70f167d9677ca2b0751b54c97e805e201085d1eeee15cd6",
+      "scope": "Independent fixed-build native fade splice under original Lock/Unlock; explicit default-off and mode/source-byte admission, phase/local Lock pointer and bounded complete physical writable lease preflight, owner-thread and nested refusal, LastError/FX preservation, 128-record/256MiB diagnostic caps. Refusal before pixel mutation; unsupported original loop forwards once. Synthetic Win32 page and budget tests; no arbitrary DirectDraw lifetime, thread races, failure recovery, complete renderer or other writer suppression claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/handled",
+          "equals": 128
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 15
+        },
+        {
+          "pointer": "/disabled_and_install_refusals",
+          "equals": 3
+        }
+      ]
+    },
+    {
+      "id": "RS.panel-pixel-domain.original-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/panel-domain-comparison-20261010.json",
+      "sha256": "34126f66a5633803833a71ad8de397dd1012474f6d152f3c73f9024445a72485",
+      "scope": "Bounded zero-origin RGB565 58ddf0/58d8c0/58e2c0 physical pixels, inclusive/half-open/asymmetric corner ordering, degenerate and edge rectangles, percent0..1000, both pressed/reverse booleans, initial channel extremes/exhaustive whitewash words and padded rows. External Lock/Unlock success adapters. No live takeover, caller/FX state, nonzero origin clipping or RGB555 panels.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 7490
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 19
+        },
+        {
+          "pointer": "/source_input_stable",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "NR.panel-domain.native-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/panel-domain-comparison-20261010.json",
+      "sha256": "34126f66a5633803833a71ad8de397dd1012474f6d152f3c73f9024445a72485",
+      "scope": "Complete ordered panel footprint validation before mutation; late undefined destination or out-of-range panel refuses without altering earlier defined pixels. Whitewash admits half-open full-canvas extents; halo and bevel retain their distinct inclusive bounds. Owned native RGB565 history only; no original unsafe memory/failure equivalence or live suppression claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/case_count",
+          "equals": 7490
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 19
+        }
+      ]
+    },
+    {
+      "id": "NR.other-producer-checkpoints.native-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/other-producer-checkpoints-20261010.json",
+      "sha256": "9b612c58d7c2a873f2c3a3145dc0fefa5f871ba7ff609c6169453ba44d19e645",
+      "scope": "Fresh Debug native replay of the pinned saved original four-return startup/HUD source-only producer journal. All completed native CPU canvases and GPU mirrors independently compare with saved original checkpoint bytes. Covers observed image/copy/panel/fade/HUD/minimap/marker operations and retained font inputs. Native receives no original completed destination images. Exact original capture/code/encoded-input and native compiler/build closure are bound. No fresh live capture, glyph backend takeover, unobserved pixel writer attribution, broader HUD/cursor journey, live suppression or whole-renderer equivalence claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/checkpoints",
+          "equals": 954
+        },
+        {
+          "pointer": "/gpu_mirror_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/atomic_writers/atomic_refusals",
+          "equals": 19
+        }
+      ]
+    },
+    {
+      "id": "NR.canvas-image-production.regression-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/canvas-image-producer-regression-20261010.json",
+      "sha256": "91fd73711556207360a7ae65a60c5b141de6bc4d44613e00f75f408a8875cf93",
+      "scope": "RGB565 source-only CanvasProducerReplay DIB at origin and positioned BMP: canonical positive 40-byte BI_RGB 1/4/8-bit indexed and 24-bit BGR inputs, palette/row orientation, destination cropping and retained borders. Compare memory-DIB output with frozen independent Wine Surface2 GetDC/GDI/ReleaseDC RGB565 captures. Positioned BMP uses native crop policy with independently projected source placement. No live wrapper/ABI bypass, indexed destinations, DC clipping/palettes, alternate headers/compression or DirectDraw failure semantics.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 288
+        },
+        {
+          "pointer": "/atomic_refusals",
+          "equals": 288
+        }
+      ]
+    },
+    {
+      "id": "RS.canvas-fade-span.regression-original-20261010",
+      "kind": "isolated_original",
+      "record": "research/runtime/canvas-fade-span-regression-20261010.json",
+      "sha256": "0494ba7d11d24b7242b08c16e7f8d1f2e9298bc29354084a602e940ec318956d",
+      "scope": "Selected 58ed80 pixel loop, positive bounded width/height and stride>=width, initialized physical WORD plane. Exactly2*floor(width/2)*height contiguous WORDs are halved/masked irrespective of pitch; format selector zero=RGB565, any nonzero=RGB555. Full padded physical-word comparison and native logical-canvas projection. Lock/unlock supplied private adapters, no driver/return/ABI/recovery or live bypass equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 972
+        },
+        {
+          "pointer": "/sanitizer_success",
+          "equals": true
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/source_executable_sha256"
+    },
+    {
+      "id": "RS.canvas-fade-span.regression-native-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/canvas-fade-span-regression-20261010.json",
+      "sha256": "0494ba7d11d24b7242b08c16e7f8d1f2e9298bc29354084a602e940ec318956d",
+      "scope": "Selected 58ed80 pixel loop, positive bounded width/height and stride>=width, initialized physical WORD plane. Exactly2*floor(width/2)*height contiguous WORDs are halved/masked irrespective of pitch; format selector zero=RGB565, any nonzero=RGB555. Full padded physical-word comparison and native logical-canvas projection. Lock/unlock supplied private adapters, no driver/return/ABI/recovery or live bypass equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/cases",
+          "equals": 972
+        },
+        {
+          "pointer": "/sanitizer_success",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -65306,7 +66208,9 @@
       ],
       "evidence": [
         "RS.canvas-fade-span.comparison-20261010",
-        "RS.canvas-fade-span.native-20261010"
+        "RS.canvas-fade-span.native-20261010",
+        "RS.canvas-fade-span.regression-original-20261010",
+        "RS.canvas-fade-span.regression-native-20261010"
       ]
     },
     {
@@ -65351,6 +66255,75 @@
         "RS.glyph-live-route.live-20261010",
         "RS.glyph-live-route.takeover-20261010",
         "NR.glyph-live-admission.live-20261010"
+      ]
+    },
+    {
+      "id": "native-fade-menu-startup-20261010",
+      "level": "live_equivalence",
+      "scope": "Automated private Wine/Xvfb Main to Single Player/Quick Battle/Map2/battle-start request; installed native fade loop with original Lock/Unlock, independent unchanged PE replay of every retained physical fade plane. No manual play, glyph/panel/image takeover or whole-renderer equivalence.",
+      "behaviors": [
+        "RS.fade-live-pixels"
+      ],
+      "tests": [
+        "tools/capture-fade-writer-game.py"
+      ],
+      "evidence": [
+        "RS.fade-live-pixels.live-20261010",
+        "RS.fade-live-pixels.takeover-20261010",
+        "RS.fade-live-pixels.original-20261010"
+      ]
+    },
+    {
+      "id": "native-panel-domain-20261010",
+      "level": "headless",
+      "scope": "Owned native RGB565 panel corpus with complete original private-mapping physical-plane comparisons and atomic late-undefined admission checks. No live panel takeover.",
+      "behaviors": [
+        "RS.panel-pixel-domain",
+        "NR.panel-atomic-admission"
+      ],
+      "tests": [
+        "tests/panel-domain-native.cpp",
+        "tests/panel-domain-reference.cpp",
+        "tools/test-panel-domain.py"
+      ],
+      "evidence": [
+        "RS.panel-pixel-domain.original-20261010",
+        "NR.panel-domain.native-20261010"
+      ]
+    },
+    {
+      "id": "native-canvas-writer-admission-20261010",
+      "level": "headless",
+      "scope": "Synthetic Win32 PE32 mappings: opt-in/anchor guards, physical lease bounds/read-only/guard/cross-region refusal, native odd/padded prefix, unchanged LastError, 128-call budget. No game or original execution.",
+      "behaviors": [
+        "NR.canvas-writer-admission"
+      ],
+      "tests": [
+        "tests/canvas-writers-selftest.c",
+        "tools/test-canvas-writer-admission.py",
+        "tools/fade_live_capture.py",
+        "tests/test-fade-live-capture.py"
+      ],
+      "evidence": [
+        "NR.canvas-writer-admission.native-20261010"
+      ]
+    },
+    {
+      "id": "other-producer-saved-checkpoints-20261010",
+      "level": "headless",
+      "scope": "Current Debug native CPU/GPU replay of the separately pinned saved four-return startup/HUD journal, independent original checkpoint comparison at every recorded completion, source-only asset inputs and clean GPU surface teardown. No fresh live capture or producer suppression.",
+      "behaviors": [
+        "NR.other-producer-checkpoints",
+        "NR.other-writer-atomic-admission"
+      ],
+      "tests": [
+        "tools/test-other-producer-checkpoints.py",
+        "tests/canvas-sequence-test.cpp",
+        "tests/minimap-producer-test.cpp",
+        "tests/other-writer-atomic-test.cpp"
+      ],
+      "evidence": [
+        "NR.other-producer-checkpoints.native-20261010"
       ]
     }
   ],
@@ -65689,8 +66662,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-glyph-live-20261010.json",
-    "sha256": "f81d02f551fe0193d34d826b3efa845681ad537451a68fea14a1dd4ce9f440f8"
+    "path": "research/runtime/coverage/source-index-other-producers-final-20261010.json",
+    "sha256": "e81668fe0cf2d619499947d440a6f4623f79cd723b28a31896e96c44b7281165"
   },
   "claim_bindings_required": true
 }

@@ -135,3 +135,20 @@ does not add a tenth family or treat glyph admission as complete GDI/text or
 Lock/Unlock-writer replacement. The twelve surface and nine family denominators
 remain unchanged. Use the generated report's current-evidence column as well as
 historical achievements when shared source changes leave older results stale.
+
+
+### Non-glyph producer increment — 2026-10-10
+
+The [new reconciliation](rendering-coverage-other-producers-final-20261010.json) retains
+the twelve surface and nine drawing-family denominators. Original panel-domain
+comparison and installed fade-loop bypass add scoped proof to locked writes, UI
+and movie transitions. Drawing families now have scoped code and independent/original
+comparison support in eight of nine categories, and scoped live bypass in four
+of nine. These counts describe some support within each category; no category
+becomes complete. The fade bypass retains original Lock/Unlock and the selected
+writable lease, and does not establish native surface or complete frame ownership.
+
+Saved producer checkpoints, image placements and contiguous fade spans have
+fresh source-bound regression records. Broader shared-source historical results
+remain historical. Live image/panel suppression, wider HUD/cursor/tooltip journeys
+and unresolved writers remain separate pending milestones.

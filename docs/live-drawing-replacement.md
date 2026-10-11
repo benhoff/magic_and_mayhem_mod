@@ -136,6 +136,17 @@ and markers are exercised; higher text state, memory-DIB and positioned-image
 branches retain their separate isolated corpus scopes. This is native CPU
 composition with GPU mirroring, while original producer bodies remain active.
 
+The independent [native fade splice](../research/runtime/fade-loop-takeover.md)
+now bypasses 25 installed transition pixel loops, with all 12,000,000 physical
+WORDs matching unchanged-original replay. Original Lock/Unlock remain in control;
+this is partial CPU fade replacement, not complete frame ownership. The
+[panel domain](../research/runtime/panel-domain.md) adds 7,490 original comparisons
+and atomic native refusal. RGB additions, blend/wave/shadow rasters and hidden
+minimap history now preflight their dependencies before mutation. A fresh
+[saved-input regression](../research/runtime/other-writer-admission.md) matches
+all 954 original checkpoints and GPU mirrors after these changes. Live image/
+panel suppression, broader HUD/cursor journeys and unknown writers remain open.
+
 | Area | Current boundary | Work required for complete replacement |
 | --- | --- | --- |
 | Copies and fills | Native surface operations have selected original/driver comparisons. Producer-history replay composes selected fills and opaque/keyed copies from owned inputs; original live copy/fill bodies remain active. | Admit live suppression with clipping, keys, flags, partial writes, failures and caller-visible results preserved; cover stretched and alternate routes. |
@@ -146,7 +157,7 @@ composition with GPU mirroring, while original producer bodies remain active.
 | Sprites and palettes | Native SPR modes use owned colours/effect tables. Direct-word interior/clipped takeover and selected World raster bypass have bounded evidence; caller auxiliary passes remain original. | Cover indexed/auxiliary routes, live animation/attachments, palette remaps/cycling and all required sprite backends and caller state. |
 | Effects and lighting | Selected effect state, animation and lighting contracts are reconstructed offline; admitted World rasters consume effective shading/blend inputs. | Complete effect-to-pixel attribution, live inputs, dispatch and ordered output across active battles. |
 | HUD and cursor | Producer shadow reproduces selected startup HUD/cursor rasters and minimap/markers. The finite owned minimap viewer compares four orientations and camera pan. Original drawing/input remain active. | Cover broader HUD, tooltip and cursor journeys, hotspots, picking and source-state generation; validate producer suppression. |
-| Movies and transitions | Owned native decoding compares all 3,868 frames in the installed/synthetic corpus. Both enabled intros complete natively, then original frame publication resumes. | Validate legacy controls/placement, active World return and complete screen ownership across transitions. |
+| Movies and transitions | Owned native decoding compares all 3,868 frames in the installed/synthetic corpus. Both enabled intros complete natively; 25 installed native fade loops match independent original replay under original Lock/Unlock. | Validate legacy controls/placement, active World return and complete screen ownership across transitions. |
 | Surface lifecycle and recovery | Native ownership/storage and transport recovery have scoped tests. | Integrate aliases, palettes, clip state, borrowed intervals, reads, flips, loss/Restore, transitions and coherent recovery while original raster work is bypassed. |
 
 The [owned minimap viewer](../research/runtime/native-minimap-interactive.md)
