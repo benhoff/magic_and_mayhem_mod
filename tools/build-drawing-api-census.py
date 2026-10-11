@@ -9,10 +9,10 @@ import subprocess
 from drawing_census import ROOT, BUILD_SHA256
 from drawing_api_journal import trampoline
 
-STRUCT='struct ApiHook {u32 address,length,code_length,rest,reloc_count,after_offset,mode,reg,operand;u8 signature[20],code[64];u32 reloc[8];void(*before)(void);void(*after)(void);};'
+STRUCT='struct ApiHook {u32 address,length,code_length,rest,reloc_count,after_offset,mode,reg,operand;u8 signature[20],code[64];u32 reloc[8];void(*before)(void);void(*after)(void);u32 patch_bytes;};'
 REGISTERS={'edi':0,'esi':1,'ebp':2,'ebx':4,'edx':5,'ecx':6,'eax':7,'esp':9}
-PLAN=ROOT/'research/runtime/drawing-api-splices-export-checked-static-20261011.json'
-PLAN_SHA256='77db2b7406c2687d0a268a92d155f2d42f955377482c08c704160ef7d907beca'
+PLAN=ROOT/'research/runtime/drawing-api-breakpoints-static-20261011.json'
+PLAN_SHA256='7e5c141ca7e2e3137a85b3ae0bd1b7324a18b8aec753b613d57c8c93555dd53d'
 
 
 def load(name, path):
@@ -36,7 +36,7 @@ def generated(item):
 
 
 def build(executable):
-    paths=['tools/build-drawing-api-census.py','runtime/drawing-api-census/observer.c','runtime/drawing-api-census/entry.S','runtime/shadow/win32_min.h','protocols/include/mnm/drawing_api_journal_v1.h','protocols/include/mnm/drawing_api_bindings_v1.h','protocols/include/mnm/drawing_census_v1.h','tools/drawing_api_journal.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-shadow-bridge.py','tools/export-menu-support.py',str(PLAN.relative_to(ROOT))]
+    paths=['tools/build-drawing-api-census.py','runtime/drawing-api-census/observer.c','runtime/drawing-api-census/entry.S','runtime/drawing-api-census/exception_i386.h','runtime/shadow/win32_min.h','protocols/include/mnm/drawing_api_journal_v1.h','protocols/include/mnm/drawing_api_bindings_v1.h','protocols/include/mnm/drawing_census_v1.h','tools/drawing_api_journal.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-shadow-bridge.py','tools/export-menu-support.py',str(PLAN.relative_to(ROOT))]
     sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     plan_raw=PLAN.read_bytes()
     if hashlib.sha256(plan_raw).hexdigest()!=PLAN_SHA256:raise ValueError('Approved immutable API splice plan hash mismatch')
@@ -50,14 +50,14 @@ def build(executable):
         expected=bytes.fromhex(item['signature']);start=offset(raw,item['site'],len(expected))
         if len(expected)!=item['length'] or raw[start:start+len(expected)]!=expected:raise ValueError('Original API signature mismatch')
     output=ROOT/'working/build/drawing-api-census';output.mkdir(parents=True,exist_ok=True)
-    imports=dict(load('api_imports','tools/build-shadow-bridge.py').IMPORTS,GetCurrentThreadId=0,GetTickCount=0,Sleep=4,CreateFileMappingA=24,MapViewOfFile=20,UnmapViewOfFile=4,GetProcAddress=8)
+    imports=dict(load('api_imports','tools/build-shadow-bridge.py').IMPORTS,GetCurrentThreadId=0,GetTickCount=0,Sleep=4,CreateFileMappingA=24,MapViewOfFile=20,UnmapViewOfFile=4,GetProcAddress=8,AddVectoredExceptionHandler=8)
     (output/'kernel32.def').write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{name}@{size}\n' for name,size in imports.items()))
     subprocess.run(['llvm-dlltool','-m','i386','-D','KERNEL32.dll','-d',str(output/'kernel32.def'),'-l',str(output/'kernel32.lib'),'--kill-at'],check=True)
     header=[f'#define API_HOOKS {len(hooks)}',STRUCT,'static const u8 original_sha256[32]={'+','.join(str(v) for v in bytes.fromhex(BUILD_SHA256))+'};']
     for item in hooks:header += [f'extern void api_before_{item["tag"]}(void);',f'extern void api_after_{item["tag"]}(void);']
     header.append('static const struct ApiHook api_hooks[API_HOOKS]={')
     for item in hooks:
-        g=generated(item);header.append('{%d,%d,%d,%d,%d,%d,%d,%d,%d,{%s},{%s},{%s},api_before_%d,api_after_%d},'% (item['site'],item['length'],len(g['code']),g['rest'],len(g['relocations']),g['after_offset'],g['mode'],g['register'],g['operand'],','.join(str(v) for v in bytes.fromhex(item['signature'])),','.join(str(v) for v in g['code']),','.join(str(v) for v in g['relocations']),item['tag'],item['tag']))
+        g=generated(item);header.append('{%d,%d,%d,%d,%d,%d,%d,%d,%d,{%s},{%s},{%s},api_before_%d,api_after_%d,%d},'% (item['site'],item['length'],len(g['code']),g['rest'],len(g['relocations']),g['after_offset'],g['mode'],g['register'],g['operand'],','.join(str(v) for v in bytes.fromhex(item['signature'])),','.join(str(v) for v in g['code']),','.join(str(v) for v in g['relocations']),item['tag'],item['tag'],item.get('patch_bytes',item['length'])))
     header.append('};');(output/'api-hooks.inc').write_text('\n'.join(header)+'\n')
     (output/'entry.S').write_text((ROOT/'runtime/drawing-api-census/entry.S').read_text()+'\n'+'\n'.join(f'api_pair {r["tag"]}' for r in hooks)+'\n')
     objects=[]
@@ -65,7 +65,7 @@ def build(executable):
         obj=output/(name+'.obj');objects.append(str(obj));subprocess.run(['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror','-I',str(output),'-c',str(source),'-o',str(obj)],check=True)
     dll=output/'MnmDrawingApiCensus.dll';subprocess.run(['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(dll),*objects,str(output/'kernel32.lib')],check=True)
     if hashlib.sha256(executable.read_bytes()).hexdigest()!=BUILD_SHA256 or sources!={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}:raise ValueError('Original/API build inputs changed')
-    report={'schema':1,'original_sha256':BUILD_SHA256,'sources':sources,'sources_stable':True,'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'hooks':hooks,'refused':plan['refused'],'scope':'Compiled separate observer for250 exact original CALL splices. No original API execution, universal ABI/transparency/timing, output/resource lifetime or DRAW-01 closure.'}
+    report={'schema':1,'original_sha256':BUILD_SHA256,'sources':sources,'sources_stable':True,'dll_sha256':hashlib.sha256(dll.read_bytes()).hexdigest(),'hooks':hooks,'refused':plan['refused'],'scope':'Compiled separate observer for302 exact original CALL sites, including52 one-byte INT3 plans. No original API execution, universal ABI/transparency/timing, output/resource lifetime or DRAW-01 closure.'}
     (output/'manifest.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'dll':str(dll),'hooks':len(hooks),'refused':len(plan['refused'])}));return dll
 
 

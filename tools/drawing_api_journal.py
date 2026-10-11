@@ -62,6 +62,30 @@ def plan(site, code, occupied=()):
             'call': rows[0], 'remainder': rows[1:]}
 
 
+def breakpoint_plan(site, code, occupied=()):
+    """Verify the whole CALL; overwrite only its first byte with INT3.
+
+    Incoming flow to the untouched successor is safe. Incoming flow into the
+    CALL operand and overlapping original instrumentation remain refused.
+    """
+    if type(site) is not int or not 0 <= site <= 0xffffffff:
+        raise ValueError('Invalid breakpoint CALL site')
+    first = code[site]
+    if first['address'] != site: raise ValueError('CALL instruction address mismatch')
+    mode = call_mode(first)
+    if mode['kind'] == 'unresolved_indirect': raise ValueError('Unresolved CALL target addressing')
+    raw = bytes.fromhex(first['bytes']); length = len(raw)
+    if not 2 <= length <= 15: raise ValueError('Invalid breakpoint CALL extent')
+    if any(site < end and start < site + length for start, end in occupied):
+        raise ValueError('API breakpoint CALL overlaps another original hook')
+    if splice_conflicts(site, length, code):
+        raise ValueError('Incoming original direct flow enters CALL operand')
+    return {'site':site, 'signature':raw.hex(), 'length':length,
+            'call_length':length, 'target_mode':mode, 'patch_mode':'breakpoint',
+            'patch_bytes':1, 'call':{'address':site,'bytes':first['bytes'],
+            'transfer':relative(first)}, 'remainder':[]}
+
+
 def relocated(row, address):
     raw = bytes.fromhex(row['bytes']); transfer = row['transfer']
     if not transfer: return raw

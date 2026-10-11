@@ -3,7 +3,12 @@
 extern void canvas_test_call(u32,u32,u32,u32,void*);
 static u8 before[560] __attribute__((aligned(16))),after[560] __attribute__((aligned(16)));
 static volatile u32 body_calls,seen_argument;
-static u32 slots[10],routines[10];
+static u32 slots[20],routines[20];
+static u32 foreign_pc,foreign_calls;
+static i32 WIN foreign_exception(struct ApiExceptionPointers* info){
+ if(info->record->code!=0x80000003u||(u32)info->record->address!=foreign_pc)return 0;
+ ++foreign_calls;info->context->eip=foreign_pc+1;return -1;
+}
 #define BODY(name,pop) __attribute__((naked)) static void name(void){__asm__ volatile("incl _body_calls; movl 4(%esp),%eax; movl %eax,_seen_argument; pushl $2345; call _SetLastError@4; movl $0x88760000,%eax; pushl $0x247; popfl; ret $" #pop);}
 BODY(body0,0) BODY(body4,4) BODY(body8,8) BODY(body12,12)
 BODY(body16,16) BODY(body20,20) BODY(body24,24)
@@ -25,20 +30,24 @@ static void make(u32 index,u32 pop,u32 callee,u32 style){
  code[at++]=0x89;code[at++]=0xec;code[at++]=0x5d;code[at++]=0xc2;code[at++]=(u8)pop;code[at++]=0;
  copy(h->signature,(void*)h->address,h->length);
  u32 call_length=style==0?6:style==3?5:2;
+ h->patch_bytes=index>=10?1:h->length;
+ if(index>=10)h->length=call_length;
  copy(h->code,h->signature,call_length);h->reloc_count=0;
  if(style==3){put(h->code+1,callee-5);h->reloc[h->reloc_count++]=1;}
  h->code[call_length]=0xe9;h->after_offset=call_length+1;put(h->code+h->after_offset,0-call_length-5);h->reloc[h->reloc_count++]=h->after_offset;
  h->rest=call_length+5;u32 end=h->rest;
- if(style==1){h->code[end++]=0x85;h->code[end++]=0xc0;h->code[end++]=0x0f;h->code[end++]=0x85;put(h->code+end,h->address+8-end-4);h->reloc[h->reloc_count++]=end;end+=4;}
- if(style==2){h->code[end++]=0x85;h->code[end++]=0xc0;h->code[end++]=0x90;}
+ if(style==1&&index<10){h->code[end++]=0x85;h->code[end++]=0xc0;h->code[end++]=0x0f;h->code[end++]=0x85;put(h->code+end,h->address+8-end-4);h->reloc[h->reloc_count++]=end;end+=4;}
+ if(style==2&&index<10){h->code[end++]=0x85;h->code[end++]=0xc0;h->code[end++]=0x90;}
  h->code[end++]=0xe9;put(h->code+end,h->address+h->length-end-4);h->reloc[h->reloc_count++]=end;end+=4;h->code_length=end;
  require(FlushInstructionCache(GetCurrentProcess(),code,at),2);
  require(prepare_trampoline(index),3);
 }
 static void exercise(u32 tag,u32 pop){
+ u8 original[32];copy(original,(void*)api_hooks[tag].address,32);
  body_calls=0;seen_argument=0;SetLastError(1234);canvas_test_call(routines[tag],0x12340000,0xabcdef00,pop,before);
  require(body_calls==1&&GetLastError()==2345,4);require(same((void*)api_hooks[tag].address,api_hooks[tag].signature,api_hooks[tag].length),5);
  require(patch_hook(tag),6);reset();body_calls=0;SetLastError(1234);canvas_test_call(routines[tag],0x12340000,0xabcdef00,pop,after);
+ if(tag>=10){const struct ApiHook* h=api_hooks+tag;require(*(u8*)h->address==0xcc&&same((u8*)h->address+1,original+1,31),43);}
  identical();require(body_calls==1&&GetLastError()==2345&&(!pop||seen_argument==4),21);
  require(!lost&&!active&&serial==1&&sequence==2,22);
  u32* rows=(u32*)buffer;require(rows[1]==1&&rows[33]==2&&rows[2]==rows[34]&&rows[3]==tag&&rows[35]==tag,23);
@@ -52,7 +61,23 @@ void start(void){
  static u32 host[16]={0};host[4]=2;host[5]=2;host[6]=1;control=host;
  u32 callees[10]={(u32)body0,(u32)body4,(u32)body8,(u32)body12,(u32)body16,(u32)body20,(u32)body24,(u32)body8,(u32)body8,(u32)body8};
  u32 pops[10]={0,4,8,12,16,20,24,8,8,8};
- for(u32 tag=0;tag<10;++tag){make(tag,pops[tag],callees[tag],tag<7?0:tag-6);exercise(tag,pops[tag]);}
+ require(AddVectoredExceptionHandler(0,foreign_exception)!=0,44);
+ exception_handler=AddVectoredExceptionHandler(1,api_exception);require(exception_handler!=0,45);
+ for(u32 tag=0;tag<20;++tag){u32 i=tag%10;make(tag,pops[i],callees[i],i<7?0:i-6);exercise(tag,pops[i]);}
+ /* Unowned INT3 reaches the next handler. Observer mismatches never change
+  * the supplied exception context or LastError. */
+ u8* foreign=VirtualAlloc(0,16,0x3000,0x40);require(foreign!=0,46);foreign[0]=0xcc;foreign[1]=0xc3;foreign_pc=(u32)foreign;
+ require(FlushInstructionCache(GetCurrentProcess(),foreign,2),47);SetLastError(1234);((void(*)(void))foreign)();require(foreign_calls==1&&GetLastError()==1234,48);
+ struct ApiContextI386 context={0};struct ApiExceptionRecord record={0};struct ApiExceptionPointers pointers={&record,&context};
+ record.code=0x80000003u;record.address=(void*)api_hooks[10].address;context.eip=api_hooks[10].address+2;
+ SetLastError(1234);require(api_exception(&pointers)==0&&context.eip==api_hooks[10].address+2&&GetLastError()==1234,49);
+ context.eip=api_hooks[10].address;record.code=0xc0000005u;require(api_exception(&pointers)==0&&context.eip==api_hooks[10].address,50);
+ record.code=0x80000003u;record.address=(void*)foreign_pc;context.eip=foreign_pc;require(api_exception(&pointers)==0&&context.eip==foreign_pc,51);
+ /* Execute an independent direct predecessor into a trapped CALL's untouched
+  * successor. It bypasses the CALL and observer, as in the original graph. */
+ u8* branch=VirtualAlloc(0,32,0x3000,0x40);require(branch!=0,52);branch[0]=0x55;branch[1]=0x89;branch[2]=0xe5;branch[3]=0xe9;
+ put(branch+4,api_hooks[17].address+2-(u32)branch-8);require(FlushInstructionCache(GetCurrentProcess(),branch,8),53);
+ reset();body_calls=0;SetLastError(1234);canvas_test_call((u32)branch,0x12340000,0xabcdef00,8,after);require(!body_calls&&!serial&&!sequence&&!lost&&!active&&GetLastError()==1234,54);
  /* All failure paths retain fixed original continuation and actual result. */
  reset();for(u32 i=0;i<2048;++i)frames[i].live=1;active=2048;body_calls=0;
  SetLastError(1234);canvas_test_call(routines[9],0x12340000,0xabcdef00,8,after);identical();require(body_calls==1&&lost==1&&active==2048&&!serial&&!sequence&&GetLastError()==2345,30);
@@ -69,7 +94,7 @@ void start(void){
  char directory[220],name[260];u32 n=GetEnvironmentVariableA("MNM_API_ABI_DIR",directory,sizeof(directory));require(n&&n<sizeof(directory),37);
  module_base=(u32)GetModuleHandleA(0);require(write_bindings(directory),38);
  require(path(name,directory,"\\abi-hooks.bin"),39);HANDLE file=CreateFileA(name,0x40000000,1,0,1,0x80,0);require(file!=(HANDLE)-1,40);
- for(u32 i=0;i<API_HOOKS;++i){const struct ApiHook* h=api_hooks+i;u32 row[16]={h->address,h->length,h->after_offset-1,h->mode,h->reg,h->operand};copy(row+6,h->signature,h->length);require(write_binding(file,row,64),41);}
+ for(u32 i=0;i<API_HOOKS;++i){const struct ApiHook* h=api_hooks+i;u32 row[16]={h->address,h->length,h->after_offset-1,h->mode,h->reg,h->operand};copy(row+6,h->signature,h->length);row[11]=h->patch_bytes;require(write_binding(file,row,64),41);}
  require(CloseHandle(file),42);
  ExitProcess(0);
 }

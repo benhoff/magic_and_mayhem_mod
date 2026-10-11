@@ -1,6 +1,7 @@
 /* Separate opt-in CALL diagnostics. Original APIs execute exactly once through
  * relocated calls; the observer itself issues no graphics/COM/GDI operations. */
 #include "../shadow/win32_min.h"
+#include "exception_i386.h"
 #include "../../protocols/include/mnm/drawing_api_journal_v1.h"
 #include "../../protocols/include/mnm/drawing_api_bindings_v1.h"
 #include "../../protocols/include/mnm/drawing_census_v1.h"
@@ -19,6 +20,7 @@ static const volatile u32* control;
 static volatile u32 mutex;
 static u32 sequence,serial,lost,active,io_failed,used,installed;
 static u32 module_base;
+static void* exception_handler;
 static u8 buffer[65536];
 static void copy(void* d,const void* s,u32 n){u8* a=d;const u8* b=s;while(n--)*a++=*b++;}
 static void zero(void* d,u32 n){u8* a=d;while(n--)*a++=0;}
@@ -75,9 +77,25 @@ static int prepare_trampoline(u32 index){
  api_trampolines[index]=(u32)t;api_remainders[index]=(u32)t+h->rest;
  return FlushInstructionCache(GetCurrentProcess(),t,h->code_length);
 }
+static i32 WIN api_exception(struct ApiExceptionPointers* info){
+ /* No OS/API calls: preserve LastError and change only saved EIP. A foreign
+  * breakpoint or mismatched exception context follows the normal handler chain.
+  * No temporary opcode restoration, single stepping or shared patch race. */
+ if(!info||!info->record||!info->context||info->record->code!=0x80000003u)return 0;
+ u32 address=(u32)info->record->address,pc=info->context->eip;
+ for(u32 i=0;i<API_HOOKS;++i){const struct ApiHook* h=api_hooks+i;
+  if(h->patch_bytes==1&&address==h->address&&(pc==address||pc==address+1)){
+   info->context->eip=(u32)h->before;return -1;
+  }
+ }
+ return 0;
+}
 static int patch_hook(u32 index){
  const struct ApiHook* h=api_hooks+index;u32 old,unused;
- if(!VirtualProtect((void*)h->address,h->length,0x40,&old))return 0;
+ u32 length=h->patch_bytes==1?1:h->length;
+ if(!VirtualProtect((void*)h->address,length,0x40,&old))return 0;
+ if(h->patch_bytes==1){*(volatile u8*)h->address=0xcc;
+  int flushed=FlushInstructionCache(GetCurrentProcess(),(void*)h->address,1);int protected=VirtualProtect((void*)h->address,1,old,&unused);return flushed&&protected;}
  u8 bytes[20];zero(bytes,sizeof(bytes));bytes[0]=0xe9;*(u32*)(bytes+1)=(u32)h->before-h->address-5;for(u32 j=5;j<h->length;++j)bytes[j]=0x90;copy((void*)h->address,bytes,h->length);
  int flushed=FlushInstructionCache(GetCurrentProcess(),(void*)h->address,h->length);int protected=VirtualProtect((void*)h->address,h->length,old,&unused);return flushed&&protected;
 }
@@ -109,6 +127,7 @@ static int install(void){
  /* Validate every original site before allocating or patching any. */
  for(u32 i=0;i<API_HOOKS;++i){const struct ApiHook* h=api_hooks+i;if(!readable(h->address,h->length)||!same((void*)h->address,h->signature,h->length))return 0;}
  for(u32 i=0;i<API_HOOKS;++i)if(!prepare_trampoline(i))return 0;
+ for(u32 i=0;i<API_HOOKS;++i)if(api_hooks[i].patch_bytes==1){exception_handler=AddVectoredExceptionHandler(1,api_exception);if(!exception_handler)return 0;break;}
  if(!write_bindings(directory))return 0;
  if(!path(name,directory,"\\api-calls.bin"))return 0;journal=CreateFileA(name,0x40000000,1,0,1,0x80,0);if(journal==(HANDLE)-1){journal=0;return 0;}
  u32 header[16]={0};copy(header,MNM_DRAW_API_MAGIC,8);header[2]=1;header[3]=64;header[4]=128;header[5]=(u32)GetModuleHandleA(0);header[6]=API_HOOKS;header[7]=MNM_DRAW_API_MAX_RECORDS;copy(header+8,original_sha256,32);if(!write(header,64))return 0;

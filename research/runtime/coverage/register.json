@@ -31129,7 +31129,8 @@
         "DRAW.census.campaign-effects-guards-20261011",
         "DRAW.census.named-export-abi-20261011",
         "DRAW.api-menu.observation-20261011",
-        "DRAW.census.export-checked-abi-20261011"
+        "DRAW.census.export-checked-abi-20261011",
+        "DRAW.api-breakpoint.menu-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31239,7 +31240,8 @@
         "DRAW.census.quick-battle-observation-20261010",
         "DRAW.census.quick-battle-accounted-observation-20261010",
         "DRAW.census.campaign-effects-observation-20261011",
-        "DRAW.api-menu.observation-20261011"
+        "DRAW.api-menu.observation-20261011",
+        "DRAW.api-breakpoint.menu-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31510,7 +31512,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Original CALL before/after API diagnostics and strict journal contract",
-      "scope": "Versioned separate API journal and byte-bound CALL splice planner for the selected pinned graphics boundaries. Preserve actual pre-CALL stack/register/target identities and post-CALL results/stack cleanup without replacing an argument or return slot. Exact bounded splices, relocation, incoming-direct-flow and overlapping-hook refusal; loss/open/IO/terminal checks independent from graphics completeness. Initial wire/planner tooling only; no original API execution, COM/GDI semantics, resource/output/borrow lifetime, original writer or DRAW-01 closure claim.",
+      "scope": "Versioned separate API journal and byte-bound CALL splice planner for the selected pinned graphics boundaries. Preserve actual pre-CALL stack/register/target identities and post-CALL results/stack cleanup without replacing an argument or return slot. Exact bounded splices, relocation, incoming-direct-flow and overlapping-hook refusal; loss/open/IO/terminal checks independent from graphics completeness. Initial wire/planner tooling only; no original API execution, COM/GDI semantics, resource/output/borrow lifetime, original writer or DRAW-01 closure claim. Selected CALLs whose successor has incoming branches can use a whole-CALL-verified one-byte INT3 plan; incoming CALL-operand flow and original-hook overlap remain refused. The native exception mechanism requires independent synthetic/live validation.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31537,7 +31539,9 @@
       "evidence": [
         "DRAW.api-splices.static-20261011",
         "DRAW.api-journal.guards-20261011",
-        "DRAW.api-splices.export-checked-static-20261011"
+        "DRAW.api-splices.export-checked-static-20261011",
+        "DRAW.api-breakpoint.guards-20261011",
+        "DRAW.api-breakpoint.static-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31552,7 +31556,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Separate original CALL before/after forwarding observer",
-      "scope": "Opt-in PE32 observer for the250 accepted exact original CALL splices alongside core census. Save/restore registers/flags/x87/SSE/LastError, capture pre-CALL stack/target and post-CALL actual ESP/result, forward original CALL and remainder without replacing an argument or return slot. Retain64refused sites and abort startup on signature/protection/flush failure. Explicit journal loss/open/IO/terminal and control phase guards. Synthetic ABI tests and actual original runs remain separate; no universal transparency, caller-PC-sensitive/timing equivalence, original API/output/COM/GDI/borrow lifetime or complete writer/scenario/DRAW-01 closure claim.",
+      "scope": "Opt-in PE32 observer for the302 accepted exact original CALL splices alongside core census. Save/restore registers/flags/x87/SSE/LastError, capture pre-CALL stack/target and post-CALL actual ESP/result, forward original CALL and remainder without replacing an argument or return slot. Retain12refused sites and abort startup on signature/protection/flush failure. Explicit journal loss/open/IO/terminal and control phase guards. Synthetic ABI tests and actual original runs remain separate; no universal transparency, caller-PC-sensitive/timing equivalence, original API/output/COM/GDI/borrow lifetime or complete writer/scenario/DRAW-01 closure claim. Adds an opt-in single-byte INT3 forwarding mode for safe whole-CALL signatures; the PE32 vectored handler changes only saved EIP for an exact owned breakpoint, forwarding foreign/mismatched exceptions. Successor and operand bytes are untouched. Wine/Windows XP+ observation policy, not a recovered Win98 engine contract; dynamic unload remains unsupported.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31561,7 +31565,8 @@
       "implementation": [
         "runtime/drawing-api-census/observer.c",
         "runtime/drawing-api-census/entry.S",
-        "tools/build-drawing-api-census.py"
+        "tools/build-drawing-api-census.py",
+        "runtime/drawing-api-census/exception_i386.h"
       ],
       "tests": [
         "tests/drawing-api-census-abi.c",
@@ -31576,7 +31581,7 @@
         "runtime/shadow/win32_min.h",
         "tools/build-shadow-bridge.py",
         "tests/canvas-startup-call.S",
-        "research/runtime/drawing-api-splices-export-checked-static-20261011.json",
+        "research/runtime/drawing-api-breakpoints-static-20261011.json",
         "protocols/include/mnm/drawing_api_bindings_v1.h",
         "tools/drawing_api_bindings.py"
       ],
@@ -31585,7 +31590,9 @@
         "DRAW.api-observer.synthetic-abi-20261011",
         "DRAW.api-observer.bindings-abi-20261011",
         "DRAW.api-observer.bindings-build-20261011",
-        "DRAW.api-menu.observation-20261011"
+        "DRAW.api-menu.observation-20261011",
+        "DRAW.api-breakpoint.abi-20261011",
+        "DRAW.api-breakpoint.menu-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31600,7 +31607,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Per-run exact API trampoline/module address bindings",
-      "scope": "Versioned startup allocation map for accepted API CALL hooks: exact original site/return PC and generated trampoline return/continuation PCs, observer/core/menu module bounds and exact exported core leave address. Strict byte extents, tags, reserved/terminal fields and nonoverlapping allocation/stub bounds; null modules remain explicit. Diagnostic physical address classification only, no nearest original function or inferred logical tail/COM/API owner, installed-hook success, full writer/scenario/graphics lifetime or DRAW-01 closure.",
+      "scope": "Versioned startup allocation map for accepted API CALL hooks: exact original site/return PC and generated trampoline return/continuation PCs, observer/core/menu module bounds and exact exported core leave address. Strict byte extents, tags, reserved/terminal fields and nonoverlapping allocation/stub bounds; null modules remain explicit. Diagnostic physical address classification only, no nearest original function or inferred logical tail/COM/API owner, installed-hook success, full writer/scenario/graphics lifetime or DRAW-01 closure. Manifest-declared one-byte breakpoint plans retain complete verified CALL extent and exact physical continuation mapping; the map alone does not prove exception installation.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31620,12 +31627,16 @@
         "runtime/drawing-api-census/entry.S",
         "runtime/shadow/win32_min.h",
         "protocols/include/mnm/drawing_api_journal_v1.h",
-        "protocols/include/mnm/drawing_census_v1.h"
+        "protocols/include/mnm/drawing_census_v1.h",
+        "runtime/drawing-api-census/exception_i386.h"
       ],
       "evidence": [
         "DRAW.api-bindings.guards-20261011",
         "DRAW.api-observer.bindings-abi-20261011",
-        "DRAW.api-menu.observation-20261011"
+        "DRAW.api-menu.observation-20261011",
+        "DRAW.api-breakpoint.guards-20261011",
+        "DRAW.api-breakpoint.abi-20261011",
+        "DRAW.api-breakpoint.menu-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -31640,7 +31651,7 @@
       "subsystem": "coverage_tooling",
       "kind": "native_policy",
       "title": "Original-active separate API journal journey staging and strict completion",
-      "scope": "Explicit opt-in API observer alongside original-active core/menu journeys in fresh private installations. Hash-pin observer and original section bytes, use shared readonly phase control, retain/decode independent closed API and core journals plus per-run allocation bindings, and require stable binaries/sources and normal original exit. Initial250accepted API sites retain64refusals; diagnostic physical addresses/outcomes/cleanup do not infer logical callers, COM/GDI/output/borrowing/pixels, complete writers or DRAW-01 scenario closure. Menu-only controls cannot enable API observation.",
+      "scope": "Explicit opt-in API observer alongside original-active core/menu journeys in fresh private installations. Hash-pin observer and original section bytes, use shared readonly phase control, retain/decode independent closed API and core journals plus per-run allocation bindings, and require stable binaries/sources and normal original exit. 302accepted API sites (250jump/52breakpoint) retain12original-hook overlap refusals; diagnostic physical addresses/outcomes/cleanup do not infer logical callers, COM/GDI/output/borrowing/pixels, complete writers or DRAW-01 scenario closure. Menu-only controls cannot enable API observation.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
@@ -31724,10 +31735,12 @@
         "tools/drawing_api_bindings.py",
         "protocols/include/mnm/drawing_api_journal_v1.h",
         "protocols/include/mnm/drawing_api_bindings_v1.h",
-        "research/runtime/drawing-api-splices-export-checked-static-20261011.json"
+        "research/runtime/drawing-api-splices-export-checked-static-20261011.json",
+        "runtime/drawing-api-census/exception_i386.h"
       ],
       "evidence": [
-        "DRAW.api-menu.observation-20261011"
+        "DRAW.api-menu.observation-20261011",
+        "DRAW.api-breakpoint.menu-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -61501,6 +61514,101 @@
           "equals": 64
         }
       ]
+    },
+    {
+      "id": "DRAW.api-breakpoint.guards-20261011",
+      "kind": "native_integration",
+      "scope": "Synthetic CALL/breakpoint planner, strict journal and binding guards only; no original API/exception execution or semantic graphics ownership.",
+      "record": "research/runtime/drawing-api-breakpoint-guards-20261011.json",
+      "sha256": "adbf5ce87c72b8c4cde0b4b0dca97808f2b82c9336b781bac0f460b38c67b369",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW.api-breakpoint.abi-20261011",
+      "kind": "native_integration",
+      "scope": "Real separate CALL stubs/observer/dynamic splices and binding writer/decoder round trip against20synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.",
+      "record": "research/runtime/drawing-api-breakpoint-abi-20261011.json",
+      "sha256": "ba8fe3c5af4b5d72ca44594da77f382a607d17e7f5f87c2ff3ce8f1b87f9a029",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        }
+      ],
+      "claims_pointer": "/claims"
+    },
+    {
+      "id": "DRAW.api-breakpoint.static-20261011",
+      "kind": "static",
+      "scope": "Static exact original CALL splice plan alongside core census spans. No actual hook execution, API result/ABI/output/ownership/borrowing or DRAW-01 closure.",
+      "record": "research/runtime/drawing-api-breakpoints-static-20261011.json",
+      "sha256": "7e5c141ca7e2e3137a85b3ae0bd1b7324a18b8aec753b613d57c8c93555dd53d",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/counts/planned",
+          "equals": 302
+        },
+        {
+          "pointer": "/counts/refused",
+          "equals": 12
+        }
+      ]
+    },
+    {
+      "id": "DRAW.api-breakpoint.menu-20261011",
+      "kind": "live_observation",
+      "scope": "Original main/setup menus and normal shutdown with302selected API hooks, including52single-byte breakpoints. Closed core/API journals and exact native bindings;32actual sites, five breakpoint sites382calls. No exhaustive314API sites, formal arguments/outputs/lifetime, all writer or DRAW-01 scenario closure.",
+      "record": "research/runtime/drawing-api-breakpoint-menu-20261011.json",
+      "sha256": "f457bf98debe3cfb887ae4ecc57521902137f0a2441020d7cfcfd7bdcc2df848",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/api/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/observed_breakpoint_calls",
+          "equals": 382
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -70030,6 +70138,57 @@
       "evidence": [
         "DRAW.api-menu.observation-20261011"
       ]
+    },
+    {
+      "id": "drawing-api-breakpoint-abi-20261011",
+      "level": "headless",
+      "scope": "Real PE32 jump and one-byte INT3/VEH forwarding against20synthetic bodies, 10in each mode; register/flags/x87/SSE/LastError/cleanup, untouched CALL operands/successors, original incoming-successor bypass, foreign/mismatched exception forwarding, loss/phase/frame limits and exact binding round trip. No original graphics/API, universal machine state/timing or resource ownership validation.",
+      "behaviors": [
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-bindings"
+      ],
+      "tests": [
+        "tools/test-drawing-api-census-abi.py",
+        "tests/drawing-api-census-abi.c",
+        "tests/canvas-startup-call.S"
+      ],
+      "evidence": [
+        "DRAW.api-breakpoint.abi-20261011"
+      ]
+    },
+    {
+      "id": "drawing-api-breakpoint-planner-guards-20261011",
+      "level": "headless",
+      "scope": "25synthetic journal/planner guards plus13binding guards, including selected single-byte breakpoint signature/continuation and operand-flow/core overlap refusals. No original execution or exception ABI assertion.",
+      "behaviors": [
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-bindings"
+      ],
+      "tests": [
+        "tests/test-drawing-api-journal.py",
+        "tests/test-drawing-api-bindings.py"
+      ],
+      "evidence": [
+        "DRAW.api-breakpoint.guards-20261011"
+      ]
+    },
+    {
+      "id": "original-drawing-api-breakpoint-menu-20261011",
+      "level": "live_observation",
+      "scope": "Original main/setup menu and clean shutdown with separate250jump plus52single-byte INT3 API sites and core census enabled. Exact paired journal/target/cleanup and per-run binding integrity only; no full formal argument/output/lifetime semantics, all314sites or DRAW-01 journey closure.",
+      "behaviors": [
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-bindings",
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.api-breakpoint.menu-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -70367,8 +70526,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-api-menu-20261011.json",
-    "sha256": "7ad21c9374a4a6546933118e11b2bb823857f2a590e33698782be370919e4b3d"
+    "path": "research/runtime/coverage/source-index-draw01-api-breakpoint-20261011.json",
+    "sha256": "82afa42a33400247c50529f6401ab1429cae1665982807eb0b710d1317c75514"
   },
   "claim_bindings_required": true
 }

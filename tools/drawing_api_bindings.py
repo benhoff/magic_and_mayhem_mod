@@ -24,8 +24,9 @@ def decode(path, manifest):
     if any(a[0]<b[1] and b[0]<a[1] for index,a in enumerate(ranges) for b in ranges[index+1:]):raise ValueError('Binding module ranges overlap')
     rows=[];allocations=[];stubs=set()
     for tag,item in enumerate(hooks):
-        if any(type(item[k]) is not int for k in ('site','length','call_length')) or not 0<item['site']<=0xffffffff or not 5<=item['length']<=20 or not 2<=item['call_length']<=item['length'] or len(bytes.fromhex(item['signature']))!=item['length'] or len(bytes.fromhex(item['call']['bytes']))!=item['call_length'] or ''.join(r['bytes'] for r in [item['call']]+item['remainder'])!=item['signature']:
+        if any(type(item[k]) is not int for k in ('site','length','call_length')) or not 0<item['site']<=0xffffffff or not (2 if item.get('patch_mode')=='breakpoint' else 5)<=item['length']<=20 or not 2<=item['call_length']<=item['length'] or len(bytes.fromhex(item['signature']))!=item['length'] or len(bytes.fromhex(item['call']['bytes']))!=item['call_length'] or ''.join(r['bytes'] for r in [item['call']]+item['remainder'])!=item['signature']:
             raise ValueError('Binding manifest exact instruction extent mismatch')
+        if item.get('patch_mode')=='breakpoint' and (item.get('patch_bytes')!=1 or item['length']!=item['call_length'] or item['remainder']):raise ValueError('Invalid breakpoint signature/continuation')
         cursor=item['site']
         for instruction in [item['call']]+item['remainder']:
             if instruction['address']!=cursor:raise ValueError('Binding manifest copied instruction address mismatch')
