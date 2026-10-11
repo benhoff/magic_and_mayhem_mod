@@ -4609,23 +4609,25 @@
     {
       "id": "DRAW.entry.004d8ab0",
       "entry": 5081776,
-      "title": "Queue consumer original helper 004d8ab0",
+      "title": "Queue optional render postlude",
       "behaviors": [
-        "DRAW.queue-dispatch"
+        "DRAW.queue-dispatch",
+        "DRAW.queue-render-postlude"
       ],
       "owner": "runtime/scene",
-      "classification": "lifecycle",
-      "scope": "Explicit queue consumer CALL target/return contract. Backend body pixels and helper global side effects remain outside this recovered call-routing scope.",
+      "classification": "composition",
+      "scope": "Original optional postlude contains canvas fill/Lock, signed numeric text/font call, slot128release and row metadata/placement writes. Current evidence is a bounded synthetic external-body client fixture, not full helper pixels or lifecycle proof.",
       "confidence": "high_within_scope",
       "support": {
         "decision": "original_only",
         "reason": "Forward the original helper. No new native pixel admission follows from consumer call routing or a known RET contract."
       },
       "side_effects": [
-        "Original downstream helper work and callee cleanup",
-        "Concrete pixel/global/lifetime effects need separate review"
+        "Conditional canvas fill/Lock/text/slot128client release work",
+        "Framebuffer/clip globals and row metadata/placement writes",
+        "Failures/external borrow lifetime and real pixel/resource effects need separate review"
       ],
-      "remaining": "Backend side-effect inventory, concrete owner/caller modes and full session coverage remain pending.",
+      "remaining": "Actual canvas/font/driver/COM bodies and pixels, arbitrary object layouts and complete live scenario/caller ownership remain pending.",
       "documents": [
         "research/runtime/draw01-inventory.md"
       ],

@@ -30990,7 +30990,8 @@
         "DRAW.census.quick-battle-guards-20261010",
         "DRAW.census.quick-battle-scenario-guards-20261010",
         "DRAW.census.campaign-effects-guards-20261011",
-        "TOOL.drawing-inventory.api-site-guards-20261011"
+        "TOOL.drawing-inventory.api-site-guards-20261011",
+        "TOOL.drawing-inventory.postlude-guards-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -32670,6 +32671,65 @@
       "evidence": [
         "DRAW.queue-client-state.fixture-20261011",
         "DRAW.queue-client-state.all-kinds-fixture-20261011"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "DRAW.queue-render-postlude",
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "title": "Original optional queue render-postlude text and metadata client",
+      "scope": "Pinned4d8ab0 render-postlude only, owned synthetic512byte object/row arrays: enabled/non-ready/null-Lock exits; canvas124member fill/Lock ordering, original prefix and signed decimal first argument, font call with five zero trailing arguments, slot128client release arguments, real57dc20frame/57dc60clip/57dc90getter stores, row width100/rectangle/aligned placement updates and ignored synthetic fill/release failures. Row counts3/5, heights8/20, widths0/1/13/127 and640/800mode are bounded fixtures. Canvas fill/Lock/font/slot128 bodies are synthetic; no actual pixels, arbitrary objects, COM type/lifetime/reference ownership, real drivers, live/scenario/full dispatch or native renderer equivalence.",
+      "confidence": "high_within_scope",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5081776,
+          "scope": "Optional render-postlude client control flow and selected owned fixture metadata writes only; external drawing/API bodies excluded."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5757984,
+          "scope": "Real framebuffer pointer/stride/dimension raw global stores in this fixture only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758048,
+          "scope": "Real four clip global stores in this fixture only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5758096,
+          "scope": "Real owned16byte clip output in this fixture only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 5889583,
+          "scope": "Actual signed decimal conversion called by postlude; radix10 and selected six signed inputs only."
+        }
+      ],
+      "documents": [
+        "research/runtime/draw01-inventory.md",
+        "research/runtime/render-drawing-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/drawing-postlude-reference.cpp",
+        "tools/test-drawing-postlude.py"
+      ],
+      "validation_dependencies": [
+        "tests/sprite-binary-reference.cpp",
+        "tools/drawing_census.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "DRAW.queue-render-postlude.fixture-20261011"
       ],
       "status": {
         "understanding": "partial",
@@ -63296,6 +63356,84 @@
           "equals": 984960
         }
       ]
+    },
+    {
+      "id": "DRAW.queue-render-postlude.fixture-20261011",
+      "kind": "native_integration",
+      "scope": "Unchanged original4d8ab0 render-postlude,57dc20frame/57dc60clip/57dc90getter and decimal formatter instructions with owned synthetic object/arrays. Canvas fill/Lock, font body and Surface Unlock are explicit synthetic bindings; client disabled/not-ready/null-Lock exits, prefix/signed decimal text, viewport/row alignment, metadata/real global stores and ignored failure results are checked. No actual pixels/font/canvas/COM/driver behavior, global ownership or live/scenario/full dispatch closure.",
+      "record": "research/runtime/drawing-render-postlude-client-20261011.json",
+      "sha256": "7b1806551f8d41c867c9746a4b60ff64e07f51b9c653b74855e2e2bb9b7cf83e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 12288
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory.postlude-guards-20261011",
+      "kind": "native_integration",
+      "scope": "Current native offline route guards after queue render-postlude classification correction. Original reports/source hashes remain historical; no new original execution, COM/owner/all-writer/scenario closure.",
+      "record": "research/runtime/drawing-inventory-postlude-guards-20261011.json",
+      "sha256": "b3edd2aca010be8dfc14f86dd511fd2a86c92f89fa2868b857c43269c7b1a722",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards",
+          "equals": 45
+        },
+        {
+          "pointer": "/api_registered_sites",
+          "equals": 380
+        },
+        {
+          "pointer": "/api_observed_sites",
+          "equals": 101
+        },
+        {
+          "pointer": "/strict_completion_check_exit",
+          "equals": 1
+        },
+        {
+          "pointer": "/completion_blockers",
+          "equals": 18
+        },
+        {
+          "pointer": "/draw01_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -72293,6 +72431,35 @@
       "evidence": [
         "DRAW.queue-client-state.all-kinds-fixture-20261011"
       ]
+    },
+    {
+      "id": "original-drawing-render-postlude-client-20261011",
+      "level": "headless",
+      "scope": "Native headless integration of unchanged original render-postlude/clip/frame/decimal instructions with owned object/row arrays and synthetic external fill/Lock/font/slot128bindings.12288unique selected client cases, no original platform/native renderer/lifetime or full dispatch/scenario proof.",
+      "behaviors": [
+        "DRAW.queue-render-postlude"
+      ],
+      "tests": [
+        "tools/test-drawing-postlude.py",
+        "tests/drawing-postlude-reference.cpp"
+      ],
+      "evidence": [
+        "DRAW.queue-render-postlude.fixture-20261011"
+      ]
+    },
+    {
+      "id": "drawing-inventory-postlude-guards-20261011",
+      "level": "headless",
+      "scope": "Native offline route accounting after optional queue helper classification correction. Retained original reports remain historical; no new original execution, COM type, semantic owner or all-writer/scenario completeness.",
+      "behaviors": [
+        "TOOL.drawing-inventory"
+      ],
+      "tests": [
+        "tests/test-drawing-inventory.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-inventory.postlude-guards-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -72630,8 +72797,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-queue-all-kinds-20261011.json",
-    "sha256": "bb766ba58ef0732ffc68b77802ca2e652f6dc0881393fddb04546f40e2ffcf12"
+    "path": "research/runtime/coverage/source-index-draw01-postlude-20261011.json",
+    "sha256": "204b1dba5af012c9b3643dfadc61afdae2f1b5e7fc4aa81069f4b80ae55b2476"
   },
   "claim_bindings_required": true
 }

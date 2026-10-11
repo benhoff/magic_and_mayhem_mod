@@ -568,3 +568,47 @@ intermediate attempts retain all historical fingerprints.
 
 History0b40de2..23bd1c0 has14file/85behavior exact receipts and no missing versions.
 Retrospective accounting does not assert a past gate pass or new graphics result.
+
+
+## Original optional render postlude, 2026-10-11
+
+The late consumer helper at `4d8ab0` performs rendering as well as metadata work;
+its earlier lifecycle/cleanup label was incomplete. The route is now classified
+as composition. Historical reports and their hashes retain the terminology used
+at execution; this finding does not rewrite their evidence or imply actual global
+counter semantics. Only the first of the three consumer arguments contributes
+to this helper's rendered numeric text in the tested paths.
+
+The [new fixture](drawing-render-postlude-client-20261011.json) executes unchanged
+original postlude, frame/clip setters, clip getter and signed decimal conversion
+instructions across12288owned client cells. Disabled, not-ready and null-Lock exits
+preserve the initialized frame/clip state and row arrays. Successful mock Lock
+produces the original19byte-prefix plus six selected signed values, including
+INT_MIN/INT_MAX; font calls retain five trailing zero arguments. Fill and slot128
+failure returns are ignored by the original client. This verifies continuation
+only, not successful external drawing or resource release.
+
+The real57dc20setter stores pixel pointer at658174, pitch/2 at6a2dc8 and supplied
+dimension at6def50. Real57dc60/57dc90write/read the clip rectangle. Drawn rows
+store width100, a four-byte-aligned returned font width and centered/aligned
+placement in640/800mode. Other object fields/rows remain byte-identical. Canvas
+fill/Lock, font and virtual slot128 bodies are synthetic; no real font pixels,
+COM type from slot offset, reference/lifetime/driver, arbitrary layout or full
+scenario/dispatch completion is claimed. The separate57dcc0scatter getter remains
+unassigned rather than being attached to a nearby discovered function.
+
+[First-attempt limits](drawing-render-postlude-attempts-20261011.json) preserve the
+fixture's wrong expected dimension global6e1f70 and exit1 after10752early-exit
+cells. The corrected fixture uses a new prospective source declaration and
+passes12288cases with original input and helper bytes unchanged. Original input
+manifest verification passes before/after both executions. Actual fixture totals are3072fill/3072Lock/1536font/
+1536slot128 calls.
+
+The [current offline45guards](drawing-inventory-postlude-guards-20261011.json)
+validate the corrected catalog against retained original reports. They retain
+zero unknown identities and18open completion obligations; catalog changes leave
+historical original evidence source-stale rather than refreshing its hashes.
+The committed23bd1c0..1fe53d9range has10file/29behavior exact receipt matches and
+no missing intermediate versions. This history review asserts no past gate pass
+or new graphics validation. Recovered native implementation/comparison/integration/
+replacement remain none; the fixture is bounded original-contract discovery.
