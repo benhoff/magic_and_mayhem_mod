@@ -16,7 +16,7 @@ def load(name, relative):
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
 
 
-def export(executable, boundaries):
+def export(executable, boundaries, api_only=False):
     paths=['tools/export-drawing-api-splices.py','tools/drawing_api_journal.py','tools/drawing_api_sites.py','tools/drawing_census.py','tools/build-drawing-census.py','tools/export-menu-support.py','runtime/scene/canvas_producers.c','research/runtime/drawing-inventory.json','research/runtime/coverage/binary-nocd.json',str(boundaries.relative_to(ROOT))]
     sources={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     raw=executable.read_bytes()
@@ -26,6 +26,7 @@ def export(executable, boundaries):
         raise ValueError('API boundary build/base/input mismatch')
     code=instructions(subprocess.check_output(['objdump','-w','-d','-Mintel',str(executable)],text=True))
     census,core_refused=load('api_core_splices','tools/build-drawing-census.py').hook_rows(executable)
+    if api_only:census=[]
     occupied=[(r['entry'],r['entry']+r['length']) for r in census]
     offset=load('api_image_offsets','tools/export-menu-support.py').image_offset
     hooks=[];refused=[];seen=set()
@@ -53,16 +54,16 @@ def export(executable, boundaries):
     if not hooks or len(hooks)>512:raise ValueError('API hook count outside bounded capacity')
     if hashlib.sha256(executable.read_bytes()).hexdigest()!=BUILD_SHA256:raise ValueError('Original executable changed')
     if sources!={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}:raise ValueError('Planner sources changed during export')
-    return {'schema':1,'scope':'Static exact original CALL splice plan alongside core census spans. No actual hook execution, API result/ABI/output/ownership/borrowing or DRAW-01 closure.','original_sha256':BUILD_SHA256,'input_unchanged':True,'sources_stable':True,'hooks':hooks,'refused':refused,'core_hook_count':len(census),'core_refused':core_refused,'counts':{'selected':len(selected['calls']),'planned':len(hooks),'refused':len(refused)},'sources':sources}
+    return {'schema':1,'scope':'Static exact original CALL splice plan in explicit '+('API-only, core-absent' if api_only else 'core/API')+' cohort. No actual hook execution, API result/ABI/output/ownership/borrowing or DRAW-01 closure.','cohort':'api_only' if api_only else 'core_api','original_sha256':BUILD_SHA256,'input_unchanged':True,'sources_stable':True,'hooks':hooks,'refused':refused,'core_hook_count':len(census),'core_refused':core_refused,'counts':{'selected':len(selected['calls']),'planned':len(hooks),'refused':len(refused)},'sources':sources}
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--executable',type=Path,required=True);parser.add_argument('--boundaries',type=Path,required=True);parser.add_argument('--output',type=Path,required=True);args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--executable',type=Path,required=True);parser.add_argument('--boundaries',type=Path,required=True);parser.add_argument('--output',type=Path,required=True);parser.add_argument('--api-only',action='store_true');args=parser.parse_args()
     out=args.output.resolve();boundaries=args.boundaries.resolve()
     if not out.is_relative_to(ROOT) or out.relative_to(ROOT).parts[0] in ('original','.git') or out.exists():raise ValueError('Output must be a new repository-owned artifact')
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
-        record=export(args.executable,boundaries);out.parent.mkdir(parents=True,exist_ok=True)
+        record=export(args.executable,boundaries,args.api_only);out.parent.mkdir(parents=True,exist_ok=True)
         with out.open('x') as f:json.dump(record,f,indent=2);f.write('\n')
         print(json.dumps(record['counts']))
     finally:subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)

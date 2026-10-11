@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "scope": "Seven native observation cohort boolean/core absence/presence guards only; no original graphics or hook execution.",
+  "success": true,
+  "sources": {
+    "tests/test-drawing-api-cohorts.py": "6cb4aab6c0a2fe3acc316f0396ff4c102515040605ba4862a519e2d25a1b2801",
+    "tools/drawing_api_cohorts.py": "fd7b573088c8c199b6981e7fa6bed5b07bff1ddda153ad4671ba49b2cf849fd5"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-api-cohorts",
+      "contract_sha256": "3d180a9107417facd745476380dfeb920b36677ba1e9e5f9d95986286a54e280",
+      "scenarios": {
+        "drawing-api-cohort-guards-20261011": "c3e9ce240904de7f6ba1c51f14ad0ecb7d905798e8e551f89709acad3396af8c"
+      }
+    }
+  ],
+  "sources_stable": true,
+  "total_cases": 7,
+  "tests": [
+    {
+      "test": "tests/test-drawing-api-cohorts.py",
+      "exit": 0,
+      "log": "working/tests/draw01-api-cohort-guards-20261011.log",
+      "sha256": "fe836cbecd3b6b4f70bec51b58d30c3e45ad72ae7fb3cb63421a0f7337e651ae"
+    }
+  ]
+}

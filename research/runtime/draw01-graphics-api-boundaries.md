@@ -227,3 +227,34 @@ phases assigned, sources/binaries stable, and original exit zero. The retained
 Main menu screenshot was inspected. Twelve overlapping sites, complete formal
 arguments and bounded API outputs, object ownership/borrowing, failure/recovery
 routes, all fourteen scenario reviews and four dispatch obligations remain open.
+
+## Complete selected API cohort, 2026-10-11
+
+The two independently pinned plans now name their observation cohort. The
+core/API plan retains 302 admitted sites and twelve overlapping refusals. The
+separate API-only plan admits all 314 selected boundaries (262 jump splices and
+52 single-byte breakpoints), with no core import or core call journal. Seven
+prospectively declared native guards require exact boolean mode flags and actual
+core module/leave presence or absence. Ordinary menu controls cannot implicitly
+enable API hooks. The prepared core DLL remains a hash-checked file artifact;
+it is not imported or executed in the API-only cohort.
+
+Use `prepare-drawing-census.py --api-only` for the separate cohort, optionally
+with `--movies`. The capture runner checks the plan/cohort agreement and the
+actual startup module map, records `call_census_enabled: false`, and creates no
+core-census result or inferred physical caller review. These API-only observations
+must not be presented as a simultaneous core/API trace.
+
+The original enabled-movie cohort `run-yyj3me1m` closed 4,511 API pairs at 53 sites,
+including 19 movie-helper sites, with zero loss/open/IO/unreadable target or stack
+rows, stable sources/binaries and original exit zero. The actual binding map has
+null core module/leave. The setup/sample HRESULT-producing calls observed on both
+startup requests returned zero; `46997a` Update returned `00040003` twice. The
+four helper Release calls then ran. These returns supplement the earlier movie
+client-contract fixtures and EOF checkpoints; they do not establish full movie
+playback, output object values/lifetimes, successful Blt, failure recovery or
+execution of every admitted site. The retained final Main screenshot was viewed.
+
+Evidence: `drawing-api-only-movies-20261011.json`, separate static cohort plans,
+and `drawing-api-cohort-guards-20261011.json`. The original CALL catalog, fourteen
+scenario closures and four dispatch obligations remain independently open.

@@ -21,12 +21,14 @@ from campaign_gameplay import read_rows, creatures
 from campaign_spell import read_spell_rows
 
 
+from drawing_api_cohorts import cohort, require_bindings
+
+
 def capture(root, template, journey, claims=None):
     root = root.resolve()
     if (root / 'journey.json').exists(): raise ValueError('Attempt already recorded; prepare a fresh experiment')
     manifest = json.loads((root / 'manifest.json').read_text())
-    if manifest.get('api_observation_enabled', False) and not manifest.get('call_census_enabled', True):
-        raise ValueError('API observation requires the original-active core cohort')
+    selected=cohort(manifest)
     if journey == 'movies' and not manifest['movies_enabled']:
         raise ValueError('Movie journey requires explicitly enabled disposable preferences')
     if journey == 'campaign-effects' and not manifest.get('gameplay_observation_enabled', False):
@@ -37,19 +39,21 @@ def capture(root, template, journey, claims=None):
             if hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != digest: raise ValueError('Changed declaration source: ' + p)
     source_paths = ['tools/capture-drawing-census-game.py', 'tools/drawing_census.py', 'tools/drawing-census-game-runner.py',
                     'tools/campaign_gameplay.py', 'tools/campaign_spell.py']
+    source_paths += ['tools/drawing_api_cohorts.py']
     if manifest.get('api_observation_enabled', False): source_paths += ['tools/drawing_api_journal.py', 'tools/drawing_api_bindings.py']
     frozen_sources = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in source_paths}
     if declaration: frozen_sources.update(declaration['sources'])
     prefix = root / 'wineprefix'
     env = {k: v for k, v in os.environ.items() if not k.startswith('MNM_')}
     env.pop('WAYLAND_DISPLAY', None)
-    env.update(WINEPREFIX=str(prefix), WINEDEBUG='-all,+seh' if not manifest.get('call_census_enabled', True) else '-all', LIBGL_ALWAYS_SOFTWARE='1', WINEDLLOVERRIDES='mscoree,mshtml=d',
+    env.update(WINEPREFIX=str(prefix), WINEDEBUG='-all,+seh' if selected=='menu_control' else '-all', LIBGL_ALWAYS_SOFTWARE='1', WINEDLLOVERRIDES='mscoree,mshtml=d',
                MNM_DRAW_CENSUS_EXPERIMENT=str(root))
     report = {'schema': 1, 'journey': journey, 'success': False, 'actions': [], 'phases': [],
               'scenario_closure': False, 'original_work_forwarded': True,
               'call_census_enabled': manifest.get('call_census_enabled', True),
               'gameplay_observation_enabled': manifest.get('gameplay_observation_enabled', False)}
     report['api_observation_enabled'] = manifest.get('api_observation_enabled', False)
+    report['cohort']=selected
     server = process = display = channel = control = log = None
     subprocess.run([str(ROOT / 'tools/original-manifest.sh'), 'verify'], check=True)
     try:
@@ -377,14 +381,15 @@ def capture(root, template, journey, claims=None):
                           events=census['events'], calls=census['calls'])
         if report['api_observation_enabled']:
             api_manifest = json.loads((root / 'api-build.json').read_text())
+            if api_manifest.get('cohort','core_api')!=selected:raise RuntimeError('API manifest observation cohort mismatch')
             bindings = api_bindings(root / 'capture/api-bindings.bin', api_manifest)
             api = api_trace(root / 'capture/api-calls.bin', api_manifest)
             if not api['paired_calls']: raise RuntimeError('No selected original API CALL was observed')
-            if not bindings['core_leave']: raise RuntimeError('Missing exact loaded census leave identity')
+            require_bindings(bindings,selected)
             (root / 'decoded-api-bindings.json').write_text(json.dumps(bindings, indent=2) + '\n')
             (root / 'decoded-api.json').write_text(json.dumps(api, indent=2) + '\n')
             physical_callers = [{'physical_caller': pc, 'classification': api_physical(pc, bindings)}
-                for pc in sorted({item['caller'] for item in census['entry_counts'] if item['caller']})]
+                for pc in sorted({item['caller'] for item in census['entry_counts'] if item['caller']})] if report['call_census_enabled'] else []
             report['api'] = api
             report['api_bindings'] = bindings
             report['physical_caller_review'] = {'scope': 'Exact prepared per-run PCs/module membership only; original/logical owners and tail flow remain pending.', 'callers': physical_callers}
