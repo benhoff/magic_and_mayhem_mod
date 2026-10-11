@@ -9,7 +9,9 @@ struct NsState;
 struct NdObject {void** table;struct NdState* state;u32 kind;};
 struct NdState {struct NdObject first,second,unknown,fourth;u32 refs[4],interfaces;void* window;u32 coop,width,height,depth;struct NsState* primary;};
 static void* nd_tables[4][28];
-static u32 nd_objects,nd_surfaces;
+static u32 nd_objects,nd_surfaces,nd_creates,nd_attempts,nd_enumerations,nd_last_create;
+static void nd_status(void);
+static const u8 nd_default_guid[16]={0};
 static const u8 nd_unknown[16]={0,0,0,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x46};
 static const u8 nd_draw1[16]={0x80,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60};
 static const u8 nd_draw2[16]={0xe0,0xf3,0xa6,0xb3,0x43,0x2b,0xcf,0x11,0xa2,0xde,0,0xaa,0,0xb9,0x33,0x56};
@@ -33,30 +35,32 @@ static u32 WIN nd_retain(struct NdObject* self) {
 static u32 WIN nd_release(struct NdObject* self) {
   u32 error=GetLastError(),refs=--self->state->refs[self->kind];
   if(!refs && !--self->state->interfaces){HeapFree(GetProcessHeap(),0,self->state);--nd_objects;}
-  SetLastError(error);return refs;
+  nd_status();SetLastError(error);return refs;
 }
-static i32 WIN nd_unadmitted(struct NdObject* self) {
-  (void)self;ExitProcess(97);return ND_NOINTERFACE;
-}
+#include "refusal.h"
 #include "clipper.h"
 #include "surfaces.h"
-__declspec(dllexport) i32 WIN NativeDrawCreate(void* guid,void** out,void* outer) {
+#include "status.h"
+static i32 nd_create(void* guid,void** out,void* outer) {
   u32 error=GetLastError();
   if(!out)return ND_INVALID;
   *out=0;
   if(outer)return (i32)0x80040110u;
-  if(guid)return (i32)0x88760231u;
+  if(guid && ((u32)guid<65536 || !nd_equal(guid,nd_default_guid)))return (i32)0x88760231u;
   if(nd_objects>=64)return (i32)0x8007000eu;
   struct NdState* s=HeapAlloc(GetProcessHeap(),8,sizeof(*s));
   if(!s){SetLastError(error);return (i32)0x8007000eu;}
   s->first=(struct NdObject){nd_tables[1],s,1};s->second=(struct NdObject){nd_tables[2],s,2};
   s->unknown=(struct NdObject){nd_tables[0],s,0};s->fourth=(struct NdObject){nd_tables[3],s,3};
   s->width=800;s->height=600;s->depth=16;s->refs[1]=1;s->interfaces=1;
-  ++nd_objects;*out=&s->first;SetLastError(error);return 0;
+  ++nd_objects;++nd_creates;*out=&s->first;nd_status();SetLastError(error);return 0;
+}
+__declspec(dllexport) i32 WIN NativeDrawCreate(void* guid,void** out,void* outer) {
+ u32 error=GetLastError();++nd_attempts;i32 result=nd_create(guid,out,outer);nd_last_create=(u32)result;nd_status();SetLastError(error);return result;
 }
 typedef i32 (WIN *NdEnumCallback)(void*,const char*,const char*,void*);
 __declspec(dllexport) i32 WIN NativeDrawEnumerateA(NdEnumCallback callback,void* context) {
-  if(!callback)return ND_INVALID;
+  ++nd_enumerations;nd_status();if(!callback)return ND_INVALID;
   u32 error=GetLastError();callback(0,"Native owned RGB565","native",context);SetLastError(error);return 0;
 }
 __declspec(dllexport) u32 WIN NativeDrawClippers(void) {return nc_objects;}
@@ -64,4 +68,4 @@ __declspec(dllexport) u32 WIN NativeDrawDCs(void) {return ns_dcs;}
 __declspec(dllexport) u32 WIN NativeDrawSurfaces(void) {return nd_surfaces;}
 __declspec(dllexport) void WIN NativeDrawAnchor(void) {}
 __declspec(dllexport) u32 WIN NativeDrawObjects(void) {return nd_objects;}
-i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;(void)reserved;if(reason==1)nd_init();return 1;}
+i32 WIN DllMain(HANDLE instance,u32 reason,void* reserved) {(void)instance;(void)reserved;if(reason==1){nd_init();nd_status_start();}return 1;}

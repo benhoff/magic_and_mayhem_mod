@@ -10,7 +10,7 @@ FLAGS = ['clang', '--target=i686-pc-windows-msvc', '-O2', '-ffreestanding',
          '-fno-builtin', '-fno-stack-protector', '-mno-sse', '-mno-mmx',
          '-Wall', '-Wextra', '-Werror']
 IMPORTS = {
-    'kernel32': {'GetProcessHeap': 0, 'HeapAlloc': 12, 'HeapFree': 12,
+    'kernel32': {'GetModuleHandleA': 4, 'GetEnvironmentVariableA': 12, 'GetProcessHeap': 0, 'HeapAlloc': 12, 'HeapFree': 12,
                  'GetLastError': 0, 'SetLastError': 4, 'ExitProcess': 4,
                  'VirtualAlloc': 16, 'VirtualFree': 12, 'CreateFileA': 28,
                  'WriteFile': 20, 'CloseHandle': 4},

@@ -31738,7 +31738,7 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native graphics compatibility and real DirectDraw retirement",
-      "scope": "Pending replacement of supported pinned-build graphics factory, surface, lock/copy/palette/DC/lifecycle services and presentation. Real DirectDraw backend must be disabled during final supported-scenario execution, independent native frame and caller/side-effect comparisons must pass, and all unknown routes must be refused explicitly. Existing forwarded original DirectDraw observation and faster native rendering do not establish retirement. The isolated compatibility slice admits DirectDraw4 identity and explicit owned offscreen RGB565 Surface1/2/4 storage, lock/unlock, keys, copy/fill/self overlap and lifecycle; logical mode policy is separate from recovered driver behavior. Primary/flip/DC/palette and game integration remain pending. Selected native refusal and no-partial-mutation policies plus512-surface capacity are tested separately from independent original caller comparisons. The next selected slice adds bounded HWND clippers, owned RGB565 GDI DC leases, implicit format requests and logical primary/attached flip storage. Clipped Blt, region/occlusion, palettes, actual presentation and game admission remain unvalidated and explicitly refused. Primary/mode/flip are native storage policies, not original driver semantics.",
+      "scope": "Pending full graphics compatibility and real DirectDraw retirement for the pinned build. The bounded native PE32 slice owns Draw1/2/4 identity and RGB565 Surface1/2/3/4 storage,108/124-byte descriptors, lock/unlock, keys, copy/fill/self overlap, HWND clippers, owned GDI DC leases and independent interface references. Native logical primary/one-backbuffer flip, two565 modes and256MiB host storage budget are policies rather than original physical driver semantics. Limits are64 devices/512 surfaces/128 DCs/64 clippers. Unknown methods terminate with family/interface/slot diagnostics and never forward. Guarded imports and both12-byte dynamic loader strings redirect to MnmDraw.dll, changing24 selected original data bytes and preserving all other section/instruction/IAT bytes. Selected original-engine V4 World sessions run with Wine ddraw disabled/module absent and native Qt GPU presentation, without World pixel exports/replies/writebacks. Local96-byte v2 status counts all factory attempts, successful creations, enumeration and resource bounds; a saved device path may legitimately enumerate zero adapters. The independent16-case startup caller slice covers NULL normal cooperative level and primary Surface3/4 identity; isolated factory/storage/DC caller and full-word comparisons remain separate from whole original-game equivalence. Enumeration entry/thunk are static unassigned inventory gaps. Original outside-World drawing remains active; private process stop is not semantic cleanup. Palettes, clipped Blt/regions/occlusion, unknown routes, arbitrary casting/combat, whole-game original pixel equivalence, semantic quit,19FPS and60FPS remain pending. Retain all historical evidence/claim hashes and source-specific limitations.",
       "original": [
         {
           "build": "nocd-40209ca7",
@@ -31749,20 +31749,30 @@
           "build": "nocd-40209ca7",
           "address": 5811600,
           "scope": "Static surface creation wrapper calls Draw2 slot6, then interface query; optional later slot37 and failure cleanup unresolved. Isolated native storage is separately validated against Wine, not whole original wrapper."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4970758,
+          "scope": "Startup DirectX check; confirmed API trace with disabled ddraw returnsNULL and opens failure modal. Native original-engine admission still pending."
         }
       ],
       "confidence": "provisional",
       "documents": [
         "research/runtime/native-gpu-frame-ownership.md",
         "research/runtime/native-draw-device-surfaces.md",
-        "research/runtime/native-draw-services-20261010.md"
+        "research/runtime/native-draw-services-20261010.md",
+        "research/runtime/native-draw-startup-check-discovery-20261010.json"
       ],
       "implementation": [
         "runtime/native-draw/factory.c",
         "runtime/native-draw/surfaces.h",
         "runtime/native-draw/clipper.h",
         "runtime/native-draw/dc.h",
-        "tools/build-native-draw.py"
+        "tools/build-native-draw.py",
+        "runtime/native-draw/refusal.h",
+        "runtime/native-draw/status.h",
+        "tools/prepare-scene-observer.py",
+        "tools/scene-game-runner.py"
       ],
       "tests": [
         "tests/native-draw-factory-probe.c",
@@ -31770,11 +31780,232 @@
         "tests/native-draw-surface-probe.c",
         "tools/test-native-draw-surfaces.py",
         "tests/native-draw-services-probe.c",
-        "tools/test-native-draw-services.py"
+        "tools/test-native-draw-services.py",
+        "tools/test-native-world-continuous.py"
       ],
       "validation_dependencies": [
+        "apps/qt-shell/gl_viewport.cpp",
+        "apps/qt-shell/gl_viewport.hpp",
+        "apps/qt-shell/world_continuous_main.cpp",
+        "apps/qt-shell/world_rolling_main.cpp",
+        "assets/CMakeLists.txt",
+        "assets/animation.cpp",
+        "assets/animation.hpp",
+        "assets/animation_decode.cpp",
+        "assets/asset_file.cpp",
+        "assets/asset_file.hpp",
+        "assets/bmp.cpp",
+        "assets/bmp.hpp",
+        "assets/jpeg.cpp",
+        "assets/jpeg.hpp",
+        "assets/path_resolver.cpp",
+        "assets/path_resolver.hpp",
+        "assets/pcx.cpp",
+        "assets/pcx.hpp",
+        "assets/resources/CMakeLists.txt",
+        "assets/resources/resource_manager.cpp",
+        "assets/resources/resource_manager.hpp",
+        "assets/sprite_frame_decoder.hpp",
+        "assets/sprite_loader.cpp",
+        "assets/sprite_loader.hpp",
+        "assets/terrain_catalog.cpp",
+        "assets/terrain_catalog.hpp",
+        "compat/legacy/canvas-producers/CMakeLists.txt",
+        "compat/legacy/canvas_producers.cpp",
+        "compat/legacy/canvas_producers.hpp",
+        "compat/legacy/canvas_world.cpp",
+        "compat/legacy/canvas_world.hpp",
+        "compat/legacy/scene_snapshot.cpp",
+        "compat/legacy/scene_snapshot.hpp",
+        "compat/legacy/world-rolling/CMakeLists.txt",
+        "compat/legacy/world_continuous.cpp",
+        "compat/legacy/world_continuous.hpp",
+        "compat/legacy/world_frame.cpp",
+        "compat/legacy/world_frame.hpp",
+        "compat/legacy/world_raster_batch.cpp",
+        "compat/legacy/world_raster_batch.hpp",
+        "compat/legacy/world_resources.cpp",
+        "compat/legacy/world_resources.hpp",
+        "compat/legacy/world_rolling_channel.cpp",
+        "compat/legacy/world_rolling_channel.hpp",
+        "compat/legacy/world_rolling_handoff.cpp",
+        "compat/legacy/world_rolling_handoff.hpp",
+        "compat/legacy/world_rolling_packet.cpp",
+        "compat/legacy/world_rolling_packet.hpp",
+        "compat/legacy/world_rolling_session.cpp",
+        "compat/legacy/world_rolling_session.hpp",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "reconstruction/rendering/fade_span.hpp",
+        "reconstruction/rendering/glyph_backend.c",
+        "reconstruction/rendering/glyph_backend.h",
+        "reconstruction/rendering/glyph_backend_state.c",
+        "reconstruction/rendering/glyph_backend_state.h",
+        "reconstruction/rendering/glyph_backend_x87.S",
+        "renderer/CMakeLists.txt",
+        "renderer/bitmap_dc.hpp",
+        "renderer/blit.cpp",
+        "renderer/blit.hpp",
+        "renderer/canvas_mirror.hpp",
+        "renderer/canvas_sequence.cpp",
+        "renderer/canvas_sequence.hpp",
+        "renderer/capture.cpp",
+        "renderer/capture.hpp",
+        "renderer/command_consumer.cpp",
+        "renderer/command_state.hpp",
+        "renderer/commands.cpp",
+        "renderer/commands.hpp",
+        "renderer/dib.cpp",
+        "renderer/dib.hpp",
+        "renderer/gpu_canvas_mirror.cpp",
+        "renderer/gpu_canvas_mirror.hpp",
+        "renderer/known_pixels.hpp",
+        "renderer/minimap/minimap.cpp",
+        "renderer/minimap/minimap.hpp",
+        "renderer/minimap/overlays.cpp",
+        "renderer/minimap/overlays.hpp",
+        "renderer/pixel_rows.cpp",
+        "renderer/pixel_rows.hpp",
+        "renderer/resources/CMakeLists.txt",
+        "renderer/resources/resource_cache.cpp",
+        "renderer/resources/resource_cache.hpp",
+        "renderer/resources/sprite_atlas.cpp",
+        "renderer/resources/sprite_atlas.hpp",
+        "renderer/scenes/CMakeLists.txt",
+        "renderer/scenes/scene_history.cpp",
+        "renderer/scenes/scene_history.hpp",
+        "renderer/scenes/scene_renderer.cpp",
+        "renderer/scenes/scene_renderer.hpp",
+        "renderer/sprites/CMakeLists.txt",
+        "renderer/sprites/sprite.cpp",
+        "renderer/sprites/sprite.hpp",
+        "renderer/surface_access.hpp",
+        "renderer/surface_backend.cpp",
+        "renderer/surface_backend.hpp",
+        "renderer/surface_copy.cpp",
+        "renderer/surface_copy.hpp",
+        "runtime/menu/battle.h",
+        "runtime/menu/battle_selftest.h",
+        "runtime/menu/campaign_defeat.h",
+        "runtime/menu/campaign_gameplay_observe.h",
+        "runtime/menu/campaign_mini_observe.h",
+        "runtime/menu/campaign_observe.h",
+        "runtime/menu/campaign_quit_observe.h",
+        "runtime/menu/campaign_spell_observe.h",
+        "runtime/menu/campaign_world_observe.h",
+        "runtime/menu/channel.h",
+        "runtime/menu/channel_selftest.h",
+        "runtime/menu/contract_selftest.S",
+        "runtime/menu/contract_selftest.c",
+        "runtime/menu/mini.h",
+        "runtime/menu/mini_selftest.h",
+        "runtime/menu/observer.c",
+        "runtime/menu/preferences.h",
+        "runtime/menu/preferences_display.h",
+        "runtime/menu/preferences_selftest.h",
+        "runtime/menu/region_entry.h",
+        "runtime/menu/region_entry_observe.h",
+        "runtime/menu/result_selftest.h",
+        "runtime/menu/results.h",
+        "runtime/menu/spell_selftest.h",
+        "runtime/menu/spells.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/precise_clock.h",
+        "runtime/scene/canvas_producers.S",
+        "runtime/scene/canvas_producers.c",
+        "runtime/scene/canvas_startup.S",
+        "runtime/scene/canvas_startup.c",
+        "runtime/scene/entry.S",
+        "runtime/scene/glyph_entry.S",
+        "runtime/scene/glyph_leave.S",
+        "runtime/scene/glyph_live.c",
+        "runtime/scene/glyph_live.h",
+        "runtime/scene/glyph_route.c",
+        "runtime/scene/glyph_route.h",
+        "runtime/scene/kind8_observer.c",
+        "runtime/scene/observer.c",
+        "runtime/scene/readable_extent.h",
+        "runtime/scene/selftest.c",
+        "runtime/scene/startup_queue.c",
+        "runtime/scene/word_entry.S",
+        "runtime/scene/word_route.c",
+        "runtime/scene/word_workspace.h",
+        "runtime/scene/world_continuous.c",
+        "runtime/scene/world_continuous_clock.c",
+        "runtime/scene/world_entry.S",
+        "runtime/scene/world_kinds.h",
+        "runtime/scene/world_lifetime.c",
+        "runtime/scene/world_producer_bypass.c",
+        "runtime/scene/world_raster_batch.c",
+        "runtime/scene/world_raster_callers.h",
+        "runtime/scene/world_stream.c",
+        "runtime/scene/world_stream_selftest.c",
+        "runtime/scene/world_trace.c",
         "runtime/shadow/win32_min.h",
-        "tools/capture-original-surface-keys.py"
+        "tests/canvas-sequence-test.cpp",
+        "tests/canvas-world-test.cpp",
+        "tests/native-world-rolling.cpp",
+        "tests/native-world-rolling/CMakeLists.txt",
+        "tests/resource-fixtures.hpp",
+        "tests/sprite-atlas-test.cpp",
+        "tests/world-continuous-channel-test.cpp",
+        "tests/world-continuous-hash-test.cpp",
+        "tests/world-continuous-memory-test.cpp",
+        "tests/world-continuous-normal-test.cpp",
+        "tests/world-gpu-ack-test.cpp",
+        "tests/world-gpu-resident-replay.cpp",
+        "tests/world-gpu-resident-test.cpp",
+        "tests/world-raster-batch-test.cpp",
+        "tests/world-rolling-channel-test.cpp",
+        "tests/world-rolling-handoff-test.cpp",
+        "tools/build-menu-observer.py",
+        "tools/build-scene-observer.py",
+        "tools/build-shadow-bridge.py",
+        "tools/capture-original-surface-keys.py",
+        "tools/capture-scene-game.py",
+        "tools/coverage_claims.py",
+        "tools/decode-cfg.py",
+        "tools/encode-cfg.py",
+        "tools/export-menu-support.py",
+        "tools/glyph_backend_launch.py",
+        "tools/glyph_live_capture.py",
+        "tools/inspect-canvas-producers.py",
+        "tools/native_render_config.py",
+        "tools/original-manifest.sh",
+        "tools/prepare-scene-observer.py",
+        "tools/prepare-shadow-experiment.py",
+        "tools/run-game.sh",
+        "tools/run-opengl-game.py",
+        "tools/test-native-world-continuous.py",
+        "tools/test-native-world-rolling-live.py",
+        "tools/test-native-world-rolling.py",
+        "tools/world_channel.py",
+        "tools/world_refusal.py",
+        "tools/prepare-native-draw.py"
       ],
       "validation_domain": "Selected bounded startup World/HUD history. Unknown CPU-dependent history reads must refuse; no historical source/pixel proof is reused for this new ownership policy.",
       "evidence": [
@@ -31782,13 +32013,21 @@
         "NR.directdraw-retirement.surfaces-isolated-20261010",
         "NR.directdraw-retirement.services-pass-20261010",
         "NR.directdraw-retirement.services-factory-pass-20261010",
-        "NR.directdraw-retirement.services-surfaces-pass-20261010"
+        "NR.directdraw-retirement.services-surfaces-pass-20261010",
+        "NR.directdraw-retirement.startup-services-20261010",
+        "NR.directdraw-retirement.resident128-functional-20261010",
+        "NR.directdraw-retirement.enumeration-static-discovery-20261010",
+        "NR.directdraw-retirement.startup-factory-current-20261010",
+        "NR.directdraw-retirement.startup-surfaces-current-20261010",
+        "NR.directdraw-retirement.startup-services-current-20261010",
+        "NR.directdraw-retirement.final128-functional-20261010",
+        "NR.directdraw-retirement.bound128-functional-20261010"
       ],
       "status": {
         "understanding": "partial",
         "implementation": "partial",
         "comparison": "none",
-        "integration": "headless",
+        "integration": "live_observation",
         "replacement": "none"
       }
     },
@@ -32042,7 +32281,10 @@
         "NR.world-gpu-ack-delivery.live-4096-20261010",
         "NR.world-gpu-ack-delivery.consumer-death-20261010",
         "NR.world-gpu-ack-delivery.producer-death-20261010",
-        "NR.world-gpu-ack-delivery.recovery-128-20261010"
+        "NR.world-gpu-ack-delivery.recovery-128-20261010",
+        "NR.directdraw-retirement.resident128-functional-20261010",
+        "NR.directdraw-retirement.final128-functional-20261010",
+        "NR.directdraw-retirement.bound128-functional-20261010"
       ],
       "status": {
         "understanding": "partial",
@@ -32057,12 +32299,17 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Guarded pinned graphics import redirection",
-      "scope": "Offline pinned NoCD PE32 import retirement preparation: preserve all original section bytes and original lookup/IAT addresses, redirect the selected graphics DLL descriptor to MnmDraw.dll and add its NativeDrawAnchor import. Support existing menu/scene/render import composition; reject changed original sections, descriptor/lookup mutations and duplicate staging. This establishes no loaded-module, game, device service, native pixel or DirectDraw backend retirement claim.",
+      "scope": "Offline pinned NoCD PE32 import retirement preparation: preserve all original section bytes and original lookup/IAT addresses, redirect the selected graphics DLL descriptor to MnmDraw.dll and add its NativeDrawAnchor import. Support existing menu/scene/render import composition; reject changed original sections, descriptor/lookup mutations and duplicate staging. This establishes no loaded-module, game, device service, native pixel or DirectDraw backend retirement claim. Optional guarded12-byte dynamic LoadLibraryA lookup redirects ddraw.dll plus its two zero padding bytes to MnmDraw.dll; every other original section byte, instruction and adjacent DWORD remains unchanged. This optional path is separately tested in four compositions. Startup DirectX check has a second guarded12-byte uppercase DDRAW.DLL lookup atVA0x5e1264; both lookups are redirected, totaling24 selected data bytes. All four original padding bytes are guarded.",
       "original": [
         {
           "build": "nocd-40209ca7",
           "address": 5862746,
           "scope": "Pinned DirectDrawCreate import thunk and original graphics import descriptor/lookup/IAT bytes; static import rewrite only."
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4970758,
+          "scope": "Static startup DirectX LoadLibraryA lookup atVA0x5e1264, preceding graphics factory; guarded data-only loader redirect."
         }
       ],
       "confidence": "high_within_scope",
@@ -32078,9 +32325,10 @@
       "validation_dependencies": [
         "tools/prepare-shadow-experiment.py"
       ],
-      "validation_domain": "Four offline pinned executable import compositions and six byte mutation guards; no original engine execution.",
+      "validation_domain": "Eight offline pinned executable import/optional dynamic lookup compositions and ten byte mutation guards; no original engine execution.",
       "evidence": [
-        "NR.directdraw-import-retirement.offline-20261010"
+        "NR.directdraw-import-retirement.offline-20261010",
+        "NR.directdraw-import-retirement.dual-loader-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -62593,6 +62841,502 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.directdraw-import-retirement.dual-loader-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-dual-loader-import-pass-20261010.json",
+      "sha256": "760391fe4def0c2ff504f62b431f1204d6680101e9c8674a4739302c17ff946c",
+      "scope": "Offline guarded pinned PE32 import redirection only. Eight staging compositions preserve original IAT and section bytes, with only the explicit enumeration variant changing the two guarded12-byte DLL names, change the graphics descriptor name to native and add the anchor. Ten mutations and duplicate staging refuse. No executable instructions or loader/game integration are executed. Expanded startup/mode/memory/refusal policy fields are asserted separately in the retained report.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/mutation_refusals",
+          "equals": 10
+        },
+        {
+          "pointer": "/duplicate_refusals",
+          "equals": 8
+        },
+        {
+          "pointer": "/real_game_directdraw_retired",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.startup-services-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-startup-services-pass-20261010.json",
+      "sha256": "cde1626b738ff5a6c4141d377dd977806682f41e897df84a474e91849f671cd1",
+      "scope": "64 unchanged clipper/DC caller cases and complete RGB565/COLORREF outputs against Wine DirectDraw, including DC-during-lock, repeated DC/refusals, GDI writes and teardown. Native ddraw disabled/module absent. Native logical primary/attached flip lifecycle is a separate policy; no driver presentation, clipped blit, palette or real game replacement claim. Expanded startup/mode/memory/refusal policy fields are asserted separately in the retained report.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/startup_policy/original_compared_cases",
+          "equals": 16
+        },
+        {
+          "pointer": "/startup_policy/original_compared_words",
+          "equals": 256
+        },
+        {
+          "pointer": "/native_remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_devices",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_clippers",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_dcs",
+          "equals": 0
+        },
+        {
+          "pointer": "/pixel_words",
+          "equals": 22464
+        },
+        {
+          "pointer": "/caller_words",
+          "equals": 2048
+        },
+        {
+          "pointer": "/native_ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_directdraw_imports",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.resident128-functional-20261010",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-game-resident128-performance-failure-20261010.json",
+      "sha256": "99cd48a532eda14b1429bcea05aff7634955bdf445c6d8a1af4c97439e719132",
+      "scope": "128 actual pinned original-engine/native Qt GPU frames with real ddraw disabled and absent. No World readbacks/pixel replies/writebacks or unknown terminal methods; bounded graphics resources. Overall run fails unchanged19FPS and512-frame cache budget. No independent original pixel, driver mode, semantic quit or whole gameplay equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/selected_session_directdraw_backend_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/original_returns",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/qt_paints",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": false
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.enumeration-static-discovery-20261010",
+      "kind": "static",
+      "build": "nocd-40209ca7",
+      "record": "research/runtime/native-draw-enumeration-discovery-20261010.json",
+      "sha256": "5b14c1804eba30aae29349747bbd1e4ea2a9e1e80f30a55fe897b4fdc7e0019b",
+      "original_hash_pointer": "/source_executable_sha256",
+      "scope": "Pinned enumeration entry bytes and selected static call sites only. The0x58f0c0 entry remains unassigned in inventory; no recovered-range exception or original execution is asserted.",
+      "assertions": [
+        {
+          "pointer": "/original_entry_anchors/0x58f0c0",
+          "equals": "81eca00000005556"
+        }
+      ],
+      "sources_pointer": "/sources"
+    },
+    {
+      "id": "NR.directdraw-retirement.startup-factory-current-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-startup-factory-current-20261010.json",
+      "sha256": "e819346ba27e67163ccd14d15db257543f2bee9a0cda2756c311a5be83e9745d",
+      "scope": "128 isolated default native factory lifetimes with exact selected HRESULT/identity/per-interface reference/failure outputs versus real Wine DirectDraw. Native preserves incoming LastError as an explicit policy; Wine incidental error values are retained separately, not claimed equivalent. Original null-output creation fault is excluded from the common valid-caller corpus; native safe null-output refusal is a separate policy. Native enumeration is an explicit single-adapter policy. Native probe disables ddraw and verifies no module loads. Surface methods, real game integration, GPU presentation and DirectDraw retirement remain pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/cases",
+          "equals": 128
+        },
+        {
+          "pointer": "/caller_words",
+          "equals": 2176
+        },
+        {
+          "pointer": "/native_remaining_objects",
+          "equals": 0
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_directdraw_imports",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.startup-surfaces-current-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-startup-surfaces-current-20261010.json",
+      "sha256": "61847ab3082fecfe0bac63d6f620502bee49a3eb0f80608f8589ba660149cd43",
+      "scope": "64 unchanged caller cases using DirectDraw1/4 and Surface1/2/4, odd-pitch system-memory RGB565, key/copy/fill/overlap and full native words against real Wine DirectDraw. Native run disables ddraw and checks no module loads; device modes are logical native policies. Primary/flip/DC/palette services, real game integration and GPU history read dependencies remain pending.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/caller_words",
+          "equals": 2048
+        },
+        {
+          "pointer": "/pixel_words",
+          "equals": 37440
+        },
+        {
+          "pointer": "/native_remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_devices",
+          "equals": 0
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_directdraw_imports",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.startup-services-current-20261010",
+      "kind": "native_integration",
+      "record": "research/runtime/native-draw-startup-services-current-20261010.json",
+      "sha256": "a1185420b0239713e5fb09604e1721c8f80c7c5105741bf68bf08a513859736c",
+      "scope": "64 unchanged clipper/DC caller cases and complete RGB565/COLORREF outputs against Wine DirectDraw, including DC-during-lock, repeated DC/refusals, GDI writes and teardown. Native ddraw disabled/module absent. Native logical primary/attached flip lifecycle is a separate policy; no driver presentation, clipped blit, palette or real game replacement claim.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/cases",
+          "equals": 64
+        },
+        {
+          "pointer": "/caller_words",
+          "equals": 2048
+        },
+        {
+          "pointer": "/pixel_words",
+          "equals": 22464
+        },
+        {
+          "pointer": "/startup_policy/original_compared_words",
+          "equals": 256
+        },
+        {
+          "pointer": "/native_remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_devices",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_dcs",
+          "equals": 0
+        },
+        {
+          "pointer": "/native_remaining_clippers",
+          "equals": 0
+        },
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/native_ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/native_directdraw_imports",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.final128-functional-20261010",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-game-final128-performance-failure-20261010.json",
+      "sha256": "97298c786016f3cc5dda7e926a58a310b4b37db2f81543be585eb09d687414fb",
+      "scope": "128 actual pinned original-engine/native Qt GPU frames with real ddraw disabled and absent. No World readbacks/pixel replies/writebacks or unknown terminal methods; bounded graphics resources. Overall run fails unchanged19FPS and512-frame cache budget. No independent original pixel, driver mode, semantic quit or whole gameplay equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/selected_session_directdraw_backend_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/original_returns",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/qt_paints",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": false
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.directdraw-retirement.bound128-functional-20261010",
+      "kind": "live_observation",
+      "record": "research/runtime/native-draw-game-bound128-performance-failure-20261010.json",
+      "sha256": "d3df40d6bcb1536c198c1d409e503f21b728454990e2081dd306a09e892f428c",
+      "scope": "128 actual pinned original-engine/native Qt GPU frames with real ddraw disabled and absent. No World readbacks/pixel replies/writebacks or unknown terminal methods; bounded graphics resources. Overall run fails unchanged19FPS and512-frame cache budget. No independent original pixel, driver mode, semantic quit or whole gameplay equivalence.",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/selected_session_directdraw_backend_retired",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/frozen_sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_disabled",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_draw/ddraw_module_absent",
+          "equals": true
+        },
+        {
+          "pointer": "/completed/native_continuous/original_returns",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/native_completions",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/qt_paints",
+          "equals": "128"
+        },
+        {
+          "pointer": "/completed/native_continuous/world_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/completed/native_continuous/pixel_replies",
+          "equals": "0"
+        },
+        {
+          "pointer": "/completed/native_continuous/original_world_writebacks",
+          "equals": "0"
+        },
+        {
+          "pointer": "/performance_budget/passed",
+          "equals": false
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -70365,7 +71109,8 @@
       ],
       "evidence": [
         "NR.directdraw-retirement.factory-isolated-20261010",
-        "NR.directdraw-retirement.services-factory-pass-20261010"
+        "NR.directdraw-retirement.services-factory-pass-20261010",
+        "NR.directdraw-retirement.startup-factory-current-20261010"
       ]
     },
     {
@@ -70381,7 +71126,8 @@
       ],
       "evidence": [
         "NR.directdraw-retirement.surfaces-isolated-20261010",
-        "NR.directdraw-retirement.services-surfaces-pass-20261010"
+        "NR.directdraw-retirement.services-surfaces-pass-20261010",
+        "NR.directdraw-retirement.startup-surfaces-current-20261010"
       ]
     },
     {
@@ -70401,7 +71147,7 @@
     {
       "id": "native-draw-services-20261010",
       "level": "headless",
-      "scope": "64 unchanged isolated clipper HWND/reference and RGB565 DC lease caller cases with full GDI COLORREF/native words versus Wine DirectDraw. Native-only logical primary/flip/attachment/duplicate refusal and surviving child lifecycle. ddraw disabled/module absent; no original game or driver presentation claim.",
+      "scope": "64 unchanged isolated clipper HWND/reference and RGB565 DC lease caller cases with full GDI COLORREF/native words versus Wine DirectDraw. Native-only logical primary/flip/attachment/duplicate refusal and surviving child lifecycle. ddraw disabled/module absent; no original game or driver presentation claim. Next expanded corpus adds16 null-window-normal/primary/Surface3/4 caller lifetimes, native two-mode enumeration/cancellation,256MiB host storage budget/allocation accounting,96-byte version2 module/resource diagnostics and terminal unknown device/surface/clipper routes. These policy checks make no original mode/memory/error equivalence claim.",
       "behaviors": [
         "NR.directdraw-retirement"
       ],
@@ -70410,7 +71156,45 @@
         "tools/test-native-draw-services.py"
       ],
       "evidence": [
-        "NR.directdraw-retirement.services-pass-20261010"
+        "NR.directdraw-retirement.services-pass-20261010",
+        "NR.directdraw-retirement.startup-services-20261010",
+        "NR.directdraw-retirement.startup-services-current-20261010"
+      ]
+    },
+    {
+      "id": "native-world-native-draw-live-20261010",
+      "level": "live_observation",
+      "scope": "Bounded actual pinned original-engine World queues with native PE32 graphics storage and real ddraw disabled, guarded import redirection plus two12-byte dynamic loader data strings; all other original sections/instructions unchanged, module absence/resource diagnostics, native Qt GPU presentation and V4 checked acknowledgements without World pixel readback/reply/writeback. Source closure, independent scoped renderer/caller fixtures, unique queue/presentation counts, teardown of native GPU resources and unchanged19FPS performance budget. Original outside-World drawing, original pixel equivalence, semantic original quit, arbitrary gameplay and60FPS remain pending.",
+      "behaviors": [
+        "NR.world-gpu-ack-delivery",
+        "NR.directdraw-retirement"
+      ],
+      "tests": [
+        "tools/test-native-world-continuous.py",
+        "tools/capture-scene-game.py",
+        "tools/scene-game-runner.py",
+        "tools/prepare-scene-observer.py",
+        "tools/build-native-draw.py",
+        "tools/prepare-native-draw.py"
+      ],
+      "evidence": [
+        "NR.directdraw-retirement.resident128-functional-20261010",
+        "NR.directdraw-retirement.final128-functional-20261010",
+        "NR.directdraw-retirement.bound128-functional-20261010"
+      ]
+    },
+    {
+      "id": "native-draw-loader-import-20261010",
+      "level": "headless",
+      "scope": "Eight offline guarded pinned NoCD staging compositions, four import-only and four with the two exact12-byte dynamic loader lookup changes. All other sections/instructions and original IAT unchanged; ten mutation and eight duplicate refusals. No engine or Wine execution.",
+      "behaviors": [
+        "NR.directdraw-import-retirement"
+      ],
+      "tests": [
+        "tools/test-native-draw-import.py"
+      ],
+      "evidence": [
+        "NR.directdraw-import-retirement.dual-loader-20261010"
       ]
     }
   ],
@@ -70749,8 +71533,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-native-draw-services-20261010.json",
-    "sha256": "b0f972c261657594ce83b2510ddf30c3f8afd433cba98becbdb0dadd2071f6cf"
+    "path": "research/runtime/coverage/source-index-native-draw-startup-bound-20261010.json",
+    "sha256": "8f79ae984290d82b5f182d803354087484fde52e35e66803580c04b9f2b7a1a2"
   },
   "claim_bindings_required": true
 }

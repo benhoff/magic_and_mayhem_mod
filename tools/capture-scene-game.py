@@ -28,6 +28,7 @@ def sha(path):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--native-draw',action='store_true',help='Guarded native graphics services with real ddraw disabled; V4 continuous test only')
     parser.add_argument('--source-game',type=Path,help='Pinned read-only source installation for an isolated capture')
     parser.add_argument('--prefix-template',type=Path,default=ROOT/'working/wineprefix-x86_64')
     parser.add_argument('--samples',type=int,choices=[*range(1,17),32],default=4)
@@ -67,6 +68,7 @@ def main():
     parser.add_argument('--minimap-owned',action='store_true',help='Observe owned four-view minimap inputs in producer journal V2; original drawing stays active')
     parser.add_argument('--minimap-input-fixture',type=Path,help='Private-Xvfb XTest schedule executable; owned minimap only, 250ms pacing between first16 World calls')
     args=parser.parse_args()
+    if args.native_draw and not args.continuous_resident:parser.error('--native-draw requires V4 continuous GPU ownership')
     if args.continuous_resident and (args.continuous_queues is None or args.continuous_verify):
         parser.error('--continuous-resident requires continuous queues and excludes pixel verification')
     if args.continuous_queues is not None and (not 1<=args.continuous_queues<=4096 or not args.world_raster_batch or args.samples!=32 or args.world_raster_prefix!=32 or args.manual_input):parser.error('Continuous queues require isolated guarded prefix32 setup and cap1..4096')
@@ -138,6 +140,7 @@ def main():
         sources += [ROOT/p for p in ['protocols/include/mnm/world_raster_batch_v3.h','compat/legacy/world_raster_batch.cpp','compat/legacy/world_raster_batch.hpp']]
     if args.word_sprites:sources += [ROOT/p for p in ['renderer/sprites/word_raster.h','renderer/sprites/word_raster.c','runtime/shadow/win32_min.h','tools/build-word-sprites.py','tools/build-shadow-bridge.py','renderer/sprites/word_clipped.c','renderer/sprites/word_clipped.h','reconstruction/rendering/word_backend_state.c','reconstruction/rendering/word_backend_state.h']]
     if args.glyph_backend:sources += [ROOT/p for p in ['tools/glyph_live_capture.py','tools/glyph_backend_launch.py','tools/build-shadow-bridge.py','reconstruction/rendering/glyph_backend.c','reconstruction/rendering/glyph_backend.h','reconstruction/rendering/glyph_backend_state.c','reconstruction/rendering/glyph_backend_state.h','reconstruction/rendering/glyph_backend_x87.S']]
+    if args.native_draw:sources += [ROOT/p for p in ['runtime/native-draw/factory.c','runtime/native-draw/surfaces.h','runtime/native-draw/dc.h','runtime/native-draw/clipper.h','runtime/native-draw/refusal.h','runtime/native-draw/status.h','tools/build-native-draw.py','tools/prepare-native-draw.py']]
     fingerprints={str(p.relative_to(ROOT)):sha(p) for p in sources}
     spec=importlib.util.spec_from_file_location('scene_prepare',ROOT/'tools/prepare-scene-observer.py')
     staging=importlib.util.module_from_spec(spec);spec.loader.exec_module(staging)
@@ -153,7 +156,12 @@ def main():
             process=None
     subprocess.run([str(ROOT/'tools/original-manifest.sh'),'verify'],check=True)
     try:
-        root=staging.prepare(menu=True,word_mode=args.word_sprites,world_frames=args.world_frames,world_live=bool(args.world_live),source_game=args.source_game,glyph_mode=args.glyph_backend);print(root,flush=True)
+        root=staging.prepare(menu=True,word_mode=args.word_sprites,world_frames=args.world_frames,world_live=bool(args.world_live),source_game=args.source_game,glyph_mode=args.glyph_backend,native_draw=args.native_draw);print(root,flush=True)
+        if args.native_draw:
+            build=json.loads((root/'native-draw-build/manifest.json').read_text())
+            declared=claims['sources'] if claims else fingerprints
+            if set(build['sources'])-set(declared):raise RuntimeError('Undeclared native graphics compiler/builder inputs')
+            if any(sha(ROOT/n)!=h or declared[n]!=h for n,h in build['sources'].items()):raise RuntimeError('Native graphics compiled source differs from prospective claim')
         if args.continuous_queues is not None and not args.continuous_verify:
             from native_render_config import stage_native_draw_cadence
             codecs=[]
@@ -397,7 +405,7 @@ def main():
             native=json.loads((root/'native-producers/live-report.json').read_text())
             if not native['success'] or int(native['original_returns'])!=args.continuous_queues or int(native['native_completions'])!=args.continuous_queues or native['remaining_surfaces'] or native['image_uploads']:raise RuntimeError('Incomplete original/native continuous acknowledgements')
             if any((root/'capture').iterdir()) or (root/'capture/canvas-producers.bin').exists() or list((root/'capture').glob('world-batch-*.request')):raise RuntimeError('Continuous path emitted accumulating diagnostics')
-            report.update(native_continuous=native,original_pixels_used_as_native_inputs=False,original_work_bypassed=True,continuous_queues=args.continuous_queues,scope='Actual guarded original producer queues through fixed two-slot owned sources and native CPU/GPU rendering, with original writeback/return acknowledgement; native final CPU/GPU assertions, independent original equivalence remains separate.')
+            report.update(native_continuous=native,original_pixels_used_as_native_inputs=False,original_work_bypassed=True,continuous_queues=args.continuous_queues,scope=('Actual guarded original producer queues through fixed two-slot sources and native GPU rendering, checked80-byte owned-command acknowledgements, zero World pixel replies/writebacks/readbacks; independent original pixel equivalence remains separate.' if args.continuous_resident else 'Actual guarded original producer queues through fixed two-slot owned sources and native CPU/GPU rendering, with original writeback/return acknowledgement; native final CPU/GPU assertions, independent original equivalence remains separate.'))
         if args.canvas_producers and args.continuous_queues is None:
             spec=importlib.util.spec_from_file_location('producer_inspector',ROOT/'tools/inspect-canvas-producers.py')
             inspector=importlib.util.module_from_spec(spec);spec.loader.exec_module(inspector)
@@ -447,6 +455,14 @@ def main():
                 if args.world_producer_bypass:
                     report.update(original_work_bypassed=True,live_replacement=True,bypassed_rasters=args.world_producer_bypass,original_oracle_policy='After native bypass, observed original destination contains native contribution; independent original replay required for equivalence')
 
+        if args.native_draw:
+            raw=(root/'native-draw-status.bin').read_bytes()
+            if len(raw)!=96 or raw[:8]!=b'MNMDRW01':raise RuntimeError('Native graphics status missing or malformed')
+            stats=struct.unpack('<24I',raw)
+            if stats[2:5]!=(2,96,0) or not stats[9] or not stats[10] or stats[19] or stats[23] or stats[20]<stats[9] or stats[22] or stats[15]>512 or stats[16]>256*1024*1024 or stats[17]>128 or stats[18]>64:raise RuntimeError('Native graphics backend status invalid: '+str(stats))
+            if (root/'game/native-draw-refusal.bin').exists():raise RuntimeError('An unadmitted native graphics method was invoked')
+            if sha(root/'game/MnmDraw.dll')!=metadata['native_draw_sha256']:raise RuntimeError('Native graphics DLL changed')
+            report['native_draw']=dict(ddraw_disabled=True,ddraw_module_absent=True,native_dll_sha256=metadata['native_draw_sha256'],status_sha256=sha(root/'native-draw-status.bin'),factory_attempts=stats[20],enumerations=stats[21],last_create_result=stats[22],factory_creations=stats[9],surface_creations=stats[10],locks=stats[11],copies=stats[12],flips=stats[13],peak_surfaces=stats[15],peak_bytes=stats[16],peak_dcs=stats[17],peak_clippers=stats[18],active_devices=stats[5],active_surfaces=stats[6],active_dcs=stats[7],active_clippers=stats[8],scope='Selected bounded actual original-engine V4 World source session uses native storage with real ddraw disabled. Original outside-World drawing remains active; primary storage is logical and Qt native GPU presentation is separate. Private process stop is not original semantic teardown.')
         if args.world_lifetime:
             lifetime=root/'capture/canvas-lifetime.bin';raw=lifetime.read_bytes()
             if len(raw)<128 or raw[:8]!=b'MNMCLIF1' or (len(raw)-64)%64:raise RuntimeError('Incomplete World lifetime diagnostics')

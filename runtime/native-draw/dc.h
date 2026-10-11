@@ -10,7 +10,7 @@ API int WIN GdiFlush(void);
 static u32 ns_dcs;
 static void ns_dc_drop(struct NsState* s){
  if(s->dc){SelectObject(s->dc,s->old_bitmap);DeleteObject(s->bitmap);DeleteDC(s->dc);--ns_dcs;}
- s->dc=s->bitmap=s->old_bitmap=s->dc_bits=0;
+ s->dc=s->bitmap=s->old_bitmap=s->dc_bits=0;nd_status();
 }
 static i32 WIN ns_get_dc(struct NsObject* o,void** out){
  if(!out)return ND_INVALID;struct NsState* s=o->state;
@@ -26,7 +26,7 @@ static i32 WIN ns_get_dc(struct NsObject* o,void** out){
  u32 pitch=(s->width*2+3)&~3u;
  for(u32 y=0;y<s->height;++y){u16* target=(u16*)((u8*)bits+y*pitch);const u16* source=(const u16*)((const u8*)s->pixels+y*s->pitch);
   for(u32 x=0;x<s->width;++x)target[x]=source[x];}
- s->dc=dc;s->bitmap=bitmap;s->old_bitmap=old;s->dc_bits=bits;++ns_dcs;*out=dc;return 0;
+ s->dc=dc;s->bitmap=bitmap;s->old_bitmap=old;s->dc_bits=bits;++ns_dcs;*out=dc;nd_status();return 0;
 }
 static i32 WIN ns_release_dc(struct NsObject* o,void* dc){
  struct NsState* s=o->state;if(!s->dc || s->dc!=dc)return (i32)0x8876024au;

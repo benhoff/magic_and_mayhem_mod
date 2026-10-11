@@ -6,6 +6,7 @@ API void* WIN GetProcAddress(void*,const char*);
 typedef i32 (WIN *Create)(void*,void**,void*);
 typedef i32 (WIN *Query)(void*,const u8*,void**);
 typedef u32 (WIN *Ref)(void*);
+static const u8 default_guid[16]={0};
 static const u8 dd2[16]={0xe0,0xf3,0xa6,0xb3,0x43,0x2b,0xcf,0x11,0xa2,0xde,0,0xaa,0,0xb9,0x33,0x56};
 static const u8 unknown[16]={0,0,0,0,0,0,0,0,0xc0,0,0,0,0,0,0,0x46};
 static const u8 unsupported[16]={0x12,0x34,0x56,0x78};
@@ -29,6 +30,7 @@ void start(void) {
     r[9]=((Ref)table(draw)[1])(draw);
     r[10]=((Ref)table(identity)[2])(identity);((Ref)table(base_identity)[2])(base_identity);r[11]=((Ref)table(second)[2])(second);
     r[12]=((Ref)table(draw)[2])(draw);r[13]=((Ref)table(draw)[2])(draw);
+    void* default_draw=0;r[15]=(u32)create((void*)default_guid,&default_draw,0);if(!r[15] && default_draw)((Ref)table(default_draw)[2])(default_draw);
     if(native){typedef u32 (WIN *Count)(void);Count count=(Count)GetProcAddress(module,"NativeDrawObjects");if(!count)ExitProcess(106);r[14]=count();}
   }
   if(native){

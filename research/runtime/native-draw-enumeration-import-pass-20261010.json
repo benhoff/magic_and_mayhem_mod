@@ -1,0 +1,114 @@
+{
+  "success": true,
+  "sources": {
+    "tools/prepare-native-draw.py": "7da391809d555ed36c9db7946c062484dece0df95757589b1ef3ccc258554864",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/test-native-draw-import.py": "0b998c746dd090323df2833db59af7dd621448cbe970723a65d4142db26b4e48"
+  },
+  "claims": [
+    {
+      "behavior": "NR.directdraw-import-retirement",
+      "contract_sha256": "2d5a3fa69f12f9e83876544fe02fdc4962988a80dfdfb5a57b635ecf6183a649",
+      "scenarios": {
+        "native-draw-loader-import-20261010": "0894b3d53382dfa8c107d638fa84681426fe9d3244482a9cc6f5a8b45715cd84"
+      }
+    }
+  ],
+  "scope": "Offline guarded pinned PE32 import redirection only. Eight staging compositions preserve original IAT and section bytes, with only the explicit enumeration variant changing the guarded12-byte DLL name, change the graphics descriptor name to native and add the anchor. Eight mutations and duplicate staging refuse. No executable instructions or loader/game integration are executed.",
+  "real_game_directdraw_retired": false,
+  "source_executable_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "cases": [
+    {
+      "existing_additions": 0,
+      "output_sha256": "81ca4a8d1a3af9180da7c03d70af00b949849e8862f773e3f80987bdeeeedf6b",
+      "original_sections_unchanged": true,
+      "dynamic_loader_redirect": false,
+      "guarded_data_bytes_changed": 0,
+      "all_other_section_bytes_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    },
+    {
+      "existing_additions": 1,
+      "output_sha256": "a1f438ea3fe5c4195867c0456fb0c956554d749fbba09ce5d15d2a5c1f98a672",
+      "original_sections_unchanged": true,
+      "dynamic_loader_redirect": false,
+      "guarded_data_bytes_changed": 0,
+      "all_other_section_bytes_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    },
+    {
+      "existing_additions": 2,
+      "output_sha256": "763c56bd21934acea75b994605559597e8e5c103dd3d7648153f16b56897bc06",
+      "original_sections_unchanged": true,
+      "dynamic_loader_redirect": false,
+      "guarded_data_bytes_changed": 0,
+      "all_other_section_bytes_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    },
+    {
+      "existing_additions": 3,
+      "output_sha256": "81db6f634d4388a23dff6c66e8907d1a3f559fbb6d3a475eec388b522e0d7fd9",
+      "original_sections_unchanged": true,
+      "dynamic_loader_redirect": false,
+      "guarded_data_bytes_changed": 0,
+      "all_other_section_bytes_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    },
+    {
+      "existing_additions": 0,
+      "output_sha256": "1c0331e74bc9da40d0b45f8eb94096142241d181e00f00384c4ea38b589b99a5",
+      "original_sections_unchanged": false,
+      "dynamic_loader_redirect": true,
+      "guarded_data_bytes_changed": 12,
+      "all_other_section_bytes_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    },
+    {
+      "existing_additions": 1,
+      "output_sha256": "1f6831c1b98a3b348bfc3f87f5d6c272118d1a3dc86ad39519a65d48837d8460",
+      "original_sections_unchanged": false,
+      "dynamic_loader_redirect": true,
+      "guarded_data_bytes_changed": 12,
+      "all_other_section_bytes_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    },
+    {
+      "existing_additions": 2,
+      "output_sha256": "995fe19155f21e43e22117a82e43de4f3ff8aefae708c6199d3981e85ed3219c",
+      "original_sections_unchanged": false,
+      "dynamic_loader_redirect": true,
+      "guarded_data_bytes_changed": 12,
+      "all_other_section_bytes_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    },
+    {
+      "existing_additions": 3,
+      "output_sha256": "535e6cef3a33488178ef94267f70be0ae079cbee188d94a1fbc1c61208956c6c",
+      "original_sections_unchanged": false,
+      "dynamic_loader_redirect": true,
+      "guarded_data_bytes_changed": 12,
+      "all_other_section_bytes_unchanged": true,
+      "original_iat_unchanged": true,
+      "directdraw_import_absent": true,
+      "duplicate_refused": true
+    }
+  ],
+  "mutation_refusals": 8,
+  "duplicate_refusals": 8,
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true
+}

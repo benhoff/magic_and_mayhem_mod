@@ -46,10 +46,60 @@ static void primary(Create create,void* module){
  u32 policy[4]={2,W*H*3,1,0},n=0;HANDLE out=CreateFileA("services-policy.bin",0x40000000,0,0,2,0x80,0);
  if(out==(HANDLE)-1 || !WriteFile(out,policy,sizeof(policy),&n,0) || n!=sizeof(policy))ExitProcess(190);CloseHandle(out);
 }
+
+static u32 startup_results[16][16];
+static const u8 startup_ids[3][16]={
+ {0x00,0x4e,0x04,0xda,0xb2,0x69,0xd0,0x11,0xa1,0xd5,0,0xaa,0,0xb8,0xdf,0xbb},
+ {0x30,0x86,0x2b,0x0b,0x35,0xad,0xd0,0x11,0x8e,0xa6,0,0x60,0x97,0x97,0xea,0x5b},
+ {0x9a,0x50,0x59,0x9c,0xbd,0x39,0xd1,0x11,0x8c,0x4a,0,0xc0,0x4f,0xd9,0x30,0xc5}};
+static void startup(Create create){
+ for(u32 i=0;i<16;++i){u32* r=startup_results[i],d[31];void *draw=0,*front=0,*three=0,*four=0,*draw4=0;
+  r[0]=(u32)create(0,&draw,0);if(r[0])ExitProcess(191);
+  r[1]=(u32)((i32 (WIN *)(void*,void*,u32))table(draw)[20])(draw,0,8);if(r[1])ExitProcess(192);
+  desc(d);d[1]=1;d[26]=0x200;r[2]=(u32)((Surface)table(draw)[6])(draw,d,&front,0);if(r[2])ExitProcess(193);
+  r[3]=(u32)((i32 (WIN *)(void*,const u8*,void**))table(front)[0])(front,startup_ids[0],&three);
+  r[4]=(u32)((i32 (WIN *)(void*,const u8*,void**))table(front)[0])(front,startup_ids[1],&four);
+  r[5]=(u32)((i32 (WIN *)(void*,const u8*,void**))table(draw)[0])(draw,startup_ids[2],&draw4);
+  if(r[3] || r[4] || r[5])ExitProcess(194);
+  r[6]=((Ref)table(three)[1])(three);r[7]=((Ref)table(three)[2])(three);
+  r[8]=((Ref)table(three)[2])(three);r[9]=((Ref)table(four)[2])(four);r[10]=((Ref)table(front)[2])(front);
+  r[11]=((Ref)table(draw4)[2])(draw4);r[12]=((Ref)table(draw)[2])(draw);
+ }
+ u32 n=0;HANDLE f=CreateFileA("startup-results.bin",0x40000000,0,0,2,0x80,0);
+ if(f==(HANDLE)-1 || !WriteFile(f,startup_results,sizeof(startup_results),&n,0) || n!=sizeof(startup_results))ExitProcess(195);CloseHandle(f);
+}
+static u32 mode_count,mode_stop;
+static i32 WIN mode(u32* d,void* context){
+ if(context!=(void*)0x1234 || d[0]!=124 || d[1]!=0x4100e || d[2]!=(mode_count?600u:480u) || d[3]!=(mode_count?800u:640u) || d[4]!=d[3]*2 || d[6]!=60 || d[18]!=32 || d[21]!=16 || d[22]!=0xf800 || d[23]!=0x7e0 || d[24]!=0x1f)ExitProcess(196);
+ ++mode_count;return mode_stop?0:1;
+}
+static void startup_policy(Create create){
+ void *draw=0,*draw4=0,*surface=0;u32 d[31],caps[4]={0x4000},total=0,free=0;
+ if(create(0,&draw,0) || ((i32 (WIN *)(void*,const u8*,void**))table(draw)[0])(draw,startup_ids[2],&draw4))ExitProcess(197);
+ for(u32 i=0;i<31;++i)d[i]=0;d[0]=124;
+ typedef i32 (WIN *Modes)(void*,u32,const u32*,void*,i32 (WIN *)(u32*,void*));
+ if(((Modes)table(draw)[8])(draw,1,d,(void*)0x1234,mode) || mode_count!=2)ExitProcess(198);
+ mode_count=0;mode_stop=1;if(((Modes)table(draw)[8])(draw,1,d,(void*)0x1234,mode) || mode_count!=1)ExitProcess(199);
+ typedef i32 (WIN *Memory)(void*,const u32*,u32*,u32*);
+ Memory memory=(Memory)table(draw4)[23];if(memory(draw4,caps,&total,&free) || total!=256*1024*1024 || free!=total)ExitProcess(200);
+ desc(d);if(((Surface)table(draw)[6])(draw,d,&surface,0) || memory(draw4,caps,0,&free) || free!=total-32*H)ExitProcess(201);
+ ((Ref)table(surface)[2])(surface);if(memory(draw4,caps,0,&free) || free!=total)ExitProcess(202);
+ caps[0]=0;free=0xabcdef;if(memory(draw4,caps,0,&free)!=(i32)0x80004001u || free!=0xabcdef)ExitProcess(203);
+ ((Ref)table(draw4)[2])(draw4);((Ref)table(draw)[2])(draw);
+}
+static void refusal(Create create,char family){
+ void *draw=0,*object=0;u32 d[31];if(create(0,&draw,0))ExitProcess(204);
+ if(family=='D')((i32 (WIN *)(void*))table(draw)[3])(draw);
+ if(family=='S'){desc(d);if(((Surface)table(draw)[6])(draw,d,&object,0))ExitProcess(205);((i32 (WIN *)(void*))table(object)[8])(object);}
+ if(family=='C'){if(((i32 (WIN *)(void*,u32,void**,void*))table(draw)[4])(draw,0,&object,0))ExitProcess(206);((i32 (WIN *)(void*))table(object)[3])(object);}
+ ExitProcess(207);
+}
 void start(void){
  char value[2];u32 native=GetEnvironmentVariableA("MNM_FACTORY_NATIVE",value,2)!=0;
  void* module=LoadLibraryA(native?"MnmDraw.dll":"ddraw.dll");if(!module)ExitProcess(160);
  Create create=(Create)GetProcAddress(module,native?"NativeDrawCreate":"DirectDrawCreate");if(!create)ExitProcess(161);
+ if(native && GetEnvironmentVariableA("MNM_REFUSE",value,2))refusal(create,value[0]);
+ startup(create);if(native)startup_policy(create);
  for(u32 i=0;i<64;++i){u32* r=results[i];void *draw=0,*a=0,*clipper=0,*queried=0,*dc=0;u32 d[31];
   r[0]=(u32)create(0,&draw,0);if(r[0] || !draw)ExitProcess(162);
   r[1]=(u32)((i32 (WIN *)(void*,void*,u32))table(draw)[20])(draw,GetDesktopWindow(),8);

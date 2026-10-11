@@ -26,9 +26,9 @@ def main():
     env={k:v for k,v in os.environ.items() if not k.startswith('MNM_')}
     env.update(WINEDEBUG='-all',LIBGL_ALWAYS_SOFTWARE='1',WINEPREFIX=str(out/'wineprefix'))
     reservation=None;before=False;inputs={}
-    def run(name,command,extra=None,cwd=None):
+    def run(name,command,extra=None,cwd=None,check=True):
         with (out/(name+'.log')).open('x') as log:
-            subprocess.run([str(x) for x in command],cwd=cwd or out,env={**env,**(extra or {})},stdout=log,stderr=log,check=True,timeout=120)
+            return subprocess.run([str(x) for x in command],cwd=cwd or out,env={**env,**(extra or {})},stdout=log,stderr=log,check=check,timeout=120)
     try:
         run('original-before',[ROOT/'tools/original-manifest.sh','verify']);before=True
         spec=importlib.util.spec_from_file_location('native_factory_reservation',ROOT/'tools/capture-original-surface-keys.py')
@@ -66,7 +66,7 @@ def main():
         run('native-imports',['llvm-readobj','--coff-imports',dll])
         if 'ddraw.dll' in (out/'native-imports.log').read_text().lower():raise ValueError('Native factory imports DirectDraw')
         inputs[str(dll)]=sha(dll);inputs[str(out/'probe.exe')]=sha(out/'probe.exe')
-        for name,extra in [('original',{'WINEDLLOVERRIDES':'ddraw=b'}),('native',{'WINEDLLOVERRIDES':'ddraw=','MNM_FACTORY_NATIVE':'1'})]:
+        for name,extra in [('original',{'WINEDLLOVERRIDES':'ddraw=b'}),('native',{'WINEDLLOVERRIDES':'ddraw=','MNM_FACTORY_NATIVE':'1','MNM_NATIVE_DRAW_STATUS':'Z:'+str(out/'status.bin').replace('/','\\')})]:
             dest=out/name;dest.mkdir();run(name,['wine',out/'probe.exe'],extra,cwd=dest)
         original=(out/'original/services-results.bin').read_bytes();native=(out/'native/services-results.bin').read_bytes()
         words=32+3*13*9
@@ -81,6 +81,19 @@ def main():
         policy=struct.unpack('<4I',(out/'native/services-policy.bin').read_bytes())
         if policy!=(2,351,1,0):raise ValueError('Native refusal/capacity policy incomplete')
         report['native_policy']=dict(flip_surfaces=policy[0],compared_words=policy[1],duplicate_primary_refusals=policy[2],remaining_surfaces=policy[3],policy_sha256=sha(out/'native/services-policy.bin'))
+        startup_a=(out/'original/startup-results.bin').read_bytes();startup_b=(out/'native/startup-results.bin').read_bytes()
+        if len(startup_a)!=16*16*4 or startup_a!=startup_b:raise ValueError('Startup null-window/primary/Surface3/4 caller mismatch')
+        stats=struct.unpack('<24I',(out/'status.bin').read_bytes())
+        if stats[:5]!=(0x444d4e4d,0x31305752,2,96,0) or any(stats[5:9]) or not stats[20] or stats[22] or stats[23]:raise ValueError('Invalid module/resource diagnostic teardown')
+        report['startup_policy']=dict(original_compared_cases=16,original_compared_words=256,caller_sha256=sha(out/'native/startup-results.bin'),logical_mode_callbacks=3,host_storage_budget_bytes=256*1024*1024,allocation_accounting_bytes=32*9,original_mode_memory_equivalence=False,status_sha256=sha(out/'status.bin'),status_words=list(stats))
+        refusals=[]
+        for letter,family,kind,slot in [('D',1,1,3),('S',2,1,8),('C',3,0,3)]:
+            dest=out/('refusal-'+letter);dest.mkdir()
+            result=run('refusal-'+letter,['wine',out/'probe.exe'],{'WINEDLLOVERRIDES':'ddraw=','MNM_FACTORY_NATIVE':'1','MNM_REFUSE':letter},cwd=dest,check=False)
+            words=struct.unpack('<8I',(dest/'native-draw-refusal.bin').read_bytes())
+            if result.returncode!=96+family or words[:7]!=(0x444d4e4d,0x31464552,1,32,family,kind,slot) or not words[7] or (dest/'services-results.bin').exists():raise ValueError('Unknown method failed to refuse terminally')
+            refusals.append(dict(family=family,kind=kind,slot=slot,exit_code=result.returncode,record_sha256=sha(dest/'native-draw-refusal.bin')))
+        report['terminal_unknown_refusals']=refusals
         report['success']=True
     except Exception as error:report['error']=str(error)
     finally:
