@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "requirements": {
+    "enabled-movies": [
+      "both-intros",
+      "movie-skip",
+      "return-to-menu"
+    ],
+    "main-setup-menus": [
+      "main-menu",
+      "setup-change",
+      "cancel-return"
+    ],
+    "campaign-entry": [
+      "campaign-selection",
+      "loading",
+      "first-composed-world"
+    ],
+    "quick-battle-entry": [
+      "setup-confirm",
+      "loading",
+      "first-composed-world"
+    ],
+    "active-world": [
+      "sustained-world",
+      "animation",
+      "visibility"
+    ],
+    "camera-motion": [
+      "pan",
+      "four-orientations",
+      "viewport-boundaries"
+    ],
+    "creatures-effects": [
+      "creature-animation",
+      "attachment",
+      "combat",
+      "lighting",
+      "effect-blending"
+    ],
+    "hud-minimap-tooltips": [
+      "hud-update",
+      "minimap-update",
+      "markers",
+      "tooltip-open-close"
+    ],
+    "cursor-interaction": [
+      "cursor-motion",
+      "hotspot",
+      "picking",
+      "selection"
+    ],
+    "pause-preferences": [
+      "pause",
+      "preferences-change",
+      "cancel",
+      "resume"
+    ],
+    "save-load": [
+      "save",
+      "load",
+      "restored-world"
+    ],
+    "map-transitions": [
+      "leave-map",
+      "loading",
+      "next-map"
+    ],
+    "battle-results": [
+      "victory",
+      "defeat",
+      "return-to-menu"
+    ],
+    "shutdown": [
+      "world-exit",
+      "menu-exit",
+      "cleanup"
+    ]
+  },
+  "operation_requirements": [
+    "copy-opaque",
+    "copy-keyed",
+    "copy-clipped",
+    "copy-stretched",
+    "copy-alias-overlap",
+    "fill-full",
+    "fill-clipped",
+    "partial-write",
+    "cpu-write-readback",
+    "text-font-dc-lifetime",
+    "image-cropping",
+    "sprite-indexed",
+    "sprite-direct",
+    "sprite-auxiliary",
+    "palette-remap",
+    "palette-cycling",
+    "destination-dependency",
+    "flags-and-return-values",
+    "surface-loss-restore",
+    "transition-recovery",
+    "failure-cleanup"
+  ],
+  "cases": [
+    {
+      "id": "components",
+      "adapter": "components",
+      "catalog": {
+        "path": "tests/fixtures/drawing/corpus.json",
+        "sha256": "d0beaf2701aa5b8c55ec446a2fc13349c82e3fed87cca7a6a995584d14bf33cb"
+      },
+      "scope": "Five driver operations and four sampled World consumer canvases; no presented journey."
+    },
+    {
+      "id": "startup-scene",
+      "adapter": "scene",
+      "catalog": {
+        "path": "tests/fixtures/drawing-scene/scene.json",
+        "sha256": "795a812754dee653edbe1b4b9213b3d24698103c6ac5cdb3ebb6db9b982d0516"
+      },
+      "scope": "Six composed startup checkpoints before display copy; no presented journey."
+    }
+  ]
+}
