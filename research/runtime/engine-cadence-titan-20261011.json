@@ -1,0 +1,222 @@
+{
+  "success": true,
+  "claims": [
+    {
+      "behavior": "NR.engine-cadence-observation",
+      "contract_sha256": "da53a30d73c724c444de03c567ce53eb39ed9b23f9b498ded173186afdaa2453",
+      "scenarios": {
+        "NR.engine-cadence-observation.live": "f6e3e41f26f9f71ba070507ed4275a217b33647c7d365b731b5b5141d17b8bbd"
+      }
+    }
+  ],
+  "sources": {
+    "runtime/engine-cadence/entry.S": "46aa2a34c50e5ab1450913cc3033602e36ac490e7ea6ad095ab0d581dd97908f",
+    "runtime/engine-cadence/observer.c": "e5f1a11c1ec2555eb8d103ab5ab0126db40e52918166eeeee49e8c2cbee3104d",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/engine-cadence-reference.S": "f6e310c4a423ab59f1e7bd2308028d910b1e3d47ca97d811d5a9f4877856f82f",
+    "tests/engine-cadence-reference.c": "7b90f4d0540812e99f01e49d5a74bd207988b6ba3966298d71ee3f4878dcacbf",
+    "tools/build-engine-cadence.py": "fcd3db7c289619552b0df5bf7919264273ce29c40cf0b37eed699fe7b3e8ebf6",
+    "tools/build-menu-observer.py": "40b546d7bb625630e5f58b9a58e424684a205dbb338c2eef1e5eb69db5654838",
+    "tools/engine_cadence.py": "23ba50b845ab8ab46249efcb0591c0b26f20a1447c515c53c9d4b0ea5f870e7a",
+    "tools/menu-game-runner.py": "35df7f0c50dddc870fc3b594e59eda16e40c571a0231e5759d9c008fc0a20d91",
+    "tools/original-manifest.sh": "6ae5d33ba96990c8aac9541a0bdc0ca16c4f28b157bb141d80104bd77d83dc45",
+    "tools/prepare-menu-observer.py": "39b669c4d83573e4278b2dcfff11a4d83d4081e5386530e4cbfbbf0796d5aab6",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/test-engine-cadence.py": "7deb50cb81f58ba730e9679478ebb63caee8fd77768dede5ef5f3ad2d2a0785c",
+    "tools/test-native-campaign.py": "2ade304114c7eb581230b0331db9f034d2b2ff1dbd42503f720323de3e417429",
+    "tools/trace-engine-cadence.py": "ec2c931c39a512e48ea69f4a69379b827a24737c1abeb5646e88d27dfc24234b"
+  },
+  "scope": "Actual unchanged No-CD simulation/animation/World ordering on private TITAN native resident gameplay; tracing perturbs timings. No pacing change or 60FPS claim.",
+  "campaign_report": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/tests/native-campaign/run-89t1dgd9/report.json",
+  "campaign_report_sha256": "a8b16fb1d2feb5ee5469186a78b7af424e24de172d043eaccf7e4ae7dbe38f8c",
+  "campaign_success": true,
+  "campaign_exit_code": 0,
+  "experiment": "/home/hoff/swdev/magic_and_mayhem_mod/working/native-public-resident/working/experiments/menu-observer/run-9i13eqxq",
+  "trace_sha256": "141f3d0287150c1b35c29dafd793e742cc2d4faac18f650e7ddf06aafca955fe",
+  "cadence": {
+    "events": {
+      "pacer-enter": 4664,
+      "pacer-return": 4664,
+      "accepted-update": 4545,
+      "world-tick": 4356,
+      "maintenance-enter": 26488,
+      "maintenance-return": 26488,
+      "animation-enter": 34848,
+      "animation-return": 34848,
+      "scheduler-enter": 4356,
+      "scheduler-return": 4356,
+      "world-queue-enter": 4545
+    },
+    "owner_thread": 400,
+    "frequency": 10000000,
+    "records": 154158,
+    "accepted_update_windows": 4544,
+    "advancing_update_windows": 4355,
+    "counter_delta_counts": {
+      "1": 4355
+    },
+    "queues_per_advancing_update": {
+      "1": 4355
+    },
+    "animation_calls_per_advancing_update": {
+      "8": 4355
+    },
+    "scheduler_calls_per_advancing_update": {
+      "1": 4355
+    },
+    "queue_windows_matching_tick": 4355,
+    "pacing_target_counts": {
+      "50": 4355
+    },
+    "companion_counts": {
+      "20": 4355
+    },
+    "mode_counts": {
+      "0": 4355,
+      "1": 189
+    },
+    "suppressed_queue_values": {
+      "0": 4355
+    },
+    "active_animation_calls": 34848,
+    "animation_state_changes": 34848,
+    "accepted_update_interval_ms": {
+      "samples": 4352,
+      "mean": 51.8208981617647,
+      "median": 50.0002,
+      "p95": 56.91,
+      "maximum": 1823.0709
+    },
+    "call_wall_ms": {
+      "pacer-enter": {
+        "samples": 4664,
+        "mean": 9.993261942538593,
+        "median": 11.06335,
+        "p95": 18.2175,
+        "maximum": 49.9956
+      },
+      "animation-enter": {
+        "samples": 34848,
+        "mean": 0.0004482007575757576,
+        "median": 0.0004,
+        "p95": 0.0008,
+        "maximum": 0.1263
+      },
+      "scheduler-enter": {
+        "samples": 4356,
+        "mean": 0.00707036271808999,
+        "median": 0.0008,
+        "p95": 0.0145,
+        "maximum": 1.4895
+      },
+      "maintenance-enter": {
+        "samples": 26488,
+        "mean": 0.0025835095137420718,
+        "median": 0.0011,
+        "p95": 0.0034,
+        "maximum": 1.1729
+      }
+    },
+    "excluded_final_update": true,
+    "scope": "Observed pinned call sites only, unchanged pacing and simulation. Eight global ANI controllers, not all creature/effect animations. No render-only invocation, independent simulation clock, pixel equivalence or uninstrumented speed guarantee."
+  },
+  "sources_unchanged": true,
+  "original_manifest_verified_after": true,
+  "private_wine_stopped": true,
+  "resident_world": {
+    "actual_region_queries_per_world": 26.465346534653467,
+    "completed": "4545",
+    "decode_ms_per_world": 1.3762962528052822,
+    "engine_fps": 19.292950602985435,
+    "error": "",
+    "handoff_ms_per_world": 1.6849300352035204,
+    "imports": "4545",
+    "max_native_ms": 204.967025,
+    "native_ms_per_world": 21.821296662266228,
+    "native_readbacks": 0,
+    "nonce": "2613958519038551402",
+    "normal_quit_retired": true,
+    "pending": false,
+    "prepare_ms_per_world": 1.9234761766776636,
+    "producer_ms_per_world": 9.471911614081321,
+    "profiled_worlds": 4545,
+    "rasters": "5525811",
+    "renderer": "zink Vulkan 1.4(NVIDIA TITAN RTX (NVIDIA_PROPRIETARY))",
+    "reply_bytes_per_world": 80,
+    "rgba_readbacks": 0,
+    "submit_ms_per_world": 8.246407960836056,
+    "verified_returns": "4545",
+    "world_pixel_reply_bytes": 0,
+    "world_readbacks": 0
+  },
+  "hardware_driver": {
+    "driver": "zink",
+    "accelerated": true,
+    "nvidia": true,
+    "software_fallback": false,
+    "log_sha256": "50b688817b2d124c4a8aca4d40f51b598d92e2c21e63ba3e819aedbdac87e300"
+  },
+  "raw_report": "working/tests/engine-cadence/run-gozmyd1s/report.json",
+  "raw_report_sha256": "cca68595c3e393561b07cd7c6a685eba8d8abae58382859ea243a7d73efe9e34",
+  "gameplay_checks": {
+    "casting_verified": true,
+    "combat_verified": true,
+    "movement_verified": true,
+    "normal_quit_verified": true,
+    "flow_completed": true
+  },
+  "mode_window_observations": {
+    "trace_sha256": "141f3d0287150c1b35c29dafd793e742cc2d4faac18f650e7ddf06aafca955fe",
+    "modes": {
+      "0": {
+        "windows": 4355,
+        "queues": {
+          "1": 4355
+        },
+        "ticks": {
+          "1": 4355
+        },
+        "animation": {
+          "8": 4355
+        },
+        "scheduler": {
+          "1": 4355
+        },
+        "maintenance": {
+          "1": 1,
+          "3": 105,
+          "4": 394,
+          "5": 3,
+          "6": 2389,
+          "7": 1463
+        },
+        "queues_same_counter": 0
+      },
+      "1": {
+        "windows": 189,
+        "queues": {
+          "1": 189
+        },
+        "ticks": {
+          "0": 189
+        },
+        "animation": {
+          "0": 189
+        },
+        "scheduler": {
+          "0": 189
+        },
+        "maintenance": {
+          "0": 189
+        },
+        "queues_same_counter": 189
+      }
+    },
+    "scope": "Post-execution query of the completed immutable trace; no new execution or recovered pause policy."
+  },
+  "trace_format": {
+    "mode_field": "Low byte of original DWORD object+fd5a; complete mode/branch policy excluded",
+    "storage_limit_bytes": 25165824,
+    "flushed_bytes": 14799232
+  }
+}

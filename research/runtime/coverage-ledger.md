@@ -6568,3 +6568,38 @@ all-animation/pause/network/alternate pacing branches, independent render-only
 invocation and60FPS remain pending. See[experiment](engine-cadence.md).
 The exact27ed7f8..e692a4f history review covers nine files with zero receipt gaps;
 no retrospective gate or execution claim.
+
+
+### Original engine pacing/update/World coupling,2026-10-11: TITAN pass
+
+`NR.engine-cadence-observation.titan-20261011` records4545 balanced GPU Worlds
+at19.29295 aggregate engine FPS, actual casting/Fireball/melee/lethal, both spell
+refusals,movement,five portraits,Mini resume and normal Quit. NVIDIA TITAN RTX/Zink
+is accelerated; source stability,owned Wine cleanup and immutable originals pass.
+No delivery readback/pixel reply/pending World remains, and producer retirement
+is clean. The final controlled/live observer DLL is identical.
+
+All4355 complete advancing update windows have1 counter increment,8 global ANI
+calls,1 budget-scheduler call and1 World queue at50 ms target/20 companion. The
+189 non-advancing windows each produce1 World queue while omitting those selected
+steps and creature maintenance. The accepted-update sequence still advances across all189 non-advancing windows.
+Counter identity/order holds throughout. Mode
++fd5a is sampled as a low byte; full mode,other timers/updates,all animations and
+original/driver/pixel equivalence remain excluded.154158 events flush only after
+gameplay, without overflow or foreign thread. Final incomplete update is excluded.
+
+The shared frame cap cannot be treated as rendering-only. Existing non-advancing
+drawing is a candidate separation boundary, but still runs other world work,
+including an unresolved conditional ten-call subsystem branch; do not toggle
+the mode or lower pacing before repeated-draw state invariance is proved. Selected
+scheduler/maintenance averages are small, not attribution of all simulation CPU.
+60FPS and safe independent render production remain pending. `GP.tick` keeps
+partial understanding/no native implementation/no original comparison; its prior
+static findings and this bounded native diagnostic remain distinct.
+
+`NR.public-resident-world.engine-cadence-campaign-20261011` independently retains
+the full source/compiler-bound final-header gameplay regression, including portraits
+and normal Quit. This instrumented pass does not replace ordinary uninstrumented
+results or the retained capture overload/performance failure. See[experiment](engine-cadence.md).
+Exact e692a4f..7c0e46a history review:19 files,zero missing receipts,with no
+retrospective gate or validation assertion.
