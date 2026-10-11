@@ -42,7 +42,7 @@ def main():
         definition=out/'kernel32.def';definition.write_text('LIBRARY KERNEL32.dll\nEXPORTS\n'+''.join(f'{n}@{v}\n' for n,v in imports.items()))
         run('imports',['llvm-dlltool','-m','i386','--kill-at','-d',definition,'-l',out/'kernel32.lib'])
         flags=['clang','--target=i686-pc-windows-msvc','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-mno-sse','-mno-mmx','-Wall','-Wextra','-Werror']
-        for label,source in [('factory','runtime/native-draw/factory.c'),('probe','tests/native-draw-factory-probe.c')]:
+        for label,source in [('probe','tests/native-draw-factory-probe.c')]:
             run('compile-'+label,[*flags,'-MD','-MF',out/(label+'.d'),'-c',ROOT/source,'-o',out/(label+'.obj')])
         closure=set()
         for dep in out.glob('*.d'):
@@ -51,8 +51,13 @@ def main():
                 if p.is_file() and p.is_relative_to(ROOT) and not p.is_relative_to(ROOT/'working'):closure.add(str(p.relative_to(ROOT)))
         if closure-set(claims['sources']):raise ValueError('Undeclared compile inputs: '+repr(sorted(closure-set(claims['sources']))))
         report['compiled_sources']={n:sha(ROOT/n) for n in sorted(closure)}
-        dll=out/'MnmDraw.dll'
-        run('link-factory',['lld-link','/dll','/machine:x86','/entry:DllMain@12','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(dll),'/export:NativeDrawCreate=_NativeDrawCreate@12','/export:NativeDrawEnumerateA=_NativeDrawEnumerateA@8','/export:NativeDrawObjects=_NativeDrawObjects@0',out/'factory.obj',out/'kernel32.lib'])
+        spec=importlib.util.spec_from_file_location('native_draw_build',ROOT/'tools/build-native-draw.py')
+        builder=importlib.util.module_from_spec(spec);spec.loader.exec_module(builder)
+        dll=builder.build(out/'native-build',claims['sources'])
+        import shutil
+        shutil.copyfile(dll,out/'MnmDraw.dll');dll=out/'MnmDraw.dll'
+        report['native_build']=json.loads((out/'native-build/manifest.json').read_text())
+        report['compiled_sources'].update(report['native_build']['sources'])
         run('link-probe',['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0','/out:'+str(out/'probe.exe'),out/'probe.obj',out/'kernel32.lib'])
         run('native-imports',['llvm-readobj','--coff-imports',dll])
         if 'ddraw.dll' in (out/'native-imports.log').read_text().lower():raise ValueError('Native factory imports DirectDraw')

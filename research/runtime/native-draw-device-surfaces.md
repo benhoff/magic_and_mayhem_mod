@@ -62,3 +62,9 @@ Wine game started; its failure report is retained. Earlier128-case factory
 validation remains historical after this source change. The current storage proof
 covers Draw1/4 creation/query/cleanup only and makes no new Draw2 factory corpus
 equivalence claim. The separate unchanged128-case regression remains to rerun.
+
+Subsequent current-source factory and storage regressions pass in the next
+services milestone:128 factory lifetimes/2,176 selected caller words and64
+storage cases/37,440 pixel words, with ddraw disabled and no module or owners.
+The earlier reservation refusal remains historical. See
+[native DC/clipper/primary storage admission](native-draw-services-20261010.md).

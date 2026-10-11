@@ -11,9 +11,11 @@ struct NsState {
   struct NsObject aliases[4];u32 refs[4],interfaces;struct NdObject* device;
   u32 width,height,pitch,caps;u16* pixels;u32 locked;void* lock_pointer;
   u32 key_set,key_low,key_high;struct NsState* back;
+  void *dc,*bitmap,*old_bitmap,*dc_bits;struct NcClipper* clipper;
 };
 static void* ns_tables[4][45];
 static u32 ns_bytes;
+static void ns_dc_drop(struct NsState*);
 static const u8 ns_ids[3][16]={
  {0x81,0xdb,0x14,0x6c,0x33,0xa7,0xce,0x11,0xa5,0x21,0,0x20,0xaf,0x0b,0xe5,0x60},
  {0x85,0x58,0x80,0x57,0xec,0x6e,0xcf,0x11,0x94,0x41,0xa8,0x23,0x03,0xc1,0x0e,0x27},
@@ -31,7 +33,7 @@ static i32 WIN ns_query(struct NsObject* o,const u8* iid,void** out){
 static u32 WIN ns_retain(struct NsObject* o){if(!o->state->refs[o->kind]++)++o->state->interfaces;return o->state->refs[o->kind];}
 static u32 WIN ns_release(struct NsObject* o){
  struct NsState* s=o->state;u32 error=GetLastError(),refs=--s->refs[o->kind];
- if(!refs && !--s->interfaces){ns_bytes-=s->pitch*s->height;if(s->back)ns_release(&s->back->aliases[1]);VirtualFree(s->pixels,0,0x8000);
+ if(!refs && !--s->interfaces){if(s->device->state->primary==s)s->device->state->primary=0;ns_dc_drop(s);if(s->clipper)nc_release(s->clipper);ns_bytes-=s->pitch*s->height;if(s->back)ns_release(&s->back->aliases[s->device->kind==3?3:1]);VirtualFree(s->pixels,0,0x8000);
   nd_release(s->device);HeapFree(GetProcessHeap(),0,s);--nd_surfaces;}
  SetLastError(error);return refs;
 }
@@ -49,7 +51,7 @@ static int ns_rectangle(struct NsState* s,const i32* input,i32* r){
 static i32 WIN ns_lock(struct NsObject* o,const i32* rect,u32* d,u32 flags,HANDLE event){
  struct NsState* s=o->state;i32 r[4];
  if(!d || d[0]!=(o->kind==3?124u:108u) || event || (flags&~0x7831u))return ND_INVALID;
- if(s->locked)return NS_BUSY;if(!ns_rectangle(s,rect,r))return NS_RECT;
+ if(s->locked || s->dc)return NS_BUSY;if(!ns_rectangle(s,rect,r))return NS_RECT;
  i32 result=ns_desc(o,d);if(result)return result;
  d[1]|=0x800;d[9]=(u32)s->pixels+(u32)r[1]*s->pitch+(u32)r[0]*2;
  s->locked=1;s->lock_pointer=(void*)d[9];return 0;
@@ -71,8 +73,8 @@ static i32 WIN ns_get_key(struct NsObject* o,u32 flags,u32* key){
 }
 static i32 WIN ns_blt(struct NsObject* dst,const i32* dr,struct NsObject* src,const i32* sr,u32 flags,const u32* fx){
  struct NsState* d=dst->state;i32 rd[4],rs[4];
- if(flags&~(0x1000000u|0x8000u|0x400u))return NS_UNSUPPORTED;
- if(d->locked || (src && src->state->locked))return NS_BUSY;
+ if(flags&~(0x1000000u|0x8000u|0x400u) || d->clipper)return NS_UNSUPPORTED;
+ if(d->locked || d->dc || (src && (src->state->locked || src->state->dc)))return NS_BUSY;
  if(!ns_rectangle(d,dr,rd))return NS_RECT;
  u32 width=(u32)(rd[2]-rd[0]),height=(u32)(rd[3]-rd[1]);
  if(flags&0x400){if(src || !fx || fx[0]!=100 || (flags&0x8000))return ND_INVALID;
@@ -98,10 +100,31 @@ static i32 WIN ns_fast(struct NsObject* dst,u32 x,u32 y,struct NsObject* src,con
  return ns_blt(dst,d,src,r,(flags&1)?0x8000:0,0);
 }
 static i32 WIN ns_caps(struct NsObject* o,u32* caps){if(!caps)return ND_INVALID;caps[0]=o->state->caps;if(o->kind==3)ns_zero(caps+1,3);return 0;}
+static i32 WIN ns_attached(struct NsObject* o,const u32* caps,void** out){
+ if(!caps || !out)return ND_INVALID;*out=0;if(!o->state->back || caps[0]!=4 || (o->kind==3 && (caps[1] || caps[2] || caps[3])))return (i32)0x887600ffu;
+ struct NsObject* selected=&o->state->back->aliases[o->kind==3?3:1];ns_retain(selected);*out=selected;return 0;
+}
+static i32 WIN ns_flip(struct NsObject* o,struct NsObject* target,u32 flags){
+ struct NsState* front=o->state;struct NsState* back=front->back;
+ if(!back)return (i32)0x88760246u;
+ if(flags&~0x1000001u)return NS_UNSUPPORTED;
+ if(target && target->state!=back)return ND_INVALID;
+ if(front->locked || front->dc || back->locked || back->dc)return NS_BUSY;
+ u16* temporary=front->pixels;front->pixels=back->pixels;back->pixels=temporary;return 0;
+}
+static i32 WIN ns_get_clipper(struct NsObject* o,void** out){
+ if(!out)return ND_INVALID;*out=0;if(!o->state->clipper)return (i32)0x88760238u;
+ nc_retain(o->state->clipper);*out=o->state->clipper;return 0;
+}
+static i32 WIN ns_set_clipper(struct NsObject* o,struct NcClipper* c){
+ if(c && c->table!=nc_table)return ND_INVALID;if(c)nc_retain(c);
+ if(o->state->clipper)nc_release(o->state->clipper);o->state->clipper=c;return 0;
+}
 static i32 WIN ns_pixel_format(struct NsObject* o,u32* p){(void)o;if(!p || p[0]!=32)return ND_INVALID;ns_format(p);return 0;}
+#include "dc.h"
 static i32 WIN ns_lost(struct NsObject* o){(void)o;return 0;}
-static i32 WIN ns_restore(struct NsObject* o){return o->state->locked?NS_BUSY:0;}
-static i32 WIN ns_status(struct NsObject* o,u32 flags){if(flags!=1 && flags!=2)return ND_INVALID;return o->state->locked?NS_BUSY:0;}
+static i32 WIN ns_restore(struct NsObject* o){return (o->state->locked || o->state->dc)?NS_BUSY:0;}
+static i32 WIN ns_status(struct NsObject* o,u32 flags){if(flags!=1 && flags!=2)return ND_INVALID;return (o->state->locked || o->state->dc)?NS_BUSY:0;}
 static i32 WIN ns_unadmitted(struct NsObject* o){(void)o;ExitProcess(98);return NS_UNSUPPORTED;}
 static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,u32 caps){
  if(!width || !height || width>4096 || height>4096 || nd_surfaces>=512 || ((width*2+7)&~7u)*height>256*1024*1024-ns_bytes)return 0;
@@ -114,15 +137,28 @@ static struct NsState* ns_allocate(struct NdObject* device,u32 width,u32 height,
 static i32 WIN nd_surface(struct NdObject* o,const u32* d,void** out,void* outer){
  if(!out)return ND_INVALID;*out=0;if(outer)return (i32)0x80040110u;
  if(!d || d[0]!=(o->kind==3?124u:108u))return ND_INVALID;
- /* This milestone admits explicit offscreen RGB565, no primary/flip chains. */
- if(d[1]!=0x1007 || (d[26]!=0x840 && d[26]!=0x40) || d[18]!=32 || d[19]!=0x40 || d[21]!=16 || d[22]!=0xf800 || d[23]!=0x7e0 || d[24]!=0x1f || d[25])return NS_UNSUPPORTED;
- struct NsState* s=ns_allocate(o,d[3],d[2],d[26]==0x840?0x840:0x10004040);
- if(!s)return (i32)0x8007000eu;*out=&s->aliases[o->kind==3?3:1];return 0;
+ u32 flags=d[1],caps=d[26],w=d[3],h=d[2];
+ if(caps==0x200 || caps==0x218){
+  if(o->state->primary)return (i32)0x88760234u;
+  if(!o->state->coop)return (i32)0x88760212u;
+  if((caps==0x200 && flags!=1) || (caps==0x218 && (flags!=0x21 || d[5]!=1)))return NS_UNSUPPORTED;
+  w=o->state->width;h=o->state->height;
+ }else {
+  if((flags!=7 && flags!=0x1007) || (caps!=0x840 && caps!=0x40))return NS_UNSUPPORTED;
+  if(flags==0x1007 && (d[18]!=32 || d[19]!=0x40 || d[21]!=16 || d[22]!=0xf800 || d[23]!=0x7e0 || d[24]!=0x1f || d[25]))return NS_UNSUPPORTED;
+ }
+ struct NsState* s=ns_allocate(o,w,h,caps==0x40?0x10004040:caps);
+ if(!s)return (i32)0x8007000eu;
+ if(caps==0x218){s->back=ns_allocate(o,w,h,0x14);if(!s->back){ns_release(&s->aliases[o->kind==3?3:1]);return (i32)0x8007000eu;}}
+ if(caps==0x200 || caps==0x218)o->state->primary=s;
+ *out=&s->aliases[o->kind==3?3:1];return 0;
 }
+
 static i32 WIN nd_cooperate(struct NdObject* o,void* window,u32 flags){
- if(!window || (flags!=8 && flags!=0x11))return ND_INVALID;o->state->window=window;o->state->coop=flags;return 0;
+ if(!window || !IsWindow(window) || (flags!=8 && flags!=0x11))return ND_INVALID;o->state->window=window;o->state->coop=flags;return 0;
 }
 static i32 WIN nd_mode(struct NdObject* o,u32 w,u32 h,u32 depth,u32 refresh,u32 flags){
+ if(o->state->primary)return NS_BUSY;
  if(o->state->coop!=0x11)return (i32)0x887600e1u;
  if(!w || !h || w>4096 || h>4096 || depth!=16 || refresh || flags)return NS_UNSUPPORTED;
  o->state->width=w;o->state->height=h;o->state->depth=depth;return 0;
@@ -130,16 +166,20 @@ static i32 WIN nd_mode(struct NdObject* o,u32 w,u32 h,u32 depth,u32 refresh,u32 
 static i32 WIN nd_mode1(struct NdObject* o,u32 w,u32 h,u32 depth){return nd_mode(o,w,h,depth,0,0);}
 static i32 WIN nd_restore_mode(struct NdObject* o){o->state->width=800;o->state->height=600;o->state->depth=16;return 0;}
 static void nd_init(void){
+ nc_init();
  for(u32 k=0;k<4;++k){
   for(u32 slot=0;slot<28;++slot)nd_tables[k][slot]=(void*)&nd_unadmitted;
   nd_tables[k][0]=(void*)&nd_query;nd_tables[k][1]=(void*)&nd_retain;nd_tables[k][2]=(void*)&nd_release;
-  nd_tables[k][6]=(void*)&nd_surface;nd_tables[k][19]=(void*)&nd_restore_mode;nd_tables[k][20]=(void*)&nd_cooperate;
+  nd_tables[k][4]=(void*)&nd_clipper;nd_tables[k][6]=(void*)&nd_surface;nd_tables[k][19]=(void*)&nd_restore_mode;nd_tables[k][20]=(void*)&nd_cooperate;
   nd_tables[k][21]=k==1?(void*)&nd_mode1:(void*)&nd_mode;
   for(u32 slot=0;slot<45;++slot)ns_tables[k][slot]=(void*)&ns_unadmitted;
   ns_tables[k][0]=(void*)&ns_query;ns_tables[k][1]=(void*)&ns_retain;ns_tables[k][2]=(void*)&ns_release;
+  ns_tables[k][11]=(void*)&ns_flip;ns_tables[k][12]=(void*)&ns_attached;
   ns_tables[k][5]=(void*)&ns_blt;ns_tables[k][7]=(void*)&ns_fast;ns_tables[k][13]=(void*)&ns_status;
   ns_tables[k][14]=(void*)&ns_caps;ns_tables[k][16]=(void*)&ns_get_key;ns_tables[k][18]=(void*)&ns_status;
+  ns_tables[k][15]=(void*)&ns_get_clipper;ns_tables[k][28]=(void*)&ns_set_clipper;
   ns_tables[k][21]=(void*)&ns_pixel_format;ns_tables[k][22]=(void*)&ns_desc;ns_tables[k][24]=(void*)&ns_lost;
+  ns_tables[k][17]=(void*)&ns_get_dc;ns_tables[k][26]=(void*)&ns_release_dc;
   ns_tables[k][25]=(void*)&ns_lock;ns_tables[k][27]=(void*)&ns_restore;ns_tables[k][29]=(void*)&ns_key;ns_tables[k][32]=(void*)&ns_unlock;
  }
 }

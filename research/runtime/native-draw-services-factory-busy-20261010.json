@@ -1,0 +1,34 @@
+{
+  "success": false,
+  "sources": {
+    "runtime/native-draw/clipper.h": "28847688a42d0073ecdc693e961e919a4f9a2ccf6206b514efbb6bf45969ba57",
+    "runtime/native-draw/dc.h": "a43f4a3b672bc80a007aeafaecb3124d869b3dca7c2d0982693cbb18983a720d",
+    "runtime/native-draw/factory.c": "5e7f90a7b5064432144e037e79f92026633deb2c2101f4dbf1eb73663465aba9",
+    "runtime/native-draw/surfaces.h": "39395dd91fde081cc8a0739fe8d7abad97596a148e409c2423e83c509c8f2697",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/native-draw-factory-probe.c": "32e4749cf8115197d6676e206281d5d12d40cda75835cb93a02591ac3b1cd85c",
+    "tests/native-draw-services-probe.c": "bc6418da42a117f321eea1911da20354cce1365113e90b59fb2726df73977d3b",
+    "tests/native-draw-surface-probe.c": "1d3c5fc0340621b17c2d10ce8ce686c544ed536a3f44fdfa6c225d4f5854eee6",
+    "tools/build-native-draw.py": "332790c2ac9282f9568ee90666862d8c77ffc6182a3503f3619d0b12f798fc12",
+    "tools/capture-original-surface-keys.py": "e38d22aba9436cad1d15085951f6a30906428ad3ff8f1c1152b9288853e3cf22",
+    "tools/test-native-draw-factory.py": "affa255d1c34133623853c3691939b1667dc7638d6feddba4e89f9412f6773a9",
+    "tools/test-native-draw-services.py": "089d7a625ee38fff096251a418a918609c0232f00bd202ab36aafac84072ac2f",
+    "tools/test-native-draw-surfaces.py": "1039ed187b2337cd1a076646ae38363ba8bf0375ddf4f23ca83190ebb843e9a0"
+  },
+  "claims": [
+    {
+      "behavior": "NR.directdraw-retirement",
+      "contract_sha256": "0f7c4cad0761317acf501f9cee85d124547e11a724f4029d17ce985c59b7a98e",
+      "scenarios": {
+        "native-draw-factory-20261010": "b96e4e4cb15cd4b35bd2bb1bcf1950a537173b104541802d76df628cdc748682"
+      }
+    }
+  ],
+  "scope": "128 isolated default native factory lifetimes with exact selected HRESULT/identity/per-interface reference/failure outputs versus real Wine DirectDraw. Native preserves incoming LastError as an explicit policy; Wine incidental error values are retained separately, not claimed equivalent. Original null-output creation fault is excluded from the common valid-caller corpus; native safe null-output refusal is a separate policy. Native enumeration is an explicit single-adapter policy. Native probe disables ddraw and verifies no module loads. Surface methods, real game integration, GPU presentation and DirectDraw retirement remain pending.",
+  "real_game_directdraw_retired": false,
+  "error": "Another Wine session is active; serialize the runs before collecting evidence",
+  "original_manifest_verified_before_after": true,
+  "sources_stable": true,
+  "inputs": {},
+  "inputs_stable": true
+}

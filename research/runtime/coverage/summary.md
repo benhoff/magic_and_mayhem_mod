@@ -7,12 +7,12 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 555 |
-| evidence | 942 |
-| scenarios | 274 |
+| evidence | 945 |
+| scenarios | 275 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
 | incomplete dispatch tables | 22 |
-| indexed sources | 1674 |
+| indexed sources | 1679 |
 | unclassified functions | 6410 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
@@ -26,7 +26,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 160 |
 | behaviors without comparison | 455 |
 | behaviors without tests | 1 |
-| stale evidence | 731 |
+| stale evidence | 732 |
 | behavior anchors outside discovered functions | 46 |
 | validation gaps | 715 |
 | retired execution claims | 401 |
@@ -1479,6 +1479,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **RS.font-line-layout.comparison-gpu-regression-20261010**: `renderer/blit.hpp`, `renderer/canvas_mirror.hpp`, `renderer/canvas_sequence.cpp`
 - **RS.font-line-layout.native-gpu-regression-20261010**: `renderer/blit.hpp`, `renderer/canvas_mirror.hpp`, `renderer/canvas_sequence.cpp`
 - **NR.directdraw-retirement.factory-isolated-20261010**: `runtime/native-draw/factory.c`, `tools/test-native-draw-factory.py`
+- **NR.directdraw-retirement.surfaces-isolated-20261010**: `runtime/native-draw/factory.c`, `runtime/native-draw/surfaces.h`, `tools/test-native-draw-factory.py`, `tools/test-native-draw-surfaces.py`
 
 ## Checklist gaps
 
