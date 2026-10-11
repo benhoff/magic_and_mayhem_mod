@@ -245957,6 +245957,281 @@
         "reason": "Sixteen current guards and current native replay pass;24825 raster direct pairs match,246 CPU callbacks and17183 unrelated/wrapper core pairs remain outside this direct crosswalk. This is current metadata policy validation, not new original execution, typed signatures, atomic reads, wrapper flow, pixels, all writers/side effects/lifetimes or any14scenario/four dispatch closure. Preserve all historical statuses and source fingerprints separately.",
         "status": "pending"
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "654452298b95887c87cb5c006a2abf00c8b7c62514bfb1c909576ab3717242a9",
+          "before_sha256": "9e3a43987496def991e09cbf94a67c05ed1e335ebfde2bd6bd990524d764f2f6",
+          "id": "DRAW.canvas-lock-recovery"
+        },
+        {
+          "after_sha256": "38f18ec3182db44b7ce97aaaa878371701cc4c8b5f34e8b21369cf01b4ec6069",
+          "before_sha256": null,
+          "id": "DRAW.canvas-release-client"
+        },
+        {
+          "after_sha256": "325359073b48aaf8ba9b99bd3089b41f9f59dd053efe16dcde78ed7259e81968",
+          "before_sha256": "2ac7b8f52c340fb8d507c4cac89857f79ff2892c4c5ba60a4791d5c465b9f52f",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "ac40437c7614136ba8dad5b55af08352fcad7f17cd50b4d248c4bf8d241635f8",
+          "before_sha256": "73035d03f817488c88e43dbf0b24142575d92ba3a8a5863ce72d69d3c776886f",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "046c86b544333c43078aa66fcc6a6587394a7acfc3ce37f07d9bb5252310e9aa",
+          "before_sha256": "684b4c313fe166aa7d36d34cef1a51758c165496944400745979088a45b0c2f3",
+          "id": "DRAW.graphics-api-boundaries"
+        },
+        {
+          "after_sha256": "379b228dd8d1a528d3e212c252b64791e31d9d34b0ff75d463247d88edc61e64",
+          "before_sha256": "55eb84ad434a6b9fd11ad791a2477dcf9f4337fa793587e93c6266eae9b30fe8",
+          "id": "DRAW.queue-client-state"
+        },
+        {
+          "after_sha256": "34f7cbd9923669a60e7154b40c14e699195077dee7c194b362602b7ba0044b3e",
+          "before_sha256": "1ab29d233038cbf9825d7960b091ccf8c76e7c08312b06c44d2e7279afcb617c",
+          "id": "DRAW.queue-dispatch"
+        },
+        {
+          "after_sha256": "d0c47a7d2e826aae7f62d2042c03794ab9ab545f5c0c5ea17a8f246bbe06feec",
+          "before_sha256": "35b36d688178c003fbb44ebe387a411db88bf57a55d0ed447b4b43a6208d3755",
+          "id": "DRAW.queue-render-postlude"
+        },
+        {
+          "after_sha256": "40888495215e3bd2b59222a55204b51e8367ba2579f72be315c3f0617486f1a9",
+          "before_sha256": "c18a2873b801cc88111a5b3e46d92dd3da9974d2f645cf475d2e81f87bc08d1b",
+          "id": "DRAW.raster-pointer-assignments"
+        },
+        {
+          "after_sha256": "62a632cc129cc626a8d29d8111fbc5ff714daef666c378907845787cbc18755d",
+          "before_sha256": "6db3872814979b94d3224a643b9fb29e0e6ad187b30d2a62a006990d94cbc92a",
+          "id": "DRAW.surface-hosting"
+        },
+        {
+          "after_sha256": "c50dd36d395f1f1fe91ec1e4c2acae890f480396e52da4960826e6db792c5cd4",
+          "before_sha256": null,
+          "id": "DRAW.terminal-canvas-wrappers"
+        },
+        {
+          "after_sha256": "96bacbf0d424a46b0bca8cac7921281f144ef25dafb60da64e38568e4af01ad1",
+          "before_sha256": "db123f165a6006decff54b6b3709463e9f626c6717a6df0a077474f874995e42",
+          "id": "DRAW.unassigned-word-window"
+        },
+        {
+          "after_sha256": "3f121528b6c632c4ecfa0f44c503d1f6c67eda9f16aaca760337511e15284479",
+          "before_sha256": "e07e72fedefd07080220cc2218834a5594d96dae783435d696355c0ce05798e0",
+          "id": "DRAW.unattributed-caller"
+        },
+        {
+          "after_sha256": "119cc8eb6f279c0048e791216d4e3325ce8357f0b475840da9abf1958e1f2b16",
+          "before_sha256": "2846df47e09632f7e7c0d7f8b0dd8f8d6192d75cd9a9ddc2be6b7fca1c36f0cc",
+          "id": "DRAW.world-kind-16"
+        },
+        {
+          "after_sha256": "45aaaa9e8757291ca718d63c478b9342dc8fd3ebb899397a10b5e95358f4a0ee",
+          "before_sha256": "3c9ca26ef52d4238b8257a52a94ce2a938b052a83ce63425e6a3a544a7be0e8a",
+          "id": "DRAW.world-kind-17"
+        },
+        {
+          "after_sha256": "1bbe9ba6720fd43859b2a33629e1d4d9e36b5f99db457bb52b55633febf366c4",
+          "before_sha256": "3c8e69ad7e8086b05e089926d2e387a86625f2803a51092272105b521a2ddc65",
+          "id": "DRAW.world-kind-20"
+        },
+        {
+          "after_sha256": "a2752082912019a50f179c995494fb510f11b60b5aac008fa8d75fc8125a700f",
+          "before_sha256": "a2752082912019a50f179c995494fb510f11b60b5aac008fa8d75fc8125a700f",
+          "id": "RE.surface-copy.restore-retry"
+        },
+        {
+          "after_sha256": "e254cfcce0d728392829500c679c91f1985d28dac6fae58467895958c0ca793e",
+          "before_sha256": "5474bb29cc075cf233db0d324edb95757bb7c6b2600f99bccbf6669398919565",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "e23010abf6a3039e8ff877e9060395c46cc1333fb8e315c5fb5098fb8c6936cb",
+          "before_sha256": "af63e3d6f68b1ebaaa276baab556a0b0495e87170d398a79f6bda92c11d3479c",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "1b48a1a9b9c20f245c869bd9a432f355ae8459790811c5cfa3c5bb5108ed0ecb",
+          "before_sha256": "1b48a1a9b9c20f245c869bd9a432f355ae8459790811c5cfa3c5bb5108ed0ecb",
+          "id": "TOOL.drawing-api-bindings"
+        },
+        {
+          "after_sha256": "d0d0a762425f2b0f071c44706254eb1c110e8090c351a4e30965b7364b22c57c",
+          "before_sha256": "d0d0a762425f2b0f071c44706254eb1c110e8090c351a4e30965b7364b22c57c",
+          "id": "TOOL.drawing-api-details"
+        },
+        {
+          "after_sha256": "410280c1148a81c7609d69a56ca4eef8b4148c7dd9d0d5856efa57a0f7de9bb7",
+          "before_sha256": "a5eb1c441966417f8d1fcc632756ff7ee575fad01f77e02af703b18e3b7c369a",
+          "id": "TOOL.drawing-api-journal"
+        },
+        {
+          "after_sha256": "174a9f7311500cddec8c4287432b1d667ed4f3243cbc6a9305cb46f39e027f18",
+          "before_sha256": "cd0c2b845e15ea8d4b5bd8a7785d60e420ebeeb7ca8fb285bffe787e903b1250",
+          "id": "TOOL.drawing-api-journey"
+        },
+        {
+          "after_sha256": "9790e68037256a3639dd7cc20ed9e7a058bf9410a5609c8d75dcee7c185a0671",
+          "before_sha256": "9790e68037256a3639dd7cc20ed9e7a058bf9410a5609c8d75dcee7c185a0671",
+          "id": "TOOL.drawing-api-observer"
+        },
+        {
+          "after_sha256": "b79a0a8ab94c57eb35764204d01f55851cbc2b7e3c507b6aedc1aa210043abef",
+          "before_sha256": "4683e11d46d4fe823779fe678afcfabcf3812a70d9adacef2f9b7cbca24c06c2",
+          "id": "TOOL.drawing-api-sites"
+        },
+        {
+          "after_sha256": "ed7c0a24a1b898e6bf479b91202227c8a93d9364da1db4761e76ca0dfa100265",
+          "before_sha256": "8ae2457b95a587a82ed43af52a23214e6c151b4e002abcb857d9a7dc99cfdd2a",
+          "id": "TOOL.drawing-census"
+        },
+        {
+          "after_sha256": "4c087308344b8e0baf175608e7092526492367191243fdf5fe40dae0610f0066",
+          "before_sha256": "c689b8e1f6c5aa783b80ccb362dc5ac5539d9c674fe029cb465cb6d5652694e7",
+          "id": "TOOL.drawing-core-bindings"
+        },
+        {
+          "after_sha256": "72331cc63a435e598b4633cdd62dfa9dcca025964d42b7f702fa18047dfc6113",
+          "before_sha256": "c60e6e8ef3bdb6ced1b47f3587dc8f7bd853e40d48738d16824806980fc01db2",
+          "id": "TOOL.drawing-core-callers"
+        },
+        {
+          "after_sha256": "53c4739b7d4022b066678c7e6c7501af3ac6da63667b3da11612e9646c530f43",
+          "before_sha256": "25fe90f5cbaf69df63b5d7a2f3c8cb2167492d47d9bf0ea47a2f806cae2b1f2d",
+          "id": "TOOL.drawing-cpu-crosswalk"
+        },
+        {
+          "after_sha256": "9fd19754765a5804a3800965827ab016a2dc084bbf310b0e6ef8c6087acaff33",
+          "before_sha256": "06d05cd123a44e9f88e43992ca19589887204b88090ef5419843b588a18cdb67",
+          "id": "TOOL.drawing-cpu-observer"
+        },
+        {
+          "after_sha256": "acc034aea17fb004d506c5c7d90d515597f5da7f991fe505014b6d93889a9ff2",
+          "before_sha256": "f57d52b7e3c801adb231fb5e893a5ac77daf54d369e565fc8e9074084a68616f",
+          "id": "TOOL.drawing-cpu-sites"
+        },
+        {
+          "after_sha256": "43ea308f0e831cfe6981cdf9257de7a64fc9bd2253a62945d857615d7d3fcf3e",
+          "before_sha256": "d88fd9f7c2223a44b24730dc5ac9ec2ee54e2bdc90da0788415b22f8c4daef8b",
+          "id": "TOOL.drawing-dispatch-slices"
+        },
+        {
+          "after_sha256": "488982d349d2deca5a738f5a676cf463afeee6aea1e3b11e5bcce81f19d67790",
+          "before_sha256": "fc89c69ebea98836f861edcfb80d7db0e5cf74c3f6911c09f468a973fdd470d9",
+          "id": "TOOL.drawing-inventory"
+        },
+        {
+          "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+          "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+          "id": "TOOL.drawing-movie-reference"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "dc2c84d6bcaefaf662da26936e1f8407f92a585a792559f62888e72b9319cbd6",
+          "before_sha256": "be7e9b9411de2a9c548f19cc220a617481d35872459d444604729faa6cc1ab22",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "0c57bde2a19c6a2305a536c55ce09d0378bbc049baa73ee34e3bd414685d51f9",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw01-history-e3ee037-c44885f-20261011.json"
+        },
+        {
+          "after_sha256": "6186f8ac2ce3659a321021b61765edce17f60bc26f5036570ddc392f07981ba1",
+          "before_sha256": "9643bf39b5c86ba8887923fcc982bc190062fa7b1cc7e9e482aa426418cf131c",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "ee90230b433dab4df0221241b20b047760dba1f92c7e2b01322fe12b8ec7ee89",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw01-canvas-release-20261011.json"
+        },
+        {
+          "after_sha256": "c8d02316bc6bde97c1241a13752d2ced26da3067ab4744001768f01c865e7429",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw01-canvas-release-range-20261011.json"
+        },
+        {
+          "after_sha256": "6bf7773804196d965e7df282ac95c2e81da06e914df0689337052d36f586c6d6",
+          "before_sha256": "e6673d86c4224c1a9ece3240c36c90cab2b93e214d6c928cc519e022c6419e60",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "4361a95d17e39fc3b226acc33a5772f76c1772da009e7d980f39228e8d0601d0",
+          "before_sha256": "aebbb3f552c2be474a5483d0475c3abe291c918ea3a73754348dd64b939cd9c8",
+          "path": "research/runtime/draw01-inventory.md"
+        },
+        {
+          "after_sha256": "4b6d912a39e16371e679491c22e4457c21e7e0187fec08e353519ecfb41340e5",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-canvas-release-original-20261011.json"
+        },
+        {
+          "after_sha256": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-canvas-release-original-range-20261011.json"
+        },
+        {
+          "after_sha256": "dbc46b9e699c7e72bd308a3b470716924d18b2067a359fb40087a319e3fdb66d",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-canvas-release-route-guards-20261011.json"
+        },
+        {
+          "after_sha256": "2988d19fe0d29d7f3df6873870c15c053e8b21dafc4489058c1f87dfdb78c51a",
+          "before_sha256": "a89137b0b7d218b4db57712444082e5187e98d5efba56914625d99436f1b08d4",
+          "path": "research/runtime/drawing-inventory.json"
+        },
+        {
+          "after_sha256": "064b43af2bcc45f38a9f2563a5869566b5b05577bc5ca8f6b04c29452a362968",
+          "before_sha256": null,
+          "path": "tests/drawing-canvas-release-reference.cpp"
+        },
+        {
+          "after_sha256": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+          "before_sha256": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+          "path": "tests/surface-retry-reference.cpp"
+        },
+        {
+          "after_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+          "before_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+          "path": "tools/drawing_census.py"
+        },
+        {
+          "after_sha256": "f3df2ebdf95973bcf4d7d56693318becfe7b734edb50ff3928294585348f5164",
+          "before_sha256": null,
+          "path": "tools/test-drawing-canvas-release.py"
+        }
+      ],
+      "id": "draw01-canvas-release-range-exact-accounting-20261011",
+      "pending_gaps": [
+        "behavior_anchors_outside_discovered_functions:05f929455b04bad474e4baad58df75a7ea06eab903f05527eda806bd9b1b1179",
+        "behavior_anchors_outside_discovered_functions:5019e04920dfe18dfa12195cf3bcc11201274d7f6dbdc41a6ad7ae2675b6b229",
+        "behavior_anchors_outside_discovered_functions:c08c328b29570719f4a190123b814fd2fe2bbd5b93f8242950aebbb865797562",
+        "behavior_anchors_outside_discovered_functions:da92b1ea2873a6bd7fed291e07d16d86611d4fe755f0d9e1b0b5cba4ce7a4e5c",
+        "behaviors_without_comparison:57e72b2fdf024cfd081252dbeaf632f9ab7c253503a50cd12949919482df4e1e",
+        "behaviors_without_comparison:96690d5f480c8ab7243fc727c7daba992192a4cdfbd10f5a218a10702ee3595b",
+        "behaviors_without_implementation:57e72b2fdf024cfd081252dbeaf632f9ab7c253503a50cd12949919482df4e1e",
+        "behaviors_without_implementation:96690d5f480c8ab7243fc727c7daba992192a4cdfbd10f5a218a10702ee3595b",
+        "stale_evidence:2d5c29122847364df8069d54107ab05d8d0becf1d23d9df414127a460fd62ee6",
+        "stale_evidence:2f5a081b176152adf3b54cfc5b5d87a79224981de2877a6e9257c1ca78825e17",
+        "stale_evidence:8a875f22419b458f8ed067db324539868154ccf796b3536624efab5e813a2db3",
+        "stale_evidence:96aa794df9fde0d679c6dda9118b517bcfaa12b84f102bb878716dfb1d31aa12",
+        "stale_evidence:bdd98b72f6cc1603d2b33dd55aecc7b4911633c3360467fc9645f6cbda9e6293",
+        "stale_evidence:c7a1b1ead9381cd976698fbff1006a1de74ce9959abe8e061c6859e7b87046d0",
+        "stale_evidence:d4e881c0877a4623f94764fb5c9d2a02bfb1b982a26016289f2b48569f200593",
+        "validation_gaps:1947a942de03b67e3dc95cb60ce84159ba7e19ffcdc3c7087307a89326a353ed"
+      ],
+      "reason": "Review unchanged original58b3e0 release client, exact shared cap/list/current/count/object side effects and five terminal wrappers with scripted external interfaces. Preserve first successful6217cell report, add fresh source-bound entry-anchor repeat under a new report/evidence ID, and admit four exact10/31byte range exceptions without nearest-owner or surrounding-function claims. Initial misregistered evidence kind and missing range-link audits/preflight remain under working; separate native harness/headless evidence from pinned isolated-original range evidence. Link five existing core/API routes to scoped findings, retain141exact API layouts, and preserve51guard/503route/18blocker report. Reviewe3ee037..c44885f committed history with26file/34behavior exact receipts and no missing intermediate versions.",
+      "validation": {
+        "reason": "Fresh6217original cells and51current offline catalog guards pass; unchanged original/source hashes and2927input manifests verify before/after. Confirm864shared-cap and864unsigned-zero-count cells, all256callback flag values twice and nine optional handle/result cells. First successful report retains its now-stale driver fingerprint. No physical COM/refcount/storage lifetime, arbitrary/invalid/null/reentrant behavior, callback registration or actual exit flow correlation, pixels, recovered native implementation/equivalence/replacement or14scenario/four dispatch closure is asserted.",
+        "status": "pending"
+      }
     }
   ],
   "schema": 1

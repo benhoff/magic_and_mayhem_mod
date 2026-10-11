@@ -30996,7 +30996,8 @@
         "TOOL.drawing-inventory.api-site-guards-20261011",
         "TOOL.drawing-inventory.postlude-guards-20261011",
         "TOOL.drawing-inventory.lock-recovery-guards-20261011",
-        "TOOL.drawing-inventory.reviewed-api-client-guards-20261011"
+        "TOOL.drawing-inventory.reviewed-api-client-guards-20261011",
+        "TOOL.drawing-inventory.canvas-release-route-guards-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -33061,6 +33062,110 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/drawing-canvas-release-reference.cpp",
+        "tools/test-drawing-canvas-release.py"
+      ],
+      "validation_dependencies": [
+        "tests/surface-retry-reference.cpp",
+        "tools/drawing_census.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "DRAW.canvas-release.fixture-20261011",
+        "DRAW.canvas-release.range-fixture-20261011",
+        "DRAW.terminal-canvas-wrappers.original-range-20261011"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "DRAW.canvas-release-client",
+      "title": "Original canvas Release cap and list retirement client",
+      "scope": "Unchanged original58b3e0 client with owned nonnull scripted interfaces and5184selected present/aux/Release-result/current/list/count cells. Observe shared1000iteration counter with at least one +8 Release, optional slot152 receiver/zero argument, clipper/current retirement, list compaction and receiver indices, unsigned counter decrement and object field resets. No physical COM/refcount/deallocation, external mutation/reentrancy, invalid indices/null+4, arbitrary list shapes, pointer lifetime, native equivalence or full scenario/dispatch closure.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5813216,
+          "scope": "Exact bounded original client/wrapper bytes and selected control/state only; external callee bodies excluded where mocked. Discovered anchor present: True"
+        }
+      ]
+    },
+    {
+      "subsystem": "drawing_inventory",
+      "kind": "recovered",
+      "confidence": "high_within_scope",
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [],
+      "tests": [
+        "tests/drawing-canvas-release-reference.cpp",
+        "tools/test-drawing-canvas-release.py"
+      ],
+      "validation_dependencies": [
+        "tests/surface-retry-reference.cpp",
+        "tools/drawing_census.py",
+        "research/runtime/coverage/binary-nocd.json"
+      ],
+      "evidence": [
+        "DRAW.canvas-release.fixture-20261011",
+        "DRAW.canvas-release.range-fixture-20261011",
+        "DRAW.terminal-canvas-wrappers.original-range-20261011"
+      ],
+      "status": {
+        "understanding": "partial",
+        "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "id": "DRAW.terminal-canvas-wrappers",
+      "title": "Original fixed canvas terminal wrapper control flow",
+      "scope": "Four unchanged fixed-receiver callbacks execute twice for each of256shared flag-byte values; unconditional wrappers target6a49e0/6a4fe0 and bit1/2 wrappers target641fc8/642000 once if unset. Original outer4a37d0 executes over nine handle/result cells, optional exact CloseHandle result ignored/global cleared, then642000 CALL and641fc8 tail transfer. Callee58b3e0 mocked only for wrapper cases. No actual callback registration/exit journal correlation, physical lifetime, external mutation/reentrancy, native equivalence or full scenario/dispatch closure.",
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 4971792,
+          "scope": "Exact bounded original client/wrapper bytes and selected control/state only; external callee bodies excluded where mocked. Discovered anchor present: False",
+          "recovered_range": "drawing-terminal-wrapper-4bdd10"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4971696,
+          "scope": "Exact bounded original client/wrapper bytes and selected control/state only; external callee bodies excluded where mocked. Discovered anchor present: False",
+          "recovered_range": "drawing-terminal-wrapper-4bdcb0"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4861696,
+          "scope": "Exact bounded original client/wrapper bytes and selected control/state only; external callee bodies excluded where mocked. Discovered anchor present: False",
+          "recovered_range": "drawing-terminal-wrapper-4a2f00"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4861808,
+          "scope": "Exact bounded original client/wrapper bytes and selected control/state only; external callee bodies excluded where mocked. Discovered anchor present: False",
+          "recovered_range": "drawing-terminal-wrapper-4a2f70"
+        },
+        {
+          "build": "nocd-40209ca7",
+          "address": 4863952,
+          "scope": "Exact bounded original client/wrapper bytes and selected control/state only; external callee bodies excluded where mocked. Discovered anchor present: True"
+        }
+      ]
     }
   ],
   "evidence": [
@@ -64444,6 +64549,212 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "DRAW.canvas-release.fixture-20261011",
+      "kind": "native_integration",
+      "scope": "Unchanged original58b3e0 canvas release client with owned nonnull scripted interfaces,5184unique present/aux/Release-result/list/current/count cells, exact shared1000iteration cap, optional slot152, clipper/current retirement, list compaction/index updates, counter decrement and object writes. Separately execute four unchanged fixed-receiver/one-shot callbacks over all256flag states twice and outer4a37d0 over nine handle/result cells, with58b3e0 mocked only in that second phase. No real COM/refcounts/object deallocation, driver, external mutation/reentrancy, invalid index/null+4, arbitrary list shapes, callback registration, actual exit flow correlation, pixels/lifetime, native equivalence or scenario/dispatch closure.",
+      "record": "research/runtime/drawing-canvas-release-original-20261011.json",
+      "sha256": "4b6d912a39e16371e679491c22e4457c21e7e0187fec08e353519ecfb41340e5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_release_instructions_unchanged_during_release_cases",
+          "equals": true
+        },
+        {
+          "pointer": "/original_wrapper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/release_cases",
+          "equals": 5184
+        },
+        {
+          "pointer": "/callback_cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/outer_cases",
+          "equals": 9
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 6217
+        },
+        {
+          "pointer": "/shared_cap_second_release_cells",
+          "equals": 864
+        },
+        {
+          "pointer": "/zero_count_decrement_cells",
+          "equals": 864
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory.canvas-release-route-guards-20261011",
+      "kind": "native_integration",
+      "scope": "Current offline catalog51guards and503route accounting with five exact core/API links to bounded original canvas release client findings. Preserve141reviewed API contracts,380API boundaries and18completion obligations. No new original/live execution or semantic/lifetime/scenario/dispatch closure.",
+      "record": "research/runtime/drawing-canvas-release-route-guards-20261011.json",
+      "sha256": "dbc46b9e699c7e72bd308a3b470716924d18b2067a359fb40087a319e3fdb66d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards",
+          "equals": 51
+        },
+        {
+          "pointer": "/routes",
+          "equals": 503
+        },
+        {
+          "pointer": "/unaccounted",
+          "equals": 0
+        },
+        {
+          "pointer": "/completion_blockers",
+          "equals": 18
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "DRAW.canvas-release.range-fixture-20261011",
+      "kind": "native_integration",
+      "scope": "Unchanged original58b3e0 canvas release client with owned nonnull scripted interfaces,5184unique present/aux/Release-result/list/current/count cells, exact shared1000iteration cap, optional slot152, clipper/current retirement, list compaction/index updates, counter decrement and object writes. Separately execute four unchanged fixed-receiver/one-shot callbacks over all256flag states twice and outer4a37d0 over nine handle/result cells, with58b3e0 mocked only in that second phase. No real COM/refcounts/object deallocation, driver, external mutation/reentrancy, invalid index/null+4, arbitrary list shapes, callback registration, actual exit flow correlation, pixels/lifetime, native equivalence or scenario/dispatch closure.",
+      "record": "research/runtime/drawing-canvas-release-original-range-20261011.json",
+      "sha256": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_release_instructions_unchanged_during_release_cases",
+          "equals": true
+        },
+        {
+          "pointer": "/original_wrapper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/release_cases",
+          "equals": 5184
+        },
+        {
+          "pointer": "/callback_cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/outer_cases",
+          "equals": 9
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 6217
+        },
+        {
+          "pointer": "/shared_cap_second_release_cells",
+          "equals": 864
+        },
+        {
+          "pointer": "/zero_count_decrement_cells",
+          "equals": 864
+        }
+      ]
+    },
+    {
+      "id": "DRAW.terminal-canvas-wrappers.original-range-20261011",
+      "kind": "isolated_original",
+      "scope": "Unchanged original58b3e0 canvas release client with owned nonnull scripted interfaces,5184unique present/aux/Release-result/list/current/count cells, exact shared1000iteration cap, optional slot152, clipper/current retirement, list compaction/index updates, counter decrement and object writes. Separately execute four unchanged fixed-receiver/one-shot callbacks over all256flag states twice and outer4a37d0 over nine handle/result cells, with58b3e0 mocked only in that second phase. No real COM/refcounts/object deallocation, driver, external mutation/reentrancy, invalid index/null+4, arbitrary list shapes, callback registration, actual exit flow correlation, pixels/lifetime, native equivalence or scenario/dispatch closure.",
+      "record": "research/runtime/drawing-canvas-release-original-range-20261011.json",
+      "sha256": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/original_release_instructions_unchanged_during_release_cases",
+          "equals": true
+        },
+        {
+          "pointer": "/original_wrapper_instructions_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/release_cases",
+          "equals": 5184
+        },
+        {
+          "pointer": "/callback_cases",
+          "equals": 1024
+        },
+        {
+          "pointer": "/outer_cases",
+          "equals": 9
+        },
+        {
+          "pointer": "/original_cases",
+          "equals": 6217
+        },
+        {
+          "pointer": "/shared_cap_second_release_cells",
+          "equals": 864
+        },
+        {
+          "pointer": "/zero_count_decrement_cells",
+          "equals": 864
+        }
+      ],
+      "build": "nocd-40209ca7",
+      "original_hash_pointer": "/original_sha256"
     }
   ],
   "classifications": [],
@@ -73698,6 +74009,40 @@
       "evidence": [
         "TOOL.drawing-cpu-crosswalk.original-replay-20261011"
       ]
+    },
+    {
+      "id": "drawing-canvas-release-original-20261011",
+      "title": "drawing-canvas-release-original-20261011",
+      "scope": "Isolated unchanged original canvas release client plus five original terminal wrapper routines with separate scripted boundaries and explicit exclusions; no live exit comparison or scenario/dispatch closure.",
+      "level": "headless",
+      "behaviors": [
+        "DRAW.canvas-release-client",
+        "DRAW.terminal-canvas-wrappers"
+      ],
+      "tests": [
+        "tests/drawing-canvas-release-reference.cpp",
+        "tools/test-drawing-canvas-release.py"
+      ],
+      "evidence": [
+        "DRAW.canvas-release.fixture-20261011",
+        "DRAW.canvas-release.range-fixture-20261011",
+        "DRAW.terminal-canvas-wrappers.original-range-20261011"
+      ]
+    },
+    {
+      "id": "drawing-canvas-release-route-guards-20261011",
+      "title": "drawing-canvas-release-route-guards-20261011",
+      "scope": "Current offline drawing catalog and scoped original release-client evidence links, preserving503routes and18closure obligations; no new original/live execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-inventory"
+      ],
+      "tests": [
+        "tests/test-drawing-inventory.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-inventory.canvas-release-route-guards-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -73925,6 +74270,42 @@
       "document": "research/runtime/font-byte-producer.md",
       "evidence": "RS.font-byte-consumer.comparison-range-20261010",
       "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "drawing-terminal-wrapper-4bdd10",
+      "build": "nocd-40209ca7",
+      "start": 4971792,
+      "end": 4971802,
+      "document": "research/runtime/draw01-inventory.md",
+      "evidence": "DRAW.terminal-canvas-wrappers.original-range-20261011",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "drawing-terminal-wrapper-4bdcb0",
+      "build": "nocd-40209ca7",
+      "start": 4971696,
+      "end": 4971706,
+      "document": "research/runtime/draw01-inventory.md",
+      "evidence": "DRAW.terminal-canvas-wrappers.original-range-20261011",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "drawing-terminal-wrapper-4a2f00",
+      "build": "nocd-40209ca7",
+      "start": 4861696,
+      "end": 4861727,
+      "document": "research/runtime/draw01-inventory.md",
+      "evidence": "DRAW.terminal-canvas-wrappers.original-range-20261011",
+      "anchors_pointer": "/original_entry_anchors"
+    },
+    {
+      "id": "drawing-terminal-wrapper-4a2f70",
+      "build": "nocd-40209ca7",
+      "start": 4861808,
+      "end": 4861839,
+      "document": "research/runtime/draw01-inventory.md",
+      "evidence": "DRAW.terminal-canvas-wrappers.original-range-20261011",
+      "anchors_pointer": "/original_entry_anchors"
     }
   ],
   "register_imports": [
@@ -74035,8 +74416,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-cpu-crosswalk-20261011.json",
-    "sha256": "30de2292caf9736afd2b988fc23a2f241f493c52e99fea6e5619f8de698c0a53"
+    "path": "research/runtime/coverage/source-index-draw01-canvas-release-range-20261011.json",
+    "sha256": "c8d02316bc6bde97c1241a13752d2ced26da3067ab4744001768f01c865e7429"
   },
   "claim_bindings_required": true
 }

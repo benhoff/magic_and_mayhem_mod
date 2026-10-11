@@ -906,3 +906,65 @@ python3 tools/review-drawing-cpu-crosswalk.py \
   --claims working/tests/new-cpu-crosswalk-claims.json \
   --output working/tests/new-cpu-crosswalk-result.json
 ```
+
+## Original canvas release and terminal wrappers, 2026-10-11
+
+The unchanged original `58b3e0..58b4b8` release client passes 5,184 bounded
+owned-interface/list/result cells. If object+8 is absent, it returns without
+changing the selected object/globals/list. Otherwise, optional `6e1f1c` invokes
+the reviewed Surface2.PageUnlock client at `58b400` with receiver+8 and zero.
+The two Release loops at `58b40d` and `58b423` share EDI's 1,000-iteration cap;
+the second always executes at least once. In 864 cells the first reaches 1,000
+nonzero results and the second executes once, giving 1,001 total surface calls.
+Nonzero scripted results are diagnostic client inputs, not valid real COM counts.
+
+Optional object+0c is released once and cleared, ignoring its result. The routine
+retires `6f98c0` only when it equals this canvas, compacts the selected tail of
+the 128-slot `6f6950` list, updates moved canvases' +1c indices and increments
+this canvas's index until the copied slot is null or index127. It clears slot127
+and the final indexed slot, decrements `6f8154` modulo32bits, and clears object
++04/+08/+10/+14/+18/+28. Starting count0 underflows in 864 controlled cells;
+this is an executed instruction fact, not an approved native lifetime policy.
+Selected object/other receiver fields and unchanged routine bytes are checked.
+
+The same fixture separately executes four unchanged original callbacks twice
+over all 256 values of flag byte `641a70` (1,024 cells). `4bdd10` and `4bdcb0`
+always tail-transfer with receivers `6a49e0` and `6a4fe0`. `4a2f00` and `4a2f70`
+set bit1 or bit2 and tail-transfer with receivers `641fc8` or `642000` only when
+the bit was previously unset; other flag bits remain unchanged. These four
+entry addresses still lack discovered function bodies; exact bounded bytes
+and this gap remain explicit. No nearest discovered owner is assigned.
+
+Nine unchanged `4a37d0` cells confirm optional `KERNEL32.CloseHandle` through
+`5c50a0`, ignoring success/failure and clearing `642c58`, followed by a CALL
+with receiver `642000` and a tail transfer with receiver `641fc8`. The callee
+`58b3e0` is mocked only for these wrapper cases, after unchanged release-client
+execution has finished. The total fixture has 6,217 distinct cells and retains
+instruction contracts, raw cases, binary and logs; both 2,927-input manifests
+pass and original/source hashes stay stable.
+
+Four exact recovered-range exceptions preserve those missing discovered bodies;
+they name only the 10-byte unconditional and 31-byte conditional wrappers. A
+fresh source-bound original repeat records their entry-byte anchors and passes
+the same 6,217 cells. The first successful fixture remains historical after the
+report gained those anchors. Initial registration audits (missing original-build
+metadata, then unlinked undiscovered anchors) remain under `working/tests`;
+native fixture/scenario evidence and pinned isolated-original range evidence
+are now separate definitions. Discovery inventories and prior hashes remain
+unchanged; range admission does not recover surrounding functions.
+
+The five existing core/API routes now link the scoped release-client finding.
+This supplies selected client side-effect/recovery evidence, not physical COM
+reference counts, storage deallocation or all external aliases. Invalid indices,
+null+4 with nonnull+8, arbitrary lists, external mutation/reentrancy, callback
+registration and actual exit-journal wrapper correlation remain unvalidated.
+All recovered native stages and 14-scenario/four-dispatch closure remain pending.
+
+```sh
+python3 tools/draft-coverage-claims.py --behavior DRAW.canvas-release-client \
+  --behavior DRAW.terminal-canvas-wrappers \
+  --scenario drawing-canvas-release-original-20261011 \
+  --output working/tests/new-canvas-release-claims.json
+python3 tools/test-drawing-canvas-release.py --executable working/game-nocd/Chaos.exe \
+  --claims working/tests/new-canvas-release-claims.json
+```
