@@ -154,9 +154,11 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
             if(file.open(QIODevice::ReadOnly)){
                 const auto request=QJsonDocument::fromJson(file.readAll()).object();const auto name=request.value("name").toString();file.close();
                 if(!name.isEmpty()&&name.size()<80&&!name.contains('/')&&!name.contains('\\')&&!name.contains("..")){
+                    QElapsedTimer captureClock;captureClock.start();
                     FrameStream reference;
                     QImage originalImage;
                     if(reference.open(QDir(session.evidenceDirectory()).filePath("render-frame.bin")))originalImage=reference.nextFrame();
+                    const double originalCopyMs=captureClock.nsecsElapsed()/1000000.0;
                     if(!originalImage.isNull()){
                     auto* viewport=dynamic_cast<GlViewport*>(window.findChild<QOpenGLWidget*>("nativeGameViewport"));
                     QImage nativeImage;
@@ -164,14 +166,15 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
                         const auto rect=viewport->imageRect();const auto ratio=viewport->devicePixelRatioF();
                         nativeImage=viewport->grabFramebuffer().copy(QRect(qRound(rect.x()*ratio),qRound(rect.y()*ratio),qRound(rect.width()*ratio),qRound(rect.height()*ratio))).scaled(viewport->frameSize(),Qt::IgnoreAspectRatio,Qt::FastTransformation);
                     }
+                    const double captureOwnerMs=captureClock.nsecsElapsed()/1000000.0;
                     // Read back on the GL owner thread, then compress owned
                     // image copies off the event loop. Keep one bounded job.
                     const auto directory=QFileInfo(path).dir();
-                    run->captureJob=std::async(std::launch::async,[nativeImage,originalImage,directory,name,p]{
+                    run->captureJob=std::async(std::launch::async,[nativeImage,originalImage,directory,name,p,originalCopyMs,captureOwnerMs]{
                         const bool nativeSaved=!nativeImage.isNull()&&nativeImage.save(directory.filePath(name+"-native.png"));
                         const bool originalSaved=!originalImage.isNull()&&originalImage.save(directory.filePath(name+"-original.png"));
                         QSaveFile result(directory.filePath(name+".json"));
-                        if(result.open(QIODevice::WriteOnly)){result.write(QJsonDocument(QJsonObject{{"native_saved",nativeSaved},{"original_saved",originalSaved},{"native_frames",qint64(p.frames)},{"painted_frames",qint64(p.paints)},{"fallback",p.fallback}}).toJson());result.commit();}
+                        if(result.open(QIODevice::WriteOnly)){result.write(QJsonDocument(QJsonObject{{"native_saved",nativeSaved},{"original_saved",originalSaved},{"native_frames",qint64(p.frames)},{"painted_frames",qint64(p.paints)},{"fallback",p.fallback},{"original_copy_ms",originalCopyMs},{"native_readback_ms",captureOwnerMs-originalCopyMs},{"capture_owner_ms",captureOwnerMs}}).toJson());result.commit();}
                     });
                     QFile::remove(captureRequest);
                     }

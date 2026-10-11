@@ -421,3 +421,30 @@ adjacent summon from current observed enemy/wizard coordinates and issues an
 ordinary opposite ground order for wizard clearance. No simulation/health/AI or
 performance/admission changes; native projection is a test strategy,not recovered
 order/pathfinding equivalence.19fail-closed checks pass;fresh full proof pending.
+
+The corrected combat journey now verifies casting,Fireball,Zombie melee/party
+lethal,blocked casts,5portrait cycles with maximum1channel face error,Mini/resume
+and normal Quit.4574balanced GPUdeliveries/19.144240aggregate engineFPS,no World
+readbacks,realDirectDraw absent. Whole test remains negative because an intro
+cycle0 sample records1frame/1.256s,below the unchanged9.5FPS worst-window floor.
+`public-resident-complete-window-negative-20261011.json` retains all checks and
+failure. The capture owner now records original-copy/native-readback/total capture
+milliseconds to distinguish diagnostic serialization from gameplay latency. No
+capture bypass,failed sample omission,budget relaxation or integration promotion.
+
+The instrumented complete private TITAN campaign passes all unchanged gates:
+4861completed/imported/verified returned GPUWorlds,19.389731aggregate
+engineFPS,zero World/native/RGBA delivery readbacks,80B ACK/no World pixel reply,
+realDirectDraw disabled/absent. Actual summon,Fireball,Zombie melee/party lethal,
+both blocked-cast cases,physical movement,5portrait cycles,Mini Cancel/resume,
+Quit No/Yes/Main,launcher/shell clean exit and private Wine shutdown pass. Stable
+portrait maximum channel error is1; phase and worst-window throughput also pass.
+`public-resident-campaign-complete-20261011.json` retains full result,actual input
+and per-capture timings(max7.355ms owner time).
+Five native policies reach scoped live observation; original comparison and live
+replacement remain separate. Earlier1.256/2.976s failed rate windows remain
+historical evidence of long-tail limitations;this one pass is not universal
+cold/concurrent-load latency proof. Full CPU UI destination reads/lifetimes,
+World/UI pixel and driver equivalence,movies and60FPS remain outstanding.
+Master's separate drawing-publication header change requires another complete
+proof on the combined tree before the authorized merge is finished.
