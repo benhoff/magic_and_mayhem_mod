@@ -31019,7 +31019,9 @@
         "DRAW.census.journal-guards-20261010",
         "DRAW.census.menu-observation-20261010",
         "DRAW.census.expanded-abi-20261010",
-        "DRAW.census.caller-source-abi-20261010"
+        "DRAW.census.caller-source-abi-20261010",
+        "DRAW.census.phase-abi-20261010",
+        "DRAW.census.campaign-observation-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -31066,10 +31068,12 @@
         "research/runtime/drawing-inventory.json",
         "research/runtime/coverage/binary-nocd.json",
         "research/runtime/drawing-callers-expanded-20261010.json",
-        "tools/run-game.sh"
+        "tools/run-game.sh",
+        "research/runtime/drawing-callers-dispatch-expanded-20261010.json"
       ],
       "evidence": [
-        "DRAW.census.menu-observation-20261010"
+        "DRAW.census.menu-observation-20261010",
+        "DRAW.census.campaign-observation-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -59860,6 +59864,68 @@
           "equals": true
         }
       ]
+    },
+    {
+      "id": "DRAW.census.phase-abi-20261010",
+      "kind": "native_integration",
+      "scope": "Actual observer six-size ABI, invalid/persistently odd host phase refusal and LastError/FP/flags/register forwarding. Stable invalid host remains loss; live transient updates need separate evidence.",
+      "record": "research/runtime/drawing-census-phase-abi-20261010.json",
+      "sha256": "2a19dbe9d6148bd561c660a3166620b57dd8c1709b9d217417042c9115abe064",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/invalid_host_phase_refused",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.census.campaign-observation-20261010",
+      "kind": "live_observation",
+      "scope": "Original-active bounded campaign journey and strict call journal only; all scenario closures, pixels, side effects, writers, indirect ownership, borrowed graphics and recovery remain pending.",
+      "record": "research/runtime/drawing-census-campaign-observation-20261010.json",
+      "sha256": "780cb390236f0973ab3717fe381321dfd1e3fc9de6671fbb8382415ad5489a41",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/journal_integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/decoded/lost_events",
+          "equals": 0
+        },
+        {
+          "pointer": "/decoded/open_calls",
+          "equals": 0
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -68157,6 +68223,21 @@
       "evidence": [
         "DRAW.census.menu-observation-20261010"
       ]
+    },
+    {
+      "id": "original-drawing-census-campaign-20261010",
+      "level": "live_observation",
+      "scope": "Bounded unchanged-original campaign entry, camera/cursor inputs, Hermes dialogue dismissal, Mini/Preferences/World return, Quit confirmation/defeat/Main/shutdown. Call metadata journal integrity only; no complete scenario census, pixel equivalence, all writer/API or lifetime claim.",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver"
+      ],
+      "tests": [
+        "tools/capture-drawing-census-game.py"
+      ],
+      "evidence": [
+        "DRAW.census.campaign-observation-20261010"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -68494,8 +68575,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-dispatch-20261010.json",
-    "sha256": "aabf8c9b1828b46c51f3ec13da5b65305c71eb6240dd7718883c3f7d237d34aa"
+    "path": "research/runtime/coverage/source-index-draw01-campaign-20261010.json",
+    "sha256": "21a8eb6aca89ebf3084dd50be2b052ecb58fd743104feef2034e8cf4170e5fef"
   },
   "claim_bindings_required": true
 }

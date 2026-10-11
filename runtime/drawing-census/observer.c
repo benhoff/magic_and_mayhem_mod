@@ -24,7 +24,20 @@ static void lock(void){while(__sync_lock_test_and_set(&mutex,1))Sleep(0);}
 static void unlock(void){__sync_lock_release(&mutex);}
 static int write(const void* p,u32 n){u32 at=0;while(at<n){u32 done=0;if(!WriteFile(journal,(const u8*)p+at,n-at,&done,0)||!done||done>n-at){io_failed=1;return 0;}at+=done;}return 1;}
 static void flush(void){if(used&&!io_failed)write(buffer,used);used=0;}
-static u32 phase(void){u32 before=control[4],result=control[5];if((before&1)||before!=control[4]||result>14||control[6]!=1){++lost;return 0;}return result;}
+static u32 phase(void){
+ /* A host phase change is a seqlock transaction, not a missing call. Retry
+  * boundedly; a persistently invalid/unavailable host still records loss. */
+ for(u32 attempt=0;attempt<64;++attempt){
+  u32 before=control[4],result=control[5],alive=control[6];
+  __atomic_thread_fence(__ATOMIC_ACQUIRE);
+  if(!(before&1)&&before==control[4]){
+   if(result<=14&&alive==1)return result;
+   break;
+  }
+  if((attempt&15)==15)Sleep(0);
+ }
+ ++lost;return 0;
+}
 static void emit(u32 type,const struct Frame* f,u32* regs,u32 error){
  if(io_failed||sequence>=MNM_DRAW_CENSUS_MAX_RECORDS){++lost;return;}
  u32 row[32]={0};row[0]=++sequence;row[1]=type;row[2]=f->id;row[3]=f->tag;row[4]=f->phase;row[5]=f->thread;row[6]=hooks[f->tag].address;row[7]=f->caller;row[8]=f->sp;row[9]=regs[6];row[10]=regs[5];row[11]=regs[7];row[12]=regs[8];row[13]=error;row[14]=GetTickCount();

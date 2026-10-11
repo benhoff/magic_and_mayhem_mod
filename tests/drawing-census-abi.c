@@ -15,6 +15,13 @@ static void identical(void){for(u32 i=0;i<560;++i)if(before[i]!=after[i])ExitPro
 void start(void){
  reserve[sizeof(reserve)-1]=1;
  static u32 host[16]={0};host[4]=2;host[5]=2;host[6]=1;control=host;
+ /* Invalid control cannot silently reuse a prior scenario label. */
+ if(phase()!=2||lost)ExitProcess(28);
+ host[4]=3;if(phase()!=0||lost!=1)ExitProcess(29);
+ host[4]=4;host[5]=15;if(phase()!=0||lost!=2)ExitProcess(30);
+ host[5]=14;host[6]=0;if(phase()!=0||lost!=3)ExitProcess(31);
+ host[6]=1;if(phase()!=14||lost!=3)ExitProcess(32);
+ host[5]=2;
  u32 callees[7]={(u32)pop0,(u32)pop4,(u32)pop8,(u32)pop12,(u32)pop20,(u32)pop24,(u32)pop8};
  for(u32 tag=0;tag<7;++tag){
   used=sequence=serial=lost=active=io_failed=0;zero(frames,sizeof(frames));

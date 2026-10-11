@@ -191,6 +191,37 @@ Compressed partial journals retain their original byte hashes and verified
 archive hashes. Difficulty/input phase labels express intent, not complete
 camera, interaction or battle-result coverage.
 
+## Bounded original campaign journal — 2026-10-10
+
+The [fresh campaign observation](drawing-census-campaign-observation-20261010.json)
+retains 2,416,882 events / 1,208,441 paired calls, with zero loss, open calls or
+I/O failure, unchanged staged binaries/sources and normal original exit. The
+journey visits Main/setup, all four difficulty choices (entering Adept), World,
+camera/cursor input, Mini/Preferences, World return, original Quit confirmation,
+defeat report, Main and shutdown. Phase labels still describe fixture intent.
+They do not establish full camera semantics, complete battle results or a
+closed census for any of the fourteen required scenarios.
+
+The cohort reaches 44 entries in 674 phase/entry/caller groups: 615 have exact
+direct CALL attribution and 59 retain pending call-flow review. Nine of the ten
+formerly unmatched preferred-base caller PCs now have observed callee identities
+in this closed capture; `4dcbdd` was not exercised. This does not retroactively
+normalize the historical journal or establish ownership for indirect callers.
+
+Original Hermes dialogues can hold input across camera/menu transitions. The
+fixture retains screenshots and uses original mouse/Escape input before Mini;
+it does not mutate tutorial or simulation state. Failed attempts remain retained.
+One completed journey was correctly rejected for two phase-control races. The
+reader now retries boundedly during host seqlock changes; stable invalid phase,
+dead host or persistently odd sequence still records loss. The fresh
+[phase/ABI fixture](drawing-census-phase-abi-20261010.json) checks those refusals
+alongside register, flags, FP, LastError and stack cleanup forwarding.
+
+The new observation does not invent owners for undiscovered function ranges or
+classify observer/bridge return PCs as original direct callers. Pixels, arbitrary
+writers, borrowed API intervals, resource generations, failures/recovery,
+save/load and later map transitions remain independent obligations.
+
 ## Inspect an existing producer journal
 
 The optional importer reads only 64-byte envelopes and 96-byte record headers,
