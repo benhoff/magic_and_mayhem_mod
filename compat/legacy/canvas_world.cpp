@@ -174,6 +174,8 @@ void CanvasWorld::append(const CanvasProducer &c) {
   if ((draw.backend == 0 || draw.backend == 9) &&
       (left < draw.clip.left || left + width >= draw.clip.right))
     return;
+  if(draw.composite.mode==render::CompositeMode::projectedShadow&&
+     (left<draw.clip.left||left+width+height/2>draw.clip.right))return;
   const auto coverageTop =
       top + (draw.composite.mode == render::CompositeMode::projectedShadow
                  ? height / 2

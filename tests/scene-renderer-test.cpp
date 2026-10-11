@@ -26,8 +26,8 @@ int main(int argc,char** argv)try{
     recipe=spr("indexed.spr");recipe.animation="body.ani";resources.bind(indexed,recipe);
     resources.bind(bitmap,{assets::ResourceImageFormat::bmp,"ui.bmp",{},{},{}});
     render::GlBlitter renderer;const render::Image background{5,3,std::vector<std::uint32_t>(15,0x1234)};
-    // Captured failure geometry: nominal projection reaches805, transparent
-    // right padding only. Distinct opaque rows make clipping/row selection observable.
+    // Original shadow refusal uses the complete projected envelope, even when
+    // only transparent padding exceeds the horizontal clip edge.
     for(const bool atlas:{false,true}){
         const assets::ResourceId shadow{assets::ResourceKind::ui,"edge-shadow"},bad{assets::ResourceKind::ui,"overflow-shadow"};
         write(root,"edge-shadow.spr",shadowSprite(false));write(root,"overflow-shadow.spr",shadowSprite(true));
@@ -38,11 +38,13 @@ int main(int argc,char** argv)try{
         render::SceneDraw draw{shadow,0,700,179};draw.viewport=render::Rect{0,0,800,312};draw.composite.mode=render::CompositeMode::projectedShadow;
         const auto before=renderer.stats();scene.draw({draw});const auto after=renderer.stats();
         require(before.nativeReadbacks==after.nativeReadbacks&&before.rgbaReadbacks==after.rgbaReadbacks,"Edge shadow delivery readback");
-        auto expected=base;for(int row=0;row<19;++row)expected.pixels[(221+row)*800+786-row]=0x7bef;
-        require(scene.read().pixels==expected.pixels,"Transparent projected padding altered covered shadow samples");
-        draw.resource=bad;rejected([&]{scene.draw({draw});});require(scene.read().pixels==expected.pixels,"Actual shadow overflow mutated completed frame");
-        draw.resource=shadow;draw.viewport=render::Rect{0,230,800,258};scene.draw({draw});
-        expected=base;for(int row=0;row<14;++row)expected.pixels[(230+row)*800+785-row]=0x7bef;
+        require(scene.read().pixels==base.pixels,"Projected transparent envelope refusal differs");
+        draw.resource=bad;scene.draw({draw});require(scene.read().pixels==base.pixels,"Covered projected envelope refusal differs");
+        draw.resource=shadow;draw.anchorX=690;scene.draw({draw});
+        auto expected=base;for(int row=0;row<19;++row)expected.pixels[(221+row)*800+776-row]=0x7bef;
+        require(scene.read().pixels==expected.pixels,"Admitted projected shadow differs");
+        draw.viewport=render::Rect{0,230,800,258};scene.draw({draw});
+        expected=base;for(int row=0;row<14;++row)expected.pixels[(230+row)*800+775-row]=0x7bef;
         require(scene.read().pixels==expected.pixels,"Odd cropped shadow source rows differ");
         draw.anchorX=720;scene.draw({draw});require(scene.read().pixels==base.pixels,"Whole horizontal shadow refusal changed");
         const auto surface=renderer.allocate(3,2,render::spriteFormat);const auto stats=renderer.stats();

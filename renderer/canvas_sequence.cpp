@@ -340,7 +340,7 @@ void CanvasSequence::raster(std::uint32_t id, const assets::SpriteFrame &f,
     return;
   if (mode == 5) {
     const auto shadowTop = top + f.height / 2;
-    if (left < clip.left || left + f.width > clip.right ||
+    if (left < clip.left || left + f.width + f.height / 2 > clip.right ||
         shadowTop >= clip.bottom || shadowTop + f.height <= clip.top)
       return;
     const int first = int(std::max<std::int64_t>(0, clip.top - shadowTop)),

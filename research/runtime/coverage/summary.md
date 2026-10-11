@@ -6,13 +6,13 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | Accounting boundary | Count |
 | --- | ---: |
 | builds | 1 |
-| behaviors | 592 |
-| evidence | 1099 |
-| scenarios | 309 |
+| behaviors | 593 |
+| evidence | 1106 |
+| scenarios | 310 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
 | incomplete dispatch tables | 22 |
-| indexed sources | 1794 |
+| indexed sources | 1797 |
 | unclassified functions | 6407 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
@@ -26,10 +26,10 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 166 |
 | behaviors without comparison | 488 |
 | behaviors without tests | 1 |
-| stale evidence | 897 |
+| stale evidence | 901 |
 | behavior anchors outside discovered functions | 46 |
 | validation gaps | 779 |
-| retired execution claims | 416 |
+| retired execution claims | 424 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
 | removed indexed sources | 0 |
@@ -38,18 +38,18 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Independent status | Counts |
 | --- | --- |
-| understanding | partial: 284; scoped: 270; unknown: 38 |
-| implementation | none: 166; partial: 175; scoped: 251 |
-| comparison | none: 488; recorded: 104 |
-| integration | headless: 129; live_equivalence: 13; live_observation: 57; none: 329; preview: 64 |
-| replacement | none: 586; scoped_live: 6 |
+| understanding | partial: 284; scoped: 271; unknown: 38 |
+| implementation | none: 166; partial: 176; scoped: 251 |
+| comparison | none: 488; recorded: 105 |
+| integration | headless: 129; live_equivalence: 13; live_observation: 57; none: 330; preview: 64 |
+| replacement | none: 587; scoped_live: 6 |
 
 | Current scope-bound validation | Counts |
 | --- | --- |
-| implementation | none: 166; pending: 416; current: 10 |
-| comparison | none: 488; pending: 101; current: 3 |
-| integration | none: 329; pending: 256; current: 7 |
-| replacement | none: 586; pending: 6; current: 0 |
+| implementation | none: 166; pending: 416; current: 11 |
+| comparison | none: 488; pending: 101; current: 4 |
+| integration | none: 330; pending: 256; current: 7 |
+| replacement | none: 587; pending: 6; current: 0 |
 
 ## Animation checklist
 
@@ -407,7 +407,8 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | NR.drawing-result-comparison | Independent caller-result and bounded recovered failure schedule comparisons | native policy | scoped | scoped | none | headless | none | stale |
 | NR.public-resident-world | Resident World import into public command composition | native policy | scoped | partial | none | none | none | stale |
 | NR.world-source-region-epoch | Guarded World owner permission-query epoch | native policy | scoped | partial | none | none | none | stale |
-| RS.displacement-linear-stride | Selected distortion physical-stride source sampling | `0x596490`, `0x5968a4` | scoped | partial | recorded | none | none | current_fingerprints |
+| RS.displacement-linear-stride | Selected distortion physical-stride source sampling | `0x596490`, `0x5968a4` | scoped | partial | recorded | none | none | stale |
+| RS.shadow-linear-stride | Projected shadow whole horizontal envelope refusal | `0x57e540` | scoped | partial | recorded | none | none | current_fingerprints |
 
 ## Native World checklist
 
@@ -1678,20 +1679,24 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **NR.drawing-interactive-acquisition.retention-static-20261011**: `tests/test-drawing-api-session.py`, `tools/drawing_api_session.py`, `tools/prepare-scene-observer.py`, `tools/run-opengl-game.py`
 - **NR.drawing-interactive-acquisition.record-kind-original-20261011**: `tools/prepare-scene-observer.py`, `tools/run-opengl-game.py`
 - **NR.public-resident-world.import-fixture-20261011**: `protocols/include/mnm/render_stream_v4.h`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/command_consumer.cpp`, `renderer/commands.cpp`, `renderer/commands.hpp`, `tests/render-resident-world-test.cpp`
-- **NR.public-resident-world.owned-fixtures-20261011**: `apps/qt-shell/campaign_smoke_test.cpp`, `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas_producers.hpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `compat/legacy/world_rolling_session.cpp`, `compat/legacy/world_rolling_session.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/canvas_sequence.hpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/native-draw/surfaces.h`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_deferred.h`, `runtime/scene/world_raster_batch.c`, `tests/world-deferred-test.cpp`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
-- **NR.public-resident-world.campaign-stall-20261011**: `apps/qt-shell/campaign_smoke_test.cpp`, `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas_producers.hpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `compat/legacy/world_rolling_session.cpp`, `compat/legacy/world_rolling_session.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/canvas_sequence.hpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/native-draw/surfaces.h`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_raster_batch.c`, `tools/test-live-campaign-mini.py`, `tools/test-native-campaign.py`
-- **NR.public-resident-world.batch-fixtures-20261011**: `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_deferred.h`, `runtime/scene/world_raster_batch.c`, `tests/world-deferred-test.cpp`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
-- **NR.directdraw-retirement.default-offscreen-20261011**: `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_raster_batch.c`
-- **NR.public-resident-world.surface-refusal-20261011**: `apps/qt-shell/campaign_smoke_test.cpp`, `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `compat/legacy/world_rolling_session.cpp`, `compat/legacy/world_rolling_session.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/native-draw/surfaces.h`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_deferred.h`, `runtime/scene/world_raster_batch.c`, `tests/world-deferred-test.cpp`, `tools/test-live-campaign-mini.py`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
-- **NR.public-resident-world.batch-background-copy-failure-20261011**: `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_deferred.h`, `runtime/scene/world_raster_batch.c`, `tests/world-deferred-test.cpp`, `tools/test-live-campaign-mini.py`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
-- **NR.public-resident-world.cursor-queue-fixtures-20261011**: `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_raster_batch.c`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
-- **NR.public-resident-world.cursor-queue-live-failure-20261011**: `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_raster_batch.c`, `tools/test-live-campaign-mini.py`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
-- **NR.world-source-region-epoch.fixtures-20261011**: `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
-- **NR.world-source-region-epoch.tutorial-failure-20261011**: `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
-- **NR.world-source-region-epoch.shadow-failure-20261011**: `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
-- **NR.public-resident-world.shadow-fixtures-20261011**: `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/canvas_sequence.cpp`, `renderer/scenes/scene_renderer.cpp`, `tools/test-native-campaign.py`
-- **NR.public-resident-world.linked-provenance-fixtures-20261011**: `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/canvas_sequence.cpp`, `tools/test-native-campaign.py`
-- **NR.public-resident-world.displacement-failure-20261011**: `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/canvas_sequence.cpp`, `renderer/scenes/scene_renderer.cpp`, `tools/test-native-campaign.py`
+- **NR.public-resident-world.owned-fixtures-20261011**: `apps/qt-shell/campaign_smoke_test.cpp`, `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas_producers.hpp`, `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `compat/legacy/world_rolling_session.cpp`, `compat/legacy/world_rolling_session.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/canvas_sequence.hpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/native-draw/surfaces.h`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_deferred.h`, `runtime/scene/world_raster_batch.c`, `tests/world-deferred-test.cpp`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
+- **NR.public-resident-world.campaign-stall-20261011**: `apps/qt-shell/campaign_smoke_test.cpp`, `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas_producers.hpp`, `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `compat/legacy/world_rolling_session.cpp`, `compat/legacy/world_rolling_session.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/canvas_sequence.hpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/native-draw/surfaces.h`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_raster_batch.c`, `tools/test-live-campaign-mini.py`, `tools/test-native-campaign.py`
+- **NR.public-resident-world.batch-fixtures-20261011**: `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_deferred.h`, `runtime/scene/world_raster_batch.c`, `tests/world-deferred-test.cpp`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
+- **NR.directdraw-retirement.default-offscreen-20261011**: `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_raster_batch.c`
+- **NR.public-resident-world.surface-refusal-20261011**: `apps/qt-shell/campaign_smoke_test.cpp`, `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `compat/legacy/world_rolling_session.cpp`, `compat/legacy/world_rolling_session.hpp`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/native-draw/surfaces.h`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_deferred.h`, `runtime/scene/world_raster_batch.c`, `tests/world-deferred-test.cpp`, `tools/test-live-campaign-mini.py`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
+- **NR.public-resident-world.batch-background-copy-failure-20261011**: `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_continuous.c`, `runtime/scene/world_deferred.h`, `runtime/scene/world_raster_batch.c`, `tests/world-deferred-test.cpp`, `tools/test-live-campaign-mini.py`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
+- **NR.public-resident-world.cursor-queue-fixtures-20261011**: `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_raster_batch.c`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
+- **NR.public-resident-world.cursor-queue-live-failure-20261011**: `apps/qt-shell/resident_world_session.cpp`, `apps/qt-shell/resident_world_session.hpp`, `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `runtime/scene/canvas_producers.c`, `runtime/scene/world_raster_batch.c`, `tools/test-live-campaign-mini.py`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
+- **NR.world-source-region-epoch.fixtures-20261011**: `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
+- **NR.world-source-region-epoch.tutorial-failure-20261011**: `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
+- **NR.world-source-region-epoch.shadow-failure-20261011**: `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/blit.hpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/resources/resource_cache.hpp`, `renderer/scenes/scene_renderer.cpp`, `tools/test-native-campaign.py`, `tools/test-public-resident-fixtures.py`
+- **NR.public-resident-world.shadow-fixtures-20261011**: `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/scenes/scene_renderer.cpp`, `tests/scene-renderer-test.cpp`, `tools/test-native-campaign.py`
+- **NR.public-resident-world.linked-provenance-fixtures-20261011**: `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/canvas_sequence.cpp`, `tests/scene-renderer-test.cpp`, `tools/test-native-campaign.py`
+- **NR.public-resident-world.displacement-failure-20261011**: `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/blit.cpp`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/scenes/scene_renderer.cpp`, `tests/scene-renderer-test.cpp`, `tools/test-native-campaign.py`
+- **RS.displacement-linear-stride.original-20261011**: `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/scenes/scene_renderer.cpp`
+- **RS.displacement-linear-stride.native-20261011**: `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/scenes/scene_renderer.cpp`
+- **NR.public-resident-world.linear-full-fixtures-20261011**: `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/scenes/scene_renderer.cpp`, `tests/scene-renderer-test.cpp`, `tools/test-native-campaign.py`
+- **NR.public-resident-world.shadow-write-failure-20261011**: `compat/legacy/canvas_world.cpp`, `compat/legacy/world-rolling/CMakeLists.txt`, `renderer/canvas_sequence.cpp`, `renderer/resources/resource_cache.cpp`, `renderer/scenes/scene_renderer.cpp`, `tests/scene-renderer-test.cpp`, `tools/test-native-campaign.py`
 
 ## Checklist gaps
 

@@ -410,7 +410,7 @@ def main():
     if args.native_draw and not args.claims:
         args.claims=out/'prospective-claims.json'
         declaration_command=['python3',str(ROOT/'tools/draft-coverage-claims.py'),'--behavior','NR.public-resident-world' if args.resident_world else 'NR.directdraw-public-native-menu','--scenario','NR.public-resident-world.campaign' if args.resident_world else 'native-draw-public-menu-campaign-20261011','--output',str(args.claims)]
-        if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride'])
+        if args.resident_world:declaration_command.extend(['--behavior','NR.world-source-region-epoch','--behavior','RS.displacement-linear-stride','--behavior','RS.shadow-linear-stride'])
         subprocess.run(declaration_command,cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     if args.claims:
         declaration=json.loads(args.claims.read_text())
