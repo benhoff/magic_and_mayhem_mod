@@ -45,26 +45,31 @@ def main():
             raise RuntimeError('Native session check failed: '+str(run/(name+'.log')))
         return result
     execute('configure', ['cmake', '-S', str(ROOT/'compat/legacy/drawing-scene'), '-B', str(build), '-DCMAKE_BUILD_TYPE=Debug'])
-    execute('build', ['cmake', '--build', str(build), '--target', 'drawing-session-test', 'drawing-scene-test', '--parallel', '4'])
+    execute('build', ['cmake', '--build', str(build), '--target', 'drawing-session-test', 'drawing-scene-test', 'mnm-drawing-session-replay', '--parallel', '4'])
     tested = execute('session', ['xvfb-run', '-a', str(build/'drawing-session-test')], 60)
     observed = json.loads(tested.stdout)
     if not observed['success'] or observed['remaining_surfaces'] != 0 or len(observed['cases']) != 12:
         raise RuntimeError('Incomplete native lifecycle checks')
     execute('scene-regression', ['xvfb-run', '-a', str(build/'drawing-scene-test')], 60)
+    tested_runner = execute('runner', ['python3', str(ROOT/'tools/test-native-drawing-session-runner.py'),
+                            '--binary', str(build/'mnm-drawing-session-replay'), '--artifacts', str(run/'runner')])
+    runner = json.loads(tested_runner.stdout)
+    if not runner['success'] or runner['remaining_surfaces'] != 0 or len(runner['cases']) != 30:
+        raise RuntimeError('Incomplete native session runner checks')
     if any(sha(ROOT/n) != h for n, h in sources.items()):
         raise RuntimeError('Native session sources changed during execution')
     value = dict(schema=1, success=True, execution_performed=True, sources=sources, sources_stable=True,
-                 claims=claims['claims'], native=observed, scene_regression=True,
-                 binaries={n: sha(build/n) for n in ['drawing-session-test', 'drawing-scene-test']},
+                 claims=claims['claims'], native=observed, runner=runner, scene_regression=True,
+                 binaries={n: sha(build/n) for n in ['drawing-session-test', 'drawing-scene-test', 'mnm-drawing-session-replay']},
                  artifacts=str(run.relative_to(ROOT)),
-                 logs={f.name: sha(f) for f in sorted(run.glob('*.log'))},
+                 logs={str(f.relative_to(run)): sha(f) for f in sorted(run.rglob('*.log'))},
                  original_execution=False, original_pixels_used_as_native_inputs=False,
-                 scope='Native lifecycle policy with owned synthetic inputs and real OpenGL storage: session/segment/frame order, generation changes, interruption, immutable leases, refusal, bounded fresh recovery and cleanup. Asset-backed synthetic World completion and existing scene regression pass. No recovered transition/action policy, original session comparison, full presented journey, media integration or live replacement.')
+                 scope='Native lifecycle policy with owned synthetic inputs and real OpenGL storage: session/segment/frame order, generation changes, interruption, immutable leases, refusal, bounded fresh recovery and cleanup. Native owned-input CLI passes30cases, including6independently expected complete planes across6segments, hash/path/schema/catalogue/refusal checks and zero resources after actual execution failures. Asset-backed synthetic World completion and existing scene regression pass. No recovered transition/action policy, original session comparison, full presented journey, media integration or live replacement.')
     report.parent.mkdir(parents=True, exist_ok=True)
     with report.open('x') as out:
         json.dump(value, out, indent=2)
         out.write('\n')
-    print(json.dumps({'success': True, 'lifecycle_cases': len(observed['cases']), 'scene_regression': True, 'report': str(report)}))
+    print(json.dumps({'success': True, 'lifecycle_cases': len(observed['cases']), 'runner_cases':len(runner['cases']), 'scene_regression': True, 'report': str(report)}))
 
 
 if __name__ == '__main__':

@@ -32866,19 +32866,22 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Native drawing session, segment and immutable frame lifecycle",
-      "scope": "Thread-confined native DrawingScene orchestration with strictly increasing session IDs, contiguous segment/frame identities, source-local sequence/queue histories and native stage labels. Explicit transition discards prior history and starts undefined storage; terminal completion requires a current complete frame. Running mutation faults/budget exhaustion discard presentation and resources; restart requires a fresh ID/history. Stale frame queries refuse without poisoning current state. Native caps64segments/8192frames/1048576records; external immutable GPU leases retire independently. Owned synthetic pixel/lifecycle fixtures only; no original action, transition, failure, full presented journey, media, picking or live replacement claim.",
+      "scope": "Thread-confined native DrawingScene orchestration with strictly increasing session IDs, contiguous segment/frame identities, source-local sequence/queue histories and native stage labels. Explicit transition discards prior history and starts undefined storage; terminal completion requires a current complete frame. Running mutation faults/budget exhaustion discard presentation and resources; restart requires a fresh ID/history. Stale frame queries refuse without poisoning current state. Native caps64segments/8192frames/1048576records; external immutable GPU leases retire independently. Owned synthetic pixel/lifecycle fixtures only; no original action, transition, failure, full presented journey, media, picking or live replacement claim. Owned native session v1 CLI admits bounded contained/hash-bound producer streams and encoded assets; canonical exact 64-bit token, closed field/number/stage admission, increasing complete boundaries, explicit nonterminal cancellation, immutable source recheck and new-only RGB565 frame/identity report outputs. Runner caps4MiBmanifest/512assets32MiBeach512MiBaggregate/512MiBproducer1GiBaggregate/2048extent in addition to session/wire caps. No DRAW-02 presented-session ABI claim. All SPR catalogue inputs require contained declared asset bindings, checked before/after execution despite WorldResources reading them independently.",
       "confidence": "high_within_scope",
       "original": [],
       "documents": [
-        "research/runtime/draw03-native-session.md"
+        "research/runtime/draw03-native-session.md",
+        "research/formats/drawing-native-session-v1.md"
       ],
       "implementation": [
         "compat/legacy/drawing_session.cpp",
-        "compat/legacy/drawing_session.hpp"
+        "compat/legacy/drawing_session.hpp",
+        "compat/legacy/drawing_session_main.cpp"
       ],
       "tests": [
         "tests/drawing-session-test.cpp",
-        "tools/test-native-drawing-session.py"
+        "tools/test-native-drawing-session.py",
+        "tools/test-native-drawing-session-runner.py"
       ],
       "validation_dependencies": [
         "assets/CMakeLists.txt",
@@ -32969,7 +32972,8 @@
         "tests/resource-fixtures.hpp"
       ],
       "evidence": [
-        "NR.drawing-session.lifecycle-native-20261011"
+        "NR.drawing-session.lifecycle-native-20261011",
+        "NR.drawing-session.runner-native-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -62926,6 +62930,57 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "NR.drawing-session.runner-native-20261011",
+      "kind": "native_integration",
+      "scope": "Executed12native lifecycle cases, existing scene regression and30owned native CLI cases. Six independently expected RGB565 planes/99pixels across6segments, real synthetic SPR/BMP composition, interrupted World cancellation,29input/hash/catalogue/path/schema/boundary/result-contamination/refusal checks and zero native surfaces after actual failures/cleanup. No original execution/equivalence, physical presentation or live replacement.",
+      "record": "research/runtime/draw03-native-session-runner-20261011.json",
+      "sha256": "cb29e0316e86a16bbb5cb8a563ed5727b871a135a1ddc4ffb46386e4dea380cc",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/execution_performed",
+          "equals": true
+        },
+        {
+          "pointer": "/scene_regression",
+          "equals": true
+        },
+        {
+          "pointer": "/native/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_execution",
+          "equals": false
+        },
+        {
+          "pointer": "/runner/success",
+          "equals": true
+        },
+        {
+          "pointer": "/runner/remaining_surfaces",
+          "equals": 0
+        },
+        {
+          "pointer": "/runner/complete_native_frames",
+          "equals": 6
+        },
+        {
+          "pointer": "/runner/compared_native_pixels",
+          "equals": 99
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -70791,17 +70846,33 @@
     },
     {
       "id": "DRAW03.native-session-lifecycle",
-      "scope": "Real OpenGL execution of12owned synthetic native session lifecycle cases, including asset-backed World completion, menu/World generation changes, interruption, stale identities, budgets, fresh restart, source failure and immutable GPU lease cleanup; underlying scene regression. No original capture or full journey.",
+      "scope": "Real OpenGL execution of12owned synthetic native session lifecycle cases, including asset-backed World completion, menu/World generation changes, interruption, stale identities, budgets, fresh restart, source failure and immutable GPU lease cleanup; underlying scene regression. No original capture or full journey. Current combined execution includes the native-owned CLI separately; initial lifecycle-only evidence remains historical after source/contract changes.",
       "level": "headless",
       "behaviors": [
         "NR.drawing-session"
       ],
       "evidence": [
-        "NR.drawing-session.lifecycle-native-20261011"
+        "NR.drawing-session.lifecycle-native-20261011",
+        "NR.drawing-session.runner-native-20261011"
       ],
       "tests": [
         "tests/drawing-session-test.cpp",
         "tools/test-native-drawing-session.py"
+      ]
+    },
+    {
+      "id": "DRAW03.native-session-runner",
+      "scope": "Owned native v1 CLI execution: six independently expected complete RGB565 planes across six source generations with repeated publication, real synthetic World raster and interrupted World cancellation;29input/hash/path/catalogue/schema/boundary/contaminated-result/refusal checks, actual failure cleanup and existing-output preservation. No original action, session equivalence, physical presentation or live replacement.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-session"
+      ],
+      "evidence": [
+        "NR.drawing-session.runner-native-20261011"
+      ],
+      "tests": [
+        "tools/test-native-drawing-session.py",
+        "tools/test-native-drawing-session-runner.py"
       ]
     }
   ],
@@ -71140,8 +71211,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw03-session-lifecycle-20261011.json",
-    "sha256": "a8267a04ac64896e79b3158fa279b2370d3c5b5f64293b8fb0a3f7dc7d96a72f"
+    "path": "research/runtime/coverage/source-index-draw03-session-runner-20261011.json",
+    "sha256": "79306f2fe1f9ba5250edc4d9653868095f8530da46c232c9ef1fcff0b380de49"
   },
   "claim_bindings_required": true
 }

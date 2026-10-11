@@ -7,12 +7,12 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 571 |
-| evidence | 941 |
-| scenarios | 279 |
+| evidence | 942 |
+| scenarios | 280 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
 | incomplete dispatch tables | 22 |
-| indexed sources | 1708 |
+| indexed sources | 1710 |
 | unclassified functions | 6409 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
@@ -26,7 +26,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 166 |
 | behaviors without comparison | 469 |
 | behaviors without tests | 1 |
-| stale evidence | 734 |
+| stale evidence | 735 |
 | behavior anchors outside discovered functions | 46 |
 | validation gaps | 731 |
 | retired execution claims | 380 |
@@ -388,7 +388,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | RS.drawing-publication | Guarded original opaque-copy publication COM results and independent primary readbacks | `0x58bf40` | partial | partial | none | none | none | stale |
 | NR.drawing-publication | Independent guarded primary-publication native pixel comparison | native policy | scoped | scoped | none | headless | none | stale |
 | NR.drawing-actions | Applied original menu adapter dispatch phase observation | native policy | partial | partial | none | live_observation | none | current_fingerprints |
-| NR.drawing-session | Native drawing session, segment and immutable frame lifecycle | native policy | scoped | scoped | none | headless | none | current_fingerprints |
+| NR.drawing-session | Native drawing session, segment and immutable frame lifecycle | native policy | scoped | scoped | none | headless | none | stale |
 
 ## Native World checklist
 
@@ -1503,6 +1503,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **NR.drawing-publication.camera-native-20261011**: `compat/legacy/drawing-scene/CMakeLists.txt`
 - **TOOL.drawing-publication-corpus.native-20261011**: `compat/legacy/drawing-scene/CMakeLists.txt`, `research/runtime/draw02-full-session.md`
 - **TOOL.drawing-publication-corpus.reviewed-native-20261011**: `compat/legacy/drawing-scene/CMakeLists.txt`
+- **NR.drawing-session.lifecycle-native-20261011**: `compat/legacy/drawing-scene/CMakeLists.txt`, `tools/test-native-drawing-session.py`
 
 ## Checklist gaps
 

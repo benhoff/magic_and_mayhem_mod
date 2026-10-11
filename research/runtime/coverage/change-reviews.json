@@ -262284,6 +262284,154 @@
           "NR.drawing-session.lifecycle-native-20261011"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "998fe130a9f95fe90f3d4299505d2617bf2e9bf5dc3f5e42863cc066fadb6c30",
+          "before_sha256": "4f104077e5ea222b2ecc989c824197d097ef2698a2acfacb0707b594b54723c6",
+          "id": "NR.drawing-journey"
+        },
+        {
+          "after_sha256": "079873f9a349c7f2dab3673991248509bee5f8cb8210d2e4fc9a3714106f2f9f",
+          "before_sha256": "039e0125555e1377b29548b77528dc11ab7678c83e1e235b77529b66897d8ff7",
+          "id": "NR.drawing-publication"
+        },
+        {
+          "after_sha256": "b2b99e8a3d32e1bd9c031f8cb08392fb32f9fa311d3504518dcaa08b2eccae1b",
+          "before_sha256": "4eb0f23d31a6a83539f9d45011288f06e08ad4bbd615c18cac0ca4bf9bf3ca89",
+          "id": "NR.drawing-raster-results"
+        },
+        {
+          "after_sha256": "aaf325b30852eee9f4eb73d75ec32034eab7a5e4083da4b12d517abd4b36694d",
+          "before_sha256": "b2d0a5ce73451237802a757047064bfa26a1c10018c12692adc17d1238300180",
+          "id": "NR.drawing-scene"
+        },
+        {
+          "after_sha256": "34f7b16af1662d29f75f2dd1c63029df8925cef9bea71c4dbde93993043ed725",
+          "before_sha256": "da59f52fc8c473c692bcc0c4efbae316986397e1c9d6ec6fe0071a049fd381a7",
+          "id": "NR.drawing-session"
+        },
+        {
+          "after_sha256": "a347b0d267fad4d7d7aaffbebb65d142bb12809e41e27e5b4cb003d329f602fd",
+          "before_sha256": "3a12a10d741309a942daac8f606838876bddc4956d25b20c8f45456977543c80",
+          "id": "TOOL.coverage-accounting"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "a6bdbd1d02d3e9933618e84fc935897a673bbad894ce351a67e975573462ff13",
+          "before_sha256": "ede454f16e8ef5f0c619ed0e3cd5e3b423108fc10fd97eefd435353754c1513b",
+          "path": "compat/legacy/drawing-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "c5d7f2da234f652aa632539fd89d527bfe3fbf9cb4608e613d906e7c141c8f55",
+          "before_sha256": null,
+          "path": "compat/legacy/drawing_session_main.cpp"
+        },
+        {
+          "after_sha256": "73edef5e007e4ee2dfdf4fac50f88f837c30ee0cff6de722491d18ba799b91c1",
+          "before_sha256": null,
+          "path": "research/formats/drawing-native-session-v1.md"
+        },
+        {
+          "after_sha256": "170fecf289ee2df9c900a0f0ebfdf417ad8e209efdcc1fb6c850261dedbb8d12",
+          "before_sha256": "3e901b545270086f2483f1a05ef3e6fea1db43d6a8565bfd821cf2d2125b4334",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "7a5d1a57c7e194be85d4351bbee63dc69fd7ca43fa827a2a93555d42e267fb3b",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw03-history-53bdc4a-9b15da3-20261011.json"
+        },
+        {
+          "after_sha256": "2aba109fa23495622bba572cf4f3c1c5bfcbedc6cc14709f57034e94b7d714b0",
+          "before_sha256": "d4d88648ba146be66f4dfdd455560bd05ac52abb6a92bf7bb6a9c019d9aef00a",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "79306f2fe1f9ba5250edc4d9653868095f8530da46c232c9ef1fcff0b380de49",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw03-session-runner-20261011.json"
+        },
+        {
+          "after_sha256": "14423838ebaf4e19a39a439b9eaee2d3391c9e13923d4dd04b6ae628d4b17e3a",
+          "before_sha256": "b8d05712e9b5eaad5dccc67977dfb5039ebb0359b6ce6e5c46b24b71f66880a1",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "cb29e0316e86a16bbb5cb8a563ed5727b871a135a1ddc4ffb46386e4dea380cc",
+          "before_sha256": null,
+          "path": "research/runtime/draw03-native-session-runner-20261011.json"
+        },
+        {
+          "after_sha256": "a513d8df297054fa52b8944f1aa6c88cc0f7178c2b8a635422512123540a14b2",
+          "before_sha256": "a4c8a0479f78d8d8fca0dbbb024380383f95ffc7f2d090e1cae6e2748cc3adfc",
+          "path": "research/runtime/draw03-native-session.md"
+        },
+        {
+          "after_sha256": "6192b45e5e2f4798c41da77e670a8b8d4f4a20de2f7189f27971d7e473e507ad",
+          "before_sha256": null,
+          "path": "tools/test-native-drawing-session-runner.py"
+        },
+        {
+          "after_sha256": "afc2f2d48b0717aedac3117bce92c4ea4bbd34461548b01f50e868c133a9aa8a",
+          "before_sha256": "b90df5fb60148c0064c2a5185f41571f2bc7fb10786edde057a93f70837ab286",
+          "path": "tools/test-native-drawing-session.py"
+        }
+      ],
+      "id": "change-53165d42ae9a3b5e",
+      "pending_gaps": [
+        "stale_evidence:1bcb86be0ff6d4676904a10302c49be1b4892dd4d0c40c1afdfe899897d5363f",
+        "stale_evidence:caa1d3c7812b9ac8873b522778962b869d3d9b02f440d5bf45b7886e304c7b2f"
+      ],
+      "reason": "Reviewed bounded native session declaration and owned-input runner, complete source/SPR catalogue admission, exact 64-bit identities, ordered source histories, cancellation, complete publication and new-only RGB565 outputs. Reviewed native CLI tests against independent synthetic planes and failure cleanup, CTest build integration, updated census and exact 53bdc4a..9b15da3 committed-history report. No capture/recovery tooling or existing engine implementation changed.",
+      "validation": {
+        "evidence": [],
+        "reason": "Fresh native policy execution is recorded separately below. Shared scene CMake and expanded session contract make older exact-bound evidence historical; preserve those hashes and original comparison/presented-session/caller-state/media/live limitations. Coverage metadata/history/census review is not new recovered behavior validation.",
+        "status": "pending"
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "34f7b16af1662d29f75f2dd1c63029df8925cef9bea71c4dbde93993043ed725",
+          "before_sha256": "da59f52fc8c473c692bcc0c4efbae316986397e1c9d6ec6fe0071a049fd381a7",
+          "id": "NR.drawing-session"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "a6bdbd1d02d3e9933618e84fc935897a673bbad894ce351a67e975573462ff13",
+          "before_sha256": "ede454f16e8ef5f0c619ed0e3cd5e3b423108fc10fd97eefd435353754c1513b",
+          "path": "compat/legacy/drawing-scene/CMakeLists.txt"
+        },
+        {
+          "after_sha256": "c5d7f2da234f652aa632539fd89d527bfe3fbf9cb4608e613d906e7c141c8f55",
+          "before_sha256": null,
+          "path": "compat/legacy/drawing_session_main.cpp"
+        },
+        {
+          "after_sha256": "6192b45e5e2f4798c41da77e670a8b8d4f4a20de2f7189f27971d7e473e507ad",
+          "before_sha256": null,
+          "path": "tools/test-native-drawing-session-runner.py"
+        },
+        {
+          "after_sha256": "afc2f2d48b0717aedac3117bce92c4ea4bbd34461548b01f50e868c133a9aa8a",
+          "before_sha256": "b90df5fb60148c0064c2a5185f41571f2bc7fb10786edde057a93f70837ab286",
+          "path": "tools/test-native-drawing-session.py"
+        }
+      ],
+      "id": "change-53165d42ae9a3b5e-native-execution",
+      "pending_gaps": [],
+      "reason": "Exact updated native policy contract reviewed against owned-input CLI, fresh lifecycle/runner test execution and independent complete planes. Only NR.drawing-session has current native integration proof; no original behavior status is promoted.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Executed12actual native lifecycle cases, existing scene regression and30owned CLI cases with6complete expected planes/99pixels across6segments, real synthetic SPR/BMP, repeated publication/interruption,29refusals, exact source stability and zero native surfaces after actual failures and cleanup. Original execution, original presented-session equivalence and physical presentation remain unclaimed.",
+        "evidence": [
+          "NR.drawing-session.runner-native-20261011"
+        ]
+      }
     }
   ]
 }

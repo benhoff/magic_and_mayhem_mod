@@ -2,7 +2,7 @@
 
 `compat/legacy/drawing_session.hpp` owns a thread-confined native lifecycle over
 `DrawingScene`, separate from widgets, injected hooks and original acquisition.
-Session IDs increase across restarts. Segment and presentation ordinals start at1
+Session IDs increase across restarts. Segment and presentation ordinals start at 1
 and are contiguous within a session; producer sequence and World queue identities
 restart only when a fresh segment creates a new scene. Frame identities include
 the session, segment, presentation ordinal, native stage and complete source
@@ -24,7 +24,7 @@ owned scene resources and enter Failed. Recovery requires a greater session ID
 and a new source history. Active begin and stale read/presentation queries refuse
 without replacing current state. Stop is idempotent.
 
-Default native budgets are64segments,8192published frames and1,048,576successfully
+Default native budgets are 64 segments, 8192 published frames and 1,048,576 successfully
 applied producer records per session; callers may lower them. These are native
 admission policies, not recovered original limits. Counters span segments and
 reset only at a new session. External immutable GPU leases may outlive transition
@@ -52,7 +52,21 @@ remain pending. DRAW-01 owns recovered contracts; DRAW-02 owns original capture
 and independent reference admission. This controller changes neither collector
 nor the fourteen-journey/twenty-one-operation acceptance denominator.
 
-Fresh execution `NR.drawing-session.lifecycle-native-20261011` passes all12native
+Fresh execution `NR.drawing-session.lifecycle-native-20261011` passed all 12 native
 lifecycle cases and the existing drawing-scene regression with zero remaining
 surfaces. The report pins prospective scope/scenario claims, source/binary hashes
 and command logs. Original Quick Battle/campaign equivalence remains pending.
+
+The owned-input runner `mnm-drawing-session-replay` makes this orchestration
+reproducible end to end: bounded contained source admission, immutable producer
+and asset hashes, ordered stage execution, complete RGB565 frame files, identity
+reports and cleanup. Its [v1 declaration](../formats/drawing-native-session-v1.md)
+is a native policy format. It does not implement the distinct DRAW-02
+presented-session ABI or original action/caller-state contract.
+
+The combined check also exercises six independently expected complete native
+planes across six segments, a real synthetic World raster, repeated publication,
+interrupted World cancellation, and 29 CLI refusals for input binding, schema,
+identity, boundary, path containment, original result contamination and storage
+cleanup. The first lifecycle result remains historical after the runner/build
+changes; a new exact-source execution result is registered separately.
