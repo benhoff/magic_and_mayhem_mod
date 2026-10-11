@@ -30845,14 +30845,18 @@
         "runtime/canvas-writers/bridge.c",
         "research/runtime/fade-writer-live-comparison-20261010.json",
         "research/runtime/coverage/binary-nocd.json",
-        "research/runtime/drawing-inventory.json"
+        "research/runtime/drawing-inventory.json",
+        "tools/drawing_census.py",
+        "research/runtime/drawing-callers-expanded-20261010.json"
       ],
       "evidence": [
         "TOOL.drawing-inventory.guards-20261010",
         "TOOL.drawing-inventory.final-guards-20261010",
         "TOOL.drawing-inventory.retained-journal-20261010",
         "TOOL.drawing-inventory.guards-v2-20261010",
-        "TOOL.drawing-inventory.retained-journal-v2-20261010"
+        "TOOL.drawing-inventory.retained-journal-v2-20261010",
+        "RI.drawing-callers-expanded-20261010",
+        "TOOL.drawing-census.callers-guards-20261010"
       ],
       "status": {
         "understanding": "scoped",
@@ -30881,6 +30885,46 @@
       "status": {
         "understanding": "unknown",
         "implementation": "none",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
+    },
+    {
+      "id": "TOOL.drawing-census",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Exact drawing caller export and strict supplemental census admission",
+      "scope": "Export exact rel32 CALL bytes to registered original drawing entry addresses across pinned objdump output. Preserve containing discovered-range ownership and empty owner lists; verify supplemental build/entry/return-PC/input identities. Static matches provide no runtime-base proof, indirect-target recovery or scenario closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "tools/drawing_census.py",
+        "tools/export-drawing-census.py"
+      ],
+      "tests": [
+        "tests/test-drawing-census.py",
+        "tests/test-drawing-inventory.py"
+      ],
+      "validation_dependencies": [
+        "research/runtime/coverage/binary-nocd.json",
+        "research/runtime/drawing-inventory.json",
+        "tools/drawing_inventory.py",
+        "tools/rendering_coverage.py",
+        "tools/coverage_audit.py",
+        "tools/coverage_claims.py",
+        "research/runtime/drawing-callers-expanded-20261010.json"
+      ],
+      "evidence": [
+        "RI.drawing-callers-expanded-20261010",
+        "TOOL.drawing-census.callers-guards-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
         "comparison": "none",
         "integration": "none",
         "replacement": "none"
@@ -59306,6 +59350,43 @@
           "equals": 63
         }
       ]
+    },
+    {
+      "id": "RI.drawing-callers-expanded-20261010",
+      "kind": "static",
+      "scope": "Exact direct CALL sites to all61 registered drawing entries; containing discovered owners only, no runtime-base or indirect-target assertion.",
+      "record": "research/runtime/drawing-callers-expanded-20261010.json",
+      "sha256": "c0d173ff5c726fcd22ebd47e9d423f421842cd3cc2fe3c06e836e2af3a6c0bba",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/source_sha256",
+          "equals": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168"
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-census.callers-guards-20261010",
+      "kind": "native_integration",
+      "scope": "Current exact-caller/supplemental-accounting guards, with incomplete milestone refusal; no original rendering/runtime claim.",
+      "record": "research/runtime/drawing-census-callers-guards-20261010.json",
+      "sha256": "b842cea9cbba8b52f91b32b0619ed8fa4f5c539787bfe34697e7d86f16b653a5",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -67335,8 +67416,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-20261010.json",
-    "sha256": "ee10215091a3c8d919627905e2395cad35f9cfd2dc07fc989898162d9040d4e3"
+    "path": "research/runtime/coverage/source-index-draw01-callers-20261010.json",
+    "sha256": "fe056d8ec94fe1ce1ce1982770605291b581d2f38f8e6d98e772959a548d86db"
   },
   "claim_bindings_required": true
 }

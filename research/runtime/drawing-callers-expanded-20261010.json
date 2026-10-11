@@ -1,0 +1,7674 @@
+{
+  "schema": 1,
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "image_base": 4194304,
+  "scope": "Exact direct CALL sites to registered drawing entries across pinned objdump output. Ownership uses containing discovered ranges only. No runtime module-base, indirect-target, function-completeness or scenario-closure assertion.",
+  "input_unchanged": true,
+  "entries": [
+    4626944,
+    5212512,
+    5243552,
+    5528592,
+    5550800,
+    5580704,
+    5581648,
+    5582624,
+    5583600,
+    5584576,
+    5584976,
+    5585472,
+    5757984,
+    5758048,
+    5758464,
+    5759408,
+    5760320,
+    5762192,
+    5763312,
+    5764592,
+    5768944,
+    5775040,
+    5807248,
+    5810608,
+    5810832,
+    5811600,
+    5812848,
+    5813216,
+    5813856,
+    5814976,
+    5815312,
+    5816128,
+    5816640,
+    5817184,
+    5817504,
+    5818016,
+    5818528,
+    5819024,
+    5819328,
+    5819728,
+    5820192,
+    5820832,
+    5820992,
+    5821056,
+    5821216,
+    5821296,
+    5821360,
+    5822656,
+    5823984,
+    5825216,
+    5827968,
+    5828016,
+    5851058,
+    5853722,
+    5854839,
+    5856071,
+    5857342,
+    5858448,
+    5859492,
+    5860536,
+    5861510
+  ],
+  "callers": [
+    {
+      "call_va": 4235516,
+      "return_pc": 4235521,
+      "entry": 5854839,
+      "bytes": "e876b51800",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4235574,
+      "return_pc": 4235579,
+      "entry": 5758464,
+      "bytes": "e8c53c1700",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4235659,
+      "return_pc": 4235664,
+      "entry": 5854839,
+      "bytes": "e8e7b41800",
+      "discovered_owners": [
+        4235600
+      ]
+    },
+    {
+      "call_va": 4235690,
+      "return_pc": 4235695,
+      "entry": 5758464,
+      "bytes": "e8513c1700",
+      "discovered_owners": [
+        4235600
+      ]
+    },
+    {
+      "call_va": 4235744,
+      "return_pc": 4235749,
+      "entry": 5758464,
+      "bytes": "e81b3c1700",
+      "discovered_owners": [
+        4235600
+      ]
+    },
+    {
+      "call_va": 4235813,
+      "return_pc": 4235818,
+      "entry": 5854839,
+      "bytes": "e84db41800",
+      "discovered_owners": [
+        4235760
+      ]
+    },
+    {
+      "call_va": 4235841,
+      "return_pc": 4235846,
+      "entry": 5758464,
+      "bytes": "e8ba3b1700",
+      "discovered_owners": [
+        4235760
+      ]
+    },
+    {
+      "call_va": 4235887,
+      "return_pc": 4235892,
+      "entry": 5758464,
+      "bytes": "e88c3b1700",
+      "discovered_owners": [
+        4235760
+      ]
+    },
+    {
+      "call_va": 4599816,
+      "return_pc": 4599821,
+      "entry": 5815312,
+      "bytes": "e8038c1200",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4599829,
+      "return_pc": 4599834,
+      "entry": 5820832,
+      "bytes": "e886a11200",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4600482,
+      "return_pc": 4600487,
+      "entry": 5813216,
+      "bytes": "e839811200",
+      "discovered_owners": [
+        4600432
+      ]
+    },
+    {
+      "call_va": 4600492,
+      "return_pc": 4600497,
+      "entry": 5813216,
+      "bytes": "e82f811200",
+      "discovered_owners": [
+        4600432
+      ]
+    },
+    {
+      "call_va": 4600556,
+      "return_pc": 4600561,
+      "entry": 5813216,
+      "bytes": "e8ef801200",
+      "discovered_owners": [
+        4600432
+      ]
+    },
+    {
+      "call_va": 4600568,
+      "return_pc": 4600573,
+      "entry": 5813216,
+      "bytes": "e8e3801200",
+      "discovered_owners": [
+        4600432
+      ]
+    },
+    {
+      "call_va": 4600697,
+      "return_pc": 4600702,
+      "entry": 5816640,
+      "bytes": "e8c28d1200",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4600719,
+      "return_pc": 4600724,
+      "entry": 5816128,
+      "bytes": "e8ac8b1200",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4600825,
+      "return_pc": 4600830,
+      "entry": 5811600,
+      "bytes": "e892791200",
+      "discovered_owners": [
+        4600736
+      ]
+    },
+    {
+      "call_va": 4600834,
+      "return_pc": 4600839,
+      "entry": 5815312,
+      "bytes": "e809881200",
+      "discovered_owners": [
+        4600736
+      ]
+    },
+    {
+      "call_va": 4600934,
+      "return_pc": 4600939,
+      "entry": 5811600,
+      "bytes": "e825791200",
+      "discovered_owners": [
+        4600736
+      ]
+    },
+    {
+      "call_va": 4600943,
+      "return_pc": 4600948,
+      "entry": 5815312,
+      "bytes": "e89c871200",
+      "discovered_owners": [
+        4600736
+      ]
+    },
+    {
+      "call_va": 4601208,
+      "return_pc": 4601213,
+      "entry": 5815312,
+      "bytes": "e893861200",
+      "discovered_owners": [
+        4600736
+      ]
+    },
+    {
+      "call_va": 4601221,
+      "return_pc": 4601226,
+      "entry": 5820832,
+      "bytes": "e8169c1200",
+      "discovered_owners": [
+        4600736
+      ]
+    },
+    {
+      "call_va": 4601270,
+      "return_pc": 4601275,
+      "entry": 5813216,
+      "bytes": "e8257e1200",
+      "discovered_owners": [
+        4601264
+      ]
+    },
+    {
+      "call_va": 4601278,
+      "return_pc": 4601283,
+      "entry": 5813216,
+      "bytes": "e81d7e1200",
+      "discovered_owners": [
+        4601264
+      ]
+    },
+    {
+      "call_va": 4601329,
+      "return_pc": 4601334,
+      "entry": 5813216,
+      "bytes": "e8ea7d1200",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4601337,
+      "return_pc": 4601342,
+      "entry": 5813216,
+      "bytes": "e8e27d1200",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4601663,
+      "return_pc": 4601668,
+      "entry": 5820832,
+      "bytes": "e85c9a1200",
+      "discovered_owners": [
+        4601424
+      ]
+    },
+    {
+      "call_va": 4601983,
+      "return_pc": 4601988,
+      "entry": 5818528,
+      "bytes": "e81c901200",
+      "discovered_owners": [
+        4601792
+      ]
+    },
+    {
+      "call_va": 4602169,
+      "return_pc": 4602174,
+      "entry": 5818528,
+      "bytes": "e8628f1200",
+      "discovered_owners": [
+        4602016
+      ]
+    },
+    {
+      "call_va": 4602248,
+      "return_pc": 4602253,
+      "entry": 5818528,
+      "bytes": "e8138f1200",
+      "discovered_owners": [
+        4602016
+      ]
+    },
+    {
+      "call_va": 4603350,
+      "return_pc": 4603355,
+      "entry": 5816640,
+      "bytes": "e865831200",
+      "discovered_owners": [
+        4603248
+      ]
+    },
+    {
+      "call_va": 4603367,
+      "return_pc": 4603372,
+      "entry": 5816128,
+      "bytes": "e854811200",
+      "discovered_owners": [
+        4603248
+      ]
+    },
+    {
+      "call_va": 4603453,
+      "return_pc": 4603458,
+      "entry": 5813216,
+      "bytes": "e89e751200",
+      "discovered_owners": [
+        4603424
+      ]
+    },
+    {
+      "call_va": 4603461,
+      "return_pc": 4603466,
+      "entry": 5813216,
+      "bytes": "e896751200",
+      "discovered_owners": [
+        4603424
+      ]
+    },
+    {
+      "call_va": 4631020,
+      "return_pc": 4631025,
+      "entry": 5821216,
+      "bytes": "e82f291200",
+      "discovered_owners": [
+        4630832
+      ]
+    },
+    {
+      "call_va": 4632147,
+      "return_pc": 4632152,
+      "entry": 5815312,
+      "bytes": "e8b80d1200",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4632158,
+      "return_pc": 4632163,
+      "entry": 5815312,
+      "bytes": "e8ad0d1200",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4635029,
+      "return_pc": 4635034,
+      "entry": 5817504,
+      "bytes": "e8060b1200",
+      "discovered_owners": [
+        4632512
+      ]
+    },
+    {
+      "call_va": 4635083,
+      "return_pc": 4635088,
+      "entry": 5817504,
+      "bytes": "e8d00a1200",
+      "discovered_owners": [
+        4632512
+      ]
+    },
+    {
+      "call_va": 4635113,
+      "return_pc": 4635118,
+      "entry": 5817504,
+      "bytes": "e8b20a1200",
+      "discovered_owners": [
+        4632512
+      ]
+    },
+    {
+      "call_va": 4635132,
+      "return_pc": 4635137,
+      "entry": 5816128,
+      "bytes": "e83f051200",
+      "discovered_owners": [
+        4632512
+      ]
+    },
+    {
+      "call_va": 4668343,
+      "return_pc": 4668348,
+      "entry": 5813216,
+      "bytes": "e824781100",
+      "discovered_owners": [
+        4668160
+      ]
+    },
+    {
+      "call_va": 4668394,
+      "return_pc": 4668399,
+      "entry": 5813216,
+      "bytes": "e8f1771100",
+      "discovered_owners": [
+        4668160
+      ]
+    },
+    {
+      "call_va": 4668952,
+      "return_pc": 4668957,
+      "entry": 5811600,
+      "bytes": "e8736f1100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4669222,
+      "return_pc": 4669227,
+      "entry": 5821216,
+      "bytes": "e8f5931100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4671775,
+      "return_pc": 4671780,
+      "entry": 5813216,
+      "bytes": "e8bc6a1100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4671842,
+      "return_pc": 4671847,
+      "entry": 5816128,
+      "bytes": "e8d9751100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4671901,
+      "return_pc": 4671906,
+      "entry": 5813856,
+      "bytes": "e8be6c1100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4671931,
+      "return_pc": 4671936,
+      "entry": 5757984,
+      "bytes": "e860921000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4671944,
+      "return_pc": 4671949,
+      "entry": 5758048,
+      "bytes": "e893921000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4673530,
+      "return_pc": 4673535,
+      "entry": 5813216,
+      "bytes": "e8e1631100",
+      "discovered_owners": [
+        4673504
+      ]
+    },
+    {
+      "call_va": 4673544,
+      "return_pc": 4673549,
+      "entry": 5813216,
+      "bytes": "e8d3631100",
+      "discovered_owners": [
+        4673504
+      ]
+    },
+    {
+      "call_va": 4674041,
+      "return_pc": 4674046,
+      "entry": 5811600,
+      "bytes": "e8925b1100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4674341,
+      "return_pc": 4674346,
+      "entry": 5821216,
+      "bytes": "e8f67f1100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4675592,
+      "return_pc": 4675597,
+      "entry": 5816128,
+      "bytes": "e833671100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4675994,
+      "return_pc": 4675999,
+      "entry": 5821216,
+      "bytes": "e881791100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4730075,
+      "return_pc": 4730080,
+      "entry": 5854839,
+      "bytes": "e897291100",
+      "discovered_owners": [
+        4730016
+      ]
+    },
+    {
+      "call_va": 4730103,
+      "return_pc": 4730108,
+      "entry": 5758464,
+      "bytes": "e804b10f00",
+      "discovered_owners": [
+        4730016
+      ]
+    },
+    {
+      "call_va": 4730151,
+      "return_pc": 4730156,
+      "entry": 5758464,
+      "bytes": "e8d4b00f00",
+      "discovered_owners": [
+        4730016
+      ]
+    },
+    {
+      "call_va": 4737407,
+      "return_pc": 4737412,
+      "entry": 5757984,
+      "bytes": "e89c920f00",
+      "discovered_owners": [
+        4737328
+      ]
+    },
+    {
+      "call_va": 4737448,
+      "return_pc": 4737453,
+      "entry": 5758048,
+      "bytes": "e8b3920f00",
+      "discovered_owners": [
+        4737328
+      ]
+    },
+    {
+      "call_va": 4737520,
+      "return_pc": 4737525,
+      "entry": 5813856,
+      "bytes": "e86b6c1000",
+      "discovered_owners": [
+        4737328
+      ]
+    },
+    {
+      "call_va": 4743549,
+      "return_pc": 4743554,
+      "entry": 5816128,
+      "bytes": "e8be5d1000",
+      "discovered_owners": [
+        4743504
+      ]
+    },
+    {
+      "call_va": 4743802,
+      "return_pc": 4743807,
+      "entry": 5813216,
+      "bytes": "e861511000",
+      "discovered_owners": [
+        4743776
+      ]
+    },
+    {
+      "call_va": 4743816,
+      "return_pc": 4743821,
+      "entry": 5813216,
+      "bytes": "e853511000",
+      "discovered_owners": [
+        4743776
+      ]
+    },
+    {
+      "call_va": 4744181,
+      "return_pc": 4744186,
+      "entry": 5811600,
+      "bytes": "e896491000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4744451,
+      "return_pc": 4744456,
+      "entry": 5821216,
+      "bytes": "e8186e1000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4744775,
+      "return_pc": 4744780,
+      "entry": 5816128,
+      "bytes": "e8f4581000",
+      "discovered_owners": [
+        4744752
+      ]
+    },
+    {
+      "call_va": 4745052,
+      "return_pc": 4745057,
+      "entry": 5821216,
+      "bytes": "e8bf6b1000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4861517,
+      "return_pc": 4861522,
+      "entry": 5814976,
+      "bytes": "e86e8c0e00",
+      "discovered_owners": [
+        4861296
+      ]
+    },
+    {
+      "call_va": 4861850,
+      "return_pc": 4861855,
+      "entry": 5820832,
+      "bytes": "e801a20e00",
+      "discovered_owners": [
+        4861840
+      ]
+    },
+    {
+      "call_va": 4863550,
+      "return_pc": 4863555,
+      "entry": 5811600,
+      "bytes": "e84d770e00",
+      "discovered_owners": [
+        4862128
+      ]
+    },
+    {
+      "call_va": 4863562,
+      "return_pc": 4863567,
+      "entry": 5815312,
+      "bytes": "e8c1850e00",
+      "discovered_owners": [
+        4862128
+      ]
+    },
+    {
+      "call_va": 4863631,
+      "return_pc": 4863636,
+      "entry": 5811600,
+      "bytes": "e8fc760e00",
+      "discovered_owners": [
+        4862128
+      ]
+    },
+    {
+      "call_va": 4863643,
+      "return_pc": 4863648,
+      "entry": 5815312,
+      "bytes": "e870850e00",
+      "discovered_owners": [
+        4862128
+      ]
+    },
+    {
+      "call_va": 4863677,
+      "return_pc": 4863682,
+      "entry": 5820832,
+      "bytes": "e8de9a0e00",
+      "discovered_owners": [
+        4862128
+      ]
+    },
+    {
+      "call_va": 4863983,
+      "return_pc": 4863988,
+      "entry": 5813216,
+      "bytes": "e8ec7b0e00",
+      "discovered_owners": [
+        4863952
+      ]
+    },
+    {
+      "call_va": 4867224,
+      "return_pc": 4867229,
+      "entry": 5817504,
+      "bytes": "e803800e00",
+      "discovered_owners": [
+        4866944
+      ]
+    },
+    {
+      "call_va": 4867476,
+      "return_pc": 4867481,
+      "entry": 5817504,
+      "bytes": "e8077f0e00",
+      "discovered_owners": [
+        4867248
+      ]
+    },
+    {
+      "call_va": 4867828,
+      "return_pc": 4867833,
+      "entry": 5817504,
+      "bytes": "e8a77d0e00",
+      "discovered_owners": [
+        4867504
+      ]
+    },
+    {
+      "call_va": 4868266,
+      "return_pc": 4868271,
+      "entry": 5818528,
+      "bytes": "e8f17f0e00",
+      "discovered_owners": [
+        4867504
+      ]
+    },
+    {
+      "call_va": 4868860,
+      "return_pc": 4868865,
+      "entry": 5817184,
+      "bytes": "e85f780e00",
+      "discovered_owners": [
+        4868368
+      ]
+    },
+    {
+      "call_va": 4869153,
+      "return_pc": 4869158,
+      "entry": 5817184,
+      "bytes": "e83a770e00",
+      "discovered_owners": [
+        4868368
+      ]
+    },
+    {
+      "call_va": 4869418,
+      "return_pc": 4869423,
+      "entry": 5819024,
+      "bytes": "e8617d0e00",
+      "discovered_owners": [
+        4868368
+      ]
+    },
+    {
+      "call_va": 4872767,
+      "return_pc": 4872772,
+      "entry": 5775040,
+      "bytes": "e87cc40d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4872826,
+      "return_pc": 4872831,
+      "entry": 5775040,
+      "bytes": "e841c40d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4874542,
+      "return_pc": 4874547,
+      "entry": 5775040,
+      "bytes": "e88dbd0d00",
+      "discovered_owners": [
+        4873440
+      ]
+    },
+    {
+      "call_va": 4875714,
+      "return_pc": 4875719,
+      "entry": 5775040,
+      "bytes": "e8f9b80d00",
+      "discovered_owners": [
+        4874640
+      ]
+    },
+    {
+      "call_va": 4878410,
+      "return_pc": 4878415,
+      "entry": 5813216,
+      "bytes": "e891430e00",
+      "discovered_owners": [
+        4878384
+      ]
+    },
+    {
+      "call_va": 4878424,
+      "return_pc": 4878429,
+      "entry": 5813216,
+      "bytes": "e883430e00",
+      "discovered_owners": [
+        4878384
+      ]
+    },
+    {
+      "call_va": 4878820,
+      "return_pc": 4878825,
+      "entry": 5811600,
+      "bytes": "e8a73b0e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4879091,
+      "return_pc": 4879096,
+      "entry": 5821216,
+      "bytes": "e828600e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4879752,
+      "return_pc": 4879757,
+      "entry": 5816128,
+      "bytes": "e8b3490e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4880684,
+      "return_pc": 4880689,
+      "entry": 5821216,
+      "bytes": "e8ef590e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4881786,
+      "return_pc": 4881791,
+      "entry": 5813216,
+      "bytes": "e861360e00",
+      "discovered_owners": [
+        4881760
+      ]
+    },
+    {
+      "call_va": 4881800,
+      "return_pc": 4881805,
+      "entry": 5813216,
+      "bytes": "e853360e00",
+      "discovered_owners": [
+        4881760
+      ]
+    },
+    {
+      "call_va": 4882193,
+      "return_pc": 4882198,
+      "entry": 5811600,
+      "bytes": "e87a2e0e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4882464,
+      "return_pc": 4882469,
+      "entry": 5821216,
+      "bytes": "e8fb520e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4883032,
+      "return_pc": 4883037,
+      "entry": 5816128,
+      "bytes": "e8e33c0e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4883324,
+      "return_pc": 4883329,
+      "entry": 5821216,
+      "bytes": "e89f4f0e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4886263,
+      "return_pc": 4886268,
+      "entry": 5813216,
+      "bytes": "e8e4240e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4886353,
+      "return_pc": 4886358,
+      "entry": 5811600,
+      "bytes": "e83a1e0e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4886478,
+      "return_pc": 4886483,
+      "entry": 5821216,
+      "bytes": "e84d430e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4888203,
+      "return_pc": 4888208,
+      "entry": 5816128,
+      "bytes": "e8b0280e00",
+      "discovered_owners": [
+        4888176
+      ]
+    },
+    {
+      "call_va": 4888603,
+      "return_pc": 4888608,
+      "entry": 5821216,
+      "bytes": "e8003b0e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4889820,
+      "return_pc": 4889825,
+      "entry": 5816128,
+      "bytes": "e85f220e00",
+      "discovered_owners": [
+        4889776
+      ]
+    },
+    {
+      "call_va": 4890170,
+      "return_pc": 4890175,
+      "entry": 5813216,
+      "bytes": "e8a1150e00",
+      "discovered_owners": [
+        4890144
+      ]
+    },
+    {
+      "call_va": 4890184,
+      "return_pc": 4890189,
+      "entry": 5813216,
+      "bytes": "e893150e00",
+      "discovered_owners": [
+        4890144
+      ]
+    },
+    {
+      "call_va": 4890693,
+      "return_pc": 4890698,
+      "entry": 5811600,
+      "bytes": "e8460d0e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4890963,
+      "return_pc": 4890968,
+      "entry": 5821216,
+      "bytes": "e8c8310e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4892003,
+      "return_pc": 4892008,
+      "entry": 5816128,
+      "bytes": "e8d8190e00",
+      "discovered_owners": [
+        4891984
+      ]
+    },
+    {
+      "call_va": 4893164,
+      "return_pc": 4893169,
+      "entry": 5821216,
+      "bytes": "e82f290e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4893967,
+      "return_pc": 4893972,
+      "entry": 5816128,
+      "bytes": "e82c120e00",
+      "discovered_owners": [
+        4893920
+      ]
+    },
+    {
+      "call_va": 4894346,
+      "return_pc": 4894351,
+      "entry": 5813216,
+      "bytes": "e851050e00",
+      "discovered_owners": [
+        4894320
+      ]
+    },
+    {
+      "call_va": 4894360,
+      "return_pc": 4894365,
+      "entry": 5813216,
+      "bytes": "e843050e00",
+      "discovered_owners": [
+        4894320
+      ]
+    },
+    {
+      "call_va": 4894869,
+      "return_pc": 4894874,
+      "entry": 5811600,
+      "bytes": "e8f6fc0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4895139,
+      "return_pc": 4895144,
+      "entry": 5821216,
+      "bytes": "e878210e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4896211,
+      "return_pc": 4896216,
+      "entry": 5816128,
+      "bytes": "e868090e00",
+      "discovered_owners": [
+        4896192
+      ]
+    },
+    {
+      "call_va": 4897884,
+      "return_pc": 4897889,
+      "entry": 5821216,
+      "bytes": "e8bf160e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4900138,
+      "return_pc": 4900143,
+      "entry": 5813216,
+      "bytes": "e8b1ee0d00",
+      "discovered_owners": [
+        4900112
+      ]
+    },
+    {
+      "call_va": 4900152,
+      "return_pc": 4900157,
+      "entry": 5813216,
+      "bytes": "e8a3ee0d00",
+      "discovered_owners": [
+        4900112
+      ]
+    },
+    {
+      "call_va": 4900725,
+      "return_pc": 4900730,
+      "entry": 5811600,
+      "bytes": "e816e60d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4900995,
+      "return_pc": 4901000,
+      "entry": 5821216,
+      "bytes": "e8980a0e00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4902556,
+      "return_pc": 4902561,
+      "entry": 5816128,
+      "bytes": "e89ff00d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4904572,
+      "return_pc": 4904577,
+      "entry": 5821216,
+      "bytes": "e89ffc0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4911242,
+      "return_pc": 4911247,
+      "entry": 5813216,
+      "bytes": "e851c30d00",
+      "discovered_owners": [
+        4911216
+      ]
+    },
+    {
+      "call_va": 4911256,
+      "return_pc": 4911261,
+      "entry": 5813216,
+      "bytes": "e843c30d00",
+      "discovered_owners": [
+        4911216
+      ]
+    },
+    {
+      "call_va": 4911765,
+      "return_pc": 4911770,
+      "entry": 5811600,
+      "bytes": "e8f6ba0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4912035,
+      "return_pc": 4912040,
+      "entry": 5821216,
+      "bytes": "e878df0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4913064,
+      "return_pc": 4913069,
+      "entry": 5816128,
+      "bytes": "e893c70d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4913388,
+      "return_pc": 4913393,
+      "entry": 5821216,
+      "bytes": "e82fda0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4915322,
+      "return_pc": 4915327,
+      "entry": 5813216,
+      "bytes": "e861b30d00",
+      "discovered_owners": [
+        4915296
+      ]
+    },
+    {
+      "call_va": 4915336,
+      "return_pc": 4915341,
+      "entry": 5813216,
+      "bytes": "e853b30d00",
+      "discovered_owners": [
+        4915296
+      ]
+    },
+    {
+      "call_va": 4915781,
+      "return_pc": 4915786,
+      "entry": 5811600,
+      "bytes": "e846ab0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4916051,
+      "return_pc": 4916056,
+      "entry": 5821216,
+      "bytes": "e8c8cf0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4916759,
+      "return_pc": 4916764,
+      "entry": 5816128,
+      "bytes": "e824b90d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4917052,
+      "return_pc": 4917057,
+      "entry": 5821216,
+      "bytes": "e8dfcb0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4917288,
+      "return_pc": 4917293,
+      "entry": 5815312,
+      "bytes": "e8e3b30d00",
+      "discovered_owners": [
+        4917136
+      ]
+    },
+    {
+      "call_va": 4917300,
+      "return_pc": 4917305,
+      "entry": 5815312,
+      "bytes": "e8d7b30d00",
+      "discovered_owners": [
+        4917136
+      ]
+    },
+    {
+      "call_va": 4919146,
+      "return_pc": 4919151,
+      "entry": 5813216,
+      "bytes": "e871a40d00",
+      "discovered_owners": [
+        4919120
+      ]
+    },
+    {
+      "call_va": 4919160,
+      "return_pc": 4919165,
+      "entry": 5813216,
+      "bytes": "e863a40d00",
+      "discovered_owners": [
+        4919120
+      ]
+    },
+    {
+      "call_va": 4919685,
+      "return_pc": 4919690,
+      "entry": 5811600,
+      "bytes": "e8069c0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4919955,
+      "return_pc": 4919960,
+      "entry": 5821216,
+      "bytes": "e888c00d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4921032,
+      "return_pc": 4921037,
+      "entry": 5816128,
+      "bytes": "e873a80d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4921372,
+      "return_pc": 4921377,
+      "entry": 5821216,
+      "bytes": "e8ffba0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4922184,
+      "return_pc": 4922189,
+      "entry": 5815312,
+      "bytes": "e8c3a00d00",
+      "discovered_owners": [
+        4921904
+      ]
+    },
+    {
+      "call_va": 4922196,
+      "return_pc": 4922201,
+      "entry": 5815312,
+      "bytes": "e8b7a00d00",
+      "discovered_owners": [
+        4921904
+      ]
+    },
+    {
+      "call_va": 4922590,
+      "return_pc": 4922595,
+      "entry": 5815312,
+      "bytes": "e82d9f0d00",
+      "discovered_owners": [
+        4922480
+      ]
+    },
+    {
+      "call_va": 4923107,
+      "return_pc": 4923112,
+      "entry": 5816128,
+      "bytes": "e858a00d00",
+      "discovered_owners": [
+        4923088
+      ]
+    },
+    {
+      "call_va": 4923126,
+      "return_pc": 4923131,
+      "entry": 5816128,
+      "bytes": "e845a00d00",
+      "discovered_owners": [
+        4923088
+      ]
+    },
+    {
+      "call_va": 4923434,
+      "return_pc": 4923439,
+      "entry": 5813216,
+      "bytes": "e8b1930d00",
+      "discovered_owners": [
+        4923408
+      ]
+    },
+    {
+      "call_va": 4923448,
+      "return_pc": 4923453,
+      "entry": 5813216,
+      "bytes": "e8a3930d00",
+      "discovered_owners": [
+        4923408
+      ]
+    },
+    {
+      "call_va": 4923847,
+      "return_pc": 4923852,
+      "entry": 5811600,
+      "bytes": "e8c48b0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4923923,
+      "return_pc": 4923928,
+      "entry": 5816128,
+      "bytes": "e8289d0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4924340,
+      "return_pc": 4924345,
+      "entry": 5816128,
+      "bytes": "e8879b0d00",
+      "discovered_owners": [
+        4924320
+      ]
+    },
+    {
+      "call_va": 4925145,
+      "return_pc": 4925150,
+      "entry": 5821056,
+      "bytes": "e8a2ab0d00",
+      "discovered_owners": [
+        4924896
+      ]
+    },
+    {
+      "call_va": 4926202,
+      "return_pc": 4926207,
+      "entry": 5813216,
+      "bytes": "e8e1880d00",
+      "discovered_owners": [
+        4926176
+      ]
+    },
+    {
+      "call_va": 4926216,
+      "return_pc": 4926221,
+      "entry": 5813216,
+      "bytes": "e8d3880d00",
+      "discovered_owners": [
+        4926176
+      ]
+    },
+    {
+      "call_va": 4926683,
+      "return_pc": 4926688,
+      "entry": 5811600,
+      "bytes": "e8b0800d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4926812,
+      "return_pc": 4926817,
+      "entry": 5821216,
+      "bytes": "e8bfa50d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4926894,
+      "return_pc": 4926899,
+      "entry": 5821216,
+      "bytes": "e86da50d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4926976,
+      "return_pc": 4926981,
+      "entry": 5816640,
+      "bytes": "e83b930d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4927004,
+      "return_pc": 4927009,
+      "entry": 5816128,
+      "bytes": "e81f910d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4928427,
+      "return_pc": 4928432,
+      "entry": 5816128,
+      "bytes": "e8908b0d00",
+      "discovered_owners": [
+        4928400
+      ]
+    },
+    {
+      "call_va": 4929567,
+      "return_pc": 4929572,
+      "entry": 5821216,
+      "bytes": "e8fc9a0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4929643,
+      "return_pc": 4929648,
+      "entry": 5821216,
+      "bytes": "e8b09a0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4931808,
+      "return_pc": 4931813,
+      "entry": 5813216,
+      "bytes": "e8fb720d00",
+      "discovered_owners": [
+        4931776
+      ]
+    },
+    {
+      "call_va": 4931822,
+      "return_pc": 4931827,
+      "entry": 5813216,
+      "bytes": "e8ed720d00",
+      "discovered_owners": [
+        4931776
+      ]
+    },
+    {
+      "call_va": 4932346,
+      "return_pc": 4932351,
+      "entry": 5813216,
+      "bytes": "e8e1700d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4932797,
+      "return_pc": 4932802,
+      "entry": 5811600,
+      "bytes": "e8ce680d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4932918,
+      "return_pc": 4932923,
+      "entry": 5821216,
+      "bytes": "e8e58d0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4934665,
+      "return_pc": 4934670,
+      "entry": 5811600,
+      "bytes": "e882610d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4934684,
+      "return_pc": 4934689,
+      "entry": 5820992,
+      "bytes": "e81f860d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4935551,
+      "return_pc": 4935556,
+      "entry": 5816128,
+      "bytes": "e8bc6f0d00",
+      "discovered_owners": [
+        4935520
+      ]
+    },
+    {
+      "call_va": 4938391,
+      "return_pc": 4938396,
+      "entry": 5821216,
+      "bytes": "e884780d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4938633,
+      "return_pc": 4938638,
+      "entry": 5811600,
+      "bytes": "e802520d00",
+      "discovered_owners": [
+        4938432
+      ]
+    },
+    {
+      "call_va": 4938739,
+      "return_pc": 4938744,
+      "entry": 5821216,
+      "bytes": "e828770d00",
+      "discovered_owners": [
+        4938432
+      ]
+    },
+    {
+      "call_va": 4938850,
+      "return_pc": 4938855,
+      "entry": 5816640,
+      "bytes": "e8d9640d00",
+      "discovered_owners": [
+        4938432
+      ]
+    },
+    {
+      "call_va": 4938859,
+      "return_pc": 4938864,
+      "entry": 5813216,
+      "bytes": "e870570d00",
+      "discovered_owners": [
+        4938432
+      ]
+    },
+    {
+      "call_va": 4938879,
+      "return_pc": 4938884,
+      "entry": 5813216,
+      "bytes": "e85c570d00",
+      "discovered_owners": [
+        4938432
+      ]
+    },
+    {
+      "call_va": 4944106,
+      "return_pc": 4944111,
+      "entry": 5813216,
+      "bytes": "e8f1420d00",
+      "discovered_owners": [
+        4944080
+      ]
+    },
+    {
+      "call_va": 4944120,
+      "return_pc": 4944125,
+      "entry": 5813216,
+      "bytes": "e8e3420d00",
+      "discovered_owners": [
+        4944080
+      ]
+    },
+    {
+      "call_va": 4944661,
+      "return_pc": 4944666,
+      "entry": 5811600,
+      "bytes": "e8763a0d00",
+      "discovered_owners": [
+        4944448
+      ]
+    },
+    {
+      "call_va": 4944940,
+      "return_pc": 4944945,
+      "entry": 5821216,
+      "bytes": "e8ef5e0d00",
+      "discovered_owners": [
+        4944448
+      ]
+    },
+    {
+      "call_va": 4946619,
+      "return_pc": 4946624,
+      "entry": 5816128,
+      "bytes": "e880440d00",
+      "discovered_owners": [
+        4946592
+      ]
+    },
+    {
+      "call_va": 4947660,
+      "return_pc": 4947665,
+      "entry": 5821216,
+      "bytes": "e84f540d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4961369,
+      "return_pc": 4961374,
+      "entry": 5816128,
+      "bytes": "e8e20a0d00",
+      "discovered_owners": [
+        4961312
+      ]
+    },
+    {
+      "call_va": 4961690,
+      "return_pc": 4961695,
+      "entry": 5813216,
+      "bytes": "e841fe0c00",
+      "discovered_owners": [
+        4961664
+      ]
+    },
+    {
+      "call_va": 4961704,
+      "return_pc": 4961709,
+      "entry": 5813216,
+      "bytes": "e833fe0c00",
+      "discovered_owners": [
+        4961664
+      ]
+    },
+    {
+      "call_va": 4962149,
+      "return_pc": 4962154,
+      "entry": 5811600,
+      "bytes": "e826f60c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4962419,
+      "return_pc": 4962424,
+      "entry": 5821216,
+      "bytes": "e8a81a0d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4963188,
+      "return_pc": 4963193,
+      "entry": 5816128,
+      "bytes": "e8c7030d00",
+      "discovered_owners": [
+        4963168
+      ]
+    },
+    {
+      "call_va": 4963932,
+      "return_pc": 4963937,
+      "entry": 5821216,
+      "bytes": "e8bf140d00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4964826,
+      "return_pc": 4964831,
+      "entry": 5813216,
+      "bytes": "e801f20c00",
+      "discovered_owners": [
+        4964800
+      ]
+    },
+    {
+      "call_va": 4964840,
+      "return_pc": 4964845,
+      "entry": 5813216,
+      "bytes": "e8f3f10c00",
+      "discovered_owners": [
+        4964800
+      ]
+    },
+    {
+      "call_va": 4965223,
+      "return_pc": 4965228,
+      "entry": 5811600,
+      "bytes": "e824ea0c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4965299,
+      "return_pc": 4965304,
+      "entry": 5816128,
+      "bytes": "e888fb0c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 4965796,
+      "return_pc": 4965801,
+      "entry": 5816128,
+      "bytes": "e897f90c00",
+      "discovered_owners": [
+        4965776
+      ]
+    },
+    {
+      "call_va": 4966137,
+      "return_pc": 4966142,
+      "entry": 5821056,
+      "bytes": "e8820b0d00",
+      "discovered_owners": [
+        4965888
+      ]
+    },
+    {
+      "call_va": 4972952,
+      "return_pc": 4972957,
+      "entry": 5813216,
+      "bytes": "e843d20c00",
+      "discovered_owners": [
+        4972800
+      ]
+    },
+    {
+      "call_va": 4985628,
+      "return_pc": 4985633,
+      "entry": 5813216,
+      "bytes": "e8bfa00c00",
+      "discovered_owners": [
+        4985344
+      ]
+    },
+    {
+      "call_va": 4985667,
+      "return_pc": 4985672,
+      "entry": 5813216,
+      "bytes": "e898a00c00",
+      "discovered_owners": [
+        4985344
+      ]
+    },
+    {
+      "call_va": 4987220,
+      "return_pc": 4987225,
+      "entry": 5813216,
+      "bytes": "e8879a0c00",
+      "discovered_owners": [
+        4986592
+      ]
+    },
+    {
+      "call_va": 4988653,
+      "return_pc": 4988658,
+      "entry": 5813856,
+      "bytes": "e86e970c00",
+      "discovered_owners": [
+        4988576
+      ]
+    },
+    {
+      "call_va": 4996478,
+      "return_pc": 4996483,
+      "entry": 5821216,
+      "bytes": "e89d950c00",
+      "discovered_owners": [
+        4995648
+      ]
+    },
+    {
+      "call_va": 4996556,
+      "return_pc": 4996561,
+      "entry": 5820832,
+      "bytes": "e8cf930c00",
+      "discovered_owners": [
+        4995648
+      ]
+    },
+    {
+      "call_va": 4996718,
+      "return_pc": 4996723,
+      "entry": 5817504,
+      "bytes": "e82d860c00",
+      "discovered_owners": [
+        4995648
+      ]
+    },
+    {
+      "call_va": 4996869,
+      "return_pc": 4996874,
+      "entry": 5819328,
+      "bytes": "e8b68c0c00",
+      "discovered_owners": [
+        4995648
+      ]
+    },
+    {
+      "call_va": 4996891,
+      "return_pc": 4996896,
+      "entry": 5816128,
+      "bytes": "e820800c00",
+      "discovered_owners": [
+        4995648
+      ]
+    },
+    {
+      "call_va": 5001697,
+      "return_pc": 5001702,
+      "entry": 5811600,
+      "bytes": "e8aa5b0c00",
+      "discovered_owners": [
+        5001488
+      ]
+    },
+    {
+      "call_va": 5001713,
+      "return_pc": 5001718,
+      "entry": 5820992,
+      "bytes": "e84a800c00",
+      "discovered_owners": [
+        5001488
+      ]
+    },
+    {
+      "call_va": 5001954,
+      "return_pc": 5001959,
+      "entry": 5811600,
+      "bytes": "e8a95a0c00",
+      "discovered_owners": [
+        5001776
+      ]
+    },
+    {
+      "call_va": 5002031,
+      "return_pc": 5002036,
+      "entry": 5821216,
+      "bytes": "e8ec7f0c00",
+      "discovered_owners": [
+        5001776
+      ]
+    },
+    {
+      "call_va": 5002112,
+      "return_pc": 5002117,
+      "entry": 5820832,
+      "bytes": "e81b7e0c00",
+      "discovered_owners": [
+        5001776
+      ]
+    },
+    {
+      "call_va": 5002130,
+      "return_pc": 5002135,
+      "entry": 5813216,
+      "bytes": "e849600c00",
+      "discovered_owners": [
+        5001776
+      ]
+    },
+    {
+      "call_va": 5003084,
+      "return_pc": 5003089,
+      "entry": 5821216,
+      "bytes": "e8cf7b0c00",
+      "discovered_owners": [
+        5002528
+      ]
+    },
+    {
+      "call_va": 5003100,
+      "return_pc": 5003105,
+      "entry": 5820832,
+      "bytes": "e83f7a0c00",
+      "discovered_owners": [
+        5002528
+      ]
+    },
+    {
+      "call_va": 5003344,
+      "return_pc": 5003349,
+      "entry": 5817504,
+      "bytes": "e84b6c0c00",
+      "discovered_owners": [
+        5002528
+      ]
+    },
+    {
+      "call_va": 5004133,
+      "return_pc": 5004138,
+      "entry": 5811600,
+      "bytes": "e826520c00",
+      "discovered_owners": [
+        5003872
+      ]
+    },
+    {
+      "call_va": 5004160,
+      "return_pc": 5004165,
+      "entry": 5815312,
+      "bytes": "e88b600c00",
+      "discovered_owners": [
+        5003872
+      ]
+    },
+    {
+      "call_va": 5004473,
+      "return_pc": 5004478,
+      "entry": 5813216,
+      "bytes": "e822570c00",
+      "discovered_owners": [
+        5004448
+      ]
+    },
+    {
+      "call_va": 5004590,
+      "return_pc": 5004595,
+      "entry": 5813216,
+      "bytes": "e8ad560c00",
+      "discovered_owners": [
+        5004512
+      ]
+    },
+    {
+      "call_va": 5005153,
+      "return_pc": 5005158,
+      "entry": 5813216,
+      "bytes": "e87a540c00",
+      "discovered_owners": [
+        5004512
+      ]
+    },
+    {
+      "call_va": 5005235,
+      "return_pc": 5005240,
+      "entry": 5813216,
+      "bytes": "e828540c00",
+      "discovered_owners": [
+        5005232
+      ]
+    },
+    {
+      "call_va": 5005400,
+      "return_pc": 5005405,
+      "entry": 5816128,
+      "bytes": "e8e35e0c00",
+      "discovered_owners": [
+        5005360
+      ]
+    },
+    {
+      "call_va": 5005616,
+      "return_pc": 5005621,
+      "entry": 5819328,
+      "bytes": "e88b6a0c00",
+      "discovered_owners": [
+        5005360
+      ]
+    },
+    {
+      "call_va": 5005781,
+      "return_pc": 5005786,
+      "entry": 5819328,
+      "bytes": "e8e6690c00",
+      "discovered_owners": [
+        5005360
+      ]
+    },
+    {
+      "call_va": 5005916,
+      "return_pc": 5005921,
+      "entry": 5819328,
+      "bytes": "e85f690c00",
+      "discovered_owners": [
+        5005360
+      ]
+    },
+    {
+      "call_va": 5006096,
+      "return_pc": 5006101,
+      "entry": 5819328,
+      "bytes": "e8ab680c00",
+      "discovered_owners": [
+        5005360
+      ]
+    },
+    {
+      "call_va": 5006251,
+      "return_pc": 5006256,
+      "entry": 5819328,
+      "bytes": "e810680c00",
+      "discovered_owners": [
+        5005360
+      ]
+    },
+    {
+      "call_va": 5006420,
+      "return_pc": 5006425,
+      "entry": 5819328,
+      "bytes": "e867670c00",
+      "discovered_owners": [
+        5005360
+      ]
+    },
+    {
+      "call_va": 5006565,
+      "return_pc": 5006570,
+      "entry": 5819328,
+      "bytes": "e8d6660c00",
+      "discovered_owners": [
+        5005360
+      ]
+    },
+    {
+      "call_va": 5006741,
+      "return_pc": 5006746,
+      "entry": 5819328,
+      "bytes": "e826660c00",
+      "discovered_owners": [
+        5005360
+      ]
+    },
+    {
+      "call_va": 5006885,
+      "return_pc": 5006890,
+      "entry": 5819328,
+      "bytes": "e896650c00",
+      "discovered_owners": [
+        5005360
+      ]
+    },
+    {
+      "call_va": 5007017,
+      "return_pc": 5007022,
+      "entry": 5819328,
+      "bytes": "e812650c00",
+      "discovered_owners": [
+        5005360
+      ]
+    },
+    {
+      "call_va": 5011648,
+      "return_pc": 5011653,
+      "entry": 5827968,
+      "bytes": "e8bb740c00",
+      "discovered_owners": [
+        5011600
+      ]
+    },
+    {
+      "call_va": 5011707,
+      "return_pc": 5011712,
+      "entry": 5816128,
+      "bytes": "e840460c00",
+      "discovered_owners": [
+        5011600
+      ]
+    },
+    {
+      "call_va": 5012227,
+      "return_pc": 5012232,
+      "entry": 5813856,
+      "bytes": "e8583b0c00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5012257,
+      "return_pc": 5012262,
+      "entry": 5757984,
+      "bytes": "e8fa600b00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5012302,
+      "return_pc": 5012307,
+      "entry": 5758048,
+      "bytes": "e80d610b00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5012990,
+      "return_pc": 5012995,
+      "entry": 5811600,
+      "bytes": "e88d2f0c00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5013004,
+      "return_pc": 5013009,
+      "entry": 5820992,
+      "bytes": "e82f540c00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5013289,
+      "return_pc": 5013294,
+      "entry": 5811600,
+      "bytes": "e8622e0c00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5013303,
+      "return_pc": 5013308,
+      "entry": 5550800,
+      "bytes": "e894330800",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5013583,
+      "return_pc": 5013588,
+      "entry": 5816640,
+      "bytes": "e8ec400c00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5013625,
+      "return_pc": 5013630,
+      "entry": 5813216,
+      "bytes": "e862330c00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5014145,
+      "return_pc": 5014150,
+      "entry": 5813856,
+      "bytes": "e8da330c00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5014237,
+      "return_pc": 5014242,
+      "entry": 5757984,
+      "bytes": "e83e590b00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5014282,
+      "return_pc": 5014287,
+      "entry": 5758048,
+      "bytes": "e851590b00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5015162,
+      "return_pc": 5015167,
+      "entry": 5813856,
+      "bytes": "e8e12f0c00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5015196,
+      "return_pc": 5015201,
+      "entry": 5757984,
+      "bytes": "e87f550b00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5015241,
+      "return_pc": 5015246,
+      "entry": 5758048,
+      "bytes": "e892550b00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5015342,
+      "return_pc": 5015347,
+      "entry": 5758464,
+      "bytes": "e8cd560b00",
+      "discovered_owners": [
+        5012144
+      ]
+    },
+    {
+      "call_va": 5022080,
+      "return_pc": 5022085,
+      "entry": 5813856,
+      "bytes": "e8db140c00",
+      "discovered_owners": [
+        5021888
+      ]
+    },
+    {
+      "call_va": 5022112,
+      "return_pc": 5022117,
+      "entry": 5757984,
+      "bytes": "e87b3a0b00",
+      "discovered_owners": [
+        5021888
+      ]
+    },
+    {
+      "call_va": 5022157,
+      "return_pc": 5022162,
+      "entry": 5758048,
+      "bytes": "e88e3a0b00",
+      "discovered_owners": [
+        5021888
+      ]
+    },
+    {
+      "call_va": 5026099,
+      "return_pc": 5026104,
+      "entry": 5813856,
+      "bytes": "e828050c00",
+      "discovered_owners": [
+        5026048
+      ]
+    },
+    {
+      "call_va": 5027295,
+      "return_pc": 5027300,
+      "entry": 5813856,
+      "bytes": "e87c000c00",
+      "discovered_owners": [
+        5027232
+      ]
+    },
+    {
+      "call_va": 5027326,
+      "return_pc": 5027331,
+      "entry": 5757984,
+      "bytes": "e81d260b00",
+      "discovered_owners": [
+        5027232
+      ]
+    },
+    {
+      "call_va": 5027341,
+      "return_pc": 5027346,
+      "entry": 5758048,
+      "bytes": "e84e260b00",
+      "discovered_owners": [
+        5027232
+      ]
+    },
+    {
+      "call_va": 5027556,
+      "return_pc": 5027561,
+      "entry": 5758464,
+      "bytes": "e817270b00",
+      "discovered_owners": [
+        5027232
+      ]
+    },
+    {
+      "call_va": 5027596,
+      "return_pc": 5027601,
+      "entry": 5807248,
+      "bytes": "e87fe50b00",
+      "discovered_owners": [
+        5027232
+      ]
+    },
+    {
+      "call_va": 5027763,
+      "return_pc": 5027768,
+      "entry": 5814976,
+      "bytes": "e808030c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5027780,
+      "return_pc": 5027785,
+      "entry": 5814976,
+      "bytes": "e8f7020c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5029066,
+      "return_pc": 5029071,
+      "entry": 5818528,
+      "bytes": "e8d10b0c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5029114,
+      "return_pc": 5029119,
+      "entry": 5817504,
+      "bytes": "e8a1070c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5029193,
+      "return_pc": 5029198,
+      "entry": 5818528,
+      "bytes": "e8520b0c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5029228,
+      "return_pc": 5029233,
+      "entry": 5817504,
+      "bytes": "e82f070c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5029277,
+      "return_pc": 5029282,
+      "entry": 5818528,
+      "bytes": "e8fe0a0c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5029425,
+      "return_pc": 5029430,
+      "entry": 5817504,
+      "bytes": "e86a060c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5029474,
+      "return_pc": 5029479,
+      "entry": 5813856,
+      "bytes": "e8f9f70b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5029499,
+      "return_pc": 5029504,
+      "entry": 5757984,
+      "bytes": "e8a01d0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5029522,
+      "return_pc": 5029527,
+      "entry": 5758048,
+      "bytes": "e8c91d0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5029697,
+      "return_pc": 5029702,
+      "entry": 5814976,
+      "bytes": "e87afb0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5029715,
+      "return_pc": 5029720,
+      "entry": 5814976,
+      "bytes": "e868fb0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5030226,
+      "return_pc": 5030231,
+      "entry": 5818528,
+      "bytes": "e849070c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5030274,
+      "return_pc": 5030279,
+      "entry": 5817504,
+      "bytes": "e819030c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5030359,
+      "return_pc": 5030364,
+      "entry": 5813856,
+      "bytes": "e884f40b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5030390,
+      "return_pc": 5030395,
+      "entry": 5757984,
+      "bytes": "e8251a0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5030413,
+      "return_pc": 5030418,
+      "entry": 5758048,
+      "bytes": "e84e1a0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5030700,
+      "return_pc": 5030705,
+      "entry": 5854839,
+      "bytes": "e846930c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5030756,
+      "return_pc": 5030761,
+      "entry": 5758464,
+      "bytes": "e8971a0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5030945,
+      "return_pc": 5030950,
+      "entry": 5814976,
+      "bytes": "e89af60b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5030963,
+      "return_pc": 5030968,
+      "entry": 5814976,
+      "bytes": "e888f60b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5031957,
+      "return_pc": 5031962,
+      "entry": 5823984,
+      "bytes": "e8d6150c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5031975,
+      "return_pc": 5031980,
+      "entry": 5823984,
+      "bytes": "e8c4150c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5032035,
+      "return_pc": 5032040,
+      "entry": 5822656,
+      "bytes": "e858100c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5032043,
+      "return_pc": 5032048,
+      "entry": 5813856,
+      "bytes": "e8f0ed0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5032072,
+      "return_pc": 5032077,
+      "entry": 5757984,
+      "bytes": "e893130b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5032095,
+      "return_pc": 5032100,
+      "entry": 5758048,
+      "bytes": "e8bc130b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5032296,
+      "return_pc": 5032301,
+      "entry": 5814976,
+      "bytes": "e853f10b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5032336,
+      "return_pc": 5032341,
+      "entry": 5814976,
+      "bytes": "e82bf10b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5033495,
+      "return_pc": 5033500,
+      "entry": 5813856,
+      "bytes": "e844e80b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5033524,
+      "return_pc": 5033529,
+      "entry": 5757984,
+      "bytes": "e8e70d0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5033547,
+      "return_pc": 5033552,
+      "entry": 5758048,
+      "bytes": "e8100e0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5033836,
+      "return_pc": 5033841,
+      "entry": 5825216,
+      "bytes": "e84f130c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5033866,
+      "return_pc": 5033871,
+      "entry": 5823984,
+      "bytes": "e8610e0c00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5037560,
+      "return_pc": 5037565,
+      "entry": 5813856,
+      "bytes": "e863d80b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5037591,
+      "return_pc": 5037596,
+      "entry": 5757984,
+      "bytes": "e804fe0a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5037604,
+      "return_pc": 5037609,
+      "entry": 5758048,
+      "bytes": "e837fe0a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5037797,
+      "return_pc": 5037802,
+      "entry": 5758464,
+      "bytes": "e816ff0a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5041080,
+      "return_pc": 5041085,
+      "entry": 5813856,
+      "bytes": "e8a3ca0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5041129,
+      "return_pc": 5041134,
+      "entry": 5757984,
+      "bytes": "e832f00a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5041142,
+      "return_pc": 5041147,
+      "entry": 5758048,
+      "bytes": "e865f00a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5041490,
+      "return_pc": 5041495,
+      "entry": 5807248,
+      "bytes": "e839af0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5041658,
+      "return_pc": 5041663,
+      "entry": 5758464,
+      "bytes": "e801f00a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5044868,
+      "return_pc": 5044873,
+      "entry": 5821296,
+      "bytes": "e8e7d80b00",
+      "discovered_owners": [
+        5044848
+      ]
+    },
+    {
+      "call_va": 5044887,
+      "return_pc": 5044892,
+      "entry": 5813856,
+      "bytes": "e8c4bb0b00",
+      "discovered_owners": [
+        5044848
+      ]
+    },
+    {
+      "call_va": 5044917,
+      "return_pc": 5044922,
+      "entry": 5757984,
+      "bytes": "e866e10a00",
+      "discovered_owners": [
+        5044848
+      ]
+    },
+    {
+      "call_va": 5044938,
+      "return_pc": 5044943,
+      "entry": 5758048,
+      "bytes": "e891e10a00",
+      "discovered_owners": [
+        5044848
+      ]
+    },
+    {
+      "call_va": 5048468,
+      "return_pc": 5048473,
+      "entry": 5813856,
+      "bytes": "e8c7ad0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5048499,
+      "return_pc": 5048504,
+      "entry": 5757984,
+      "bytes": "e868d30a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5048512,
+      "return_pc": 5048517,
+      "entry": 5758048,
+      "bytes": "e89bd30a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5048640,
+      "return_pc": 5048645,
+      "entry": 5758464,
+      "bytes": "e8bbd40a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5051616,
+      "return_pc": 5051621,
+      "entry": 5813856,
+      "bytes": "e87ba10b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5051680,
+      "return_pc": 5051685,
+      "entry": 5757984,
+      "bytes": "e8fbc60a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5051703,
+      "return_pc": 5051708,
+      "entry": 5758048,
+      "bytes": "e824c70a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5051762,
+      "return_pc": 5051767,
+      "entry": 5825216,
+      "bytes": "e849cd0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5051825,
+      "return_pc": 5051830,
+      "entry": 5822656,
+      "bytes": "e80ac30b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5051833,
+      "return_pc": 5051838,
+      "entry": 5813856,
+      "bytes": "e8a2a00b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5052022,
+      "return_pc": 5052027,
+      "entry": 5823984,
+      "bytes": "e875c70b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5054751,
+      "return_pc": 5054756,
+      "entry": 5813856,
+      "bytes": "e83c950b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5054804,
+      "return_pc": 5054809,
+      "entry": 5757984,
+      "bytes": "e8c7ba0a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5054827,
+      "return_pc": 5054832,
+      "entry": 5758048,
+      "bytes": "e8f0ba0a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5054974,
+      "return_pc": 5054979,
+      "entry": 5823984,
+      "bytes": "e8edbb0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5056573,
+      "return_pc": 5056578,
+      "entry": 5813856,
+      "bytes": "e81e8e0b00",
+      "discovered_owners": [
+        5056512
+      ]
+    },
+    {
+      "call_va": 5056604,
+      "return_pc": 5056609,
+      "entry": 5757984,
+      "bytes": "e8bfb30a00",
+      "discovered_owners": [
+        5056512
+      ]
+    },
+    {
+      "call_va": 5056627,
+      "return_pc": 5056632,
+      "entry": 5758048,
+      "bytes": "e8e8b30a00",
+      "discovered_owners": [
+        5056512
+      ]
+    },
+    {
+      "call_va": 5057149,
+      "return_pc": 5057154,
+      "entry": 5813856,
+      "bytes": "e8de8b0b00",
+      "discovered_owners": [
+        5057088
+      ]
+    },
+    {
+      "call_va": 5057179,
+      "return_pc": 5057184,
+      "entry": 5757984,
+      "bytes": "e880b10a00",
+      "discovered_owners": [
+        5057088
+      ]
+    },
+    {
+      "call_va": 5057194,
+      "return_pc": 5057199,
+      "entry": 5758048,
+      "bytes": "e8b1b10a00",
+      "discovered_owners": [
+        5057088
+      ]
+    },
+    {
+      "call_va": 5057274,
+      "return_pc": 5057279,
+      "entry": 5758464,
+      "bytes": "e801b30a00",
+      "discovered_owners": [
+        5057088
+      ]
+    },
+    {
+      "call_va": 5058337,
+      "return_pc": 5058342,
+      "entry": 5813856,
+      "bytes": "e83a870b00",
+      "discovered_owners": [
+        5058128
+      ]
+    },
+    {
+      "call_va": 5058371,
+      "return_pc": 5058376,
+      "entry": 5757984,
+      "bytes": "e8d8ac0a00",
+      "discovered_owners": [
+        5058128
+      ]
+    },
+    {
+      "call_va": 5058388,
+      "return_pc": 5058393,
+      "entry": 5758048,
+      "bytes": "e807ad0a00",
+      "discovered_owners": [
+        5058128
+      ]
+    },
+    {
+      "call_va": 5058485,
+      "return_pc": 5058490,
+      "entry": 5758464,
+      "bytes": "e846ae0a00",
+      "discovered_owners": [
+        5058128
+      ]
+    },
+    {
+      "call_va": 5058598,
+      "return_pc": 5058603,
+      "entry": 5758464,
+      "bytes": "e8d5ad0a00",
+      "discovered_owners": [
+        5058128
+      ]
+    },
+    {
+      "call_va": 5058710,
+      "return_pc": 5058715,
+      "entry": 5758464,
+      "bytes": "e865ad0a00",
+      "discovered_owners": [
+        5058128
+      ]
+    },
+    {
+      "call_va": 5058877,
+      "return_pc": 5058882,
+      "entry": 5820832,
+      "bytes": "e85ea00b00",
+      "discovered_owners": [
+        5058784
+      ]
+    },
+    {
+      "call_va": 5058992,
+      "return_pc": 5058997,
+      "entry": 5820832,
+      "bytes": "e8eb9f0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5059008,
+      "return_pc": 5059013,
+      "entry": 5820832,
+      "bytes": "e8db9f0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5059148,
+      "return_pc": 5059153,
+      "entry": 5820832,
+      "bytes": "e84f9f0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5059164,
+      "return_pc": 5059169,
+      "entry": 5820832,
+      "bytes": "e83f9f0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5059239,
+      "return_pc": 5059244,
+      "entry": 5815312,
+      "bytes": "e864890b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5059361,
+      "return_pc": 5059366,
+      "entry": 5820832,
+      "bytes": "e87a9e0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5059377,
+      "return_pc": 5059382,
+      "entry": 5820832,
+      "bytes": "e86a9e0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5060173,
+      "return_pc": 5060178,
+      "entry": 5813216,
+      "bytes": "e88e7d0b00",
+      "discovered_owners": [
+        5059792
+      ]
+    },
+    {
+      "call_va": 5060648,
+      "return_pc": 5060653,
+      "entry": 5813216,
+      "bytes": "e8b37b0b00",
+      "discovered_owners": [
+        5060608
+      ]
+    },
+    {
+      "call_va": 5060767,
+      "return_pc": 5060772,
+      "entry": 5811600,
+      "bytes": "e8ec740b00",
+      "discovered_owners": [
+        5060672
+      ]
+    },
+    {
+      "call_va": 5060776,
+      "return_pc": 5060781,
+      "entry": 5815312,
+      "bytes": "e863830b00",
+      "discovered_owners": [
+        5060672
+      ]
+    },
+    {
+      "call_va": 5060890,
+      "return_pc": 5060895,
+      "entry": 5820832,
+      "bytes": "e881980b00",
+      "discovered_owners": [
+        5060672
+      ]
+    },
+    {
+      "call_va": 5060906,
+      "return_pc": 5060911,
+      "entry": 5820832,
+      "bytes": "e871980b00",
+      "discovered_owners": [
+        5060672
+      ]
+    },
+    {
+      "call_va": 5061356,
+      "return_pc": 5061361,
+      "entry": 5818528,
+      "bytes": "e8af8d0b00",
+      "discovered_owners": [
+        5061168
+      ]
+    },
+    {
+      "call_va": 5061568,
+      "return_pc": 5061573,
+      "entry": 5818528,
+      "bytes": "e8db8c0b00",
+      "discovered_owners": [
+        5061440
+      ]
+    },
+    {
+      "call_va": 5061659,
+      "return_pc": 5061664,
+      "entry": 5818528,
+      "bytes": "e8808c0b00",
+      "discovered_owners": [
+        5061440
+      ]
+    },
+    {
+      "call_va": 5061801,
+      "return_pc": 5061806,
+      "entry": 5813856,
+      "bytes": "e8b2790b00",
+      "discovered_owners": [
+        5061776
+      ]
+    },
+    {
+      "call_va": 5061887,
+      "return_pc": 5061892,
+      "entry": 5757984,
+      "bytes": "e81c9f0a00",
+      "discovered_owners": [
+        5061776
+      ]
+    },
+    {
+      "call_va": 5061898,
+      "return_pc": 5061903,
+      "entry": 5758048,
+      "bytes": "e8519f0a00",
+      "discovered_owners": [
+        5061776
+      ]
+    },
+    {
+      "call_va": 5061985,
+      "return_pc": 5061990,
+      "entry": 5758464,
+      "bytes": "e89aa00a00",
+      "discovered_owners": [
+        5061776
+      ]
+    },
+    {
+      "call_va": 5062083,
+      "return_pc": 5062088,
+      "entry": 5758464,
+      "bytes": "e838a00a00",
+      "discovered_owners": [
+        5061776
+      ]
+    },
+    {
+      "call_va": 5062189,
+      "return_pc": 5062194,
+      "entry": 5758464,
+      "bytes": "e8ce9f0a00",
+      "discovered_owners": [
+        5061776
+      ]
+    },
+    {
+      "call_va": 5062288,
+      "return_pc": 5062293,
+      "entry": 5758464,
+      "bytes": "e86b9f0a00",
+      "discovered_owners": [
+        5061776
+      ]
+    },
+    {
+      "call_va": 5063320,
+      "return_pc": 5063325,
+      "entry": 5813216,
+      "bytes": "e843710b00",
+      "discovered_owners": [
+        5063264
+      ]
+    },
+    {
+      "call_va": 5063360,
+      "return_pc": 5063365,
+      "entry": 5813216,
+      "bytes": "e81b710b00",
+      "discovered_owners": [
+        5063264
+      ]
+    },
+    {
+      "call_va": 5063502,
+      "return_pc": 5063507,
+      "entry": 5813856,
+      "bytes": "e80d730b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5063533,
+      "return_pc": 5063538,
+      "entry": 5757984,
+      "bytes": "e8ae980a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5063555,
+      "return_pc": 5063560,
+      "entry": 5758048,
+      "bytes": "e8d8980a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5063600,
+      "return_pc": 5063605,
+      "entry": 5807248,
+      "bytes": "e8db580b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5063642,
+      "return_pc": 5063647,
+      "entry": 5807248,
+      "bytes": "e8b1580b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5063836,
+      "return_pc": 5063841,
+      "entry": 5758464,
+      "bytes": "e85f990a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5063949,
+      "return_pc": 5063954,
+      "entry": 5758464,
+      "bytes": "e8ee980a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5064162,
+      "return_pc": 5064167,
+      "entry": 5758464,
+      "bytes": "e819980a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5064447,
+      "return_pc": 5064452,
+      "entry": 5816128,
+      "bytes": "e83c780b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5064492,
+      "return_pc": 5064497,
+      "entry": 5814976,
+      "bytes": "e88f730b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5064512,
+      "return_pc": 5064517,
+      "entry": 5814976,
+      "bytes": "e87b730b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5064797,
+      "return_pc": 5064802,
+      "entry": 5811600,
+      "bytes": "e82e650b00",
+      "discovered_owners": [
+        5064688
+      ]
+    },
+    {
+      "call_va": 5064967,
+      "return_pc": 5064972,
+      "entry": 5817504,
+      "bytes": "e8947b0b00",
+      "discovered_owners": [
+        5064688
+      ]
+    },
+    {
+      "call_va": 5069816,
+      "return_pc": 5069821,
+      "entry": 5813216,
+      "bytes": "e8e3570b00",
+      "discovered_owners": [
+        5069760
+      ]
+    },
+    {
+      "call_va": 5069856,
+      "return_pc": 5069861,
+      "entry": 5813216,
+      "bytes": "e8bb570b00",
+      "discovered_owners": [
+        5069760
+      ]
+    },
+    {
+      "call_va": 5070241,
+      "return_pc": 5070246,
+      "entry": 5813216,
+      "bytes": "e83a560b00",
+      "discovered_owners": [
+        5069936
+      ]
+    },
+    {
+      "call_va": 5070257,
+      "return_pc": 5070262,
+      "entry": 5813216,
+      "bytes": "e82a560b00",
+      "discovered_owners": [
+        5069936
+      ]
+    },
+    {
+      "call_va": 5071698,
+      "return_pc": 5071703,
+      "entry": 5813216,
+      "bytes": "e889500b00",
+      "discovered_owners": [
+        5071648
+      ]
+    },
+    {
+      "call_va": 5071709,
+      "return_pc": 5071714,
+      "entry": 5813216,
+      "bytes": "e87e500b00",
+      "discovered_owners": [
+        5071648
+      ]
+    },
+    {
+      "call_va": 5071740,
+      "return_pc": 5071745,
+      "entry": 5813216,
+      "bytes": "e85f500b00",
+      "discovered_owners": [
+        5071648
+      ]
+    },
+    {
+      "call_va": 5071761,
+      "return_pc": 5071766,
+      "entry": 5813216,
+      "bytes": "e84a500b00",
+      "discovered_owners": [
+        5071648
+      ]
+    },
+    {
+      "call_va": 5071782,
+      "return_pc": 5071787,
+      "entry": 5813216,
+      "bytes": "e835500b00",
+      "discovered_owners": [
+        5071648
+      ]
+    },
+    {
+      "call_va": 5071808,
+      "return_pc": 5071813,
+      "entry": 5813216,
+      "bytes": "e81b500b00",
+      "discovered_owners": [
+        5071648
+      ]
+    },
+    {
+      "call_va": 5071957,
+      "return_pc": 5071962,
+      "entry": 5811600,
+      "bytes": "e836490b00",
+      "discovered_owners": [
+        5071840
+      ]
+    },
+    {
+      "call_va": 5071975,
+      "return_pc": 5071980,
+      "entry": 5815312,
+      "bytes": "e8a4570b00",
+      "discovered_owners": [
+        5071840
+      ]
+    },
+    {
+      "call_va": 5072002,
+      "return_pc": 5072007,
+      "entry": 5815312,
+      "bytes": "e889570b00",
+      "discovered_owners": [
+        5071840
+      ]
+    },
+    {
+      "call_va": 5072140,
+      "return_pc": 5072145,
+      "entry": 5811600,
+      "bytes": "e87f480b00",
+      "discovered_owners": [
+        5071840
+      ]
+    },
+    {
+      "call_va": 5072164,
+      "return_pc": 5072169,
+      "entry": 5815312,
+      "bytes": "e8e7560b00",
+      "discovered_owners": [
+        5071840
+      ]
+    },
+    {
+      "call_va": 5072191,
+      "return_pc": 5072196,
+      "entry": 5815312,
+      "bytes": "e8cc560b00",
+      "discovered_owners": [
+        5071840
+      ]
+    },
+    {
+      "call_va": 5073823,
+      "return_pc": 5073828,
+      "entry": 5816640,
+      "bytes": "e89c550b00",
+      "discovered_owners": [
+        5073376
+      ]
+    },
+    {
+      "call_va": 5073855,
+      "return_pc": 5073860,
+      "entry": 5816128,
+      "bytes": "e87c530b00",
+      "discovered_owners": [
+        5073376
+      ]
+    },
+    {
+      "call_va": 5073943,
+      "return_pc": 5073948,
+      "entry": 5816640,
+      "bytes": "e824550b00",
+      "discovered_owners": [
+        5073376
+      ]
+    },
+    {
+      "call_va": 5073977,
+      "return_pc": 5073982,
+      "entry": 5816128,
+      "bytes": "e802530b00",
+      "discovered_owners": [
+        5073376
+      ]
+    },
+    {
+      "call_va": 5077691,
+      "return_pc": 5077696,
+      "entry": 5815312,
+      "bytes": "e850410b00",
+      "discovered_owners": [
+        5077648
+      ]
+    },
+    {
+      "call_va": 5077704,
+      "return_pc": 5077709,
+      "entry": 5815312,
+      "bytes": "e843410b00",
+      "discovered_owners": [
+        5077648
+      ]
+    },
+    {
+      "call_va": 5077765,
+      "return_pc": 5077770,
+      "entry": 5815312,
+      "bytes": "e806410b00",
+      "discovered_owners": [
+        5077648
+      ]
+    },
+    {
+      "call_va": 5077780,
+      "return_pc": 5077785,
+      "entry": 5815312,
+      "bytes": "e8f7400b00",
+      "discovered_owners": [
+        5077648
+      ]
+    },
+    {
+      "call_va": 5077880,
+      "return_pc": 5077885,
+      "entry": 5820832,
+      "bytes": "e823560b00",
+      "discovered_owners": [
+        5077648
+      ]
+    },
+    {
+      "call_va": 5077892,
+      "return_pc": 5077897,
+      "entry": 5815312,
+      "bytes": "e887400b00",
+      "discovered_owners": [
+        5077648
+      ]
+    },
+    {
+      "call_va": 5077958,
+      "return_pc": 5077963,
+      "entry": 5820832,
+      "bytes": "e8d5550b00",
+      "discovered_owners": [
+        5077648
+      ]
+    },
+    {
+      "call_va": 5077970,
+      "return_pc": 5077975,
+      "entry": 5815312,
+      "bytes": "e839400b00",
+      "discovered_owners": [
+        5077648
+      ]
+    },
+    {
+      "call_va": 5078216,
+      "return_pc": 5078221,
+      "entry": 5815312,
+      "bytes": "e8433f0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5078229,
+      "return_pc": 5078234,
+      "entry": 5815312,
+      "bytes": "e8363f0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5078299,
+      "return_pc": 5078304,
+      "entry": 5815312,
+      "bytes": "e8f03e0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5078314,
+      "return_pc": 5078319,
+      "entry": 5815312,
+      "bytes": "e8e13e0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5078414,
+      "return_pc": 5078419,
+      "entry": 5820832,
+      "bytes": "e80d540b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5078426,
+      "return_pc": 5078431,
+      "entry": 5815312,
+      "bytes": "e8713e0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5078492,
+      "return_pc": 5078497,
+      "entry": 5820832,
+      "bytes": "e8bf530b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5078504,
+      "return_pc": 5078509,
+      "entry": 5815312,
+      "bytes": "e8233e0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5078839,
+      "return_pc": 5078844,
+      "entry": 5813856,
+      "bytes": "e824370b00",
+      "discovered_owners": [
+        5078832
+      ]
+    },
+    {
+      "call_va": 5078867,
+      "return_pc": 5078872,
+      "entry": 5757984,
+      "bytes": "e8c85c0a00",
+      "discovered_owners": [
+        5078832
+      ]
+    },
+    {
+      "call_va": 5078880,
+      "return_pc": 5078885,
+      "entry": 5758048,
+      "bytes": "e8fb5c0a00",
+      "discovered_owners": [
+        5078832
+      ]
+    },
+    {
+      "call_va": 5078966,
+      "return_pc": 5078971,
+      "entry": 5758464,
+      "bytes": "e8455e0a00",
+      "discovered_owners": [
+        5078832
+      ]
+    },
+    {
+      "call_va": 5079180,
+      "return_pc": 5079185,
+      "entry": 5811600,
+      "bytes": "e8ff2c0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5079216,
+      "return_pc": 5079221,
+      "entry": 5815312,
+      "bytes": "e85b3b0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5079246,
+      "return_pc": 5079251,
+      "entry": 5815312,
+      "bytes": "e83d3b0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5079448,
+      "return_pc": 5079453,
+      "entry": 5816640,
+      "bytes": "e8a33f0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5079470,
+      "return_pc": 5079475,
+      "entry": 5816128,
+      "bytes": "e88d3d0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5079746,
+      "return_pc": 5079751,
+      "entry": 5813216,
+      "bytes": "e819310b00",
+      "discovered_owners": [
+        5079632
+      ]
+    },
+    {
+      "call_va": 5079875,
+      "return_pc": 5079880,
+      "entry": 5811600,
+      "bytes": "e8482a0b00",
+      "discovered_owners": [
+        5079792
+      ]
+    },
+    {
+      "call_va": 5079893,
+      "return_pc": 5079898,
+      "entry": 5815312,
+      "bytes": "e8b6380b00",
+      "discovered_owners": [
+        5079792
+      ]
+    },
+    {
+      "call_va": 5079938,
+      "return_pc": 5079943,
+      "entry": 5815312,
+      "bytes": "e889380b00",
+      "discovered_owners": [
+        5079792
+      ]
+    },
+    {
+      "call_va": 5080085,
+      "return_pc": 5080090,
+      "entry": 5811600,
+      "bytes": "e876290b00",
+      "discovered_owners": [
+        5079984
+      ]
+    },
+    {
+      "call_va": 5080103,
+      "return_pc": 5080108,
+      "entry": 5815312,
+      "bytes": "e8e4370b00",
+      "discovered_owners": [
+        5079984
+      ]
+    },
+    {
+      "call_va": 5080130,
+      "return_pc": 5080135,
+      "entry": 5815312,
+      "bytes": "e8c9370b00",
+      "discovered_owners": [
+        5079984
+      ]
+    },
+    {
+      "call_va": 5080374,
+      "return_pc": 5080379,
+      "entry": 5818528,
+      "bytes": "e865430b00",
+      "discovered_owners": [
+        5080240
+      ]
+    },
+    {
+      "call_va": 5080474,
+      "return_pc": 5080479,
+      "entry": 5817504,
+      "bytes": "e8013f0b00",
+      "discovered_owners": [
+        5080240
+      ]
+    },
+    {
+      "call_va": 5080924,
+      "return_pc": 5080929,
+      "entry": 5814976,
+      "bytes": "e85f330b00",
+      "discovered_owners": [
+        5080800
+      ]
+    },
+    {
+      "call_va": 5080935,
+      "return_pc": 5080940,
+      "entry": 5813856,
+      "bytes": "e8f42e0b00",
+      "discovered_owners": [
+        5080800
+      ]
+    },
+    {
+      "call_va": 5080968,
+      "return_pc": 5080973,
+      "entry": 5757984,
+      "bytes": "e893540a00",
+      "discovered_owners": [
+        5080800
+      ]
+    },
+    {
+      "call_va": 5080991,
+      "return_pc": 5080996,
+      "entry": 5758048,
+      "bytes": "e8bc540a00",
+      "discovered_owners": [
+        5080800
+      ]
+    },
+    {
+      "call_va": 5081317,
+      "return_pc": 5081322,
+      "entry": 5814976,
+      "bytes": "e8d6310b00",
+      "discovered_owners": [
+        5081168
+      ]
+    },
+    {
+      "call_va": 5081328,
+      "return_pc": 5081333,
+      "entry": 5813856,
+      "bytes": "e86b2d0b00",
+      "discovered_owners": [
+        5081168
+      ]
+    },
+    {
+      "call_va": 5081363,
+      "return_pc": 5081368,
+      "entry": 5757984,
+      "bytes": "e808530a00",
+      "discovered_owners": [
+        5081168
+      ]
+    },
+    {
+      "call_va": 5081386,
+      "return_pc": 5081391,
+      "entry": 5758048,
+      "bytes": "e831530a00",
+      "discovered_owners": [
+        5081168
+      ]
+    },
+    {
+      "call_va": 5081967,
+      "return_pc": 5081972,
+      "entry": 5814976,
+      "bytes": "e84c2f0b00",
+      "discovered_owners": [
+        5081776
+      ]
+    },
+    {
+      "call_va": 5081978,
+      "return_pc": 5081983,
+      "entry": 5813856,
+      "bytes": "e8e12a0b00",
+      "discovered_owners": [
+        5081776
+      ]
+    },
+    {
+      "call_va": 5082013,
+      "return_pc": 5082018,
+      "entry": 5757984,
+      "bytes": "e87e500a00",
+      "discovered_owners": [
+        5081776
+      ]
+    },
+    {
+      "call_va": 5082036,
+      "return_pc": 5082041,
+      "entry": 5758048,
+      "bytes": "e8a7500a00",
+      "discovered_owners": [
+        5081776
+      ]
+    },
+    {
+      "call_va": 5082400,
+      "return_pc": 5082405,
+      "entry": 5814976,
+      "bytes": "e89b2d0b00",
+      "discovered_owners": [
+        5082288
+      ]
+    },
+    {
+      "call_va": 5082411,
+      "return_pc": 5082416,
+      "entry": 5813856,
+      "bytes": "e830290b00",
+      "discovered_owners": [
+        5082288
+      ]
+    },
+    {
+      "call_va": 5082444,
+      "return_pc": 5082449,
+      "entry": 5757984,
+      "bytes": "e8cf4e0a00",
+      "discovered_owners": [
+        5082288
+      ]
+    },
+    {
+      "call_va": 5082467,
+      "return_pc": 5082472,
+      "entry": 5758048,
+      "bytes": "e8f84e0a00",
+      "discovered_owners": [
+        5082288
+      ]
+    },
+    {
+      "call_va": 5083829,
+      "return_pc": 5083834,
+      "entry": 5813216,
+      "bytes": "e826210b00",
+      "discovered_owners": [
+        5083712
+      ]
+    },
+    {
+      "call_va": 5083943,
+      "return_pc": 5083948,
+      "entry": 5813216,
+      "bytes": "e8b4200b00",
+      "discovered_owners": [
+        5083712
+      ]
+    },
+    {
+      "call_va": 5084446,
+      "return_pc": 5084451,
+      "entry": 5813216,
+      "bytes": "e8bd1e0b00",
+      "discovered_owners": [
+        5084400
+      ]
+    },
+    {
+      "call_va": 5084490,
+      "return_pc": 5084495,
+      "entry": 5815312,
+      "bytes": "e8c1260b00",
+      "discovered_owners": [
+        5084464
+      ]
+    },
+    {
+      "call_va": 5084641,
+      "return_pc": 5084646,
+      "entry": 5811600,
+      "bytes": "e8aa170b00",
+      "discovered_owners": [
+        5084464
+      ]
+    },
+    {
+      "call_va": 5084659,
+      "return_pc": 5084664,
+      "entry": 5815312,
+      "bytes": "e818260b00",
+      "discovered_owners": [
+        5084464
+      ]
+    },
+    {
+      "call_va": 5084686,
+      "return_pc": 5084691,
+      "entry": 5815312,
+      "bytes": "e8fd250b00",
+      "discovered_owners": [
+        5084464
+      ]
+    },
+    {
+      "call_va": 5084918,
+      "return_pc": 5084923,
+      "entry": 5815312,
+      "bytes": "e815250b00",
+      "discovered_owners": [
+        5084880
+      ]
+    },
+    {
+      "call_va": 5084945,
+      "return_pc": 5084950,
+      "entry": 5815312,
+      "bytes": "e8fa240b00",
+      "discovered_owners": [
+        5084880
+      ]
+    },
+    {
+      "call_va": 5085115,
+      "return_pc": 5085120,
+      "entry": 5816640,
+      "bytes": "e880290b00",
+      "discovered_owners": [
+        5085040
+      ]
+    },
+    {
+      "call_va": 5085146,
+      "return_pc": 5085151,
+      "entry": 5816128,
+      "bytes": "e861270b00",
+      "discovered_owners": [
+        5085040
+      ]
+    },
+    {
+      "call_va": 5086736,
+      "return_pc": 5086741,
+      "entry": 5820832,
+      "bytes": "e88b330b00",
+      "discovered_owners": [
+        5086704
+      ]
+    },
+    {
+      "call_va": 5087059,
+      "return_pc": 5087064,
+      "entry": 5820832,
+      "bytes": "e848320b00",
+      "discovered_owners": [
+        5087024
+      ]
+    },
+    {
+      "call_va": 5087110,
+      "return_pc": 5087115,
+      "entry": 5813856,
+      "bytes": "e8d5160b00",
+      "discovered_owners": [
+        5087024
+      ]
+    },
+    {
+      "call_va": 5087142,
+      "return_pc": 5087147,
+      "entry": 5757984,
+      "bytes": "e8753c0a00",
+      "discovered_owners": [
+        5087024
+      ]
+    },
+    {
+      "call_va": 5087165,
+      "return_pc": 5087170,
+      "entry": 5758048,
+      "bytes": "e89e3c0a00",
+      "discovered_owners": [
+        5087024
+      ]
+    },
+    {
+      "call_va": 5087633,
+      "return_pc": 5087638,
+      "entry": 5813216,
+      "bytes": "e84a120b00",
+      "discovered_owners": [
+        5087536
+      ]
+    },
+    {
+      "call_va": 5087674,
+      "return_pc": 5087679,
+      "entry": 5813216,
+      "bytes": "e821120b00",
+      "discovered_owners": [
+        5087536
+      ]
+    },
+    {
+      "call_va": 5087806,
+      "return_pc": 5087811,
+      "entry": 5813216,
+      "bytes": "e89d110b00",
+      "discovered_owners": [
+        5087760
+      ]
+    },
+    {
+      "call_va": 5088065,
+      "return_pc": 5088070,
+      "entry": 5811600,
+      "bytes": "e84a0a0b00",
+      "discovered_owners": [
+        5087840
+      ]
+    },
+    {
+      "call_va": 5088082,
+      "return_pc": 5088087,
+      "entry": 5815312,
+      "bytes": "e8b9180b00",
+      "discovered_owners": [
+        5087840
+      ]
+    },
+    {
+      "call_va": 5088106,
+      "return_pc": 5088111,
+      "entry": 5815312,
+      "bytes": "e8a1180b00",
+      "discovered_owners": [
+        5087840
+      ]
+    },
+    {
+      "call_va": 5088479,
+      "return_pc": 5088484,
+      "entry": 5818528,
+      "bytes": "e8bc230b00",
+      "discovered_owners": [
+        5088352
+      ]
+    },
+    {
+      "call_va": 5088521,
+      "return_pc": 5088526,
+      "entry": 5817504,
+      "bytes": "e8921f0b00",
+      "discovered_owners": [
+        5088352
+      ]
+    },
+    {
+      "call_va": 5088596,
+      "return_pc": 5088601,
+      "entry": 5818528,
+      "bytes": "e847230b00",
+      "discovered_owners": [
+        5088352
+      ]
+    },
+    {
+      "call_va": 5088652,
+      "return_pc": 5088657,
+      "entry": 5817504,
+      "bytes": "e80f1f0b00",
+      "discovered_owners": [
+        5088352
+      ]
+    },
+    {
+      "call_va": 5088745,
+      "return_pc": 5088750,
+      "entry": 5816640,
+      "bytes": "e8521b0b00",
+      "discovered_owners": [
+        5088352
+      ]
+    },
+    {
+      "call_va": 5088765,
+      "return_pc": 5088770,
+      "entry": 5816128,
+      "bytes": "e83e190b00",
+      "discovered_owners": [
+        5088352
+      ]
+    },
+    {
+      "call_va": 5089464,
+      "return_pc": 5089469,
+      "entry": 5818528,
+      "bytes": "e8e31f0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5089510,
+      "return_pc": 5089515,
+      "entry": 5817504,
+      "bytes": "e8b51b0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5089739,
+      "return_pc": 5089744,
+      "entry": 5818528,
+      "bytes": "e8d01e0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5089797,
+      "return_pc": 5089802,
+      "entry": 5817504,
+      "bytes": "e8961a0b00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5090331,
+      "return_pc": 5090336,
+      "entry": 5813216,
+      "bytes": "e8c0070b00",
+      "discovered_owners": [
+        5090208
+      ]
+    },
+    {
+      "call_va": 5090371,
+      "return_pc": 5090376,
+      "entry": 5813216,
+      "bytes": "e898070b00",
+      "discovered_owners": [
+        5090208
+      ]
+    },
+    {
+      "call_va": 5090669,
+      "return_pc": 5090674,
+      "entry": 5813216,
+      "bytes": "e86e060b00",
+      "discovered_owners": [
+        5090656
+      ]
+    },
+    {
+      "call_va": 5090827,
+      "return_pc": 5090832,
+      "entry": 5811600,
+      "bytes": "e880ff0a00",
+      "discovered_owners": [
+        5090736
+      ]
+    },
+    {
+      "call_va": 5090845,
+      "return_pc": 5090850,
+      "entry": 5815312,
+      "bytes": "e8ee0d0b00",
+      "discovered_owners": [
+        5090736
+      ]
+    },
+    {
+      "call_va": 5090875,
+      "return_pc": 5090880,
+      "entry": 5815312,
+      "bytes": "e8d00d0b00",
+      "discovered_owners": [
+        5090736
+      ]
+    },
+    {
+      "call_va": 5091645,
+      "return_pc": 5091650,
+      "entry": 5820832,
+      "bytes": "e85e200b00",
+      "discovered_owners": [
+        5091456
+      ]
+    },
+    {
+      "call_va": 5092882,
+      "return_pc": 5092887,
+      "entry": 5813216,
+      "bytes": "e8c9fd0a00",
+      "discovered_owners": [
+        5092832
+      ]
+    },
+    {
+      "call_va": 5093032,
+      "return_pc": 5093037,
+      "entry": 5811600,
+      "bytes": "e8e3f60a00",
+      "discovered_owners": [
+        5092944
+      ]
+    },
+    {
+      "call_va": 5093041,
+      "return_pc": 5093046,
+      "entry": 5815312,
+      "bytes": "e85a050b00",
+      "discovered_owners": [
+        5092944
+      ]
+    },
+    {
+      "call_va": 5093081,
+      "return_pc": 5093086,
+      "entry": 5813216,
+      "bytes": "e802fd0a00",
+      "discovered_owners": [
+        5093072
+      ]
+    },
+    {
+      "call_va": 5093234,
+      "return_pc": 5093239,
+      "entry": 5811600,
+      "bytes": "e819f60a00",
+      "discovered_owners": [
+        5093136
+      ]
+    },
+    {
+      "call_va": 5093243,
+      "return_pc": 5093248,
+      "entry": 5815312,
+      "bytes": "e890040b00",
+      "discovered_owners": [
+        5093136
+      ]
+    },
+    {
+      "call_va": 5093744,
+      "return_pc": 5093749,
+      "entry": 5817504,
+      "bytes": "e82b0b0b00",
+      "discovered_owners": [
+        5093344
+      ]
+    },
+    {
+      "call_va": 5094254,
+      "return_pc": 5094259,
+      "entry": 5815312,
+      "bytes": "e89d000b00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5094283,
+      "return_pc": 5094288,
+      "entry": 5814976,
+      "bytes": "e830ff0a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5094294,
+      "return_pc": 5094299,
+      "entry": 5813856,
+      "bytes": "e8c5fa0a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5094330,
+      "return_pc": 5094335,
+      "entry": 5757984,
+      "bytes": "e861200a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5094353,
+      "return_pc": 5094358,
+      "entry": 5758048,
+      "bytes": "e88a200a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5094499,
+      "return_pc": 5094504,
+      "entry": 5758464,
+      "bytes": "e898210a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5094654,
+      "return_pc": 5094659,
+      "entry": 5758464,
+      "bytes": "e8fd200a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5094803,
+      "return_pc": 5094808,
+      "entry": 5758464,
+      "bytes": "e868200a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5094954,
+      "return_pc": 5094959,
+      "entry": 5758464,
+      "bytes": "e8d11f0a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5095109,
+      "return_pc": 5095114,
+      "entry": 5758464,
+      "bytes": "e8361f0a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5095228,
+      "return_pc": 5095233,
+      "entry": 5758464,
+      "bytes": "e8bf1e0a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5095334,
+      "return_pc": 5095339,
+      "entry": 5758464,
+      "bytes": "e8551e0a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5095440,
+      "return_pc": 5095445,
+      "entry": 5758464,
+      "bytes": "e8eb1d0a00",
+      "discovered_owners": [
+        5093984
+      ]
+    },
+    {
+      "call_va": 5096088,
+      "return_pc": 5096093,
+      "entry": 5821216,
+      "bytes": "e883100b00",
+      "discovered_owners": [
+        5095776
+      ]
+    },
+    {
+      "call_va": 5096235,
+      "return_pc": 5096240,
+      "entry": 5821216,
+      "bytes": "e8f00f0b00",
+      "discovered_owners": [
+        5095776
+      ]
+    },
+    {
+      "call_va": 5096508,
+      "return_pc": 5096513,
+      "entry": 5813216,
+      "bytes": "e89fef0a00",
+      "discovered_owners": [
+        5096464
+      ]
+    },
+    {
+      "call_va": 5096518,
+      "return_pc": 5096523,
+      "entry": 5813216,
+      "bytes": "e895ef0a00",
+      "discovered_owners": [
+        5096464
+      ]
+    },
+    {
+      "call_va": 5096557,
+      "return_pc": 5096562,
+      "entry": 5813216,
+      "bytes": "e86eef0a00",
+      "discovered_owners": [
+        5096464
+      ]
+    },
+    {
+      "call_va": 5096572,
+      "return_pc": 5096577,
+      "entry": 5813216,
+      "bytes": "e85fef0a00",
+      "discovered_owners": [
+        5096464
+      ]
+    },
+    {
+      "call_va": 5096695,
+      "return_pc": 5096700,
+      "entry": 5811600,
+      "bytes": "e894e80a00",
+      "discovered_owners": [
+        5096608
+      ]
+    },
+    {
+      "call_va": 5096792,
+      "return_pc": 5096797,
+      "entry": 5811600,
+      "bytes": "e833e80a00",
+      "discovered_owners": [
+        5096608
+      ]
+    },
+    {
+      "call_va": 5097053,
+      "return_pc": 5097058,
+      "entry": 5817504,
+      "bytes": "e83efe0a00",
+      "discovered_owners": [
+        5096928
+      ]
+    },
+    {
+      "call_va": 5097073,
+      "return_pc": 5097078,
+      "entry": 5816128,
+      "bytes": "e8caf80a00",
+      "discovered_owners": [
+        5096928
+      ]
+    },
+    {
+      "call_va": 5097116,
+      "return_pc": 5097121,
+      "entry": 5816128,
+      "bytes": "e89ff80a00",
+      "discovered_owners": [
+        5096928
+      ]
+    },
+    {
+      "call_va": 5097163,
+      "return_pc": 5097168,
+      "entry": 5821216,
+      "bytes": "e8500c0b00",
+      "discovered_owners": [
+        5097152
+      ]
+    },
+    {
+      "call_va": 5097190,
+      "return_pc": 5097195,
+      "entry": 5813216,
+      "bytes": "e8f5ec0a00",
+      "discovered_owners": [
+        5097184
+      ]
+    },
+    {
+      "call_va": 5097198,
+      "return_pc": 5097203,
+      "entry": 5813216,
+      "bytes": "e8edec0a00",
+      "discovered_owners": [
+        5097184
+      ]
+    },
+    {
+      "call_va": 5097593,
+      "return_pc": 5097598,
+      "entry": 5813216,
+      "bytes": "e862eb0a00",
+      "discovered_owners": [
+        5097584
+      ]
+    },
+    {
+      "call_va": 5097796,
+      "return_pc": 5097801,
+      "entry": 5811600,
+      "bytes": "e847e40a00",
+      "discovered_owners": [
+        5097648
+      ]
+    },
+    {
+      "call_va": 5098113,
+      "return_pc": 5098118,
+      "entry": 5816640,
+      "bytes": "e8baf60a00",
+      "discovered_owners": [
+        5098048
+      ]
+    },
+    {
+      "call_va": 5098144,
+      "return_pc": 5098149,
+      "entry": 5816128,
+      "bytes": "e89bf40a00",
+      "discovered_owners": [
+        5098048
+      ]
+    },
+    {
+      "call_va": 5098189,
+      "return_pc": 5098194,
+      "entry": 5550800,
+      "bytes": "e8fee70600",
+      "discovered_owners": [
+        5098160
+      ]
+    },
+    {
+      "call_va": 5098226,
+      "return_pc": 5098231,
+      "entry": 5815312,
+      "bytes": "e819f10a00",
+      "discovered_owners": [
+        5098160
+      ]
+    },
+    {
+      "call_va": 5098237,
+      "return_pc": 5098242,
+      "entry": 5813856,
+      "bytes": "e85eeb0a00",
+      "discovered_owners": [
+        5098160
+      ]
+    },
+    {
+      "call_va": 5098306,
+      "return_pc": 5098311,
+      "entry": 5757984,
+      "bytes": "e8d9100a00",
+      "discovered_owners": [
+        5098160
+      ]
+    },
+    {
+      "call_va": 5098329,
+      "return_pc": 5098334,
+      "entry": 5758048,
+      "bytes": "e802110a00",
+      "discovered_owners": [
+        5098160
+      ]
+    },
+    {
+      "call_va": 5098499,
+      "return_pc": 5098504,
+      "entry": 5758464,
+      "bytes": "e8f8110a00",
+      "discovered_owners": [
+        5098160
+      ]
+    },
+    {
+      "call_va": 5098700,
+      "return_pc": 5098705,
+      "entry": 5825216,
+      "bytes": "e8ef150b00",
+      "discovered_owners": [
+        5098160
+      ]
+    },
+    {
+      "call_va": 5099919,
+      "return_pc": 5099924,
+      "entry": 5813856,
+      "bytes": "e8cce40a00",
+      "discovered_owners": [
+        5099872
+      ]
+    },
+    {
+      "call_va": 5100420,
+      "return_pc": 5100425,
+      "entry": 5814976,
+      "bytes": "e837e70a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5100673,
+      "return_pc": 5100678,
+      "entry": 5814976,
+      "bytes": "e83ae60a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5100680,
+      "return_pc": 5100685,
+      "entry": 5813856,
+      "bytes": "e8d3e10a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5100753,
+      "return_pc": 5100758,
+      "entry": 5757984,
+      "bytes": "e84a070a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5100787,
+      "return_pc": 5100792,
+      "entry": 5758048,
+      "bytes": "e868070a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5101261,
+      "return_pc": 5101266,
+      "entry": 5813856,
+      "bytes": "e88edf0a00",
+      "discovered_owners": [
+        5101248
+      ]
+    },
+    {
+      "call_va": 5101291,
+      "return_pc": 5101296,
+      "entry": 5757984,
+      "bytes": "e830050a00",
+      "discovered_owners": [
+        5101248
+      ]
+    },
+    {
+      "call_va": 5101336,
+      "return_pc": 5101341,
+      "entry": 5758048,
+      "bytes": "e843050a00",
+      "discovered_owners": [
+        5101248
+      ]
+    },
+    {
+      "call_va": 5101592,
+      "return_pc": 5101597,
+      "entry": 5758464,
+      "bytes": "e8e3050a00",
+      "discovered_owners": [
+        5101248
+      ]
+    },
+    {
+      "call_va": 5102194,
+      "return_pc": 5102199,
+      "entry": 5817504,
+      "bytes": "e829ea0a00",
+      "discovered_owners": [
+        5102000
+      ]
+    },
+    {
+      "call_va": 5102273,
+      "return_pc": 5102278,
+      "entry": 5817504,
+      "bytes": "e8dae90a00",
+      "discovered_owners": [
+        5102000
+      ]
+    },
+    {
+      "call_va": 5102284,
+      "return_pc": 5102289,
+      "entry": 5813856,
+      "bytes": "e88fdb0a00",
+      "discovered_owners": [
+        5102000
+      ]
+    },
+    {
+      "call_va": 5102354,
+      "return_pc": 5102359,
+      "entry": 5757984,
+      "bytes": "e809010a00",
+      "discovered_owners": [
+        5102000
+      ]
+    },
+    {
+      "call_va": 5102390,
+      "return_pc": 5102395,
+      "entry": 5758048,
+      "bytes": "e825010a00",
+      "discovered_owners": [
+        5102000
+      ]
+    },
+    {
+      "call_va": 5102811,
+      "return_pc": 5102816,
+      "entry": 5815312,
+      "bytes": "e830df0a00",
+      "discovered_owners": [
+        5102784
+      ]
+    },
+    {
+      "call_va": 5102838,
+      "return_pc": 5102843,
+      "entry": 5815312,
+      "bytes": "e815df0a00",
+      "discovered_owners": [
+        5102784
+      ]
+    },
+    {
+      "call_va": 5102872,
+      "return_pc": 5102877,
+      "entry": 5821216,
+      "bytes": "e803f60a00",
+      "discovered_owners": [
+        5102784
+      ]
+    },
+    {
+      "call_va": 5103006,
+      "return_pc": 5103011,
+      "entry": 5813856,
+      "bytes": "e8bdd80a00",
+      "discovered_owners": [
+        5102944
+      ]
+    },
+    {
+      "call_va": 5103032,
+      "return_pc": 5103037,
+      "entry": 5757984,
+      "bytes": "e863fe0900",
+      "discovered_owners": [
+        5102944
+      ]
+    },
+    {
+      "call_va": 5103045,
+      "return_pc": 5103050,
+      "entry": 5758048,
+      "bytes": "e896fe0900",
+      "discovered_owners": [
+        5102944
+      ]
+    },
+    {
+      "call_va": 5103136,
+      "return_pc": 5103141,
+      "entry": 5758464,
+      "bytes": "e8dbff0900",
+      "discovered_owners": [
+        5102944
+      ]
+    },
+    {
+      "call_va": 5103279,
+      "return_pc": 5103284,
+      "entry": 5821216,
+      "bytes": "e86cf40a00",
+      "discovered_owners": [
+        5103248
+      ]
+    },
+    {
+      "call_va": 5103590,
+      "return_pc": 5103595,
+      "entry": 5813216,
+      "bytes": "e8f5d30a00",
+      "discovered_owners": [
+        5103520
+      ]
+    },
+    {
+      "call_va": 5103732,
+      "return_pc": 5103737,
+      "entry": 5813216,
+      "bytes": "e867d30a00",
+      "discovered_owners": [
+        5103520
+      ]
+    },
+    {
+      "call_va": 5104127,
+      "return_pc": 5104132,
+      "entry": 5816640,
+      "bytes": "e83cdf0a00",
+      "discovered_owners": [
+        5104064
+      ]
+    },
+    {
+      "call_va": 5104149,
+      "return_pc": 5104154,
+      "entry": 5816128,
+      "bytes": "e826dd0a00",
+      "discovered_owners": [
+        5104064
+      ]
+    },
+    {
+      "call_va": 5104211,
+      "return_pc": 5104216,
+      "entry": 5813216,
+      "bytes": "e888d10a00",
+      "discovered_owners": [
+        5104176
+      ]
+    },
+    {
+      "call_va": 5104579,
+      "return_pc": 5104584,
+      "entry": 5811600,
+      "bytes": "e8c8c90a00",
+      "discovered_owners": [
+        5104480
+      ]
+    },
+    {
+      "call_va": 5104597,
+      "return_pc": 5104602,
+      "entry": 5815312,
+      "bytes": "e836d80a00",
+      "discovered_owners": [
+        5104480
+      ]
+    },
+    {
+      "call_va": 5104624,
+      "return_pc": 5104629,
+      "entry": 5815312,
+      "bytes": "e81bd80a00",
+      "discovered_owners": [
+        5104480
+      ]
+    },
+    {
+      "call_va": 5105109,
+      "return_pc": 5105114,
+      "entry": 5821216,
+      "bytes": "e846ed0a00",
+      "discovered_owners": [
+        5105088
+      ]
+    },
+    {
+      "call_va": 5105243,
+      "return_pc": 5105248,
+      "entry": 5815312,
+      "bytes": "e8b0d50a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5105270,
+      "return_pc": 5105275,
+      "entry": 5815312,
+      "bytes": "e895d50a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5105405,
+      "return_pc": 5105410,
+      "entry": 5820832,
+      "bytes": "e89eea0a00",
+      "discovered_owners": [
+        5105344
+      ]
+    },
+    {
+      "call_va": 5105412,
+      "return_pc": 5105417,
+      "entry": 5813856,
+      "bytes": "e857cf0a00",
+      "discovered_owners": [
+        5105344
+      ]
+    },
+    {
+      "call_va": 5105438,
+      "return_pc": 5105443,
+      "entry": 5757984,
+      "bytes": "e8fdf40900",
+      "discovered_owners": [
+        5105344
+      ]
+    },
+    {
+      "call_va": 5105461,
+      "return_pc": 5105466,
+      "entry": 5758048,
+      "bytes": "e826f50900",
+      "discovered_owners": [
+        5105344
+      ]
+    },
+    {
+      "call_va": 5105722,
+      "return_pc": 5105727,
+      "entry": 5813216,
+      "bytes": "e8a1cb0a00",
+      "discovered_owners": [
+        5105648
+      ]
+    },
+    {
+      "call_va": 5105738,
+      "return_pc": 5105743,
+      "entry": 5813216,
+      "bytes": "e891cb0a00",
+      "discovered_owners": [
+        5105648
+      ]
+    },
+    {
+      "call_va": 5105823,
+      "return_pc": 5105828,
+      "entry": 5816640,
+      "bytes": "e89cd80a00",
+      "discovered_owners": [
+        5105760
+      ]
+    },
+    {
+      "call_va": 5105845,
+      "return_pc": 5105850,
+      "entry": 5816128,
+      "bytes": "e886d60a00",
+      "discovered_owners": [
+        5105760
+      ]
+    },
+    {
+      "call_va": 5105906,
+      "return_pc": 5105911,
+      "entry": 5813216,
+      "bytes": "e8e9ca0a00",
+      "discovered_owners": [
+        5105872
+      ]
+    },
+    {
+      "call_va": 5106015,
+      "return_pc": 5106020,
+      "entry": 5811600,
+      "bytes": "e82cc40a00",
+      "discovered_owners": [
+        5105920
+      ]
+    },
+    {
+      "call_va": 5106033,
+      "return_pc": 5106038,
+      "entry": 5815312,
+      "bytes": "e89ad20a00",
+      "discovered_owners": [
+        5105920
+      ]
+    },
+    {
+      "call_va": 5106060,
+      "return_pc": 5106065,
+      "entry": 5815312,
+      "bytes": "e87fd20a00",
+      "discovered_owners": [
+        5105920
+      ]
+    },
+    {
+      "call_va": 5127433,
+      "return_pc": 5127438,
+      "entry": 5815312,
+      "bytes": "e8027f0a00",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5128439,
+      "return_pc": 5128444,
+      "entry": 5810832,
+      "bytes": "e894690a00",
+      "discovered_owners": [
+        5128400
+      ]
+    },
+    {
+      "call_va": 5128492,
+      "return_pc": 5128497,
+      "entry": 5810608,
+      "bytes": "e87f680a00",
+      "discovered_owners": [
+        5128400
+      ]
+    },
+    {
+      "call_va": 5128533,
+      "return_pc": 5128538,
+      "entry": 5811600,
+      "bytes": "e8366c0a00",
+      "discovered_owners": [
+        5128400
+      ]
+    },
+    {
+      "call_va": 5128684,
+      "return_pc": 5128689,
+      "entry": 5811600,
+      "bytes": "e89f6b0a00",
+      "discovered_owners": [
+        5128400
+      ]
+    },
+    {
+      "call_va": 5128696,
+      "return_pc": 5128701,
+      "entry": 5815312,
+      "bytes": "e8137a0a00",
+      "discovered_owners": [
+        5128400
+      ]
+    },
+    {
+      "call_va": 5151019,
+      "return_pc": 5151024,
+      "entry": 4626944,
+      "bytes": "e8d000f8ff",
+      "discovered_owners": [
+        5148032
+      ]
+    },
+    {
+      "call_va": 5151084,
+      "return_pc": 5151089,
+      "entry": 4626944,
+      "bytes": "e88f00f8ff",
+      "discovered_owners": [
+        5148032
+      ]
+    },
+    {
+      "call_va": 5151095,
+      "return_pc": 5151100,
+      "entry": 5815312,
+      "bytes": "e894220a00",
+      "discovered_owners": [
+        5148032
+      ]
+    },
+    {
+      "call_va": 5211969,
+      "return_pc": 5211974,
+      "entry": 5212512,
+      "bytes": "e81a020000",
+      "discovered_owners": [
+        5211120
+      ]
+    },
+    {
+      "call_va": 5212110,
+      "return_pc": 5212115,
+      "entry": 5212512,
+      "bytes": "e88d010000",
+      "discovered_owners": [
+        5211120
+      ]
+    },
+    {
+      "call_va": 5226879,
+      "return_pc": 5226884,
+      "entry": 5212512,
+      "bytes": "e8dcc7ffff",
+      "discovered_owners": [
+        5225984
+      ]
+    },
+    {
+      "call_va": 5227042,
+      "return_pc": 5227047,
+      "entry": 5212512,
+      "bytes": "e839c7ffff",
+      "discovered_owners": [
+        5225984
+      ]
+    },
+    {
+      "call_va": 5228299,
+      "return_pc": 5228304,
+      "entry": 5212512,
+      "bytes": "e850c2ffff",
+      "discovered_owners": [
+        5227504
+      ]
+    },
+    {
+      "call_va": 5228434,
+      "return_pc": 5228439,
+      "entry": 5212512,
+      "bytes": "e8c9c1ffff",
+      "discovered_owners": [
+        5227504
+      ]
+    },
+    {
+      "call_va": 5229768,
+      "return_pc": 5229773,
+      "entry": 5212512,
+      "bytes": "e893bcffff",
+      "discovered_owners": [
+        5228848
+      ]
+    },
+    {
+      "call_va": 5229931,
+      "return_pc": 5229936,
+      "entry": 5212512,
+      "bytes": "e8f0bbffff",
+      "discovered_owners": [
+        5228848
+      ]
+    },
+    {
+      "call_va": 5230465,
+      "return_pc": 5230470,
+      "entry": 5814976,
+      "bytes": "e83aeb0800",
+      "discovered_owners": [
+        5230416
+      ]
+    },
+    {
+      "call_va": 5230535,
+      "return_pc": 5230540,
+      "entry": 5758048,
+      "bytes": "e8940c0800",
+      "discovered_owners": [
+        5230416
+      ]
+    },
+    {
+      "call_va": 5231739,
+      "return_pc": 5231744,
+      "entry": 5757984,
+      "bytes": "e8a0070800",
+      "discovered_owners": [
+        5231232
+      ]
+    },
+    {
+      "call_va": 5231780,
+      "return_pc": 5231785,
+      "entry": 5758048,
+      "bytes": "e8b7070800",
+      "discovered_owners": [
+        5231232
+      ]
+    },
+    {
+      "call_va": 5231787,
+      "return_pc": 5231792,
+      "entry": 5243552,
+      "bytes": "e8f02d0000",
+      "discovered_owners": [
+        5231232
+      ]
+    },
+    {
+      "call_va": 5231797,
+      "return_pc": 5231802,
+      "entry": 5813856,
+      "bytes": "e8a6e10800",
+      "discovered_owners": [
+        5231232
+      ]
+    },
+    {
+      "call_va": 5231828,
+      "return_pc": 5231833,
+      "entry": 5757984,
+      "bytes": "e847070800",
+      "discovered_owners": [
+        5231232
+      ]
+    },
+    {
+      "call_va": 5231851,
+      "return_pc": 5231856,
+      "entry": 5758048,
+      "bytes": "e870070800",
+      "discovered_owners": [
+        5231232
+      ]
+    },
+    {
+      "call_va": 5231921,
+      "return_pc": 5231926,
+      "entry": 5813856,
+      "bytes": "e82ae10800",
+      "discovered_owners": [
+        5231232
+      ]
+    },
+    {
+      "call_va": 5231949,
+      "return_pc": 5231954,
+      "entry": 5757984,
+      "bytes": "e8ce060800",
+      "discovered_owners": [
+        5231232
+      ]
+    },
+    {
+      "call_va": 5231956,
+      "return_pc": 5231961,
+      "entry": 5243552,
+      "bytes": "e8472d0000",
+      "discovered_owners": [
+        5231232
+      ]
+    },
+    {
+      "call_va": 5231979,
+      "return_pc": 5231984,
+      "entry": 5758048,
+      "bytes": "e8f0060800",
+      "discovered_owners": [
+        5231232
+      ]
+    },
+    {
+      "call_va": 5243698,
+      "return_pc": 5243703,
+      "entry": 5758048,
+      "bytes": "e829d90700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5243779,
+      "return_pc": 5243784,
+      "entry": 5758048,
+      "bytes": "e8d8d80700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5243828,
+      "return_pc": 5243833,
+      "entry": 5854839,
+      "bytes": "e8be520900",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5243878,
+      "return_pc": 5243883,
+      "entry": 5758464,
+      "bytes": "e815da0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5243956,
+      "return_pc": 5243961,
+      "entry": 5854839,
+      "bytes": "e83e520900",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5243991,
+      "return_pc": 5243996,
+      "entry": 5758464,
+      "bytes": "e8a4d90700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244049,
+      "return_pc": 5244054,
+      "entry": 5758464,
+      "bytes": "e86ad90700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244111,
+      "return_pc": 5244116,
+      "entry": 5854839,
+      "bytes": "e8a3510900",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244146,
+      "return_pc": 5244151,
+      "entry": 5758464,
+      "bytes": "e809d90700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244204,
+      "return_pc": 5244209,
+      "entry": 5758464,
+      "bytes": "e8cfd80700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244227,
+      "return_pc": 5244232,
+      "entry": 5760320,
+      "bytes": "e8f8df0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244287,
+      "return_pc": 5244292,
+      "entry": 5764592,
+      "bytes": "e86cf00700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244317,
+      "return_pc": 5244322,
+      "entry": 5762192,
+      "bytes": "e8eee60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244347,
+      "return_pc": 5244352,
+      "entry": 5763312,
+      "bytes": "e830eb0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244657,
+      "return_pc": 5244662,
+      "entry": 5768944,
+      "bytes": "e8faff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244679,
+      "return_pc": 5244684,
+      "entry": 5768944,
+      "bytes": "e8e4ff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244701,
+      "return_pc": 5244706,
+      "entry": 5768944,
+      "bytes": "e8ceff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244723,
+      "return_pc": 5244728,
+      "entry": 5768944,
+      "bytes": "e8b8ff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244745,
+      "return_pc": 5244750,
+      "entry": 5768944,
+      "bytes": "e8a2ff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244767,
+      "return_pc": 5244772,
+      "entry": 5768944,
+      "bytes": "e88cff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244789,
+      "return_pc": 5244794,
+      "entry": 5768944,
+      "bytes": "e876ff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244811,
+      "return_pc": 5244816,
+      "entry": 5768944,
+      "bytes": "e860ff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244833,
+      "return_pc": 5244838,
+      "entry": 5768944,
+      "bytes": "e84aff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244855,
+      "return_pc": 5244860,
+      "entry": 5768944,
+      "bytes": "e834ff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244877,
+      "return_pc": 5244882,
+      "entry": 5768944,
+      "bytes": "e81eff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244896,
+      "return_pc": 5244901,
+      "entry": 5768944,
+      "bytes": "e80bff0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244915,
+      "return_pc": 5244920,
+      "entry": 5768944,
+      "bytes": "e8f8fe0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244934,
+      "return_pc": 5244939,
+      "entry": 5768944,
+      "bytes": "e8e5fe0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244953,
+      "return_pc": 5244958,
+      "entry": 5768944,
+      "bytes": "e8d2fe0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5244972,
+      "return_pc": 5244977,
+      "entry": 5768944,
+      "bytes": "e8bffe0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245108,
+      "return_pc": 5245113,
+      "entry": 5758048,
+      "bytes": "e8a7d30700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245161,
+      "return_pc": 5245166,
+      "entry": 5854839,
+      "bytes": "e8894d0900",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245219,
+      "return_pc": 5245224,
+      "entry": 5758464,
+      "bytes": "e8d8d40700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245306,
+      "return_pc": 5245311,
+      "entry": 5854839,
+      "bytes": "e8f84c0900",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245334,
+      "return_pc": 5245339,
+      "entry": 5758464,
+      "bytes": "e865d40700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245386,
+      "return_pc": 5245391,
+      "entry": 5758464,
+      "bytes": "e831d40700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245457,
+      "return_pc": 5245462,
+      "entry": 5854839,
+      "bytes": "e8614c0900",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245485,
+      "return_pc": 5245490,
+      "entry": 5758464,
+      "bytes": "e8ced30700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245541,
+      "return_pc": 5245546,
+      "entry": 5758464,
+      "bytes": "e896d30700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245606,
+      "return_pc": 5245611,
+      "entry": 5764592,
+      "bytes": "e845eb0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245637,
+      "return_pc": 5245642,
+      "entry": 5762192,
+      "bytes": "e8c6e10700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245668,
+      "return_pc": 5245673,
+      "entry": 5763312,
+      "bytes": "e807e60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245882,
+      "return_pc": 5245887,
+      "entry": 5768944,
+      "bytes": "e831fb0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245908,
+      "return_pc": 5245913,
+      "entry": 5768944,
+      "bytes": "e817fb0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245934,
+      "return_pc": 5245939,
+      "entry": 5768944,
+      "bytes": "e8fdfa0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245964,
+      "return_pc": 5245969,
+      "entry": 5768944,
+      "bytes": "e8dffa0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5245990,
+      "return_pc": 5245995,
+      "entry": 5768944,
+      "bytes": "e8c5fa0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246023,
+      "return_pc": 5246028,
+      "entry": 5768944,
+      "bytes": "e8a4fa0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246049,
+      "return_pc": 5246054,
+      "entry": 5768944,
+      "bytes": "e88afa0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246082,
+      "return_pc": 5246087,
+      "entry": 5768944,
+      "bytes": "e869fa0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246105,
+      "return_pc": 5246110,
+      "entry": 5768944,
+      "bytes": "e852fa0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246135,
+      "return_pc": 5246140,
+      "entry": 5768944,
+      "bytes": "e834fa0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246158,
+      "return_pc": 5246163,
+      "entry": 5768944,
+      "bytes": "e81dfa0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246240,
+      "return_pc": 5246245,
+      "entry": 5758048,
+      "bytes": "e83bcf0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246391,
+      "return_pc": 5246396,
+      "entry": 5758464,
+      "bytes": "e844d00700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246475,
+      "return_pc": 5246480,
+      "entry": 5758464,
+      "bytes": "e8f0cf0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246559,
+      "return_pc": 5246564,
+      "entry": 5758464,
+      "bytes": "e89ccf0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246581,
+      "return_pc": 5246586,
+      "entry": 5760320,
+      "bytes": "e8c6d60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246633,
+      "return_pc": 5246638,
+      "entry": 5764592,
+      "bytes": "e842e70700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246659,
+      "return_pc": 5246664,
+      "entry": 5762192,
+      "bytes": "e8c8dd0700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246685,
+      "return_pc": 5246690,
+      "entry": 5763312,
+      "bytes": "e80ee20700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246939,
+      "return_pc": 5246944,
+      "entry": 5768944,
+      "bytes": "e810f70700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246960,
+      "return_pc": 5246965,
+      "entry": 5768944,
+      "bytes": "e8fbf60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5246981,
+      "return_pc": 5246986,
+      "entry": 5768944,
+      "bytes": "e8e6f60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247002,
+      "return_pc": 5247007,
+      "entry": 5768944,
+      "bytes": "e8d1f60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247023,
+      "return_pc": 5247028,
+      "entry": 5768944,
+      "bytes": "e8bcf60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247044,
+      "return_pc": 5247049,
+      "entry": 5768944,
+      "bytes": "e8a7f60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247065,
+      "return_pc": 5247070,
+      "entry": 5768944,
+      "bytes": "e892f60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247086,
+      "return_pc": 5247091,
+      "entry": 5768944,
+      "bytes": "e87df60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247107,
+      "return_pc": 5247112,
+      "entry": 5768944,
+      "bytes": "e868f60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247128,
+      "return_pc": 5247133,
+      "entry": 5768944,
+      "bytes": "e853f60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247149,
+      "return_pc": 5247154,
+      "entry": 5768944,
+      "bytes": "e83ef60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247167,
+      "return_pc": 5247172,
+      "entry": 5768944,
+      "bytes": "e82cf60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247185,
+      "return_pc": 5247190,
+      "entry": 5768944,
+      "bytes": "e81af60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247203,
+      "return_pc": 5247208,
+      "entry": 5768944,
+      "bytes": "e808f60700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247221,
+      "return_pc": 5247226,
+      "entry": 5768944,
+      "bytes": "e8f6f50700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5247239,
+      "return_pc": 5247244,
+      "entry": 5768944,
+      "bytes": "e8e4f50700",
+      "discovered_owners": [
+        5243552
+      ]
+    },
+    {
+      "call_va": 5454635,
+      "return_pc": 5454640,
+      "entry": 5813856,
+      "bytes": "e8307b0500",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5454699,
+      "return_pc": 5454704,
+      "entry": 5813856,
+      "bytes": "e8f07a0500",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5478383,
+      "return_pc": 5478388,
+      "entry": 5813216,
+      "bytes": "e8ec1b0500",
+      "discovered_owners": [
+        5478336
+      ]
+    },
+    {
+      "call_va": 5478397,
+      "return_pc": 5478402,
+      "entry": 5813216,
+      "bytes": "e8de1b0500",
+      "discovered_owners": [
+        5478336
+      ]
+    },
+    {
+      "call_va": 5479129,
+      "return_pc": 5479134,
+      "entry": 5813216,
+      "bytes": "e802190500",
+      "discovered_owners": [
+        5479088
+      ]
+    },
+    {
+      "call_va": 5479143,
+      "return_pc": 5479148,
+      "entry": 5813216,
+      "bytes": "e8f4180500",
+      "discovered_owners": [
+        5479088
+      ]
+    },
+    {
+      "call_va": 5479211,
+      "return_pc": 5479216,
+      "entry": 5813216,
+      "bytes": "e8b0180500",
+      "discovered_owners": [
+        5479200
+      ]
+    },
+    {
+      "call_va": 5479225,
+      "return_pc": 5479230,
+      "entry": 5813216,
+      "bytes": "e8a2180500",
+      "discovered_owners": [
+        5479200
+      ]
+    },
+    {
+      "call_va": 5479327,
+      "return_pc": 5479332,
+      "entry": 5816128,
+      "bytes": "e89c230500",
+      "discovered_owners": [
+        5479296
+      ]
+    },
+    {
+      "call_va": 5479373,
+      "return_pc": 5479378,
+      "entry": 5816128,
+      "bytes": "e86e230500",
+      "discovered_owners": [
+        5479296
+      ]
+    },
+    {
+      "call_va": 5479494,
+      "return_pc": 5479499,
+      "entry": 5816128,
+      "bytes": "e8f5220500",
+      "discovered_owners": [
+        5479296
+      ]
+    },
+    {
+      "call_va": 5479540,
+      "return_pc": 5479545,
+      "entry": 5816128,
+      "bytes": "e8c7220500",
+      "discovered_owners": [
+        5479296
+      ]
+    },
+    {
+      "call_va": 5479609,
+      "return_pc": 5479614,
+      "entry": 5816128,
+      "bytes": "e882220500",
+      "discovered_owners": [
+        5479296
+      ]
+    },
+    {
+      "call_va": 5479655,
+      "return_pc": 5479660,
+      "entry": 5816128,
+      "bytes": "e854220500",
+      "discovered_owners": [
+        5479296
+      ]
+    },
+    {
+      "call_va": 5479731,
+      "return_pc": 5479736,
+      "entry": 5816128,
+      "bytes": "e808220500",
+      "discovered_owners": [
+        5479712
+      ]
+    },
+    {
+      "call_va": 5479778,
+      "return_pc": 5479783,
+      "entry": 5816128,
+      "bytes": "e8d9210500",
+      "discovered_owners": [
+        5479712
+      ]
+    },
+    {
+      "call_va": 5480007,
+      "return_pc": 5480012,
+      "entry": 5821216,
+      "bytes": "e8d4340500",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5480210,
+      "return_pc": 5480215,
+      "entry": 5811600,
+      "bytes": "e8790e0500",
+      "discovered_owners": [
+        5480032
+      ]
+    },
+    {
+      "call_va": 5480451,
+      "return_pc": 5480456,
+      "entry": 5821216,
+      "bytes": "e818330500",
+      "discovered_owners": [
+        5480032
+      ]
+    },
+    {
+      "call_va": 5480491,
+      "return_pc": 5480496,
+      "entry": 5813216,
+      "bytes": "e8b0130500",
+      "discovered_owners": [
+        5480480
+      ]
+    },
+    {
+      "call_va": 5480505,
+      "return_pc": 5480510,
+      "entry": 5813216,
+      "bytes": "e8a2130500",
+      "discovered_owners": [
+        5480480
+      ]
+    },
+    {
+      "call_va": 5480759,
+      "return_pc": 5480764,
+      "entry": 5821216,
+      "bytes": "e8e4310500",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5530999,
+      "return_pc": 5531004,
+      "entry": 5528592,
+      "bytes": "e894f6ffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5542756,
+      "return_pc": 5542761,
+      "entry": 5758464,
+      "bytes": "e8974a0300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5543940,
+      "return_pc": 5543945,
+      "entry": 5758464,
+      "bytes": "e8f7450300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5545076,
+      "return_pc": 5545081,
+      "entry": 5758464,
+      "bytes": "e887410300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5547302,
+      "return_pc": 5547307,
+      "entry": 5854839,
+      "bytes": "e84cb10400",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5547326,
+      "return_pc": 5547331,
+      "entry": 5758464,
+      "bytes": "e8bd380300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5547381,
+      "return_pc": 5547386,
+      "entry": 5758464,
+      "bytes": "e886380300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5547420,
+      "return_pc": 5547425,
+      "entry": 5763312,
+      "bytes": "e84f4b0300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5547456,
+      "return_pc": 5547461,
+      "entry": 5762192,
+      "bytes": "e8cb460300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5547487,
+      "return_pc": 5547492,
+      "entry": 5764592,
+      "bytes": "e80c500300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5548717,
+      "return_pc": 5548722,
+      "entry": 5528592,
+      "bytes": "e85eb1ffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5548817,
+      "return_pc": 5548822,
+      "entry": 5528592,
+      "bytes": "e8fab0ffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5549878,
+      "return_pc": 5549883,
+      "entry": 5757984,
+      "bytes": "e8e52c0300",
+      "discovered_owners": [
+        5549712
+      ]
+    },
+    {
+      "call_va": 5549895,
+      "return_pc": 5549900,
+      "entry": 5758048,
+      "bytes": "e8142d0300",
+      "discovered_owners": [
+        5549712
+      ]
+    },
+    {
+      "call_va": 5549949,
+      "return_pc": 5549954,
+      "entry": 5758048,
+      "bytes": "e8de2c0300",
+      "discovered_owners": [
+        5549712
+      ]
+    },
+    {
+      "call_va": 5549977,
+      "return_pc": 5549982,
+      "entry": 5757984,
+      "bytes": "e8822c0300",
+      "discovered_owners": [
+        5549712
+      ]
+    },
+    {
+      "call_va": 5550524,
+      "return_pc": 5550529,
+      "entry": 5813856,
+      "bytes": "e89f040400",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5550852,
+      "return_pc": 5550857,
+      "entry": 5813856,
+      "bytes": "e857030400",
+      "discovered_owners": [
+        5550800
+      ]
+    },
+    {
+      "call_va": 5565698,
+      "return_pc": 5565703,
+      "entry": 5813856,
+      "bytes": "e859c90300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5565730,
+      "return_pc": 5565735,
+      "entry": 5757984,
+      "bytes": "e8f9ee0200",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5565775,
+      "return_pc": 5565780,
+      "entry": 5758048,
+      "bytes": "e80cef0200",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5566122,
+      "return_pc": 5566127,
+      "entry": 5817504,
+      "bytes": "e8f1d50300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5566821,
+      "return_pc": 5566826,
+      "entry": 5811600,
+      "bytes": "e826bc0300",
+      "discovered_owners": [
+        5566656
+      ]
+    },
+    {
+      "call_va": 5568302,
+      "return_pc": 5568307,
+      "entry": 5811600,
+      "bytes": "e85db60300",
+      "discovered_owners": [
+        5568192
+      ]
+    },
+    {
+      "call_va": 5568377,
+      "return_pc": 5568382,
+      "entry": 5820832,
+      "bytes": "e822da0300",
+      "discovered_owners": [
+        5568192
+      ]
+    },
+    {
+      "call_va": 5571297,
+      "return_pc": 5571302,
+      "entry": 5811600,
+      "bytes": "e8aaaa0300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5571372,
+      "return_pc": 5571377,
+      "entry": 5820832,
+      "bytes": "e86fce0300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5571582,
+      "return_pc": 5571587,
+      "entry": 5813216,
+      "bytes": "e8ddaf0300",
+      "discovered_owners": [
+        5571440
+      ]
+    },
+    {
+      "call_va": 5571590,
+      "return_pc": 5571595,
+      "entry": 5813216,
+      "bytes": "e8d5af0300",
+      "discovered_owners": [
+        5571440
+      ]
+    },
+    {
+      "call_va": 5572171,
+      "return_pc": 5572176,
+      "entry": 5550800,
+      "bytes": "e880acffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5572239,
+      "return_pc": 5572244,
+      "entry": 5818528,
+      "bytes": "e80cc20300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5572271,
+      "return_pc": 5572276,
+      "entry": 5813856,
+      "bytes": "e8acaf0300",
+      "discovered_owners": [
+        5572256
+      ]
+    },
+    {
+      "call_va": 5572303,
+      "return_pc": 5572308,
+      "entry": 5757984,
+      "bytes": "e84cd50200",
+      "discovered_owners": [
+        5572256
+      ]
+    },
+    {
+      "call_va": 5572348,
+      "return_pc": 5572353,
+      "entry": 5758048,
+      "bytes": "e85fd50200",
+      "discovered_owners": [
+        5572256
+      ]
+    },
+    {
+      "call_va": 5572649,
+      "return_pc": 5572654,
+      "entry": 5758464,
+      "bytes": "e8d2d50200",
+      "discovered_owners": [
+        5572256
+      ]
+    },
+    {
+      "call_va": 5572994,
+      "return_pc": 5572999,
+      "entry": 5813856,
+      "bytes": "e8d9ac0300",
+      "discovered_owners": [
+        5572976
+      ]
+    },
+    {
+      "call_va": 5573024,
+      "return_pc": 5573029,
+      "entry": 5757984,
+      "bytes": "e87bd20200",
+      "discovered_owners": [
+        5572976
+      ]
+    },
+    {
+      "call_va": 5573069,
+      "return_pc": 5573074,
+      "entry": 5758048,
+      "bytes": "e88ed20200",
+      "discovered_owners": [
+        5572976
+      ]
+    },
+    {
+      "call_va": 5573680,
+      "return_pc": 5573685,
+      "entry": 5758464,
+      "bytes": "e8cbd10200",
+      "discovered_owners": [
+        5572976
+      ]
+    },
+    {
+      "call_va": 5575278,
+      "return_pc": 5575283,
+      "entry": 5821216,
+      "bytes": "e8adc00300",
+      "discovered_owners": [
+        5574864
+      ]
+    },
+    {
+      "call_va": 5575307,
+      "return_pc": 5575312,
+      "entry": 5816128,
+      "bytes": "e8b0ac0300",
+      "discovered_owners": [
+        5574864
+      ]
+    },
+    {
+      "call_va": 5575388,
+      "return_pc": 5575393,
+      "entry": 5816128,
+      "bytes": "e85fac0300",
+      "discovered_owners": [
+        5575360
+      ]
+    },
+    {
+      "call_va": 5575512,
+      "return_pc": 5575517,
+      "entry": 5550800,
+      "bytes": "e8739fffff",
+      "discovered_owners": [
+        5575360
+      ]
+    },
+    {
+      "call_va": 5575577,
+      "return_pc": 5575582,
+      "entry": 5818528,
+      "bytes": "e802b50300",
+      "discovered_owners": [
+        5575360
+      ]
+    },
+    {
+      "call_va": 5577956,
+      "return_pc": 5577961,
+      "entry": 5815312,
+      "bytes": "e8279f0300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5578025,
+      "return_pc": 5578030,
+      "entry": 4626944,
+      "bytes": "e8d27cf1ff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5578036,
+      "return_pc": 5578041,
+      "entry": 5815312,
+      "bytes": "e8d79e0300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5578135,
+      "return_pc": 5578140,
+      "entry": 5816128,
+      "bytes": "e8a4a10300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5580713,
+      "return_pc": 5580718,
+      "entry": 5585472,
+      "bytes": "e892120000",
+      "discovered_owners": [
+        5580704
+      ]
+    },
+    {
+      "call_va": 5581568,
+      "return_pc": 5581573,
+      "entry": 5584576,
+      "bytes": "e8bb0b0000",
+      "discovered_owners": [
+        5580704
+      ]
+    },
+    {
+      "call_va": 5581608,
+      "return_pc": 5581613,
+      "entry": 5584576,
+      "bytes": "e8930b0000",
+      "discovered_owners": [
+        5580704
+      ]
+    },
+    {
+      "call_va": 5581690,
+      "return_pc": 5581695,
+      "entry": 5585472,
+      "bytes": "e8c10e0000",
+      "discovered_owners": [
+        5581648
+      ]
+    },
+    {
+      "call_va": 5582547,
+      "return_pc": 5582552,
+      "entry": 5584576,
+      "bytes": "e8e8070000",
+      "discovered_owners": [
+        5581648
+      ]
+    },
+    {
+      "call_va": 5582587,
+      "return_pc": 5582592,
+      "entry": 5584576,
+      "bytes": "e8c0070000",
+      "discovered_owners": [
+        5581648
+      ]
+    },
+    {
+      "call_va": 5582666,
+      "return_pc": 5582671,
+      "entry": 5585472,
+      "bytes": "e8f10a0000",
+      "discovered_owners": [
+        5582624
+      ]
+    },
+    {
+      "call_va": 5583523,
+      "return_pc": 5583528,
+      "entry": 5584576,
+      "bytes": "e818040000",
+      "discovered_owners": [
+        5582624
+      ]
+    },
+    {
+      "call_va": 5583563,
+      "return_pc": 5583568,
+      "entry": 5584576,
+      "bytes": "e8f0030000",
+      "discovered_owners": [
+        5582624
+      ]
+    },
+    {
+      "call_va": 5583642,
+      "return_pc": 5583647,
+      "entry": 5585472,
+      "bytes": "e821070000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5584499,
+      "return_pc": 5584504,
+      "entry": 5584576,
+      "bytes": "e848000000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5584539,
+      "return_pc": 5584544,
+      "entry": 5584576,
+      "bytes": "e820000000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5585498,
+      "return_pc": 5585503,
+      "entry": 5813856,
+      "bytes": "e8017c0300",
+      "discovered_owners": [
+        5585472
+      ]
+    },
+    {
+      "call_va": 5589071,
+      "return_pc": 5589076,
+      "entry": 5813216,
+      "bytes": "e88c6b0300",
+      "discovered_owners": [
+        5589056
+      ]
+    },
+    {
+      "call_va": 5589716,
+      "return_pc": 5589721,
+      "entry": 5813856,
+      "bytes": "e8876b0300",
+      "discovered_owners": [
+        5589200
+      ]
+    },
+    {
+      "call_va": 5590566,
+      "return_pc": 5590571,
+      "entry": 5813216,
+      "bytes": "e8b5650300",
+      "discovered_owners": [
+        5590528
+      ]
+    },
+    {
+      "call_va": 5590790,
+      "return_pc": 5590795,
+      "entry": 5811600,
+      "bytes": "e8855e0300",
+      "discovered_owners": [
+        5590528
+      ]
+    },
+    {
+      "call_va": 5590798,
+      "return_pc": 5590803,
+      "entry": 5820832,
+      "bytes": "e88d820300",
+      "discovered_owners": [
+        5590528
+      ]
+    },
+    {
+      "call_va": 5590881,
+      "return_pc": 5590886,
+      "entry": 5811600,
+      "bytes": "e82a5e0300",
+      "discovered_owners": [
+        5590528
+      ]
+    },
+    {
+      "call_va": 5590893,
+      "return_pc": 5590898,
+      "entry": 5820832,
+      "bytes": "e82e820300",
+      "discovered_owners": [
+        5590528
+      ]
+    },
+    {
+      "call_va": 5590900,
+      "return_pc": 5590905,
+      "entry": 5813856,
+      "bytes": "e8e7660300",
+      "discovered_owners": [
+        5590528
+      ]
+    },
+    {
+      "call_va": 5593976,
+      "return_pc": 5593981,
+      "entry": 5813856,
+      "bytes": "e8e35a0300",
+      "discovered_owners": [
+        5593488
+      ]
+    },
+    {
+      "call_va": 5594192,
+      "return_pc": 5594197,
+      "entry": 5580704,
+      "bytes": "e84bcbffff",
+      "discovered_owners": [
+        5593488
+      ]
+    },
+    {
+      "call_va": 5594201,
+      "return_pc": 5594206,
+      "entry": 5582624,
+      "bytes": "e8c2d2ffff",
+      "discovered_owners": [
+        5593488
+      ]
+    },
+    {
+      "call_va": 5594210,
+      "return_pc": 5594215,
+      "entry": 5581648,
+      "bytes": "e8e9ceffff",
+      "discovered_owners": [
+        5593488
+      ]
+    },
+    {
+      "call_va": 5594217,
+      "return_pc": 5594222,
+      "entry": 5584976,
+      "bytes": "e8e2dbffff",
+      "discovered_owners": [
+        5593488
+      ]
+    },
+    {
+      "call_va": 5594435,
+      "return_pc": 5594440,
+      "entry": 5757984,
+      "bytes": "e8d87e0200",
+      "discovered_owners": [
+        5593488
+      ]
+    },
+    {
+      "call_va": 5594485,
+      "return_pc": 5594490,
+      "entry": 5758048,
+      "bytes": "e8e67e0200",
+      "discovered_owners": [
+        5593488
+      ]
+    },
+    {
+      "call_va": 5594582,
+      "return_pc": 5594587,
+      "entry": 5758464,
+      "bytes": "e825800200",
+      "discovered_owners": [
+        5593488
+      ]
+    },
+    {
+      "call_va": 5601549,
+      "return_pc": 5601554,
+      "entry": 5816128,
+      "bytes": "e82e460300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5603009,
+      "return_pc": 5603014,
+      "entry": 5816128,
+      "bytes": "e87a400300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5608573,
+      "return_pc": 5608578,
+      "entry": 5816128,
+      "bytes": "e8be2a0300",
+      "discovered_owners": [
+        5608336
+      ]
+    },
+    {
+      "call_va": 5608891,
+      "return_pc": 5608896,
+      "entry": 5816128,
+      "bytes": "e880290300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5609386,
+      "return_pc": 5609391,
+      "entry": 5827968,
+      "bytes": "e8d1550300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5609464,
+      "return_pc": 5609469,
+      "entry": 5816128,
+      "bytes": "e843270300",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5692236,
+      "return_pc": 5692241,
+      "entry": 5820832,
+      "bytes": "e84ff60100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5692462,
+      "return_pc": 5692467,
+      "entry": 5820832,
+      "bytes": "e86df50100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5692505,
+      "return_pc": 5692510,
+      "entry": 5816128,
+      "bytes": "e8e2e20100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5692656,
+      "return_pc": 5692661,
+      "entry": 5820832,
+      "bytes": "e8abf40100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5710917,
+      "return_pc": 5710922,
+      "entry": 5813216,
+      "bytes": "e8968f0100",
+      "discovered_owners": [
+        5710848
+      ]
+    },
+    {
+      "call_va": 5713620,
+      "return_pc": 5713625,
+      "entry": 5816640,
+      "bytes": "e867920100",
+      "discovered_owners": [
+        5713552
+      ]
+    },
+    {
+      "call_va": 5713649,
+      "return_pc": 5713654,
+      "entry": 5816128,
+      "bytes": "e84a900100",
+      "discovered_owners": [
+        5713552
+      ]
+    },
+    {
+      "call_va": 5714723,
+      "return_pc": 5714728,
+      "entry": 5811600,
+      "bytes": "e8687a0100",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5714766,
+      "return_pc": 5714771,
+      "entry": 5815312,
+      "bytes": "e8bd880100",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5714874,
+      "return_pc": 5714879,
+      "entry": 5821216,
+      "bytes": "e8619f0100",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5715045,
+      "return_pc": 5715050,
+      "entry": 5811600,
+      "bytes": "e826790100",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5715087,
+      "return_pc": 5715092,
+      "entry": 5815312,
+      "bytes": "e87c870100",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5715187,
+      "return_pc": 5715192,
+      "entry": 5821216,
+      "bytes": "e8289e0100",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5715331,
+      "return_pc": 5715336,
+      "entry": 5816640,
+      "bytes": "e8b88b0100",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5715353,
+      "return_pc": 5715358,
+      "entry": 5816128,
+      "bytes": "e8a2890100",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5715360,
+      "return_pc": 5715365,
+      "entry": 5813856,
+      "bytes": "e8bb800100",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5715386,
+      "return_pc": 5715391,
+      "entry": 5757984,
+      "bytes": "e861a60000",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5715451,
+      "return_pc": 5715456,
+      "entry": 5758048,
+      "bytes": "e860a60000",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5715525,
+      "return_pc": 5715530,
+      "entry": 5758048,
+      "bytes": "e816a60000",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5715635,
+      "return_pc": 5715640,
+      "entry": 5813216,
+      "bytes": "e8287d0100",
+      "discovered_owners": [
+        5713712
+      ]
+    },
+    {
+      "call_va": 5718770,
+      "return_pc": 5718775,
+      "entry": 5813216,
+      "bytes": "e8e9700100",
+      "discovered_owners": [
+        5718400
+      ]
+    },
+    {
+      "call_va": 5719803,
+      "return_pc": 5719808,
+      "entry": 5816640,
+      "bytes": "e8407a0100",
+      "discovered_owners": [
+        5719728
+      ]
+    },
+    {
+      "call_va": 5719832,
+      "return_pc": 5719837,
+      "entry": 5816128,
+      "bytes": "e823780100",
+      "discovered_owners": [
+        5719728
+      ]
+    },
+    {
+      "call_va": 5723577,
+      "return_pc": 5723582,
+      "entry": 5813216,
+      "bytes": "e8225e0100",
+      "discovered_owners": [
+        5723488
+      ]
+    },
+    {
+      "call_va": 5728671,
+      "return_pc": 5728676,
+      "entry": 5820832,
+      "bytes": "e8fc670100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5728704,
+      "return_pc": 5728709,
+      "entry": 5816128,
+      "bytes": "e87b550100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5728731,
+      "return_pc": 5728736,
+      "entry": 5827968,
+      "bytes": "e8a0830100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5728868,
+      "return_pc": 5728873,
+      "entry": 5813856,
+      "bytes": "e8f74b0100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5728900,
+      "return_pc": 5728905,
+      "entry": 5757984,
+      "bytes": "e897710000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5728931,
+      "return_pc": 5728936,
+      "entry": 5758048,
+      "bytes": "e8b8710000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5729141,
+      "return_pc": 5729146,
+      "entry": 5817504,
+      "bytes": "e826590100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5729234,
+      "return_pc": 5729239,
+      "entry": 5817504,
+      "bytes": "e8c9580100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5729327,
+      "return_pc": 5729332,
+      "entry": 5817504,
+      "bytes": "e86c580100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5729497,
+      "return_pc": 5729502,
+      "entry": 5813856,
+      "bytes": "e882490100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5729532,
+      "return_pc": 5729537,
+      "entry": 5757984,
+      "bytes": "e81f6f0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5729559,
+      "return_pc": 5729564,
+      "entry": 5758048,
+      "bytes": "e8446f0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5729839,
+      "return_pc": 5729844,
+      "entry": 5816128,
+      "bytes": "e80c510100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5729960,
+      "return_pc": 5729965,
+      "entry": 5817504,
+      "bytes": "e8f3550100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5730048,
+      "return_pc": 5730053,
+      "entry": 5817504,
+      "bytes": "e89b550100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5730125,
+      "return_pc": 5730130,
+      "entry": 5817504,
+      "bytes": "e84e550100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5730202,
+      "return_pc": 5730207,
+      "entry": 5817504,
+      "bytes": "e801550100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5730275,
+      "return_pc": 5730280,
+      "entry": 5817504,
+      "bytes": "e8b8540100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5730353,
+      "return_pc": 5730358,
+      "entry": 5817504,
+      "bytes": "e86a540100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5730549,
+      "return_pc": 5730554,
+      "entry": 5817504,
+      "bytes": "e8a6530100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5730649,
+      "return_pc": 5730654,
+      "entry": 5817504,
+      "bytes": "e842530100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5732641,
+      "return_pc": 5732646,
+      "entry": 5811600,
+      "bytes": "e86a340100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5732874,
+      "return_pc": 5732879,
+      "entry": 5820832,
+      "bytes": "e891570100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5732910,
+      "return_pc": 5732915,
+      "entry": 5816128,
+      "bytes": "e80d450100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5734413,
+      "return_pc": 5734418,
+      "entry": 5816128,
+      "bytes": "e82e3f0100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5735701,
+      "return_pc": 5735706,
+      "entry": 5813216,
+      "bytes": "e8c62e0100",
+      "discovered_owners": [
+        5735072
+      ]
+    },
+    {
+      "call_va": 5736147,
+      "return_pc": 5736152,
+      "entry": 5816128,
+      "bytes": "e868380100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5737850,
+      "return_pc": 5737855,
+      "entry": 5820832,
+      "bytes": "e821440100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5737883,
+      "return_pc": 5737888,
+      "entry": 5816128,
+      "bytes": "e8a0310100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5738782,
+      "return_pc": 5738787,
+      "entry": 5813856,
+      "bytes": "e83d250100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5738813,
+      "return_pc": 5738818,
+      "entry": 5757984,
+      "bytes": "e8de4a0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5738828,
+      "return_pc": 5738833,
+      "entry": 5758048,
+      "bytes": "e80f4b0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5738877,
+      "return_pc": 5738882,
+      "entry": 5807248,
+      "bytes": "e80e0b0100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5738914,
+      "return_pc": 5738919,
+      "entry": 5807248,
+      "bytes": "e8e90a0100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5739087,
+      "return_pc": 5739092,
+      "entry": 5758464,
+      "bytes": "e8ac4b0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5739200,
+      "return_pc": 5739205,
+      "entry": 5758464,
+      "bytes": "e83b4b0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5739335,
+      "return_pc": 5739340,
+      "entry": 5758464,
+      "bytes": "e8b44a0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5740626,
+      "return_pc": 5740631,
+      "entry": 5817504,
+      "bytes": "e8492c0100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5760991,
+      "return_pc": 5760996,
+      "entry": 5762192,
+      "bytes": "e8ac040000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5761022,
+      "return_pc": 5761027,
+      "entry": 5764592,
+      "bytes": "e8ed0d0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5761090,
+      "return_pc": 5761095,
+      "entry": 5854839,
+      "bytes": "e8306e0100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5761158,
+      "return_pc": 5761163,
+      "entry": 5758464,
+      "bytes": "e875f5ffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5761220,
+      "return_pc": 5761225,
+      "entry": 5764592,
+      "bytes": "e8270d0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5761296,
+      "return_pc": 5761301,
+      "entry": 5854839,
+      "bytes": "e8626d0100",
+      "discovered_owners": [
+        5761248
+      ]
+    },
+    {
+      "call_va": 5761362,
+      "return_pc": 5761367,
+      "entry": 5758464,
+      "bytes": "e8a9f4ffff",
+      "discovered_owners": [
+        5761248
+      ]
+    },
+    {
+      "call_va": 5761408,
+      "return_pc": 5761413,
+      "entry": 5763312,
+      "bytes": "e86b070000",
+      "discovered_owners": [
+        5761248
+      ]
+    },
+    {
+      "call_va": 5761443,
+      "return_pc": 5761448,
+      "entry": 5762192,
+      "bytes": "e8e8020000",
+      "discovered_owners": [
+        5761248
+      ]
+    },
+    {
+      "call_va": 5761474,
+      "return_pc": 5761479,
+      "entry": 5764592,
+      "bytes": "e8290c0000",
+      "discovered_owners": [
+        5761248
+      ]
+    },
+    {
+      "call_va": 5761533,
+      "return_pc": 5761538,
+      "entry": 5854839,
+      "bytes": "e8756c0100",
+      "discovered_owners": [
+        5761248
+      ]
+    },
+    {
+      "call_va": 5761595,
+      "return_pc": 5761600,
+      "entry": 5758464,
+      "bytes": "e8c0f3ffff",
+      "discovered_owners": [
+        5761248
+      ]
+    },
+    {
+      "call_va": 5761668,
+      "return_pc": 5761673,
+      "entry": 5763312,
+      "bytes": "e867060000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5761705,
+      "return_pc": 5761710,
+      "entry": 5762192,
+      "bytes": "e8e2010000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5761736,
+      "return_pc": 5761741,
+      "entry": 5764592,
+      "bytes": "e8230b0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5761808,
+      "return_pc": 5761813,
+      "entry": 5854839,
+      "bytes": "e8626b0100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5761876,
+      "return_pc": 5761881,
+      "entry": 5758464,
+      "bytes": "e8a7f2ffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5761938,
+      "return_pc": 5761943,
+      "entry": 5762192,
+      "bytes": "e8f9000000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5761969,
+      "return_pc": 5761974,
+      "entry": 5764592,
+      "bytes": "e83a0a0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5762041,
+      "return_pc": 5762046,
+      "entry": 5854839,
+      "bytes": "e8796a0100",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5762109,
+      "return_pc": 5762114,
+      "entry": 5758464,
+      "bytes": "e8bef1ffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5762173,
+      "return_pc": 5762178,
+      "entry": 5764592,
+      "bytes": "e86e090000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5810282,
+      "return_pc": 5810287,
+      "entry": 5813216,
+      "bytes": "e8710b0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5810458,
+      "return_pc": 5810463,
+      "entry": 5813216,
+      "bytes": "e8c10a0000",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5811066,
+      "return_pc": 5811071,
+      "entry": 5813216,
+      "bytes": "e861080000",
+      "discovered_owners": [
+        5810832
+      ]
+    },
+    {
+      "call_va": 5811246,
+      "return_pc": 5811251,
+      "entry": 5813216,
+      "bytes": "e8ad070000",
+      "discovered_owners": [
+        5810832
+      ]
+    },
+    {
+      "call_va": 5811466,
+      "return_pc": 5811471,
+      "entry": 5813216,
+      "bytes": "e8d1060000",
+      "discovered_owners": [
+        5811440
+      ]
+    },
+    {
+      "call_va": 5811728,
+      "return_pc": 5811733,
+      "entry": 5813216,
+      "bytes": "e8cb050000",
+      "discovered_owners": [
+        5811600
+      ]
+    },
+    {
+      "call_va": 5812011,
+      "return_pc": 5812016,
+      "entry": 5813216,
+      "bytes": "e8b0040000",
+      "discovered_owners": [
+        5811600
+      ]
+    },
+    {
+      "call_va": 5812306,
+      "return_pc": 5812311,
+      "entry": 5813216,
+      "bytes": "e889030000",
+      "discovered_owners": [
+        5811600
+      ]
+    },
+    {
+      "call_va": 5812556,
+      "return_pc": 5812561,
+      "entry": 5813216,
+      "bytes": "e88f020000",
+      "discovered_owners": [
+        5811600
+      ]
+    },
+    {
+      "call_va": 5812702,
+      "return_pc": 5812707,
+      "entry": 5812848,
+      "bytes": "e88d000000",
+      "discovered_owners": [
+        5811600
+      ]
+    },
+    {
+      "call_va": 5812731,
+      "return_pc": 5812736,
+      "entry": 5812848,
+      "bytes": "e870000000",
+      "discovered_owners": [
+        5811600
+      ]
+    },
+    {
+      "call_va": 5813104,
+      "return_pc": 5813109,
+      "entry": 5812848,
+      "bytes": "e8fbfeffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5813442,
+      "return_pc": 5813447,
+      "entry": 5812848,
+      "bytes": "e8a9fdffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5813554,
+      "return_pc": 5813559,
+      "entry": 5812848,
+      "bytes": "e839fdffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5813669,
+      "return_pc": 5813674,
+      "entry": 5812848,
+      "bytes": "e8c6fcffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5813769,
+      "return_pc": 5813774,
+      "entry": 5812848,
+      "bytes": "e862fcffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5814106,
+      "return_pc": 5814111,
+      "entry": 5813216,
+      "bytes": "e881fcffff",
+      "discovered_owners": [
+        5813856
+      ]
+    },
+    {
+      "call_va": 5814309,
+      "return_pc": 5814314,
+      "entry": 5812848,
+      "bytes": "e846faffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5814518,
+      "return_pc": 5814523,
+      "entry": 5812848,
+      "bytes": "e875f9ffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5815185,
+      "return_pc": 5815190,
+      "entry": 5812848,
+      "bytes": "e8daf6ffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5821220,
+      "return_pc": 5821225,
+      "entry": 5813856,
+      "bytes": "e837e3ffff",
+      "discovered_owners": [
+        5821216
+      ]
+    },
+    {
+      "call_va": 5821465,
+      "return_pc": 5821470,
+      "entry": 5813856,
+      "bytes": "e842e2ffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5821481,
+      "return_pc": 5821486,
+      "entry": 5813856,
+      "bytes": "e832e2ffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5822171,
+      "return_pc": 5822176,
+      "entry": 5817504,
+      "bytes": "e8c0edffff",
+      "discovered_owners": [
+        5822048
+      ]
+    },
+    {
+      "call_va": 5822192,
+      "return_pc": 5822197,
+      "entry": 5816640,
+      "bytes": "e84beaffff",
+      "discovered_owners": [
+        5822048
+      ]
+    },
+    {
+      "call_va": 5822217,
+      "return_pc": 5822222,
+      "entry": 5818528,
+      "bytes": "e892f1ffff",
+      "discovered_owners": [
+        5822048
+      ]
+    },
+    {
+      "call_va": 5822423,
+      "return_pc": 5822428,
+      "entry": 5813856,
+      "bytes": "e884deffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5822759,
+      "return_pc": 5822764,
+      "entry": 5813856,
+      "bytes": "e834ddffff",
+      "discovered_owners": [
+        5822656
+      ]
+    },
+    {
+      "call_va": 5823600,
+      "return_pc": 5823605,
+      "entry": 5813856,
+      "bytes": "e8ebd9ffff",
+      "discovered_owners": [
+        5823360
+      ]
+    },
+    {
+      "call_va": 5824085,
+      "return_pc": 5824090,
+      "entry": 5813856,
+      "bytes": "e806d8ffff",
+      "discovered_owners": [
+        5823984
+      ]
+    },
+    {
+      "call_va": 5825319,
+      "return_pc": 5825324,
+      "entry": 5813856,
+      "bytes": "e834d3ffff",
+      "discovered_owners": [
+        5825216
+      ]
+    },
+    {
+      "call_va": 5825596,
+      "return_pc": 5825601,
+      "entry": 5813856,
+      "bytes": "e81fd2ffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5826478,
+      "return_pc": 5826483,
+      "entry": 5813856,
+      "bytes": "e8adceffff",
+      "discovered_owners": []
+    },
+    {
+      "call_va": 5826986,
+      "return_pc": 5826991,
+      "entry": 5813856,
+      "bytes": "e8b1ccffff",
+      "discovered_owners": [
+        5826608
+      ]
+    },
+    {
+      "call_va": 5827467,
+      "return_pc": 5827472,
+      "entry": 5813856,
+      "bytes": "e8d0caffff",
+      "discovered_owners": [
+        5827264
+      ]
+    },
+    {
+      "call_va": 5827996,
+      "return_pc": 5828001,
+      "entry": 5813856,
+      "bytes": "e8bfc8ffff",
+      "discovered_owners": [
+        5827968
+      ]
+    },
+    {
+      "call_va": 5828280,
+      "return_pc": 5828285,
+      "entry": 5812848,
+      "bytes": "e8b3c3ffff",
+      "discovered_owners": []
+    }
+  ],
+  "sources": {
+    "tools/drawing_census.py": "ddde40146267ab9b7d9b90dbaf185b4397a8c55d0fed9539a974c4db85b3f77a",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "tools/export-drawing-census.py": "59bf8dd81c177b83d2d9c60c9fd38993588980688a6db1087c422e9d4cd3126f"
+  }
+}

@@ -4322,3 +4322,22 @@ Earlier tool runs keep their historical hashes; final 29-guard and retained-jour
 re-indexing results use new `TOOL.drawing-inventory.*-v2-20261010` evidence IDs.
 The [updated coverage summary](coverage/summary-draw01-20261010.md) preserves
 original comparison/replacement statuses and the incomplete census boundaries.
+
+### DRAW-01 complete-session census: expanded callers — 2026-10-10
+
+The authorized end-to-end scope retains all fourteen required single-player
+journeys and all drawing-side effects, alternate/default dispatch, caller
+attribution, failure/retry/recovery and cleanup obligations. Incremental work is
+performed on an isolated branch so concurrent drawing-comparison/scene changes
+are preserved.
+
+`TOOL.drawing-census` exports 909 exact rel32 CALL sites to all 61 registered
+entry identities from the hash-verified original No-CD executable. The reviewed
+supplemental source augments the historical selected-window census and preserves
+empty discovered-owner lists. No nearby-PC or inferred function assignment is
+used. Against the explicitly diagnostic preferred-base interpretation of the
+historical four-return journal, 53 of the 63 unattributed groups have exact
+static matches; ten indirect raster groups still need observed callee identities.
+This does not establish a fresh runtime module base or refresh historical journal
+evidence. Source changes leave older tool results historical until fresh guard
+execution is registered. No original drawing body is suppressed.

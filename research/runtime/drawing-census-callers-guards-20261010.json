@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "Fresh exact-caller and supplemental-accounting refusal guards only. No new original runtime observation, drawing equivalence or scenario closure.",
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-census",
+      "contract_sha256": "73d1e6bfaa935de337143ed8652353cb87a0b648bd827bd553acaf64f1b73de9",
+      "scenarios": {}
+    },
+    {
+      "behavior": "TOOL.drawing-inventory",
+      "contract_sha256": "32bc3ab180fe8b39afef89debf3f20edf73ffc90b38c29ee976c537ceec3e219",
+      "scenarios": {}
+    }
+  ],
+  "sources": {
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-callers-expanded-20261010.json": "c0d173ff5c726fcd22ebd47e9d423f421842cd3cc2fe3c06e836e2af3a6c0bba",
+    "research/runtime/drawing-inventory.json": "a1d7e5c0c64557d6643425ee4260c0b54fbf02b3b9f2c89cc8164f306ccd23b2",
+    "research/runtime/fade-writer-live-comparison-20261010.json": "328af98fcf9fc0ceae485b7e049f266df3aa551ae5adcff423e568798ba7b8d4",
+    "research/runtime/glyph-live-comparison-20261010.json": "616bca9891475d5030cf8451f9e3e7e2c1cfdee718086f8883b66bd5c8a94649",
+    "research/runtime/native-canvas-producers-final-shadow-20261010.json": "1e3bc21bd292998de72e98ea451d604aec0cb1ae460c90ef062ecb4b7dd3a2d0",
+    "research/runtime/native-canvas-producers-live-20261008.json": "f725d774af13ca489b4483cecc03fb3056198eb2acd3876b5c8a738777c20c8a",
+    "research/runtime/native-enabled-movie-startup-20261010.json": "c2512a3f83b587353df654c535297a5cae53d31489b1da4b5d5333cabbc85e21",
+    "research/runtime/native-minimap-interactive-20261010.json": "ee972c4154eb1b96db98207f738c56c9c4e6f7987573492f72330b30494dd3f0",
+    "research/runtime/native-world-raster-batch-prefix16-replacement-v7-20261008.json": "a719e427ef2f6c61617511d647f6789eee3181572835b9ad8ef16381135d2204",
+    "research/runtime/render-path-inventory-static-final.json": "01d30a9574fef5a02d0195ae354e6ca1e1f600cff5c33079788f6f778762777a",
+    "runtime/canvas-writers/bridge.c": "0d4d243f016509767bdc6d89381a57d4b7c75cc1fda7996b0b828f2025044c45",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "tests/test-drawing-census.py": "736a63af12723089ee24d8c853273f3f774ff59c5e8cd52ba834931b1d88389d",
+    "tests/test-drawing-inventory.py": "b099a6e21849ebd5985646e1fbb31f5d1348da437a4d840c228f02f81ec4c1ed",
+    "tools/coverage_audit.py": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+    "tools/coverage_claims.py": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+    "tools/drawing_census.py": "ddde40146267ab9b7d9b90dbaf185b4397a8c55d0fed9539a974c4db85b3f77a",
+    "tools/drawing_inventory.py": "749888348c1cac84e5637a529831154f5c04f393f21863ca9430940a2a1fef1a",
+    "tools/export-drawing-census.py": "59bf8dd81c177b83d2d9c60c9fd38993588980688a6db1087c422e9d4cd3126f",
+    "tools/rendering_coverage.py": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+    "tools/report-drawing-inventory.py": "f227bc6f4c2665e65a8be76d0feb093f131f232e849ed891642076cb38ba081c"
+  },
+  "sources_stable": true,
+  "executions": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-drawing-census.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/test-drawing-inventory.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "...............................\n----------------------------------------------------------------------\nRan 31 tests in 0.202s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tools/report-drawing-inventory.py",
+        "--require-accounted"
+      ],
+      "returncode": 0,
+      "stdout": "# DRAW-01 drawing-route inventory\n\nDRAW-01 is incomplete. This accounting report does not establish rendering equivalence.\n\nRoutes: 100; static windows: 24; producer hook entries: 52; additional interior hooks: 1; unaccounted identities: 0.\n\n| Required scenario | Retained observations | Remaining census |\n| --- | --- | --- |\n| enabled-movies | enabled-intros | Only two intros observed; remaining controls/placement, screen return routes and complete caller census pending. |\n| main-setup-menus | None | Automatic Quick Battle startup samples selected producers; manual menus, alternate controls and all DC/Lock callers need a closed census. |\n| campaign-entry | None | Native campaign smoke proves a bounded host journey, not a complete producer/caller census. |\n| quick-battle-entry | fade-takeover, glyph-shadow, glyph-takeover, producer-shadow4, producer-startup16 | Selected complete producer journals and raw queues exist; unclassified callers/indirect flows and other maps/configurations remain. |\n| active-world | world-batch16 | Only finite startup raster prefixes; sustained active-battle producer/caller census remains pending. |\n| camera-motion | minimap-motion | Finite minimap motion covers four views and pan; broader world/camera producer/caller census remains pending. |\n| creatures-effects | None | Selected effect contracts and startup rasters do not attribute every active battle/effect-to-pixel route. |\n| hud-minimap-tooltips | None | Selected startup HUD/minimap counts exist; complete tooltip/HUD updates and semantic caller attribution remain pending. |\n| cursor-interaction | None | Cursor assets/startup image writers are known; interactive cursor/picking producer and side-effect census remains pending. |\n| pause-preferences | None | Separate menu/preferences contracts exist; drawing routes during pause/display changes need a closed census. |\n| save-load | None | Drawing-route/caller traces across save/load remain pending. |\n| map-transitions | None | Startup loading is observed; later map/buffer transitions need a closed producer/lifecycle census. |\n| battle-results | None | Result-screen drawing route/caller census remains pending. |\n| shutdown | None | Separate lifecycle tests exist; original render cleanup/caller/borrowed-access census remains pending. |\n\n## Unaccounted routes\n\nNone in the reviewed inputs. Unknown paths outside those inputs remain possible.\n\n## Unresolved dispatch\n\n- RI.queue-draw-00501184: Selected first consumer path links recovered from static calls and bounded effective raster capture. Other values, default branches, alternate tables and complete consumer state/readback semantics remain unresolved.\n- RI.queue-draw-00501210: Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.\n- RI.queue-draw-0050129c: Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.\n- world-complete-raster-admission-20261008: Build-pinned13-entry observed caller admission; unknown caller/mode and unobserved routes retained. No complete dispatcher recovery.\n\n## Limitations\n\n- Activity counters belong to individual bounded cohorts; do not sum them into runtime frequencies.\n- Aggregate operations do not identify every wrapper entry or caller.\n- Static callers are preferred-build addresses; runtime pointers are not persistent identities.\n- This accounting report neither reruns original drawing nor renews historical source fingerprints.\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tools/report-drawing-inventory.py",
+        "--require-complete"
+      ],
+      "returncode": 1,
+      "stdout": "# DRAW-01 drawing-route inventory\n\nDRAW-01 is incomplete. This accounting report does not establish rendering equivalence.\n\nRoutes: 100; static windows: 24; producer hook entries: 52; additional interior hooks: 1; unaccounted identities: 0.\n\n| Required scenario | Retained observations | Remaining census |\n| --- | --- | --- |\n| enabled-movies | enabled-intros | Only two intros observed; remaining controls/placement, screen return routes and complete caller census pending. |\n| main-setup-menus | None | Automatic Quick Battle startup samples selected producers; manual menus, alternate controls and all DC/Lock callers need a closed census. |\n| campaign-entry | None | Native campaign smoke proves a bounded host journey, not a complete producer/caller census. |\n| quick-battle-entry | fade-takeover, glyph-shadow, glyph-takeover, producer-shadow4, producer-startup16 | Selected complete producer journals and raw queues exist; unclassified callers/indirect flows and other maps/configurations remain. |\n| active-world | world-batch16 | Only finite startup raster prefixes; sustained active-battle producer/caller census remains pending. |\n| camera-motion | minimap-motion | Finite minimap motion covers four views and pan; broader world/camera producer/caller census remains pending. |\n| creatures-effects | None | Selected effect contracts and startup rasters do not attribute every active battle/effect-to-pixel route. |\n| hud-minimap-tooltips | None | Selected startup HUD/minimap counts exist; complete tooltip/HUD updates and semantic caller attribution remain pending. |\n| cursor-interaction | None | Cursor assets/startup image writers are known; interactive cursor/picking producer and side-effect census remains pending. |\n| pause-preferences | None | Separate menu/preferences contracts exist; drawing routes during pause/display changes need a closed census. |\n| save-load | None | Drawing-route/caller traces across save/load remain pending. |\n| map-transitions | None | Startup loading is observed; later map/buffer transitions need a closed producer/lifecycle census. |\n| battle-results | None | Result-screen drawing route/caller census remains pending. |\n| shutdown | None | Separate lifecycle tests exist; original render cleanup/caller/borrowed-access census remains pending. |\n\n## Unaccounted routes\n\nNone in the reviewed inputs. Unknown paths outside those inputs remain possible.\n\n## Unresolved dispatch\n\n- RI.queue-draw-00501184: Selected first consumer path links recovered from static calls and bounded effective raster capture. Other values, default branches, alternate tables and complete consumer state/readback semantics remain unresolved.\n- RI.queue-draw-00501210: Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.\n- RI.queue-draw-0050129c: Observed table address only; no recovered values, backend semantics or default-branch coverage. Candidate flows preserved in binary inventory.\n- world-complete-raster-admission-20261008: Build-pinned13-entry observed caller admission; unknown caller/mode and unobserved routes retained. No complete dispatcher recovery.\n\n## Limitations\n\n- Activity counters belong to individual bounded cohorts; do not sum them into runtime frequencies.\n- Aggregate operations do not identify every wrapper entry or caller.\n- Static callers are preferred-build addresses; runtime pointers are not persistent identities.\n- This accounting report neither reruns original drawing nor renews historical source fingerprints.\n\n",
+      "stderr": ""
+    }
+  ]
+}

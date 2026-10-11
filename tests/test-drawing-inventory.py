@@ -100,6 +100,34 @@ class DrawingInventoryTest(unittest.TestCase):
         self.assertEqual(r['unaccounted'][0]['identity'], '0x401100')
         self.assertEqual(r['unaccounted'][0]['activity'], 'instrumented_only')
 
+    def supplemental(self):
+        self.catalog['caller_sources'] = [{'evidence': 'extra'}]
+        self.register['evidence'].append({'id': 'extra', 'record': 'extra.json', 'kind': 'static',
+                                         'assertions': [{'pointer': '/input_unchanged', 'equals': True}]})
+        record = {'schema': 1, 'source_sha256': self.original, 'image_base': 0x400000, 'input_unchanged': True,
+                  'callers': [{'call_va': 0x402000, 'return_pc': 0x402005, 'entry': 0x401000,
+                               'bytes': 'e8fbefffff', 'discovered_owners': []}]}
+        self.write_record('extra', record)
+        return record
+
+    def test_supplemental_exact_caller_preserves_unassigned_owner(self):
+        self.supplemental()
+        self.assertEqual(self.report()['static_caller_returns']['0x402005']['entry'], 0x401000)
+        self.assertEqual(self.report()['static_caller_returns']['0x402005']['discovered_owners'], [])
+        self.assertFalse(self.report()['draw01_complete'])
+
+    def test_changed_supplemental_build_call_and_evidence_kind_refuse(self):
+        record = self.supplemental()
+        record['source_sha256'] = 'other'
+        self.write_record('extra', record)
+        with self.assertRaisesRegex(ValueError, 'build/schema'): self.report()
+        record['source_sha256'] = self.original
+        record['callers'][0]['bytes'] = 'e8fcefffff'
+        self.write_record('extra', record)
+        with self.assertRaisesRegex(ValueError, 'disagrees'): self.report()
+        self.register['evidence'][-1]['kind'] = 'live_observation'
+        with self.assertRaisesRegex(ValueError, 'requires static'): self.report()
+
     def test_hook_parser_refuses_changed_shape_duplicate_and_missing_tag(self):
         for text in ('#define HOOKS 1\nunknown_initializer', '#define HOOKS 2\n{0x401000,5,0,{0x55},producer_enter_0,-1}\n{0x401000,5,0,{0x55},producer_enter_1,-1}', '#define HOOKS 1\n{0x401000,5,0,{0x55},producer_enter_9,-1}'):
             with self.subTest(text=text), self.assertRaises(ValueError):
