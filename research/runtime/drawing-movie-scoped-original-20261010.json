@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources": {
+    "tools/test-drawing-movie.py": "bc1a8f353eb8499dc75aef9447a4ce119c0f1f0ad89e8d9af84cf9185288bc8f",
+    "tests/drawing-movie-reference.cpp": "9a2a69a81f41890adeb67f0abf7ffbc25ae194b51b6780260c74c1595e8c7d91",
+    "tests/sprite-binary-reference.cpp": "4b9676cade645b0f24b56fc22dff933a99fed7b0dd9daa7306c2eaffaefeea19",
+    "tools/drawing_census.py": "f4a4977e4b7ce633ffad69608e38cec0fed7ff8f6b391bba71e576d14c4ba6a0",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "tests/live-render-route-probe.cpp": "f080770532109613ff30e00877213e73531bb85342512b9c89c7e548c9b7deba",
+    "tools/test-live-render-routes.py": "6368a42598e5efccd3e8d142d4e13605217a128f89a0f793aee3df35737028d5"
+  },
+  "sources_stable": true,
+  "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "input_unchanged": true,
+  "original_movie_instructions_unchanged": true,
+  "original_cases": 1760,
+  "body_addresses": [
+    4626144,
+    4626480,
+    4626944
+  ],
+  "external_bindings": {
+    "logger": 5884472,
+    "creation_iat": 6050584,
+    "wide_conversion_iat": 6049928,
+    "key_iat": 6050308
+  },
+  "artifacts": {
+    "working/tests/drawing-movie/run-od6lq9tr/cases.jsonl": {
+      "sha256": "15f644fd96e2307f01b2f3c3e30549e4270722d48028af24a59b8b1c55fbf47f",
+      "bytes": 408912
+    },
+    "working/tests/drawing-movie/run-od6lq9tr/reference": {
+      "sha256": "049633881bbacd683b0406432e3f579c49e8ce866c7a2e2c759d1f9a242c8ec4",
+      "bytes": 41956
+    }
+  },
+  "scope": "Unchanged original stream setup/sample/wrapper: selected negative HRESULT at each of ten stages, previous skip0/1, signed controls0/1/-1/127/-128, Escape0/1, Update/Blt E_FAIL0/1 and ordinary/wrapping positions. Check exact external arguments, short-circuit, placement, metadata, return policy, reference balance and original release order. EDX supplies distinct synthetic DirectDraw device; first stack word supplies destination surface. Mock APIs/COM only: original codecs/audio/pixels, Windows implementation, conversion failures, positive HRESULT variants, arbitrary COM outputs, exceptions, backend internal retention and full live playback excluded.",
+  "claims": [
+    {
+      "behavior": "RI.movies",
+      "contract_sha256": "60448ca4fb21659f0999f52406a1fa55416939f4e6b734c455f84c438319488b",
+      "scenarios": {
+        "original-drawing-movie-contract-20261010": "f9abdab4618c323a0d68259374590344230061035875cdd95d059031ac7d856b"
+      }
+    },
+    {
+      "behavior": "TOOL.drawing-movie-reference",
+      "contract_sha256": "11c4a81628200654dc2ae09c873b1bf5cc00943306aad9cebafed7a203e2becd",
+      "scenarios": {
+        "original-drawing-movie-contract-20261010": "f9abdab4618c323a0d68259374590344230061035875cdd95d059031ac7d856b"
+      }
+    }
+  ]
+}

@@ -5,10 +5,11 @@ API u32 WIN GetCurrentThreadId(void);
 static HANDLE publication_file,action_file;
 static u32 action_records;
 static u32 publication_enabled,publication_attempts,publication_frames,publication_drops,publication_terminal,publication_bytes;
+#include "drawing_physical.h"
 static int publication_install(void){
  char flag[2];SetLastError(0);u32 n=GetEnvironmentVariableA("MNM_DRAW02_PUBLICATION",flag,2);
  if(!n)return GetLastError()==203;
- if(n!=1||flag[0]!='1'||limit>16||bypass_limit||raster_first)return 0;
+ if(n!=1||flag[0]!='1'||limit>16||bypass_limit||raster_first||!physical_init())return 0;
  const u32 sites[2]={0x58c03a,0x58c05a};
  const u8 expected[2][5]={{0xff,0x52,0x14,0xeb,0x1e},{0xff,0x52,0x1c,0x8b,0xf0}};
  void(*entries[2])(void)={drawing_publication_blt,drawing_publication_fast};
@@ -62,6 +63,7 @@ void drawing_publication_observe(u32* registers,u32 kind){
  }
  r[20]=publication_drops;r[21]=publication_frames;r[22]=GetCurrentThreadId();r[23]=action_records;
  if(publication_attempts>65536||!write(publication_file,r,96)){canvas_producers_close();ExitProcess(95);}
+ physical_fence(r);
  SetLastError(error);
 }
 

@@ -1,0 +1,236 @@
+{
+  "schema": 1,
+  "scope": "Real separate CALL stubs/observer/dynamic splices and binding writer/decoder round trip against10synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.",
+  "success": true,
+  "sources": {
+    "protocols/include/mnm/drawing_api_bindings_v1.h": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+    "protocols/include/mnm/drawing_api_journal_v1.h": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/drawing-api-splices-accounted-static-20261011.json": "2d4de7bb63316866d656a44f3a80b82123c76d82a1836aebe11f2fed23af0da6",
+    "runtime/drawing-api-census/entry.S": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+    "runtime/drawing-api-census/observer.c": "54b577d61f11ca09d90516eaa144231ade326c2c342e4c013bc6b5d9c9d0483e",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tests/drawing-api-census-abi.c": "1b02887ceee2edbc1175ece27482749b421481d1d59180d2167b1fa7dcbfd47c",
+    "tests/test-drawing-api-bindings.py": "c0239acab67be7adc8806b2be6cb1607537dfebbb75860d8b17df9f47639bede",
+    "tools/build-drawing-api-census.py": "eb83b827e5d50081f01d77d841613a00589287c16d13d88c7fd12853c24e1325",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/drawing_api_bindings.py": "caf11933bf14dcc515bcfc212915cdde2681c1d67d9b1f1033f6c4c4744b5144",
+    "tools/drawing_api_journal.py": "c82406744325c3c4cee46d73bf278b330de20d91ed88e46756c02160bd5c8023",
+    "tools/drawing_api_sites.py": "5cab6d71de315872411a87aa3457f08069ebeed71f8f52efdbee6127ccd7b801",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/test-drawing-api-census-abi.py": "c53a697cc76a5e18ef8e9142ee5f6fb7fe6d18b231c1c7ba42a6f28dff9b8738"
+  },
+  "sources_stable": true,
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-api-observer",
+      "contract_sha256": "82ba9c3ecbafa83703fcd369b21c3f60137d302639657accc28b30e08d634c11",
+      "scenarios": {
+        "drawing-api-observer-synthetic-abi-20261011": "6209edb77f5d94d601c0cea96467f57f43fd7ac468f79eeb6d5539a8aa566841"
+      }
+    },
+    {
+      "behavior": "TOOL.drawing-api-bindings",
+      "contract_sha256": "23d06ba4c4feb1dbfe1640fd8f188be880108a22b430dd58a038aaa59a87413a",
+      "scenarios": {
+        "drawing-api-observer-synthetic-abi-20261011": "6209edb77f5d94d601c0cea96467f57f43fd7ac468f79eeb6d5539a8aa566841"
+      }
+    }
+  ],
+  "callee_pop_bytes": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24
+  ],
+  "call_modes": [
+    "absolute_memory",
+    "register",
+    "register_memory",
+    "direct_relative"
+  ],
+  "synthetic_bodies": 10,
+  "register_flags_x87_sse_last_error_preserved": true,
+  "pre_call_stack_and_target_checked": true,
+  "negative_eax_actual_cleanup_checked": true,
+  "short_conditional_remainder_executed": true,
+  "frame_exhaustion_phase_record_cap_io_failure_forward": true,
+  "same_thread_lifo_and_mismatch_loss_checked": true,
+  "exact_binding_round_trip": true,
+  "bindings": {
+    "schema": 1,
+    "scope": "Prepared exact per-run allocations/module/physical CALL identities only; no installed-hook success or inferred original/logical/API/COM ownership.",
+    "integrity": true,
+    "sha256": "812e12694da6714796ac67696cc7c758cbfca27b77180b46434f83825a003322",
+    "original_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+    "modules": {
+      "api": {
+        "base": 4194304,
+        "size": 172032
+      },
+      "core": {
+        "base": 0,
+        "size": 0
+      },
+      "menu": {
+        "base": 0,
+        "size": 0
+      }
+    },
+    "core_leave": 0,
+    "hooks": [
+      {
+        "tag": 0,
+        "site": 3801091,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 3866624,
+        "trampoline_size": 16,
+        "remainder": 3866635,
+        "before_stub": 4209884,
+        "after_stub": 4209929,
+        "physical_call_return": 3866630,
+        "original_call_return": 3801097
+      },
+      {
+        "tag": 1,
+        "site": 3932166,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 3997696,
+        "trampoline_size": 16,
+        "remainder": 3997707,
+        "before_stub": 4209974,
+        "after_stub": 4210019,
+        "physical_call_return": 3997702,
+        "original_call_return": 3932172
+      },
+      {
+        "tag": 2,
+        "site": 4063241,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 4128768,
+        "trampoline_size": 16,
+        "remainder": 4128779,
+        "before_stub": 4210064,
+        "after_stub": 4210109,
+        "physical_call_return": 4128774,
+        "original_call_return": 4063247
+      },
+      {
+        "tag": 3,
+        "site": 8323084,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 8388608,
+        "trampoline_size": 16,
+        "remainder": 8388619,
+        "before_stub": 4210154,
+        "after_stub": 4210199,
+        "physical_call_return": 8388614,
+        "original_call_return": 8323090
+      },
+      {
+        "tag": 4,
+        "site": 8454159,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 8519680,
+        "trampoline_size": 16,
+        "remainder": 8519691,
+        "before_stub": 4210244,
+        "after_stub": 4210289,
+        "physical_call_return": 8519686,
+        "original_call_return": 8454165
+      },
+      {
+        "tag": 5,
+        "site": 8585234,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 8650752,
+        "trampoline_size": 16,
+        "remainder": 8650763,
+        "before_stub": 4210334,
+        "after_stub": 4210379,
+        "physical_call_return": 8650758,
+        "original_call_return": 8585240
+      },
+      {
+        "tag": 6,
+        "site": 8716309,
+        "length": 6,
+        "call_length": 6,
+        "trampoline": 8781824,
+        "trampoline_size": 16,
+        "remainder": 8781835,
+        "before_stub": 4210424,
+        "after_stub": 4210469,
+        "physical_call_return": 8781830,
+        "original_call_return": 8716315
+      },
+      {
+        "tag": 7,
+        "site": 8847374,
+        "length": 6,
+        "call_length": 2,
+        "trampoline": 8912896,
+        "trampoline_size": 20,
+        "remainder": 8912903,
+        "before_stub": 4210514,
+        "after_stub": 4210559,
+        "physical_call_return": 8912898,
+        "original_call_return": 8847376
+      },
+      {
+        "tag": 8,
+        "site": 8978446,
+        "length": 5,
+        "call_length": 2,
+        "trampoline": 9043968,
+        "trampoline_size": 15,
+        "remainder": 9043975,
+        "before_stub": 4210604,
+        "after_stub": 4210649,
+        "physical_call_return": 9043970,
+        "original_call_return": 8978448
+      },
+      {
+        "tag": 9,
+        "site": 9109513,
+        "length": 5,
+        "call_length": 5,
+        "trampoline": 9175040,
+        "trampoline_size": 15,
+        "remainder": 9175050,
+        "before_stub": 4210694,
+        "after_stub": 4210739,
+        "physical_call_return": 9175045,
+        "original_call_return": 9109518
+      }
+    ]
+  },
+  "original_renderer_executed": false,
+  "original_splice_manifest_executed": false,
+  "binaries": {
+    "fixture.exe": "85b33a693682f9b0a5c18f930f0b8ac0747df111abd4e692c6846d93667e8cb4",
+    "part0.obj": "ba96e432f85a36020888bc7f864b1d15a3dffa006085c3a969db1d58c1bf8882",
+    "part1.obj": "3d0c824c43e4ba34f7503ff8cb86c3f5389b9e1e5edc3ae79a100aa9a570b938",
+    "part2.obj": "ef32c1b2ae6fa94a882aee5f7e1743be190173a30d1318917e93c59007c80df5"
+  },
+  "logs": {
+    "compile0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "forwarding.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "imports.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prefix-copy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stop-prefix.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

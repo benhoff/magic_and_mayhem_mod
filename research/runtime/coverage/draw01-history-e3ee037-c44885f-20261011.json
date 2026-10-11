@@ -1,0 +1,827 @@
+{
+  "schema": 1,
+  "reviewed_commit_range": "e3ee037cc0eeea6aee492eaee5d099f3062b69cd..c44885fe1f3c6092c05d3876026e1bad1b51417a",
+  "scope": "Committed history only; exact parent/current hashes, affected behavior links and contract receipts reviewed separately from current uncommitted work. No retrospective gate pass or new validation.",
+  "files": [
+    {
+      "path": "protocols/include/mnm/drawing_api_bindings_v1.h",
+      "before_sha256": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+      "after_sha256": "1c4006a65ed02e03f33f4f12b551c4760beeb3ae117bf18b02b0678304bb280c",
+      "behaviors": [
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer"
+      ],
+      "role": "protocol",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-api-menu-accounting-20261011",
+        "draw01-api-menu-current-observation-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "protocols/include/mnm/drawing_api_journal_v2.h",
+      "before_sha256": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+      "after_sha256": "fbf807573fd4787f5922124046c5cca1d4633a20b1c02840af6f0c382df32877",
+      "behaviors": [
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer"
+      ],
+      "role": "protocol",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-surface-api-exact-accounting-20261011",
+        "draw01-surface-api-native-validation-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "protocols/include/mnm/drawing_census_bindings_v1.h",
+      "before_sha256": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+      "after_sha256": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "TOOL.drawing-core-bindings",
+        "TOOL.drawing-core-callers",
+        "TOOL.drawing-cpu-crosswalk"
+      ],
+      "role": "protocol",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "protocols/include/mnm/drawing_census_v1.h",
+      "before_sha256": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+      "after_sha256": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "RI.movies",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-core-bindings",
+        "TOOL.drawing-core-callers",
+        "TOOL.drawing-cpu-crosswalk"
+      ],
+      "role": "protocol",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-original-movie-site-accounting-20261010",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-api-menu-current-observation-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "7f83e86fd46a70ff0e078deffacf651ea36df5a0638ba7dd61963882a802884d",
+      "after_sha256": "be7e9b9411de2a9c548f19cc220a617481d35872459d444604729faa6cc1ab22",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-02addc6-e3ee037-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "79065fff3389673b91fb5b29dcb0628ec8b68dcaf916710ddd8bcdafb45cabf9",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "746a6361d81dcd5aec3687db56439f133525a117d488b3d36e35158477235a60",
+      "after_sha256": "9643bf39b5c86ba8887923fcc982bc190062fa7b1cc7e9e482aa426418cf131c",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-cpu-crosswalk-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "30de2292caf9736afd2b988fc23a2f241f493c52e99fea6e5619f8de698c0a53",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "526b0521bbd72c70f7415f88016a329c2bf05a849b5ef3877f03f51d117e98ed",
+      "after_sha256": "e6673d86c4224c1a9ece3240c36c90cab2b93e214d6c928cc519e022c6419e60",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-inventory.md",
+      "before_sha256": "10acc5736e15b6bab848e366d59edfa5fb3d548c761a33943f4a24c74987375c",
+      "after_sha256": "aebbb3f552c2be474a5483d0475c3abe291c918ea3a73754348dd64b939cd9c8",
+      "behaviors": [
+        "DRAW.canvas-lock-recovery",
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.queue-client-state",
+        "DRAW.queue-dispatch",
+        "DRAW.queue-render-postlude",
+        "DRAW.raster-pointer-assignments",
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-census",
+        "TOOL.drawing-core-bindings",
+        "TOOL.drawing-core-callers",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer",
+        "TOOL.drawing-cpu-sites",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-cpu-crosswalk-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "18fcf45a7e5832f3e73cc1d238a684e654f017fa284d1c2947a047b66ed1885c",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-cpu-crosswalk-original-replay-path-corrected-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "28fa8240aeb954ee4694b01575e6c044fcc3efba4c18996f8a53cd0cb598ba50",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tests/test-drawing-cpu-crosswalk.py",
+      "before_sha256": null,
+      "after_sha256": "b04cb76131b031cbc7554f4102e7c2ce3e28de0ae7a782ed9bbb5dd6b3ddaf95",
+      "behaviors": [
+        "TOOL.drawing-cpu-crosswalk"
+      ],
+      "role": "test",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_bindings.py",
+      "before_sha256": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+      "after_sha256": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_cohorts.py",
+      "before_sha256": "5b7c865d68fff9986ec66410bbb77daae9d7d98edcaf0da92a82d56e4be70196",
+      "after_sha256": "5b7c865d68fff9986ec66410bbb77daae9d7d98edcaf0da92a82d56e4be70196",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "TOOL.drawing-api-cohorts",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_contracts.py",
+      "before_sha256": "d3df6ef14428054ae83d803345db5ce26f2b42ee1d46aa28ddc07f4a1bd23664",
+      "after_sha256": "d3df6ef14428054ae83d803345db5ce26f2b42ee1d46aa28ddc07f4a1bd23664",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "DRAW.graphics-api-surface-client-layouts",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_details.py",
+      "before_sha256": "0e77554ce71fcc66049c3f06326356325765acb99e2cb0fafce711cc4a380169",
+      "after_sha256": "0e77554ce71fcc66049c3f06326356325765acb99e2cb0fafce711cc4a380169",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_journal.py",
+      "before_sha256": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+      "after_sha256": "dbe7e7592a91dbeac99829d16c29f76d346b0fc44fa2b50814abf3c753232f31",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer",
+        "TOOL.drawing-cpu-sites"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-surface-api-exact-accounting-20261011",
+        "draw01-surface-api-native-validation-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_pairs.py",
+      "before_sha256": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+      "after_sha256": "6931b3d53a1eac76864e79392ee3c9882a3cc477eb6dcd354ec9fe0b5b22fb98",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer",
+        "TOOL.drawing-cpu-sites"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-surface-api-exact-accounting-20261011",
+        "draw01-surface-api-native-validation-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_sites.py",
+      "before_sha256": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+      "after_sha256": "8149d18a6745b4adbd6aed47ae3403f15c987797914825cdad0157128f02814a",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-resources",
+        "TOOL.drawing-api-sites",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer",
+        "TOOL.drawing-cpu-sites",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-api-inventory-exact-accounting-20261011",
+        "draw01-api-inventory-native-validation-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_census.py",
+      "before_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "after_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "behaviors": [
+        "DRAW.canvas-lock-recovery",
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.graphics-api-boundaries",
+        "DRAW.queue-client-state",
+        "DRAW.queue-dispatch",
+        "DRAW.queue-render-postlude",
+        "DRAW.raster-pointer-assignments",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "RI.movies",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-sites",
+        "TOOL.drawing-census",
+        "TOOL.drawing-core-bindings",
+        "TOOL.drawing-core-callers",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer",
+        "TOOL.drawing-cpu-sites",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory",
+        "TOOL.drawing-movie-reference"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-api-menu-current-observation-20261011",
+        "draw01-api-v2-exact-accounting-20261011",
+        "draw01-api-v2-native-validation-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-fixture-validation-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-lock-recovery-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_census_bindings.py",
+      "before_sha256": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+      "after_sha256": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "TOOL.drawing-core-bindings",
+        "TOOL.drawing-core-callers",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_census_callers.py",
+      "before_sha256": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52",
+      "after_sha256": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52",
+      "behaviors": [
+        "TOOL.drawing-core-callers",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_cpu_crosswalk.py",
+      "before_sha256": null,
+      "after_sha256": "2ad32ceee0b64f8f5d20f29069a023db3d1c08d275be870f86c5962405900d08",
+      "behaviors": [
+        "TOOL.drawing-cpu-crosswalk"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_cpu_sites.py",
+      "before_sha256": "3e480307240f93eabc190b63f04cdb3b4f8ccfdbcc851edf357a5bd5bc946178",
+      "after_sha256": "3e480307240f93eabc190b63f04cdb3b4f8ccfdbcc851edf357a5bd5bc946178",
+      "behaviors": [
+        "DRAW.raster-pointer-assignments",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-sites"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/review-drawing-cpu-crosswalk.py",
+      "before_sha256": null,
+      "after_sha256": "02faaec5ec1583aafbc8cf26cb4984cf5464e67593e1e8a5ecceef72410e6fd9",
+      "behaviors": [
+        "TOOL.drawing-cpu-crosswalk"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.canvas-lock-recovery",
+      "before_sha256": "3836128369f338a285f83c45816fdc80d2e11c106d5c5e76c07c3bbf65cebc29",
+      "after_sha256": "9e3a43987496def991e09cbf94a67c05ed1e335ebfde2bd6bd990524d764f2f6",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "f72262dfbbc4cbe829b5389c5c0d84037a3c2d8f7dfddb158fac593d0e342e57",
+      "after_sha256": "2ac7b8f52c340fb8d507c4cac89857f79ff2892c4c5ba60a4791d5c465b9f52f",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "053bb861f3868c58f18a0e41f98ed74146df2914f1c8b10eea57a54d6d4247dc",
+      "after_sha256": "73035d03f817488c88e43dbf0b24142575d92ba3a8a5863ce72d69d3c776886f",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-boundaries",
+      "before_sha256": "684b4c313fe166aa7d36d34cef1a51758c165496944400745979088a45b0c2f3",
+      "after_sha256": "684b4c313fe166aa7d36d34cef1a51758c165496944400745979088a45b0c2f3",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-surface-client-layouts",
+      "before_sha256": "9859a987edfaa3bf80d0282db702247cc05357e9ff8d00a75de815bc982fcf84",
+      "after_sha256": "9859a987edfaa3bf80d0282db702247cc05357e9ff8d00a75de815bc982fcf84",
+      "exact_receipts": [
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-client-state",
+      "before_sha256": "71ded09b0f381057b87e2030f38dfcae4208141724456a3b4dbf14c530c146df",
+      "after_sha256": "55eb84ad434a6b9fd11ad791a2477dcf9f4337fa793587e93c6266eae9b30fe8",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-dispatch",
+      "before_sha256": "89050888382aac5b1a3a6cbb45cfa75662488a3b79d80d0b775ed43b7a26293a",
+      "after_sha256": "1ab29d233038cbf9825d7960b091ccf8c76e7c08312b06c44d2e7279afcb617c",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-render-postlude",
+      "before_sha256": "eb0aa68bd6d9dfb294d81579178dea43fba1218e89c7f5add14e496e92221076",
+      "after_sha256": "35b36d688178c003fbb44ebe387a411db88bf57a55d0ed447b4b43a6208d3755",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.raster-pointer-assignments",
+      "before_sha256": "36974176ca0382277c1194dbbfbd72d35fe1ac487754a461ac962c9521624a54",
+      "after_sha256": "c18a2873b801cc88111a5b3e46d92dd3da9974d2f645cf475d2e81f87bc08d1b",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.surface-hosting",
+      "before_sha256": "c771abd1a538cf608481a00a3640dc4797e3dfcd08365aed6d01941ecc2a45f4",
+      "after_sha256": "6db3872814979b94d3224a643b9fb29e0e6ad187b30d2a62a006990d94cbc92a",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.unassigned-word-window",
+      "before_sha256": "b9fb93bc2c498a80ac7b93831428d7a016db14865ddd8da4fcbeae32ca6d5d88",
+      "after_sha256": "db123f165a6006decff54b6b3709463e9f626c6717a6df0a077474f874995e42",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.unattributed-caller",
+      "before_sha256": "f8eee0d6d0b6865b2ce1f72d9ad7b8618ed186aea345f8b2cc9e3f6c2d7fbc0c",
+      "after_sha256": "e07e72fedefd07080220cc2218834a5594d96dae783435d696355c0ce05798e0",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "before_sha256": "e2e45b83278a8ba7807696798cc6458f47864572bb93ed659f2d150a29123237",
+      "after_sha256": "2846df47e09632f7e7c0d7f8b0dd8f8d6192d75cd9a9ddc2be6b7fca1c36f0cc",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "before_sha256": "8fdeb737e13ed00a43b9b1bdbc4a19261c8f12b22f0176b61e1a15c356f6491a",
+      "after_sha256": "3c9ca26ef52d4238b8257a52a94ce2a938b052a83ce63425e6a3a544a7be0e8a",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "before_sha256": "04d49a1f3124ddd8be5cf27d67e903a7b8ef4d61cd484ef2dc0def1cea74a55f",
+      "after_sha256": "3c8e69ad7e8086b05e089926d2e387a86625f2803a51092272105b521a2ddc65",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RI.movies",
+      "before_sha256": "5474bb29cc075cf233db0d324edb95757bb7c6b2600f99bccbf6669398919565",
+      "after_sha256": "5474bb29cc075cf233db0d324edb95757bb7c6b2600f99bccbf6669398919565",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "ffa98a279d049090182620504df56d53d1235f7de0453bcb77e8185fd75a4078",
+      "after_sha256": "af63e3d6f68b1ebaaa276baab556a0b0495e87170d398a79f6bda92c11d3479c",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-bindings",
+      "before_sha256": "1b48a1a9b9c20f245c869bd9a432f355ae8459790811c5cfa3c5bb5108ed0ecb",
+      "after_sha256": "1b48a1a9b9c20f245c869bd9a432f355ae8459790811c5cfa3c5bb5108ed0ecb",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-cohorts",
+      "before_sha256": "9d74f9b8134b3c9bbd9769d669e9a36dd3eabf923c569510d807ccd0caea8d5f",
+      "after_sha256": "9d74f9b8134b3c9bbd9769d669e9a36dd3eabf923c569510d807ccd0caea8d5f",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-details",
+      "before_sha256": "d0d0a762425f2b0f071c44706254eb1c110e8090c351a4e30965b7364b22c57c",
+      "after_sha256": "d0d0a762425f2b0f071c44706254eb1c110e8090c351a4e30965b7364b22c57c",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journal",
+      "before_sha256": "a5eb1c441966417f8d1fcc632756ff7ee575fad01f77e02af703b18e3b7c369a",
+      "after_sha256": "a5eb1c441966417f8d1fcc632756ff7ee575fad01f77e02af703b18e3b7c369a",
+      "exact_receipts": [
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journey",
+      "before_sha256": "cd0c2b845e15ea8d4b5bd8a7785d60e420ebeeb7ca8fb285bffe787e903b1250",
+      "after_sha256": "cd0c2b845e15ea8d4b5bd8a7785d60e420ebeeb7ca8fb285bffe787e903b1250",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-observer",
+      "before_sha256": "9790e68037256a3639dd7cc20ed9e7a058bf9410a5609c8d75dcee7c185a0671",
+      "after_sha256": "9790e68037256a3639dd7cc20ed9e7a058bf9410a5609c8d75dcee7c185a0671",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-resources",
+      "before_sha256": "23f058b1eb1a7b70b89a1295d28d44f66a5016b3bef60a4c7f8d594c003e26fd",
+      "after_sha256": "23f058b1eb1a7b70b89a1295d28d44f66a5016b3bef60a4c7f8d594c003e26fd",
+      "exact_receipts": [
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-sites",
+      "before_sha256": "4683e11d46d4fe823779fe678afcfabcf3812a70d9adacef2f9b7cbca24c06c2",
+      "after_sha256": "4683e11d46d4fe823779fe678afcfabcf3812a70d9adacef2f9b7cbca24c06c2",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-census",
+      "before_sha256": "9ea5c91758fcc451011d8922f0340d6a5e160aa6867fb21d28cb591b422156bf",
+      "after_sha256": "8ae2457b95a587a82ed43af52a23214e6c151b4e002abcb857d9a7dc99cfdd2a",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-core-bindings",
+      "before_sha256": "640ab845b4b33568448d0cefc6e48be2977f347c6f5e56c58f0e21d76d508c80",
+      "after_sha256": "c689b8e1f6c5aa783b80ccb362dc5ac5539d9c674fe029cb465cb6d5652694e7",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-core-callers",
+      "before_sha256": "2297e1cb110c2ca0b442af4bb631b02b9306ce9e8b465a6b27cec0d521b56097",
+      "after_sha256": "c60e6e8ef3bdb6ced1b47f3587dc8f7bd853e40d48738d16824806980fc01db2",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-crosswalk",
+      "before_sha256": null,
+      "after_sha256": "25fe90f5cbaf69df63b5d7a2f3c8cb2167492d47d9bf0ea47a2f806cae2b1f2d",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-observer",
+      "before_sha256": "1bf754ed4c50340438a0f9c812ec8a1c55dc258d1bfdca5fad6cbe4a82306fa0",
+      "after_sha256": "06d05cd123a44e9f88e43992ca19589887204b88090ef5419843b588a18cdb67",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-sites",
+      "before_sha256": "f4974a6cc641f50dff270dcb1db7621a1729a571b7897240f2765ff0974572ae",
+      "after_sha256": "f57d52b7e3c801adb231fb5e893a5ac77daf54d369e565fc8e9074084a68616f",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-dispatch-slices",
+      "before_sha256": "1d6bea903a3abfa0a51d74d2a5dfe6612dc792424809bdd36dc984cf2a65c8e5",
+      "after_sha256": "d88fd9f7c2223a44b24730dc5ac9ec2ee54e2bdc90da0788415b22f8c4daef8b",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "before_sha256": "b9250cf6054f99c711a6c5caca965c0d57e26b3aaab9cfcd5e23140b6df8dcc5",
+      "after_sha256": "fc89c69ebea98836f861edcfb80d7db0e5cf74c3f6911c09f468a973fdd470d9",
+      "exact_receipts": [
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-movie-reference",
+      "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-api-v2-exact-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-lock-recovery-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "counts": {
+    "files": 26,
+    "behaviors": 34,
+    "missing_exact_receipts": 0
+  }
+}

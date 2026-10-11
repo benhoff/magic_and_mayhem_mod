@@ -444,7 +444,9 @@ def main():
                     report['sources'][source.relative_to(ROOT).as_posix()]=sha(source)
         report['sources']['tools/build-scene-observer.py']=sha(ROOT/'tools/build-scene-observer.py')
     env = clean_environment(out)
-    if args.resident_world:env['MNM_PUBLIC_RESIDENT_WORLD']='1'
+    if args.resident_world:
+        env['MNM_PUBLIC_RESIDENT_WORLD']='1'
+        env['MNM_RESIDENT_POLL_TIMING']='1'
     if args.legacy_directdraw:env['MNM_NATIVE_DRAW']='0'
     elif explicit_native_draw:env['MNM_NATIVE_DRAW']='1'
     shell = server = monitor = None

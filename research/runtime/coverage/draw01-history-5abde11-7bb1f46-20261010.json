@@ -1,0 +1,271 @@
+{
+  "schema": 1,
+  "reviewed_commit_range": "5abde1183250f318c0c0f811ee664869ffdb15f4..7bb1f464ef3f12b948938377e22962545370af82",
+  "scope": "Committed history only, independent of new uncommitted movie work. Exact parent/current receipt review; not a retrospective gate pass or new behavior execution.",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "e6a73d00bcc7e7f8073525e448e2e8e7664be5cd03d520e5737335624891871a",
+      "after_sha256": "e32ebb617b1b080ea6d3de9c1a593de53965d1cdd7ae67093ef51db19f5c50e9",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-f240927-5abde11-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8bf875a974ef5ce36aeb3887b2aa1723cb168966948c98aaed636f59fa84d307",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "98a425f006bf1e9cee1cefdc10b80f69ec7f08a47c10fbef351389fdd754cb56",
+      "after_sha256": "cdaa75c9a06f7aea574fc2fb51c4cb6ee7c475489b2ddb7cbeac479635c13a60",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-save-load-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "d6636ee374af112f0e4505ab0cbf67c2debf4f1587f04dc59dd1480e47d1183f",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "e4ad0a3e39d301e1c8499e0430edb10c47eec48db9e25b40002dcd3a62053b71",
+      "after_sha256": "051d59e2999bb7fef339536add0cdc4259941e2b628e0cc2eeab77e9501c764e",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-inventory.md",
+      "before_sha256": "95f1a146703e92a058bb1eec3496e22bb1723998f9365f71dc0fe1ff8f4a83b3",
+      "after_sha256": "0fb54fdb8274fbf0bb7338c5b1eef9d920cc4b94cc91e0280182a23d7c97dbb8",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.queue-dispatch",
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-census",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-save-load-fault-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "93d701b82f66ee33e0c7c50ecd342a4071d52e4dc3707001882e9971dd5b7ad0",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-save-load-menu-only-fault-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "13c231805216246da831f1161aff90c36b509bac137d1db36ed7239a6cae870a",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-save-load-menu-only-success-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "e4abbb8e4d536cf957753988c60b68037fd02b9135d7a17db1e5d5d1444e61a6",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-save-load-observation-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8622871f9659a306adb9a0c87849e5bb7c2c5101a1d57b5d37850eb25a8d0a00",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "path": "tools/capture-drawing-census-game.py",
+      "before_sha256": "a323ed4be54d3b36b55c2690eb1e148e861dadcbcc84f3dbc2bad9d683736985",
+      "after_sha256": "b60bb6eca315e7fae28e70ab83645fb851426191c276ff8e14998fd3cbd09815",
+      "behaviors": [
+        "DRAW.census.journey-driver"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010",
+        "draw01-original-save-load-journey-validation-20261010"
+      ]
+    },
+    {
+      "path": "tools/prepare-drawing-census.py",
+      "before_sha256": "805ce67923f276eb0342bfed7e6fea2d3ad5c1c141dfd1a73d67a656942b3c8f",
+      "after_sha256": "c01369e1876576d5c25c250644045ef735c28de2cd9fa81665bb526184605e35",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010",
+        "draw01-original-save-load-journey-validation-20261010"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "1d488f046f17996cd5d71b499802ac43925c2dd1eb9bb765ceed94079186ea9d",
+      "after_sha256": "b1e712572fa7e9dc3b6814d566cb16049cd93749cde4ff0d7b002de3beeec436",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010",
+        "draw01-original-save-load-journey-validation-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "fe44935374211433517834790cd68c3230e34671defee257a12980b6ddb0bad1",
+      "after_sha256": "e04caa2548e4bb763ebd4a49b00b81a5bc56180d055b6e0d094017c49e2d957f",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010",
+        "draw01-original-save-load-journey-validation-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.queue-dispatch",
+      "before_sha256": "4c6689ba4be25ecc8c27efeefe77b4e286ccf0d0dc59e1683604f2698ab28699",
+      "after_sha256": "cb46268d6250ce937732c242648d7be38859a59d6bdbed8bfca93480757284a1",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.surface-hosting",
+      "before_sha256": "d66a56f0332ce5955b653e135c601188f46d448a83c9d091c03043b09aa0499e",
+      "after_sha256": "2de9d737acf1f9cbe2e525c92308f0a13fd46122368f31d7ad27dd08df3d18e3",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.unassigned-word-window",
+      "before_sha256": "c41ea27b171bdac7184d4df15de18e8c6d22cc7bdaf6284a45e9178f7f8edb19",
+      "after_sha256": "38b1a66168f04a195c5d354eeb6738caf50a3bdc06f42b2a0a602dacb2a7393d",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.unattributed-caller",
+      "before_sha256": "434ac2027001c5d876a02de80f0cfe9ed80be29b13a1d0254417636a1d12dcd6",
+      "after_sha256": "5537984dc0fd2907dc5c0b69350d7654ad95a19507b3cd22bf6c491ce8d838a7",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "before_sha256": "0aaffd75eca82dbadad375a2033708a2ba5547780f98d205ee47277f2b953624",
+      "after_sha256": "86095ebc68680f02e8f3727ca8b1a4129cf85a55bf0865823ec1135965964783",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "before_sha256": "f7b63d5a93843c5befd00a293ebc0f7c095a6ed34827ffc191e547665acbd5fd",
+      "after_sha256": "800bf52e304a6ac94b6c2f980e966a7a6dcca46469862d51d15547b64b92a07a",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "before_sha256": "3f2de18ef89c37838d47f1763f6b887f370b5c70a2f568b08b18bb336245f19c",
+      "after_sha256": "ff0bfe5dced9aa7e5d13f98ec64c3d66f40a5870c49cc5f77f4209e2086794da",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "1e34ecf429e1b43d8b063f74803d22dc96bc4d437510e8ef9c3fcbfc8116d730",
+      "after_sha256": "830369ee6fe82ba6c8b9b89a6875d305c0952a3b1595df639a1eb767dcf2934c",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-census",
+      "before_sha256": "4b6802543ad5dda250d2223721bb2aa185b96fe03ca648fb820b27d30eb7bc4c",
+      "after_sha256": "865176e9248084b8790436395eb8439d15c792376fd583669883b1e54eb0700b",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-dispatch-slices",
+      "before_sha256": "929fc7c4e2aca0f3083f01c2bd7693d13f03ee8e93e2534c1f63fb41d21c12e0",
+      "after_sha256": "2b036d5914d169f0bd631e06956e87a644812c1ab6d76a8fbf985e7a4ccb1806",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "before_sha256": "8c187fa33f319de14857bfb9ac7b37f7744bd0a1fc3d9ee46d85cf9374162ec4",
+      "after_sha256": "68a79b9fadd2d67de718879d34e75cfe7787b86c1215f4d2381feb23cf2c64dc",
+      "exact_receipts": [
+        "draw01-original-save-load-accounting-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "review_journal_append_only": true
+}

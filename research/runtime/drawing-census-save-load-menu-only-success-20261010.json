@@ -1,0 +1,584 @@
+{
+  "schema": 1,
+  "journey": "campaign-save-load",
+  "success": true,
+  "actions": [
+    {
+      "screen": 3,
+      "action": 18,
+      "argument": 0,
+      "request": 1,
+      "reply": [
+        2,
+        3,
+        0,
+        1,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 10,
+      "action": 20,
+      "argument": 0,
+      "request": 2,
+      "reply": [
+        7,
+        10,
+        0,
+        2,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 3,
+      "action": 1,
+      "argument": 0,
+      "request": 3,
+      "reply": [
+        10,
+        3,
+        0,
+        3,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 22,
+      "action": 4,
+      "argument": 0,
+      "request": 4,
+      "reply": [
+        13,
+        22,
+        0,
+        4,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 14,
+      "action": 6,
+      "argument": 0,
+      "request": 5,
+      "reply": [
+        17,
+        14,
+        0,
+        5,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 25,
+      "action": 10,
+      "argument": 0,
+      "request": 6,
+      "reply": [
+        21,
+        25,
+        0,
+        6,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 14,
+      "action": 5,
+      "argument": 0,
+      "request": 7,
+      "reply": [
+        25,
+        14,
+        0,
+        7,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 22,
+      "action": 2,
+      "argument": 0,
+      "request": 8,
+      "reply": [
+        28,
+        22,
+        0,
+        8,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 3,
+      "action": 22,
+      "argument": 0,
+      "request": 9,
+      "reply": [
+        31,
+        3,
+        0,
+        9,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 18,
+      "action": 23,
+      "argument": 0,
+      "request": 10,
+      "reply": [
+        34,
+        18,
+        1,
+        10,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 18,
+      "action": 23,
+      "argument": 2,
+      "request": 11,
+      "reply": [
+        35,
+        18,
+        1,
+        11,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 18,
+      "action": 23,
+      "argument": 3,
+      "request": 12,
+      "reply": [
+        36,
+        18,
+        1,
+        12,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 18,
+      "action": 23,
+      "argument": 1,
+      "request": 13,
+      "reply": [
+        37,
+        18,
+        1,
+        13,
+        1,
+        388,
+        0
+      ]
+    },
+    {
+      "screen": 18,
+      "action": 25,
+      "argument": 0,
+      "request": 14,
+      "reply": [
+        39,
+        18,
+        0,
+        14,
+        1,
+        388,
+        3
+      ]
+    },
+    {
+      "screen": 17,
+      "action": 14,
+      "argument": 0,
+      "request": 15,
+      "reply": [
+        54,
+        17,
+        0,
+        15,
+        1,
+        388,
+        3
+      ]
+    },
+    {
+      "screen": 10,
+      "action": 20,
+      "argument": 0,
+      "request": 16,
+      "reply": [
+        59,
+        10,
+        0,
+        16,
+        1,
+        388,
+        3
+      ]
+    },
+    {
+      "screen": 17,
+      "action": 15,
+      "argument": 0,
+      "request": 17,
+      "reply": [
+        65,
+        17,
+        0,
+        17,
+        1,
+        388,
+        3
+      ]
+    },
+    {
+      "screen": 6,
+      "action": 26,
+      "argument": 0,
+      "request": 18,
+      "reply": [
+        71,
+        6,
+        0,
+        18,
+        1,
+        388,
+        3
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "phase": 2,
+      "purpose": "Main and setup original menu traversal",
+      "time": 96442.57410303
+    },
+    {
+      "phase": 3,
+      "purpose": "Fresh campaign ingress and all four difficulty choices",
+      "time": 96449.095312022
+    },
+    {
+      "phase": 5,
+      "purpose": "Original campaign world active",
+      "time": 96457.789107758
+    },
+    {
+      "phase": 6,
+      "purpose": "Camera arrow input",
+      "time": 96460.634969832
+    },
+    {
+      "phase": 9,
+      "purpose": "Cursor movement and world click",
+      "time": 96463.523424956
+    },
+    {
+      "phase": 10,
+      "purpose": "Original campaign Mini and Preferences",
+      "time": 96465.030470613
+    },
+    {
+      "phase": 11,
+      "purpose": "Original campaign save screen, file creation and load screen",
+      "time": 96466.779833911
+    },
+    {
+      "phase": 12,
+      "purpose": "Original saved-map load and World drawing return",
+      "time": 96487.068060611
+    },
+    {
+      "phase": 13,
+      "purpose": "Original campaign defeat result and return",
+      "time": 96502.456667451
+    },
+    {
+      "phase": 14,
+      "purpose": "Original Main quit and DLL terminal flush",
+      "time": 96503.510086469
+    }
+  ],
+  "scenario_closure": false,
+  "original_work_forwarded": true,
+  "call_census_enabled": false,
+  "observer_header_seen_at": 96439.325401883,
+  "input_window": {
+    "window": 20971521,
+    "label": "Magic & Mayhem"
+  },
+  "mini_attempts": [
+    {
+      "visit": 1,
+      "attempt": 0,
+      "capture": "before-mini-01-00.png"
+    },
+    {
+      "visit": 2,
+      "attempt": 0,
+      "capture": "before-mini-02-00.png"
+    },
+    {
+      "visit": 2,
+      "attempt": 1,
+      "capture": "before-mini-02-01.png"
+    },
+    {
+      "visit": 2,
+      "attempt": 2,
+      "capture": "before-mini-02-02.png"
+    },
+    {
+      "visit": 3,
+      "attempt": 0,
+      "capture": "before-mini-03-00.png"
+    },
+    {
+      "visit": 3,
+      "attempt": 1,
+      "capture": "before-mini-03-01.png"
+    },
+    {
+      "visit": 4,
+      "attempt": 0,
+      "capture": "before-mini-04-00.png"
+    }
+  ],
+  "screen_checks": [
+    {
+      "capture": "original-save-screen",
+      "expected": "Save Game",
+      "text": "Save Game"
+    },
+    {
+      "capture": "original-load-screen",
+      "expected": "Load Game",
+      "text": ". loadGame"
+    }
+  ],
+  "filename_inputs": [
+    {
+      "requested": "draw01",
+      "capture": "filename-input-01.png"
+    }
+  ],
+  "created_game_files": [
+    {
+      "path": "Save/draw01.sav",
+      "bytes": 353641,
+      "sha256": "812c5b246ccf1659c4b0dcfe09359453888561e49d055c872fe6bb7718944591"
+    }
+  ],
+  "loaded_save_selection": {
+    "path": "Save/draw01.sav",
+    "click": [
+      400,
+      247
+    ],
+    "sha256": "812c5b246ccf1659c4b0dcfe09359453888561e49d055c872fe6bb7718944591"
+  },
+  "process_exit": 0,
+  "inputs_unchanged": true,
+  "sources": {
+    "tools/capture-drawing-census-game.py": "b60bb6eca315e7fae28e70ab83645fb851426191c276ff8e14998fd3cbd09815",
+    "tools/drawing_census.py": "f4a4977e4b7ce633ffad69608e38cec0fed7ff8f6b391bba71e576d14c4ba6a0",
+    "tools/drawing-census-game-runner.py": "626722d4bdf62ec4767cd18e65e1feb080de4768b1ea2098bdb6c4ef7e0fdd76",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-callers-dispatch-expanded-20261010.json": "e59d85a6d0ef4ea1f3af29724a10a5e7f7f8ce0e3a544e4dfcac256bf6b535d3",
+    "research/runtime/drawing-callers-expanded-20261010.json": "c0d173ff5c726fcd22ebd47e9d423f421842cd3cc2fe3c06e836e2af3a6c0bba",
+    "research/runtime/drawing-inventory.json": "2c3293c7494890bf4830051081fc9d5082dac47d4f73fa07273adf169bb77774",
+    "runtime/drawing-census/entry.S": "44f19762a5232669ddd22633cde8a19072fe43f11f0dabb929149c36a256de1e",
+    "runtime/drawing-census/observer.c": "b5069b9b69ed6ff53e0aedaef1aa04970e94d5172a551389bd2fa29cc1b0bf0a",
+    "runtime/scene/canvas_producers.c": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tests/drawing-census-abi.c": "a4aaa7c2933110b1f140b37716d92cfc5c64acb87eb3bd007211f4cef8475848",
+    "tests/test-drawing-census-trace.py": "974fd6acf85b6f3a8b2ddb56e201e892db9cbd516349adeef929fff2f93dac63",
+    "tools/build-drawing-census.py": "f0e234a54671b61840ed766bf8dfacfb364ae15b8d6efc4923f272647f03cedf",
+    "tools/build-menu-observer.py": "11647d240cc8aebf9579d370e16d7c45f0d03f6bc6bee2e405ab4c4b3c49d97f",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/export-menu-support.py": "4de228f0b9b1620dcb4ab9a2c4aa9cba955ed6c5220b1639fd97b2b171acf9fc",
+    "tools/prepare-drawing-census.py": "c01369e1876576d5c25c250644045ef735c28de2cd9fa81665bb526184605e35",
+    "tools/prepare-scene-observer.py": "fb28af7a20f861ff91f18bd4ece59365af607b3a33c7a41c03d67133743c6184",
+    "tools/prepare-shadow-experiment.py": "30207fa58de48b2145c336bd8d07f271cf5f763ab8b8b0c80be3de9fba04637c",
+    "tools/run-game.sh": "a0c1f33f375b1ab640a29224e6e7df750e5f9d9d80bb60447b73e8a91e4fe983",
+    "tools/run-opengl-game.py": "1f93ba28de3b5bd062ab256ffb8ce6fb99d4c1814f986d8cbbb533799135548c",
+    "tools/test-drawing-census-abi.py": "e857fd8ea079fb2d78527b0614cea62d3ecb42339cdff5d98a3441d60f49bc37"
+  },
+  "sources_stable": true,
+  "claims": [
+    {
+      "behavior": "DRAW.census.call-journal",
+      "contract_sha256": "f4e78473f85e7698e3ec230a510535344634afe571f1cfee0bb21162335e6f47",
+      "scenarios": {
+        "original-drawing-census-save-load-20261010": "8ce5de1f0a872b3bc1709f546f2f44113e453d8e5a81d43d7053b7585c683caa"
+      }
+    },
+    {
+      "behavior": "DRAW.census.journey-driver",
+      "contract_sha256": "93c756a9301b8aad60192b0d5f8b82db60bd401ca6bb2af026a65eccab603aca",
+      "scenarios": {
+        "original-drawing-census-save-load-20261010": "8ce5de1f0a872b3bc1709f546f2f44113e453d8e5a81d43d7053b7585c683caa"
+      }
+    }
+  ],
+  "scope": "Bounded original campaign Save/Load with actual list-row selection, original World/Mini/Preferences/defeat/Main return and exit0, drawing hooks absent. No call-journal or full persistence/pixel equivalence/scenario closure claim.",
+  "retained_artifacts": {
+    "working/experiments/drawing-census/run-wtfgueah/journey.json": {
+      "sha256": "9496cf0bfee6d9d74cadec7ffe97404686a29ff79271a7f3e66dc3830dd807a6",
+      "bytes": 9980
+    },
+    "working/experiments/drawing-census/run-wtfgueah/phase-14-10.png": {
+      "sha256": "9f0362edeaa6b5398822008c4d44af2fd877390d198486a3bbe6d1604e50e235",
+      "bytes": 502924
+    },
+    "working/experiments/drawing-census/run-wtfgueah/phase-13-09.png": {
+      "sha256": "ba3242312ee09f0146afb831a39156177a4719915dca089352623def363f5999",
+      "bytes": 523444
+    },
+    "working/experiments/drawing-census/run-wtfgueah/before-mini-04-00.png": {
+      "sha256": "be14f6b0768021b33288ca6b2a7b18c4cc90b6cd6fc3f14ecf3852aee7da2132",
+      "bytes": 616576
+    },
+    "working/experiments/drawing-census/run-wtfgueah/after-campaign-preferences.png": {
+      "sha256": "0613a63e5e98c03abef3d7f110502cee2b97371233708d77069380e83e8e2706",
+      "bytes": 616563
+    },
+    "working/experiments/drawing-census/run-wtfgueah/before-mini-03-01.png": {
+      "sha256": "b140797cbf4714454154e7edbdc0c52450a8c1c05dd277b35b583ab531803208",
+      "bytes": 613198
+    },
+    "working/experiments/drawing-census/run-wtfgueah/before-mini-03-00.png": {
+      "sha256": "0a2eb110f70f98b4c7acfa8c1de65727600299aa46546f14c8ed1d32fcf26e9c",
+      "bytes": 610327
+    },
+    "working/experiments/drawing-census/run-wtfgueah/phase-12-08.png": {
+      "sha256": "3045007e0fa61bb65ae59db3057ca882ed18b02b06cb2bb5d08eb95e3b68a7b6",
+      "bytes": 38917
+    },
+    "working/experiments/drawing-census/run-wtfgueah/original-selected-load-row.png": {
+      "sha256": "75ee1bb9ff371f431825dde7ca6b5d090eedda8e222fde35f311b24b03ba0647",
+      "bytes": 278019
+    },
+    "working/experiments/drawing-census/run-wtfgueah/original-load-screen-heading.png": {
+      "sha256": "b9bcd658da3d0804843662c6cbbfa327f37d261eb61dbce5b493228de2e1a906",
+      "bytes": 18826
+    },
+    "working/experiments/drawing-census/run-wtfgueah/original-load-screen.png": {
+      "sha256": "7d94848a99d673e9fb15806a1096931d812e0c44e06e60b781e7fb18f8305aff",
+      "bytes": 535726
+    },
+    "working/experiments/drawing-census/run-wtfgueah/before-mini-02-02.png": {
+      "sha256": "570949f81eab9b3e1220bf56507830088c41e35f6ac03f2b44bc24dee0610e64",
+      "bytes": 611381
+    },
+    "working/experiments/drawing-census/run-wtfgueah/before-mini-02-01.png": {
+      "sha256": "013669057d3c764b6dc5031419ded1ef58420b548c72e525d18ed04379c60659",
+      "bytes": 610367
+    },
+    "working/experiments/drawing-census/run-wtfgueah/before-mini-02-00.png": {
+      "sha256": "6f5f05deae02868cddafa158b75df9d13b68eb87193ed3c14e47161ec723bb67",
+      "bytes": 631124
+    },
+    "working/experiments/drawing-census/run-wtfgueah/filename-input-01.png": {
+      "sha256": "28be3fcc34c36a2a1574cc89f6786244fd4a1b2b2d2e032639039ebf5514dd68",
+      "bytes": 522793
+    },
+    "working/experiments/drawing-census/run-wtfgueah/original-save-screen-heading.png": {
+      "sha256": "198bc2ef1378d8b1793f88740850096e731160c61b89938f922395ff80cdcb80",
+      "bytes": 18662
+    },
+    "working/experiments/drawing-census/run-wtfgueah/original-save-screen.png": {
+      "sha256": "7186690c58db51be842853f8d1da321084fb27feb5b14dc7530d626ec942ac09",
+      "bytes": 521444
+    },
+    "working/experiments/drawing-census/run-wtfgueah/phase-11-07.png": {
+      "sha256": "989d86c7ed1c5b7ad2d34da6b41d1e768166ac0886aa1f5592196ede217435c0",
+      "bytes": 582562
+    },
+    "working/experiments/drawing-census/run-wtfgueah/before-mini-01-00.png": {
+      "sha256": "7f4987d28ce24a934a09a8ea3230c9b17fa0f0501cfb866f16c37d7b432ff187",
+      "bytes": 651208
+    },
+    "working/experiments/drawing-census/run-wtfgueah/phase-10-06.png": {
+      "sha256": "0f462a690d1cb215e959e8dfd85e64203f16d9aa7cc659cfc311268f8da20079",
+      "bytes": 665756
+    },
+    "working/experiments/drawing-census/run-wtfgueah/phase-09-05.png": {
+      "sha256": "291601c92eed84485dbe935889b21f22d8bc72ea012a1042da628973e7f6acc7",
+      "bytes": 632748
+    },
+    "working/experiments/drawing-census/run-wtfgueah/phase-06-04.png": {
+      "sha256": "62a0d61d19565cea88b89733e2f3d4ad89b0740bab18f30a4e9cc8ceb7747334",
+      "bytes": 667508
+    },
+    "working/experiments/drawing-census/run-wtfgueah/phase-05-03.png": {
+      "sha256": "5ff3e693de5ae23d87ca7c52773930f7061a151994c8ac34bde6784d4e64233c",
+      "bytes": 612052
+    },
+    "working/experiments/drawing-census/run-wtfgueah/phase-03-02.png": {
+      "sha256": "bd5442cce381dc64908c1078db9a5ac30243a4539afc9e20321e502a81c5b87b",
+      "bytes": 503022
+    },
+    "working/experiments/drawing-census/run-wtfgueah/phase-02-01.png": {
+      "sha256": "0e78e1e00e1b64efefcadff280b26c47573f6b85aa1a36b6d7773abfbc2088f9",
+      "bytes": 1476
+    },
+    "working/experiments/drawing-census/run-wtfgueah/game.log": {
+      "sha256": "28bf62ae693256fab1e2152d075b592965cd6549623152600ade34f57cbd925b",
+      "bytes": 254584
+    },
+    "working/experiments/drawing-census/run-wtfgueah/wineboot.log": {
+      "sha256": "90d9fe86d3ee559cf1be0adebbfe1c5e30ed340590aef8ad6498955d503d9a7b",
+      "bytes": 62682
+    },
+    "working/experiments/drawing-census/run-wtfgueah/xvfb.log": {
+      "sha256": "230291ecd88b9ee120e3395981d75755ac098e09e69227d24ee6d06935075c1a",
+      "bytes": 1766
+    },
+    "working/experiments/drawing-census/run-wtfgueah/manifest.json": {
+      "sha256": "ab8b6f8dd792604754fa59c2a225942e6fb041d53c0dbd1fd1d6efb3f47559b0",
+      "bytes": 1187
+    },
+    "working/experiments/drawing-census/run-wtfgueah/menu-build.json": {
+      "sha256": "5f42715c607482a05ec3413a1262ed9d3fe70e4d048d6d9777548ac1c6379580",
+      "bytes": 3766
+    },
+    "working/experiments/drawing-census/run-wtfgueah/census-build.json": {
+      "sha256": "5ee851031f38b1a99ce03eb2ec3f3548a2752d29a36720fbf6ed8e0ee0e350ac",
+      "bytes": 15754
+    },
+    "working/experiments/drawing-census/run-wtfgueah/save-artifacts/draw01.sav": {
+      "sha256": "812c5b246ccf1659c4b0dcfe09359453888561e49d055c872fe6bb7718944591",
+      "bytes": 353641
+    }
+  }
+}

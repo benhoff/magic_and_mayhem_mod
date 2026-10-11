@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "scope": "Real separate CALL stubs/observer and dynamic splices against10synthetic PE32 bodies only. No original API/graphics or arbitrary machine-context/transparency/output/lifetime validation.",
+  "success": true,
+  "sources": {
+    "protocols/include/mnm/drawing_api_journal_v1.h": "4f4ccf868b767c6a950f9a5bafadbb71fd0ebd8d5551293dcb9dcd75bb87b5b5",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/drawing-api-splices-accounted-static-20261011.json": "2d4de7bb63316866d656a44f3a80b82123c76d82a1836aebe11f2fed23af0da6",
+    "runtime/drawing-api-census/entry.S": "51f83c9e1f9fe187ae780430301ace3422a843261731c8fa1e0f9d2fb84f40ae",
+    "runtime/drawing-api-census/observer.c": "81d95a6f7bcec40368ddf3a01a6a9d73979b195fdc0aa9149e48c9413f5a5d1b",
+    "runtime/shadow/win32_min.h": "8c2a9b52fd57459c82a4af8f2e684546fbac529a5ad831396d07cfcb2e52fcf9",
+    "tests/canvas-startup-call.S": "df60fc1d01b4353482d33a8b4e26113c7874351eb53ebd5b95f6edbe590565a2",
+    "tests/drawing-api-census-abi.c": "6f9beedab58ccbc5bfedecb2480e9e2df8796de8862741fe8856aafa957e1a86",
+    "tools/build-drawing-api-census.py": "e341f716aef0719b22aa71050346e199e54eb70a37bfce8ec6a214133769c180",
+    "tools/build-shadow-bridge.py": "ab2ff1a7ce8f6fcccf9dd27100179cd1608dcfeaeedce110caf5882b11d33c33",
+    "tools/drawing_api_journal.py": "c82406744325c3c4cee46d73bf278b330de20d91ed88e46756c02160bd5c8023",
+    "tools/drawing_api_sites.py": "5cab6d71de315872411a87aa3457f08069ebeed71f8f52efdbee6127ccd7b801",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/test-drawing-api-census-abi.py": "815bc425e262122392bb9c5621daa9e990c83587afa6fb6fd564ada9b336f23f"
+  },
+  "sources_stable": true,
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-api-observer",
+      "contract_sha256": "843dcdea6896567c5640df93a03911b00eb829dfca93952b734fd3f9cbfe8e64",
+      "scenarios": {
+        "drawing-api-observer-synthetic-abi-20261011": "5221f42adbf737ab49852f6c21b95adeaefe28cd5261b8e90d604a65c95e73be"
+      }
+    }
+  ],
+  "callee_pop_bytes": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24
+  ],
+  "call_modes": [
+    "absolute_memory",
+    "register",
+    "register_memory",
+    "direct_relative"
+  ],
+  "synthetic_bodies": 10,
+  "register_flags_x87_sse_last_error_preserved": true,
+  "pre_call_stack_and_target_checked": true,
+  "negative_eax_actual_cleanup_checked": true,
+  "short_conditional_remainder_executed": true,
+  "frame_exhaustion_phase_record_cap_io_failure_forward": true,
+  "same_thread_lifo_and_mismatch_loss_checked": true,
+  "original_renderer_executed": false,
+  "original_splice_manifest_executed": false,
+  "binaries": {
+    "fixture.exe": "d460414cb0cc3e1a66f1699ac67b1da445c106d7e2603e4acf49eaf59d55f8df",
+    "part0.obj": "63471ede1fb348b90e6fadee40b708000507180f73bef1eacb655cb59ab2d317",
+    "part1.obj": "3d0c824c43e4ba34f7503ff8cb86c3f5389b9e1e5edc3ae79a100aa9a570b938",
+    "part2.obj": "ef32c1b2ae6fa94a882aee5f7e1743be190173a30d1318917e93c59007c80df5"
+  },
+  "logs": {
+    "compile0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "forwarding.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "imports.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prefix-copy.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stop-prefix.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

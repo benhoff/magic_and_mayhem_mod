@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "scope": "Synthetic byte/operand/extent, exact import, unassigned ownership and bounded instruction graph guards. Native static exporter tooling only; no original runtime API or graphics lifetime validation.",
+  "success": true,
+  "sources": {
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-inventory.json": "2da4a44180c3df90c5c6b09a9b5e99aa0eab6660e444cc1691c1d522fb022159",
+    "tests/test-drawing-api-sites.py": "2fe03404be9a2b5d9506db1d0d5d6c7a7654445ca7a2872d5c05eec01559fcb2",
+    "tools/drawing_api_sites.py": "5cab6d71de315872411a87aa3457f08069ebeed71f8f52efdbee6127ccd7b801",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/export-drawing-api-sites.py": "2cc8ad0448c48880f9ccbc975336416f108b7202cfcb8b56d99aedb6085f0342"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-api-sites",
+      "contract_sha256": "dab48ba8e7a2587ca16b77a2296da4ed48a778e3ec405bad42b69f7288551b3e",
+      "scenarios": {
+        "drawing-api-site-byte-guards-20261011": "f8d21d7a274f466d28acb0781c8cdc851a84a14db50cbc84e6b4da2396287cef"
+      }
+    }
+  ],
+  "sources_stable": true,
+  "total_cases": 12,
+  "tests": [
+    {
+      "test": "tests/test-drawing-api-sites.py",
+      "cases": 12,
+      "exit": 0,
+      "log": "working/tests/draw01-api-sites-guards-20261011.log",
+      "sha256": "72f09eca554e87a45b7156c6109520cf15e8b6ec157dc5c033610649b49b8698"
+    }
+  ]
+}

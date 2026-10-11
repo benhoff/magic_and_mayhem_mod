@@ -1,0 +1,926 @@
+{
+  "schema": 1,
+  "scope": "Committed48ca294..98b4524 exact file/behavior receipt paths and append-only journal review. No retrospective gate pass or current execution assertion.",
+  "from": "48ca294dec31d87bb910e839af95cf0210b19fd1",
+  "to": "98b452427922090292b6db58c7f09a4eddffd0af",
+  "files": [
+    {
+      "path": ".github/workflows/re-coverage.yml",
+      "before_sha256": "41c376c712f8ed1cefe26dd813b7e00c57c1c4e40d2c4ca882dc3eecb8c43b3c",
+      "after_sha256": "69330a32654778bafbc327447717df7fbb2f4bea9fb3a41795a0427173dee693",
+      "behaviors": [],
+      "role": "control",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "5d3c1ef8c920f75c1bcfd7c36458c1c8ee1b35020db0688acc5bbff90a1fe3cc",
+      "after_sha256": "ba16d07744f1c679b186885d015f0eb10d8ada26df32d17a5fa9d4bb036f1639",
+      "behaviors": [
+        "HOST.native-command-launch",
+        "NR.live-command-transport",
+        "NR.live-drawing-replacement",
+        "NR.real-game-command-shadow",
+        "NR.scene-service",
+        "NR.scene-snapshot",
+        "NR.surface-fixture-corpus",
+        "NR.word-admission",
+        "NR.world-admission",
+        "NR.world-channel",
+        "NR.world-live-view",
+        "RI.copies",
+        "RI.effects",
+        "RI.fills",
+        "RI.gdi-text",
+        "RI.locked-writes",
+        "RI.movies",
+        "RI.sprites",
+        "RI.terrain",
+        "RI.ui",
+        "RS.word-raster",
+        "RS.word-route",
+        "RS.world-composition",
+        "RS.world-frame",
+        "TOOL.rendering-coverage"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "db1260d2755aa1b15056488a5aedc442f89220e88ddc9d824596777dd557414a",
+      "after_sha256": "12126ff4672de8b6ba381d8c5745d005978a9fb6d82b2903a23a39d1e1aed6ef",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-a47ad55-48ca294-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "20d0df6cb8d7cc187af8e0d27476b8f4ded90c1fe8d63567cfcb182762396c0f",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "cc33db9dbf9c94a2ffba6eebc10ed04d06ef7f5f4d1f7afcaf8559770d1016c1",
+      "after_sha256": "b7b4114a9e39ae17cb6456043f73ca8a6d51c8ad719388cb386b58ef2f1b18b2",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "ee10215091a3c8d919627905e2395cad35f9cfd2dc07fc989898162d9040d4e3",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary-draw01-20261010.md",
+      "before_sha256": null,
+      "after_sha256": "4a46c471fa84780c1a13c32e11b6f6430d664a2113bcbefbe6126d683f407e72",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "445c6b2699dcd8aed5e471f5b29c4262aa4ea43e9e5add597541c4463f945624",
+      "after_sha256": "4a46c471fa84780c1a13c32e11b6f6430d664a2113bcbefbe6126d683f407e72",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-inventory.md",
+      "before_sha256": null,
+      "after_sha256": "6a92c8e0308c00abf0280f3bc8f89073247bffa627d635c26ea64ccc0c12c803",
+      "behaviors": [
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-inventory-checks-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "8edc35c1c5ff93dc36237dca14605a78422ed4b6b5fec89e391d1553d7983bc8",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-inventory-checks-v2-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "0ed5ca92927f82b40f477ee143804a2493d66b2fb8ac11ff819d445a0ef29d22",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-inventory-final-checks-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "f7a7e809daa027c697a852196da7996f30f36b320f61ecd77de34e400f651825",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-inventory-retained-journal-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "b658aa6d6e367346175dd46a59d5ce9f00e51810b480eef26de225d2b7b9d801",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-inventory-retained-journal-v2-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a2024f70c8dae259050c4b5ef91328e6056abeec2d38bcbe34f90a2153e7e9d9",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-inventory.json",
+      "before_sha256": null,
+      "after_sha256": "369bf9f1e38d4edd4b09f060d6b6040392423744e2937ce4afdee22db302ed5c",
+      "behaviors": [
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/render-drawing-inventory.md",
+      "before_sha256": "d57813545a8d97a0084d267b6a1201a954fb4a25dc19082d369a6a4131da9c90",
+      "after_sha256": "4c3a28a446a0f4f80a18fc2584bd4045d13a798fbd186d5f1ca03c2a6e7c65b9",
+      "behaviors": [
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "EXT.dependencies",
+        "RE.surface-driver.formats-pitch",
+        "RE.surface-driver.ownership-flip",
+        "RI.copies",
+        "RI.effects",
+        "RI.fills",
+        "RI.gdi-text",
+        "RI.locked-writes",
+        "RI.movies",
+        "RI.sprites",
+        "RI.terrain",
+        "RI.ui",
+        "RT.render",
+        "TOOL.rendering-coverage",
+        "TOOL.traceability"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "runtime/canvas-writers/bridge.c",
+      "before_sha256": "0d4d243f016509767bdc6d89381a57d4b7c75cc1fda7996b0b828f2025044c45",
+      "after_sha256": "0d4d243f016509767bdc6d89381a57d4b7c75cc1fda7996b0b828f2025044c45",
+      "behaviors": [
+        "NR.canvas-writer-admission",
+        "RS.fade-live-pixels",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "code",
+      "change": "links_changed",
+      "exact_receipts": []
+    },
+    {
+      "path": "runtime/scene/canvas_producers.c",
+      "before_sha256": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+      "after_sha256": "8dde3d32db5ae2114e54b5b53ac2dfdc49f2bd8b782b28ce14cbde276e680972",
+      "behaviors": [
+        "NR.font-glyph-live-shadow",
+        "NR.glyph-default-launch",
+        "NR.glyph-live-admission",
+        "NR.minimap-input-fixture",
+        "NR.minimap-interactive-presentation",
+        "NR.minimap-owned-observation",
+        "NR.offline-render-soak",
+        "NR.word-clipped-takeover-admission",
+        "NR.world-batch-extended-prefix",
+        "NR.world-batch-profiling",
+        "NR.world-batch-throughput",
+        "NR.world-history-channel",
+        "NR.world-interactive-batch-launcher",
+        "NR.world-live-history",
+        "NR.world-producer-handoff",
+        "NR.world-raster-batch-transport",
+        "NR.world-resource-reuse",
+        "NR.world-startup-launcher",
+        "RS.canvas-producer-sequence",
+        "RS.glyph-live-route",
+        "RS.word-clip-takeover",
+        "RS.world-producer-bypass",
+        "RS.world-raster-batch-return",
+        "RS.world-raster-queue-replacement",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "code",
+      "change": "links_changed",
+      "exact_receipts": []
+    },
+    {
+      "path": "tests/test-drawing-inventory.py",
+      "before_sha256": null,
+      "after_sha256": "d948e784d8411f012a69669d012bdf3cb514423074b8c1a08245b0b4268d3192",
+      "behaviors": [
+        "TOOL.drawing-inventory"
+      ],
+      "role": "test",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "tools/coverage_audit.py",
+      "before_sha256": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+      "after_sha256": "108572c208343fd2c5e7be1ca46790850fe3049e8cb87104485ce6c3175a0569",
+      "behaviors": [
+        "TOOL.coverage-accounting",
+        "TOOL.drawing-inventory",
+        "TOOL.rendering-coverage",
+        "TOOL.traceability"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": []
+    },
+    {
+      "path": "tools/coverage_claims.py",
+      "before_sha256": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+      "after_sha256": "9adf1131f77b49468540ac7d65638222398dba75191219bb22296cddf59bbbdd",
+      "behaviors": [
+        "AS.resource-preparation",
+        "NR.minimap-interactive-presentation",
+        "NR.offline-render-soak",
+        "NR.sprite-atlas",
+        "NR.upload-preparation",
+        "NR.world-batch-extended-prefix",
+        "NR.world-batch-profiling",
+        "NR.world-batch-throughput",
+        "NR.world-cpu-composition-reuse",
+        "NR.world-frame-identity-cache",
+        "NR.world-interactive-batch-launcher",
+        "NR.world-live-history",
+        "NR.world-preparation",
+        "NR.world-prepared-admission",
+        "NR.world-resource-reuse",
+        "NR.world-rolling-delivery",
+        "NR.world-startup-launcher",
+        "RS.world-kind8-additive",
+        "RS.world-kind8-colour",
+        "RS.world-kind8-noop",
+        "TOOL.coverage-accounting",
+        "TOOL.drawing-inventory",
+        "TOOL.rendering-coverage"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": []
+    },
+    {
+      "path": "tools/drawing_inventory.py",
+      "before_sha256": null,
+      "after_sha256": "1bf184bde3a17e2b7f685090b5f0d07ce1627123820fc5231829d13d21c24e89",
+      "behaviors": [
+        "TOOL.drawing-inventory"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "path": "tools/rendering_coverage.py",
+      "before_sha256": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+      "after_sha256": "c782991cffc78d4bafe16d59585ba9815cc8bb4ae8868fab8f1d110286422db9",
+      "behaviors": [
+        "TOOL.drawing-inventory",
+        "TOOL.rendering-coverage"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": []
+    },
+    {
+      "path": "tools/report-drawing-inventory.py",
+      "before_sha256": null,
+      "after_sha256": "f227bc6f4c2665e65a8be76d0feb093f131f232e849ed891642076cb38ba081c",
+      "behaviors": [
+        "TOOL.drawing-inventory"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "AS.resource-preparation",
+      "before_sha256": "795ef483ee576b63865d5c2b621f8d3ff1e77314700a2b1de741165d7da991ef",
+      "after_sha256": "795ef483ee576b63865d5c2b621f8d3ff1e77314700a2b1de741165d7da991ef",
+      "exact_receipts": []
+    },
+    {
+      "id": "DRAW.surface-hosting",
+      "before_sha256": null,
+      "after_sha256": "3b8fff87bf05287b01159cbc6caedf6e0b66ee34b256c1749ce93ff3cad0bafe",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.unassigned-word-window",
+      "before_sha256": null,
+      "after_sha256": "2333caa035e292d8d8cf2f400ad181d26adf69f05d876dba2ef5e0050b4ef986",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.unattributed-caller",
+      "before_sha256": null,
+      "after_sha256": "194178d0b51a51790ce14088d312809116c07fbbf016588b561a257b1b51b589",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "before_sha256": null,
+      "after_sha256": "cbabd51143d7b00ac14b81e1cbb48b30c69d395000f81b9cfde6750172a40da3",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "before_sha256": null,
+      "after_sha256": "f17de8ae42b44fe3d7b121d5afaabb8afc9e7314b66c6448c3b7c301141157f8",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "before_sha256": null,
+      "after_sha256": "7fff62855934b78ce132e44d7f1db5457cc500521ff1d33171a2491791074b88",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "EXT.dependencies",
+      "before_sha256": "47746df6e43571cb38a640bf8219321584c3f709dce13415ed91375c3c36c91d",
+      "after_sha256": "a93d1b87542e9bb0ff283f1d30938bed5d082a4c63bf2cc683fd1a1a101a6542",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "HOST.native-command-launch",
+      "before_sha256": "85c866c9f316684a781e7d0bbdeea6b5464c39637e13e305efcf699d59ac9420",
+      "after_sha256": "177b37f6a204d9967357569c0d4f05aa90d0697d3da563e8cb1a4f51b2aa11ae",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "NR.canvas-writer-admission",
+      "before_sha256": "b48521d93a863a201ef2064cc4b4f6178c655d081566826158d7c328609f400f",
+      "after_sha256": "b48521d93a863a201ef2064cc4b4f6178c655d081566826158d7c328609f400f",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.font-glyph-live-shadow",
+      "before_sha256": "eb867dd54d8eb648b10933d44f641e008e87fb0a654cd1df1e43dc297a30fda5",
+      "after_sha256": "eb867dd54d8eb648b10933d44f641e008e87fb0a654cd1df1e43dc297a30fda5",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.glyph-default-launch",
+      "before_sha256": "d59ed462f6f6962ca50f7e6be32473be1225591c631dfdd4a4df6f4ad3afec50",
+      "after_sha256": "d59ed462f6f6962ca50f7e6be32473be1225591c631dfdd4a4df6f4ad3afec50",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.glyph-live-admission",
+      "before_sha256": "b584a493170cfe958a15bd8705e6cf04bb39b0ffd1f8c9065cb5ef1c96c380a2",
+      "after_sha256": "b584a493170cfe958a15bd8705e6cf04bb39b0ffd1f8c9065cb5ef1c96c380a2",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.live-command-transport",
+      "before_sha256": "199beb52ad39cc6ac91f81c6a40f693c1a40e163e74884dc57a6c5f761420c89",
+      "after_sha256": "9d8d73e21f12bc278aaeea06a9cfb2e6a202fc2c92e536d9e85e117dd647e48b",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "NR.live-drawing-replacement",
+      "before_sha256": "aa9d7fa6d4d294bb0de2ebe46e6d310e098f53ade689bac5996591b0f0e5ec03",
+      "after_sha256": "5b7486c8efa30593835393ae8d3b21a8a7de073b129eb5c2b3a1b7cdd572cc69",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "NR.minimap-input-fixture",
+      "before_sha256": "a406dad59cabdba9bdfbcdb641e317c01aa3e6c4f5605a53166c1ebd4519a3d4",
+      "after_sha256": "a406dad59cabdba9bdfbcdb641e317c01aa3e6c4f5605a53166c1ebd4519a3d4",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.minimap-interactive-presentation",
+      "before_sha256": "99610c280c8a32b091d779606b4d976b9f601abf58d5337b6c065347fc5d9b43",
+      "after_sha256": "99610c280c8a32b091d779606b4d976b9f601abf58d5337b6c065347fc5d9b43",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.minimap-owned-observation",
+      "before_sha256": "dcfef878fcc25178065483b9075b6c37e7a009cc137d810c6e691d1130df2c24",
+      "after_sha256": "dcfef878fcc25178065483b9075b6c37e7a009cc137d810c6e691d1130df2c24",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.offline-render-soak",
+      "before_sha256": "ec43a5131c0da06edb7466d7dd77765921aa090beafdc53c7469c4115fca2d31",
+      "after_sha256": "ec43a5131c0da06edb7466d7dd77765921aa090beafdc53c7469c4115fca2d31",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.real-game-command-shadow",
+      "before_sha256": "0a4b000d1d536fd1473a3b5ff0f08c4c39efe952cf79ccdb0cc9e792087d325d",
+      "after_sha256": "d563d6460823a72250b5820649daa81df9d926de8b42d5ccb987d919736e5ea6",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "NR.scene-service",
+      "before_sha256": "8292c4307d5011bca4afd568e6735042ddd62b2bbe86d59b03cc66e1ef80ffb5",
+      "after_sha256": "90e53b88201d8d3a252f128adad15dc56111be6a323d4461c8030cc878c9518e",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "NR.scene-snapshot",
+      "before_sha256": "5abb3afead32d9c56f4fbe372b5c129ed43a435ba612581081ba52c309039cee",
+      "after_sha256": "a876adf7d5d62fe384ba654e083720b890c77a32d540960f3253b4113369cbe9",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "NR.sprite-atlas",
+      "before_sha256": "95c5e87b5e974edccb440396d40359d9f558b92a54b513f884cd8a376097ed1a",
+      "after_sha256": "95c5e87b5e974edccb440396d40359d9f558b92a54b513f884cd8a376097ed1a",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.surface-fixture-corpus",
+      "before_sha256": "940ed35a12650eae3b6b9d5f025fa4284593fe2d8aed3adb96421aa54b551949",
+      "after_sha256": "f4039f3ac1cc93c7fd0c6b02dcae88678053f9d21304d07f2317e6e5188d08ea",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "NR.upload-preparation",
+      "before_sha256": "02eb6f8e019b981bd681f238c34ab614f04965575da8151a9d30e97252310278",
+      "after_sha256": "02eb6f8e019b981bd681f238c34ab614f04965575da8151a9d30e97252310278",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.word-admission",
+      "before_sha256": "7fa5b97babf7d1dc4430154cc6949afa09b63c5ac1c357d9b5d628846a3eb3e0",
+      "after_sha256": "e7f6c4ab1ec8ea92dbe8daefc319ebdff9e16640fb293842e8652ff65218ee5a",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "NR.word-clipped-takeover-admission",
+      "before_sha256": "d173e907229c3c92f7a33663417aa5dd31fd8dc1a8bbeefde707fb55ad6e9463",
+      "after_sha256": "d173e907229c3c92f7a33663417aa5dd31fd8dc1a8bbeefde707fb55ad6e9463",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-admission",
+      "before_sha256": "2ec3d302f60235368236214b00fec400820423d7fc3455144b0b76d27464ef85",
+      "after_sha256": "8731428accf35841dd5c40733237f13787902d8c010c0040d28447bf37365b6e",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "NR.world-batch-extended-prefix",
+      "before_sha256": "397277517bcb3a9afc6500bcb725bb8ae8f45cff964d464f03bd695edf3495a0",
+      "after_sha256": "397277517bcb3a9afc6500bcb725bb8ae8f45cff964d464f03bd695edf3495a0",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-batch-profiling",
+      "before_sha256": "c6e600fcf9eae4bf935e1c5b60a77747b9151183b6aa0fbf3f0c7b0fcc80f192",
+      "after_sha256": "c6e600fcf9eae4bf935e1c5b60a77747b9151183b6aa0fbf3f0c7b0fcc80f192",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-batch-throughput",
+      "before_sha256": "319d76d3cd16f0986280725a7acfc2660e406a5693234d5972dd249ef26426ac",
+      "after_sha256": "319d76d3cd16f0986280725a7acfc2660e406a5693234d5972dd249ef26426ac",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-channel",
+      "before_sha256": "a29bc65aa4f56b93602c52ce82c7b5f46ec364ba16c3cece617bb7b762d957ef",
+      "after_sha256": "a3720762b21558956b67d4b4ea304b4c6d7b36caa0870c54c3e03a5f4e5da961",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "NR.world-cpu-composition-reuse",
+      "before_sha256": "05793cd4265a69f800a105a415a2a528567049906f59afbd010124ad4cce293c",
+      "after_sha256": "05793cd4265a69f800a105a415a2a528567049906f59afbd010124ad4cce293c",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-frame-identity-cache",
+      "before_sha256": "6ad67a943f837c6aa4195b171587a1d41652c63d93db48541dd072489cdbf07e",
+      "after_sha256": "6ad67a943f837c6aa4195b171587a1d41652c63d93db48541dd072489cdbf07e",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-history-channel",
+      "before_sha256": "03902eb95bf11c05ff925971c1e93fa3a989266c80bba57186422a270727aaca",
+      "after_sha256": "03902eb95bf11c05ff925971c1e93fa3a989266c80bba57186422a270727aaca",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-interactive-batch-launcher",
+      "before_sha256": "1186572adabf02e6e49546fe50d2a7d6a07e10df0047155679c7edfac03914db",
+      "after_sha256": "1186572adabf02e6e49546fe50d2a7d6a07e10df0047155679c7edfac03914db",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-live-history",
+      "before_sha256": "ce2eb3a7168786265002d8085ec32e101c6d04595b5251f88c090cf5daf8f9b1",
+      "after_sha256": "ce2eb3a7168786265002d8085ec32e101c6d04595b5251f88c090cf5daf8f9b1",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-live-view",
+      "before_sha256": "d94dedc6693e609f6fb79a00f32b5faf926b6384190b644021b134a7523186af",
+      "after_sha256": "dec3642db9308b8eae6929c1d13bb6d5635eec5d94c5deefad652f0afd4d2a19",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "NR.world-preparation",
+      "before_sha256": "20f5ffbf3af665b04878a2d0d69db49b803ea2f12f47c42c893785dc425622ac",
+      "after_sha256": "20f5ffbf3af665b04878a2d0d69db49b803ea2f12f47c42c893785dc425622ac",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-prepared-admission",
+      "before_sha256": "d73a35298418ad1e28f88c60e73001c30b1ca61a4982ea26c5ad1e43947d20e7",
+      "after_sha256": "d73a35298418ad1e28f88c60e73001c30b1ca61a4982ea26c5ad1e43947d20e7",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-producer-handoff",
+      "before_sha256": "30a6bd6755f7bad29cb59c06e3798bb4898941b8776a7bb99c52d458ab24361b",
+      "after_sha256": "30a6bd6755f7bad29cb59c06e3798bb4898941b8776a7bb99c52d458ab24361b",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-raster-batch-transport",
+      "before_sha256": "4bae9cfc725930a4311b1b68972af84f520a5625a17212ab815e27d57b8d3c29",
+      "after_sha256": "4bae9cfc725930a4311b1b68972af84f520a5625a17212ab815e27d57b8d3c29",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-resource-reuse",
+      "before_sha256": "b98dd24bb43ad62c1fe876236907e898517183f94039d9f0f2f0910c9643641e",
+      "after_sha256": "b98dd24bb43ad62c1fe876236907e898517183f94039d9f0f2f0910c9643641e",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-rolling-delivery",
+      "before_sha256": "346a74c5f837023aea18a5dcde8c9252fb37e7c427479bdc8a6e3d5cf76402ee",
+      "after_sha256": "346a74c5f837023aea18a5dcde8c9252fb37e7c427479bdc8a6e3d5cf76402ee",
+      "exact_receipts": []
+    },
+    {
+      "id": "NR.world-startup-launcher",
+      "before_sha256": "5959bb99b6738584b68aa68c6b3e394b0e7c2f31fbe1a2be597766e8342c6406",
+      "after_sha256": "5959bb99b6738584b68aa68c6b3e394b0e7c2f31fbe1a2be597766e8342c6406",
+      "exact_receipts": []
+    },
+    {
+      "id": "RE.surface-driver.formats-pitch",
+      "before_sha256": "91d4df01d48bb2a2708b997943d96f87d1581c47438af0185c332cb1d24064b8",
+      "after_sha256": "b6f7660226ce84e345d4cc7c6f6cfb9508def05ae57daf9184237812f576db62",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RE.surface-driver.ownership-flip",
+      "before_sha256": "367c9567c8e7d334857c6cd3e309f4e065b8a4dc3df59d73e97f34e7dc76d8eb",
+      "after_sha256": "d96ec24a3e98cadb596a2cdb817d1380a69707952383c1e444e544fee5644b54",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RI.copies",
+      "before_sha256": "272ab9e1c9a3bb2ae1fc22d88f98058ca1d231200c5b0eb219ed724648ca4a6e",
+      "after_sha256": "603206b634380e01b11381b2a08452410d099da695e24d765cd1c8175915f7cf",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RI.effects",
+      "before_sha256": "fba2e5c71a308f389978ee5d90f75bad53e644c156b5ab12f49be6a2c36f3739",
+      "after_sha256": "f8b3baf48c1b6987f722be6653cc5b2918e343e85ab4db36ae44c8ec8cce6796",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RI.fills",
+      "before_sha256": "eabc04423b976009d35abe8aff9c849d38f0dfad00ec29fc9ac30eb8f35655cf",
+      "after_sha256": "c950be7dfd9dc9469ccaf24f5cad5d2473657e553952a69870eb67c8e2c48fda",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RI.gdi-text",
+      "before_sha256": "0811508fe018ffff3a85ae883b07d5ccf4a1b58c16ab2ec9d124157fff84411a",
+      "after_sha256": "f218ebae38dc8cead1cf90b5e16176f55f5acb212f5eb7102d85ad7fb1efa359",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RI.locked-writes",
+      "before_sha256": "d7726a22c8abe0ee2cf6054a9504b3c3f849153d875b6280571f1e9c5da813b1",
+      "after_sha256": "2a803a0d061bd05e3f6a74e6c92d2d04e02a5c642701157c360a5123b177fd2a",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RI.movies",
+      "before_sha256": "2a13d98b78cd6702db5b01f5e79ba799ac672a4f8598fcf13ab6c802e1bde68b",
+      "after_sha256": "d7fa61f853c21af7d4a152623067cbea941d198375a948bfda50250b79e4dbfc",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RI.sprites",
+      "before_sha256": "84cf64a1bba135cc38a5ce078c3e309d1aeb88b8e8f8f670f7da68535e5e69e0",
+      "after_sha256": "427e25483727cd36cf9c9ae46c726123ecb0b81f7dc7f94b01ee92ea2e526392",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RI.terrain",
+      "before_sha256": "bdcb9990339c1f8427082c2f66b0d8b232c4e72d70655b1f2db9a36cd9cabe53",
+      "after_sha256": "fd6403299f218386565b17f9ed27674d91c16fb1feeb66759e9f0def5988f6b4",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RI.ui",
+      "before_sha256": "42956bcbec2829169e8990deb545c2b39c55250faed80f861b495c155df93755",
+      "after_sha256": "9df5b11b3c2b36cf8fb2b6575ef32d370d61a92a706afd9b87b0de2cbe85a149",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RS.canvas-producer-sequence",
+      "before_sha256": "271eb8360926c072765ddd0ab3783ac709006d4d2a8aeb5a785a312170589db9",
+      "after_sha256": "271eb8360926c072765ddd0ab3783ac709006d4d2a8aeb5a785a312170589db9",
+      "exact_receipts": []
+    },
+    {
+      "id": "RS.fade-live-pixels",
+      "before_sha256": "3cab3e20e2ea8a17a39a5f5887ef72c4b3a0b878299f554910d5bf448063f73a",
+      "after_sha256": "3cab3e20e2ea8a17a39a5f5887ef72c4b3a0b878299f554910d5bf448063f73a",
+      "exact_receipts": []
+    },
+    {
+      "id": "RS.glyph-live-route",
+      "before_sha256": "cf8d78a7083fe1b2d5aa10a182ca31d1b0c8cd3e5e023e1c795b18d930aa0ec2",
+      "after_sha256": "cf8d78a7083fe1b2d5aa10a182ca31d1b0c8cd3e5e023e1c795b18d930aa0ec2",
+      "exact_receipts": []
+    },
+    {
+      "id": "RS.word-clip-takeover",
+      "before_sha256": "c7d88ce3b7283d9ba9efcfebf4567c6c4f069fcca8bbd96467521090722d03b9",
+      "after_sha256": "c7d88ce3b7283d9ba9efcfebf4567c6c4f069fcca8bbd96467521090722d03b9",
+      "exact_receipts": []
+    },
+    {
+      "id": "RS.word-raster",
+      "before_sha256": "4de5215e74aeb73c752c040f6af5c2a52d08edf8e646a7f8447c1e2c72743f68",
+      "after_sha256": "eb81577e233865898afbcf4071063cd21c2a2d8e4a578d7033bf098c42f63806",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RS.word-route",
+      "before_sha256": "46051a67cba3e1dac7dbefc2491e8960eec01d81c081ed672f21e76ebd62f11d",
+      "after_sha256": "8a75c129e463013fad26880ef8a06fc0983f3cb38e2bfe28b6c77bf356611272",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RS.world-composition",
+      "before_sha256": "d462123710b248297eeb08f752b82565ea3379a28e189f85ccba0291d36a12e3",
+      "after_sha256": "9428bb725f9a972951f8452e6d2be1607c31ae2ac037afbb5fa36a45da9b9bec",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RS.world-frame",
+      "before_sha256": "b6139d077064aca7b3ba6baf88ace67a772811b6190771d4a2841111ee370562",
+      "after_sha256": "431a15b4ef3248be0351ffde5f64bfd58bed98ace8591002e1b00f2bd035cc35",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "RS.world-kind8-additive",
+      "before_sha256": "f4ac6b178a791e1c3b6c5e42e57edd9f9e8e3b65c70525716b0d8621d8d2edd1",
+      "after_sha256": "f4ac6b178a791e1c3b6c5e42e57edd9f9e8e3b65c70525716b0d8621d8d2edd1",
+      "exact_receipts": []
+    },
+    {
+      "id": "RS.world-kind8-colour",
+      "before_sha256": "d5dedf684192cfac1103084214dd04008d5a37e7496f491b446e14835163595f",
+      "after_sha256": "d5dedf684192cfac1103084214dd04008d5a37e7496f491b446e14835163595f",
+      "exact_receipts": []
+    },
+    {
+      "id": "RS.world-kind8-noop",
+      "before_sha256": "089ea5cd29643eb05690bcbf56dc77fdb9a9b54e7553cb6e1b3bc6ccf7140213",
+      "after_sha256": "089ea5cd29643eb05690bcbf56dc77fdb9a9b54e7553cb6e1b3bc6ccf7140213",
+      "exact_receipts": []
+    },
+    {
+      "id": "RS.world-producer-bypass",
+      "before_sha256": "47dccfab6b0ce4dd7747c69ce5d924e2771f64352c11035e104a251321c24558",
+      "after_sha256": "47dccfab6b0ce4dd7747c69ce5d924e2771f64352c11035e104a251321c24558",
+      "exact_receipts": []
+    },
+    {
+      "id": "RS.world-raster-batch-return",
+      "before_sha256": "71a50dd75c3caf7b81f0354bc86b997f1f2d1164eeebfe7bcb174236022c3cc3",
+      "after_sha256": "71a50dd75c3caf7b81f0354bc86b997f1f2d1164eeebfe7bcb174236022c3cc3",
+      "exact_receipts": []
+    },
+    {
+      "id": "RS.world-raster-queue-replacement",
+      "before_sha256": "596123a6130877699ab8a0c3f90e55521a4af2811d28338563fa264c6a7e2cfb",
+      "after_sha256": "596123a6130877699ab8a0c3f90e55521a4af2811d28338563fa264c6a7e2cfb",
+      "exact_receipts": []
+    },
+    {
+      "id": "RT.render",
+      "before_sha256": "bf5158af4d53d00fb67c0c154bf84e932842151b2a33f27ae30292c56bb31f77",
+      "after_sha256": "4dff1d37943b4c58120abeb9145bb9d06f7d18c157a94f236ab367e3bf2516cf",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "0bf5851fdb702b8fe78f5e4d82e0641efbdbed794b792a777e0d0ca31da6ce9b",
+      "after_sha256": "ca9055852b4c2c063a4e4007e4495fc7a2011ca3e0fc6711a1ad6e3bf3db8472",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "before_sha256": null,
+      "after_sha256": "a60c69bbb4973337403b02ca5e8b115bf632975b7900f5c1aae7fe95b581a28f",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.rendering-coverage",
+      "before_sha256": "726096951e56ddb6b7e275d865d7f79d0fea4d56b7b8a5903f4dd9bd7e50e515",
+      "after_sha256": "ffd0f8dafc2673cf437fc69c3da2cd1125c02d2f07e5c65ab8d85ff7cdf01631",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.traceability",
+      "before_sha256": "0a6b1b9097af5996de261065938c79a00bf9056ff23abd5cc8992ba401ff4a9d",
+      "after_sha256": "a75fdd40b72cd9221ad3d977bc086e91dc682826448c162ea6e023c3d553195b",
+      "exact_receipts": [
+        "draw01-commit-snapshot-20261010"
+      ]
+    }
+  ],
+  "unresolved": [],
+  "journal_append_only": true
+}

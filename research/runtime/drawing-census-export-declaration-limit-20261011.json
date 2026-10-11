@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "scope": "Read-only post-run export-table inspection of retained synthetic ABI binary; no new original execution. Callback forwarding result remains separate from missing symbol visibility.",
+  "named_leave_export_checked": false,
+  "named_leave_export_present": false,
+  "abi_record": "research/runtime/drawing-census-named-export-abi-20261011.json",
+  "abi_record_sha256": "42eefb0ada541bbdba78fcd9f5e5b6587aacf88f686c10d8f07e44d3f5c87cff",
+  "binary": "working/tests/drawing-census-abi/run-7z682smi/fixture.exe",
+  "binary_sha256": "46202086f88d630f1c068312f42196c12efcd882e124902f8e068e5bcad01178",
+  "exported_names": [
+    "DrawingCensusAnchor"
+  ],
+  "limitation": "Clang did not emit an export directive for the declaration of an assembly-defined symbol. The earlier fixture checks callback behavior, not the export table. Explicit linker export and export-table assertion are added prospectively; old evidence is unchanged."
+}

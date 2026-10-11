@@ -1,0 +1,283 @@
+{
+  "schema": 1,
+  "scope": "Committedf240927..5abde11 exact receipt review only; no retrospective gate assertion or fresh rendering validation. Current Save/Load changes excluded.",
+  "from": "f2409274fca1b824108108a31013108315eb0bae",
+  "to": "5abde1183250f318c0c0f811ee664869ffdb15f4",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "c425796892ab524155e2b3e07f1b530e8ecd99000a6a54e61925c0e9afd0143b",
+      "after_sha256": "e6a73d00bcc7e7f8073525e448e2e8e7664be5cd03d520e5737335624891871a",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-18d24f6-f240927-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "76c92c5217195e93e16715f9a632a83c52584255972b289146b802eb001b5ca2",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "9674c3cdfc91457668aaedfcb49c9b4f5da629be2c68a894995b0fd04d0d62f3",
+      "after_sha256": "98a425f006bf1e9cee1cefdc10b80f69ec7f08a47c10fbef351389fdd754cb56",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-phase-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "32dc4c83faa8af52bff673d080dd2fd4a9cc4e13ad8b4ac9c8b4ca6ce5c8ef23",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "71f72770ce2297447fafe2e5308e2e99b080dad63f787df65a7955162ebac6db",
+      "after_sha256": "e4ad0a3e39d301e1c8499e0430edb10c47eec48db9e25b40002dcd3a62053b71",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-inventory.md",
+      "before_sha256": "3fc592bac5927f87ae35b5aebc5912a34a3d1ee2c11133e949debcb2d0020c89",
+      "after_sha256": "95f1a146703e92a058bb1eec3496e22bb1723998f9365f71dc0fe1ff8f4a83b3",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.queue-dispatch",
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-census",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-census-enabled-movie-requests-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "91a1c7f7adf6f040a1f1b734ffb081f762b63c678289d6cc7c464a72f1a1f6d0",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-inventory-phase-guards-20261010.json",
+      "before_sha256": null,
+      "after_sha256": "a56734662cc39316111e51898600c3d84f45bf0ee0d0cd4c56b4d3d4950fbcfa",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-inventory.json",
+      "before_sha256": "7e522aaa8f99c1333a305689a358d502c33bdb08e4ef4dcf517b959f57046616",
+      "after_sha256": "2c3293c7494890bf4830051081fc9d5082dac47d4f73fa07273adf169bb77774",
+      "behaviors": [
+        "DRAW.queue-dispatch",
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "path": "tests/test-drawing-inventory.py",
+      "before_sha256": "b099a6e21849ebd5985646e1fbb31f5d1348da437a4d840c228f02f81ec4c1ed",
+      "after_sha256": "c26039c26ccd604bdc5155b7ef03f937baec614382c7375d26a6e5fa24732e57",
+      "behaviors": [
+        "TOOL.drawing-census",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "test",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "path": "tools/capture-drawing-census-game.py",
+      "before_sha256": "285fd80236ff7f7caa6c0969ad35c61c1fd53ec8f2ceb4ea97cea6ff02c2d70a",
+      "after_sha256": "a323ed4be54d3b36b55c2690eb1e148e861dadcbcc84f3dbc2bad9d683736985",
+      "behaviors": [
+        "DRAW.census.journey-driver"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "path": "tools/drawing_inventory.py",
+      "before_sha256": "749888348c1cac84e5637a529831154f5c04f393f21863ca9430940a2a1fef1a",
+      "after_sha256": "626ebf119f06bdbf54a33baf1985f2c60d39e455809a473415811bee4caa0cf9",
+      "behaviors": [
+        "TOOL.drawing-census",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "3ff53224259bb2a151732f782cb6fc595c52071abdf0a5532ccadfe0bea9cf4f",
+      "after_sha256": "1d488f046f17996cd5d71b499802ac43925c2dd1eb9bb765ceed94079186ea9d",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010",
+        "draw01-metadata-accounting-and-movie-request-validation-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "967f5eba2eeb2125ccc90a0b8808c9d1bc5d05949647a995ad0958fc1f6c1b9b",
+      "after_sha256": "fe44935374211433517834790cd68c3230e34671defee257a12980b6ddb0bad1",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010",
+        "draw01-metadata-accounting-and-movie-request-validation-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.queue-dispatch",
+      "before_sha256": "f6f11dc04a6880eaa7465f8837b1998684d7e93dc14127489148ba6930a31295",
+      "after_sha256": "4c6689ba4be25ecc8c27efeefe77b4e286ccf0d0dc59e1683604f2698ab28699",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.surface-hosting",
+      "before_sha256": "81cf2efdd6b0ce96e073f7d07d635cf2a9050d2d05551b3bfaee28a31b4e08c7",
+      "after_sha256": "d66a56f0332ce5955b653e135c601188f46d448a83c9d091c03043b09aa0499e",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.unassigned-word-window",
+      "before_sha256": "18d4e6aedab01901d231335170d6324607b31447f79d892593f63fcdaad05276",
+      "after_sha256": "c41ea27b171bdac7184d4df15de18e8c6d22cc7bdaf6284a45e9178f7f8edb19",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.unattributed-caller",
+      "before_sha256": "540e350c4c0b411761874d44269f5d569577808ef70cc108410b0c4f5b009df5",
+      "after_sha256": "434ac2027001c5d876a02de80f0cfe9ed80be29b13a1d0254417636a1d12dcd6",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "before_sha256": "aafb9d112f376c050f50077c494266b8d4aec4462e044e1dc1ea49ae50323152",
+      "after_sha256": "0aaffd75eca82dbadad375a2033708a2ba5547780f98d205ee47277f2b953624",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "before_sha256": "a98683871daa7ede97acfd9281dc3179014aa051c132380d4927bd2390a6767a",
+      "after_sha256": "f7b63d5a93843c5befd00a293ebc0f7c095a6ed34827ffc191e547665acbd5fd",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "before_sha256": "5d718b2236620a6d0ee8f128a50c4946de14b6d11c0f51873f83c9221fa488c2",
+      "after_sha256": "3f2de18ef89c37838d47f1763f6b887f370b5c70a2f568b08b18bb336245f19c",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "9fa56d17af2b58e9d5863feb1d707759f735205a7cef9f7603e7fd52ed68b22f",
+      "after_sha256": "1e34ecf429e1b43d8b063f74803d22dc96bc4d437510e8ef9c3fcbfc8116d730",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-census",
+      "before_sha256": "772f51e4d487b5243e41c4a544b8a51517414ebfbcb739bc159bdb2bad24d8b5",
+      "after_sha256": "4b6802543ad5dda250d2223721bb2aa185b96fe03ca648fb820b27d30eb7bc4c",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-dispatch-slices",
+      "before_sha256": "9a9d9735601e12b60dce7c7a4aa3bfd622647190048cbe0e6fdff0e1e2121bf3",
+      "after_sha256": "929fc7c4e2aca0f3083f01c2bd7693d13f03ee8e93e2534c1f63fb41d21c12e0",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "before_sha256": "ffaa21de1f07b70805b1a1f6177cdc0938f6481de2319e7c4021b86998024dda",
+      "after_sha256": "8c187fa33f319de14857bfb9ac7b37f7744bd0a1fc3d9ee46d85cf9374162ec4",
+      "exact_receipts": [
+        "draw01-metadata-phase-and-movie-request-accounting-20261010",
+        "draw01-metadata-accounting-and-movie-request-validation-20261010"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "review_journal_append_only": true
+}

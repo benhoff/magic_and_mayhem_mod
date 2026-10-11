@@ -1,0 +1,342 @@
+{
+  "schema": 1,
+  "reviewed_commit_range": "defa681cbeb57db71f69976965cb88eb3fa944f3..a69697f158427535ea81707aaa200fd016a5ad39",
+  "scope": "Committed history only; exact parent/current hashes, affected behavior links and contract receipts reviewed separately from current uncommitted work. No retrospective gate pass or new validation.",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "9b1c7162ac51a62d4635965dd665b6d59ccf82047ed1dbde99e4dee6b3608dc0",
+      "after_sha256": "8471cf228fb8c0e6bf231b4f8cf963502960b35bc2432d2034e673d60d1c65fa",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-50674a8-defa681-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e6b62a67ab63183b64a6d5e4d1b9823e6a4b9463961fcb53b40d1834c11fb570",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "8544ed2a1bf851a2220b48413660fa88d94c3ea757b726c62b4f6f9862bf59d5",
+      "after_sha256": "757ae66003cbb0e1503776b124d90ce1864f6e08f9e1388cc6e17ff93485b04f",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-api-only-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "310faa2383cbaefbb84269515a1c54f0b8e6dbb3591ffab7345a814591c970fc",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "53b34b39084782437f1aaf1c3618d9fecf7241560750935b63f6adfd11f40f45",
+      "after_sha256": "658d6cd5930cedb5b8a75e352aaa0949a0299148bdcb22933188cb2abb6e1e47",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-graphics-api-boundaries.md",
+      "before_sha256": "69495175a2cbf4015d6c75d97a93993bf6d2369024d6827f4e13b80caf13d821",
+      "after_sha256": "cec9a8a8ac123b70dd5e79c849b0a8d01fa889089d06d48682e8e3b7c5e96d11",
+      "behaviors": [
+        "DRAW.graphics-api-boundaries",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-cohorts",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-sites"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-cohort-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "d3ddfbec3f34106db49a9ec22b8eb5639c1e0cee137306569d6708f7c54998a0",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-core-cohort-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "9ac31ecfb21aeadcfd1aec1acaf6a3a699407d105f183d8c4d21ddd8f32dcad2",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-only-cohort-static-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c113e403a33880d6a0e30a3126f55ef9956f9dbd64653635706522e239714c54",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-api-only-movies-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7042ab20b1058ad841f00c4ab310effb8c13db14b74250ca011f73972dd70b24",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tests/test-drawing-api-cohorts.py",
+      "before_sha256": null,
+      "after_sha256": "6cb4aab6c0a2fe3acc316f0396ff4c102515040605ba4862a519e2d25a1b2801",
+      "behaviors": [
+        "TOOL.drawing-api-cohorts",
+        "TOOL.drawing-api-journey"
+      ],
+      "role": "test",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-native-guards-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "path": "tools/build-drawing-api-census.py",
+      "before_sha256": "6bfa273ad6d4694419812fe6f76778fc5809b61996485f3a41d098a37ffd58c6",
+      "after_sha256": "d2fba1e98dbaf5fa5777199107c99aa1ad9aca6ff890f54cbede91dc0b3600ff",
+      "behaviors": [
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "path": "tools/capture-drawing-census-game.py",
+      "before_sha256": "4765785e43ee5e8dbb18a418dfcece76e1c9b294e1b508934f643e60e4d6b98f",
+      "after_sha256": "251b21683bf17327d8be889c2cb637e063feba058509704faa4f0dc099fd4f09",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "RI.movies",
+        "TOOL.drawing-api-journey"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing-census-game-runner.py",
+      "before_sha256": "581c70bc1fccab3e9b67635b233fdbc1bebc2fac78c38e72e9943a5a83744680",
+      "after_sha256": "60678fe5c79c815337234ec8bb626efb296e01ce36da6ac672cef09ab786d9eb",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "RI.movies",
+        "TOOL.drawing-api-journey"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_api_cohorts.py",
+      "before_sha256": null,
+      "after_sha256": "fd7b573088c8c199b6981e7fa6bed5b07bff1ddda153ad4671ba49b2cf849fd5",
+      "behaviors": [
+        "DRAW.census.journey-driver",
+        "TOOL.drawing-api-cohorts",
+        "TOOL.drawing-api-journey"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-native-guards-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "path": "tools/export-drawing-api-splices.py",
+      "before_sha256": "30d7a643fd391a5effdb98ba4e7ee5d5325c6dd09dafdb0f4c6a904c01e57769",
+      "after_sha256": "b9ac94eff2d850557256002f9adf2af87e9c105617aa95f17b03d61872a39b60",
+      "behaviors": [
+        "TOOL.drawing-api-journal"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/prepare-drawing-census.py",
+      "before_sha256": "7372fb1495dc00df431198d187b5cdf4f0b9d1a8bd7ebd49bf0269b569c1d38e",
+      "after_sha256": "9efc0b162a4f2eea19d05110fbff18a13a7ea0d488eb4c2c8a6d9b88fee535f9",
+      "behaviors": [
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "RI.movies",
+        "TOOL.drawing-api-journey"
+      ],
+      "role": "tool",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "1dd747c23b2967971dfc6b868bc7bae33d2ada10439e416b44e4839f08d3098e",
+      "after_sha256": "33f1505f42b0423a65342d8f18c5a0a06f85730b5f9f29c994435affad9238b7",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "8e3e9c3d7f7f3f58e583220df7b0f5364f4df540e724d6c703f51d86bfedf62a",
+      "after_sha256": "e419edb8e39d0c3b8c31d7faba6b43026d1799a5241000f6d95c9e5c40664686",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-boundaries",
+      "before_sha256": "dd81b5d9a5576d8efddf6033bfcdeabeb0b05b37c568cc3a5e2e8e367b8eb73d",
+      "after_sha256": "b7b066877616fa3ce15f3c2887a516aa3bf901c1375afd537318d5f9a4a2d049",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RI.movies",
+      "before_sha256": "90815a5e1f6bb148e28a5d79e9c89f48b80e8156db50b8e2fda51f8b66d46e87",
+      "after_sha256": "d2165bb76b1172d73abdd0e1f1e0d5487421578c4160dbf12d14168a4403cc74",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "cf64ec2933874a2799606d215ea2a58d0bff65c8dffa49c213e9316bcb4886e5",
+      "after_sha256": "79cc85c5e1c50105853b34482f89a4d8754116dc8d5199688abbd72119a7f283",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-bindings",
+      "before_sha256": "2fdc79782485ca660a6d9fb24c03d8c0539316f249f1537ea948e45798b7a3c5",
+      "after_sha256": "039294b4a1aa22039d704c579f48ff230598835af4702777e95ea3b3e574d77d",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-cohorts",
+      "before_sha256": null,
+      "after_sha256": "c04fd7aa87e708349a359ee9d05a24eda9b91487bba2c256f38199cb64aeeaa8",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-native-guards-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journal",
+      "before_sha256": "f1d2cce2da3519a5b63decd9d5ac07c49ff4d1e0f3625f42fefb52e330c10fac",
+      "after_sha256": "c9b090549573817d9696d3765b981e6238de854fe3bea4db906c42c3e8be7781",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journey",
+      "before_sha256": "07455aaeb0fff8e7f40152ed3143dfcaa959e9ac85138db0950d40e96fb14f6b",
+      "after_sha256": "c7a0d7121394ee70280159b15dd8a147d2a7271e6a9caa8a46b50c288dce9414",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-observer",
+      "before_sha256": "7c1f48ffac5bf2398edd94790e6ca9dca77b4f18eda32129084244f5128aee57",
+      "after_sha256": "a5476752bacaa9c29b52a70112a40040857b1866351d74ee9eed5ff632d35ee3",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011",
+        "draw01-api-only-current-original-movies-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-sites",
+      "before_sha256": "c49b376532408af8a18d63b6a383820e26b9dee02eba64554e4a7b808516d58d",
+      "after_sha256": "27cbf4799253d212d81c79f337f35af5b26a4eaefc2a2fb977f3e4dfb220db90",
+      "exact_receipts": [
+        "draw01-api-only-current-accounting-20261011"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "counts": {
+    "files": 17,
+    "behaviors": 11,
+    "missing_exact_receipts": 0
+  }
+}

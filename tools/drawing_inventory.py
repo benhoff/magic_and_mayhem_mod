@@ -95,11 +95,43 @@ def project(record, definition):
                 raise ValueError('Incomplete original draw-kind rows')
             counts.update({key: count(value) for key, value in row['kind_counts'].items()})
         return sorted(counts.items())
+    if kind == 'census_entry_rows':
+        phase = definition['phase']
+        if type(phase) is not int or not 0 <= phase <= 14 or definition['selector'] != 'entry' or not isinstance(data, list):
+            raise ValueError('Invalid metadata census phase/entry projection')
+        counts = Counter()
+        for row in data:
+            observed_phase = row['phase']
+            if type(observed_phase) is not int or not 0 <= observed_phase <= 14:
+                raise ValueError('Invalid recorded metadata census phase')
+            entry, hits = address(row['entry']), count(row['count'])
+            if observed_phase == phase: counts[entry] += hits
+        return sorted(counts.items())
+    if kind in {'api_site_rows', 'cpu_site_rows'}:
+        phase = definition['phase']
+        expected_selector = 'cpu_site' if kind == 'cpu_site_rows' else 'api_site'
+        if type(phase) is not int or not 0 <= phase <= 14 or definition['selector'] != expected_selector or not isinstance(data, list):
+            raise ValueError('Invalid API site phase/projection')
+        counts = Counter()
+        for row in data:
+            observed_phase = row['phase']
+            if type(observed_phase) is not int or not 0 <= observed_phase <= 14:
+                raise ValueError('Invalid recorded API phase')
+            site, hits = address(row['site']), count(row['count'])
+            # Validate excluded phases too. A diagnostic target is not a type,
+            # function owner or interface lifetime proof.
+            for key in ('target_slot', 'target_value'):
+                address(row[key])
+            if type(row['target_state']) is not int or row['target_state'] not in {1, 2, 3, 4}:
+                raise ValueError('Invalid recorded API target state')
+            if observed_phase == phase:
+                counts[site] += hits
+        return sorted(counts.items())
     raise ValueError('Unreviewed activity projection: ' + kind)
 
 
 def selector_key(kind, identity):
-    if kind == 'entry':
+    if kind in {'entry', 'api_site', 'cpu_site'}:
         return kind, address(identity)
     if kind == 'draw_kind':
         value = int(identity, 0) if isinstance(identity, str) else identity
@@ -144,6 +176,48 @@ def reconcile(root, catalog, register):
     if static['source_sha256'] != build['source_sha256']:
         raise ValueError('Static inventory build mismatch')
     returns = caller_returns(static)
+    api_sites, cpu_sites = {}, {}
+    site_sources = [(source, api_sites) for source in catalog.get('api_site_sources', [])]
+    site_sources += [(source, cpu_sites) for source in catalog.get('cpu_site_sources', [])]
+    for source, destination in site_sources:
+        ev = evidence[source['evidence']]
+        if ev['kind'] != 'static':
+            raise ValueError('API site census requires static evidence')
+        record = evidence_record(root, ev, builds)
+        if type(record['schema']) is not int or record['schema'] != 1 or record['source_sha256'] != build['source_sha256'] or record['input_unchanged'] is not True:
+            raise ValueError('API site census build/schema/input mismatch')
+        from drawing_api_sites import call_mode
+        seen = set()
+        for row in record['calls']:
+            site = address(row['site'])
+            if site in seen:
+                raise ValueError('Duplicate static API CALL site')
+            seen.add(site)
+            raw = bytes.fromhex(row['bytes'])
+            if not raw or address(row['return_pc']) != site + len(raw):
+                raise ValueError('API CALL return PC/extent mismatch')
+            mode = call_mode({'address': site, 'mnemonic': 'call', 'bytes': row['bytes'], 'operand': row['operand']})
+            if mode['kind'] == 'unresolved_indirect' or mode != row['target_mode']:
+                raise ValueError('API CALL target mode differs from exact bytes')
+            if destination is cpu_sites:
+                from drawing_cpu_sites import SLOTS
+                if not (mode['kind'] == 'absolute_memory' and mode['address'] in SLOTS or
+                        site == 0x59d98a and raw == b'\xff\xd0' and mode == {'kind': 'register', 'register': 'eax'}):
+                    raise ValueError('CPU site is outside reviewed global/CRT CALL namespace')
+                if row.get('exact_import') or row.get('semantic_contract') != 'unreviewed':
+                    raise ValueError('CPU diagnostic site cannot claim an imported or typed client')
+            imported = row.get('exact_import')
+            if imported and (mode['kind'] != 'absolute_memory' or address(imported['iat_va']) != mode['address']):
+                raise ValueError('API import differs from exact CALL slot')
+            for owner in row['discovered_owners']:
+                address(owner)
+            if site in destination and destination[site] != row:
+                raise ValueError('Conflicting static API CALL site')
+            destination[site] = row
+    if api_sites.keys() & cpu_sites.keys():
+        raise ValueError('CPU and graphics CALL namespaces overlap')
+    from drawing_api_clients import reviewed_clients
+    api_clients = reviewed_clients(root, catalog.get('api_layout_sources', []), evidence, builds, build, api_sites)
     windows = {}
     selectors = {}
     binary = None
@@ -160,6 +234,27 @@ def reconcile(root, catalog, register):
             raise ValueError('Route lacks side effects or support rationale')
         if not route['documents']:
             raise ValueError('Route lacks research')
+        if 'observation_profile' in route:
+            if route['observation_profile'] != 'terminal_flow' or 'entry' not in route or route.get('selectors') != [{'kind': 'entry', 'identity': address(route['entry'])}]:
+                raise ValueError('Invalid opt-in terminal entry route')
+            if 'DRAW.terminal-canvas-wrappers' not in route['behaviors']:
+                raise ValueError('Terminal profile needs its original wrapper contract')
+        if 'cpu_site' in route:
+            point = address(route['cpu_site'])
+            if any(k in route for k in ('entry', 'api_site', 'client_contract')) or route.get('selectors') != [{'kind': 'cpu_site', 'identity': point}] or point not in cpu_sites:
+                raise ValueError('CPU site needs a separate exact diagnostic CALL route')
+            if route['classification'] != 'unresolved' or route['support']['decision'] != 'original_only':
+                raise ValueError('CPU diagnostic CALL does not establish a callee contract or native admission')
+        if 'api_site' in route:
+            point = address(route['api_site'])
+            if 'entry' in route or route.get('selectors') != [{'kind': 'api_site', 'identity': point}] or point not in api_sites:
+                raise ValueError('API site needs an exact static CALL route, separate from function entries')
+            client = api_clients.get(point)
+            if client:
+                if route.get('client_contract') != client['contract'] or route['classification'] != client['classification']:
+                    raise ValueError('API route differs from reviewed client contract/classification')
+            elif 'client_contract' in route:
+                raise ValueError('Unreviewed API site cannot claim a client contract')
         for path in route['documents']:
             target = (root / path).resolve()
             if Path(path).is_absolute() or '..' in Path(path).parts or not target.is_relative_to(root.resolve()) or not target.is_file() or path.split('/')[0] in {'original', 'working', '.git'}:
@@ -188,17 +283,35 @@ def reconcile(root, catalog, register):
             key = selector_key(selector['kind'], selector['identity'])
             if selector['kind'] == 'entry' and 'entry' in route and key[1] != address(route['entry']):
                 raise ValueError('Entry selector disagrees with original route')
+            if selector['kind'] == 'api_site':
+                if 'entry' in route or 'api_site' not in route or key[1] != address(route['api_site']) or key[1] not in api_sites:
+                    raise ValueError('API site needs an exact static CALL route, separate from function entries')
+            if selector['kind'] == 'cpu_site':
+                if 'cpu_site' not in route or key[1] != address(route['cpu_site']) or key[1] not in cpu_sites:
+                    raise ValueError('CPU selector differs from exact diagnostic CALL route')
             if key in selectors:
                 raise ValueError('Ambiguous route selector')
             selectors[key] = route['id']
     if windows.keys() != static['ranges'].keys():
         raise ValueError('Static window census changed; classify every window')
+    for site in api_sites:
+        if selector_key('api_site', site) not in selectors:
+            raise ValueError('Static API CALL lacks reviewed route: ' + hex(site))
+    for site in cpu_sites:
+        if selector_key('cpu_site', site) not in selectors:
+            raise ValueError('Static CPU CALL lacks reviewed route: ' + hex(site))
     activities = []
     unaccounted = []
     for source in sources.values():
         for projection in source['projections']:
             if projection['activity'] not in {'live_original_active', 'live_takeover', 'live_observation'}:
                 raise ValueError('Unreviewed activity classification')
+            if projection['selector'] in {'api_site', 'cpu_site'}:
+                api = records[source['id']].get('api', {})
+                if api.get('journal_integrity') is not True or api.get('original_sha256') != build['source_sha256']:
+                    raise ValueError('API activity needs an intact build-bound journal')
+                if projection['selector'] == 'cpu_site' and records[source['id']].get('call_boundary_role') != 'cpu_backend_dispatch':
+                    raise ValueError('CPU activity needs an explicit CPU observer role')
             for identity, hits in project(records[source['id']], projection):
                 key = selector_key(projection['selector'], identity)
                 route = selectors.get(key)
@@ -229,6 +342,51 @@ def reconcile(root, catalog, register):
             additional_hooks.append({'entry': address(entry), 'source': str(path)})
             if selector_key('entry', entry) not in selectors:
                 unaccounted.append({'selector': 'entry', 'identity': entry, 'activity': 'instrumented_only', 'source': str(path)})
+    metadata_hooks = []
+    metadata_refusals = []
+    for cohort in catalog.get('metadata_hook_cohorts', []):
+        from coverage_audit import pointer
+        record = records[cohort['observation']]
+        rows = pointer(record, cohort['pointer'])
+        tags = [row['tag'] for row in rows]
+        if any(type(tag) is not int for tag in tags) or tags != list(range(len(rows))):
+            raise ValueError('Invalid recorded metadata hook tags')
+        entries = set()
+        for row in rows:
+            entry = address(row['entry'])
+            if entry in entries: raise ValueError('Duplicate recorded metadata hook entry')
+            entries.add(entry)
+            route = selectors.get(selector_key('entry', entry))
+            if route is None:
+                unaccounted.append({'selector': 'entry', 'identity': entry,
+                    'activity': 'metadata_instrumented_only', 'source': cohort['observation']})
+            elif row['route'] != route:
+                raise ValueError('Recorded metadata hook route identity changed')
+            metadata_hooks.append({'entry': entry, 'tag': row['tag'], 'route': route,
+                'cohort': cohort['observation'], 'activity': 'recorded_instrumentation_only'})
+        for row in pointer(record, cohort['refused_pointer']):
+            entry = address(row['entry'])
+            if entry in entries or not row['reason'].strip():
+                raise ValueError('Invalid recorded metadata hook refusal')
+            route = selectors.get(selector_key('entry', entry))
+            if route is None or route != row['route']:
+                raise ValueError('Metadata hook refusal needs explicit current route')
+            metadata_refusals.append({**row, 'cohort': cohort['observation']})
+    for source in catalog.get('caller_sources', []):
+        from drawing_census import validate_callers
+        caller_evidence = evidence[source['evidence']]
+        if caller_evidence['kind'] != 'static':
+            raise ValueError('Supplemental caller census requires static evidence')
+        record = evidence_record(root, caller_evidence, builds)
+        # Existing records use hex ownership strings; supplemental records keep
+        # numeric discovered entries. Ownership is never inferred from proximity.
+        extra = validate_callers(record, build['source_sha256'],
+                                 {identity for kind, identity in selectors if kind == 'entry'})
+        for pc, value in extra.items():
+            value['discovered_owners'] = [hex(address(owner)) for owner in value['discovered_owners']]
+            if pc in returns and (returns[pc]['entry'] != value['entry'] or returns[pc]['call_va'] != value['call_va']):
+                raise ValueError('Conflicting exact drawing caller census')
+            returns[pc] = value
     # Do not infer all indirect flows from an entry's understood outer contract.
     indirect = [{'window': name, 'route': windows[name], **item}
                 for name, items in static['indirect_calls'].items() for item in items]
@@ -273,9 +431,22 @@ def reconcile(root, catalog, register):
             'activities': activities, 'scenarios': scenario_rows, 'unaccounted': unaccounted,
             'static_callers': static['callers'], 'static_caller_returns': {hex(k): v for k, v in returns.items()},
             'static_indirect_calls': indirect, 'static_computed_jumps': jumps, 'dispatch_tables': tables,
-            'hook_entries': hooks, 'additional_hook_entries': additional_hooks, 'completion_blockers': blockers, 'draw01_complete': not blockers,
+            'static_api_sites': list(api_sites.values()), 'reviewed_api_clients': list(api_clients.values()),
+            'static_cpu_sites': list(cpu_sites.values()),
+            'hook_entries': hooks, 'additional_hook_entries': additional_hooks,
+            'metadata_hook_entries': metadata_hooks, 'metadata_hook_refusals': metadata_refusals,
+            'completion_blockers': blockers, 'draw01_complete': not blockers,
             'counts': {'routes': len(routes), 'static_windows': len(windows), 'instrumented_entries': len(hooks),
                        'additional_interior_hooks': len(additional_hooks),
+                       'metadata_instrumented_entries': len({row['entry'] for row in metadata_hooks}),
+                       'metadata_refused_entries': len({row['entry'] for row in metadata_refusals}),
+                       'api_registered_sites': len(api_sites),
+                       'cpu_registered_sites': len(cpu_sites),
+                       'cpu_observed_sites': len({a['identity'] for a in activities if a['selector'] == 'cpu_site' and a['count']}),
+                       'terminal_profile_entries': sum(r.get('observation_profile') == 'terminal_flow' for r in routes.values()),
+                       'api_reviewed_clients': len(api_clients),
+                       'api_unreviewed_clients': len(api_sites) - len(api_clients),
+                       'api_observed_sites': len({a['identity'] for a in activities if a['selector'] == 'api_site' and a['count']}),
                        'required_scenarios': sum(s['required'] for s in scenario_rows), 'unaccounted': len(unaccounted)},
             'limitations': ['Activity counters belong to individual bounded cohorts; do not sum them into runtime frequencies.',
                             'Aggregate operations do not identify every wrapper entry or caller.',

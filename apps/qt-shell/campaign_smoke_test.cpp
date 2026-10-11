@@ -200,7 +200,7 @@ void installCampaignSmokeTest(QApplication& app,QMainWindow& window,LiveMenuSess
         if(run->sampleClock.isValid()){
             const auto elapsed=run->sampleClock.elapsed();
             if(elapsed>=1000){
-                run->rates.append(QJsonObject{{"cycle",run->cycle},{"seconds",double(elapsed)/1000},{"native_frames",qint64(p.frames-run->sampleFrames)},{"painted_frames",qint64(p.paints-run->samplePaints)},{"native_fps",1000.0*(p.frames-run->sampleFrames)/elapsed},{"paint_fps",1000.0*(p.paints-run->samplePaints)/elapsed}});
+                run->rates.append(QJsonObject{{"cycle",run->cycle},{"monotonic_start_seconds",double(run->sampleClock.msecsSinceReference())/1000},{"monotonic_end_seconds",double(run->sampleClock.msecsSinceReference()+elapsed)/1000},{"seconds",double(elapsed)/1000},{"native_frames",qint64(p.frames-run->sampleFrames)},{"painted_frames",qint64(p.paints-run->samplePaints)},{"native_fps",1000.0*(p.frames-run->sampleFrames)/elapsed},{"paint_fps",1000.0*(p.paints-run->samplePaints)/elapsed}});
                 run->sampleClock.restart();run->sampleFrames=p.frames;run->samplePaints=p.paints;
             }
         }

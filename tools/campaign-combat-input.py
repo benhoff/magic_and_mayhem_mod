@@ -212,15 +212,15 @@ def main():
                         result['additional_summons'].append(dict(before_sequence=cast_sequence,after_sequence=a['sequence'],slot=a['slot']))
                 extra_slots=[a['slot'] for a in state().values() if a['type']==14 and a['owner']==owner and a['active'] and a['health']>0]
                 capture('combat-approach')
-                # Keep the wizard clear while the summoned creatures engage.
-                # This is an ordinary ground order opposite the observed enemy,
-                # with no position/health/AI writes or relaxed combat admission.
-                center();click(max(90,min(650,400-32*(tx-ty))),
-                               max(100,min(430,280-16*(tx+ty-tz))),3)
-                record('combat-wizard-clearance',enemy_slot=enemy['slot'])
+                # Keep the wizard's original engagement while the adjacent
+                # summon assists. Premature clearance can divert both actors
+                # onto another enemy; retreat after the verified kill instead.
                 time.sleep(3)
         if 'combat' not in result:raise RuntimeError('No player Zombie melee damage before bounded combat deadline')
-        finish_deadline=time.monotonic()+60
+        # Autonomous enemies can flee or draw the Zombie onto another target.
+        # Retain a finite observation window without changing AI/health or the
+        # same-engaged-enemy player-party lethal and living-wizard requirements.
+        finish_deadline=time.monotonic()+120
         while True:
             rows=read_rows(trace);hits=damage_rows(rows,owner,extra_slots,cast_before)
             lethal=player_lethal_rows(rows,owner,wizard['slot'],hits)

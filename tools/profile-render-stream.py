@@ -44,6 +44,7 @@ class RateWindow:
     def report(self, now):
         seconds = now - self.previous
         row = dict(version=1, origin='frame_v1_header_sampling', elapsed_seconds=now-self.start,
+                   monotonic_start_seconds=self.previous, monotonic_end_seconds=now,
                    window_seconds=seconds, published_updates=self.updates,
                    published_updates_per_second=self.updates/seconds if seconds else 0,
                    samples=self.samples, busy_samples=self.busy, invalid_samples=self.invalid,
