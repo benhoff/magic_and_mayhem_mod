@@ -1,0 +1,260 @@
+{
+  "schema": 1,
+  "build": "nocd-40209ca7",
+  "source_sha256": "40209ca76705b5db04ea1974543bdec1739c68acdebdbefe2537ed025b8b7168",
+  "scope": "Portable five surface operations and four World consumer canvases; no whole-window/session closure.",
+  "surface_corpus": {
+    "path": "tests/fixtures/surfaces/corpus.json",
+    "sha256": "e3d97844617a3f3ecdf2ca15787cbc442ce0f5e375fd783caf3e90ed5496cdb6"
+  },
+  "scenarios": [
+    {
+      "id": "enabled-movies",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "main-setup-menus",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "campaign-entry",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "quick-battle-entry",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "active-world",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "camera-motion",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "creatures-effects",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "hud-minimap-tooltips",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "cursor-interaction",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "pause-preferences",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "save-load",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "map-transitions",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "battle-results",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    },
+    {
+      "id": "shutdown",
+      "remaining": "Complete presented-scene/input journey comparison pending; bounded component evidence cannot close this scenario."
+    }
+  ],
+  "cases": [
+    {
+      "id": "original-rgb565-bltfast-g34xhs0b",
+      "kind": "surface",
+      "surface_case": "original-rgb565-bltfast-g34xhs0b",
+      "scenario": "unattributed-surface",
+      "scope": "Source rectangle (0, 0, 40, 1); destination rectangle (679, 599, 719, 600); full 800x600 original driver destination checked. No claim of implicit API clipping.",
+      "identity": {
+        "capture_sha256": "30b681adc8274b778835c5dba2e86a6dbe00c7691231d1f1e360648bce747876",
+        "native_input_sha256": "8880326ed9e8b7082d8123b2f0568110c92a4298c254780d8a68461cb69ebd0b",
+        "width": 800,
+        "height": 600,
+        "caller_return_va": "0x0058c5be"
+      }
+    },
+    {
+      "id": "original-rgb565-bltfast-p66k189j",
+      "kind": "surface",
+      "surface_case": "original-rgb565-bltfast-p66k189j",
+      "scenario": "unattributed-surface",
+      "scope": "Source rectangle (0, 0, 40, 3); destination rectangle (0, 597, 40, 600); full 800x600 original driver destination checked. No claim of implicit API clipping.",
+      "identity": {
+        "capture_sha256": "383d9a6dec1e8cf922c555fe3538a7a8581859ba30ea14e9267cc52627ddf597",
+        "native_input_sha256": "355b91c942eb1e85b393b24c317ff08f38906bfedd4cd8f97ba8094137ba608c",
+        "width": 800,
+        "height": 600,
+        "caller_return_va": "0x0058c5be"
+      }
+    },
+    {
+      "id": "original-rgb565-bltfast-ugdn7zhm",
+      "kind": "surface",
+      "surface_case": "original-rgb565-bltfast-ugdn7zhm",
+      "scenario": "unattributed-surface",
+      "scope": "Source rectangle (0, 0, 40, 40); destination rectangle (362, 229, 402, 269); full 800x600 original driver destination checked. No claim of implicit API clipping.",
+      "identity": {
+        "capture_sha256": "ff1859b03c82b7764a1a8c3860d8fd545e24fad820ca2dbebe3d65d5ffecd5d8",
+        "native_input_sha256": "45fef069d4542ac6779e3004f4a416fe83446c7fb4e7d2277d363ab6731f3da2",
+        "width": 800,
+        "height": 600,
+        "caller_return_va": "0x0058c5be"
+      }
+    },
+    {
+      "id": "original-rgb565-bltfast-yu55vq8i",
+      "kind": "surface",
+      "surface_case": "original-rgb565-bltfast-yu55vq8i",
+      "scenario": "unattributed-surface",
+      "scope": "Source rectangle (0, 0, 40, 40); destination rectangle (572, 475, 612, 515); full 800x600 original driver destination checked. No claim of implicit API clipping.",
+      "identity": {
+        "capture_sha256": "f092903fa05dd0610b578195093a415d3c1c2b3d1d6591421ec2184419f1aab8",
+        "native_input_sha256": "f13f323619cee6c00889c7790f74c4809cbe25a551ba5d850be9461d87170a53",
+        "width": 800,
+        "height": 600,
+        "caller_return_va": "0x0058c5be"
+      }
+    },
+    {
+      "id": "original-rgb565-bltfast-zpfft1bo",
+      "kind": "surface",
+      "surface_case": "original-rgb565-bltfast-zpfft1bo",
+      "scenario": "unattributed-surface",
+      "scope": "Source rectangle (0, 0, 40, 40); destination rectangle (363, 150, 403, 190); full 800x600 original driver destination checked. No claim of implicit API clipping.",
+      "identity": {
+        "capture_sha256": "ac1c7a58ccddca15a3c5c7bf831b090fcea06cb7017018767b5a1a0d11190622",
+        "native_input_sha256": "46c1ca9b3f3a2e46ecf4a253368e336a3431511f64dc6edc6fdcbf95a28ac13d",
+        "width": 800,
+        "height": 600,
+        "caller_return_va": "0x0058c5be"
+      }
+    },
+    {
+      "id": "world-0001",
+      "kind": "world_canvas",
+      "scenario": "quick-battle-entry",
+      "scope": "Complete selected 800x600 World consumer output from zero native base; outside-World/window drawing excluded.",
+      "frame": "world-0001",
+      "evidence": "RS.world-frame.original-20261007",
+      "identity": {
+        "sequence": 1,
+        "width": 800,
+        "height": 600,
+        "stride": 800,
+        "draws": 1298,
+        "native_input_sha256": "ff177d2f39254e15428ca3ab406a9adb272f5ed8db46d9fd83807487bfe73596"
+      },
+      "input": {
+        "path": "tests/fixtures/drawing/world-0001-input.gz",
+        "encoding": "gzip",
+        "sha256": "5019f7b611b5f4dafe4e9b8176ca24ebd303c533d5866b299b6fdb2a4e83a490",
+        "raw_sha256": "ff177d2f39254e15428ca3ab406a9adb272f5ed8db46d9fd83807487bfe73596",
+        "historical_path": "working/experiments/scene-observer/run-daryxvhl/capture/world-0001.bin"
+      },
+      "oracle": {
+        "path": "tests/fixtures/drawing/world-0001-oracle.gz",
+        "encoding": "gzip",
+        "sha256": "5808b482f4d16c32c60a49e379787897d1701b6f424ac2fcf7cc03d3899ee308",
+        "raw_sha256": "79e2807cef4d420a00b10382dc7b0711f868818970b5dd24e34b7ebd3481598b",
+        "historical_path": "working/experiments/scene-observer/run-daryxvhl/capture/world-0001.after.565"
+      }
+    },
+    {
+      "id": "world-0002",
+      "kind": "world_canvas",
+      "scenario": "quick-battle-entry",
+      "scope": "Complete selected 800x600 World consumer output from zero native base; outside-World/window drawing excluded.",
+      "frame": "world-0002",
+      "evidence": "RS.world-frame.original-20261007",
+      "identity": {
+        "sequence": 2,
+        "width": 800,
+        "height": 600,
+        "stride": 800,
+        "draws": 1298,
+        "native_input_sha256": "63318701cc541ac43ec0c8d9612db02c76669946711dc19bfa776b4100e288f8"
+      },
+      "input": {
+        "path": "tests/fixtures/drawing/world-0002-input.gz",
+        "encoding": "gzip",
+        "sha256": "8989d5b843876c542a42664bc27d4146598be7d86c0f28d26e9fc6ba83e7a0b9",
+        "raw_sha256": "63318701cc541ac43ec0c8d9612db02c76669946711dc19bfa776b4100e288f8",
+        "historical_path": "working/experiments/scene-observer/run-daryxvhl/capture/world-0002.bin"
+      },
+      "oracle": {
+        "path": "tests/fixtures/drawing/world-0002-oracle.gz",
+        "encoding": "gzip",
+        "sha256": "415f048b6a69610f9bed72ee2ea020c6f2c720c58e814adc7116af86fb3a7181",
+        "raw_sha256": "6f442ef7d83f4076a03b4036c103e4b8aff3e41349c5cbdb9eb621d7066ddde7",
+        "historical_path": "working/experiments/scene-observer/run-daryxvhl/capture/world-0002.after.565"
+      }
+    },
+    {
+      "id": "world-0003",
+      "kind": "world_canvas",
+      "scenario": "quick-battle-entry",
+      "scope": "Complete selected 800x600 World consumer output from zero native base; outside-World/window drawing excluded.",
+      "frame": "world-0003",
+      "evidence": "RS.world-frame.original-20261007",
+      "identity": {
+        "sequence": 3,
+        "width": 800,
+        "height": 600,
+        "stride": 800,
+        "draws": 1298,
+        "native_input_sha256": "f51abf23d5b6e45171ad9d7ef2558b35fb0c5b650c6acbe219f62479a5b115ab"
+      },
+      "input": {
+        "path": "tests/fixtures/drawing/world-0003-input.gz",
+        "encoding": "gzip",
+        "sha256": "c4a903268f3faa83c42d8dd20e4d50bc0fe6610987830edbdf8516db8db7203c",
+        "raw_sha256": "f51abf23d5b6e45171ad9d7ef2558b35fb0c5b650c6acbe219f62479a5b115ab",
+        "historical_path": "working/experiments/scene-observer/run-daryxvhl/capture/world-0003.bin"
+      },
+      "oracle": {
+        "path": "tests/fixtures/drawing/world-0003-oracle.gz",
+        "encoding": "gzip",
+        "sha256": "fc19cbb873b94e496d454ca52439a054971fb000e3371941b4476ebef6b84edc",
+        "raw_sha256": "5404f86910e77404ca75044183259e4552d22a305b12cb0a042646bfeda3cafa",
+        "historical_path": "working/experiments/scene-observer/run-daryxvhl/capture/world-0003.after.565"
+      }
+    },
+    {
+      "id": "world-0004",
+      "kind": "world_canvas",
+      "scenario": "quick-battle-entry",
+      "scope": "Complete selected 800x600 World consumer output from zero native base; outside-World/window drawing excluded.",
+      "frame": "world-0004",
+      "evidence": "RS.world-frame.original-20261007",
+      "identity": {
+        "sequence": 4,
+        "width": 800,
+        "height": 600,
+        "stride": 800,
+        "draws": 1298,
+        "native_input_sha256": "4bbdb5ce9429b994d1791c39d81dc61845501c09d6c038d1c02160b91f11c184"
+      },
+      "input": {
+        "path": "tests/fixtures/drawing/world-0004-input.gz",
+        "encoding": "gzip",
+        "sha256": "be6258b7a0b74a004a19c64acff0558dd530e9245709d01b9b45a0d8d3672e6a",
+        "raw_sha256": "4bbdb5ce9429b994d1791c39d81dc61845501c09d6c038d1c02160b91f11c184",
+        "historical_path": "working/experiments/scene-observer/run-daryxvhl/capture/world-0004.bin"
+      },
+      "oracle": {
+        "path": "tests/fixtures/drawing/world-0004-oracle.gz",
+        "encoding": "gzip",
+        "sha256": "5297b8b2321b13eef9086ed5aeb395751576339978ee877faf68cfd8acdcb4a6",
+        "raw_sha256": "6f7822a837d6522601567fe5337898c65447de6f1925e118b63a6ac70c01922c",
+        "historical_path": "working/experiments/scene-observer/run-daryxvhl/capture/world-0004.after.565"
+      }
+    }
+  ]
+}

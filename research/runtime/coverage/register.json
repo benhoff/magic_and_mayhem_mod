@@ -30885,6 +30885,48 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "NR.drawing-comparison-corpus",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Portable independent surface and complete World canvas comparison corpus",
+      "scope": "Pinned portable five original-driver RGB565 surface operations and four complete World consumer canvases with exact frame/input identities. Deterministic source-RLE SPR packaging, after-plane removal before native surface replay, full-word mismatch diagnostics, bounded hash/provenance/refusal checks and explicit fourteen-scenario pending denominator. Component outputs do not establish full presented-scene, camera/action/battle journeys, surface initial-state ownership, runtime observation or takeover. Retention preserves historical original report and output hashes; replay makes a new native comparison only.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw02-independent-comparison.md"
+      ],
+      "implementation": [
+        "tools/drawing_corpus.py",
+        "tools/check-drawing-corpus.py",
+        "tools/retain-drawing-corpus.py"
+      ],
+      "tests": [
+        "tests/test-drawing-corpus.py",
+        "tests/fixtures/drawing/corpus.json",
+        "tests/fixtures/drawing/world-0001-input.gz",
+        "tests/fixtures/drawing/world-0001-oracle.gz",
+        "tests/fixtures/drawing/world-0002-input.gz",
+        "tests/fixtures/drawing/world-0002-oracle.gz",
+        "tests/fixtures/drawing/world-0003-input.gz",
+        "tests/fixtures/drawing/world-0003-oracle.gz",
+        "tests/fixtures/drawing/world-0004-input.gz",
+        "tests/fixtures/drawing/world-0004-oracle.gz"
+      ],
+      "evidence": [
+        "NR.drawing-comparison-corpus.native-20261010",
+        "NR.drawing-comparison-corpus.clean-checkout-20261010",
+        "NR.drawing-comparison-corpus.commit-validation-20261010"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "scoped",
+        "comparison": "none",
+        "integration": "headless",
+        "replacement": "none"
+      },
+      "validation_domain": "All nine admitted RGB565 outputs compared in full against frozen independent original outputs, both native replay binaries required without backend substitution. Changed identities/provenance, output-as-input, paths, gzip extents, pointers/modes and partial canvases refuse. No full-window/session completion or new original execution."
     }
   ],
   "evidence": [
@@ -59306,6 +59348,127 @@
           "equals": 63
         }
       ]
+    },
+    {
+      "id": "NR.drawing-comparison-corpus.native-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh portable component replay: five sanitized original-driver surface operations plus four complete World consumer canvases from exact owned RLE, matched4320000RGB565 words with zero mismatches; no new original execution, full presented scene or live replacement.",
+      "record": "research/runtime/draw02-native-comparison-20261010.json",
+      "sha256": "79b3918984352ea9046ee310a537c06e57e3db97c4e9258bfc7639a9cf6dd487",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 4320000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-comparison-corpus.clean-checkout-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh replay after removing test dependence on a pre-existing working directory: all nine original-output component comparisons match4320000RGB565 words. Historical first execution retains its old source hashes; full presented scenes and live replacement remain pending.",
+      "record": "research/runtime/draw02-native-comparison-clean-checkout-20261010.json",
+      "sha256": "e7a48de8848c032f6f85fac2e7fd3b7e41d486cf8206d1a43da9c4d4e2f0f5d1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 4320000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "NR.drawing-comparison-corpus.commit-validation-20261010",
+      "kind": "native_integration",
+      "scope": "Fresh DRAW-02-only commit-snapshot OpenGL replay: five sanitized original-driver surfaces and four complete World consumer canvases match all4320000RGB565 words. Stable compiler/tool/fixture sources, binaries and inputs; frozen original outputs never enter native rendering. Full presented-scene journeys and live replacement remain pending.",
+      "record": "research/runtime/draw02-commit-validation-20261010.json",
+      "sha256": "cd866eff4dba61ed8ea387b230cad29a4631b8be36f5d1a3268dfc6cd427c2d4",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/pixels_compared",
+          "equals": 4320000
+        },
+        {
+          "pointer": "/mismatches",
+          "equals": 0
+        },
+        {
+          "pointer": "/original_pixels_used_as_native_inputs",
+          "equals": false
+        },
+        {
+          "pointer": "/original_work_bypassed",
+          "equals": false
+        },
+        {
+          "pointer": "/draw02_complete",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -66998,6 +67161,24 @@
       "evidence": [
         "NR.glyph-default-launch.host-20261010"
       ]
+    },
+    {
+      "id": "DRAW02.portable-components",
+      "scope": "Offline five original-driver surface operations and capture sequences1..4 of complete map2 World consumer output. Fourteen full presented-scene journeys remain pending; no installed game, new original capture, live observation or bypass.",
+      "level": "headless",
+      "behaviors": [
+        "NR.drawing-comparison-corpus"
+      ],
+      "evidence": [
+        "NR.drawing-comparison-corpus.native-20261010",
+        "NR.drawing-comparison-corpus.clean-checkout-20261010",
+        "NR.drawing-comparison-corpus.commit-validation-20261010"
+      ],
+      "tests": [
+        "tests/test-drawing-corpus.py",
+        "tools/check-drawing-corpus.py",
+        "tests/fixtures/drawing/corpus.json"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -67335,8 +67516,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-20261010.json",
-    "sha256": "ee10215091a3c8d919627905e2395cad35f9cfd2dc07fc989898162d9040d4e3"
+    "path": "research/runtime/coverage/source-index-draw02-commit-20261010.json",
+    "sha256": "235da28960d785e0e6159fbf5855f66df2a799b1d058836348a49bb6691bd838"
   },
   "claim_bindings_required": true
 }
