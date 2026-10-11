@@ -4884,3 +4884,16 @@ root continuations retain independent pending flow/classification. No new
 original execution, callback registration, physical lifetime/pixels, all writers
 or14scenario/four dispatch closure is asserted. c44885f..034ce79history has15file/
 34behavior exact receipts, no missing versions.
+
+DRAW-01's opt-in88core/128CPU parent-frame cohort now passes11guards, fresh
+128CALL planning/942direct-call export and actualPE32 compilation, while keeping
+default83safe hooks/plans separate and refusing unsafe fade58edb0. Original menu
+run closes41451core/24834CPU pairs with zero loss/open/unreadable/IO, matching
+actual allocations, stable sources/staging and exit0.24592CPU/core matches include
+24588rasters/four CRT parents; six inherited child frames identify four wrappers
+and both outer cleanup parents with original roots4e9dee/557956. The third outer
+CALL is unexecuted; inherited transfer edges, initial flags/registration,242other
+callbacks, physical lifetime and all writer/API/side-effect/14scenario/four
+dispatch closure remain pending. All raw artifacts/binaries survive stopped
+disposable cleanup.034ce79..40a16e0history has28file/51behavior exact receipts and
+zero missing intermediate versions.

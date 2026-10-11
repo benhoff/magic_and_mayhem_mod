@@ -1005,3 +1005,58 @@ python3 tools/review-drawing-terminal-crosswalk.py \
   --claims working/tests/new-terminal-crosswalk-claims.json \
   --output working/tests/new-terminal-crosswalk-result.json
 ```
+
+## Original terminal parent frames, 2026-10-11
+
+A separate opt-in builder adds five parent entries to the unchanged default 83
+safe hooks: `4bdd10`, `4bdcb0`, `4a2f00`, `4a2f70` and `4a37d0`. Their complete
+original wrapper bytes and RET0 composition require the pinned execution proof;
+only whole MOV prefixes (5/6 bytes) are copied. Overlap, incoming interior flow,
+unknown proofs and native capacity overflow remain refused. Eleven current
+guards pass. The original unsafe fade interior `58edb0` stays refused.
+
+The fresh CPU plan admits all 128 CALLs beside all 88 core entries. The separate
+direct caller export has 942 original CALLs, including three exact CALLs to
+`4a37d0` at `4a88f6`, `4e9de9` and `557951`. Staging requires an explicit reviewed
+plan SHA and checks the actual generated 88-entry metadata against all CPU
+prefixes, plus untyped CPU layouts and stable sources/data. Existing default
+builders and immutable plans are not changed. Actual PE32 compilation and the
+named native leave export pass; compilation is separate from original execution.
+
+Private original menu run `run-_pwj3is8` closes 41,451 core and 24,834 CPU pairs,
+with zero loss/open/IO/unreadable/unassigned phase. Both actual allocation maps,
+sources, prepared binaries and metadata agree/stay stable; normal exit0 and both
+2,927-input checks pass. The inspected phase14 image shows the original Main.
+The 24,592 direct CPU/core matches include 24,588 raster pairs and four actual
+CRT wrapper-parent entries. Six same-thread/same-return-slot inherited child
+frames now retain their observed parent IDs: four CRT wrappers and two outer
+cleanup calls, whose exact original root continuations are `4e9dee` and `557956`.
+The third outer CALL remains unexecuted in this cohort.
+
+The observed core pairs decompose into 16,845 original direct, eight relocated,
+24,592 CPU-root and six inherited-slot records. This closes the bounded observed
+continuation classification for this run, not semantic ownership or a guessed
+original CALL to an inherited child. The generic reviewer still flags inherited
+transfer edges separately, and initial flag-byte/registration, 242 other callback
+classifications, physical COM/reference/storage lifetime, all writer/API/side
+effects and 14-scenario/four-dispatch closure remain pending. Source-bound live
+evidence preserves every raw journal/map/log/image and exact staged binary;
+only the stopped disposable game/prefix is removed. A retention map resolves
+the earlier compile report's original game paths without changing old hashes.
+
+The first launch command used an unsupported named experiment option and stopped
+at argument parsing before game execution. That attempt remains under
+`working/tests`; the positional invocation uses the unchanged prospective scope
+and untouched prepared game, with a new log and successful execution result.
+
+```sh
+python3 tests/test-drawing-terminal-observer.py
+python3 tools/export-drawing-terminal-plan.py --executable working/game-nocd/Chaos.exe \
+  --boundaries research/runtime/drawing-cpu-sites-static-20261011.json \
+  --output working/tests/new-terminal-cpu-plan.json
+python3 tools/export-drawing-terminal-callers.py --executable working/game-nocd/Chaos.exe \
+  --output working/tests/new-terminal-callers.json
+python3 tools/prepare-drawing-terminal-census.py --source-game working/game-nocd \
+  --cpu-plan working/tests/new-terminal-cpu-plan.json \
+  --cpu-plan-sha256 <reviewed-sha256>
+```
