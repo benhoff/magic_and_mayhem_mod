@@ -100,3 +100,5 @@ refuses to overwrite changed local data. Keep the cold-storage catalog and objec
 together. This relocates retained evidence rather than invalidating its original
 hashes; it does not rerun engine validation. The archive is on a second drive in
 the same machine, so an independent off-machine backup remains a separate task.
+
+The inventory tolerates files removed by active captures during a `du` scan only when every diagnostic is a disappeared descendant and the final root total is present. Permission, I/O, missing-root and other measurement failures still refuse the launch. Measurements remain non-atomic; the existing reservation and live free-space monitor remain required. The native-render integration exposed this race; twelve guard tests include disappearing replies and fail-closed measurement cases.

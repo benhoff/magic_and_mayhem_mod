@@ -34,6 +34,28 @@ class Storage(unittest.TestCase):
         self.assertEqual(retention.pressure(199*g, 101*g, self.rules, g), [])
         self.assertEqual(len(retention.pressure(199*g, 101*g, self.rules, 2*g)), 2)
 
+    def test_disappearing_capture_reply_keeps_complete_root_measurement(self):
+        working = self.make('working')
+        result = subprocess.CompletedProcess(['du'], 1,
+            f'4096\t{working}\0'.encode(),
+            f"du: cannot access '{working}/capture/reply': No such file or directory\n".encode())
+        with patch.object(retention.subprocess, 'run', return_value=result):
+            self.assertEqual(retention.usage(working), {str(working): 4096})
+
+    def test_inventory_refuses_other_errors_and_missing_root_total(self):
+        working = self.make('working')
+        missing = f"du: cannot access '{working}/reply': No such file or directory\n"
+        for code, diagnostic in [(1, missing + 'du: cannot read directory: Permission denied\n'),
+                                 (1, "du: cannot access '/outside/reply': No such file or directory\n"),
+                                 (2, missing), (1, '')]:
+            with self.subTest(code=code, diagnostic=diagnostic), patch.object(retention.subprocess, 'run',
+                    return_value=subprocess.CompletedProcess(['du'], code,
+                        f'4096\t{working}\0'.encode(), diagnostic.encode())):
+                with self.assertRaises(subprocess.CalledProcessError):retention.usage(working)
+        with patch.object(retention.subprocess, 'run',
+                return_value=subprocess.CompletedProcess(['du'], 1, b'', missing.encode())):
+            with self.assertRaises(ValueError):retention.usage(working)
+
     def test_referenced_run_and_worktree_protected_other_run_reviewable(self):
         p = self.make('working/experiments/scene/run-reference')
         self.make('working/experiments/scene/run-candidate')
