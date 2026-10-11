@@ -1,0 +1,42 @@
+{
+  "success": true,
+  "sources": {
+    "runtime/render/command_channel.h": "3c0a2e177987cc499f4375deb662896bd320bacdaadce7d9d6537511027f0ebb",
+    "runtime/render/command_queue.h": "0f7e5e02c3ffb356c82ad2f1c74fa998826a4a04910d81da5c84d4673b6346ff",
+    "protocols/include/mnm/render_command_ring.h": "45f652bb76932537efe424ba88610a5b93971e829611781b0b4e6cada6fc56b3",
+    "protocols/include/mnm/render_commands_v1.h": "da3687442c203a85bbec98810c084346154a860bce2d3b65bb0f96c13dd66a0f",
+    "protocols/include/mnm/render_commands_v2.h": "357e127e0601ae55c30b821403df1be2c714d467d9c185c13e14091c2899d7a3",
+    "tests/render-command-writer-test.c": "00b4c4939b7d17bbba4296ec866369fb66d0d51d094954085463ded0136ee5e0",
+    "tests/render-command-queue-test.c": "31dd21195c2619c62100ab58ca74f385f3cadccf1e143d453b5b7825daa1bf80",
+    "tools/test-render-command-queue.py": "854c3c90b38e11d7e0922f703e97fdb64f88bd2bc562d659f55e72adec78c9d8"
+  },
+  "scope": "Offline strict-warning compile and optimized/ASan/UBSan queue regression with final static-inline header. Unbound diagnostic build report; no current scope-bound engine/driver equivalence promotion.",
+  "native": [
+    {
+      "success": true,
+      "cases": 11
+    },
+    {
+      "success": true,
+      "queue_cases": 25,
+      "bytes": 2097275,
+      "queue_wrap_bytes": 35653675
+    }
+  ],
+  "sanitized": [
+    {
+      "success": true,
+      "cases": 11
+    },
+    {
+      "success": true,
+      "queue_cases": 25,
+      "bytes": 2097275,
+      "queue_wrap_bytes": 35653675
+    }
+  ],
+  "raw_report": {
+    "path": "working/tests/render-command-queue/run-fk539hsr/report.json",
+    "sha256": "f04db21c3732038e06e8c39bf579ce750095d9b960aabcf36d27125ef6b715fa"
+  }
+}

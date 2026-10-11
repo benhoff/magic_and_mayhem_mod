@@ -109,7 +109,7 @@ static void command_channel_pump(void){
     if(!__sync_bool_compare_and_swap(&command_queue_draining,0,1))return;
     u32 error=GetLastError();if(command_queue)command_queue_drain();SetLastError(error);__sync_lock_release(&command_queue_draining);
 }
-static void command_channel_after_tracker(void){
+static inline void command_channel_after_tracker(void){
     /* Mapped transport may fault or stall despite a bounded byte budget. An
      * active worker must own this work rather than the drawing copy lease.
      * Finite/no-worker fixtures retain their synchronous publication policy. */
