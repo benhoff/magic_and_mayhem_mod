@@ -1,0 +1,586 @@
+{
+  "schema": 1,
+  "reviewed_commit_range": "c44885fe1f3c6092c05d3876026e1bad1b51417a..034ce795f20c53e731aea6829ae4703885d9ed24",
+  "scope": "Committed history only; exact parent/current hashes, affected behavior links and contract receipts reviewed separately from current uncommitted work. No retrospective gate pass or new validation.",
+  "files": [
+    {
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "be7e9b9411de2a9c548f19cc220a617481d35872459d444604729faa6cc1ab22",
+      "after_sha256": "dc2c84d6bcaefaf662da26936e1f8407f92a585a792559f62888e72b9319cbd6",
+      "behaviors": [
+        "TOOL.coverage-accounting"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/draw01-history-e3ee037-c44885f-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "0c57bde2a19c6a2305a536c55ce09d0378bbc049baa73ee34e3bd414685d51f9",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "9643bf39b5c86ba8887923fcc982bc190062fa7b1cc7e9e482aa426418cf131c",
+      "after_sha256": "6186f8ac2ce3659a321021b61765edce17f60bc26f5036570ddc392f07981ba1",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-canvas-release-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "ee90230b433dab4df0221241b20b047760dba1f92c7e2b01322fe12b8ec7ee89",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/source-index-draw01-canvas-release-range-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c8d02316bc6bde97c1241a13752d2ced26da3067ab4744001768f01c865e7429",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "e6673d86c4224c1a9ece3240c36c90cab2b93e214d6c928cc519e022c6419e60",
+      "after_sha256": "6bf7773804196d965e7df282ac95c2e81da06e914df0689337052d36f586c6d6",
+      "behaviors": [],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/draw01-inventory.md",
+      "before_sha256": "aebbb3f552c2be474a5483d0475c3abe291c918ea3a73754348dd64b939cd9c8",
+      "after_sha256": "4361a95d17e39fc3b226acc33a5772f76c1772da009e7d980f39228e8d0601d0",
+      "behaviors": [
+        "DRAW.canvas-lock-recovery",
+        "DRAW.canvas-release-client",
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.queue-client-state",
+        "DRAW.queue-dispatch",
+        "DRAW.queue-render-postlude",
+        "DRAW.raster-pointer-assignments",
+        "DRAW.surface-hosting",
+        "DRAW.terminal-canvas-wrappers",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-census",
+        "TOOL.drawing-core-bindings",
+        "TOOL.drawing-core-callers",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer",
+        "TOOL.drawing-cpu-sites",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-canvas-release-original-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4b6d912a39e16371e679491c22e4457c21e7e0187fec08e353519ecfb41340e5",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-canvas-release-original-range-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "db70f684437cbbf8cfc94a0201cb830e7b88dd1830281e242d1f36e1a0ea5181",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-canvas-release-route-guards-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "dbc46b9e699c7e72bd308a3b470716924d18b2067a359fb40087a319e3fdb66d",
+      "behaviors": [],
+      "role": "research",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "research/runtime/drawing-inventory.json",
+      "before_sha256": "a89137b0b7d218b4db57712444082e5187e98d5efba56914625d99436f1b08d4",
+      "after_sha256": "2988d19fe0d29d7f3df6873870c15c053e8b21dafc4489058c1f87dfdb78c51a",
+      "behaviors": [
+        "DRAW.queue-dispatch",
+        "DRAW.surface-hosting",
+        "DRAW.unassigned-word-window",
+        "DRAW.unattributed-caller",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "TOOL.drawing-inventory"
+      ],
+      "role": "research",
+      "change": "modified",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tests/drawing-canvas-release-reference.cpp",
+      "before_sha256": null,
+      "after_sha256": "064b43af2bcc45f38a9f2563a5869566b5b05577bc5ca8f6b04c29452a362968",
+      "behaviors": [
+        "DRAW.canvas-release-client",
+        "DRAW.terminal-canvas-wrappers"
+      ],
+      "role": "test",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tests/surface-retry-reference.cpp",
+      "before_sha256": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+      "after_sha256": "da2a11c34e2ca2dc065b8bf238ea67fec2560dde0dec5d33d4260a4fa5639b4c",
+      "behaviors": [
+        "DRAW.canvas-lock-recovery",
+        "DRAW.canvas-release-client",
+        "DRAW.terminal-canvas-wrappers",
+        "RE.surface-copy.restore-retry"
+      ],
+      "role": "test",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-lock-recovery-exact-accounting-20261011",
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/drawing_census.py",
+      "before_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "after_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+      "behaviors": [
+        "DRAW.canvas-lock-recovery",
+        "DRAW.canvas-release-client",
+        "DRAW.census.call-journal",
+        "DRAW.census.journey-driver",
+        "DRAW.graphics-api-boundaries",
+        "DRAW.queue-client-state",
+        "DRAW.queue-dispatch",
+        "DRAW.queue-render-postlude",
+        "DRAW.raster-pointer-assignments",
+        "DRAW.terminal-canvas-wrappers",
+        "DRAW.world-kind-16",
+        "DRAW.world-kind-17",
+        "DRAW.world-kind-20",
+        "RI.movies",
+        "TOOL.drawing-api-bindings",
+        "TOOL.drawing-api-details",
+        "TOOL.drawing-api-journal",
+        "TOOL.drawing-api-journey",
+        "TOOL.drawing-api-observer",
+        "TOOL.drawing-api-sites",
+        "TOOL.drawing-census",
+        "TOOL.drawing-core-bindings",
+        "TOOL.drawing-core-callers",
+        "TOOL.drawing-cpu-crosswalk",
+        "TOOL.drawing-cpu-observer",
+        "TOOL.drawing-cpu-sites",
+        "TOOL.drawing-dispatch-slices",
+        "TOOL.drawing-inventory",
+        "TOOL.drawing-movie-reference"
+      ],
+      "role": "tool",
+      "change": "links_changed",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-api-menu-current-observation-20261011",
+        "draw01-api-v2-exact-accounting-20261011",
+        "draw01-api-v2-native-validation-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-fixture-validation-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-lock-recovery-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011",
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "path": "tools/test-drawing-canvas-release.py",
+      "before_sha256": null,
+      "after_sha256": "f3df2ebdf95973bcf4d7d56693318becfe7b734edb50ff3928294585348f5164",
+      "behaviors": [
+        "DRAW.canvas-release-client",
+        "DRAW.terminal-canvas-wrappers"
+      ],
+      "role": "tool",
+      "change": "added",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "DRAW.canvas-lock-recovery",
+      "before_sha256": "9e3a43987496def991e09cbf94a67c05ed1e335ebfde2bd6bd990524d764f2f6",
+      "after_sha256": "654452298b95887c87cb5c006a2abf00c8b7c62514bfb1c909576ab3717242a9",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.canvas-release-client",
+      "before_sha256": null,
+      "after_sha256": "38f18ec3182db44b7ce97aaaa878371701cc4c8b5f34e8b21369cf01b4ec6069",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.census.call-journal",
+      "before_sha256": "2ac7b8f52c340fb8d507c4cac89857f79ff2892c4c5ba60a4791d5c465b9f52f",
+      "after_sha256": "325359073b48aaf8ba9b99bd3089b41f9f59dd053efe16dcde78ed7259e81968",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.census.journey-driver",
+      "before_sha256": "73035d03f817488c88e43dbf0b24142575d92ba3a8a5863ce72d69d3c776886f",
+      "after_sha256": "ac40437c7614136ba8dad5b55af08352fcad7f17cd50b4d248c4bf8d241635f8",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.graphics-api-boundaries",
+      "before_sha256": "684b4c313fe166aa7d36d34cef1a51758c165496944400745979088a45b0c2f3",
+      "after_sha256": "046c86b544333c43078aa66fcc6a6587394a7acfc3ce37f07d9bb5252310e9aa",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-client-state",
+      "before_sha256": "55eb84ad434a6b9fd11ad791a2477dcf9f4337fa793587e93c6266eae9b30fe8",
+      "after_sha256": "379b228dd8d1a528d3e212c252b64791e31d9d34b0ff75d463247d88edc61e64",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-dispatch",
+      "before_sha256": "1ab29d233038cbf9825d7960b091ccf8c76e7c08312b06c44d2e7279afcb617c",
+      "after_sha256": "34f7cbd9923669a60e7154b40c14e699195077dee7c194b362602b7ba0044b3e",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.queue-render-postlude",
+      "before_sha256": "35b36d688178c003fbb44ebe387a411db88bf57a55d0ed447b4b43a6208d3755",
+      "after_sha256": "d0c47a7d2e826aae7f62d2042c03794ab9ab545f5c0c5ea17a8f246bbe06feec",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.raster-pointer-assignments",
+      "before_sha256": "c18a2873b801cc88111a5b3e46d92dd3da9974d2f645cf475d2e81f87bc08d1b",
+      "after_sha256": "40888495215e3bd2b59222a55204b51e8367ba2579f72be315c3f0617486f1a9",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.surface-hosting",
+      "before_sha256": "6db3872814979b94d3224a643b9fb29e0e6ad187b30d2a62a006990d94cbc92a",
+      "after_sha256": "62a632cc129cc626a8d29d8111fbc5ff714daef666c378907845787cbc18755d",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.terminal-canvas-wrappers",
+      "before_sha256": null,
+      "after_sha256": "c50dd36d395f1f1fe91ec1e4c2acae890f480396e52da4960826e6db792c5cd4",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.unassigned-word-window",
+      "before_sha256": "db123f165a6006decff54b6b3709463e9f626c6717a6df0a077474f874995e42",
+      "after_sha256": "96bacbf0d424a46b0bca8cac7921281f144ef25dafb60da64e38568e4af01ad1",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.unattributed-caller",
+      "before_sha256": "e07e72fedefd07080220cc2218834a5594d96dae783435d696355c0ce05798e0",
+      "after_sha256": "3f121528b6c632c4ecfa0f44c503d1f6c67eda9f16aaca760337511e15284479",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-16",
+      "before_sha256": "2846df47e09632f7e7c0d7f8b0dd8f8d6192d75cd9a9ddc2be6b7fca1c36f0cc",
+      "after_sha256": "119cc8eb6f279c0048e791216d4e3325ce8357f0b475840da9abf1958e1f2b16",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-17",
+      "before_sha256": "3c9ca26ef52d4238b8257a52a94ce2a938b052a83ce63425e6a3a544a7be0e8a",
+      "after_sha256": "45aaaa9e8757291ca718d63c478b9342dc8fd3ebb899397a10b5e95358f4a0ee",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "DRAW.world-kind-20",
+      "before_sha256": "3c8e69ad7e8086b05e089926d2e387a86625f2803a51092272105b521a2ddc65",
+      "after_sha256": "1bbe9ba6720fd43859b2a33629e1d4d9e36b5f99db457bb52b55633febf366c4",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RE.surface-copy.restore-retry",
+      "before_sha256": "a2752082912019a50f179c995494fb510f11b60b5aac008fa8d75fc8125a700f",
+      "after_sha256": "a2752082912019a50f179c995494fb510f11b60b5aac008fa8d75fc8125a700f",
+      "exact_receipts": [
+        "word-clipping-pixel-corpus-accounting-20261010",
+        "native-world-throughput-source-policy-20261010",
+        "native-render-offline-soak-accounting-20261010",
+        "native-world-prepared-exact-review-20261010",
+        "native-world-rolling-exact-review-20261010",
+        "font-byte-source-accounting-20261010",
+        "pixel-producers-source-accounting-20261010",
+        "other-producers-exact-accounting-20261010",
+        "draw01-lock-recovery-exact-accounting-20261011",
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "RI.movies",
+      "before_sha256": "5474bb29cc075cf233db0d324edb95757bb7c6b2600f99bccbf6669398919565",
+      "after_sha256": "e254cfcce0d728392829500c679c91f1985d28dac6fae58467895958c0ca793e",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.coverage-accounting",
+      "before_sha256": "af63e3d6f68b1ebaaa276baab556a0b0495e87170d398a79f6bda92c11d3479c",
+      "after_sha256": "e23010abf6a3039e8ff877e9060395c46cc1333fb8e315c5fb5098fb8c6936cb",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-bindings",
+      "before_sha256": "1b48a1a9b9c20f245c869bd9a432f355ae8459790811c5cfa3c5bb5108ed0ecb",
+      "after_sha256": "1b48a1a9b9c20f245c869bd9a432f355ae8459790811c5cfa3c5bb5108ed0ecb",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011",
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-details",
+      "before_sha256": "d0d0a762425f2b0f071c44706254eb1c110e8090c351a4e30965b7364b22c57c",
+      "after_sha256": "d0d0a762425f2b0f071c44706254eb1c110e8090c351a4e30965b7364b22c57c",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011",
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journal",
+      "before_sha256": "a5eb1c441966417f8d1fcc632756ff7ee575fad01f77e02af703b18e3b7c369a",
+      "after_sha256": "410280c1148a81c7609d69a56ca4eef8b4148c7dd9d0d5856efa57a0f7de9bb7",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-journey",
+      "before_sha256": "cd0c2b845e15ea8d4b5bd8a7785d60e420ebeeb7ca8fb285bffe787e903b1250",
+      "after_sha256": "174a9f7311500cddec8c4287432b1d667ed4f3243cbc6a9305cb46f39e027f18",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-observer",
+      "before_sha256": "9790e68037256a3639dd7cc20ed9e7a058bf9410a5609c8d75dcee7c185a0671",
+      "after_sha256": "9790e68037256a3639dd7cc20ed9e7a058bf9410a5609c8d75dcee7c185a0671",
+      "exact_receipts": [
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011",
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-api-sites",
+      "before_sha256": "4683e11d46d4fe823779fe678afcfabcf3812a70d9adacef2f9b7cbca24c06c2",
+      "after_sha256": "b79a0a8ab94c57eb35764204d01f55851cbc2b7e3c507b6aedc1aa210043abef",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-census",
+      "before_sha256": "8ae2457b95a587a82ed43af52a23214e6c151b4e002abcb857d9a7dc99cfdd2a",
+      "after_sha256": "ed7c0a24a1b898e6bf479b91202227c8a93d9364da1db4761e76ca0dfa100265",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-core-bindings",
+      "before_sha256": "c689b8e1f6c5aa783b80ccb362dc5ac5539d9c674fe029cb465cb6d5652694e7",
+      "after_sha256": "4c087308344b8e0baf175608e7092526492367191243fdf5fe40dae0610f0066",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-core-callers",
+      "before_sha256": "c60e6e8ef3bdb6ced1b47f3587dc8f7bd853e40d48738d16824806980fc01db2",
+      "after_sha256": "72331cc63a435e598b4633cdd62dfa9dcca025964d42b7f702fa18047dfc6113",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-crosswalk",
+      "before_sha256": "25fe90f5cbaf69df63b5d7a2f3c8cb2167492d47d9bf0ea47a2f806cae2b1f2d",
+      "after_sha256": "53c4739b7d4022b066678c7e6c7501af3ac6da63667b3da11612e9646c530f43",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-observer",
+      "before_sha256": "06d05cd123a44e9f88e43992ca19589887204b88090ef5419843b588a18cdb67",
+      "after_sha256": "9fd19754765a5804a3800965827ab016a2dc084bbf310b0e6ef8c6087acaff33",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-cpu-sites",
+      "before_sha256": "f57d52b7e3c801adb231fb5e893a5ac77daf54d369e565fc8e9074084a68616f",
+      "after_sha256": "acc034aea17fb004d506c5c7d90d515597f5da7f991fe505014b6d93889a9ff2",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-dispatch-slices",
+      "before_sha256": "d88fd9f7c2223a44b24730dc5ac9ec2ee54e2bdc90da0788415b22f8c4daef8b",
+      "after_sha256": "43ea308f0e831cfe6981cdf9257de7a64fc9bd2253a62945d857615d7d3fcf3e",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-inventory",
+      "before_sha256": "fc89c69ebea98836f861edcfb80d7db0e5cf74c3f6911c09f468a973fdd470d9",
+      "after_sha256": "488982d349d2deca5a738f5a676cf463afeee6aea1e3b11e5bcce81f19d67790",
+      "exact_receipts": [
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    },
+    {
+      "id": "TOOL.drawing-movie-reference",
+      "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+      "exact_receipts": [
+        "draw01-graphics-api-boundary-accounting-20261011",
+        "draw01-api-journal-wire-splice-accounting-20261011",
+        "draw01-api-observer-runtime-accounting-20261011",
+        "draw01-api-bindings-accounting-20261011",
+        "draw01-api-menu-accounting-20261011",
+        "draw01-api-v2-exact-accounting-20261011",
+        "draw01-queue-client-state-exact-accounting-20261011",
+        "draw01-queue-client-state-corrected-exact-review-20261011",
+        "draw01-render-postlude-exact-accounting-20261011",
+        "draw01-lock-recovery-exact-accounting-20261011",
+        "draw01-core-bindings-exact-accounting-20261011",
+        "draw01-core-caller-exact-accounting-20261011",
+        "draw01-cpu-sites-exact-accounting-20261011",
+        "draw01-cpu-observer-exact-accounting-20261011",
+        "draw01-cpu-crosswalk-exact-accounting-20261011",
+        "draw01-canvas-release-range-exact-accounting-20261011"
+      ]
+    }
+  ],
+  "unresolved_gaps": [],
+  "counts": {
+    "files": 15,
+    "behaviors": 34,
+    "missing_exact_receipts": 0
+  }
+}

@@ -33166,6 +33166,58 @@
           "scope": "Exact bounded original client/wrapper bytes and selected control/state only; external callee bodies excluded where mocked. Discovered anchor present: True"
         }
       ]
+    },
+    {
+      "id": "TOOL.drawing-terminal-crosswalk",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Exact reviewed terminal wrapper CPU/core tail crosswalk",
+      "scope": "Current native metadata replay with independently closed CPU/core journals and actual maps, exact retained staged wrapper bytes matching pinned original range proof, exact CRT register target and physical return, full per-thread/stack/wrapper group cardinality/order, fixed receivers, MOV/TEST/OR EAX/flags effects, unchanged EDX/LastError/diagnostic words and identical callee/CPU return state. Initial one-shot flag byte is not observed; reject unreadable/mismatched direct state/maps/roles/build/proof/bytes, partial groups and unsupported contract maps. No shared sequence, atomic reads, callback registration, original outer cleanup parent flow, physical COM/refcounts/storage lifetime, pixels, all callers/writers/side effects or scenario/dispatch closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "tools/drawing_terminal_crosswalk.py",
+        "tools/review-drawing-terminal-crosswalk.py"
+      ],
+      "tests": [
+        "tests/test-drawing-terminal-crosswalk.py"
+      ],
+      "validation_dependencies": [
+        "tools/drawing_api_bindings.py",
+        "tools/drawing_api_details.py",
+        "tools/drawing_api_pairs.py",
+        "tools/drawing_api_contracts.py",
+        "tools/drawing_api_cohorts.py",
+        "tools/drawing_api_journal.py",
+        "tools/drawing_api_sites.py",
+        "tools/drawing_cpu_sites.py",
+        "tools/drawing_census.py",
+        "tools/drawing_census_bindings.py",
+        "tools/drawing_census_callers.py",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "protocols/include/mnm/drawing_census_bindings_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "research/runtime/drawing-callers-movie-sites-20261010.json",
+        "research/runtime/coverage/binary-nocd.json",
+        "tools/drawing_cpu_crosswalk.py",
+        "tools/export-menu-support.py",
+        "research/runtime/drawing-canvas-release-original-range-20261011.json"
+      ],
+      "evidence": [
+        "TOOL.drawing-terminal-crosswalk.guards-20261011",
+        "TOOL.drawing-terminal-crosswalk.original-replay-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -64755,6 +64807,80 @@
       ],
       "build": "nocd-40209ca7",
       "original_hash_pointer": "/original_sha256"
+    },
+    {
+      "id": "TOOL.drawing-terminal-crosswalk.guards-20261011",
+      "kind": "native_integration",
+      "scope": "Synthetic exact four-wrapper root/tail identities, group cardinality/order, physical return/thread/stack/receiver gaps, register-target/readability, fixed/bit GPR/flags/error/arguments/phase/cleanup/AFTER refusal, pinned original proof and each retained staged wrapper byte. No original instruction execution, initial flag-byte observation or scenario closure.",
+      "record": "research/runtime/drawing-terminal-crosswalk-guards-20261011.json",
+      "sha256": "4dceca48138298f332ca94b65ec94cbd6c059511bff37223fdc9d74761143c56",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards",
+          "equals": 12
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-terminal-crosswalk.original-replay-20261011",
+      "kind": "native_integration",
+      "scope": "Current native replay of independently closed CPU/core journals: exact CRT return/thread/stack and complete ordered wrapper groups with reviewed unchanged original fixed-receiver/bit/tail bytes, exact GPR/error/diagnostic effects and identical callee/CPU return state. The initial one-shot byte is not observed; no shared sequence, atomic read, callback registration, outer cleanup root flow, physical lifetime/pixels, complete callers/writers or scenario/dispatch closure is asserted.",
+      "record": "research/runtime/drawing-terminal-crosswalk-original-replay-20261011.json",
+      "sha256": "273338f020ced209034ea5e1b51219c9ecc06aa6ef5fdc41ce34dabce19e667b",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/integrity",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/matched_wrapper_tail_pairs",
+          "equals": 4
+        },
+        {
+          "pointer": "/direct_cpu_core_pairs",
+          "equals": 24825
+        },
+        {
+          "pointer": "/pending_cpu_pairs",
+          "equals": 242
+        },
+        {
+          "pointer": "/caller_attribution_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/draw01_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/original_execution_repeated",
+          "equals": false
+        },
+        {
+          "pointer": "/initial_flag_byte_observed",
+          "equals": false
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -74043,6 +74169,36 @@
       "evidence": [
         "TOOL.drawing-inventory.canvas-release-route-guards-20261011"
       ]
+    },
+    {
+      "id": "drawing-terminal-crosswalk-guards-20261011",
+      "title": "drawing-terminal-crosswalk-guards-20261011",
+      "scope": "Synthetic exact wrapper state/group matching and corruption/refusal, pinned original proof and staged byte checks; no original instruction execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-terminal-crosswalk"
+      ],
+      "tests": [
+        "tests/test-drawing-terminal-crosswalk.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-terminal-crosswalk.guards-20261011"
+      ]
+    },
+    {
+      "id": "drawing-terminal-crosswalk-original-replay-20261011",
+      "title": "drawing-terminal-crosswalk-original-replay-20261011",
+      "scope": "Current native wrapper-tail reviewer consumes retained original CPU/core menu journals, actual allocations and retained staged bytes; unchanged original execution stays historical and initial flag byte/outer roots remain unobserved. No scenario/dispatch closure.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-terminal-crosswalk"
+      ],
+      "tests": [
+        "tests/test-drawing-terminal-crosswalk.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-terminal-crosswalk.original-replay-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -74416,8 +74572,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-canvas-release-range-20261011.json",
-    "sha256": "c8d02316bc6bde97c1241a13752d2ced26da3067ab4744001768f01c865e7429"
+    "path": "research/runtime/coverage/source-index-draw01-terminal-crosswalk-20261011.json",
+    "sha256": "4b46031cc4a49893423a3c7b8800ca4bff1615454cf354676a96dacdafde110d"
   },
   "claim_bindings_required": true
 }

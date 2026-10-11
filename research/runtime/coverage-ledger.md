@@ -4873,3 +4873,14 @@ addresses retain missing discovered function bodies. Immutable2927inputs and
 original/source bytes verify before/after; native stages and14scenario/four
 dispatch closure remain pending. e3ee037..c44885fhistory has26file/34behavior exact
 receipts, no missing intermediate versions.
+
+DRAW-01 current native terminal replay now matches all four captured CRT
+wrapper-to-core tails against unchanged pinned original wrapper bytes and the
+retained staged executable, complete exact thread/stack/target groups and
+reviewed register/flags/RET0 effects.12state/group/byte/proof guards pass; initial
+one-shot flag byte remains unobserved and AF undefined.24825direct raster pairs
+plus four wrapper tails are matched;242other callbacks and two outer cleanup
+root continuations retain independent pending flow/classification. No new
+original execution, callback registration, physical lifetime/pixels, all writers
+or14scenario/four dispatch closure is asserted. c44885f..034ce79history has15file/
+34behavior exact receipts, no missing versions.
