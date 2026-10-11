@@ -33218,6 +33218,79 @@
         "integration": "none",
         "replacement": "none"
       }
+    },
+    {
+      "id": "TOOL.drawing-terminal-observer",
+      "subsystem": "coverage_tooling",
+      "kind": "native_policy",
+      "title": "Opt-in terminal wrapper parent-frame original observer",
+      "scope": "Separate explicit88core/128CPU cohort:83unchanged default-safe core entries plus five exact original10/31/46byte terminal wrappers from pinned original execution proof. MOV-only entry prefixes, full original byte/RET0 composition, incoming-interior-flow/overlap/capacity checks; existing native core/API writers and forwarders unchanged. Export fresh128CALL plans beside all88prefixes and exact direct CALL census to88entries. Staging requires explicit reviewed plan SHA, CPU namespace/core role/count, actual generated88entry manifest, unknown formals and independent nonoverlap/metadata/source checks. Default builders/plans stay separate. This supports bounded parent/root observation; no original replacement, universal transparency/timing/ABI, initial flag-byte capture, callback registration, physical COM/reference/storage lifetime, full writers/callers/side effects or14scenario/four dispatch closure.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/draw01-inventory.md"
+      ],
+      "implementation": [
+        "tools/build-drawing-terminal-census.py",
+        "tools/export-drawing-terminal-plan.py",
+        "tools/export-drawing-terminal-callers.py",
+        "tools/prepare-drawing-terminal-census.py"
+      ],
+      "tests": [
+        "tests/test-drawing-terminal-observer.py"
+      ],
+      "validation_dependencies": [
+        "tools/build-drawing-api-census.py",
+        "runtime/drawing-api-census/observer.c",
+        "runtime/drawing-api-census/entry.S",
+        "runtime/drawing-api-census/exception_i386.h",
+        "runtime/shadow/win32_min.h",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "tools/drawing_api_contracts.py",
+        "tools/drawing_api_surface_contracts.py",
+        "tools/drawing_api_journal.py",
+        "tools/drawing_api_pairs.py",
+        "tools/drawing_api_sites.py",
+        "tools/drawing_api_details.py",
+        "tools/drawing_api_resources.py",
+        "tools/drawing_api_bindings.py",
+        "research/runtime/drawing-surface-api-layouts-20261011.json",
+        "research/runtime/drawing-cpu-core-splices-static-20261011.json",
+        "tools/drawing_census.py",
+        "tools/drawing_census_bindings.py",
+        "tools/drawing_census_callers.py",
+        "tools/build-drawing-census.py",
+        "tools/build-shadow-bridge.py",
+        "tools/export-menu-support.py",
+        "tools/build-drawing-cpu-census.py",
+        "tools/prepare-drawing-census.py",
+        "tools/capture-drawing-census-game.py",
+        "tools/drawing_api_cohorts.py",
+        "tools/export-drawing-api-splices.py",
+        "tools/drawing_terminal_crosswalk.py",
+        "tools/drawing_cpu_crosswalk.py",
+        "tools/drawing_cpu_sites.py",
+        "research/runtime/drawing-canvas-release-original-range-20261011.json",
+        "research/runtime/drawing-cpu-sites-static-20261011.json",
+        "research/runtime/drawing-cpu-terminal-splices-static-20261011.json",
+        "research/runtime/drawing-terminal-callers-static-20261011.json"
+      ],
+      "evidence": [
+        "TOOL.drawing-terminal-observer.guards-20261011",
+        "TOOL.drawing-terminal-observer.plan-compile-20261011",
+        "DRAW.terminal-observer.original-menu-20261011",
+        "TOOL.drawing-terminal-observer.static-plan-20261011",
+        "TOOL.drawing-terminal-observer.static-callers-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      }
     }
   ],
   "evidence": [
@@ -64881,6 +64954,195 @@
           "equals": false
         }
       ]
+    },
+    {
+      "id": "TOOL.drawing-terminal-observer.guards-20261011",
+      "kind": "native_integration",
+      "scope": "Synthetic five pinned MOV-only terminal prefixes, whole-body hashes, original RET0 composition, default-row preservation, incoming/overlap/capacity and CPU reviewed-hash/core-role/count/tag/namespace refusals; no original instruction execution.",
+      "record": "research/runtime/drawing-terminal-observer-guards-20261011.json",
+      "sha256": "9fb901a1a5280fa08a343eebc554845f203735435579ce09d50e696d21b382c3",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/guards",
+          "equals": 11
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-terminal-observer.plan-compile-20261011",
+      "kind": "native_integration",
+      "scope": "Current native approved terminal plan/direct-call census replay and actualPE32 compilation/staging:88core/128CPU hooks with no CPU refusals, unchanged default-safe83plus five pinned MOV/RET0 parent prefixes, incoming/overlap guards,942exact CALLs and named nativeleave export. CPU generated metadata agrees with the actual88core build; exact source/data/staged binary hashes stable. No original renderer instructions executed, generic timing/ABI transparency, registration/initial flag/lifetime, caller or scenario/dispatch closure.",
+      "record": "research/runtime/drawing-terminal-observer-plan-compile-20261011.json",
+      "sha256": "f07098bd946af8955e363ae1cf6405f5ac5a996f1655b719cac3d7d41e5088e7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/original_renderer_executed",
+          "equals": false
+        },
+        {
+          "pointer": "/core_hooks",
+          "equals": 88
+        },
+        {
+          "pointer": "/cpu_hooks",
+          "equals": 128
+        },
+        {
+          "pointer": "/refused_cpu_hooks",
+          "equals": 0
+        },
+        {
+          "pointer": "/refused_core_hooks",
+          "equals": 1
+        },
+        {
+          "pointer": "/exact_direct_calls",
+          "equals": 942
+        },
+        {
+          "pointer": "/named_leave_export_checked",
+          "equals": true
+        },
+        {
+          "pointer": "/actual_core_metadata_agrees",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "DRAW.terminal-observer.original-menu-20261011",
+      "kind": "live_observation",
+      "scope": "Original-active private menu88core/128CPU terminal cohort with six actual same-thread/same-return-slot inherited parent frames, two exact original outer CALL roots and four exact CPU before-target wrapper roots.41451observed core pairs decompose into16845original direct,8relocated,24592CPU-root and6inherited-slot observations. This is scoped continuation/accounting, not a recovered CALL edge to inherited child, initial flag byte/registration, physical COM/refcount/storage lifetime, all callers/writers/side effects/API or14scenario/four dispatch closure.",
+      "record": "research/runtime/drawing-terminal-observer-original-menu-20261011.json",
+      "sha256": "d8d59ed92c9b8cc7c5d65e07d4b884fe6970f580ac07f22122f47502f1e015c1",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/metadata_inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/inputs_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/process_exit",
+          "equals": 0
+        },
+        {
+          "pointer": "/observed_core_pairs",
+          "equals": 41451
+        },
+        {
+          "pointer": "/cpu_pairs",
+          "equals": 24834
+        },
+        {
+          "pointer": "/inherited_core_pairs",
+          "equals": 6
+        },
+        {
+          "pointer": "/direct_cpu_core_pairs",
+          "equals": 24592
+        },
+        {
+          "pointer": "/menu_raster_direct_pairs",
+          "equals": 24588
+        },
+        {
+          "pointer": "/crt_wrapper_parent_pairs",
+          "equals": 4
+        },
+        {
+          "pointer": "/pending_cpu_pairs",
+          "equals": 242
+        },
+        {
+          "pointer": "/initial_flag_byte_observed",
+          "equals": false
+        },
+        {
+          "pointer": "/caller_attribution_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/draw01_complete",
+          "equals": false
+        },
+        {
+          "pointer": "/scenario_closure",
+          "equals": false
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-terminal-observer.static-plan-20261011",
+      "kind": "static",
+      "scope": "Static exact original CALL splice plan in explicit core/API cohort. No actual hook execution, API result/ABI/output/ownership/borrowing or DRAW-01 closure.",
+      "record": "research/runtime/drawing-cpu-terminal-splices-static-20261011.json",
+      "sha256": "9df58c9652a035b5f1f1d82bcb5dd8124d794bbdcfd1b14e8aae32a1ceda9294",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "TOOL.drawing-terminal-observer.static-callers-20261011",
+      "kind": "static",
+      "scope": "Exact original direct CALLs to88terminal/core entries. Discovered containing owners only; no indirect target/registration, function/semantic, runtime flow or DRAW-01 closure.",
+      "record": "research/runtime/drawing-terminal-callers-static-20261011.json",
+      "sha256": "149d5cb0fc1755f4d39a5c76d3ff02892ea517be79a19e43b7134dae325980c7",
+      "sources_pointer": "/sources",
+      "assertions": [
+        {
+          "pointer": "/input_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -74199,6 +74461,51 @@
       "evidence": [
         "TOOL.drawing-terminal-crosswalk.original-replay-20261011"
       ]
+    },
+    {
+      "id": "drawing-terminal-observer-guards-20261011",
+      "title": "drawing-terminal-observer-guards-20261011",
+      "scope": "Synthetic pinned prefix composition and body/branch/overlap/capacity/CPU role/count/source-hash refusals only; no original execution.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-terminal-observer"
+      ],
+      "tests": [
+        "tests/test-drawing-terminal-observer.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-terminal-observer.guards-20261011"
+      ]
+    },
+    {
+      "id": "drawing-terminal-observer-plan-20261011",
+      "title": "drawing-terminal-observer-plan-20261011",
+      "scope": "Current native offline exporter/byte/planner checks exact original88core prefixes,128CPU CALLs and direct CALL census; no original instruction execution or compiled ABI from planning.",
+      "level": "headless",
+      "behaviors": [
+        "TOOL.drawing-terminal-observer"
+      ],
+      "tests": [
+        "tests/test-drawing-terminal-observer.py"
+      ],
+      "evidence": [
+        "TOOL.drawing-terminal-observer.plan-compile-20261011"
+      ]
+    },
+    {
+      "id": "drawing-terminal-observer-original-menu-20261011",
+      "title": "drawing-terminal-observer-original-menu-20261011",
+      "scope": "Original menu with opt-in88core/128CPU exact target/parent frames; independent closed journals/maps, unchanged sources/staged bytes and normal exit. No callback registration, initial flag byte, full physical lifetime or scenario/dispatch closure.",
+      "level": "live_observation",
+      "behaviors": [
+        "TOOL.drawing-terminal-observer"
+      ],
+      "tests": [
+        "tests/test-drawing-terminal-observer.py"
+      ],
+      "evidence": [
+        "DRAW.terminal-observer.original-menu-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -74572,8 +74879,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-draw01-terminal-crosswalk-20261011.json",
-    "sha256": "4b46031cc4a49893423a3c7b8800ca4bff1615454cf354676a96dacdafde110d"
+    "path": "research/runtime/coverage/source-index-draw01-terminal-observer-20261011.json",
+    "sha256": "85cfbae7fa4e51919896bdc3392ccd966eb6f3681024af0ec4d22df2f0fc37d8"
   },
   "claim_bindings_required": true
 }
