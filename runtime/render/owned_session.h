@@ -172,7 +172,15 @@ __declspec(dllexport) int WIN RenderResidentWorldV1(u32 pixels,u32 width,u32 hei
     u32 error=GetLastError();int ok=0;
     if(!game_resident_world || width!=800 || height!=600 || stride!=800 ||
        (!generation_low&&!generation_high) || (!nonce_low&&!nonce_high))return 0;
-    if(!game_tracker_acquire())return 0;game_surface_sync();
+    /* The scene callback participates in the same admission domain as surface
+     * callbacks. A short cursor commit must not consume the tracker-only8ms
+     * budget before the World can bind. Stop/recovery must also count this
+     * exported callback before touching session storage. */
+    struct CommandLease callback __attribute__((cleanup(command_gate_leave)))=command_gate_enter();
+    if(!callback.observe){SetLastError(error);return 0;}
+    struct GameCopyLease admission __attribute__((cleanup(game_copy_leave)))=game_copy_bind_enter();
+    if(!admission.observe || !game_tracker_acquire()){SetLastError(error);return 0;}
+    game_surface_sync();
     struct GameLock* lock=0;
     for(u32 i=0;i<32;++i){struct GameLock* candidate=game_locks+i;
         if(candidate->active && candidate->owner==GetCurrentThreadId() &&

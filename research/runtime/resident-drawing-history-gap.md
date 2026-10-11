@@ -41,8 +41,8 @@ conservative refusal remain intact in this diagnostic milestone.
 * [World bind tracker refusal](resident-history-bind-tracker-refusal-negative-20261011.json):
   expanded markers reach651 balanced Worlds then the resident producer cancels.
   `RenderResidentWorldV1` requests the tracker while another thread holds
-  `game_blit_after`; the8ms tracker budget expires at observed16ms. The bind
-  export currently skips the ordered-copy admission domain used by callbacks.
+  `game_blit_after`; the8ms tracker budget expires at observed16ms. The pre-repair bind
+  export skips the ordered-copy admission domain used by callbacks.
   This is a separate confirmed admission failure, not a copy-timeout GAP.
 
 All three runs use private NVIDIA/Zink TITAN rendering, retain failed journeys,
@@ -62,3 +62,87 @@ regression should distinguish drawing callbacks from worker pumping and preserve
 FIFO bytes, full frames and shutdown ACKs. Phase33 alone does not identify the
 slow suboperation. Mapped page stalls, heap stalls, diagnostics, arbitrary owner
 preemption and other tracker users remain explicit hypotheses/boundaries.
+
+## Resident bind admission repair
+
+The exported World bind now joins the existing callback gate and ordered-copy
+admission before tracker access. Original drawing callbacks retain their50ms
+deadline and conservative timeout invalidation. Binding has no original pixel
+mutation to forward: its copy-admission timeout refuses without fabricating a
+missed drawing operation; same-thread copy reentry also refuses. Callback gate
+accounting protects session storage during stop/recovery. These branches are
+reviewed policy, with the broader refusal matrix still pending execution.
+
+The actual PE32 [baseline negative](resident-bind-short-hold-baseline-negative-20261011.json)
+uses an independent thread holding real copy/tracker ownership, with release
+after20ms. The old bind refuses at16.2411ms and publishes no World. The same
+fixture [after repair](resident-bind-short-hold-fixed-20261011.json) binds at27.1321ms
+and publishes exactly one generation/nonce World. Both retain one original Lock
+and Unlock with unchanged results/LastError, identical FIFO/archive bytes, a
+private snapshot before borrowed pixels are poisoned, and acknowledged END.
+This proves the narrow native admission policy; no game executable, driver
+ordering, GPU execution or live cadence is exercised by this control.
+
+Committed-history receipt review for `d018309..650df0b` matched all14 changed
+files to exact parent/current hashes (journal self-excluded), with zero unresolved
+receipts. The report is retained at
+`working/tests/resident-bind-history-range-20261011.json`; it asserts neither a
+retrospective gate pass nor new behavior validation.
+
+## Confirmed inline publication ownership stall
+
+The [post-bind-repair TITAN negative](resident-history-inline-pump-gap-negative-20261011.json)
+completes/imports/returns1,309 balanced Worlds then records Unlock owner at
+`bridge.c:311`, phase47 (`0x2f`), with1030ms holder and waiter ages. The original
+cursor operation falls through once, followed by local epoch GAP1. Phase47 spans
+`command_channel_pump()` and LastError restoration after tracker release; the
+outer ordered-copy lease is still held. The mapped-ring pump is now the
+confirmed stalled region. The trace does not distinguish page fault/I/O latency
+from preemption inside that region. This failed run stopped its private Wine
+session and verified source stability and immutable originals. Frame-stream
+updates and completed Worlds are different counters; neither establishes a
+completed stress/Quit journey.
+
+The bounded repair delegates tracker-release pumping to an already-created
+publication worker, preserving the synchronous no-worker fallback and explicit
+shutdown/recovery pumping. The owned32MiB queue and existing worker retain FIFO,
+1MiB drain budget, no-ACK deadlines and conservative overload refusal; no
+drawing callback waits for transport publication. It does not guarantee that
+other drawing work or arbitrary scheduler pauses fit50ms.
+
+The [controlled inline baseline](resident-publication-inline-baseline-negative-20261011.json)
+records two callback pump calls and211.3365ms Unlock under100ms per-call injected
+delay. The [worker-isolated control](resident-publication-isolation-fixed-20261011.json)
+records zero callback pump calls and9.2083ms observed Unlock; the same short-hold
+World bind succeeds. Both verify original results/counts/LastError, private bytes
+before source poisoning, byte-identical FIFO/archive and acknowledged END. The
+delay and routing probe compile only into the selftest DLL; production adds no
+probe/export/wait. These timings are observations, not OS scheduling bounds.
+
+The repaired [copy/Lock/GPU regression](resident-publication-copy-regression-20261011.json)
+passes209 independent full-frame comparisons in four complete sessions, with
+two deliberately timed-out sessions still producing conservative GAP and
+preserving original counts/results/LastError. The repaired
+[reader-pressure regression](resident-publication-backpressure-regression-20261011.json)
+passes all eight pause, advancing-ACK, idle, stalled-reader, cancellation,
+invalid-ACK and overload cases. These are synthetic native checks, independent
+of the TITAN public-gameplay completion milestone.
+
+## Repaired long instrumented journey: history clear, benchmark failed
+
+The [retained performance/capture negative](resident-history-repaired-capture-performance-negative-20261011.json)
+finishes three120-second gameplay phases, two native menu returns and normal
+Quit on TITAN, with7,091 completed/imported/original-returned Worlds. No
+copy/tracker timeout or session GAP is logged; no native fallback, readback or
+pixel reply is recorded, and resident retirement is clean. Source stability,
+private Wine cleanup and immutable-original verification pass.
+
+The overall benchmark remains failed. Cycle0has one3.243-second sample
+(16.03native updates/s,3.39paints/s); cycles1/2have no failed samples. The
+asynchronous capture queue reaches265,977,768of268,435,456bytes and truncates
+after183accepted/written Worlds. Engine World rate is19.1138FPS, which does
+not excuse the stall or establish60FPS. Capture overload and scheduling are
+remaining performance hypotheses; this result is neither a complete corpus
+nor a passing ordinary-gameplay benchmark. A separate run without profiling
+or capture will test that boundary. The drawing-history repair is supported
+by the native controls and this bounded live continuity evidence.

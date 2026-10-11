@@ -45,6 +45,7 @@ static int command_scheduler_launch(void){
     if(command_file_count>1 && n==6 && same(fault,"worker",6)){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);command_channel_pump();return 0;}
 #endif
     command_worker=CreateThread(0,0,command_worker_run,0,0,0);
+    if(command_worker)__atomic_store_n(&command_publication_worker_active,1,__ATOMIC_RELEASE);
     if(!command_worker){command_queue_refuse(MNM_RENDER_COMMANDS_V2_REASON_INVALID);command_channel_pump();}
     int ready=command_worker && !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE);
     return ready;
@@ -117,6 +118,7 @@ static int command_scheduler_shutdown_locked(u32 milliseconds){
         if(joined!=0){lock_diagnostic("command_publication_join_refused",0,0,joined,GetLastError(),0,1000,0);return 0;}
         CloseHandle(command_worker);command_worker=0;
     }
+    __atomic_store_n(&command_publication_worker_active,0,__ATOMIC_RELEASE);
     command_worker_joined=1;
     command_shutdown_complete=!command_channel_refused && (!command_channel || (mnm_ring_load(command_channel+6)==MNM_RENDER_COMMANDS_V2_STATE_ENDED &&
         !__atomic_load_n(&command_queue_failure,__ATOMIC_ACQUIRE)));

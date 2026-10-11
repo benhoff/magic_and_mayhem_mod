@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Actual PE32 stalled/paused readers with independent owned raw-byte checks."""
+import argparse
 import hashlib
 import importlib.util
 import json
@@ -18,11 +19,21 @@ wire,frame_v1=idle.wire,idle.frame_v1
 
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--claims',type=Path,help='Prospective coverage/source declaration')
+    args=parser.parse_args()
+    declaration=json.loads(args.claims.read_text()) if args.claims else None
     paths=sorted((ROOT/'runtime/render').glob('*.[ch]'))+[ROOT/p for p in ['tools/test-render-backpressure.py','tools/test-render-command-idle.py','tools/build-render-bridge.py','tools/prepare-shadow-experiment.py','runtime/shadow/win32_min.h','protocols/include/mnm/render_command_ring.h','protocols/python/mnm_protocols/render_commands_v2.py']]
     sources={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+    if declaration:
+        for name,expected in declaration['sources'].items():
+            if Path(name).is_absolute() or not (ROOT/name).resolve().is_relative_to(ROOT) or hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=expected:
+                raise ValueError('Invalid or changed declared source: '+name)
+        sources.update(declaration['sources'])
     parent=ROOT/'working/tests/render-backpressure';parent.mkdir(parents=True,exist_ok=True);run=Path(tempfile.mkdtemp(prefix='run-',dir=parent));print(run,flush=True)
     dll=idle.load('pressure_build','tools/build-render-bridge.py').build(True);stage=idle.load('pressure_stage','tools/prepare-shadow-experiment.py')
     report=dict(schema=1,success=True,sources=sources,cases=[],scope='Actual synthetic PE32 queue/retry scheduler and raw mapped reader. Pause/resume and slow advancing ACK beyond the deadline preserve every owned byte; idle clears demand, no-ACK stalls, cancellation, invalid ACK and hard overflow refuse with sticky reason. No original game, GPU completion, queue coalescing or recovery.')
+    if declaration:report['claims']=declaration['claims']
     for mode in ['pause','progress','idle','stall','small-stall','cancel','invalid-ack','overflow']:
         case=run/mode;case.mkdir();capture=case/'capture';capture.mkdir();channel=case/'commands.bin';frame=case/'frame.bin'
         for path,header,size in [(channel,wire.initial_header(),wire.SIZE),(frame,frame_v1.initial_header(),frame_v1.SIZE)]:
@@ -70,6 +81,7 @@ def main():
                 if child.poll() is None:child.terminate();child.wait(timeout=5)
         print(mode+': passed',flush=True)
     assert all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in sources.items()),'Source changed during execution'
+    report['source_stable']=True
     (run/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(run/'report.json',flush=True)
 
 

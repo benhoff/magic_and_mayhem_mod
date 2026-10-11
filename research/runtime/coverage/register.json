@@ -14406,7 +14406,8 @@
         "NR.command-backpressure.queue",
         "NR.command-backpressure.pe32",
         "NR.command-backpressure.idle",
-        "NR.command-backpressure.gpu"
+        "NR.command-backpressure.gpu",
+        "NR.command-backpressure.worker-isolation-regression-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -15139,7 +15140,8 @@
         "NR.native-draw-status-session-file.mapped-full-nvidia-20261011",
         "NR.native-draw-status-session-file.master-current-public-20261011",
         "NR.native-draw-status-session-file.latest-master-public-20261011",
-        "NR.bounded-copy-order.history-diagnostics-fixtures-20261011"
+        "NR.bounded-copy-order.history-diagnostics-fixtures-20261011",
+        "NR.bounded-copy-order.worker-isolation-regression-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -15278,7 +15280,7 @@
         "renderer/capture.cpp"
       ],
       "remaining_gaps": [
-        "Fresh instrumented camera/menu capture records Unlock phase33 at325ms holder age before epoch GAP; cleanup/free/diagnostic/pump attribution remains pending. Separate World bind tracker timeout bypasses callback/copy admission; repair and fresh continuity proof pending."
+        "Fresh post-bind TITAN failure identifies Unlock phase47 inline transport pumping at1030ms before epoch GAP1. Callback/copy bind admission and active-worker publication delegation pass controlled PE32 before/after tests plus209 independent GPU frames and expected timeout GAPs. Complete public stress/Quit, other long-owner branches and arbitrary OS scheduling remain unproven; this is native scheduling policy, not recovered driver equivalence."
       ]
     },
     {
@@ -37904,7 +37906,9 @@
         "NR.public-resident-world.profile-gap-negative-20261011",
         "NR.public-resident-world.history-combat-retreat-negative-20261011",
         "NR.public-resident-world.history-unlock-cleanup-gap-negative-20261011",
-        "NR.public-resident-world.history-bind-tracker-refusal-negative-20261011"
+        "NR.public-resident-world.history-bind-tracker-refusal-negative-20261011",
+        "NR.public-resident-world.inline-pump-gap-negative-20261011",
+        "NR.public-resident-world.repaired-capture-performance-negative-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -37915,7 +37919,8 @@
       },
       "remaining_gaps": [
         "Serialized stage-profile/capture Apprentice campaign reaches2423 balanced Worlds then native command drawing-history GAP reason2 with one pending World. Repeats an earlier profiled GAP without concurrent coverage; failing source/read/transition and instrumentation contribution remain unclassified. Full uninstrumented regression attribution and complete capture/normal Quit at current profiler remain pending.",
-        "Fresh diagnostic camera/menu attempt reaches651 balanced Worlds then public bind tracker admission expires at observed16ms under cursor-copy ownership, cancelling the resident producer. Serialize bind with callback/copy ownership and prove bounded live continuity; phase33 Unlock GAP suboperation remains unresolved."
+        "Fresh diagnostic camera/menu attempt reaches651 balanced Worlds then public bind tracker admission expires at observed16ms under cursor-copy ownership, cancelling the resident producer. Serialize bind with callback/copy ownership and prove bounded live continuity; phase33 Unlock GAP suboperation remains unresolved.",
+        "After repaired binding/worker delegation, isolated TITAN3x120s/2menu/normal-Quit capture completes7091 balanced Worlds with no GAP/timeout/fallback/readback and clean resource retirement. Overall benchmark fails one3.243s cycle0paint sample and capture truncates183/7091at256MiB queue. Ordinary unprofiled performance remains pending; instrumented full capture, arbitrary scheduling,60FPS and complete original-frame equivalence remain unproven."
       ]
     },
     {
@@ -41222,6 +41227,333 @@
         "Frozen actual-prefix TITAN EGL completed average throughput exceeds60FPS at O2 and O3, with matching terminal hashes and no ordinary readbacks. Pipeline p95 exceeds16.667ms; steady60FPS and public gameplay are not proven. Matching97 compiled source hashes and O2 settings still leave backend/context/UI/original/capture/report workload differences; causal attribution remains pending.",
         "Original paired pacing and millisecond residual observations do not establish universal20Hz simulation behavior. Preserve selected50ms target; presentation/original-work attribution, crowded/other-scene workloads and safe60FPS gameplay remain outstanding.",
         "CPU symbolization is deferred until campaign cleanup; fresh execution of that deferred sampling branch is pending. Growing diagnostic JSON publication every64 Worlds remains outside stage timing and unoptimized."
+      ]
+    },
+    {
+      "id": "NR.resident-bind-admission",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Public resident binding shares native callback/copy admission",
+      "scope": "Native exported800x600RGB565 resident bind must join callback/copy admission before tracker access. Synthetic20ms independent owned tracker/copy hold, exactly one generation/nonce wire publication, original Lock/Unlock result/LastError and poisoned-borrow byte ownership; baseline refusal versus repaired admission are distinct execution results. No original-driver ordering, GPU execution, timeout/reentry/stop matrix or live continuity claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/resident-drawing-history-gap.md"
+      ],
+      "implementation": [
+        "runtime/render/owned_session.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/bridge.c"
+      ],
+      "tests": [
+        "tests/resident-bind-admission.c",
+        "tools/test-resident-bind-admission.py"
+      ],
+      "validation_dependencies": [
+        "tools/build-render-bridge.py",
+        "tools/build-shadow-bridge.py",
+        "runtime/shadow/win32_min.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/command_control.h",
+        "runtime/render/surface_commands.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/precise_clock.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/palette_selftest.h",
+        "protocols/generate.py",
+        "protocols/schemas/media-v1.json",
+        "protocols/schemas/render_commands-v1.json",
+        "protocols/schemas/render_control-v1.json",
+        "protocols/schemas/frame-v1.json",
+        "protocols/schemas/render_commands-v2.json",
+        "protocols/schemas/render_stream-v2.json",
+        "protocols/schemas/input-v1.json",
+        "protocols/schemas/render_stream-v3.json",
+        "protocols/tests/test_contracts.py",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v2.py",
+        "protocols/python/mnm_protocols/frame_v1.py",
+        "protocols/python/mnm_protocols/render_stream_v2.py",
+        "protocols/python/mnm_protocols/input_v1.py",
+        "protocols/python/mnm_protocols/render_stream_v3.py",
+        "protocols/python/mnm_protocols/__init__.py",
+        "protocols/python/mnm_protocols/render_commands_v1.py",
+        "protocols/python/mnm_protocols/render_control_v1.py",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/world_continuous_v1.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/drawing_census_bindings_v1.h"
+      ],
+      "evidence": [
+        "NR.resident-bind-admission.short-hold-baseline-negative-20261011",
+        "NR.resident-bind-admission.short-hold-fixed-20261011",
+        "NR.callback-publication-isolation.inline-baseline-negative-20261011",
+        "NR.callback-publication-isolation.isolation-fixed-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Short20ms independent-owner admission passes the actual PE32 control after joining callback/copy domains.50ms timeout, same-thread reentry, shutdown/recovery exclusion and invalid-input matrix remain unexecuted in this fixture; bounded live continuity and original-frame equivalence are separate limitations."
+      ]
+    },
+    {
+      "id": "NR.callback-publication-isolation",
+      "subsystem": "native_rendering",
+      "kind": "native_policy",
+      "title": "Active publication worker isolates drawing callbacks from mapped-ring pumping",
+      "scope": "Native v2 producer tracker release delegates publication to an already-created worker instead of pumping under ordered drawing admission. Actual synthetic PE32 bound World with100ms callback-only pump delay witnesses baseline inline call versus isolated callback, plus original Lock/Unlock results/LastError, poisoned borrowed bytes, FIFO/archive identity and acknowledged END. No driver ordering, OS-preemption bound, complete recovery/stop matrix or live continuity claim.",
+      "confidence": "high_within_scope",
+      "original": [],
+      "documents": [
+        "research/runtime/resident-drawing-history-gap.md"
+      ],
+      "implementation": [
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/bridge.c"
+      ],
+      "tests": [
+        "tests/resident-bind-admission.c",
+        "tools/test-resident-bind-admission.py"
+      ],
+      "validation_dependencies": [
+        "tools/build-render-bridge.py",
+        "tools/build-shadow-bridge.py",
+        "runtime/shadow/win32_min.h",
+        "runtime/render/history_selftest.h",
+        "runtime/render/palette_history.h",
+        "runtime/render/command_idle_selftest.h",
+        "runtime/render/lock_blit_selftest.h",
+        "runtime/render/mutation_selftest.h",
+        "runtime/render/indexed_owned_selftest.h",
+        "runtime/render/draw_capture.h",
+        "runtime/render/lock_aliases.h",
+        "runtime/render/application_stop_selftest.h",
+        "runtime/render/continuous_selftest.h",
+        "runtime/render/command_scheduler.h",
+        "runtime/render/copy_order.h",
+        "runtime/render/lock_updates.h",
+        "runtime/render/command_gate.h",
+        "runtime/render/lifecycle_race_selftest.h",
+        "runtime/render/command_lifecycle.h",
+        "runtime/render/working_set_selftest.h",
+        "runtime/render/lock_surfaces.h",
+        "runtime/render/command_application_stop.h",
+        "runtime/render/flip_history.h",
+        "runtime/render/bootstrap_selftest.h",
+        "runtime/render/checkpoint_selftest.h",
+        "runtime/render/partial_lock_selftest.h",
+        "runtime/render/recovery_race_selftest.h",
+        "runtime/render/command_queue.h",
+        "runtime/render/owned_dc_selftest.h",
+        "runtime/render/lock_diagnostics.h",
+        "runtime/render/media_bridge.h",
+        "runtime/render/owned_session_selftest.h",
+        "runtime/render/media_selftest.h",
+        "runtime/render/backpressure_selftest.h",
+        "runtime/render/draw_startup_selftest.h",
+        "runtime/render/pacer_yield.h",
+        "runtime/render/input_polling.h",
+        "runtime/render/drawing_recovery_selftest.h",
+        "runtime/render/owned_session.h",
+        "runtime/render/failure_diagnostics.h",
+        "runtime/render/adapter_startup.h",
+        "runtime/render/lock_lifecycle.h",
+        "runtime/render/lifecycle_selftest.h",
+        "runtime/render/surface_history.h",
+        "runtime/render/resource_selftest.h",
+        "runtime/render/command_control.h",
+        "runtime/render/surface_commands.h",
+        "runtime/render/lock_lifecycle_selftest.h",
+        "runtime/render/flip_selftest.h",
+        "runtime/render/dirty_region.h",
+        "runtime/render/draw_selftest.h",
+        "runtime/render/host_recovery_selftest.h",
+        "runtime/render/recovery_selftest.h",
+        "runtime/render/command_channel.h",
+        "runtime/render/dc_selftest.h",
+        "runtime/render/lock_dc.h",
+        "runtime/render/indexed_copy_selftest.h",
+        "runtime/render/frame_pixels.h",
+        "runtime/render/command_recovery.h",
+        "runtime/render/input_selftest.h",
+        "runtime/render/precise_clock.h",
+        "runtime/render/lock_palette.h",
+        "runtime/render/lock_flip.h",
+        "runtime/render/palette_selftest.h",
+        "protocols/generate.py",
+        "protocols/schemas/media-v1.json",
+        "protocols/schemas/render_commands-v1.json",
+        "protocols/schemas/render_control-v1.json",
+        "protocols/schemas/frame-v1.json",
+        "protocols/schemas/render_commands-v2.json",
+        "protocols/schemas/render_stream-v2.json",
+        "protocols/schemas/input-v1.json",
+        "protocols/schemas/render_stream-v3.json",
+        "protocols/tests/test_contracts.py",
+        "protocols/python/mnm_protocols/media_v1.py",
+        "protocols/python/mnm_protocols/render_commands_v2.py",
+        "protocols/python/mnm_protocols/frame_v1.py",
+        "protocols/python/mnm_protocols/render_stream_v2.py",
+        "protocols/python/mnm_protocols/input_v1.py",
+        "protocols/python/mnm_protocols/render_stream_v3.py",
+        "protocols/python/mnm_protocols/__init__.py",
+        "protocols/python/mnm_protocols/render_commands_v1.py",
+        "protocols/python/mnm_protocols/render_control_v1.py",
+        "protocols/include/mnm/drawing_api_bindings_v1.h",
+        "protocols/include/mnm/menu_v12.h",
+        "protocols/include/mnm/world_frame_v1.h",
+        "protocols/include/mnm/menu_v5.h",
+        "protocols/include/mnm/menu_v2.h",
+        "protocols/include/mnm/world_continuous_checksum.h",
+        "protocols/include/mnm/world_channel_v2.h",
+        "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/drawing_census_v1.h",
+        "protocols/include/mnm/canvas_producers_v1.h",
+        "protocols/include/mnm/input_v1.h",
+        "protocols/include/mnm/scene_snapshot_v1.h",
+        "protocols/include/mnm/canvas_producers_v2.h",
+        "protocols/include/mnm/world_continuous_v2.h",
+        "protocols/include/mnm/world_producer_bypass_v1.h",
+        "protocols/include/mnm/render_stream_v3.h",
+        "protocols/include/mnm/menu_v3.h",
+        "protocols/include/mnm/menu_v4.h",
+        "protocols/include/mnm/menu_v10.h",
+        "protocols/include/mnm/render_stream_v2.h",
+        "protocols/include/mnm/world_channel_v1.h",
+        "protocols/include/mnm/world_continuous_v3.h",
+        "protocols/include/mnm/menu_v1.h",
+        "protocols/include/mnm/render_control_v1.h",
+        "protocols/include/mnm/drawing_api_journal_v1.h",
+        "protocols/include/mnm/menu_v6.h",
+        "protocols/include/mnm/render_commands_v2.h",
+        "protocols/include/mnm/render_stream_v4.h",
+        "protocols/include/mnm/render_command_ring.h",
+        "protocols/include/mnm/menu_v9.h",
+        "protocols/include/mnm/world_rolling_v1.h",
+        "protocols/include/mnm/media_v1.h",
+        "protocols/include/mnm/menu_v11.h",
+        "protocols/include/mnm/world_raster_batch_v3.h",
+        "protocols/include/mnm/frame_v1.h",
+        "protocols/include/mnm/world_continuous_v1.h",
+        "protocols/include/mnm/menu_v7.h",
+        "protocols/include/mnm/menu_v8.h",
+        "protocols/include/mnm/drawing_api_journal_v2.h",
+        "protocols/include/mnm/world_continuous_v4.h",
+        "protocols/include/mnm/render_commands_v1.h",
+        "protocols/include/mnm/drawing_census_bindings_v1.h"
+      ],
+      "evidence": [
+        "NR.callback-publication-isolation.inline-baseline-negative-20261011",
+        "NR.callback-publication-isolation.isolation-fixed-20261011"
+      ],
+      "status": {
+        "understanding": "scoped",
+        "implementation": "partial",
+        "comparison": "none",
+        "integration": "none",
+        "replacement": "none"
+      },
+      "remaining_gaps": [
+        "Controlled PE32 publication delay is avoided after worker delegation; full instrumented TITAN stress/menu/Quit completes7091 balanced Worlds without drawing-history GAP, but overall performance/capture test is retained failed. Ordinary benchmark pending. No-worker/legacy fallback and failed-join flag lifetime reviewed; arbitrary OS stalls, driver equivalence and full lifecycle matrix remain unproven."
       ]
     }
   ],
@@ -85781,6 +86113,266 @@
           "equals": 2
         }
       ]
+    },
+    {
+      "id": "NR.resident-bind-admission.short-hold-baseline-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Actual PE32 synthetic20ms copy/tracker owner hold; pre-repair refusal is retained negative evidence, not validated admission.",
+      "record": "research/runtime/resident-bind-short-hold-baseline-negative-20261011.json",
+      "sha256": "ffb285223c8ef2297fb8280aeef6f09f147e97445c611d9d00a20a268f4b99db",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/bind_succeeded",
+          "equals": false
+        },
+        {
+          "pointer": "/fifo_archive_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/complete_shutdown",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.resident-bind-admission.short-hold-fixed-20261011",
+      "kind": "native_integration",
+      "scope": "Actual PE32 synthetic20ms copy/tracker owner hold; repaired bind emits exactly one owned World; original Lock/Unlock counts, LastError, FIFO/archive bytes and shutdown ACK checked. No GPU/live/refusal-matrix proof.",
+      "record": "research/runtime/resident-bind-short-hold-fixed-20261011.json",
+      "sha256": "3b3223923c2a3e954a009dd385bbc272ebf89199b29fa4c99bd6aa65ac5ff8e7",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/bind_succeeded",
+          "equals": true
+        },
+        {
+          "pointer": "/fifo_archive_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/complete_shutdown",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.inline-pump-gap-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Instrumented isolated TITAN campaign after bind repair reaches1309 balanced Worlds then Unlock phase47 inline-pump ownership timeout at1030ms and epoch GAP1. No completed journey, performance pass or specific OS-I/O cause.",
+      "record": "research/runtime/resident-history-inline-pump-gap-negative-20261011.json",
+      "sha256": "07a06b48438b44553c82a6cd886258833992201f12e4ad3e2ecdf53dc4d053c2",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.callback-publication-isolation.inline-baseline-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Actual PE32 controlled callback-only100ms pump delay; retained pre-isolation negative: two inline pumps,211.3365ms Unlock; no fixed-route success claim.",
+      "record": "research/runtime/resident-publication-inline-baseline-negative-20261011.json",
+      "sha256": "0be838b03eb14a834fef87629a4ce0224ad33ae6de7973481eb7e1fdfd0bdd77",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/bind_succeeded",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_pump_calls",
+          "equals": 2
+        },
+        {
+          "pointer": "/fifo_archive_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/complete_shutdown",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.callback-publication-isolation.isolation-fixed-20261011",
+      "kind": "native_integration",
+      "scope": "Actual PE32 controlled callback-only100ms pump delay; active-worker delegation: zero callback pumps,9.2083ms observed Unlock, successful short-hold World bind, owned original bytes, exact FIFO/archive and acknowledged shutdown. No real-time guarantee or live/driver proof.",
+      "record": "research/runtime/resident-publication-isolation-fixed-20261011.json",
+      "sha256": "adbaaa92ce6b4700a8b8275f0746198832d57d022b231bad9580a7946f90059e",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/bind_succeeded",
+          "equals": true
+        },
+        {
+          "pointer": "/callback_pump_calls",
+          "equals": 0
+        },
+        {
+          "pointer": "/fifo_archive_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/complete_shutdown",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.bounded-copy-order.worker-isolation-regression-20261011",
+      "kind": "native_integration",
+      "scope": "Six synthetic PE32/GPU cases after bind/worker-isolation repair:209 independent full frames,4valid sessions and2expected GAP sessions, original counts/results/LastError, FIFO/END cleanup. No original game or public-live equivalence.",
+      "record": "research/runtime/resident-publication-copy-regression-20261011.json",
+      "sha256": "2b461bc9189cfb5c789d193170508d883ae91c065db2a310a0778d4c862072fa",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/full_frame_comparisons",
+          "equals": 209
+        },
+        {
+          "pointer": "/valid_sessions",
+          "equals": 4
+        },
+        {
+          "pointer": "/refused_sessions",
+          "equals": 2
+        }
+      ]
+    },
+    {
+      "id": "NR.command-backpressure.worker-isolation-regression-20261011",
+      "kind": "native_integration",
+      "scope": "Actual PE32 worker after drawing-publication isolation:8paused/progress/idle/stall/cancel/invalid-ACK/overload cases; owned bytes, sticky reasons, deadlines and shutdown retained. No original game/GPU/driver or recovery proof.",
+      "record": "research/runtime/resident-publication-backpressure-regression-20261011.json",
+      "sha256": "74944ffef3fabaed5e285dd300d4dd0deae81087b967b6c0b6d18794769b92a9",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/source_stable",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.public-resident-world.repaired-capture-performance-negative-20261011",
+      "kind": "native_integration",
+      "scope": "Instrumented TITAN3x120s/2menu/normal-Quit journey completes7091 balanced Worlds without GAP/timeout/fallback/readback. Overall benchmark remains FAILED:3.243s cycle0sample and183/7091capture truncation. No complete capture, ordinary performance,60FPS or original-frame equivalence claim.",
+      "record": "research/runtime/resident-history-repaired-capture-performance-negative-20261011.json",
+      "sha256": "3bc86afd3577b4d021d63885da50aed137e84c0a6296753053367224ce4e0508",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_unchanged",
+          "equals": true
+        },
+        {
+          "pointer": "/normal_quit_verified",
+          "equals": true
+        },
+        {
+          "pointer": "/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/original_manifest_verified_after",
+          "equals": true
+        },
+        {
+          "pointer": "/resident_world/completed",
+          "equals": "7091"
+        },
+        {
+          "pointer": "/resident_world/imports",
+          "equals": "7091"
+        },
+        {
+          "pointer": "/resident_world/verified_returns",
+          "equals": "7091"
+        },
+        {
+          "pointer": "/flow/native_command_fallback",
+          "equals": false
+        },
+        {
+          "pointer": "/capture/truncated",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -90678,7 +91270,8 @@
         "NR.command-backpressure.queue",
         "NR.command-backpressure.pe32",
         "NR.command-backpressure.idle",
-        "NR.command-backpressure.gpu"
+        "NR.command-backpressure.gpu",
+        "NR.command-backpressure.worker-isolation-regression-20261011"
       ],
       "tests": [
         "tests/render-command-queue-test.c",
@@ -94749,7 +95342,8 @@
         "NR.copy-order.address-stage-20261011",
         "NR.copy-order.status-stage-20261011",
         "NR.copy-order.status-stage-compiled-20261011",
-        "NR.bounded-copy-order.history-diagnostics-fixtures-20261011"
+        "NR.bounded-copy-order.history-diagnostics-fixtures-20261011",
+        "NR.bounded-copy-order.worker-isolation-regression-20261011"
       ]
     },
     {
@@ -96208,6 +96802,40 @@
         "NR.resident-stage-profiling.wizard-death-failure-20261011",
         "NR.resident-stage-profiling.serialized-gap-failure-20261011"
       ]
+    },
+    {
+      "id": "NR.resident-bind-admission.native",
+      "level": "preview",
+      "scope": "Actual PE32 bind under independent20ms copy/tracker hold, owned V4 publication and FIFO END ACK; original call counts/LastError and poisoned borrowed storage. No GPU or original-game equivalence.",
+      "behaviors": [
+        "NR.resident-bind-admission"
+      ],
+      "tests": [
+        "tests/resident-bind-admission.c",
+        "tools/test-resident-bind-admission.py"
+      ],
+      "evidence": [
+        "NR.resident-bind-admission.short-hold-baseline-negative-20261011",
+        "NR.resident-bind-admission.short-hold-fixed-20261011",
+        "NR.callback-publication-isolation.inline-baseline-negative-20261011",
+        "NR.callback-publication-isolation.isolation-fixed-20261011"
+      ]
+    },
+    {
+      "id": "NR.callback-publication-isolation.native",
+      "level": "preview",
+      "scope": "Actual PE32 bound World and poisoned owned baseline, callback-only100ms publication delay, original results and FIFO/END shutdown. No original game or GPU.",
+      "behaviors": [
+        "NR.callback-publication-isolation"
+      ],
+      "tests": [
+        "tests/resident-bind-admission.c",
+        "tools/test-resident-bind-admission.py"
+      ],
+      "evidence": [
+        "NR.callback-publication-isolation.inline-baseline-negative-20261011",
+        "NR.callback-publication-isolation.isolation-fixed-20261011"
+      ]
     }
   ],
   "recovered_ranges": [
@@ -96581,8 +97209,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-resident-history-diagnostics-20261011.json",
-    "sha256": "62f5ed561c2204f98cf2cbb4dc136df4c5c6565cf8e47a570ef123236577bc6c"
+    "path": "research/runtime/coverage/source-index-resident-publication-repair-20261011.json",
+    "sha256": "21a7b6ab9daf4bb75e03b7fbbb61d2a0de8c5213e40aaf52a7fdb38ea74ab9d0"
   },
   "claim_bindings_required": true
 }

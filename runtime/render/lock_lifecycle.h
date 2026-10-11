@@ -105,7 +105,7 @@ static void game_tracker_release(void){
     game_copy_stage(46);
     __atomic_store_n(&game_locks_owner,0,__ATOMIC_RELEASE);__sync_lock_release(&game_locks_busy);
     game_copy_stage(47);
-    command_channel_pump();SetLastError(error);
+    command_channel_after_tracker();SetLastError(error);
     game_copy_stage(48);
 }
 static void game_pixel_missed(void* object){
