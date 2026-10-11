@@ -7,7 +7,7 @@ import sys
 import tempfile
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from drawing_api_journal import BUILD_SHA256,plan,trampoline
+from drawing_api_journal import BUILD_SHA256,plan,breakpoint_plan,trampoline
 from drawing_api_bindings import decode,physical
 
 
@@ -24,6 +24,15 @@ def fixture():
 
 
 class BindingTests(unittest.TestCase):
+    def test_short_breakpoint_call_retains_exact_signature_and_return_map(self):
+        m,h,r,e=fixture();site=m['hooks'][0]['site'];instruction={'address':site,'bytes':'ffd0','mnemonic':'call','operand':'eax'}
+        item=breakpoint_plan(site,{site:instruction});item['tag']=0;m['hooks']=[item]
+        code,rest=trampoline(item,0,0);r[2:4]=[2,2];r[5]=len(code);r[6]=r[4]+rest;r[9]=r[4]+2;r[10]=site+2
+        b=self.read(m,h,r,e);self.assertEqual(physical(r[9],b)['original_call_return'],site+2)
+        for key,value in [('patch_bytes',2),('length',3),('call_length',3),('patch_mode','jump')]:
+            bad=copy.deepcopy(m);bad['hooks'][0][key]=value
+            with self.assertRaises(ValueError):self.read(bad,h,r,e)
+
     def read(self,manifest,header,row,end):
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/'bindings.bin';rows=row if isinstance(row[0],list) else [row]

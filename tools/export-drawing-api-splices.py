@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 import subprocess
 from drawing_census import ROOT, BUILD_SHA256, instructions
-from drawing_api_journal import plan
+from drawing_api_journal import plan, breakpoint_plan
 from drawing_api_sites import call_mode
 
 
@@ -36,7 +36,13 @@ def export(executable, boundaries):
         if code[site]['bytes']!=boundary['bytes'] or code[site]['operand']!=boundary['operand'] or call_mode(code[site])!=boundary['target_mode']:
             raise ValueError('API boundary no longer matches exact original CALL')
         try:
-            item=plan(site,code,occupied);signature=bytes.fromhex(item['signature'])
+            try:
+                item=plan(site,code,occupied)
+            except ValueError as error:
+                if str(error) != 'Incoming original direct flow enters overwritten interior': raise
+                item=breakpoint_plan(site,code,occupied)
+                item['five_byte_refusal']=str(error)
+            signature=bytes.fromhex(item['signature'])
             if any(not any(start<=site and site+item['length']<=end for start,end in selection['ranges']) for selection in boundary['selections']):
                 raise ValueError('API splice crosses selected original range')
             start=offset(raw,site,len(signature))

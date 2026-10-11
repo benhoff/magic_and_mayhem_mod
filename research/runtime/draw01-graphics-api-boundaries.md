@@ -193,3 +193,37 @@ All raw journals/maps, decoded projections, screenshots/logs and actually staged
 binaries remain retained; only the stopped disposable game/prefix copies are
 removed. All14scenario/four dispatch closures and64API admission refusals remain
 open.
+
+## Single-byte CALL observation, 2026-10-11
+
+The reviewed static plan now admits 302 of the 314 selected CALL boundaries:
+250 existing jump splices and 52 whole-CALL-verified, single-byte INT3 hooks.
+Only the CALL's first byte is changed in the latter mode; operand and successor
+bytes remain intact. Original branches into a CALL operand and overlapping
+original hooks still refuse installation. The twelve remaining overlaps are
+retained explicitly in `drawing-api-breakpoints-static-20261011.json`.
+
+The process-private i386 exception handler changes only saved EIP for an exact
+owned breakpoint/context pair. Foreign breakpoint and mismatched contexts return
+CONTINUE_SEARCH. It does not restore opcodes temporarily, single-step, or issue
+OS/graphics calls. This requires Wine/Windows XP+ vectored exceptions; it is an
+observation policy rather than a recovered Win98 engine behavior. Dynamic unload,
+exception-sensitive timing and arbitrary machine-context transparency remain
+outside the validated scope. The actual callee return PC remains a recorded
+trampoline address.
+
+Thirty-eight fresh planner/journal/binding guards passed. The real PE32 fixture
+passed twenty bodies, ten in each patch mode, with selected register, flags,
+x87/SSE, LastError and 0/4/8/12/16/20/24-byte cleanup checks. It also executed an
+original-style predecessor directly into the untouched successor, forwarded a
+foreign INT3 to the next handler, refused mismatched exception contexts, and
+round-tripped the actual native allocation map. These are synthetic native ABI
+results, separate from original client behavior.
+
+The original menu cohort `run-opctpvl0` closed 41,380 core pairs and 4,348 API
+pairs at 32 sites, including 382 calls at five breakpoint sites. Both journals
+have zero loss/open/IO failures; all targets and diagnostic stacks were readable,
+phases assigned, sources/binaries stable, and original exit zero. The retained
+Main menu screenshot was inspected. Twelve overlapping sites, complete formal
+arguments and bounded API outputs, object ownership/borrowing, failure/recovery
+routes, all fourteen scenario reviews and four dispatch obligations remain open.

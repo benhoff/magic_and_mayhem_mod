@@ -7,7 +7,7 @@ import sys
 import tempfile
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from drawing_api_journal import BUILD_SHA256, MAX_RECORDS, plan, trampoline, trace
+from drawing_api_journal import BUILD_SHA256, MAX_RECORDS, plan, breakpoint_plan, trampoline, trace
 
 
 def instruction(address, raw, mnemonic, operand=''):
@@ -37,6 +37,32 @@ def packed(manifest, rows, changes=None):
 
 
 class SpliceTests(unittest.TestCase):
+    def test_breakpoint_leaves_incoming_successor_and_complete_call_untouched(self):
+        code={0x401000:instruction(0x401000,'ffd0','call','eax'),
+              0x401002:instruction(0x401002,'83c408','add','esp,0x8'),
+              0x401100:instruction(0x401100,'e9fdfeffff','jmp','0x401002')}
+        with self.assertRaises(ValueError):plan(0x401000,code)
+        item=breakpoint_plan(0x401000,code)
+        self.assertEqual((item['patch_bytes'],item['signature'],item['remainder']),(1,'ffd0',[]))
+        data,rest=trampoline(item,0x800000,0x900000)
+        self.assertEqual(data[:2],bytes.fromhex('ffd0'))
+        self.assertEqual((0x800000+len(data)+struct.unpack_from('<i',data,len(data)-4)[0])&0xffffffff,0x401002)
+
+    def test_breakpoint_rejects_operand_incoming_flow_and_core_overlap(self):
+        code={0x401000:instruction(0x401000,'ff5064','call','DWORD PTR [eax+0x64]')}
+        with self.assertRaises(ValueError):breakpoint_plan(0x401000,code,[(0x401001,0x401005)])
+        code[0x401100]=instruction(0x401100,'e9fcfeffff','jmp','0x401001')
+        with self.assertRaises(ValueError):breakpoint_plan(0x401000,code)
+
+    def test_breakpoint_preserves_all_reviewed_target_modes(self):
+        for raw,mnemonic,operand in [('ffd0','call','eax'),('ff12','call','DWORD PTR [edx]'),('ff1508535c00','call','DWORD PTR ds:0x5c5308'),('e8fbffffff','call','0x401000')]:
+            item=breakpoint_plan(0x401000,{0x401000:instruction(0x401000,raw,mnemonic,operand)})
+            self.assertEqual(item['call_length'],len(bytes.fromhex(raw)))
+
+    def test_breakpoint_refuses_unresolved_and_corrupt_call(self):
+        for raw,operand in [('ff1488','DWORD PTR [eax+ecx*4]'),('e8fbffffff','0x401001')]:
+            with self.assertRaises(ValueError):breakpoint_plan(0x401000,{0x401000:instruction(0x401000,raw,'call',operand)})
+
     def test_absolute_call_returns_through_after_stub_before_continuation(self):
         code={0x401000:instruction(0x401000,'ff1508535c00','call','DWORD PTR ds:0x5c5308')}
         item=plan(0x401000,code);data,rest=trampoline(item,0x800000,0x900000)

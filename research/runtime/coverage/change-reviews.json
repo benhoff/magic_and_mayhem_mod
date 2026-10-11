@@ -238949,6 +238949,367 @@
           "DRAW.census.export-checked-abi-20261011"
         ]
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1dd747c23b2967971dfc6b868bc7bae33d2ada10439e416b44e4839f08d3098e",
+          "before_sha256": "4fb6b296bc343a883163e928f147381d2140aa9501a35bd01138b0390bf24ff8",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "8e3e9c3d7f7f3f58e583220df7b0f5364f4df540e724d6c703f51d86bfedf62a",
+          "before_sha256": "d7d673e20bb2e759cc8c14eefccd1224743e74cf24fe685f91bc117af3bbdc93",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "dd81b5d9a5576d8efddf6033bfcdeabeb0b05b37c568cc3a5e2e8e367b8eb73d",
+          "before_sha256": "9aad4043d3561edb0a33f1da001fb5b491c4902680357d91f7327b9f882df067",
+          "id": "DRAW.graphics-api-boundaries"
+        },
+        {
+          "after_sha256": "cf64ec2933874a2799606d215ea2a58d0bff65c8dffa49c213e9316bcb4886e5",
+          "before_sha256": "0527b36325f5fd876f1f78a081a61933126db167456dbaf1d60a238c6cd78000",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "2fdc79782485ca660a6d9fb24c03d8c0539316f249f1537ea948e45798b7a3c5",
+          "before_sha256": "603bbc50644940805ef3ab37c05cf5168162f94f4ca17ed8ba065a3b7e42e0ad",
+          "id": "TOOL.drawing-api-bindings"
+        },
+        {
+          "after_sha256": "f1d2cce2da3519a5b63decd9d5ac07c49ff4d1e0f3625f42fefb52e330c10fac",
+          "before_sha256": "246565a163818a4435d472b724708edecf8e0e20bd9e38c34ed8a2147caabf9e",
+          "id": "TOOL.drawing-api-journal"
+        },
+        {
+          "after_sha256": "07455aaeb0fff8e7f40152ed3143dfcaa959e9ac85138db0950d40e96fb14f6b",
+          "before_sha256": "966343b67662a528eaded1d98af82fc0428dc539e2a95839452d4ce0c97832a5",
+          "id": "TOOL.drawing-api-journey"
+        },
+        {
+          "after_sha256": "7c1f48ffac5bf2398edd94790e6ca9dca77b4f18eda32129084244f5128aee57",
+          "before_sha256": "d37a9054edbaa8cd069c3cd08d51a6b591083d2f8a4625670112d5123b532737",
+          "id": "TOOL.drawing-api-observer"
+        },
+        {
+          "after_sha256": "c49b376532408af8a18d63b6a383820e26b9dee02eba64554e4a7b808516d58d",
+          "before_sha256": "868848adb2530526bc2f3abea650d918444e14f5e2851a0110e1df6e9cbf5614",
+          "id": "TOOL.drawing-api-sites"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "9b1c7162ac51a62d4635965dd665b6d59ccf82047ed1dbde99e4dee6b3608dc0",
+          "before_sha256": "7ad5cbe26f2195d74b28a91d64c410bfa808871febd9d7f834b9df67c788bdeb",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "3cc1285340c1149ce19f44ebd646c1320899657a5deb5182a3db5c55e5842057",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw01-history-6e85d84-50674a8-20261011.json"
+        },
+        {
+          "after_sha256": "8544ed2a1bf851a2220b48413660fa88d94c3ea757b726c62b4f6f9862bf59d5",
+          "before_sha256": "1b1aece3e5a6db246cf03e16f79eab04bdb375a0061df49bf3b7c4681d00748b",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "82afa42a33400247c50529f6401ab1429cae1665982807eb0b710d1317c75514",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw01-api-breakpoint-20261011.json"
+        },
+        {
+          "after_sha256": "53b34b39084782437f1aaf1c3618d9fecf7241560750935b63f6adfd11f40f45",
+          "before_sha256": "c9b4ea457a908527699da98c27859d2365169617ce0781e6427c326e5f6d32af",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "69495175a2cbf4015d6c75d97a93993bf6d2369024d6827f4e13b80caf13d821",
+          "before_sha256": "40ad1c657bfb4529c2c5e36b2865fbcdf8034d09a667e104f3fdfefaeb728889",
+          "path": "research/runtime/draw01-graphics-api-boundaries.md"
+        },
+        {
+          "after_sha256": "ba8fe3c5af4b5d72ca44594da77f382a607d17e7f5f87c2ff3ce8f1b87f9a029",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-breakpoint-abi-20261011.json"
+        },
+        {
+          "after_sha256": "adbf5ce87c72b8c4cde0b4b0dca97808f2b82c9336b781bac0f460b38c67b369",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-breakpoint-guards-20261011.json"
+        },
+        {
+          "after_sha256": "f457bf98debe3cfb887ae4ecc57521902137f0a2441020d7cfcfd7bdcc2df848",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-breakpoint-menu-20261011.json"
+        },
+        {
+          "after_sha256": "7e5c141ca7e2e3137a85b3ae0bd1b7324a18b8aec753b613d57c8c93555dd53d",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-breakpoints-static-20261011.json"
+        },
+        {
+          "after_sha256": "74f1351bf921e9bc3c5991df046f12210113106009246cb5aa354b28ea7d7a93",
+          "before_sha256": null,
+          "path": "runtime/drawing-api-census/exception_i386.h"
+        },
+        {
+          "after_sha256": "16806fb77aac5cbc23855d1cb130cee6661c29e9859b0ee8063cb7f80eb719fb",
+          "before_sha256": "54b577d61f11ca09d90516eaa144231ade326c2c342e4c013bc6b5d9c9d0483e",
+          "path": "runtime/drawing-api-census/observer.c"
+        },
+        {
+          "after_sha256": "91b45313c80cd1f6c6ec17c20ce588c6de694aa533f6087c96e149e2e3e0fde5",
+          "before_sha256": "1b02887ceee2edbc1175ece27482749b421481d1d59180d2167b1fa7dcbfd47c",
+          "path": "tests/drawing-api-census-abi.c"
+        },
+        {
+          "after_sha256": "c348778917c239d51c8a35e03cea792e5b701b3847613241c41ad5a21fb73187",
+          "before_sha256": "c0239acab67be7adc8806b2be6cb1607537dfebbb75860d8b17df9f47639bede",
+          "path": "tests/test-drawing-api-bindings.py"
+        },
+        {
+          "after_sha256": "7db0b1f406070ebe1c46d2c4488c3fcbf010a99d192c933993e42b75954c725c",
+          "before_sha256": "491ddd0917cc93ff98d229baf8d2abb5dd87e5ee4e8dee280fc800145f5577d3",
+          "path": "tests/test-drawing-api-journal.py"
+        },
+        {
+          "after_sha256": "6bfa273ad6d4694419812fe6f76778fc5809b61996485f3a41d098a37ffd58c6",
+          "before_sha256": "890cc46781fccf7c5ed66a4f81e3e1cccaf8e58860c2fff0ce7563aa90fe62dd",
+          "path": "tools/build-drawing-api-census.py"
+        },
+        {
+          "after_sha256": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+          "before_sha256": "caf11933bf14dcc515bcfc212915cdde2681c1d67d9b1f1033f6c4c4744b5144",
+          "path": "tools/drawing_api_bindings.py"
+        },
+        {
+          "after_sha256": "d17ecbc7bdc69e71d66acb6c45d39cf93991db662a399afdb998f9ef6603cc97",
+          "before_sha256": "c82406744325c3c4cee46d73bf278b330de20d91ed88e46756c02160bd5c8023",
+          "path": "tools/drawing_api_journal.py"
+        },
+        {
+          "after_sha256": "30d7a643fd391a5effdb98ba4e7ee5d5325c6dd09dafdb0f4c6a904c01e57769",
+          "before_sha256": "fb5e26cc1772a70d7423b7a8a440168c7afc4559d6ca0a843c77b2fd7348c002",
+          "path": "tools/export-drawing-api-splices.py"
+        },
+        {
+          "after_sha256": "ea3f03a67d17edb493fd488230bd9999b330be0ed329b8c6e2899502eeb80fac",
+          "before_sha256": "c53a697cc76a5e18ef8e9142ee5f6fb7fe6d18b231c1c7ba42a6f28dff9b8738",
+          "path": "tools/test-drawing-api-census-abi.py"
+        }
+      ],
+      "id": "draw01-api-breakpoint-current-accounting-20261011",
+      "pending_gaps": [
+        "stale_evidence:089da84ce73deaabfe69f63bffaef13a097f671c872752ef3fd3c9c0bf19359c",
+        "stale_evidence:104cd086e02273941a53d7d0ab38eec48e22e6854e464a4a64f1d1afc1392795",
+        "stale_evidence:125691542e4e3842d76de2d678b663daa4ae9d8f945f33554f8b0c61186d145b",
+        "stale_evidence:227c526fae26b84fd5e5082cc67ad12998c63964c12010022289a38f49c9f9f8",
+        "stale_evidence:38fc7812e4a929ec243173956c537e7bb398fad0ed073719ecc4fbb7085839fa",
+        "stale_evidence:3c93c5dad62e647b323ede290040675f975fc3c92dc6ebe9412790fd33c839fe",
+        "stale_evidence:41c354fc21ed0ad202a5bcb61f8cb48ff1a3ba58f0b5a0d856086cb6c0d88cb2",
+        "stale_evidence:44e1e314cf6b34526447257f708bd8e2ded9c380f7c7e076db2e77ea19baab50",
+        "stale_evidence:53382c4e1a06dfefe360f49b44390de54479aa9d6ab1e3fac1766fb6a21e77a9",
+        "stale_evidence:614345482ceaba28b19643fc728fe4847ee43789435e8e4f21385ba56b0bb47e",
+        "stale_evidence:6988e226202f792fd814304e2ca2afb94e6cc7b74ddd9681498704b82b8852c8",
+        "stale_evidence:7aed846eae9f8d8eb2cf479d7d8a56b376996c97033187d12be4807d12e6cc71",
+        "stale_evidence:7c01039c86bef2632f252e288d02306044d93d0016a45705e434fba1ff426b4f",
+        "stale_evidence:7e2fb38fefc1e087da8eaaac5f0f075e20c83b2df759ae880cc59cda5a0128b5",
+        "stale_evidence:82ce858cc9950ee00007202b518d7ba2fd2e9a7bc7be8c106837b518998d1ec0",
+        "stale_evidence:9c91aae92eb05d61e3e146dd746b8891f56ce56c930d056a2f40212d5ace0b5d",
+        "stale_evidence:a3f0b63503a050a7a2ca985d011dbf4088581d8a2515c9f1ff2c5e0e7f5a8357",
+        "stale_evidence:a64d543dc7e6b063a6a9d26908233bfe5fdee4a9770f30af4dfce515d6e023ee",
+        "stale_evidence:aca493bd3c8e3ede625c706dcfa271543fca75d5debb46f01718332be5bf0f58",
+        "stale_evidence:b3163748e7785b3fc0c53d3d78b50100aeffc7460a0814c4a8bee422383afdd1",
+        "stale_evidence:b37965a46d6fb7107d5ef356720e2038594bdcb34e47239bf02d0ca1eda39c3f",
+        "stale_evidence:b744a4f0a2f95fb65118edbdbe65a5987b05537b54484f4811acd832677e590a",
+        "stale_evidence:bc3bd199c97a4a76ff2bd914c4e40f99b27c7eecc8e89029bb8a1bf5bc3a15a3",
+        "stale_evidence:bf3878c03a3b99188f9cac213ed68093bbf81a10e9ed1dda2ab2a2f777066d1a",
+        "stale_evidence:c7b820250103792a7524265c6e1cc5267968b589f243d71d27e71d38d54aedfd",
+        "stale_evidence:df2de713d77ac431858007869352451d43a03fa0c9c0dad42aaf6cb7a0bf3d61",
+        "stale_evidence:f22a0309d1667644893fae0ee142096a8b4ef7bf23e1705a7f21b7aad96b54ac",
+        "stale_evidence:f7df62542ce3cfb0ff2630ddb5601f154b7b84dd638e2b02e4f903b3186d537a"
+      ],
+      "reason": "Reviewed whole-CALL signature and one-byte patch semantics, strict exception matching, unchanged successor flow, per-run bindings and fresh original/native observations. Reviewed75file/114behavior exact committed receipts with no missing intermediate version. All changed dependency fingerprints, twelve refused overlaps, argument/output/lifetime and full scenario/dispatch closure gaps remain explicit pending limitations.",
+      "validation": {
+        "evidence": [],
+        "reason": "Historical source-bound evidence remains unchanged and may be stale. Fresh38guards,20native bodies and original menu observation validate their declared scopes only; full DRAW-01/API semantics, every hook or unknown original owner are not promoted.",
+        "status": "pending"
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "2fdc79782485ca660a6d9fb24c03d8c0539316f249f1537ea948e45798b7a3c5",
+          "before_sha256": "603bbc50644940805ef3ab37c05cf5168162f94f4ca17ed8ba065a3b7e42e0ad",
+          "id": "TOOL.drawing-api-bindings"
+        },
+        {
+          "after_sha256": "f1d2cce2da3519a5b63decd9d5ac07c49ff4d1e0f3625f42fefb52e330c10fac",
+          "before_sha256": "246565a163818a4435d472b724708edecf8e0e20bd9e38c34ed8a2147caabf9e",
+          "id": "TOOL.drawing-api-journal"
+        },
+        {
+          "after_sha256": "7c1f48ffac5bf2398edd94790e6ca9dca77b4f18eda32129084244f5128aee57",
+          "before_sha256": "d37a9054edbaa8cd069c3cd08d51a6b591083d2f8a4625670112d5123b532737",
+          "id": "TOOL.drawing-api-observer"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7e5c141ca7e2e3137a85b3ae0bd1b7324a18b8aec753b613d57c8c93555dd53d",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-breakpoints-static-20261011.json"
+        },
+        {
+          "after_sha256": "74f1351bf921e9bc3c5991df046f12210113106009246cb5aa354b28ea7d7a93",
+          "before_sha256": null,
+          "path": "runtime/drawing-api-census/exception_i386.h"
+        },
+        {
+          "after_sha256": "16806fb77aac5cbc23855d1cb130cee6661c29e9859b0ee8063cb7f80eb719fb",
+          "before_sha256": "54b577d61f11ca09d90516eaa144231ade326c2c342e4c013bc6b5d9c9d0483e",
+          "path": "runtime/drawing-api-census/observer.c"
+        },
+        {
+          "after_sha256": "91b45313c80cd1f6c6ec17c20ce588c6de694aa533f6087c96e149e2e3e0fde5",
+          "before_sha256": "1b02887ceee2edbc1175ece27482749b421481d1d59180d2167b1fa7dcbfd47c",
+          "path": "tests/drawing-api-census-abi.c"
+        },
+        {
+          "after_sha256": "c348778917c239d51c8a35e03cea792e5b701b3847613241c41ad5a21fb73187",
+          "before_sha256": "c0239acab67be7adc8806b2be6cb1607537dfebbb75860d8b17df9f47639bede",
+          "path": "tests/test-drawing-api-bindings.py"
+        },
+        {
+          "after_sha256": "7db0b1f406070ebe1c46d2c4488c3fcbf010a99d192c933993e42b75954c725c",
+          "before_sha256": "491ddd0917cc93ff98d229baf8d2abb5dd87e5ee4e8dee280fc800145f5577d3",
+          "path": "tests/test-drawing-api-journal.py"
+        },
+        {
+          "after_sha256": "6bfa273ad6d4694419812fe6f76778fc5809b61996485f3a41d098a37ffd58c6",
+          "before_sha256": "890cc46781fccf7c5ed66a4f81e3e1cccaf8e58860c2fff0ce7563aa90fe62dd",
+          "path": "tools/build-drawing-api-census.py"
+        },
+        {
+          "after_sha256": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+          "before_sha256": "caf11933bf14dcc515bcfc212915cdde2681c1d67d9b1f1033f6c4c4744b5144",
+          "path": "tools/drawing_api_bindings.py"
+        },
+        {
+          "after_sha256": "d17ecbc7bdc69e71d66acb6c45d39cf93991db662a399afdb998f9ef6603cc97",
+          "before_sha256": "c82406744325c3c4cee46d73bf278b330de20d91ed88e46756c02160bd5c8023",
+          "path": "tools/drawing_api_journal.py"
+        },
+        {
+          "after_sha256": "30d7a643fd391a5effdb98ba4e7ee5d5325c6dd09dafdb0f4c6a904c01e57769",
+          "before_sha256": "fb5e26cc1772a70d7423b7a8a440168c7afc4559d6ca0a843c77b2fd7348c002",
+          "path": "tools/export-drawing-api-splices.py"
+        },
+        {
+          "after_sha256": "ea3f03a67d17edb493fd488230bd9999b330be0ed329b8c6e2899502eeb80fac",
+          "before_sha256": "c53a697cc76a5e18ef8e9142ee5f6fb7fe6d18b231c1c7ba42a6f28dff9b8738",
+          "path": "tools/test-drawing-api-census-abi.py"
+        }
+      ],
+      "id": "draw01-api-breakpoint-current-native-guards-20261011",
+      "pending_gaps": [],
+      "reason": "38fresh guards and20synthetic PE32 bodies passed with exact prospective source/scope/scenario declarations. Ten breakpoint cases preserve selected machine state/cleanup/LastError, untouched original operands/successors, actual incoming-successor bypass, foreign/mismatched exception forwarding and native binding round trip.",
+      "validation": {
+        "status": "recorded",
+        "reason": "38fresh guards and20synthetic PE32 bodies passed with exact prospective source/scope/scenario declarations. Ten breakpoint cases preserve selected machine state/cleanup/LastError, untouched original operands/successors, actual incoming-successor bypass, foreign/mismatched exception forwarding and native binding round trip.",
+        "evidence": [
+          "DRAW.api-breakpoint.guards-20261011",
+          "DRAW.api-breakpoint.abi-20261011"
+        ]
+      }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "1dd747c23b2967971dfc6b868bc7bae33d2ada10439e416b44e4839f08d3098e",
+          "before_sha256": "4fb6b296bc343a883163e928f147381d2140aa9501a35bd01138b0390bf24ff8",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "8e3e9c3d7f7f3f58e583220df7b0f5364f4df540e724d6c703f51d86bfedf62a",
+          "before_sha256": "d7d673e20bb2e759cc8c14eefccd1224743e74cf24fe685f91bc117af3bbdc93",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "2fdc79782485ca660a6d9fb24c03d8c0539316f249f1537ea948e45798b7a3c5",
+          "before_sha256": "603bbc50644940805ef3ab37c05cf5168162f94f4ca17ed8ba065a3b7e42e0ad",
+          "id": "TOOL.drawing-api-bindings"
+        },
+        {
+          "after_sha256": "07455aaeb0fff8e7f40152ed3143dfcaa959e9ac85138db0950d40e96fb14f6b",
+          "before_sha256": "966343b67662a528eaded1d98af82fc0428dc539e2a95839452d4ce0c97832a5",
+          "id": "TOOL.drawing-api-journey"
+        },
+        {
+          "after_sha256": "7c1f48ffac5bf2398edd94790e6ca9dca77b4f18eda32129084244f5128aee57",
+          "before_sha256": "d37a9054edbaa8cd069c3cd08d51a6b591083d2f8a4625670112d5123b532737",
+          "id": "TOOL.drawing-api-observer"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "7e5c141ca7e2e3137a85b3ae0bd1b7324a18b8aec753b613d57c8c93555dd53d",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-api-breakpoints-static-20261011.json"
+        },
+        {
+          "after_sha256": "74f1351bf921e9bc3c5991df046f12210113106009246cb5aa354b28ea7d7a93",
+          "before_sha256": null,
+          "path": "runtime/drawing-api-census/exception_i386.h"
+        },
+        {
+          "after_sha256": "16806fb77aac5cbc23855d1cb130cee6661c29e9859b0ee8063cb7f80eb719fb",
+          "before_sha256": "54b577d61f11ca09d90516eaa144231ade326c2c342e4c013bc6b5d9c9d0483e",
+          "path": "runtime/drawing-api-census/observer.c"
+        },
+        {
+          "after_sha256": "91b45313c80cd1f6c6ec17c20ce588c6de694aa533f6087c96e149e2e3e0fde5",
+          "before_sha256": "1b02887ceee2edbc1175ece27482749b421481d1d59180d2167b1fa7dcbfd47c",
+          "path": "tests/drawing-api-census-abi.c"
+        },
+        {
+          "after_sha256": "c348778917c239d51c8a35e03cea792e5b701b3847613241c41ad5a21fb73187",
+          "before_sha256": "c0239acab67be7adc8806b2be6cb1607537dfebbb75860d8b17df9f47639bede",
+          "path": "tests/test-drawing-api-bindings.py"
+        },
+        {
+          "after_sha256": "6bfa273ad6d4694419812fe6f76778fc5809b61996485f3a41d098a37ffd58c6",
+          "before_sha256": "890cc46781fccf7c5ed66a4f81e3e1cccaf8e58860c2fff0ce7563aa90fe62dd",
+          "path": "tools/build-drawing-api-census.py"
+        },
+        {
+          "after_sha256": "b2000a9cd9c70083ec3586e8dbb0407f1b88257e7e510fbd418602e890cf8e04",
+          "before_sha256": "caf11933bf14dcc515bcfc212915cdde2681c1d67d9b1f1033f6c4c4744b5144",
+          "path": "tools/drawing_api_bindings.py"
+        },
+        {
+          "after_sha256": "d17ecbc7bdc69e71d66acb6c45d39cf93991db662a399afdb998f9ef6603cc97",
+          "before_sha256": "c82406744325c3c4cee46d73bf278b330de20d91ed88e46756c02160bd5c8023",
+          "path": "tools/drawing_api_journal.py"
+        },
+        {
+          "after_sha256": "ea3f03a67d17edb493fd488230bd9999b330be0ed329b8c6e2899502eeb80fac",
+          "before_sha256": "c53a697cc76a5e18ef8e9142ee5f6fb7fe6d18b231c1c7ba42a6f28dff9b8738",
+          "path": "tools/test-drawing-api-census-abi.py"
+        }
+      ],
+      "id": "draw01-api-breakpoint-current-original-menu-20261011",
+      "pending_gaps": [],
+      "reason": "Original menu execution closed41380core and4348API pairs at32sites, including382calls at five breakpoint sites, stable sources/binaries, zero loss/open/IO/unreadable targets and normal exit. Formal arguments/outputs, twelve overlaps and all-scenario closure remain pending.",
+      "validation": {
+        "status": "recorded",
+        "reason": "Original menu execution closed41380core and4348API pairs at32sites, including382calls at five breakpoint sites, stable sources/binaries, zero loss/open/IO/unreadable targets and normal exit. Formal arguments/outputs, twelve overlaps and all-scenario closure remain pending.",
+        "evidence": [
+          "DRAW.api-breakpoint.menu-20261011"
+        ]
+      }
     }
   ],
   "schema": 1

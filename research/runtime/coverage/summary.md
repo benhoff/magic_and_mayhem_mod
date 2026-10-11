@@ -7,12 +7,12 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | --- | ---: |
 | builds | 1 |
 | behaviors | 572 |
-| evidence | 958 |
-| scenarios | 284 |
+| evidence | 962 |
+| scenarios | 287 |
 | functions | 6675 |
 | registered recovered ranges | 25 |
 | incomplete dispatch tables | 22 |
-| indexed sources | 1698 |
+| indexed sources | 1699 |
 | unclassified functions | 6403 |
 | unassigned executable ranges | 4248 |
 | unresolved indirect flows | 1543 |
@@ -26,9 +26,9 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | behaviors without implementation | 168 |
 | behaviors without comparison | 470 |
 | behaviors without tests | 1 |
-| stale evidence | 745 |
+| stale evidence | 748 |
 | behavior anchors outside discovered functions | 46 |
-| validation gaps | 713 |
+| validation gaps | 712 |
 | retired execution claims | 376 |
 | changed focused registers | 0 |
 | new sources without index | 0 |
@@ -46,7 +46,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 
 | Current scope-bound validation | Counts |
 | --- | --- |
-| implementation | none: 168; pending: 384; current: 20 |
+| implementation | none: 168; pending: 383; current: 21 |
 | comparison | none: 470; pending: 97; current: 5 |
 | integration | none: 333; pending: 227; current: 12 |
 | replacement | none: 566; pending: 5; current: 1 |
@@ -149,7 +149,7 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 | TOOL.drawing-api-journal | Original CALL before/after API diagnostics and strict journal contract | native policy | scoped | partial | none | none | none | stale |
 | TOOL.drawing-api-observer | Separate original CALL before/after forwarding observer | native policy | scoped | partial | none | none | none | stale |
 | TOOL.drawing-api-bindings | Per-run exact API trampoline/module address bindings | native policy | scoped | partial | none | none | none | stale |
-| TOOL.drawing-api-journey | Original-active separate API journal journey staging and strict completion | native policy | scoped | partial | none | none | none | current_fingerprints |
+| TOOL.drawing-api-journey | Original-active separate API journal journey staging and strict completion | native policy | scoped | partial | none | none | none | stale |
 
 ## Drawing Inventory checklist
 
@@ -1508,13 +1508,16 @@ not whole-engine completeness. Historical comparisons do not validate changed so
 - **DRAW.census.quick-battle-scenario-guards-20261010**: `research/runtime/drawing-inventory.json`, `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
 - **DRAW.census.campaign-effects-observation-20261011**: `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/capture-drawing-census-game.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
 - **DRAW.census.campaign-effects-guards-20261011**: `runtime/drawing-census/observer.c`, `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
-- **DRAW.api-splices.static-20261011**: `tools/build-drawing-census.py`
-- **DRAW.api-journal.guards-20261011**: `tools/build-drawing-census.py`
-- **DRAW.api-observer.build-20261011**: `runtime/drawing-api-census/observer.c`, `tools/build-drawing-api-census.py`
-- **DRAW.api-observer.synthetic-abi-20261011**: `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tools/build-drawing-api-census.py`, `tools/test-drawing-api-census-abi.py`
-- **DRAW.api-observer.bindings-abi-20261011**: `tools/build-drawing-api-census.py`
+- **DRAW.api-splices.static-20261011**: `tools/build-drawing-census.py`, `tools/drawing_api_journal.py`, `tools/export-drawing-api-splices.py`
+- **DRAW.api-journal.guards-20261011**: `tests/test-drawing-api-journal.py`, `tools/build-drawing-census.py`, `tools/drawing_api_journal.py`, `tools/export-drawing-api-splices.py`
+- **DRAW.api-observer.build-20261011**: `runtime/drawing-api-census/observer.c`, `tools/build-drawing-api-census.py`, `tools/drawing_api_journal.py`
+- **DRAW.api-observer.synthetic-abi-20261011**: `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tools/build-drawing-api-census.py`, `tools/drawing_api_journal.py`, `tools/test-drawing-api-census-abi.py`
+- **DRAW.api-bindings.guards-20261011**: `runtime/drawing-api-census/observer.c`, `tests/test-drawing-api-bindings.py`, `tools/drawing_api_bindings.py`, `tools/drawing_api_journal.py`
+- **DRAW.api-observer.bindings-abi-20261011**: `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tests/test-drawing-api-bindings.py`, `tools/build-drawing-api-census.py`, `tools/drawing_api_bindings.py`, `tools/drawing_api_journal.py`, `tools/test-drawing-api-census-abi.py`
 - **DRAW.census.named-export-abi-20261011**: `tools/build-drawing-census.py`, `tools/drawing-census-game-runner.py`, `tools/prepare-drawing-census.py`, `tools/test-drawing-census-abi.py`
-- **DRAW.api-observer.bindings-build-20261011**: `tools/build-drawing-api-census.py`
+- **DRAW.api-observer.bindings-build-20261011**: `runtime/drawing-api-census/observer.c`, `tools/build-drawing-api-census.py`, `tools/drawing_api_journal.py`
+- **DRAW.api-menu.observation-20261011**: `runtime/drawing-api-census/observer.c`, `tests/drawing-api-census-abi.c`, `tests/test-drawing-api-bindings.py`, `tools/build-drawing-api-census.py`, `tools/drawing_api_bindings.py`, `tools/drawing_api_journal.py`, `tools/test-drawing-api-census-abi.py`
+- **DRAW.api-splices.export-checked-static-20261011**: `tools/drawing_api_journal.py`, `tools/export-drawing-api-splices.py`
 
 ## Checklist gaps
 

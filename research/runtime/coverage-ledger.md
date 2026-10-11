@@ -4623,3 +4623,17 @@ Historydc626c7..6e85d84 has exact intermediate receipts and separately names the
 export semantic gap; no retrospective gate pass or original validation is
 asserted. All14scenario/four dispatch, remaining callers/API contracts,
 outputs/resource borrowing and failure/recovery closure remain open.
+
+DRAW-01 incremental CALL observation (2026-10-11): the separate API observer
+now admits 302/314 selected boundaries, including 52 single-byte INT3 sites whose
+successors have incoming original branches; twelve core-hook overlaps remain
+explicitly refused. Fresh 38 native guards and twenty-body PE32 ABI/binding
+fixture passed, including untouched successor bypass and foreign exception
+forwarding. The original menu cohort `run-opctpvl0` closed 41,380 core and 4,348
+API pairs at 32 sites, with 382 calls at five breakpoint sites, zero loss/open/IO,
+stable inputs/sources and normal original exit. Evidence is registered separately
+as `DRAW.api-breakpoint.*-20261011`; historical fingerprints remain unchanged.
+This does not close formal API output/lifetime or all-scenario/dispatch accounting.
+The committed range `6e85d84..50674a8` has 75 exact file and 114 behavior receipts,
+zero missing intermediate receipts; that review does not assert a past gate pass
+or new runtime validation. The shared worktree remains untouched by this branch.
