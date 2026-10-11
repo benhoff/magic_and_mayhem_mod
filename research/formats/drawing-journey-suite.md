@@ -29,3 +29,14 @@ palette behavior, borrowed reads and recovery alongside pixels. Future acquisiti
 must bind those claims to actual original execution and independently retained
 outputs. Synthetic acceptance tests exercise accounting only and never contribute
 real original-reference coverage.
+
+A `producer_sequence` catalog binds its exact historical report, full source
+stream hash, ordered chunks, producer counts, final queue/canvas boundary, encoded
+assets and every checkpoint ordinal. Each original plane carries compressed and
+raw hashes and historical path. `xor-gzip` additionally carries the decompressed
+`delta_sha256` and `base_checkpoint` ordinal. Its base must be the immediately
+previous checkpoint with the same canvas generation and extent. Decode is bounded
+per artifact and by a128MiB producer stream; full-plane original hashes are checked
+after XOR. Delta decoding is confined to the comparator. The native process
+receives the unchanged producer bytes, encoded sources and requested output
+identities, including no expected-plane bytes or hashes.

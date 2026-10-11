@@ -33,3 +33,36 @@ The suite schema and acceptance boundaries are documented in
 [the format contract](../formats/drawing-journey-suite.md). Requirements are native
 acceptance policy; no new original branch or source-state behavior is inferred
 from writing the suite. Live takeover and whole-engine completion remain open.
+
+## Complete retained startup sequence
+
+`tests/fixtures/drawing-sequence/sequence.json` now retains all 46,647 producer
+records through sixteen World returns and all 1,062 independently compared
+original checkpoints, totaling 474,236,912 RGB565 pixels. Sixteen encoded source
+assets supply real image/sprite bindings. The historical source capture includes
+one admitted raster bypass that was independently compared with original
+execution; retention preserves that limitation and does not relabel it as a
+wholly original-active session or a new live capture.
+
+The producer stream uses ordered bounded gzip chunks. Original checkpoints use
+lossless gzip or XOR deltas against the immediately previous checkpoint of the
+same canvas generation and extent. Every decoded plane must still match its
+original raw hash and exact historical report identity. Delta bases cannot be
+arbitrary paths, reordered identities or recursive graphs. Deduplication and
+delta compression preserve full planes without retaining hundreds of megabytes
+of repeated background pixels. Oracles remain outside native input directories.
+
+```sh
+cmake -S compat/legacy/drawing-scene -B working/build/draw02-session -DCMAKE_BUILD_TYPE=Debug
+cmake --build working/build/draw02-session --target mnm-drawing-scene-replay --parallel 4
+python3 -B tests/test-drawing-sequence.py
+python3 tools/check-drawing-sequence.py --headless \
+  --executable working/build/draw02-session/mnm-drawing-scene-replay \
+  --report working/tests/draw02-sequence-new.json
+```
+
+This expands independent native comparison to the entire retained history;
+producer-record continuity still cannot close a presented-frame journey. No
+camera/input identities, original caller/driver semantics, general battle or
+transition/recovery behavior are inferred. New acquisition for those gates
+remains necessary.
