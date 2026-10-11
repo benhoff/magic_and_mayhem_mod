@@ -292,6 +292,32 @@ def validate_native_draw(experiment):
     return dict(ddraw_disabled=True,ddraw_module_absent=True,native_dll_sha256=metadata['native_draw_sha256'],status_sha256=sha(experiment/'native-draw-status.bin'),factory_creations=q[9],surface_creations=q[10],peak_surfaces=q[15],peak_bytes=q[16],scope='Public native Qt menus and command presentation use owned graphics services with real ddraw disabled/absent; original CPU drawing remains active. No V4 World-body suppression, independent original pixels or semantic COM teardown assertion.')
 
 
+def start_native_hardware(out,env):
+    gpu=subprocess.check_output(['nvidia-smi','--query-gpu=pci.bus_id','--format=csv,noheader'],text=True).strip().splitlines()[0]
+    match=re.fullmatch(r'[0-9A-Fa-f]{8}:([0-9A-Fa-f]{2}):([0-9A-Fa-f]{2})\.([0-7])',gpu)
+    if not match:raise ValueError('Unsupported NVIDIA bus identity')
+    bus='PCI:'+':'.join(str(int(x,16)) for x in match.groups())
+    display=next(n for n in range(170,190) if not Path(f'/tmp/.X11-unix/X{n}').exists() and not Path(f'/tmp/.X{n}-lock').exists())
+    configuration=out/'private-gpu.conf'
+    configuration.write_text('Section "ServerFlags"\n Option "AutoAddDevices" "False"\n Option "AutoEnableDevices" "False"\n Option "DontVTSwitch" "True"\nEndSection\nSection "Device"\n Identifier "native-test-gpu"\n Driver "nvidia"\n BusID "'+bus+'"\n Option "UseDisplayDevice" "none"\n Option "AllowEmptyInitialConfiguration" "True"\n Option "ProbeAllGpus" "False"\nEndSection\nSection "Screen"\n Identifier "native-test-screen"\n Device "native-test-gpu"\n DefaultDepth 24\n SubSection "Display"\n  Depth 24\n  Virtual 1280 1024\n EndSubSection\nEndSection\nSection "ServerLayout"\n Identifier "native-test-layout"\n Screen "native-test-screen"\nEndSection\n')
+    with (out/'private-gpu-start.log').open('w') as log:
+        server=subprocess.Popen(['/usr/lib/Xorg',f':{display}','-seat','native-campaign-test','-config',str(configuration),'-logfile',str(out/'private-gpu-xorg.log'),'-nolisten','tcp','-noreset','-novtswitch','-sharevts'],stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+    try:
+        deadline=time.monotonic()+30
+        while not Path(f'/tmp/.X11-unix/X{display}').exists():
+            if server.poll() is not None or time.monotonic()>deadline:raise RuntimeError('Private NVIDIA display failed')
+            time.sleep(.1)
+        for key in ['LIBGL_ALWAYS_SOFTWARE','__GLX_VENDOR_LIBRARY_NAME','__EGL_VENDOR_LIBRARY_FILENAMES','WAYLAND_DISPLAY','QT_XCB_GL_INTEGRATION']:env.pop(key,None)
+        env.update(DISPLAY=f':{display}',MESA_LOADER_DRIVER_OVERRIDE='zink',GALLIUM_DRIVER='zink')
+        with (out/'hardware-driver.log').open('w') as log:subprocess.run(['glxinfo','-B'],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=20)
+        driver=(out/'hardware-driver.log').read_text()
+        if 'NVIDIA' not in driver or 'Accelerated: yes' not in driver or 'llvmpipe' in driver or 'lavapipe' in driver:raise ValueError('Hardware renderer fallback refused')
+        return server
+    except BaseException:
+        stop_group(server)
+        raise
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--stress-seconds', type=int, default=0, help='Exercise physical gameplay input per phase (0 or 10..120)')
@@ -312,10 +338,12 @@ def main():
     parser.add_argument('--claims', type=Path, help='Prospective coverage scope/source declaration prepared before this run')
     parser.add_argument('--native-draw',action='store_true',help='Require owned graphics services with real DirectDraw disabled')
     parser.add_argument('--check-only', action='store_true', help='Build and check combined-mode admission; no game launch')
+    parser.add_argument('--hardware',action='store_true',help='Use a private no-monitor TITAN/NVIDIA display; refuse software fallback')
     parser.add_argument('--display', help='Use this X11/XWayland display instead of a private Xvfb (moves focus and sends Escape)')
     parser.add_argument('--software-threads', type=int, choices=range(1,65), default=4, help='Explicit Mesa worker count for the private software-rendered display')
     parser.add_argument('--timeout', type=int, default=330, help='Bound live automation, in seconds (30..600)')
     args = parser.parse_args()
+    if args.hardware and args.display:parser.error('--hardware and --display are separate display routes')
     if args.crowded_case:
         if args.healing_case:parser.error('Select only one Quick Battle case')
         if not args.stress_seconds:args.stress_seconds=180
@@ -399,11 +427,14 @@ def main():
             exit_code = 0
         else:
             report['stage'] = 'runtime-prerequisites'
-            for tool in ['wine', 'wineserver'] + (['tesseract'] if args.require_casting_combat else []) + ([] if args.display else ['Xvfb']):
+            for tool in ['wine', 'wineserver'] + (['tesseract'] if args.require_casting_combat else []) + ([] if args.display or args.hardware else ['Xvfb']) + (['nvidia-smi','glxinfo'] if args.hardware else []):
                 if not shutil.which(tool):
                     report['status'] = 'blocked'
                     raise RuntimeError('Missing runtime prerequisite: ' + tool)
-            if args.display:
+            if args.hardware:
+                server=start_native_hardware(out,env)
+                report['hardware_driver']=dict(driver='zink',accelerated=True,nvidia=True,software_fallback=False,log_sha256=sha(out/'hardware-driver.log'))
+            elif args.display:
                 env['DISPLAY'] = args.display
             else:
                 with (out / 'display').open('w+') as display, (out / 'xvfb.log').open('w') as log:
