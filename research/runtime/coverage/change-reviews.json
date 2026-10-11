@@ -244347,6 +244347,238 @@
         "reason": "Fresh native guard/ABI and original menu evidence passes with source, metadata and binary stability; original normal exit0 and all immutable inputs verify. Only allocation/byte/physical identity and bounded forwarding are validated. Logical tail attribution, exhaustive original callers/writers, real resource recovery/lifetimes and 14scenario/four dispatch gates remain pending; independent historical native stages are preserved.",
         "status": "pending"
       }
+    },
+    {
+      "behaviors": [
+        {
+          "after_sha256": "016c070733b33138bf9d2fd5700005389f021d54b4bbb328147e8f21077d303a",
+          "before_sha256": "c3b1822030125fa579858e61c49d3b73896be8251897fb8217d6909e513334f5",
+          "id": "DRAW.canvas-lock-recovery"
+        },
+        {
+          "after_sha256": "210e2c1a9cd5b5eb82f4385b5a86134baa90be9c8accc122738e181e1c20ab90",
+          "before_sha256": "cfc2508a7306f86ad9fe6210796c8c2cceac3d6b738ea64d946e6741404615e7",
+          "id": "DRAW.census.call-journal"
+        },
+        {
+          "after_sha256": "ebfd3223025905cbfb8ba3f9b48fc716b08fa66106cc66abd8fe0150fef27e65",
+          "before_sha256": "201bdee71a2cfa1120256811f55e6dce803a3ddcd6cae5b187c76e9f1c976799",
+          "id": "DRAW.census.journey-driver"
+        },
+        {
+          "after_sha256": "684b4c313fe166aa7d36d34cef1a51758c165496944400745979088a45b0c2f3",
+          "before_sha256": "684b4c313fe166aa7d36d34cef1a51758c165496944400745979088a45b0c2f3",
+          "id": "DRAW.graphics-api-boundaries"
+        },
+        {
+          "after_sha256": "3e28135307703ad00efd7c203d6741d30cdb560178c0dcf9880aaa78b2ebbd00",
+          "before_sha256": "f90d3218e5473819b1235878f71d21d02bfccecad80dfb582cc6fd98e7bd6ffb",
+          "id": "DRAW.queue-client-state"
+        },
+        {
+          "after_sha256": "118dfbfb7cde832cf03d22020ed037062033fd3d97ed8069523513e3fc239849",
+          "before_sha256": "39da21f24e6491a977f44438430866437db1a39b7e2ca61bad0efaf4f1a44f13",
+          "id": "DRAW.queue-dispatch"
+        },
+        {
+          "after_sha256": "549cfa2f3f0e236470219c443f03c1223033e395c2ea26849ba2d319616cd263",
+          "before_sha256": "bb7df87f9ce9c7df0a050449d4796ce2cd08c6c26a37d8e62e2812fb69b5dda1",
+          "id": "DRAW.queue-render-postlude"
+        },
+        {
+          "after_sha256": "ee00a93ec0ed11fa91024a46eb6bfa7e59b3f1203da4774e5c49d700f10285d6",
+          "before_sha256": "68e4c0eb389f88b27baf3864ce599ec1a4a09fd90b05a13b4b024c269c9b79fc",
+          "id": "DRAW.surface-hosting"
+        },
+        {
+          "after_sha256": "3ab7661c9fe6af9a71483f3403f837883d23c1b5119490666658653009aaef6d",
+          "before_sha256": "2a1873c7660897febe20c7d0329221b4b7d912c98c4d0e333e82a2226886d94f",
+          "id": "DRAW.unassigned-word-window"
+        },
+        {
+          "after_sha256": "d11c7b3eda0c16199aa1c4112a8b21af644a76f3e6453d7d32a0f21d70fb0f4f",
+          "before_sha256": "819fb34e75c74b7ad733b1054f25a673e8f437cfdfa88602616343fb1b59e968",
+          "id": "DRAW.unattributed-caller"
+        },
+        {
+          "after_sha256": "98d48f1c5681cb3ba2ffb44613f80ba889745861888b8eebc48b68bb83abcfb7",
+          "before_sha256": "1022a36f92ccff02fafd13a77a1aa7ed0dd264527f90e262a43d6e8ef27c042b",
+          "id": "DRAW.world-kind-16"
+        },
+        {
+          "after_sha256": "c20dba32fa9ffd583dadbcbb16f9ec4d1442d776531a3a874d8d2aeaccbd3926",
+          "before_sha256": "8d7c331dc3c54016d530791fd6b0d0b42dc4a994a263a63de7f690adeea28b5e",
+          "id": "DRAW.world-kind-17"
+        },
+        {
+          "after_sha256": "ad8e96f4386bd932e7a18f90676edd20fb14c5a60cfbc6d618bba23e64e88bd3",
+          "before_sha256": "a594f0192d11667eed62ffccaf77dc7ed285904e71f2181bfced03189b484ad0",
+          "id": "DRAW.world-kind-20"
+        },
+        {
+          "after_sha256": "4ac040afb845a290663a3a6476f8330fbcd77a3e9b17eef3bc540bae163cd96f",
+          "before_sha256": "b6fc7b94d2e0f4ad4193c3e09a277a42e0fa364a46f6f8f50c918dde2e3e37e2",
+          "id": "RI.movies"
+        },
+        {
+          "after_sha256": "3976b31bd306f3719d7ea97581604c08269f70a27c28eff9124f81ad8f9e4f26",
+          "before_sha256": "6b3630e12aa96286b5e0cb1e729507a1c2d7c48f624d90465f7c6e201f38eed5",
+          "id": "TOOL.coverage-accounting"
+        },
+        {
+          "after_sha256": "1b48a1a9b9c20f245c869bd9a432f355ae8459790811c5cfa3c5bb5108ed0ecb",
+          "before_sha256": "1b48a1a9b9c20f245c869bd9a432f355ae8459790811c5cfa3c5bb5108ed0ecb",
+          "id": "TOOL.drawing-api-bindings"
+        },
+        {
+          "after_sha256": "d0d0a762425f2b0f071c44706254eb1c110e8090c351a4e30965b7364b22c57c",
+          "before_sha256": "d0d0a762425f2b0f071c44706254eb1c110e8090c351a4e30965b7364b22c57c",
+          "id": "TOOL.drawing-api-details"
+        },
+        {
+          "after_sha256": "a5eb1c441966417f8d1fcc632756ff7ee575fad01f77e02af703b18e3b7c369a",
+          "before_sha256": "a5eb1c441966417f8d1fcc632756ff7ee575fad01f77e02af703b18e3b7c369a",
+          "id": "TOOL.drawing-api-journal"
+        },
+        {
+          "after_sha256": "2a30a1abb8b931f551f778e36feccd448666cc6a3497d68b3508c6e69ee3a17c",
+          "before_sha256": "75c96ede26c91c74b8ae5d4fcd04b6c65227e9477080ccfdde7ad2c5b9be395b",
+          "id": "TOOL.drawing-api-journey"
+        },
+        {
+          "after_sha256": "9790e68037256a3639dd7cc20ed9e7a058bf9410a5609c8d75dcee7c185a0671",
+          "before_sha256": "9790e68037256a3639dd7cc20ed9e7a058bf9410a5609c8d75dcee7c185a0671",
+          "id": "TOOL.drawing-api-observer"
+        },
+        {
+          "after_sha256": "4683e11d46d4fe823779fe678afcfabcf3812a70d9adacef2f9b7cbca24c06c2",
+          "before_sha256": "4683e11d46d4fe823779fe678afcfabcf3812a70d9adacef2f9b7cbca24c06c2",
+          "id": "TOOL.drawing-api-sites"
+        },
+        {
+          "after_sha256": "4118326874fb42bd874ed8f1956b51fd65149f43a185ce6352ccd63e85a62179",
+          "before_sha256": "d63af6523f6922c177cfeb841130924864ca3f3fc99519436ebedbc41a9104bf",
+          "id": "TOOL.drawing-census"
+        },
+        {
+          "after_sha256": "f04c8a1124aed3d02fbaa225ce81f191e60190eb145e1acbb180972cb7da74fe",
+          "before_sha256": "1c6b8f4e1e2e083410530483b7b3da905d8d06618bb77d169928bb4aa8bbcb2c",
+          "id": "TOOL.drawing-core-bindings"
+        },
+        {
+          "after_sha256": "5d8648de9b6cd45a627918dfdcded02c7eadf776dcc494fc9ce738d5dc958f37",
+          "before_sha256": null,
+          "id": "TOOL.drawing-core-callers"
+        },
+        {
+          "after_sha256": "82e98da10ca5a01d75e35b4180f78b39a445843aef77e21849fbb60c6104203d",
+          "before_sha256": "bdb030c004c56e7e5cb7f9e6f53527337e5be71bd35c01458f8c1c8279880ac5",
+          "id": "TOOL.drawing-dispatch-slices"
+        },
+        {
+          "after_sha256": "f73d470f558c28bb613294865459c63d14a251205c7a86933a5a9a630bbd7b25",
+          "before_sha256": "de05b64091cf1185a91cac34c2afe5512816eba5b7dd460478fd242938a88542",
+          "id": "TOOL.drawing-inventory"
+        },
+        {
+          "after_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+          "before_sha256": "eecfd9260dec255126bffce5559be1742591a6cb936ba65419e3fb8c8c97dbc7",
+          "id": "TOOL.drawing-movie-reference"
+        }
+      ],
+      "files": [
+        {
+          "after_sha256": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+          "before_sha256": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+          "path": "protocols/include/mnm/drawing_census_bindings_v1.h"
+        },
+        {
+          "after_sha256": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+          "before_sha256": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+          "path": "protocols/include/mnm/drawing_census_v1.h"
+        },
+        {
+          "after_sha256": "f9257eb20253ba3c802d99b39d6401998f8663ddf7a69340df33ec688fac2335",
+          "before_sha256": "7bd05e02752e0fb556e9801db87022214ca8963670f1e838a18c5b4c28a91202",
+          "path": "research/runtime/coverage-ledger.md"
+        },
+        {
+          "after_sha256": "a4d4febe5974f6b6a2f143e1f6cc378076c459ffff65f1b81e5119245a9e79ab",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/draw01-history-a67ecea-3766bfb-20261011.json"
+        },
+        {
+          "after_sha256": "478a516046cb480bf3e50540c72b06c828bf764e37ba927390a5c9cdc50dc7af",
+          "before_sha256": "845321cc7eda66d02078a5dcfbeb667a3893458f9560aebd492a66fd12079c59",
+          "path": "research/runtime/coverage/register.json"
+        },
+        {
+          "after_sha256": "9efa58aa5cfe400490cc2f3f3d44f46768b378dc822f73fa3af0bc3b2a56d703",
+          "before_sha256": null,
+          "path": "research/runtime/coverage/source-index-draw01-core-callers-20261011.json"
+        },
+        {
+          "after_sha256": "134730a51a1bf8d02c03e80a7bed80536d0086a3e253c700f69669fd314e3eee",
+          "before_sha256": "90b7c859c80e85f6be1249a8e6dc0155c135d1ce3dd1fb867910271fb93ac32d",
+          "path": "research/runtime/coverage/summary.md"
+        },
+        {
+          "after_sha256": "5d78818c174d596f9df26311a5a50d0cb236d9c795f3b2d5e85cca86bba9e912",
+          "before_sha256": "ea0b532e4410e8e353f2eb636594ecae7c1e8668a39915d466f29c66ef030eaf",
+          "path": "research/runtime/draw01-inventory.md"
+        },
+        {
+          "after_sha256": "60c2947c502744063022440153aa5f4fb244b5cfb45450a620d9b22af0cf6bee",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-core-caller-guards-20261011.json"
+        },
+        {
+          "after_sha256": "d8d2afdf0b4b5e2d538aac03f904802bd6781be08aa985831419a0e30650efda",
+          "before_sha256": null,
+          "path": "research/runtime/drawing-core-caller-original-replay-20261011.json"
+        },
+        {
+          "after_sha256": "a829e6581052a410ee4bd67a4f5f02e9d358419eea70487a9e9f165caa3cfbb5",
+          "before_sha256": null,
+          "path": "tests/test-drawing-census-callers.py"
+        },
+        {
+          "after_sha256": "f693db1cfe59da196a538ff2b62485b25d3430155cefdfd63587fd1abf3a6bac",
+          "before_sha256": "0d119bfa303495f554cdfa94293e01e3e2a93b798203002db4d1544cbb54a58a",
+          "path": "tools/capture-drawing-census-game.py"
+        },
+        {
+          "after_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+          "before_sha256": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+          "path": "tools/drawing_census.py"
+        },
+        {
+          "after_sha256": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+          "before_sha256": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+          "path": "tools/drawing_census_bindings.py"
+        },
+        {
+          "after_sha256": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52",
+          "before_sha256": null,
+          "path": "tools/drawing_census_callers.py"
+        }
+      ],
+      "id": "draw01-core-caller-exact-accounting-20261011",
+      "pending_gaps": [
+        "behaviors_without_comparison:33d82ab7c9ed1a53190ef69ec29292ce8b7cfad370f5155eee662ed532ecdc14",
+        "retired_execution_claims:0e22ce96796ad1e5d8519420d1e1b2685e2b070c53e9aed2bbb08dab9c522c93",
+        "retired_execution_claims:799bd8b65b1c0cc2fa90466cab5ec0b6e38c352ddb48ad29e6ec46efddc6eae2",
+        "stale_evidence:085f1cba8d68d440033b7dbc4d1b41effd335a8e0dac2c19675196c579738011",
+        "stale_evidence:11f9caf4898489d144207700e607bd87f20d628e9a8b77080eb7bd56f95e2e49",
+        "stale_evidence:77813ee9e3984f11f3fa2ea0e715140d21308b6780841dbf4a190f32631446d4",
+        "validation_gaps:338801ec43548f589bb9593b72ea3e5c31ef3fbb26115606e1de581b360a9e6a",
+        "validation_gaps:cc1d31cb43589601a63d3e92422becb1de786f4f96c4bd93b1f1c85d9f0662d8"
+      ],
+      "reason": "Review exact original/relocated CALL identities against closed journals and per-run copied bytes, preserving raw caller PCs and requiring matched original target/site census. Review active-count/newest-return invariants and same-thread/identical-return-slot inherited parent/root provenance without inventing a child CALL edge. Retain14new synthetic guards, current42021pair native replay with8relocated/17182direct pairs and24831pending flows, no repeated original execution, plus exact a67ecea..3766bfb history receipts.",
+      "validation": {
+        "reason": "Fresh14guards and stable-source native replay pass against retained original journal/binding/metadata hashes. Synthetic inherited chains remain separate from the menu cohort, where none occurred. Unknown roots, original inherited transfer edges, indirect raster slot and terminal cleanup flows remain explicit. Physical continuation admission does not establish semantic owner, original pixels/side effects/resource lifetimes or14scenario/four dispatch closure; existing stage/freshness boundaries are preserved.",
+        "status": "pending"
+      }
     }
   ],
   "schema": 1

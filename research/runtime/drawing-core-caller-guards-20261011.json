@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "success": true,
+  "sources_stable": true,
+  "sources": {
+    "protocols/include/mnm/drawing_census_bindings_v1.h": "567ced0a1fdf0c49d7180a4543f4b43e12fdc16e6104237af506ea8138ea8e19",
+    "protocols/include/mnm/drawing_census_v1.h": "b21a1f8bfc5da9ec45a99f54affffdfba7c6e133e0ca580c3a0e9d7eb7db726b",
+    "research/runtime/coverage/binary-nocd.json": "9970fa0dcf1ca112050e43f97299519fc6ee494632b5f0d5d71ae38361131929",
+    "research/runtime/drawing-callers-movie-sites-20261010.json": "9bee999ddfbf3159c992399abd6d6308ffae0207c3536bed46ace94d17b18ac3",
+    "tests/test-drawing-census-callers.py": "a829e6581052a410ee4bd67a4f5f02e9d358419eea70487a9e9f165caa3cfbb5",
+    "tools/capture-drawing-census-game.py": "f693db1cfe59da196a538ff2b62485b25d3430155cefdfd63587fd1abf3a6bac",
+    "tools/drawing_census.py": "3b234910f6f96a89d53ed456f607d95a48a5b9132d02ecb41c1fa9f9a38cc33c",
+    "tools/drawing_census_bindings.py": "927d8ea7e99fcba174608b658240c0fea1cbfd3f3af832adf9a2930389fe2450",
+    "tools/drawing_census_callers.py": "65da6d37a7c11edbbb5fbde3547eaaef1ef259a1a07d4751130070a291043a52"
+  },
+  "claims": [
+    {
+      "behavior": "TOOL.drawing-core-callers",
+      "contract_sha256": "0882b9c35dc8bc020abed156b9bae0223f7f5f3a4c56826739f121e2f8efdcf4",
+      "scenarios": {
+        "drawing-core-caller-guards-20261011": "652e74ac33d95b6faf609e304c4c051dda9c8b500aeb5ef68d2fdefffe165895",
+        "drawing-core-caller-original-replay-20261011": "356768fdea7d716cd25cad7a78aea4e66905789724c6896934d7fb43a262bd70"
+      }
+    }
+  ],
+  "guards": 14,
+  "original_renderer_executed": false,
+  "scope": "Synthetic strict original CALL/relocation/return-continuation admission and refusal only; unknown original roots/transfer edges stay pending. No original execution.",
+  "artifacts": {
+    "working/tests/draw01-core-caller-guards-20261011.log": {
+      "sha256": "416bf32537d4ffc17e47fc9001e09449b734d88682763b59741e1f5b52a25f02",
+      "bytes": 113
+    }
+  }
+}
