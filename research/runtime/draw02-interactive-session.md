@@ -100,3 +100,11 @@ include the complete compressed API/gameplay journals and all19physical images,
 with exact recorded hashes. They are original-output references for inspection or
 external comparison; native rendering must use separately owned inputs. Retention
 adds no synchronized-frame, native parity or new execution claim.
+
+The [record-kind refresh](draw02-interactive-record-kind-original-20261011.json)
+validates current admission after undefined kind6 was rejected. It records
+2,756 input calls,68 gameplay sample ticks and3 original melee returns, with the
+same accepted Results Continue/Quit and fresh Main return. The earlier full report
+and portable19-image package remain historical references with their original
+fingerprints. Fresh native forwarding and failure reports accompany this run;
+current admission has eight guard methods, including the undefined-kind refusal.

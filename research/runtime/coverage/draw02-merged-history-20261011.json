@@ -1,0 +1,827 @@
+{
+  "schema": 1,
+  "reviewed_ranges": [
+    "49c337d..b570002",
+    "53bdc4a..e23e99c"
+  ],
+  "commits": [
+    "b570002",
+    "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+    "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+    "e23e99cf41eba3141496774278937fc3eb4971e8"
+  ],
+  "file_versions": [
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": ".github/workflows/re-coverage.yml",
+      "before_sha256": "9d3b2580a9addbadfcc24b0766e41a98897a7792daad02d7a49ffa62aa26979c",
+      "after_sha256": "f116c24c882b10cf34f5306eeab17abe7a3627e563513803d5ef983d24a709b4",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "docs/live-drawing-replacement.md",
+      "before_sha256": "123c3d689b6d17be681ec7722ac932d864299c0be25147a1e872a777363d9c1b",
+      "after_sha256": "c93ba4d06b4b240f61642d205ffbb75d3e1942c14c2a7e5632a3dcfad60c40a3",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/formats/drawing-api-session-v1.md",
+      "before_sha256": "738fb247d622bbe44699e3652b412ece13def4faed70bfadf8a196dd608768b1",
+      "after_sha256": "b7b885b2a98596065211758e27363299b6537a6b6429c64cc4810f543b911557",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "2df5c23adc86ee84cb3b4fd9cbca6c6b8393bb9ec90fd3806e2f16102fc9a79c",
+      "after_sha256": "9ed54880313471482a9aa480b9c693e6aa281172763f23e19f61e5344f90d8de",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/coverage/draw02-api-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "f8e1a773d70e16a18ea241f536a5dfef9b5bfe3a8686b0371cc694dd7b260bec",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "fb7ba80543e23cc364d298150a19e342baf7abf03dd1bf102c35b320022d48a1",
+      "after_sha256": "beac58bb5c16ecc1f5cfbde239016027f122e70adfa4194402b3f3640d304fdf",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/coverage/source-index-draw02-interactive-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6852a7dd8dfe096fd2332e3949bcfbdf16e512aaa3d30c26f079f9a220b40e11",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/coverage/source-index-draw02-interactive-retained-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "6852a7dd8dfe096fd2332e3949bcfbdf16e512aaa3d30c26f079f9a220b40e11",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "e298d43f7362513c158c26c8a78314938edbdadee14580093134aa879fb60ecd",
+      "after_sha256": "a473e8609bdc9cd878206fb0f3bafed1a2071358545dc27f5c9cedd64b3e51b1",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-api-concurrent-native-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b19d0d37d9c22014c336af40e23ef3c4f0ca86377cfb28104a2c31ae9e2aae24",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-caller-results.md",
+      "before_sha256": null,
+      "after_sha256": "8c791212e4ee718f6dfb2b5098d78059627d6c6b21d8dad52d12d940e81889bb",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-failure-results-native-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "548621861ff39ca8780c782342588af035c796eecef7c255b2e2cd023956c06a",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-original-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7d390fcccc49265d8574c0f9be5e66e3fb41f983edc60d6b764a15ec384ee644",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/exit-main-result-client-0001.png",
+      "before_sha256": null,
+      "after_sha256": "6894ef727c46efd530406bc7218c11a98ebcc84344284764ca8ff028401c2db4",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/gameplay.bin.gz",
+      "before_sha256": null,
+      "after_sha256": "a3bcec8fb944de53b3f5b60310595e77e3a22631db6fc042c4bb0c0dcecf6407",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0001.png",
+      "before_sha256": null,
+      "after_sha256": "bde2a82ba563b6a129501ef836ef15cc6f55400adde030314dd29202d9c1de6b",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0002.png",
+      "before_sha256": null,
+      "after_sha256": "979a66bd84194985125108b98dcebbd7dd98f2f25b8ddb585ebe7b5dda381917",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0003.png",
+      "before_sha256": null,
+      "after_sha256": "f622fa5b0d604c0884c183d014bb63b1531f0014b154ecbea22d837ddc508a10",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0004.png",
+      "before_sha256": null,
+      "after_sha256": "7a955d02c29e32b1227ec238e16c776bff85c82c7ff6dca5c17b30e33a89204a",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0005.png",
+      "before_sha256": null,
+      "after_sha256": "eed1595644ed71b3e722799c04be9b98f65d5ee77a95c45f22b1fb792f4e9d83",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0006.png",
+      "before_sha256": null,
+      "after_sha256": "da1934a046c0fb46f033895793b54bf2a2a7426806093ef3e5fcb12a2e4639de",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0007.png",
+      "before_sha256": null,
+      "after_sha256": "3d53f71426932539b87dcbf46660577b040a9ae81417907ede88772469a4e6a3",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0008.png",
+      "before_sha256": null,
+      "after_sha256": "52f4393b64271c043a9c51a32876f8c50bfae1835234ec5c3d85e95d7176e093",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0009.png",
+      "before_sha256": null,
+      "after_sha256": "94543b4773d0a141f893c4ebbcb303203f6869558b959d882c6fc5a60bbd07ea",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0010.png",
+      "before_sha256": null,
+      "after_sha256": "0299b584d7bdacc3f2d6cd09523210122274ba90bfdedd2af85a41ead6a29fab",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0011.png",
+      "before_sha256": null,
+      "after_sha256": "1d2e28a23158478d4a2e120d185af6dea8423dec5cc3e95c3c0873f600809094",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0012.png",
+      "before_sha256": null,
+      "after_sha256": "f80a75c45f387d0872c0d02ef2ed21b8975259c1c1e4d198465509b40da44c2e",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0013.png",
+      "before_sha256": null,
+      "after_sha256": "f53b2eea3ac7135721cc22d3c9a31fde9150ac01938c3b793aa5b8e22b9de025",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0014.png",
+      "before_sha256": null,
+      "after_sha256": "161ceb8cb747482dd97a77a7cb61a57509cd6a70ee254f9703a2b7d98591f896",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0015.png",
+      "before_sha256": null,
+      "after_sha256": "07dc09039868947d09830448f4b43358738bd2a619dee30c5270cd3cd8743100",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/manifest.json",
+      "before_sha256": null,
+      "after_sha256": "032bb63d13cb07763c1a2dc0d6f2883b364001b45c13920d73c12ffd8fb1e3b1",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/results-continue-result-client-0001.png",
+      "before_sha256": null,
+      "after_sha256": "5b9eb4930495a7a372f442ff0b339e16c918a5c1aae9b653cb124cb5292c97a1",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/results-open-result-client-0001.png",
+      "before_sha256": null,
+      "after_sha256": "f53b2eea3ac7135721cc22d3c9a31fde9150ac01938c3b793aa5b8e22b9de025",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/results-reopen-result-client-0001.png",
+      "before_sha256": null,
+      "after_sha256": "39a78dd3438db0d4b19fdc3c923cdeabae292e5158bb63efc33f03fac8dde0ca",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/session.bin.gz",
+      "before_sha256": null,
+      "after_sha256": "898be5994721f91a0d51d3a8a633012c96603b1ef3001cf384d5881a9a302f7d",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-reference-20261011/session.done.gz",
+      "before_sha256": null,
+      "after_sha256": "03941d589bf0745490d6fa6e89b244acd8db365b1da19fd3c1b56cf1714676ab",
+      "exact_prior_receipt": false
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-interactive-session.md",
+      "before_sha256": "3f3b18900aa8e4cd9aacfbd0ea9301b059a721740d07e8ac19bce017bc24ca49",
+      "after_sha256": "0716092dd0a5b65c79efd494d530c82d9d21239437007d82cb5e941d0781481c",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "research/runtime/draw02-native-restoration-policy-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "181a2578a10496ab87df3eaedf9dce29131af9ed8d62cec67ca1b86ee3d026c7",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "runtime/drawing/selftest.c",
+      "before_sha256": "e0e548ece0750c6b2a9170f12ea4bab326f1847d68136f2cca9b2bfe9e0b9b6e",
+      "after_sha256": "cabffdb09b2b3f50d20deb18f02137527d0128d6f4d641f1ab4a46adeab4f527",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "runtime/drawing/session.c",
+      "before_sha256": "bdce1a0b83ddcca448d07c690ee65c26222b16e40e4d16303a441c7fae8529bf",
+      "after_sha256": "598edb0fad6178de046e5113162cb8d06ceecf4c740ff1a18e186000b0f463d6",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tests/drawing-session-input.cpp",
+      "before_sha256": null,
+      "after_sha256": "4b1e56baab63490f8edb1524d9a429396be9330464e35b7246efb6e8557abef2",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tests/fixtures/drawing-journeys/interactive-schedule.json",
+      "before_sha256": null,
+      "after_sha256": "cf2916161242b8578ebbbb36090f7fb8f5ac2c39a0eef30f212ee4dbf5c1baf0",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tests/test-drawing-api-results.py",
+      "before_sha256": null,
+      "after_sha256": "626f1a9badc020e5183fdd8c6c00b1a17ee4fb57857dacbbe9c53b5e94d4fe49",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tests/test-drawing-api-session.py",
+      "before_sha256": "545c8c0a7db754ae1d740aa3a4ba6d7b66c1666666cf67c7e40dfe002124883b",
+      "after_sha256": "2d16c318c15cc6d0b9a88f8f658a7c907171bb4ac68311672c797a671ed8d870",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tools/build-drawing-session-input.py",
+      "before_sha256": null,
+      "after_sha256": "eba65902ca678600c5bac80172f24bfdf0c535f250d4f016fbd5ec1ab55fbcb8",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tools/build-drawing-session.py",
+      "before_sha256": "a32e1ddb50bfdaee1a05b8d857fd2168a74a6226ad5169ebcde36f15f7e2368e",
+      "after_sha256": "552f9164a8a3c081fdfc140802877c83eb13f965f24622cc795fcadd8c8c0fbe",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tools/capture-drawing-interactive.py",
+      "before_sha256": null,
+      "after_sha256": "f745cd83ad02ca693300881dff5762f1765a64261a63bfeff0c345d8aa65d6a5",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tools/check-drawing-failure-results.py",
+      "before_sha256": null,
+      "after_sha256": "2bc5ef040b72812cb56c85594cef654f350deca0bcf133683705001667247590",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tools/drawing-session-runner.py",
+      "before_sha256": null,
+      "after_sha256": "52875cafbfe6443f347742e6e5bfa941e71dd0baa41e1a102e562f5b8e8cd5a8",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tools/drawing_api_results.py",
+      "before_sha256": null,
+      "after_sha256": "108cb8ba2980c2bf95820cbbf52303508eb0a2873e2372afefc7074c7444b81c",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tools/drawing_api_session.py",
+      "before_sha256": "f7ef92662339ce8e2874b54105c07647e0d2ccf7cd50f155e833b9887222ecf6",
+      "after_sha256": "52226936c4a2a11a399db05929d5e0096ea4d20c0e9fde20518121c36d7731a4",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "b570002",
+      "parent": "49c337de27e207584e69cd46ab44ca634d8f60ed",
+      "path": "tools/test-drawing-api-session.py",
+      "before_sha256": "71b30386c4803830ef52a2d6f56795d099bffef2ca838cebbfacf457439d39f8",
+      "after_sha256": "c062e2ae986986ecc950c125d41a4ec52480b7954da9d2f988373df2267f747b",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "compat/legacy/drawing-scene/CMakeLists.txt",
+      "before_sha256": "6b8e2b4ce1d0529dfcf90bc7d82da30dd8fddddfbff7fc3d2e4768733249ce55",
+      "after_sha256": "ede454f16e8ef5f0c619ed0e3cd5e3b423108fc10fd97eefd435353754c1513b",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "compat/legacy/drawing_session.cpp",
+      "before_sha256": null,
+      "after_sha256": "ee3705d4e32a965a18269bf948e94b5542c56ebe9404bbc41359041ab936c3eb",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "compat/legacy/drawing_session.hpp",
+      "before_sha256": null,
+      "after_sha256": "cd886666bab6ad8e5d0ce6b364fe2ca758e3c3a927b01662febce54060d8be3d",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "ed4e13510ecd76a7658b2c8d37c1512cbc9a3dadb90b06e806f310ed916a781a",
+      "after_sha256": "3e901b545270086f2483f1a05ef3e6fea1db43d6a8565bfd821cf2d2125b4334",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "research/runtime/coverage/draw03-history-7789514-53bdc4a-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "324d1331a1078b71da17878f704be12cd5888c6ea5e3be61072ce01a5b07691b",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "164fb811c25ffa284d4442ef8b00a3f98a9768ef8b02e1322c53aaaded79c99f",
+      "after_sha256": "d4d88648ba146be66f4dfdd455560bd05ac52abb6a92bf7bb6a9c019d9aef00a",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "research/runtime/coverage/source-index-draw03-session-lifecycle-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "a8267a04ac64896e79b3158fa279b2370d3c5b5f64293b8fb0a3f7dc7d96a72f",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "45cdfd326c76461b0c9b3958c05950f17560d58eaa7fbf76d11d7c800ad38f15",
+      "after_sha256": "b8d05712e9b5eaad5dccc67977dfb5039ebb0359b6ce6e5c46b24b71f66880a1",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "research/runtime/draw03-native-session-lifecycle-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "c2374340dae182b80137da53bf8f68b635d15d8466d477ef86ecd889e6566652",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "research/runtime/draw03-native-session.md",
+      "before_sha256": null,
+      "after_sha256": "a4c8a0479f78d8d8fca0dbbb024380383f95ffc7f2d090e1cae6e2748cc3adfc",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "tests/drawing-session-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "4075da0840449af7ede1b04503c1cce442326c5ffe55877467752a2da62fb854",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "parent": "53bdc4a3437d85a8c7a72d6de86e1ba0d217d856",
+      "path": "tools/test-native-drawing-session.py",
+      "before_sha256": null,
+      "after_sha256": "b90df5fb60148c0064c2a5185f41571f2bc7fb10786edde057a93f70837ab286",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "compat/legacy/drawing-scene/CMakeLists.txt",
+      "before_sha256": "ede454f16e8ef5f0c619ed0e3cd5e3b423108fc10fd97eefd435353754c1513b",
+      "after_sha256": "a6bdbd1d02d3e9933618e84fc935897a673bbad894ce351a67e975573462ff13",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "compat/legacy/drawing_session_main.cpp",
+      "before_sha256": null,
+      "after_sha256": "c5d7f2da234f652aa632539fd89d527bfe3fbf9cb4608e613d906e7c141c8f55",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "research/formats/drawing-native-session-v1.md",
+      "before_sha256": null,
+      "after_sha256": "73edef5e007e4ee2dfdf4fac50f88f837c30ee0cff6de722491d18ba799b91c1",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "3e901b545270086f2483f1a05ef3e6fea1db43d6a8565bfd821cf2d2125b4334",
+      "after_sha256": "170fecf289ee2df9c900a0f0ebfdf417ad8e209efdcc1fb6c850261dedbb8d12",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "research/runtime/coverage/draw03-history-53bdc4a-9b15da3-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7a5d1a57c7e194be85d4351bbee63dc69fd7ca43fa827a2a93555d42e267fb3b",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "d4d88648ba146be66f4dfdd455560bd05ac52abb6a92bf7bb6a9c019d9aef00a",
+      "after_sha256": "2aba109fa23495622bba572cf4f3c1c5bfcbedc6cc14709f57034e94b7d714b0",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "research/runtime/coverage/source-index-draw03-session-runner-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "79306f2fe1f9ba5250edc4d9653868095f8530da46c232c9ef1fcff0b380de49",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "research/runtime/coverage/summary.md",
+      "before_sha256": "b8d05712e9b5eaad5dccc67977dfb5039ebb0359b6ce6e5c46b24b71f66880a1",
+      "after_sha256": "14423838ebaf4e19a39a439b9eaee2d3391c9e13923d4dd04b6ae628d4b17e3a",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "research/runtime/draw03-native-session-runner-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "cb29e0316e86a16bbb5cb8a563ed5727b871a135a1ddc4ffb46386e4dea380cc",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "research/runtime/draw03-native-session.md",
+      "before_sha256": "a4c8a0479f78d8d8fca0dbbb024380383f95ffc7f2d090e1cae6e2748cc3adfc",
+      "after_sha256": "a513d8df297054fa52b8944f1aa6c88cc0f7178c2b8a635422512123540a14b2",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "tools/test-native-drawing-session-runner.py",
+      "before_sha256": null,
+      "after_sha256": "6192b45e5e2f4798c41da77e670a8b8d4f4a20de2f7189f27971d7e473e507ad",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "parent": "9b15da3858c7ea90c59283c6606c4208ccb6d6f1",
+      "path": "tools/test-native-drawing-session.py",
+      "before_sha256": "b90df5fb60148c0064c2a5185f41571f2bc7fb10786edde057a93f70837ab286",
+      "after_sha256": "afc2f2d48b0717aedac3117bce92c4ea4bbd34461548b01f50e868c133a9aa8a",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "AGENTS.md",
+      "before_sha256": "3cc02ac7b86829dff6082648e17b38056837ae267eb8f24df6d604349e19250a",
+      "after_sha256": "b2885a5552198f7170e546297ea894bdc2c86171bf55693316028ab4b255b47e",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "docs/working-retention.md",
+      "before_sha256": null,
+      "after_sha256": "c6182c099d3eba57fd0a3f2bd3326aac961762f7e10c1b593c04552c65a8bdb3",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "2aba109fa23495622bba572cf4f3c1c5bfcbedc6cc14709f57034e94b7d714b0",
+      "after_sha256": "7d1dc6792daf0c1ad170ecbd49ddc9f4c8df2e4038e4f84318dcc7c3720b24cc",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-draw03-retention-integration-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "66e8d5e3bd6ea52165c1d0a0e5c3027e33a49a21b22176944e6a428d1b837361",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-working-archive-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "5144324950ef9ac97985acb6c3e98892d39414bf48f9415f0ff1c081d21d1ad8",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-working-archive-final-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "4ddf0e8fb69c367f1434f2a6761c01d26ac63bc3d0835d35ba125bdefda1a5a9",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-working-free-space-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "e8943fd801893c5e2b131866304461a44b4e4b8ffa426e77ad77674c5bb118c5",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/source-index-working-retention-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "403ed7f0fa9528bfe2682132da1c14848a2bcfeaef7c36a1cddd3afef3ac8eec",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "research/runtime/coverage/working-retention-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "7003d5ea57c5583d92c8cc9af8c19e1acdd0b7b622fb356fa71392357d8dd174",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/test-working-archive.py",
+      "before_sha256": null,
+      "after_sha256": "78355a9e9aefc64f87dfb5d2d98d82f24b67997ca55568ee03bdd0f0a6e2808a",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tests/test-working-retention.py",
+      "before_sha256": null,
+      "after_sha256": "9b8701d2afbcbb1229c26be0d60e2ed314c22441fd87ef0dd89dac682e55ff0d",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/working-retention.json",
+      "before_sha256": null,
+      "after_sha256": "af5164cedbeae70018ae3d9b0f3ae6be84a5b74270deaac44d80528c9011e49c",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/working-retention.py",
+      "before_sha256": null,
+      "after_sha256": "cf178f82612c0e307ca4e33141ad90550fa62c9faaa37ce743e84ee289e5410d",
+      "exact_prior_receipt": true
+    },
+    {
+      "commit": "e23e99cf41eba3141496774278937fc3eb4971e8",
+      "parent": "2768aa32f6ea0a05fa3571a9068b203b17818d02",
+      "path": "tools/working_archive.py",
+      "before_sha256": null,
+      "after_sha256": "a8d0c4325a0dcea6467643ec0237eabb106cc8a7bda71e6945ee0b9dfb1ef145",
+      "exact_prior_receipt": true
+    }
+  ],
+  "retrospective_receipts_appended_for": [
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/exit-main-result-client-0001.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/gameplay.bin.gz"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0001.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0002.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0003.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0004.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0005.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0006.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0007.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0008.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0009.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0010.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0011.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0012.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0013.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0014.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/input-client-0015.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/results-continue-result-client-0001.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/results-open-result-client-0001.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/results-reopen-result-client-0001.png"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/session.bin.gz"
+    },
+    {
+      "commit": "b570002",
+      "path": "research/runtime/draw02-interactive-reference-20261011/session.done.gz"
+    }
+  ],
+  "unresolved_gaps": [],
+  "scope": "Exact review of each committed file parent/current SHA-256, excluding append-only review journal self-hash. Missing direct receipts are appended without refreshing evidence or implying a past gate/execution result. Concurrent uncommitted shared work is outside this report."
+}

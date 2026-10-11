@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "max_working_gib": 1280,
+  "minimum_free_gib": 100,
+  "archive_root": "/var/local/magic-and-mayhem-archive",
+  "auto_archive": false,
+  "monitor_seconds": 2,
+  "stop_grace_seconds": 5,
+  "minimum_archive_free_gib": 100,
+  "archive_quiet_minutes": 60,
+  "archive_minimum_file_mib": 0.0625,
+  "recent_hours": 24,
+  "keep_latest_runs": 2,
+  "protected_names": [
+    "game-clean", "game-nocd", "source-disc", "wineprefix", "wineprefix-x86_64",
+    "toolchain", "manifests", "runtime", "logs", "retention"
+  ]
+}

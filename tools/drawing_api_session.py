@@ -13,7 +13,7 @@ def decode(data,oracles=None):
     rows=list(struct.iter_unpack('<32I',data[64:]));frames=[];calls=[];inputs=[];actions=[];entry_ids=set();last_frames=0
     if rows[-1][1]!=4 or any(r[1]==4 for r in rows[:-1]):raise ValueError('Missing/early terminal API session record')
     for i,r in enumerate(rows,1):
-        if r[0]!=i or r[1] not in (1,2,3,4,5,6) or not r[6]:raise ValueError('Invalid API session identity')
+        if r[0]!=i or r[1] not in (1,2,3,4,5) or not r[6]:raise ValueError('Invalid API session identity')
         if r[1]!=4:
             if not r[29] or r[29] in entry_ids:raise ValueError('Duplicate/missing API entry identity')
             entry_ids.add(r[29])

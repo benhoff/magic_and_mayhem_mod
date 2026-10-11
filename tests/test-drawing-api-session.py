@@ -23,6 +23,9 @@ class TestSession(unittest.TestCase):
     def test_input_only_mode_refuses_surface_calls(self):
         b=bytearray(fixture());struct.pack_into('<I',b,32,2)
         with self.assertRaises(ValueError):decode(b)
+    def test_undefined_record_kind_refuses(self):
+        b=bytearray(fixture());struct.pack_into('<I',b,64+4,6)
+        with self.assertRaises(ValueError):decode(b)
     def test_terminal_required(self):
         with self.assertRaises(ValueError):decode(fixture()[:-128])
     def test_typed_frame_method_results_loss_order(self):
