@@ -30,9 +30,10 @@ int main(int argc,char** argv) try {
     for(int repeat=0;repeat<repeats;++repeat){
         QFile file(argv[1]);require(file.open(QIODevice::ReadOnly) && file.size()>=8 && file.size()<=16ll*1024*1024*1024,"Unbounded/unavailable resident corpus");
         require(file.read(8)=="MNMPROF1","Resident profile capture magic");
+        QElapsedTimer clock;clock.start();
         render::GlBlitter renderer;const auto driver=renderer.driver();driverName=QString::fromStdString(driver.renderer);
         require(driver.vendor.find("NVIDIA")!=std::string::npos && driver.renderer.find("TITAN")!=std::string::npos,"Expected NVIDIA TITAN; refusing fallback");
-        QElapsedTimer clock;clock.start();const auto ms=[&]{return double(clock.nsecsElapsed())/1000000.;};
+        const auto ms=[&]{return double(clock.nsecsElapsed())/1000000.;};
         QJsonArray rows;std::uint64_t sequence=0,dropped=0;double completionMs=0;QString digest;
         {
             legacy::WorldRollingSession session(renderer,store,false,true);render::GpuFrame frame;

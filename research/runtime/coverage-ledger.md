@@ -6427,3 +6427,25 @@ comparison or replacement promotion. Historical linked renderer/public evidence
 retains its original hashes and may now be stale. Merged-master first-parent
 versions are separately receipt-audited with zero gaps in
 `coverage/resident-profile-base-history-20261011.json`.
+
+### Resident profiling, 2026-10-11: capture and pacing observation controls
+
+The synchronous capture failure is preserved in
+`resident-profile-synchronous-capture-negative-20261011.json`, including its
+946.324ms write stall, fallback assertion and independently repaired private
+cleanup. It is not a completed gameplay or performance result. The source-only
+capture now uses a bounded256MiB compression/I/O worker; failures mark incomplete
+capture while gameplay continues. V2 inflation/byte normalization occurs outside
+benchmark timing. The public clock owner can forward its existing paired readings
+to `ScenePacerObservationV1` without another clock/host call or IAT hook; scene
+diagnostic timestamps match the configured real uptime clock. Original target,
+instructions, speed and drawing policies remain unchanged.
+
+Fresh exact Qt/Python archive controls,11 compressed malformed inputs,33 clock
+byte mutations/LastError/paired callbacks and current exhaustive shared import/
+normal-Quit regressions pass in `resident-profile-worker-fixtures-20261011.json`.
+Full current public CPU/GPU/pacing and actual captured hardware throughput remain
+pending. No original comparison/replacement or60FPS status promotion. Exact
+`19882a4` source receipts are separately reviewed in
+`coverage/resident-profile-instrumentation-history-20261011.json`; older evidence
+retains historical source/contract fingerprints.

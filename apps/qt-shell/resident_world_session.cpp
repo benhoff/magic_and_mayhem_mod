@@ -1,4 +1,5 @@
 #include "resident_world_session.hpp"
+#include "resident_profile_capture.hpp"
 #include "gl_viewport.hpp"
 #include <QJsonDocument>
 #include <QSaveFile>
@@ -21,10 +22,7 @@ ResidentWorldSession::ResidentWorldSession(GlViewport& viewport,const QString& p
     const auto capture=qEnvironmentVariable("MNM_RESIDENT_PROFILE_CAPTURE");
     if(!capture.isEmpty()){
         if(!stageProfile_)throw std::runtime_error("Resident capture requires stage profiling");
-        capture_=std::make_unique<QFile>(capture);
-        if(!capture_->open(QIODevice::WriteOnly|QIODevice::NewOnly) || capture_->write("MNMPROF1",8)!=8)
-            throw std::runtime_error("Cannot create resident profile corpus");
-        captureBytes_=8;
+        capture_=std::make_unique<ResidentProfileCapture>(capture);
     }
 }
 void ResidentWorldSession::collectGpuTimings(){
@@ -47,7 +45,7 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
         if(normalQuitRetired_)return;
         if(channel_.cancelled()){
             if(acceptedNormalQuit && !pending_ && completed_==imports_ && completed_==returns_){
-                normalQuitRetired_=true;if(capture_ && !capture_->flush())throw std::runtime_error("Resident capture flush");saveReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));return;
+                normalQuitRetired_=true;if(capture_)capture_->finish();saveReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));return;
             }
             throw std::runtime_error("Resident World producer cancelled");
         }
@@ -71,6 +69,7 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
                         row["producer_world_ms"]=double(std::uint32_t(ticks[3]-ticks[0]));
                         row["producer_return_ms"]=double(std::uint32_t(ticks[3]-ticks[2]));
                         row["engine_pacer_observed"]=ticks[6]==3;
+                        row["engine_pacer_mask"]=int(ticks[6]);
                         row["engine_pacer_ms"]=ticks[6]==3?double(std::uint32_t(ticks[5]-ticks[4])):0.;
                         row["engine_screen_copy_ms"]=double(ticks[7]);row["engine_screen_copy_calls"]=double(ticks[8]);
                         row["producer_region_queries"]=double(ticks[9]);
@@ -85,21 +84,13 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
             }
             if(pending_->returned && pending_->imported){completed_=pending_->block.generation;channel_.release(completed_);pending_.reset();if(completed_%64==0)saveReport(QFileInfo(game_).dir().filePath("resident-world-report.json"));}
         }
-        if(!pending_){WorldContinuousChannel::Block block;if(channel_.poll(block)){
+        if(!pending_){WorldContinuousChannel::Block block;QElapsedTimer acquire;if(stageProfile_)acquire.start();if(channel_.poll(block)){
+            const auto acquireMs=stageProfile_?double(acquire.nsecsElapsed())/1000000.:0.;
             const bool sampled=stageProfile_ && block.generation<=8192;
             const double sampleStart=double(profileClock_.nsecsElapsed())/1000000.;
             QElapsedTimer timing;timing.start();double captureIo=0;
-            if(capture_ && !captureTruncated_){
-                const auto size=16ull+block.source.size()+block.request.size();
-                if(block.generation>8192 || size>16ull*1024*1024*1024-captureBytes_)captureTruncated_=true;
-                else {
-                    QByteArray header(16,0);const std::uint64_t values[]={block.generation,block.source.size(),block.request.size()};
-                    for(unsigned i=0;i<8;++i)header[int(i)]=char(values[0]>>(i*8));
-                    for(unsigned k=1;k<3;++k)for(unsigned i=0;i<4;++i)header[int(4+k*4+i)]=char(values[k]>>(i*8));
-                    if(capture_->write(header)!=16 || capture_->write(reinterpret_cast<const char*>(block.source.data()),qint64(block.source.size()))!=qint64(block.source.size()) || capture_->write(reinterpret_cast<const char*>(block.request.data()),qint64(block.request.size()))!=qint64(block.request.size()))
-                        throw std::runtime_error("Resident profile capture write");
-                    captureBytes_+=size;++capturedWorlds_;
-                }
+            if(capture_){
+                capture_->enqueue(block.generation,block.source,block.request);
                 captureIo=double(timing.nsecsElapsed())/1000000.;timing.restart();
             }
             auto stream=decodeCanvasProducers(block.source,false);
@@ -112,7 +103,7 @@ void ResidentWorldSession::poll(bool acceptedNormalQuit){
             const auto native=double(timing.nsecsElapsed())/1000000.;nativeMs_+=native;maxNativeMs_=std::max(maxNativeMs_,native);
             prepareMs_+=world_->profile().prepareMs;submitMs_+=world_->profile().submitMs;producerMs_+=world_->producerWorkMs();++profiled_;
             if(sampled)stageSamples_.append(QJsonObject{{"generation",QString::number(block.generation)},
-                {"host_elapsed_ms",sampleStart},{"capture_io_cpu_ms",captureIo},{"decode_ms",decode},{"handoff_ms",handoffTime},
+                {"host_elapsed_ms",sampleStart},{"source_acquire_ms",acquireMs},{"capture_enqueue_cpu_ms",captureIo},{"decode_ms",decode},{"handoff_ms",handoffTime},
                 {"native_consume_ms",native},{"native_cpu_producer_ms",world_->producerWorkMs()},
                 {"native_prepare_ms",world_->profile().prepareMs},{"native_submit_cpu_ms",world_->profile().submitMs},
                 {"world_rasters",int(handoff.batch.header[14])},{"source_bytes",double(block.source.size())}});
@@ -141,12 +132,13 @@ QJsonObject ResidentWorldSession::report() const {
         {"handoff_ms_per_world",profiled_?handoffMs_/profiled_:0.},{"native_ms_per_world",profiled_?nativeMs_/profiled_:0.},
         {"producer_ms_per_world",profiled_?producerMs_/profiled_:0.},{"prepare_ms_per_world",profiled_?prepareMs_/profiled_:0.},{"submit_ms_per_world",profiled_?submitMs_/profiled_:0.},{"max_native_ms",maxNativeMs_},
         {"engine_fps",returns_>64 && lastTick_!=firstTick_?double(returns_-64)*1000/double(std::uint32_t(lastTick_-firstTick_)):0.}};
+    const auto capture=capture_?capture_->report():QJsonObject{};
     if(stageProfile_)result["stage_profile"]=QJsonObject{{"samples",stageSamples_},{"sample_limit",8192},
         {"samples_dropped",double(samplesDropped_)},{"gpu_queries_dropped",double(gpuDropped_)},
         {"gpu_queries_pending",double(renderer_?renderer_->pendingGpuTimings():0)},
-        {"capture_path",capture_?capture_->fileName():QString()},{"capture_bytes",double(captureBytes_)},
-        {"captured_worlds",double(capturedWorlds_)},{"capture_truncated",captureTruncated_},
-        {"capture_complete",bool(capture_ && normalQuitRetired_ && !captureTruncated_ && capturedWorlds_==completed_)},
+        {"capture",capture},{"capture_path",capture["path"]},{"capture_bytes",capture["file_bytes"]},
+        {"captured_worlds",capture["written_worlds"]},{"capture_truncated",capture["truncated"]},
+        {"capture_complete",bool(capture_ && normalQuitRetired_ && capture["complete"].toBool() && std::uint64_t(capture["written_worlds"].toDouble())==completed_)},
         {"scope","Opt-in bounded host timings and asynchronous renderer-context GPU timestamps. GPU timeline includes CPU submission gaps, excludes public UI import/paint/scanout. Existing original ticks are uint32 millisecond intervals; pacing and screen-copy fields describe the preceding interval. Non-pacing residual is unclassified original work, not simulation CPU time. Capture I/O and instrumentation affect live cadence."}};
     return result;
 }

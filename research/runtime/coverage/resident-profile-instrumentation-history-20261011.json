@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "reviewed_range": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d..19882a4dbee4036f151bf598caea4566db890b56",
+  "scope": "Exact committed instrumentation parent/current file versions and retained receipts; separate from new execution and working-tree changes, no retrospective gate assertion.",
+  "files": [
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "apps/qt-shell/resident_world_session.cpp",
+      "before_sha256": "a5fa04b85527b56831c74891366abb52a2eda9f4dbba4c728b178a8087c4d1e2",
+      "after_sha256": "071e3ddca683ae9ea1ba768ef178568a08b5ad7b309484f06f313885cd054050",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "apps/qt-shell/resident_world_session.hpp",
+      "before_sha256": "0e456fe0c16e4a3d596ff6326cecf0e40933c52935504ab6cc8bcd1e0b971564",
+      "after_sha256": "2e38a71b1abf5fd0bf99e3221d8ab4e91c7ca5b24c4f98dad973609f4901f901",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "renderer/CMakeLists.txt",
+      "before_sha256": "1ebc49ab3239f2404380018e885545c57ff6c5090798067ada6116f5e7299ec0",
+      "after_sha256": "99dcd34db3b9d95b1c62d1a23b2391a44f7805506666ddc2738a9eddff1e424c",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "renderer/blit.cpp",
+      "before_sha256": "f113dd9a60c63e3aa2a31f14d82470dce0be4c1781079c677ad7e13bfcda1696",
+      "after_sha256": "4c79ec4887ec9905835fd7911a5f0b951a3131b03c7374396f4fd590ab2ab8f2",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "renderer/blit.hpp",
+      "before_sha256": "c71bc632a851fa363864e13dd964a3428e3aa5603631e0fc56eb30357b2f5125",
+      "after_sha256": "34b90dc1403f30f97b32ffb8540fdd48df8509be5e8902f702d9e0fd8e788438",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "research/formats/resident-profile-corpus.md",
+      "before_sha256": null,
+      "after_sha256": "2b625f29f3cdc1ce900500302ec1e7de32564c7a91cad82259e86df817d7cf0b",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "research/runtime/coverage-ledger.md",
+      "before_sha256": "d35f483d856f77fea35e025928f90949daa26c0ddfb9ef6996ae902806b13887",
+      "after_sha256": "5d518c3a675fbb23a6e773d608ca37dee25996a5c8bea33d4d7c2a0063eb5e44",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "research/runtime/coverage/register.json",
+      "before_sha256": "679f61dc5887568847719cf2b9b7d43a071ab071054286b91222ef252244d510",
+      "after_sha256": "7a595eac1b68e353f566c1f68d735ecab05f6c4454fee2a6dbfabcbdc82ea880",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "research/runtime/coverage/resident-profile-base-history-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "b2dffd0f8def59f60221071bb9af96d2be76fdca2957a5265ee2fd4207f94e33",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "research/runtime/coverage/source-index-resident-profile-instrumentation-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "54c344258a4c0f60d66659fe099307dd3e805b91dd7f9d34c939acccc5e94748",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "research/runtime/native-resident-performance-profiling.md",
+      "before_sha256": null,
+      "after_sha256": "5ef419e8d42b8ad18e8487c6b49e68d505c6ba04e8674e7690811e89b1dc78c9",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "research/runtime/resident-profile-instrumentation-20261011.json",
+      "before_sha256": null,
+      "after_sha256": "844798544c3349ffbd2f289f41317c6f09d089fcb984c4c1a2a127038a8202f5",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "tests/render-gpu-timing-test.cpp",
+      "before_sha256": null,
+      "after_sha256": "26ab345a79f2da6371ea385b08251132fea3a43099606c738cdf3b8d63b27efc",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "tools/benchmark-native-resident.py",
+      "before_sha256": null,
+      "after_sha256": "79d6f2680996170914c7c037cd9f635c11aad6b051f890ee97cca60f04136df9",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "tools/native-render-profile/CMakeLists.txt",
+      "before_sha256": "ce1f2c3c821b95aaed2b816c95281a4dcad294b8ebac5e58f30a267a4bda7e68",
+      "after_sha256": "52b64efe9b159fdd69c1a449f84253d4341be9608476135a69e21d11794c58c7",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "tools/native-render-profile/resident_profile.cpp",
+      "before_sha256": null,
+      "after_sha256": "6504ac374d272c5a0a31175cd30f8118dec2be897e86e1fd01d415e819c5029d",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "tools/profile-native-resident.py",
+      "before_sha256": null,
+      "after_sha256": "29db9239c456100d091e921cec8548e600ff180eedbf1577bd428081186bd241",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "tools/profile_native_resident_helpers.py",
+      "before_sha256": null,
+      "after_sha256": "426816ac39ff765cf8659045304dbb8fc346a9969ac69685f26cb00a61a7e98c",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    },
+    {
+      "commit": "19882a4dbee4036f151bf598caea4566db890b56",
+      "parent": "c7c7c94d83d3fed5fb8912fd46184c4506fb431d",
+      "path": "tools/test-native-campaign.py",
+      "before_sha256": "688aa84b7db6c47ee8f9470463d0200b8f6772f551e37d6531066df6a9faa212",
+      "after_sha256": "b64841de13f9533393582dd26da1277c67849519fe0ef16652c2613dff38a46f",
+      "matching_review": "resident-profile-instrumentation-20261011"
+    }
+  ],
+  "unresolved_gaps": []
+}

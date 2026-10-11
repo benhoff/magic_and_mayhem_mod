@@ -40975,25 +40975,41 @@
       "subsystem": "native_rendering",
       "kind": "native_policy",
       "title": "Bounded resident World CPU, GPU and original pacing diagnostics",
-      "scope": "Opt-in resident World CPU stage observations and asynchronous paired renderer-context GPU timestamps with at most64 outstanding pairs,8192 rows and16GiB ordered source-only capture. Queries are polled only when available and overflow executes gameplay without timing. GPU timeline includes CPU submission starvation and excludes public UI composition, Qt presentation and scanout; original uint32 millisecond channel ticks distinguish observed preceding pacing/screen intervals from unclassified residual, not simulation CPU. Offline ordered ownedV5 handoff/resident replay of captured public gameplay on verified NVIDIA hardware measures completion throughput, with diagnostic output hashing outside timing and no ordinary World readback/pixel reply. CPU sampling is a separate perturbed diagnostic. No60FPS, universal20Hz simulation, original equivalence or pacing policy change claim.",
+      "scope": "Opt-in resident World source-acquire/decode/handoff/native CPU observations and asynchronous paired renderer-context GPU timestamps with at most64 outstanding pairs and8192 rows. Compressed source-only capture uses a256MiB raw-byte worker queue,8192 Worlds and16GiB raw/stored limits; queue/file failures mark capture incomplete while rendering continues, and drain occurs only on retirement. Exact Qt/zlib corpus normalization precedes benchmark timing. Public original clock owner forwards already-read tick values through guarded stdcall ScenePacerObservationV1(caller,tick) only at original PCs0x4e3f59/0x4e3f97 with LastError preserved and no extra clock/API or host calls; paired preceding pacing/screen intervals are separate from unclassified residual, not simulation CPU. GPU timeline includes CPU submission starvation and excludes public UI composition, Qt presentation and scanout. Ordered ownedV5/resident replay of actual captured gameplay on verified NVIDIA TITAN measures completed render-path throughput, with diagnostic hashes outside timing and zero ordinary World readbacks/pixel replies. CPU sampling is a separate perturbed diagnostic. No60FPS, universal20Hz simulation, original equivalence or pacing policy change claim.",
       "confidence": "provisional",
-      "original": [],
+      "original": [
+        {
+          "build": "nocd-40209ca7",
+          "address": 5127744,
+          "scope": "Observation only: original pacing first/end call PCs0x4e3f59/0x4e3f97 and exact guarded bytes0x4e3f57/0x4e3f95; preserve selected target, original branch/instructions and actual clock value. Not complete pacing/simulation reconstruction."
+        }
+      ],
       "documents": [
         "research/runtime/native-resident-performance-profiling.md",
         "research/formats/resident-profile-corpus.md",
-        "research/runtime/resident-profile-instrumentation-20261011.json"
+        "research/runtime/resident-profile-instrumentation-20261011.json",
+        "research/runtime/resident-profile-synchronous-capture-negative-20261011.json",
+        "research/runtime/resident-profile-worker-fixtures-20261011.json"
       ],
       "implementation": [
         "renderer/blit.cpp",
         "renderer/blit.hpp",
         "apps/qt-shell/resident_world_session.cpp",
-        "apps/qt-shell/resident_world_session.hpp"
+        "apps/qt-shell/resident_world_session.hpp",
+        "apps/qt-shell/resident_profile_capture.cpp",
+        "apps/qt-shell/resident_profile_capture.hpp",
+        "runtime/render/pacer_yield.h",
+        "runtime/scene/world_continuous_clock.c"
       ],
       "tests": [
         "tests/render-gpu-timing-test.cpp",
         "tools/profile-native-resident.py",
         "tools/benchmark-native-resident.py",
-        "tools/native-render-profile/resident_profile.cpp"
+        "tools/native-render-profile/resident_profile.cpp",
+        "tests/resident-profile-capture-test.cpp",
+        "tests/resident-profile-capture-test.py",
+        "tests/campaign-pacer-reference.c",
+        "tools/test-native-pacer.py"
       ],
       "validation_dependencies": [
         "apps/qt-shell/CMakeLists.txt",
@@ -41054,6 +41070,7 @@
         "protocols/include/mnm/canvas_producers_v1.h",
         "protocols/include/mnm/canvas_producers_v2.h",
         "protocols/include/mnm/canvas_producers_v3.h",
+        "protocols/include/mnm/render_stream_v2.h",
         "protocols/include/mnm/render_stream_v3.h",
         "protocols/include/mnm/render_stream_v4.h",
         "protocols/include/mnm/scene_snapshot_v1.h",
@@ -41156,7 +41173,9 @@
         "tools/test-resident-leaf-abi.py"
       ],
       "evidence": [
-        "NR.resident-stage-profiling.instrumentation-20261011"
+        "NR.resident-stage-profiling.instrumentation-20261011",
+        "NR.resident-stage-profiling.synchronous-capture-failure-20261011",
+        "NR.resident-stage-profiling.worker-fixtures-20261011"
       ],
       "status": {
         "understanding": "scoped",
@@ -41166,9 +41185,8 @@
         "replacement": "none"
       },
       "remaining_gaps": [
-        "Synthetic GPU query identity/overflow/exception/context-destruction controls and pixel stability passed on NVIDIA TITAN EGL. Public shared-context profiling and full captured gameplay replay remain pending.",
-        "Representative public campaign capture, CPU sampling, pacing attribution and independent resident hardware replay remain pending.",
-        "GPU timestamps measure elapsed command-stream intervals, not isolated busy utilization; unobserved original work and presentation latency remain unattributed."
+        "Initial synchronous capture failure remains historical and is not a completed gameplay/performance result. Current bounded compressed worker, exact archive/malformed controls, native import/Quit and clock/LastError/observer guards pass. Full current public CPU/GPU/pacing and representative hardware corpus replay remain pending.",
+        "GPU intervals include CPU submission starvation/fence waits and do not identify hardware busy utilization; original residual and public presentation latency remain unattributed."
       ]
     }
   ],
@@ -85202,6 +85220,80 @@
           "equals": 0
         }
       ]
+    },
+    {
+      "id": "NR.resident-stage-profiling.synchronous-capture-failure-20261011",
+      "kind": "live_observation",
+      "scope": "Failed initial synchronous capture with native-fallback smoke assertion, measured946.324ms capture write and multi-second polls; incomplete CPU sampling/cleanup then independent owned cleanup. No complete gameplay or throughput claim.",
+      "record": "research/runtime/resident-profile-synchronous-capture-negative-20261011.json",
+      "sha256": "11c245f926612c10a827d06e22a7c71d143c89ad60cf136f4c2f4284922e946d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/expected_failure",
+          "equals": true
+        },
+        {
+          "pointer": "/success",
+          "equals": false
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/manual_cleanup/private_wine_stopped",
+          "equals": true
+        },
+        {
+          "pointer": "/manual_cleanup/original_manifest_verified_before_after",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "NR.resident-stage-profiling.worker-fixtures-20261011",
+      "kind": "native_integration",
+      "scope": "Bounded compressed worker and5 queue/order/extent/NewOnly controls,4 exact Qt/Python records and11 compressed negative controls;33 original clock-byte mutations and LastError/paired-callback forwarding; fresh65536-word shared import/2 HUD comparisons and8 Quit refusals. Full current public pacing/casting/throughput pending.",
+      "record": "research/runtime/resident-profile-worker-fixtures-20261011.json",
+      "sha256": "2a605faae92767719f8904eda1fd5d4a16645f7f997bc7a5310285a4d24c394d",
+      "sources_pointer": "/sources",
+      "claims_pointer": "/claims",
+      "assertions": [
+        {
+          "pointer": "/success",
+          "equals": true
+        },
+        {
+          "pointer": "/sources_stable",
+          "equals": true
+        },
+        {
+          "pointer": "/worker/normal/complete",
+          "equals": true
+        },
+        {
+          "pointer": "/archive/qt_python_bytes_equal",
+          "equals": true
+        },
+        {
+          "pointer": "/archive/negative_controls",
+          "equals": 11
+        },
+        {
+          "pointer": "/pacer/success",
+          "equals": true
+        },
+        {
+          "pointer": "/import/ordinary_import_readbacks",
+          "equals": 0
+        },
+        {
+          "pointer": "/quit/idempotent",
+          "equals": true
+        }
+      ]
     }
   ],
   "classifications": [],
@@ -95602,7 +95694,23 @@
         "tests/render-gpu-timing-test.cpp"
       ],
       "evidence": [
-        "NR.resident-stage-profiling.instrumentation-20261011"
+        "NR.resident-stage-profiling.instrumentation-20261011",
+        "NR.resident-stage-profiling.worker-fixtures-20261011"
+      ]
+    },
+    {
+      "id": "NR.resident-stage-profiling.live",
+      "scope": "Private TITAN public resident native campaign, original pacing observation and opt-in bounded CPU/GPU profiling/source capture; live timing is perturbed by diagnostics. Physical casting/combat/normal Quit only when explicitly exercised.",
+      "level": "live_observation",
+      "behaviors": [
+        "NR.resident-stage-profiling"
+      ],
+      "tests": [
+        "tools/profile-native-resident.py",
+        "tools/test-native-campaign.py"
+      ],
+      "evidence": [
+        "NR.resident-stage-profiling.synchronous-capture-failure-20261011"
       ]
     }
   ],
@@ -95977,8 +96085,8 @@
     }
   ],
   "code_index": {
-    "path": "research/runtime/coverage/source-index-resident-profile-instrumentation-20261011.json",
-    "sha256": "54c344258a4c0f60d66659fe099307dd3e805b91dd7f9d34c939acccc5e94748"
+    "path": "research/runtime/coverage/source-index-resident-profile-worker-20261011.json",
+    "sha256": "239355cfb0c37cfdd4a455966af754bd9501f188b088107fc90353ea37622c70"
   },
   "claim_bindings_required": true
 }

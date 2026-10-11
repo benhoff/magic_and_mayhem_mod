@@ -4,6 +4,13 @@ typedef u32 (WIN *PacerTickFn)(void);
 static PacerTickFn pacer_original_tick;
 #include "precise_clock.h"
 static u32 pacer_enabled,pacer_yield_seen;
+typedef void (WIN *PacerObserveFn)(u32 caller,u32 tick);
+static PacerObserveFn pacer_observe;
+static inline int pacer_observation_matches(const u8* first,const u8* last){
+    const u8 a[8]={0xff,0xd6,0x2b,0x05,0x00,0x81,0x6e,0x00};
+    const u8 b[7]={0xff,0xd6,0xa3,0x00,0x81,0x6e,0x00};
+    return same(first,a,8)&&same(last,b,7);
+}
 static int pacer_entry_matches(const u8* load,const u8* loop,u32 current,u32 expected,u32 base){
     const u8 load_bytes[6]={0x8b,0x35,0x64,0x51,0x5c,0};
     const u8 loop_bytes[12]={0xff,0xd6,0x2b,0x05,0x00,0x81,0x6e,0x00,0x3b,0xc7,0x72,0xf4};
@@ -15,7 +22,11 @@ static u32 pacer_read(u32 caller,int active){
         if(!pacer_yield_seen){pacer_yield_seen=1;PACER_FIRST_YIELD(caller);}
         Sleep(0);
     }
-    SetLastError(error);return precise_clock_read(pacer_original_tick,pacer_precise_tick);
+    SetLastError(error);u32 tick=precise_clock_read(pacer_original_tick,pacer_precise_tick);
+    if(pacer_observe&&active&&(caller==0x4e3f59||caller==0x4e3f97)){
+        error=GetLastError();pacer_observe(caller,tick);SetLastError(error);
+    }
+    return tick;
 }
 #ifndef MNM_PACER_POLICY_TEST
 static u32 WIN pacer_tick(void){
@@ -33,7 +44,9 @@ static int pacer_install(u32 base){
     if(n&&(n!=1||option[0]!='1'))return 0;
     u32 clock_n=GetEnvironmentVariableA("MNM_RENDER_PRECISE_CLOCK",option,sizeof(option));
     if(clock_n&&(clock_n!=1||option[0]!='1'))return 0;
-    if(!n&&!clock_n)return 1;
+    u32 observe_n=GetEnvironmentVariableA("MNM_RENDER_PACER_OBSERVE",option,sizeof(option));
+    if(observe_n&&(observe_n!=1||option[0]!='1'))return 0;
+    if(!n&&!clock_n&&!observe_n)return 1;
     if((n&&n!=1)||!command_channel||!command_queue||command_channel_refused)return 0;
     u32* slot=(u32*)0x5c5164;void* kernel=GetModuleHandleA("kernel32.dll");
     PacerTickFn original=(PacerTickFn)GetProcAddress(kernel,"GetTickCount");
@@ -41,13 +54,21 @@ static int pacer_install(u32 base){
         !pacer_entry_matches((void*)0x4e3e5b,(void*)0x4e3f89,*slot,(u32)original,base))return 0;
     u32 protection,ignored;
     PacerTickFn fine=0;
+    PacerObserveFn observe=0;
+    if(observe_n){
+        if(!readable((void*)0x4e3f57,8)||!readable((void*)0x4e3f95,7)||
+           !pacer_observation_matches((void*)0x4e3f57,(void*)0x4e3f95))return 0;
+        void* scene=GetModuleHandleA("MnmScene.dll");
+        observe=scene?(PacerObserveFn)GetProcAddress(scene,"ScenePacerObservationV1"):0;
+        if(!observe)return 0;
+    }
     if(clock_n){
         void* winmm=GetModuleHandleA("winmm.dll");
         fine=winmm?(PacerTickFn)GetProcAddress(winmm,"timeGetTime"):0;
         if(!fine||!precise_clock_epoch_matches(original(),fine()))return 0;
     }
     if(!VirtualProtect(slot,4,4,&protection))return 0;
-    pacer_original_tick=original;pacer_precise_tick=fine;pacer_enabled=n!=0;
+    pacer_original_tick=original;pacer_precise_tick=fine;pacer_enabled=n!=0;pacer_observe=observe;
     __atomic_store_n(slot,(u32)&pacer_tick,__ATOMIC_RELEASE);
     VirtualProtect(slot,4,protection,&ignored);
     if(fine)PACER_PRECISE_CLOCK();

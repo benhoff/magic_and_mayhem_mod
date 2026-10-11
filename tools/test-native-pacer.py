@@ -26,7 +26,7 @@ def main():
             subprocess.run(['lld-link','/machine:x86','/entry:start','/subsystem:console','/nodefaultlib','/safeseh:no','/timestamp:0',f'/out:{out / "fixture.exe"}',str(out/'fixture.obj'),str(ROOT/'working/build/render/kernel32.lib')],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=30)
         with (out/'wine.log').open('w') as log:
             result=subprocess.run(['xvfb-run','-a','wine',str(out/'fixture.exe')],env=env,cwd=out,stdout=log,stderr=subprocess.STDOUT,timeout=120)
-        report.update(exit_code=result.returncode,binary_sha256=sha(out/'fixture.exe'),checks='18 mutated instruction bytes; wrong base/import/null import; enabled, inactive, unrelated caller; unchanged original clock bits/entry and exit LastError; exactly one Sleep0')
+        report.update(exit_code=result.returncode,binary_sha256=sha(out/'fixture.exe'),checks='33 mutated instruction bytes; wrong base/import/null import; enabled/inactive/unrelated caller; original clock bits/entry and exit LastError; one Sleep0; two observation callbacks only at paired PCs with callback LastError restored and no extra clock calls')
         if result.returncode:raise RuntimeError('Native wait policy fixture failed')
         report['sources_unchanged']=all(sha(ROOT/p)==h for p,h in report['sources'].items())
         if not report['sources_unchanged']:raise RuntimeError('Source changed during fixture')
